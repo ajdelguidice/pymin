@@ -1,4 +1,4 @@
 # pymin
 //WARNING: PORN//
-Python conversion of Nimin Fetish Fantasy 
+Python conversion of Nimin Fetish Fantasy.
 Heavily WIP
