@@ -7,4 +7,5 @@ Requires:
 math (Built-in),
 random (Built-in),
 os (Built-in),
+numpy,
 tkinter (sometimes called python-tk)
