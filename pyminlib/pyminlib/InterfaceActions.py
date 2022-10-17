@@ -158,7 +158,7 @@ class PanelButton10:
             button10.place(anchor=NW, height=46, width=140, x=160, y=132)
             button10visible = True
     def Hide():
-        if button10visible = True:
+        if button10visible == True:
             button10.destroy()
             button10visible = False
 class PanelButton11:
