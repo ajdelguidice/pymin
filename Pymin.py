@@ -1,14 +1,16 @@
 import math
 import random
-import numpy
 import tkinter
 from tkinter import ttk
-from tkinter import scrolledtext
-import pyminlib.InterfaceActions as PIA
+from tkinter.scrolledtext import ScrolledText
+#import pyminlib.InterfaceActions as PIA
 import pyminlib.FunctionExtensions as FE
+import pyminlib.Items.MainItems as MainItems
+import pyminlib.Items.General as General
+import pyminlib.Items.Dye as DyeItems
+import pyminlib.Items.Appoticary as AppothItems
+import pyminlib.Items.Salon as SalonItems
 from os.path import exists
-tkScrolledText = tkinter.scrolledtext.ScrolledText
-
 
 #acheivements = list(())
 #FindMalon, MalonRepMax, FindSil, SilRepMax, MistressRepMax, FindJamie, JamieRepMax, DefeatMinotaur, DefeatFreakyGirl, DefeatSuccubus, HaveAtleast25Aff5Races, HaveAffAllRaces, OneYear, Over9000Coins(Over9000 Joke), BugRaceFull, CowRaceFull, SkunkRaceFull, RabbitRaceFull, BirdRaceFull, PigRaceFull
@@ -639,25 +641,25 @@ def Side8Event():
       DetailedCredits()
 
 def Option1Event():
-   PIA.Options.ToggleTheme()
+   ToggleTheme()
 
 def Option2Event():
-   PIA.Options.FontSizeDown()
+   FontSizeDown()
 
 def Option3Event():
-   PIA.Options.FontSizeReset()
+   FontSizeReset()
 
 def Option4Event():
-   PIA.Options.FontSizeUp()
+   FontSizeUp()
 
 def Option5Event():
-   PIA.Options.ToggleBold()
+   ToggleBold()
 
 def Option6Event():
-   PIA.Options.ToggleColor()
+   ToggleColor()
    
 def Option7Event():
-   PIA.Options.ToggleSide()
+   ToggleSide()
 
 """
 def KeysUp():      {
@@ -872,32 +874,840 @@ def LoadG():
 def NewGameStart():
    NewGameGo()
 
-#def ToggleTheme():
-#PIA.Options.ToggleTheme()
+def ToggleTheme():
+   global theme
+   theme += 1
+   if theme >= 6:
+      theme = 0
+   UpdateTheme()
+   #SavePreferences()
 
-#def ChangeTKBColor(color):
-#PIA.Options.ChangeBackgroundColor()    
+def ChangeBackgroundColor(color):
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlable, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, creditsbutton, appearancebutton, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7
+   try:
+      bccolorlabel1["background"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel2["background"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel3["background"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel4["background"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel5["background"] = color
+   except:
+      x = 0
+   try:
+      textmain["background"] = color
+   except:
+      x = 0
+   try:
+      textside["background"] = color
+   except:
+      x = 0
+   try:
+      label1["background"] = color
+   except:
+      x = 0
+   try:
+      strlabel["background"] = color
+   except:
+      x = 0
+   try:
+      strcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      strvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      strimglabel["background"] = color
+   except:
+      x = 0
+   try:
+      mentlabel["background"] = color
+   except:
+      x = 0
+   try:
+      mentcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      mentvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      mentimglabel["background"] = color
+   except:
+      x = 0
+   try:
+      liblabel["background"] = color
+   except:
+      x = 0
+   try:
+      libcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      libvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      libimglabel["background"] = color
+   except:
+      x = 0
+   try:
+      senlabel["background"] = color
+   except:
+      x = 0
+   try:
+      sencolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      senvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      senimglabel["background"] = color
+   except:
+      x = 0
+   try:
+      label6["background"] = color
+   except:
+      x = 0
+   try:
+      hplabel["background"] = color
+   except:
+      x = 0
+   try:
+      hpcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      hpvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      hpimglabel["background"] = color
+   except:
+      x = 0
+   try:
+      lustlabel["background"] = color
+   except:
+      x = 0
+   try:
+      lustcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      lustvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      lustimglabel["background"] = color
+   except:
+      x = 0
+   try:
+      hungerlabel["background"] = color
+   except:
+      x = 0
+   try:
+      hungercolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      hungervallabel["background"] = color
+   except:
+      x = 0
+   try:
+      label10["background"] = color
+   except:
+      x = 0
+   try:
+      currentregionlabel["background"] = color
+   except:
+      x = 0
+   try:
+      levellabel["background"] = color
+   except:
+      x = 0
+   try:
+      levelcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      levelvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      sexplabel["background"] = color
+   except:
+      x = 0
+   try:
+      sexpcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      sexpvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      coinlabel["background"] = color
+   except:
+      x = 0
+   try:
+      coincolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      coinvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      daylabel["background"] = color
+   except:
+      x = 0
+   try:
+      daycolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      dayvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      hourlabel["background"] = color
+   except:
+      x = 0
+   try:
+      hourcolonlabel["background"] = color
+   except:
+      x = 0
+   try:
+      hourvallabel["background"] = color
+   except:
+      x = 0
+   try:
+      bagstashlabel["background"] = color
+   except:
+      x = 0
+   try:
+      savegamebutton["background"] = color
+   except:
+      x = 0
+   try:
+      loadgamebutton["background"] = color
+   except:
+      x = 0
+   try:
+      newgamebutton["background"] = color
+   except:
+      x = 0
+   try:
+      quitbutton["background"] = color
+   except:
+      x = 0
+   try:
+      resetbutton["background"] = color
+   except:
+      x = 0
+   try:
+      refreshbutton["background"] = color
+   except:
+      x = 0
+   try:
+      button1["background"] = color
+   except:
+      x = 0
+   try:
+      button2["background"] = color
+   except:
+      x = 0
+   try:
+      button3["background"] = color
+   except:
+      x = 0
+   try:
+      button4["background"] = color
+   except:
+      x = 0
+   try:
+      button5["background"] = color
+   except:
+      x = 0
+   try:
+      button6["background"] = color
+   except:
+      x = 0
+   try:
+      button7["background"] = color
+   except:
+      x = 0
+   try:
+      button8["background"] = color
+   except:
+      x = 0
+   try:
+      button9["background"] = color
+   except:
+      x = 0
+   try:
+      button10["background"] = color
+   except:
+      x = 0
+   try:
+      button11["background"] = color
+   except:
+      x = 0
+   try:
+      button12["background"] = color
+   except:
+      x = 0
+   try:
+      looksbutton["background"] = color
+   except:
+      x = 0
+   try:
+      statsbutton["background"] = color
+   except:
+      x = 0
+   try:
+      effectsbutton["background"] = color
+   except:
+      x = 0
+   try:
+      helpbutton["background"] = color
+   except:
+      x = 0
+   try:
+      levelsbutton["background"] = color
+   except:
+      x = 0
+   try:
+      gearbutton["background"] = color
+   except:
+      x = 0
+   try:
+      titlesbutton["background"] = color
+   except:
+      x = 0
+   try:
+      creditsbutton["background"] = color
+   except:
+      x = 0
+   try:
+      appearancebutton["background"] = color
+   except:
+      x = 0
+   try:
+      themebutton["background"] = color
+   except:
+      x = 0
+   try:
+      textsizedownbutton["background"] = color
+   except:
+      x = 0
+   try:
+      textsizeresetbutton["background"] = color
+   except:
+      x = 0
+   try:
+      textsizeupbutton["background"] = color
+   except:
+      x = 0
+   try:
+      textboldbutton["background"] = color
+   except:
+      x = 0
+   try:
+      textcolourbutton["background"] = color
+   except:
+      x = 0
+   try:
+      themebutton7["background"] = color
+   except:
+      x = 0
 
-#def UpdateTheme():
-#PIA.Options.UpdateTheme()
+def ChangeTextColor(color):
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlable, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, creditsbutton, appearancebutton, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7
+   try:
+      bccolorlabel1["foreground"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel2["foreground"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel3["foreground"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel4["foreground"] = color
+   except:
+      x = 0
+   try:
+      bccolorlabel5["foreground"] = color
+   except:
+      x = 0
+   try:
+      textmain["foreground"] = color
+   except:
+      x = 0
+   try:
+      textside["foreground"] = color
+   except:
+      x = 0
+   try:
+      label1["foreground"] = color
+   except:
+      x = 0
+   try:
+      strlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      strcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      strvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      strimglabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      mentlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      mentcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      mentvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      mentimglabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      liblabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      libcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      libvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      libimglabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      senlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      sencolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      senvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      senimglabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      label6["foreground"] = color
+   except:
+      x = 0
+   try:
+      hplabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hpcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hpvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hpimglabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      lustlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      lustcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      lustvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      lustimglabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hungerlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hungercolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hungervallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      label10["foreground"] = color
+   except:
+      x = 0
+   try:
+      currentregionlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      levellabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      levelcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      levelvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      sexplabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      sexpcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      sexpvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      coinlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      coincolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      coinvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      daylabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      daycolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      dayvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hourlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hourcolonlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      hourvallabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      bagstashlabel["foreground"] = color
+   except:
+      x = 0
+   try:
+      savegamebutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      loadgamebutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      newgamebutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      quitbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      resetbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      refreshbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      button1["foreground"] = color
+   except:
+      x = 0
+   try:
+      button2["foreground"] = color
+   except:
+      x = 0
+   try:
+      button3["foreground"] = color
+   except:
+      x = 0
+   try:
+      button4["foreground"] = color
+   except:
+      x = 0
+   try:
+      button5["foreground"] = color
+   except:
+      x = 0
+   try:
+      button6["foreground"] = color
+   except:
+      x = 0
+   try:
+      button7["foreground"] = color
+   except:
+      x = 0
+   try:
+      button8["foreground"] = color
+   except:
+      x = 0
+   try:
+      button9["foreground"] = color
+   except:
+      x = 0
+   try:
+      button10["foreground"] = color
+   except:
+      x = 0
+   try:
+      button11["foreground"] = color
+   except:
+      x = 0
+   try:
+      button12["foreground"] = color
+   except:
+      x = 0
+   try:
+      looksbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      statsbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      effectsbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      helpbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      levelsbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      gearbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      titlesbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      creditsbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      appearancebutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      themebutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      textsizedownbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      textsizeresetbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      textsizeupbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      textboldbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      textcolourbutton["foreground"] = color
+   except:
+      x = 0
+   try:
+      themebutton7["foreground"] = color
+   except:
+      x = 0
 
-#def FontSizeDown():
-#PIA.Options.FontSizeDown
+def UpdateTheme():
+   global theme
+   if theme == 0:
+      ChangeBackgroundColor("#FFFFFF")
+   elif theme == 1:
+      ChangeBackgroundColor("#000000")
+   elif theme == 2:
+      ChangeBackgroundColor("#EF7DB6")
+   elif theme == 3:
+      ChangeBackgroundColor("#29705C")
+   elif theme == 4:
+      ChangeBackgroundColor("#4248A6")
+   elif theme == 5:
+      ChangeBackgroundColor("#721717")
+   else:
+      ChangeBackgroundColor("#FFFFFF")
+      theme = 0
 
-#def FontSizeReset():
-#PIA.Options.FontSizeReset
+def FontSizeDown():
+   global fontSize
+   if fontSize > 4:
+      fontSize -= 2
+   UpdateText()
+   #SavePreferences()
 
-#def FontSizeUp():
-#PIA.Options.FontSizeUp
+def FontSizeReset():
+   fontSize = 14
+   UpdateText()
+   #SavePreferences()
 
-#def ToggleBold():
-#PIA.Options.ToggleBold
+def FontSizeUp():
+   global fontSize
+   if fontSize < 26:
+      fontSize += 2
+   UpdateText()
+   #SavePreferences()
 
-#def ToggleColor():
-#PIA.Options.ToggleColor
+def ToggleBold():
+   global fontBold
+   if fontBold == False:
+      fontBold = True
+   else:
+      fontBold = False
+   UpdateText()
+   #SavePreferences()
 
-#def ToggleSide():
-#PIA.Options.ToggleSide
+def ToggleColor():
+   global fontColor
+   if fontColor == "#000000":
+      fontColor = "#FFFFFF"
+   elif fontColor == "#FFFFFF":
+      fontColor = "#808080"
+   elif fontColor == "#808080":
+      fontColor = "#0000FF"
+   elif fontColor == "#0000FF":
+      fontColor = "#800080"
+   elif fontColor == "#800080":
+      fontColor = "#FF0000"
+   elif fontColor == "#FF0000":
+      fontColor = "#FFA500"
+   elif fontColor == "#FFA500":
+      fontColor = "#FFFF00"
+   elif fontColor == "#FFFF00":
+      fontColor = "#008000"
+   elif fontColor == "#008000":
+      fontColor = "#EF7DB6"
+   elif fontColor == "#EF7DB6":
+      fontColor = "#29705C"
+   elif fontColor == "#29705C":
+      fontColor = "#000000"
+   else:
+      fontColor = "#FFFFFF"     
+   ChangeTextColor(fontColor)
+   #SavePreferences()
+
+def ToggleSide():
+   global showSide, themebutton7, Option7Visible
+   if showSide == True:
+      showSide = False
+      SidePanel.Hide()
+      themebutton7["text"] = "--"
+   elif showside == False:
+      showSide = True
+      SidePanel.Show()
+      UpdateSide()
+      themebutton7["text"] = "O"
+   else:
+      showSide = True
+      SidePanel.Hide()
+      SidePanel.Show()
+      UpdateSide()
+      themebutton7["text"] = "O"
+   if Option7Visible == True:
+      #SavePreferences()
+      x = 0
+
+def UTCheckBold():
+   global fontBold
+   if fontBold == True:
+      a = ", 'bold'"
+      return a
+   else:
+      return ""
+
+def UpdateText():
+   global fontMain, textMain, textSide
+   a = UTCheckBold()
+   #fontMain = "(" + "Times New Roman" + ", " + str(fontSize) + a + ")"
+   fontMain = ("Times New Roman", fontSize, a)
+   textmain.configure(state="normal")
+   textside.configure(state="normal")
+   textmain["font"] = fontMain
+   textside["font"] = fontMain
+   textmain.configure(state="disabled")
+   textside.configure(state="disabled")
+
 """
 def SideHide():
    this.sideWindow.visible = False
@@ -970,9 +1780,9 @@ def SideShow():
       fontBold = prefLoad[2]
       fontColor = prefLoad[3]
       showSide = prefLoad[4]
-      PIA.Options.UpdateText()
-      PIA.Options.ChangeBackgroundColor(theme)
-      PIA.Options.ChangeTextColor(fontColor)
+      UpdateText()
+      ChangeBackgroundColor(theme)
+      ChangeTextColor(fontColor)
       f.close()
    else:
       theme = 0
@@ -980,24 +1790,15 @@ def SideShow():
       fontBold = false
       fontColor = "#000000"
       showSide = True
-      PIA.Options.UpdateText()
-      PIA.Options.ChangeBackgroundColor(theme)
-      PIA.Options.ChangeTextColor(fontColor)
+      UpdateText()
+      ChangeBackgroundColor(theme)
+      ChangeTextColor(fontColor)
 
-#def UTCheckBold():
-#PIA.Options.UTCheckBold()
-
-#def UpdateText():
-#PIA.Options.UpdateText()
-
-#def ChangeTKFColor(color):
-#PIA.Options.ChangeTextColor()
-
-!def OutputMainText(texts:str, reset:bool, textCheck):
+!def OutputMainText(texts:str, reset:bool):
    if reset == False:
-        PIA.TextBoxes.AddMain(texts)
+        TextBoxes.AddMain(texts)
    if reset == True:
-        PIA.TextBoxes.ClearAddMain(texts)
+        TextBoxes.ClearAddMain(texts)
 
 """
    global textCheckArray
@@ -1018,9 +1819,9 @@ def SideShow():
 """
 !def OutputSideText(texts:str, reset:bool):
    if reset == False:
-        PIA.TextBoxes.AddSide(texts)
+        TextBoxes.AddSide(texts)
    if reset == True:
-        PIA.TextBoxes.ClearAddSide(texts)
+        TextBoxes.ClearAddSide(texts)
 
 """
    if reset == False:
@@ -1183,8 +1984,8 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
       buttMod = 1
    if bellyMod < 0:
       bellyMod = 0
-   if pregArray.length < vagTotal * 5:
-      while pregArray.length < vagTotal * 5:
+   if len(pregArray) < vagTotal * 5:
+      while len(pregArray) < vagTotal * 5:
          pregArray.push(False,0,0,0,0)
 
 !def CheckDecimal():
@@ -1248,7 +2049,7 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
          DoProcess()
 
 !def DoProcess():
-   global choicePage, moveItemID, moveItemStack, itemGainArray,human, horse, wolf, cat, cow, hrs
+   global choicePage, moveItemID, moveItemStack, itemGainArray, human, horse, wolf, cat, cow, hrs
    choicePage = 1
    if inBag == False and moveItemID != 0:
       OutputMainText("You seem to have not placed your " + ItemName(moveItemID) + "",True)
@@ -1265,7 +2066,7 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
          moveItemID = 0
          moveItemStack = 0
          ShowMoveItem(False)
-      if itemGainArray.length != 0:
+      if len(itemGainArray) != 0:
          itemGainArray.sort()
          GainItem(itemGainArray.pop())
       elif human != 0 or horse != 0 or wolf != 0 or cat != 0 or cow != 0:
@@ -1321,7 +2122,7 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
    a = vagSize * (vagSizeMod + vagElastic) + vagSize * vagSizeMod * MoistCalc(2) / 10
    return a
 
-!def EVagLimit(limit:int):
+!def eVagLimit(limit:int):
    a = limit + limit * MoistCalc(1) / 10
    return a
 
@@ -1393,29 +2194,29 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
       tempBool = True
    return tempBool
 
-!def CheckMagicItem():
+def CheckMagicItem():
    tempBool = False
-   if checkItem(101):
+   if (CheckItem(101) == True):
       tempBool = True
-   elif checkItem(102):
+   elif (CheckItem(102) == True):
       tempBool = True
-   elif checkItem(200):
+   elif (CheckItem(200) == True):
       tempBool = True
-   elif checkItem(215):
+   elif (CheckItem(215) == True):
       tempBool = True
-   elif checkItem(231):
+   elif (CheckItem(231) == True):
       tempBool = True
-   elif checkItem(233):
+   elif (CheckItem(233) == True):
       tempBool = True
-   elif checkItem(234):
+   elif (CheckItem(234) == True):
       tempBool = True
-   elif checkItem(235):
+   elif (CheckItem(235) == True):
       tempBool = True
-   elif checkItem(236):
+   elif (CheckItem(236) == True):
       tempBool = True
-   elif checkItem(237):
+   elif (CheckItem(237) == True):
       tempBool = True
-   elif checkItem(252):
+   elif (CheckItem(252) == True):
       tempBool = True
    return tempBool
 
@@ -1434,20 +2235,19 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
          tempInt += bagStackArray[i]
    return tempInt
     
-!def Percent():
+def Percent():
    a = math.floor(random.random() * (1 + 100 - 1)) + 1
    return a
 
-!def ChooseFrom():
-   global rndArray
-   global hour
-   tempInt:int = 0
+def ChooseFrom():
+   global rndArray, hour
+   tempInt = 0
    rndResult = 0
-   if rndArray.length < 1:
+   if len(rndArray) < 1:
       OutputMainText("\n" + "\n" + "An ERROR has occured in the choice array. Please report this bug and where you saw it (" + rndArray[0] + " at " + hour + "hour), or else you'll get the hose.",False)
       rndArray = list(())
    else:
-      tempInt = round(random.random() * (rndArray.length - 1))
+      tempInt = round(random.random() * (len(rndArray) - 1))
       rndResult = rndArray[tempInt]
       rndArray = list(())
    return rndResult
@@ -1480,26 +2280,26 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
    if lust < 0:
       lust = 0
    if stre > 0:
-      PIA.UpDown.StrImg("./images/1.png")
+      UpDown.StrImg("./images/1.png")
    if stre < 0:
-      PIA.UpDown.StrImg("./images/2.png")
+      UpDown.StrImg("./images/2.png")
    if menta > 0:
-      PIA.UpDown.MentImg("./images/1.png")
+      UpDown.MentImg("./images/1.png")
    if menta < 0:
-      PIA.UpDown.MentImg("./images/2.png")
+      UpDown.MentImg("./images/2.png")
    if libi > 0:
-      PIA.UpDown.LibImg("./images/1.png")
+      UpDown.LibImg("./images/1.png")
    if libi < 0:
-      PIA.UpDown.LibImg("./images/2.png")
+      UpDown.LibImg("./images/2.png")
    if sens > 0:
-      PIA.UpDown.SenImg("./images/1.png")
+      UpDown.SenImg("./images/1.png")
    if sens < 0:
-      PIA.UpDown.SenImg("./images/2.png")
+      UpDown.SenImg("./images/2.png")
    StatDisplay()
 
 !def StatsMod(stre:int, menta:int, libi:int, sens:int):
    global strMod, mentMod, libMod, senMod
-   HideUpDown()
+   PIA.UpDown.HideAll()
    strMod += stre
    mentMod += menta
    libMod += libi
@@ -1536,27 +2336,27 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
       SexP = 0
       level += 1
       levelUP += 1
-      doSexP(changes)
+      DoSexP(changes)
    else:
       SexP += changes * SexPMod
       PIA.StatPane.SetSCStats()
 
 !def RegionChange(changes:int):
-   if inDungeon == False:
+   if (inDungeon == False):
       currentZone = changes
-      if changes == 1:
+      if (changes == 1):
          region.text = "Softlik"
-      if changes == 2:
+      if (changes == 2):
          region.text = "Firmshaft"
-      if changes == 3:
+      if (changes == 3):
          region.text = "Tieden"
-      if changes == 4:
+      if (changes == 4):
          region.text = "Siz'Calit"
-      if changes == 6:
+      if (changes == 6):
          region.text = "Oviasis"
-      if changes == 12:
+      if (changes == 12):
          region.text = "Sanctuary"
-   if inDungeon == True:
+   if (inDungeon == True):
       currentDungeon = changes
       if (changes > 1000) and (changes < 1010):
          region.text = "Cave Descent"
@@ -1564,7 +2364,7 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
 !def DayTime(Time):
    global hour, day
    addTime = Time
-   while hour + addTime >= 24:
+   while ((hour + addTime) >= 24):
       addTime -= 24 - hour
       hour = 0
       day += 1
@@ -1572,12 +2372,12 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
    PIA.StatPane.SetDHStats()
    DoStatus(Time)
 
-!def DoCoin(changes:int):
+def DoCoin(changes:int):
    global coin, coinMod
-   if coin + changes < 0:
+   if ((coin + changes) < 0):
       coin = 0
       changes = 0
-   if changes > 0:
+   if (changes > 0):
       changes += coinMod
    coin += changes
    DoSexP(0)
@@ -1813,7 +2613,7 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
 
 !def NewGameGoPt2():
    global currentState, currentZone,
-   HideUpDown()
+   PIA.UpDown.HideAll()
    statPane.visible = True
    DayPane.visible = True
    levelPane.visible = True
@@ -2857,6 +3657,7 @@ def CheckUpdate():
 !def ItemAdd(ID:int):
    global itemGainArray
    itemGainArray.push(ID)
+
 !def GainItem(ID:int):
    global openSlot, bagArray, bagStackArray, itemGainArray
    tempNum = 0
@@ -2887,44 +3688,37 @@ def CheckUpdate():
       OutputMainText("You have obtained a " + ItemName(ID) + "!\n" + "\n" + "However, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.",True)
       DoDiscard(ID)
 
-!def CheckOpenSlots(ID:int):
+def CheckOpenSlots(ID:int):
    global bagArray
    slot = -1
    for i in range(0, 26):
-      if bagArray[i] == 0:
+      if (bagArray[i] == 0):
          slot = i
    for i in range(0, 26):
-      if bagStackArray[i] < ItemStackMax(ID) and bagArray[i] == ID:
+      if (bagStackArray[i] < ItemStackMax(ID)) and (bagArray[i] == ID):
          slot = i
    return slot
-"""
-def BagSlotAdd(amount:int):
+
+!def BagSlotAdd(amount:int):
    for i in ??:
    #for (this.i = 1; this.i <= amount; ++this.i)
       this.bagArray.push(0)
       this.bagStackArray.push(0)
 
-def BagSlotRemove(param1:int):
-   {
-         var _loc2_:int = 0;
-         var _loc3_:int = 0;
-         var _loc4_:int = 0;
-         _loc2_ = 0;
-         _loc3_ = 0;
-         _loc4_ = 0;
-         for(this.i = 1; this.i <= param1; ++this.i)
+!def BagSlotRemove(param1:int):
+   _loc2_ = 0
+   _loc3_ = 0
+   _loc4_ = 0
+   for i in ??:
+   #for (this.i = 1; this.i <= param1; ++this.i)
+      _loc2_ = this.bagArray.pop()
+      _loc3_ = this.bagStackArray.pop()
+      if (_loc2_ != 0) and (_loc3_ != 0):
+         for ?? in ??:
+         #for(_loc4_ = 1; _loc4_ <= _loc3_; this.itemAdd(_loc2_),_loc4_++)
          {
-            _loc2_ = this.bagArray.pop();
-            _loc3_ = this.bagStackArray.pop();
-            if(_loc2_ != 0 && _loc3_ != 0)
-            {
-               for(_loc4_ = 1; _loc4_ <= _loc3_; this.itemAdd(_loc2_),_loc4_++)
-               {
-               }
-            }
          }
-      }
-"""
+
 def BagSlotClear(slot:int):
    global bagArray, bagStackArray
    PassiveItemRemove(bagArray[slot])
@@ -2934,881 +3728,110 @@ def BagSlotClear(slot:int):
 !def DoDiscard(ID:int):
 !def ItemMove():
 !def ShowMoveItem():
-!def ItemName(ID:int):
-   tempStr = "ITEM NAME ERROR " + ID
-   if ID == 0:
-      tempStr = " "
-   if ID == 1:
-      tempStr = "Test"
-   if ID == 101:
-      tempStr = "Anc Claws"
-   if ID == 102:
-      tempStr = "Imb Shoes"
-   if ID == 103:
-      tempStr = "Dry Sand"
-   if ID == 104:
-      tempStr = "Milker"
-   if ID == 105:
-      tempStr = "Cat's Meow"
-   if ID == 106:
-      tempStr = "Penis Pump"
-   if ID == 108:
-      tempStr = "Blood Gge"
-   if ID == 109:
-      tempStr = "Edu Egg"
-   if ID == 110:
-      tempStr = "Reduction"
-   if ID == 111:
-      tempStr = "Skin Balm"
-   if ID == 112:
-      tempStr = "Bol Juice"
-   if ID == 113:
-      tempStr = "Taint Leaf"
-   if ID == 114:
-      tempStr = "Sweet Sap"
-   if ID == 115:
-      tempStr = "Poultice"
-   if ID == 116:
-      tempStr = "Dagger"
-   if ID == 117:
-      tempStr = "Hammer"
-   if ID == 118:
-      tempStr = "Saber"
-   if ID == 119:
-      tempStr = "Whip"
-   if ID == 120:
-      tempStr = "Neuter"
-   if ID == 121:
-      tempStr = "TS Soft"
-   if ID == 122:
-      tempStr = "TS Firm"
-   if ID == 123:
-      tempStr = "TS Tied"
-   if ID == 124:
-      tempStr = "TS Siz"
-   if ID == 125:
-      tempStr = "TS Ovi"
-   if ID == 126:
-      tempStr = "Oas Water"
-   if ID == 127:
-      tempStr = "Tail Spike"
-   if ID == 128:
-      tempStr = "TS Sanct"
-   if ID == 200:
-      tempStr = "Lila's Gift"
-   if ID == 201:
-      tempStr = "Milk C Pois"
-   if ID == 202:
-      tempStr = "Co-Snak Ven"
-   if ID == 203:
-      tempStr = "Wolf Fur"
-   if ID == 204:
-      tempStr = "Sm Pouch"
-   if ID == 205:
-      tempStr = "Sm Pouch"
-   if ID == 206:
-      tempStr = "Trinket"
-   if ID == 207:
-      tempStr = "Cock Carv"
-   if ID == 208:
-      tempStr = "Blo Berry"
-   if ID == 209:
-      tempStr = "Grain"
-   if ID == 210:
-      tempStr = "Puss Fruit"
-   if ID == 211:
-      tempStr = "DairE Pill"
-   if ID == 212:
-      tempStr = "Red Mush"
-   if ID == 213:
-      tempStr = "Wet Cloth"
-   if ID == 214:
-      tempStr = "Lon Milk"
-   if ID == 215:
-      tempStr = "Lon Pendant"
-   if ID == 216:
-      tempStr = "Pink Ink"
-   if ID == 217:
-      tempStr = "Egg Jelly"
-   if ID == 218:
-      tempStr = "Bul Berry"
-   if ID == 219:
-      tempStr = "Fresh Egg"
-   if ID == 220:
-      tempStr = "Blondie"
-   if ID == 221:
-      tempStr = "Puss Juice"
-   if ID == 222:
-      tempStr = "Kinky Carr"
-   if ID == 223:
-      tempStr = "Eq Snack"
-   if ID == 224:
-      tempStr = "Lila's Milk"
-   if ID == 225:
-      tempStr = "Body Wash"
-   if ID == 226:
-      tempStr = "Felin Tea"
-   if ID == 227:
-      tempStr = "Oral Wash"
-   if ID == 228:
-      tempStr = "Body Oil"
-   if ID == 229:
-      tempStr = "Leath Strap"
-   if ID == 230:
-      tempStr = "Eggcelerator"
-   if ID == 231:
-      tempStr = "Desi Sand"
-   if ID == 232:
-      tempStr = "Flying Carp"
-   if ID == 233:
-      tempStr = "A-Grav Rock"
-   if ID == 234:
-      tempStr = "Rein Charm"
-   if ID == 235:
-      tempStr = "Fell Rod"
-   if ID == 236:
-      tempStr = "Recept Bell"
-   if ID == 237:
-      tempStr = "Dewy Gift"
-   if ID == 238:
-      tempStr = "Squ Cheese"
-   if ID == 239:
-      tempStr = "Shiny Rock"
-   if ID == 240:
-      tempStr = "Auburn Dye"
-   if ID == 241:
-      tempStr = "Brown Dye"
-   if ID == 242:
-      tempStr = "Grey Dye"
-   if ID == 243:
-      tempStr = "White Dye"
-   if ID == 244:
-      tempStr = "Snuggle Ball"
-   if ID == 245:
-      tempStr = "Facial Mud"
-   if ID == 246:
-      tempStr = "Fertile Gel"
-   if ID == 247:
-      tempStr = "Supp Harness"
-   if ID == 248:
-      tempStr = "Breeder Pot"
-   if ID == 249:
-      tempStr = "Treant's Tear"
-   if ID == 250:
-      tempStr = "Foomp Bomb"
-   if ID == 251:
-      tempStr = "Plump Quat"
-   if ID == 252:
-      tempStr = "Milky Pend"
-   if ID == 253:
-      tempStr = "Bug Egg"
-   if ID == 254:
-      tempStr = "Lantern"
-   if ID == 255:
-      tempStr = "Frag Flower"
-   if ID == 256:
-      tempStr = "Nectar Candy"
-   if ID == 257:
-      tempStr = "Too Human"
-   if ID == 258:
-      tempStr = "Tainted Pot"
-   if ID == 259:
-      tempStr = "Sweet&Sour"
-   if ID == 260:
-      tempStr = "Succ Draft"
-   if ID == 500:
-      tempStr = "Milk Bottle"
-   if ID == 501:
-      tempStr = "Milk Jug"
-   if ID == 502:
-      tempStr = "Milk Barrel"
-   if ID == 503:
-      tempStr = "Lust Draft"
-   if ID == 504:
-      tempStr = "Rejuv Pot"
-   if ID == 505:
-      tempStr = "Bad Exper"
-   if ID == 506:
-      tempStr = "Exp Preg"
-   if ID == 507:
-      tempStr = "Ball Sweller"
-   if ID == 508:
-      tempStr = "S Lust Draft"
-   if ID == 509:
-      tempStr = "S Rejuv Pot"
-   if ID == 510:
-      tempStr = "S Bad Exper"
-   if ID == 511:
-      tempStr = "S Exp Preg"
-   if ID == 512:
-      tempStr = "S Ball Sweller"
-   if ID == 513:
-      tempStr = "Gen Swap"
-   if ID == 514:
-      tempStr = "Maso Pot"
-   if ID == 515:
-      tempStr = "Black Dye"
-   if ID == 516:
-      tempStr = "Baby Free"
-   if ID == 517:
-      tempStr = "Pot Pot"
-   if ID == 518:
-      tempStr = "S Gen Swap"
-   if ID == 519:
-      tempStr = "S Maso Pot"
-   if ID == 520:
-      tempStr = "Red Dye"
-   if ID == 521:
-      tempStr = "S Baby Free"
-   if ID == 522:
-      tempStr = "S Pot Pot"
-   if ID == 523:
-      tempStr = "Cum Vial"
-   if ID == 524:
-      tempStr = "Cum Bottle"
-   if ID == 525:
-      tempStr = "Cum Jug"
-   if ID == 526:
-      tempStr = "Cum Barrel"
-   if ID == 527:
-      tempStr = "Good Egg"
-   if ID == 528:
-      tempStr = "Bad Egg"
-   if ID == 529:
-      tempStr = "Strange Egg"
-   if ID == 530:
-      tempStr = "Charmed Egg"
-   if ID == 531:
-      tempStr = "Divine Egg"
-   if ID == 532:
-      tempStr = "Pheromone"
-   if ID == 533:
-      tempStr = "Reduc Reduc"
-   if ID == 534:
-      tempStr = "Male Enhance"
-   if ID == 535:
-      tempStr = "Milk Suppress"
-   if ID == 536:
-      tempStr = "Bazoomba!"
-   if ID == 537:
-      tempStr = "Queen Egg"
-   if ID == 538:
-      tempStr = "Soldier Egg"
-   if ID == 539:
-      tempStr = "Drone Egg"
-   if ID == 540:
-      tempStr = "Worker Egg"
-   return tempStr
+#def ItemName(ID:int):
+#MainItems.Name
 
-!def ItemDescription(ID:int):
-   global snuggleBall, suppHarness, tail
-   tempStr = "ITEM DESCRIPTION ERROR " + ID
-   if ID == 101:
-      tempStr = "Claws of the Lupine Ancestors" + "\n" + "\n" + "Harkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest." + "\n" + "\n" + "Although, in your case, it just gives you a bonus to Rape attempts..."
-   if ID == 102:
-      tempStr = "Imbued Horseshoes" + "\n" + "\n" + "Crafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
-   if ID == 103:
-      tempStr = "Magical Sands of the Dry Dunes" + "\n" + "\n" + "Applying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
-   if ID == 104:
-      tempStr = "Milking Machine" + "\n" + "\n" + "A compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat." + "\n" + "\n" + "Warning: Excessive use may result in permanent nipple/teat growth." + "\n" + "\n" + "Can only be used during Masturbation."
-   if ID == 105:
-      tempStr = "'Cat's Meow' Potion" + "\n" + "\n" + "Favored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
-   if ID == 106:
-      tempStr = "Penis Pump" + "\n" + "\n" + "A simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough." + "\n" + "\n" + "Can only be used during Masturbation."
-   if ID == 108:
-      tempStr = "Blood Gauge" + "\n" + "\n" + "Due to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
-   if ID == 109:
-      tempStr = "Educated Eggdicator" + "\n" + "\n" + "With so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state." + "\n" + "\n" + "Warning: Using this item requires 1 Fresh Egg to operate."
-   if ID == 110:
-      tempStr = "A Reduction of Reducer Agents" + "\n" + "\n" + "This is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!" + "\n" + "\n" + "Warning: This item is not useful against your enemies."
-   if ID == 111:
-      tempStr = "Skin Balm" + "\n" + "\n" + "Used and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
-   if ID == 112:
-      tempStr = "Bolstering Juice" + "\n" + "\n" + "This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
-   if ID == 113:
-      tempStr = "Tainted Leaf" + "\n" + "\n" + "This paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
-   if ID == 114:
-      tempStr = "Sweet Sap" + "\n" + "\n" + "Used and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
-   if ID == 115:
-      tempStr = "Poultice" + "\n" + "\n" + "A generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
-   if ID == 116:
-      tempStr = "Dagger" + "\n" + "\n" + "A relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin." + "\n" + "\n" + "Base damage: 5-12"
-   if ID == 117:
-      tempStr = "Warhammer" + "\n" + "\n" + "A rather blunt weapon, it's a bit unwieldy but gets the job done." + "\n" + "\n" + "Base damage: 2-20"
-   if ID == 118:
-      tempStr = "Saber" + "\n" + "\n" + "A well-designed blade, the saber can deal significant damage to foes." + "\n" + "\n" + "Base damage: 10-25"
-   if ID == 119:
-      tempStr = "Whip" + "\n" + "\n" + "A somewhat kinky weapon, the whip can leave some rather nasty welts." + "\n" + "\n" + "Base damage: 12-18"
-   if ID == 120:
-      tempStr = "Neuterizer" + "\n" + "\n" + "Developed by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
-   if ID == 121:
-      tempStr = "Teleport Scroll: Softlik" + "\n" + "\n" + "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik." + "\n" + "\n" + "Can be used at any time, even in the midst of battle."
-   if ID == 122:
-      tempStr = "Teleport Scroll: Firmshaft" + "\n" + "\n" + "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft." + "\n" + "\n" + "Can be used at any time, even in the midst of battle."
-   if ID == 123:
-      tempStr = "Teleport Scroll: Tieden" + "\n" + "\n" + "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden." + "\n" + "\n" + "Can be used at any time, even in the midst of battle."
-   if ID == 124:
-      tempStr = "Teleport Scroll: Siz'Calit" + "\n" + "\n" + "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit." + "\n" + "\n" + "Can be used at any time, even in the midst of battle."
-   if ID == 125:
-      tempStr = "Teleport Scroll: Oviasis" + "\n" + "\n" + "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis." + "\n" + "\n" + "Can be used at any time, even in the midst of battle."
-   if ID == 126:
-      tempStr = "Oasis Water" + "\n" + "\n" + "A vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
-   if ID == 127:
-      tempStr = "Tail Spike" + "\n" + "\n" + "This large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon." + "\n" + "\n" + "Base damage: 10-20" + "\n" + "\n" + "Requirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
-   if ID == 128:
-      tempStr = "Teleport Scroll: Sanctuary" + "\n" + "\n" + "Created for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary." + "\n" + "\n" + "Can be used at any time, even in the midst of battle."
-   if ID == 200:
-      tempStr = "Lila's Gift" + "\n" + "\n" + "A small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual..." + "\n" + "\n" + "Warning: You cannot regain this item should you lose it."
-   if ID == 201:
-      tempStr = "Milk Creeper Poison" + "\n" + "\n" + "Obtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
-   if ID == 202:
-      tempStr = "Cock-Snake Venom" + "\n" + "\n" + "Obtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
-   if ID == 203:
-      tempStr = "Tuft of Wolf Fur" + "\n" + "\n" + "Obtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your " + SkinDesc() + "."
-   if ID == 204:
-      tempStr = "Small Pouch" + "\n" + "\n" + "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
-   if ID == 205:
-      tempStr = "Small Pouch" + "\n" + "\n" + "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
-   if ID == 206:
-      tempStr = "Shiny Trinket" + "\n" + "\n" + "Other than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
-   if ID == 207:
-      tempStr = "Wooden Cock Carving" + "\n" + "\n" + "This thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
-   if ID == 208:
-      tempStr = "Bloated Berry" + "\n" + "\n" + "A berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
-   if ID == 209:
-      tempStr = "Handful of Grain" + "\n" + "\n" + "A handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
-   if ID == 210:
-      tempStr = "Pussy Fruit" + "\n" + "\n" + "It is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
-   if ID == 211:
-      tempStr = "DairE Pill" + "\n" + "\n" + "Produced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
-   if ID == 212:
-      tempStr = "Red Mushroom" + "\n" + "\n" + "An odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
-   if ID == 213:
-      tempStr = "Wet, Slimy Cloth" + "\n" + "\n" + "This piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
-   if ID == 214:
-      tempStr = "Malon's Milk" + "\n" + "\n" + "Unlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
-   if ID == 215:
-      tempStr = "Malon's Pendant" + "\n" + "\n" + "Given to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual." + "\n" + "\n" + "Warning: You cannot regain this item should you lose it."
-   if ID == 216:
-      tempStr = "Pink Ink" + "\n" + "\n" + "Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
-   if ID == 217:
-      tempStr = "Octopus Egg Jelly" + "\n" + "\n" + "The jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
-   if ID == 218:
-      tempStr = "Bulging Berry" + "\n" + "\n" + "A cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three of four from the same stem. It is quite edible, though it is highly suggested to not eat many."
-   if ID == 219:
-      tempStr = "Fresh Egg" + "\n" + "\n" + "An unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
-   if ID == 220:
-      tempStr = "Blonde Dye" + "\n" + "\n" + "A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
-   if ID == 221:
-      tempStr = "Concentrated Pussy Fruit Juice" + "\n" + "\n" + "Created by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
-   if ID == 222:
-      tempStr = "Kinky Carrot" + "\n" + "\n" + "Used in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
-   if ID == 223:
-      tempStr = "Equan Snack" + "\n" + "\n" + "A common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
-   if ID == 224:
-      tempStr = "Lila's Milk" + "\n" + "\n" + "From the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
-   if ID == 225:
-      tempStr = "Body Wash" + "\n" + "\n" + "This nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
-   if ID == 226:
-      tempStr = "Felin Tea Mix" + "\n" + "\n" + "A common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
-   if ID == 227:
-      tempStr = "Felin Oral Wash" + "\n" + "\n" + "With bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
-   if ID == 228:
-      tempStr = "Body Oil" + "\n" + "\n" + "Nice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
-   if ID == 229:
-      tempStr = "Leather Strap" + "\n" + "\n" + "Found somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
-   if ID == 230:
-      tempStr = "Eggcelerator" + "\n" + "\n" + "Meant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least." + "\n" + "\n" + "Its effect stacks."
-   if ID == 231:
-      tempStr = "Desiccating Sand" + "\n" + "\n" + "Obtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though." + "\n" + "\n" + "This item can only be used during battle."
-   if ID == 232:
-      tempStr = "Flying Carpet" + "\n" + "\n" + "Borrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!" + "\n" + "\n" + "You cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
-   if ID == 233:
-      tempStr = "Anti-Gravity Rock" + "\n" + "\n" + "Borrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your " + LegDesc(10) + " and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
-   if ID == 234:
-      tempStr = "Reindeer Charm" + "\n" + "\n" + "Borrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
-   if ID == 235:
-      tempStr = "Fellatio Rod" + "\n" + "\n" + "Borrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
-   if ID == 236:
-      tempStr = "Reception Bell" + "\n" + "\n" + "Borrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
-   if ID == 237:
-      tempStr = "Lila's Dewy Gift" + "\n" + "\n" + "Originally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you..." + "\n" + "\n" + "Warning: You cannot regain this item should you lose it."
-   if ID == 238:
-      tempStr = "Squeaky Cheese" + "\n" + "\n" + "Some cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
-   if ID == 239:
-      tempStr = "Shiny Rock" + "\n" + "\n" + "A rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
-   if ID == 240:
-      tempStr = "Auburn Dye" + "\n" + "\n" + "A dark reddish color, this dye will turn your hair auburn when used, if you have hair"
-   if ID == 241:
-      tempStr = "Brown Dye" + "\n" + "\n" + "A simple brownish, this dye will turn your hair brown when used, if you have hair"
-   if ID == 242:
-      tempStr = "Grey Dye" + "\n" + "\n" + "A shade, this dye will turn your hair grey when used, if you have hair"
-   if ID == 243:
-      tempStr = "White Dye" + "\n" + "\n" + "Lacking any color, this dye will turn your hair pure white when used, if you have hair"
-   if ID == 244 and snuggleBall == False:
-      tempStr = "Snuggle Ball" + "\n" + "\n" + "Squishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-   elif ID == 244:
-      tempStr = "Snuggle Ball" + "\n" + "\n" + "Not really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
-   if ID == 245:
-      tempStr = "Facial Mud" + "\n" + "\n" + "Some mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
-   if ID == 246:
-      tempStr = "Fertile Gel" + "\n" + "\n" + "A soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly." + "\n" + "\n" + "Extra doses extend the duration of the gel."
-   if ID == 247:
-      tempStr = "Support Harness" + "\n" + "\n" + "This contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-   if ID == 247 and suppHarness == True:
-      tempStr += "\n" + "\n" + "You currently have a harness equipped. Using it will unequip the harness."
-   if ID == 248:
-      tempStr = "Breeder Potion" + "\n" + "\n" + "This potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
-   if ID == 249:
-      tempStr = "Treant's Tear" + "\n" + "\n" + "This small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
-   if ID == 250:
-      tempStr = "Foomp Bomb" + "\n" + "\n" + "Much like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle." + "\n" + "\n" + "This item can only be used during battle. This item will automatically successfully run from battle."
-   if ID == 251:
-      tempStr = "Plump Quat" + "\n" + "\n" + "The quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
-   if ID == 252:
-      tempStr = "Malon's Milky Pendant" + "\n" + "\n" + "This is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
-   if ID == 253:
-      tempStr = "Bug Egg" + "\n" + "\n" + "Relatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
-   if ID == 253 and tail == 12:
-      tempStr += "\n" + "\n" + "However, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
-   if ID == 254:
-      tempStr = "Lantern" + "\n" + "\n" + "This is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
-   if ID == 255:
-      tempStr = "Fragrant Flower" + "\n" + "\n" + "A very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
-   if ID == 256:
-      tempStr = "Nectar Candy" + "\n" + "\n" + "A sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
-   if ID == 257:
-      tempStr = "Too Human Potion" + "\n" + "\n" + "This potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
-   if ID == 258:
-      tempStr = "Tainted Potion" + "\n" + "\n" + "This potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
-   if ID == 259:
-      tempStr = "Sweet & Sour Candy" + "\n" + "\n" + "This rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
-   if ID == 260:
-      tempStr = "Succubus Draft" + "\n" + "\n" + "One of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
-   if ID == 500:
-      tempStr = "Bottle of Milk" + "\n" + "\n" + "A bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
-   if ID == 501:
-      tempStr = "Jug of Milk" + "\n" + "\n" + "A large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
-   if ID == 502:
-      tempStr = "Barrel of Milk" + "\n" + "\n" + "A barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
-   if ID == 503:
-      tempStr = "Lust Draft" + "\n" + "\n" + "A potion that will increase your lust by 20 instantly when used."
-   if ID == 504:
-      tempStr = "Rejuvenating Potion" + "\n" + "\n" + "A potion that will heal 30 HP and reduce your lust by 15 instantly when used."
-   if ID == 505:
-      tempStr = "Bad Experiment" + "\n" + "\n" + "This combustable concoction will deal 10-20 damage to your enemy before they can react!" + "\n" + "\n" + "This item can only be used during battle."
-   if ID == 506:
-      tempStr = "Express Pregnancy Potion" + "\n" + "\n" + "When that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
-   if ID == 507:
-      tempStr = "Ball Sweller" + "\n" + "\n" + "Imbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
-   if ID == 508:
-      tempStr = "Superior Lust Draft" + "\n" + "\n" + "A potion that will increase your lust by 50 instantly when used."
-   if ID == 509:
-      tempStr = "Superior Rejuvenating Potion" + "\n" + "\n" + "A potion that will heal 70 HP and reduce your lust by 40 instantly when used."
-   if ID == 510:
-      tempStr = "Super Bad Experiment" + "\n" + "\n" + "This extremely combustable concoction will deal 20-40 damage to your enemy before they can react!" + "\n" + "\n" + "This item can only be used during battle."
-   if ID == 511:
-      tempStr = "Superior Express Pregnancy Potion" + "\n" + "\n" + "When that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
-   if ID == 512:
-      tempStr = "Superior Ball Sweller" + "\n" + "\n" + "Imbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
-   if ID == 513:
-      tempStr = "Gender Swap Potion" + "\n" + "\n" + "If you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
-   if ID == 514:
-      tempStr = "Masochism Potion" + "\n" + "\n" + "After this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
-   if ID == 515:
-      tempStr = "Black Dye" + "\n" + "\n" + "This will turn your hair black in color when used, if you have hair."
-   if ID == 516:
-      tempStr = "Baby Free Potion" + "\n" + "\n" + "Sipping this potion will reduce your chance of becoming pregnancy by 50% fr the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-   if ID == 517:
-      tempStr = "Potency Potion" + "\n" + "\n" + "Kicking your balls into gear, they will permanently produce 20% more cum, despite their size."
-   if ID == 518:
-      tempStr = "Superior Gender Swap Potion" + "\n" + "\n" + "If you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
-   if ID == 519:
-      tempStr = "Superior Masochism Potion" + "\n" + "\n" + "After this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
-   if ID == 520:
-      tempStr = "Red Dye" + "\n" + "\n" + "This will turn your hair red in color when used, if you have hair."
-   if ID == 521:
-      tempStr = "Superior Baby Free Potion" + "\n" + "\n" + "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-   if ID == 522:
-      tempStr = "Superior Potency Potion" + "\n" + "\n" + "Drop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
-   if ID == 523:
-      tempStr = "Vial of Cum" + "\n" + "\n" + "Still kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
-   if ID == 524:
-      tempStr = "Bottle of Cum" + "\n" + "\n" + "A bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
-   if ID == 525:
-      tempStr = "Jug of Cum" + "\n" + "\n" + "A jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
-   if ID == 526:
-      tempStr = "Barrel of Cum" + "\n" + "\n" + "There's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
-   if ID == 527:
-      tempStr = "Good Egg" + "\n" + "\n" + "An unfertilized fresh egg that is especially good for your health and body."
-   if ID == 528:
-      tempStr = "Bad Egg" + "\n" + "\n" + "An unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage." + "\n" + "\n" + "This item can only be used during battle."
-   if ID == 529:
-      tempStr = "Strange Egg" + "\n" + "\n" + "An unfertilized fresh egg that can do... odd things to your body."
-   if ID == 530:
-      tempStr = "Charmed Egg" + "\n" + "\n" + "An unfertilized fresh egg that will make you quite alluring for 20 hours."
-   if ID == 531:
-      tempStr = "Divine Egg" + "\n" + "\n" + "A very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
-   if ID == 532:
-      tempStr = "Strong Pheromone" + "\n" + "\n" + "Originally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
-   if ID == 533:
-      tempStr = "Reduced Reduction" + "\n" + "\n" + "A weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
-   if ID == 534:
-      tempStr = "Male Enhancement Drug" + "\n" + "\n" + "A simple pill that, when ingested, will increase the size of you male genitals." + "\n" + "\n" + "Caution: females taking this pill may have similar side-effects."
-   if ID == 535:
-      tempStr = "Milk Suppressant" + "\n" + "\n" + "This drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
-   if ID == 536:
-      tempStr = "Bazoomba!" + "\n" + "\n" + "This glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!" + "\n" + "\n" + "Warning - Be wary of overload."
-   if ID == 537:
-      tempStr = "Queen Egg" + "\n" + "\n" + "Not the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
-   if ID == 538:
-      tempStr = "Soldier Egg" + "\n" + "\n" + "Not the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
-   if ID == 539:
-      tempStr = "Drone Egg" + "\n" + "\n" + "Not the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
-   if ID == 540:
-      tempStr = "Worker Egg" + "\n" + "\n" + "Not the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
-   return tempStr
+#def ItemDescription(ID:int):
+#MainItems.Descrtiption
 
-!def UsableItem(ID:int):
-   tempBool = False
-   if ID == 104:
-      tempBool = True
-   if ID == 106:
-      tempBool = True
-   if ID == 108:
-      tempBool = True
-   if ID == 109:
-      tempBool = True
-   if ID == 116:
-      tempBool = True
-   if ID == 117:
-      tempBool = True
-   if ID == 118:
-      tempBool = True
-   if ID == 119:
-      tempBool = True
-   if ID == 127:
-      tempBool = True
-   if ID == 232:
-      tempBool = true
-   if ID == 235:
-      tempBool = True
-   if ID == 244:
-      tempBool = True
-   if ID == 247:
-      tempBool = True
-   return tempBool
+#def UsableItem(ID:int):
+#MainItems.UsableItem
 
-!def CanLose(ID:int):
-   global snuggleBall, suppHarness
-   tempBool = True
-   if ID == 244 and CountItem(244) == 1 and snuggleBall == True:
-      tempBool = False
-   if ID == 247 and CountItem(247) == 1 and suppHarness == True:
-      tempBool = False
-   return tempBool
+#def CanLose(ID:int):
+#MainItems.CanLose
 
-!def ConItem(ID:int):
-   tempBool = False
-   if ID == 103:
-      tempBool = True
-   if ID == 105:
-      tempBool = True
-   if ID == 110:
-      tempBool = True
-   if ID == 111:
-      tempBool = True
-   if ID == 112:
-      tempBool = True
-   if ID == 113:
-      tempBool = True
-   if ID == 114:
-      tempBool = True
-   if ID == 115:
-      tempBool = True
-   if ID == 120:
-      tempBool = True
-   if ID == 121:
-      tempBool = True
-   if ID == 122:
-      tempBool = True
-   if ID == 123:
-      tempBool = True
-   if ID == 124:
-      tempBool = True
-   if ID == 125:
-      tempBool = True
-   if ID == 126:
-      tempBool = True
-   if ID == 128:
-      tempBool = True
-   if ID == 201:
-      tempBool = True
-   if ID == 202:
-      tempBool = True
-   if ID == 203:
-      tempBool = True
-   if ID == 204:
-      tempBool = True
-   if ID == 205:
-      tempBool = True
-   if ID == 207:
-      tempBool = True
-   if ID == 208:
-      tempBool = True
-   if ID == 209:
-      tempBool = True
-   if ID == 210:
-      tempBool = True
-   if ID == 211:
-      tempBool = True
-   if ID == 212:
-      tempBool = True
-   if ID == 213:
-      tempBool = True
-   if ID == 214:
-      tempBool = True
-   if ID == 216:
-      tempBool = True
-   if ID == 217:
-      tempBool = True
-   if ID == 218:
-      tempBool = True
-   if ID == 219:
-      tempBool = True
-   if ID == 220:
-      tempBool = True
-   if ID == 221:
-      tempBool = True
-   if ID == 222:
-      tempBool = True
-   if ID == 223:
-      tempBool = True
-   if ID == 224:
-      tempBool = True
-   if ID == 225:
-      tempBool = True
-   if ID == 226:
-      tempBool = True
-   if ID == 227:
-      tempBool = True
-   if ID == 228:
-      tempBool = True
-   if ID == 230:
-      tempBool = True
-   if ID == 231:
-      tempBool = True
-   if ID == 238:
-      tempBool = True
-   if ID == 239:
-      tempBool = True
-   if ID == 240:
-      tempBool = True
-   if ID == 241:
-      tempBool = True
-   if ID == 242:
-      tempBool = True
-   if ID == 243:
-      tempBool = True
-   if ID == 245:
-      tempBool = True
-   if ID == 246:
-      tempBool = True
-   if ID == 248:
-      tempBool = True
-   if ID == 249:
-      tempBool = True
-   if ID == 250:
-      tempBool = True
-   if ID == 251:
-      tempBool = True
-   if ID == 253:
-      tempBool = True
-   if ID == 255:
-      tempBool = True
-   if ID == 256:
-      tempBool = True
-   if ID == 257:
-      tempBool = True
-   if ID == 258:
-      tempBool = True
-   if ID == 259:
-      tempBool = True
-   if ID == 260:
-      tempBool = True
-   if ID == 500:
-      tempBool = True
-   if ID == 501:
-      tempBool = True
-   if ID == 502:
-      tempBool = True
-   if ID == 503:
-      tempBool = True
-   if ID == 504:
-      tempBool = True
-   if ID == 505:
-      tempBool = True
-   if ID == 506:
-      tempBool = True
-   if ID == 507:
-      tempBool = True
-   if ID == 508:
-      tempBool = True
-   if ID == 509:
-      tempBool = True
-   if ID == 510:
-      tempBool = True
-   if ID == 511:
-      tempBool = True
-   if ID == 512:
-      tempBool = True
-   if ID == 513:
-      tempBool = True
-   if ID == 514:
-      tempBool = True
-   if ID == 515:
-      tempBool = True
-   if ID == 516:
-      tempBool = True
-   if ID == 517:
-      tempBool = True
-   if ID == 518:
-      tempBool = True
-   if ID == 519:
-      tempBool = True
-   if ID == 520:
-      tempBool = True
-   if ID == 521:
-      tempBool = True
-   if ID == 522:
-      tempBool = True
-   if ID == 523:
-      tempBool = True
-   if ID == 524:
-      tempBool = True
-   if ID == 525:
-      tempBool = True
-   if ID == 526:
-      tempBool = True
-   if ID == 527:
-      tempBool = True
-   if ID == 528:
-      tempBool = True
-   if ID == 529:
-      tempBool = True
-   if ID == 530:
-      tempBool = True
-   if ID == 531:
-      tempBool = True
-   if ID == 532:
-      tempBool = True
-   if ID == 533:
-      tempBool = True
-   if ID == 534:
-      tempBool = True
-   if ID == 535:
-      tempBool = True
-   if ID == 536:
-      tempBool = True
-   if ID == 537:
-      tempBool = True
-   if ID == 538:
-      tempBool = True
-   if ID == 539:
-      tempBool = True
-   if ID == 540:
-      tempBool = True
-   return tempBool
+#def ConItem(ID:int):
+#MainItems.ConItem
 
-!def PassiveItemAdd(ID:int):
+def PassiveItemAdd(ID:int):
    global rapeMod, runMod, vagMoistMod, cockMoistMod, milkHPMod, carryMod, pregRate, minLust, hips, sexPMod, changeMod, heatMaxTime, heatTimeMod, heatMod, milkCap
-   if ID == 101:
+   if (ID == 101):
       rapeMod += 10
-   if ID == 102:
+   if (ID == 102):
       runMod += 20
-   if ID == 200:
+   if (ID == 200):
       vagMoistMod += 4
       cockMoistMod += 4
       StatsMod(0,0,0,10)
-   if ID == 215:
+   if (ID == 215):
       rapeMod += 5
       runMod += 5
       milkHPMod += 5
-   if ID == 233:
+   if (ID == 233):
       carryMod += 75
-   if ID == 234:
+   if (ID == 234):
       pregRate += 0.5
       minLust += 10
       hips += 10
       doLust(0,0)
-   if ID == 236:
+   if (ID == 236):
       SexPMod += 0.5
       changeMod += 0.3
-   if ID == 237:
+   if (ID == 237):
       vagMoistMod += 8
       cockMoistMod += 8
       StatsMod(0,0,0,10)
-      if heat < 1:
+      if (heat < 1):
          heatMaxTime = 96
          heatTime = 96
          heat += 1
-      elif heat >= 1:
+      elif (heat >= 1):
          heatMaxTime -= 12
          heat += 1
-   if ID == 252:
+   if (ID == 252):
       rapeMod += 5
       runMod += 5
       milkHPMod += 5
       carryMod += 10
       milkCap += 3000
 
-!def PassiveItemRemove(ID:int):
+def PassiveItemRemove(ID:int):
    global rapeMod, runMod, vagMoistMod, cockMoistMod, milkHPMod, carryMod, pregRate, minLust, hips, sexPMod, changeMod, heatMaxTime, heat, milkCap, weapon
-   if ID == 101:
+   if (ID == 101):
       rapeMod -= 10
-   if ID == 102:
+   if (ID == 102):
       runMod -= 20
-   if ID == 200:
+   if (ID == 200):
       vagMoistMod -= 4
       cockMoistMod -= 4
       StatsMod(0,0,0,-10)
-   if ID == 215:
+   if (ID == 215):
       rapeMod -= 5
       runMod -= 5
       milkHPMod -= 5
-   if ID == 233:
+   if (ID == 233):
       carryMod -= 75
-   if ID == 234:
+   if (ID == 234):
       pregRate -= 0.5
       minLust -= 10
       hips -= 10
-   if ID == 236:
+   if (ID == 236):
       SexPMod -= 0.5
       changeMod -= 0.3
-   if ID == 237:
+   if (ID == 237):
       vagMoistMod -= 8
       cockMoistMod -= 8
       StatsMod(0,0,0,-10)
-      if heat >= 2:
+      if (heat >= 2):
          heatMaxTime += 12
       heat -= 1
-   if ID == 252:
+   if (ID == 252):
       rapeMod -= 5
       runMod -= 5
       milkHPMod -= 5
       carryMod -= 10
       milkCap -= 3000
-   if ID == 116 and weapon == 116:
+   if (ID == 116) and (weapon == 116):
       weapon = 10
-   if ID == 117 and weapon == 117:
+   if (ID == 117) and (weapon == 117):
       weapon = 10
-   if ID == 118 and weapon == 118:
+   if (ID == 118) and (weapon == 118):
       weapon = 10
-   if ID == 119 and weapon == 119:
+   if (ID == 119) and (weapon == 119):
       weapon = 10
-   if ID == 127 and weapon == 127:
+   if (ID == 127) and (weapon == 127):
       weapon = 10
-   if ID == 235 and weapon == 235:
+   if (ID == 235) and (weapon == 235):
       weapon = 10
 
 !def LoseManyItem(ID:int, amount:int):
@@ -3825,638 +3848,14 @@ def BagSlotClear(slot:int):
             bagStackArray[i] -= amount
             amount = 0
 
-!def ItemValue(ID:int):
-   tempNum = 0
-   if ID == 1:
-      tempNum = 13
-   if ID == 101:
-      tempNum = 50
-   if ID == 102:
-      tempNum = 50
-   if ID == 103:
-      tempNum = 20
-   if ID == 104:
-      tempNum = 100
-   if ID == 105:
-      tempNum = 30
-   if ID == 106:
-      tempNum = 75
-   if ID == 108:
-      tempNum = 50
-   if ID == 109:
-      tempNum = 125
-   if ID == 110:
-      tempNum = 20
-   if ID == 111:
-      tempNum = 15
-   if ID == 112:
-      tempNum = 15
-   if ID == 113:
-      tempNum = 15
-   if ID == 114:
-      tempNum = 15
-   if ID == 115:
-      tempNum = 5
-   if ID == 116:
-      tempNum = 20
-   if ID == 117:
-      tempNum = 30
-   if ID == 118:
-      tempNum = 55
-   if ID == 119:
-      tempNum = 40
-   if ID == 120:
-      tempNum = 30
-   if ID == 121:
-      tempNum = 15
-   if ID == 122:
-      tempNum = 15
-   if ID == 123:
-      tempNum = 15
-   if ID == 124:
-      tempNum = 15
-   if ID == 125:
-      tempNum = 15
-   if ID == 126:
-      tempNum = 15
-   if ID == 127:
-      tempNum = 35
-   if ID == 128:
-      tempNum = 25
-   if ID == 200:
-      tempNum = 0
-   if ID == 201:
-      tempNum = 15
-   if ID == 202:
-      tempNum = 15
-   if ID == 203:
-      tempNum = 5
-   if ID == 204:
-      tempNum = 1
-   if ID == 205:
-      tempNum = 1
-   if ID == 206:
-      tempNum = 30
-   if ID == 207:
-      tempNum = 20
-   if ID == 208:
-      tempNum = 15
-   if ID == 209:
-      tempNum = 3
-   if ID == 210:
-      tempNum = 17
-   if ID == 211:
-      tempNum = 10
-   if ID == 212:
-      tempNum = 14
-   if ID == 213:
-      tempNum = 5
-   if ID == 214:
-      tempNum = 5
-   if ID == 215:
-      tempNum = 0
-   if ID == 216:
-      tempNum = 150
-   if ID == 217:
-      tempNum = 40
-   if ID == 218:
-      tempNum = 20
-   if ID == 219:
-      tempNum = 5
-   if ID == 220:
-      tempNum = 50
-   if ID == 221:
-      tempNum = 30
-   if ID == 222:
-      tempNum = 15
-   if ID == 223:
-      tempNum = 15
-   if ID == 224:
-      tempNum = 10
-   if ID == 225:
-      tempNum = 10
-   if ID == 226:
-      tempNum = 5
-   if ID == 227:
-      tempNum = 10
-   if ID == 228:
-      tempNum = 10
-   if ID == 229:
-      tempNum = 0
-   if ID == 230:
-      tempNum = 25
-   if ID == 231:
-      tempNum = 15
-   if ID == 232:
-      tempNum = 0
-   if ID == 233:
-      tempNum = 0
-   if ID == 234:
-      tempNum = 0
-   if ID == 235:
-      tempNum = 0
-   if ID == 236:
-      tempNum = 0
-   if ID == 237:
-      tempNum = 0
-   if ID == 238:
-      tempNum = 10
-   if ID == 239:
-      tempNum = 3
-   if ID == 240:
-      tempNum = 75
-   if ID == 241:
-      tempNum = 30
-   if ID == 242:
-      tempNum = 45
-   if ID == 243:
-      tempNum = 100
-   if ID == 244:
-      tempNum = 35
-   if ID == 245:
-      tempNum = 15
-   if ID == 246:
-      tempNum = 20
-   if ID == 247:
-      tempNum = 80
-   if ID == 248:
-      tempNum = 25
-   if ID == 249:
-      tempNum = 45
-   if ID == 250:
-      tempNum = 45
-   if ID == 251:
-      tempNum = 10
-   if ID == 252:
-      tempNum = 0
-   if ID == 253:
-      tempNum = 3
-   if ID == 254:
-      tempNum = 0
-   if ID == 255:
-      tempNum = 15
-   if ID == 256:
-      tempNum = 20
-   if ID == 257:
-      tempNum = 30
-   if ID == 258:
-      tempNum = 30
-   if ID == 259:
-      tempNum = 50
-   if ID == 260:
-      tempNum = 45
-   if ID == 500:
-      tempNum = 5
-   if ID == 501:
-      tempNum = 15
-   if ID == 502:
-      tempNum = 70
-   if ID == 503:
-      tempNum = 10
-   if ID == 504:
-      tempNum = 10
-   if ID == 505:
-      tempNum = 10
-   if ID == 506:
-      tempNum = 10
-   if ID == 507:
-      tempNum = 10
-   if ID == 508:
-      tempNum = 25
-   if ID == 509:
-      tempNum = 25
-   if ID == 510:
-      tempNum = 25
-   if ID == 511:
-      tempNum = 25
-   if ID == 512:
-      tempNum = 25
-   if ID == 513:
-      tempNum = 20
-   if ID == 514:
-      tempNum = 20
-   if ID == 515:
-      tempNum = 20
-   if ID == 516:
-      tempNum = 20
-   if ID == 517:
-      tempNum = 20
-   if ID == 518:
-      tempNum = 50
-   if ID == 519:
-      tempNum = 50
-   if ID == 520:
-      tempNum = 150
-   if ID == 521:
-      tempNum = 50
-   if ID == 522:
-      tempNum = 50
-   if ID == 523:
-      tempNum = 2
-   if ID == 524:
-      tempNum = 7
-   if ID == 525:
-      tempNum = 25
-   if ID == 526:
-      tempNum = 5
-   if ID == 527:
-      tempNum = 10
-   if ID == 528:
-      tempNum = 2
-   if ID == 529:
-      tempNum = 30
-   if ID == 530:
-      tempNum = 40
-   if ID == 531:
-      tempNum = 69
-   if ID == 532:
-      tempNum = 75
-   if ID == 533:
-      tempNum = 5
-   if ID == 534:
-      tempNum = 10
-   if ID == 535:
-      tempNum = 20
-   if ID == 536:
-      tempNum = 20
-   if ID == 537:
-      tempNum = 30
-   if ID == 538:
-      tempNum = 20
-   if ID == 539:
-      tempNum = 10
-   if ID == 540:
-      tempNum = 5
-   return tempNum
+#def ItemValue(ID:int):
+#MainItems.Value
 
-!def ItemStackMax(ID:int):
-   tempNum = 0
-   if ID == 1:
-      tempNum = 1 
-   if ID == 101:
-      tempNum = 1 
-   if ID == 102:
-      tempNum = 1 
-   if ID == 103:
-      tempNum = 15 
-   if ID == 104:
-      tempNum = 1 
-   if ID == 105:
-      tempNum = 5 
-   if ID == 106:
-      tempNum = 1 
-   if ID == 108:
-      tempNum = 1 
-   if ID == 109:
-      tempNum = 1 
-   if ID == 110:
-      tempNum = 5 
-   if ID == 111:
-      tempNum = 5 
-   if ID == 112:
-      tempNum = 5 
-   if ID == 113:
-      tempNum = 5 
-   if ID == 114:
-      tempNum = 5 
-   if ID == 115:
-      tempNum = 10 
-   if ID == 116:
-      tempNum = 1 
-   if ID == 117:
-      tempNum = 1 
-   if ID == 118:
-      tempNum = 1 
-   if ID == 119:
-      tempNum = 1 
-   if ID == 120:
-      tempNum = 5 
-   if ID == 121:
-      tempNum = 10 
-   if ID == 122:
-      tempNum = 10 
-   if ID == 123:
-      tempNum = 10 
-   if ID == 124:
-      tempNum = 10 
-   if ID == 125:
-      tempNum = 10 
-   if ID == 126:
-      tempNum = 5 
-   if ID == 127:
-      tempNum = 1 
-   if ID == 128:
-      tempNum = 10 
-   if ID == 200:
-      tempNum = 1 
-   if ID == 201:
-      tempNum = 5 
-   if ID == 202:
-      tempNum = 5 
-   if ID == 203:
-      tempNum = 15 
-   if ID == 204:
-      tempNum = 5 
-   if ID == 205:
-      tempNum = 5 
-   if ID == 206:
-      tempNum = 10 
-   if ID == 207:
-      tempNum = 5 
-   if ID == 208:
-      tempNum = 10 
-   if ID == 209:
-      tempNum = 15 
-   if ID == 210:
-      tempNum = 5 
-   if ID == 211:
-      tempNum = 15 
-   if ID == 212:
-      tempNum = 10 
-   if ID == 213:
-      tempNum = 10 
-   if ID == 214:
-      tempNum = 10 
-   if ID == 215:
-      tempNum = 1 
-   if ID == 216:
-      tempNum = 5 
-   if ID == 217:
-      tempNum = 5 
-   if ID == 218:
-      tempNum = 10 
-   if ID == 219:
-      tempNum = 5 
-   if ID == 220:
-      tempNum = 5 
-   if ID == 221:
-      tempNum = 10 
-   if ID == 222:
-      tempNum = 5 
-   if ID == 223:
-      tempNum = 10 
-   if ID == 224:
-      tempNum = 10 
-   if ID == 225:
-      tempNum = 10 
-   if ID == 226:
-      tempNum = 15 
-   if ID == 227:
-      tempNum = 10 
-   if ID == 228:
-      tempNum = 10 
-   if ID == 229:
-      tempNum = 1 
-   if ID == 230:
-      tempNum = 5 
-   if ID == 231:
-      tempNum = 10 
-   if ID == 232:
-      tempNum = 1 
-   if ID == 233:
-      tempNum = 1 
-   if ID == 234:
-      tempNum = 1 
-   if ID == 235:
-      tempNum = 1 
-   if ID == 236:
-      tempNum = 1 
-   if ID == 237:
-      tempNum = 1 
-   if ID == 238:
-      tempNum = 15 
-   if ID == 239:
-      tempNum = 15 
-   if ID == 240:
-      tempNum = 5 
-   if ID == 241:
-      tempNum = 5 
-   if ID == 242:
-      tempNum = 5 
-   if ID == 243:
-      tempNum = 5 
-   if ID == 244:
-      tempNum = 1 
-   if ID == 245:
-      tempNum = 15 
-   if ID == 246:
-      tempNum = 10 
-   if ID == 247:
-      tempNum = 1 
-   if ID == 248:
-      tempNum = 10 
-   if ID == 249:
-      tempNum = 5 
-   if ID == 250:
-      tempNum = 5 
-   if ID == 251:
-      tempNum = 15 
-   if ID == 252:
-      tempNum = 1 
-   if ID == 253:
-      tempNum = 15 
-   if ID == 254:
-      tempNum = 1 
-   if ID == 255:
-      tempNum = 15 
-   if ID == 256:
-      tempNum = 15 
-   if ID == 257:
-      tempNum = 5 
-   if ID == 258:
-      tempNum = 5 
-   if ID == 259:
-      tempNum = 10 
-   if ID == 260:
-      tempNum = 10 
-   if ID == 500:
-      tempNum = 10 
-   if ID == 501:
-      tempNum = 5 
-   if ID == 502:
-      tempNum = 1 
-   if ID == 503:
-      tempNum = 10 
-   if ID == 504:
-      tempNum = 10 
-   if ID == 505:
-      tempNum = 5 
-   if ID == 506:
-      tempNum = 10 
-   if ID == 507:
-      tempNum = 10 
-   if ID == 508:
-      tempNum = 10 
-   if ID == 509:
-      tempNum = 10 
-   if ID == 510:
-      tempNum = 10 
-   if ID == 511:
-      tempNum = 10 
-   if ID == 512:
-      tempNum = 10 
-   if ID == 513:
-      tempNum = 5 
-   if ID == 514:
-      tempNum = 5 
-   if ID == 515:
-      tempNum = 5 
-   if ID == 516:
-      tempNum = 5 
-   if ID == 517:
-      tempNum = 5 
-   if ID == 518:
-      tempNum = 5 
-   if ID == 519:
-      tempNum = 5 
-   if ID == 520:
-      tempNum = 5 
-   if ID == 521:
-      tempNum = 5 
-   if ID == 522:
-      tempNum = 5 
-   if ID == 523:
-      tempNum = 15 
-   if ID == 524:
-      tempNum = 10 
-   if ID == 525:
-      tempNum = 5 
-   if ID == 526:
-      tempNum = 1 
-   if ID == 527:
-      tempNum = 10 
-   if ID == 528:
-      tempNum = 10 
-   if ID == 529:
-      tempNum = 5 
-   if ID == 530:
-      tempNum = 5 
-   if ID == 531:
-      tempNum = 1 
-   if ID == 532:
-      tempNum = 5 
-   if ID == 533:
-      tempNum = 15 
-   if ID == 534:
-      tempNum = 10 
-   if ID == 535:
-      tempNum = 10 
-   if ID == 536:
-      tempNum = 5 
-   if ID == 537:
-      tempNum = 5 
-   if ID == 538:
-      tempNum = 10 
-   if ID == 539:
-      tempNum = 10 
-   if ID == 540:
-      tempNum = 15
-   return tempNum
+#def ItemStackMax(ID:int):
+#MainItems.MaxStack
 
-!def FoodItem(ID:int):
-   global hunger
-   tempNum = 0
-   if ID == 114:
-      tempNum = 5
-   if ID == 208:
-      tempNum = 8
-   if ID == 209:
-      tempNum = 10
-   if ID == 210:
-      tempNum = 20
-   if ID == 211:
-      tempNum = 5
-   if ID == 212:
-      tempNum = 15
-   if ID == 214:
-      tempNum = 30
-   if ID == 218:
-      tempNum = 10
-   if ID == 219:
-      tempNum = 15
-   if ID == 221:
-      tempNum = 15
-   if ID == 222:
-      tempNum = 10
-   if ID == 223:
-      tempNum = 25
-   if ID == 224:
-      tempNum = 20
-   if ID == 226:
-      tempNum = 10
-   if ID == 238:
-      tempNum = 20
-   if ID == 251:
-      tempNum = 40
-   if ID == 253:
-      tempNum = 4
-   if ID == 256:
-      tempNum = 15
-   if ID == 259:
-      tempNum = 25
-   if ID == 500:
-      tempNum = 30
-   if ID == 501:
-      tempNum = 70
-   if ID == 503:
-      tempNum = 3
-   if ID == 504:
-      tempNum = 5
-   if ID == 506:
-      tempNum = 5
-   if ID == 507:
-      tempNum = 7
-   if ID == 508:
-      tempNum = 7
-   if ID == 509:
-      tempNum = 8
-   if ID == 511:
-      tempNum = 10
-   if ID == 512:
-      tempNum = 10
-   if ID == 513:
-      tempNum = 4
-   if ID == 514:
-      tempNum = 4
-   if ID == 516:
-      tempNum = 15
-   if ID == 517:
-      tempNum = 15
-   if ID == 518:
-      tempNum = 8
-   if ID == 519:
-      tempNum = 8
-   if ID == 521:
-      tempNum = 20
-   if ID == 522:
-      tempNum = 20
-   if ID == 523:
-      tempNum = 10
-   if ID == 524:
-      tempNum = 30
-   if ID == 527:
-      tempNum = 15
-   if ID == 529:
-      tempNum = 1
-   if ID == 530:
-      tempNum = 20
-   if ID == 531:
-      tempNum = 50
-   if ID == 534:
-      tempNum = 5
-   if ID == 535:
-      tempNum = 10
-   if ID == 536:
-      tempNum = 15
-   if ID == 537:
-      tempNum = 25
-   if ID == 538:
-      tempNum = 20
-   if ID == 539:
-      tempNum = 15
-   if ID == 540:
-      tempNum = 10
-   hunger += 2 * tempNum
+#def FoodItem(ID:int):
+#MainItems.FoodItem
 
 !def DoItemUse(ID:int):
 !def DoStash():
@@ -4469,1161 +3868,67 @@ def BagSlotClear(slot:int):
 !def DoShops():
 !def DoShop():
 !def DoSell():
-!def GoodsID(goodsSlot:int):
-   global currentZone
-   goodNum = 0
-   if currentZone == 1:
-      if goodsSlot == 1:
-         goodNum = 104
-      if goodsSlot == 2:
-         goodNum = 111
-      if goodsSlot == 3:
-         goodNum = 116
-      if goodsSlot == 5:
-         goodNum = 500
-      if goodsSlot == 6:
-         goodNum = 501
-      if goodsSlot == 7:
-         goodNum = 108
-      if goodsSlot == 9:
-         goodNum = 110
-      if goodsSlot == 10:
-         goodNum = 115
-      if goodsSlot == 11:
-         goodNum = 121
-   if currentZone == 2:
-      if goodsSlot == 1:
-         goodNum = 102
-      if goodsSlot == 2:
-         goodNum = 112
-      if goodsSlot == 3:
-         goodNum = 117
-      if goodsSlot == 5:
-         goodNum = 106
-      if goodsSlot == 9:
-         goodNum = 110
-      if goodsSlot == 10:
-         goodNum = 115
-      if goodsSlot == 11:
-         goodNum = 122
-   if currentZone == 3:
-      if goodsSlot == 1:
-         goodNum = 101
-      if goodsSlot == 2:
-         goodNum = 113
-      if goodsSlot == 3:
-         goodNum = 118
-      if goodsSlot == 5:
-         goodNum = 120
-      if goodsSlot == 9:
-         goodNum = 110
-      if goodsSlot == 10:
-         goodNum = 115
-      if goodsSlot == 11:
-         goodNum = 123
-   if currentZone == 4:
-      if goodsSlot == 2:
-         goodNum = 114
-      if goodsSlot == 3:
-         goodNum = 119
-      if goodsSlot == 5:
-         goodNum = 103
-      if goodsSlot == 6:
-         goodNum = 105
-      if goodsSlot == 9:
-         goodNum = 110
-      if goodsSlot == 10:
-         goodNum = 115
-      if goodsSlot == 11:
-         goodNum = 124
-   if currentZone == 6:
-      if goodsSlot == 1:
-         goodNum = 109
-      if goodsSlot == 2:
-         goodNum = 126
-      if goodsSlot == 3:
-         goodNum = 127
-      if goodsSlot == 5:
-         goodNum = 103
-      if goodsSlot == 6:
-         goodNum = 230
-      if goodsSlot == 9:
-         goodNum = 110
-      if goodsSlot == 10:
-         goodNum = 115
-      if goodsSlot == 11:
-         goodNum = 125
-   if currentZone == 12:
-      if goodsSlot == 1:
-         goodNum = 247
-      if goodsSlot == 2:
-         goodNum = 250
-      if goodsSlot == 3:
-         goodNum = 256
-      if goodsSlot == 5:
-         goodNum = 120
-      if goodsSlot == 9:
-         goodNum = 110
-      if goodsSlot == 10:
-         goodNum = 115
-      if goodsSlot == 11:
-         goodNum = 128
-   return goodNum
+#def GoodsID(goodsSlot:int):
+#General.GoodsID
 
 !def DoDyeShop():
-def DyeID(goodsSlot:int):
-   goodNum = 0
-   if (goodsSlot == 1):
-      goodNum = 240
-   if (goodsSlot == 2):
-      goodNum = 241
-   if (goodsSlot == 5):
-      goodNum = 242
-   if (goodsSlot == 6):
-      goodNum = 243
-   return goodNum
+#def DyeID(goodsSlot:int):
+#DyeItems.ID
 
 !def DyeThing():
 !def DoApothecary():
-!def ApothID(goodsSlot:int):
-   global currentZone, knowLustDraft, knowSRejuvPot, knowMasoPot, knowBabyFree, knowRejuvPot, knowSLustDraft, knowSMasoPot, knowBallSwell, knowPotPot, knowSGenSwap, knowExpPreg, knowGenSwap, knowSBabyFree, knowSExpPreg, knowSBallSwell, knowSPotPot, knowMilkSuppress
-   goodNum = 0
-   if currentZone == 1:
-      if goodsSlot == 1:
-         goodNum = 203
-      if goodsSlot == 2:
-         goodNum = 209
-      if goodsSlot == 3:
-         goodNum = 523
-      if goodsSlot == 7:
-         if knowLustDraft == False:
-            goodNum = 1
-      if goodsSlot == 9:
-         if knowSRejuvPot == False:
-            goodNum = 6
-      if goodsSlot == 10:
-         if knowMasoPot == False:
-            goodNum = 10
-      if goodsSlot == 11:
-         if knowBabyFree == False:
-            goodNum = 11
-   if currentZone == 2:
-      if goodsSlot == 1:
-         goodNum = 209
-      if goodsSlot == 2:
-         goodNum = 202
-      if goodsSlot == 3:
-         goodNum = 206
-      if goodsSlot == 5:
-         goodNum = 212
-      if goodsSlot == 6:
-         goodNum = 524
-      if goodsSlot == 9:
-         if knowRejuvPot == False:
-            goodNum = 2
-      if goodsSlot == 10:
-         if knowSLustDraft == False:
-            goodNum = 5
-      if goodsSlot == 11:
-         if knowSMasoPot == False:
-            goodNum = 14
-   if currentZone == 3:
-      if goodsSlot == 1:
-         goodNum = 201
-      if goodsSlot == 2:
-         goodNum = 202
-      if goodsSlot == 3:
-         goodNum = 213
-      if goodsSlot == 3:
-         goodNum = 203
-      if goodsSlot == 9:
-         if knowBallSwell == False:
-            goodNum = 4
-      if goodsSlot == 10:
-         if knowPotPot == False:
-            goodNum = 12
-      if goodsSlot == 11:
-         if knowSGenSwap == False:
-            goodNum = 13
-   if currentZone == 4:
-      if goodsSlot == 1:
-         goodNum = 210
-      if goodsSlot == 2:
-         goodNum = 201
-      if goodsSlot == 3:
-         goodNum = 218
-      if goodsSlot == 9:
-         if knowExpPreg == False:
-            goodNum = 3
-      if goodsSlot == 10:
-         if knowGenSwap == False:
-            goodNum = 9
-      if goodsSlot == 11:
-         if knowSBabyFree == False:
-            goodNum = 15
-   if currentZone == 6:
-      if goodsSlot == 1:
-         goodNum = 207
-      if goodsSlot == 2:
-         goodNum = 213
-      if goodsSlot == 3:
-         goodNum = 208
-      if goodsSlot == 5:
-         goodNum = 228
-      if goodsSlot == 9:
-         if knowSExpPreg == False:
-            goodNum = 7
-      if goodsSlot == 10:
-         if knowSBallSwell == False:
-            goodNum = 8
-      if goodsSlot == 11:
-         if knowSPotPot == False:
-            goodNum = 16
-   if currentZone == 12:
-      if goodsSlot == 9:
-         if knowMilkSuppress == False:
-            goodNum = 17
-   return goodNum
+#def ApothID(goodsSlot:int):
+#ApothItems.ID
 
-!def ApothLearn(ID:int):
-   global knowLustDraft, knowRejuvPot, knowExpPreg, knowBallSwell, knowSLustDraft, knowSRejuvPot,knowSExpPreg, knowSBallSwell, knowGenSwap, knowMasoPot, knowBabyFree, knowPotPot, knowSGenSwap, knowSMasoPot, knowSBabyFree, knowSPotPot, knowMilkSuppress
-   if ID == 1:
-      knowLustDraft = True
-   if ID == 2:
-      knowRejuvPot = True
-   if ID == 3:
-      knowExpPreg = True
-   if ID == 4:
-      knowBallSwell = True
-   if ID == 5:
-      knowSLustDraft = True
-   if ID == 6:
-      knowSRejuvPot = True
-   if ID == 7:
-      knowSExpPreg = True
-   if ID == 8:
-      knowSBallSwell = True
-   if ID == 9:
-      knowGenSwap = True
-   if ID == 10:
-      knowMasoPot = True
-   if ID == 11:
-      knowBabyFree = True
-   if ID == 12:
-      knowPotPot = True
-   if ID == 13:
-      knowSGenSwap = True
-   if ID == 14:
-      knowSMasoPot = True
-   if ID == 15:
-      knowSBabyFree = True
-   if ID == 16:
-      knowSPotPot = True
-   if ID == 17:
-      knowMilkSuppress = True
+#def ApothLearn(ID:int):
+#ApothItems.Learn
 
-!def ApothName(ID:int):
-   if ID >= 200:
-      return ItemName(ID)
-   tempStr = ""
-   if ID == 1:
-      tempStr = "R: LustDraft"
-   if ID == 2:
-      tempStr = "R: RejuvPot"
-   if ID == 3:
-      tempStr = "R: ExpPreg"
-   if ID == 4:
-      tempStr = "R: BallSwell"
-   if ID == 5:
-      tempStr = "R: SLustDraft"
-   if ID == 6:
-      tempStr = "R: SRejuvPot"
-   if ID == 7:
-      tempStr = "R: SExpPreg"
-   if ID == 8:
-      tempStr = "R: SBallSwell"
-   if ID == 9:
-      tempStr = "R: GenSwap"
-   if ID == 10:
-      tempStr = "R: MasoPot"
-   if ID == 11:
-      tempStr = "R: BabyFree"
-   if ID == 12:
-      tempStr = "R: PotPot"
-   if ID == 13:
-      tempStr = "R: SGenSwap"
-   if ID == 14:
-      tempStr = "R: SMasoPot"
-   if ID == 15:
-      tempStr = "R: SBabyFree"
-   if ID == 16:
-      tempStr = "R: SPotPot"
-   if ID == 17:
-      tempStr = "R: MilkSuppress"
-   return tempStr
+#def ApothName(ID:int):
+#ApothItems.Name
 
-!def ApothDescription(ID:int):
-   if ID >= 200:
-      return ItemDescription(ID)
-   tempStr = ""
-   if ID == 1:
-      tempStr = "Recipe: Lust Draft" + "\n" + "\n" + "For those who need a boost in the bedroom." + "\n" + "\n" + "Alchemy difficulty: Simple"
-   if ID == 2:
-      tempStr = "Recipe: Rejuvenation Potion" + "\n" + "\n" + "Useful for soothing what ailes you." + "\n" + "\n" + "Alchemy difficulty: Simple"
-   if ID == 3:
-      tempStr = "Recipe: Express Pregnancy Potion" + "\n" + "\n" + "Helps quicken the gestation period." + "\n" + "\n" + "Alchemy difficulty: Simple"
-   if ID == 4:
-      tempStr = "Recipe: Ball Sweller" + "\n" + "\n" + "Gives your nuts a jump in their production." + "\n" + "\n" + "Alchemy difficulty: Simple"
-   if ID == 5:
-      tempStr = "Recipe: Superior Lust Draft" + "\n" + "\n" + "For when you've got a long night ahead with your spouse." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 6:
-      tempStr = "Recipe: Superior Rejuvenation Potion" + "\n" + "\n" + "Greatly soothes your ailments." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 7:
-      tempStr = "Recipe: Superior Express Pregnancy Potion" + "\n" + "\n" + "Because that baby just needs to get out." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 8:
-      tempStr = "Recipe: Superior Ball Sweller" + "\n" + "\n" + "If you like that swollen, achy, full of seed feeling, this is what you want." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 9:
-      tempStr = "Recipe: Gender Swap Potion" + "\n" + "\n" + "Don't like your current path in life? This will help start you off from a new perspective." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 10:
-      tempStr = "Recipe: Masochism Potion" + "\n" + "\n" + "Makes some the pain feel pleasurable instead." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 11:
-      tempStr = "Recipe: Baby Free Potion" + "\n" + "\n" + "A good contraceptive." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 12:
-      tempStr = "Recipe: Potency Potion" + "\n" + "\n" + "Makes your testicles more efficient in their duties." + "\n" + "\n" + "Alchemy difficulty: Complex"
-   if ID == 13:
-      tempStr = "Recipe: Superior Gender Swap Potion" + "\n" + "\n" + "For when you're bored and wanna try out something new." + "\n" + "\n" + "Alchemy difficulty: Advanced"
-   if ID == 14:
-      tempStr = "Recipe: Superior Masochism Potion" + "\n" + "\n" + "Really helps take on the big fellas; all that soreness will be delightful instead." + "\n" + "\n" + "Alchemy difficulty: Advanced"
-   if ID == 15:
-      tempStr = "Recipe: Superior Baby Free Potion" + "\n" + "\n" + "Necessary in Siz'Calit." + "\n" + "\n" + "Alchemy difficulty: Advanced"
-   if ID == 16:
-      tempStr = "Recipe: Superior Potency Potion" + "\n" + "\n" + "Helps make sure you absolutely fertilize all those eggs with a good coating." + "\n" + "\n" + "Alchemy difficulty: Advanced"
-   if ID == 17:
-      tempStr = "Recipe: Milk Suppressant" + "\n" + "\n" + "Sometimes all that leaking can be a bit of a nuisance... So, they came up with this!" + "\n" + "\n" + "Alchemy difficulty: Complex"
-   return tempStr
+#def ApothDescription(ID:int):
+#ApothItems.Description
 
-def ApothValue(ID:int):
-   tempNum = 0
-   if (ID >= 200):
-      return ItemValue(ID)
-   if (ID == 1):
-      tempNum = 20
-   if (ID == 2):
-      tempNum = 25
-   if (ID == 3):
-      tempNum = 25
-   if (ID == 4):
-      tempNum = 20
-   if (ID == 5):
-      tempNum = 35
-   if (ID == 6):
-      tempNum = 40
-   if (ID == 7):
-      tempNum = 35
-   if (ID == 8):
-      tempNum = 30
-   if (ID == 9):
-      tempNum = 45
-   if (ID == 10):
-      tempNum = 45
-   if (ID == 11):
-      tempNum = 40
-   if (ID == 12):
-      tempNum = 45
-   if (ID == 13):
-      tempNum = 60
-   if (ID == 14):
-      tempNum = 70
-   if (ID == 15):
-      tempNum = 55
-   if (ID == 16):
-      tempNum = 65
-   if (ID == 17):
-      tempNum = 35
-   return tempNum
+#def ApothValue(ID:int):
+#ApothItems.Value
 
 !def DoSalon():
-def HairstyleName(ID:int):
-   global hair
-   tempStr = "HAIRSTYLE NAME ERROR " + hair
-   if (ID == 0):
-      tempStr = "None"
-   if (ID == 1):
-      tempStr = "Wavy"
-   if (ID == 2):
-      tempStr = "Pigtail"
-   if (ID == 3):
-      tempStr = "Ponytail"
-   if (ID == 4):
-      tempStr = "Straight"
-   if (ID == 5):
-      tempStr = "Buzzcut"
-   if (ID == 6):
-      tempStr = "Mohawk"
-   if (ID == 7):
-      tempStr = "Bun"
-   if (ID == 8):
-      tempStr = "Curly"
-   if (ID == 9):
-      tempStr = "B Pigtail"
-   if (ID == 10):
-      tempStr = "B Ponytail"
-   if (ID == 11):
-      tempStr = "Braided"
-   if (ID == 12):
-      tempStr = "Spiky"
-   if (ID == 13):
-      tempStr = "Emo"
-   if (ID == 14):
-      tempStr = "Afro"
-   return tempStr
+#def HairstyleName(ID:int):
+#SalonItems.HairstyleName
 
-def HairDesc():
-   global hair
-   tempStr = "HAIR DESC ERROR " + hair
-   if (hair == 1):
-      tempStr = "wavy hair"
-   if (hair == 2):
-      tempStr = "hair pulled to the sides of your head in pigtails"
-   if (hair == 3):
-      tempStr = "hair pulled back into a ponytail"
-   if (hair == 4):
-      tempStr = "straight hair"
-   if (hair == 5):
-      tempStr = "really short hair"
-   if (hair == 6):
-      tempStr = "hair styled up into a mohawk"
-   if (hair == 7):
-      tempStr = "hair curled up into a bun"
-   if (hair == 8):
-      tempStr = "curly hair"
-   if (hair == 9):
-      tempStr = "hair pulled to the sides of your head in braided pigtails"
-   if (hair == 10):
-      tempStr = "hair pulled back into a braided ponytail"
-   if (hair == 11):
-      tempStr = "braided hair"
-   if (hair == 12):
-      tempStr = "spiky hair"
-   if (hair == 13):
-      tempStr = "straight, stiff hair covering an eye"
-   if (hair == 14):
-      tempStr = "giant poofball of hair"
-   return tempStr
+#def HairDesc():
+#SalonItems.HairDesc
 
-def HairC():
-   global hairColor
-   tempStr = "HAIR COLOR ERROR " + hairColor
-   if (hairColor == 0):
-      tempStr = ""
-   if (hairColor == 1):
-      tempStr = "black "
-   if (hairColor == 2):
-      tempStr = "blonde "
-   if (hairColor == 3):
-      tempStr = "red "
-   if (hairColor == 4):
-      tempStr = "blue "
-   if (hairColor == 5):
-      tempStr = "coral pink "
-   if (hairColor == 6):
-      tempStr = "auburn "
-   if (hairColor == 7):
-      tempStr = "brown "
-   if (hairColor == 8):
-      tempStr = "grey "
-   if (hairColor == 9):
-      tempStr = "white "
-   return tempStr
+#def HairC():
+#SalonItems.HairC
 
-def HairL():
-   global hairLength
-   tempStr = "HAIR LENGTH ERROR " + hairLength
-   if (hairLength == 2):
-      tempStr = "that is short enough to not dangle past your head"
-   if (hairLength == 4):
-      tempStr = "that reaches down to your shoulders"
-   if (hairLength == 6):
-      tempStr = "that reaches down your back"
-   if (hairLength == 8):
-      tempStr = "that reaches down to your butt"
-   if (hairLength == 10):
-      tempStr = "that reaches down to the ground"
-   return tempStr
+#def HairL():
+#SalonItems.HairL
 
-!def HairstyleID(choice:int):
-{
-   var tempNum:int = 0;
-   tempNum = 0;
-   if(this.currentZone == 1)
-   {
-      if(choice == 1)
-      {
-         tempNum = 1;
-      }
-      if(choice == 2)
-      {
-         tempNum = 4;
-      }
-      if(choice == 3)
-      {
-         tempNum = 8;
-      }
-      if(choice == 5)
-      {
-         tempNum = 2;
-      }
-      if(choice == 6)
-      {
-         tempNum = 3;
-      }
-      if(choice == 7)
-      {
-         tempNum = 12;
-      }
-      if(choice == 9)
-      {
-         tempNum = 14;
-      }
-      if(choice == 10)
-      {
-         this.Choice10.visible = false;
-      }
-      if(choice == 11)
-      {
-         tempNum = 0;
-      }
-   }
-   if(this.currentZone == 2)
-   {
-      if(choice == 1)
-      {
-         tempNum = 1;
-      }
-      if(choice == 2)
-      {
-         tempNum = 4;
-      }
-      if(choice == 3)
-      {
-         tempNum = 8;
-      }
-      if(choice == 5)
-      {
-         tempNum = 3;
-      }
-      if(choice == 6)
-      {
-         tempNum = 10;
-      }
-      if(choice == 7)
-      {
-         tempNum = 5;
-      }
-      if(choice == 9)
-      {
-         tempNum = 6;
-      }
-      if(choice == 10)
-      {
-         this.Choice10.visible = false;
-      }
-      if(choice == 11)
-      {
-         tempNum = 0;
-      }
-   }
-   if(this.currentZone == 3)
-   {
-      if(choice == 1)
-      {
-         tempNum = 1;
-      }
-      if(choice == 2)
-      {
-         tempNum = 4;
-      }
-      if(choice == 3)
-      {
-         tempNum = 8;
-      }
-      if(choice == 5)
-      {
-         tempNum = 6;
-      }
-      if(choice == 6)
-      {
-         tempNum = 11;
-      }
-      if(choice == 7)
-      {
-         tempNum = 12;
-      }
-      if(choice == 9)
-      {
-         tempNum = 13;
-      }
-      if(choice == 10)
-      {
-         this.Choice10.visible = false;
-      }
-      if(choice == 11)
-      {
-         tempNum = 0;
-      }
-   }
-   if(this.currentZone == 4)
-   {
-      if(choice == 1)
-      {
-         tempNum = 1;
-      }
-      if(choice == 2)
-      {
-         tempNum = 4;
-      }
-      if(choice == 3)
-      {
-         tempNum = 8;
-      }
-      if(choice == 5)
-      {
-         tempNum = 2;
-      }
-      if(choice == 6)
-      {
-         tempNum = 9;
-      }
-      if(choice == 7)
-      {
-         tempNum = 7;
-      }
-      if(choice == 9)
-      {
-         tempNum = 13;
-      }
-      if(choice == 10)
-      {
-         this.Choice10.visible = false;
-      }
-      if(choice == 11)
-      {
-         tempNum = 0;
-      }
-   }
-   if(this.currentZone == 6)
-   {
-      if(choice == 1)
-      {
-         tempNum = 2;
-      }
-      if(choice == 2)
-      {
-         tempNum = 3;
-      }
-      if(choice == 3)
-      {
-         tempNum = 4;
-      }
-      if(choice == 5)
-      {
-         tempNum = 9;
-      }
-      if(choice == 6)
-      {
-         tempNum = 10;
-      }
-      if(choice == 7)
-      {
-         tempNum = 11;
-      }
-      if(choice == 9)
-      {
-         tempNum = 12;
-      }
-      if(choice == 10)
-      {
-         this.Choice10.visible = false;
-      }
-      if(choice == 11)
-      {
-         tempNum = 0;
-      }
-   }
-   if(this.currentZone == 12)
-   {
-      if(choice == 1)
-      {
-         tempNum = 2;
-      }
-      if(choice == 2)
-      {
-         tempNum = 9;
-      }
-      if(choice == 3)
-      {
-         tempNum = 6;
-      }
-      if(choice == 5)
-      {
-         tempNum = 12;
-      }
-      if(choice == 6)
-      {
-         tempNum = 13;
-      }
-      if(choice == 7)
-      {
-         tempNum = 1;
-      }
-      if(choice == 9)
-      {
-         tempNum = 4;
-      }
-      if(choice == 10)
-      {
-         this.Choice10.visible = false;
-      }
-      if(choice == 11)
-      {
-         tempNum = 0;
-      }
-   }
-   return tempNum;
-}
-def HairstyleValue(ID:int):
-   tempNum = 0
-   if (ID == 0):
-      tempNum = 0
-   if (ID == 1):
-      tempNum = 5
-   if (ID == 2):
-      tempNum = 8
-   if (ID == 3):
-      tempNum = 8
-   if (ID == 4):
-      tempNum = 5
-   if (ID == 5):
-      tempNum = 7
-   if (ID == 6):
-      tempNum = 20
-   if (ID == 7):
-      tempNum = 10
-   if (ID == 8):
-      tempNum = 5
-   if (ID == 9):
-      tempNum = 15
-   if (ID == 10):
-      tempNum = 15
-   if (ID == 11):
-      tempNum = 23
-   if (ID == 12):
-      tempNum = 18
-   if (ID == 13):
-      tempNum = 18
-   if (ID == 14):
-      tempNum = 20
-   return tempNum
+#def HairstyleID(choice:int):
+#SalonItems.ID
 
-def HairstyleLength(ID:int):
-   tempBool = False
-   if (ID == 1):
-      tempBool = True
-   if (ID == 2):
-      tempBool = True
-   if (ID == 3):
-      tempBool = True
-   if (ID == 4):
-      tempBool = True
-   if (ID == 8):
-      tempBool = True
-   if (ID == 9):
-      tempBool = True
-   if (ID == 10):
-      tempBool = True
-   if (ID == 11):
-      tempBool = True
-   if (ID == 13):
-      tempBool = True
-   return tempBool
+#def HairstyleValue(ID:int):
+#SalonItems.Value
 
-!def HairstyleDescription(ID:int):
-{
-   var tempStr:String = null;
-   tempStr = "CLOTHES NAME ERROR " + ID;
-   if(ID == 0)
-   {
-      tempStr = "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description.";
-   }
-   if(ID == 1)
-   {
-      tempStr = "Wavy hair has subtle curves that make it seem more flowing.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 2)
-   {
-      tempStr = "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 3)
-   {
-      tempStr = "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 4)
-   {
-      tempStr = "Straight hair has been combed out to be nice and straight.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 5)
-   {
-      tempStr = "A Buzzcut is hair cut quite short, less than a quarter inch from your head.";
-   }
-   if(ID == 6)
-   {
-      tempStr = "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It\'s usually a couple inches long.";
-   }
-   if(ID == 7)
-   {
-      tempStr = "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head.";
-   }
-   if(ID == 8)
-   {
-      tempStr = "Curly hair has been treated to make it nice and curly with a bit of spring.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 9)
-   {
-      tempStr = "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 10)
-   {
-      tempStr = "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 11)
-   {
-      tempStr = "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 12)
-   {
-      tempStr = "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length.";
-   }
-   if(ID == 13)
-   {
-      tempStr = "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\r\rThis hairstyle has additional length options available after purchasing.";
-   }
-   if(ID == 14)
-   {
-      tempStr = "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head.";
-   }
-   return tempStr;
-}
+#def HairstyleLength(ID:int):
+#SalonItems.Length
+
+#def HairstyleDescription(ID:int):
+#SalonItems.Description
+
 !def DoTailor():
-def ClothesName(ID:int):
-   tempStr = "CLOTHES NAME ERROR"
-   if (ID == 1):
-      tempStr = "Shirt"
-   if (ID == 2):
-      tempStr = "Pants"
-   if (ID == 3):
-      tempStr = "Bikini Top"
-   if (ID == 4):
-      tempStr = "Bikini Bottom"
-   if (ID == 5):
-      tempStr = "Elegant Dress"
-   if (ID == 6):
-      tempStr = "Latex Suit"
-   if (ID == 7):
-      tempStr = "Skirt"
-   if (ID == 8):
-      tempStr = "Shorts"
-   if (ID == 9):
-      tempStr = "Blouse"
-   if (ID == 10):
-      tempStr = "Diaper"
-   if (ID == 11):
-      tempStr = "Poofy Diaper"
-   if (ID == 12):
-      tempStr = "Sundress"
-   if (ID == 13):
-      tempStr = "Skimpy Dress"
-   if (ID == 14):
-      tempStr = "Short Skirt"
-   if (ID == 15):
-      tempStr = "Short Shorts"
-   if (ID == 16):
-      tempStr = "Loin Cloth"
-   if (ID == 17):
-      tempStr = "Bathing Suit"
-   if (ID == 18):
-      tempStr = "Muscle Shirt"
-   if (ID == 19):
-      tempStr = "Corset"
-   if (ID == 20):
-      tempStr = "Silk Panties"
-   if (ID == 21):
-      tempStr = "Slingkini"
-   if (ID == 22):
-      tempStr = "Thong"
-   if (ID == 23):
-      tempStr = "Bloomers"
-   if (ID == 24):
-      tempStr = "Tights"
-   if (ID == 25):
-      tempStr = "Gothic Dress"
-   if (ID == 26):
-      tempStr = "Tube Top"
-   if (ID == 27):
-      tempStr = "Nipple Pasties"
-   if (ID == 28):
-      tempStr = "Camisole"
-   if (ID == 29):
-      tempStr = "Training Suit"
-   if (ID == 30):
-      tempStr = "Bouncy Bra"
-   return tempStr
+#def ClothesName(ID:int):
+#Tailor.Name
 
-def ClothesID(choice:int):
-   global currentZone
-   tempNum = 0
-   if (currentZone == 1):
-      if (choice == 1):
-         tempNum = 1
-      if (choice == 2):
-         tempNum = 2
-      if (choice == 3):
-         tempNum = 29
-      if (choice == 5):
-         tempNum = 6
-      if (choice == 6):
-         tempNum = 9
-      if (choice == 7):
-         tempNum = 10
-      if (choice == 9):
-         tempNum = 13
-      if (choice == 10):
-         tempNum = 22
-      if (choice == 11):
-         tempNum = 27
-   if (currentZone == 2)
-      if (choice == 1):
-         tempNum = 1
-      if (choice == 2):
-         tempNum = 2
-      if (choice == 3):
-         tempNum = 29
-      if (choice == 5):
-         tempNum = 8
-      if (choice == 6):
-         tempNum = 9
-      if (choice == 7):
-         tempNum = 15
-      if (choice == 9):
-         tempNum = 18
-      if (choice == 10):
-         tempNum = 24
-      if (choice == 11):
-         tempNum = 26
-   if (currentZone == 3)
-      if (choice == 1):
-         tempNum = 1
-      if (choice == 2):
-         tempNum = 2
-      if (choice == 3):
-         tempNum = 29
-      if (choice == 5):
-         tempNum = 5
-      if (choice == 6):
-         tempNum = 13
-      if (choice == 7):
-         tempNum = 19
-      if (choice == 9):
-         tempNum = 22
-      if (choice == 10):
-         tempNum = 23
-      if (choice == 11):
-         tempNum = 25
-   if (currentZone == 4)
-      if (choice == 1):
-         tempNum = 1
-      if (choice == 2):
-         tempNum = 2
-      if (choice == 3):
-         tempNum = 29
-      if (choice == 5):
-         tempNum = 3
-      if (choice == 6):
-         tempNum = 4
-      if (choice == 7):
-         tempNum = 11
-      if (choice == 9):
-         tempNum = 12
-      if (choice == 10):
-         tempNum = 20
-      if (choice == 11):
-         tempNum = 28
-   if (currentZone == 6)
-      if (choice == 1):
-         tempNum = 1
-      if (choice == 2):
-         tempNum = 2
-      if (choice == 3):
-         tempNum = 29
-      if (choice == 5):
-         tempNum = 7
-      if (choice == 6):
-         tempNum = 14
-      if (choice == 7):
-         tempNum = 16
-      if (choice == 9):
-         tempNum = 17
-      if (choice == 10):
-         tempNum = 19
-      if (choice == 11):
-         tempNum = 21
-   if (currentZone == 12)
-      if (choice == 1):
-         tempNum = 1
-      if (choice == 2):
-         tempNum = 2
-      if (choice == 3):
-         tempNum = 29
-      if (choice == 5):
-         tempNum = 28
-      if (choice == 6):
-         tempNum = 30
-      if (choice == 7):
-         tempNum = 25
-      if (choice == 9):
-         tempNum = 23
-      if (choice == 10):
-         tempNum = 22
-      if (choice == 11):
-         tempNum = 19
-   return tempNum
+#def ClothesID(choice:int):
+#Tailor.ID
 
-def ClothesValue(ID:int):
-   tempNum = 0
-   if (ID == 1):
-      tempNum = 5
-   if (ID == 2):
-      tempNum = 5
-   if (ID == 3):
-      tempNum = 25
-   if (ID == 4):
-      tempNum = 25
-   if (ID == 5):
-      tempNum = 45
-   if (ID == 6):
-      tempNum = 60
-   if (ID == 7):
-      tempNum = 25
-   if (ID == 8):
-      tempNum = 25
-   if (ID == 9):
-      tempNum = 25
-   if (ID == 10):
-      tempNum = 30
-   if (ID == 11):
-      tempNum = 40
-   if (ID == 12):
-      tempNum = 40
-   if (ID == 13):
-      tempNum = 50
-   if (ID == 14):
-      tempNum = 35
-   if (ID == 15):
-      tempNum = 35
-   if (ID == 16):
-      tempNum = 40
-   if (ID == 17):
-      tempNum = 55
-   if (ID == 18):
-      tempNum = 15
-   if (ID == 19):
-      tempNum = 50
-   if (ID == 20):
-      tempNum = 35
-   if (ID == 21):
-      tempNum = 65
-   if (ID == 22):
-      tempNum = 40
-   if (ID == 23):
-      tempNum = 30
-   if (ID == 24):
-      tempNum = 35
-   if (ID == 25):
-      tempNum = 60
-   if (ID == 26):
-      tempNum = 20
-   if (ID == 27):
-      tempNum = 45
-   if (ID == 28):
-      tempNum = 40
-   if (ID == 29):
-      tempNum = 35
-   if (ID == 30):
-      tempNum = 45
-   return tempNum
+#def ClothesValue(ID:int):
+#Tailor.Value
 
-!def ClothesDescription(ID:int):
-   tempStr = "CLOTHES NAME ERROR"
-   if (ID == 1):
-      tempStr = "A generic shirt with no special attributes." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 2):
-      tempStr = "A generic pair of pants with no special attributes." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 3):
-      tempStr = "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 4):
-      tempStr = "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 5):
-      tempStr = "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 6):
-      tempStr = "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 7):
-      tempStr = "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 8):
-      tempStr = "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 9):
-      tempStr = "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 10):
-      tempStr = "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality." + "\n" + "\n" + "Warning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 11):
-      tempStr = "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido." + "\n" + "\n" + "Warning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 12):
-      tempStr = "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 13):
-      tempStr = "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 14):
-      tempStr = "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 15):
-      tempStr = "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 16):
-      tempStr = "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 17):
-      tempStr = "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 18):
-      tempStr = "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 19):
-      tempStr = "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 20):
-      tempStr = "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 21):
-      tempStr = "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 22):
-      tempStr = "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 23):
-      tempStr = "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 24):
-      tempStr = "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant." + "\n" + "\n" + "Takes bottom clothes slot."
-   if (ID == 25):
-      tempStr = "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 26):
-      tempStr = "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 27):
-      tempStr = "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 28):
-      tempStr = "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating." + "\n" + "\n" + "Takes top clothes slot."
-   if (ID == 29):
-      tempStr = "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity." + "\n" + "\n" + "Takes both top and bottom clothes slots."
-   if (ID == 30):
-      tempStr = "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!" + "\n" + "\n" + "Takes top clothes slot."
-   return tempStr
+#def ClothesDescription(ID:int):
+#Tailor.Description
 
 def ClothesTop():
    global attireTop, boobTotal
@@ -5900,8 +4205,7 @@ def ChangeTop(ID:int):
       if (attireTop == 0):
          StatsMod(0,4,0,0)
       if (attireTop == 1):
-      {
-      }
+         x = 0
       if (attireTop == 3):
          enticeMod -= 6
          StatsMod(0,2,0,-2)
@@ -5975,8 +4279,7 @@ def ChangeTop(ID:int):
       if (ID == 0):
          StatsMod(0,-4,0,0)
       if (ID == 1):
-      {
-      }
+         x = 0
       if (ID == 3):
          enticeMod += 6
          StatsMod(0,-2,0,2)
@@ -6048,707 +4351,435 @@ def ChangeTop(ID:int):
       else:
          attireTop = ID
 
-!def ChangeBot(ID:int):
-{
-   if(ID != this.attireBot)
-   {
-      if(this.attireBot == -1)
-      {
-         this.statsMod(2,2,0,0);
-      }
-      if(this.attireBot == 0)
-      {
-         this.statsMod(0,4,0,0);
-      }
-      if(this.attireBot == 2)
-      {
-      }
-      if(this.attireBot == 4)
-      {
-         this.enticeMod -= 6;
-         this.statsMod(0,2,0,-2);
-         this.cumMod += 0.2;
-      }
-      if(this.attireBot == 7)
-      {
-         this.runMod -= 3;
-         this.cumMod -= 0.2;
-         this.statsMod(-2,2,0,0);
-         this.pregChanceMod -= 4;
-      }
-      if(this.attireBot == 8)
-      {
-         this.runMod -= 3;
-         this.statsMod(-2,0,3,0);
-      }
-      if(this.attireBot == 10)
-      {
-         this.vagMoistMod += 2;
-         this.cockMoistMod += 2;
-         this.hips = this.hips - 1;
-         this.statsMod(0,4,0,0);
-      }
-      if(this.attireBot == 11)
-      {
-         this.vagMoistMod += 5;
-         this.cockMoistMod += 5;
-         this.hips = this.hips - 1;
-         this.butt -= 2;
-         this.statsMod(0,4,4,0);
-      }
-      if(this.attireBot == 14)
-      {
-         this.cumMod -= 0.2;
-         this.enticeMod -= 7;
-         this.statsMod(0,4,0,-2);
-         this.pregChanceMod -= 6;
-      }
-      if(this.attireBot == 15)
-      {
-         this.cumMod += 0.2;
-         this.runMod -= 5;
-         this.enticeMod -= 4;
-         this.statsMod(2,3,0,-2);
-      }
-      if(this.attireBot == 16)
-      {
-         this.cumMod -= 0.2;
-         this.runMod -= 4;
-         this.pregChanceMod -= 5;
-         this.statsMod(-2,4,0,-2);
-      }
-      if(this.attireBot == 20)
-      {
-         this.cumMod += 0.3;
-         this.runMod += 3;
-         this.vulvaSize = this.vulvaSize - 1;
-         this.enticeMod -= 7;
-         this.statsMod(0,2,-2,-2);
-      }
-      if(this.attireBot == 22)
-      {
-         this.runMod += 5;
-         this.enticeMod -= 9;
-         this.statsMod(2,2,-4,2);
-      }
-      if(this.attireBot == 23)
-      {
-         this.runMod -= 6;
-         this.rapeMod += 4;
-         this.statsMod(-2,2,-2,0);
-      }
-      if(this.attireBot == 24)
-      {
-         this.runMod -= 4;
-         this.cumMod += 0.2;
-         this.pregChanceMod += 3;
-         this.statsMod(0,0,0,-2);
-      }
-      if(ID == -1)
-      {
-         if(this.attireTop == this.attireBot && this.attireTop != -1)
-         {
-            this.attireBot = ID;
-            this.changeTop(-1);
-         }
-         this.statsMod(-2,-2,0,0);
-      }
-      if(ID == 0)
-      {
-         this.statsMod(0,-4,0,0);
-      }
-      if(ID == 2)
-      {
-      }
-      if(ID == 4)
-      {
-         this.enticeMod += 6;
-         this.statsMod(0,-2,0,2);
-         this.cumMod -= 0.2;
-      }
-      if(ID == 7)
-      {
-         this.runMod += 3;
-         this.cumMod += 0.2;
-         this.statsMod(2,-2,0,0);
-         this.pregChanceMod += 4;
-      }
-      if(ID == 8)
-      {
-         this.runMod += 3;
-         this.statsMod(2,0,-3,0);
-      }
-      if(ID == 10)
-      {
-         this.vagMoistMod -= 2;
-         this.cockMoistMod -= 2;
-         this.hips += 1;
-         this.statsMod(0,-4,0,0);
-      }
-      if(ID == 11)
-      {
-         this.vagMoistMod -= 5;
-         this.cockMoistMod -= 5;
-         this.hips += 1;
-         this.butt += 2;
-         this.statsMod(0,-4,-4,0);
-      }
-      if(ID == 14)
-      {
-         this.cumMod += 0.2;
-         this.enticeMod += 7;
-         this.statsMod(0,-4,0,2);
-         this.pregChanceMod += 6;
-      }
-      if(ID == 15)
-      {
-         this.cumMod -= 0.2;
-         this.runMod += 5;
-         this.enticeMod += 4;
-         this.statsMod(-2,-3,0,2);
-      }
-      if(ID == 16)
-      {
-         this.cumMod += 0.2;
-         this.runMod += 4;
-         this.pregChanceMod += 5;
-         this.statsMod(2,-4,0,2);
-      }
-      if(ID == 20)
-      {
-         this.cumMod -= 0.3;
-         this.runMod -= 3;
-         this.vulvaSize += 1;
-         this.enticeMod += 7;
-         this.statsMod(0,-2,2,2);
-      }
-      if(ID == 22)
-      {
-         this.runMod -= 5;
-         this.enticeMod += 9;
-         this.statsMod(-2,-2,4,-2);
-      }
-      if(ID == 23)
-      {
-         this.runMod += 6;
-         this.rapeMod -= 4;
-         this.statsMod(2,-2,2,0);
-      }
-      if(ID == 24)
-      {
-         this.runMod += 4;
-         this.cumMod -= 0.2;
-         this.pregChanceMod -= 3;
-         this.statsMod(0,0,0,2);
-      }
-      if(this.attireTop == this.attireBot && ID != 0 && ID != -1)
-      {
-         this.attireBot = ID;
-         this.changeTop(1);
-      }
-      else
-      {
-         this.attireBot = ID;
-      }
-   }
-}
+def ChangeBot(ID:int):
+   global attireBot, enticeMod, cumMod, runMod, pregChanceMod, vagMoistMod, cockMoistMod, hips, butt, vulvaSize, attireTop
+   if (ID != attireBot):
+      if (attireBot == -1):
+         StatsMod(2,2,0,0)
+      if (attireBot == 0):
+         StatsMod(0,4,0,0)
+      if (attireBot == 2):
+         x = 0
+      if (attireBot == 4):
+         enticeMod -= 6
+         StatsMod(0,2,0,-2)
+         cumMod += 0.2
+      if (attireBot == 7):
+         runMod -= 3
+         cumMod -= 0.2
+         StatsMod(-2,2,0,0)
+         pregChanceMod -= 4
+      if (attireBot == 8):
+         runMod -= 3
+         StatsMod(-2,0,3,0)
+      if (attireBot == 10):
+         vagMoistMod += 2
+         cockMoistMod += 2
+         hips = this.hips - 1
+         StatsMod(0,4,0,0)
+      if (attireBot == 11):
+         vagMoistMod += 5
+         cockMoistMod += 5
+         hips = hips - 1
+         butt -= 2
+         StatsMod(0,4,4,0)
+      if (attireBot == 14):
+         cumMod -= 0.2
+         enticeMod -= 7
+         StatsMod(0,4,0,-2)
+         pregChanceMod -= 6
+      if (attireBot == 15):
+         cumMod += 0.2
+         runMod -= 5
+         enticeMod -= 4
+         StatsMod(2,3,0,-2)
+      if (attireBot == 16):
+         cumMod -= 0.2
+         runMod -= 4
+         pregChanceMod -= 5
+         StatsMod(-2,4,0,-2)
+      if (attireBot == 20):
+         cumMod += 0.3
+         runMod += 3
+         vulvaSize = vulvaSize - 1
+         enticeMod -= 7
+         StatsMod(0,2,-2,-2)
+      if (attireBot == 22):
+         runMod += 5
+         enticeMod -= 9
+         StatsMod(2,2,-4,2)
+      if (attireBot == 23):
+         runMod -= 6
+         rapeMod += 4
+         StatsMod(-2,2,-2,0)
+      if (attireBot == 24):
+         runMod -= 4
+         cumMod += 0.2
+         pregChanceMod += 3
+         StatsMod(0,0,0,-2)
+      if (ID == -1):
+         if (attireTop == attireBot) and (attireTop != -1):
+            attireBot = ID
+            ChangeTop(-1)
+         StatsMod(-2,-2,0,0)
+      if (ID == 0):
+         StatsMod(0,-4,0,0)
+      if(ID == 2):
+         x = 0
+      if (ID == 4):
+         enticeMod += 6
+         StatsMod(0,-2,0,2)
+         cumMod -= 0.2
+      if (ID == 7):
+         runMod += 3
+         cumMod += 0.2
+         StatsMod(2,-2,0,0)
+         pregChanceMod += 4
+      if(ID == 8):
+         runMod += 3
+         StatsMod(2,0,-3,0)
+      if (ID == 10):
+         vagMoistMod -= 2
+         cockMoistMod -= 2
+         hips += 1
+         StatsMod(0,-4,0,0)
+      if (ID == 11):
+         vagMoistMod -= 5
+         cockMoistMod -= 5
+         hips += 1
+         butt += 2
+         StatsMod(0,-4,-4,0)
+      if (ID == 14):
+         cumMod += 0.2
+         enticeMod += 7
+         StatsMod(0,-4,0,2)
+         pregChanceMod += 6
+      if (ID == 15):
+         cumMod -= 0.2
+         runMod += 5
+         enticeMod += 4
+         StatsMod(-2,-3,0,2)
+      if (ID == 16):
+         cumMod += 0.2
+         runMod += 4
+         pregChanceMod += 5
+         StatsMod(2,-4,0,2)
+      if (ID == 20):
+         cumMod -= 0.3
+         runMod -= 3
+         vulvaSize += 1
+         enticeMod += 7
+         StatsMod(0,-2,2,2)
+      if (ID == 22):
+         runMod -= 5
+         enticeMod += 9
+         StatsMod(-2,-2,4,-2)
+      if (ID == 23):
+         runMod += 6
+         rapeMod -= 4
+         StatsMod(2,-2,2,0)
+      if (ID == 24):
+         runMod += 4
+         cumMod -= 0.2
+         pregChanceMod -= 3
+         StatsMod(0,0,0,2)
+      if (attireTop == attireBot) and (ID != 0) and (ID != -1):
+         attireBot = ID
+         ChangeTop(1)
+      else:
+         attireBot = ID
+
 !def DoDayCare():
 !def DoProstitute():
 !def DoSleep():
 !def DoMasturbate():
-!def DoCockMasturbate():
-{
-   var _loc1_:int = 0;
-   var _loc2_:String = null;
-   var _loc3_:int = 0;
-   var _loc4_:int = 0;
-   this.rndArray = [];
-   if(this.humanCocks > 0)
-   {
-      this.rndArray.push(1);
-   }
-   if(this.horseCocks > 0)
-   {
-      this.rndArray.push(2);
-   }
-   if(this.wolfCocks > 0)
-   {
-      this.rndArray.push(3);
-   }
-   if(this.catCocks > 0)
-   {
-      this.rndArray.push(4);
-   }
-   if(this.lizardCocks > 0)
-   {
-      this.rndArray.push(6);
-   }
-   if(this.rabbitCocks > 0)
-   {
-      this.rndArray.push(7);
-   }
-   if(this.bugCocks > 0)
-   {
-      this.rndArray.push(12);
-   }
-   _loc1_ = this.chooseFrom();
-   _loc2_ = "WHICH COCK ERROR";
-   if(_loc1_ == 1)
-   {
-      _loc2_ = "hard human rod";
-   }
-   if(_loc1_ == 2)
-   {
-      _loc2_ = "long equine flesh";
-   }
-   if(_loc1_ == 3)
-   {
-      _loc2_ = "pointy wolf meat";
-   }
-   if(_loc1_ == 4)
-   {
-      _loc2_ = "pink thorny cat prick";
-   }
-   if(_loc1_ == 6)
-   {
-      _loc2_ = "purple ribbed reptile rod";
-   }
-   if(_loc1_ == 7)
-   {
-      _loc2_ = "throbbing bunny carrot";
-   }
-   if(_loc1_ == 12)
-   {
-      _loc2_ = "bumpy-ridged spiked bug wang";
-   }
-   if(this.lust < 20)
-   {
-      this.outputMainText("You\'re hardly aroused enough to get your cock" + this.plural(1) + " standing, let alone masturbate. You\'ll just have to settle for something else.",true);
-      this.doEnd();
-   }
-   else
-   {
-      _loc1_ = Math.floor(this.percent() / 20 + this.ment / 5 + this.lib / 5);
-      _loc3_ = this.cumAmount();
-      this.i = 0;
-      while(this.i == 0)
-      {
-         _loc4_ = Math.floor(Math.random() * (1 + 7 - 1)) + 1;
-         if(_loc4_ == 1)
-         {
-            if(this.ment >= this.lib - 10)
-            {
-               this.outputMainText("You sneak off to the private place where you sleep in " + this.regionName(this.currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", your " + this.cockDesc() + " erection" + this.plural(1) + " bobbing out.\r\rYou wrap your ",true);
-            }
-            if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-            {
-               this.outputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + this.regionName(this.currentZone) + " can easily see your " + this.cockDesc() + " bulge growing in your " + this.clothesBottom() + ". Before you even reach your destination, you\'re already pulling the " + this.clothesBottom() + " " + this.pullUD(2) + ", your cock" + this.plural(1) + " flopping out.\r\rYou\'re not too sure if anybody saw it before you disappeared into solitude, but that doesn\'t matter as you wrap your ",true);
-            }
-            if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-            {
-               this.outputMainText("Your chest heaving with your heavy breathing, you don\'t think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\r\rInstead, you duck into one of the more hidden corners of " + this.regionName(this.currentZone) + " as you pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and let your " + this.cockDesc() + " cock" + this.plural(1) + " spring out. You hear somebody pass nearby, but you don\'t care as you wrap your ",true);
-            }
-            if(this.ment < this.lib - 50)
-            {
-               this.outputMainText("Without a second thought, right in the middle of " + this.regionName(this.currentZone) + " you pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and whip out your " + this.cockDesc() + " wang" + this.plural(1) + ".\r\rPeople gasp and stare as you wrap your ",true);
-            }
-            if(this.cockSize * this.cockSizeMod <= this.tallness / 3.75)
-            {
-               this.outputMainText("hand around your " + _loc2_ + " and slowly pump it, building stronger and stronger.",false);
-            }
-            if(this.cockSize * this.cockSizeMod > this.tallness / 3.75 && this.cockSize * this.cockSizeMod <= this.tallness * 1.2)
-            {
-               this.outputMainText("hands around your " + _loc2_ + " , ",false);
-               if(this.cockSize * this.cockSizeMod > this.tallness / 1.5)
-               {
-                  if(this.breastSize > 4)
-                  {
-                     this.outputMainText("hugging it between your " + this.boobTotal + " breasts, ",false);
-                  }
-                  else
-                  {
-                     this.outputMainText("hugging it to your chest, ",false);
-                  }
-               }
-               this.outputMainText("pounding your fists up and down its length.",false);
-            }
-            if(this.cockSize * this.cockSizeMod > this.tallness * 1.2)
-            {
-               this.outputMainText("arms around your " + _loc2_ + ", hugging it close and trying to jerk yourself the best you can.",false);
-            }
-            if(this.moistCalc(1) > 0 && this.moistCalc(1) <= 3)
-            {
-               this.outputMainText(" Drops of pre help aid your efforts, though it\'s still a little rough.",false);
-            }
-            if(this.moistCalc(1) > 3 && this.moistCalc(1) <= 7)
-            {
-               this.outputMainText(" A dribble of pre leaks out, sufficiently coating your " + this.cockDesc() + " cock and making your efforts so much easier.",false);
-            }
-            if(this.moistCalc(1) > 7 && this.moistCalc(1) <= 11)
-            {
-               this.outputMainText(" Pre squeezes out of your cock and more than coat your " + this.cockDesc() + " cock, with plenty extra drooling down across your " + this.skinDesc() + ".",false);
-            }
-            if(this.moistCalc(1) > 11)
-            {
-               this.outputMainText(" A flood of pre gushes out from the tip, sufficiently coating yourself, your " + this.cockDesc() + " cock and then some in slick lubrication.",false);
-            }
-            if(this.showBalls == true)
-            {
-               this.outputMainText(" One of your hands reaches down to knead your " + this.ballDesc() + " scrotum, letting your " + this.balls + " cum-factories know it\'s time.",false);
-            }
-            if(this.lust <= 30)
-            {
-               this.outputMainText("\r\rSlowly,",false);
-            }
-            if(this.lust > 30 && this.lust <= 70)
-            {
-               this.outputMainText("\r\rQuickly,",false);
-            }
-            if(this.lust > 70)
-            {
-               this.outputMainText("\r\rAlmost instantly,",false);
-            }
-            this.outputMainText(" your " + _loc2_ + " throbs, a pressure building at the base of your spine",false);
-            if(this.knot == true)
-            {
-               this.outputMainText(", the base of your cock swelling into a thick knot that you begin to tug",false);
-            }
-            this.outputMainText(".",false);
-            if(this.cockTotal > 1)
-            {
-               this.outputMainText(" Your other cocks do the same, your hands dashing back and forth between them, attempting to not leave them completely ignored.",false);
-            }
-            this.outputMainText("Your " + this.hipDesc() + " hips soon jerk as thick strands of hot spunk launch from your cock-tip" + this.plural(1) + ",",false);
-            if(_loc3_ <= 24)
-            {
-               this.outputMainText(" with a bit more drooling down to the floor.",false);
-            }
-            if(_loc3_ > 24 && _loc3_ <= 72)
-            {
-               this.outputMainText(" spitting small wads again and again until it\'s done.",false);
-            }
-            if(_loc3_ > 72 && _loc3_ <= 1000)
-            {
-               this.outputMainText(" spewing large gobs again and again until you\'ve made a heck of a mess.",false);
-            }
-            if(_loc3_ > 1000 && _loc3_ <= 2200)
-            {
-               this.outputMainText(" coming more and more, like it can\'t stop, until you\'ve made so much cum that you could feed a person with it for a day...",false);
-            }
-            if(_loc3_ > 2200 && _loc3_ <= 4500)
-            {
-               this.outputMainText(" the stuff gushing like a fire-hose. Somewhere between half and a full gallon, you\'re not sure what to do with it all!",false);
-            }
-            if(_loc3_ > 4500 && _loc3_ <= 20000)
-            {
-               this.outputMainText(" gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!",false);
-            }
-            if(_loc3_ > 20000)
-            {
-               this.outputMainText(" so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can\'t take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away.",false);
-               this.doLust(-Math.floor(this.sen / 2),2,1);
-               this.hrs = 5;
-               this.exhaustion -= 2;
-               ++this.i;
-            }
-            else
-            {
-               if(this.ment >= this.lib - 10)
-               {
-                  this.outputMainText("\r\rYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area, you don\'t think anybody will catch on to your lewd actions, and you continue on with your day.",false);
-               }
-               if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-               {
-                  this.outputMainText("\r\rComing down from your high, you clean up your mess the best you can, though its likely some cum was left behind. At least, it smells like some was. And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Or maybe you have a wad of cum in your hair?",false);
-               }
-               if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-               {
-                  this.outputMainText("\r\rYou realize your hiding place is a mess as you come to your senses. Before you\'re caught, you quickly don your " + this.clothesBottom() + " again, even though your cock is still drooling and leaving quite the blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. You then dash off before anybody tries to check out what you left behind.",false);
-               }
-               if(this.ment < this.lib - 50)
-               {
-                  this.outputMainText("\r\rGasping, you blink and look around you. You\'ve gathered quite the crowd, especially some women, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don\'t look so happy at what you have done, especially the ones with children beside them. You pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", cum dripping down the front and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",false);
-               }
-               if(_loc3_ < 1000)
-               {
-                  this.outputMainText("\r\r\rYou have produced " + _loc3_ + " ml of spooge!",false);
-               }
-               else if(_loc3_ >= 1000)
-               {
-                  this.outputMainText("\r\r\rYou have produced " + this.decGet(_loc3_ / 1000,1) + " liters of spooge!",false);
-               }
-               this.doLust(-Math.floor(this.sen / 2),2,1);
-               this.hrs = 1;
-               ++this.i;
-            }
-         }
-         if(_loc4_ == 2 && this.cockSize * this.cockSizeMod * 6 > this.tallness && this.cockSize * this.cockSizeMod * 8 < this.tallness * 3)
+def DoCockMasturbate():
+   global rndArray, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, lust, ment, lib, currentZone, cockSize, cockSizeMod, tallness, breastSize, boobTotal, showBalls, balls, knot, cockTotal, sen, hrs, exhaustion, attireBot
+   _loc1_ = 0
+   _loc2_ = null
+   _loc3_ = 0
+   _loc4_ = 0
+   rndArray = list(())
+   if (humanCocks > 0):
+      rndArray.push(1)
+   if (horseCocks > 0):
+      rndArray.push(2)
+   if (wolfCocks > 0):
+      rndArray.push(3)
+   if (catCocks > 0):
+      rndArray.push(4)
+   if (lizardCocks > 0):
+      rndArray.push(6)
+   if (rabbitCocks > 0):
+      rndArray.push(7)
+   if (bugCocks > 0):
+      rndArray.push(12)
+   _loc1_ = ChooseFrom()
+   _loc2_ = "WHICH COCK ERROR"
+   if (_loc1_ == 1):
+      _loc2_ = "hard human rod"
+   if (_loc1_ == 2):
+      _loc2_ = "long equine flesh"
+   if (_loc1_ == 3):
+      _loc2_ = "pointy wolf meat"
+   if (_loc1_ == 4):
+      _loc2_ = "pink thorny cat prick"
+   if (_loc1_ == 6):
+      _loc2_ = "purple ribbed reptile rod"
+   if (_loc1_ == 7):
+      _loc2_ = "throbbing bunny carrot"
+   if (_loc1_ == 12):
+      _loc2_ = "bumpy-ridged spiked bug wang"
+   if (lust < 20):
+      OutputMainText("You're hardly aroused enough to get your cock" + Plural(1) + " standing, let alone masturbate. You'll just have to settle for something else.",True)
+      DoEnd()
+   else:
+      _loc1_ = math.floor((Percent() / 20) + (ment / 5) + (lib / 5))
+      _loc3_ = CumAmount()
+      i = 0
+      while (i == 0):
+         _loc4_ = math.floor(random.random() * (1 + 7 - 1)) + 1
+         if (_loc4_ == 1):
+            if (ment >= (lib - 10)):
+               OutputMainText("You sneak off to the private place where you sleep in " + RegionName(currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + PullUD(2) + " your " + ClothesBottom() + ", your " + CockDesc() + " erection" + Plural(1) + " bobbing out." + "\n" + "\n" + "You wrap your ",True)
+            if (ment < (lib - 10)) and (ment >= (lib - 25)):
+               OutputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + RegionName(currentZone) + " can easily see your " + CockDesc() + " bulge growing in your " + ClothesBottom() + ". Before you even reach your destination, you're already pulling the " + ClothesBottom() + " " + PullUD(2) + ", your cock" + Plural(1) + " flopping out." + "\n" + "\n" + "You're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your ",True)
+            if (ment < (lib - 25)) and (ment >= (lib - 50)):
+               OutputMainText("Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind." + "\n" + "\n" + "Instead, you duck into one of the more hidden corners of " + RegionName(currentZone) + " as you pull " + PullUD(2) + " your " + ClothesBottom() + " and let your " + CockDesc() + " cock" + Plural(1) + " spring out. You hear somebody pass nearby, but you don't care as you wrap your ",True)
+            if (ment < (lib - 50)):
+               OutputMainText("Without a second thought, right in the middle of " + RegionName(currentZone) + " you pull " + PullUD(2) + " your " + ClothesBottom() + " and whip out your " + CockDesc() + " wang" + Plural(1) + "." + "\n" + "\n" + "People gasp and stare as you wrap your ",True)
+            if ((cockSize * cockSizeMod) <= (tallness / 3.75)):
+               OutputMainText("hand around your " + _loc2_ + " and slowly pump it, building stronger and stronger.",False)
+            if ((cockSize * cockSizeMod) > (tallness / 3.75)) and ((cockSize * cockSizeMod) <= (tallness * 1.2)):
+               OutputMainText("hands around your " + _loc2_ + " , ",False)
+               if ((cockSize * cockSizeMod) > (tallness / 1.5)):
+                  if (breastSize > 4):
+                     OutputMainText("hugging it between your " + boobTotal + " breasts, ",False)
+                  else:
+                     OutputMainText("hugging it to your chest, ",False)
+               OutputMainText("pounding your fists up and down its length.",False)
+            if ((cockSize * cockSizeMod) > (tallness * 1.2)):
+               OutputMainText("arms around your " + _loc2_ + ", hugging it close and trying to jerk yourself the best you can.",False)
+            if (MoistCalc(1) > 0) and (MoistCalc(1) <= 3):
+               OutputMainText(" Drops of pre help aid your efforts, though it's still a little rough.",False)
+            if (MoistCalc(1) > 3) and (moistCalc(1) <= 7):
+               OutputMainText(" A dribble of pre leaks out, sufficiently coating your " + CockDesc() + " cock and making your efforts so much easier.",False)
+            if (MoistCalc(1) > 7) and (MoistCalc(1) <= 11):
+               OutputMainText(" Pre squeezes out of your cock and more than coat your " + CockDesc() + " cock, with plenty extra drooling down across your " + SkinDesc() + ".",False)
+            if (MoistCalc(1) > 11):
+               OutputMainText(" A flood of pre gushes out from the tip, sufficiently coating yourself, your " + CockDesc() + " cock and then some in slick lubrication.",False)
+            if (showBalls == True):
+               OutputMainText(" One of your hands reaches down to knead your " + BallDesc() + " scrotum, letting your " + balls + " cum-factories know it's time.",False)
+            if (lust <= 30):
+               OutputMainText("\n" + "\n" + "Slowly,",False)
+            if (lust > 30) and (lust <= 70):
+               OutputMainText("\n" + "\n" + "Quickly,",False)
+            if (lust > 70):
+               OutputMainText("\n" + "\n" + "Almost instantly,",False)
+            OutputMainText(" your " + _loc2_ + " throbs, a pressure building at the base of your spine",False)
+            if (knot == True):
+               OutputMainText(", the base of your cock swelling into a thick knot that you begin to tug",False)
+            OutputMainText(".",False)
+            if (cockTotal > 1):
+               OutputMainText(" Your other cocks do the same, your hands dashing back and forth between them, attempting to not leave them completely ignored.",False)
+            OutputMainText("Your " + HipDesc() + " hips soon jerk as thick strands of hot spunk launch from your cock-tip" + Plural(1) + ",",False)
+            if (_loc3_ <= 24):
+               OutputMainText(" with a bit more drooling down to the floor.",False)
+            if (_loc3_ > 24) and (_loc3_ <= 72):
+               OutputMainText(" spitting small wads again and again until it's done.",False)
+            if (_loc3_ > 72) and (_loc3_ <= 1000):
+               OutputMainText(" spewing large gobs again and again until you've made a heck of a mess.",False)
+            if (_loc3_ > 1000) and (_loc3_ <= 2200):
+               OutputMainText(" coming more and more, like it can't stop, until you've made so much cum that you could feed a person with it for a day...",False)
+            if (_loc3_ > 2200) and (_loc3_ <= 4500):
+               OutputMainText(" the stuff gushing like a fire-hose. Somewhere between half and a full gallon, you're not sure what to do with it all!",False)
+            if (_loc3_ > 4500) and (_loc3_ <= 20000):
+               OutputMainText(" gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!",False)
+            if (_loc3_ > 20000):
+               OutputMainText(" so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can't take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away.",False)
+               DoLust(-math.floor(sen / 2),2,1)
+               hrs = 5
+               exhaustion -= 2
+               i += 1
+            else:
+               if (ment >= (lib - 10)):
+                  OutputMainText("\n" + "\n" + "You quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area, you don't think anybody will catch on to your lewd actions, and you continue on with your day.",False)
+               if (ment < (lib - 10)) and (ment >= (lib - 25)):
+                  OutputMainText("\n" + "\n" + "Coming down from your high, you clean up your mess the best you can, though its likely some cum was left behind. At least, it smells like some was. And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Or maybe you have a wad of cum in your hair?",False)
+               if (ment < (lib - 25)) and (ment >= (lib - 50)):
+                  OutputMainText("\n" + "\n" + "You realize your hiding place is a mess as you come to your senses. Before you're caught, you quickly don your " + ClothesBottom() + " again, even though your cock is still drooling and leaving quite the blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. You then dash off before anybody tries to check out what you left behind.",False)
+               if (ment < (lib - 50)):
+                  OutputMainText("\n" + "\n" + "Gasping, you blink and look around you. You've gathered quite the crowd, especially some women, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull " + PullUD(2) + " your " + ClothesBottom() + ", cum dripping down the front and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",False)
+               if (_loc3_ < 1000):
+                  OutputMainText("\n" + "\n" + "\n" + "You have produced " + _loc3_ + " ml of spooge!",False)
+               elif (_loc3_ >= 1000):
+                  OutputMainText("\n" + "\n" + "\n" + "You have produced " + DecGet(_loc3_ / 1000,1) + " liters of spooge!",False)
+               DoLust(-math.floor(sen / 2),2,1)
+               hrs = 1
+               i += 1
+         if (_loc4_ == 2) and ((cockSize * cockSizeMod * 6) > tallness) and ((cockSize * cockSizeMod * 8) < (tallness * 3)):
          {
          }
-         if(_loc4_ == 3 && _loc3_ > 2000)
+         if (_loc4_ == 3) and (_loc3_ > 2000):
          {
          }
-         if(_loc4_ == 4 && this.ment < this.lib - 50)
+         if (_loc4_ == 4) and (ment < (lib - 50)):
          {
          }
-         if(_loc4_ == 5 && (this.attireBot == 6 || this.attireBot == 17) && this.lust > 80)
+         if ((_loc4_ == 5) and ((attireBot == 6) or (attireBot == 17)) and (lust > 80)):
          {
          }
-         if(_loc4_ == 6 && (this.attireBot == 5 || this.attireBot == 7 || this.attireBot == 12 || this.attireBot == 13 || this.attireBot == 14 || this.attireBot == 16) && this.lust > 45)
-         {
-            this.outputMainText("Already half hard from your lingering lust, just the thought of masturbating makes your " + this.cockDesc() + " erection" + this.plural(1) + " stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your " + this.clothesBottom() + " as your rod" + this.plural(1) + " lift" + this.plural(3) + " the fabric forward. You do your best to press it back down in an attempt to hide " + this.plural(9) + ", but ",true);
-            if(this.cockSize * this.cockSizeMod > 10)
-            {
-               this.outputMainText("" + this.plural(11) + " wind up popping out beneath, accidentally flashing a random passerby who quickly pick up their pace to get away before you can try to catch your long thing" + this.plural(1) + " back within the cloth.",false);
-            }
-            else
-            {
-               this.outputMainText("" + this.plural(11) + " inevitably slide back up anyways, making your efforts futile.",false);
-            }
-            this.outputMainText("\r\rLooking for a quick escape, you slink behind the closest structure you can find. Glancing left and right to ensure nobody can see you, you pant as you look down at your tented " + this.clothesBottom() + ".",false);
-            if(this.moistCalc(1) > 8)
-            {
-               this.outputMainText(" Pre seeping through the fabric and drizzling down in a steady strand over the edge",false);
-            }
-            else if(this.moistCalc(1) > 4)
-            {
-               this.outputMainText(" Pre soaking through the fabric and glistening with a large drop on the outside",false);
-            }
-            else
-            {
-               this.outputMainText(" Pre blotching the fabric with a large moist spot",false);
-            }
-            this.outputMainText(", you have no choice but to pull the clothing up, letting your wang" + this.plural(1) + " bounce out. Grabbing " + this.plural(9) + " the best you can in your impetuous state, you stroke strongly and swiftly. You lean back against the structure, with people openly walking and talking just on the other side, as you masturbate fervently.\r\rThe fear of being caught only makes your heart beat faster, quickly producing results in your loins. You hardly hold back for a second to let the pressure build, before you release it in a spurting torrent of white fluid. You continue to pet yourself, squeezing out the leftover cum, while your mind savors the dwindling orgasm.\r\rHalf-aware of what you had just done, your mind still in a fuzz, you simply catch your cock" + this.plural(1) + " within your " + this.clothesBottom() + " once more, staining it slightly with the gobs of seed at your tip" + this.plural(1) + ", and leave your secluded area to head back into the public, leaving behind your puddle of lewd mess for someone else to stumble across...",false);
-            this.doLust(-Math.floor(this.sen / 2),2,1);
-            ++this.i;
-         }
-         if(_loc4_ == 7 && (this.attireBot == 4 || this.attireBot == 15 || this.attireBot == 20))
-         {
-            this.outputMainText("With the thought of masturbating on your mind, you can feel your cock" + this.plural(1) + " begin to swell in anticipation. The tight confines of your " + this.clothesBottom() + " rapidly growing tighter, you hurry on home.\r\rJust as you step through the doorway to your private abode, the waistband of your " + this.clothesBottom() + " can no longer contain the " + this.cockDesc() + " bulge. Your length" + this.plural(1) + " leap" + this.plural(3) + " out, flinging ",true);
-            if(this.moistCalc(1) > 8)
-            {
-               this.outputMainText("ropes",false);
-            }
-            else if(this.moistCalc(1) > 4)
-            {
-               this.outputMainText("strands",false);
-            }
-            else
-            {
-               this.outputMainText("drops",false);
-            }
-            this.outputMainText(" of pre out across the floor while the shaft" + this.plural(1) + " droop" + this.plural(3) + " half-flaccidly over the edge. You slump against the nearest wall, gripping yourself as you eagerly start the stroking process. Free of " + this.plural(5) + " small prison, the blood-flow picks up, quickly allowing " + this.plural(9) + " to stiffen to full size while your hands stroke the sensitive skin. Your stroking turns to rhythmic pumps and your back presses against the wall, your hips bucking back in turn.",false);
-            if(this.showBalls == true)
-            {
-               this.outputMainText(" You can wholly feel the pressure in your " + this.ballDesc() + " balls building, especially as the " + this.clothesBottom() + " continues to grip and squeeze them as it hugs your bottom to stay on amidst your efforts.",false);
-            }
-            this.outputMainText("\r\rBefore long, you wince as you try to hold back a little, one last moment of restraint until you let the fluids spray freely, escaping from your body with enough force to shoot across your room. So strong an orgasm, your " + this.legDesc(2) + " grow" + this.legPlural(1) + " weak and you slide down the wall, until you\'re sitting on the floor while the last spurts of cum shoot out between your " + this.legDesc(6) + ".\r\rA bit tired, you sit there for a little while longer as the stuff drools from your tip" + this.plural(1) + ".",false);
-            if(this.knot == true)
-            {
-               this.outputMainText(" Despite being done, your swollen knot" + this.plural(1) + " refuse to allow your member" + this.plural(1) + " to slip back into the " + this.clothesBottom() + ", standing defiantly against the waistband. The most you can do for now is stuff the knot" + this.plural(1) + " into the crotch of the piece and hope you soften up later as you proceed to clean up your mess.",false);
-            }
-            else
-            {
-               this.outputMainText(" Your softening member" + this.plural(1) + " slowly recede back into the " + this.clothesBottom() + ", leaving a slight slimy trail in the process, but at least allows you to tuck " + this.plural(9) + " away for now as you proceed to clean up the mess you made.",false);
-            }
-            this.doLust(-Math.floor(this.sen / 2),2,1);
-            ++this.i;
-         }
-         if(_loc4_ == 8 && (this.attireBot == 10 || this.attireBot == 11) && this.lust > 60)
+         if (_loc4_ == 6 and ((attireBot == 5) or (attireBot == 7) or (attireBot == 12) or (attireBot == 13) or (attireBot == 14) or (attireBot == 16)) and (lust > 45)):
+            OutputMainText("Already half hard from your lingering lust, just the thought of masturbating makes your " + CockDesc() + " erection" + Plural(1) + " stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your " + ClothesBottom() + " as your rod" + Plural(1) + " lift" + Plural(3) + " the fabric forward. You do your best to press it back down in an attempt to hide " + Plural(9) + ", but ",True)
+            if ((cockSize * cockSizeMod) > 10):
+               OutputMainText("" + Plural(11) + " wind up popping out beneath, accidentally flashing a random passerby who quickly pick up their pace to get away before you can try to catch your long thing" + Plural(1) + " back within the cloth.",False)
+            else:
+               OutputMainText("" + Plural(11) + " inevitably slide back up anyways, making your efforts futile.",False)
+            OutputMainText("\n" + "\n" + "Looking for a quick escape, you slink behind the closest structure you can find. Glancing left and right to ensure nobody can see you, you pant as you look down at your tented " + ClothesBottom() + ".",False)
+            if (MoistCalc(1) > 8):
+               OutputMainText(" Pre seeping through the fabric and drizzling down in a steady strand over the edge",False)
+            elif (MoistCalc(1) > 4):
+               OutputMainText(" Pre soaking through the fabric and glistening with a large drop on the outside",False)
+            else:
+               OutputMainText(" Pre blotching the fabric with a large moist spot",False)
+            OutputMainText(", you have no choice but to pull the clothing up, letting your wang" + Plural(1) + " bounce out. Grabbing " + Plural(9) + " the best you can in your impetuous state, you stroke strongly and swiftly. You lean back against the structure, with people openly walking and talking just on the other side, as you masturbate fervently." + "\n" + "\n" + "The fear of being caught only makes your heart beat faster, quickly producing results in your loins. You hardly hold back for a second to let the pressure build, before you release it in a spurting torrent of white fluid. You continue to pet yourself, squeezing out the leftover cum, while your mind savors the dwindling orgasm." + "\n" + "\n" + "Half-aware of what you had just done, your mind still in a fuzz, you simply catch your cock" + Plural(1) + " within your " + ClothesBottom() + " once more, staining it slightly with the gobs of seed at your tip" + Plural(1) + ", and leave your secluded area to head back into the public, leaving behind your puddle of lewd mess for someone else to stumble across...",False)
+            DoLust(-math.floor(sen / 2),2,1)
+            i += 1
+         if ((_loc4_ == 7) and ((attireBot == 4) or (attireBot == 15) or (attireBot == 20))):
+            OutputMainText("With the thought of masturbating on your mind, you can feel your cock" + Plural(1) + " begin to swell in anticipation. The tight confines of your " + ClothesBottom() + " rapidly growing tighter, you hurry on home." + "\n" + "\n" + "Just as you step through the doorway to your private abode, the waistband of your " + ClothesBottom() + " can no longer contain the " + CockDesc() + " bulge. Your length" + Plural(1) + " leap" + Plural(3) + " out, flinging ",True)
+            if (MoistCalc(1) > 8):
+               OutputMainText("ropes",False)
+            elif (MoistCalc(1) > 4):
+               OutputMainText("strands",False)
+            else:
+               OutputMainText("drops",False)
+            OutputMainText(" of pre out across the floor while the shaft" + Plural(1) + " droop" + Plural(3) + " half-flaccidly over the edge. You slump against the nearest wall, gripping yourself as you eagerly start the stroking process. Free of " + Plural(5) + " small prison, the blood-flow picks up, quickly allowing " + Plural(9) + " to stiffen to full size while your hands stroke the sensitive skin. Your stroking turns to rhythmic pumps and your back presses against the wall, your hips bucking back in turn.",False)
+            if (showBalls == True):
+               OutputMainText(" You can wholly feel the pressure in your " + BallDesc() + " balls building, especially as the " + ClothesBottom() + " continues to grip and squeeze them as it hugs your bottom to stay on amidst your efforts.",False)
+            OutputMainText("\n" + "\n" + "Before long, you wince as you try to hold back a little, one last moment of restraint until you let the fluids spray freely, escaping from your body with enough force to shoot across your room. So strong an orgasm, your " + LegDesc(2) + " grow" + LegPlural(1) + " weak and you slide down the wall, until you're sitting on the floor while the last spurts of cum shoot out between your " + LegDesc(6) + "." + "\n" + "\n" + "A bit tired, you sit there for a little while longer as the stuff drools from your tip" + Plural(1) + ".",False)
+            if (knot == True):
+               OutputMainText(" Despite being done, your swollen knot" + Plural(1) + " refuse to allow your member" + Plural(1) + " to slip back into the " + ClothesBottom() + ", standing defiantly against the waistband. The most you can do for now is stuff the knot" + Plural(1) + " into the crotch of the piece and hope you soften up later as you proceed to clean up your mess.",False)
+            else:
+               OutputMainText(" Your softening member" + Plural(1) + " slowly recede back into the " + ClothesBottom() + ", leaving a slight slimy trail in the process, but at least allows you to tuck " + Plural(9) + " away for now as you proceed to clean up the mess you made.",False)
+            DoLust(-math.floor(sen / 2),2,1)
+            i += 1
+         if((_loc4_ == 8) and ((attireBot == 10) or (attireBot == 11)) and (lust > 60)):
          {
          }
-      }
-      this.doEnd();
-   }
-}
-!def DoVagMasturbate():
-{
-   var tempInt:int = 0;
-   var chance:int = 0;
-   if(this.lust < 20)
-   {
-      this.outputMainText("You\'re not really in the mood to play with yourself. You\'ll just have to settle for something else.",true);
-      this.doEnd();
-   }
-   else
-   {
-      tempInt = Math.floor(this.percent() / 20 + this.ment / 5 + this.lib / 5);
-      this.i = 0;
-      while(this.i == 0)
-      {
-         chance = Math.floor(Math.random() * (1 + 6 - 1)) + 1;
-         if(chance == 1)
-         {
-            if(this.ment >= this.lib - 10)
-            {
-               this.outputMainText("You sneak off to the private place where you sleep in " + this.regionName(this.currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", and gently squeeze your " + this.vulvaDesc() + " nether-lips.\r\rYou lay down on your back and slide your fingers through the front of the cleft" + this.plural(2) + " at your crotch, you tease your " + this.clitDesc() + " button" + this.plural(2) + ". Stiff and erect, you rub ",true);
-            }
-            if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-            {
-               this.outputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + this.regionName(this.currentZone) + " can easily see you rub your " + this.vulvaDesc() + " groin through your " + this.clothesBottom() + ". Before you even reach your destination, you\'re already pulling the " + this.clothesBottom() + " " + this.pullUD(2) + ", accidentally flashing someone your " + this.buttDesc() + " bum.\r\rNevertheless, you squeeze your nether-lips, rubbing your hands down through your " + this.vulvaDesc() + " crotch, grinding your " + this.clitDesc() + " button" + this.plural(2) + " and kneading ",true);
-            }
-            if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-            {
-               this.outputMainText("Your chest heaving with your heavy breathing, you don\'t think you can reach the private place where you sleep without crouching and " + this.legVerb(2) + " your " + this.legDesc(2) + " erotically, the thought of coming hanging so heavily on your mind.\r\rInstead, you duck into one of the more hidden corners of " + this.regionName(this.currentZone) + " as you pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", squeezing your " + this.vulvaDesc() + " nether-lips with anticipation and tug at your " + this.clitDesc() + " clit" + this.plural(2) + " grinding ",true);
-            }
-            if(this.ment < this.lib - 50)
-            {
-               this.outputMainText("Without a second thought, right in the middle of " + this.regionName(this.currentZone) + " you pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", rubbing a hand across your " + this.vulvaDesc() + " cunt and pinching your " + this.clitDesc() + " clit" + this.plural(2) + ".\r\rPeople gasp as you continue to grind ",true);
-            }
-            if(this.vagTotal > 1)
-            {
-               this.outputMainText("them ",false);
-            }
-            if(this.vagTotal == 1)
-            {
-               this.outputMainText("it ",false);
-            }
-            this.outputMainText("vigorously, making ",false);
-            if(this.vagTotal > 1)
-            {
-               this.outputMainText("them ",false);
-            }
-            if(this.vagTotal == 1)
-            {
-               this.outputMainText("it ",false);
-            }
-            this.outputMainText("stiff. Faster and faster you go, until your " + this.vulvaDesc() + " vulva swells with blood.",false);
-            if(this.moistCalc(2) > 0 && this.moistCalc(2) <= 3)
-            {
-               this.outputMainText(" A bit of sweet feminine honey slips out from " + this.legWhere(1) + " your " + this.legDesc(2) + ", your hand taking as much as possible to meagerly lubricate your sex.",false);
-            }
-            if(this.moistCalc(2) > 3 && this.moistCalc(2) <= 7)
-            {
-               this.outputMainText(" Some sweet feminine honey dribbles from " + this.legWhere(1) + " your " + this.legDesc(2) + ", slipping back across your " + this.buttDesc() + " tush and smearing across your thighs, plenty to take care of business.",false);
-            }
-            if(this.moistCalc(2) > 7 && this.moistCalc(2) <= 11)
-            {
-               this.outputMainText(" Lubricant spills from your slit" + this.plural(2) + ", running down your " + this.legDesc(2) + " and smearing across your " + this.buttDesc() + " backside, dribbling off your body, more than enough to frig yourself silly.",false);
-            }
-            if(this.moistCalc(2) > 11)
-            {
-               this.outputMainText(" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your " + this.buttDesc() + " ass is practically sopping with it and more flings across your " + this.legDesc(2) + " and down below you as you go.",false);
-            }
-            if(this.lust <= 30)
-            {
-               this.outputMainText("\r\rSlowly,",false);
-            }
-            if(this.lust > 30 && this.lust <= 70)
-            {
-               this.outputMainText("\r\rQuickly,",false);
-            }
-            if(this.lust > 70)
-            {
-               this.outputMainText("\r\rAlmost instantly,",false);
-            }
-            this.outputMainText(" your cunt" + this.plural(2) + " begin" + this.plural(4) + " to quake and shiver, your whole body tingling. So eager, you ram ",false);
-            if(this.vagLimit() <= this.tallness / 5)
-            {
-               this.outputMainText("a finger",false);
-            }
-            if(this.vagLimit() > this.tallness / 5 && this.vagLimit() <= this.tallness / 2.2)
-            {
-               this.outputMainText("your fingers",false);
-            }
-            if(this.vagLimit() > this.tallness / 2.2 && this.vagLimit() <= this.tallness / 1.25)
-            {
-               this.outputMainText("your hand",false);
-            }
-            if(this.vagLimit() > this.tallness / 1.25 && this.vagLimit() <= this.tallness * 1.2)
-            {
-               this.outputMainText("both hands",false);
-            }
-            if(this.vagLimit() > this.tallness * 1.2 && this.vagLimit() <= this.tallness * 1.7)
-            {
-               this.outputMainText("your forearm",false);
-            }
-            if(this.vagLimit() > this.tallness * 1.7)
-            {
-               this.outputMainText("as much of one arm as possible",false);
-            }
+      DoEnd()
+
+def DoVagMasturbate():
+   global lust, ment, lib, currentZone, vagTotal, tallness, sen, hrs, cockSize, cockSizeMod, vulvaSize, clitSize, cockTotal
+   tempInt = 0
+   chance = 0
+   if (lust < 20):
+      OutputMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
+      DoEnd()
+   else:
+      tempInt = math.floor((Percent() / 20) + (ment / 5) + (lib / 5))
+      i = 0
+      while (i == 0):
+         chance = math.floor(random.random() * (1 + 6 - 1)) + 1
+         if (chance == 1):
+            if (ment >= (lib - 10)):
+               OutputMainText("You sneak off to the private place where you sleep in " + RegionName(currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + PullUD(2) + " your " + ClothesBottom() + ", and gently squeeze your " + VulvaDesc() + " nether-lips." + "\n" + "\n" + "You lay down on your back and slide your fingers through the front of the cleft" + Plural(2) + " at your crotch, you tease your " + ClitDesc() + " button" + Plural(2) + ". Stiff and erect, you rub ",True)
+            if (ment < (lib - 10)) and (ment >= (lib - 25)):
+               OutputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + RegionName(currentZone) + " can easily see you rub your " + VulvaDesc() + " groin through your " + ClothesBottom() + ". Before you even reach your destination, you're already pulling the " + ClothesBottom() + " " + PullUD(2) + ", accidentally flashing someone your " + ButtDesc() + " bum." + "\n" + "\n" + "Nevertheless, you squeeze your nether-lips, rubbing your hands down through your " + VulvaDesc() + " crotch, grinding your " + ClitDesc() + " button" + Plural(2) + " and kneading ",True)
+            if (ment < (lib - 25)) and (ment >= (lib - 50)):
+               OutputMainText("Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and " + LegVerb(2) + " your " + LegDesc(2) + " erotically, the thought of coming hanging so heavily on your mind." + "\n" + "\n" + "Instead, you duck into one of the more hidden corners of " + RegionName(currentZone) + " as you pull " + PullUD(2) + " your " + ClothesBottom() + ", squeezing your " + VulvaDesc() + " nether-lips with anticipation and tug at your " + ClitDesc() + " clit" + Plural(2) + " grinding ",True)
+            if (ment < (lib - 50)):
+               OutputMainText("Without a second thought, right in the middle of " + RegionName(currentZone) + " you pull " + PullUD(2) + " your " + ClothesBottom() + ", rubbing a hand across your " + VulvaDesc() + " cunt and pinching your " + ClitDesc() + " clit" + Plural(2) + "." + "\n" + "\n" + "People gasp as you continue to grind ",True)
+            if (vagTotal > 1):
+               OutputMainText("them ",False)
+            if (vagTotal == 1):
+               OutputMainText("it ",False)
+            OutputMainText("vigorously, making ",False)
+            if (vagTotal > 1):
+               OutputMainText("them ",False)
+            if (vagTotal == 1):
+               OutputMainText("it ",False)
+            OutputMainText("stiff. Faster and faster you go, until your " + VulvaDesc() + " vulva swells with blood.",False)
+            if (MoistCalc(2) > 0) and (MoistCalc(2) <= 3):
+               OutputMainText(" A bit of sweet feminine honey slips out from " + LegWhere(1) + " your " + LegDesc(2) + ", your hand taking as much as possible to meagerly lubricate your sex.",False)
+            if (MoistCalc(2) > 3) and (MoistCalc(2) <= 7):
+               OutputMainText(" Some sweet feminine honey dribbles from " + LegWhere(1) + " your " + LegDesc(2) + ", slipping back across your " + ButtDesc() + " tush and smearing across your thighs, plenty to take care of business.",False)
+            if (MoistCalc(2) > 7) and (MoistCalc(2) <= 11):
+               OutputMainText(" Lubricant spills from your slit" + Plural(2) + ", running down your " + LegDesc(2) + " and smearing across your " + ButtDesc() + " backside, dribbling off your body, more than enough to frig yourself silly.",False)
+            if (MoistCalc(2) > 11):
+               OutputMainText(" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your " + ButtDesc() + " ass is practically sopping with it and more flings across your " + LegDesc(2) + " and down below you as you go.",False)
+            if (lust <= 30):
+               OutputMainText("\n" + "\n" + "Slowly,",False)
+            if (lust > 30) and (lust <= 70):
+               OutputMainText("\n" + "\n" + "Quickly,",False)
+            if (lust > 70):
+               OutputMainText("\n" + "\n" + "Almost instantly,",False)
+            OutputMainText(" your cunt" + Plural(2) + " begin" + Plural(4) + " to quake and shiver, your whole body tingling. So eager, you ram ",False)
+            if (VagLimit() <= (tallness / 5)):
+               OutputMainText("a finger",False)
+            if (vagLimit() > (tallness / 5)) and (VagLimit() <= (tallness / 2.2)):
+               OutputMainText("your fingers",False)
+            if (VagLimit() > (tallness / 2.2)) and (VagLimit() <= (tallness / 1.25)):
+               OutputMainText("your hand",False)
+            if (VagLimit() > (tallness / 1.25)) and (VagLimit() <= (tallness * 1.2)):
+               OutputMainText("both hands",False)
+            if (VagLimit() > (tallness * 1.2)) and (VagLimit() <= (tallness * 1.7)):
+               OutputMainText("your forearm",False)
+            if (VagLimit() > (tallness * 1.7)):
+               OutputMainText("as much of one arm as possible",False)
             this.outputMainText(" into " + this.oneYour(2) + " hungry hole" + this.plural(2) + ", pounding away at yourself. Your body twitches and jerks as you come again and again.",false);
-            if(this.ment >= this.lib - 10)
-            {
-               this.outputMainText("\r\rYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area and the bit of slurping that echoed, you don\'t think anybody will catch on to your lewd actions, and you continue on with your day.",false);
-            }
-            if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-            {
-               this.outputMainText("\r\rComing down from your high, you clean up your mess the best you can, though its likely some of your slick lubricant has seeped in somewhere. At least, you\'re cautious of your step, in case of slipping and falling back on your " + this.buttDesc() + " ass... And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Well... you were definitely loud, actually.",false);
-            }
-            if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-            {
-               this.outputMainText("\r\rYou realize your hiding place probably echoed your moans as you come to your senses. Before you\'re caught, you quickly don your " + this.clothesBottom() + " again, even though fem-cum is still slathered about and making your " + this.clothesBottom() + " blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. With an awkward flutter in your step, you dash off, your body still slightly in mid-orgasm.",false);
-            }
-            if(this.ment < this.lib - 50)
-            {
-               this.outputMainText("\r\rGasping, you blink and look around you. You\'ve gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don\'t look so happy at what you have done, especially the ones with children beside them. You pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", slick slime dripping down your " + this.legDesc(2) + " and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",false);
-            }
-            this.doLust(-Math.floor(this.sen / 2),2,1);
-            this.hrs = 1;
-            ++this.i;
-         }
-         if(chance == 2 && this.cockSize * this.cockSizeMod * 6 > this.tallness && this.cockSize * this.cockSizeMod * 8 < this.tallness * 3)
+            if (ment >= lib - 10):
+               OutputMainText("\n" + "\n" + "You quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area and the bit of slurping that echoed, you don't think anybody will catch on to your lewd actions, and you continue on with your day.",False)
+            if (ment < (lib - 10)) and (ment >= (lib - 25)):
+               OutputMainText("\n" + "\n" + "Coming down from your high, you clean up your mess the best you can, though its likely some of your slick lubricant has seeped in somewhere. At least, you're cautious of your step, in case of slipping and falling back on your " + ButtDesc() + " ass... And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Well... you were definitely loud, actually.",False)
+            if (ment < (lib - 25)) and (ment >= (lib - 50)):
+               OutputMainText("\n" + "\n" + "You realize your hiding place probably echoed your moans as you come to your senses. Before you're caught, you quickly don your " + ClothesBottom() + " again, even though fem-cum is still slathered about and making your " + ClothesBottom() + " blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. With an awkward flutter in your step, you dash off, your body still slightly in mid-orgasm.",False)
+            if (ment < (lib - 50)):
+               OutputMainText("\n" + "\n" + "Gasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull " + PullUD(2) + " your " + ClothesBottom() + ", slick slime dripping down your " + LegDesc(2) + " and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",False)
+            DoLust(-math.floor(sen / 2),2,1)
+            hrs = 1
+            i += 1
+         if (chance == 2) and ((cockSize * cockSizeMod * 6) > tallness) and ((cockSize * cockSizeMod * 8) < (tallness * 3)):
          {
          }
-         if(chance == 3)
+         if (chance == 3):
          {
          }
-         if(chance == 4 && this.ment < this.lib - 50)
+         if (chance == 4) and (ment < (lib - 50)):
          {
          }
-         if(chance == 5 && (this.attireBot == 6 || this.attireBot == 17 || this.attireBot == 20) && this.lust > 60)
+         if ((chance == 5) and ((attireBot == 6) or (attireBot == 17) or (attireBot == 20)) and (lust > 60)):
          {
          }
-         if(chance == 6 && (this.attireBot == 13 || this.attireBot == 14) && this.lust > 80)
-         {
-            this.outputMainText("With the cooler air easily breezing underneath your " + this.clothesBottom() + " and over your moistened nethers, the thought of masturbating just makes your " + this.legDesc(2) + " weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don\'t think you could ever make it... So you manage to convince yourself you have no other choice.\r\rYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your " + this.clothesBottom() + ". While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of " + this.regionName(this.currentZone) + ", with people walking by just a few feet away, your fingers touch your intimate region.\r\r",true);
-            if(this.vulvaSize < 30)
-            {
-               this.outputMainText("Swiftly slipping through your fingers through the tender folds, your " + this.hipDesc() + " hips start to rock gently as you stand there. Soft slurps slip out from your thighs as you cautiously masturbate in public, with the rustling of the bag in front of you thankfully drowning it out.",false);
-            }
-            else
-            {
-               this.outputMainText("Sloshing your entire hand through the quite obvious folds, you actually wonder if the " + this.vulvaDesc() + " lips normally poke out from under the cloth... The thought of modesty is quickly pushed aside, however, as your hips rock against your fist, making you gasp in pleasure. The lewd slurping is quite obvious over the heavy rustling of your bag, drawing some eyes to your direction, but you\'re too lost with pushing through your meaty lips to care.",false);
-            }
-            if(this.clitSize > 20)
-            {
-               this.outputMainText(" You can feel your clit" + this.plural(2) + " tent the " + this.clothesBottom() + " and gently scrape against the back of the bag whenever your thumb wraps around and rubs " + this.plural(10) + " with each pass of your hand.",false);
-            }
-            else
-            {
-               this.outputMainText(" Your thumb wraps around and rubs across your clit" + this.plural(2) + " with each pass of your hand, making you buck against the back of the bag.",false);
-            }
-            if(this.cockTotal > 0)
-            {
-               this.outputMainText(" Along with your movements, your cock" + this.plural(1) + " also knock" + this.plural(3) + " upon your bag from behind, completely neglected as any more stroking would be far to obvious in this state.",false);
-            }
-            this.outputMainText(" With the heated slick-friction in your loins and the anxiety of doing this amidst complete strangers, your heart beats so powerfully that it doesn\'t take long for your whole body to begin burning with orgasm.\r\r",false);
-            if(this.moistCalc(2) > 8)
-            {
-               this.outputMainText("Managing to muffle the moans building in your throat as you peak, your stealthy pleasuring is betrayed by the waterfall of juices that descend " + this.legWhere(1) + " your " + this.legDesc(2) + ". Splashing loudly across the ground, your fem-cum draws the attention of several others, their eyes turning to stare at the drooling strands of thick slime that slowly falls post-orgasm. Webs of the stuff stretch over the gap " + this.legWhere(1) + " your " + this.legDesc(2) + ", with large gobs of the lubricant forming puddles about your " + this.legDesc(10) + ".\r\rIn the seconds it takes to catch your breath and realize you\'ve been caught, a heavy blush fills your cheeks. You lower your head and lift your bag back up, more slime trailing from the guilty hand, and proceed to run off, a slight limp and squish in your step as the excess fluids allow your thighs to slip erotically over your sensitive bits...",false);
-            }
-            else if(this.moistCalc(2) > 4)
-            {
-               this.outputMainText("Muffling most of the moan that builds with your climax, you can feel your fluids spill down to your " + this.legDesc(6) + ". The audible squishing and slurping of the spilling lubrication quickly cut your orgasm short, bringing your attention to the few eyes that have turned toward you. Blush warming your face and the tinges of climax still lingering, you do your best to act as casually as possible.\r\rLowering the bag even further to disguise the fem-cum that drizzles lightly down your " + this.legDesc(2) + ", you turn and rush away, hoping nobody notices the shimmering strands that reach back to your sensitive bits as the drops slowly spill to the ground beneath you...",false);
-            }
-            else
-            {
-               this.outputMainText("Muffling your moans as you come, you\'re able to take a few breaths of relief and relaxation as you relish the sensations. Not a soul knows what you have done, allowing you to fully enjoy your orgasm. And when you slip your hand back out from behind the bag, you take a moment to quickly lick off the moistness upon them, your pleasured flavor quite tasty.\r\rAs if nothing had happened at all, you\'re able to pick up your bag and strut off, your thighs sqeezing the sensitive lips slightly with each step.",false);
-            }
-            this.doLust(-Math.floor(this.sen / 2),2,1);
-            this.hrs = 1;
-            ++this.i;
-         }
-         if(chance == 7 && (this.attireBot == 4 || this.attireBot == 15))
+         if (chance == 6 and ((attireBot == 13) or (attireBot == 14)) and (lust > 80)):
+            OutputMainText("With the cooler air easily breezing underneath your " + ClothesBottom() + " and over your moistened nethers, the thought of masturbating just makes your " + LegDesc(2) + " weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice." + "\n" + "\n" + "You manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your " + ClothesBottom() + ". While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of " + RegionName(currentZone) + ", with people walking by just a few feet away, your fingers touch your intimate region." + "\n" + "\n",True)
+            if (vulvaSize < 30):
+               OutputMainText("Swiftly slipping through your fingers through the tender folds, your " + HipDesc() + " hips start to rock gently as you stand there. Soft slurps slip out from your thighs as you cautiously masturbate in public, with the rustling of the bag in front of you thankfully drowning it out.",False)
+            else:
+               OutputMainText("Sloshing your entire hand through the quite obvious folds, you actually wonder if the " + VulvaDesc() + " lips normally poke out from under the cloth... The thought of modesty is quickly pushed aside, however, as your hips rock against your fist, making you gasp in pleasure. The lewd slurping is quite obvious over the heavy rustling of your bag, drawing some eyes to your direction, but you're too lost with pushing through your meaty lips to care.",False)
+            if (clitSize > 20):
+               OutputMainText(" You can feel your clit" + Plural(2) + " tent the " + ClothesBottom() + " and gently scrape against the back of the bag whenever your thumb wraps around and rubs " + Plural(10) + " with each pass of your hand.",False)
+            else:
+               OutputMainText(" Your thumb wraps around and rubs across your clit" + Plural(2) + " with each pass of your hand, making you buck against the back of the bag.",False)
+            if (cockTotal > 0):
+               OutputMainText(" Along with your movements, your cock" + Plural(1) + " also knock" + Plural(3) + " upon your bag from behind, completely neglected as any more stroking would be far to obvious in this state.",False)
+            OutputMainText(" With the heated slick-friction in your loins and the anxiety of doing this amidst complete strangers, your heart beats so powerfully that it doesn't take long for your whole body to begin burning with orgasm." + "\n" + "\n",False)
+            if (MoistCalc(2) > 8):
+               OutputMainText("Managing to muffle the moans building in your throat as you peak, your stealthy pleasuring is betrayed by the waterfall of juices that descend " + LegWhere(1) + " your " + LegDesc(2) + ". Splashing loudly across the ground, your fem-cum draws the attention of several others, their eyes turning to stare at the drooling strands of thick slime that slowly falls post-orgasm. Webs of the stuff stretch over the gap " + LegWhere(1) + " your " + LegDesc(2) + ", with large gobs of the lubricant forming puddles about your " + LegDesc(10) + "." + "\n" + "\n" + "In the seconds it takes to catch your breath and realize you've been caught, a heavy blush fills your cheeks. You lower your head and lift your bag back up, more slime trailing from the guilty hand, and proceed to run off, a slight limp and squish in your step as the excess fluids allow your thighs to slip erotically over your sensitive bits...",False)
+            elif(MoistCalc(2) > 4):
+               OutputMainText("Muffling most of the moan that builds with your climax, you can feel your fluids spill down to your " + LegDesc(6) + ". The audible squishing and slurping of the spilling lubrication quickly cut your orgasm short, bringing your attention to the few eyes that have turned toward you. Blush warming your face and the tinges of climax still lingering, you do your best to act as casually as possible." + "\n" + "\n" + "Lowering the bag even further to disguise the fem-cum that drizzles lightly down your " + LegDesc(2) + ", you turn and rush away, hoping nobody notices the shimmering strands that reach back to your sensitive bits as the drops slowly spill to the ground beneath you...",False)
+            else:
+               OutputMainText("Muffling your moans as you come, you're able to take a few breaths of relief and relaxation as you relish the sensations. Not a soul knows what you have done, allowing you to fully enjoy your orgasm. And when you slip your hand back out from behind the bag, you take a moment to quickly lick off the moistness upon them, your pleasured flavor quite tasty." + "\n" + "\n" + "As if nothing had happened at all, you're able to pick up your bag and strut off, your thighs sqeezing the sensitive lips slightly with each step.",False)
+            DoLust(-math.floor(sen / 2),2,1)
+            hrs = 1
+            i += 1
+         if ((chance == 7) and ((attireBot == 4) or (attireBot == 15))):
          {
          }
-         if(chance == 8 && (this.attireBot == 10 || this.attireBot == 11) && this.lust > 60)
+         if ((chance == 8) and ((attireBot == 10) or (attireBot == 11)) and (lust > 60)):
          {
          }
-      }
-      this.doEnd();
-   }
-}
+      DoEnd()
+
 def DoBothMasturbate():
    global ment, lib, lust
    if (ment >= (lib - 10)):
@@ -6762,495 +4793,282 @@ def DoBothMasturbate():
    if (lust > 20):
       DoSexP(10)
 
-!def DoBoobMasturbate():
-   var _loc1_:int = 0;
-   var _loc2_:int = 0;
-   this.lustArray = [4];
-   if(this.breastSize > 16)
-   {
-      this.lustArray.push(23);
-   }
-   else if(this.breastSize < 5)
-   {
-      this.lustArray.push(24);
-   }
-   this.i = 0;
-   while(this.i == 0)
-   {
-      _loc1_ = Math.floor(Math.random() * (1 + 6 - 1)) + 1;
-      if(_loc1_ == 1)
-      {
-         if(this.lactation > 0)
-         {
-            this.lustArray.push(53);
-         }
-         if(this.ment >= this.lib - 10)
-         {
-            this.outputMainText("You sneak off to the private place where you sleep in " + this.regionName(this.currentZone) + ". Carefully, so as to not let anybody hear, you pull " + this.pullUD(1) + " your " + this.clothesTop() + " and gently knead your " + this.boobDesc() + " breasts.\r\rHunching over at the side of the bed, you massage your " + this.nipDesc() + "nipples, tugging and squeezing them each with",true);
-         }
-         if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-         {
-            this.outputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + this.regionName(this.currentZone) + " can easily see you rub your " + this.boobDesc() + " chest through your " + this.clothesTop() + ". Before you even reach your destination, your hands are already reaching under your " + this.clothesTop() + " to play with your " + this.nipDesc() + "nipples, giving someone a good view of your under-boob.\r\rBy the time you\'re hidden inside, both hands are fondling your chest, kneading and massaging your nipples with",true);
-         }
-         if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-         {
-            this.outputMainText("Your " + this.boobDesc() + " breasts heave with your heavy breathing as you think about playing with them. You don\'t think you can reach the private place where you sleep without your hands diving underneath your " + this.clothesTop() + " and massaging them roughly.\r\rInstead, you duck into one of the more hidden corners of " + this.regionName(this.currentZone) + " and without even taking off your " + this.clothesTop() + ", you grope your chest through the fabric before reaching underneath, kneading and massaging your " + this.nipDesc() + "nipples with",true);
-         }
-         if(this.ment < this.lib - 50)
-         {
-            this.outputMainText("Without a second thought, right in the middle of " + this.regionName(this.currentZone) + " you pull " + this.pullUD(1) + " your " + this.clothesTop() + ", rubbing a hand across your " + this.boobDesc() + " breasts and making them jiggle obscenely.\r\rPeople gasp and stare as you knead and massage your " + this.nipDesc() + "nipples with",true);
-         }
-         if(this.nippleSize <= 25)
-         {
-            this.outputMainText(" your fingers",false);
-         }
-         else if(this.nippleSize > 25 && this.nippleSize <= 60)
-         {
-            this.outputMainText(" your hands",false);
-         }
-         else if(this.nippleSize > 60 && this.nippleSize <= 180)
-         {
-            this.outputMainText(" both hands",false);
-         }
-         else if(this.nippleSize > 180)
-         {
-            this.outputMainText(" the nearby wall",false);
-         }
-         this.outputMainText(" until they begin to feel warm and tingly.",false);
-         if(this.boobTotal == 4)
-         {
-            this.outputMainText(" Your hands even double their work as they fondle your second set of breasts as well, molding and massaging them just as much as the first pair, feeling twice as much pleasure.",false);
-         }
-         if(this.boobTotal == 6)
-         {
-            this.outputMainText(" Your hands have their work cut out for them as they attempt to give all 6 of your breasts attention, running up and down, from chest to belly, caressing them restlessly as you heave to control yourself just a little longer.",false);
-         }
-         if(this.boobTotal == 8)
-         {
-            this.outputMainText(" From chest to lower belly, your hands continue to rove to fondle all four sets of tits, fervently groping them all with great pleasure.",false);
-         }
-         if(this.sen <= 30)
-         {
-            this.outputMainText(" Unfortunately, you can\'t really come as your breasts simply aren\'t sensitive enough. But, it does feel nice as you continue to play with your nipples.",false);
-            this.doLust(-Math.floor(this.sen / 5),2,3);
-         }
-         else
-         {
-            if(this.lust <= 30)
-            {
-               this.outputMainText("\r\rSlowly,",false);
-            }
-            if(this.lust > 30 && this.lust <= 70)
-            {
-               this.outputMainText("\r\rQuickly,",false);
-            }
-            if(this.lust > 70)
-            {
-               this.outputMainText("\r\rAlmost instantly,",false);
-            }
-            this.outputMainText(" your whole body begins to quiver,",false);
-            if(this.moistCalc(1) > 0 && this.moistCalc(1) <= 3 || this.moistCalc(2) > 0 && this.moistCalc(2) <= 3)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " growing a tad moist,",false);
-            }
-            if(this.moistCalc(1) > 3 && this.moistCalc(1) <= 7 || this.moistCalc(2) > 3 && this.moistCalc(2) <= 7)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " growing wet,",false);
-            }
-            if(this.moistCalc(1) > 7 && this.moistCalc(1) <= 11 || this.moistCalc(2) > 7 && this.moistCalc(2) <= 11)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " becoming soaked through,",false);
-            }
-            if(this.moistCalc(1) > 11 || this.moistCalc(2) > 11)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " becoming drenched, your " + this.buttDesc() + " bum absolutely swamped,",false);
-            }
-            this.outputMainText(" being wracked by a boobgasm.",false);
-            this.doLust(-Math.floor(this.sen / 2),2,3);
-         }
-         if(this.lactation > 0)
-         {
-            ++this.hrs;
-            _loc2_ = this.milkAmount(1);
-            this.outputMainText("\r\rMilk ",false);
-            if(_loc2_ <= 500)
-            {
-               this.outputMainText("spits",false);
-            }
-            if(_loc2_ > 500 && _loc2_ <= 1000)
-            {
-               this.outputMainText("squirts",false);
-            }
-            if(_loc2_ > 1000 && _loc2_ <= 2000)
-            {
-               this.outputMainText("spews",false);
-            }
-            if(_loc2_ > 2000 && _loc2_ <= 8000)
-            {
-               this.outputMainText("gushes",false);
-            }
-            if(_loc2_ > 8000 && _loc2_ <= 19000)
-            {
-               this.outputMainText("erupts",false);
-            }
-            if(_loc2_ > 19000)
-            {
-               this.outputMainText("explodes",false);
-            }
-            this.outputMainText(" from your nipples and dribbles down your front as you begin to lactate. You continue to pump it out in ",false);
-            if(_loc2_ <= 500)
-            {
-               this.outputMainText("small dribbles",false);
-            }
-            if(_loc2_ > 500 && _loc2_ <= 1000)
-            {
-               this.outputMainText("spurts",false);
-            }
-            if(_loc2_ > 1000 && _loc2_ <= 2000)
-            {
-               this.outputMainText("sprays",false);
-            }
-            if(_loc2_ > 2000 && _loc2_ <= 8000)
-            {
-               this.outputMainText("jets",false);
-            }
-            if(_loc2_ > 8000 && _loc2_ <= 19000)
-            {
-               this.outputMainText("steady streams",false);
-            }
-            if(_loc2_ > 19000)
-            {
-               this.outputMainText("small floods",false);
-            }
-            this.outputMainText(", relieving your " + this.boobDesc() + " breasts of their supply",false);
-            if(this.dominant == 5)
-            {
-               this.outputMainText(" as you let out a contented \'mooo~\'",false);
-            }
-            this.outputMainText(".",false);
-         }
-         if(this.ment >= this.lib - 10)
-         {
-            this.outputMainText("\r\rYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don\'t think anybody will catch on to your lewd actions, and you continue on with your day.",false);
-         }
-         if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-         {
-            this.outputMainText("\r\rComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you\'re cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere...",false);
-         }
-         if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-         {
-            this.outputMainText("\r\rYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your " + this.clothesTop() + "... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry.",false);
-         }
-         if(this.ment < this.lib - 50)
-         {
-            this.outputMainText("\r\rGasping, you blink and look around you. You\'ve gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don\'t look so happy at what you have done, especially the ones with children beside them. You pull back your " + this.clothesTop() + ", milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",false);
-         }
-         if(_loc2_ > 0 && _loc2_ < 1000)
-         {
-            this.outputMainText("\r\r\rYou produced " + _loc2_ + " ml of milk!",false);
-         }
-         else if(_loc2_ > 0 && _loc2_ >= 1000)
-         {
-            this.outputMainText("\r\r\rYou produced " + this.decGet(_loc2_ / 1000,1) + " liters of milk!",false);
-         }
-         this.nipplePlay += 8;
-         ++this.i;
-      }
-      if(_loc1_ == 2 && this.breastSize * 2 + this.nippleSize * 5 > this.tallness / 5 && this.lactation > 0)
-      {
-         this.lustArray.push(53);
-         this.outputMainText("Relaxing in your room, you sneak your breasts out of your " + this.clothesTop() + ", palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your " + this.clothesBottom() + ". It looks so delicious that you can\'t help but...\r\rYou reach under a boob and hoist it up, craning your neck down to meet ",true);
-         if(this.nipType == 0)
-         {
-            this.outputMainText("the " + this.nipDesc() + " nipple",false);
-         }
-         else if(this.nipType == 1)
-         {
-            this.outputMainText("one of the four " + this.nipDesc() + " nipples",false);
-         }
-         this.outputMainText(" with your mouth. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the stiffened nipple, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight.",false);
-         _loc2_ = this.milkAmount(1);
-         if(_loc2_ < 300)
-         {
-            this.outputMainText("\r\rThin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other ",false);
-         }
-         else if(_loc2_ < 1500)
-         {
-            this.outputMainText("\r\rThe flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other ",false);
-         }
-         else if(_loc2_ < 3000)
-         {
-            this.outputMainText("\r\rThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other ",false);
-         }
-         else
-         {
-            this.outputMainText("\r\rCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other ",false);
-         }
-         if(this.nipType != 1 && this.boobTotal == 2)
-         {
-            this.outputMainText(" breast ",false);
-         }
-         else
-         {
-            this.outputMainText(" tits ",false);
-         }
-         this.outputMainText(" do the same as you grope about with your other hand. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\r\rA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own nipple in ecstasy. You open wide and gasp as the nipple washes your mouth, with saliva and milk spilling out as you moan blissfully.\r\rYou then collapse back into your bed, continuing to suckle from yourself slowly and express what is left in your breasts.",false);
-         if(_loc2_ < 300)
-         {
-            this.outputMainText(" With the nice drink ",false);
-            this.doHP(2 + Math.floor(this.milkHPMod / 2));
-         }
-         else if(_loc2_ < 1500)
-         {
-            this.outputMainText(" With the small meal ",false);
-            this.doHP(8 + Math.floor(this.milkHPMod / 2));
-         }
-         else if(_loc2_ < 3000)
-         {
-            this.outputMainText(" With the abundant nourishment and slight bloating of your belly ",false);
-            this.doHP(10 + this.milkHPMod);
-         }
-         else
-         {
-            this.outputMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ",false);
-            this.doHP(Math.ceil((30 + Math.floor(this.str / 2) + this.HPMod) / 4) + this.milkHPMod);
-         }
-         this.outputMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~",false);
-         this.doLust(-Math.floor(this.sen / 2),2,3);
-         this.hrs += 2;
-         ++this.i;
-      }
-   }
-   ++this.hrs;
-   this.doEnd();
-}
-!def DoUdderMasturbate():
-{
-   var _loc1_:int = 0;
-   var _loc2_:int = 0;
-   this.lustArray = [4];
-   this.i = 0;
-   while(this.i == 0)
-   {
-      _loc1_ = Math.floor(Math.random() * (1 + 2 - 1)) + 1;
-      if(_loc1_ == 1)
-      {
-         if(this.udderLactation > 0)
-         {
-            this.lustArray.push(53);
-         }
-         if(this.ment >= this.lib - 10)
-         {
-            this.outputMainText("You sneak off to the private place where you sleep in " + this.regionName(this.currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + this.pullUD(1) + " your " + this.clothesTop() + " and gently knead your " + this.udderDesc() + " udder.\r\rHunching over at the side of the bed, you massage your " + this.teatDesc() + " teats, tugging and squeezing them each with",true);
-         }
-         if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-         {
-            this.outputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + this.regionName(this.currentZone) + " can easily see you rub your " + this.udderDesc() + " bulge through your " + this.clothesTop() + ". Before you even reach your destination, your hands are already reaching " + this.pullUD(1) + " under your " + this.clothesTop() + " to play with your " + this.teatDesc() + " teats, giving someone a good view of your fleshy bag.\r\rBy the time you\'re hidden inside, both hands are fondling your udder, kneading and massaging your teats with",true);
-         }
-         if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-         {
-            this.outputMainText("Your " + this.udderDesc() + " udder heaves with your heavy breathing as you think about playing with it. You don\'t think you can reach the private place where you sleep without your hands diving underneath your " + this.clothesTop() + " and massaging it roughly.\r\rInstead, you duck into one of the more hidden corners of " + this.regionName(this.currentZone) + " and without even taking off your " + this.clothesTop() + ", you grope your udder through the fabric before your reaching underneath, kneading and massaging your " + this.teatDesc() + " teats with",true);
-         }
-         if(this.ment < this.lib - 50)
-         {
-            this.outputMainText("Without a second thought, right in the middle of " + this.regionName(this.currentZone) + " you pull " + this.pullUD(1) + " your " + this.clothesTop() + ", rubbing a hand across your " + this.udderDesc() + " udder and making it jiggle obscenely.\r\rPeople gasp and stare as you knead and massage your " + this.teatDesc() + " teats with",true);
-         }
-         if(this.teatSize <= 25)
-         {
-            this.outputMainText(" your fingers",false);
-         }
-         else if(this.teatSize > 25 && this.teatSize <= 60)
-         {
-            this.outputMainText(" your hands",false);
-         }
-         else if(this.teatSize > 60 && this.teatSize <= 180)
-         {
-            this.outputMainText(" both hands",false);
-         }
-         else if(this.teatSize > 180)
-         {
-            this.outputMainText(" the nearby wall",false);
-         }
-         this.outputMainText(" until they begin to feel warm and tingly.",false);
-         if(this.sen <= 30)
-         {
-            this.outputMainText(" Unfortunately, you can\'t really come as your udder simply isn\'t sensitive enough. But, it does feel nice as you continue to play with your teats.",false);
-            this.doLust(-Math.floor(this.sen / 5),2,4);
-         }
-         else
-         {
-            if(this.lust <= 30)
-            {
-               this.outputMainText("\r\rSlowly,",false);
-            }
-            if(this.lust > 30 && this.lust <= 70)
-            {
-               this.outputMainText("\r\rQuickly,",false);
-            }
-            if(this.lust > 70)
-            {
-               this.outputMainText("\r\rAlmost instantly,",false);
-            }
-            this.outputMainText(" your whole body begins to quiver,",false);
-            if(this.moistCalc(1) > 0 && this.moistCalc(1) <= 3 || this.moistCalc(2) > 0 && this.moistCalc(2) <= 3)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " growing a tad moist,",false);
-            }
-            if(this.moistCalc(1) > 3 && this.moistCalc(1) <= 7 || this.moistCalc(2) > 3 && this.moistCalc(2) <= 7)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " growing wet,",false);
-            }
-            if(this.moistCalc(1) > 7 && this.moistCalc(1) <= 11 || this.moistCalc(2) > 7 && this.moistCalc(2) <= 11)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " becoming soaked through,",false);
-            }
-            if(this.moistCalc(1) > 11 || this.moistCalc(2) > 11)
-            {
-               this.outputMainText(" your " + this.clothesBottom() + " becoming drenched, your " + this.buttDesc() + " bum absolutely swamped,",false);
-            }
-            this.outputMainText(" being wracked by an udder orgasm.",false);
-            this.doLust(-Math.floor(this.sen / 2),2,4);
-         }
-         if(this.udderLactation > 0)
-         {
-            ++this.hrs;
-            _loc2_ = this.milkAmount(2);
-            this.outputMainText("\r\rMilk ",false);
-            if(_loc2_ <= 500)
-            {
-               this.outputMainText("spits",false);
-            }
-            if(_loc2_ > 500 && _loc2_ <= 1000)
-            {
-               this.outputMainText("squirts",false);
-            }
-            if(_loc2_ > 1000 && _loc2_ <= 2000)
-            {
-               this.outputMainText("spews",false);
-            }
-            if(_loc2_ > 2000 && _loc2_ <= 8000)
-            {
-               this.outputMainText("gushes",false);
-            }
-            if(_loc2_ > 8000 && _loc2_ <= 19000)
-            {
-               this.outputMainText("erupts",false);
-            }
-            if(_loc2_ > 19000)
-            {
-               this.outputMainText("explodes",false);
-            }
-            this.outputMainText(" from your teats and dribbles down your front as you begin to lactate. You continue to pump it out in ",false);
-            if(_loc2_ <= 500)
-            {
-               this.outputMainText("small dribbles",false);
-            }
-            if(_loc2_ > 500 && _loc2_ <= 1000)
-            {
-               this.outputMainText("spurts",false);
-            }
-            if(_loc2_ > 1000 && _loc2_ <= 2000)
-            {
-               this.outputMainText("sprays",false);
-            }
-            if(_loc2_ > 2000 && _loc2_ <= 8000)
-            {
-               this.outputMainText("jets",false);
-            }
-            if(_loc2_ > 8000 && _loc2_ <= 19000)
-            {
-               this.outputMainText("steady streams",false);
-            }
-            if(_loc2_ > 19000)
-            {
-               this.outputMainText("small floods",false);
-            }
-            this.outputMainText(", relieving your " + this.udderDesc() + " udder of its supply",false);
-            if(this.dominant == 5)
-            {
-               this.outputMainText(" as you let out a contented \'mooo~\'",false);
-            }
-            this.outputMainText(".",false);
-         }
-         if(this.ment >= this.lib - 10)
-         {
-            this.outputMainText("\r\rYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don\'t think anybody will catch on to your lewd actions, and you continue on with your day.",false);
-         }
-         if(this.ment < this.lib - 10 && this.ment >= this.lib - 25)
-         {
-            this.outputMainText("\r\rComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you\'re cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere...",false);
-         }
-         if(this.ment < this.lib - 25 && this.ment >= this.lib - 50)
-         {
-            this.outputMainText("\r\rYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your " + this.clothesTop() + "... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry.",false);
-         }
-         if(this.ment < this.lib - 50)
-         {
-            this.outputMainText("\r\rGasping, you blink and look around you. You\'ve gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don\'t look so happy at what you have done, especially the ones with children beside them. You pull " + this.pullUD(1) + " your " + this.clothesTop() + ", milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",false);
-         }
-         if(_loc2_ > 0 && _loc2_ < 1000)
-         {
-            this.outputMainText("\r\r\rYou produced " + _loc2_ + " ml of milk!",false);
-         }
-         else if(_loc2_ > 0 && _loc2_ >= 1000)
-         {
-            this.outputMainText("\r\r\rYou produced " + this.decGet(_loc2_ / 1000,1) + " liters of milk!",false);
-         }
-         this.udderPlay += 8;
-         ++this.i;
-      }
-      if(_loc1_ == 2 && this.udderSize + this.teatSize * 5 > this.tallness / 2 && this.udderLactation > 0)
-      {
-         this.lustArray.push(53);
-         this.outputMainText("Relaxing in your room, you pull your udder out of your " + this.clothesBottom() + ", lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your " + this.legDesc(2) + " and the floor. It looks so delicious that you can\'t help but...\r\rYou hug around the udder and hoist it up, craning your neck down to meet a " + this.teatDesc() + " teat",true);
-         this.outputMainText(" with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight.",false);
-         _loc2_ = this.milkAmount(2);
-         if(_loc2_ < 300)
-         {
-            this.outputMainText("\r\rThin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other ",false);
-         }
-         else if(_loc2_ < 1500)
-         {
-            this.outputMainText("\r\rThe flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other ",false);
-         }
-         else if(_loc2_ < 3000)
-         {
-            this.outputMainText("\r\rThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other ",false);
-         }
-         else
-         {
-            this.outputMainText("\r\rCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other ",false);
-         }
-         this.outputMainText(" teats do the same as you grope about with your other hand, your arm bending around to keep the udder elevated. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\r\rA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own teat in ecstasy. You open wide and gasp as the " + this.teatDesc() + " teat washes your mouth, with saliva and milk spilling out as you moan blissfully.\r\rYou then collapse back into your bed, curled around and continuing to suckle from yourself slowly, gently milking what is left in your udder.",false);
-         if(_loc2_ < 300)
-         {
-            this.outputMainText(" With the nice drink ",false);
-            this.doHP(2 + Math.floor(this.milkHPMod / 2));
-         }
-         else if(_loc2_ < 1500)
-         {
-            this.outputMainText(" With the small meal ",false);
-            this.doHP(8 + Math.floor(this.milkHPMod / 2));
-         }
-         else if(_loc2_ < 3000)
-         {
-            this.outputMainText(" With the abundant nourishment and slight bloating of your belly ",false);
-            this.doHP(10 + this.milkHPMod);
-         }
-         else
-         {
-            this.outputMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ",false);
-            this.doHP(Math.ceil((30 + Math.floor(this.str / 2) + this.HPMod) / 4) + this.milkHPMod);
-         }
-         this.outputMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~",false);
-         this.doLust(-Math.floor(this.sen / 2),2,4);
-         this.hrs += 2;
-         ++this.i;
-      }
-   }
-   ++this.hrs;
-   this.doEnd();
-}
+def DoBoobMasturbate():
+   global lustArray, breastSize, lactation, ment, lib, currentZone, nippleSize, boobTotal, sen, lust, dominant, nipplePlay, nipType, milkHPMod, hrs
+   _loc1_ = 0
+   _loc2_ = 0
+   lustArray = [4]
+   if (breastSize > 16):
+      lustArray.push(23)
+   elif (breastSize < 5):
+      lustArray.push(24)
+   i = 0
+   while (i == 0):
+      _loc1_ = math.floor(random.random() * (1 + 6 - 1)) + 1
+      if (_loc1_ == 1):
+         if (lactation > 0):
+            lustArray.push(53)
+         if (ment >= (lib - 10)):
+            OutputMainText("You sneak off to the private place where you sleep in " + RegionName(currentZone) + ". Carefully, so as to not let anybody hear, you pull " + PullUD(1) + " your " + ClothesTop() + " and gently knead your " + BoobDesc() + " breasts." + "\n" + "\n" + "Hunching over at the side of the bed, you massage your " + NipDesc() + "nipples, tugging and squeezing them each with",True)
+         if (ment < (lib - 10)) and (ment >= (lib - 25)):
+            OutputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + RegionName(currentZone) + " can easily see you rub your " + BoobDesc() + " chest through your " + ClothesTop() + ". Before you even reach your destination, your hands are already reaching under your " + ClothesTop() + " to play with your " + NipDesc() + "nipples, giving someone a good view of your under-boob." + "\n" + "\n" + "By the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with",True)
+         if (ment < (lib - 25)) and (ment >= (lib - 50)):
+            OutputMainText("Your " + BoobDesc() + " breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your " + ClothesTop() + " and massaging them roughly." + "\n" + "\n" + "Instead, you duck into one of the more hidden corners of " + RegionName(currentZone) + " and without even taking off your " + ClothesTop() + ", you grope your chest through the fabric before reaching underneath, kneading and massaging your " + NipDesc() + "nipples with",True)
+         if (ment < (lib - 50)):
+            OutputMainText("Without a second thought, right in the middle of " + RegionName(currentZone) + " you pull " + PullUD(1) + " your " + ClothesTop() + ", rubbing a hand across your " + BoobDesc() + " breasts and making them jiggle obscenely." + "\n" + "\n" + "People gasp and stare as you knead and massage your " + BipDesc() + "nipples with",True)
+         if (nippleSize <= 25):
+            OutputMainText(" your fingers",False)
+         elif (nippleSize > 25) and (nippleSize <= 60):
+            OutputMainText(" your hands",False)
+         elif (nippleSize > 60) and (nippleSize <= 180):
+            OutputMainText(" both hands",False)
+         elif (nippleSize > 180):
+            OutputMainText(" the nearby wall",False)
+         OutputMainText(" until they begin to feel warm and tingly.",False)
+         if (boobTotal == 4):
+            OutputMainText(" Your hands even double their work as they fondle your second set of breasts as well, molding and massaging them just as much as the first pair, feeling twice as much pleasure.",False)
+         if (boobTotal == 6):
+            OutputMainText(" Your hands have their work cut out for them as they attempt to give all 6 of your breasts attention, running up and down, from chest to belly, caressing them restlessly as you heave to control yourself just a little longer.",False)
+         if (boobTotal == 8):
+            OutputMainText(" From chest to lower belly, your hands continue to rove to fondle all four sets of tits, fervently groping them all with great pleasure.",False)
+         if (sen <= 30):
+            OutputMainText(" Unfortunately, you can't really come as your breasts simply aren't sensitive enough. But, it does feel nice as you continue to play with your nipples.",False)
+            DoLust(-math.floor(sen / 5),2,3)
+         else:
+            if (lust <= 30):
+               OutputMainText("\n" + "\n" + "Slowly,",False)
+            if (lust > 30) and (lust <= 70):
+               OutputMainText("\n" + "\n" + "Quickly,",False)
+            if (lust > 70):
+               OutputMainText("\n" + "\n" + "Almost instantly,",False)
+            OutputMainText(" your whole body begins to quiver,",False)
+            if ((MoistCalc(1) > 0) and ((MoistCalc(1) <= 3) or (MoistCalc(2) > 0)) and (MoistCalc(2) <= 3)):
+               OutputMainText(" your " + ClothesBottom() + " growing a tad moist,",False)
+            if ((MoistCalc(1) > 3) and ((MoistCalc(1) <= 7) or (MoistCalc(2) > 3)) and (MoistCalc(2) <= 7)):
+               OutputMainText(" your " + ClothesBottom() + " growing wet,",False)
+            if((MoistCalc(1) > 7) and ((MoistCalc(1) <= 11) or (MoistCalc(2) > 7)) and (MoistCalc(2) <= 11)):
+               OutputMainText(" your " + ClothesBottom() + " becoming soaked through,",False)
+            if ((MoistCalc(1) > 11) or (MoistCalc(2) > 11)):
+               OutputMainText(" your " + ClothesBottom() + " becoming drenched, your " + ButtDesc() + " bum absolutely swamped,",False)
+            OutputMainText(" being wracked by a boobgasm.",False)
+            DoLust(-math.floor(sen / 2),2,3)
+         if (lactation > 0):
+            hrs += 1
+            _loc2_ = MilkAmount(1)
+            OutputMainText("\n" + "\n" + "Milk ",False)
+            if (_loc2_ <= 500):
+               OutputMainText("spits",False)
+            if (_loc2_ > 500) and (_loc2_ <= 1000):
+               OutputMainText("squirts",False)
+            if (_loc2_ > 1000) and (_loc2_ <= 2000):
+               OutputMainText("spews",False)
+            if (_loc2_ > 2000) and (_loc2_ <= 8000):
+               OutputMainText("gushes",False)
+            if(_loc2_ > 8000) and (_loc2_ <= 19000):
+               OutputMainText("erupts",False)
+            if (_loc2_ > 19000):
+               OutputMainText("explodes",False)
+            OutputMainText(" from your nipples and dribbles down your front as you begin to lactate. You continue to pump it out in ",False)
+            if (_loc2_ <= 500):
+               OutputMainText("small dribbles",False)
+            if (_loc2_ > 500) and (_loc2_ <= 1000):
+               OutputMainText("spurts",False)
+            if (_loc2_ > 1000) and (_loc2_ <= 2000):
+               OutputMainText("sprays",False)
+            if (_loc2_ > 2000) and (_loc2_ <= 8000):
+               OutputMainText("jets",False)
+            if (_loc2_ > 8000) and (_loc2_ <= 19000):
+               OutputMainText("steady streams",False)
+            if (_loc2_ > 19000):
+               OutputMainText("small floods",False)
+            OutputMainText(", relieving your " + BoobDesc() + " breasts of their supply",False)
+            if (dominant == 5):
+               OutputMainText(" as you let out a contented 'mooo~'",False)
+            OutputMainText(".",False)
+         if (ment >= (lib - 10)):
+            OutputMainText("\n" + "\n" + "You quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day.",False)
+         if (ment < (lib - 10)) and (ment >= (lib - 25)):
+            OutputMainText("\n" + "\n" + "Coming down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere...",False)
+         if (ment < (lib - 25)) and (ment >= (lib - 50)):
+            OutputMainText("\n" + "\n" + "You realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your " + ClothesTop() + "... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry.",False)
+         if (ment < (lib - 50)):
+            OutputMainText("\n" + "\n" + "Gasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull back your " + ClothesTop() + ", milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",False)
+         if (_loc2_ > 0) and (_loc2_ < 1000):
+            OutputMainText("\n" + "\n" + "\n" + "You produced " + _loc2_ + " ml of milk!",False)
+         elif (_loc2_ > 0) and (_loc2_ >= 1000):
+            OutputMainText("\n" + "\n" + "\n" + "You produced " + DecGet(_loc2_ / 1000,1) + " liters of milk!",False)
+         nipplePlay += 8
+         i += 1
+      if (_loc1_ == 2) and (((breastSize * 2) + (nippleSize * 5)) > (tallness / 5)) and (lactation > 0):
+         lustArray.push(53)
+         OutputMainText("Relaxing in your room, you sneak your breasts out of your " + ClothesTop() + ", palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your " + ClothesBottom() + ". It looks so delicious that you can't help but..." + "\n" + "\n" + "You reach under a boob and hoist it up, craning your neck down to meet ",True)
+         if (nipType == 0):
+            this.outputMainText("the " + NipDesc() + " nipple",False)
+         elif (nipType == 1):
+            OutputMainText("one of the four " + NipDesc() + " nipples",False)
+         OutputMainText(" with your mouth. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the stiffened nipple, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight.",False)
+         _loc2_ = MilkAmount(1)
+         if (_loc2_ < 300):
+            OutputMainText("\n" + "\n" + "Thin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other ",False)
+         elif (_loc2_ < 1500):
+            OutputMainText("\n" + "\n" + "The flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other ",False)
+         elif (_loc2_ < 3000):
+            OutputMainText("\n" + "\n" + "The flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other ",False)
+         else:
+            OutputMainText("\n" + "\n" + "Caught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other ",False)
+         if (nipType != 1) and (boobTotal == 2):
+            OutputMainText(" breast ",False)
+         else:
+            OutputMainText(" tits ",False)
+         OutputMainText(" do the same as you grope about with your other hand. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind." + "\n" + "\n" + "A sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own nipple in ecstasy. You open wide and gasp as the nipple washes your mouth, with saliva and milk spilling out as you moan blissfully." + "\n" + "\n" + "You then collapse back into your bed, continuing to suckle from yourself slowly and express what is left in your breasts.",False)
+         if (_loc2_ < 300):
+            OutputMainText(" With the nice drink ",False)
+            DoHP(2 + math.floor(milkHPMod / 2))
+         elif (_loc2_ < 1500):
+            OutputMainText(" With the small meal ",False)
+            DoHP(8 + math.floor(milkHPMod / 2))
+         elif (_loc2_ < 3000):
+            OutputMainText(" With the abundant nourishment and slight bloating of your belly ",False)
+            DoHP(10 + milkHPMod)
+         else:
+            OutputMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ",False)
+            DoHP(math.ceil((30 + math.floor(_str_ / 2) + HPMod) / 4) + milkHPMod)
+         OutputMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~",False)
+         DoLust(-math.floor(sen / 2),2,3)
+         hrs += 2
+         i += 1
+   hrs += 1
+   DoEnd()
+
+def DoUdderMasturbate():
+   global udderLactation, lustArray, ment, lib, currentZone, teatSize, sen, lust, hrs, dominant, udderPlay, milkHPMod, _str_, HPMod
+   _loc1_ = 0
+   _loc2_ = 0
+   lustArray = [4]
+   i = 0
+   while (i == 0):
+      _loc1_ = math.floor(random.random() * (1 + 2 - 1)) + 1
+      if (_loc1_ == 1):
+         if (udderLactation > 0):
+            lustArray.push(53)
+         if (ment >= (lib - 10)):
+            OutputMainText("You sneak off to the private place where you sleep in " + RegionName(currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + PullUD(1) + " your " + ClothesTop() + " and gently knead your " + UdderDesc() + " udder." + "\n" + "\n" + "Hunching over at the side of the bed, you massage your " + TeatDesc() + " teats, tugging and squeezing them each with",True)
+         if (ment < (lib - 10)) and (ment >= (lib - 25)):
+            OutputMainText("You quickly head off to the private place where you sleep with your intentions clear as those around " + RegionName(currentZone) + " can easily see you rub your " + UdderDesc() + " bulge through your " + ClothesTop() + ". Before you even reach your destination, your hands are already reaching " + PullUD(1) + " under your " + ClothesTop() + " to play with your " + TeatDesc() + " teats, giving someone a good view of your fleshy bag." + "\n" + "\n" + "By the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with",True)
+         if (ment < (lib - 25)) and (ment >= (lib - 50)):
+            OutputMainText("Your " + UdderDesc() + " udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your " + ClothesTop() + " and massaging it roughly." + "\n" + "\n" + "Instead, you duck into one of the more hidden corners of " + RegionName(currentZone) + " and without even taking off your " + ClothesTop() + ", you grope your udder through the fabric before your reaching underneath, kneading and massaging your " + TeatDesc() + " teats with",True)
+         if (ment < (lib - 50)):
+            OutputMainText("Without a second thought, right in the middle of " + RegionName(currentZone) + " you pull " + PullUD(1) + " your " + ClothesTop() + ", rubbing a hand across your " + UdderDesc() + " udder and making it jiggle obscenely." + "\n" + "\n" + "People gasp and stare as you knead and massage your " + TeatDesc() + " teats with",True)
+         if (teatSize <= 25):
+            OutputMainText(" your fingers",False)
+         elif (teatSize > 25) and (teatSize <= 60):
+            OutputMainText(" your hands",False)
+         elif (teatSize > 60) and (teatSize <= 180):
+            OutputMainText(" both hands",False)
+         elif (teatSize > 180):
+            OutputMainText(" the nearby wall",False)
+         OutputMainText(" until they begin to feel warm and tingly.",False)
+         if (sen <= 30):
+            OutputMainText(" Unfortunately, you can't really come as your udder simply isn't sensitive enough. But, it does feel nice as you continue to play with your teats.",False)
+            DoLust(-math.floor(sen / 5),2,4)
+         else:
+            if (lust <= 30):
+               OutputMainText("\n" + "\n" + "Slowly,",False)
+            if (lust > 30) and (lust <= 70):
+               OutputMainText("\n" + "\n" + "Quickly,",False)
+            if (lust > 70):
+               OutputMainText("\n" + "\n" + "Almost instantly,",False)
+            OutputMainText(" your whole body begins to quiver,",False)
+            if ((MoistCalc(1) > 0) and ((MoistCalc(1) <= 3) or (MoistCalc(2) > 0)) and (MoistCalc(2) <= 3)):
+               OutputMainText(" your " + ClothesBottom() + " growing a tad moist,",False)
+            if ((MoistCalc(1) > 3) and ((MoistCalc(1) <= 7) or (MoistCalc(2) > 3)) and (MoistCalc(2) <= 7)):
+               OutputMainText(" your " + ClothesBottom() + " growing wet,",False)
+            if ((MoistCalc(1) > 7) and ((MoistCalc(1) <= 11) or (MoistCalc(2) > 7)) and (MoistCalc(2) <= 11)):
+               OutputMainText(" your " + ClothesBottom() + " becoming soaked through,",False)
+            if ((MoistCalc(1) > 11) or (MoistCalc(2) > 11)):
+               OutputMainText(" your " + ClothesBottom() + " becoming drenched, your " + ButtDesc() + " bum absolutely swamped,",False)
+            OutputMainText(" being wracked by an udder orgasm.",False)
+            DoLust(-math.floor(sen / 2),2,4)
+         if (udderLactation > 0):
+            hrs += 1
+            _loc2_ = MilkAmount(2)
+            OutputMainText("\n" + "\n" + "Milk ",False)
+            if (_loc2_ <= 500):
+               OutputMainText("spits",False)
+            if (_loc2_ > 500) and (_loc2_ <= 1000):
+               OutputMainText("squirts",False)
+            if (_loc2_ > 1000) and (_loc2_ <= 2000):
+               OutputMainText("spews",False)
+            if (_loc2_ > 2000) and (_loc2_ <= 8000):
+               OutputMainText("gushes",False)
+            if (_loc2_ > 8000) and (_loc2_ <= 19000):
+               OutputMainText("erupts",False)
+            if (_loc2_ > 19000):
+               OutputMainText("explodes",False)
+            OutputMainText(" from your teats and dribbles down your front as you begin to lactate. You continue to pump it out in ",False)
+            if (_loc2_ <= 500):
+               OutputMainText("small dribbles",False)
+            if (_loc2_ > 500) and (_loc2_ <= 1000):
+               OutputMainText("spurts",False)
+            if (_loc2_ > 1000) and (_loc2_ <= 2000):
+               OutputMainText("sprays",False)
+            if (_loc2_ > 2000) and (_loc2_ <= 8000):
+               OutputMainText("jets",False)
+            if (_loc2_ > 8000) and (_loc2_ <= 19000):
+               OutputMainText("steady streams",False)
+            if (_loc2_ > 19000):
+               OutputMainText("small floods",False)
+            OutputMainText(", relieving your " + UdderDesc() + " udder of its supply",False)
+            if (dominant == 5):
+               OutputMainText(" as you let out a contented 'mooo~'",False)
+            OutputMainText(".",False)
+         if (ment >= (lib - 10)):
+            OutputMainText("\n" + "\n" + "You quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day.",False)
+         if (ment < (lib - 10)) and (ment >= (lib - 25)):
+            OutputMainText("\n" + "\n" + "Coming down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere...",False)
+         if (ment < (lib - 25)) and (ment >= (lib - 50)):
+            OutputMainText("\n" + "\n" + "You realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your " + ClothesTop() + "... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry.",False)
+         if (ment < (lib - 50)):
+            OutputMainText("\n" + "\n" + "Gasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull " + PullUD(1) + " your " + ClothesTop() + ", milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...",False)
+         if (_loc2_ > 0) and (_loc2_ < 1000):
+            OutputMainText("\n" + "\n" + "\n" + "You produced " + _loc2_ + " ml of milk!",False)
+         elif (_loc2_ > 0) and (_loc2_ >= 1000):
+            OutputMainText("\n" + "\n" + "\n" + "You produced " + DecGet(_loc2_ / 1000,1) + " liters of milk!",False)
+         udderPlay += 8
+         i += 1
+      if (_loc1_ == 2) and ((udderSize + teatSize * 5) > (tallness / 2)) and (udderLactation > 0):
+         lustArray.push(53)
+         OutputMainText("Relaxing in your room, you pull your udder out of your " + ClothesBottom() + ", lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your " + LegDesc(2) + " and the floor. It looks so delicious that you can't help but..." + "\n" + "\n" + "You hug around the udder and hoist it up, craning your neck down to meet a " + TeatDesc() + " teat",True)
+         OutputMainText(" with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight.",False)
+         _loc2_ = MilkAmount(2)
+         if (_loc2_ < 300):
+            OutputMainText("\n" + "\n" + "Thin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other ",False)
+         elif (_loc2_ < 1500):
+            OutputMainText("\n" + "\n" + "The flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other ",False)
+         elif (_loc2_ < 3000):
+            OutputMainText("\n" + "\n" + "The flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other ",False)
+         else:
+            OutputMainText("\n" + "\n" + "Caught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other ",False)
+         OutputMainText(" teats do the same as you grope about with your other hand, your arm bending around to keep the udder elevated. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind." + "\n" + "\n" + "A sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own teat in ecstasy. You open wide and gasp as the " + TeatDesc() + " teat washes your mouth, with saliva and milk spilling out as you moan blissfully." + "\n" + "\n" + "You then collapse back into your bed, curled around and continuing to suckle from yourself slowly, gently milking what is left in your udder.",False)
+         if (_loc2_ < 300):
+            OutputMainText(" With the nice drink ",False)
+            DoHP(2 + math.floor(milkHPMod / 2))
+         elif (_loc2_ < 1500):
+            OutputMainText(" With the small meal ",False)
+            DoHP(8 + math.floor(milkHPMod / 2))
+         elif (_loc2_ < 3000):
+            OutputMainText(" With the abundant nourishment and slight bloating of your belly ",False)
+            DoHP(10 + milkHPMod)
+         else:
+            OutputMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ",False)
+            DoHP(math.ceil((30 + math.floor(_str_ / 2) + HPMod) / 4) + milkHPMod)
+         OutputMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~",False)
+         DoLust(-math.floor(sen / 2),2,4)
+         hrs += 2
+         i += 1
+   hrs += 1
+   DoEnd()
+
 !def DoAlchemy():
 !def SimpleAlchemy():
 !def ComplexAlchemy():
@@ -7786,165 +5604,104 @@ def WeaponAttack():
       DoHP(dmg)
 
 !def DoSpecialAbility(more:int):
-{
-   var specialAbilityArray:Array = null;
-   this.viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,1);
-   this.viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1);
-   this.choicePage = more;
-   this.showPage(True,"Spc Abilities");
-   this.buttonWrite(4,"&#60;&#60;");
-   this.buttonWrite(8,">>");
-   this.buttonWrite(12,"Return");
-   specialAbilityArray = [];
-   if(this.skunkAffinity >= 40)
-   {
-      specialAbilityArray.push(1);
-   }
-   if(specialAbilityArray.length < 1)
-   {
-      this.outputMainText("Your do not currently have any special abilities that you can use.",True);
-   }
-   else
-   {
-      this.outputMainText("Which special ability would you like to use?",True);
-   }
-   if(specialAbilityArray.length > 9)
-   {
+   var specialAbilityArray:Array = null
+   this.viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,1)
+   this.viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1)
+   this.choicePage = more
+   this.showPage(True,"Spc Abilities")
+   this.buttonWrite(4,"&#60;&#60;")
+   this.buttonWrite(8,">>")
+   this.buttonWrite(12,"Return")
+   specialAbilityArray = []
+   if (skunkAffinity >= 40):
+      specialAbilityArray.push(1)
+   if (len(specialAbilityArray) < 1):
+      OutputMainText("Your do not currently have any special abilities that you can use.",True)
+   else:
+      OutputMainText("Which special ability would you like to use?",True)
+   if (len(specialAbilityArray) > 9):
       this.Choice4Outline.visible = True
       this.Choice4.visible = True
       this.Choice8Outline.visible = True
       this.Choice8.visible = True
-   }
-   if(specialAbilityArray[0 + (more * 9 - 9)])
-   {
-      this.buttonWrite(1,this.specialAbilityName(specialAbilityArray[0 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[0 + (more * 9 - 9)]);
+   if (specialAbilityArray[0 + (more * 9 - 9)]):
+      this.buttonWrite(1,this.specialAbilityName(specialAbilityArray[0 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[0 + (more * 9 - 9)])
       this.Choice1Outline.visible = True
       this.Choice1.visible = True
-   }
-   if(specialAbilityArray[1 + (more * 9 - 9)])
-   {
-      this.buttonWrite(2,this.specialAbilityName(specialAbilityArray[1 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[1 + (more * 9 - 9)]);
+   if (specialAbilityArray[1 + (more * 9 - 9)]):
+      this.buttonWrite(2,this.specialAbilityName(specialAbilityArray[1 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[1 + (more * 9 - 9)])
       this.Choice2Outline.visible = True
       this.Choice2.visible = True
-   }
-   if(specialAbilityArray[2 + (more * 9 - 9)])
-   {
-      this.buttonWrite(3,this.specialAbilityName(specialAbilityArray[2 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[2 + (more * 9 - 9)]);
+   if (specialAbilityArray[2 + (more * 9 - 9)]):
+      this.buttonWrite(3,this.specialAbilityName(specialAbilityArray[2 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[2 + (more * 9 - 9)])
       this.Choice3Outline.visible = True
       this.Choice3.visible = True
-   }
-   if(specialAbilityArray[3 + (more * 9 - 9)])
-   {
-      this.buttonWrite(5,this.specialAbilityName(specialAbilityArray[3 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[3 + (more * 9 - 9)]);
+   if (specialAbilityArray[3 + (more * 9 - 9)]):
+      this.buttonWrite(5,this.specialAbilityName(specialAbilityArray[3 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[3 + (more * 9 - 9)])
       this.Choice5Outline.visible = True
       this.Choice5.visible = True
-   }
-   if(specialAbilityArray[4 + (more * 9 - 9)])
-   {
-      this.buttonWrite(6,this.specialAbilityName(specialAbilityArray[4 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[4 + (more * 9 - 9)]);
+   if (specialAbilityArray[4 + (more * 9 - 9)]):
+      this.buttonWrite(6,this.specialAbilityName(specialAbilityArray[4 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[4 + (more * 9 - 9)])
       this.Choice6Outline.visible = True
       this.Choice6.visible = True
-   }
-   if(specialAbilityArray[5 + (more * 9 - 9)])
-   {
-      this.buttonWrite(7,this.specialAbilityName(specialAbilityArray[5 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[5 + (more * 9 - 9)]);
+   if (specialAbilityArray[5 + (more * 9 - 9)]):
+      this.buttonWrite(7,this.specialAbilityName(specialAbilityArray[5 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[5 + (more * 9 - 9)])
       this.Choice7Outline.visible = True
       this.Choice7.visible = True
-   }
-   if(specialAbilityArray[6 + (more * 9 - 9)])
-   {
-      this.buttonWrite(9,this.specialAbilityName(specialAbilityArray[6 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[6 + (more * 9 - 9)]);
+   if (specialAbilityArray[6 + (more * 9 - 9)]):
+      this.buttonWrite(9,this.specialAbilityName(specialAbilityArray[6 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[6 + (more * 9 - 9)])
       this.Choice9Outline.visible = True
       this.Choice9.visible = True
-   }
-   if(specialAbilityArray[7 + (more * 9 - 9)])
-   {
-      this.buttonWrite(10,this.specialAbilityName(specialAbilityArray[7 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[7 + (more * 9 - 9)]);
+   if (specialAbilityArray[7 + (more * 9 - 9)]):
+      this.buttonWrite(10,this.specialAbilityName(specialAbilityArray[7 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[7 + (more * 9 - 9)])
       this.Choice10Outline.visible = True
       this.Choice10.visible = True
-   }
-   if(specialAbilityArray[8 + (more * 9 - 9)])
-   {
-      this.buttonWrite(11,this.specialAbilityName(specialAbilityArray[8 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[8 + (more * 9 - 9)]);
+   if (specialAbilityArray[8 + (more * 9 - 9)]):
+      this.buttonWrite(11,this.specialAbilityName(specialAbilityArray[8 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[8 + (more * 9 - 9)])
       this.Choice11Outline.visible = True
       this.Choice11.visible = True
-   }
    this.doListen = function():void
-   {
-      if(buttonChoice == 1)
-      {
-         specialAbilityUse(specialAbilityArray[0 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 2)
-      {
-         specialAbilityUse(specialAbilityArray[1 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 3)
-      {
-         specialAbilityUse(specialAbilityArray[2 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 5)
-      {
-         specialAbilityUse(specialAbilityArray[3 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 6)
-      {
-         specialAbilityUse(specialAbilityArray[4 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 7)
-      {
-         specialAbilityUse(specialAbilityArray[5 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 9)
-      {
-         specialAbilityUse(specialAbilityArray[6 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 10)
-      {
-         specialAbilityUse(specialAbilityArray[7 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 11)
-      {
-         specialAbilityUse(specialAbilityArray[8 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 4)
-      {
-         if(specialAbilityArray.length / 9 < more)
-         {
-            doSpecialAbility(1);
-         }
-         else
-         {
-            doSpecialAbility(more + 1);
-         }
-      }
-      if(buttonChoice == 8)
-      {
-         if(more == 1)
-         {
-            doSpecialAbility(Math.floor(specialAbilityArray.length / 9));
-         }
-         else
-         {
-            doSpecialAbility(more - 1);
-         }
-      }
-      if(buttonChoice == 12)
-      {
-         showPage(False,"");
-         doReturn();
-      }
-   };
-}
+      if (buttonChoice == 1):
+         SpecialAbilityUse(specialAbilityArray[0 + (more * 9 - 9)])
+      if (buttonChoice == 2):
+         SpecialAbilityUse(specialAbilityArray[1 + (more * 9 - 9)])
+      if (buttonChoice == 3):
+         SpecialAbilityUse(specialAbilityArray[2 + (more * 9 - 9)])
+      if (buttonChoice == 5):
+         SpecialAbilityUse(specialAbilityArray[3 + (more * 9 - 9)])
+      if (buttonChoice == 6):
+         SpecialAbilityUse(specialAbilityArray[4 + (more * 9 - 9)])
+      if (buttonChoice == 7):
+         SpecialAbilityUse(specialAbilityArray[5 + (more * 9 - 9)])
+      if (buttonChoice == 9):
+         SpecialAbilityUse(specialAbilityArray[6 + (more * 9 - 9)])
+      if (buttonChoice == 10):
+         SpecialAbilityUse(specialAbilityArray[7 + (more * 9 - 9)])
+      if (buttonChoice == 11):
+         SpecialAbilityUse(specialAbilityArray[8 + (more * 9 - 9)]);
+      if (buttonChoice == 4):
+         if (len(specialAbilityArray) / 9 < more):
+            DoSpecialAbility(1)
+         else:
+            DoSpecialAbility(more + 1)
+      if (buttonChoice == 8):
+         if (more == 1):
+            DoSpecialAbility(math.floor(len(specialAbilityArray) / 9))
+         else:
+            DoSpecialAbility(more - 1)
+      if (buttonChoice == 12):
+         ShowPage(False,"")
+         DoReturn()
+
 def SpecialAbilityName(ID:int):
    tempStr = "SPECIAL ABILITY NAME ERROR " + ID + ""
    if (ID == 1):
@@ -7971,270 +5728,145 @@ def SpecialAbilityDescription(ID:int):
    if (currentState == 2):
       DoBattle()
 
-!def DoEntice():
-{
-   var chance:int = 0;
-   chance = this.percent();
-   if(this.eGen == 1 && this.gender == 1 && this.ePref != 2 && this.ePref != 0)
-   {
-      if(chance <= 50)
-      {
-         this.outputMainText("You turn around and bend over before the " + this.enemyName() + " stroking the " + this.cockDesc() + " bulge in your " + this.clothesBottom() + " and patting your " + this.buttDesc() + " rump while you wave your " + this.hipDesc() + " hips",True);
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail dancing above",False);
-         }
-         this.outputMainText(" tantalizingly.",False);
-      }
-      if(chance > 50)
-      {
-         this.outputMainText("You flex your muscles, trying to show off your masculinity, while you thrust your " + this.hipDesc() + " hips in an attempt to show off your " + this.cockDesc() + " bulge.",True);
-      }
-      if(this.ePref == 1 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5 + this.enticeMod / 2));
-      }
-      else if(this.ePref == 3)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10 + this.enticeMod / 2));
-      }
-   }
-   else if(this.eGen == 1 && this.gender == 2 && this.ePref != 1 && this.ePref != 0)
-   {
-      if(chance <= 50)
-      {
-         this.outputMainText("You turn around and bend over before the " + this.enemyName() + ", stroking your " + this.vulvaDesc() + " vulva through your " + this.clothesBottom(),True);
-         if(this.lust > 20 && this.moistCalc(2) > 3)
-         {
-            this.outputMainText(" until your feminine arousal seeps through",False);
-         }
-         this.outputMainText(". Your " + this.hipDesc() + " hips wiggle erotically",False);
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail dancing above",False);
-         }
-         this.outputMainText(".",False);
-      }
-      if(chance > 50)
-      {
-         this.outputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a " + this.nipDesc() + "nipple through your " + this.clothesTop() + " with your other hand.",True);
-      }
-      if(this.ePref == 2 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5 + this.enticeMod / 2));
-      }
-      else if(this.ePref == 3)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10 + this.enticeMod / 2));
-      }
-   }
-   else if(this.eGen == 2 && this.gender == 1 && this.ePref != 2 && this.ePref != 0)
-   {
-      if(chance <= 50)
-      {
-         this.outputMainText("You pull " + this.pullUD(2) + " your " + this.clothesBottom() + " a little, revealing the base of your cock-flesh",True);
-         if(this.lust > 20)
-         {
-            this.outputMainText(", the " + this.cockDesc() + " erection pulsing strongly beneath your " + this.clothesBottom(),False);
-         }
-         this.outputMainText(", rubbing it to show off what you can offer",False);
-         if(this.moistCalc(1) > 3)
-         {
-            this.outputMainText(", a blotch of pre beginning to seep across the fabric",False);
-         }
-         this.outputMainText(".",False);
-      }
-      if(chance > 50)
-      {
-         this.outputMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.",True);
-      }
-      if(this.ePref == 1 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5 + this.enticeMod / 2));
-      }
-      else if(this.ePref == 3)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10 + this.enticeMod / 2));
-      }
-   }
-   else if(this.eGen == 2 && this.gender == 2 && this.ePref != 1 && this.ePref != 0)
-   {
-      if(chance <= 50)
-      {
-         this.outputMainText("You spread your " + this.legDesc(6) + ", crouching down as both hands grind into your " + this.vulvaDesc() + " pussy",True);
-         if(this.lust > 20 && this.moistCalc(2) > 3)
-         {
-            this.outputMainText(", your honey spreading from the crotch of your " + this.clothesBottom() + ",",False);
-         }
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail swishing across the ground,",False);
-         }
-         this.outputMainText(" luring the " + this.enemyName() + " to come grind instead.",False);
-      }
-      if(chance > 50)
-      {
-         this.outputMainText("Your arms hug beneath your " + this.boobDesc() + " chest, squeezing the mounds and making them look even bigger",True);
-         if(this.lust > 20 && this.nippleSize > 1 || this.nippleSize > 6)
-         {
-            this.outputMainText(", your " + this.nipDesc() + "nipples clearly visible through your " + this.clothesTop(),False);
-         }
-         this.outputMainText(".",False);
-      }
-      if(this.ePref == 2 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5 + this.enticeMod / 2));
-      }
-      else if(this.ePref == 3)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10 + this.enticeMod / 2));
-      }
-   }
-   else if(this.eGen == 3 && this.gender == 1 && this.ePref != 2 && this.ePref != 0)
-   {
-      if(chance <= 25)
-      {
-         this.outputMainText("You turn around and bend over before the " + this.enemyName() + " stroking the " + this.cockDesc() + " bulge in your " + this.clothesBottom() + " and patting your " + this.buttDesc() + " rump while you wave your " + this.hipDesc() + " hips",True);
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail dancing above",False);
-         }
-         this.outputMainText(" tantalizingly.",False);
-      }
-      if(chance > 25 && chance <= 50)
-      {
-         this.outputMainText("You flex your muscles, trying to show off your masculinity, while you thrust your " + this.hipDesc() + " hips in an attempt to show off your " + this.cockDesc() + " bulge.",True);
-      }
-      if(chance > 50 && chance <= 75)
-      {
-         this.outputMainText("You pull " + this.pullUD(2) + " your " + this.clothesBottom() + " a little, revealing the base of your cock-flesh",True);
-         if(this.lust > 20)
-         {
-            this.outputMainText(", the " + this.cockDesc() + " erection pulsing strongly beneath your " + this.clothesBottom(),False);
-         }
-         this.outputMainText(", rubbing it to show off what you can offer",False);
-         if(this.moistCalc(1) > 3)
-         {
-            this.outputMainText(", a blotch of pre begining to seep across the fabric",False);
-         }
-         this.outputMainText(".",False);
-      }
-      if(chance > 75)
-      {
-         this.outputMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.",True);
-      }
-      if(this.ePref == 1 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5 + this.enticeMod / 2));
-      }
-      else if(this.ePref == 3)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10 + this.enticeMod / 2));
-      }
-   }
-   else if(this.eGen == 3 && this.gender == 2 && this.ePref != 1 && this.ePref != 0)
-   {
-      if(chance <= 25)
-      {
-         this.outputMainText("You spread your " + this.legDesc(6) + ", crouching down as both hands grinding into your " + this.vulvaDesc() + " pussy",True);
-         if(this.lust > 20 && this.moistCalc(2) > 3)
-         {
-            this.outputMainText(", your honey spreading from the crotch of your " + this.clothesBottom() + ",",False);
-         }
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail swishing across the ground,",False);
-         }
-         this.outputMainText(" luring the " + this.enemyName() + " to come grind instead.",False);
-      }
-      if(chance > 25 && chance <= 50)
-      {
-         this.outputMainText("Your arms hug beneath your " + this.boobDesc() + " chest, squeezing the mounds and making them look even bigger",True);
-         if(this.lust > 20 && this.nippleSize > 1 || this.nippleSize > 6)
-         {
-            this.outputMainText(", your " + this.nipDesc() + "nipples clearly visible through your " + this.clothesTop() + ".",False);
-         }
-         this.outputMainText(".",False);
-      }
-      if(chance > 50 && chance <= 75)
-      {
-         this.outputMainText("You turn around and bend over before the " + this.enemyName() + ", stroking your " + this.vulvaDesc() + " vulva through your " + this.clothesBottom(),True);
-         if(this.lust > 20 && this.moistCalc(2) > 3)
-         {
-            this.outputMainText(" until your feminine arousal seeps through",False);
-         }
-         this.outputMainText(". Your " + this.hipDesc() + " hips waggle erotically",False);
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail dancing above",False);
-         }
-         this.outputMainText(".",False);
-      }
-      if(chance > 75)
-      {
-         this.outputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a " + this.nipDesc() + "nipple through your " + this.clothesTop() + " with your other hand.",True);
-      }
-      if(this.ePref == 2 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5));
-      }
-      else if(this.ePref == 3)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10));
-      }
-   }
-   else if(this.gender == 3 && this.ePref != 0 && this.eGen != 0)
-   {
-      if(chance <= 25)
-      {
-         this.outputMainText("You turn around and bend over before the " + this.enemyName() + ", patting your " + this.buttDesc() + " ass and " + this.vulvaDesc() + " pussy. You waggle your " + this.hipDesc() + " hips, the " + this.cockDesc() + " bulge in your " + this.clothesBottom() + " swaying",True);
-         if(this.tail != 0)
-         {
-            this.outputMainText(", your " + this.tailDesc() + " tail dancing above",False);
-         }
-         this.outputMainText(" deliciously.",False);
-      }
-      if(chance > 25 && chance <= 50)
-      {
-         this.outputMainText("Your arms hug beneath your " + this.boobDesc() + " chest, squeezing the mounds and making them look even bigger while you flex, thrusting at the air with your " + this.cockDesc() + " package bobbing.",True);
-      }
-      if(chance > 50 && chance <= 75)
-      {
-         this.outputMainText("You pull " + this.pullUD(2) + " your " + this.clothesBottom() + " a little, revealing the base of your male anatomy while you spread your " + this.legDesc(6) + ", crouching down as both hands grind across the bulge and into your female portions",True);
-         if(this.lust > 20 && (this.moistCalc(2) > 3 || this.moistCalc(1) > 3))
-         {
-            this.outputMainText(", the fabric quickly growing damp",False);
-         }
-         this.outputMainText(".",False);
-         if(this.tail != 0)
-         {
-            this.outputMainText("Your " + this.tailDesc() + " tail swishes across the ground in anticipation.",False);
-         }
-      }
-      if(chance > 75)
-      {
-         this.outputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the " + this.cockDesc() + " phallic outline in your " + this.clothesBottom() + " with your other hand.",True);
-      }
-      if(this.ePref == 3 || this.ePref == 4)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 5));
-      }
-      else if(this.ePref == 1 || this.ePref == 2)
-      {
-         this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10));
-      }
-   }
-   else if(this.gender == 0 && this.ePref != 0 && this.eGen != 0)
-   {
-      this.outputMainText("Your " + this.hipDesc() + " hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you\'ve still got.",True);
-      this.doeLust(Math.floor(this.percent() / 10 + this.eLib / 10));
-   }
-   else
-   {
-      this.outputMainText("Your attempt at an erotic display only seems to turn the " + this.enemyName() + " off further.",True);
-      this.eLust -= 5;
-   }
-}
+def DoEntice():
+   global eGen, gender, ePref, tail, eLib, enticeMod, lust, nippleSize
+   chance = Percent()
+   if (eGen == 1) and (gender == 1) and (ePref != 2) and (ePref != 0):
+      if (chance <= 50):
+         OutputMainText("You turn around and bend over before the " + EnemyName() + " stroking the " + CockDesc() + " bulge in your " + ClothesBottom() + " and patting your " + ButtDesc() + " rump while you wave your " + HipDesc() + " hips",True)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail dancing above",False)
+         OutputMainText(" tantalizingly.",False)
+      if (chance > 50):
+         OutputMainText("You flex your muscles, trying to show off your masculinity, while you thrust your " + HipDesc() + " hips in an attempt to show off your " + CockDesc() + " bulge.",True)
+      if (ePref == 1 or ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      elif (ePref == 3):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10) + (enticeMod / 2)))
+   elif (eGen == 1) and (gender == 2) and (ePref != 1) and (ePref != 0):
+      if (chance <= 50):
+         OutputMainText("You turn around and bend over before the " + EnemyName() + ", stroking your " + VulvaDesc() + " vulva through your " + ClothesBottom(),True)
+         if (lust > 20) and (MoistCalc(2) > 3):
+            OutputMainText(" until your feminine arousal seeps through",False)
+         OutputMainText(". Your " + HipDesc() + " hips wiggle erotically",False)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail dancing above",False)
+         OutputMainText(".",False)
+      if (chance > 50):
+         OutputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a " + NipDesc() + "nipple through your " + ClothesTop() + " with your other hand.",True)
+      if (ePref == 2) or (ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      elif (ePref == 3):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10) + (enticeMod / 2)))
+   elif (eGen == 2) and (gender == 1) and (ePref != 2) and (ePref != 0):
+      if (chance <= 50):
+         OutputMainText("You pull " + PullUD(2) + " your " + ClothesBottom() + " a little, revealing the base of your cock-flesh",True)
+         if (lust > 20):
+            OutputMainText(", the " + CockDesc() + " erection pulsing strongly beneath your " + ClothesBottom(),False)
+         OutputMainText(", rubbing it to show off what you can offer",False)
+         if (MoistCalc(1) > 3):
+            OutputMainText(", a blotch of pre beginning to seep across the fabric",False)
+         OutputMainText(".",False)
+      if (chance > 50):
+         OutputMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.",True)
+      if (ePref == 1) or (ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      elif (ePref == 3):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10) + (enticeMod / 2)))
+   elif (eGen == 2) and (gender == 2) and (ePref != 1) and (ePref != 0):
+      if (chance <= 50):
+         OutputMainText("You spread your " + LegDesc(6) + ", crouching down as both hands grind into your " + VulvaDesc() + " pussy",True)
+         if (lust > 20) and (MoistCalc(2) > 3):
+            OutputMainText(", your honey spreading from the crotch of your " + ClothesBottom() + ",",False)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail swishing across the ground,",False)
+         OutputMainText(" luring the " + EnemyName() + " to come grind instead.",False)
+      if (chance > 50):
+         OutputMainText("Your arms hug beneath your " + BoobDesc() + " chest, squeezing the mounds and making them look even bigger",True)
+         if (lust > 20) and ((nippleSize > 1) or (nippleSize > 6)):
+            OutputMainText(", your " + NipDesc() + "nipples clearly visible through your " + ClothesTop(),False)
+         OutputMainText(".",False)
+      if (ePref == 2) or (ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      elif (ePref == 3):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10) + (enticeMod / 2)))
+   elif (eGen == 3) and (gender == 1) and (ePref != 2) and (ePref != 0):
+      if (chance <= 25):
+         OutputMainText("You turn around and bend over before the " + EnemyName() + " stroking the " + CockDesc() + " bulge in your " + ClothesBottom() + " and patting your " + ButtDesc() + " rump while you wave your " + HipDesc() + " hips",True)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail dancing above",False)
+         OutputMainText(" tantalizingly.",False)
+      if (chance > 25) and (chance <= 50):
+         OutputMainText("You flex your muscles, trying to show off your masculinity, while you thrust your " + HipDesc() + " hips in an attempt to show off your " + CockDesc() + " bulge.",True)
+      if (chance > 50) and (chance <= 75):
+         OutputMainText("You pull " + PullUD(2) + " your " + ClothesBottom() + " a little, revealing the base of your cock-flesh",True)
+         if (lust > 20):
+            OutputMainText(", the " + CockDesc() + " erection pulsing strongly beneath your " + ClothesBottom(),False)
+         OutputMainText(", rubbing it to show off what you can offer",False)
+         if (MoistCalc(1) > 3):
+            OutputMainText(", a blotch of pre begining to seep across the fabric",False)
+         OutputMainText(".",False)
+      if (chance > 75):
+         OutputMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.",True)
+      if (ePref == 1) or (ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      elif (ePref == 3):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10) + (enticeMod / 2)))
+   elif (eGen == 3) and (gender == 2) and (ePref != 1) and (ePref != 0):
+      if (chance <= 25):
+         OutputMainText("You spread your " + LegDesc(6) + ", crouching down as both hands grinding into your " + VulvaDesc() + " pussy",True)
+         if (lust > 20) and (MoistCalc(2) > 3):
+            OutputMainText(", your honey spreading from the crotch of your " + ClothesBottom() + ",",False)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail swishing across the ground,",False)
+         OutputMainText(" luring the " + EnemyName() + " to come grind instead.",False)
+      if (chance > 25) and (chance <= 50):
+         OutputMainText("Your arms hug beneath your " + BoobDesc() + " chest, squeezing the mounds and making them look even bigger",True)
+         if (lust > 20) and ((nippleSize > 1) or (nippleSize > 6)):
+            OutputMainText(", your " + NipDesc() + "nipples clearly visible through your " + ClothesTop() + ".",False)
+         OutputMainText(".",False)
+      if (chance > 50) and (chance <= 75):
+         OutputMainText("You turn around and bend over before the " + EnemyName() + ", stroking your " + VulvaDesc() + " vulva through your " + ClothesBottom(),True)
+         if (lust > 20) and (MoistCalc(2) > 3):
+            OutputMainText(" until your feminine arousal seeps through",False)
+         OutputMainText(". Your " + HipDesc() + " hips waggle erotically",False)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail dancing above",False)
+         OutputMainText(".",False)
+      if (chance > 75):
+         OutputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a " + NipDesc() + "nipple through your " + ClothesTop() + " with your other hand.",True)
+      if (ePref == 2) or (ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5)))
+      elif (ePref == 3):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10)))
+   elif (gender == 3) and (ePref != 0) and (eGen != 0):
+      if (chance <= 25):
+         OutputMainText("You turn around and bend over before the " + EnemyName() + ", patting your " + ButtDesc() + " ass and " + VulvaDesc() + " pussy. You waggle your " + HipDesc() + " hips, the " + CockDesc() + " bulge in your " + ClothesBottom() + " swaying",True)
+         if (tail != 0):
+            OutputMainText(", your " + TailDesc() + " tail dancing above",False)
+         OutputMainText(" deliciously.",False)
+      if (chance > 25) and (chance <= 50):
+         OutputMainText("Your arms hug beneath your " + BoobDesc() + " chest, squeezing the mounds and making them look even bigger while you flex, thrusting at the air with your " + CockDesc() + " package bobbing.",True)
+      if (chance > 50) and (chance <= 75):
+         OutputMainText("You pull " + PullUD(2) + " your " + ClothesBottom() + " a little, revealing the base of your male anatomy while you spread your " + LegDesc(6) + ", crouching down as both hands grind across the bulge and into your female portions",True)
+         if (lust > 20) and ((MoistCalc(2) > 3) or (MoistCalc(1) > 3)):
+            OutputMainText(", the fabric quickly growing damp",False)
+         OutputMainText(".",False)
+         if (tail != 0):
+            OutputMainText("Your " + TailDesc() + " tail swishes across the ground in anticipation.",False)
+      if (chance > 75):
+         OutputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the " + CockDesc() + " phallic outline in your " + ClothesBottom() + " with your other hand.",True)
+      if (ePref == 3) or (ePref == 4):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 5)))
+      elif (ePref == 1) or (ePref == 2):
+         DoeLust(math.floor((Percent() / 10) + (eLib / 10)))
+   elif (gender == 0) and (ePref != 0) and (eGen != 0):
+      OutputMainText("Your " + HipDesc() + " hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.",True)
+      DoeLust(math.floor((Percent() / 10) + (eLib / 10)))
+   else:
+      OutputMainText("Your attempt at an erotic display only seems to turn the " + EnemyName() + " off further.",True)
+      eLust -= 5
+
 !def BattleWin():
    global eCoin, eItem, eSexP, hrs
    OutputMainText("You walk away from the battle the victor and to the victor goes the spoils.",True)
@@ -8324,418 +5956,239 @@ def SpecailKOLose():
          OutputMainText("\n" + "\n" + "Just as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you weren't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.",False)
       elif (enemyID == 304) or (enemyID == 305):
          OutputMainText("\n" + "\n" + "Just as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way...",False)
-      elif (enemyID == 30)9:
+      elif (enemyID == 30):
          OutputMainText("\n" + "\n" + "The succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\"",False)
    
-!def DoRape():
-{
-   var chance:int = 0;
-   if(this.enemyID == 1)
-   {
-      if(this.gender == 1)
-      {
-         this.outputMainText("You stick your cock in the test enemy\'s butt and cum.",True);
-      }
-      if(this.gender == 2)
-      {
-         this.outputMainText("You sit on the test enemy\'s cock until you cum.",True);
-      }
-      if(this.gender == 3)
-      {
-         this.outputMainText("You stuff your cock in the test enemy\'s butt, then sit on its cock and cum.",True);
-      }
-   }
-   if(this.enemyID == 201)
-   {
-      this.outputMainText("You easily roll the wolf onto his back. Pulling " + this.pullUD(2) + " your " + this.clothesBottom() + ", you squat your " + this.vulvaDesc() + " cunt over his sheath, wedging it between your folds while you grind against it. Once his bright red prick twitches as it stretches from its sheath, reaching long and hard while dribbling with pre, you slip it into " + this.oneYour(2) + " hungry hole" + this.plural(2) + ". You bounce on top of his belly,",True);
-      if(this.moistCalc(2) > 7)
-      {
-         this.outputMainText(" your honey splashing about everywhere,",False);
-      }
-      this.outputMainText(" his hard doggy dick scraping against your inner walls. The lone wolf howls and drools, his tongue lolling out the side of his muzzle, as hot spurts of fresh cum gush within you. You shudder at the raw sensation, squeezing his coarse fur between your thighs. Then, you shiver as you feel the base of his cock swell, knotting within you. You collapse beside him, your pussy throbbing with orgasm, as you gasp and moan with his howls...",False);
-      this.outputMainText("\r\r\rEventually, his knot deflates. You rub your ",False);
-      if(this.vagLimit() < 8)
-      {
-         this.outputMainText("sore little pussy, a bit stretched from the size of the thing,",False);
-         this.vagChange(1,0);
-      }
-      else
-      {
-         this.outputMainText("satiated cunt,",False);
-      }
-      this.outputMainText(" the cock sliding out with cum dripping down " + this.legWhere(1) + " your " + this.legDesc(2) + ".",False);
-      this.doImpregnate(this.enemyBaby());
-      this.doLust(-Math.floor(this.sen / 2),2,2);
-   }
-   if(this.enemyID == 202)
-   {
-      this.outputMainText("You easily roll the wolf onto his back. Pulling " + this.pullUD(2) + " your " + this.clothesBottom() + ", you squat your " + this.buttDesc() + " ass over the pointy prick. You grab the hard, meaty rod and gently squeeze out some of the pre, slipping it about between your cheeks to make things nice and slick. Slowly sitting down, you wince as the narrow tip kisses your tight hole and moan as it slides in, easily stretching your ass around its curvy girth.",True);
-      if(this.showBalls == True)
-      {
-         this.outputMainText(" Your " + this.ballDesc() + " testicles eventually come to a rest upon the wolf\'s belly, with your own " + this.cockDesc() + " cock" + this.plural(1) + " bobbing above.",False);
-      }
-      else
-      {
-         this.outputMainText(" Your own " + this.cockDesc() + " cock" + this.plural(1) + " eventually come to a rest upon the wolf\'s belly, slightly tickled by his course fur.",False);
-      }
-      this.outputMainText("\r\rAfter a couple breaths from taking in the warm intruder, you begin to bounce your hips upon the animal. It howls back up at you in pleasure, your own gasps matching as your erection" + this.plural(1) + " drum" + this.plural(3) + " the fur. The wolf\'s tongue lolls out of the side of its mouth, allowing you to do all the work as its hind legs twitch in the air and its tail swishes over the ground. It seems to be quite happy with the result of this ordeal, so much so that it begins to spurt into your rectum rather quickly, coating your insides with hot sticky spunk.\r\rHowever, you\'re not left out of the fun as you feel something swell within the entrance to your ass. The wolf\'s knot expanding, the prick grinds against your inner walls more and more as it sprays about. You can\'t last any longer and explode above the wolf, drenching its fur in strand after strand of fresh steamy semen. More soon begins to spew back out your ass as the pent-up wolf overflows your cavity, forming sticky webs about the cheeks of your rump.\r\rFur is eventually completely matted, dripping with wads of white, while your own " + this.skinDesc() + " is sufficiently gunked up around your bottom and thighs. The wolf pants below you, tired and elated. With an attempt to stand, you lift the hind legs with you, still tied to your backside. But, with all the mess that has been made, the cock slips out with a wet pop and sends the animal back into the puddle below with a splash.",False);
-      this.doLust(-Math.floor(this.sen / 2),2,5);
-   }
-   if(this.enemyID == 301)
-   {
-      chance = this.percent();
-      if(this.gender == 1 || this.percent() <= 50 && this.gender == 3)
-      {
-         if(chance <= 100)
-         {
-            this.outputMainText("The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling " + this.pullUD(2) + " your " + this.clothesBottom() + ", you slide " + this.oneYour(1) + " " + this.cockDesc() + " prick" + this.plural(1) + " out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.",True);
-            if(this.cockSize * this.cockSizeMod > this.eVagLimit(40))
-            {
-               this.outputMainText("\r\rHowever, she cries out in pain and disappointment, your " + this.cockDesc() + " cock far to big to fit inside without tearing her apart. So, instead, you slip it between her legs, rubbing it across her stiff clit and through her loincloth and over her belly as you ",False);
-            }
-            if(this.cockSize * this.cockSizeMod <= this.eVagLimit(40) && this.cockSize * this.cockSizeMod > this.eVagLimit(24))
-            {
-               this.outputMainText("\r\rShe cries out in pain and pleasure as your " + this.cockDesc() + " cock stretches her thirsting cunt wide, pushing her bikini in until it tears from your path. She pushes her rump back towards you, trying her best to devour the hot rod all the way to its hilt as you ",False);
-            }
-            if(this.cockSize * this.cockSizeMod <= this.eVagLimit(24))
-            {
-               this.outputMainText("\r\rShe cries out in ecstacy as her hungry cunt devours your " + this.cockDesc() + " cock, along with her own bikini until it tears from your path. She takes it all the way in to your hilt as you ",False);
-            }
-            this.outputMainText("lean forward and hug her from behind, your hands groping about her many breasts. You pump hard, again and again, until the unavoidable pressure begins to build. Soon, you blow your load ",False);
-            if(this.cockSize * this.cockSizeMod > this.eVagLimit(40))
-            {
-               this.outputMainText("across her chest while she tries to lap up the spray with her tongue. You pull back, leaving her a mess.",False);
-            }
-            if(this.cockSize * this.cockSizeMod <= this.eVagLimit(40))
-            {
-               this.outputMainText("into her womb, making her let out a long and joyful mewl. Before she can become too content, you pull out of her with a slurp, your cum still dribbling from her used sex.",False);
-            }
-            this.cumAmount();
-         }
-      }
-      else if(this.gender == 2 || this.gender == 3)
-      {
-         this.outputMainText("You knock the felin woman backwards onto her ample ass, her legs spreading wide. She cries out as you duck beneath her loincloth and lick her stiff clit through her bikini. Juices flood within your mouth as she instantly reacts, her swollen cunt-lips gnawing at the crotch of the messy bottom. You pull it aside, diving in and getting a good mouthful of her supple flavor. You devour her folds until she twitches uncontrollably, so desparate to come. But, before she does, you consider your own needs and draw your head out before repaclacing it with your own crotch.",True);
-         this.outputMainText("\r\rYou grind against her stiff clit as it pokes through her loin cloth, your own " + this.clitDesc() + " button" + this.plural(2) + " throbbing through your " + this.clothesBottom() + ".",False);
-         if(this.cockTotal > 0 && this.cumAmount() > 0)
-         {
-            this.outputMainText(" You pull your " + this.cockDesc() + " cock" + this.plural(1) + ", letting the engorged length" + this.plural(1) + " bounce against her belly and hump through her many breasts.",False);
-         }
-         this.outputMainText(" You grind, cunt to cunt" + this.plural(2) + ", until you both let out a yowl as you climax together.\r\rYou\'re quick to gather your wits and clean yourself up, standing before her pussy even stops gushing with honey.",False);
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1);
-   }
-   if(this.enemyID == 302)
-   {
-      if(this.gender == 2 || this.percent() <= 50 && this.gender == 3)
-      {
-         this.outputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + this.pullUD(2) + " your " + this.clothesBottom() + " and showing him your own hungry flesh. You " + this.legVerb(1) + " your " + this.legDesc(2) + " over his twitchy rod, kissing the flat head of the horsy member with your " + this.vulvaDesc() + " lips.",True);
-         if(this.vagLimit() < 32)
-         {
-            this.outputMainText("\r\rHis man-meat is far too large for your cunt" + this.plural(2) + " however, so you do the next best thing and sit down in his lap. Grinding your hips forward, your " + this.clitDesc() + " clit" + this.plural(2) + " hump" + this.plural(4) + " into his length. The long prick squeezes between your " + this.boobDesc() + " tits as you press against him, making him tense even more.",False);
-         }
-         else
-         {
-            this.outputMainText("\r\rYou plunge down onto his giant man-meat with " + this.oneYour(2) + " " + this.vulvaDesc() + " cunt" + this.plural(2) + ". It fills you up so much you grin with a drool. You hug him close, your " + this.boobDesc() + " tits pressing against his firm chest, making the thing inside you even harder.",False);
-         }
-         this.outputMainText(" Your hips jerk up and down again and again as you rub along his length. Tingling sparks between the two of you as you feel his softball-sized testicles tighten up beneath your " + this.buttDesc() + " butt. Within seconds, the two of you echo in ecstacy, his whinnying quickly over-taking your moans,",False);
-         if(this.vagLimit() < 32)
-         {
-            this.outputMainText(" his cock erupting like a volcano between the two of you",False);
-            if(this.cockTotal > 0 && this.cumAmount() > 0)
-            {
-               this.outputMainText(", with yours joining in the volley,",False);
-            }
-            this.outputMainText(" and the hot spunk spills back down all over your bodies.\r\rYou don\'t give him much time to recover as you pull away, leaving a bit of after-cum to gush out over his belly.",False);
-         }
-         else
-         {
-            this.outputMainText(" his cock erupting within you like a powerful volcano, the molten spunk making your belly swell slightly before spilling back out onto the ground",False);
-            if(this.cockTotal > 0 && this.cumAmount() > 0)
-            {
-               this.outputMainText(", while yours sprays across his chest and face",False);
-            }
-            this.outputMainText(".\r\rYou don\'t give him much time to recover as you pull him out, a bit of after-cum gushing across your clit" + this.plural(2) + ".",False);
-            this.doImpregnate(this.enemyBaby());
-         }
-      }
-      else if(this.gender == 1 || this.gender == 3)
-      {
-         this.outputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + this.pullUD(2) + " your " + this.clothesBottom() + " and brandishing " + this.oneYour(1) + " own " + this.cockDesc() + " cock" + this.plural(1) + ". You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.",True);
-         this.outputMainText("\r\rHe whinnies loudly as you plunge your " + this.cockDesc() + " erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,",False);
-         if(this.cumAmount() > 0)
-         {
-            this.outputMainText(" while yours erupts into his ass, churning his insides,",False);
-         }
-         this.outputMainText(" until you\'ve both had a heady orgasm. You pull out quickly, fluids still dripping from your cock, while he heaves upon the ground.",False);
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1,5);
-   }
-   if(this.enemyID == 303)
-   {
-      if(this.gender == 1 || this.gender == 3)
-      {
-         this.outputMainText("Able to wrestle through the octopus girl\'s eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you\'re able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\r\rA sort of \'beak\', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it\'s still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and let your " + this.cockDesc() + " erection" + this.plural(2) + " wobble out. Aligning yourself, you thrust ",True);
-         if(this.cockTotal == 1)
-         {
-            this.outputMainText("it",False);
-         }
-         else
-         {
-            this.outputMainText("all of them",False);
-         }
-         this.outputMainText(" into her juicy hole.",False);
-         if(this.cockTotal * this.cockSize * this.cockSizeMod > 40)
-         {
-            this.outputMainText("\r\rSurprisingly, she\'s able to take in all of your length" + this.plural(1) + ", although you hear a dulcet, yet quite high pitched, cry as her face escapes her hands and lurches forward with her mouth wide in a strange combination of pain and confusion. She settles down quickly, however, and idly grips at the sand beneath her and her tentacles wrap around you to hang on for dear life. Her body literally stretches to form around your " + this.cockDesc() + " cock" + this.plural(1) + ", with lubrication spitting out from her beak, her skin becoming more translucent the more taut she becomes, until you can make out your throbbing erection" + this.plural(1) + " within. Fortunately, her belly isn\'t affected by the stretching, her pregnancy perfectly fine.",False);
-         }
-         else
-         {
-            this.outputMainText("\r\rShe seems to be able to take your length" + this.plural(1) + " easily, her passage large and excessively lubricated. Her hands leave her face as she grins wryly, not having expected you to take her on as such. Her tentacles wrap around your body, pulling you in deeper as she gropes her large belly.",False);
-         }
-         this.outputMainText("\r\rThe hungry maw seems to constantly swallow your dick" + this.plural(1) + " as you plunge into her again and again. The slick folds do a number on you, bringing you to orgasm within a minute. You gush inside of her,",False);
-         if(this.cumAmount() > 2000)
-         {
-            this.outputMainText(" your massive amount of cum causing her to swell further, her soft skin growing lighter as it stretches,",False);
-         }
-         this.outputMainText(" until you\'re fully spent.\r\rJust as you\'re about to pull out, you see her squirm, her belly jiggling and growing slightly larger, deforming slightly as the offspring inside her shifts.",False);
-      }
-      else if(this.gender == 2)
-      {
-         this.outputMainText("Able to wrestle through the octopus girl\'s eight powerful tentacles and knock her onto her squishy bottom, pinning her onto her back. Her tentacles spread wide before you, you\'re able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\r\rA sort of \'beak\', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it\'s still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and begin to grind your " + this.vulvaDesc() + " cunt" + this.plural(2) + " against it.\r\rShe lets out a warbling moan. Her hands leave her face, showing the blush and lustful expression she now wears. The beak nips at your " + this.clitDesc() + " clit" + this.plural(2) + " whenever the stiff thing" + this.plural(2) + " rub against it, making you buck in turn. Her tentacles quickly begin to grope around your body, making you slick as the move towards your crotch.",True);
-         if(this.vagTotal > 1 && this.vagTotal < 9)
-         {
-            this.outputMainText("\r\rOne tentacle for each of your pussies, they softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.",False);
-         }
-         else if(this.vagTotal == 1)
-         {
-            this.outputMainText("\r\rA tentacle softly slips into your pussy, diving in as far as it can go before it feels you begin to stretch. It slips in and out as you hump the girl, quickly driving you towards climax.",False);
-         }
-         else if(this.vagTotal > 8)
-         {
-            this.outputMainText("\r\rTaking turns at each of your pussies, the tentacles softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.",False);
-         }
-         this.outputMainText(" You can soon feel her shudder " + this.legWhere(1) + " your " + this.legDesc(2) + ", her large belly jiggling as milk drizzles past the feeding starfish and down her large breasts. The tentacles leave your slit" + this.plural(2) + " as you finish with your own orgasm...",False);
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1,2);
-   }
-   if(this.enemyID == 304)
-   {
-      if(this.vagTotal > 0 && this.vagLimit() > 80)
-      {
-         this.outputMainText("Somehow managing to push the little big bunny-man onto his tail, you pull " + this.pullUD(2) + " your " + this.clothesBottom() + ", climb up through his thighs, and plant your " + this.legDesc(10) + " on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it\'s sloped shape, you easily manage to climb up it as well, " + this.legVerb(5) + " it at the top with your " + this.legDesc(2) + ". The narrow tip easily fits between your thighs and slips into " + this.oneYour(2) + " " + this.vulvaDesc() + " vagina" + this.plural(4) + " as you descend upon it.\r\rHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.",True);
-         if(this.tallness < 180)
-         {
-            this.outputMainText(" Your belly begins to stretch as the tip burrows through your inner flesh, the giant cock filling you tremendously. By the time your " + this.buttDesc() + " rump lands upon his balls, your " + this.legDesc(2) + " wedge" + this.legPlural(1) + " into his sheath, the " + this.skinDesc() + " of your belly reaches past your head. You stand again to fuck his massive prick, though... you quickly find it\'s difficult to manage such a thing with his body so much larger that yours.\r\rTo your surprise, you find a white hand wrapping around your body, hugging you against the cock. Before you know it, you\'re being lifted into the air, slipping up the shaft, only to come back down once more. Difficult to tell who\'s raping who at the point, but he overtaken bunny-man masturbates with you as his toy. Fast and faster he pumps you up and down his length, quickly bringing you both to orgasm. His seed gushes into your belly, causing it to visibly ripple and distend from outside. It splashes back down the cock and spills around his sheath, quickly soaking through the fur of his balls. The warmth sends you to climax as well, slowly slipping off his shlong as it receeds into his sheath...",False);
-         }
-         else
-         {
-            this.outputMainText(" Taking in his entire length, you bounce again and again, letting it penetrate you thoroughly. His long foot beats against the ground in ecstasy while the whiskers around his nose twitch. It doesn\'t take long for him to freeze, his hips bucking into you, as your cunt fills with his seed, spilling back down around his sheath and soaking into the fur on his balls.",False);
-         }
-         this.doImpregnate(this.enemyBaby());
-      }
-      else
-      {
-         this.outputMainText("Rather intimidated by his size, you still manage to pull his head down until he\'s on all fours. You pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and shove his face into your naked groin. He quickly notices your scent and lustfully opens his mouth. You debate whether this is actually rape or not as he seems eager to lap at your",True);
-         if(this.gender == 1)
-         {
-            this.outputMainText(" " + this.cockDesc() + " cock" + this.plural(1) + "",False);
-         }
-         if(this.gender == 2)
-         {
-            this.outputMainText(" " + this.vulvaDesc() + " cunt" + this.plural(2) + "",False);
-         }
-         if(this.gender == 3)
-         {
-            this.outputMainText(" " + this.cockDesc() + " cock" + this.plural(1) + " and " + this.vulvaDesc() + " cunt" + this.plural(2) + "",False);
-         }
-         this.outputMainText(", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your " + this.legDesc(10) + " as well.\r\rYou both soon back away from each other, spent from the connection.",False);
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1,2);
-   }
-   if(this.enemyID == 305)
-   {
-      if(this.cockSize * this.cockSizeMod > 140 || this.cockTotal * this.cockSize * this.cockSizeMod > 280)
-      {
-         this.outputMainText("Somehow managing to push the little big bunny-girl onto her tail, you pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and step in between her thighs. Her pussy is already aroused and gaping, drooling with her feminine lubrication and forming webs from her large clit down through her inner labia. Hefting up your " + this.cockDesc() + " erection" + this.plural(1) + ", you aim for the sweet spot, spreading her even wider as you push yourself in, feeling her folds hug around you.",True);
-         if(this.tallness < 180)
-         {
-            this.outputMainText("\r\rHowever, you quickly realize it\'s going to be quite... difficult to plow through someone so much larger than you... And much to your surprise, you find a white hand beginning to hug around you, lifting you up and pulling you back from her cunt. Then you find yourself being rammed back in, the clear fluids splashing about your " + this.skinDesc() + ". Slightly confused as to who is raping who at this point, the bunny-girl proceeds to use you like a living dildo, ramming your cock" + this.plural(1) + " in and out of her folds again and again.",False);
-            if(this.knot == True)
-            {
-               this.outputMainText(" Your swelling knot" + this.plural(1) + " pop in and out of her relatively tight cun again and again, causing her to let out an ecstatic shriek as she\'s stretched obscenely.",False);
-            }
-            this.outputMainText("\r\rFaster and faster she thrusts you through until you begin to feel her pussy squeeze about your length" + this.plural(1) + ", pulsating rapidly with her large orgasm. You find yourself coming in second as your " + this.cockDesc() + " shlong" + this.plural(1) + " burst" + this.plural(3) + " inside of her",False);
-            if(this.cumAmount() > 2000)
-            {
-               this.outputMainText(", the stuff spraying back out at you as it overflows her womb",False);
-            }
-            this.outputMainText(".\r\rEventually she releases you back to the ground, allowing you to stumble backwards, her thighs heaving on either side with her breath.",False);
-         }
-         else
-         {
-            this.outputMainText(" Your hips quickly begin to thrust, holding her body down as you plow her again and again. She squirms erotically beneath you, her eyes rolled up into her head and her breasts jiggling back and forth in happiness. Soon her button nose and whiskers begin to twitch, followed by a shuddering from the rest of her body, as her pussy clamps down around your shaft" + this.plural(1) + " in orgasm. You grunt as well as your cock" + this.plural(1) + " fire" + this.plural(3) + " back, filling her womb with your seed",False);
-            if(this.cumAmount() > 2000)
-            {
-               this.outputMainText(" until it overflows and spews back out across your thighs",False);
-            }
-            this.outputMainText(".\r\rYou pause for a moment, heaving over her, until you begin to pull your softening erection" + this.plural(1) + " back out",False);
-            if(this.knot == True)
-            {
-               this.outputMainText(", your knot" + this.plural(1) + " making a lewd popping sound as it ejects from her stretched pussy, eliciting one last yelp of ecstasy",False);
-            }
-            this.outputMainText(".",False);
-         }
-      }
-      else
-      {
-         this.outputMainText("Rather intimidated by her size, you still manage to pull her head down until she\'s on all fours. You pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and shove her face into your naked groin. She quickly notices your scent and lustfully opens her mouth. You debate whether this is actually rape or not as she seems to eager lap at your",True);
-         if(this.gender == 1)
-         {
-            this.outputMainText(" " + this.cockDesc() + " cock" + this.plural(1) + "",False);
-         }
-         if(this.gender == 2)
-         {
-            this.outputMainText(" " + this.vulvaDesc() + " cunt" + this.plural(2) + "",False);
-         }
-         if(this.gender == 3)
-         {
-            this.outputMainText(" " + this.cockDesc() + " cock" + this.plural(1) + " and " + this.vulvaDesc() + " cunt" + this.plural(2) + "",False);
-         }
-         this.outputMainText(", expertly sucking and nibbling at your genitals. Her hands reach to her underside and begins to audibly slurp in her crotch and rub at her bosom. She quickly drives you to orgasm and as her mouth fills with your fluids, you soon find a puddle of clear slime oozing its way about your " + this.legDesc(10) + " as well.\r\rYou both soon back away from each other, spent from the connection.",False);
-         if(this.cockTotal > 0)
-         {
-            this.cumAmount();
-         }
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1,2);
-   }
-   if(this.enemyID == 306)
-   {
-      this.outputMainText("Conceding to your assault rather willingly, she actually bends back over her tail and pulls up her sash, exposing herself to you. A supple slit amidst her belly-scales, the green of her scales part with a delicious and moist pink tunnel. Her fingers even roam down to part herself for you, waiting for you to please yourself with her.",True);
-      if(this.cockTotal > 0)
-      {
-         this.outputMainText("\r\rYou prepare " + this.oneYour(1) + " " + this.cockDesc() + " cock" + this.plural(1) + " as you remove it from your " + this.clothesBottom() + ". You slide it over the scales of her tail as you approach her hips, making her shiver expectantly.",False);
-         if(this.cockSize * this.cockSizeMod > this.eVagLimit(80))
-         {
-            this.outputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and her eyes go wide as you begin to press in. Your member far greater than her large yet tight entrance, her hips seem to unhinge, her lower maw stretching wider and wider to take in your full girth. The belly-scales distend with the thick rod driving deeper within, filling her so much that she wraps the tip of her tail around her chest and over her face, squeezing and biting it in ecstasy.",False);
-         }
-         else
-         {
-            this.outputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and croons as it pushes inside.",False);
-         }
-         this.outputMainText("\r\rThe muscular flesh gnaws around your cock once you\'re fully devoured, making you collapse into the soft-scaled body. Your face presses into her chest, sneaking beneath the silken shawl and nibbling at the hills therein, making her writhe beneath you. Your hips quickly find a rhythm with hers, though her inner walls seem to be doing most of the work. Twisting and tenderly gnashing upon the meat you\'ve fed her, the velvety flesh makes you both moan and shudder. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn\'t take long before you\'re spraying your seed inside and she\'s clawing at her own scales in orgasm.\r\rAfter blowing your load, it takes another several minutes before her muscles release your softening member, allowing you to slip out and stumble back.",False);
-         this.cumAmount();
-      }
-      else
-      {
-         this.outputMainText("\r\rYou pull " + this.pullUD(2) + " your own " + this.clothesBottom() + " to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your " + this.vulvaDesc() + " lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh.\r\rYou grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don\'t see the tip of her tail sneaking up behind you. It\'s not until you pleasantly find the thick thing pressing itself into " + this.oneYour(2) + " hole" + this.plural(2) + " that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn\'t take long before you\'re bucking your hips and she\'s bucking back in orgasm.\r\rAfter an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.",False);
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1,2);
-   }
-   if(this.enemyID == 307)
-   {
-      this.outputMainText("You pull " + this.pullUD(2) + " your " + this.clothesBottom() + " and push the Minotaur down onto his ",True);
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText(" ass and his hefty cock bounces out from under his loin cloth, already half erect.",False);
-         if(this.vagLimit() < 72)
-         {
-            this.outputMainText(" Way too big for you, the most you can do is sit your " + this.buttDesc() + " ass down on his head-sized testicles and hug yourself around his rod, grinding against it. He doesn\'t seem to mind though and rather eagerly snorts in excitement, taking your efforts as a rather physical lap dance. He grunts and groans as you grind your " + this.clitDesc() + " clit" + this.plural(2) + " against his shaft, especially when you begin to lick and knead his thick head.\r\rRather abruptly, steam blows out his bovine nostrils as spunk blows out his cock. The stuff sprays hard, making you lean back to dodge direct contact with the geyser. You focus more on getting yourself off as you\'re showered with semen from above, until your hips are twitching and bucking against his meat.\r\rHe was probably more pleasured by the performance than you were, but you manage.",False);
-         }
-         else
-         {
-            this.outputMainText(" You climb up his bulky body and he doesn\'t make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into " + this.oneYour(2) + " " + this.vulvaDesc() + " cunt" + this.plural(2) + ". The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your " + this.buttDesc() + " ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work.\r\rIt\'s a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He\'s a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you...\r\rYou continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...",False);
-            this.doImpregnate(this.enemyBaby());
-         }
-      }
-      else
-      {
-         this.outputMainText("face and flip up his loin cloth to expose his large ass. The thing looks rather used already, though, and it doesn\'t take much to push in " + this.oneYour(1) + " " + this.cockDesc() + " cock" + this.plural(1) + ". The bull-man even snorts across the floor like he was enjoying it and his large meaty cock rises to attention below him. Nevertheless, you continue to pump in and out grand rump, slapping the hard muscular buttocks",False);
-         if(this.showBalls == True)
-         {
-            this.outputMainText(" while your " + this.ballDesc() + " balls slap against his head-sized testicles",False);
-         }
-         this.outputMainText(" and you\'re both quick to start spraying your loads. Yours gurgles down deeper into his body while his nearly knocks himself out with the blast, plenty of semen volleying into his face and pooling below him.\r\rOnce you\'re satisfied, you have this nagging feeling like he might have enjoyed it more. Whatever the case may be, you got what you wanted.",False);
-         this.cumAmount();
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,2,5);
-   }
-   if(this.enemyID == 308)
-   {
-      this.outputMainText("The freaky little girl melts into your embrace rather readily, suddenly becoming more frail and acting more like she appears, holding Mr. Snuggles tight across her chest. \"Be gentle, please?\"\r\rCatching you slightly off guard, you comply and proceed a little less roughly. You take her from behind, sitting down to the ground and pulling her into your lap with you. You kiss her cheek and nibble on her long elven ears, making her squirm in your arms as your hand reaches down beneath her skirt. Her panties are rather moist, slick with her honey, and the tender region twitches as you start to massage it. However, you soon feel something bumping against your palm.\r\rPulling her undergarments down further, you can see her pink flesh protruding out past her crotch slightly. A clitoris as big as her thumb pokes out from her folds, stiff and twitching with arousal. Not quite as little as the rest of her...\r\rSeeing as though she\'s rather aroused, you take the liberty of pushing things a step further. ",True);
-      if(this.cockTotal > 0 && this.cockSize * this.cockSizeMod < this.eVagLimit(24) || this.vagTotal > 0 && this.clitSize < 60)
-      {
-         this.outputMainText("Pulling " + this.pullUD(2) + " your " + this.clothesBottom() + ", you angle ",False);
-         if(this.cockTotal > 0 && this.cockSize * this.cockSizeMod < this.eVagLimit(24))
-         {
-            this.outputMainText("" + this.oneYour(1) + " " + this.cockDesc() + " cock" + this.plural(1) + "",False);
-         }
-         else
-         {
-            this.outputMainText("" + this.oneYour(2) + " " + this.clitDesc() + " clit" + this.plural(2) + "",False);
-         }
-         this.outputMainText(" towards her tight dainty folds, sinking it in as you push her down upon it as she lets out a slightly pained yet quite erotic squeal. By the time you\'re completely hilted inside of her, the protruding clit in front bucks up and down, jerking just from being penetrated. Such sensitivity only makes you want to thrill her more, making up for the pain she\'s given to you. You lift her slightly and slam her back down, thrusting with your hips in rhythm.\r\r\"Eeek!\" She cries out from the rough treatment, but the immediate cooing thereafter and the warmth you feel coming from her only shows that she enjoys it more. So the more you give to her...\r\rPounding again and again, you plow the small body in your lap, making her bounce up and down with your thrusting alone. The pigtails flail about, her mouth yawning wide and Mr. Snuggles riding on top of her tiny erection. She practically burns in your embrace, wildly reaching moaning and gasping orgasms while your own climax goes off",False);
-         if(this.cockTotal > 0 && this.cockSize * this.cockSizeMod < this.eVagLimit(24))
-         {
-            this.outputMainText(", your spunk spraying into her womb",False);
-            this.cumAmount();
-         }
-         this.outputMainText(".\r\rAfter a few minutes of tight connection, the girl crawls out of your lap, her naked ass shaking as she pulls you out before pulling her panties back up...",False);
-      }
-      else if(this.cockTotal > 0)
-      {
-         this.outputMainText("Pulling " + this.pullUD(2) + " your " + this.clothesBottom() + ", you realize your " + this.cockDesc() + " cock" + this.plural(1) + " " + this.plural(13) + " far too large for the small girl. Not wanting to tear her apart, despite the wounds she\'s given, you instead slip your stiff thing" + this.plural(1) + " up through her lap and over her own twitching erection, sinking between the doll and her chest. She accepts this predicament and proceeds to hug your sensitive flesh along with Mr. Snuggles while she begins to grind against your cock" + this.plural(1) + ". Her large button drags across you while her hands play with your shaft" + this.plural(1) + ", rubbing you and trying to pleasure you as well.\r\rHer efforts succeed on both ends, sending the two of you into gasping orgasms. Your cum sprays over her chest and face, drenching the doll and her outfit. She shivers and shakes, her hips pressing down against yours as she tries to anchor the quaking clitoris.",False);
-         this.outputMainText(".\r\rAfter a few minutes of tight connection, the girl crawls out of your lap, her naked ass shaking as she pulls her panties back up...",False);
-         this.cumAmount();
-      }
-      else
-      {
-         this.outputMainText("Turning the girl around, you land her back upon the floor. She looks up at you over the head of the doll, fearful of your menace as you press your " + this.hipDesc() + " hips down against her. Your " + this.vulvaDesc() + " nether-lips engulf her standing erection. Not enough to actually penetrate, you merely use the stiff button as a grinding post, slipping it through your labia again and again, banging it against your own " + this.clitDesc() + " clit" + this.plural(2) + ".\r\rThe sensation sends the girl into a tizzy, her rump wiggling against the floor as her hips squirm from your succulent flesh. She bites down on one of Mr. Snuggle\'s horn, muffling her moans as she approaches orgasm. You make up for her with your own cries of climax, shivering and spilling your honey across her dainty sex while her own pools beneath her.\r\rA few more moments of the blissful high passes before the girl inches her way out from under you, spreading her legs to air out her heated crotch while she pulls up her panties, the undergarments becoming wet with her honey and outlining her sex, especially the button that continues to poke out...",False);
-      }
-      this.doLust(-Math.floor(this.sen / 2),2,1,2);
-   }
-   if(this.enemyID == 309)
-   {
-      this.outputMainText("\"Mmm, so you want to take the lead, huh?\" The succubus concedes to your advances, bending over and putting her hands up against the wall, even going so far as to unzip her panties down the middle, exposing her engorged plump lips. The meaty things are plush and look like they\'re made for being fucked hard, luring you in more as you press in behind her.",True);
-      if(this.cockTotal > 0 || this.vagTotal > 0 && this.clitSize > 20)
-      {
-         this.outputMainText("\r\rYou plunge ",False);
-         if(this.cockTotal > 0)
-         {
-            this.outputMainText("" + this.oneYour(1) + " " + this.cockDesc() + " cock" + this.plural(1) + "",False);
-         }
-         else
-         {
-            this.outputMainText("" + this.oneYour(2) + " " + this.clitDesc() + " clit" + this.plural(2) + "",False);
-         }
-         this.outputMainText(" into her awaiting entrance, pushing in deep.",False);
-         if(this.cockTotal > 0 && this.cockSize * this.cockSizeMod > 48)
-         {
-            this.outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your cock pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False);
-         }
-         else if(this.cockTotal < 1 && this.clitSize > 120)
-         {
-            this.outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your clitoris pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False);
-         }
-         this.outputMainText(" The swollen labia presses against your crotch as you sink your hilt inside. The whole tunnel slurps around your shaft, kneading and squeezing you gently with her well-trained muscles. She was definitely made for this sort of thing... You begin to thrust again and again, the divine pussy sucking you in and out with such fantastic intensity.\r\rAnd while your attention is diverted, you fail to notice the serpentine tail creeping around to your " + this.buttDesc() + " tush. The spaded tip foldsin on itself, narrowing for a quick entrance into your ass. You buck harder into the she-devil as you feel yourself fill with the tail while it sensually slips in and out, pinning you from behind and urging you on further. Which you oblige.\r\rThe succubus\' wings spread as she lets out an ecstatic shrill, climaxing from your stimulated efforts. The grinding around your rod from her clenching passage also sends you along as well",False);
-         if(this.cockTotal > 0)
-         {
-            this.cumAmount();
-            this.outputMainText(", spraying your seed inside of her until it\'s pouring back out against your combined thighs",False);
-         }
-         this.outputMainText(".",False);
-      }
-      else
-      {
-         this.outputMainText("\r\rYou fall to your knees and push your face into her nethers. You bite into the swollen labia and lick up through the crevice, devouring her sex until you can feel her quiver. The plush flesh around your face feels pleasant, encouraging you to dive in more, slipping your tongue in and out of her hole while her ass shakes in delight.\r\rAnd while you\'re busy eating out the oversexual pussy, the serpentine tail creeps down to " + this.oneYour(2) + " own. The spade at the tip of the tail folds in on itself, narrowing for a quick entrance into your tunnel. You buck as you\'re caught off guard, but with your face planted in her round ass you quickly sit back down, driving her tail deeper into you.\r\rThe succubus seems pleased with the way things are, content with bringing you to orgasm as you do so for her. She lets out an ecstatic shrill, her wings spreading wide as she climaxes, a flood of honey pouring down around your mouth. The tail inside of you unfurls and drags across your inner walls, making your hips twitch with a writhing high in turn.",False);
-      }
-      this.outputMainText(" Yet, the climax feels a bit more draining than you might have expected. You feel slightly weaker, your body seemingly slimming down a bit, as the vials around the woman\'s belt glow slightly.\r\r\"Mmmm~\" She moans in concert with the glow. \"Tastes sooo good~\"\r\rJust as you thought you had been the one in charge the whole time, the succubus pulls away from you and comes to a stand while zipping herself up. \"That was a nice snack~\"",False);
-      this.stats(-1,0,0,0);
-      this.body = this.body - 1;
-      this.doLust(-Math.floor(this.sen / 2),2,1,2);
-   }
-}
+def DoRape():
+   global enemyID, gender, sen, showBalls, cockSize, cockSizeMod, cockTotal, vagTotal, tallness, knot, clitSize, body
+   chance = 0
+   if (enemyID == 1):
+      if (gender == 1):
+         OutputMainText("You stick your cock in the test enemy's butt and cum.",True)
+      if (gender == 2):
+         OutputMainText("You sit on the test enemy's cock until you cum.",True)
+      if (gender == 3):
+         OutputMainText("You stuff your cock in the test enemy's butt, then sit on its cock and cum.",True)
+   if (enemyID == 201):
+      OutputMainText("You easily roll the wolf onto his back. Pulling " + PullUD(2) + " your " + ClothesBottom() + ", you squat your " + VulvaDesc() + " cunt over his sheath, wedging it between your folds while you grind against it. Once his bright red prick twitches as it stretches from its sheath, reaching long and hard while dribbling with pre, you slip it into " + OneYour(2) + " hungry hole" + Plural(2) + ". You bounce on top of his belly,",True)
+      if (MoistCalc(2) > 7):
+         OutputMainText(" your honey splashing about everywhere,",False)
+      OutputMainText(" his hard doggy dick scraping against your inner walls. The lone wolf howls and drools, his tongue lolling out the side of his muzzle, as hot spurts of fresh cum gush within you. You shudder at the raw sensation, squeezing his coarse fur between your thighs. Then, you shiver as you feel the base of his cock swell, knotting within you. You collapse beside him, your pussy throbbing with orgasm, as you gasp and moan with his howls...",False)
+      OutputMainText("\n" + "\n" + "\n" + "Eventually, his knot deflates. You rub your ",False)
+      if (VagLimit() < 8):
+         OutputMainText("sore little pussy, a bit stretched from the size of the thing,",False)
+         VagChange(1,0)
+      else:
+         OutputMainText("satiated cunt,",False)
+      OutputMainText(" the cock sliding out with cum dripping down " + LegWhere(1) + " your " + LegDesc(2) + ".",False)
+      DoImpregnate(EnemyBaby())
+      DoLust(-math.floor(sen / 2),2,2)
+   if (enemyID == 202):
+      OutputMainText("You easily roll the wolf onto his back. Pulling " + PullUD(2) + " your " + ClothesBottom() + ", you squat your " + ButtDesc() + " ass over the pointy prick. You grab the hard, meaty rod and gently squeeze out some of the pre, slipping it about between your cheeks to make things nice and slick. Slowly sitting down, you wince as the narrow tip kisses your tight hole and moan as it slides in, easily stretching your ass around its curvy girth.",True)
+      if (showBalls == True):
+         OutputMainText(" Your " + BallDesc() + " testicles eventually come to a rest upon the wolf's belly, with your own " + CockDesc() + " cock" + Plural(1) + " bobbing above.",False)
+      else:
+         OutputMainText(" Your own " + CockDesc() + " cock" + Plural(1) + " eventually come to a rest upon the wolf's belly, slightly tickled by his course fur.",False)
+      OutputMainText("\n" + "\n" + "After a couple breaths from taking in the warm intruder, you begin to bounce your hips upon the animal. It howls back up at you in pleasure, your own gasps matching as your erection" + Plural(1) + " drum" + Plural(3) + " the fur. The wolf's tongue lolls out of the side of its mouth, allowing you to do all the work as its hind legs twitch in the air and its tail swishes over the ground. It seems to be quite happy with the result of this ordeal, so much so that it begins to spurt into your rectum rather quickly, coating your insides with hot sticky spunk." + "\n" + "\n" + "However, you're not left out of the fun as you feel something swell within the entrance to your ass. The wolf's knot expanding, the prick grinds against your inner walls more and more as it sprays about. You can't last any longer and explode above the wolf, drenching its fur in strand after strand of fresh steamy semen. More soon begins to spew back out your ass as the pent-up wolf overflows your cavity, forming sticky webs about the cheeks of your rump." + "\n" + "\n" + "Fur is eventually completely matted, dripping with wads of white, while your own " + SkinDesc() + " is sufficiently gunked up around your bottom and thighs. The wolf pants below you, tired and elated. With an attempt to stand, you lift the hind legs with you, still tied to your backside. But, with all the mess that has been made, the cock slips out with a wet pop and sends the animal back into the puddle below with a splash.",False)
+      DoLust(-math.floor(sen / 2),2,5)
+   if (enemyID == 301):
+      chance = Percent()
+      if (gender == 1) or ((Percent() <= 50) and (gender == 3)):
+         if (chance <= 100):
+            OutputMainText("The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling " + PullUD(2) + " your " + ClothesBottom() + ", you slide " + OneYour(1) + " " + CockDesc() + " prick" + Plural(1) + " out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.",True)
+            if ((cockSize * cockSizeMod) > eVagLimit(40)):
+               OutputMainText("\n" + "\n" + "However, she cries out in pain and disappointment, your " + CockDesc() + " cock far to big to fit inside without tearing her apart. So, instead, you slip it between her legs, rubbing it across her stiff clit and through her loincloth and over her belly as you ",False)
+            if ((cockSize * cockSizeMod) <= eVagLimit(40)) and ((cockSize * cockSizeMod) > eVagLimit(24)):
+               OutputMainText("\n" + "\n" + "She cries out in pain and pleasure as your " + CockDesc() + " cock stretches her thirsting cunt wide, pushing her bikini in until it tears from your path. She pushes her rump back towards you, trying her best to devour the hot rod all the way to its hilt as you ",False)
+            if ((cockSize * cockSizeMod) <= eVagLimit(24)):
+               OutputMainText("\n" + "\n" + "She cries out in ecstacy as her hungry cunt devours your " + CockDesc() + " cock, along with her own bikini until it tears from your path. She takes it all the way in to your hilt as you ",False)
+            OutputMainText("lean forward and hug her from behind, your hands groping about her many breasts. You pump hard, again and again, until the unavoidable pressure begins to build. Soon, you blow your load ",False)
+            if ((cockSize * cockSizeMod) > eVagLimit(40)):
+               OutputMainText("across her chest while she tries to lap up the spray with her tongue. You pull back, leaving her a mess.",False)
+            if ((cockSize * cockSizeMod) <= eVagLimit(40)):
+               OutputMainText("into her womb, making her let out a long and joyful mewl. Before she can become too content, you pull out of her with a slurp, your cum still dribbling from her used sex.",False)
+            CumAmount()
+      elif (gender == 2) or (gender == 3):
+         OutputMainText("You knock the felin woman backwards onto her ample ass, her legs spreading wide. She cries out as you duck beneath her loincloth and lick her stiff clit through her bikini. Juices flood within your mouth as she instantly reacts, her swollen cunt-lips gnawing at the crotch of the messy bottom. You pull it aside, diving in and getting a good mouthful of her supple flavor. You devour her folds until she twitches uncontrollably, so desparate to come. But, before she does, you consider your own needs and draw your head out before repaclacing it with your own crotch.",True)
+         OutputMainText("\n" + "\n" + "You grind against her stiff clit as it pokes through her loin cloth, your own " + ClitDesc() + " button" + Plural(2) + " throbbing through your " + ClothesBottom() + ".",False)
+         if (cockTotal > 0) and (CumAmount() > 0):
+            OutputMainText(" You pull your " + CockDesc() + " cock" + Plural(1) + ", letting the engorged length" + Plural(1) + " bounce against her belly and hump through her many breasts.",False)
+         OutputMainText(" You grind, cunt to cunt" + Plural(2) + ", until you both let out a yowl as you climax together." + "\n" + "\n" + "You're quick to gather your wits and clean yourself up, standing before her pussy even stops gushing with honey.",False)
+      DoLust(-math.floor(sen / 2),2,1)
+   if (enemyID == 302):
+      if (gender == 2) or ((Percent() <= 50) and (gender == 3)):
+         OutputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + PullUD(2) + " your " + ClothesBottom() + " and showing him your own hungry flesh. You " + LegVerb(1) + " your " + LegDesc(2) + " over his twitchy rod, kissing the flat head of the horsy member with your " + VulvaDesc() + " lips.",True)
+         if (VagLimit() < 32):
+            OutputMainText("\n" + "\n" + "His man-meat is far too large for your cunt" + Plural(2) + " however, so you do the next best thing and sit down in his lap. Grinding your hips forward, your " + ClitDesc() + " clit" + Plural(2) + " hump" + Plural(4) + " into his length. The long prick squeezes between your " + BoobDesc() + " tits as you press against him, making him tense even more.",False)
+         else:
+            OutputMainText("\n" + "\n" + "You plunge down onto his giant man-meat with " + OneYour(2) + " " + VulvaDesc() + " cunt" + Plural(2) + ". It fills you up so much you grin with a drool. You hug him close, your " + BoobDesc() + " tits pressing against his firm chest, making the thing inside you even harder.",False)
+         OutputMainText(" Your hips jerk up and down again and again as you rub along his length. Tingling sparks between the two of you as you feel his softball-sized testicles tighten up beneath your " + ButtDesc() + " butt. Within seconds, the two of you echo in ecstacy, his whinnying quickly over-taking your moans,",False)
+         if (VagLimit() < 32):
+            OutputMainText(" his cock erupting like a volcano between the two of you",False)
+            if (cockTotal > 0) and (CumAmount() > 0):
+               OutputMainText(", with yours joining in the volley,",False)
+            OutputMainText(" and the hot spunk spills back down all over your bodies." + "\n" + "\n" + "You don't give him much time to recover as you pull away, leaving a bit of after-cum to gush out over his belly.",False)
+         else:
+            OutputMainText(" his cock erupting within you like a powerful volcano, the molten spunk making your belly swell slightly before spilling back out onto the ground",False)
+            if (cockTotal > 0) and (CumAmount() > 0):
+               OutputMainText(", while yours sprays across his chest and face",False)
+            OutputMainText("." + "\n" + "\n" + "You don't give him much time to recover as you pull him out, a bit of after-cum gushing across your clit" + Plural(2) + ".",False)
+            DoImpregnate(EnemyBaby())
+      elif (gender == 1) or (gender == 3):
+         OutputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + PullUD(2) + " your " + ClothesBottom() + " and brandishing " + OneYour(1) + " own " + CockDesc() + " cock" + Plural(1) + ". You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.",True)
+         OutputMainText("\n" + "\n" + "He whinnies loudly as you plunge your " + CockDesc() + " erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,",False)
+         if (CumAmount() > 0):
+            OutputMainText(" while yours erupts into his ass, churning his insides,",False)
+         OutputMainText(" until you've both had a heady orgasm. You pull out quickly, fluids still dripping from your cock, while he heaves upon the ground.",False)
+      DoLust(-math.floor(sen / 2),2,1,5)
+   if (enemyID == 303):
+      if (gender == 1) or (gender == 3):
+         OutputMainText("Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole." + "\n" + "\n" + "A sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull " + PullUD(2) + " your " + ClothesBottom() + " and let your " + CockDesc() + " erection" + Plural(2) + " wobble out. Aligning yourself, you thrust ",True)
+         if (cockTotal == 1):
+            OutputMainText("it",False)
+         else:
+            OutputMainText("all of them",False)
+         OutputMainText(" into her juicy hole.",False)
+         if ((cockTotal * cockSize * cockSizeMod) > 40):
+            OutputMainText("\n" + "\n" + "Surprisingly, she's able to take in all of your length" + Plural(1) + ", although you hear a dulcet, yet quite high pitched, cry as her face escapes her hands and lurches forward with her mouth wide in a strange combination of pain and confusion. She settles down quickly, however, and idly grips at the sand beneath her and her tentacles wrap around you to hang on for dear life. Her body literally stretches to form around your " + CockDesc() + " cock" + Plural(1) + ", with lubrication spitting out from her beak, her skin becoming more translucent the more taut she becomes, until you can make out your throbbing erection" + Plural(1) + " within. Fortunately, her belly isn't affected by the stretching, her pregnancy perfectly fine.",False)
+         else:
+            OutputMainText("\n" + "\n" + "She seems to be able to take your length" + Plural(1) + " easily, her passage large and excessively lubricated. Her hands leave her face as she grins wryly, not having expected you to take her on as such. Her tentacles wrap around your body, pulling you in deeper as she gropes her large belly.",False)
+         OutputMainText("\n" + "\n" + "The hungry maw seems to constantly swallow your dick" + Plural(1) + " as you plunge into her again and again. The slick folds do a number on you, bringing you to orgasm within a minute. You gush inside of her,",False)
+         if (CumAmount() > 2000):
+            OutputMainText(" your massive amount of cum causing her to swell further, her soft skin growing lighter as it stretches,",False)
+         OutputMainText(" until you're fully spent." + "\n" + "\n" + "Just as you're about to pull out, you see her squirm, her belly jiggling and growing slightly larger, deforming slightly as the offspring inside her shifts.",False)
+      elif (gender == 2):
+         OutputMainText("Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, pinning her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole." + "\n" + "\n" + "A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull " + PullUD(2) + " your " + ClothesBottom() + " and begin to grind your " + VulvaDesc() + " cunt" + Plural(2) + " against it." + "\n" + "\n" + "She lets out a warbling moan. Her hands leave her face, showing the blush and lustful expression she now wears. The beak nips at your " + ClitDesc() + " clit" + Plural(2) + " whenever the stiff thing" + Plural(2) + " rub against it, making you buck in turn. Her tentacles quickly begin to grope around your body, making you slick as the move towards your crotch.",True)
+         if (vagTotal > 1) and (vagTotal < 9):
+            OutputMainText("\n" + "\n" + "One tentacle for each of your pussies, they softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.",False)
+         elif (vagTotal == 1):
+            OutputMainText("\n" + "\n" + "A tentacle softly slips into your pussy, diving in as far as it can go before it feels you begin to stretch. It slips in and out as you hump the girl, quickly driving you towards climax.",False)
+         elif (vagTotal > 8):
+            OutputMainText("\n" + "\n" + "Taking turns at each of your pussies, the tentacles softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.",False)
+         OutputMainText(" You can soon feel her shudder " + LegWhere(1) + " your " + LegDesc(2) + ", her large belly jiggling as milk drizzles past the feeding starfish and down her large breasts. The tentacles leave your slit" + Plural(2) + " as you finish with your own orgasm...",False)
+      DoLust(-math.floor(sen / 2),2,1,2)
+   if (enemyID == 304):
+      if (vagTotal > 0) and (VagLimit() > 80):
+         OutputMainText("Somehow managing to push the little big bunny-man onto his tail, you pull " + PullUD(2) + " your " + ClothesBottom() + ", climb up through his thighs, and plant your " + LegDesc(10) + " on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, " + LegVerb(5) + " it at the top with your " + LegDesc(2) + ". The narrow tip easily fits between your thighs and slips into " + OneYour(2) + " " + VulvaDesc() + " vagina" + Plural(4) + " as you descend upon it." + "\n" + "\n" + "His eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.",True)
+         if (tallness < 180):
+            OutputMainText(" Your belly begins to stretch as the tip burrows through your inner flesh, the giant cock filling you tremendously. By the time your " + ButtDesc() + " rump lands upon his balls, your " + LegDesc(2) + " wedge" + LegPlural(1) + " into his sheath, the " + SkinDesc() + " of your belly reaches past your head. You stand again to fuck his massive prick, though... you quickly find it's difficult to manage such a thing with his body so much larger that yours." + "\n" + "\n" + "To your surprise, you find a white hand wrapping around your body, hugging you against the cock. Before you know it, you're being lifted into the air, slipping up the shaft, only to come back down once more. Difficult to tell who's raping who at the point, but he overtaken bunny-man masturbates with you as his toy. Fast and faster he pumps you up and down his length, quickly bringing you both to orgasm. His seed gushes into your belly, causing it to visibly ripple and distend from outside. It splashes back down the cock and spills around his sheath, quickly soaking through the fur of his balls. The warmth sends you to climax as well, slowly slipping off his shlong as it receeds into his sheath...",False)
+         else:
+            OutputMainText(" Taking in his entire length, you bounce again and again, letting it penetrate you thoroughly. His long foot beats against the ground in ecstasy while the whiskers around his nose twitch. It doesn't take long for him to freeze, his hips bucking into you, as your cunt fills with his seed, spilling back down around his sheath and soaking into the fur on his balls.",False)
+         DoImpregnate(EnemyBaby())
+      else:
+         OutputMainText("Rather intimidated by his size, you still manage to pull his head down until he's on all fours. You pull " + PullUD(2) + " your " + ClothesBottom() + " and shove his face into your naked groin. He quickly notices your scent and lustfully opens his mouth. You debate whether this is actually rape or not as he seems eager to lap at your",True)
+         if (gender == 1):
+            OutputMainText(" " + CockDesc() + " cock" + Plural(1) + "",False)
+         if (gender == 2):
+            OutputMainText(" " + VulvaDesc() + " cunt" + Plural(2) + "",False)
+         if (gender == 3):
+            OutputMainText(" " + CockDesc() + " cock" + Plural(1) + " and " + VulvaDesc() + " cunt" + Plural(2) + "",False)
+         OutputMainText(", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your " + LegDesc(10) + " as well." + "\n" + "\n" + "You both soon back away from each other, spent from the connection.",False)
+      DoLust(-math.floor(sen / 2),2,1,2)
+   if (enemyID == 305):
+      if((cockSize * cockSizeMod) > 140) or ((cockTotal * cockSize * cockSizeMod) > 280):
+         OutputMainText("Somehow managing to push the little big bunny-girl onto her tail, you pull " + PullUD(2) + " your " + ClothesBottom() + " and step in between her thighs. Her pussy is already aroused and gaping, drooling with her feminine lubrication and forming webs from her large clit down through her inner labia. Hefting up your " + CockDesc() + " erection" + Plural(1) + ", you aim for the sweet spot, spreading her even wider as you push yourself in, feeling her folds hug around you.",True)
+         if (tallness < 180):
+            OutputMainText("\n" + "\n" + "However, you quickly realize it's going to be quite... difficult to plow through someone so much larger than you... And much to your surprise, you find a white hand beginning to hug around you, lifting you up and pulling you back from her cunt. Then you find yourself being rammed back in, the clear fluids splashing about your " + SkinDesc() + ". Slightly confused as to who is raping who at this point, the bunny-girl proceeds to use you like a living dildo, ramming your cock" + Plural(1) + " in and out of her folds again and again.",False)
+            if (knot == True):
+               OutputMainText(" Your swelling knot" + Plural(1) + " pop in and out of her relatively tight cun again and again, causing her to let out an ecstatic shriek as she's stretched obscenely.",False)
+            OutputMainText("\n" + "\n" + "Faster and faster she thrusts you through until you begin to feel her pussy squeeze about your length" + Plural(1) + ", pulsating rapidly with her large orgasm. You find yourself coming in second as your " + CockDesc() + " shlong" + Plural(1) + " burst" + Plural(3) + " inside of her",False)
+            if (CumAmount() > 2000):
+               OutputMainText(", the stuff spraying back out at you as it overflows her womb",False)
+            OutputMainText("." + "\n" + "\n" + "Eventually she releases you back to the ground, allowing you to stumble backwards, her thighs heaving on either side with her breath.",False)
+         else:
+            OutputMainText(" Your hips quickly begin to thrust, holding her body down as you plow her again and again. She squirms erotically beneath you, her eyes rolled up into her head and her breasts jiggling back and forth in happiness. Soon her button nose and whiskers begin to twitch, followed by a shuddering from the rest of her body, as her pussy clamps down around your shaft" + Plural(1) + " in orgasm. You grunt as well as your cock" + Plural(1) + " fire" + Plural(3) + " back, filling her womb with your seed",False)
+            if (CumAmount() > 2000):
+               OutputMainText(" until it overflows and spews back out across your thighs",False)
+            OutputMainText("." + "\n" + "\n" + "You pause for a moment, heaving over her, until you begin to pull your softening erection" + Plural(1) + " back out",False)
+            if (knot == True):
+               OutputMainText(", your knot" + Plural(1) + " making a lewd popping sound as it ejects from her stretched pussy, eliciting one last yelp of ecstasy",False)
+            OutputMainText(".",False)
+      else:
+         OutputMainText("Rather intimidated by her size, you still manage to pull her head down until she's on all fours. You pull " + PullUD(2) + " your " + ClothesBottom() + " and shove her face into your naked groin. She quickly notices your scent and lustfully opens her mouth. You debate whether this is actually rape or not as she seems to eager lap at your",True)
+         if (gender == 1):
+            OutputMainText(" " + CockDesc() + " cock" + Plural(1) + "",False)
+         if (gender == 2):
+            OutputMainText(" " + VulvaDesc() + " cunt" + Plural(2) + "",False)
+         if (gender == 3):
+            OutputMainText(" " + CockDesc() + " cock" + Plural(1) + " and " + VulvaDesc() + " cunt" + Plural(2) + "",False)
+         OutputMainText(", expertly sucking and nibbling at your genitals. Her hands reach to her underside and begins to audibly slurp in her crotch and rub at her bosom. She quickly drives you to orgasm and as her mouth fills with your fluids, you soon find a puddle of clear slime oozing its way about your " + LegDesc(10) + " as well." + "\n" + "\n" + "You both soon back away from each other, spent from the connection.",False)
+         if (cockTotal > 0):
+            CumAmount()
+      DoLust(-math.floor(sen / 2),2,1,2)
+   if (enemyID == 306):
+      OutputMainText("Conceding to your assault rather willingly, she actually bends back over her tail and pulls up her sash, exposing herself to you. A supple slit amidst her belly-scales, the green of her scales part with a delicious and moist pink tunnel. Her fingers even roam down to part herself for you, waiting for you to please yourself with her.",True)
+      if (cockTotal > 0):
+         OutputMainText("\n" + "\n" + "You prepare " + OneYour(1) + " " + CockDesc() + " cock" + Plural(1) + " as you remove it from your " + ClothesBottom() + ". You slide it over the scales of her tail as you approach her hips, making her shiver expectantly.",False)
+         if ((cockSize * cockSizeMod) > eVagLimit(80)):
+            outputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and her eyes go wide as you begin to press in. Your member far greater than her large yet tight entrance, her hips seem to unhinge, her lower maw stretching wider and wider to take in your full girth. The belly-scales distend with the thick rod driving deeper within, filling her so much that she wraps the tip of her tail around her chest and over her face, squeezing and biting it in ecstasy.",False)
+         else:
+            OutputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and croons as it pushes inside.",False)
+         OutputMainText("\n" + "\n" + "The muscular flesh gnaws around your cock once you're fully devoured, making you collapse into the soft-scaled body. Your face presses into her chest, sneaking beneath the silken shawl and nibbling at the hills therein, making her writhe beneath you. Your hips quickly find a rhythm with hers, though her inner walls seem to be doing most of the work. Twisting and tenderly gnashing upon the meat you've fed her, the velvety flesh makes you both moan and shudder. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're spraying your seed inside and she's clawing at her own scales in orgasm." + "\n" + "\n" + "After blowing your load, it takes another several minutes before her muscles release your softening member, allowing you to slip out and stumble back.",False)
+         CumAmount()
+      else:
+         OutputMainText("\r\rYou pull " + PullUD(2) + " your own " + ClothesBottom() + " to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your " + VulvaDesc() + " lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh." + "\n" + "\n" + "You grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don't see the tip of her tail sneaking up behind you. It's not until you pleasantly find the thick thing pressing itself into " + OneYour(2) + " hole" + Plural(2) + " that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're bucking your hips and she's bucking back in orgasm." + "\n" + "\n" + "After an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.",False)
+      DoLust(-math.floor(sen / 2),2,1,2)
+   if (enemyID == 307):
+      OutputMainText("You pull " + PullUD(2) + " your " + ClothesBottom() + " and push the Minotaur down onto his ",True)
+      if (vagTotal > 0):
+         OutputMainText(" ass and his hefty cock bounces out from under his loin cloth, already half erect.",False)
+         if (VagLimit() < 72):
+            OutputMainText(" Way too big for you, the most you can do is sit your " + ButtDesc() + " ass down on his head-sized testicles and hug yourself around his rod, grinding against it. He doesn't seem to mind though and rather eagerly snorts in excitement, taking your efforts as a rather physical lap dance. He grunts and groans as you grind your " + ClitDesc() + " clit" + Plural(2) + " against his shaft, especially when you begin to lick and knead his thick head." + "\n" + "\n" + "Rather abruptly, steam blows out his bovine nostrils as spunk blows out his cock. The stuff sprays hard, making you lean back to dodge direct contact with the geyser. You focus more on getting yourself off as you're showered with semen from above, until your hips are twitching and bucking against his meat." + "\n" + "\n" + "He was probably more pleasured by the performance than you were, but you manage.",False)
+         else:
+            OutputMainText(" You climb up his bulky body and he doesn't make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into " + OneYour(2) + " " + VulvaDesc() + " cunt" + Plural(2) + ". The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your " + ButtDesc() + " ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work." + "\n" + "\n" + "It's a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He's a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you..." + "\n" + "\n" + "You continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...",False)
+            DoImpregnate(EnemyBaby())
+      else:
+         OutputMainText("face and flip up his loin cloth to expose his large ass. The thing looks rather used already, though, and it doesn't take much to push in " + OneYour(1) + " " + CockDesc() + " cock" + Plural(1) + ". The bull-man even snorts across the floor like he was enjoying it and his large meaty cock rises to attention below him. Nevertheless, you continue to pump in and out grand rump, slapping the hard muscular buttocks",False)
+         if (showBalls == True):
+            OutputMainText(" while your " + BallDesc() + " balls slap against his head-sized testicles",False)
+         OutputMainText(" and you're both quick to start spraying your loads. Yours gurgles down deeper into his body while his nearly knocks himself out with the blast, plenty of semen volleying into his face and pooling below him." + "\n" + "\n" + "Once you're satisfied, you have this nagging feeling like he might have enjoyed it more. Whatever the case may be, you got what you wanted.",False)
+         CumAmount()
+      DoLust(-math.floor(sen / 2),2,2,5)
+   if (enemyID == 308):
+      OutputMainText("The freaky little girl melts into your embrace rather readily, suddenly becoming more frail and acting more like she appears, holding Mr. Snuggles tight across her chest. \"Be gentle, please?\"" + "\n" + "\n" + "Catching you slightly off guard, you comply and proceed a little less roughly. You take her from behind, sitting down to the ground and pulling her into your lap with you. You kiss her cheek and nibble on her long elven ears, making her squirm in your arms as your hand reaches down beneath her skirt. Her panties are rather moist, slick with her honey, and the tender region twitches as you start to massage it. However, you soon feel something bumping against your palm." + "\n" + "\n" + "Pulling her undergarments down further, you can see her pink flesh protruding out past her crotch slightly. A clitoris as big as her thumb pokes out from her folds, stiff and twitching with arousal. Not quite as little as the rest of her..." + "\n" + "\n" + "Seeing as though she's rather aroused, you take the liberty of pushing things a step further. ",True)
+      if ((cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24))) or ((vagTotal > 0) and (clitSize < 60)):
+         OutputMainText("Pulling " + PullUD(2) + " your " + ClothesBottom() + ", you angle ",False)
+         if (cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24))
+            OutputMainText("" + OneYour(1) + " " + CockDesc() + " cock" + Plural(1) + "",False)
+         else:
+            OutputMainText("" + OneYour(2) + " " + ClitDesc() + " clit" + Plural(2) + "",False)
+         OutputMainText(" towards her tight dainty folds, sinking it in as you push her down upon it as she lets out a slightly pained yet quite erotic squeal. By the time you're completely hilted inside of her, the protruding clit in front bucks up and down, jerking just from being penetrated. Such sensitivity only makes you want to thrill her more, making up for the pain she's given to you. You lift her slightly and slam her back down, thrusting with your hips in rhythm." + "\n" + "\n" + "\"Eeek!\" She cries out from the rough treatment, but the immediate cooing thereafter and the warmth you feel coming from her only shows that she enjoys it more. So the more you give to her..." + "\n" + "\n" + "Pounding again and again, you plow the small body in your lap, making her bounce up and down with your thrusting alone. The pigtails flail about, her mouth yawning wide and Mr. Snuggles riding on top of her tiny erection. She practically burns in your embrace, wildly reaching moaning and gasping orgasms while your own climax goes off",False)
+         if (cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24)):
+            OutputMainText(", your spunk spraying into her womb",False)
+            CumAmount()
+         OutputMainText("." + "\n" + "\n" + "After a few minutes of tight connection, the girl crawls out of your lap, her naked ass shaking as she pulls you out before pulling her panties back up...",False)
+      elif (cockTotal > 0):
+         OutputMainText("Pulling " + PullUD(2) + " your " + ClothesBottom() + ", you realize your " + CockDesc() + " cock" + Plural(1) + " " + Plural(13) + " far too large for the small girl. Not wanting to tear her apart, despite the wounds she's given, you instead slip your stiff thing" + Plural(1) + " up through her lap and over her own twitching erection, sinking between the doll and her chest. She accepts this predicament and proceeds to hug your sensitive flesh along with Mr. Snuggles while she begins to grind against your cock" + Plural(1) + ". Her large button drags across you while her hands play with your shaft" + Plural(1) + ", rubbing you and trying to pleasure you as well." + "\n" + "\n" + "Her efforts succeed on both ends, sending the two of you into gasping orgasms. Your cum sprays over her chest and face, drenching the doll and her outfit. She shivers and shakes, her hips pressing down against yours as she tries to anchor the quaking clitoris.",False)
+         OutputMainText("." + "\n" + "\n" + "After a few minutes of tight connection, the girl crawls out of your lap, her naked ass shaking as she pulls her panties back up...",False)
+         CumAmount()
+      else:
+         OutputMainText("Turning the girl around, you land her back upon the floor. She looks up at you over the head of the doll, fearful of your menace as you press your " + HipDesc() + " hips down against her. Your " + VulvaDesc() + " nether-lips engulf her standing erection. Not enough to actually penetrate, you merely use the stiff button as a grinding post, slipping it through your labia again and again, banging it against your own " + ClitDesc() + " clit" + Plural(2) + "." + "\n" + "\n" + "The sensation sends the girl into a tizzy, her rump wiggling against the floor as her hips squirm from your succulent flesh. She bites down on one of Mr. Snuggle's horn, muffling her moans as she approaches orgasm. You make up for her with your own cries of climax, shivering and spilling your honey across her dainty sex while her own pools beneath her." + "\n" + "\n" + "A few more moments of the blissful high passes before the girl inches her way out from under you, spreading her legs to air out her heated crotch while she pulls up her panties, the undergarments becoming wet with her honey and outlining her sex, especially the button that continues to poke out...",False)
+      DoLust(-math.floor(sen / 2),2,1,2)
+   if (enemyID == 309):
+      OutputMainText("\"Mmm, so you want to take the lead, huh?\" The succubus concedes to your advances, bending over and putting her hands up against the wall, even going so far as to unzip her panties down the middle, exposing her engorged plump lips. The meaty things are plush and look like they're made for being fucked hard, luring you in more as you press in behind her.",True)
+      if (cockTotal > 0) or ((vagTotal > 0) and (clitSize > 20)):
+         OutputMainText("\n" + "\n" + "You plunge ",False)
+         if (cockTotal > 0):
+            OutputMainText("" + OneYour(1) + " " + CockDesc() + " cock" + Plural(1) + "",False)
+         else:
+            OutputMainText("" + OneYour(2) + " " + ClitDesc() + " clit" + Plural(2) + "",False)
+         OutputMainText(" into her awaiting entrance, pushing in deep.",False)
+         if (cockTotal > 0) and ((cockSize * cockSizeMod) > 48):
+            OutputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your cock pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False)
+         elif (cockTotal < 1) and (clitSize > 120):
+            OutputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your clitoris pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False)
+         OutputMainText(" The swollen labia presses against your crotch as you sink your hilt inside. The whole tunnel slurps around your shaft, kneading and squeezing you gently with her well-trained muscles. She was definitely made for this sort of thing... You begin to thrust again and again, the divine pussy sucking you in and out with such fantastic intensity." + "\n" + "\n" + "And while your attention is diverted, you fail to notice the serpentine tail creeping around to your " + ButtDesc() + " tush. The spaded tip foldsin on itself, narrowing for a quick entrance into your ass. You buck harder into the she-devil as you feel yourself fill with the tail while it sensually slips in and out, pinning you from behind and urging you on further. Which you oblige." + "\n" + "\n" + "The succubus' wings spread as she lets out an ecstatic shrill, climaxing from your stimulated efforts. The grinding around your rod from her clenching passage also sends you along as well",False)
+         if (cockTotal > 0):
+            CumAmount()
+            OutputMainText(", spraying your seed inside of her until it's pouring back out against your combined thighs",False)
+         OutputMainText(".",False)
+      else:
+         OutputMainText("\n" + "\n" + "You fall to your knees and push your face into her nethers. You bite into the swollen labia and lick up through the crevice, devouring her sex until you can feel her quiver. The plush flesh around your face feels pleasant, encouraging you to dive in more, slipping your tongue in and out of her hole while her ass shakes in delight." + "\n" + "\n" + "And while you're busy eating out the oversexual pussy, the serpentine tail creeps down to " + OneYour(2) + " own. The spade at the tip of the tail folds in on itself, narrowing for a quick entrance into your tunnel. You buck as you're caught off guard, but with your face planted in her round ass you quickly sit back down, driving her tail deeper into you." + "\n" + "\n" + "The succubus seems pleased with the way things are, content with bringing you to orgasm as you do so for her. She lets out an ecstatic shrill, her wings spreading wide as she climaxes, a flood of honey pouring down around your mouth. The tail inside of you unfurls and drags across your inner walls, making your hips twitch with a writhing high in turn.",False)
+      OutputMainText(" Yet, the climax feels a bit more draining than you might have expected. You feel slightly weaker, your body seemingly slimming down a bit, as the vials around the woman's belt glow slightly." + "\n" + "\n" + "\"Mmmm~\" She moans in concert with the glow. \"Tastes sooo good~\"" + "\n" + "\n" + "Just as you thought you had been the one in charge the whole time, the succubus pulls away from you and comes to a stand while zipping herself up. \"That was a nice snack~\"",False)
+      Stats(-1,0,0,0)
+      body = body - 1
+      DoLust(-math.floor(sen / 2),2,1,2)
 
 !def DoGetRaped():
 {
@@ -8773,7 +6226,7 @@ def SpecailKOLose():
          {
             this.outputMainText("\r\rSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your " + this.legDesc(1) + ", holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\r\rAnd it\'s quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can\'t help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\r\rIn that moment of peak pleasure, the snake lets go of your " + this.legDesc(1) + " and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\r\rIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you...",False);
             this.i = 0;
-            while(this.i < this.pregArray.length)
+            while(this.i < len(pregArray))
             {
                if(this.pregArray[this.i] == False)
                {
@@ -8781,7 +6234,7 @@ def SpecailKOLose():
                   this.pregArray[this.i + 1] = 503;
                   this.pregArray[this.i + 2] = 240;
                   this.pregArray[this.i + 3] = 150;
-                  this.i = this.pregArray.length;
+                  this.i = len(pregArray);
                }
                this.i += 5;
             }
@@ -8983,7 +6436,7 @@ def SpecailKOLose():
             }
             this.outputMainText("\r\rAnd that was just the first...\r\rAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your " + this.clitDesc() + " clit" + this.plural(2) + ", you can do nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, the things inside shivering slightly at the warmth of their new home...\r\rHappy with her spawning season, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate...",False);
             this.i = 0;
-            while(this.i < this.pregArray.length)
+            while(this.i < len(pregArray))
             {
                if(this.pregArray[this.i] == False)
                {
@@ -8991,7 +6444,7 @@ def SpecailKOLose():
                   this.pregArray[this.i + 1] = 200;
                   this.pregArray[this.i + 2] = 216;
                   this.pregArray[this.i + 3] = 180;
-                  this.i = this.pregArray.length;
+                  this.i = len(pregArray);
                }
                this.i += 5;
             }
@@ -9030,7 +6483,7 @@ def SpecailKOLose():
             }
             this.outputMainText("\r\rAnd that was just the first...\r\rAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your " + this.clitDesc() + " clit" + this.plural(2) + ", you can nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, even the extra bit she gained from after you filled her with your cum, the things inside shivering slightly at the warmth of their new home...\r\rEspecially happy with how well her spawning season went this week, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate...",False);
             this.i = 0;
-            while(this.i < this.pregArray.length)
+            while(this.i < len(pregArray))
             {
                if(this.pregArray[this.i] == False)
                {
@@ -9038,7 +6491,7 @@ def SpecailKOLose():
                   this.pregArray[this.i + 1] = 200;
                   this.pregArray[this.i + 2] = 252;
                   this.pregArray[this.i + 3] = 216;
-                  this.i = this.pregArray.length;
+                  this.i = len(pregArray);
                }
                this.i += 5;
             }
@@ -9415,23 +6868,23 @@ def EnemyBaby():
       tempNum = 308
    return tempNum
 
-!def EnemyAttack():
-   global enemyID, edmg, cockTotal, cockSize, cockSizeMod, cockSnakeVenom, clitSize, vagTotal, vagSizeMod, vagSize, milkEngorgement, milkEngorgementLevel, udderEngorgement, udderEngorgementLevel, udders, balls, showBalls, ballSize, butt, vulvaSize, breastSize, udderSize, teatSize, nippleSize, eSen, lib, gender
+def EnemyAttack():
+   global enemyID, edmg, cockTotal, cockSize, cockSizeMod, cockSnakeVenom, clitSize, vagTotal, vagSizeMod, vagSize, milkEngorgement, milkEngorgementLevel, udderEngorgement, udderEngorgementLevel, udders, balls, showBalls, ballSize, butt, vulvaSize, breastSize, udderSize, teatSize, nippleSize, eSen, lib, gender, eLust, _str_, currentState, eHP, hips, hipMod, butt, buttMod, hair, hairLength
    _loc2_ = 0
    _loc1_ = percent()
-   if enemyID == 101:
-      if _loc1_ <= 50:
+   if (enemyID == 101):
+      if (_loc1_ <= 50):
          OutputMainText("\n"+ "\n" + "The cock-snake whips around, slapping you harshly with its tail and causing a painful welt.",False)
          DoHP(-eDmg(9))
-      elif _loc1_ > 50:
+      elif (_loc1_ > 50):
          OutputMainText("\n"+ "\n" + "The cock-snake opens its maw, long thin fangs dripping with venom, and it springs forward at your crotch. Its mouth bites down onto the crotch of your " + ClothesBottom() + ", fangs sinking right into",False)
-         if cockTotal > 0:
+         if (cockTotal > 0):
             OutputMainText(" " + OneYour(1) + " cock" + Plural(1) + ". It doesn't hurt much, but the venom that spills into you makes you feel strangely aroused and your cock" + Plural(1) + " swell" + Plural(3) + " within your " + ClothesBottom() + ", becoming permanently larger, while the venom continues to make it feel warm...",False)
             DoLust(math.floor(cockSize * cockSizeMod / 5 + Percent() / 10),1)
             CockChange(1,0)
             cockSnakeVenom += 5
-         elif cockTotal < 1 and vagTotal > 0:
-            if clitSize > 20 and Percent() <= 5:
+         elif (cockTotal < 1) and (vagTotal > 0):
+            if (clitSize > 20) and (Percent() <= 5):
                OutputMainText(" " + OneYour(2) + " " + ClitDesc() + " clit" + Plural(2) + ". You feel it swell and shift within your " + ClothesBottom() + ", your lips started to grow quite oddly as well...",False)
                VagChange(0,-1)
                CockChange(math.ceil(clitSize * 5 / 2),1)
@@ -9441,15 +6894,15 @@ def EnemyBaby():
                cockSnakeVenom += 5
                clitSize += 1
                DoLust(math.floor(clitSize / 5 + Percent() / 10),1)
-         elif Percent() <= 40:
+         elif (Percent() <= 40):
             OutputMainText(" your groin. It doesn't hurt much, but you feel a little odd...",False)
             CockChange(1,0)
             DoLust(math.floor(Percent() / 10),1)
          else:
             OutputMainText(" your groin. Though the endeavor proves fruitless, as all its venom manages to do is arouse you a little.",False)
             DoLust(math.floor(Percent() / 20),1)
-   if enemyID == 102:
-      if _loc1_ <= 30:
+   if (enemyID == 102):
+      if (_loc1_ <= 30):
          OutputMainText("\n"+ "\n" + "The sentient dust devil overcomes you and whooshes about your body, getting sand all over your " + SkinDesc() + " and into some crevices you'd rather not think of, making you very uncomfortable and wearing away some of your sensitivity.",False)
          Stats(0,0,0,-1)
          DoLust(-5,0)
@@ -9457,237 +6910,237 @@ def EnemyBaby():
          if milkEngorgement > 200 and milkEngorgementLevel > 1:
             OutputMainText("\n"+ "\n" + "The whirling sand leaps out at your " + BoobDesc() + " chest and laps up some of the milk that spills from it, sucking it back in and strengthening the devil's endurance.",False)
             DoeHP(5 + math.floor(Percent() / 20))
-         elif udderEngorgement > 200 and udderEngorgementLevel > 1 udders == True:
+         elif (udderEngorgement > 200) and (udderEngorgementLevel > 1) and (udders == True):
             OutputMainText("\n"+ "\n" + "The whirling sand leaps out at your " + UdderDesc() + " udder and laps up some of the milk that spills from it, sucking it back in and strengthening the devil's endurance.",False)
             DoeHP(5 + math.floor(Percent() / 20))
-         elif MoistCalc(1) > 11 and cockTotal > 0:
+         elif (MoistCalc(1) > 11) and (cockTotal > 0):
             OutputMainText("\n"+ "\n" + "The whirling sand across the " + CockDesc() + " bulge in your " + ClothesBottom() + " and laps up some of the slick lubrication that spills from it, sucking the stuff back in and strengthening the devil's endurance.",False)
             DoeHP(5 + math.floor(Percent() / 20))
-         elif MoistCalc(2) > 11 and this.vagTotal > 0:
+         elif (MoistCalc(2) > 11) and (vagTotal > 0):
             OutputMainText("\n"+ "\n" + "The whirling sand licks up " + LegWhere(1) + " your " + LegDesc(2) + ", across your " + VulvaDesc() + " groin, and laps up some of the slick lubrication that spills from it, sucking the stuff back in and strengthening the devil's endurance.",False)
             DoeHP(5 + math.floor(Percent() / 20))
-      elif _loc1_ <= 90:
+      elif (_loc1_ <= 90):
          _loc2_ = Percent()
-         if _loc2_ < 12 and cockTotal > 0:
+         if (_loc2_ < 12) and (cockTotal > 0):
             OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and softly drags across your " + CockDesc() + " masculine length" + Plural(1) + ", soaking up some of the moisture from within and causing " + Plural(9) + " to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
             cockSize -= 1
             DoeHP(2)
-         elif _loc2_ < 23 and balls > 0 and showBalls == True:
-            if ballSize < 2:
+         elif (_loc2_ < 23) and (balls > 0) and (showBalls == True):
+            if (ballSize < 2):
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and softly drags across your " + BallDesc() + " scrotum. However, your balls are so puny that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
             else:
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and softly drags across your " + BallDesc() + " scrotum, soaking up some of the moisture from the testicles within and causing them to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                ballSize -= 1
                DoeHP(2)
-         elif _loc2_ < 34:
-            if butt < 1:
+         elif (_loc2_ < 34):
+            if (butt < 1):
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and whisks across your " + ButtDesc() + " rump. However, your butt is so flat that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
             else:
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and whisks across your " + ButtDesc() + " rump, soaking up some of the moisture from within and causing it to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                butt -= 1
                DoeHP(2)
-         elif _loc2_ < 45 and vagTotal > 0:
-               if vulvaSize < 2:
+         elif (_loc2_ < 45) and (vagTotal > 0):
+               if (vulvaSize < 2):
                   OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and slips through your " + VulvaDesc() + " lips. However, your vulva is so tiny that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
                else:
                   OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and slips through your " + VulvaDesc() + " lips, soaking up some of the moisture from within and causing them to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                   vulvaSize -= 1
                   DoeHP(2)
-         elif _loc2_ < 56 and vagTotal > 0:
-            if clitSize < 2:
+         elif (_loc2_ < 56) and (vagTotal > 0):
+            if (clitSize < 2):
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and whirls about your " + ClitDesc() + " clit" + Plural(2) + ". However, your button" + Plural(2) + " " + Plural(14) + " so tiny that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
             else:
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and whirls about your " + ClitDesc() + " clit" + Plural(2) + ", soaking up some of the moisture from within and causing " + Plural(10) + " to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                vulvaSize -= 1
                DoeHP(2)
-         elif _loc2_ < 67:
-            if breastSize < 1:
+         elif (_loc2_ < 67):
+            if (breastSize < 1):
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesTop() + " and gropes about your " + BoobDesc() + " breasts. However, your chest is so flat that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
             else:
                OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesTop() + " and gropes about your " + BoobDesc() + " breasts, soaking up some of the moisture from within and causing them to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                butt -= 1
                DoeHP(2)
-         elif _loc2_ < 78 and udders == True:
-            if udderSize < 2:
+         elif (_loc2_ < 78) and (udders == True):
+            if (udderSize < 2):
                OutputMainText("\n"+ "\n" + "Some of the devil's sand blow across your " + UdderDesc() + " udder. However, your milk-bag is so small that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
-            else
+            else:
                OutputMainText("\n"+ "\n" + "Some of the devil's sand blow across your " + UdderDesc() + " udder, soaking up some of the moisture from within and causing it to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                butt -= 1
                DoeHP(2)
-         elif _loc2_ < 89 and udders == True:
-            if teatSize < 3:
+         elif (_loc2_ < 89) and (udders == True):
+            if (teatSize < 3):
                OutputMainText("\n"+ "\n" + "Some of the devil's sand licks across your " + TeatDesc() + " teats. However, your bovine-nipples are so little that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
             else:
                OutputMainText("\n"+ "\n" + "Some of the devil's sand licks across your " + TeatDesc() + " teats, soaking up some of the moisture from within and causing it to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
                butt -= 1
                DoeHP(2)
-         elif nippleSize < 2:
+         elif (nippleSize < 2):
             OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesBottom() + " and brushes over your " + NipDesc() + "nipples. However, your nipples are so little that there is hardly any moisture for the sand to take, doing nothing for the devil.",False)
          else:
             OutputMainText("\n"+ "\n" + "Some of the devil's sand creeps into your " + ClothesTop() + " and brushes over your " + NipDesc() + "nipples, soaking up some of the moisture from within and causing them to shrink a little. The sand then returns to the devil, renewing some of windy essence.",False)
             butt -= 1
             DoeHP(2)
-      elif _loc1_ <= 100:
+      elif (_loc1_ <= 100):
          _loc2_ = Percent()
          OutputMainText("\n"+ "\n" + "A funnel of sand shoots out from the devil's form, whipping out and latching onto your ",False)
-         if _loc2_ < 12 and this.cockTotal > 0:
+         if (_loc2_ < 12) and (cockTotal > 0):
             OutputMainText("" + CockDesc() + " cock" + Plural(1) + ", siphoning out a lot of moisture and causing " + Plural(9) + " to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
             cockSize -= 5
             DoeHP(10)
-         elif _loc2_ < 23 and balls > 0 and showBalls == True:
-            if ballSize < 1:
+         elif (_loc2_ < 23) and (balls > 0) and (showBalls == True):
+            if (ballSize < 1):
                OutputMainText("balls. However, they're already so puny that the devil can't siphon any more moisture from them, proving a fruitless attack.",False)
             else:
                OutputMainText("" + BallDesc() + " testicles, siphoning out a lot of moisture and causing them to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                ballSize -= 5
-               if ballSize < 0:
+               if (ballSize < 0):
                   ballSize = 0
                DoeHP(10)
-         elif _loc2_ < 34:
-            if butt < 1:
+         elif (_loc2_ < 34):
+            if (butt < 1):
                OutputMainText("butt. However, it's so flat that the devil can't siphon any more moisture from it, proving a fruitless attack.",False)
             else:
                OutputMainText("" + ButtDesc() + " butt, siphoning out a lot of moisture and causing them to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                butt -= 5
-               if butt < 0:
+               if (butt < 0):
                   butt = 0
                DoeHP(10)
-         elif _loc2_ < 45 and vagTotal > 0:
-            if vulvaSize < 2:
+         elif (_loc2_ < 45) and (vagTotal > 0):
+            if (vulvaSize < 2):
                OutputMainText("vulva. However, your lips are so thin and tiny that the devil can't siphon any more moisture from them, proving a fruitless attack.",False)
             else:
                OutputMainText("" + VulvaDesc() + " vulva, siphoning out a lot of moisture and causing it to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                vulvaSize -= 5
-               if vulvaSize < 1:
+               if (vulvaSize < 1):
                   vulvaSize = 1
                DoeHP(10)
-         elif _loc2_ < 56 and vagTotal > 0:
-            if clitSize < 2:
+         elif (_loc2_ < 56) and (vagTotal > 0):
+            if (clitSize < 2):
                OutputMainText("clit" + Plural(2) + ". However, your button" + Plural(14) + " so tiny that the devil can't siphon any more moisture from " + Plural(10) + ", proving a fruitless attack.",False)
             else:
                OutputMainText("" + ClitDesc() + " clit" + Plural(2) + ", siphoning out a lot of moisture and causing " + Plural(10) + " to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                clitSize -= 5
-               if clitSize < 1:
+               if (clitSize < 1):
                   clitSize = 1
                DoeHP(10)
-         elif _loc2_ < 67:
-            if breastSize < 1:
+         elif (_loc2_ < 67):
+            if (breastSize < 1):
                OutputMainText("chest. However, it's so flat that the devil can't siphon any more moisture from it, proving a fruitless attack.",False)
             else:
                OutputMainText("" + BoobDesc() + " bust, siphoning out a lot of moisture and causing your breasts to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                breastSize -= 5
-               if breastSize < 0:
+               if (breastSize < 0):
                   breastSize = 0
                DoeHP(10)
-         elif _loc2_ < 78 and udders == True:
-            if udderSize < 2:
+         elif (_loc2_ < 78) and (udders == True):
+            if (udderSize < 2):
                OutputMainText("udder. However, it's so small that the devil can't siphon any more moisture from it, proving a fruitless attack.",False)
             else:
                OutputMainText("" + UdderDesc() + " udder, siphoning out a lot of moisture and causing it to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                udderSize -= 5
-               if udderSize < 1:
+               if (udderSize < 1):
                   udderSize = 1
                DoeHP(10)
-         elif _loc2_ < 89 and udders == True:
-            if teatSize < 3:
+         elif (_loc2_ < 89) and (udders == True):
+            if (teatSize < 3):
                OutputMainText("teats. However, they're so tiny that the devil can't siphon any more moisture from them, proving a fruitless attack.",False)
                   else:
                      OutputMainText("" + TeatDesc() + " teats, siphoning out a lot of moisture and causing them to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                      teatSize -= 5
-                     if(this.teatSize < 2)
+                     if (teatSize < 2):
                         teatSize = 2
                      DoeHP(10)
-            elif nippleSize < 2:
+            elif (nippleSize < 2):
                OutputMainText("nipples. However, they're so tiny that the devil can't siphon any more moisture from them, proving a fruitless attack.",False)
             else:
                OutputMainText("" + NipDesc() + "nipples, siphoning out a lot of moisture and causing them to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
                nippleSize -= 5
-               if nippleSize < 1:
+               if (nippleSize < 1):
                   nippleSize = 1
                DoeHP(10)
-      if enemyID == 201:
-         if _loc1_ > 35 and _loc1_ <= 50:
+      if (enemyID == 201):
+         if (_loc1_ > 35) and (_loc1_ <= 50):
                OutputMainText("\n" + "\n" + "The lone wolf leaps at you, taking a large bite with its sharp teeth.",False)
                DoHP(-this.eDmg(6))
-            elif _loc1_ > 50 and _loc1_ <= 70 and lust > 15:
+            elif (_loc1_ > 50) and (_loc1_ <= 70) and (lust > 15):
                OutputMainText("\n" + "\n" + "His cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your " + LegDesc(1) + " and humps wildly, smearing his canine pre up and down your " + LegDesc(1) + ". A small spurt of cum shoots out, the large drop oozing down to your " + LegDesc(10) + ". Not exactly a full climax, but enough for now, the wolf backs off.",False)
                DoLust(lib / 3,1)
                DoeLust(-math.floor(Percent() / 10 + eSen / 2))
-            elif _loc1_ > 70 and gender != 0 and gender != 1:
+            elif (_loc1_ > 70) and (gender != 0) and (gender != 1):
                OutputMainText("\n" + "\n" + "The lone wolf lifts his leg after running up beside you, a bit of urine splashing out onto your " + LegDesc(10) + ". However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal.",False)
                DoLust(math.floor(Percent() / 10 + lib / 4),1)
             else:
                OutputMainText("\n" + "\n" + "The lone wolf rushes at you, scratching you with its claws.",False)
                DoHP(-eDmg(8))
-      if enemyID == 202:
-         if _loc1_ > 35 and _loc1_ <= 50:
+      if (enemyID == 202): 
+         if (_loc1_ > 35) and (_loc1_ <= 50):
             OutputMainText("\n" + "\n" + "The gay wolf leaps at you, taking a large bite with its sharp teeth.",False)
             DoHP(-eDmg(6))
-         elif _loc1_ > 50 and _loc1_ <= 70 and lust > 15:
+         elif (_loc1_ > 50) and (_loc1_ <= 70) and (lust > 15):
             OutputMainText("\n" + "\n" + "His cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your " + LegDesc(1) + " and humps wildly, smearing his canine pre up and down your " + LegDesc(1) + ". A small spurt of cum shoots out, the large drop oozing down to your " + LegDesc(10) + ". Not exactly a full climax, but enough for now, the wolf backs off.",False)
             DoLust(lib / 3,1)
             DoeLust(-math.floor(Percent() / 10 + eSen / 2))
-         elif _loc1_ > 70 and gender != 0 and gender != 1:
+         elif (_loc1_ > 70) and (gender != 0) and (gender != 1):
             OutputMainText("\n" + "\n" + "The gay wolf lifts his leg after running up beside you, a bit of urine splashing out onto your " + LegDesc(10) + ". However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal.",False)
             DoLust(math.floor(Percent() / 10 + this.lib / 4),1)
          else:
             OutputMainText("\n" + "\n" + "The gay wolf rushes at you, scratching you with its claws.",False)
             DoHP(-eDmg(8))
-      if enemyID == 301:
-         if _loc1_ > 30 and _loc1_ <= 60 and eLust > 20:
+      if (enemyID == 301):
+         if (_loc1_ > 30) and (_loc1_ <= 60) and (eLust > 20):
             OutputMainText("\n" + "\n" + "The horny felin woman comes in close, embracing you as she grinds her slick cunt up and down your " + LegDesc(1) + ". She licks your " + BoobDesc() + " chest while her feminine fluids spill down your thigh. She mewls a little as she has a small climax, alleviating some of her own frustrations while increasing yours in the process.",False)
             DoLust(math.floor(Percent() / 10 + lib / 3),1)
             DoeLust(-math.floor(Percent() / 10 + eSen / 2))
-         elif _loc1_ > 60 and _loc1_ <= 85 and eLust > 10:
+         elif (_loc1_ > 60) and (_loc1_ <= 85) and (eLust > 10):
             OutputMainText("\n" + "\n" + "Utterly thirsting for sex, she turns away from you and gets on all fours. She bends down further while raising her butt high into the air, showing off her lithe body while also showing off the swollen lips that bulge out of either side of her bikini bottom beneath the loin cloth, her tail waving enticingly above. Her sex-driven display makes you a little hot as well.",False)
             DoLust(math.floor(Percent() / 10 + lib / 4),1)
-         elif _loc1_ > 85:
+         elif (_loc1_ > 85):
             OutputMainText("\n" + "\n" + "Playfully, she lunges forward and bites you... hard. The pain is quite noticeable, but her giggling afterwards might also arouse you slightly, if you didn't know better...",False)
             DoHP(-eDmg(7))
             DoLust(math.floor(lib / 6),1)
          else:
             OutputMainText("\n" + "\n" + "In her frustration, she claws at you.",False)
             DoHP(-eDmg(10))
-      if enemyID == 302:
-         if _loc1_ > 30 and _loc1_ <= 60 and eLust >= 20:
+      if (enemyID == 302):
+         if (_loc1_ > 30) and (_loc1_ <= 60) and (eLust >= 20):
             OutputMainText("\n" + "\n" + "The drunken equan adjusts the giant bulge in his pants, grunting as a large gob of pre smears across his knee and blotches his pants. While not the most erotic display, whatever he's drinking makes the stuff smell extremely enticing...",False)
             DoLust(math.floor(lib / 5),1)
-         elif _loc1_ > 60 and _loc1_ <= 80:
+         elif (_loc1_ > 60) and (_loc1_ <= 80):
             OutputMainText("\n" + "\n" + "He lifts his large mug up to his lips, taking a big swig. He burps after downing it, his wounds seemingly less severe than before.",False)
             DoeHP(math.floor(Percent() / 10 + 5))
-         elif _loc1_ > 80:
+         elif (_loc1_ > 80):
             OutputMainText("\n" + "\n" + "Stumbling uncontrollably, he plows into you.",False)
             DoHP(-eDmg(7))
          else:
             OutputMainText("\n" + "\n" + "With a hearty laugh, he bonks you on the head with his mug.",False)
             DoHP(-eDmg(9))
-      if enemyID == 303:
-         if _loc1_ > 30 and _loc1_ <= 55:
+      if (enemyID == 303):
+         if (_loc1_ > 30) and (_loc1_ <= 55):
             OutputMainText("\n" + "\n" + "With a giggle that makes her breasts quiver, her hands move up to one of the starfish on her chest. She pries it away, her plump nipple popping out with a squirt of slightly pink milk. Giving you a quick wink, her other hand squeezes her breast, shooting a spurt of the stuff onto your body. The sweet-smelling liquid quickly absorbs into your " + SkinDesc() + ", making you grow warm and aroused.",False)
             DoLust(math.floor(20 + Percent() / 10),1)
-         elif _loc1_ > 55 and _loc1_ <= 80:
+         elif (_loc1_ > 55) and (_loc1_ <= 80):
             OutputMainText("\n" + "\n" + "One of her tentacles lashes out at you and whips up " + LegWhere(1) + " your " + LegDesc(2) + ". It smarts a bit, but it seems as though she intentionally hit you with the softer underside. The suction cups tear through your " + ClothesBottom() + " and stick to ",False)
             ChangeBot(-1)
-            if vagTotal > 0:
+            if (vagTotal > 0):
                OutputMainText("the front of your feminine cleft" + Plural(2) + ". You can feel fluid seep from the cups and into your clit" + Plural(2) + ", arousing you further. She twists with a focused expression, tugging again and again at your clit" + Plural(2) + ", trying to wrench herself free after the attack and making your hips buck in turn. By the time she manages to remove her tentacle with a pop, your poor button" + Plural(2) + " feel" + Plural(4) + " a bit larger than before...",False)
                DoLust(math.floor(20 + Percent() / 5),1)
                DoHP(-5)
                clitSize += 1
-            elif vagTotal < 1 and cockTotal > 0:
+            elif (vagTotal < 1) and (cockTotal > 0):
                OutputMainText(OneYour(1) + " cock" + Plural(1) + ". You can feel fluid seep from the cups and into your cock" + Plural(2) + ", arousing you further. The tentacle wraps around, tugging again and again at your erection, as through she were masturbating you. Although, from the focused expression on her first, she seems to simply be trying to wrench herself free after the attack. Not that it arouses you any less...",False)
                DoLust(math.floor(10 + Percent() / 10 + lib / 5),1)
-            elif vagTotal < 1 and cockTotal < 1:
+            elif (vagTotal < 1) and (cockTotal < 1):
                OutputMainText("your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your " + SkinDesc() + ", trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you.",False)
                DoLust(math.floor(10 + Percent() / 10),1)
-         elif _loc1_ > 80 and attireBot == -1:
+         elif (_loc1_ > 80) and (attireBot == -1):
             OutputMainText("\n" + "\n" + "She lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you.",False)
-            if vagTotal > 0:
+            if (vagTotal > 0):
                OutputMainText(" Some creep up your " + LegDesc(2) + " and sneak beneath your " + ClothesBottom() + ", sliding through your " + VulvaDesc() + " nether-lips. With a jump, you find your naughty hole" + Plural(2) + " being penetrated. The slick tentacle" + Plural(2) + " thrust in and out slightly, as if gauging your size.",False)
-               if vagLimit() < 20:
+               if (VagLimit() < 20):
                   OutputMainText(" Not quite satisfied, the tentacle" + Plural(2) + " plunge" + Plural(4) + " in deep, stretching you wider than before.",False)
                   VagChange(2,0)
                DoLust(math.floor(lib / 3),1)
-            if cockTotal > 0:
+            if (cockTotal > 0):
                OutputMainText(" A few wrap around your " + HipDesc() + " hips and pull out your " + CockDesc() + " erection" + Plural(1) + " from your " + ClothesBottom() + ". Your hips buck as she wraps her tentacle" + Plural(1) + " around your shaft" + Plural(1) + ", the slick skin seemingly gauging your girth more by touch than sight.",False)
                DoLust(floor(lib / 3),1)
             OutputMainText(" Her tentacles then wrap around your " + ButtDesc() + " bum with a hug as she leans in, her breasts pressing against your " + BoobDesc() + " chest. She kisses you lightly on the lips, slipping her tongue into your mouth. The sweet taste lingers for a moment, making you shiver in pleasure, before she moves back. Her tentacles then slime through your " + ClothesBottom() + ", leaving your " + ButtDesc() + " ass nice and wet before she gives it a light smack.",False)
@@ -9695,27 +7148,27 @@ def EnemyBaby():
             DoHP(-2)
          else:
             OutputMainText("\n" + "\n" + "One of her eight tentacles whips out and lashs you, leaving a welt. She still smiles, however, as she seems to find the act a little kinky.",False)
-            DoHP(-this.eDmg(4))
-      if enemyID == 304:
-         if _loc1_ > 30 and _loc1_ <= 55:
+            DoHP(-eDmg(4))
+      if (enemyID == 304):
+         if (_loc1_ > 30) and (_loc1_ <= 55):
             OutputMainText("\n" + "\n" + "With a chuckle, he bounces past you and gives you a quick swat to your " + ButtDesc() + " tush with his large foot in a rather playful manner.",False)
-            DoHP(-this.eDmg(15))
+            DoHP(-eDmg(15))
             DoLust(math.floor(Percent() / 10 + lib / 10),1)
-         elif _loc1_ > 55 and _loc1_ <= 85:
+         elif (_loc1_ > 55) and (_loc1_ <= 85):
             OutputMainText("\n" + "\n" + "Grabbing his own fuzzy scrotum, his eyes roll up into his head for a moment, biting his lip as he massages the testicles. A bit of pre drips down his fur and lathers around his balls until they're nice and shiny. Enjoying it a little too much, he decides to include you in the fun.",False)
-            if tallness <= 144:
+            if (tallness <= 144):
                OutputMainText(" He skips right up to you, towering over you. His legs bend down, lowering his testicles before your face, his knees straddling either side of your head. He presses his relatively enormous balls into your face, practically smothering you with the scent of his nuts while he grinds his hips into your head." + "\n" + "\n" + "Happy with the quick massage, he bounds back, letting you breath again.",False)
-            elif tallness > 144:
+            elif (tallness > 144):
                OutputMainText(" His feet spring him forward at you, his legs wrapping around your neck. Sitting on your shoulders, he presses his relatively giant balls into your face, making sure you get a nice whiff while he grinds his hips into your head." + "\n" + "\n" + "Happy with the quick massage, he bounds back, letting you breath again.",False)
             DoLust(math.floor(Percent() / 10 + lib / 5),1)
             DoeLust(10)
-         elif _loc1_ > 85 and eLust >= 70:
+         elif (_loc1_ > 85) and (eLust >= 70):
             OutputMainText("\n" + "\n" + "His pointy, carrot-like prick standing from his fuzzy sheath and dripping with pre, he decides to lunge at you.",False)
-            if breastSize >= 100:
+            if (breastSize >= 100):
                OutputMainText(" He hops up to your " + BoobDesc() + " chest and abruptly turns around. Bending forward, his fluffy tail brushes over your face as his rump slips by. His balls rest upon your head, his sheath pressing into your face. You can feel his slick prick slip into your cleavage, the pointy tip easily drilling a path between your breasts. Within seconds the rabbity fellow begins hopping up and down upon your chest with fervor, squeezing the sides of your tits to crush his cock. You can feel his pulse beat strongly through his sheath and very soon you feel his muscles tense again and again. He lets out a groan as your " + ClothesTop() + " floods with hot spunk, spurting between your flesh with a naughty sound and leaving your front completly swamped in a warm, sticky mess." + "\n" + "\n" + "The whole thing taking less than a minute, he hops off of you, slapping a strand of cum across your face before returning to the battle, his lust somewhat sated.",False)
-            elif butt >= 50:
+            elif (butt >= 50):
                OutputMainText(" He hops behind you, leaning down to grab the cheeks of your " + ButtDesc() + " ass and making the cleavage in your " + ClothesBottom() + " much deeper. His slick prick slips into the crack and in seconds he's fervently humping through your rear. Very quickly, he lets out a groan behind you as his cock shudders in your bum, ",False)
-               if tail > 1:
+               if (tail > 1):
                   OutputMainText("his hand yanking your " + TailDesc() + " high,",False)
                OutputMainText(" while ribbons of spunk flying up your back and over your hair, decorating you in white." + "\n" + "\n" + "The whole thing taking less than a minute, he hops off of you, leaving your back a cum-coated mess before returning to the battle, his lust somewhat sated.",False)
             else:
@@ -9725,327 +7178,201 @@ def EnemyBaby():
          else:
             OutputMainText("\n" + "\n" + "He bounces closer and kicks you with one of his big feet, trying to soften you up a little.",False)
             DoHP(-eDmg(8))
-      if enemyID == 305:
-         if _loc1_ > 30 and _loc1_ <= 55:
+      if (enemyID == 305):
+         if (_loc1_ > 30) and (_loc1_ <= 55):
             OutputMainText("\n" + "\n" + "With a giggle, she leans down and tickles you, amused by how cute you look. And as she stands back up, her relatively giant breasts thwap you upside the head.",False)
             DoHP(-eDmg(15))
             DoLust(math.floor(Percent() / 10 + lib / 10),1)
-            if sen >= 70:
+            if (sen >= 70):
                OutputMainText("\n" + "\n" + "Your body is so sensitive that her tickling has left you in a laughing fit. She takes the opportunity to 'attack' again.",False)
                EnemyAttack()
-         elif _loc1_ > 55 and _loc1_ <= 85:
+         elif (_loc1_ > 55) and (_loc1_ <= 85):
             OutputMainText("\n" + "\n" + "Her thighs press together as her hands reaches down to her naked groin. Biting her lip, she massages her pussy, her eyes closing with muffled whines. A bit of honey drips down her fur and lathers between her thighs until they're nice and shiny. Enjoying it a little too much, she decides to include you in the fun.",False)
-            if tallness <= 144:
+            if (tallness <= 144):
                OutputMainText(" She skips right up to you, towering over you. Her legs bend down, lowering her nether-lips to your face, her knees straddling either side of your head. She presses her relatively enormous pussy into your face, her clit rubbing across your cheek, practically smothering you with the scent of her arousal as she grinds her hips into your head." + "\n" + "\n" + "Happy with the quick massage, she bounds back, letting you breath again.",False)
-            elif tallness > 144:
+            elif (tallness > 144):
                OutputMainText(" Her feet spring her forward at you, her legs wrapping around your neck. Sitting on your shoulders, she presses her relatively enormous pussy into your face, her clit rubbing across your cheek, practically smothering you with the scent of her arousal as she grinds her hips into your head." + "\n" + "\n" + "Happy with the quick massage, she bounds back, letting you breath again.",False)
-            if hair > 0:
+            if (hair > 0):
                OutputMainText(" However, the intense humidity and her thighs squeezing you so tightly has left your hair squished up into a mohawk.",False)
                hair = 6
             DoLust(math.floor(Percent() / 10 + lib / 4),1)
             DoeLust(10)
-         elif _loc1_ > 85 and eLust >= 70:
+         elif (_loc1_ > 85) and (eLust >= 70):
             OutputMainText("\n" + "\n" + "The bunny-girl's vulva looks rather swollen and red, and her clitoris peeks through the clothes like a very small yet erect penis. Her arousal gets the best of her and she lunges at you.",False)
-            if tallness > 80:
+            if (tallness > 80):
                OutputMainText(" Her legs spread wide and her clit rams into your side, grinding up your ribs. She does her best to clamp her thighs around your body." + "\n" + "\n" + "One hand hugs your head while the other reaches down her backside and past her tail, nearly disappearing into her hungry cunny hole. She rapidly fists herself with loud schlicking sounds, her fem-juice squirting out across your " + LegDesc(2) + " with each pump, while her hips pound again and against against your, powerfully dragging her relatively large clit up and down your " + ClothesTop() + "." + "\n" + "\n" + "Not surprisingly, it doesn't take long before she quivers, one last splash messing your " + ClothesBottom() + ", as she comes to a small orgasm.",False)
             else:
-            {
-               this.outputMainText(" Her legs spread wide as she hops over you, casting you in the shadow of her cunt. You feel a splash across your face as you look up, a strand of her fem-juice falling down as one of her hands spreads her lips open. The other hand pinches her clit, masturbating it fiercely as her rump comes down upon you.\r\rBefore you know it, you\'re surrounding by wet soft flesh. Two of her fingers clamp onto your " + this.legDesc(2) + ", holding you against the ground while she stands back up, nearly lifting your " + this.clothesTop() + " off of your body. You have a small moment to breath before she descends once again, ramming your whole body into her vagina. The hot walls pulse and contract around you, squeezing you tightly. You can hear her furiously stroke her clit and moans escape from above. Then she rises, exposing you to the cooler air. She continues to use her like her own personal dildo, thrusting you in and out again and again until she lets out a howl, a waterfall of slime spilling out around you and forming a puddle where you stand.",False);
-            }
-            this.outputMainText("\r\rShe then steps away, her quick climax being enough to satiate herself for a bit. However, she\'s not quite done with you yet.",False);
-            this.doeLust(-30);
-            this.doLust(Math.floor(this.percent() / 5 + this.lib / 6),1);
-         }
-         else
-         {
-            this.outputMainText("\r\rShe bounces closer and kicks you with one of her big feet, trying to soften you up a little.",False);
-            this.doHP(-this.eDmg(8));
-         }
-      }
-      if(this.enemyID == 306)
-      {
-         if(_loc1_ > 25 && _loc1_ <= 45)
-         {
-            this.outputMainText("\r\rShe lunges forward with open maw and bites you! Though her bite isn\'t exactly the strongest...",False);
-            this.doHP(-this.eDmg(10));
-         }
-         else if(_loc1_ > 45 && _loc1_ <= 55)
-         {
-            this.outputMainText("\r\rThe naga whips around and slams into you with her powerfule tail!",False);
-            this.doHP(-this.eDmg(4));
-         }
-         else if(_loc1_ > 55 && _loc1_ <= 75)
-         {
-            this.outputMainText("\r\rHer tail coils and springs her into the air, leaping at you with wings outspread and closes them around you, battering your head about and knocking you slightly senseless.",False);
-            this.doHP(-this.eDmg(7));
-            this.stats(0,-1,0,0);
-         }
-         else if(_loc1_ > 75)
-         {
-            this.outputMainText("\r\rThe fierce naga twirls about, flourishing her prismatic wings and sending a cloud of sparkly colored dust in your direction. You sneeze a bit as you\'re forced to breath it in, feeling tingly as its magical effects settle in.",False);
-            if(this.eggLaying > 0 && this.vagTotal > 0)
-            {
-               this.outputMainText("\r\rYour womb feels more active, like your next egg is ready to come out faster...",False);
-               ++this.eggRate;
-               this.eggceleratorTime += 10;
-               ++this.eggceleratorDose;
-               if(this.eggceleratorDose > 8 + Math.ceil(this.percent() / 20))
-               {
-                  this.outputMainText("A little too fast...\r\rYour " + this.bellyDesc() + " belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying.",False);
-                  if(this.attireBot == -2 || this.attireBot == 5 || this.attireBot == 7 || this.attireBot == 12 || this.attireBot == 13 || this.attireBot == 14 || this.attireBot == 16 || this.attireBot == 25)
-                  {
-                     this.outputMainText(" Without time to remove your clothes, you\'re thankful for your " + this.clothesBottom + "\'s open crotch as the egg immediately slips through " + this.oneYour(2) + " " + this.vulvaDesc() + " opening" + this.plural(2) + " and falls to the ground where it shatters and spills its unfertilized contents. Your " + this.legDesc(6) + " quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out.",False);
-                  }
-                  else
-                  {
-                     this.outputMainText(" Without time to remove your clothes, the egg immediately slips through " + this.oneYour(2) + " " + this.vulvaDesc() + " opening" + this.plural(2) + " and pushes at your " + this.clothesBottom() + ". Just one stuck in the crotch of the fabric isn\'t too much of an issue, but you grip your quaking " + this.legDesc(6) + " as there are plenty more to come. Another egg pushes against the first, expanding your " + this.clothesBottom() + " further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out.",False);
-                     this.changeBot(-1);
-                  }
-                  this.outputMainText("\r\rIt doesn\'t take long before your " + this.legDesc(2) + " finally give" + this.legPlural(1) + " out and you fall into the mess, eggs still slipping through your slit. It doesn\'t take long for your body to burn through its production, your loins crying out in arousal as the laying slows. And once the last egg slips out, the naga licks her lips and closes in on the defenseless prey...",False);
-                  this.doLust(1000,0);
-                  this.eggceleratorTime = 0;
-                  this.eggRate -= this.eggceleratorDose;
-                  this.eggceleratorDose = 0;
-                  this.hrs += 1;
-               }
-            }
-            else if(this.pregCheck(0))
-            {
-               this.outputMainText("\r\rYour womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust.",False);
-               this.i = 0;
-               while(this.i < this.pregArray.length)
-               {
-                  if(this.pregArray[this.i] == True)
-                  {
-                     this.pregArray[this.i + 3] += 10;
-                  }
-                  this.i += 5;
-               }
-            }
-            else if(this.gender != 0)
-            {
-               this.outputMainText("\r\rYour loins feel suddenly more fertile. If you can consider the desire to fuck as being more \'fertile\'...",False);
-               this.doLust(20,1);
-            }
-            else
-            {
-               this.outputMainText("\r\rHowever, the tingle quickly subsides and seems to have had no effect on you. Though you won\'t be letting the naga know that.",False);
-            }
-         }
-         else
-         {
-            this.outputMainText("\r\rLashing out with her claws, the naga slashes at you.",False);
-            this.doHP(-this.eDmg(8));
-         }
-      }
-      if(this.enemyID == 307)
-      {
-         if(_loc1_ <= 25)
-         {
+               OutputMainText(" Her legs spread wide as she hops over you, casting you in the shadow of her cunt. You feel a splash across your face as you look up, a strand of her fem-juice falling down as one of her hands spreads her lips open. The other hand pinches her clit, masturbating it fiercely as her rump comes down upon you." + "\n" + "\n" + "Before you know it, you're surrounding by wet soft flesh. Two of her fingers clamp onto your " + LegDesc(2) + ", holding you against the ground while she stands back up, nearly lifting your " + ClothesTop() + " off of your body. You have a small moment to breath before she descends once again, ramming your whole body into her vagina. The hot walls pulse and contract around you, squeezing you tightly. You can hear her furiously stroke her clit and moans escape from above. Then she rises, exposing you to the cooler air. She continues to use her like her own personal dildo, thrusting you in and out again and again until she lets out a howl, a waterfall of slime spilling out around you and forming a puddle where you stand.",False)
+            OutputMainText("\n" + "\n" + "She then steps away, her quick climax being enough to satiate herself for a bit. However, she's not quite done with you yet.",False)
+            DoeLust(-30)
+            DoLust(math.floor(Percent() / 5 + lib / 6),1)
+         else:
+            OutputMainText("\n" + "\n" + "She bounces closer and kicks you with one of her big feet, trying to soften you up a little.",False)
+            DoHP(-eDmg(8))
+      if (enemyID == 306):
+         if (_loc1_ > 25) and (_loc1_ <= 45):
+            OutputMainText("\n" + "\n" + "She lunges forward with open maw and bites you! Though her bite isn\'t exactly the strongest...",False)
+            DoHP(-eDmg(10))
+         elif (_loc1_ > 45) and (_loc1_ <= 55):
+            OutputMainText("\n" + "\n" + "The naga whips around and slams into you with her powerfule tail!",False)
+            DoHP(-eDmg(4))
+         elif (_loc1_ > 55) and (_loc1_ <= 75):
+            OutputMainText("\n" + "\n" + "Her tail coils and springs her into the air, leaping at you with wings outspread and closes them around you, battering your head about and knocking you slightly senseless.",False)
+            DoHP(-this.eDmg(7))
+            Stats(0,-1,0,0)
+         elif (_loc1_ > 75):
+            OutputMainText("\n" + "\n" + "The fierce naga twirls about, flourishing her prismatic wings and sending a cloud of sparkly colored dust in your direction. You sneeze a bit as you're forced to breath it in, feeling tingly as its magical effects settle in.",False)
+            if (eggLaying > 0) and (vagTotal > 0):
+               OutputMainText("\n" + "\n" + "Your womb feels more active, like your next egg is ready to come out faster...",False)
+               eggRate += 1
+               eggceleratorTime += 10
+               eggceleratorDose += 1
+               if (eggceleratorDose > (8 + math.ceil(Percent() / 20))):
+                  OutputMainText("A little too fast..." + "\n" + "\n" + "Your " + BellyDesc() + " belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying.",False)
+                  if (attireBot == -2) or (attireBot == 5) or (attireBot == 7) or (attireBot == 12) or (attireBot == 13) or (attireBot == 14) or (attireBot == 16) or (attireBot == 25):
+                     OutputMainText(" Without time to remove your clothes, you're thankful for your " + ClothesBottom + "'s open crotch as the egg immediately slips through " + OneYour(2) + " " + VulvaDesc() + " opening" + Plural(2) + " and falls to the ground where it shatters and spills its unfertilized contents. Your " + LegDesc(6) + " quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out.",False)
+                  else:
+                     OutputMainText(" Without time to remove your clothes, the egg immediately slips through " + OneYour(2) + " " + VulvaDesc() + " opening" + Plural(2) + " and pushes at your " + ClothesBottom() + ". Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking " + LegDesc(6) + " as there are plenty more to come. Another egg pushes against the first, expanding your " + ClothesBottom() + " further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out.",False)
+                     ChangeBot(-1)
+                  OutputMainText("\n" + "\n" + "It doesn't take long before your " + LegDesc(2) + " finally give" + LegPlural(1) + " out and you fall into the mess, eggs still slipping through your slit. It doesn't take long for your body to burn through its production, your loins crying out in arousal as the laying slows. And once the last egg slips out, the naga licks her lips and closes in on the defenseless prey...",False)
+                  DoLust(1000,0)
+                  eggceleratorTime = 0
+                  eggRate -= eggceleratorDose
+                  eggceleratorDose = 0
+                  hrs += 1
+            elif (PregCheck(0) == True):
+               OutputMainText("\n" + "\n" + "Your womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust.",False)
+               i = 0
+               while (i < len(pregArray)):
+                  if (pregArray[i] == True)
+                     pregArray[i + 3] += 10
+                  i += 5
+            elif (gender != 0):
+               OutputMainText("\n" + "\n" + "Your loins feel suddenly more fertile. If you can consider the desire to fuck as being more 'fertile'...",False)
+               DoLust(20,1)
+            else:
+               OutputMainText("\n" + "\n" + "However, the tingle quickly subsides and seems to have had no effect on you. Though you won't be letting the naga know that.",False)
+         else:
+            OutputMainText("\n" + "\n" + "Lashing out with her claws, the naga slashes at you.",False)
+            DoHP(-eDmg(8))
+      if (enemyID == 307):
+         if (_loc1_ <= 25):
             this.outputMainText("\r\rBANG, ZOOM! Straight to the moon! He slams into your chest with such force that he knocks the breath out of you, giving him time for another attack",False);
             this.doHP(-this.eDmg(6));
-            if(this.currentState == 2)
-            {
-               this.enemyAttack();
-            }
-         }
-         else if(_loc1_ <= 45)
-         {
-            this.outputMainText("\r\r\"Err...\" He stops for a moment, forgetting what he was going to do next... He\'s not a smart one, that\'s for sure.",False);
-         }
-         else if(_loc1_ <= 65 && this.eLust > 40)
-         {
-            this.outputMainText("\r\rWith his cock growing erect out the side of his loin cloth, he pauses his assault for a moment to take care of himself... right in front of you. His large hand wraps around his thick cock and furiously begins to masturbate, the skin from his shaft dragging over the wide head again and again so quickly that it looks like it\'s winking. Then, with a grunt, a geyser of spunk sprays in your direction like a firehose.",False);
-            if(this.percent() > this.str)
-            {
-               this.outputMainText(" It hits you with such force that you\'re blasted back against the wall and lose your breath for a moment, giving the Minotaur a chance for a followup attack while you catch your breath and wipe off some of the heady thick spooge.",False);
-               this.doLust(Math.floor(this.eLust / 2),1);
-               this.eLust -= 20;
-               if(this.currentState == 2)
-               {
-                  this.enemyAttack();
-               }
-            }
-            else
-            {
-               this.outputMainText(" The spooge splatters all over you and the heady scent fills your nostrils...",False);
-               this.doLust(Math.floor(this.eLust / 2),1);
-               this.eLust -= 20;
-            }
-         }
-         else
-         {
-            this.outputMainText("\r\rPOW! He punches you right in the kisser.",False);
-            this.doHP(-this.eDmg(8));
-         }
-      }
-      if(this.enemyID == 308)
-      {
-         if(_loc1_ <= 23)
-         {
-            this.outputMainText("\r\rHer schizophrenic bloodlust subsides for a moment as she looks down. \"Oh no! My shoe came undone!\"\r\rShe turns away from you, acting as though not seeing you means you\'re not there, and she proceeds to bend over at the hip so she can reach down to fix her shoe. Inevitably, her skirt rises, showing off the backside of her panties. Despite the big cute looking Minotaur face embroided on the back, the fabric sinks into her cheeks and outlines her tight little rump so perfectly. You can\'t help but gaze at it until she twirls back around to continue with the battle.",False);
-            this.doLust(Math.floor(this.percent() / 10 + this.lib / 4),1);
-         }
-         else if(_loc1_ <= 46)
-         {
-            this.outputMainText("\r\rShe coos... or snarls? Either way, you find her sinking her teeth into your " + this.skinDesc() + ", making you yelp a little in turn. And as soon as she lets go, she is suddenly much more timid, saying \"Aww, I\'m sorry... I\'ll kiss your boo-boo and make it better...\". She proceeds to lick the wound she just cause, kissing it rather... sensually.",False);
-            this.doHP(-this.eDmg(4));
-            this.doLust(Math.floor(this.percent() / 10 + this.sen / 5),1);
-         }
-         else if(_loc1_ > 46 && _loc1_ <= 61 && this.eHP < 85)
-         {
-            this.outputMainText("\r\r\"YOU THINK YOU CAN HURT ME?! ATTACK, MR. SNUGGLES!\"\r\rMr. Snuggles comes flying at you as she swing him around by his leg. The doll hits you with a surprising amount of force - extremely hard and heavy - and you lose your breath for a moment. You could swear the thing must be full of heavy metal and it\'s almost amazing a girl her size could even lift such a thing...",False);
-            this.doHP(-this.eDmg(2));
-         }
-         else if(_loc1_ > 61 && _loc1_ <= 76 && this.eLust > 50)
-         {
-            this.outputMainText("\r\r\"Mmm...\" The little girl actually seems like a little girl again as she holds her dolly close. Then a hand sinks down beneath her skirt. She lifts the frilly thing as she grabs at her crotch, exposing her panties and pulling them up through her slit, giving you a good view of her crevices. \"It\'s so tingly down there...\"",False);
-            this.doLust(this.percent() / 10 + this.lib / 4,1);
-         }
-         else
-         {
-            this.outputMainText("\r\rWith a growl, she jumps in and slashes at you with her claw-like fingernails. She lets out a gutteral giggle when she connects, licking her nails clean right away.",False);
-            this.doHP(-this.eDmg(3));
-         }
-      }
-      if(this.enemyID == 309)
-      {
-         if(_loc1_ <= 25)
-         {
-            if(this.breastSize < 8)
-            {
-               this.outputMainText("\r\r\"Hmm... Your chest isn\'t quite up to par~\" Her wings flutter as she darts about and you feel her spaded tail graze across your " + this.boobDesc() + " chest. When she stops back where she started, one of her vials glows slightly and she smiles. You look down to see why and notice you chest has become more swollen, jiggling slightly!",False);
-               this.boobChange(1);
-            }
-            else if(this.hips * this.hipMod < 16)
-            {
-               this.outputMainText("\r\r\"Those hips need to match your tits more, give you some more curves~\" She steps up and her tail wraps around your " + this.hipDesc() + " hips before pulling back. As she steps back, one of her vials glows and she smiles. You wince as you feel your " + this.clothesBottom() + " grow tighter, your hips stretching out furhter than before!",False);
-               ++this.hips;
-            }
-            else if(this.butt * this.buttMod < 15)
-            {
-               this.outputMainText("\r\r\"Mmm... You backside needs some more attention, doesn\'t it?\" She rushes around behind you, the spade of her tail giving your " + this.buttDesc() + " rear a quick spank. One of her vials glows and she smiles as your rump presses against your " + this.clothesBottom() + ", jiggling slightly as you stand.",False);
-               ++this.butt;
-            }
-            else if(this.cockTotal > 0)
-            {
-               this.outputMainText("\r\r\"And this thing you\'ve got here just totally ruins your womanly figure now. We should take care of that~\" The woman steps behind you but her tail reaches around to your " + this.cockDesc() + " bulge, cradling it with the spade and giving it a shake. You can feel your cock" + this.plural(1) + " shrink slightly within your " + this.clothesBottom() + " while one of her vials glow.",False);
-               if(this.cockSize > 1)
-               {
-                  this.cockChange(-1,0);
-               }
-               else
-               {
-                  this.cockChange(-1,0);
-                  this.vagChange(0,1);
-                  this.outputMainText("\r\r\"Now that\'s my girl~ Who needs all those manly features when you can be a slut~?\" She seems quite pleased with the change.",False);
-               }
-            }
-            else
-            {
-               this.outputMainText("\r\r\"You\'re such a good girl~ Don\'t you just want to use that body for all sorts of kinky things~?\" ",False);
-               if(this.percent() < this.ment)
-               {
-                  this.outputMainText("The woman tries to tempt you, but you manage to resist.",False);
-               }
-               else
-               {
-                  this.outputMainText(" You feel yourself falling to the woman\'s temptations, your arousal growing stronger with the thoughts of what you could do.",False);
-                  this.stats(0,0,1,0);
-               }
-            }
-         }
-         else if(_loc1_ <= 45)
-         {
-            _loc2_ = this.percent();
-            if(_loc2_ <= 20 && this.hair > 0 && this.hairstyleLength(this.hair) && this.hairLength < 10)
-            {
-               this.outputMainText("\r\r\"You know what helps make a slut look good?\" She steps up behind you and runs her fingers through your " + this.hairDesc() + " hair. A tingly sensation envelops your skull",False);
-               if(this.percent() < this.ment)
-               {
-                  this.outputMainText(", but you manage to resist and interrupt her efforts.",False);
-               }
-               else
-               {
-                  this.outputMainText(" and your hair begins to grow longer, a sort of kinky sensation overcoming you as you swish it about. The succubus steps back, a vial on her belt glowing from her success.",False);
-                  this.hairLength += 2;
-                  this.doLust(15,1);
-               }
-            }
-            else if(_loc2_ <= 40)
-            {
-               this.outputMainText("\r\r\"A good slut needs some big jiggly tits, don\'t you think?\" The woman steps up behind you, her hands wrapping around to grope your " + this.boobDesc() + " chest. A tingly sensation spreads throughout it",False);
-               if(this.percent() < this.ment)
-               {
-                  this.outputMainText(", but you manage to resist and interrupt her efforts.",False);
-               }
-               else
-               {
-                  this.outputMainText(" and your breasts swell within your " + this.clothesTop() + ", a sort of kinky sensation overcoming you as you absentmindedly bounce their greater size. The succubus steps back, a vial on her belt glowing from her success.",False);
-                  this.boobChange(2);
-                  this.doLust(15,1);
-               }
-            }
-            else if(_loc2_ <= 60 && this.cockTotal > 0 && this.cockSize > 2)
-            {
-               this.outputMainText("\r\r\"A good girl doesn\'t need such garish things.\" She steps up to you and blatantly grabs the " + this.cockDesc() + " bulge in your " + this.clothesBottom() + ". You feel it tingly in a rather pleasant way",False);
-               if(this.percent() < this.ment)
-               {
-                  this.outputMainText(", but you manage to resist and interrupt her efforts.",False);
-               }
-               else
-               {
-                  this.outputMainText(" and you succumb to the pleasure while your cock" + this.plural(1) + " shrink" + this.plural(3) + " in her grasp. The succubus steps back, a vial on her belt glowing from her success.",False);
-                  this.cockChange(-2,0);
-                  this.doLust(15,1);
-               }
-            }
+            if (currentState == 2):
+               EnemyAttack()
+         elif (_loc1_ <= 45):
+            OutputMainText("\n" + "\n" + "\"Err...\" He stops for a moment, forgetting what he was going to do next... He's not a smart one, that's for sure.",False)
+         elif (_loc1_ <= 65) and (eLust > 40):
+            OutputMainText("\n" + "\n" + "With his cock growing erect out the side of his loin cloth, he pauses his assault for a moment to take care of himself... right in front of you. His large hand wraps around his thick cock and furiously begins to masturbate, the skin from his shaft dragging over the wide head again and again so quickly that it looks like it's winking. Then, with a grunt, a geyser of spunk sprays in your direction like a firehose.",False)
+            if (Percent() > _str_):
+               OutputMainText(" It hits you with such force that you're blasted back against the wall and lose your breath for a moment, giving the Minotaur a chance for a followup attack while you catch your breath and wipe off some of the heady thick spooge.",False)
+               DoLust(math.floor(eLust / 2),1)
+               eLust -= 20
+               if (currentState == 2):
+                  EnemyAttack()
+            else:
+               OutputMainText(" The spooge splatters all over you and the heady scent fills your nostrils...",False)
+               DoLust(math.floor(eLust / 2),1)
+               eLust -= 20
+         else:
+            OutputMainText("\n" + "\n" + "POW! He punches you right in the kisser.",False)
+            DoHP(-eDmg(8))
+      if (enemyID == 308):
+         if (_loc1_ <= 23):
+            OutputMainText("\n" + "\n" + "Her schizophrenic bloodlust subsides for a moment as she looks down. \"Oh no! My shoe came undone!\"" + "\n" + "\n" + "She turns away from you, acting as though not seeing you means you're not there, and she proceeds to bend over at the hip so she can reach down to fix her shoe. Inevitably, her skirt rises, showing off the backside of her panties. Despite the big cute looking Minotaur face embroided on the back, the fabric sinks into her cheeks and outlines her tight little rump so perfectly. You can't help but gaze at it until she twirls back around to continue with the battle.",False)
+            DoLust(math.floor((Percent() / 10) + (lib / 4)),1)
+         elif (_loc1_ <= 46):
+            OutputMainText("\n" + "\n" + "She coos... or snarls? Either way, you find her sinking her teeth into your " + SkinDesc() + ", making you yelp a little in turn. And as soon as she lets go, she is suddenly much more timid, saying \"Aww, I'm sorry... I'll kiss your boo-boo and make it better...\". She proceeds to lick the wound she just cause, kissing it rather... sensually.",False)
+            DoHP(-eDmg(4))
+            DoLust(math.floor((Percent() / 10) + (sen / 5)),1)
+         elif (_loc1_ > 46) and (_loc1_ <= 61) and (eHP < 85):
+            OutputMainText("\n" + "\n" + "\"YOU THINK YOU CAN HURT ME?! ATTACK, MR. SNUGGLES!\"" + "\n" + "\n" + "Mr. Snuggles comes flying at you as she swing him around by his leg. The doll hits you with a surprising amount of force - extremely hard and heavy - and you lose your breath for a moment. You could swear the thing must be full of heavy metal and it's almost amazing a girl her size could even lift such a thing...",False)
+            DoHP(-eDmg(2))
+         elif (_loc1_ > 61) and (_loc1_ <= 76) and (eLust > 50):
+            OutputMainText("\n" + "\n" + "\"Mmm...\" The little girl actually seems like a little girl again as she holds her dolly close. Then a hand sinks down beneath her skirt. She lifts the frilly thing as she grabs at her crotch, exposing her panties and pulling them up through her slit, giving you a good view of her crevices. \"It's so tingly down there...\"",False)
+            DoLust((Percent() / 10) + (lib / 4),1)
+         else:
+            OutputMainText("\n" + "\n" + "With a growl, she jumps in and slashes at you with her claw-like fingernails. She lets out a gutteral giggle when she connects, licking her nails clean right away.",False)
+            DoHP(-eDmg(3))
+      if (enemyID == 309):
+         if (_loc1_ <= 25):
+            if (breastSize < 8):
+               OutputMainText("\n" + "\n" + "\"Hmm... Your chest isn't quite up to par~\" Her wings flutter as she darts about and you feel her spaded tail graze across your " + BoobDesc() + " chest. When she stops back where she started, one of her vials glows slightly and she smiles. You look down to see why and notice you chest has become more swollen, jiggling slightly!",False)
+               BoobChange(1)
+            elif ((hips * hipMod) < 16):
+               OutputMainText("\n" + "\n" + "\"Those hips need to match your tits more, give you some more curves~\" She steps up and her tail wraps around your " + HipDesc() + " hips before pulling back. As she steps back, one of her vials glows and she smiles. You wince as you feel your " + ClothesBottom() + " grow tighter, your hips stretching out furhter than before!",False)
+               hips += 1
+            elif ((butt * buttMod) < 15):
+               OutputMainText("\n" + "\n" + "\"Mmm... You backside needs some more attention, doesn't it?\" She rushes around behind you, the spade of her tail giving your " + ButtDesc() + " rear a quick spank. One of her vials glows and she smiles as your rump presses against your " + ClothesBottom() + ", jiggling slightly as you stand.",False)
+               butt += 1
+            elif (cockTotal > 0):
+               OutputMainText("\n" + "\n" + "\"And this thing you've got here just totally ruins your womanly figure now. We should take care of that~\" The woman steps behind you but her tail reaches around to your " + CockDesc() + " bulge, cradling it with the spade and giving it a shake. You can feel your cock" + Plural(1) + " shrink slightly within your " + ClothesBottom() + " while one of her vials glow.",False)
+               if (cockSize > 1):
+                  CockChange(-1,0)
+               else:
+                  CockChange(-1,0)
+                  VagChange(0,1)
+                  OutputMainText("\n" + "\n" + "\"Now that's my girl~ Who needs all those manly features when you can be a slut~?\" She seems quite pleased with the change.",False)
+            else:
+               OutputMainText("\n" + "\n" + "\"You\'re such a good girl~ Don't you just want to use that body for all sorts of kinky things~?\" ",False)
+               if (Percent() < ment):
+                  this.outputMainText("The woman tries to tempt you, but you manage to resist.",False)
+               else:
+                  OutputMainText(" You feel yourself falling to the woman's temptations, your arousal growing stronger with the thoughts of what you could do.",False)
+                  Stats(0,0,1,0)
+         elif (_loc1_ <= 45):
+            _loc2_ = Percent()
+            if (_loc2_ <= 20) and (hair > 0) and (HairstyleLength(hair) == True) and (hairLength < 10):
+               OutputMainText("\n" + "\n" + "\"You know what helps make a slut look good?\" She steps up behind you and runs her fingers through your " + HairDesc() + " hair. A tingly sensation envelops your skull",False)
+               if (Percent() < ment):
+                  OutputMainText(", but you manage to resist and interrupt her efforts.",False)
+               else:
+                  OutputMainText(" and your hair begins to grow longer, a sort of kinky sensation overcoming you as you swish it about. The succubus steps back, a vial on her belt glowing from her success.",False)
+                  hairLength += 2
+                  DoLust(15,1)
+            elif (_loc2_ <= 40):
+               OutputMainText("\n" + "\n" + "\"A good slut needs some big jiggly tits, don't you think?\" The woman steps up behind you, her hands wrapping around to grope your " + BoobDesc() + " chest. A tingly sensation spreads throughout it",False)
+               if (Percent() < ment):
+                  OutputMainText(", but you manage to resist and interrupt her efforts.",False)
+               else:
+                  OutputMainText(" and your breasts swell within your " + ClothesTop() + ", a sort of kinky sensation overcoming you as you absentmindedly bounce their greater size. The succubus steps back, a vial on her belt glowing from her success.",False)
+                  BoobChange(2)
+                  DoLust(15,1)
+            elif (_loc2_ <= 60) and (cockTotal > 0) and (cockSize > 2):
+               OutputMainText("\n" + "\n" + "\"A good girl doesn't need such garish things.\" She steps up to you and blatantly grabs the " + CockDesc() + " bulge in your " + ClothesBottom() + ". You feel it tingly in a rather pleasant way",False)
+               if (Percent() < ment):
+                  OutputMainText(", but you manage to resist and interrupt her efforts.",False)
+               else:
+                  OutputMainText(" and you succumb to the pleasure while your cock" + Plural(1) + " shrink" + Plural(3) + " in her grasp. The succubus steps back, a vial on her belt glowing from her success.",False)
+                  CockChange(-2,0)
+                  DoLust(15,1)
             else if(_loc2_ <= 80)
-            {
-               this.outputMainText("\r\r\"You know a slut is good for the taking when her hips are nice and wide, made to be used~\" The woman steps up and places her hands upon your hips as though preparing to dance with you. A tingly sensation spreads throughout them",False);
-               if(this.percent() < this.ment)
-               {
-                  this.outputMainText(", but you manage to resist and interrupt her efforts.",False);
-               }
-               else
-               {
-                  this.outputMainText(" and your hips stretch outward, pushing at your " + this.clothesBottom() + ", a sort of kinky sensation overcoming you as you can\'t help but sway your girthy loins. The succubus steps back, a vial on her belt glowing from her success.",False);
-                  this.hips += 2;
-                  this.doLust(15,1);
-               }
-            }
-            else
-            {
-               this.outputMainText("\r\r\"A nice big rump is perfect for spanking a naughty slut~\" She steps behind you and gives you a quick slap across your " + this.buttDesc() + " rear and grabs the cheeks. A tingly sensation spreads throughout them",False);
-               if(this.percent() < this.ment)
-               {
-                  this.outputMainText(", but you manage to resist and interrupt her efforts.",False);
-               }
-               else
-               {
-                  this.outputMainText(" and your ass swells in her grasping, stretching your " + this.clothesBottom() + " while a sort of kinky sensation overcomes you and you can\'t help but shake your booty a little. The succubus steps back, a vial on her belt glowing from her success.",False);
-                  this.butt += 2;
-                  this.doLust(15,1);
-               }
-            }
-         }
-         else if(_loc1_ <= 65)
-         {
-            this.outputMainText("\r\rShe stops for a moment and one hand dips into her cleavage while the other slinks between her thighs. Her tail curls like a finger hithering you closer as she rocks her hips and jounces her bosom. \"This is so much fun, don\'t you think~?\" She tries to tempt you with a rather sensual tone.",False);
-            this.doLust(Math.floor(this.lib / 3),1);
-         }
-         else if(_loc1_ <= 85 && this.eHP < 80)
-         {
-            this.outputMainText("\r\rFeeling a bit winded from your attacks, she plucks a vial from her belt and brings it to her lips. As she drinks from it, she seems to be reinvigorated.",False);
-            this.doeHP(Math.floor(this.percent() / 5 + 10));
-         }
-         else
-         {
-            this.outputMainText("\r\rThe whip snaps across the room and strikes you. \"Just need to keep you awake, hun~\"",False);
-            this.doHP(-this.eDmg(15));
-         }
-      }
-   }
+               OutputMainText("\n" + "\n" + "\"You know a slut is good for the taking when her hips are nice and wide, made to be used~\" The woman steps up and places her hands upon your hips as though preparing to dance with you. A tingly sensation spreads throughout them",False)
+               if (Percent() < ment):
+                  OutputMainText(", but you manage to resist and interrupt her efforts.",False)
+               else:
+                  OutputMainText(" and your hips stretch outward, pushing at your " + ClothesBottom() + ", a sort of kinky sensation overcoming you as you can't help but sway your girthy loins. The succubus steps back, a vial on her belt glowing from her success.",False)
+                  hips += 2
+                  DoLust(15,1)
+            else:
+               OutputMainText("\n" + "\n" + "\"A nice big rump is perfect for spanking a naughty slut~\" She steps behind you and gives you a quick slap across your " + ButtDesc() + " rear and grabs the cheeks. A tingly sensation spreads throughout them",False)
+               if (Percent() < ment):
+                  OutputMainText(", but you manage to resist and interrupt her efforts.",False)
+               else:
+                  OutputMainText(" and your ass swells in her grasping, stretching your " + ClothesBottom() + " while a sort of kinky sensation overcomes you and you can't help but shake your booty a little. The succubus steps back, a vial on her belt glowing from her success.",False)
+                  butt += 2
+                  DoLust(15,1)
+         elif (_loc1_ <= 65):
+            OutputMainText("\n" + "\n" + "She stops for a moment and one hand dips into her cleavage while the other slinks between her thighs. Her tail curls like a finger hithering you closer as she rocks her hips and jounces her bosom. \"This is so much fun, don't you think~?\" She tries to tempt you with a rather sensual tone.",False)
+            DoLust(math.floor(lib / 3),1)
+         elif (_loc1_ <= 85) and (eHP < 80):
+            OutputMainText("\n" + "\n" + "Feeling a bit winded from your attacks, she plucks a vial from her belt and brings it to her lips. As she drinks from it, she seems to be reinvigorated.",False)
+            DoeHP(math.floor((Percent() / 5) + 10))
+         else:
+            OutputMainText("\n" + "\n" + "The whip snaps across the room and strikes you. \"Just need to keep you awake, hun~\"",False)
+            DoHP(-eDmg(15))
+
 !def DoStatus(param1:int):
      {
          var _loc2_:int = 0;
@@ -10056,7 +7383,7 @@ def EnemyBaby():
          this.pregnancyTime = 0;
          _loc2_ = 0;
          this.i = 0;
-         while(this.i < this.pregArray.length)
+         while(this.i < len(pregArray))
          {
             if(this.pregArray[this.i] == True)
             {
@@ -10201,7 +7528,7 @@ def EnemyBaby():
                this.outputMainText("\r\rYou feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your " + this.clothesBottom() + " becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your " + this.vulvaDesc() + " lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your " + this.legDesc(1) + ". You gasp and regain yourself, the snake slithering away. It must have been too hungry too survive inside you any longer...",False);
                this.cockSnakePreg = 0;
                this.i = 0;
-               while(this.i < this.pregArray.length)
+               while(this.i < len(pregArray))
                {
                   if(this.pregArray[this.i + 1] == 503)
                   {
@@ -12582,13 +9909,13 @@ def Aff(tempRace, tempChange, otherChange):
          {
             this.doEnd();
          }}}}
-!def CockChange(sizeChange:int, totalChange:int):
+def CockChange(sizeChange:int, totalChange:int):
    global humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity, dominant, nonCock, cockSize, cockTotal, vagTotal, gender, balls, ballSize, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, maxCock, showBalls
    maxCock = max(humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity)
    nonCock = False
    if (dominant == 5) or (dominant == 8) or (dominant == 9) or (dominant == 10) or (dominant == 11):
       nonCock = True
-   if ((((cockSize + sizeChange) <= 0) or ((cockTotal + totalChange) < 1)) and (cockSize > 0) and (cockTotal > 0)):
+   if (((cockSize + sizeChange) <= 0) or ((cockTotal + totalChange) < 1)) and (cockSize > 0) and (cockTotal > 0):
       OutputMainText("\n" + "\n" + "You shiver a little as your cock" + Plural(1) + " and balls shrink into your body, disappearing",False)
       if vagTotal > 0:
          OutputMainText(", leaving you with only your vagina" + Plural(2) + " and making you solely female.",False)
@@ -12649,71 +9976,45 @@ def Aff(tempRace, tempChange, otherChange):
       CockChange(0,totalChange)
    elif (totalChange > 0) and (cockTotal > 0):
       this.outputMainText("\r\rA strange sensation of arousal engulfs your groin. Your " + this.clothesBottom() + " grows tight as you feel something swell within. You don\'t have much time to open your " + this.clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,",False);
-      if(totalChange > 1)
-      {
-         this.outputMainText(" " + totalChange,False);
-      }
-      if(this.dominant == 1 || nonCock == True && maxCock == this.humanAffinity)
-      {
-         this.outputMainText(" human ",False);
-         this.humanCocks += totalChange;
-      }
-      else if(this.dominant == 2 || nonCock == True && maxCock == this.horseAffinity)
-      {
-         this.outputMainText(" equine ",False);
-         this.horseCocks += totalChange;
-      }
-      else if(this.dominant == 3 || nonCock == True && maxCock == this.wolfAffinity)
-      {
-         this.outputMainText(" canine ",False);
-         this.wolfCocks += totalChange;
-      }
-      else if(this.dominant == 4 || nonCock == True && maxCock == this.catAffinity)
-      {
-         this.outputMainText(" feline ",False);
-         this.catCocks += totalChange;
-      }
-      else if(this.dominant == 6 || nonCock == True && maxCock == this.lizardAffinity)
-      {
-         this.outputMainText(" reptillian ",False);
-         this.lizardCocks += totalChange;
-      }
-      else if(this.dominant == 7 || nonCock == True && maxCock == this.rabbitAffinity)
-      {
-         this.outputMainText(" lapin ",False);
-         this.rabbitCocks += totalChange;
-      }
-      else if(this.dominant == 12 || nonCock == True && maxCock == this.bugAffinity)
-      {
-         this.outputMainText(" insectile ",False);
-         this.bugCocks += totalChange;
-      }
-      this.outputMainText("penis",False);
-      if(totalChange > 1)
-      {
-         this.outputMainText("es",False);
-      }
-      this.outputMainText(" standing erect with the other" + this.plural(1) + ".",False);
-      this.stats(0,0,2 * totalChange,0);
-      this.cockTotal += totalChange;
-      this.cockSize += sizeChange;
-   }
-   else if(totalChange < 0 && this.cockTotal > 0 && this.cockSize > 0)
-   {
-      this.outputMainText("\r\rYou notice an odd sensation of numbness within your groin. Your " + this.clothesBottom() + " feels looser, something going missing within. By the time you open your " + this.clothesBottom() + " you notice that you have lost something.",False);
-      this.cockTotal += totalChange;
-      while(totalChange < 0)
-      {
-         this.cockLoss();
-         totalChange++;
-      }
-      this.stats(0,0,2 * totalChange,0);
-   }
-   else if(this.cockTotal > 0)
-   {
-      this.cockSize += sizeChange;
-   }
-}
+      if (totalChange > 1):
+         OutputMainText(" " + totalChange,False)
+      if (dominant == 1) or ((nonCock == True) and (maxCock == humanAffinity)):
+         OutputMainText(" human ",False)
+         humanCocks += totalChange
+      elif (dominant == 2) or ((nonCock == True) and (maxCock == horseAffinity)):
+         OutputMainText(" equine ",False)
+         horseCocks += totalChange
+      elif (dominant == 3) or ((nonCock == True) and (maxCock == wolfAffinity)):
+         OutputMainText(" canine ",False)
+         wolfCocks += totalChange
+      elif (dominant == 4) or ((nonCock == True) and (maxCock == this.catAffinity)):
+         OutputMainText(" feline ",False)
+         catCocks += totalChange
+      elif (dominant == 6) or ((nonCock == True) and (maxCock == lizardAffinity)):
+         OutputMainText(" reptillian ",False)
+         lizardCocks += totalChange
+      elif (dominant == 7) or ((nonCock == True) and (maxCock == rabbitAffinity)):
+         OutputMainText(" lapin ",False)
+         rabbitCocks += totalChange
+      elif (dominant == 12) or ((nonCock == True) and (maxCock == bugAffinity)):
+         OutputMainText(" insectile ",False)
+         bugCocks += totalChange
+      OutputMainText("penis",False)
+      if (totalChange > 1):
+         OutputMainText("es",False)
+      OutputMainText(" standing erect with the other" + Plural(1) + ".",False)
+      Stats(0,0,2 * totalChange,0)
+      cockTotal += totalChange
+      cockSize += sizeChange
+   elif (totalChange < 0) and (cockTotal > 0) and (cockSize > 0):
+      this.outputMainText("\n" + "\n" + "You notice an odd sensation of numbness within your groin. Your " + ClothesBottom() + " feels looser, something going missing within. By the time you open your " + ClothesBottom() + " you notice that you have lost something.",False)
+      cockTotal += totalChange
+      while (totalChange < 0):
+         CockLoss()
+         totalChange += 1
+      Stats(0,0,2 * totalChange,0)
+   elif (cockTotal > 0):
+      cockSize += sizeChange
 
 def CockLoss():
    global humanCocks, humanAffinity, horseCocks, horseAffinity, wolfCocks, wolfAffinity, catCocks, catAffinity, lizardCocks, lizardAffinity, rabbitCocks, rabbitAffinity, bugCocks, bugAffinity
@@ -12770,7 +10071,7 @@ def CockLoss():
          OutputMainText("\n" + "\n" + "With the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your " + ClothesBottom() + " becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your " + VulvaDesc() + " lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your " + LegDesc(1) + ". You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...",False)
          cockSnakePreg = 0
          i = 0
-         while (i < pregArray.length()):
+         while (i < len(pregArray)):
             if (pregArray[i + 1] == 503):
                pregArray[i] = False
                pregArray[i + 3] = 0
@@ -12799,9 +10100,9 @@ def CockLoss():
       vulvaSize = 0
       clitSize = 0
       i = 0
-      while (i < pregArray.length()):
+      while (i < len(pregArray)):
          if (pregArray[i] == False):
-            FE.string.splice(pregArray, i, 5)
+            FE.lists.splice(pregArray, i, 5)
 #            pregArray.splice(i,5)
             i = -5
          i += 5
@@ -12823,7 +10124,7 @@ def CockLoss():
          OutputMainText("\n" + "\n" + "You have now graduated from androgynous to female, congratulations!",False)
          gender = 2
       while (totalChange > 0):
-         if ((pregArray.length() / 5) < vagTotal):
+         if ((len(pregArray) / 5) < vagTotal):
             pregArray.push(False,0,0,0,0)
             totalChange -= 1
          else:
@@ -12837,7 +10138,7 @@ def CockLoss():
       vagTotal += totalChange
       vagSize += sizeChange
       while (totalChange > 0):
-         if ((pregArray.length() / 5) < vagTotal):
+         if ((len(pregArray) / 5) < vagTotal):
             pregArray.push(False,0,0,0,0)
             totalChange -= 1
          else:
@@ -12851,12 +10152,12 @@ def CockLoss():
       while (totalChange < 0):
          if (pregCheck(1) == True)
             i = 0
-            while (i < pregArray.length()):
+            while (i < len(pregArray)):
                if (pregArray[i] == False):
                   totalChange += 1
-                  FE.string.splice(pregArray, i, 5)
+                  FE.lists.splice(pregArray, i, 5)
 #                  pregArray.splice(i,5)
-                  i += pregArray.length()
+                  i += len(pregArray)
                i += 5
          else:
             totalChange = 0
@@ -13037,19 +10338,19 @@ def PregCheck(amount:int):
    tempBool = False
    if (amount == 0):
       i = 0
-      while (i < pregArray.length()):
+      while (i < len(pregArray)):
          if (pregArray[i] == True):
             tempBool = True
          i += 5
    elif (amount == 1):
       i = 0
-      while (i < pregArray.length()):
+      while (i < len(pregArray)):
          if (pregArray[i] == False):
             tempBool = True
          i += 5
    elif (amount > 1):
       i = 0
-      while (i < pregArray.length()):
+      while (i < len(pregArray)):
          if (pregArray[i + 1] == amount):
             tempBool = True
          i += 5
@@ -13077,7 +10378,7 @@ def PregCheck(amount:int):
             extra++
             i += 1
          i = 0
-         while (i < pregArray.length()):
+         while (i < len(pregArray)):
             if pregArray[i] == False:
                if erace == 100:
                   pregArray[i + 2] = 80 + math.floor(Percent() / 10) + extra * 30
@@ -13129,13 +10430,13 @@ def PregCheck(amount:int):
                   pregArray[i + 4] = extra * 4
                pregArray[i + 1] = erace
                     pregArray[i] = True
-                    i = pregArray.length()
+                    i = lwn(pregArray)
                i += 5
 
 def DoBirth(pregnancyType:int, extra:int, birthCount:int):
    global pregArray, vagTotal, hrs, vulvaSize, wolfPupChildren, calfChildren, minotaurChildren, freaktGirlChildren, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, bunnionChildren, miceChildren, birdEggs, pigChildren, skunkChildren, bugEggs, sen, dominant
    birthNumber = 0
-   if (pregArray.length() > (vagTotal * 5)):
+   if (len(pregArray) > (vagTotal * 5)):
       VagChange(0,1)
    hrs += 1
    if (birthCount == 0):
@@ -14479,685 +11780,347 @@ def MilkAmount(origin:int):
 #def __setProp_scrollBar2_Scene1_TextFields_0():
 #def __setProp_scrollBar1_Scene1_TextFields_0():
 def Frame1():
-   global versionNumber
+   global versionNumber, theme fontSize, fontBold, fontColor, showSide, i, buttonChoice, currentText, sideText, sideFocus, pregTempInt, pregTempBool, lustArray, bg, rndResult, rndArray, textCheckArray, choiceListArray, choiceListResult, choicePage, moveItemID, moveItemStack, skipExhaustion, shiftHeld, currentState, inBag, inShop, currentZone, day, hour, inDungeon, currentDungeon, _str_, ment, lib, sen, HP, lust, coin, strMod, mentMod, libMod, senMod, strength, mentality, libido, sensitivity, hunger, hrs, itemGainArray, human, horse, wolf, cat, cow, lizard, rabbit, mouse, bird, pig, skunk, bug, SexP, levelUP, level, runMod, rapeMod, cumMod, cockSizeMod, vagSizeMod, vagElastic, milkMod, carryMod, vagBellyMod, pregChanceMod, extraPregChance, pregTimeMod, enticeMod, milkHPMod, changeMod, HPMod, SexPMod, minLust, milkCap, coinMod, hipMod, buttMod, bellyMod, cockMoistMod, vagMoistMod, lockTail, lockFace, lockSkin, lockBreasts, lockEars, lockLegs, lockNipples, lockCock, enemyID, eHP, eStr, eMenta, eSen, eLib, eLust, eGen, ePref, eCoin, eSexP, eItem, gender, race, body, dominant, hips, butt, tallness, skinType, tial, ears, hair, hairLength, hairColor, legType, wings, faceType, skinColor, cockTotal, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, cockSize, cockMoist, balls, ballSize, showBalls, knot, bugCocks, breastSize, boobTotal, nippleSize, udders, udderSize, teatSize, clitSize, vagTotal, vagSize, vagMoist, vulvaSize, nipType, attireTop, attireBot, weapon, pregArray, pregStatus, pregnancyTime, pregRate, eggLaying, eggMaxTime, eggTime, eggRate, exhaustion, exhaustionPenalty, milkEngorgement, milkEngorgementLevel, udderEngorgement, udderEngorgementLevel, heat, heatTime, heatMaxTime, lactation, udderLactation, nipplePlay, udderPlay, blueBalls, teatPump, nipPump, cockPump, clitPump, vulvaPump, masoPot, sMasoPot, babyFree, charmTime, pheromone, eggceleratorTime, eggceleratorDose, bodyOil, lustPenalty, snuggleBall, fertileGel, eggType, milkSuppressant, milkSuppressantLact, milkSuppressantUdder, suppHarness, fertilityStatueCurse, plumpQuats, lilaWetStatus, cockSnakePreg, milkCPoisonNip, milkCPoisonUdd, cockSnakeVenom, humanAffinity, horseAffinity, wolfAffinity, catAffinity, cowAffinity, lizardAffinity, rabbitAffinity, fourBoobAffinity, mouseAffinity, birdAffinity, pigAffinity, twoBoobAffinity, sixBoobAffinity, eightBoobAffinity, tenBoobAffinity, cowTaurAffinity, humanTaurAffinity, skunkAffinity, bugAffinity, lilaRep, lilaVulva, lilaMilk, lilaPreg, malonRep, malonPreg, malonChildren, mistressRep, jamieRep, jamieSize, jamieChildren, silRep, silPreg, silRate, silLay, silTired, silGrowthTime, lilaUB, dairyFarmBrand, jamieRep1, jamieRep2, jamieRep3, lilaWetness, jamieButt, jamieBreasts, jamieHair, travArray, foundSoftlik, foundFirmshaft, foundTieden, foundSizCalit, foundOviasis, foundValley, foundSanctuary, defeatedMinotaur, defeatedFreakyGirl, defeatedSuccubus, firstExplore, knowLustDraft, knowRejuvPot, knowExpPreg, knowBallSwell, knowMaleEnhance, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowBabyFree, knowPotPot, knowGenSwap, knowMasoPot, knowMilkSuppress, knowSGenSwap, knowSMasoPot, knowSBabyFree, knowSPotPot, knowPussJuice, knowPheromone, knowBazoomba, babyFactLevel, bodyBuildLevel, hyperHappyLevel, alchemistLevel, fetishMasterLevel, milkMaidLevel, shapeshiftyLevel, shapeshiftyFirst, shapeshiftySecond, maleFetish, femaleFetish, hermFetish, narcissistFetish, dependentFetish, dominantFetish, submissiveFetish, lboobFetish, sboobFetish, furryFetish, scalyFetish, smoothyFetish, pregnancyFetish, bestialityFetish, milkFetish, sizeFetish, unbirthingFetish, ovipositionFetish, toyFetish, hyperFetish, currentDayCare, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, lizanEggs, lizanChildren, bunnionChildren, wolfPupChildren, miceChildren, birdEggs, birdChildren, pigChildren, calfChildren, bugEggs, bugChildren, skunkChildren, minotaurChildren, freakyGirlChildren, bagPage, bagArray, bagStackArray, stashArray, stashStackArray, statPaneVisible, levelPaneVisible, currentRegionVisible, regionVisible, saveGameVisible, DayPaneVisible, Option7Visible, appearanceTextVisible, appearanceBoxVisible
    versionNumber = "0.975o"
-   global theme
    theme = 0
-   global fontSize
    fontSize = 14
-   global fontBold
    fontBold = False
-   global fontColor
    fontColor = "000000"
-   global showSide
    showSide = True
-   global i
    i = 0
-   global buttonChoice
    buttonChoice = 0
-   global currentText
    currentText = ""
-   global sideText
    sideText = ""
-   global sideFocus
    sideFocus = 1
-   global pregTempInt
    pregTempInt = 0
-   global pregTempBool
    pregTempBool = False
-   global lustArray
    lustArray = list(())
-   global bg
    bg = new Sprite()
-   global rndResult
    rndResult = 0
-   global rndArray
    rndArray = list(())
-   global textCheckArray
    textCheckArray = list(())
-   global choiceListArray
    choiceListArray = list(())
-   global choiceListResult
    choiceListResult = list(())
-   global choicePage
    choicePage = 0
-   global moveItemID
    moveItemID = 0
-   global moveItemStack
    moveItemStack = 0
-   global skipExhaustion
    skipExhaustion = False
-   global shiftHeld
    shiftHeld = False
-   global currentState
    currentState = 0
-   global inBag
    inBag = False
-   global inShop
    inShop = False
-   global currentZone
    currentZone = 0
-   global day
    day = 0
-   global hour
    hour = 8
-   global inDungeon
    inDungeon = False
-   global currentDungeon
    currentDungeon = 0
-   global _str_
    _str_ = 0
-   global ment
    ment = 0
-   global lib
    lib = 0
-   global sen
    sen = 0
-   global HP
    HP = 0
-   global lust
    lust = 0
-   global coin
    coin = 0
-   global strMod
    strMod = 0
-   global mentMod
    mentMod = 0
-   global libMod
    libMod = 0
-   global senMod
    senMod = 0
-   global strength
    strength = 0
-   global mentality
    mentality = 0
-   global libido
    libido = 0
-   global sensitivity
    sensitivity = 0
-   global hunger
    hunger = 0
-   global hrs
    hrs = 0
-   global itemGainArray
    itemGainArray = list(())
-   global human
    human = 0
-   global horse
    horse = 0
-   global wolf
    wolf = 0
-   global cat
    cat = 0
-   global cow
    cow = 0
-   global lizard
    lizard = 0
-   global rabbit
    rabbit = 0
-   global mouse
    mouse = 0
-   global bird
    bird = 0
-   global pig
    pig = 0
-   global skunk
    skunk = 0
-   global bug
    bug = 0
-   global SexP
    SexP = 0
-   global levelUP
    levelUP = 0
-   global level
    level = 0
-   global runMod
    eunMod = 0
-   global rapeMod
    rapeMod = 0
-   global cumMod
    cumMod = 1
-   global cockSizeMod
    cockSizeMod = 1
-   global vagSizeMod
    vagSizeMod = 1
-   global vagElastic
    vagElastic = 1
-   global milkMod
    milkMod = 0
-   global carryMod
    carryMod = 0
-   global vagBellyMod
    vagBellyMod = 0
-   global pregChanceMod
    pregChanceMod = 0
-   global extraPregChance
    extraPregChance = 0
-   global pregTimeMod
    pregTimeMod = 0
-   global enticeMod
    enticeMod = 0
-   global milkHPMod
    milkHPMod = 0
-   global changeMod
    changeMod = 1
-   global HPMod
    HPMod = 0
-   global SexPMod
    SexPMod = 1
-   global minLust
    minLust = 0
-   global milkCap
    milkCap = 0
-   global coinMod
    coinMod = 0
-   global hipMod
    hipMod = 1
-   global buttMod
    buttMod = 1
-   global bellyMod
    bellyMod = 0
-   global cockMoistMod
    cockMoistMod = 0
-   global vagMoistMod
    vagMoistMod = 0
-   global lockTail
    lockTail = 0
-   global lockFace
    lockFace = 0
-   global lockSkin
    lockSkin = 0
-   global lockBreasts
    lockBreasts = 0
-   global lockEars
    lockEars = 0
-   global lockLegs
    lockLegs = 0
-   global lockNipples
    lockNipples = 0
-   global lockCock
    lockCock = 0
-   global enemyID
    enemyID = 0
-   global eHP
    eHP = 0
-   global eMaxHP
    eMaxHP = 0
-   global eStr
    eStr = 0
-   global eMenta
    eMenta = 0
-   global eSen
    eSen = 0
-   global eLib
    eLib = 0
-   global eLust
    eLust = 0
-   global eGen
    eGen = 0
-   global ePref
    ePref = 0
-   global eCoin
    eCoin = 0
-   global eSexP
    eSexP = 0
-   global eItem
    eItem = 0
-   global gender
    gender = 0
-   global race
    race = 0
-   global body
    body = 0
-   global dominant
    dominant = 0
-   global hips
    hips = 0
-   global butt
    butt = 0
-   global tallness
    tallness = 0
-   global skinType
    skinType = 0
-   global tail
    tail = 0
-   global ears
    ears = 0
-   global hair
    hair = 0
-   global hairLength
    hairLength = 0
-   global hairColor
    hairColor = 0
-   global legType
    legType = 0
-   global wings
    wings = 0
-   global faceType
    faceType = 0
-   global skinColor
    skinColor = 0
-   global cockTotal
    cockTotal = 0
-   global humanCocks
    humanCocks = 0
-   global horseCocks
    horseCocks = 0
-   global wolfCocks
    wolfCocks = 0
-   global catCocks
    catCocks = 0
-   global lizardCocks
    lizardCocks = 0
-   global rabbitCocks
    rabbitCocks = 0
-   global cockSize
    cockSize = 0
-   global cockMoist
    cockMoist = 0
-   global balls
    balls = 0
-   global ballSize
    ballSize = 0
-   global showBalls
    showBalls = True
-   global knot
    knot = False
-   global bugCocks
    bugCocks = 0
-   global breastSize
    breastSize = 0
-   global boobTotal
    boobTotal = 0
-   global nippleSize
    nippleSize = 1
-   global udders
    udders = False
-   global udderSize
    udderSize = 0
-   global teatSize
    teatSize = 0
-   global clitSize
    clitSize = 0
-   global vagTotal
    vagTotal = 0
-   global vagSize
+   globalvagSize
    vagSize = 0
-   global vagMoist
    vagMoist = 0
-   global vulvaSize
    vulvaSize = 0
-   global nipType
    nipType = 0
-   global attireTop
    attireTop = 1
-   global attireBot
-   attireBottom = 2
-   global weapon
+   attireBot = 2
    weapon = 10
-   global pregArray
    pregArray = list(())
-   global pregStatus
    pregStatus = 0
-   global pregnancyTime
    pregnancyTime = 0
-   global pregRate
    pregRate = 1
-   global eggLaying
    eggLaying = 0
-   global eggMaxTime
    eggMaxTime = 0
-   global eggTime
    eggTime = 0
-   global eggRate
    eggRate = 0
-   global exhaustion
    exhaustion = 0
-   global exhaustionPenalty
    exhaustionPenalty = 0
-   global milkEngorgement
    milkEngorgement = 0
-   global milkEngorgementLevel
    milkEngorgementLevel = 0
-   global udderEngorgement
    udderEngorgement = 0
-   global udderEngorgementLevel
    udderEngorgementLeve = 0
-   global heat
    heat = 0
-   global heatTime
    heatTime = 0
-   global heatMaxTime
    heatMaxTime = 0
-   global lactation
    lactation = 0
-   global udderLactation
    udderLactation = 0
-   global nipplePlay
    nipplePlay = 0
-   global udderPlay
    udderPlay = 0
-   global blueBalls
    blueBalls = 0
-   global teatPump
    teatPump = 0
-   global nipPump
    nipPump = 0
-   global cockPump
    cockPump = 0
-   global clitPump
    clitPump = 0
-   global vulvaPump
    vulvaPump = 0
-   global masoPot
    masoPot = 0
-   global sMasoPot
    sMasoPot = 0
-   global babyFree
    babyFree = 0
-   global charmTime
    charmTime = 0
-   global pheromone
    pheromone = 0
-   global eggceleratorTime
    eggceleratorTime = 0
-   global eggceleratorDose
    eggceleratorDose = 0
-   global bodyOil
    bodyOil = 0
-   global lustPenalty
    lustPenalty = 0
-   global snuggleBall
    suggleBall = False
-   global fertileGel
    fertileGel = 0
-   global eggType
    eggType = 0
-   global milkSuppressant
    milkSuppressany = 0
-   global milkSuppressantLact
    milkSuppressantLact = 0
-   global milkSuppressantUdder
    milkSuppressantUdder = 0
-   global suppHarness
    suppHarness = False
-   global fertilityStatueCurse
    fertilityStatueCurse = 0
-   global plumpQuats
    plumpGuats = 0
-   global lilaWetStatus
    lilaWetStatus = 0
-   global cockSnakePreg
    cockSnakePreg = 0
-   global milkCPoisonNip
    milkCPoisonNip = 0
-   global milkCPoisonUdd
    milkCPoisonUdd = 0
-   global cockSnakeVenom
    cockSnakeVenom = 0
-   global humanAffinity
    humanAffinity = 0
-   global horseAffinity
    horseAffinity = 0
-   global wolfAffinity
    wolfAffinity = 0
-   global catAffinity
    catAffinity = 0
-   global cowAffinity
    cowAffinity = 0
-   global lizardAffinity
    lizardAffinity = 0
-   global rabbitAffinity
    rabbitAffinity = 0
-   global fourBoobAffinity
    fourBoobAffinity = 0
-   global mouseAffinity
    mouseAffinity = 0
-   global birdAffinity
    birdAffinity = 0
-   global pigAffinity
    pigAffinity = 0
-   global twoBoobAffinity
    twoBoobAffinity = 0
-   global sixBoobAffinity
    sixBoobAffinity = 0
-   global eightBoobAffinity
    eightBoobAffinity = 0
-   global tenBoobAffinity
    tenBoobAffinity = 0
-   global cowTaurAffinity
    cowTaurAffinity = 0
-   global humanTaurAffinity
    humanTaurAffinity = 0
-   global skunkAffinity
    skunkAffinity = 0
-   global bugAffinity
    bugAffinity = 0
-   global lilaRep
    lilaRep = 0
-   global lilaVulva
    lilaVulva = 0
-   global lilaMilk
    lilaMilk = 0
-   global lilaPreg
    lilaPreg = -2
-   global malonRep
    malonRep = 0
-   global malonPreg
    malonPreg = 0
-   global malonChildren
    malonChildren = 0
-   global mistressRep
    mistressRep = 0
-   global jamieRep
    jamieRep = 0
-   global jamieSize
    jamieSize = 4
-   global jamieChildren
    jamieChildren = 0
-   global silRep
    silRep = 0
-   global silPreg
    silPreg = 0
-   global silRate
    silRate = 0
-   global silLay
    silLay = 10
-   global silTied
    silTied = False
-   global silGrowthTime
    silGrowthTime = 0
-   global lilaUB
    lilaUB = False
-   global dairyFarmBrand
    dairyFarmBrand = False
-   global jamieRep1
    jamieRep1 = 0
-   global jamieRep2
    jamieRep2 = 0
-   global jamieRep3
    jamieRep3 = 0
-   global lilaWetness
    lilaWetness = 0
-   global jamieButt
    jamieButt = False
-   global jamieBreasts
    jamieBreasts = False
-   global jamieHair
    jamieHair = False
-   global travArray
    travArray = list(())
-   global foundSoftlik
    foundSoftlik = False
-   global foundFirmshaft
    foundFirmshaft = False
-   global foundTieden
    foundTieden = False
-   global foundSizCalit
    foundSizCalit = False
-   global foundOviasis
    foundOviasis = False
-   global foundValley
    foundValley = False
-   global foundSanctuary
    foundSanctuary = False
-   global defeatedMinotaur
    defeatedMinotaur = False
-   global defeatedFreakyGirl
    defeatedFreakyGirl = False
-   global defeatedSuccubus
    defeatedSuccubus = False
-   global firstExplore
    firstExplore = False
-   global knowLustDraft
    knowLustDraft = False
-   global knowRejuvPot
    knowRejuvPot = False
-   global knowExpPreg
    knowExpPreg = False
-   global knowBallSwell
    knowBallSwell = False
-   global knowMaleEnhance
    knowMaleEnhance = False
-   global knowSLustDraft
-   knowLustDraft = False
-   global knowSRejuvPot
+   knowSLustDraft = False
    knowSRejuvPot = False
-   global knowSExpPreg
    knowSExpPreg = False
-   global knowSBallSwell
    knowSBallSwell = False
-   global knowBabyFree
    knowBabyFree = False
-   global knowPotPot
    knowPotPot = False
-   global knowGenSwap
    knowGenSwap = False
-   global knowMasoPot
    knowMasoPot = False
-   global knowMilkSuppress
    knowMilkSuppress = False
-   global knowSGenSwap
    knowSGenSwap = False
-   global knowSMasoPot
    knowSMasoPot = False
-   global knowSBabyFree
    knowSBabyFree = False
-   global knowSPotPot
    knowSPotPot = False
-   global knowPussJuice
    knowPussJuice = False
-   global knowPheromone
    knowPheromone = False
-   global knowBazoomba
    knowBazoomba = False
-   global babyFactLevel
    babyFactLevel = 0
-   global bodyBuildLevel
    bodyBuildLevel = 0
-   global hyperHappyLevel
    hyperHappyLevel = 0
-   global alchemistLevel
    alchemistLevel = 0
-   global fetishMasterLevel
    fetishMasterLevel = 0
-   global milkMaidLevel
    milkMaidLevel = 0
-   global shapeshiftyLevel
    shapeshiftyLevel = 0
-   global shapeshiftyFirst
    ShapeshiftyFirst = ""
-   global shapeshiftySecond
    shapeshiftySecond = ""
-   global maleFetish
    maleFetish = 1
-   global femaleFetish
    femaleFetish = 1
-   global hermFetish
    hermFetish = 1
-   global narcissistFetish
    narcissistFetish = 1
-   global dependentFetish
    dependentFetish = 1
-   global dominantFetish
    dominantFetish = 1
-   global submissiveFetish
    submissiveFetish = 1
-   global lboobFetish
    lboobFetish = 1
-   global sboobFetish
    sboobFetish = 1
-   global furryFetish
    furryFetish = 1
-   global scalyFetish
    scalyFetish = 1
-   global smoothyFetish
    smoothyFetish = 1
-   global pregnancyFetish
    pregnancyFetish = 1
-   global bestialityFetish
    bestialityFetish = 1
-   global milkFetish
    milkFetish = 1
-   global sizeFetish
    sizeFetish = 1
-   global unbirthingFetish
    unbirthingFetish = 1
-   global ovipositionFetish
    ovipostitionFetish = 1
-   global toyFetish
    toyFetish = 1
-   global hyperFetish
    hyperFetish = 1
-   global currentDayCare
    currentDayCare = 0
-   global humanChildren
    humanChildren = 0
-   global equanChildren
    equanChildren = 0
-   global lupanChildren
    lupanChildren = 0
-   global felinChildren
    felinChildren = 0
-   global cowChildren
    cowChildren = 0
-   global lizanEggs
    lizanEggs = 0
-   global lizanChildren
    lizanChildren = 0
-   global bunnionChildren
    bunnionChildren = 0
-   global wolfPupChildren
    wolfPupChildren = 0
-   global miceChildren
    miceChildren = 0
-   global birdEggs
    birdEggs = 0
-   global birdChildren
    birdChildren = 0
-   global pigChildren
    pigChildren = 0
-   global calfChildren
-   caljChildren = 0
-   global bugEggs
+   calfChildren = 0
    bugEggs = 0
-   global bugChildren
    bugChildren = 0
-   global skunkChildren
    skunkChildren = 0
-   global minotaurChildren
    minotaurChildren = 0
-   global freakyGirlChildren
    freakyGirlChildren = 0
-   global bagPage
    bagPage = 1
-   global bagArray
    bagArray = list(())
-   global bagStackArray
    bagStackArray = list(())
-   global stashArray
    stashArray = list(())
-   global stashStackArray
    stashStackArray = list(())
 #    stage.addEventListener(KeyboardEvent.KEY_DOWN,this.hotKeys)
 #    stage.addEventListener(KeyboardEvent.KEY_UP,this.keysUp)
@@ -15194,41 +12157,437 @@ def Frame1():
 #    global Option7.addEventListener(MouseEvent.CLICK,this.option7Event)
 #    global scrollBar1.scrollTarget = this.outputWindow
 #    global scrollBar2.scrollTarget = this.sideWindow
-   global statPaneVisible
    statPaneVisible = False
-   global levelPaneVisible
    levelPaneVisible = False
-   global currentRegionVisible
    currentRegionVisible = False
-   global regionVisible
    regionVisible = False
-   global saveGameVisible
    saveGameVisible = False
-   global DayPaneVisible
    DayPaneVisible = False
-   global Option7Visible
    Option7Visible = False
-   global appearanceTextVisible
    appearanceTextVisible = False
-   global appearanceBoxVisible
    appearanceBoxVisible = False
 
-   global pageNum.embedFonts = True
-   global pageNum.visible = False
-   global pageNum.rotation += 90
+#   pageNum.embedFonts = True
+#   pageNum.visible = False
+#   pageNum.rotation += 90
 
-#    global moveItem.visible = False
-#    global moveItemAmount.visible = False
-#    global MoveOutline.visible = False
-#    global MoveAmountOutline.visible = False
+#   moveItem.visible = False
+#   moveItemAmount.visible = False
+#   MoveOutline.visible = False
+#   MoveAmountOutline.visible = False
    SideHide()
 #   addChildAt(this.bg,0)
-   viewButtonText(0,0,0,0,0,0,0,0,0,0,0,0)
-   viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,0)
+   ViewButtonText(0,0,0,0,0,0,0,0,0,0,0,0)
+   ViewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,0)
    HideAmount()
    HideUpDown()
    LoadPreferences()
-   OutputMainText("Nimin: Fetish Fantasy" + "\n" + "    v" + versionNumber + "\n" + "\n" + "Click 'New Game' to begin a new game." + "\n" + "\n" + "Created by:    --Xadera" + "\n" + "    www.furaffinity.net/user/xadera/" + "\n" + "\n" + "Original concept by:     --Fenoxo" + "\n" + "    fenoxo.com" + "\n" + "\n" + "Currently maintained by:    ajdelguidice" + "\n" + "    github.com/ajdelguidice" + "\n" + "For tutorial/guide, questions, or bug reports, visit github.com/ajdelguidice/pymin/")
+   OutputMainText("Nimin: Fetish Fantasy" + "\n" + "    v" + versionNumber + "\n" + "\n" + "Click 'New Game' to begin a new game." + "\n" + "\n" + "Created by:    --Xadera" + "\n" + "    www.furaffinity.net/user/xadera/" + "\n" + "\n" + "Original concept by:     --Fenoxo" + "\n" + "    fenoxo.com" + "\n" + "\n" + "Currently maintained by:    ajdelguidice" + "\n" + "    github.com/ajdelguidice" + "\n" + "For tutorial/guide, questions, or bug reports, visit github.com/ajdelguidice/pymin/", True)
+
+class StatPane:
+    def __init__():
+        global _str_, ment, lib, sen, SexP, coin, day, hour, HP, lust
+        global strvallabel, mentvallabel, libvallabel, senvallabel, sexpvallabel, coinvallabel, dayvallabel, hourvallabel, hpvallabel, lustvallabel
+    def SetCStats():
+        strvallabel["text"] = _str_
+        mentvallabel["text"] = ment
+        libvallabel["text"] = lib
+        senvallabel["text"] = sen
+    def SetSCStats():
+        sexpvallabel["text"] = SexP
+        coinvallabel["text"] = coin
+    def SetDHStats():
+        dayvallabel["text"] = day
+        hourvallabel["text"] = hour + ":00"
+    def SetHPStat():
+        hpvallabel["text"] = HP
+    def SetLustStat():
+        lustvallabel["text"] = lust
+class SGButton:
+    def __init__():
+        global savegamebutton
+    def Show():
+        savegamebutton = tkinter.Button(statframe, text="Save Game")
+        savegamebutton.place(anchor=N, height=30, width=100, x=90, y=480)
+    def Hide():
+        savegamebutton.destroy()
+class LGButton:
+    def __init__():
+        global loadgamebutton
+    def Show():
+        loadgamebutton = tkinter.Button(statframe, text="Load Game")
+        loadgamebutton.place(anchor=N, height=30, width=100, x=90, y=515)
+    def Hide():
+        loadgamebutton.destroy()
+class NGButton:
+    def __init__():
+        global newgamebutton
+    def Show():
+        newgamebutton = tkinter.Button(statframe, text="New Game")
+        newgamebutton.place(anchor=N, height=30, width=100, x=90, y=550)
+    def Hide():
+        newgamebutton.destroy()
+class PanelButton1:
+    def __init__():
+        global button1, button1visible
+    def Show():
+        if button1visible == False:
+            button1 = tkinter.Button(buttonpanel, text="Button 1")
+            button1.place(anchor=NW, height=46, width=140, x=0, y=0)
+            button1visible = True
+    def Hide():
+        if button1visible == True:
+            button1.destroy()
+            button1visible = False
+class PanelButton2:
+    def __init__():
+        global button2, button2visible
+    def Show():
+        if button2visible == False:
+            button2 = tkinter.Button(buttonpanel, text="Button 2")
+            button2.place(anchor=NW, height=46, width=140, x=160, y=0)
+            button2visible = True
+    def Hide():
+        if button2visible == True:
+            button2.destroy()
+            button2visible = False 
+class PanelButton3:
+    def __init__():
+        global button3, button3visible
+    def Show():
+        if button3visible == False:
+            button3 = tkinter.Button(buttonpanel, text="Button 3")
+            button3.place(anchor=NW, height=46, width=140, x=320, y=0)
+            button3visible = True
+    def Hide():
+        if button3visible == True:
+            button3.destroy()
+            button3visible = False
+class PanelButton4:
+    def __init__():
+        global button4, button4visible
+    def Show():
+        if button4visible == False:
+            button4 = tkinter.Button(buttonpanel, text="Button 4")
+            button4.place(anchor=NW, height=46, width=140, x=480, y=0)
+            button4visible = True
+    def Hide():
+        if button4visible == True:
+            button4.destroy()
+            button4visible = False
+class PanelButton5:
+    def __init__():
+        global button5, button5visible
+    def Show():
+        if button5visible == False:
+            button5 = tkinter.Button(buttonpanel, text="Button 5")
+            button5.place(anchor=NW, height=46, width=140, x=0, y=66)
+            button5visible = True
+    def Hide():
+        if button5visible ==True:
+            button5.destroy()
+            button5visible = False
+class PanelButton6:
+    def __init__():
+        global button6, button6visible
+    def Show():
+        if button6visible == False:
+            button6 = tkinter.Button(buttonpanel, text="Button 6")
+            button6.place(anchor=NW, height=46, width=140, x=160, y=66)
+            button6visible = True
+    def Hide():
+        if button6visible ==True:
+            button6.destroy()
+            button6visible = False
+class PanelButton7:
+    def __init__():
+        global button7, button7visible
+    def Show():
+        if button7visible == False:
+            button7 = tkinter.Button(buttonpanel, text="Button 7")
+            button7.place(anchor=NW, height=46, width=140, x=320, y=66)
+            button7visible = True
+    def Hide():
+        if button7visible == True:
+            button7.destroy()
+            button7visible = False
+class PanelButton8:
+    def __init__():
+        global button8, button8visible
+    def Show():
+        if button8visible == False:
+            button8 = tkinter.Button(buttonpanel, text="Button 8")
+            button8.place(anchor=NW, height=46, width=140, x=480, y=66)
+            button8visible = True
+    def Hide():
+        if button8visible == True:
+            button8.destroy()
+            button8visible = False
+class PanelButton9:
+    def __init__():
+        global button9, button9visible
+    def Show():
+        if button9visible == False:
+            button9 = tkinter.Button(buttonpanel, text="Button 9")
+            button9.place(anchor=NW, height=46, width=140, x=0, y=132)
+            button9visible = True
+    def Hide():
+        if button9visible == True:
+            button9.destroy()
+            button9visible = False
+class PanelButton10:
+    def __init__():
+        global button10, button10visible
+    def Show():
+        if button10visible == False:
+            button10 = tkinter.Button(buttonpanel, text="Button 10")
+            button10.place(anchor=NW, height=46, width=140, x=160, y=132)
+            button10visible = True
+    def Hide():
+        if button10visible == True:
+            button10.destroy()
+            button10visible = False
+class PanelButton11:
+    def __init__():
+        global button11, button11visible
+    def Show():
+        if button11visible == False:
+            button11 = tkinter.Button(buttonpanel, text="Button 11")
+            button11.place(anchor=NW, height=46, width=140, x=320, y=132)
+            button11visible = True
+    def Hide():
+        if button11visible == True:
+            button11.destroy()
+            button11visible = False
+class PanelButton12:
+    def __init__():
+        global button12, button12visible
+    def Show():
+        if button12visible == False:
+            button12 = tkinter.Button(buttonpanel, text="Button 12")
+            button12.place(anchor=NW, height=46, width=140, x=480, y=132)
+            button12visible = True
+    def Hide():
+        if button12visible == True:
+            button12.destroy()
+            button12visible = False
+
+class ButtonFunctions:
+   def __init__():
+      global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
+   def Visible(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12):
+      if a1 == 0:
+         try:
+            PanelButton1.Hide()
+         except:
+            x = 0
+      elif a1 == 1:
+         try:
+            PanelButton1.Hide()
+         finally:
+            PanelButton1.Show()
+      if a2 == 0:
+         try:
+            PanelButton2.Hide()
+         except:
+            x = 0
+      elif a2 == 1:
+         try:
+            PanelButton2.Hide()
+         finally:
+            PanelButton2.Show()
+      if a3 == 0:
+         try:
+            PanelButton3.Hide()
+         except:
+            x = 0
+      elif a3 == 1:
+         try:
+            PanelButton3.Hide()
+         finally:
+            PanelButton3.Show()
+      if a4 == 0:
+         try:
+            PanelButton4.Hide()
+         except:
+            x = 0
+      elif a4 == 1:
+         try:
+            PanelButton4.Hide()
+         finally:
+            PanelButton4.Show()
+      if a5 == 0:
+         try:
+            PanelButton5.Hide()
+         except:
+            x = 0
+      elif a5 == 1:
+         try:
+            PanelButton5.Hide()
+         finally:
+            PanelButton5.Show()
+      if a6 == 0:
+         try:
+            PanelButton6.Hide()
+         except:
+            x = 0
+      elif a6 == 1:
+         try:
+            PanelButton6.Hide()
+         finally:
+            PanelButton6.Show()
+      if a7 == 0:
+         try:
+            PanelButton7.Hide()
+         except:
+            x = 0
+      elif a7 == 1:
+         try:
+            PanelButton7.Hide()
+         finally:
+            PanelButton7.Show()
+      if a8 == 0:
+         try:
+            PanelButton8.Hide()
+         except:
+            x = 0
+      elif a8 == 1:
+         try:
+            PanelButton8.Hide()
+         finally:
+            PanelButton8.Show()
+      if a9 == 0:
+         try:
+            PanelButton9.Hide()
+         except:
+            x = 0
+      elif a9 == 1:
+         try:
+            PanelButton9.Hide()
+         finally:
+            PanelButton9.Show()
+      if a10 == 0:
+         try:
+            PanelButton10.Hide()
+         except:
+            x = 0
+      elif a10 == 1:
+         try:
+            PanelButton10.Hide()
+         finally:
+            PanelButton10.Show()
+      if a11 == 0:
+         try:
+            PanelButton11.Hide()
+         except:
+            x = 0
+      elif a11 == 1:
+         try:
+            PanelButton11.Hide()
+         finally:
+            PanelButton11.Show()
+      if a12 == 0:
+         try:
+            PanelButton12.Hide()
+         except:
+            x = 0
+      elif a12 == 1:
+         try:
+            PanelButton12.Hide()
+         finally:
+            PanelButton12.Show()
+
+    def WriteText():
+    def WriteCommand():
+class SidePanel:
+   def __init__():
+      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, appearancebutton
+   def Show():
+      looksbutton = tkinter.Button(sidebar, text="Look")
+      looksbutton.place(anchor=NW, width=80, x=0, y=0)
+      statsbutton = tkinter.Button(sidebar, text="Stats")
+      statsbutton.place(anchor=NW, width=80, x=83, y=0)
+      effectsbutton = tkinter.Button(sidebar, text="Effects")
+      effectsbutton.place(anchor=NW, width=80, x=166, y=0)
+      helpbutton = tkinter.Button(sidebar, text="Help")
+      helpbutton.place(anchor=NW, width=80, x=249, y=0)
+      levelsbutton = tkinter.Button(sidebar, text="Levels")
+      levelsbutton.place(anchor=NW, width=80, x=0, y=30)
+      gearbutton = tkinter.Button(sidebar, text="Gear")
+      gearbutton.place(anchor=NW, width=80, x=83, y=30)
+      titlesbutton = tkinter.Button(sidebar, text="Titles")
+      titlesbutton.place(anchor=NW, width=80, x=166, y=30)
+      creditsbutton = tkinter.Button(sidebar, text="Credits")
+      creditsbutton.place(anchor=NW, width=80, x=249, y=30)
+      textside = tkScrolledText(sidebar, cursor="arrow", wrap="word")
+      textside.place(anchor=NW, height=300, width=330, x=0, y=80)
+      textside.configure(state="disabled")
+
+      appearancebutton.destroy()
+   def Hide():
+      looksbutton.destroy()
+      statsbutton.destroy()
+      effectsbutton.destroy()
+      helpbutton.destroy()
+      levelsbutton.destroy()
+      gearbutton.destroy()
+      titlesbutton.destroy()
+      creditsbutton.destroy()
+      textside.destroy()
+
+      appearancebutton = tkinter.Button(sidebar, text="Appearance")
+      appearancebutton.place(anchor=CENTER, height=50, width=150, x=167, y=216)
+
+class TextBoxes:
+   def ClearMain():
+      textmain.configure(state="normal")
+      textmain.delete(1.0,"end")
+      textmain.configure(state="disabled")
+   def ClearAddMain(text):
+      textmain.configure(state="normal")
+      textmain.delete(1.0,"end")
+      textmain.insert(1.0, text)
+      textmain.configure(state="disabled")
+   def AddMain(text):
+      textmain.configure(state="normal")
+      textmain.insert("end", text)
+      textmain.configure(state="disabled")
+   def ClearSide():
+      textside.configure(state="normal")
+      textside.delete(1.0,"end")
+      textside.configure(state="disabled")
+   def ClearAddSide(text):
+      textside.configure(state="normal")
+      textside.delete(1.0,"end")
+      textside.insert(1.0, text)
+      textside.configure(state="disabled")
+   def AddSide(text):
+      textside.configure(state="normal")
+      textside.insert("end", text)
+      textside.configure(state="disabled")
+
+class UpDown:
+   def __init__():
+      global strimglabel, mentimglabel, libimglabel, senimglabel, hpimglabel, lustimglabel
+   def HideAll():
+      strimglabel["image"] = ""
+      mentimglabel["image"] = ""
+      libimglabel["image"] = ""
+      senimglabel["image"] = ""
+      hpimglabel["image"] = ""
+      lustimglabel["image"] = ""
+   def StrImg(img):
+      strimglabel["image"] = img
+   def MentImg(img):
+      mentimglabel["image"] = img
+   def LibImg(img):
+      libimglabel["image"] = img
+   def SenImg(img):
+      senimglabel["image"] = img
+   def hpImg(img):
+      hpimglabel["image"] = img
+   def LustImg(img):
+      lustimglabel["image"] = img
 
 #window
 root = Tk()
@@ -15487,14 +12846,15 @@ textsizeupbutton.place(anchor=NW, height=30, width=30, x=153, y=385)
 textsizeupbutton["font"] = ("Times New Roman", 14)
 textboldbutton = tkinter.Button(sidebar, text="B", command=Option5Event)
 textboldbutton.place(anchor=NW, height=30, width=30, x=200, y=385)
-textcolourbutton = tkinter.Button(sidebar, text="C", command=Option6Event)
-textcolourbutton.place(anchor=NW, height=30, width=30, x=245, y=385)
+textcolorbutton = tkinter.Button(sidebar, text="C", command=Option6Event)
+textcolorbutton.place(anchor=NW, height=30, width=30, x=245, y=385)
 themebutton7 = tkinter.Button(sidebar, text="O", command=Option7Event)
 themebutton7.place(anchor=NW, height=30, width=30, x=301, y=385)
-
+"""
 appearancebutton.destroy()
 ChangeTKBColor("#FFFFFF")
 ChangeTKFColor("#000000")
 UpdateText()
-
+"""
+Frame1()
 root.mainloop()
