@@ -3251,7 +3251,7 @@ def AppearanceGo():
       elif (buttonChoice == 12):
          DoProcess()
 
-!def DetailedStats():
+def DetailedStats():
    global strMod, mentMod, libMod, senMod, SexPMod, changeMod, carryMod, HPMod, coinMod, cockSizeMod, vagSizeMod, cumMod, buttMod, babyFree, pregChanceMod, extraPregChance, pregTimeMod, pregRate, lactation, udders, udderLactation, milkMod, milkCap, rapeMod, enticeMod, runMod, showSide, buttonChoice
    tempStr = ""
    tempStr += "These are the modifiers and multipliers for more detailed stats beyond your base stats:" + "\n"
@@ -3840,7 +3840,8 @@ def DoGender():
    StatDisplay()
    OutputMainText("Choose which gender you want to be:" + "\n" + "\n" + "Male - You has painus!" + "\n" + "\n" + "Female - You has vagoo!" + "\n" + "\n" + "Herm - You has painus and vagoo!",True)
    ButtonFunctions.Visible(0,0,0,0,1,1,1,0,0,0,0,0)
-   DoButtonChoices(5, "Male", 6, "Female", 7, "Herm")
+   templist = [5, "Male", 6, "Female", 7, "Herm"]
+   DoButtonChoices(templist)
    #this.doListen = function():void
    if (buttonChoice == 5):
       gender = 1
@@ -4317,58 +4318,11 @@ def DoJizzPants():
 
 !def DoBagStashItems(which:str):
    global bagArray, bagPage, stashArray
-   templist = list(())
    if which == "bag":
-      templist.append(1)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 9]))
-      templist.append(2)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 8]))
-      templist.append(3)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 7]))
-      templist.append(4)
-      templist.append(">>")
-      templist.append(5)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 6]))
-      templist.append(6)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 5]))
-      templist.append(7)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 4]))
-      templist.append(8)
-      templist.append("<<")
-      templist.append(9)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 3]))
-      templist.append(10)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 2]))
-      templist.append(11)
-      templist.append(ItemName(bagArray[(bagPage * 9) - 1]))
-      templist.append(12)
-      templist.append("Return")
+      templist = [1, ItemName(bagArray[(bagPage * 9) - 9]), 2, ItemName(bagArray[(bagPage * 9) - 8]), 3, ItemName(bagArray[(bagPage * 9) - 7]), 4, ">>", 5, ItemName(bagArray[(bagPage * 9) - 6]), 6, ItemName(bagArray[(bagPage * 9) - 5]), 7, ItemName(bagArray[(bagPage * 9) - 4]), 8, "<<", 9, ItemName(bagArray[(bagPage * 9) - 3]), 10, ItemName(bagArray[(bagPage * 9) - 2]), 11, ItemName(bagArray[(bagPage * 9) - 1]), 12, "Return"]
       return templist
    if which == "stash":
-      templist.append(1)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 9]))
-      templist.append(2)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 8]))
-      templist.append(3)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 7]))
-      templist.append(4)
-      templist.append(">>")
-      templist.append(5)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 6]))
-      templist.append(6)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 5]))
-      templist.append(7)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 4]))
-      templist.append(8)
-      templist.append("<<")
-      templist.append(9)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 3]))
-      templist.append(10)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 2]))
-      templist.append(11)
-      templist.append(ItemName(stashArray[(bagPage * 9) - 1]))
-      templist.append(12)
-      templist.append("Return")
+      templist. = [1, ItemName(stashArray[(bagPage * 9) - 9]), 2, ItemName(stashArray[(bagPage * 9) - 8]), 3, ItemName(stashArray[(bagPage * 9) - 7]), 4, ">>", 5, ItemName(stashArray[(bagPage * 9) - 6]), 6, ItemName(stashArray[(bagPage * 9) - 5]), 7, ItemName(stashArray[(bagPage * 9) - 4]), 8, "<<", 9, ItemName(stashArray[(bagPage * 9) - 3]), 10, ItemName(stashArray[(bagPage * 9) - 2]), 11, ItemName(stashArray[(bagPage * 9) - 1]), 12, "Return"]
       return templist
 
 !def DoBag():
@@ -8571,10 +8525,9 @@ def DyeThing(ID, color):
    OutputMainText("What would you like to apply the " + ItemName(ID) + " to?",True)
    templist = [7, "Body", 10, "Nevermind"]
    if (hair > 0):
-      a1 = 1
       templist.append(5)
       templist.append("Hair")
-   ButtonFunctions.Visible(0,0,0,0,a1,0,1,0,0,1,0,0)
+   ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,1,0,0)
    DoButtonChoices(templist)
    #this.doListen = function():void
    if (buttonChoice == 5):
@@ -10924,23 +10877,16 @@ def DoMasturbate():
    global currentState, cockTotal, vagTotal, udders, buttonChoice
    BC()
    currentState = 3
-   a1 = 0
-   a2 = 0
-   a3 = 0
-   a4 = 0
    templist = []
    if (cockTotal > 0):
-      a1 = 1
       templist.append(1)
       templist.append("Penis")
    """
    if (cockTotal > 0) and (vagTotal > 0):
-      a2 = 1
       templist.append(2)
       templist.append("Both")
    """
    if (vagTotal > 0):
-      a3 = 1
       templist.append(3)
       templist.append("Vagina")
    templist.append(4)
@@ -10948,12 +10894,11 @@ def DoMasturbate():
    templist.append(7)
    templist.append("Breasts")
    if (udders == True):
-      a4 = 1
       templist.append(10)
       templist.append("Udder")
    templist.append(12)
    templist.append("Return")
-   ButtonFunctions.Visible(a1,a2,a3,1,0,0,1,0,0,a4,0,1)
+   ButtonFunctions.Visible(1,0,1,1,0,0,1,0,0,1,0,1)
    OutputMainText("How would you like to masturbate?",True)
    DoButtonChoices(templist)
    #this.doListen = function():void
@@ -11097,17 +11042,13 @@ def DoCockMasturbate():
                hrs = 1
                i += 1
          if (_loc4_ == 2) and ((cockSize * cockSizeMod * 6) > tallness) and ((cockSize * cockSizeMod * 8) < (tallness * 3)):
-         {
-         }
+            x = 0
          if (_loc4_ == 3) and (_loc3_ > 2000):
-         {
-         }
+            x = 0
          if (_loc4_ == 4) and (ment < (lib - 50)):
-         {
-         }
+            x = 0
          if ((_loc4_ == 5) and ((attireBot == 6) or (attireBot == 17)) and (lust > 80)):
-         {
-         }
+            x = 0
          if (_loc4_ == 6 and ((attireBot == 5) or (attireBot == 7) or (attireBot == 12) or (attireBot == 13) or (attireBot == 14) or (attireBot == 16)) and (lust > 45)):
             OutputMainText("Already half hard from your lingering lust, just the thought of masturbating makes your " + CockDesc() + " erection" + Plural(1) + " stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your " + ClothesBottom() + " as your rod" + Plural(1) + " lift" + Plural(3) + " the fabric forward. You do your best to press it back down in an attempt to hide " + Plural(9) + ", but ",True)
             if ((cockSize * cockSizeMod) > 10):
@@ -11143,8 +11084,7 @@ def DoCockMasturbate():
             DoLust(-math.floor(sen / 2),2,1)
             i += 1
          if((_loc4_ == 8) and ((attireBot == 10) or (attireBot == 11)) and (lust > 60)):
-         {
-         }
+            x = 0
       DoEnd()
 
 def DoVagMasturbate():
@@ -11218,17 +11158,13 @@ def DoVagMasturbate():
             hrs = 1
             i += 1
          if (chance == 2) and ((cockSize * cockSizeMod * 6) > tallness) and ((cockSize * cockSizeMod * 8) < (tallness * 3)):
-         {
-         }
+            x = 0
          if (chance == 3):
-         {
-         }
+            x = 0
          if (chance == 4) and (ment < (lib - 50)):
-         {
-         }
+            x = 0
          if ((chance == 5) and ((attireBot == 6) or (attireBot == 17) or (attireBot == 20)) and (lust > 60)):
-         {
-         }
+            x =0
          if (chance == 6 and ((attireBot == 13) or (attireBot == 14)) and (lust > 80)):
             OutputMainText("With the cooler air easily breezing underneath your " + ClothesBottom() + " and over your moistened nethers, the thought of masturbating just makes your " + LegDesc(2) + " weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice." + "\n" + "\n" + "You manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your " + ClothesBottom() + ". While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of " + RegionName(currentZone) + ", with people walking by just a few feet away, your fingers touch your intimate region." + "\n" + "\n",True)
             if (vulvaSize < 30):
@@ -14149,21 +14085,17 @@ def DoFirmshaft():
             #doListen = function():void
             OutputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously." + "\n" + "\n" + "It doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boy's best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it." + "\n" + "\n" + "The long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy..." + "\n" + "\n" + "With his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.",True)
             templist = []
-            a1 = 0
-            a2 = 0
             if (CheckItem(533) == True):
-               a1 = 1
                templist.append(1)
                templist.append("Reduc Reduc")
             if (CheckItem(534) == True):
-               a2 = 1
                templist.append(5)
                templist.append("Male Enhance")
             templist.append(3)
             templist.append("Crossdress")
             templist.append(11)
             templist.append("Maybe Later")
-            ButtonFunctions.Visible(a1,0,1,0,a2,0,0,0,0,0,1,0)
+            ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
             DoButtonChoices(templist)
             #doListen = function():void
             if (buttonChoice == 1):
@@ -14219,22 +14151,18 @@ def DoFirmshaft():
             DoEnd()
          elif (buttonChoice == 10):
             OutputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him." + "\n" + "\n" + "\"R-Really? I mean, after last time, I don't really have much reason to not trust you. But... H-How do you think you can help me?\"",True)
-            a1 = 0
-            a2 = 0
             templist = []
             if (CheckItem(533) == True):
-               a1 = 1
                templist.append(1)
                templist.append("Reduc Reduc")
             if (CheckItem(534) == True):
-               a2 = 1
                templist.append(5)
                templist.append("Male Enhance")
             templist.append(3)
             templist.append("Crossdress")
             templist.append(11)
             templist.append("Maybe Later")
-            ButtonFunctions.Visible(a1,0,1,0,a2,0,0,0,0,0,1,0)
+            ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
             DoButtonChoices(templist)
             #doListen = function():void
             if (buttonChoice == 1):
@@ -14320,22 +14248,18 @@ def DoFirmshaft():
          #this.doListen = function():void
          if (buttonChoice == 1):
             OutputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him." + "\n" + "\n" + "\"You think you can now? I still have no idea what you were thinking of doing, but... H-How do you think you can help me?\"",True)
-            a1 = 0
-            a2 = 0
             templist = []
             if (CheckItem(533) == True):
-               a1 = 1
                templist.append(1)
                templist.append("Reduc Reduc")
             if (CheckItem(534) == True):
-               a2 = 1
                templist.append(5)
                templist.append("Male Enhance")
             templist.append(3)
             templist.append("Crossdress")
             templist.append(11)
             templist.append("Maybe Later")
-            ButtonFunctions.Visible(a1,0,1,0,a2,0,0,0,0,0,1,0)
+            ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
             DoButtonChoices(templist)
             #doListen = function():void
             if (buttonChoice == 1):
@@ -14382,21 +14306,18 @@ def DoFirmshaft():
             DoNext()
             #doListen = function():void
             OutputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously." + "\n" + "\n" + "It doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boys best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it." + "\n" + "\n" + "The long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy..." + "\n" + "\n" + "With his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.",True)
-            a1 = 0
-            a2 = 0
             templist = []
             if (CheckItem(533) == True):
-               a1 = 1
                templist.append(1)
                templist.append("Reduc Reduc")
             if (CheckItem(534) == True):
-               a2 = 1
-               templist.append(5,"Male Enhance")
+               templist.append(5)
+               templist.append("Male Enhance")
             templist.append(3)
             templist.append("Crossdress")
             templist.append(11)
             templist.append("Maybe Later")
-            ButtonFunctions.Visible(a1,0,1,0,a2,0,0,0,0,0,1,0)
+            ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
             DoButtonChoices(templist)
             #doListen = function():void
             if (buttonChoice == 1):
@@ -14463,40 +14384,28 @@ def DoFirmshaft():
          elif (jamieSize < 23):
             OutputMainText(" Both of his hands hold the sides of his massive cock, trying to keep it from dragging across the ground too much. A towel slung over the end of the shaft in an attempt to hide some of himself merely bunches up against the wide head that flares obscenely toward the lower half of your body. His balls, on the other hand, hang tightly in his scrotum just a few inches above the ground, well past the denim skirt and kicked again and again with each step as he tries to move with the weight. People stare at him as he moves, much more obvious than he had ever thought possible.",False)
          OutputMainText("\"I was wondering if you would be interested in... 'helping' me again at all?\"",False)
-         a1 = 0
-         a2 = 0
-         a3 = 0
-         a4 = 0
-         a5 = 0
-         a6 = 0
          templist = []
          if (CheckItem(533) == True):
-            a1 = 1
             templist.append(1)
             templist.append("Reduc Reduc")
          if (CheckItem(534) == True):
-            a2 = 1
             templist.append(3)
             templist.append("Male Enhance")
          if ((VagLimit() >= ((this.jamieSize + 1) * 4)) and (vagTotal > 0)):
-            a3 = 1
             templist.append(6)
             templist.append("Sex")
          if (((cockSize * cockSizeMod) > ((jamieSize + 1) * 4 * 5)) or ((((jamieSize + 1) * 4) > (cockSize * cockSizeMod * 5)) and (cockTotal > 0))):
-            a4 = 1
             templist.append(7)
             templist.append("Cock Fuck")
          if (tallness > ((jamieSize + 1) * 4 * 3)):
-            a5 = 1
             templist.append(9)
             templist.append("Your Ass")
          if ((cockSize * cockSizeMod) <= eVagLimit(48)):
-            a6 = 1
             templist.append(11)
             templist.append("His Ass")
          templist.append(12)
          templist.append("Not Now")
-         ButtonFunctions.Visible(a1,0,a2,0,0,a3,a4,0,a5,0,a6,1)
+         ButtonFunctions.Visible(1,0,1,0,0,1,1,0,1,0,1,1)
          DoButtonChoices(templist)
          #this.doListen = function():void
          DoEnd()
@@ -14593,7 +14502,7 @@ def DoFirmshaft():
             templist.append(11)
             templist.append("Girl's Tent")
          ButtonFunctions.Visible(1,a1,0,1,a2,a3,a4,0,a5,a6,a7,0)
-         DoButtonFunctions(templist)
+         DoButtonChoices(templist)
          #this.doListen = function():void
          if (buttonChoice == 1):
             "{}"
@@ -14798,7 +14707,7 @@ def DoTieden():
       doEnd()
 
 !def DoSizCalit():
-   global lilaPreg, lilaMilk, lilaVulva, tallness, hrs, exhaustion, lilaUB, gender, cockSize, cockSizeMod, cockTotal, vagTotal
+   global lilaPreg, lilaMilk, lilaVulva, tallness, hrs, exhaustion, lilaUB, gender, cockSize, cockSizeMod, cockTotal, vagTotal, lib, buttonChoice, skipExhaustion, knot, clitSize, sen, ballSize, balls, breastSize, udderSize, skinType, ment
    getMilk = 0
    chance = EventSelect("Siz'Calit")
    if (chance == 1):
@@ -14903,988 +14812,558 @@ def DoTieden():
          elif ((lilaPreg <= 100) and (lilaPreg > 70)):
             OutputMainText(" Her face practically glows as stands there, her belly swollen with offspring and pushing her milky nipples out even further. It pushes " + LegWhere(2) + " your own " + LegDesc(2) + " as she tries to hold you close, making her squeak as a baby kicks your " + LegDesc(1) + " from inside. If you weren't there to stop her, she would have probably fallen forward from the round thing, since it's almost larger than she is. \"Mmm... Awe yew looking fowawd to being a daddy?,\" she sighs pleasantly.",False)
          a1 = 0
-         a2 = 0
-         templist = [1, "Milk", 3, "Suckle", 5, "Lick"]
-         if (lilaUB == True ):
+         templist = [1, "Milk", 3, "Suckle", 5, "Lick", 12, "Mommy"]
+         if (lilaUB == True):
             a1 = 1
             if (tallness < (6 + 4 * lilaVulva)):
                templist.append(6)
                templist.append("Unbirth")
-         
          if ((gender != 0) and (((cockSize * cockSizeMod) <= eVagLimit(8 + 5 * lilaVulva)) and (cockTotal > 0)) or (vagTotal > 0)):
-            a2 = 1
             templist.append(7)
             templist.append("Sex")
-!         this.buttonWrite(9,"Cat's Meow");
-         if(this.checkItem(105))
-         {
-            this.Choice9.visible = true;
-         }
-         this.buttonWrite(10,"Puss Juice");
-         if(this.checkItem(221))
-         {
-            this.Choice10.visible = true;
-         }
-         this.buttonWrite(12,"Mommy")
-         ButtonFunctions.Visible(1,0,1,0,1,a1,a2,0,1,1,0,1)
-         this.doListen = function():void
-         {
-            var getCum:int = 0;
-            if(buttonChoice == 1)
-            {
-               outputMainText("You make a hint with your fingers that she could use some milking, to which she sticks out her tongue at you. But she nods and agrees nevertheless and follows you back up to your place. You soon pull off her sundress, setting it on out in the heat to dry for now, leaving her quite naked.",true);
-               lilaDesc();
-               outputMainText("\r\rLila grins as you return, her arms wrapping around her as you help her up onto your bed with you sitting beneath her.",false);
-               if(lilaVulva > 12)
-               {
-                  outputMainText(" Her slimy pussy easily slides " + legWhere(2) + " your " + legDesc(2) + " and presses against the bed, which causes her to squirm at first until your thighs can close to anchor her down.",false);
-               }
-               outputMainText(" Then your hands come around her body, gently pinching and kneading down her nipples as you begin to milk her.",false);
-               if(lilaMilk == 0)
-               {
-                  outputMainText(" Small drops bead around her areolas as you squeeze them gently, quickly running off and leaving each breast dry after just several slow pumps. You continue milking the nipples even after they\'ve dried up, just to make sure you fully empty them.",false);
-               }
-               else if(lilaMilk <= 2)
-               {
-                  outputMainText(" Thin trails of milk dribble down you fingers, requiring several good pumps to fully drain them.",false);
-               }
-               else if(lilaMilk <= 5)
-               {
-                  outputMainText(" Though the nipples feel quite stiff between your fingers, they easily squish in your grasp. A few thin streams spray into the air with the first couple of squeezes around each nipple, followed by a small steady flow of milk over your hands as you continue until they\'re empty.",false);
-               }
-               else if(lilaMilk <= 8)
-               {
-                  outputMainText(" It takes a couple fingers to thoroughly cover the puffy nipples, squishing gently in your grasp. Each time you press down on them, thin streams spray into the air while more milk collects on your hands and flows steadily down, quickly making your hands and the girl quite wet.",false);
-               }
-               else if(lilaMilk <= 12)
-               {
-                  outputMainText(" Squirts of milk spurt through the air each time you press down on her puffy nipples, causing the girl to squirm as she feels the noticeable release. Quite quickly milk dribbles down your hands even without your aid, the flow picking up whenever you do.",false);
-               }
-               else if(lilaMilk <= 18)
-               {
-                  outputMainText(" You cup her whole breasts as you slowly knead down them, thick spurts of milk spraying in all directions as you do. She lets out an erotic gasp as the milk forcibly escapes her, her purring growing louder as it continues to dribble profusely afterward. The milk spills about your hands and down her body, taking quite a while to fully empty just a single breast.",false);
-               }
-               else if(lilaMilk <= 19)
-               {
-                  outputMainText(" The girl lets out a meek cry every time your knead one of her breasts, the milk gushing out as her nipples stretch out further as you lightly tug on them. You can hear some of the stuff splatter across the floor, it has so much pressure behind it. And once you start a nipple, it\'s hard to stop it from flooding down her body as the drops refuse to stop forming and pouring down until you\'ve milked out quite a large amount. When you do, you can feel her breast become much softer, her nipples easily malleable in your grip as they continue to dribble no matter what you do.",false);
-               }
-               outputMainText("\r\rAs you take your time to release her, she quickly relaxes against your " + boobDesc() + " chest, closing her eyes and purring comfortably. Her hands slip between her legs. While you play with her breasts, milk flowing down into your combined laps, you can easily hear the sloshing of her fluids as her hands slip up and down through the cleft of her labia, rubbing her clitoris to heighten the pleasure. Just as you finish off her lowest pair, your hands so close to her loins, she whimpers and seizes as she quietly orgasms in your lap, the bed growing moist beneath you.\r\rIt takes a few moments for her breathing to calm down again and her eyes to open. A slimy hand comes up and touches your cheek, pushing your other cheek towards her mouth as she kisses you. \"Hehe, it felt good... Thank yew~\", she kisses you again.\r\rNow empty, she slides off your lap and onto the floor, strands of her feminine fluid stretching from her bottom to your lap, her tail catching and flicking them as it idly waves. As you stand, more of the stuff is stuck to your own " + buttDesc() + " rump, leaving your " + clothesBottom() + " thoroughly soaked. You help her put on her sundress, making sure it doesn\'t get stuck on a stray nipple or her tail, and she begins to head out.\r\r\"I\'ll always hope to see you again,\" she grins. Then she heads out, her friends waiting for her elsewhere in the city.",false);
-               if(lilaMilk > 5 && lilaMilk <= 12)
-               {
-                  outputMainText("\r\rHowever, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well.",false);
-                  itemAdd(224);
-               }
-               if(lilaMilk > 12)
-               {
-                  outputMainText("\r\rAnd she was so milky that you were able to save enough milk for two whole bottles! Though it\'s likely not all milk, thanks to all the mess.",false);
-                  itemAdd(224);
-                  itemAdd(224);
-               }
-               hrs = 3;
-               doLust(Math.floor(lib / 3),0);
-               doEnd();
-            }
-            if(buttonChoice == 3)
-            {
-               outputMainText("You simply lick your lips a little and she giggles, catching onto the fact that you\'re thirsty. She has no qualms about it, quite happy that you enjoy her flavor so much, and nearly skips her way to your place. Before you\'re even in the doorway, she pulls off her sundress and stands naked outside while you take the outfit and put it somewhere out in the heat to dry for now.",true);
-               lilaDesc();
-               outputMainText("\r\rLila grins happily as you kneel down in front of her, pushing back a bit so you\'re not obviously out on the walkway where everybody in the canopy can see. You open your mouth and slowly suck on each nipple.",false);
-               if(lilaMilk == 0)
-               {
-                  outputMainText(" It only takes a few good gulps before each nipple dries out, but you continue a little longer anyway to help please the girl.",false);
-               }
-               else if(lilaMilk <= 2)
-               {
-                  outputMainText(" The nipples quickly begin to dribble onto your tongue, the sweet taste warming your throat as you swallow again and again.",false);
-               }
-               else if(lilaMilk <= 5)
-               {
-                  outputMainText(" Almost having to bite down, the stiff nipples soon squish between your lips and spray thin streams into your mouth, then continue to dribble into your mouth providing several large gulps.",false);
-               }
-               else if(lilaMilk <= 8)
-               {
-                  outputMainText(" Your mouth has to stretch rather wide to latch onto the puffy nipples and each suck is met with thin streams of milk splattering about your mouth, easily providing you with a consistent drink of sweet warm liquid.",false);
-               }
-               else if(lilaMilk <= 12)
-               {
-                  outputMainText(" The perk, puffy nipples fill your mouth and each time you squeeze, the girl gasps as she feels the milk spray into your throat, the pressure noticeable releasing. You have to gulp twice between each suck, the milk builds up so quickly.",false);
-               }
-               else if(lilaMilk <= 18)
-               {
-                  outputMainText(" You can feel her engorged breast give a little as you push your face against them, the large milky nipples sliding across your tongue. She gasps as her nipple gushes into your mouth as you slowly bite down and continues to squirm as you try guzzle down her milk. Some of it even escapes your lips and dribbles down your face and onto the wood below.",false);
-               }
-               else if(lilaMilk <= 19)
-               {
-                  outputMainText(" She lets out a squeal as you first touch each breast, the thick nipple spraying milk into your face before you can even get it in your mouth. Then her tail flicks about behind her as she clenches down, the engorged breasts gush into your mouth with hardly any effort on your part. So much so that you can\'t seem to keep up with her output as plenty of it bubbles back out of your mouth and down your face, forming rivers through her fur.",false);
-               }
-               outputMainText("\r\rShe purrs and mewls as you nip at her nipples, her hands hugging your head against her body. It doesn\'t take long before she\'s thrusting her hips and squeezing her thighs together to care for her hot loins. Being kind, you reach out and run your fingers through her sensitive cleft until she\'s maneuvering to hump you back.\r\rThough it\'s not a powerful sensation, over the amount of time it takes you to drain each nipple her arousal quickly builds until sheets of lubricant begin to spill. She presses your face into her last nipple as she clenches down with a soft moan, her hips twitching and her legs tensing with the climax. When she\'s finally done, her legs give out and she falls towards you, toppling back out into the city.\r\rThe warm air licking across her moist pussy, it doesn\'t take long before she\'s squirming again. \"Eehee, I bettew get dwessed befowe somebody sees me on yew.\"\r\rBefore she gets up, however, she slides down your body to give you a nice kiss on the forehead. Then she slides back up as she stretches out, her tail reaching high, and incidentally drags her stiff clit across your face and leaving you quite slick. And before you can get up, she grabs her dress and hurriedly dons it, hardly covering her rump and wet thighs, and runs off with some other task in mind.",false);
-               if(lilaMilk > 8)
-               {
-                  outputMainText("\r\rAll that milk does sit quite well in your stomach, however, and leaves you feeling rather good.",false);
-                  doHP(lilaMilk * 2);
-                  exhaustion -= Math.floor(lilaMilk / 2);
-                  skipExhaustion = true;
-               }
-               hrs = 3;
-               doLust(Math.floor(lib / 2),0);
-               doEnd();
-            }
-            if(buttonChoice == 5)
-            {
-               outputMainText("You stick your tongue out at her and she immediately blushes. The blotch around her crotch deepens and spreads simply by the thought. A rather Pavlovian response from her nethers... She hugs onto your arm as you head up to your place and her thighs slip together with each step until she\'s fumbling the last few feet. You manage to catch her and hoist her up onto your bed, where she immediately twists around and crumples the fabric over her crotch in her hands. Barely lifting her dress a few inches, her legs spread slightly in welcome to you, she\'s a bit too timid to go any further.\r\rSo, with a mewl echoing about the room, you slide your hands up the sides of her legs and push the dress away, staring at her dewy lips. You lift the sundress over your head and dive inside. ",true);
-               if(lilaVulva == 0)
-               {
-                  outputMainText("Her petite folds are swollen and bright, shimmering with the surrounding fur from the slickness she\'s already made. You can easily engulf her entire groin in your mouth, your tongue running up and down over her little stiff button and slipping into her folds to ring around her tight sex.",false);
-               }
-               else if(lilaVulva <= 2)
-               {
-                  outputMainText("Her swollen lips are nearly red with her arousal, a gob of lubrication already slipping down her folds and into the cleft of her backside, drooling down onto her tail. You nibble around her inner lips and nip at her standing clit, the developed vulva appreciating your efforts with even more slime.",false);
-               }
-               else if(lilaVulva <= 5)
-               {
-                  outputMainText("Her thighs still squeeze her thick vulva by the time you reach it, spreading only to let your head through. A few strands stretch across your path, the engorged pussy almost gasping open as the large labia pulse in anticipation. Larger than your mouth, it engulfs your lips in a sloppy kiss while your tongue slips inside. You pull out only to slide up through the glistening folds and suckle from her thorn-like clit as it stands out from it\'s hood, causing her to immediately buck upon the bed.",false);
-               }
-               else if(lilaVulva <= 8)
-               {
-                  outputMainText("The bulbous pussy looks odd between her dainty thighs, so swollen and naughty. The inner lips dangle out of from the thicker ones, giving you something to gently bite down on as you reach towards it. She squirms as you do, letting out a gasp as you tenderize the supple meat. Feminine honey dribbles from her hole and smears about her thighs, forming webs around your face and running along her tail below. Your mouth slips into the labia and kisses her vaginal passage, your tongue slipping in deep to send her wild. Her hands push her dress into your head and she squirms wryly as you do, only to buck and knock on your skull as you pull out and suck upon her button. The thing pushes out from the folds, standing stiffly with clear strands stretching down around it. You lash your tongue over it again and again in your mouth, making her clenched fists dig her dress into your head.",false);
-               }
-               else if(lilaVulva <= 12)
-               {
-                  outputMainText("You can\'t even see where her thighs meet her body, the growing pussy is so large. She inadvertantly squeezes it, even with your head in there, and a handful of honey pushes out from her large lips, her hole gaping to let it pass and form sheets between her thighs, her tail becoming drenched along with a good portion of your bed. You suck some of the dangling inner labia into your mouth, kneading and tenderizing it with your teeth while she squirms behind it. Then the lips hug your face as you push inside, your mouth opening to push inside her vaginal passage. Your lips can pluck around the edges, your tongue slipping around the slick walls. Her hands hug around your head through her dress, clenching into you the best she can while her tail flicks her fluids up across your " + boobDesc() + " chest. Then you push upwards, your tongue quickly lashing across her urethra before wedging into her clitoral hood. You lick around the base of the stiff erection, sliding the whole thing into your mouth. You gently bite around the tip as your lips drag up and down its short length, making her tiny butt squirm upon the bed.",false);
-               }
-               else if(lilaVulva <= 18)
-               {
-                  outputMainText("Your hands reach up to flank the sides of the enormous cunt, mashing the large labia together as a constant dribble of slime coats her tail and the bed beneath. You grab her tail and wedge it up between her folds, slipping it up and down while her knees jerk and push around her vulva. Leaving it caught between the dangling lips, you reach in beside it, your face becoming drenched, and suck in a mouthful of the flesh. You gently chew on the meat, the tip of her tail slapping across the top of your head as she mewls erotically from the other side. Then you reach inside and bite down on the edge of her vaginal passage, the supple flesh easily handling your roughness. Your hand then leaves the side of the cunt to reach into her hole, grabbing it by the edge to hold it up and fondle it while your mouth moves up towards the standing protrusion above. The overgrown clitoris stands well beyond the massive mound and pulsates in your mouth as you engulf it. You suck and gnaw on the hard thing, the girl behind clenching her hands deep into her own flesh through the sundress as her hips grind down onto the bed.",false);
-               }
-               else if(lilaVulva <= 19)
-               {
-                  outputMainText("You lift the heavy mass of lewd flesh higher so she can scoot back upon the bed until her feet are no longer dangling. Once it\'s well supported, the waterfall of lubrication already having slickened the fur all the way up between her legs well in advance, your hands palm either side of her huge thick labia and grind about, massaging the sensitive pussy from the outside. Her feet and knees soon join you, writhing about to knead it thoroughly. No longer needing to do it themselves, your hands pull back to help spread the large slit, tugging and twisting the dangling folds. You spread her wide, her pussy gaping, and you lick around her vaginal passage, biting her and there until you slip a hand in to massage from the inside. The rest of her body twitches about, the tip of her tail flailing from underneath, until she has to onto her own legs to hold herself still. Yet, her hips still manage to buck as you slip her large clitoris into your mouth, barely able to take in its full length. You suck it in and slide up and down its length, gnawing where you can, until your other hand comes to your aid and wraps around the base to stroke it in tune to your efforts. There is so much pleasure that the girl is stuck there, her mouth wide and her eyes shut, hardly able to breath or make a sound outside of high-pitched moans.",false);
-               }
-               outputMainText("\r\rMilk from her breasts spills down around your head as the sensations grow stronger and stronger. Eventually, Lila falls backward onto the bed, grasping at the covers and wringing her legs around your neck. She pulls you deeper into her loins as she lets out a yowling cry, a mess of slime spilling out around you. Her body twitches and her hips continue to buck as she endures a lengthy orgasm.",false);
-               if(lilaVulva >= 17)
-               {
-                  outputMainText(" Yet, as you continue to assault her nether region, her fat pussy quivering in your grip, she can\'t seem to stop climaxing as she cries out again and again, showering you in her fluids, until her body is too exhausted and drained to maintain the high state of euphoria much longer, quickly dropping her back down to a heavy breathing, her chest swelling and deflating again and again as she pants loudly.",false);
-               }
-               else if(lilaVulva >= 10)
-               {
-                  outputMainText(" And just a few moments after the first, your mouth still licking away, she cries out again in ecstasy as she approaches a second orgasm, her legs nearly crushing you this time.",false);
-               }
-               else if(lilaVulva >= 5)
-               {
-                  outputMainText(" However, she doesn\'t seem to be finished quite yet, as her legs maintain their hold. You lick and lick, hearing her breathing harder and harder and rapidly approaching yet another orgasmic cry.",false);
-               }
-               outputMainText("\r\rTired, her breath slowly coming to a gentle purr, she curls around to look at you. Silently urging you up onto the bed, she licks across your dampened face as you climb up with her. She cuddles into your " + boobDesc() + " chest and quickly slips into sweet dreams while you follow behind.",false);
-               if(lilaVulva > 10)
-               {
-                  doLust(lilaVulva + Math.floor(lib / 3),0);
-               }
-               else
-               {
-                  doLust(lilaVulva + Math.floor(lib / 3),0);
-               }
-               if(lilaPreg > 35)
-               {
-                  doLust(Math.floor(lib / 6),0);
-               }
-               doNext();
-               doListen = function():void
-               {
-                  outputMainText("By the time the two of you awaken, hours have passed. She finally pulls down her sundress, her naked loins on display the whole time she slept, your open doorway just a few feet away. She yawns and kisses you, trying to lap up some of the stuff that is still wettening your face.\r\r\"So gewd...,\" is all she can muster, with a bit of mumbling about her Mommy waiting. She slides out of the bed, pausing for a moment for her legs to adjust, and then slowly wobbles her way back out into the canopy.",true);
-                  hrs = 8;
-                  skipExhaustion = true;
-                  exhaustion = 0;
-                  if(lilaVulva <= 8)
-                  {
-                     aff(4,Math.floor(percent() / 20 + 4),-1);
-                  }
-                  else if(lilaVulva <= 16)
-                  {
-                     aff(4,Math.floor(percent() / 10 + 4),-3);
-                  }
-                  else
-                  {
-                     aff(4,Math.floor(percent() / 10 + 6),-6);
-                  }
-                  doEnd();
-               };
-            }
-            if(buttonChoice == 6)
-            {
-               outputMainText("Reaching up, you place a hand on the taller small girl\'s belly, giving her a kinky smile. It takes her a moment to realize what that is supposed to mean, but then she blushes terribly, her dress getting promptly more moist and her tail jerking about at the mere thought. Feigning reluctance, she nods hesitantly, but is the first to grab your hand and step towards your hut. However, she quickly slows to try and look like she\'s not as eager as she really is, still embarassed that she could even do such a thing. And when you get there, Lila stands by your bed, meekly lifting the front of her dress to hide her face and expose herself before you even shut the door.\r\r",true);
-               if(lilaVulva == 0)
-               {
-                  outputMainText(" A few drops of excitement already descend from her petite folds. It\'s amazing you could ever have fit in there as she can hardly fit an average sized penis.",false);
-               }
-               else if(lilaVulva <= 2)
-               {
-                  outputMainText(" A gob of excitement splashes to the floor with a thin strand reaching all the way up to her slightly puffy lips. Even though her genitals are the size of a more developed girl, despite her petite figure, it\'s surprising you could even fit in them.",false);
-               }
-               else if(lilaVulva <= 5)
-               {
-                  outputMainText(" Strands of honey stretch to the floor from her thick vulva. Her thighs squeeze it intently, imagining how you\'re gonna make them spread even larger. Well developed for any girl, especially one with her petite figure, it\'s hard to believe you could still manage to fit in them.",false);
-               }
-               else if(lilaVulva <= 8)
-               {
-                  outputMainText(" Thick strands of excitement stretch about her thighs and all the way down to the floor. Her thighs already spread from the bulbous pussy, larger than even most developed girls, she\'s only going to spread them wider to fit you, which is quite an astonishing feat.",false);
-               }
-               else if(lilaVulva <= 12)
-               {
-                  outputMainText(" Thick rivers descend straight to the floor from the large pussy. Almost as large as her head, if not larger, it\'s not too surprising that you could slip through, a fact she\'s well aware of as her thighs try to squeeze around it erotically.",false);
-               }
-               else if(lilaVulva <= 18)
-               {
-                  outputMainText(" Waterfalls of excitement coat the floor beneath her. She squeezes the massive pussy between her knees, her legs bowed to even stand with the thing. It\'s no surprise that you could fit inside of her, something she looks forward to as she strokes the clitoris that stands out from the folds.",false);
-               }
-               else if(lilaVulva <= 19)
-               {
-                  outputMainText(" Sheets of excitement flow out over the floor from the amazing mass of plush lips that fills the gap between her legs. Her feet rub her enormous clitoris and spread the massive dangling inner-lips, well aware of how well you could fit inside of her with such an enormous entrance.",false);
-               }
-               outputMainText(" She glances over her dress in anticipation. Not to leave her waiting, you lean her rump against the side of the bed. Keeping the bed for balance, she slides down slightly as she spreads her legs, angling the awaiting hole towards you while giving you better access. Your hands brush over the fur of her legs as you tenderly grab her supple lips. You spread them wider, looking into the gasping cavern before you.\r\rA wave of warm wet air rushes by, the heat and lubrication of her swollen pussy beckoning you in. She cutely gasps as your hand touches the inner wall, instantly coating your fingers in slime. You grab onto the velvety folds, almost immediatly losing your grip as she bucks in turn. But, she steadies herself and clenches her eyes shut, forcing her tail against the ground and anchors herself so you can proceed.\r\rPulling yourself in, the flood of slickness quickly drenches you. The stuff makes the journey even easier as you slip inside, stretching her as your torso enters. Her vaginal muscles then clench back with arousal in turn, sucking you up her passage until your " + legDesc(10) + " disappear" + legPlural(1) + " inside. You pause for a moment within the tunnel, waiting for her to loosen before you can continue any further. You can hear her hand rub something down towards from where you entered for a moment, before she calms herself and relaxes. And with the relaxing comes another rush of horny fluids. Climbing up against the current, you manage to make use of the void left behind from the released honey and slip yourself up into her womb.",false);
-               doNext();
-               doListen = function():void
-               {
-                  if(tallness <= 26)
-                  {
-                     outputMainText("Small and tight, the womb doesn\'t actually stretch much to fit your presence, settling quite stably within.",true);
-                  }
-                  else if(tallness <= 54)
-                  {
-                     outputMainText("The womb stretches rather large to accomodate your presence, increasing in size to fit you. It\'s hard to tell from within, but you can feel one side hover a little as her belly bulges outward into the air.",true);
-                  }
-                  else
-                  {
-                     outputMainText("A large space already, the huge womb stretches even further to fit you. At first it feels quite stable, but as your body fills it, you can feel her belly bulge grandly, hanging well beyond her pelvis and barely hovering in the air.",true);
-                  }
-                  outputMainText(" Curled up and comfy, the room around you swells and shrinks as you hear Lila pant heavily, coming down from the intense orgasm. Her hand rustles through the fur of her belly, gently pressing and rubbing it, which you can feel from within. The hand continues down further until you hear her gasp and the womb twitches as she pinches her button and squeezes her stretched labia. But that\'s not enough...\r\rMore rustling as she drops her dress. The room wobbles when she pushes off from the bed and stands, both hands quickly shooting down to catch you and cradle your swollen space. Once stable, she begins to waddle her way... somewhere. Outside, it seems, as you can hear a breeze blow across her belly.\r\rThe girl seems to be enjoying a nice walk through the bridges of Siz\'Calit.",false);
-                  if(tallness <= 26)
-                  {
-                     outputMainText(" With your small body hardly giving her a bulge, nobody is any the wiser, thinking she just had a large meal. She walks about rather freely, a hand always on her belly, and frequently a hand delving further down and moistening her dress in her crotch. You feel her stop ocassionally and grab the rope-rail, her body shuddering with another orgasm in public. Your room grows quite soaked from the pleasurable outting, making her eventually head back to the room.",false);
-                  }
-                  else if(tallness <= 54)
-                  {
-                     outputMainText(" Your relatively large body gives her quite the bulge. You can hear people ask if she\'s pregnant as she walks by, rather surprised as they hadn\'t seen her show any signs earlier in the day. The girl never gives them a straight answer, merely giggling as she cradles the girth while slime oozes down her inner thighs. The gravid nature is too much for her normally fitting sundress, lifting it quite high. Her swollen pussy shudders below you as the air nips at the sensitive bits, exposed to anybody who takes a moment to actually look. Occassionally she\'ll stop and grab the rope-rail of the tree-top village, her hand grabbing and squishing and rubbing the bulbous cunt until the room quivers around you as she climaxes in public while nobody is watching. So much honey lubricating her legs, she quickly changes pace and rushes back to your room.",false);
-                  }
-                  else if(tallness <= 82)
-                  {
-                     outputMainText(" Your large body in her small frame gives her an enormous bulge. You can hear people gasp and whisper, wondering if Lila is pregnant and, if so, with what? Her hands hug the sides of her huge belly, swaggering as she walks, as her normally-fitting dress is lifted so high that you can feel a draft on the lower portion of your room. Which is even worse for Lila, as that same draft rushes over her giant pussy and causes her to shudder every few steps. Completely exposed below her belly, you can also hear people comment about the lewd sight, but the girl doesn\'t seem to pay much heed. So dazed and entranced by the grand sensation of being so absolutely filled while her loins climax again and again, she simply staggers on. She even halts and grabs the rope-rail of the bridges every several steps as the clenches down for another intense orgasm. The sound of thick syrupy splashing across the wood below almost drowns out the ecstatic mewls crying out above. So much honey spilling out between her thighs, frequently flooding your stretched room, that she doesn\'t get to far before she feels the need to run back to your room, climaxing a couple more times just from the bouncing of her belly and pussy from the expedited retreat.",false);
-                  }
-                  outputMainText("\r\rShe collapses against the wall beside the doorway, her rump splashing in her own fluids as she hits the floor. The slurping of her hand furiously rubbing her extraordinarily stiff clitoris mixes with her mewling moans. Her arms clamp around her belly as she reaches around it, placing pressure on you within. The womb heats up with her masturbation and you can feel yourself being pushed back out. Whether she intended to or not, her orgasms are forcing you back through her cervix. The vaginal walls practically spray you with lubrication as you enter the passage, coating you in slime and accelerating your voyage out.\r\rYou come out with a splash as Lila howls loudly, launching you into the puddle she\'s made. Her pussy continues to gasp and gape largely, flexing and contracting vigorously while the sensation of you being thrust through lingers in her nerves. Juices continue to poor out of her, showering you as the maw squirts in pleasure. The girl\'s legs jerk, her hips buck, her tail twitches, and her whole body quakes from the experience...",false);
-                  doNext();
-                  doListen = function():void
-                  {
-                     outputMainText("After a few minutes of continuous orgasm, Lila spends several more simply panting and gasping for air. You crawl up between her legs and hug around her belly, easing her nerves and helping bring her back to this world. She eventually regains enough of her wits to hug you back, kissing your forehead.\r\r\"Thank yew... That was... That was...\" She can\'t really finish the statement, merely pressing her plush vulva up against you and kissing your waist in another sense.\r\rAt a loss for words, the two of you lay there for a while until the feeling returns to her legs. Lila stands, swaying slightly while she catches her balance, and lowers her soaked dress the best she can. \"I need to go home nao and take a nice long nap... I weally enjoyed this, though, and won\'t mind if it happens again...\" She blushes with embarassment over her naughty desire for more and is quick to escape the hut, her tail writhing about as she recounts what happened in her mind, her knees twitching as she nearly climaxes from the memory alone...\r\rTaking your time with wiping yourself down from the deluge, you also think about what happened. Overall, it\'s rather arousing and feels quite pleasant...",true);
-                     if(checkItem(200))
-                     {
-                        outputMainText("\r\rHowever, once you\'re dry, you notice a blotch still forming. You quickly open up your bag and take out the culprit. The gift Lila had given to you when you first met her now seems much... \'wetter\'. The leaves and flowers of the little charm sweat with drops of \'dew\', producing a small amount of familiar honey from nothing. There\'s also a general warmth to the object that wasn\'t there before and seems to be having an effect on yourself. It seems Lila\'s gift has become more imbued with the girl\'s nature with the rather intimate \'connection\' you two shared...",false);
-                        loseManyItem(200,1);
-                        itemAdd(237);
-                     }
-                     hrs = 4;
-                     aff(4,Math.floor(percent() / 10 + 4),-3);
-                     doHP(10);
-                     doLust(Math.floor(lib / 1.5),0);
-                     doEnd();
-                  };
-               };
-            }
-            if(buttonChoice == 7)
-            {
-               if(lilaPreg == -2)
-               {
-                  outputMainText("Not quite sure how to put it, you make a quick suggestion that the two of you could try something more... intimate. Confused at what you could possibly mean, considering how intimate you\'ve already been before, she cocks her head to the side with a \"Huh?\". Not quite sure how to put it, you kneel down beside her, cupping your hands over her ears and whisper inside. To put it bluntly, you simply say \"Sex\".\r\rHer tail curls around behind her and her cheeks are instantly redder than ever before. You also hear a splash below her as her loins seem to catch on even faster than the rest of her body, her near-constant heat latching onto the word and pulling her mind towards it.\r\rShe gulps for a moment, but very quietly murmurs \"O-Okay.\"\r\rTaking her hand, you lead her up to your hut; her stride rather crooked along the way as she contemplates what will happen. Once inside, she already begins to take off her sundress before you can close a curtain across the open doorway as she thinks that\'s just what one does when it comes to sex. You chuckle at her innocent naivete, though your gazing upon her body makes her blush more in turn.",true);
-               }
-               else
-               {
-                  outputMainText("You give her a little hum, trying not to be too obvious about what your trying to suggest. When she eventually does, you can see the blush intensify in her face as her heart beats faster. Eyes darting around to make sure nobody notices, like she were trying to smuggle some illegal goods, she grabs your hand and hastily pulls you to your own hut, knowing well where it is.\r\rBefore you\'re even in the door, she\'s already tossing her sundress aside and scampers in eagerly with a giggle. As you stare at her, her body completely naked, she blushes again as she realizes how quick she was to get caught up in her body\'s desires.",true);
-               }
-               if(lilaMilk == 0)
-               {
-                  outputMainText("\r\rA few drops of milk collect around her areolas, her naked nipples perking at the air.",false);
-               }
-               else if(lilaMilk <= 2)
-               {
-                  outputMainText("\r\rDrops of milk bead around her nipples, slowly dripping down her fur as she stands there, her nipples quite stiff.",false);
-               }
-               else if(lilaMilk <= 5)
-               {
-                  outputMainText("\r\rHer nipples are so stiff that it almost looks like they hurt. A steady trickle of milk drips down from the pointy things, dribbling down her fur. ",false);
-               }
-               else if(lilaMilk <= 8)
-               {
-                  outputMainText("\r\rHer puffy nipples protrude far from her chest and belly, engorged with milk and making her twitch as the air brushes across the hard things. Small streams of milk continually flow down her front, over and around her belly, and collect in between her thighs and mix with her honey as she stands there.",false);
-               }
-               else if(lilaMilk <= 12)
-               {
-                  outputMainText("\r\rHer puffy nipples occasionally spray thin streams of milk as the air licks across there moist sensitive skin, causing her to twitch as she stands there, trying to prevent herself from manually relieving the things while they slowly dribble down her front.",false);
-               }
-               else if(lilaMilk <= 18)
-               {
-                  outputMainText("\r\rLike little rivers, milk continually flows down her front, her small swollen breasts shuddering as the air licks across her stiff nipples, sending thin white squirts flying about. She can\'t help but squish them idly with her arms, causing more milk to spray about as she does and small gasps to escape from her lips.",false);
-               }
-               else if(lilaMilk <= 19)
-               {
-                  outputMainText("\r\rWhile standing there, her hands rove about her front, squeezing her small engorged breasts as they ache from her puffy nipples growing stiff with the air licking across their moist sensitive skin. She squeaks ever now and then as she does, with more white stuff flooding from the breasts that she cannot immediately attend to with only two hands.",false);
-               }
-               if(lilaPreg <= 35 && lilaVulva >= 11)
-               {
-                  outputMainText(" The belly bulging with vaginal flesh, much of the milk diverts to either side for an easier path.",false);
-               }
-               else if(lilaPreg <= 70 && lilaPreg > 35)
-               {
-                  outputMainText(" Wobbling a little with her greater girth, her pregnant belly diverts most of the milk flow to the sides. Though it doesn\'t prevent her from rubbing the milk in over the whole thing anyways, while she absently rubs it with its taut fur being more sensitive.",false);
-               }
-               else if(lilaPreg <= 100 && lilaPreg > 70)
-               {
-                  outputMainText(" The large belly, gravid with your children, blocks most of the milk from immediately reaching the ground, making most of it flow down to her protruding belly button. Her hands occasionally paint the white stuff around as she rubs the taut fur it in awe of herself, unable to even reach its underside as its size is larger than herself.",false);
-               }
-               if(lilaVulva == 0)
-               {
-                  outputMainText(" Her petite folds are swollen and bright, shimmering with the surrounding fur from the slickness she\'s already made.",false);
-               }
-               else if(lilaVulva <= 2)
-               {
-                  outputMainText(" Her swollen lips are nearly red with her arousal, a gob of lubrication already slipping down her folds and into the cleft of her backside, drooling onto her tail.",false);
-               }
-               else if(lilaVulva <= 5)
-               {
-                  outputMainText(" Her thighs squeeze her thick vulva, the inner lips dangling out, nearly red and fairly swollen. Strands of her honey stretch between her thighs and latch onto her tail behind her.",false);
-               }
-               else if(lilaVulva <= 8)
-               {
-                  outputMainText(" The bulbous pussy in her groin looks odd between her dainty thighs, so swollen and naughty. The inner lips dangle out of from the thicker ones, red with arousal and shimmering brightly with the fluids that dribble down and form webs between her knees. Every now and then, she reaches down in an attempt to pull it back up, fearing that it\'s slowly falling down as it feels so noticeably weighty, causing her to wince and her tail to flick - flinging slime - from the intense sensation of grabbing herself in such a way.",false);
-               }
-               else if(lilaVulva <= 12)
-               {
-                  outputMainText(" The growing pussy is so large that it\'s difficult to tell where her torso ends and her legs begin. She inadvertantly squeezes it as she squirms about, forcing handfuls of honey to push out from her large lips, her hole gaping to let it pass and form sheets between her thighs, her tail becoming drenched along with a large portion of the floor. Her clitoris stands from the mass, like a thorn on her front, swollen with blood and making her shiver slightly from being exposed to even the slightest breeze.",false);
-               }
-               else if(lilaVulva <= 18)
-               {
-                  outputMainText(" Her legs bowed, her knees squeeze around the massive pussy between them. The dangling lips occasionally lewdly slap against her legs as she shifts in one place, leaving behind a stretching web of honey. The underside of her tail is nearly completely drenched by the stuff, pulling strands of it from her backside whenever it flicks from side to side in her anticipation. And a hand occasionally slips down, almost grabbing her erect clitoris as it stands far from the mass in an attempt to simply cover it and protect it from the breezes that cause her to shiver tremendously and fresh gobs to splash across the floor.",false);
-               }
-               else if(lilaVulva <= 19)
-               {
-                  outputMainText(" Her knees bend to fit around the grand mass of vulvic flesh that fills her the gap between her legs. The inner folds occasionally brush against the ground as she squirms, her foot attempting to rub her long clitoris. The stiff thing looks nearly like a small penis, erect and aroused, begging for attention as a breeze nips across its extremely sensitive skin. Lubrication pools about beneath her, making her efforts even more difficult, but she eventually manages to catch the tip of the thing between her toes and gently pinch it, making her moan softly. Her tail flings more slime about as it flicks about, occasionally going stiff as it flicks a little too close and diddles between her deep slit with a gasp.",false);
-               }
-               if(lilaPreg == -2)
-               {
-                  outputMainText("\r\rEyes going wide, she stares in wonder as you begin to strip your own outfit. Roving from your " + boobDesc() + " chest to your " + buttDesc() + " rump, and especially fixating on your",false);
-               }
-               else
-               {
-                  outputMainText("\r\rEyes wide with joy, she watches happily as you begin to strip your own outfit. Always in awe of your " + bodyDesc() + " body, she loves to see what you really look like. However, thanks to her constant heat, she absently licks her lips as she fixates on your",false);
-               }
-               if(cockTotal > 0)
-               {
-                  outputMainText(" " + cockDesc() + " swelling cock" + plural(1) + "",false);
-               }
-               else
-               {
-                  outputMainText(" " + vulvaDesc() + " dripping cunt" + plural(2) + "",false);
-               }
-               if(lilaPreg == -2)
-               {
-                  outputMainText(", obviously confused and slowly taking in what you have, but also visibly aroused as a hand latches onto her cunny, unable to stop rubbing it.",false);
-               }
-               outputMainText("\r\rThen her tail flails about with glee as you help her onto your bed, laying her back across the soft sheets.",false);
-               if(lilaPreg == -2)
-               {
-                  outputMainText(" She blinks up at you, a hand cutely curling about her mouth like she\'s about to lick her paw, wondering how this will possibly continue. Just to reassure her, you kiss her on the forehead. Her eyes close and a smile grows upon her face, accepting your comforting gesture. Though they then open as she realizes your mouth reaches down to touch against her own lips, kissing her lovingly. This time her eyes close from the sudden surge of warmth throughout her body, whimpering slightly into your mouth as she experiences such intimacy for the first time.",false);
-               }
-               else
-               {
-                  outputMainText(" She smiles up at you, her hands pawing at your " + boobDesc() + " chest, roving to your sides and holding onto you as you lean down to give her a deep kiss. Her mouth is ready to take your tongue, her rougher one dancing around it and licking your teeth and lips.",false);
-               }
-               if(tallness < 6 + 4 * lilaVulva && lilaPreg != -2 && lilaUB == false)
-               {
-                  outputMainText(" You slowly inch your way down her body to the hungry entrance, kissing her nipples and belly along the way. The plush labia dribble with arousal, gaping and awaiting your tender treatment to help cool the growing fever of her loins.",false);
-                  if(lilaVulva <= 5)
-                  {
-                     outputMainText(" Even as dainty as she may be, compared to your own size she is still relatively large. You can\'t help but bury your face between the slender lips, licking up and down the slippery pink flesh.",false);
-                  }
-                  else if(lilaVulva <= 12)
-                  {
-                     outputMainText(" Her enlarged lips gasp before you, steady streams of honey flowing down and out through the swollen petals. Though the increased size makes her walk awkwardly and spread her knees before you in this state, it seems so much larger from your relative perspective. You can\'t help but envelop your face in her pussy, the slick folds hugging you and pulsing as you lick about.",false);
-                  }
-                  else if(lilaVulva <= 19)
-                  {
-                     outputMainText(" The view warped by a waterfall of her slick fluids, the monstrous mound is easily larger than yourself. Gaping and succulent, you grab onto her outer lips, squishing them against her legs and burrow your face inside, nibbling and kissing the draping flesh around you.",false);
-                  }
-                  outputMainText("\r\rLila coos in excitment, her knees pressing in around you and driving you deeper into the craving sex. You don\'t resist, groping about and kneading the sensitive meat. This only causes her to squeeze you back more and her pussy dilate wide in ectasy. So ravenous to be sated that you find yourself falling in deeper and deeper, being gently sucked into the luscious maw.\r\r",false);
-                  if(lilaVulva <= 5)
-                  {
-                     outputMainText("The tight surroundings stretch to engulf you, the slippery fluids around her thighs aiding in squeezing your backside to push you in further.",false);
-                  }
-                  else if(lilaVulva <= 12)
-                  {
-                     outputMainText("The engorged surroundings swallow you with pillowy gentleness, the clamping of her lubricated knees helping push your backside in further.",false);
-                  }
-                  else if(lilaVulva <= 19)
-                  {
-                     outputMainText("The grand mound wraps about you, stretching slightly and easily engulfing you. Her feet press against the lower edges of her own sex, clamping your backside and pushing you in further.",false);
-                  }
-                  outputMainText(" She cries out with intense pleasure as you fill her, rapidly coming to climax with your overwhelming \'proximity\'. You can feel her inner walls roll about around you as they tense for orgasm. Then, a sudden rush of clear fluids washes over you, propelling from deeper into her depths to the exit behind you, splashing across the sheets of your bed. And with the expulsion of her fem-cum, the void in her womb recoils, sucking you in the rest of the way...",false);
-                  doNext();
-                  doListen = function():void
-                  {
-                     outputMainText("All is dark when you begin to examine your situation. Forced to curl up in this spherical environment, the warm walls around you smother you with slick honey. Despite the cramped confines, you actually find yourself rather comfortable, cradled and safe. You can feel muscles still tensing around you, coming down from an extensive high. A portion of the walls presses down onto you as a hand rubs across the belly outside, caressing the odd yet pleasant sensation. The body rolls back and forth slightly, wallowing in the abundant warmth being shed. Yet, the rocking comes to an abrupt halt as the owner of your small room comes to a realization.\r\r\"Wh-Whewe did yew go?...\"\r\rThe hand pressing down on you moves slightly. Then stops as she pauses to process the information. Then picks back up as a hurried pace and suddenly pats, quaking your space, as she worriedly calls out. \"Are... Are you in thewe?!!\"\r\rNot really sure how to break the news to her, you meekly nod. Though, you realize she probably can\'t see you do that, so you instead shout a muffled confirmation and rub the inside of her womb to console her and show you\'re okay.\r\r\"Eeep!\" She struggles to sit up, making you lose track of which way is down. You can feel a rumble as she hops to the floor, hearing her feet heavily patter across the floor as she grabs her sundress and tosses it on.\r\rNot entirely sure where Lila intends to go, you hear her exit the hut as a breeze rustles her fur. Wood claps below as she runs over the canopy bridges",true);
-                     if(lilaVulva <= 12)
-                     {
-                        outputMainText(" with an awkard stride as her thighs sqeeze the recently-climaxed extra-sensitized mound",false);
-                     }
-                     else if(lilaVulva <= 19)
-                     {
-                        outputMainText(" slowly with an additional slurping sound as her knees clamp around the recently-climaxed extra-sensitized mass of flesh below",false);
-                     }
-                     outputMainText(", frequently stumbling from side to side with the added weight. She soon takes into account her swollen belly, wrapping her hands around it like when she was pregnant, hugging you inside of her. She also pauses several times along the trek to adjust her dress, exposing herself far too often as she was not prepared for such girth.\r\rHer lungs huff above you as she frantically crosses bridged. They eventually settle as she hastily reaches her destination. The feet slow and she carefully enters another doorway.",false);
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("You can hear Lila take a deep breath to say something, but a loud gasp from a familiar voice interupts her outside.\r\r\"Lila! A-Are you pregnant again?",true);
-                        if(tallness > 26)
-                        {
-                           outputMainText(" And what could you have gotten pregnant by? A horse?! You\'re enormous! How are you even standing upright with a belly like that?! The dress can\'t even reach past your belly-button!",false);
-                        }
-                        else if(tallness > 12)
-                        {
-                           outputMainText(" And what are you pregnant with?! You\'re huge! Your dress can\'t even cover your bum!",false);
-                        }
-                        outputMainText("\"\r\rLila does her best to explain that she has YOU inside of her within a few sentences. \"I don\'t know what to dew!\"\r\r\"Okay, okay sweetie. If you can fit something in, you can push it back out. Here, just get up on our bed...\" You feel the room jounce around you, then slowly settle into something soft. \"and lay back and relax...\" You lose track of the \'down\' direction yet again... \"Now sweetie, I just need you to settle down and think about pushing out, just like you did with your babies.\" You hear Lila\'s legs spread across the bed and feel a pressure slowly build around you.\r\r\"Good girl, good girl.\" A rhythmic beat echoes around as her mother softly pats the belly. \"Just think about how this happened and do it in reverse.\" ... You suddenly feel the pressure shift the other way, the surroundings growing hotter and a deluge of fresh fluids spill around you.\r\r\"Wait, no, stop thinking about it! You need to calm down, forget about what was happening and just focus on pushing. Geeze, I don\'t think I even want to know what you two were doing...\"\r\rWith her mother gently rubbing from outside, you can feel the tide shift the other way again, pressing you towards the exit. The muscles squeeze around you, slowly sending you towards a light at the end of a tunnel. You can feel the walls stretch around you, yet tighten and grow hotter at the same time. Even moreso as a pair of relatively large slender hands join you inside, a low cry being heard from Lila. The hands hug your sides, climbing up your body through the slime until they\'re able to get a grip on you. Then, in the blink of an eye, slide the rest of the way out with a wave of sensual fluids splattering out behind you, a howl of ecstasy filling the room.\r\rLila\'s mother places you on the ground, helping you stand as you regain your footing. She wipes you down with her bare hands, easily sloughing off plenty of fluids. On the bed before you, Lila lays with her legs spread and her cunt still gaping, dripping steadily while she gasps and pants for air.\r\r\"Umm...\" Her mother tries to think of what to say. \"Congratulations Lila, it\'s a- Nonono, I\'m just kidding. But I guess you\'re a bit small for my little girl, huh?\"",false);
-                        if(lilaVulva > 5)
-                        {
-                           outputMainText(" She pauses and looks at her daughter, especially at the large erotic mass between the legs. \"Okay, maybe not \'little\' in that regard...\"",false);
-                        }
-                        outputMainText(" Checking to make sure Lila is alright, she leans over and strokes a cheek until Lila\'s eyes open up with an embarassed blush. \"I guess you two just got carried away. You just have to be a little more cautious about going- err..., \'too deep\', I guess? You both seem to be perfectly fine though, so even if this happens again by accident, there won\'t be a serious problem. Just be calm and you should be able to handle it, hun.\" Lila nods, leaning up to give her mother a hug while her loins are still gurgling towards you.\r\rHer mother hugs back, but then is quick to release her. She shakes her head. \"I don\'t even know what the heck I\'m saying... My daughter just sucked in her lover and then gave birth to her lover. I don\'t even...\" She proceeds to walk out of the room, trying her best not to think too hard about it.\r\rLila giggles hesitantly before hopping down and giving you a hug as well. \"I... I didn\'t mean to do that to yew...\" Her tail lowers shamefully and she blushes harder, a hand rubbing over her belly. \"It did feel weally good though... So, umm, thank yew... If it happens again, I\'ll twy to be bettew about it.\"\r\rWith another peck on your cheek, Lila then runs out of the room as well, too embarassed to hear what your response might be. Left alone in her bedroom, you take the opportunity to use her sheets to wipe yourself off a bit more thoroughly. Not that it makes much of a difference, as her sheets are already (and probably always are) quite slick... A bit dumbfounded and confused, you leave the hut without saying goodbye. You\'ll see her again, but at the moment it\'s probably a good idea to continue on with your day.",false);
-                        hrs = 4;
-                        aff(4,Math.floor(percent() / 10 + 4),-3);
-                        lilaUB = true;
-                        doLust(Math.floor(lib / 2),0,2);
-                        doEnd();
-                     };
-                  };
-               }
-               else
-               {
-                  if(cockTotal < 1 && clitSize <= 10)
-                  {
-                     if(lilaVulva > 10)
-                     {
-                        outputMainText(" While she\'s prone and melting in your embrace, you wrap your " + legDesc(2) + " around her bulbous vulva, pushing your own " + vulvaDesc() + " cunt" + plural(2) + " into it. You bounce up and down gently, humping her heavy pussy, your " + clitDesc() + " clit" + plural(2) + " grinding alongside her especially large female erection. Her feet hold onto your thighs the best she can, bucking her hips to get press her sensitive mass into you more.",false);
-                     }
-                     else
-                     {
-                        outputMainText(" As she melts into your embrace, you press your " + vulvaDesc() + " slit" + plural(2) + " against hers, kissing again with the lower sets of lips. Her feet curl up around your " + hipDesc() + " hips to press back, trying to grind her little clit into you the best she can in her lustful state.",false);
-                     }
-                     if(lilaPreg == -2)
-                     {
-                        outputMainText(" Although, with her inexperience, her movements are awkward and wry, leaving her drooling from between her thighs even more in desparation. You take up most effort, humping and thrusting your sexes together until the bed is drenched in your combined feminine fluids. Eventually, one of her legs bends high, stretching her virgin pussy wide as she gives you plenty of room to push against her. She lets out a gentle cry as she shudders, hooking the leg around your back and jerking against you, a volley of slime splattering across your " + legDesc(2) + " with an intense orgasm, forcing you to your own.\r\rShe pants loudly for several minutes afterwards, her fur flush and sweaty. She nuzzles into your body, a few tears welling up. Yet, as she sniffles, it\'s obvious she\'s not crying from sadness.\r\r\"That felt... so gewd. I... I love yew!\"\r\rShe begins to lick you\ttrying to clean you up a bit, but the strokes of her tongue quickly slow. Within a few moments, she nods off beneath you, fast asleep. You shrug and chuckle, hugging her tight before cuddling up and joining her in the dream world.",false);
-                     }
-                     else
-                     {
-                        outputMainText(" The two of you quickly find a rhythm, her small body writhing about beneath yours and matching your movements. Her legs move higher and higher up your back, stretching her hot pussy wider until it\'s practically nipping at your own as you press deeper into it. A flood of slick fluids gush out about your cunt" + plural(2) + " as Lila lets out a gentle cry, her tongue lolling out of her mouth with orgasm.",false);
-                        if(lilaVulva > 10)
-                        {
-                           outputMainText(" Yet, she continues to hump against your body, her huge sensitive cunt slapping against you wildly until she comes again and again with even more mess.",false);
-                        }
-                        outputMainText(" You can\'t help but shortly come after her, your combined messes drenching the bed beneath you.\r\rOnce you have both calmed down, her panting returning to a soft purr, she takes some time to cuddle with you, licking your body to clean up some of the mess. But, it doesn\'t take long before the two of you pass out with the delightful stress, snuggling upon the moist bed.",false);
-                     }
-                  }
-                  else if(cockTotal > 0 && cockSize * cockSizeMod <= eVagLimit(8 + 5 * lilaVulva))
-                  {
-                     outputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",false);
-                     if(lilaPreg == -2)
-                     {
-                        outputMainText(" Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation.",false);
-                     }
-                     else
-                     {
-                        outputMainText(" She grins stupidly as she pushes herself against your own efforts, slowly ramming your erection deep into her horny folds, forcing her to wince a little thanks to her own eager efforts. Her toes curl behind you, a soft moan escaping her lips as your whole length squeezes through the resistant walls, until she eventually calms and huffs beneath your body, her tail flicking about excitedly.",false);
-                     }
-                     if(cockSize * cockSizeMod > 8 + 2.5 * lilaVulva && lilaPreg < 35)
-                     {
-                        outputMainText(" She gasps, out of breath, as she looks down to see the tip of your member bulging her belly outwards. She absentmindedly strokes her fur, kneading the monster inside, amazed that it could possibly do such a thing.",false);
-                     }
-                     else if(lilaPreg >= 35)
-                     {
-                        outputMainText(" Her hands quickly cradle her swollen belly, just to make sure that her lewd efforts and your girth didn\'t harm what is growing inside.",false);
-                     }
-                     outputMainText("\r\rGradually, you begin to pump in and out,",false);
-                     if(knot == true)
-                     {
-                        outputMainText(" your swelling knot stretching her hungry tunnel wider,",false);
-                     }
-                     outputMainText("eliciting more cute noises from the small girl. Though she may have been in heat and knew well what it was like to pleasure herself, this sensation was far more than she ever expected. She accidentally scratches you occasionally with her claws as you thrust and her face transforms through a plethora of lewd expressions.",false);
-                     if(lilaVulva <= 5)
-                     {
-                        outputMainText(" Her tight pussy squeezes around your cock, tugging and pulling with its inner lips stretching along your length, sliding back up with a thick film of lubrication whenever you pull out with a soft mewl from the small body beneath you.",false);
-                     }
-                     else if(lilaVulva <= 12)
-                     {
-                        outputMainText(" Vulgar noises accompany the expressions as her honey spits and spews about your " + legDesc(2) + " with each pump, making her gasp and wince as her thighs squirm around to sqeeze the flesh between her legs.",false);
-                     }
-                     else if(lilaVulva <= 19)
-                     {
-                        outputMainText(" Your cock is lost in a river of slime that flood from her enormous pussy, flinging the stuff around everywhere with each powerful pump. Her plush belly expands and stretches each time you drive into it, leaving her mrowling erotically as you grab her clit and jerk it between the two of you.",false);
-                     }
-                     if(lilaMilk <= 5)
-                     {
-                        outputMainText(" Milk dribbles down through her fur as she becomes more and more excited.",false);
-                     }
-                     else if(lilaMilk <= 12)
-                     {
-                        outputMainText(" Milk spurts up over her chest and belly as her body shakes with your movement, spilling down her sides and onto your sheets.",false);
-                     }
-                     else if(lilaMilk <= 19)
-                     {
-                        outputMainText(" Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent.",false);
-                     }
-                     if(lilaPreg <= 35)
-                     {
-                        outputMainText("\r\rYou lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",false);
-                     }
-                     else if(lilaPreg <= 70 && lilaPreg > 35)
-                     {
-                        outputMainText("\r\rYou lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",false);
-                     }
-                     else if(lilaPreg > 70)
-                     {
-                        outputMainText("\r\rYou manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room.",false);
-                     }
-                     getCum = cumAmount();
-                     if(getCum > 100 * (lilaVulva + 1))
-                     {
-                        outputMainText(" Your own pressure erupts within her, raising her volume to near deafening levels as the stuff fills her passage and gushes out with tremendous force, more than her heat could have ever asked for.",false);
-                     }
-                     else
-                     {
-                        outputMainText(" Your own pressure erupts within her, making her louder as she feels your warm spunk splashing against her hot walls, just what her heat truly needed.",false);
-                     }
-                     if(lilaPreg <= 35 && lilaVulva >= 11 && getCum > 150 * (lilaVulva + 1))
-                     {
-                        outputMainText(" So much of your hot spunk swirls around within her that even her belly trembles beneath you, inflating and churning about.",false);
-                     }
-                     outputMainText(" She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and ",false);
-                     if(knot == true)
-                     {
-                        outputMainText("she goes limp within your arms, ready for a nice long nap. However, she blinks in wry confusion as her sated hole still gnaws around your shaft.\r\rThe thick knot keeping her stretched and full, she can\'t quite sleep with such a naughty sensation crowding her nethers. Lazily, she rolls beneath you, twisting around your girth and making her wince. In a half-minded effort, she tries to crawl out from under you to pull herself off. After a few yanks at her loins with quiet weary mewls of mild discomfort, her face plants itself on your bed. The lax purring that starts to emanate from her quickly indicates that she has completely passed out in bliss. Her butt raised and still pressed to your lap, your knotted appendage shoots a bit more spunk into her.\r\rWith a shrug, you merely curl up over her, letting yourself sink in deep as you join her in her slumber on top. You\'ll slip out eventually, but for now you\'re both plenty comfortable as is.",false);
-                     }
-                     else
-                     {
-                        outputMainText("she passes out within your arms, napping with a soft purr. You giggle a little and shrug, slowly slipping out of her and curling up around her, falling asleep as well.",false);
-                     }
-                  }
-                  else if(clitSize <= eVagLimit(20 + 12.5 * lilaVulva))
-                  {
-                     outputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + oneYour(2) + " " + clitDesc() + " clit" + plural(2) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",false);
-                     if(lilaPreg == -2)
-                     {
-                        outputMainText(" Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation.",false);
-                     }
-                     else
-                     {
-                        outputMainText(" She grins stupidly as she pushes herself against your own efforts, slowly ramming your erection deep into her horny folds, forcing her to wince a little thanks to her own eager efforts. Her toes curl behind you, a soft moan escaping her lips as your whole length squeezes through the resistant walls, until she eventually calms and huffs beneath your body, her tail flicking about excitedly.",false);
-                     }
-                     if(clitSize > 8 + 6 * lilaVulva && lilaPreg < 35)
-                     {
-                        outputMainText(" She gasps, out of breath, as she looks down to see the tip of your clitoris bulging her belly outwards. She absentmindedly strokes her fur, kneading the monster inside, amazed that it could possibly do such a thing.",false);
-                     }
-                     else if(lilaPreg >= 35)
-                     {
-                        outputMainText(" Her hands quickly cradle her swollen belly, just to make sure that her lewd efforts and your girth didn\'t harm what is growing inside.",false);
-                     }
-                     outputMainText("\r\rGradually, you begin to pump in and out, eliciting more cute noises from the small girl. Though she may have been in heat and knew well what it was like to pleasure herself, this sensation was far more than she ever expected. She accidentally scratches you occasionally with her claws as you thrust and her face transforms through a plethora of lewd expressions.",false);
-                     if(lilaVulva <= 5)
-                     {
-                        outputMainText(" Her tight pussy squeezes around your clit, tugging and pulling with its inner lips stretching along your length, sliding back up with a thick film of lubrication whenever you pull out with a soft mewl from the small body beneath you.",false);
-                     }
-                     else if(lilaVulva <= 12)
-                     {
-                        outputMainText(" Vulgar noises accompany the expressions as her honey spits and spews about your " + legDesc(2) + " with each pump, making her gasp and wince as her thighs squirm around to sqeeze the flesh between her legs.",false);
-                     }
-                     else if(lilaVulva <= 19)
-                     {
-                        outputMainText(" Your clit is lost in a river of slime that flood from her enormous pussy, flinging the stuff around everywhere with each powerful pump. Her plush belly expands and stretches each time you drive into it, leaving her mrowling erotically as you grab her own clit and jerk it between the two of you.",false);
-                     }
-                     if(lilaMilk <= 5)
-                     {
-                        outputMainText(" Milk dribbles down through her fur as she becomes more and more excited.",false);
-                     }
-                     else if(lilaMilk <= 12)
-                     {
-                        outputMainText(" Milk spurts up over her chest and belly as her body shakes with your movement, spilling down her sides and onto your sheets.",false);
-                     }
-                     else if(lilaMilk <= 19)
-                     {
-                        outputMainText(" Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent.",false);
-                     }
-                     if(lilaPreg <= 35)
-                     {
-                        outputMainText("\r\rYou lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",false);
-                     }
-                     else if(lilaPreg <= 70 && lilaPreg > 35)
-                     {
-                        outputMainText("\r\rYou lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",false);
-                     }
-                     else if(lilaPreg > 70)
-                     {
-                        outputMainText("\r\rYou manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room.",false);
-                     }
-                     outputMainText(" You shiver against her as well, your " + legDesc(2) + " growing numb from the lightning storm that envelops your whole self, centered on your gargantuan feminine member. She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and she passes out within your arms, napping with a soft purr. You giggle a little and shrug, curling up around her and falling asleep with her, letting your anatomy remove itself naturally.",false);
-                  }
-                  if(cockTotal > 0 && cockSize * cockSizeMod <= eVagLimit(8 + 5 * lilaVulva))
-                  {
-                     doLust(-Math.floor(sen / 2),2,1);
-                  }
-                  else
-                  {
-                     doLust(-Math.floor(sen / 2),2,2);
-                  }
-                  doNext();
-                  doListen = function():void
-                  {
-                     outputMainText("Some hours later, you wake up to a kiss upon your lips, opening your eyes to a great big smile.",true);
-                     if(lilaPreg == -2)
-                     {
-                        outputMainText("\r\r\"I... I weally liked that. It would be nice if we can do it some mowe,\" she says sheepishly, a big blush on her face.",false);
-                        lilaPreg = 0;
-                     }
-                     else
-                     {
-                        outputMainText("\r\r\"Mmm... It\'s always so... amazing with yew. I like it vewy much. I love yew.\" She kisses you again, so full of joy.",false);
-                     }
-                     if(lilaPreg == 0 && percent() >= 55 && cockTotal > 0 && cockSize * cockSizeMod <= eVagLimit(8 + 5 * lilaVulva))
-                     {
-                        outputMainText(" However, for a moment, her attention turns down to her loins. A hand smears about the leftover cum that still drools from her, focusing on her lips and clit. \"It... It\'s not as warm as before,\" a hint of surprise in her voice. Then she begins to blush as her fingers keep smearing around, her clit beginning to stand stiffly and her honey increasing in flow. \"N-Nevermind...\"",false);
-                        lilaPreg = 1;
-                     }
-                     outputMainText("\r\rThe two of you continue to cuddle for a bit longer, enjoying your company, before she realizes how much time has passed. Needing to get back home, she quickly tosses on her sundress, letting it mat against her wet fur and stick to all sorts of naughty places. With another quick peck on your lips, she dashes out of the hut, giving you a short goodbye as her cheeks redden, already thinking about doing it again...",false);
-                     hrs = 7;
-                     exhaustion = -7;
-                     doEnd();
-                  };
-               }
-            }
-            if(buttonChoice == 9)
-            {
-               outputMainText("You pull out a Cat\'s Meow from your bag and offer it to her.",true);
-               if(lilaMilk == 19)
-               {
-                  outputMainText(" However, she shakes her head no.\r\r\"Hehe, sowwy, but umm... I don\'t want to make anymowe milk. Mommy and I have a hawd time milking me alweady, don\'t need mowe. Thank yew for liking it so much and wanting mowe, though!\" She gives you a quick hug and heads off to get back to draining herself.",false);
-               }
-               else
-               {
-                  outputMainText(" Her eyes light up.\r\r\"Ooo, you like my milk so much that you want me to make mowe?\" She grins and blushes at how much you like her. \"Okays!\"\r\rShe quickly takes it and gulps it down. The blotches on her shirt spread as her milk production quickly kicks into higher gear, her face growing flush as she feels warm.",false);
-                  if(lilaMilk == 0)
-                  {
-                     outputMainText(" The blotches soon have trails of milk dribbling down the inside of her sundress, slowly collecting at the hem.",false);
-                  }
-                  else if(lilaMilk == 2)
-                  {
-                     outputMainText(" Her nipples stiffen more, forming small peaks against her dress while the blotched trails grow darker, collecting more quickly along the hem of her sundress and spilling onto the wooden path below.",false);
-                  }
-                  else if(lilaMilk == 5)
-                  {
-                     outputMainText(" Droplets begin to form on the outside of her dress, she\'s creating so much milk that it pushes through. Her nipples seem even puffier with the greater amount of milk, making her look down at herself in awe that she\'s actually got some noticeable boobs.",false);
-                  }
-                  else if(lilaMilk == 8)
-                  {
-                     outputMainText(" You can see her nipples visibly jiggle a little as they\'re so heavy with milk, the increased supply making the sundress quite translucent. Milk dribbles down constantly both inside and outside her sundress, and splashes about as she hops a little with a smile at her new bounciness.",false);
-                  }
-                  else if(lilaMilk == 12)
-                  {
-                     outputMainText(" Her whole breasts actually swell slightly, making her thick nipples protude even more than they already do. She winces a little at how full they feel and is astonished by how milk squirts through her sundress as she reaches up to massage on of the mounds.",false);
-                  }
-                  else if(lilaMilk == 18)
-                  {
-                     outputMainText(" Her breasts swell even more, making her feel really jiggly. As she tries to test the bounciness, she blushes heavily as her large nipples scrape along the inside of her sundress, milk squirting through it without her even trying. She moans as her hands come up to squeeze them as an immediate reflex to relieve their engorgement, gushes of milk spewing out. She seems rather surprised she can possibly make so much.",false);
-                  }
-                  outputMainText("\r\rHer hands roam about her new found lactation, testing just how much milk she can now produce and making quite a mess. \"Eehee... Yew weally want to dwink a lot, huh?,\" she laughs happily. \"I\'m gonna go show Mommy!\"\r\rShe then turns and heads home, leaving a path of spilled milk behind her as she goes.",false);
-                  ++lilaMilk;
-                  loseManyItem(105,1);
-               }
-               hrs = 1;
-               doEnd();
-            }
-            if(buttonChoice == 10)
-            {
-               outputMainText("You pull out a vial of Concentrated Pussy Fruit Juice and offer it to her, telling her in advance what it does so she knows what it is.",true);
-               if(lilaVulva == 19)
-               {
-                  outputMainText(" However, she shakes her head no with a giggle.\r\r\"Hehe, Mommy says if I get any biggew, I\'ll need to watch out for splintews. I don\'t want splintews down thewe, silly.\"\r\rShe then turns around and walks off, giggling at the thought of how big you could possibly want her naughty place to be while she waddles in an attempt to walk with how big it already is.",false);
-               }
-               else
-               {
-                  outputMainText(" She looks at you curiously.\r\r\"You want to make my naughty place biggew? If... If it\'ll feel even bettew, and yew want me to, I guess it\'s okays.\"\r\rShe takes the vial and drinks it down. Her hips soon begin to twist about as a warmth nearly as bad as her heat fills her loins. Right in the middle of the canopy walkway, she lifts her dress and watches as it grows.",false);
-                  if(lilaVulva == 0)
-                  {
-                     outputMainText(" She pokes it curiously as the labia fill out and looks much more mature than what she had, only to gasp a bit at how much more sensitive it feels.",false);
-                  }
-                  else if(lilaVulva == 2)
-                  {
-                     outputMainText(" Her thighs squeeze together as the labia swell between them, making her moan and some slickness dribble all the way down to the wooden walkway.",false);
-                  }
-                  else if(lilaVulva == 5)
-                  {
-                     outputMainText(" She lets out a squeak as it grows so large in between her thighs. Her hand darts down to catch it as she\'s afraid it will fall, it\'s so noticeable now. And doing so makes her squirm as her fingers slip into her cleft, the flesh bigger than her grasp.",false);
-                  }
-                  else if(lilaVulva == 8)
-                  {
-                     outputMainText(" A weak gasp escapes her lips as she spreads her legs further apart. Her lips fill the gap between them, preventing her thighs from touching. Her clit grows out of the cleft, leaving it\'s hood and obviously protruding from the rest of her slit. Her fingers reach down and pinch it in curiousity, only to cause her to quiver as electricity shoots through her, a good deal of slime splashing down beneath her.",false);
-                  }
-                  else if(lilaVulva == 12)
-                  {
-                     outputMainText(" Her knees bend outward as the labia push them apart, causing her to gasp as they squeeze her sex. Her clit is at least an inch and she can easily wrap her thumb and finger around it, stroking it\'s length slightly before she comes to an abrupt halt as it\'s too much to handle just yet. Nevertheless, her legs have sheets of slime between them from the experience, growing larger as the stuff dribbles from her dangling inner lips.",false);
-                  }
-                  else if(lilaVulva == 18)
-                  {
-                     outputMainText(" She bends down at her knees as the mass of sensitive genitalia fill the gap between her legs and feels so heavy. Her eyes flutter a little just trying to stand at first, the labia keeping her slightly bow-legged. Just trying to bend over to look at herself, her clit scrapes against the wooden walkway, already slick with her slime, and causes her to fall to her knees. She curls up slightly to reach her large clit, a whole hand wrapping around it, and her legs rub and push about her vulva while she jerks away, completely lost in the sensations. By the time she comes to climax, lubrication gurgling and splatting from her massive slit, all eyes with a clear view are staring at her.",false);
-                  }
-                  outputMainText("\r\rShe pants a bit, becoming accustomed to her new size. She lets her dress fall back down to cover herself, though there\'s still quite a mess between her legs. \"It... feels much bettew...\"\r\rShe lazily turns around and walks away, intent on further familiarize herself with her bigger girly bits...",false);
-                  ++lilaVulva;
-                  loseManyItem(221,1);
-               }
-               hrs = 1;
-               doEnd();
-            }
-            if(buttonChoice == 12)
-            {
-               outputMainText("With a smile, you take her hand so that the two of you may go and visit her mother to see how things are going at home. She seems a tad disappointed, her mess going unrelieved, but she smiles up with a nod and goes along with you.\r\rApproaching her home, however, she begins to get rather antsy. Her thighs keep rubbing together, making the blotch in her dress even worse. By the time her mother spots you through the doorway and comes to greet you, Lila lets go of your hand, grabbing her crotch through the dress, and dashes into the hut with a rapid-paced \"Hi-Mommy! I-need-to-do-somefing-weal-quick!\"\r\rHer mother looks at her curiously as she goes, but shrugs and turns to you. \"Hello~ Is there something wrong?\"\r\rYou shake your head, saying you just wanted to visit.\r\r\"Oh, well then, please, come in. Sit down and have some tea~,\" she smiles and ushers you through. She sits you at the kitchen table and gives you a cup to sip from and she sits beside you.\r\r\"So... I guess you\'d like to know how Lila is doing.",true);
-               if(lilaMilk == 0)
-               {
-                  outputMainText(" Since she\'s gotten into the whole milking thing, she\'s been taking pretty good care of herself. I\'m actually fairly surprised at how well she does. Once I taught her how to express herself, she makes sure to go into the bathroom every couple of hours and carefully take care of her, umm... nipples. And then she\'ll clean up everything and be as pleased as a peach for the next couple hours. It\'s actually quite cute, I think.\" She chuckles a little.",false);
-               }
-               else if(lilaMilk <= 2)
-               {
-                  outputMainText(" She\'s been taking good care of herself, but even though she is quite vigilant about expressing herself every couple of hours, she\'ll still sometimes wind up leaking and making a mess in her clothes. She doesn\'t like when I laugh at her for it, and she\'ll storm into the bathroom right away, but by the red in her cheeks I think she kinda likes it.\" She giggles at the thought.",false);
-               }
-               else if(lilaMilk <= 5)
-               {
-                  outputMainText(" Though she loves how much milk she\'s been making, she\'s been starting to have a tough time keeping up with it. Her little hands have trouble fully expressing herself, so I have had to help her. She sits in my lap taking care of her smaller breasts and I\'ll take care of her bigger breasts. Yet, despite expressing her regularly, she\'ll just start leaking soon after an hour. But, it\'s a nice bonding experience.\" She sits back in her chair and smiles.",false);
-               }
-               else if(lilaMilk <= 8)
-               {
-                  outputMainText(" Her milk has gotten to a point where she hardly bothers express herself to keep up her supply anymore. Now she tugs on my dress whenever she\'s feeling engorged and we\'ll sit over a bucket and milk her the best we can. Otherwise she\'ll just walk around with a wet front because it\'s nearly impossible to completely drain her. I\'ve considered lining her dresses to better hide the milk, and her rather... obvious nipples, but she\'s been making so many new friends with it and she\'s been so happy that I don\'t think it\'s a very big deal. Heck, even I\'ve been a tad eager to start lactating again myself.\" She chuckles a little to distract from her hand sneaking over to hide a breast as a moist blotch begins to spread.",false);
-               }
-               else if(lilaMilk <= 12)
-               {
-                  outputMainText(" I\'m actually quite surprised at how much she\'s... grown, from how milky she\'s gotten. It seems slightly odd to see her... jiggle like that, especially when she gets happy and starts spraying everywhere. My daughter leaks more than I ever did... But! We enjoy it. Since I\'ve gotten back into lactating with her, we have made it a habit of suckling from each other. It\'s much easier than doing it manually by hand and it\'s so nice.\" She smiles brightly, despite her breasts sitting on the table and blatently leaking through her dress into small puddles.",false);
-               }
-               else if(lilaMilk <= 18)
-               {
-                  outputMainText(" My goodness has she gotten milky. I don\'t know why I bother to put her in those dresses; I can see through the things within minutes with the rate she leaks into them. Heck, when we\'re suckling from each other, sometimes I don\'t even bother to lift her clothes, since I can suck right through them. And I can\'t even swallow it all... Thank goodness she\'s got all those friends to help. Although, I kinda drink most of it and I think my daughter\'s \'uniqueness\' has kinda been rubbing off on me...\" She pauses as she shifts in her seat, a squishing sound coming from her bottom. Then her breasts spurt up a bit, spewing some milk across the table. She blushes a bit and stands to get a towel to wipe it up. As she turns away, you can see her tail twitching a little with clear webs stretching from its underside to a blotch on the backside of her dress.",false);
-               }
-               else if(lilaMilk <= 19)
-               {
-                  outputMainText(" My that girl has gotten so messy. Milk. Everywhere. Most of this isn\'t even mine!\" She brushes at her dress, blotched here and there all over, with the ones around her nipples even larger. \"We\'ve got buckets all around the house, just so she can squeeze out a few cups whenever she has the time. I have to roll over and squish her tits in the middle of the night so she doesn\'t wake up sore. Those things are getting close to being as big as mine and she\'s nowhere near when I grew them! But, we do get all the milk we want. She drinks some of mine, I drink a lot of hers, she drinks a lot of hers; so we\'re happy cats around here. Except for one little thing that seems to come with ingesting her milk...\" She doesn\'t bother to mention what that little thing might be. Instead, she \'accidentally\' pushes a spoon off the table and it bounces away. She stands up with a slight twitch and turns around to bend forward and pick it up. Clear strands still stretch out from her rump to the chair, with webs of the stuff swatting off her tail as it flicks about, her dress quite drenched on the backside. She bends down far, giving your a spectacular view of her backside, especially when her thick swollen lips nip at the cloth and push through another fresh gob as she leans back a little towards you, like she were trying to allure you. However, she quickly pops back up with a squish of her nethers, realizing what she was doing, and quickly sits back down with a tinge of red in her cheeks. \"S-Sorry...\"",false);
-               }
-               if(lilaVulva == 0)
-               {
-                  outputMainText("\r\rHeavy breathing can be heard from a few rooms over, causing Mommy to blush a little.\r\r\"And it seems she has learned some techniques to help deal with herself. It\'s not a bad thing, but even when we have company over...\" She trails off.",false);
-               }
-               else if(lilaVulva <= 2)
-               {
-                  outputMainText("\r\rLight gasps can be heard from a few rooms over, causing Mommy to blush.\r\r\"And it seems she\'s really... developing. A bit faster than she\'s supposed to, I think, because she\'s been walking around like she\'s got something stuck between her legs. Kinda cute, when she\'s not masturbating when we have company over...\" She sighs with a shrug.",false);
-               }
-               else if(lilaVulva <= 5)
-               {
-                  outputMainText("\r\rGasps and quiet mewling can be heard from a few rooms over, causing Mommy to blush quite a bit.\r\r\"I really shouldn\'t be surprised. That girl\'s little naughty bits are bigger than mine. And on that small body, she walks around here with a kink in her step all day, leaving a splotch of her slime whereever she sits. It\'s really cute seeing her deal with it, but she winds up masturbating so frequently that it makes even me seem conservative...\" She chuckles at the comparison.",false);
-               }
-               else if(lilaVulva <= 8)
-               {
-                  outputMainText("\r\rHeaving sighs and slurping can be heard from a few rooms over, causing Mommy\'s cheeks to turn quite red.\r\r\"I\'m a bit jealous of the girl. It sounds like she has more fun than I do, at that sort of thing... Though when I clean her, even I have trouble palming that huge pussy of hers. I try to discourage her from holding it wherever we go, whether it be out to visit family or even to go to the market, but with it almost bobbing between her legs like that, I wouldn\'t blame her. I\'m sure she\'ll get used to it eventually.\" She shrugs.",false);
-               }
-               else if(lilaVulva <= 12)
-               {
-                  outputMainText("\r\rHeavy moaning and moist splattering about a wooden floor can be heard fairly clearly throughout the hut. Mommy just shakes her head with a chuckle. \"That girl is ridiculous with her masturbating. Makes such a mess... Not that she doesn\'t make a mess otherwise, though. Everywhere she sits becomes filled with a puddle of warm goo, even if she doesn\'t orgasm from grinding her naughty place as she sits on it. And I doubt she\'ll ever be able to wear panties with bits that large, she already gets wedgies from her dresses. She\'s beyond camel-toe; she doesn\'t leave much to the imagination when her pussy starts chomping down on the fabric... Oh my the stares she gets. I can practically see the men coming in their pants just looking at her~\" She lets out a laugh.",false);
-               }
-               else if(lilaVulva <= 18)
-               {
-                  outputMainText("\r\rLoud cries and wet slapping echo around the hut. Mommy squirms in her chair, looking a bit uncomfortable. \"I must admit, I\'m a bit envious of her. She has such powerful orgasm... Even though she leaves trails of slime everywhere and large puddles whenever she comes, it kinda makes me aroused just thinking about how intense it must be. Every night, together in our bed, she winds up grinding against my leg in her sleep. I wake up and... I can\'t help but masturbate along with her. And its not just me, either. When she walks around with that thing between her knees, if I\'m not paying close attention she curl up and start masturbating right in the middle of public. And when she\'s not walking, she\'ll be humping whatever she sits or lies down on, whether she\'s conscious of it or not. I guess that\'s what happens when you sit on that part of your body instead of your own butt...\" You catch her hand stealthily disappear beneath the table as she thinks about the prospect, though you don\'t say anything.",false);
-               }
-               else if(lilaVulva <= 19)
-               {
-                  outputMainText("\r\rShouts of ecstacy and wet spurting and moist slurping and thick splattering fill the hut. A hand obviously pushes down beneath the table into Mommy\'s lap as she shivers a tad. \"My little slug~\" She chuckles as she pants a little. \"She always scowls at me when I call her that. But with the way she almost drags across the ground, leaving a trail of slime behind her, what would be a better nickname? Although, I really hope she doesn\'t actually start having to move like a slug... As it is, she shivers and shakes whenever she plops down or accidentally drags it across something, having an instant orgasm. Even at night, while we sleep together in the bed, the big thing makes the bed all slick and wet, rubbing and pushing against everything, until she finally wraps her legs around one of mine and devours my knee as she humps with that thing. Completely asleep, too, totally unconscious. And that huge clit... Sometimes in the middle of the night, I can\'t help but-\" She catches herself, her flicking tail halting in embarrassment as she bites her tongue to keep from saying more as her face is as red as can be.",false);
-               }
-               if(lilaPreg <= 35 && lilaVulva >= 11)
-               {
-                  outputMainText(" \"I also like to poke fun at her swollen tummy. I know she\'s not fat, but squishing it and making her squirm like that is just so much fun~\"",false);
-               }
-               else if(lilaPreg <= 70 && lilaPreg > 35)
-               {
-                  outputMainText(" \"I also can hardly believe I\'m going to be a grandmother already... But, it was bound to happen sometime or other, I\'m just glad it wasn\'t with one of her brothers.\"",false);
-               }
-               else if(lilaPreg <= 100 && lilaPreg > 70)
-               {
-                  outputMainText(" \"I also hope she gives birth soon... I\'m not sure if it\'s the hormones or what, but she\'s as randy as ever, it seems. And when she starts having her... \'fun\' like this, I\'m always afraid she\'ll topple over with that great big belly of hers. I mean, it\'s a normal pregnant belly for my size, but on her small frame it\'s a tad silly.\"",false);
-               }
-               if(lilaPreg == -1)
-               {
-                  outputMainText(" \"But, her kittens are doing well. They spend most of the day napping or playing with each other in the bedroom, in a pen until they\'re big enough to not hurt themselves. Lila and I both take very good care of them, although it is odd seeing my daughter with children already... Thankfully the local alchemist gives us a good supply of anti-pregnancy potions so I don\'t have to worry about any more. Lila\'s just one of those cases of her first heat not going away, no matter how satisfied she gets. It happens every now and then for felins, but she\'ll grow out of it eventually, whether it be weeks or months or years. Though I guess her brothers and father will have to stay in our auxilliary hut next door. It\'s customary to keep the males outside when felin girls go into their first heat, to prevent any \'accidents\'.\"",false);
-               }
-               outputMainText("\r\rLila steps into the kitchen with the two of you, still a little out of breath and with a kink in her step. \"Umm... So what have yew and Mommy been talking about?\"\r\rYou and her mother laugh, making up some excuse. The three of you continue to drink tea and chat about various things, but eventually Lila starts to get antsy again, thanks to your presence, and her mother suggests that it is probably a good place to stop. Lila hops up and gives you a great big hug, then proceeds to scamper off into the hut once more. Her mother giggles and hands you some tea mix, thanking you for the company and letting you know you\'re welcome any time, as long as you keep her daughter safe.",false);
-               hrs = 3;
-               itemAdd(226);
-               doEnd();
-            }
-         };
-      }
-      else if(this.lilaRep == 4)
-      {
-         if(this.percent() <= 50)
-         {
-            this.outputMainText("You spot Lila walking along at a rather rapid pace, though she doesn\'t seem to be terribly aroused like she normally does. You flag her down just to check up and make sure.\r\r\"Oh, hewwo!\" She seems a bit surprised. \"I was going home for bath-time. Would you like a bath too?\"",true);
-            this.buttonConfirm();
-            this.doListen = function():void
-            {
-               if(buttonChoice == 6)
-               {
-                  outputMainText("You nod, saying it would be nice. She grins and grabs your hand, pulling you along with her back to the hut.\r\rHer mother spots the two of you coming and looks at you curiously, wondering why you came along.\r\r\"My fwiend would like a bath too, Mommy.\"\r\r",true);
-                  if(cockSize * cockSizeMod > 96 || ballSize * balls > 120 || breastSize > 120 || tallness > 84 || udderSize > 60)
-                  {
-                     outputMainText("Her mother eyes your rather large proportions. \"Umm... I\'m sorry, but I don\'t think I could possibly take care of you myself. Maybe if I had a few friends over, we could, but... I simply don\'t have the ability.\"\r\rLila looks a bit disappointed that you couldn\'t join, but you shrug it off and say it\'s quite alright. You leave the two to take care of themselves and you head back to your own thing.",false);
-                     hrs = 2;
-                     doEnd();
-                  }
-                  else
-                  {
-                     outputMainText("\"Is that so?\" She chuckles and shrugs. \"Alright, come on in and strip down.\"",false);
-                     viewButtonOutline(1,0,1,0,0,1,0,0,0,0,0,0);
-                     viewButtonText(1,0,1,0,0,1,0,0,0,0,0,0);
-                     buttonWrite(1,"Strip");
-                     buttonWrite(3,"Don\'t Strip");
-                     buttonWrite(6,"Leave");
-                     doListen = function():void
-                     {
-                        if(buttonChoice == 1)
-                        {
-                           outputMainText("Stepping inside, you already begin to remove your " + currentClothes() + ". Lila has trouble focusing as her eyes keep staring at your body, curious to its differences from her own as she removes her sundress and exposes her nipples and dainty little slit. However, her mother urges her along into the bathroom, making sure the girl doesn\'t dawdle.\r\rThe bathroom is fiarly sparse and actually lacks any sort of tub or main faucet to get water from. It even has a rather plush carpet. Though it\'s quickly apparent as to why when the two of them sit down upon it. Lila\'s mother holds a cup she has been carrying up to her mouth and takes a swig, swishing it around before swallowing with a gasp. Lila then does the same and proceeds to begin licking at the fur of her arm. Her mother\'s tongue, being much larger, assists her daughter and starts licking at the girls back.\r\rWith each lick, Lila\'s coat seems to shine cleanly and softly, thanks to whatever was in that concoction. The two female felins quickly cover the girl\'s entire body, finishing off near the groin. Lila stretched her leg high over her head, curling around to lick further and further up her inner thigh. Yet, once she gets too close, her leg and tail begin to twitch about, her tender lips swelling and reddening slightly with her heat kicking in once again.\r\rHer mother rolls her eyes and chuckles, taking care of the girl\'s nether regions for her. Lila whimpers and mewls as her mother licks and laps at her sensitive sex, making sure to clean every crevice. The woman continues her efforts, even as some honey oozes out and dabs upon her nose. By the time she\'s done, Lila rolls backwards with a quiver, blushing as she climaxes softly...\r\rSmacking her lips, the girl\'s mother looks up to you. \"Your turn. Just sit down over there.\"",true);
-                           doNext();
-                           doListen = function():void
-                           {
-                              outputMainText("You sit down on the plush carpet with Lila. Mommy takes another swig and instantly begins to assault you with her own tongue.",true);
-                              if(skinType == 2)
-                              {
-                                 outputMainText(" The stuff feels nice on your fur, her rough tongue combing it in nicely. You can feel yourself glisten with a healthier coat, in a rather tingly and giddy kind of way.",false);
-                                 stats(0,0,1,1);
-                              }
-                              else
-                              {
-                                 outputMainText(" Her tongue feels quite rough along your " + skinDesc() + " and the concoction tinglies incessantly, making you squirm as you sit there. This probably wasn\'t the greatest idea...",false);
-                                 stats(0,-1,2,1);
-                                 doLust(10,0);
-                              }
-                              outputMainText("\r\rLila soon recovers from her bit of fun with red cheeks and tries to jump right in as well. Without thinking too well, she takes a swig and immediately falls forward into your body, unintentionally starting at your lap. Trying to play it off as part of the plan, the small girl begins to lick away at your groin, making you begin to really squirm.",false);
-                              if(cockTotal > 0)
-                              {
-                                 outputMainText(" Her tongue climbs higher and higher along " + oneYour(1) + " growing length" + plural(1) + ", not really looking at what it could possibly be. All that she does know is that once she reaches the tip, a bit of pre keeps seeping from a hole and her tongue keeps lapping up all she can to keep it clean, until strands of it stretch between you and her mouth and dribble down her chin.\r\rWhatever is in the stuff she used, it tingles tremendously and causes you to quickly buck and spurt all over the little girl\'s face. Caught by surprise, Lila jumps backward and wipes the stuff off with an arm, then proceeds to clean her arm off as well, making strange faces as she tastes the stuff.\r\rHer mother much more wary, the woman moves in to take care of the rest of the mess. Although, afraid to explain to her daughter what really just happened, she\'s left licking it up herself as though it was a normal occurence, giving you quite the evil eye. Though she can\'t help but giggle at the humor in the situation as her daughter continues to lick up the white spunk oblivious to its lewdness.",false);
-                                 doLust(-Math.floor(sen / 2),2,1);
-                                 if(cumAmount() > 2000)
-                                 {
-                                    outputMainText("\r\rOn the other hand, she herself is having trouble keeping up with your enormous load, gulping down more and more despartely. Eventually, however, she gives up. Grabbing a bowl, she pushes it over the tip of your cock and presses it firmly against your urethra until the ejaculation comes to an abrupt halt, backing up inside of you.\r\rShe leans in and whispers in your ear. \"Could you please take care of that elsewhere? I\'m afraid you\'re a bit too... messy to finish here, so if you don\'t mind...\"\r\rYou nod, understandingly. With Lila still busy, you hold the bowl tightly against your erection while you attempt to put on your clothes. Then you run out of the hut with a meager goodbye, rushing",false);
-                                    if(ment > lib + 5)
-                                    {
-                                       outputMainText(" back to your own place to release what has clogged up inside of you...",false);
-                                    }
-                                    else
-                                    {
-                                       outputMainText(" outside to dangle your " + cockDesc() + " thing over the rail of the wooden bridge and blowing your load on whatever ventures down below. You then rush away, just in case...",false);
-                                    }
-                                    hrs = 3;
-                                    doEnd();
-                                 }
-                                 else
-                                 {
-                                    outputMainText("\r\rSoon finishing up, leaving the two of you clean, Mommy gulps the last of the unexpected taste and smirks at you. \"Alright, that\'s good enough. Here, take some of this, you might like it some time. Now you should better get going before you make Lila dirty again.\" She sticks out her tongue and hands you some of the concoction.\r\rYou take her advice, clothe yourself, give the naked Lila a hug goodbye, and head off.",false);
-                                    itemAdd(227);
-                                    hrs = 3;
-                                    doEnd();
-                                 }
-                              }
-                              else if(vagTotal > 0)
-                              {
-                                 outputMainText(" Her tongue slips in and out of your " + vulvaDesc() + " folds, thinking of it no differently than her mother. Which is an odd thought, considering how deftly her tongue lashes around your " + clitDesc() + " clit" + plural(2) + ". Between her efforts and the exreme tingling of the concoction, you soon find your " + hipDesc() + " hips bucking upon the plush carpet as you climax into the girl\'s mouth.\r\rLila\'s mother giggles at your reaction. \"Good, isn\'t she?\"\r\rNot inquiring about the statement, you wait a few moments and you\'re soon as fresh as a can be. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn\'t need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you\'re on your way.",false);
-                                 itemAdd(227);
-                                 doLust(-Math.floor(sen / 2),2,2);
-                                 hrs = 3;
-                                 doEnd();
-                              }
-                              else
-                              {
-                                 outputMainText(" Though there\'s no big difference, since you don\'t have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn\'t need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you\'re on your way.",false);
-                                 itemAdd(227);
-                                 hrs = 3;
-                                 doEnd();
-                              }
-                           };
-                        }
-                        if(buttonChoice == 3)
-                        {
-                           outputMainText("\"Oh, ok, so you\'d rather just help Lila then? An extra tongue is always welcome!\" Mommy speaks as though you already knew what the job entailed.\r\rYou step inside to spot Lila already removing her sundress, standing there naked with her nipples and dainty slit exposed for you both to see as she waits. Her mother then guides you both along into the bathroom, making sure the girl doesn\'t dawdle.\r\rThe bathroom is fiarly sparse and actually lacks any sort of tub or main faucet to get water from. It even has a rather plush carpet. Though it\'s quickly apparent as to why when the two of them sit down upon it. Lila\'s mother holds a cup she has been carrying up to her mouth and takes a swig, swishing it around before swallowing with a gasp. Lila then does the same and proceeds to begin licking at the fur of her arm. Her mother\'s tongue, being much larger, assists her daughter and starts licking at the girls back.\r\rWith each lick, Lila\'s coat seems to shine cleanly and softly, thanks to whatever was in that concoction. Shortly, her mother hands you the cup as well and urges you to take a sip to help with the process. As it goes into your mouth and down your throat, it feels quite tingly and fresh, your mouth feeling both burning and cold at the same time and continuing on down your throat as you swallow. Besides feeling a bit... odd, you otherwise have no problem joining in.\r\rWith her mother on the back, you decide to take the front. The fur is soft and sweet smelling, and actually tastes fairly nice as well. Your tongue laps across Lila\'s nipples, making them stiffen against your lips. Lila stretches her leg high over her head, curling around to lick along her thigh as you begin to touch down further and further towards her nethers. You can hear her begin to pant, her breathing growing heavy until her tender lips are swollen and red with her heat kicking in once again.",true);
-                           outputMainText("\r\rHer mother rolls her eyes and chuckles, nodding for you to take care of her. With another nod, Lila begins to whimper and mewl as you lick and lap at her sensitive sex, making sure to clean every crevice. You continue on, even as honey begins to ooze out and dab your nose and fill your mouth. You gulp down as much as you can, trying to make everything clean, but eventually Lila rolls backwards with a quiver, blushing as she climaxes softly...",false);
-                           doLust(10,0);
-                           aff(4,Math.floor(percent() / 20 + 4),-1);
-                           doNext();
-                           doListen = function():void
-                           {
-                              outputMainText("Smacking her lips, the girl\'s mother looks up to you. \"KO! You win!.\" She chuckles. \"Pretty good, I must say. I\'m sure you must have bathed your fare share of kittens. But, anyways, once Miss Hair-Trigger here gathers herself, it\'ll be my turn for a bath. As great as I\'m sure you must be, I\'d like to have a little mother-daughter time, if that\'s alright. Though here, take some of this wash for yourself.\"\r\rShe hands you some of the concoction and lets you give the naked Lila a hug before seeing you off.",true);
-                              itemAdd(227);
-                              hrs = 3;
-                              doEnd();
-                           };
-                        }
-                        if(buttonChoice == 6)
-                        {
-                           outputMainText("On second thought, you think it best to head back out. You\'re not quite sure if you want \'that\' kind of bath.\r\rLila waves goodbye and her mother sees you off, and the two disappear into the hut to take care of the girl\'s bath.",true);
-                           hrs = 2;
-                           doEnd();
-                        }
-                     };
-                  }
-               }
-               else
-               {
-                  outputMainText("You shake your head, saying you\'re clean enough. She looks at you dubiously, but shrugs. \"Okay, see yew latew!,\" and she continues to hurry home.",true);
-                  hrs = 1;
-                  doEnd();
-               }
-            };
-         }
-         else
-         {
-            this.outputMainText("Out of the corner of your eye, the sight of a short felin girl across the bridges strikes you as odd, yet familiar. She waddles along with a kink in her step, her hands constantly roving over her thin dress. The odd part about the scene is the protruding belly her hands are so focused on rubbing, all the way down until she\'s tucking some of her dress between her legs, and the fact that you don\'t see any sign of the usual felin tail that should be bobbing behind. And as the girl spots you and begins to make her way closer to you, you realize why she seemed familiar, despite the strange appearance. This girl is Lila...",true);
-            this.doNext();
-            this.doListen = function():void
-            {
-               outputMainText("\"Uh-umm... Hi...\" Lila greets you bashfully with a tremendous amount of blush in her cheeks. Even as she stands before you in the middle of the bridge, you notice her knees continually rub together beneath her dress, obviously pressing and grinding her thighs together. \"Umm... C-Can yew hewp me again pwease? I, umm... I got a wittle stuck...\" Her eyes glance from side to side, rather embarrassed about her situation out here.\r\rNot wanting to leave the poor girl in whatever trouble she\'s in, you nod and take her hand to lead her back to your hut. The trip takes a little longer than usual to make, thanks to the girl\'s exaggeratedly awkward steps, with a few wet blotches staining the wooden planks as wet drops fall from her dress along the way. It\'s not difficult to tell that this is an issue concerning her heat, though she doesn\'t say a word until you step inside the privacy of your Siz\'Calit home.\r\r\"I-It got too hot, so I hid behind a hut and tried to stop it, and then it felt so good filwing it, and then, umm...\" She proceeds to lift her dress before you, wincing as her dress drags across her distended belly and perk nipples.\r\rHer thighs are swamped in slick fluids, webs of the stuff stretching about all the way to her knees with drops occasionally breaking free to fall to the floor below. The reddened lips of her swollen nether maw visible throb with every aroused contraction, chewing on the thick length of fuzz that is sufficiently stuffed inside of her. Every few seconds, the fuzz jerks about sporadically, sending out lewd squishy sounds as well as elliciting a muffled gasp from the girl and twitchy hips. Lila\'s hand rove over the filled womb in an attempt to calm herself, yet only managing to make the fuzzy thing squirm more from the oddly stretched sensations. Suffice it to say, you think you know where her tail went...\r\r\rWill you help her?",true);
-               buttonConfirm();
-               doListen = function():void
-               {
-                  if(buttonChoice == 6)
-                  {
-                     outputMainText("Telling the small girl everything will be alright, you motion for her to give you better access to the troublesome area. With a sheepish nod and hiked-up dress in hand, she turns away from you and bends forward, leaning against the wall. Her naked swollen belly bulges below her and quivers slightly as the new position yanks the invader from her loins ever so slightly, making another gob of slick fluid pulse out before your eyes and slowly descend down the back of her legs. The slim back can hardly remain straight as you inspect her, the spine gently curving from one side to the other to balance with the exposed stub of twitching tail at the end. The lithe appendage is thoroughly wedged between the cheeks of her small rump, its length only visible due to the way she has presented herself to you, down until it disappears into the stretched and swollen hungry lips of her slit.\r\rRealizing you\'re staring far more than helping, you quickly regain your wits and kneel down behind her. She mewls and gasps quietly as your fingers begin to dance around her backside, slowly slipping deeper and deeper between her cheeks, digging under the snugly-packed tail. \'Slipping\' being the key word, as all the slimy arousal about her rear easily lubricates your efforts. Once underneath, you slide your hand down through the crevice, until you touch the sensitive flesh.\r\rA much louder, warbling mewl escapes her lips as you try to pull. Naughty spurts of her juices squirt about, followed by a prompt clamping of her inner passage that halts your progress. You pause for a moment as she huffs for air. Once she seems calm enough and you feel her hot vulva relax behind your hand, you attempt to pull once more.\r\rMore mess, more erotic mewls, and near-instant contraction of her vaginal muscles. Pause, wait for her to soften up, try again. Tug after tug, climax after climax, the girl whines and cries in ecstasy and embarassment, her little claws digging into the wall. And after a couple minutes of the process, you have managed to pull out... hardly two inches of the tail...\r\rTaking far too long with Lila rapidly growing exhausted over the ordeal, you prepare yourself for a more effective meneuver. You adjust your " + legDesc(6) + " to anchor yourself in the growing puddle of slick liquids. You adjust your posture for more stability. You firmly grab one of her tight cheeks with your other hand. And as she moans with that sensation, your working hand immediately slides down the length of her tail, yanking it out all in one go!\r\r\"MeeaAUUUUNGH!\" She nearly screeches with a surprised and orgasmic shout, her ears pinning back at her own voice, as the remaining length of her slender tail rushes out of her pussy. Her inner walls squeeze with all their might, but between your swift and powerful pull and her plentiful fluids, they have no chance, leaving her to endure the entire sensation at once.\r\rThe tail whips out of her hole with a squishy pop, flinging thick ribbons of feminine satisfaction everywhere. You can barely tell her belly has deflated back to its original shape before Lila\'s go limp and she collapses into her puddle with a splash. Claws still stuck in the wooden wall with dress pinned in between from holding it, the rest of her body is stripped nude in the fall and she winds up leaning into the wall, her face and upper breasts pressing against it while her spread thighs twitch limply in the slime, her sex still easily visible and gaping with a steady drool...",true);
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("It takes several minutes before she lets out a contented sigh with feeling returning to her legs. Her feet slip in her mess as she attempts to stand, leaving you to grab her nude hips and lift to help her stand. She removes her claws from the wall, allowing her sundress to fall down. Once she\'s able to stand on her own, you let go and let the dress complete the descent and cling to the soaked fur of her lower body.\r\rShe turns to you, oblivious to the fact that her claws had torn a hole right over her swollen crotch, and proceeds to wrap her arms around you in a warm wet embrace. \"Th-Thank yew so much...\"\r\rA little too dazed from the experience, she\'s unable to say much more and gives you an awkward peck on the cheek. She then lets go, wobbling slightly as she supports herself, and stumbles out of the hut, tail dripping and mostly confused as to what to do now.\r\rBeing rather confused yourself, you merely brush the thick fluids through the doorway to the bridge outside and feel better about yourself, knowing you REALLY helped a friend in need.",true);
-                        doLust(Math.floor(lib / 2),0);
-                        stats(0,2,0,0);
-                        hrs += 2;
-                        doEnd();
-                     };
-                  }
-                  else
-                  {
-                     outputMainText("Not being something you think you should be doing, you caringly tell her that she should probably get someone else to help her, such as her mother.\r\rLila reddens further, her knees squirming as she realizes she has exposed herself to you a little too abruptly. \"O-Okay, that\'s a good idea. Thanks...\"\r\rShe awkwardly drops her dress and shuffles out of the hut. You look out and watch her to make sure she can get home alright. Still stumbling about, unbalanced without her tail to help her and having difficulty with... well, her small sensitive pussy stretched, stuffed, and wholly aroused. So aroused, in fact, that you nearly jump out as you see her fall against the ropes of the canopy bridge, but restrain yourself as you see and hear a splatter of juices fall below her accompanied by a poorly-muffled moan. She twitches for a bit with the minor orgasm, but is quick to right herself and pretend like nothing happened, only to hasten her pace home before she has another \'mishap\'. Knowing she\'ll be fine, you return to your own shenanigans.",true);
-                     hrs += 1;
-                     doEnd();
-                  }
-               };
-            };
-         }
-      }
-      else if(this.lilaRep == 3)
-      {
-         this.outputMainText("You come across Lila as you walk through the city. She grins and runs up to you, pouncing you with a great big hug around your waist. She thanks you again, although she shifts awkwardly as she lets go. 6 blotches form across her dress from chest to belly, with another, smaller one below...\r\r\"Uhh... Umm... I-I kinda have a diffewent problem now... The other kids don\'t know yet,\" she reaches under her dress, pulling out a large square of absorbant cloth that has been soaked through, \"and I\'m afwaid of Mommy finding out. C-Can yew help me again?\" She blushes.\r\rNodding, you think it best to at least see what is going on. You take her hand and once again lead her up to your private hut. As you enter, you turn to shut the door-like curtain so nobody outside can see. Yet, as you turn back, you already find Lila pulling up her dress to show you her new issue. She get a bit stuck trying to pull it over her head, leaving the rest of her body completely naked. Thin streams of white liquid slowly drizzle down her half-dozen nipples, soaking into her fur. Not quite as bad as the slimy mess that has returned between her legs, but enough to leave her with a bashful blush as she finally frees herself and finds you staring at her dribbly nipples.\r\r\"I-I thought if I took a dwink like Mommy sometimes does, I would be older like her. But then the othew day my chest felt funny. I wubbed it and then milk stawted leaking. I keep wubbing it when I get milky, but it doesn\'t stop and I have to walk awound with a towel so nobody sees. What should I do?\"",true);
-         this.viewButtonOutline(1,0,0,0,1,0,0,0,0,1,0,0);
+         if (CheckItem(105) == True):
+            templist.append(9)
+            templist.append("Cat's Meow")
+         if (CheckItem(221) == True):
+            templist.append(10)
+            templist.append("Puss Juice")
+         ButtonFunctions.Visible(1,0,1,0,1,a1,1,0,1,1,0,1)
+         #this.doListen = function():void
+         getCum = 0
+         if (buttonChoice == 1):
+            OutputMainText("You make a hint with your fingers that she could use some milking, to which she sticks out her tongue at you. But she nods and agrees nevertheless and follows you back up to your place. You soon pull off her sundress, setting it on out in the heat to dry for now, leaving her quite naked.",True)
+            LilaDesc()
+            OutputMainText("\n" + "\n" + "Lila grins as you return, her arms wrapping around her as you help her up onto your bed with you sitting beneath her.",False)
+            if (lilaVulva > 12):
+               OutputMainText(" Her slimy pussy easily slides " + LegWhere(2) + " your " + LegDesc(2) + " and presses against the bed, which causes her to squirm at first until your thighs can close to anchor her down.",False)
+            OutputMainText(" Then your hands come around her body, gently pinching and kneading down her nipples as you begin to milk her.",False)
+            if (lilaMilk == 0):
+               OutputMainText(" Small drops bead around her areolas as you squeeze them gently, quickly running off and leaving each breast dry after just several slow pumps. You continue milking the nipples even after they've dried up, just to make sure you fully empty them.",False)
+            elif (lilaMilk <= 2):
+               OutputMainText(" Thin trails of milk dribble down you fingers, requiring several good pumps to fully drain them.",False)
+            elif (lilaMilk <= 5):
+               OutputMainText(" Though the nipples feel quite stiff between your fingers, they easily squish in your grasp. A few thin streams spray into the air with the first couple of squeezes around each nipple, followed by a small steady flow of milk over your hands as you continue until they're empty.",False)
+            elif (lilaMilk <= 8):
+               OutputMainText(" It takes a couple fingers to thoroughly cover the puffy nipples, squishing gently in your grasp. Each time you press down on them, thin streams spray into the air while more milk collects on your hands and flows steadily down, quickly making your hands and the girl quite wet.",False)
+            elif (lilaMilk <= 12):
+               OutputMainText(" Squirts of milk spurt through the air each time you press down on her puffy nipples, causing the girl to squirm as she feels the noticeable release. Quite quickly milk dribbles down your hands even without your aid, the flow picking up whenever you do.",False)
+            elif (lilaMilk <= 18):
+               OutputMainText(" You cup her whole breasts as you slowly knead down them, thick spurts of milk spraying in all directions as you do. She lets out an erotic gasp as the milk forcibly escapes her, her purring growing louder as it continues to dribble profusely afterward. The milk spills about your hands and down her body, taking quite a while to fully empty just a single breast.",False)
+            elif (lilaMilk <= 19):
+               OutputMainText(" The girl lets out a meek cry every time your knead one of her breasts, the milk gushing out as her nipples stretch out further as you lightly tug on them. You can hear some of the stuff splatter across the floor, it has so much pressure behind it. And once you start a nipple, it's hard to stop it from flooding down her body as the drops refuse to stop forming and pouring down until you've milked out quite a large amount. When you do, you can feel her breast become much softer, her nipples easily malleable in your grip as they continue to dribble no matter what you do.",False)
+            OutputMainText("\n" + "\n" + "As you take your time to release her, she quickly relaxes against your " + BoobDesc() + " chest, closing her eyes and purring comfortably. Her hands slip between her legs. While you play with her breasts, milk flowing down into your combined laps, you can easily hear the sloshing of her fluids as her hands slip up and down through the cleft of her labia, rubbing her clitoris to heighten the pleasure. Just as you finish off her lowest pair, your hands so close to her loins, she whimpers and seizes as she quietly orgasms in your lap, the bed growing moist beneath you." + "\n" + "\n" + "It takes a few moments for her breathing to calm down again and her eyes to open. A slimy hand comes up and touches your cheek, pushing your other cheek towards her mouth as she kisses you. \"Hehe, it felt good... Thank yew~\", she kisses you again." + "\n" + "\n" + "Now empty, she slides off your lap and onto the floor, strands of her feminine fluid stretching from her bottom to your lap, her tail catching and flicking them as it idly waves. As you stand, more of the stuff is stuck to your own " + ButtDesc() + " rump, leaving your " + ClothesBottom() + " thoroughly soaked. You help her put on her sundress, making sure it doesn't get stuck on a stray nipple or her tail, and she begins to head out." + "\n" + "\n" + "\"I'll always hope to see you again,\" she grins. Then she heads out, her friends waiting for her elsewhere in the city.",False)
+            if ((lilaMilk > 5) and (lilaMilk <= 12)):
+               OutputMainText("\n" + "\n" + "However, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well.",False)
+               ItemAdd(224)
+            if (lilaMilk > 12):
+               OutputMainText("\n" + "\n" + "And she was so milky that you were able to save enough milk for two whole bottles! Though it's likely not all milk, thanks to all the mess.",False)
+               ItemAdd(224)
+               ItemAdd(224)
+            hrs = 3
+            DoLust(math.floor(lib / 3),0)
+            DoEnd()
+         elif (buttonChoice == 3):
+            OutputMainText("You simply lick your lips a little and she giggles, catching onto the fact that you're thirsty. She has no qualms about it, quite happy that you enjoy her flavor so much, and nearly skips her way to your place. Before you're even in the doorway, she pulls off her sundress and stands naked outside while you take the outfit and put it somewhere out in the heat to dry for now.",True)
+            LilaDesc()
+            OutputMainText("\n" + "\n" + "Lila grins happily as you kneel down in front of her, pushing back a bit so you're not obviously out on the walkway where everybody in the canopy can see. You open your mouth and slowly suck on each nipple.",False)
+            if (lilaMilk == 0):
+               OutputMainText(" It only takes a few good gulps before each nipple dries out, but you continue a little longer anyway to help please the girl.",False)
+            elif (lilaMilk <= 2):
+               OutputMainText(" The nipples quickly begin to dribble onto your tongue, the sweet taste warming your throat as you swallow again and again.",False)
+            elif (lilaMilk <= 5):
+               OutputMainText(" Almost having to bite down, the stiff nipples soon squish between your lips and spray thin streams into your mouth, then continue to dribble into your mouth providing several large gulps.",False)
+            elif (lilaMilk <= 8):
+               OutputMainText(" Your mouth has to stretch rather wide to latch onto the puffy nipples and each suck is met with thin streams of milk splattering about your mouth, easily providing you with a consistent drink of sweet warm liquid.",False)
+            elif (lilaMilk <= 12):
+               OutputMainText(" The perk, puffy nipples fill your mouth and each time you squeeze, the girl gasps as she feels the milk spray into your throat, the pressure noticeable releasing. You have to gulp twice between each suck, the milk builds up so quickly.",False)
+            elif (lilaMilk <= 18):
+               OutputMainText(" You can feel her engorged breast give a little as you push your face against them, the large milky nipples sliding across your tongue. She gasps as her nipple gushes into your mouth as you slowly bite down and continues to squirm as you try guzzle down her milk. Some of it even escapes your lips and dribbles down your face and onto the wood below.",False)
+            elif (lilaMilk <= 19):
+               OutputMainText(" She lets out a squeal as you first touch each breast, the thick nipple spraying milk into your face before you can even get it in your mouth. Then her tail flicks about behind her as she clenches down, the engorged breasts gush into your mouth with hardly any effort on your part. So much so that you can't seem to keep up with her output as plenty of it bubbles back out of your mouth and down your face, forming rivers through her fur.",False)
+            OutputMainText("\n" + "\n" + "She purrs and mewls as you nip at her nipples, her hands hugging your head against her body. It doesn't take long before she's thrusting her hips and squeezing her thighs together to care for her hot loins. Being kind, you reach out and run your fingers through her sensitive cleft until she's maneuvering to hump you back." + "\n" + "\n" + "Though it's not a powerful sensation, over the amount of time it takes you to drain each nipple her arousal quickly builds until sheets of lubricant begin to spill. She presses your face into her last nipple as she clenches down with a soft moan, her hips twitching and her legs tensing with the climax. When she's finally done, her legs give out and she falls towards you, toppling back out into the city." + "\n" + "\n" + "The warm air licking across her moist pussy, it doesn't take long before she's squirming again. \"Eehee, I bettew get dwessed befowe somebody sees me on yew.\"" + "\n" + "\n" + "Before she gets up, however, she slides down your body to give you a nice kiss on the forehead. Then she slides back up as she stretches out, her tail reaching high, and incidentally drags her stiff clit across your face and leaving you quite slick. And before you can get up, she grabs her dress and hurriedly dons it, hardly covering her rump and wet thighs, and runs off with some other task in mind.",False)
+            if (lilaMilk > 8):
+               OutputMainText("\n" + "\n" + "All that milk does sit quite well in your stomach, however, and leaves you feeling rather good.",False)
+               DoHP(lilaMilk * 2)
+               exhaustion -= math.floor(lilaMilk / 2)
+               skipExhaustion = True
+            hrs = 3
+            DoLust(math.floor(lib / 2),0)
+            DoEnd()
+         elif (buttonChoice == 5):
+            OutputMainText("You stick your tongue out at her and she immediately blushes. The blotch around her crotch deepens and spreads simply by the thought. A rather Pavlovian response from her nethers... She hugs onto your arm as you head up to your place and her thighs slip together with each step until she's fumbling the last few feet. You manage to catch her and hoist her up onto your bed, where she immediately twists around and crumples the fabric over her crotch in her hands. Barely lifting her dress a few inches, her legs spread slightly in welcome to you, she's a bit too timid to go any further." + "\n" + "\n" + "So, with a mewl echoing about the room, you slide your hands up the sides of her legs and push the dress away, staring at her dewy lips. You lift the sundress over your head and dive inside. ",True)
+            if (lilaVulva == 0):
+               OutputMainText("Her petite folds are swollen and bright, shimmering with the surrounding fur from the slickness she's already made. You can easily engulf her entire groin in your mouth, your tongue running up and down over her little stiff button and slipping into her folds to ring around her tight sex.",False)
+            elif (lilaVulva <= 2):
+               OutputMainText("Her swollen lips are nearly red with her arousal, a gob of lubrication already slipping down her folds and into the cleft of her backside, drooling down onto her tail. You nibble around her inner lips and nip at her standing clit, the developed vulva appreciating your efforts with even more slime.",False)
+            elif (lilaVulva <= 5):
+               OutputMainText("Her thighs still squeeze her thick vulva by the time you reach it, spreading only to let your head through. A few strands stretch across your path, the engorged pussy almost gasping open as the large labia pulse in anticipation. Larger than your mouth, it engulfs your lips in a sloppy kiss while your tongue slips inside. You pull out only to slide up through the glistening folds and suckle from her thorn-like clit as it stands out from it's hood, causing her to immediately buck upon the bed.",False)
+            elif (lilaVulva <= 8):
+               OutputMainText("The bulbous pussy looks odd between her dainty thighs, so swollen and naughty. The inner lips dangle out of from the thicker ones, giving you something to gently bite down on as you reach towards it. She squirms as you do, letting out a gasp as you tenderize the supple meat. Feminine honey dribbles from her hole and smears about her thighs, forming webs around your face and running along her tail below. Your mouth slips into the labia and kisses her vaginal passage, your tongue slipping in deep to send her wild. Her hands push her dress into your head and she squirms wryly as you do, only to buck and knock on your skull as you pull out and suck upon her button. The thing pushes out from the folds, standing stiffly with clear strands stretching down around it. You lash your tongue over it again and again in your mouth, making her clenched fists dig her dress into your head.",False)
+            elif (lilaVulva <= 12):
+               OutputMainText("You can't even see where her thighs meet her body, the growing pussy is so large. She inadvertantly squeezes it, even with your head in there, and a handful of honey pushes out from her large lips, her hole gaping to let it pass and form sheets between her thighs, her tail becoming drenched along with a good portion of your bed. You suck some of the dangling inner labia into your mouth, kneading and tenderizing it with your teeth while she squirms behind it. Then the lips hug your face as you push inside, your mouth opening to push inside her vaginal passage. Your lips can pluck around the edges, your tongue slipping around the slick walls. Her hands hug around your head through her dress, clenching into you the best she can while her tail flicks her fluids up across your " + BoobDesc() + " chest. Then you push upwards, your tongue quickly lashing across her urethra before wedging into her clitoral hood. You lick around the base of the stiff erection, sliding the whole thing into your mouth. You gently bite around the tip as your lips drag up and down its short length, making her tiny butt squirm upon the bed.",False)
+            elif (lilaVulva <= 18):
+               OutputMainText("Your hands reach up to flank the sides of the enormous cunt, mashing the large labia together as a constant dribble of slime coats her tail and the bed beneath. You grab her tail and wedge it up between her folds, slipping it up and down while her knees jerk and push around her vulva. Leaving it caught between the dangling lips, you reach in beside it, your face becoming drenched, and suck in a mouthful of the flesh. You gently chew on the meat, the tip of her tail slapping across the top of your head as she mewls erotically from the other side. Then you reach inside and bite down on the edge of her vaginal passage, the supple flesh easily handling your roughness. Your hand then leaves the side of the cunt to reach into her hole, grabbing it by the edge to hold it up and fondle it while your mouth moves up towards the standing protrusion above. The overgrown clitoris stands well beyond the massive mound and pulsates in your mouth as you engulf it. You suck and gnaw on the hard thing, the girl behind clenching her hands deep into her own flesh through the sundress as her hips grind down onto the bed.",False)
+            elif (lilaVulva <= 19):
+               OutputMainText("You lift the heavy mass of lewd flesh higher so she can scoot back upon the bed until her feet are no longer dangling. Once it's well supported, the waterfall of lubrication already having slickened the fur all the way up between her legs well in advance, your hands palm either side of her huge thick labia and grind about, massaging the sensitive pussy from the outside. Her feet and knees soon join you, writhing about to knead it thoroughly. No longer needing to do it themselves, your hands pull back to help spread the large slit, tugging and twisting the dangling folds. You spread her wide, her pussy gaping, and you lick around her vaginal passage, biting her and there until you slip a hand in to massage from the inside. The rest of her body twitches about, the tip of her tail flailing from underneath, until she has to onto her own legs to hold herself still. Yet, her hips still manage to buck as you slip her large clitoris into your mouth, barely able to take in its full length. You suck it in and slide up and down its length, gnawing where you can, until your other hand comes to your aid and wraps around the base to stroke it in tune to your efforts. There is so much pleasure that the girl is stuck there, her mouth wide and her eyes shut, hardly able to breath or make a sound outside of high-pitched moans.",False)
+            OutputMainText("\n" + "\n" + "Milk from her breasts spills down around your head as the sensations grow stronger and stronger. Eventually, Lila falls backward onto the bed, grasping at the covers and wringing her legs around your neck. She pulls you deeper into her loins as she lets out a yowling cry, a mess of slime spilling out around you. Her body twitches and her hips continue to buck as she endures a lengthy orgasm.",False)
+            if (lilaVulva >= 17):
+               OutputMainText(" Yet, as you continue to assault her nether region, her fat pussy quivering in your grip, she can't seem to stop climaxing as she cries out again and again, showering you in her fluids, until her body is too exhausted and drained to maintain the high state of euphoria much longer, quickly dropping her back down to a heavy breathing, her chest swelling and deflating again and again as she pants loudly.",False)
+            elif (lilaVulva >= 10):
+               OutputMainText(" And just a few moments after the first, your mouth still licking away, she cries out again in ecstasy as she approaches a second orgasm, her legs nearly crushing you this time.",False)
+            elif (lilaVulva >= 5):
+               OutputMainText(" However, she doesn't seem to be finished quite yet, as her legs maintain their hold. You lick and lick, hearing her breathing harder and harder and rapidly approaching yet another orgasmic cry.",False)
+            OutputMainText("\n" + "\n" + "Tired, her breath slowly coming to a gentle purr, she curls around to look at you. Silently urging you up onto the bed, she licks across your dampened face as you climb up with her. She cuddles into your " + BoobDesc() + " chest and quickly slips into sweet dreams while you follow behind.",False)
+            if (lilaVulva > 10):
+               DoLust(lilaVulva + math.floor(lib / 3),0)
+            else:
+               DoLust(lilaVulva + math.floor(lib / 3),0)
+            if (lilaPreg > 35):
+               DoLust(math.floor(lib / 6),0)
+            DoNext()
+            #doListen = function():void
+            OutputMainText("By the time the two of you awaken, hours have passed. She finally pulls down her sundress, her naked loins on display the whole time she slept, your open doorway just a few feet away. She yawns and kisses you, trying to lap up some of the stuff that is still wettening your face." + "\n" + "\n" + "\"So gewd...,\" is all she can muster, with a bit of mumbling about her Mommy waiting. She slides out of the bed, pausing for a moment for her legs to adjust, and then slowly wobbles her way back out into the canopy.",True)
+            hrs = 8
+            skipExhaustion = True
+            exhaustion = 0
+            if (lilaVulva <= 8):
+               Aff(4,math.floor(Percent() / 20 + 4),-1)
+            elif (lilaVulva <= 16):
+               Aff(4,math.floor(Percent() / 10 + 4),-3)
+            else:
+               Aff(4,math.floor(Percent() / 10 + 6),-6)
+            DoEnd()
+         elif (buttonChoice == 6):
+            OutputMainText("Reaching up, you place a hand on the taller small girl's belly, giving her a kinky smile. It takes her a moment to realize what that is supposed to mean, but then she blushes terribly, her dress getting promptly more moist and her tail jerking about at the mere thought. Feigning reluctance, she nods hesitantly, but is the first to grab your hand and step towards your hut. However, she quickly slows to try and look like she's not as eager as she really is, still embarassed that she could even do such a thing. And when you get there, Lila stands by your bed, meekly lifting the front of her dress to hide her face and expose herself before you even shut the door." + "\n" + "\n",True)
+            if (lilaVulva == 0):
+               OutputMainText(" A few drops of excitement already descend from her petite folds. It's amazing you could ever have fit in there as she can hardly fit an average sized penis.",False)
+            elif (lilaVulva <= 2):
+               OutputMainText(" A gob of excitement splashes to the floor with a thin strand reaching all the way up to her slightly puffy lips. Even though her genitals are the size of a more developed girl, despite her petite figure, it's surprising you could even fit in them.",False)
+            elif (lilaVulva <= 5):
+               OutputMainText(" Strands of honey stretch to the floor from her thick vulva. Her thighs squeeze it intently, imagining how you're gonna make them spread even larger. Well developed for any girl, especially one with her petite figure, it's hard to believe you could still manage to fit in them.",False)
+            elif (lilaVulva <= 8):
+               OutputMainText(" Thick strands of excitement stretch about her thighs and all the way down to the floor. Her thighs already spread from the bulbous pussy, larger than even most developed girls, she's only going to spread them wider to fit you, which is quite an astonishing feat.",False)
+            elif (lilaVulva <= 12):
+               OutputMainText(" Thick rivers descend straight to the floor from the large pussy. Almost as large as her head, if not larger, it's not too surprising that you could slip through, a fact she's well aware of as her thighs try to squeeze around it erotically.",False)
+            elif (lilaVulva <= 18):
+               OutputMainText(" Waterfalls of excitement coat the floor beneath her. She squeezes the massive pussy between her knees, her legs bowed to even stand with the thing. It's no surprise that you could fit inside of her, something she looks forward to as she strokes the clitoris that stands out from the folds.",False)
+            elif (lilaVulva <= 19):
+               OutputMainText(" Sheets of excitement flow out over the floor from the amazing mass of plush lips that fills the gap between her legs. Her feet rub her enormous clitoris and spread the massive dangling inner-lips, well aware of how well you could fit inside of her with such an enormous entrance.",False)
+            OutputMainText(" She glances over her dress in anticipation. Not to leave her waiting, you lean her rump against the side of the bed. Keeping the bed for balance, she slides down slightly as she spreads her legs, angling the awaiting hole towards you while giving you better access. Your hands brush over the fur of her legs as you tenderly grab her supple lips. You spread them wider, looking into the gasping cavern before you." + "\n" + "\n" + "A wave of warm wet air rushes by, the heat and lubrication of her swollen pussy beckoning you in. She cutely gasps as your hand touches the inner wall, instantly coating your fingers in slime. You grab onto the velvety folds, almost immediatly losing your grip as she bucks in turn. But, she steadies herself and clenches her eyes shut, forcing her tail against the ground and anchors herself so you can proceed." + "\n" + "\n" + "Pulling yourself in, the flood of slickness quickly drenches you. The stuff makes the journey even easier as you slip inside, stretching her as your torso enters. Her vaginal muscles then clench back with arousal in turn, sucking you up her passage until your " + LegDesc(10) + " disappear" + LegPlural(1) + " inside. You pause for a moment within the tunnel, waiting for her to loosen before you can continue any further. You can hear her hand rub something down towards from where you entered for a moment, before she calms herself and relaxes. And with the relaxing comes another rush of horny fluids. Climbing up against the current, you manage to make use of the void left behind from the released honey and slip yourself up into her womb.",False)
+            DoNext()
+            #doListen = function():void
+            if (tallness <= 26):
+               OutputMainText("Small and tight, the womb doesn't actually stretch much to fit your presence, settling quite stably within.",True)
+            elif (tallness <= 54):
+               OutputMainText("The womb stretches rather large to accomodate your presence, increasing in size to fit you. It's hard to tell from within, but you can feel one side hover a little as her belly bulges outward into the air.",True)
+            else:
+               OutputMainText("A large space already, the huge womb stretches even further to fit you. At first it feels quite stable, but as your body fills it, you can feel her belly bulge grandly, hanging well beyond her pelvis and barely hovering in the air.",True)
+            OutputMainText(" Curled up and comfy, the room around you swells and shrinks as you hear Lila pant heavily, coming down from the intense orgasm. Her hand rustles through the fur of her belly, gently pressing and rubbing it, which you can feel from within. The hand continues down further until you hear her gasp and the womb twitches as she pinches her button and squeezes her stretched labia. But that's not enough..." + "\n" + "\n" + "More rustling as she drops her dress. The room wobbles when she pushes off from the bed and stands, both hands quickly shooting down to catch you and cradle your swollen space. Once stable, she begins to waddle her way... somewhere. Outside, it seems, as you can hear a breeze blow across her belly." + "\n" + "\n" + "The girl seems to be enjoying a nice walk through the bridges of Siz'Calit.",False)
+            if (tallness <= 26):
+               OutputMainText(" With your small body hardly giving her a bulge, nobody is any the wiser, thinking she just had a large meal. She walks about rather freely, a hand always on her belly, and frequently a hand delving further down and moistening her dress in her crotch. You feel her stop ocassionally and grab the rope-rail, her body shuddering with another orgasm in public. Your room grows quite soaked from the pleasurable outting, making her eventually head back to the room.",False)
+            elif (tallness <= 54):
+               OutputMainText(" Your relatively large body gives her quite the bulge. You can hear people ask if she's pregnant as she walks by, rather surprised as they hadn't seen her show any signs earlier in the day. The girl never gives them a straight answer, merely giggling as she cradles the girth while slime oozes down her inner thighs. The gravid nature is too much for her normally fitting sundress, lifting it quite high. Her swollen pussy shudders below you as the air nips at the sensitive bits, exposed to anybody who takes a moment to actually look. Occassionally she'll stop and grab the rope-rail of the tree-top village, her hand grabbing and squishing and rubbing the bulbous cunt until the room quivers around you as she climaxes in public while nobody is watching. So much honey lubricating her legs, she quickly changes pace and rushes back to your room.",False)
+            elif (tallness <= 82):
+               OutputMainText(" Your large body in her small frame gives her an enormous bulge. You can hear people gasp and whisper, wondering if Lila is pregnant and, if so, with what? Her hands hug the sides of her huge belly, swaggering as she walks, as her normally-fitting dress is lifted so high that you can feel a draft on the lower portion of your room. Which is even worse for Lila, as that same draft rushes over her giant pussy and causes her to shudder every few steps. Completely exposed below her belly, you can also hear people comment about the lewd sight, but the girl doesn't seem to pay much heed. So dazed and entranced by the grand sensation of being so absolutely filled while her loins climax again and again, she simply staggers on. She even halts and grabs the rope-rail of the bridges every several steps as the clenches down for another intense orgasm. The sound of thick syrupy splashing across the wood below almost drowns out the ecstatic mewls crying out above. So much honey spilling out between her thighs, frequently flooding your stretched room, that she doesn't get to far before she feels the need to run back to your room, climaxing a couple more times just from the bouncing of her belly and pussy from the expedited retreat.",False)
+            OutputMainText("\n" + "\n" + "She collapses against the wall beside the doorway, her rump splashing in her own fluids as she hits the floor. The slurping of her hand furiously rubbing her extraordinarily stiff clitoris mixes with her mewling moans. Her arms clamp around her belly as she reaches around it, placing pressure on you within. The womb heats up with her masturbation and you can feel yourself being pushed back out. Whether she intended to or not, her orgasms are forcing you back through her cervix. The vaginal walls practically spray you with lubrication as you enter the passage, coating you in slime and accelerating your voyage out." + "\n" + "\n" + "You come out with a splash as Lila howls loudly, launching you into the puddle she's made. Her pussy continues to gasp and gape largely, flexing and contracting vigorously while the sensation of you being thrust through lingers in her nerves. Juices continue to poor out of her, showering you as the maw squirts in pleasure. The girl's legs jerk, her hips buck, her tail twitches, and her whole body quakes from the experience...",False)
+            DoNext()
+            #doListen = function():void
+            OutputMainText("After a few minutes of continuous orgasm, Lila spends several more simply panting and gasping for air. You crawl up between her legs and hug around her belly, easing her nerves and helping bring her back to this world. She eventually regains enough of her wits to hug you back, kissing your forehead." + "\n" + "\n" + "\"Thank yew... That was... That was...\" She can't really finish the statement, merely pressing her plush vulva up against you and kissing your waist in another sense." + "\n" + "\n" + "At a loss for words, the two of you lay there for a while until the feeling returns to her legs. Lila stands, swaying slightly while she catches her balance, and lowers her soaked dress the best she can. \"I need to go home nao and take a nice long nap... I weally enjoyed this, though, and won't mind if it happens again...\" She blushes with embarassment over her naughty desire for more and is quick to escape the hut, her tail writhing about as she recounts what happened in her mind, her knees twitching as she nearly climaxes from the memory alone..." + "\n" + "\n" + "Taking your time with wiping yourself down from the deluge, you also think about what happened. Overall, it's rather arousing and feels quite pleasant...",True)
+            if (CheckItem(200) == True):
+               OutputMainText("\n" + "\n" + "However, once you're dry, you notice a blotch still forming. You quickly open up your bag and take out the culprit. The gift Lila had given to you when you first met her now seems much... 'wetter'. The leaves and flowers of the little charm sweat with drops of 'dew', producing a small amount of familiar honey from nothing. There's also a general warmth to the object that wasn't there before and seems to be having an effect on yourself. It seems Lila's gift has become more imbued with the girl's nature with the rather intimate 'connection' you two shared...",False)
+               LoseManyItem(200,1)
+               ItemAdd(237)
+            hrs = 4
+            Aff(4,math.floor(Percent() / 10 + 4),-3)
+            DoHP(10)
+            DoLust(math.floor(lib / 1.5),0)
+            DoEnd()
+         elif (buttonChoice == 7):
+            if (lilaPreg == -2):
+               OutputMainText("Not quite sure how to put it, you make a quick suggestion that the two of you could try something more... intimate. Confused at what you could possibly mean, considering how intimate you've already been before, she cocks her head to the side with a \"Huh?\". Not quite sure how to put it, you kneel down beside her, cupping your hands over her ears and whisper inside. To put it bluntly, you simply say \"Sex\"." + "\n" + "\n" + "Her tail curls around behind her and her cheeks are instantly redder than ever before. You also hear a splash below her as her loins seem to catch on even faster than the rest of her body, her near-constant heat latching onto the word and pulling her mind towards it." + "\n" + "\n" + "She gulps for a moment, but very quietly murmurs \"O-Okay.\"" + "\n" + "\n" + "Taking her hand, you lead her up to your hut; her stride rather crooked along the way as she contemplates what will happen. Once inside, she already begins to take off her sundress before you can close a curtain across the open doorway as she thinks that's just what one does when it comes to sex. You chuckle at her innocent naivete, though your gazing upon her body makes her blush more in turn.",True)
+            else:
+               OutputMainText("You give her a little hum, trying not to be too obvious about what your trying to suggest. When she eventually does, you can see the blush intensify in her face as her heart beats faster. Eyes darting around to make sure nobody notices, like she were trying to smuggle some illegal goods, she grabs your hand and hastily pulls you to your own hut, knowing well where it is." + "\n" + "\n" + "Before you're even in the door, she's already tossing her sundress aside and scampers in eagerly with a giggle. As you stare at her, her body completely naked, she blushes again as she realizes how quick she was to get caught up in her body's desires.",True)
+            if (lilaMilk == 0):
+               OutputMainText("\n" + "\n" + "A few drops of milk collect around her areolas, her naked nipples perking at the air.",False)
+            elif (lilaMilk <= 2):
+               OutputMainText("\n" + "\n" + "Drops of milk bead around her nipples, slowly dripping down her fur as she stands there, her nipples quite stiff.",False)
+            elif (lilaMilk <= 5):
+               OutputMainText("\n" + "\n" + "Her nipples are so stiff that it almost looks like they hurt. A steady trickle of milk drips down from the pointy things, dribbling down her fur. ",False)
+            elif (lilaMilk <= 8):
+               OutputMainText("\n" + "\n" + "Her puffy nipples protrude far from her chest and belly, engorged with milk and making her twitch as the air brushes across the hard things. Small streams of milk continually flow down her front, over and around her belly, and collect in between her thighs and mix with her honey as she stands there.",False)
+            elif (lilaMilk <= 12):
+               OutputMainText("\n" + "\n" + "Her puffy nipples occasionally spray thin streams of milk as the air licks across there moist sensitive skin, causing her to twitch as she stands there, trying to prevent herself from manually relieving the things while they slowly dribble down her front.",False)
+            elif (lilaMilk <= 18):
+               OutputMainText("\n" + "\n" + "Like little rivers, milk continually flows down her front, her small swollen breasts shuddering as the air licks across her stiff nipples, sending thin white squirts flying about. She can't help but squish them idly with her arms, causing more milk to spray about as she does and small gasps to escape from her lips.",False)
+            elif (lilaMilk <= 19):
+               OutputMainText("\n" + "\n" + "While standing there, her hands rove about her front, squeezing her small engorged breasts as they ache from her puffy nipples growing stiff with the air licking across their moist sensitive skin. She squeaks ever now and then as she does, with more white stuff flooding from the breasts that she cannot immediately attend to with only two hands.",False)
+            if ((lilaPreg <= 35) and (lilaVulva >= 11)):
+               OutputMainText(" The belly bulging with vaginal flesh, much of the milk diverts to either side for an easier path.",False)
+            elif ((lilaPreg <= 70) and (lilaPreg > 35)):
+               OutputMainText(" Wobbling a little with her greater girth, her pregnant belly diverts most of the milk flow to the sides. Though it doesn't prevent her from rubbing the milk in over the whole thing anyways, while she absently rubs it with its taut fur being more sensitive.",False)
+            elif ((lilaPreg <= 100) and (lilaPreg > 70)):
+               OutputMainText(" The large belly, gravid with your children, blocks most of the milk from immediately reaching the ground, making most of it flow down to her protruding belly button. Her hands occasionally paint the white stuff around as she rubs the taut fur it in awe of herself, unable to even reach its underside as its size is larger than herself.",False)
+            if (lilaVulva == 0):
+               OutputMainText(" Her petite folds are swollen and bright, shimmering with the surrounding fur from the slickness she's already made.",False)
+            elif (lilaVulva <= 2):
+               OutputMainText(" Her swollen lips are nearly red with her arousal, a gob of lubrication already slipping down her folds and into the cleft of her backside, drooling onto her tail.",False)
+            elif (lilaVulva <= 5):
+               OutputMainText(" Her thighs squeeze her thick vulva, the inner lips dangling out, nearly red and fairly swollen. Strands of her honey stretch between her thighs and latch onto her tail behind her.",False)
+            elif (lilaVulva <= 8):
+               OutputMainText(" The bulbous pussy in her groin looks odd between her dainty thighs, so swollen and naughty. The inner lips dangle out of from the thicker ones, red with arousal and shimmering brightly with the fluids that dribble down and form webs between her knees. Every now and then, she reaches down in an attempt to pull it back up, fearing that it's slowly falling down as it feels so noticeably weighty, causing her to wince and her tail to flick - flinging slime - from the intense sensation of grabbing herself in such a way.",False)
+            elif (lilaVulva <= 12):
+               OutputMainText(" The growing pussy is so large that it's difficult to tell where her torso ends and her legs begin. She inadvertantly squeezes it as she squirms about, forcing handfuls of honey to push out from her large lips, her hole gaping to let it pass and form sheets between her thighs, her tail becoming drenched along with a large portion of the floor. Her clitoris stands from the mass, like a thorn on her front, swollen with blood and making her shiver slightly from being exposed to even the slightest breeze.",False)
+            elif (lilaVulva <= 18):
+               OutputMainText(" Her legs bowed, her knees squeeze around the massive pussy between them. The dangling lips occasionally lewdly slap against her legs as she shifts in one place, leaving behind a stretching web of honey. The underside of her tail is nearly completely drenched by the stuff, pulling strands of it from her backside whenever it flicks from side to side in her anticipation. And a hand occasionally slips down, almost grabbing her erect clitoris as it stands far from the mass in an attempt to simply cover it and protect it from the breezes that cause her to shiver tremendously and fresh gobs to splash across the floor.",False)
+            elif (lilaVulva <= 19):
+               OutputMainText(" Her knees bend to fit around the grand mass of vulvic flesh that fills her the gap between her legs. The inner folds occasionally brush against the ground as she squirms, her foot attempting to rub her long clitoris. The stiff thing looks nearly like a small penis, erect and aroused, begging for attention as a breeze nips across its extremely sensitive skin. Lubrication pools about beneath her, making her efforts even more difficult, but she eventually manages to catch the tip of the thing between her toes and gently pinch it, making her moan softly. Her tail flings more slime about as it flicks about, occasionally going stiff as it flicks a little too close and diddles between her deep slit with a gasp.",False)
+            if (lilaPreg == -2):
+               OutputMainText("\n" + "\n" + "Eyes going wide, she stares in wonder as you begin to strip your own outfit. Roving from your " + BoobDesc() + " chest to your " + ButtDesc() + " rump, and especially fixating on your",False)
+            else:
+               OutputMainText("\n" + "\n" + "Eyes wide with joy, she watches happily as you begin to strip your own outfit. Always in awe of your " + BodyDesc() + " body, she loves to see what you really look like. However, thanks to her constant heat, she absently licks her lips as she fixates on your",False)
+            if (cockTotal > 0):
+               OutputMainText(" " + CockDesc() + " swelling cock" + Plural(1) + "",False)
+            else:
+               OutputMainText(" " + VulvaDesc() + " dripping cunt" + Plural(2) + "",False)
+            if (lilaPreg == -2):
+               OutputMainText(", obviously confused and slowly taking in what you have, but also visibly aroused as a hand latches onto her cunny, unable to stop rubbing it.",False)
+            OutputMainText("\n" + "\n" + "Then her tail flails about with glee as you help her onto your bed, laying her back across the soft sheets.",False)
+            if (lilaPreg == -2):
+               OutputMainText(" She blinks up at you, a hand cutely curling about her mouth like she's about to lick her paw, wondering how this will possibly continue. Just to reassure her, you kiss her on the forehead. Her eyes close and a smile grows upon her face, accepting your comforting gesture. Though they then open as she realizes your mouth reaches down to touch against her own lips, kissing her lovingly. This time her eyes close from the sudden surge of warmth throughout her body, whimpering slightly into your mouth as she experiences such intimacy for the first time.",False)
+            else:
+               OutputMainText(" She smiles up at you, her hands pawing at your " + BoobDesc() + " chest, roving to your sides and holding onto you as you lean down to give her a deep kiss. Her mouth is ready to take your tongue, her rougher one dancing around it and licking your teeth and lips.",False)
+            if ((tallness < (6 + 4 * lilaVulva)) and (lilaPreg != -2) and (lilaUB == False)):
+               OutputMainText(" You slowly inch your way down her body to the hungry entrance, kissing her nipples and belly along the way. The plush labia dribble with arousal, gaping and awaiting your tender treatment to help cool the growing fever of her loins.",False)
+               if (lilaVulva <= 5):
+                  OutputMainText(" Even as dainty as she may be, compared to your own size she is still relatively large. You can't help but bury your face between the slender lips, licking up and down the slippery pink flesh.",False)
+               elif (lilaVulva <= 12):
+                  OutputMainText(" Her enlarged lips gasp before you, steady streams of honey flowing down and out through the swollen petals. Though the increased size makes her walk awkwardly and spread her knees before you in this state, it seems so much larger from your relative perspective. You can't help but envelop your face in her pussy, the slick folds hugging you and pulsing as you lick about.",False)
+               elif (lilaVulva <= 19):
+                  OutputMainText(" The view warped by a waterfall of her slick fluids, the monstrous mound is easily larger than yourself. Gaping and succulent, you grab onto her outer lips, squishing them against her legs and burrow your face inside, nibbling and kissing the draping flesh around you.",False)
+               OutputMainText("\n" + "\n" + "Lila coos in excitment, her knees pressing in around you and driving you deeper into the craving sex. You don't resist, groping about and kneading the sensitive meat. This only causes her to squeeze you back more and her pussy dilate wide in ectasy. So ravenous to be sated that you find yourself falling in deeper and deeper, being gently sucked into the luscious maw." + "\n" + "\n",False)
+               if (lilaVulva <= 5):
+                  OutputMainText("The tight surroundings stretch to engulf you, the slippery fluids around her thighs aiding in squeezing your backside to push you in further.",False)
+               elif (lilaVulva <= 12):
+                  OutputMainText("The engorged surroundings swallow you with pillowy gentleness, the clamping of her lubricated knees helping push your backside in further.",False)
+               elif (lilaVulva <= 19):
+                  OutputMainText("The grand mound wraps about you, stretching slightly and easily engulfing you. Her feet press against the lower edges of her own sex, clamping your backside and pushing you in further.",False)
+               OutputMainText(" She cries out with intense pleasure as you fill her, rapidly coming to climax with your overwhelming 'proximity'. You can feel her inner walls roll about around you as they tense for orgasm. Then, a sudden rush of clear fluids washes over you, propelling from deeper into her depths to the exit behind you, splashing across the sheets of your bed. And with the expulsion of her fem-cum, the void in her womb recoils, sucking you in the rest of the way...",False)
+               DoNext()
+               #doListen = function():void
+                  OutputMainText("All is dark when you begin to examine your situation. Forced to curl up in this spherical environment, the warm walls around you smother you with slick honey. Despite the cramped confines, you actually find yourself rather comfortable, cradled and safe. You can feel muscles still tensing around you, coming down from an extensive high. A portion of the walls presses down onto you as a hand rubs across the belly outside, caressing the odd yet pleasant sensation. The body rolls back and forth slightly, wallowing in the abundant warmth being shed. Yet, the rocking comes to an abrupt halt as the owner of your small room comes to a realization." + "\n" + "\n" + "\"Wh-Whewe did yew go?...\"" + "\n" + "\n" + "The hand pressing down on you moves slightly. Then stops as she pauses to process the information. Then picks back up as a hurried pace and suddenly pats, quaking your space, as she worriedly calls out. \"Are... Are you in thewe?!!\"" + "\n" + "\n" + "Not really sure how to break the news to her, you meekly nod. Though, you realize she probably can't see you do that, so you instead shout a muffled confirmation and rub the inside of her womb to console her and show you\'re okay." + "\n" + "\n" + "\"Eeep!\" She struggles to sit up, making you lose track of which way is down. You can feel a rumble as she hops to the floor, hearing her feet heavily patter across the floor as she grabs her sundress and tosses it on." + "\n" + "\n" + "Not entirely sure where Lila intends to go, you hear her exit the hut as a breeze rustles her fur. Wood claps below as she runs over the canopy bridges",True)
+                  if (lilaVulva <= 12):
+                     OutputMainText(" with an awkard stride as her thighs sqeeze the recently-climaxed extra-sensitized mound",False)
+                  elif (lilaVulva <= 19):
+                     OutputMainText(" slowly with an additional slurping sound as her knees clamp around the recently-climaxed extra-sensitized mass of flesh below",False)
+                  OutputMainText(", frequently stumbling from side to side with the added weight. She soon takes into account her swollen belly, wrapping her hands around it like when she was pregnant, hugging you inside of her. She also pauses several times along the trek to adjust her dress, exposing herself far too often as she was not prepared for such girth." + "\n" + "\n" + "Her lungs huff above you as she frantically crosses bridged. They eventually settle as she hastily reaches her destination. The feet slow and she carefully enters another doorway.",False)
+                  DoNext()
+                  #doListen = function():void
+                  OutputMainText("You can hear Lila take a deep breath to say something, but a loud gasp from a familiar voice interupts her outside." + "\n" + "\n" + "\"Lila! A-Are you pregnant again?",True)
+                  if (tallness > 26):
+                     OutputMainText(" And what could you have gotten pregnant by? A horse?! You're enormous! How are you even standing upright with a belly like that?! The dress can't even reach past your belly-button!",False)
+                  elif (tallness > 12):
+                     OutputMainText(" And what are you pregnant with?! You're huge! Your dress can't even cover your bum!",False)
+                  OutputMainText("\"" + "\n" + "\n" + "Lila does her best to explain that she has YOU inside of her within a few sentences. \"I don't know what to dew!\"" + "\n" + "\n" + "\"Okay, okay sweetie. If you can fit something in, you can push it back out. Here, just get up on our bed...\" You feel the room jounce around you, then slowly settle into something soft. \"and lay back and relax...\" You lose track of the 'down' direction yet again... \"Now sweetie, I just need you to settle down and think about pushing out, just like you did with your babies.\" You hear Lila's legs spread across the bed and feel a pressure slowly build around you." + "\n" + "\n" + "\"Good girl, good girl.\" A rhythmic beat echoes around as her mother softly pats the belly. \"Just think about how this happened and do it in reverse.\" ... You suddenly feel the pressure shift the other way, the surroundings growing hotter and a deluge of fresh fluids spill around you." + "\n" + "\n" + "\"Wait, no, stop thinking about it! You need to calm down, forget about what was happening and just focus on pushing. Geeze, I don't think I even want to know what you two were doing...\"" + "\n" + "\n" + "With her mother gently rubbing from outside, you can feel the tide shift the other way again, pressing you towards the exit. The muscles squeeze around you, slowly sending you towards a light at the end of a tunnel. You can feel the walls stretch around you, yet tighten and grow hotter at the same time. Even moreso as a pair of relatively large slender hands join you inside, a low cry being heard from Lila. The hands hug your sides, climbing up your body through the slime until they're able to get a grip on you. Then, in the blink of an eye, slide the rest of the way out with a wave of sensual fluids splattering out behind you, a howl of ecstasy filling the room." + "\n" + "\n" + "Lila's mother places you on the ground, helping you stand as you regain your footing. She wipes you down with her bare hands, easily sloughing off plenty of fluids. On the bed before you, Lila lays with her legs spread and her cunt still gaping, dripping steadily while she gasps and pants for air." + "\n" + "\n" + "\"Umm...\" Her mother tries to think of what to say. \"Congratulations Lila, it's a- Nonono, I'm just kidding. But I guess you're a bit small for my little girl, huh?\"",False)
+                  if (lilaVulva > 5):
+                     OutputMainText(" She pauses and looks at her daughter, especially at the large erotic mass between the legs. \"Okay, maybe not 'little' in that regard...\"",False)
+                  OutputMainText(" Checking to make sure Lila is alright, she leans over and strokes a cheek until Lila's eyes open up with an embarassed blush. \"I guess you two just got carried away. You just have to be a little more cautious about going- err..., 'too deep', I guess? You both seem to be perfectly fine though, so even if this happens again by accident, there won't be a serious problem. Just be calm and you should be able to handle it, hun.\" Lila nods, leaning up to give her mother a hug while her loins are still gurgling towards you." + "\n" + "\n" + "Her mother hugs back, but then is quick to release her. She shakes her head. \"I don't even know what the heck I'm saying... My daughter just sucked in her lover and then gave birth to her lover. I don't even...\" She proceeds to walk out of the room, trying her best not to think too hard about it." + "\n" + "\n" + "Lila giggles hesitantly before hopping down and giving you a hug as well. \"I... I didn't mean to do that to yew...\" Her tail lowers shamefully and she blushes harder, a hand rubbing over her belly. \"It did feel weally good though... So, umm, thank yew... If it happens again, I'll twy to be bettew about it.\"" + "\n" + "\n" + "With another peck on your cheek, Lila then runs out of the room as well, too embarassed to hear what your response might be. Left alone in her bedroom, you take the opportunity to use her sheets to wipe yourself off a bit more thoroughly. Not that it makes much of a difference, as her sheets are already (and probably always are) quite slick... A bit dumbfounded and confused, you leave the hut without saying goodbye. You'll see her again, but at the moment it's probably a good idea to continue on with your day.",False)
+                  hrs = 4
+                  Aff(4,math.floor(Percent() / 10 + 4),-3)
+                  lilaUB = True
+                  DoLust(math.floor(lib / 2),0,2)
+                  DoEnd()
+            else:
+               if ((cockTotal < 1) and (clitSize <= 10)):
+                  if (lilaVulva > 10):
+                     OutputMainText(" While she's prone and melting in your embrace, you wrap your " + LegDesc(2) + " around her bulbous vulva, pushing your own " + VulvaDesc() + " cunt" + Plural(2) + " into it. You bounce up and down gently, humping her heavy pussy, your " + ClitDesc() + " clit" + Plural(2) + " grinding alongside her especially large female erection. Her feet hold onto your thighs the best she can, bucking her hips to get press her sensitive mass into you more.",False)
+                  else:
+                     OutputMainText(" As she melts into your embrace, you press your " + VulvaDesc() + " slit" + Plural(2) + " against hers, kissing again with the lower sets of lips. Her feet curl up around your " + HipDesc() + " hips to press back, trying to grind her little clit into you the best she can in her lustful state.",False)
+                  if (lilaPreg == -2):
+                     OutputMainText(" Although, with her inexperience, her movements are awkward and wry, leaving her drooling from between her thighs even more in desparation. You take up most effort, humping and thrusting your sexes together until the bed is drenched in your combined feminine fluids. Eventually, one of her legs bends high, stretching her virgin pussy wide as she gives you plenty of room to push against her. She lets out a gentle cry as she shudders, hooking the leg around your back and jerking against you, a volley of slime splattering across your " + LegDesc(2) + " with an intense orgasm, forcing you to your own." + "\n" + "\n" + "She pants loudly for several minutes afterwards, her fur flush and sweaty. She nuzzles into your body, a few tears welling up. Yet, as she sniffles, it's obvious she's not crying from sadness." + "\n" + "\n" + "\"That felt... so gewd. I... I love yew!\"" + "\n" + "\n" + "She begins to lick you\ttrying to clean you up a bit, but the strokes of her tongue quickly slow. Within a few moments, she nods off beneath you, fast asleep. You shrug and chuckle, hugging her tight before cuddling up and joining her in the dream world.",False)
+                  else:
+                     OutputMainText(" The two of you quickly find a rhythm, her small body writhing about beneath yours and matching your movements. Her legs move higher and higher up your back, stretching her hot pussy wider until it's practically nipping at your own as you press deeper into it. A flood of slick fluids gush out about your cunt" + Plural(2) + " as Lila lets out a gentle cry, her tongue lolling out of her mouth with orgasm.",False)
+                     if (lilaVulva > 10):
+                        OutputMainText(" Yet, she continues to hump against your body, her huge sensitive cunt slapping against you wildly until she comes again and again with even more mess.",False)
+                     OutputMainText(" You can't help but shortly come after her, your combined messes drenching the bed beneath you." + "\n" + "\n" + "Once you have both calmed down, her panting returning to a soft purr, she takes some time to cuddle with you, licking your body to clean up some of the mess. But, it doesn't take long before the two of you pass out with the delightful stress, snuggling upon the moist bed.",False)
+               elif ((cockTotal > 0) and ((cockSize * cockSizeMod) <= eVagLimit(8 + 5 * lilaVulva))):
+                  OutputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + OneYour(1) + " " + CockDesc() + " cock" + Plural(1) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",False)
+                  if (lilaPreg == -2):
+                     OutputMainText(" Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation.",False)
+                  else:
+                     OutputMainText(" She grins stupidly as she pushes herself against your own efforts, slowly ramming your erection deep into her horny folds, forcing her to wince a little thanks to her own eager efforts. Her toes curl behind you, a soft moan escaping her lips as your whole length squeezes through the resistant walls, until she eventually calms and huffs beneath your body, her tail flicking about excitedly.",False)
+                  if (((cockSize * cockSizeMod) > (8 + 2.5 * lilaVulva)) and (lilaPreg < 35)):
+                     OutputMainText(" She gasps, out of breath, as she looks down to see the tip of your member bulging her belly outwards. She absentmindedly strokes her fur, kneading the monster inside, amazed that it could possibly do such a thing.",False)
+                  elif (lilaPreg >= 35):
+                     OutputMainText(" Her hands quickly cradle her swollen belly, just to make sure that her lewd efforts and your girth didn't harm what is growing inside.",False)
+                  OutputMainText("\n" + "\n" + "Gradually, you begin to pump in and out,",False)
+                  if (knot == True):
+                     OutputMainText(" your swelling knot stretching her hungry tunnel wider,",False)
+                  OutputMainText("eliciting more cute noises from the small girl. Though she may have been in heat and knew well what it was like to pleasure herself, this sensation was far more than she ever expected. She accidentally scratches you occasionally with her claws as you thrust and her face transforms through a plethora of lewd expressions.",False)
+                  if (lilaVulva <= 5):
+                     OutputMainText(" Her tight pussy squeezes around your cock, tugging and pulling with its inner lips stretching along your length, sliding back up with a thick film of lubrication whenever you pull out with a soft mewl from the small body beneath you.",False)
+                  elif (lilaVulva <= 12):
+                     OutputMainText(" Vulgar noises accompany the expressions as her honey spits and spews about your " + LegDesc(2) + " with each pump, making her gasp and wince as her thighs squirm around to sqeeze the flesh between her legs.",False)
+                  elif (lilaVulva <= 19):
+                     OutputMainText(" Your cock is lost in a river of slime that flood from her enormous pussy, flinging the stuff around everywhere with each powerful pump. Her plush belly expands and stretches each time you drive into it, leaving her mrowling erotically as you grab her clit and jerk it between the two of you.",False)
+                  if (lilaMilk <= 5):
+                     OutputMainText(" Milk dribbles down through her fur as she becomes more and more excited.",False)
+                  elif (lilaMilk <= 12):
+                     OutputMainText(" Milk spurts up over her chest and belly as her body shakes with your movement, spilling down her sides and onto your sheets.",False)
+                  elif (lilaMilk <= 19):
+                     OutputMainText(" Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent.",False)
+                  if (lilaPreg <= 35):
+                     OutputMainText("\n" + "\n" + "You lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",False)
+                  elif ((lilaPreg <= 70) and (lilaPreg > 35)):
+                     OutputMainText("\n" + "\n" + "You lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",False)
+                  elif (lilaPreg > 70):
+                     OutputMainText("\n" + "\n" + "You manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room.",False)
+                  getCum = CumAmount()
+                  if (getCum > (100 * (lilaVulva + 1))):
+                     OutputMainText(" Your own pressure erupts within her, raising her volume to near deafening levels as the stuff fills her passage and gushes out with tremendous force, more than her heat could have ever asked for.",False)
+                  else:
+                     OutputMainText(" Your own pressure erupts within her, making her louder as she feels your warm spunk splashing against her hot walls, just what her heat truly needed.",False)
+                  if ((lilaPreg <= 35) and (lilaVulva >= 11) and (getCum > (150 * (lilaVulva + 1)))):
+                     OutputMainText(" So much of your hot spunk swirls around within her that even her belly trembles beneath you, inflating and churning about.",False)
+                  OutputMainText(" She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and ",False)
+                  if (knot == True):
+                     OutputMainText("she goes limp within your arms, ready for a nice long nap. However, she blinks in wry confusion as her sated hole still gnaws around your shaft." + "\n" + "\n" + "The thick knot keeping her stretched and full, she can't quite sleep with such a naughty sensation crowding her nethers. Lazily, she rolls beneath you, twisting around your girth and making her wince. In a half-minded effort, she tries to crawl out from under you to pull herself off. After a few yanks at her loins with quiet weary mewls of mild discomfort, her face plants itself on your bed. The lax purring that starts to emanate from her quickly indicates that she has completely passed out in bliss. Her butt raised and still pressed to your lap, your knotted appendage shoots a bit more spunk into her." + "\n" + "\n" + "With a shrug, you merely curl up over her, letting yourself sink in deep as you join her in her slumber on top. You'll slip out eventually, but for now you're both plenty comfortable as is.",False)
+                  else:
+                     OutputMainText("she passes out within your arms, napping with a soft purr. You giggle a little and shrug, slowly slipping out of her and curling up around her, falling asleep as well.",False)
+               elif (clitSize <= eVagLimit(20 + 12.5 * lilaVulva)):
+                  OutputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + OneYour(2) + " " + ClitDesc() + " clit" + Plural(2) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",False)
+                  if (lilaPreg == -2):
+                     OutputMainText(" Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation.",False)
+                  else:
+                     OutputMainText(" She grins stupidly as she pushes herself against your own efforts, slowly ramming your erection deep into her horny folds, forcing her to wince a little thanks to her own eager efforts. Her toes curl behind you, a soft moan escaping her lips as your whole length squeezes through the resistant walls, until she eventually calms and huffs beneath your body, her tail flicking about excitedly.",False)
+                  if ((clitSize > (8 + 6 * lilaVulva)) and (lilaPreg < 35)):
+                     OutputMainText(" She gasps, out of breath, as she looks down to see the tip of your clitoris bulging her belly outwards. She absentmindedly strokes her fur, kneading the monster inside, amazed that it could possibly do such a thing.",False)
+                  elif (lilaPreg >= 35):
+                     OutputMainText(" Her hands quickly cradle her swollen belly, just to make sure that her lewd efforts and your girth didn't harm what is growing inside.",False)
+                  OutputMainText("\n" + "\n" + "Gradually, you begin to pump in and out, eliciting more cute noises from the small girl. Though she may have been in heat and knew well what it was like to pleasure herself, this sensation was far more than she ever expected. She accidentally scratches you occasionally with her claws as you thrust and her face transforms through a plethora of lewd expressions.",False)
+                  if (lilaVulva <= 5):
+                     OutputMainText(" Her tight pussy squeezes around your clit, tugging and pulling with its inner lips stretching along your length, sliding back up with a thick film of lubrication whenever you pull out with a soft mewl from the small body beneath you.",False)
+                  elif (lilaVulva <= 12):
+                     OutputMainText(" Vulgar noises accompany the expressions as her honey spits and spews about your " + LegDesc(2) + " with each pump, making her gasp and wince as her thighs squirm around to sqeeze the flesh between her legs.",False)
+                  elif (lilaVulva <= 19):
+                     OutputMainText(" Your clit is lost in a river of slime that flood from her enormous pussy, flinging the stuff around everywhere with each powerful pump. Her plush belly expands and stretches each time you drive into it, leaving her mrowling erotically as you grab her own clit and jerk it between the two of you.",False)
+                  if (lilaMilk <= 5):
+                     OutputMainText(" Milk dribbles down through her fur as she becomes more and more excited.",False)
+                  elif (lilaMilk <= 12):
+                     OutputMainText(" Milk spurts up over her chest and belly as her body shakes with your movement, spilling down her sides and onto your sheets.",False)
+                  elif (lilaMilk <= 19):
+                     OutputMainText(" Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent.",False)
+                  if (lilaPreg <= 35):
+                     OutputMainText("\n" + "\n" + "You lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",False)
+                  elif ((lilaPreg <= 70) and (lilaPreg > 35)):
+                     OutputMainText("\n" + "\n" + "You lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck.",False)
+                  elif (lilaPreg > 70):
+                     OutputMainText("\n" + "\n" + "You manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room.",False)
+                  OutputMainText(" You shiver against her as well, your " + LegDesc(2) + " growing numb from the lightning storm that envelops your whole self, centered on your gargantuan feminine member. She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and she passes out within your arms, napping with a soft purr. You giggle a little and shrug, curling up around her and falling asleep with her, letting your anatomy remove itself naturally.",False)
+               if ((cockTotal > 0) and ((cockSize * cockSizeMod) <= eVagLimit(8 + 5 * lilaVulva))):
+                  DoLust(-math.floor(sen / 2),2,1)
+               else:
+                  DoLust(-math.floor(sen / 2),2,2)
+               DoNext()
+               #doListen = function():void
+               OutputMainText("Some hours later, you wake up to a kiss upon your lips, opening your eyes to a great big smile.",True)
+               if (lilaPreg == -2):
+                  OutputMainText("\n" + "\n" + "\"I... I weally liked that. It would be nice if we can do it some mowe,\" she says sheepishly, a big blush on her face.",False)
+                  lilaPreg = 0
+               else:
+                  OutputMainText("\n" + "\n" + "\"Mmm... It\'s always so... amazing with yew. I like it vewy much. I love yew.\" She kisses you again, so full of joy.",False)
+               if ((lilaPreg == 0) and (Percent() >= 55) and (cockTotal > 0) and ((cockSize * cockSizeMod) <= eVagLimit(8 + 5 * lilaVulva))):
+                  OutputMainText(" However, for a moment, her attention turns down to her loins. A hand smears about the leftover cum that still drools from her, focusing on her lips and clit. \"It... It's not as warm as before,\" a hint of surprise in her voice. Then she begins to blush as her fingers keep smearing around, her clit beginning to stand stiffly and her honey increasing in flow. \"N-Nevermind...\"",False)
+                  lilaPreg = 1
+               OutputMainText("\n" + "\n" + "The two of you continue to cuddle for a bit longer, enjoying your company, before she realizes how much time has passed. Needing to get back home, she quickly tosses on her sundress, letting it mat against her wet fur and stick to all sorts of naughty places. With another quick peck on your lips, she dashes out of the hut, giving you a short goodbye as her cheeks redden, already thinking about doing it again...",False)
+               hrs = 7
+               exhaustion = -7
+               DoEnd()
+         elif (buttonChoice == 9):
+            OutputMainText("You pull out a Cat's Meow from your bag and offer it to her.",True)
+            if (lilaMilk == 19):
+               OutputMainText(" However, she shakes her head no." + "\n" + "\n" + "\"Hehe, sowwy, but umm... I don't want to make anymowe milk. Mommy and I have a hawd time milking me alweady, don't need mowe. Thank yew for liking it so much and wanting mowe, though!\" She gives you a quick hug and heads off to get back to draining herself.",False)
+            else:
+               OutputMainText(" Her eyes light up." + "\n" + "\n" + "\"Ooo, you like my milk so much that you want me to make mowe?\" She grins and blushes at how much you like her. \"Okays!\"" + "\n" + "\n" + "She quickly takes it and gulps it down. The blotches on her shirt spread as her milk production quickly kicks into higher gear, her face growing flush as she feels warm.",False)
+               if (lilaMilk == 0):
+                  OutputMainText(" The blotches soon have trails of milk dribbling down the inside of her sundress, slowly collecting at the hem.",False)
+               elif (lilaMilk == 2):
+                  OutputMainText(" Her nipples stiffen more, forming small peaks against her dress while the blotched trails grow darker, collecting more quickly along the hem of her sundress and spilling onto the wooden path below.",False)
+               elif (lilaMilk == 5):
+                  OutputMainText(" Droplets begin to form on the outside of her dress, she's creating so much milk that it pushes through. Her nipples seem even puffier with the greater amount of milk, making her look down at herself in awe that she's actually got some noticeable boobs.",False)
+               elif (lilaMilk == 8):
+                  OutputMainText(" You can see her nipples visibly jiggle a little as they're so heavy with milk, the increased supply making the sundress quite translucent. Milk dribbles down constantly both inside and outside her sundress, and splashes about as she hops a little with a smile at her new bounciness.",False)
+               elif (lilaMilk == 12):
+                  OutputMainText(" Her whole breasts actually swell slightly, making her thick nipples protude even more than they already do. She winces a little at how full they feel and is astonished by how milk squirts through her sundress as she reaches up to massage on of the mounds.",False):
+               elif (lilaMilk == 18):
+                  OutputMainText(" Her breasts swell even more, making her feel really jiggly. As she tries to test the bounciness, she blushes heavily as her large nipples scrape along the inside of her sundress, milk squirting through it without her even trying. She moans as her hands come up to squeeze them as an immediate reflex to relieve their engorgement, gushes of milk spewing out. She seems rather surprised she can possibly make so much.",False)
+               OutputMainText("\n" + "\n" + "Her hands roam about her new found lactation, testing just how much milk she can now produce and making quite a mess. \"Eehee... Yew weally want to dwink a lot, huh?,\" she laughs happily. \"I'm gonna go show Mommy!\"" + "\n" + "\n" + "She then turns and heads home, leaving a path of spilled milk behind her as she goes.",False)
+               lilaMilk += 1
+               LoseManyItem(105,1)
+            hrs = 1
+            DoEnd()
+         elif (buttonChoice == 10):
+            OutputMainText("You pull out a vial of Concentrated Pussy Fruit Juice and offer it to her, telling her in advance what it does so she knows what it is.",True)
+            if (lilaVulva == 19):
+               OutputMainText(" However, she shakes her head no with a giggle." + "\n" + "\n" + "\"Hehe, Mommy says if I get any biggew, I'll need to watch out for splintews. I don't want splintews down thewe, silly.\"" + "\n" + "\n" + "She then turns around and walks off, giggling at the thought of how big you could possibly want her naughty place to be while she waddles in an attempt to walk with how big it already is.",False)
+            else:
+               OutputMainText(" She looks at you curiously." + "\n" + "\n" + "\"You want to make my naughty place biggew? If... If it'll feel even bettew, and yew want me to, I guess it's okays.\"" + "\n" + "\n" + "She takes the vial and drinks it down. Her hips soon begin to twist about as a warmth nearly as bad as her heat fills her loins. Right in the middle of the canopy walkway, she lifts her dress and watches as it grows.",False)
+               if (lilaVulva == 0):
+                  OutputMainText(" She pokes it curiously as the labia fill out and looks much more mature than what she had, only to gasp a bit at how much more sensitive it feels.",False)
+               elif (lilaVulva == 2):
+                  OutputMainText(" Her thighs squeeze together as the labia swell between them, making her moan and some slickness dribble all the way down to the wooden walkway.",False)
+               elif (lilaVulva == 5):
+                  OutputMainText(" She lets out a squeak as it grows so large in between her thighs. Her hand darts down to catch it as she's afraid it will fall, it's so noticeable now. And doing so makes her squirm as her fingers slip into her cleft, the flesh bigger than her grasp.",False)
+               elif (lilaVulva == 8):
+                  OutputMainText(" A weak gasp escapes her lips as she spreads her legs further apart. Her lips fill the gap between them, preventing her thighs from touching. Her clit grows out of the cleft, leaving it's hood and obviously protruding from the rest of her slit. Her fingers reach down and pinch it in curiousity, only to cause her to quiver as electricity shoots through her, a good deal of slime splashing down beneath her.",False)
+               elif (lilaVulva == 12):
+                  OutputMainText(" Her knees bend outward as the labia push them apart, causing her to gasp as they squeeze her sex. Her clit is at least an inch and she can easily wrap her thumb and finger around it, stroking it's length slightly before she comes to an abrupt halt as it's too much to handle just yet. Nevertheless, her legs have sheets of slime between them from the experience, growing larger as the stuff dribbles from her dangling inner lips.",False)
+               elif (lilaVulva == 18):
+                  OutputMainText(" She bends down at her knees as the mass of sensitive genitalia fill the gap between her legs and feels so heavy. Her eyes flutter a little just trying to stand at first, the labia keeping her slightly bow-legged. Just trying to bend over to look at herself, her clit scrapes against the wooden walkway, already slick with her slime, and causes her to fall to her knees. She curls up slightly to reach her large clit, a whole hand wrapping around it, and her legs rub and push about her vulva while she jerks away, completely lost in the sensations. By the time she comes to climax, lubrication gurgling and splatting from her massive slit, all eyes with a clear view are staring at her.",False)
+               OutputMainText("\n" + "\n" + "She pants a bit, becoming accustomed to her new size. She lets her dress fall back down to cover herself, though there's still quite a mess between her legs. \"It... feels much bettew...\"" + "\n" + "\n" + "She lazily turns around and walks away, intent on further familiarize herself with her bigger girly bits...",False)
+               lilaVulva += 1
+               LoseManyItem(221,1)
+            hrs = 1
+            DoEnd()
+         elif (buttonChoice == 12):
+            OutputMainText("With a smile, you take her hand so that the two of you may go and visit her mother to see how things are going at home. She seems a tad disappointed, her mess going unrelieved, but she smiles up with a nod and goes along with you." + "\n" + "\n" + "Approaching her home, however, she begins to get rather antsy. Her thighs keep rubbing together, making the blotch in her dress even worse. By the time her mother spots you through the doorway and comes to greet you, Lila lets go of your hand, grabbing her crotch through the dress, and dashes into the hut with a rapid-paced \"Hi-Mommy! I-need-to-do-somefing-weal-quick!\"" + "\n" + "\n" + "Her mother looks at her curiously as she goes, but shrugs and turns to you. \"Hello~ Is there something wrong?\"" + "\n" + "\n" + "You shake your head, saying you just wanted to visit." + "\n" + "\n" + "\"Oh, well then, please, come in. Sit down and have some tea~,\" she smiles and ushers you through. She sits you at the kitchen table and gives you a cup to sip from and she sits beside you." + "\n" + "\n" + "\"So... I guess you\'d like to know how Lila is doing.",True)
+            if (lilaMilk == 0):
+               OutputMainText(" Since she\'s gotten into the whole milking thing, she's been taking pretty good care of herself. I'm actually fairly surprised at how well she does. Once I taught her how to express herself, she makes sure to go into the bathroom every couple of hours and carefully take care of her, umm... nipples. And then she'll clean up everything and be as pleased as a peach for the next couple hours. It's actually quite cute, I think.\" She chuckles a little.",False)
+            elif (lilaMilk <= 2):
+               OutputMainText(" She's been taking good care of herself, but even though she is quite vigilant about expressing herself every couple of hours, she'll still sometimes wind up leaking and making a mess in her clothes. She doesn't like when I laugh at her for it, and she'll storm into the bathroom right away, but by the red in her cheeks I think she kinda likes it.\" She giggles at the thought.",False)
+            elif (lilaMilk <= 5):
+               OutputMainText(" Though she loves how much milk she's been making, she's been starting to have a tough time keeping up with it. Her little hands have trouble fully expressing herself, so I have had to help her. She sits in my lap taking care of her smaller breasts and I'll take care of her bigger breasts. Yet, despite expressing her regularly, she'll just start leaking soon after an hour. But, it's a nice bonding experience.\" She sits back in her chair and smiles.",False)
+            elif (lilaMilk <= 8):
+               OutputMainText(" Her milk has gotten to a point where she hardly bothers express herself to keep up her supply anymore. Now she tugs on my dress whenever she's feeling engorged and we'll sit over a bucket and milk her the best we can. Otherwise she'll just walk around with a wet front because it's nearly impossible to completely drain her. I've considered lining her dresses to better hide the milk, and her rather... obvious nipples, but she's been making so many new friends with it and she's been so happy that I don't think it's a very big deal. Heck, even I've been a tad eager to start lactating again myself.\" She chuckles a little to distract from her hand sneaking over to hide a breast as a moist blotch begins to spread.",False)
+            elif (lilaMilk <= 12):
+               OutputMainText(" I'm actually quite surprised at how much she's... grown, from how milky she's gotten. It seems slightly odd to see her... jiggle like that, especially when she gets happy and starts spraying everywhere. My daughter leaks more than I ever did... But! We enjoy it. Since I've gotten back into lactating with her, we have made it a habit of suckling from each other. It's much easier than doing it manually by hand and it's so nice.\" She smiles brightly, despite her breasts sitting on the table and blatently leaking through her dress into small puddles.",False)
+            elif (lilaMilk <= 18):
+               OutputMainText(" My goodness has she gotten milky. I don't know why I bother to put her in those dresses; I can see through the things within minutes with the rate she leaks into them. Heck, when we're suckling from each other, sometimes I don't even bother to lift her clothes, since I can suck right through them. And I can't even swallow it all... Thank goodness she's got all those friends to help. Although, I kinda drink most of it and I think my daughter's 'uniqueness' has kinda been rubbing off on me...\" She pauses as she shifts in her seat, a squishing sound coming from her bottom. Then her breasts spurt up a bit, spewing some milk across the table. She blushes a bit and stands to get a towel to wipe it up. As she turns away, you can see her tail twitching a little with clear webs stretching from its underside to a blotch on the backside of her dress.",False)
+            elif (lilaMilk <= 19):
+               OutputMainText(" My that girl has gotten so messy. Milk. Everywhere. Most of this isn't even mine!\" She brushes at her dress, blotched here and there all over, with the ones around her nipples even larger. \"We've got buckets all around the house, just so she can squeeze out a few cups whenever she has the time. I have to roll over and squish her tits in the middle of the night so she doesn\'t wake up sore. Those things are getting close to being as big as mine and she\'s nowhere near when I grew them! But, we do get all the milk we want. She drinks some of mine, I drink a lot of hers, she drinks a lot of hers; so we're happy cats around here. Except for one little thing that seems to come with ingesting her milk...\" She doesn't bother to mention what that little thing might be. Instead, she 'accidentally' pushes a spoon off the table and it bounces away. She stands up with a slight twitch and turns around to bend forward and pick it up. Clear strands still stretch out from her rump to the chair, with webs of the stuff swatting off her tail as it flicks about, her dress quite drenched on the backside. She bends down far, giving your a spectacular view of her backside, especially when her thick swollen lips nip at the cloth and push through another fresh gob as she leans back a little towards you, like she were trying to allure you. However, she quickly pops back up with a squish of her nethers, realizing what she was doing, and quickly sits back down with a tinge of red in her cheeks. \"S-Sorry...\"",False)
+            if (lilaVulva == 0):
+               OutputMainText("\n" + "\n" + "Heavy breathing can be heard from a few rooms over, causing Mommy to blush a little." + "\n" + "\n" + "\"And it seems she has learned some techniques to help deal with herself. It's not a bad thing, but even when we have company over...\" She trails off.",False)
+            elif (lilaVulva <= 2):
+               OutputMainText("\n" + "\n" + "Light gasps can be heard from a few rooms over, causing Mommy to blush." + "\n" + "\n" + "\"And it seems she's really... developing. A bit faster than she's supposed to, I think, because she's been walking around like she's got something stuck between her legs. Kinda cute, when she's not masturbating when we have company over...\" She sighs with a shrug.",False)
+            elif (lilaVulva <= 5):
+               OutputMainText("\n" + "\n" + "Gasps and quiet mewling can be heard from a few rooms over, causing Mommy to blush quite a bit." + "\n" + "\n" + "\"I really shouldn't be surprised. That girl's little naughty bits are bigger than mine. And on that small body, she walks around here with a kink in her step all day, leaving a splotch of her slime whereever she sits. It's really cute seeing her deal with it, but she winds up masturbating so frequently that it makes even me seem conservative...\" She chuckles at the comparison.",False)
+            elif (lilaVulva <= 8):
+               OutputMainText("\n" + "\n" + "Heaving sighs and slurping can be heard from a few rooms over, causing Mommy's cheeks to turn quite red." + "\n" + "\n" + "\"I'm a bit jealous of the girl. It sounds like she has more fun than I do, at that sort of thing... Though when I clean her, even I have trouble palming that huge pussy of hers. I try to discourage her from holding it wherever we go, whether it be out to visit family or even to go to the market, but with it almost bobbing between her legs like that, I wouldn't blame her. I'm sure she'll get used to it eventually.\" She shrugs.",False)
+            elif (lilaVulva <= 12):
+               OutputMainText("\n" + "\n" + "Heavy moaning and moist splattering about a wooden floor can be heard fairly clearly throughout the hut. Mommy just shakes her head with a chuckle. \"That girl is ridiculous with her masturbating. Makes such a mess... Not that she doesn't make a mess otherwise, though. Everywhere she sits becomes filled with a puddle of warm goo, even if she doesn't orgasm from grinding her naughty place as she sits on it. And I doubt she'll ever be able to wear panties with bits that large, she already gets wedgies from her dresses. She's beyond camel-toe; she doesn't leave much to the imagination when her pussy starts chomping down on the fabric... Oh my the stares she gets. I can practically see the men coming in their pants just looking at her~\" She lets out a laugh.",False)
+            elif (lilaVulva <= 18):
+               OutputMainText("\n" + "\n" + "Loud cries and wet slapping echo around the hut. Mommy squirms in her chair, looking a bit uncomfortable. \"I must admit, I'm a bit envious of her. She has such powerful orgasm... Even though she leaves trails of slime everywhere and large puddles whenever she comes, it kinda makes me aroused just thinking about how intense it must be. Every night, together in our bed, she winds up grinding against my leg in her sleep. I wake up and... I can't help but masturbate along with her. And its not just me, either. When she walks around with that thing between her knees, if I'm not paying close attention she curl up and start masturbating right in the middle of public. And when she's not walking, she'll be humping whatever she sits or lies down on, whether she's conscious of it or not. I guess that's what happens when you sit on that part of your body instead of your own butt...\" You catch her hand stealthily disappear beneath the table as she thinks about the prospect, though you don't say anything.",False)
+            elif (lilaVulva <= 19):
+               OutputMainText("\n" + "\n" + "Shouts of ecstacy and wet spurting and moist slurping and thick splattering fill the hut. A hand obviously pushes down beneath the table into Mommy's lap as she shivers a tad. \"My little slug~\" She chuckles as she pants a little. \"She always scowls at me when I call her that. But with the way she almost drags across the ground, leaving a trail of slime behind her, what would be a better nickname? Although, I really hope she doesn't actually start having to move like a slug... As it is, she shivers and shakes whenever she plops down or accidentally drags it across something, having an instant orgasm. Even at night, while we sleep together in the bed, the big thing makes the bed all slick and wet, rubbing and pushing against everything, until she finally wraps her legs around one of mine and devours my knee as she humps with that thing. Completely asleep, too, totally unconscious. And that huge clit... Sometimes in the middle of the night, I can't help but-\" She catches herself, her flicking tail halting in embarrassment as she bites her tongue to keep from saying more as her face is as red as can be.",False)
+            if ((lilaPreg <= 35) and (lilaVulva >= 11)):
+               OutputMainText(" \"I also like to poke fun at her swollen tummy. I know she's not fat, but squishing it and making her squirm like that is just so much fun~\"",False)
+            elif ((lilaPreg <= 70) and (lilaPreg > 35)):
+               OutputMainText(" \"I also can hardly believe I'm going to be a grandmother already... But, it was bound to happen sometime or other, I'm just glad it wasn't with one of her brothers.\"",False)
+            elif ((lilaPreg <= 100) and (lilaPreg > 70)):
+               OutputMainText(" \"I also hope she gives birth soon... I'm not sure if it's the hormones or what, but she's as randy as ever, it seems. And when she starts having her... 'fun' like this, I'm always afraid she'll topple over with that great big belly of hers. I mean, it's a normal pregnant belly for my size, but on her small frame it's a tad silly.\"",False)
+            if (lilaPreg == -1):
+               OutputMainText(" \"But, her kittens are doing well. They spend most of the day napping or playing with each other in the bedroom, in a pen until they're big enough to not hurt themselves. Lila and I both take very good care of them, although it is odd seeing my daughter with children already... Thankfully the local alchemist gives us a good supply of anti-pregnancy potions so I don't have to worry about any more. Lila's just one of those cases of her first heat not going away, no matter how satisfied she gets. It happens every now and then for felins, but she'll grow out of it eventually, whether it be weeks or months or years. Though I guess her brothers and father will have to stay in our auxilliary hut next door. It's customary to keep the males outside when felin girls go into their first heat, to prevent any 'accidents'.\"",False)
+            OutputMainText("\n" + "\n" + "Lila steps into the kitchen with the two of you, still a little out of breath and with a kink in her step. \"Umm... So what have yew and Mommy been talking about?\"" + "\n" + "\n" + "You and her mother laugh, making up some excuse. The three of you continue to drink tea and chat about various things, but eventually Lila starts to get antsy again, thanks to your presence, and her mother suggests that it is probably a good place to stop. Lila hops up and gives you a great big hug, then proceeds to scamper off into the hut once more. Her mother giggles and hands you some tea mix, thanking you for the company and letting you know you\'re welcome any time, as long as you keep her daughter safe.",False)
+            hrs = 3
+            ItemAdd(226)
+            DoEnd()
+      elif (lilaRep == 4):
+         if (Percent() <= 50):
+            OutputMainText("You spot Lila walking along at a rather rapid pace, though she doesn't seem to be terribly aroused like she normally does. You flag her down just to check up and make sure." + "\n" + "\n" + "\"Oh, hewwo!\" She seems a bit surprised. \"I was going home for bath-time. Would you like a bath too?\"",True)
+            ButtonConfirm()
+            #this.doListen = function():void
+            if (buttonChoice == 6):
+               OutputMainText("You nod, saying it would be nice. She grins and grabs your hand, pulling you along with her back to the hut." + "\n" + "\n" + "Her mother spots the two of you coming and looks at you curiously, wondering why you came along." + "\n" + "\n" + "\"My fwiend would like a bath too, Mommy.\"" + "\n" + "\n",True)
+               if (((cockSize * cockSizeMod) > 96) or ((ballSize * balls) > 120) or (breastSize > 120) or (tallness > 84) or (udderSize > 60)):
+                  OutputMainText("Her mother eyes your rather large proportions. \"Umm... I'm sorry, but I don't think I could possibly take care of you myself. Maybe if I had a few friends over, we could, but... I simply don't have the ability.\"" + "\n" + "\n" + "Lila looks a bit disappointed that you couldn't join, but you shrug it off and say it's quite alright. You leave the two to take care of themselves and you head back to your own thing.",False)
+                  hrs = 2
+                  DoEnd()
+               else:
+                  OutputMainText("\"Is that so?\" She chuckles and shrugs. \"Alright, come on in and strip down.\"",False)
+                  ButtonFunctions.Visible(1,0,1,0,0,1,0,0,0,0,0,0)
+                  templist = [1, "Strip", 3, "Don't Strip", 6, "Leave"]
+                  DoButtonChoices(templist)
+                  #doListen = function():void
+                  if (buttonChoice == 1)
+                     OutputMainText("Stepping inside, you already begin to remove your " + CurrentClothes() + ". Lila has trouble focusing as her eyes keep staring at your body, curious to its differences from her own as she removes her sundress and exposes her nipples and dainty little slit. However, her mother urges her along into the bathroom, making sure the girl doesn't dawdle." + "\n" + "\n" + "The bathroom is fiarly sparse and actually lacks any sort of tub or main faucet to get water from. It even has a rather plush carpet. Though it's quickly apparent as to why when the two of them sit down upon it. Lila's mother holds a cup she has been carrying up to her mouth and takes a swig, swishing it around before swallowing with a gasp. Lila then does the same and proceeds to begin licking at the fur of her arm. Her mother's tongue, being much larger, assists her daughter and starts licking at the girls back." + "\n" + "\n" + "With each lick, Lila's coat seems to shine cleanly and softly, thanks to whatever was in that concoction. The two female felins quickly cover the girl's entire body, finishing off near the groin. Lila stretched her leg high over her head, curling around to lick further and further up her inner thigh. Yet, once she gets too close, her leg and tail begin to twitch about, her tender lips swelling and reddening slightly with her heat kicking in once again." + "\n" + "\n" + "Her mother rolls her eyes and chuckles, taking care of the girl's nether regions for her. Lila whimpers and mewls as her mother licks and laps at her sensitive sex, making sure to clean every crevice. The woman continues her efforts, even as some honey oozes out and dabs upon her nose. By the time she's done, Lila rolls backwards with a quiver, blushing as she climaxes softly..." + "\n" + "\n" + "Smacking her lips, the girl's mother looks up to you. \"Your turn. Just sit down over there.\"",True)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("You sit down on the plush carpet with Lila. Mommy takes another swig and instantly begins to assault you with her own tongue.",True)
+                     if (skinType == 2):
+                        OutputMainText(" The stuff feels nice on your fur, her rough tongue combing it in nicely. You can feel yourself glisten with a healthier coat, in a rather tingly and giddy kind of way.",False)
+                        Stats(0,0,1,1)
+                     else:
+                        OutputMainText(" Her tongue feels quite rough along your " + SkinDesc() + " and the concoction tinglies incessantly, making you squirm as you sit there. This probably wasn't the greatest idea...",False)
+                        Stats(0,-1,2,1)
+                        DoLust(10,0)
+                     OutputMainText("\n" + "\n" + "Lila soon recovers from her bit of fun with red cheeks and tries to jump right in as well. Without thinking too well, she takes a swig and immediately falls forward into your body, unintentionally starting at your lap. Trying to play it off as part of the plan, the small girl begins to lick away at your groin, making you begin to really squirm.",False)
+                     if (cockTotal > 0):
+                        OutputMainText(" Her tongue climbs higher and higher along " + OneYour(1) + " growing length" + Plural(1) + ", not really looking at what it could possibly be. All that she does know is that once she reaches the tip, a bit of pre keeps seeping from a hole and her tongue keeps lapping up all she can to keep it clean, until strands of it stretch between you and her mouth and dribble down her chin." + "\n" + "\n" + "Whatever is in the stuff she used, it tingles tremendously and causes you to quickly buck and spurt all over the little girl's face. Caught by surprise, Lila jumps backward and wipes the stuff off with an arm, then proceeds to clean her arm off as well, making strange faces as she tastes the stuff." + "\n" + "\n" + "Her mother much more wary, the woman moves in to take care of the rest of the mess. Although, afraid to explain to her daughter what really just happened, she's left licking it up herself as though it was a normal occurence, giving you quite the evil eye. Though she can't help but giggle at the humor in the situation as her daughter continues to lick up the white spunk oblivious to its lewdness.",False)
+                        DoLust(-math.floor(sen / 2),2,1)
+                        if (CumAmount() > 2000):
+                           OutputMainText("\n" + "\n" + "On the other hand, she herself is having trouble keeping up with your enormous load, gulping down more and more despartely. Eventually, however, she gives up. Grabbing a bowl, she pushes it over the tip of your cock and presses it firmly against your urethra until the ejaculation comes to an abrupt halt, backing up inside of you." + "\n" + "\n" + "She leans in and whispers in your ear. \"Could you please take care of that elsewhere? I\'m afraid you're a bit too... messy to finish here, so if you don't mind...\"" + "\n" + "\n" + "You nod, understandingly. With Lila still busy, you hold the bowl tightly against your erection while you attempt to put on your clothes. Then you run out of the hut with a meager goodbye, rushing",False)
+                           if (ment > lib + 5):
+                              OutputMainText(" back to your own place to release what has clogged up inside of you...",False)
+                           else:
+                              OutputMainText(" outside to dangle your " + CockDesc() + " thing over the rail of the wooden bridge and blowing your load on whatever ventures down below. You then rush away, just in case...",False)
+                           hrs = 3
+                           DoEnd()
+                        else:
+                           OutputMainText("\n" + "\n" + "Soon finishing up, leaving the two of you clean, Mommy gulps the last of the unexpected taste and smirks at you. \"Alright, that's good enough. Here, take some of this, you might like it some time. Now you should better get going before you make Lila dirty again.\" She sticks out her tongue and hands you some of the concoction." + "\n" + "\n" + "You take her advice, clothe yourself, give the naked Lila a hug goodbye, and head off.",False)
+                           ItemAdd(227)
+                           hrs = 3
+                           DoEnd()
+                     elif (vagTotal > 0):
+                        OutputMainText(" Her tongue slips in and out of your " + VulvaDesc() + " folds, thinking of it no differently than her mother. Which is an odd thought, considering how deftly her tongue lashes around your " + ClitDesc() + " clit" + Plural(2) + ". Between her efforts and the exreme tingling of the concoction, you soon find your " + HipDesc() + " hips bucking upon the plush carpet as you climax into the girl's mouth." + "\n" + "\n" + "Lila's mother giggles at your reaction. \"Good, isn't she?\"" + "\n" + "\n" + "Not inquiring about the statement, you wait a few moments and you're soon as fresh as a can be. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.",False)
+                        ItemAdd(227)
+                        DoLust(-math.floor(sen / 2),2,2)
+                        hrs = 3
+                        DoEnd()
+                     else:
+                        OutputMainText(" Though there's no big difference, since you don't have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.",False)
+                        ItemAdd(227)
+                        hrs = 3
+                        DoEnd()
+                  elif (buttonChoice == 3):
+                     OutputMainText("\"Oh, ok, so you'd rather just help Lila then? An extra tongue is always welcome!\" Mommy speaks as though you already knew what the job entailed." + "\n" + "\n" + "You step inside to spot Lila already removing her sundress, standing there naked with her nipples and dainty slit exposed for you both to see as she waits. Her mother then guides you both along into the bathroom, making sure the girl doesn't dawdle." + "\n" + "\n" + "The bathroom is fiarly sparse and actually lacks any sort of tub or main faucet to get water from. It even has a rather plush carpet. Though it's quickly apparent as to why when the two of them sit down upon it. Lila's mother holds a cup she has been carrying up to her mouth and takes a swig, swishing it around before swallowing with a gasp. Lila then does the same and proceeds to begin licking at the fur of her arm. Her mother's tongue, being much larger, assists her daughter and starts licking at the girls back." + "\n" + "\n" + "With each lick, Lila's coat seems to shine cleanly and softly, thanks to whatever was in that concoction. Shortly, her mother hands you the cup as well and urges you to take a sip to help with the process. As it goes into your mouth and down your throat, it feels quite tingly and fresh, your mouth feeling both burning and cold at the same time and continuing on down your throat as you swallow. Besides feeling a bit... odd, you otherwise have no problem joining in." + "\n" + "\n" + "With her mother on the back, you decide to take the front. The fur is soft and sweet smelling, and actually tastes fairly nice as well. Your tongue laps across Lila's nipples, making them stiffen against your lips. Lila stretches her leg high over her head, curling around to lick along her thigh as you begin to touch down further and further towards her nethers. You can hear her begin to pant, her breathing growing heavy until her tender lips are swollen and red with her heat kicking in once again.",True)
+                     OutputMainText("\n" + "\n" + "Her mother rolls her eyes and chuckles, nodding for you to take care of her. With another nod, Lila begins to whimper and mewl as you lick and lap at her sensitive sex, making sure to clean every crevice. You continue on, even as honey begins to ooze out and dab your nose and fill your mouth. You gulp down as much as you can, trying to make everything clean, but eventually Lila rolls backwards with a quiver, blushing as she climaxes softly...",False)
+                     DoLust(10,0)
+                     Aff(4,math.floor(Percent() / 20 + 4),-1)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("Smacking her lips, the girl's mother looks up to you. \"KO! You win!.\" She chuckles. \"Pretty good, I must say. I'm sure you must have bathed your fare share of kittens. But, anyways, once Miss Hair-Trigger here gathers herself, it'll be my turn for a bath. As great as I'm sure you must be, I'd like to have a little mother-daughter time, if that's alright. Though here, take some of this wash for yourself.\"" + "\n" + "\n" + "She hands you some of the concoction and lets you give the naked Lila a hug before seeing you off.",True)
+                     ItemAdd(227)
+                     hrs = 3
+                     DoEnd()
+                  elif (buttonChoice == 6):
+                     OutputMainText("On second thought, you think it best to head back out. You're not quite sure if you want 'that' kind of bath." + "\n" + "\n" + "Lila waves goodbye and her mother sees you off, and the two disappear into the hut to take care of the girl's bath.",True)
+                     hrs = 2
+                     DoEnd()
+            else:
+               OutputMainText("You shake your head, saying you're clean enough. She looks at you dubiously, but shrugs. \"Okay, see yew latew!,\" and she continues to hurry home.",True)
+               hrs = 1
+               DoEnd()
+         else:
+            OutputMainText("Out of the corner of your eye, the sight of a short felin girl across the bridges strikes you as odd, yet familiar. She waddles along with a kink in her step, her hands constantly roving over her thin dress. The odd part about the scene is the protruding belly her hands are so focused on rubbing, all the way down until she's tucking some of her dress between her legs, and the fact that you don't see any sign of the usual felin tail that should be bobbing behind. And as the girl spots you and begins to make her way closer to you, you realize why she seemed familiar, despite the strange appearance. This girl is Lila...",True)
+            DoNext()
+            #this.doListen = function():void
+            OutputMainText("\"Uh-umm... Hi...\" Lila greets you bashfully with a tremendous amount of blush in her cheeks. Even as she stands before you in the middle of the bridge, you notice her knees continually rub together beneath her dress, obviously pressing and grinding her thighs together. \"Umm... C-Can yew hewp me again pwease? I, umm... I got a wittle stuck...\" Her eyes glance from side to side, rather embarrassed about her situation out here." + "\n" + "\n" + "Not wanting to leave the poor girl in whatever trouble she's in, you nod and take her hand to lead her back to your hut. The trip takes a little longer than usual to make, thanks to the girl's exaggeratedly awkward steps, with a few wet blotches staining the wooden planks as wet drops fall from her dress along the way. It's not difficult to tell that this is an issue concerning her heat, though she doesn't say a word until you step inside the privacy of your Siz'Calit home." + "\n" + "\n" + "\"I-It got too hot, so I hid behind a hut and tried to stop it, and then it felt so good filwing it, and then, umm...\" She proceeds to lift her dress before you, wincing as her dress drags across her distended belly and perk nipples." + "\n" + "\n" + "Her thighs are swamped in slick fluids, webs of the stuff stretching about all the way to her knees with drops occasionally breaking free to fall to the floor below. The reddened lips of her swollen nether maw visible throb with every aroused contraction, chewing on the thick length of fuzz that is sufficiently stuffed inside of her. Every few seconds, the fuzz jerks about sporadically, sending out lewd squishy sounds as well as elliciting a muffled gasp from the girl and twitchy hips. Lila's hand rove over the filled womb in an attempt to calm herself, yet only managing to make the fuzzy thing squirm more from the oddly stretched sensations. Suffice it to say, you think you know where her tail went..." + "\n" + "\n" + "\n" + "Will you help her?",True)
+            ButtonConfirm()
+            #doListen = function():void
+            if (buttonChoice == 6):
+               OutputMainText("Telling the small girl everything will be alright, you motion for her to give you better access to the troublesome area. With a sheepish nod and hiked-up dress in hand, she turns away from you and bends forward, leaning against the wall. Her naked swollen belly bulges below her and quivers slightly as the new position yanks the invader from her loins ever so slightly, making another gob of slick fluid pulse out before your eyes and slowly descend down the back of her legs. The slim back can hardly remain straight as you inspect her, the spine gently curving from one side to the other to balance with the exposed stub of twitching tail at the end. The lithe appendage is thoroughly wedged between the cheeks of her small rump, its length only visible due to the way she has presented herself to you, down until it disappears into the stretched and swollen hungry lips of her slit." + "\n" + "\n" + "Realizing you're staring far more than helping, you quickly regain your wits and kneel down behind her. She mewls and gasps quietly as your fingers begin to dance around her backside, slowly slipping deeper and deeper between her cheeks, digging under the snugly-packed tail. 'Slipping' being the key word, as all the slimy arousal about her rear easily lubricates your efforts. Once underneath, you slide your hand down through the crevice, until you touch the sensitive flesh." + "\n" + "\n" + "A much louder, warbling mewl escapes her lips as you try to pull. Naughty spurts of her juices squirt about, followed by a prompt clamping of her inner passage that halts your progress. You pause for a moment as she huffs for air. Once she seems calm enough and you feel her hot vulva relax behind your hand, you attempt to pull once more." + "\n" + "\n" + "More mess, more erotic mewls, and near-instant contraction of her vaginal muscles. Pause, wait for her to soften up, try again. Tug after tug, climax after climax, the girl whines and cries in ecstasy and embarassment, her little claws digging into the wall. And after a couple minutes of the process, you have managed to pull out... hardly two inches of the tail..." + "\n" + "\n" + "Taking far too long with Lila rapidly growing exhausted over the ordeal, you prepare yourself for a more effective meneuver. You adjust your " + LegDesc(6) + " to anchor yourself in the growing puddle of slick liquids. You adjust your posture for more stability. You firmly grab one of her tight cheeks with your other hand. And as she moans with that sensation, your working hand immediately slides down the length of her tail, yanking it out all in one go!" + "\n" + "\n" + "\"MeeaAUUUUNGH!\" She nearly screeches with a surprised and orgasmic shout, her ears pinning back at her own voice, as the remaining length of her slender tail rushes out of her pussy. Her inner walls squeeze with all their might, but between your swift and powerful pull and her plentiful fluids, they have no chance, leaving her to endure the entire sensation at once." + "\n" + "\n" + "The tail whips out of her hole with a squishy pop, flinging thick ribbons of feminine satisfaction everywhere. You can barely tell her belly has deflated back to its original shape before Lila's go limp and she collapses into her puddle with a splash. Claws still stuck in the wooden wall with dress pinned in between from holding it, the rest of her body is stripped nude in the fall and she winds up leaning into the wall, her face and upper breasts pressing against it while her spread thighs twitch limply in the slime, her sex still easily visible and gaping with a steady drool...",True)
+               DoNext()
+               #doListen = function():void
+               OutputMainText("It takes several minutes before she lets out a contented sigh with feeling returning to her legs. Her feet slip in her mess as she attempts to stand, leaving you to grab her nude hips and lift to help her stand. She removes her claws from the wall, allowing her sundress to fall down. Once she's able to stand on her own, you let go and let the dress complete the descent and cling to the soaked fur of her lower body." + "\n" + "\n" + "She turns to you, oblivious to the fact that her claws had torn a hole right over her swollen crotch, and proceeds to wrap her arms around you in a warm wet embrace. \"Th-Thank yew so much...\"" + "\n" + "\n" + "A little too dazed from the experience, she's unable to say much more and gives you an awkward peck on the cheek. She then lets go, wobbling slightly as she supports herself, and stumbles out of the hut, tail dripping and mostly confused as to what to do now." + "\n" + "\n" + "Being rather confused yourself, you merely brush the thick fluids through the doorway to the bridge outside and feel better about yourself, knowing you REALLY helped a friend in need.",True)
+               DoLust(math.floor(lib / 2),0)
+               Stats(0,2,0,0)
+               hrs += 2
+               DoEnd()
+            else:
+               OutputMainText("Not being something you think you should be doing, you caringly tell her that she should probably get someone else to help her, such as her mother." + "\n" + "\n" + "Lila reddens further, her knees squirming as she realizes she has exposed herself to you a little too abruptly. \"O-Okay, that's a good idea. Thanks...\"" + "\n" + "\n" + "She awkwardly drops her dress and shuffles out of the hut. You look out and watch her to make sure she can get home alright. Still stumbling about, unbalanced without her tail to help her and having difficulty with... well, her small sensitive pussy stretched, stuffed, and wholly aroused. So aroused, in fact, that you nearly jump out as you see her fall against the ropes of the canopy bridge, but restrain yourself as you see and hear a splatter of juices fall below her accompanied by a poorly-muffled moan. She twitches for a bit with the minor orgasm, but is quick to right herself and pretend like nothing happened, only to hasten her pace home before she has another 'mishap'. Knowing she'll be fine, you return to your own shenanigans.",True)
+               hrs += 1
+               DoEnd()
+      elif (lilaRep == 3):
+         OutputMainText("You come across Lila as you walk through the city. She grins and runs up to you, pouncing you with a great big hug around your waist. She thanks you again, although she shifts awkwardly as she lets go. 6 blotches form across her dress from chest to belly, with another, smaller one below..." + "\n" + "\n" + "\"Uhh... Umm... I-I kinda have a diffewent problem now... The other kids don't know yet,\" she reaches under her dress, pulling out a large square of absorbant cloth that has been soaked through, \"and I'm afwaid of Mommy finding out. C-Can yew help me again?\" She blushes." + "\n" + "\n" + "Nodding, you think it best to at least see what is going on. You take her hand and once again lead her up to your private hut. As you enter, you turn to shut the door-like curtain so nobody outside can see. Yet, as you turn back, you already find Lila pulling up her dress to show you her new issue. She get a bit stuck trying to pull it over her head, leaving the rest of her body completely naked. Thin streams of white liquid slowly drizzle down her half-dozen nipples, soaking into her fur. Not quite as bad as the slimy mess that has returned between her legs, but enough to leave her with a bashful blush as she finally frees herself and finds you staring at her dribbly nipples." + "\n" + "\n" + "\"I-I thought if I took a dwink like Mommy sometimes does, I would be older like her. But then the othew day my chest felt funny. I wubbed it and then milk stawted leaking. I keep wubbing it when I get milky, but it doesn't stop and I have to walk awound with a towel so nobody sees. What should I do?\"",True)
+!         this.viewButtonOutline(1,0,0,0,1,0,0,0,0,1,0,0);
          this.viewButtonText(0,0,0,0,1,0,0,0,0,1,0,0);
          if(this.checkItem(103))
          {
@@ -16907,14 +16386,12 @@ def DoTieden():
          }
       };
    }
-   else if(chance == 4)
-   {
-      this.outputMainText("You wander about the tree-borne city, enjoying the sights and sounds.\r\rFelins are quite the agile people, able to work so high up in the canopy. Some spend their time harvesting various fruits from the nearby trees, while some others hunt for birds or even head down to the jungle floor for other game. Others have varying other professions, but they\'re all mostly laid back. It\'s not uncommon to catch someone dozing off in the middle of the day, the warm atmosphere quickly sending them to sleep.\r\rThere\'s also a few places to socialize, often in the form of singing or milk drinking. Since they don\'t have their own cows, they rely on their more abundant source for milk: their women.\r\rBeing a woman in Siz\'Calit seems to be quite profitable, with many of the more wealthy families being headed by females. And when they go into their heat, well... they\'re probably one of the greater powers to reckon with in this community.\r\rThe males seem to be rather happy nevertheless. At the very least, they don\'t have to worry about finding mates.\r\rOther than enjoying yourself, there\'s nothing else you find to do.",true);
-      this.stats(0,1,0,0);
-      this.hrs = 2;
-      this.doEnd();
-   }
-}
+   elif (chance == 4):
+      OutputMainText("You wander about the tree-borne city, enjoying the sights and sounds." + "\n" + "\n" + "Felins are quite the agile people, able to work so high up in the canopy. Some spend their time harvesting various fruits from the nearby trees, while some others hunt for birds or even head down to the jungle floor for other game. Others have varying other professions, but they're all mostly laid back. It's not uncommon to catch someone dozing off in the middle of the day, the warm atmosphere quickly sending them to sleep." + "\n" + "\n" + "There's also a few places to socialize, often in the form of singing or milk drinking. Since they don't have their own cows, they rely on their more abundant source for milk: their women." + "\n" + "\n" + "Being a woman in Siz'Calit seems to be quite profitable, with many of the more wealthy families being headed by females. And when they go into their heat, well... they're probably one of the greater powers to reckon with in this community." + "\n" + "\n" + "The males seem to be rather happy nevertheless. At the very least, they don't have to worry about finding mates." + "\n" + "\n" + "Other than enjoying yourself, there's nothing else you find to do.",True)
+      Stats(0,1,0,0)
+      hrs = 2
+      DoEnd()
+
 def DoOviasis():
    global silRep, pheromone, buttonChoice, cockTotal, cockSize, cockSizeMod, knot, sen, silPreg, vagTotal, tallness, vagSize, vagSizeMod, dominant, udders, hrs, lib, ment
    chance = EventSelect("Oviasis")
@@ -17649,8 +17126,8 @@ def DoJungle():
          hrs = 1
          DoEnd()
 
-!def DoPlains():
-   global buttonChoice, ment, snuggleBall, hrs
+def DoPlains():
+   global buttonChoice, ment, snuggleBall, hrs, enemyID, currentState, eMaxHP, eHP, firstExplore, currentZone, foundFirshaft, foundSoftlik
    chance = 0
    chance = EventSelect("Plains")
    if (chance == 1):
@@ -17662,196 +17139,126 @@ def DoJungle():
          snuggleBall = True
          ItemAdd(244)
          hrs = 2
-      }
-      else if(buttonChoice == 6)
-      {
-         outputMainText("You kneel down and pick up the squishy ball, feeling quite pleasant in your hand. Kinda warm and almost as soft as liquid, it feels like something pleasant to snuggle with. For now, you put it in your bag.",true);
-         itemAdd(244);
-         hrs = 2;
-      }
-      else
-      {
-         outputMainText("Wary of cute and cuddly balls in the middle of nowhere, you decide to leave it in case it\'s somebody\'s toy or something that they might come back for.",true);
-         hrs = 1;
-      }
-      doEnd();
-      };
-   }
-   else if(chance == 2)
-   {
-      this.outputMainText("You hear a hiss amidst some overgrown grass. Stopping cautiously, you manage to avoid stepping on a particularly dangerous snake. The cock-snake. Aptly named due to its head looking much like the glans of a human cock, this breed of snake is also known to devour that of the same... And if its opponent doesn\'t have one, they soon will.",true);
-      this.doNext();
-      this.doListen = function():void
-      {
-         enemyID = 101;
-         currentState = 2;
-         enemyBaseStats();
-         eMaxHP = eHP;
-         doBattle();
-      };
-   }
-   else if(chance == 3)
-   {
-      this.outputMainText("While trudging along the plains, you hear the stamping of hooves. Drunken song erupts in the air as a large equan man stumbles your way. His pants unbuttoned, his hand hidden within, you can see him groping his large erection. In his other hand he holds a large mug, still filled with alcohol. He smiles as he sees you, and then charges right at you!",true);
-      this.doNext();
-      this.doListen = function():void
-      {
-         enemyID = 302;
-         currentState = 2;
-         enemyBaseStats();
-         eMaxHP = eHP;
-         doBattle();
-      };
-   }
-   else if(chance == 4)
-   {
-      this.outputMainText("You wander about the open fields and find nothing but a handful of grain. At least the carbs will give you energy!",true);
-      this.itemAdd(209);
-      this.hrs = 1;
-      this.doEnd();
-   }
-   else if(chance == 5)
-   {
-      this.outputMainText("After a few hours of being lost amongst the vast expanse of flat plains, you come across the faint signs of a road. Would you like to follow it?",true);
-      this.buttonConfirm();
-      this.doListen = function():void
-      {
-         if(buttonChoice == 6)
-         {
-            if(firstExplore == false)
-            {
-               outputMainText("You take a deep breath. You\'re finally doing it, you\'re actually going beyond your home. There\'s a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you\'re actually going to do something important. And for the first time since you\'ve started having those dreams, you don\'t feel anxious about your life. You step forward with a sense of relief.\r\r",true);
-               firstExplore = true;
-            }
-            else
-            {
-               outputMainText("",true);
-            }
-            if(currentZone == 1)
-            {
-               outputMainText("Following the road, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\r\rYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...",false);
-               regionChange(2);
-               if(foundFirmshaft == false)
-               {
-                  foundFirmshaft = true;
-               }
-               hrs = 4;
-               doEnd();
-            }
-            else if(currentZone == 2)
-            {
-               outputMainText("Following the road, the level land breaks up into rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\r\rYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...",false);
-               regionChange(1);
-               if(foundSoftlik == false)
-               {
-                  foundSoftlik = true;
-               }
-               hrs = 4;
-               doEnd();
-            }
-         }
-         else
-         {
-            outputMainText("You return from whence you came.",true);
-            hrs = 1;
-            doEnd();
-         }
-      };
-   }
-}
-!def DoSavanna():
-{
-         var chance:int = 0;
-         chance = this.eventSelect("Savanna");
-         if(chance == 1)
-         {
-            this.outputMainText("While heading through the warm savanna, you think you feel it get suddenly warmer... A mrowl echoes around you as you see a slender felin female sway her hips towards you. Her fur looks like a mess, her bikini tops disheveled, 2 of her 6 nipples exposed and looking quite stiff and sore, and her loin cloth is completely drenched in something slick and sticky. Her hand reaches behind the cloth as she spots you and shivers.\r\r\"Please... So hot... Must fuck...\"\r\rUtterly driven and distraught by her lonely, fruitless heat, the desperately horny felin lunges at you, not sure whether she\'s about to fuck you or tear you to shreds!",true);
-            this.doNext();
-            this.doListen = function():void
-            {
-               enemyID = 301;
-               currentState = 2;
-               enemyBaseStats();
-               eMaxHP = eHP;
-               doBattle();
-            };
-         }
-         else if(chance == 2)
-         {
-            this.outputMainText("While trudging along the savanna, you hear the stamping of hooves. Drunken song erupts in the air as a large equan man stumbles your way. His pants unbuttoned, his hand hidden within, you can see him groping his large erection. In his other hand he holds a large mug, still filled with alcohol. He smiles as he sees you, and then charges right at you!",true);
-            this.doNext();
-            this.doListen = function():void
-            {
-               enemyID = 302;
-               currentState = 2;
-               enemyBaseStats();
-               eMaxHP = eHP;
-               doBattle();
-            };
-         }
-         else if(chance == 3)
-         {
-            this.outputMainText("You roam about the savanna, not really finding anything interesting. However, the warm weather kinda makes you wanna take off your clothes...",true);
-            this.doLust(Math.floor(this.lib / 4),1);
-            this.hrs = 1;
-            this.doEnd();
-         }
-         else if(chance == 4)
-         {
-            this.outputMainText("In the heat of the savanna, you come across a secluded pond. Well, not quite pond, considering most of the water has evaporated and there\'s only a giant mudhole, but the mud itself looks rather clean. In fact, it\'s the perfect kind of mud for a facial!\r\rBeing the entrepreneur that you are, you take out a bottle and shove some of the mud inside, saving it for some nice facial cleansing in the future.",true);
-            this.itemAdd(245);
-            this.hrs = 2;
-            this.doEnd();
-         }
-         else if(chance == 5)
-         {
-            this.outputMainText("After a few hours of being lost under the sweltering sun, you come across the faint signs of a path. Would you like to follow it?",true);
-            this.buttonConfirm();
-            this.doListen = function():void
-            {
-               if(buttonChoice == 6)
-               {
-                  if(firstExplore == false)
-                  {
-                     outputMainText("You take a deep breath. You\'re finally doing it, you\'re actually going beyond your home. There\'s a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you\'re actually going to do something important. And for the first time since you\'ve started having those dreams, you don\'t feel anxious about your life. You step forward with a sense of relief.\r\r",true);
-                     firstExplore = true;
-                  }
-                  else
-                  {
-                     outputMainText("",true);
-                  }
-                  if(currentZone == 2)
-                  {
-                     outputMainText("Following the path, the vegetation becomes denser and denser until trees surround you. You begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\r\rYou have now entered the Felin home-city of Siz\'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...",false);
-                     regionChange(4);
-                     if(foundSizCalit == false)
-                     {
-                        foundSizCalit = true;
-                     }
-                     hrs = 4;
-                     doEnd();
-                  }
-                  else if(currentZone == 4)
-                  {
-                     outputMainText("Following the path, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\r\rYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...",false);
-                     regionChange(2);
-                     if(foundFirmshaft == false)
-                     {
-                        foundFirmshaft = true;
-                     }
-                     hrs = 4;
-                     doEnd();
-                  }
-               }
-               else
-               {
-                  outputMainText("You return from whence you came.",true);
-                  hrs = 1;
-                  doEnd();
-               }
-            };
-         }
-      }
+      elif (buttonChoice == 6):
+         OutputMainText("You kneel down and pick up the squishy ball, feeling quite pleasant in your hand. Kinda warm and almost as soft as liquid, it feels like something pleasant to snuggle with. For now, you put it in your bag.",True)
+         ItemAdd(244)
+         hrs = 2
+      else:
+         OutputMainText("Wary of cute and cuddly balls in the middle of nowhere, you decide to leave it in case it's somebody's toy or something that they might come back for.",True)
+         hrs = 1
+      DoEnd()
+   elif (chance == 2):
+      OutputMainText("You hear a hiss amidst some overgrown grass. Stopping cautiously, you manage to avoid stepping on a particularly dangerous snake. The cock-snake. Aptly named due to its head looking much like the glans of a human cock, this breed of snake is also known to devour that of the same... And if its opponent doesn't have one, they soon will.",True)
+      DoNext()
+      #this.doListen = function():void
+      enemyID = 101
+      currentState = 2
+      EnemyBaseStats()
+      eMaxHP = eHP
+      DoBattle()
+   elif (chance == 3):
+      OutputMainText("While trudging along the plains, you hear the stamping of hooves. Drunken song erupts in the air as a large equan man stumbles your way. His pants unbuttoned, his hand hidden within, you can see him groping his large erection. In his other hand he holds a large mug, still filled with alcohol. He smiles as he sees you, and then charges right at you!",True)
+      DoNext()
+      #this.doListen = function():void
+      enemyID = 302
+      currentState = 2
+      EnemyBaseStats()
+      eMaxHP = eHP
+      DoBattle()
+   elif (chance == 4):
+      OutputMainText("You wander about the open fields and find nothing but a handful of grain. At least the carbs will give you energy!",True)
+      ItemAdd(209)
+      this.hrs = 1
+      DoEnd()
+   elif (chance == 5):
+      OutputMainText("After a few hours of being lost amongst the vast expanse of flat plains, you come across the faint signs of a road. Would you like to follow it?",True)
+      ButtonConfirm()
+      #this.doListen = function():void
+      if (buttonChoice == 6):
+         if (firstExplore == False):
+            OutputMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief." + "\n" + "\n",True)
+            firstExplore = True
+         else:
+            OutputMainText("",True)
+         if (currentZone == 1):
+            OutputMainText("Following the road, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about." + "\n" + "\n" + "You have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...",False)
+            RegionChange(2)
+            if (foundFirmshaft == False):
+               foundFirmshaft = True
+            hrs = 4
+            DoEnd()
+         elif (currentZone == 2):
+            OutputMainText("Following the road, the level land breaks up into rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun." + "\n" + "\n" + "You have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...",False)
+            RegionChange(1)
+            if (foundSoftlik == False):
+               foundSoftlik = True
+            hrs = 4
+            DoEnd()
+      else:
+         OutputMainText("You return from whence you came.",True)
+         hrs = 1
+         DoEnd()
+
+def DoSavanna():
+   global enemyID, currentState, eMaxHP, eHP, hrs, lib, buttonChoice, firstExplore, currentZone, foundSizCalit, foundFirmshaft
+   chance = EventSelect("Savanna")
+   if (chance == 1):
+      OutputMainText("While heading through the warm savanna, you think you feel it get suddenly warmer... A mrowl echoes around you as you see a slender felin female sway her hips towards you. Her fur looks like a mess, her bikini tops disheveled, 2 of her 6 nipples exposed and looking quite stiff and sore, and her loin cloth is completely drenched in something slick and sticky. Her hand reaches behind the cloth as she spots you and shivers." + "\n" + "\n" + "\"Please... So hot... Must fuck...\"" + "\n" + "\n" + "Utterly driven and distraught by her lonely, fruitless heat, the desperately horny felin lunges at you, not sure whether she's about to fuck you or tear you to shreds!",True)
+      DoNext()
+      #this.doListen = function():void
+      enemyID = 301
+      currentState = 2
+      EnemyBaseStats()
+      eMaxHP = eHP
+      DoBattle()
+   elif (chance == 2):
+      OutputMainText("While trudging along the savanna, you hear the stamping of hooves. Drunken song erupts in the air as a large equan man stumbles your way. His pants unbuttoned, his hand hidden within, you can see him groping his large erection. In his other hand he holds a large mug, still filled with alcohol. He smiles as he sees you, and then charges right at you!",True)
+      DoNext()
+      #this.doListen = function():void
+      enemyID = 302
+      currentState = 2
+      EnemyBaseStats()
+      eMaxHP = eHP
+      DoBattle()
+   elif (chance == 3):
+      OutputMainText("You roam about the savanna, not really finding anything interesting. However, the warm weather kinda makes you wanna take off your clothes...",True)
+     DoLust(math.floor(lib / 4),1)
+      hrs = 1
+      DoEnd()
+   elif (chance == 4):
+      OutputMainText("In the heat of the savanna, you come across a secluded pond. Well, not quite pond, considering most of the water has evaporated and there's only a giant mudhole, but the mud itself looks rather clean. In fact, it's the perfect kind of mud for a facial!" + "\n" + "\n" + "Being the entrepreneur that you are, you take out a bottle and shove some of the mud inside, saving it for some nice facial cleansing in the future.",True)
+      ItemAdd(245)
+      hrs = 2
+      DoEnd()
+   elif (chance == 5):
+      OutputMainText("After a few hours of being lost under the sweltering sun, you come across the faint signs of a path. Would you like to follow it?",True)
+      ButtonConfirm()
+      #this.doListen = function():void
+      if (buttonChoice == 6):
+         if (firstExplore == False):
+            OutputMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief." + "\n" + "\n",True)
+            firstExplore = True
+         else:
+            OutputMainText("",True)
+         if (currentZone == 2):
+            OutputMainText("Following the path, the vegetation becomes denser and denser until trees surround you. You begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city." + "\n" + "\n" + "You have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...",False)
+            RegionChange(4)
+            if (foundSizCalit == False):
+               foundSizCalit = True
+            hrs = 4
+            DoEnd()
+         elif (currentZone == 4):
+            OutputMainText("Following the path, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about." + "\n" + "\n" + "You have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...",False)
+            RegionChange(2)
+            if (foundFirmshaft == False):
+               foundFirmshaft = True
+            hrs = 4
+            DoEnd()
+      else:
+         OutputMainText("You return from whence you came.",True)
+         hrs = 1
+         DoEnd()
+
 def DoDesert():
    global buttonChoice, boobTotal, breastSize, fourBoobAffinity, hrs, cockTotal, milkMod, HP, pheromone, cockSize, cockSizeMod, knot, sen, silPreg, vagSize, vagSizeMod, dominant, udders, lib, enemyID, currentState, emMaxHP, eHP, firstExplore, currentZone, foundFirmshaft, founSizCalit, foundOviasis, hour, skinType, bodyOil, milkEngorgement, milkEngorgementLevel, udderEngorgement, udderengorgementLevel, exhaustion, HPMod, _str_, attireTop, pregnancyTime
    chance = 0
@@ -18103,172 +17510,1798 @@ def DoDesert():
          hrs = 2
          DoEnd()
 
-!def DoBeach():
-{
-         var chance:int = 0;
-         chance = this.eventSelect("Beach");
-         if(chance == 1)
+def DoBeach():
+   global buttonChoice, enemyID, currentState, eMaxHP, eHP, hrs, exhaustion
+   chance = EventSelect("Beach")
+   if (chance == 1):
+      OutputMainText("While taking a nice stroll along the beach, you see the silhouette of somebody sunning themselves on the sand in the distance. Judging by the ample curves at their chest, they seem to be a rather well-endowed in the breast department. Considering you can also spot the plump perk nipples protruding unrestrained from where you are, you also assume the person is likely to be nude. And judging by the large, swollen belly, you suspect that 'she' may be quite pregnant as well..." + "\n" + "\n" + "Would you like to inspect her more closely?",True)
+      ButtonConfirm()
+      #this.doListen = function():void
+      if (buttonChoice == 6):
+         OutputMainText("Moving closer, you squint in an attempt for a better view. However, her body seems moist as the sun reflects off her slick skin easily, making it difficult for you to see. It's not until you're nearly on top of her that you can clearly make out what she is..." + "\n" + "\n" + "She has curly hair that hangs past her shoulders, coral pink in color. It looks like it's completely drenched, despite laying out in the sun, and has bits of seaweed caught within it." + "\n" + "\n" + "Her face is slightly slightly round, with incredibly smooth looking skin that is oddly pinker than usual, though not nearly as noticeable as her hair. She wears a very relaxed and content expression, her eyes closed as she soaks up the warmth of the sun." + "\n" + "\n" + "Upon her chest heaves two quite enourmous breasts, each larger than her head. She doesn't seem to be completely nude as two starfish cover her nipples. They stick out against her breasts quite far, easily mistaken from your first observations. They also pulsate slightly, their twitching causing the fleshy mounds to jiggle, as though they were suckling from her." + "\n" + "\n" + "As suspected, her belly is quite gravid indeed. Her slender hands caress it as she lays there, practically glowing with her engorged fertility. In relation to the rest of her torso, the belly seems far too large for her. Although, as you look further still, it's no surprise that she can manage to carry it...",True)
+         DoNext()
+         #doListen = function():void
+         OutputMainText("Her 'butt' is large for her slender torso, her hips wider than you'd expect. And she has no legs..." + "\n" + "\n" + "Eight large, long tentacles squirm idly below her waist. They share a similar tone of pink as her hair, though much deeper and nearly purple, with a thin membrane of fleshy webbing between them. Their undersides are riddled with little suction cups, popping and sticking onto each other as they writhe. And as you step too close, one twitches out and touches you, realizing you're there." + "\n" + "\n" + "The octopus girl's eyes snap open. They're large and nearly all a deep purple in color, with a slight amount of white around the edges. She glares at you in an instant and smirks. And you're quite unsure if it's a playful smirk or a predatory one..." + "\n" + "\n" + "Either way, as her tentacles roll beneath her body and bring her to a 'stand', wobbling slightly from her large bosom and belly, you'll soon find out!",True)
+         DoNext()
+         #doListen = function():void
+         enemyID = 303
+         currentState = 2
+         EnemyBaseStats()
+         eMaxHP = eHP
+         DoBattle()
+      else:
+         OutputMainText("Deciding it best to leave the curvy woman in peace, you turn around and head back to Siz'Calit.",True)
+         hrs = 1
+         Stats(0,1,0,0)
+         DoEnd()
+   elif (chance == 2):
+      OutputMainText("While taking a nice stroll along the beach, you see the silhouette of somebody sunning themselves on the sand in the distance. Judging by the ample curves at their chest, they seem to be a rather well-endowed in the breast department. Considering you can also spot the plump perk nipples protruding unrestrained from where you are, you also assume the person is likely to be nude. And judging by the large, swollen belly, you suspect that 'she' may be quite pregnant as well..." + "\n" + "\n" + "Would you like to inspect her more closely?",True)
+      ButtonConfirm()
+      #this.doListen = function():void
+      if (buttonChoice == 6):
+         OutputMainText("Moving closer, you can make out her figure much more easily. She has a slender frame, quite lithe, with a thick tail that narrows to a point and swishes through the sand between her spread legs. Oddly, she seems to be covered in scales, ranging from green to a light purple. And you seem to be able to see ALL of her scales, as she is quite nude while she soaks up the sun." + "\n" + "\n" + "She spots you as you approach and gently turns to face you, a smile on her reptillian face \"Hello dearie. Do you enjoy the view?\" She sticks out her tongue as her hand gropes at her large breast. \"Mmm, but I don't mind. I'm much too happy. Days like this with my husband are so nice~ When he gets so horny and just absolutely fills me up~!\"" + "\n" + "\n" + "Her other hand roams over her huge belly before finding its way to her crotch. You can hear a slurp as she pleasure herself and you spot a spurt of white gunk spew across the sand." + "\n" + "\n" + "\"He went off to fetch some food, though, and I don't know when he'll be back. Would you be a dear and help me with something down there while he's gone, if you would?\"",True)
+         ButtonConfirm()
+         #doListen = function():void
+         if (buttonChoice == 6):
+            OutputMainText("You nod your head and begin to move towards her legs." + "\n" + "\n" + "\"Thank you so much, dearie~ I have a tendency to build up my eggs, unlike other lizan girls, and my husband's stuff is the easiest way for me to lay them all at once. I just need you to sit there and be ready to catch them when they do, or else they'll float into the water and be such a waste...\"" + "\n" + "\n" + "Nodding once again, you maneuver around her body and kneel down between her legs, straddling her thick reptilian tail. Your eyes go wide, however, as there's much more white gunk than you expected, spunk literally oozing from her scaley slit, despite the fact she's clenching to keep it in." + "\n" + "\n" + "\"Just like that dearie. Sitting on my tail helps me push. Now, get ready!\"" + "\n" + "\n" + "You reach out in preparation, your fingers slipping across her supple lips and making her moan. Her thighs shudder as she lets out a gasp, letting her cunt stretch wide." + "\n" + "\n" + "Cum floods from her loins, pooling around your " + legDesc(6) + " and over her tail. You quickly realize that her large belly had mostly been inflated with cum rather than some mere eggs! Especially as the eggs that rush out are relatively small, maybe twice the size of a chicken's. You scramble to pluck them from the river of cum, trying to spot their white shells amidst the white fluid. Your hands slip and stick from all the spunk, but you manage to get them all. Hardly half a dozen...",True)
+            DoNext()
+            #doListen = function():void
+            OutputMainText("\"Whew... Thanks a lot, dearie. Sorry to umm...\" She looks at your " + ClothesBottom() + " and how drenched it is with her husband\'s seed. \"come on you like that... Don't worry though, it'll wash right out. And he takes a drug to keep it sterile for our little outtings. Wouldn't want to have all these eggs be alive now, would we?\" She chuckles. \"But here, take one for yourself. They're good for you, when they don't have babies in them!\"" + "\n" + "\n" + "She giggles and kisses you on the cheek, thanking you once again before you head off. She dozes back off, her tail idly swishing in the pool of semen, her thighs drenched in the stuff, and looking all the happier for it.",True)
+            ItemAdd(219)
+            if (Percent() < 35):
+               OutputMainText("\n" + "\n" + "As you begin to leave, however, you spot something move towards you. Another reptillian, this one seems quite male as two cocks hang from his groin and knock against his knees. He seems a bit sheepish at first, blush filling the scales of his face due to his rather immodest lack of an outfit, but realizes the damage is already done and waves you over." + "\n" + "\n" + "\"Umm... I suppose you helped out my wife then?\" He spots the egg in your hand and the lack of belly on his wife. \"Well, thank you for that. Sometimes I just can't get back in time. Here, take one of these at least, I think I've got plenty.\"" + "\n" + "\n" + "He hands you a berry but actually refers to his scrotum. It hangs past his wangs and seems stuffed with testicles, though you can't easily count how many. They're each at least the size of a small melon and can easily explain how his wife was so bloated." + "\n" + "\n" + "Nevertheless, he thanks you again and lets you head off, wanting some more time with his wife.",False)
+               ItemAdd(218)
+            hrs = 4
+            DoEnd()
+         else:
+            OutputMainText("You shake your head no, not wanting to interrupt their time together." + "\n" + "\n" + "\"Ahh, thank you dearie, I appreciate the sentiment. Here, at least take one of these. My husband uses them on occasion, but he prefers a different kind. Not that it matters to me, either way he makes me happy~\" She twitches as her head leans back with a strong sigh, another spurt spewing over the sand." + "\n" + "\n" + "She then picks something from her pack beside her and tosses it over to you, letting you head back to Siz'Calit.",True)
+            ItemAdd(208)
+            hrs = 2
+            DoEnd()
+      else:
+         OutputMainText("Deciding it best to leave the curvy woman in peace, you turn around and head back to Siz'Calit.",True)
+         hrs = 1
+         Stats(0,1,0,0)
+         DoEnd()
+   elif (chance == 3):
+      OutputMainText("Walking along the beach, you spot something shiny in the sand.",True)
+      ItemAdd(206)
+      hrs = 2
+      DoEnd()
+   elif (chance == 4):
+      OutputMainText("Combing the beach, you find something odd buried in the sand.",True)
+      ItemAdd(207)
+      hrs = 2
+      DoEnd()
+   elif (chance == 5):
+      OutputMainText("Strolling along the beach, you suddenly begin to hop up and down, your " + LegDesc(9) + " aching painfully as you step on an urchin!",True)
+      DoHP(-math.floor(Percent() / 10))
+      hrs = 2
+      DoEnd()
+   elif (chance == 6):
+      OutputMainText("You walk along the beach, the ocean breeze blowing through your hair, the smell of salt on the wind. You take a deep breath and feel a bit rejuvenated.",True)
+      DoLust(-5,0)
+      Stats(0,0,-1,0)
+      exhaustion -= 2
+      hrs = 1
+      DoEnd()
+
+def DoLake():
+   global hrs, buttonChoice, knowPheromone
+   chance = EventSelect("Lake")
+   if (chance == 1):
+      OutputMainText("At the edge of the lake, knocking against the bank with the subtle waves, you spot a piece of cloth. Pulling it out, you let out an \"ew\" as long strands of clear slime drip from it. Nevertheless, you think it's a fantastic idea to hold onto it." + "\n" + "\n" + "(You should really get your kleptomania checked)",True)
+      ItemAdd(213)
+      hrs = 2
+      DoEnd()
+   elif (chance == 2):
+      if (CountItem(219) >= 5):
+         OutputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him." + "\n" + "\n" + "\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"" + "\n" + "\n" + "His hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit..." + "\n" + "\n" + "\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"" + "\n" + "\n" + "At this you realize that you actually have 5 such eggs on you right now. Would you like to offer them?",True)
+         ButtonConfirm()
+         #this.doListen = function():void
+         if (buttonChoice == 6):
+            OutputMainText("Pausing his rambling for a moment, you mention how you have 5 such eggs on you and offer them to him. His eyes light up and he graciously takes them from you. Ducking into his boat, he pulls out an odd machine and begins to slip them into an insertion point that is perfectly fitted for such eggs. The machine churns a little and dings before popping out a slightly different egg. He does this " + (math.ceil(Percent() / 25) + 1) + " times, whereafter he lets out a happy yip as an egg decorated with pretty red hearts pops out." + "\n" + "\n" + "\"Well lookie at that, a superb specimen! Just what I needed to make my special bait that can catch all sorts of fish! Thank you so much, stranger, we'll be eating well for some time to come thanks to this.\" He pauses for a moment, trying to think how he could repay you. \"Umm... I don't have much to give, but I'll tell you what. I can give you the recipe to my secret bait. Since you seem to have access to these kinds of eggs, I'm sure you could do quite well with this recipe.\"" + "\n" + "\n" + "He proceeds to rattle off all the ingredients you need and how the process to mixing it goes. You try to keep up, but you only get some of what you think are the main points. However, you do kinda miss out on some of the 'diluting' instructions, so your concoction might be a tad strong..." + "\n" + "\n" + "You have gained: Strong Pheromone Recipe!" + "\n" + "\n" + "You thank each other again, but he seems to be quite eager to get out on the lake and use some of his fresh bait, wishing you farewell and good luck on your journey!",True)
+            LoseManyItem(219,5)
+            knowPheromone = True
+            hrs = 3
+            DoEnd()
+         else:
+            OutputMainText("Deciding not to give him any, the old man continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.",True)
+            hrs = 2
+            DoEnd()
+      else:
+         OutputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him." + "\n" + "\n" + "\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"" + "\n" + "\n" + "His hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit..." + "\n" + "\n" + "\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"" + "\n" + "\n" + "He continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.",True)
+         hrs = 2
+         DoEnd()
+   elif (chance == 3):
+      OutputMainText("You wander around the lake, but you don't find much. However, in the distance you hear some soft singing that elates your body and mind.",True)
+      Stats(1,2,-1,0)
+      hrs = 1
+      DoEnd()
+
+!def DoDairyFarm():
+   global malonRep, malonPreg, malonChildren, hrs, buttonChoice, dairyFarmBrand, gender, cockTotal, sen, vagTotal, pregArray, udderSize, teatSize, teatPump, udderPlay, exhaustion, skipExhaustion, clitSize, clitPump, dominant, showBalls, udderLactation, lactation, milkEngorgementLevel, coin
+   chance = EventSelect("Dairy Farm")
+   if ((malonRep == 4) and (malonPreg > 216)):
+      OutputMainText("As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly." + "\n" + "\n" + "\"Hurry! Malon's gone into labor!!\"" + "\n" + "\n" + "The farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction." + "\n" + "\n" + "\"Here it comes!\", one of the farmhands announces as the baby begins to crown." + "\n" + "\n" + "An eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl",True)
+      if (malonChildren > 1):
+         OutputMainText(", just like the rest",False)
+      OutputMainText("! ...She's got your eyes, at least." + "\n" + "\n" + "The baby is actually quite developed already, it seems. She opens her eyes and giggles playfully, closer to a seven-year-old child than an actual baby. And as the farmhand places her on the bed, she tries to stand, but stumbles at first, using her mother as support. You wouldn't be surprised if she were running and talking within the next few days!" + "\n" + "\n" + "But, first thing's first, Malon pulls up her dress the rest of the way, letting her over-engorged bosom leak all over the bed. The little girl quickly crawls up to a long nipple, sucking it down her throat and suckling. You",False)
+      if (malonChildren == 1):
+         OutputMainText(", and her older sister,",False)
+      if (malonChildren > 1):
+         OutputMainText(", and her older sisters,",False)
+      OutputMainText(" gather close and give Malon a great big hug.",False)
+      DoNext()
+      #this.doListen = function():void
+      OutputMainText("You wind up sleeping at the farmhouse and spend an entire day with the family. The newborn girl is walking after the bedrest and even begins muttering her own cute little moos. Malon already has a dress ready for the girl, long and white that goes all the way down to the feet, just like she used to wear when she was that young. Well, not quite that young, but around that equivalent age in development." + "\n" + "\n" + "You're congratulated many times as you eventually leave, and even given quite the hefty sum as a gift from the whole farm!",True)
+      DoCoin(150)
+      DoSexP(50)
+      Stats(0,1,0,0)
+      malonChildren += 1
+      malonPreg = 0
+      malonRep = 5
+      hrs = 30
+      DoEnd()
+   elif (chance == 1):
+      OutputMainText("As you head towards the dairy farm, one of the farmers waves you over in greeting." + "\n" + "\n" + "\"Why hello there! You're lucky to have passed by here at this time. We're giving away free samples of our dairy enhancement pills for cows, to help drum up some business. We use these to keep our dairy cows in top shape and producing plenty of milk. Give them to your own cows to help make them fine producers as well!" + "\n" + " Just... try not to eat them yourself, or you'll end up like Malon over there.\"" + "\n" + "\n" + "He nods over to one of the farm-hands that is nearby. She's a beautiful woman with long, flowing red hair in a yellow shirt and long purple skirt with a brown apron around her waist and yellow shawl around her shoulders. However, the shawl seems fairly wet and she's careful to drape its ends over breasts larger than watermelons, trying to hide the large blotches on her shirt with it and keeping it at the ready to use at any moment. Her ears are also quite long, hanging perpendicular from her head, nearly 5 inches, and droop a little. Behind her you see a long, narrow tail, tipped with a tuft of long hairs, swish about her calves with each step. She lugs two overflowing pails of milk with a blush in her cheeks, trying to avoid eye contact with anyone as she disappears into a barn.",True)
+      if (malonRep > 2):
+         OutputMainText(" Although, she spots you out of the corner of her eye before she enters and turns to give you a bright smile. It looks like she'd wave at you, but her hands are a bit busy at the moment.",False)
+      if (malonRep == 4):
+         if ((malonPreg > 36) and (malonPreg <= 72)):
+            OutputMainText(" Especially as one wraps around her protruding belly, obviously pregnant...",False)
+         elif ((malonPreg > 72) and (malonPreg <= 144)):
+            OutputMainText(" Yet, despite the massive belly she is sporting, it seems she's managing work just fine.",False)
+         elif ((malonPreg > 144) and (malonPreg <= 216)):
+            this.outputMainText(" You're actually quite surprised that she's even working at all. Though her breasts seem even larger than usual, they're actually supported by her enormously pregnant belly, looking to be even larger than she is.",False)
+      if (malonRep > 3):
+         OutputMainText("\n" + "\n" + "\"Although, I'm sure you're already aware of the consequences.\"" + "\n" + "\n" + "He gives you a perverse wink and hands you a complimentary DairE Pill, nodding you along.",False)
+      else:
+         OutputMainText("\n" + "\n" + "\"Let's just say it's best to keep the pills to the cows.\"" + "\n" + "\n" + "He hands you a complimentary DairE Pill and nods you along.",False)
+      ItemAdd(211)
+      hrs = 2
+      DoEnd()
+   elif (chance == 2):
+      if ((dairyFarmBrand == True) and (Percent() < 50)):
+         OutputMainText("You approach the farm just as you see the farmer that developed the experimental milk machine leaving the farm with a several others to deliver a large supply of milk to Softlik, so there's nobody to stop and greet you. Though you're on the side of the farm where there isn't much to do anyways. Well, except the barn where the experimental milker is... You could probably go use it yourself without anybody knowing, since they would be gone for at least a day with the shipment, so if you're feeling kinky you could..." + "\n" + "\n" + "Do you?",True)
+         ButtonConfirm()
+         #this.doListen = function():void
+         if (buttonChoice == 6):
+            OutputMainText("You slink your way over to the cellar doors, lifting one and shutting it behind you as you slip inside. All the usual bottles that are stored here are gone, having left with the shipment. However, the path still remains and leads you right to the machine. A panel on the side has been removed from the farmer working on it, but it doesn't seem to be dismantled any further to prevent it from functioning." + "\n" + "\n" + "Quickly stripping your " + CurrentClothes() + " until you're naked for complete freedom, you give your " + UdderDesc() + " udder a gentle rub-down in preparation. As the " + TeatDesc() + " teats stiffen slightly, you then pick up the control board and carry it to the platform. You lean over the rail and let your milky bag hang below you. Fiddling with the control board, you're not exactly how it works, but there's not too many buttons and dials. So you press a few until you hear the machine grind awake and the hidden doors beneath you open.",True)
+            OutputMainText("\n" + "\n" + "The soft cylinders rise up and engulf your drippy teats. The tender touch of the gentle compression makes you gasp and squirt into the machine before the pumping even begins. And when the cylinders start to rise and fall, the suction increasing and tugging on your teats, you gush strongly with a moan, the machine whirring to take it all in. Your rump sways from side to side as the pleasant sensations build. Swiftly coming to your first climax, you squeeze your udder between your " + LegDesc(6) + ", making the machine fill the basement with even louder churning for several seconds.",False)
+            if (gender != 0):
+               OutputMainText("\n" + "\n" + "After the first orgasm, the pleasure lingers with the continuing milking. You reach around your " + UdderDesc() + " udder and stroke",False)
+               if (cockTotal > 0):
+                  OutputMainText(" " + OneYour(1) + " growing " + CockDesc() + " erection" + Plural(1) + ".",False)
+               else:
+                  OutputMainText(" " + OneYour(2) + " swelling " + ClitDesc() + " clit" + Plural(2) + ".",False)
+               OutputMainText(" It's slightly difficult to grope yourself from this position while attached to the machine, but you manage it. Rubbing and wringing steadily and slowly, masturbating in tune with the changing pressure of the pump. Again, the blissful milking combines with your own efforts and rapidly brings you to another high. You cry out in ecstasy, your voice echoing through the emptied basement, as ",False)
+               if (cockTotal > 0):
+                  OutputMainText("you blow a load across the back of your udder, painting it in your seed.",False)
+               else:
+                  OutputMainText("your pussy gapes and contracts in stuttered climax, drooling fluids down the back of your udder.",False)
+               DoLust(-math.floor(sen / 2),2,1,2,4)
+               if (Percent() < 50):
+                  OutputMainText("\n" + "\n" + "You come so hard that you don't even notice as you accidentally mash the buttons of the control board..." + "\n" + "\n" + "Which side of the control board did you 'accidentally' mash?",False)
+                  templist = [5, "Left Side", 7, "Right Side"]
+                  ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
+                  DoButtonChoices(templist)
+                  #doListen = function():void
+                  getCum = 0
+                  tempInt = 0
+                  if (buttonChoice == 5):
+                     OutputMainText("In the midst of your reflection, the sounds of gears grinding and doors opening goes unheeded. It's not until you feel padded mechanical arms clamp around your " + HipDesc() + " hips and hold your backend still that you realize something has gone wrong. Looking back, not only has the machine taken your " + ButtDesc() + " rear hostage, but it's extending a long and thick phallic tube right towards",True)
+                     if (vagTotal > 0):
+                        OutputMainText(" " + OneYour(2) + " puss" + Plural(16) + "",False)
+                     else:
+                        OutputMainText(" the hole in your ass",False)
+                     OutputMainText(". You clench as it rams its way into you, stretching you open and driving far into your depths. It slides in and out, thrusting in rhythm with the pumping. It grows warmer and warmer as lube exudes from small pores, making your tunnel slick. So powerful, your nerves scream out in sensitive pleasure, taking you to your peak once more." + "\n" + "\n" + "\"MOOOOOO!\" You shout out subconsciously as bull spunk spews into your belly. So thick and plentiful, some of it even oozes back out across your thighs as the 'dildo' continues to plow you.",False)
+                     if ((VagLimit() > 72) and (vagTotal > 0) and (PregCheck(1) == True)):
+                        OutputMainText("\n" + "\n" + "More of the stuff enters than leaves, your tunnel so deep that the spunk pools within your womb. Your belly distends as it fills, the inseminator pumping away... Eventually, the timer runs out and the phallic thing pulls out.",False)
+                     else:
+                        OutputMainText("\n" + "\n" + "After sufficiently filling you with seed, it pulls out.",False)
+                     OutputMainText(" You gasp in erotic desparation, but the clamp around your hips doesn't release, just like the milker. Forced to stay with your rump up high and your udder tugging towards the floor, you awkwardly try to get comfortable on the rail. And after an hour, when you think you've survived the worst of it, the inseminator comes back out..." + "\n" + "\n" + "On the hour, every hour, for the full 12 hours, you're stuffed with bull cum again and again",False)
+                     if ((vagLimit() > 72) and (vagTotal > 0) and (PregCheck(1) == True)):
+                        OutputMainText(", your belly swelling more with each injection, ",False)
+                     OutputMainText("while the machine churns to drain you of all your milk. After about 6 hours, you pass out where you 'stand', exhausted...",False)
+                     DoNext()
+                     #doListen = function():void
+                     tempInt = 0
+                     OutputMainText("You awaken when the machine finally releases you, making you collapse to the floor. Your udder feeling swollen and your teats stretched, you do your best to stand. White goop pours out of your ",True)
+                     if (vagTotal > 0):
+                        OutputMainText("cunt" + Plural(2) + "",False)
+                     else:
+                        OutputMainText("ass",False)
+                     OutputMainText(" and pools below you with all the other fluids you released. Dazed, you try to wipe it off haphazardly, but don't really care. As soon as you've concealed your presence here for the mostpart, you head out of the farm, your " + LegDesc(2) + " bent and your back hunching over your still dripping udder",False)
+                     if ((VagLimit() > 72) and (vagTotal > 0) and (PregCheck(1) == True)):
+                        OutputMainText(", while your cum-inflated womb sloshes with each step",False)
+                     OutputMainText("...",False)
+                     if ((VagLimit() > 72) and (vagTotal > 0) and (PregCheck(1) == True)):
+                        while (i < len(pregArray)):
+                           if (pregArray[i] == False):
+                              pregArray[i] = True
+                              pregArray[i + 1] = 501
+                              pregArray[i + 2] = 230
+                              pregArray[i + 3] = 220
+                              i = len(pregArray)
+                           i += 5
+                     elif (vagTotal > 0):
+                        #tempInt = 1
+                        #for (tempInt = 1; tempInt < 13; doImpregnate(101),tempInt++)
+                        for i in range(1, 13):
+                           DoImpregnate(101)
+                           i += 1
+                     DoLust(-math.floor(sen / 1.5),2,2,4)
+                     DoLust(-math.floor(sen / 1.5),2,2,4)
+                     DoLust(-math.floor(sen / 1.5),2,2,4)
+                     MilkAmount(2)
+                     LactChange(2,50)
+                     udderSize += 4
+                     teatSize += 5
+                     teatPump += 40
+                     udderPlay += 100
+                     hrs += 13
+                     exhaustion -= 4
+                     skipExhaustion = True
+                     DoEnd()
+                  elif (buttonChoice == 7):
+                     getCum = 0
+                     OutputMainText("In the midst of your reflection, the sounds of gears grinding and doors opening goes unheeded. It's not until you feel padded mechanical arms clamp around your " + HipDesc() + " hips and hold your backend still that you realize something has gone wrong. Looking back, not only has the machine taken your " + ButtDesc() + " rear hostage, but  another cylindar is rising behind your udder. This one looks quite different from the ones on your teats. It's much wider and deeper, with a lot more adjusting straps to take on things much larger than normal teats... It twists and turns from side to side, seemingly searching for something in particular. ",True)
+                     if (cockTotal > 0):
+                        getCum = CumAmount()
+                        DoLust(-math.floor(sen / 1.5),2,1)
+                        OutputMainText(" After a few seconds of scanning, however, it seems to have found a target." + "\n" + "\n" + "You let out a loud gasp as the thing engulfs " + OneYour(1) + " " + CockDesc() + " cock" + Plural(1) + ", gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your shlong. The new cylindar slowly starts up, a subtle suction gripping your penis and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You quickly learn what its purpose is..." + "\n" + "\n" + "Your hips held hostage by the rest of the machine, you can do nothing but moan and pant as the cock-milker sucks you off, even while the other milkers suckle from your teats. The machine obviously wasn't built to account for one over the other. The intense sensations quickly build heat within your body and soon you're blasting your hot spunk into the guzzling machine. Your hips twitch within its grip, your cock bucking against the padding within, and all of your seed drains down into some tanks below. Even after the main spurts have finished, the machine continues to suck out your cum, draining you dry and leaving you feeling numb from the waist down..." + "\n" + "\n" + "Once you've been fully 'milked' from that appendage, the machine relinquishes its grip on your cock and descends back into the floor, leaving your with a limp dick and some time to catch your breath. ",False)
+                     elif ((clitSize > 15) and (vagTotal > 0)):
+                        OutputMainText(" After a few seconds of scanning, however, it seems to have found a target." + "\n" + "\n" + "You let out a loud moan as the thing engulfs " + OneYour(2) + " " + ClitDesc() + " clit" + Plural(2) + ", gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your long button. The new cylindar slowly starts up, a subtle suction gripping your clit and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You have a pretty good idea of what it is trying to do. It's trying to pump out something you don't have... That doesn't hinder its attempts though, as it vigorously masturbates your clit, tugging and sucking away at its tender meat. Your hips try to buck in turn, but they're still held hostage by the rest of the machine, leaving you to be sucked off at the mercy of the 'milker' below, even while the other milkers suck away at your udders. The machine obviously wasn't built to account for one over the other!" + "\n" + "\n" + "You come again and again, melting across the bar, unable to do a thing about it... It takes nearly twenty minutes before the machine finally seems to give up, beeping in error as it releases your clit and sinks back into the ground. Taking the chance to breath, your clit feels rather plumped up after that ordeal, even bigger than before...",False)
+                        clitSize += 5
+                        clitPump += 20
+                        DoLust(-math.floor(sen / 1.5),2,2)
+                        DoLust(-math.floor(sen / 1.5),2,2)
+                        DoLust(-math.floor(sen / 1.5),2,2)
+                     else:
+                        OutputMainText(" Yet, after several minutes of scanning, it doesn't seem to find its target. A loud beep signals an error and the cylindar descends back into the floor. Rather strange, but you can't complain.",False)
+                     OutputMainText("\n" + "\n" + "You don't seem to get much time to relax, however. The machine clangs and cranks, sounding like it is getting confused by the fact the udder milker is still going. Rather than releasing your hips, it assumes you must be a female cow, and proceeds to start another task. Behind you, the machine shifts and whirs, opening yet another window, this time on the wall, and a long thick phallic tube begins to extend out, aiming right for",False)
+                     if (vagTotal > 0):
+                        OutputMainText(" " + OneYour(2) + " puss" + Plural(16) + "",False)
+                     else:
+                        OutputMainText(" the hole in your ass",False)
+                     OutputMainText(". You clench as it rams its way into you, stretching you open and driving far into your depths. It slides in and out, thrusting in rhythm with the pumping. It grows warmer and warmer as lube exudes from small pores, making your tunnel slick. So powerful, your nerves scream out in sensitive pleasure, taking you to your peak once more." + "\n" + "\n" + "\"MOOOOOO!\" You shout out subconsciously as spunk spews into your belly. ",False)
+                     if (getCum > 0):
+                        OutputMainText("The stuff feels rather familiar, actually. Well, as far as you can tell. Then after a few seconds it dawns on you. The machine is pumping your semen back into you! It fills your hole, attempting to make you pregnant with your own cum.",False)
+                        if ((vagLimit() > 72) and (vagTotal > 0) and (PregCheck(1) == True) and (getCum > 5000)):
+                           OutputMainText(" With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish." + "\n" + "\n" + "Having spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period.",False)
+                           while (i < len(pregArray)):
+                              if (pregArray[i] == False):
+                                 pregArray[i] = true
+                                 pregArray[i + 1] = 502
+                                 pregArray[i + 2] = 230
+                                 pregArray[i + 3] = 220
+                                 i = len(pregArray)
+                              i += 5
+                        else:
+                           if (vagTotal > 1):
+                              OutputMainText(" Then, once it has given your pussy a nice load, it pulls back out, making you shudder. It swerves from side to side, scanning for any more. Of course, you have more than one, so it doesn't take long before it finds another hole and plunges back in.",False)
+                              if (getCum < 500):
+                                 OutputMainText(" Yet, you hear a beep from the machine, indicating an error. You can also hear some swishing around as tanks are moved and shifted below. You must not have had enough seed. And as the next batch of thick stuff pumps into you, it's definitely not your own, though you could probably venture a guess as to what it belonged to!",False)
+                              if (vagTotal > 2):
+                                 OutputMainText(" Again and again you're injected with spunk, the dildo checking for each one of your holes.",False)
+                                 if ((getCum >= 500) and (getCum < vagTotal * 500)):
+                                    OutputMainText(" Until eventually you hear the tank with your semen finally sputter out below. But, the machine doesn't cease there. With more holes to fill, you hear it churn and shift as another tank is put in its place, filling you with another kind of seed that it had in storage.",False)
+                                 elif (getCum >= vagTotal * 500):
+                                    OutputMainText(" Eventually it fills them all with your own cum, prepped and ready for breeding. Yet, you had fed it so much spunk that the machine continues to pump more out, the dildo jerking against the sides of your rump and moving further and further away, spurting your cum across the floor until it eventually runs dry...",False)
+                           if (vagTotal > 0):
+                              DoImpregnate(dominant)
+                              #tempInt = 1
+                              #for(tempInt = 1; tempInt <= vagTotal; tempInt++)
+                              for i in range(1, vagTotal):
+                                 if (getCum > 500):
+                                    DoImpregnate(dominant)
+                                    getCum -= 500
+                                 else:
+                                    DoImpregnate(101)
+                                 i += 1
+                     else:
+                        OutputMainText("The stuff is thick and heavy, probably perfect for a cow. It doesn't take much of a guess as to what the machine is trying to make you pregnant with.",false)
+                        if (vagTotal > 1):
+                           OutputMainText(" Then, once it has given your pussy a nice load, it pulls back out, making you shudder. It swerves from side to side, scanning for any more. Of course, you have more than one, so it doesn't take long before it finds another hole and plunges back in.",False)
+                           if (vagTotal > 2):
+                              OutputMainText(" Again and again you're injected with spunk, the dildo checking for each one of your holes.",False)
+                        if (vagTotal > 0):
+                           #tempInt = 1
+                           #for(tempInt = 1; tempInt <= vagTotal; doImpregnate(101),tempInt++)
+                           for i in range(1, vagTotal):
+                              DoImpregnate(101)
+                              i += 1
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("Once it's done filling you up, the injector retracts back into the machine. The clamp around your hips also releases you as rest of the milkers shut down. You slump to the floor with white goop pouring out of your ",True)
+                     if (vagTotal > 0):
+                        OutputMainText("cunt" + Plural(2) + "",False)
+                     else:
+                        OutputMainText("ass",False)
+                     OutputMainText(", pooling below you with all the other fluids you released. That final cycle seemed to have shut down the machine as a whole, releasing you within just a couple hours. Though you're a bit stuffed, you're rather pleased with the results, your udder being milked quite well. It takes you a few minutes to regain feeling in your legs, but once you do you're quick to escape",False)
+                     if ((VagLimit() > 72) and (vagTotal > 0) and (PregCheck(1) == True) and (getCum > 5000)):
+                        OutputMainText(", your hands wrapping around your cum-inflated belly as it sloshes with each step,",False)
+                     OutputMainText(" before anybody catches you with the mess you've made.",False)
+                     MilkAmount(2)
+                     teatPump += 20
+                     udderPlay += 30
+                     hrs += 3
+                     DoEnd()
+               else:
+                  OutputMainText("\n" + "\n" + "You slump over the rail, panting and moaning with the persistent pumping of your milk. Taking some time to relax, you take comfort in the milky massage, letting it slowly warm you back up. With no farmers around to watch you, there's no reason you can't keep masturbating over and over while you're here... So you do." + "\n" + "\n" + "After about 6 hours of consistent pumpinng and frequent excitation of your nerves, you slump over your udder and allow the gentle rocking of the pumping to guide you to sleep for the rest of the time...",False)
+                  if (cockTotal > 0):
+                     CumAmount()
+                  DoNext()
+                  #doListen = function():void
+                  OutputMainText("You awaken when the machine finally releases you, making you fall to the floor. You udder feels swollen and your teats feel stretched again, but overall the multiple orgasms and extended milking make you feel rather blissful. You take several moments to clean up the mess you've made, hoping nobody will notice your presence here, and head off the farm happy.",True)
+                  DoLust(-math.floor(sen / 2),2,4)
+                  DoLust(-math.floor(sen / 2),2,4)
+                  DoLust(-math.floor(sen / 2),2,4)
+                  MilkAmount(2)
+                  LactChange(2,50)
+                  udderSize += 4
+                  teatSize += 5
+                  teatPump += 40
+                  udderPlay += 100
+                  hrs += 13
+                  exhaustion -= 4
+                  skipExhaustion = True
+                  DoEnd()
+            else:
+               OutputMainText("\n" + "\n" + "Hours and hours of squirting and dripping passes with the occassional uddergasm. You eventually take a nap for the rest of the 12 hours, awakening only to the sound of the machine releasing you and shutting down. Your udder swollen and your teats stretched, you happily take your leave, pleased with the effective milking.",False)
+               DoLust(-math.floor(sen / 3),2,4)
+               DoLust(-math.floor(sen / 3),2,4)
+               DoLust(-math.floor(sen / 3),2,4)
+               MilkAmount(2)
+               LactChange(2,50)
+               udderSize += 4
+               teatSize += 5
+               teatPump += 40
+               udderPlay += 100
+               hrs += 13
+               exhaustion -= 4
+               skipExhaustion = True
+               DoEnd()
+         else:
+            OutputMainText("Thinking it best to not deal with that confounded contraption, you go find something less dangerous to do...",True)
+            hrs = 1
+            DoEnd()
+      else:
+         if (dairyFarmBrand == False):
+            OutputMainText("As you head towards the dairy farm, one of the farmers spots you and walks over to greet you." + "\n" + "\n" + "\"Hello! If you want some of our milk, you should head over to Softlik. Though, umm...\" He glances down at the milky bag of flesh below your " + BellyDesc() + " belly. \"Hey, that there udder looks mighty similar to the ones my cows have. You wouldn't happen to be interested in testing out a new milking machine I've been working on, would you? It's normally only meant for cows, but they're too skittish around new equipment and you seem like you'd be a pretty good fit anyways. It'd only take about an hour and I'd also pay ya, of course.\"",True)
+         else:
+            OutputMainText("As you head towards the dairy farm once again, a familiar looking farmer spots you in the distance with your drippy udder and makes sure to walk over and greet you." + "\n" + "\n" + "\"Why hello again! I was hoping to see you around here some time. Sorry about last time, but I really think I've fixed all the kinks with the milker. If you'd be a dear, would you mind testing it for me again? You'll be compensated as usual, of course.\"",True)
+         ButtonConfirm()
+         #this.doListen = function():void
+         if (buttonChoice == 6):
+            if (dairyFarmBrand == False):
+               OutputMainText("\"Really? Fantastic! Just come with me!\" The farmer nearly hops with joy as he twirls around and eagerly leads you towards one of the milking barns. Though, you don't quite go into it as he swerves off course towards a cellar door at the side. He hoists it open, waving for you to head on in." + "\n" + "\n" + "Heading down the steps, the scent of milk fills your nose. Candles lighting up the cool cellar, large crates surround you. Bottles and bottles of fresh milk waiting to be delivered surround your path. The farmer urges you forward, leading you deeper in until the crates become tools and parts. Equipment from around the farm is either dismantled or waiting to be repaired. And then there's a small workspace cleared out, filled with nothing but a large, clean machine. In front is a mechanical platform, laying several feet wide from the rest of the machine, with a thick railing surrounding it, perfect for tying cows up to as they stand on top." + "\n" + "\n" + "\"Well, this is it.\" The farmer proudly motions towards it. \"The Auto-Milker 5000! Why 5000? Eh, I thought it sounded nice. But this little doohickey should help save us plenty of work when milking the cows. Now, if you don't mind...\"" + "\n" + "\n" + "He directs you onto the platform, facing out towards the rail. A hand presses lightly on your back. \"Just need you to bend forward, you can lean over the rail. The cows don't quite walk on two legs, so you gotta press on the rail for the machine's safety protocols.\" He chuckles. You do as you're told, bending forward and leaning comfortably over the thick rail, crossing your arms to rest your head. Then you jerk a little as you feel him grope about your " + ClothesBottom() + ". \"Cows don't quite wear clothes either, so we gotta get yer udder outta there.\"" + "\n" + "\n" + "Before you can protest, he pulls your " + ClothesBottom() + " " + PullUD(2) + ", letting your " + UdderDesc() + " udder hang freely. He pauses for a moment before going any further, staring at your ",True)
+            else:
+               OutputMainText("\"Really? Great! Let's get going.\" The farmer skips a bit with excitement to try his machine again. Back down into the barn cellar, the large machination awaits you. He helps you to the platform and presses your back down towards the rail. \"I really hope it works this time!\"" + "\n" + "\n" + "Again, in his eagerness, he pulls " + PullUD(2) + " your " + ClothesBottom() + " to let your " + UdderDesc() + " udder hang loose, but can't help but stare once more at your ",True)
+            if (gender == 1):
+               OutputMainText("" + CockDesc() + " shlong" + Plural(1) + "",False)
+               if (showBalls == True):
+                  OutputMainText(" and " + ballDesc() + " balls",False)
+               OutputMainText(" that hang between him and the udder.",False)
+            elif (gender == 2):
+               OutputMainText("" + VulvaDesc() + " hole" + Plural(2) + " that look" + Plural(4) + " back at him.",False)
+            elif (gender == 3):
+               OutputMainText("" + CockDesc() + " shlong" + Plural(1) + " and " + VulvaDesc() + " hole" + Plural(2) + " between him and the udder.",False)
+            elif (gender == 0):
+               OutputMainText("" + ButtDesc() + " ass between him and the udder.",False)
+            if (dairyFarmBrand == False):
+               OutputMainText(" He quickly clears his throat. \"Errr... Eh-hem... Cows don't exactly have bits like that either. Or, none that I'd look at in that sorta way... Sorry about that!\"" + "\n" + "\n" + "Averting his eyes and quickly getting off the platform, he returns to the front. Grabbing a small control board attached to the machine by a wire, he begins to press some buttons. \"Okay, this thing here controls the whole machine. I can just press this button...\" As he does so, the platform shakes beneath you." + "\n" + "\n" + "Hidden doors part and four soft cylinders rise up beneath your udder. They each separate into quarters with sheets of a flexible material being stretched out between them. They rise up to your " + TeatDesc() + " hanging teats, engulfing them. The cylindars press up into your udder slightly and slowly close around your teats, the material snuggly hugging them. All of your teats are held perfectly by the machine, tight enough to hold pressure but not so much to hurt." + "\n" + "\n" + "\"And the machine hooks the pumps up all by itself, one size fits all. Then all I have to do is press this button...\"" + "\n" + "\n" + "The machine begins to hum and you feel a sudden suction on your teats. The cylindars begin to rise and fall, pressing into the flesh of your " + UdderDesc() + " bag of milk just enough to help put pressure on the glands inside and then pull back while the vaccum within the tubes increase and descrease in rhythm.",False)
+            else:
+               OutputMainText(" After a moment, he realizes his mistake. \"Eh... heh. Sorry about that. I keep forgetting you're not one of my cows... Quite the view though!\" He tries to shrug it off with a joking laugh." + "\n" + "\n" + "Quickly escaping your backside, he steps off and heads to his control board. \"Alright, same as last time, so prepare yourself!\"" + "\n" + "\n" + "You clench a little as the hidden doors part and the four soft cylinders rise up beneath your udder. They each separate into quarters with sheets of a flexible material being stretched out between them. They rise up to your " + TeatDesc() + " hanging teats, engulfing them. The cylindars press up into your udder slightly and slowly close around your teats, the material snuggly hugging them. All of your teats are held perfectly by the machine, tight enough to hold pressure but not so much to hurt. You let out a gasp as you relax into their pleasant grip, ready as the farmer presses the next button." + "\n" + "\n" + "The machine begins to hum and you feel the gentle suction on your teats grow. The cylindars begin to rise and fall, pressing into the flesh of your " + UdderDesc() + " bag of milk just enough to help put pressure on the glands inside and then pull back while the vaccum within the tubes increase and descrease in rhythm.",False)
+            OutputMainText(" Your " + LegDesc(6) + " buckle slightly as the milk gushes from your teats, pleasantly and powerfully sucked into the machine. Your " + HipDesc() + " hips can't help but rock in tune to the rhythm, your lower bits warming up with the enjoyable sensation.",False)
+            if (dairyFarmBrand == False):
+               OutputMainText("\n" + "\n" + "As you let out a moan of relief and bliss, the farmer speaks up as though he didn't notice. \"And that button starts the milking process, almost like the machines we use on the cows already, but a bit more... thorough, so to speak. All I have to do is set up the timer - let's say... 30 minutes,\" he turns a dial on the control panel, \"and the machine will know when to let go. So, just relax and let the milk flow. I'll be right here.\"" + "\n" + "\n" + "The farmer sits in a nearby chair and tries to read a book while you gasp and moan. The machine tugs and sucks you in just the right way that... you can't help but cry out into your arms. The machine grows a bit louder as the incoming flood of milk makes it work harder, but settles back down to a steady level as you come down from your orgasm. With still plenty of milk and time to go, you melt against the railing, trying not to be too obvious about your further climaxes, though the farmer has a hard time not noticing when his machine churns louder every now and then...",False)
+            else:
+               OutputMainText("\n" + "\n" + "As you let out a moan of relief and bliss, the farmer speaks up as though he didn't notice. \"Well, I'll leave you to that for a while. We'll try 30 minutes again and cross our finger.\"" + "\n" + "\n" + "The farmer turns the dial on the board and sits in a nearby chair, trying to read a large book while you gasp and moan. The machine tugs and sucks you in just the right way that... you can't help but cry out into your arms. The machine grows a bit louder as the incoming flood of milk makes it work harder, but settles back down to a steady level as you come down from your orgasm. With still plenty of milk and time to go, you melt against the railing, trying not to be too obvious about your further climaxes, though the farmer has a hard time not noticing when his machine churns louder every now and then...",False)
+            DoNext()
+            #doListen = function():void
+            OutputMainText("10 minutes pass and you're feeling quite well." + "\n" + "\n" + "20 minutes pass and you're udder is feeling much lighter, can't be much left in there." + "\n" + "\n" + "30 minutes pass and the farmer perks up, ready for the machine to shut off." + "\n" + "\n" + "40 minutes pass and he starts looking a little worried. Though you've been milked dry, the machine continues to pull and suck on your teats, but without any fluids the pressure is rather low and merely feels silly at this point." + "\n" + "\n" + "50 minutes pass and the farmer looks at his control panel, scratching his head. He starts to look around the machine, not saying a word..." + "\n" + "\n" + "60 minutes pass and he steps before you sheepishly, hat in hand.",True)
+            if (dairyFarmBrand == False):
+               OutputMainText("\n" + "\n" + "\"Umm... There seems to be an 'issue'... The timer inside the machine must have been tripped up by some of the other circuitry or something and, well... The machine won't stop now... And I can't shut it down while it's already going without potentially busting it all apart and we can't quite get you out of there without hurting you in the process; it's got ahold of you pretty well, we wouldn't want cows slipping out and walking off on their own.\" He shuffles his feet a bit in embarassment. \"Oh, but it won't go on forever! There's a built in safety shutoff just in case something like this happens. So if you don't mind waiting a little longer, it will turn off and release you on its own. But... The safety shutoff is another 11 hours from now. Don't ask for specifics why so long; it was the shortest time the machine could have such a natural shutoff, with the way it cycles. So, uhh... try to relax. I'll make sure somebody is down here with you for the whole time. We'll take shifts and bring you food and stuff. So terribly sorry...\"" + "\n" + "\n" + "With a shrug, there's nothing you can really do but wait.",False)
+            else:
+               OutputMainText("\n" + "\n" + "\"Crud... I don't know how to say this...\" he twiddles his fingers sheepishly, \"but it seems the timer must have been tripped by one of the other changes to the circuits. So, I'm terribly sorry, but you'll be stuck here for 12 hours again... And we'll be sure to take shifts and keep you company of course. I'm just so embarassed this happened again..." + "\n" + "\n" + "With a shrug, there's nothing you can really do but wait.",False)
+            OutputMainText(" The machine persistently pumps your teats, ",False)
+            if (udderLactation > 4000):
+               OutputMainText("heavily and loudly, working hard to keep up with your milk production",False)
+            elif (udderLactation > 1000):
+               OutputMainText("strongly and steadily with your abundant milk supply",False)
+            else:
+               OutputMainText("softly and slowly",False)
+            OutputMainText(". It gets annoying after a while, but never painful. For a machine it's got a rather tender touch, never sucking so hard that your udder would ache while you're running dry. And when your udder starts to fill up again, the machine powers up, sucking out the milk as its made. With the constant gentle milking, it's hard to feel much from it. More like a lingering tingle that just won't go away. Occassionally the tingle starts to build as your nerves focus on it, growing until the machine whirs loudly and spooks whoever is accompanying you. You just grin bashfully and nod everything is alright, your face flushed with blush from the mild orgasm." + "\n" + "\n" + "The time passes slowly, the farmers changing shift and try to keep you entertained with conversations about recent events. You also lift yourself from the rail slightly or stretch below it, kicking your " + LegDesc(2) + " or even kneeling every now and then to prevent any cramping. Not exactly the most productive use of your time, save for all the milk you're producing...",False)
+            if (malonRep >= 4):
+               OutputMainText("\n" + "\n" + "Even Malon comes down to visit you one shift.",False)
+               if (dairyFarmBrand == False):
+                  OutputMainText(" She rushes over to you",False)
+                  if (malonPreg > 36):
+                     OutputMainText(", her swollen belly swaying from side to side,",False)
+                  if (malonChildren == 1):
+                     OutputMainText(" with your daughter following closely behind",False)
+                  if (malonChildren > 1):
+                     OutputMainText(" with your daughters following closely behind",False)
+                  OutputMainText(" and her breasts envelop your head as she embraces you. \"Oh dear, I had heard that you were stuck down here and I was worried. I took the next shift as soon as I could. Are you alright?!\"" + "\n" + "\n" + "You nod lazily. Bored and rather sensitive in a certain region, but alright." + "\n" + "\n" + "\"Oh, thank goodness! I know the farmer who made this thing is quite a genius, I use his umm... 'other products' sometimes too, though he doesn't know. But gosh, having to be stuck milking like that for 12 hours straight? I don't exactly envy you. But",False)
+                  if (malonChildren == 1):
+                     OutputMainText(" your daughter and",False)
+                  if (malonChildren > 1):
+                     OutputMainText(" your daughters and",False)
+                  OutputMainText(" I will keep you company for a while, at least until I need to get back to work.\" She smiles warmly.",False)
+                  if ((lactation > 0) and (milkEngorgementLevel > 0)):
+                     OutputMainText(" And seeing your " + BoobTotal + " " + BoobDesc() + " hanging tits drip through your " + ClothesTop() + " the floor, she takes the liberty of assisting you with the other milking and chuckles. \"And help take care of what the machine doesn't cover, I suppose.\"",False)
+                  OutputMainText("\n" + "\n" + "She pulls the chair in closer, stroking you hair for a bit before you begin to settle into a relaxed conversation. You occassional moans as you produce more milk make her giggle, but her giggling in turn makes her own top wet. Thankfully there's plenty of buckets around, and with the privacy available to you, she's spends some time milking herself as well, slipping into the same beat as your own gasps.",False)
+                  if (malonChildren == 1):
+                     OutputMainText(" Your daughter wanders about, exploring this strange place she has never seen before, amazed at how much milk there is.",False)
+                  if (malonChildren > 1):
+                     OutputMainText(" Your daughters wander about, exploring this strange place they have never seen before, amazed at how much milk there is.",False)
+                  OutputMainText(" After a couple hours, though, you lover needs to head back to work." + "\n" + "\n" + "\"Alright hun, you seem to be doing well enough.\" She leans in, smothering you in boob-flesh as she kisses your forehead. \"Take care, I'll see you when you're out~\" Then she leaves",False)
+                  if (malonChildren == 1):
+                     OutputMainText(" with your girl",False)
+                  if (malonChildren > 1):
+                     OutputMainText(" with your girls",False)
+                  OutputMainText(" and allows the next farmer to take the shift.",False)
+               else:
+                  OutputMainText(" She slowly walks over to you",False)
+                  if (malonPreg > 36):
+                     OutputMainText(", cradling her swollen pregnant belly,",False)
+                  if (malonChildren == 1):
+                     OutputMainText(" with your daughter following closely behind",False)
+                  if (malonChildren > 1):
+                     OutputMainText(" with your daughters following closely behind",False)
+                  OutputMainText(" and covers you head with her breasts as she hugs you. \"Hehe, I heard you got caught in this thing again and thought I would take a shift to keep you company. Though gosh, with how much this thing is milking you, I'm starting to get a little jealous.\" She giggles at the thought. But then her shirt begins to blotch from the jiggling and she pulls the chair in closer. With plenty of buckets down here and all the privacy, she's able to start milking right in front of you",False)
+                  if ((lactation > 0) and (milkEngorgementLevel > 0)):
+                     OutputMainText(" and takes the liberty to relieve your own chest of milk, since the machine is focused elsewhere",False)
+                  OutputMainText(". A nice conversation picks up as milk flies everywhere and helps the time pass quickly.",False)
+                  if (malonChildren == 1):
+                     OutputMainText("\n" + "\n" + "\"Mommy, mommy, can I be hooked up to the machine too? It looks like fun!\" Your daughter stands beside you, one hand reaching out to grab the rail so she can bend forward a little, the other hand pulling up her white dress. Her naked rump sticking out, she tries to pull the teats of her small exposed udder to try and mimic you." + "\n" + "\n" + "The sight makes the two of you laugh. \"Sorry hun, but the machine only works for one person right now. Plus you're not big enough for it yet. Maybe one day.\" She gives the girl a pat on the head. Unphased, the girl just shrugs and continues to play like she's being milked like you, mooing in tune to your own gasps.",False)
+                  if (malonChildren > 1):
+                     OutputMainText("\n" + "\n" + "\"Mommy, mommy, can we be hooked up to the machine too? It looks like fun!\" Your daughters stand on boths sides, hands grabbing the rail so they can bend forward a little while their other hands pull up their white dresses. Naked rumps sticking out all around, they try to pull the teats of their small exposed udders to try and mimic you." + "\n" + "\n" + "The sight makes the two of you laugh. \"Sorry sweeties, but the machine only works for one person right now. Plus you're not big enough for it yet. Maybe one day.\" She gives the girls pats on their heads. Unphased, they continue to play like they're being milked like you, mooing in tune to your own gasps.",False)
+                  OutputMainText("\n" + "\n" + "After a couple hours, your lover needs to head back to work. \"Alright hun, you seem to be enjoying yourself.\" She leans in, smothering you in boob-flesh again as she kisses your forehead. \"Take care, I'll see you when you're out~\" Then she leaves",False)
+                  if (malonChildren == 1):
+                     OutputMainText(" with your girl",False)
+                  if (malonChildren > 1):
+                     OutputMainText(" with your girls",False)
+                  OutputMainText(" and allows the next farmer to take the shift.",False)
+               if ((lactation > 0) and (milkEngorgementLevel > 0)):
+                  MilkAmount(1)
+            DoNext()
+            #doListen = function():void
+            OutputMainText("After a moist nap and a few more hours, the inventor of the infernal thing comes back down. \"Well, it should be just about finishing up. I hope you had a good time?\" He tries to stifle a chuckle at the nether fluids that stretch down from your backside after all the orgasms. He then picks up the control board and waits for the completion cycle.",True)
+            if (dairyFarmBrand == False):
+               OutputMainText("\n" + "\n" + "While he focuses on the board, a new sound starts to come from the machine. Levers and gears churn upon each other as a rod reachs out from an opening. At the end of the rod is some sort of circular symbol made of metal, with some kind of image raised beyond it. The worrisome part, however, is how it starts to glow red and points straight to your rump." + "\n" + "\n" + "\"Oh, crap, I forgot about that!\" The farmer rushes to get behind you, but doesn't make it in time." + "\n" + "\n" + "You cry out loudly in pain as the metal presses into your " + ButtDesc() + " butt and sizzles against your flesh!" + "\n" + "\n" + "The farmer grabs some cool nearby milk and quickly tosses it at your bum, extinguishing the heat and eliminating much of the pain. A bit too late, though, as the rod begins to pull back, leaving a rather obvious mark on your tush. The silhouette of a slightly tipped bucket with some fluid splashing out over the rim." + "\n" + "\n" + "\"Oh dear, I'm so sorry, I forgot about the branding cycle! It was automated to help identify new cows as our own! That means you, uh... kinda belong to this dairy farm now.\" He laughs in a feigned attempt to lighten the situation, but quickly shuts up as your eyes shoot daggers at him. \"Well, on the bright side, that means the machine is complete...\" As he says that, the machine livens up as parts begin to move.",False)
+            OutputMainText("\n" + "\n" + "You hear a wet sucking of air as the pipes widen. Your udder flinches as the air nips at your raw teats, so sensitive after having been held for so long. And as the cylinders lower, you could swear the teats are longer, stretched and swollen from all the pumping..." + "\n" + "\n" + "And as the cylinders disappear into the floor, you slump to the ground. \"Woah there, I gotcha!\" The farmer catches you before you hurt yourself." + "\n" + "\n" + "Having stood bent over for so long, with so many orgasms, your " + LegDesc(2) + " " + LegPlural(2) + " weak. You roll back onto your rear and sit upon the cool platform, curling up around your udder. It aches slightly from the hours and hours of milking, yet spurts of milk still squirt out of habit. You slowly regain your strength as the farmer talks." + "\n" + "\n" + "\"Again, I'm so sorry you had to go through all that. I'm very grateful you were willing to test the machine for me, though, it's these kinds of kinks I've gotta work out. Here, this is your payment, plus some 'hazard pay', and a couple jugs of milk that you, uhh... helped make. I hope this doesn't sour your experience of the farm and maybe you could come back some time and test again once I've tinkered with the machine more.",False)
+            if (dairyFarmBrand == True):
+               OutputMainText(" Thanks so much for doing this again too, I'm " + "<i>" + "sure" + "</i>" + " I'll have this fixed next time.",False)
+            OutputMainText("\". He hands you your payment and helps you up to your " + LegDesc(10) + ". You udder hangs down, larger and heavier than before... It takes several steps for you to get into the 'swing' of things, but you cover it back up with your " + ClothesBottom() + " and leave the farm, eager to do something else...",False)
+            DoLust(-math.floor(sen / 2) * 3,2,4)
+            DoCoin(70)
+            MilkAmount(2)
+            LactChange(2,50)
+            udderSize += 4
+            teatSize += 5
+            teatPump += 40
+            udderPlay += 100
+            AddManyItems(501)
+            if (dairyFarmBrand == False):
+               dairyFarmBrand = True
+            hrs += 13
+            exhaustion -= 4
+            skipExhaustion = True
+            DoEnd()
+         else:
+            OutputMainText("\"Aww, alright. Thanks anyways; maybe next time. You have a good day now, then.\" The farmer gives you a nod and lets you go on your way.",True)
+            hrs = 1
+            DoEnd()
+   elif (chance == 3):
+      BC()
+      OutputMainText("As you head towards the dairy farm, one of the farmers spots you and walks over to greet you." + "\n" + "\n" + "\"Hello! If you want some of our milk, you should head over to Softlik. But if you're here for some of our DairE Pills, the supplement that helps our cows produce so much delicious milk, then look no further, you can buy one from me!\"" + "\n" + "\n" + "\"Would you like to buy one? Only 30 coins!\"",True)
+      ButtonConfirm()
+      #this.doListen = function():void
+      if (buttonChoice == 6):
+         if (coin < 30)
+            OutputMainText("\"Sorry friend, you don't seem to have enough coins. Come back later when you do and we can try to deal again!\"" + "\n" + "\n" + "He gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
+            hrs = 1
+            DoEnd()
+         else:
+            OutputMainText("\"Alright, here you go friend!\" He rummages through one of his pockets in his overalls and pulls out a large pill, handing it to you. \"Come back later if you need any more!\"" + "\n" + "\n" + "He gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
+            DoCoin(-30)
+            ItemAdd(211)
+            hrs = 2
+            DoEnd()
+      else:
+         OutputMainText("\"Well, come back again later if you change your mind. And have a nice day!\"" + "\n" + "\n" + "He gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
+         hrs = 1
+         DoEnd()
+   elif (chance == 4):
+      if ((Percent() <= 25) or ((malonRep > 3) and (Percent() <= 50))):
+         BC()
+         ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
+         templist = [5, "Inspect", 7, "Leave"]
+         OutputMainText("Having avoided any farmers, you approach one of the barns. Your ears perk up as you hear something inside. A machine sounds like its pumping, yet you can see no signs of cows nearby or the farmers that take care of them." + "\n" + "\n" + "\n" + "What do you do?",True)
+         DoButtonChoices(templist)
+         #this.doListen = function():void
+         if (buttonChoice == 5):
+            if (malonRep < 1):
+               OutputMainText("You quietly open the door and look inside, your eyes going wide at what you see. There are no cows, yet the automatic milker is churning away. In the stalls where the cows should be, stands a young woman, bent forward and hanging onto the guardrail to hold herself up. She wears a long purple skirt with a brown apron, her large rump rocking from side to side as a long tail with a hairy tip dances above in tune. Long red hair dangles down from her shoulders, with long, round ears sticking out. She heaves with each pump of the milker, letting out soft gasping moos." + "\n" + "\n" + "Her white shirt pushed down around her belly and her yellow shawl draped over the rail beside her, her enormous naked breasts hang down towards the floor. They're larger than watermelons, with nipples several inches long encompassed by the milking cups. Gushes of milk flow through the milker's hoses with each pump, her giant breasts being drained..." + "\n" + "\n" + "\n" + "What now?",True)
+            else:
+               OutputMainText("You quietly open the door and look inside, a smirk crossing your face. There are no cows, yet the automatic milker is churning away. In the stalls where the cows should be, stands Malon, the young farm-hand, bent forward and hanging onto the guardrail to hold herself up, her large rump rocking lazily back and forth as her bovine tail swings above in tune. Her white shirt is scrunched down around her belly, her enormous naked breasts hanging down towards the floor. Her nipples are several inches long and encompassed by the milking cups, gushes of milk flow through the milker's hoses with each pump, her giant breasts being drained. In between gasps, she lets out soft moos...",True)
+               if (malonRep == 4):
+                  if ((malonPreg > 36) and (malonPreg <= 72))
+                     OutputMainText("\n" + "\n" + "She rubs her slightly protruding belly, pregnant with one of your children...",False)
+                  elif ((malonPreg > 72) and (malonPreg <= 144)):
+                     OutputMainText("\n" + "\n" + "Both of her hands rub around her giant belly which hangs nearly as low as her tits, pregnant with one of your children. You don't know how she managed to even pull her shirt down like that...",False)
+                  elif ((malonPreg > 144) and (malonPreg <= 216)):
+                     OutputMainText("\n" + "\n" + "Her flow of milk through the tubes seems even more powerful than before. You're surprised at how large her tits have grown, her nipples nearly scraping along the ground as she bends over. However, her giant belly that she hugs and caresses as she's milked reaches even further, the hay on the floor tickling her protruding belly button. She has propped it up against the guardrail to help maintain her balance, though she doesn't seem terribly uncomfortable.",False)
+               elif ((malonRep == 5) and (malonChildren > 0)):
+                  outputMainText("\n" + "\n" + "It seems as though she has finally found a moment to get away from your offspring and have some time to herself.",False)
+               OutputMainText("\n" + "\n" + "\rWhat now?",False)
+            BC()
+            ButtonFunctions.Visible(0,1,0,0,1,0,1,0,0,1,0,0)
+            templist = [2, "Interrupt", 5, "Assist", 10, "Leave"]
+            if (malonRep < 1):
+               templist.append(7)
+               templist.append("Rape")
+            else:
+               templist.append(7)
+               templist.append("Fuck")
+            DoButtonChoices(templist)
+            #doListen = function():void
+            if (buttonChoice == 2):
+               OutputMainText("You tap on the rail beside her, notifying her of your presence. Her eyes go wide as she jumps, her tits bouncing and wobbling around the rail as she looks up at you.",True)
+               if (malonRep < 0):
+                  OutputMainText("\r\rWith fear in her eyes, she grabs her shawl from the rail and runs in the opposite direction until the cups pop from her nipples with a milky flood. Her breasts swing from side to side, more milk splashing about the walls as she goes, she disappears out another door, leaving you with nothing.",false);
+                  stats(0,-1,0,0);
+                  doSexP(5);
+                  hrs = 2;
+                  doEnd();
+               }
+               else if(malonRep > 2)
+               {
+                  outputMainText("\r\r\"Meanie. Why\'d you go and scare me like that?\" She winks and sticks out her tongue at you.\r\rHer eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\r\rShe takes a moment before she comes down from her high. \"Mmm... I\'m just going to hang out here for a bit. Feel free to take the bottle from the machine. It\'s really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",false);
+                  hrs = 2;
+                  doSexP(2);
+                  itemAdd(214);
+                  doEnd();
+               }
+               else if(malonRep == 2)
+               {
+                  outputMainText("\"O-Oh, umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it.\r\r\"I-I just got so full that I, umm...\" Her eyes glance from side to side. \"I-I know it\'s very much like a cow, but with all the work around here and how long it takes to do it manually...\" Sadness fills her face at having been caught, despite what you said before. \"D-Don\'t worry, I\'ll clean up now...\"\r\rHer ears drooping, her tail pushing against her dress trying to hide between her legs, she pulls the cups from her long nipples and lets the excess milk dribble off onto the floor. Turning away and trying to avoid any eyecontact, she wipes herself down with the yellow shawl and pulls up her shirt. She looks over her shoulder, her eyes to the ground, and says meekly, \"Sorry...\", before heading out the other end of the building, leaving you to head back to Softlik.",false);
+                  hrs = 2;
+                  doEnd();
+               }
+               else if(malonRep == 0 || malonRep == 1)
+               {
+                  if(malonRep == 0)
+                  {
+                     outputMainText("\r\r\"Uhh... umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it. \"Who-Who\'re you? Please, please don\'t tell anyone I\'ve been in here!\"",false);
+                  }
+                  if(malonRep == 1)
+                  {
+                     outputMainText("\r\r\"Oh, whew...\" She puts a hand to her chest. \"It\'s just you. I-I\'m not exactly supposed to be here, but, well, I\'m sure you can see the benefits...\" She stands there awkwardly, the machine still sucking milk from her long nipples. \"You... You won\'t tell anyone, will you?\"",false);
+                  }
+                  viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                  viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                  buttonWrite(5,"Tell");
+                  buttonWrite(7,"Don\'t Tell");
+                  doListen = function():void
+                  {
+                     if(buttonChoice == 5)
+                     {
+                        outputMainText("With tears welling up in her eyes, she rips away from the cups, letting them pop from her nipples with a milky flood. She turns and runs the other way, her tits bouncing from side to side and milk splashing across the walls as she goes, until she disappears out another door, leaving you with nothing.",true);
+                        stats(0,-3,0,0);
+                        malonRep = -1;
+                        hrs = 2;
+                        doEnd();
+                     }
+                     if(buttonChoice == 7)
+                     {
+                        if(malonRep == 0)
+                        {
+                           outputMainText("\"Ahh, thank you so much!\" She looks like she wants to hug you, but she\'s a bit tethered at the moment... and half naked.\r\rShe begins to gather herself, trying to turn away as she removes the milk-cups. You get a short flash of her over-ample chest before she pulls her shirt back into position, rubbing her nipples so they don\'t show through as well and dabbing the resulting blotch with her shawl.\r\r\"M-My name is Malon. I\'ve been this way most of my life... As a child, I always loved animals. A little too much, you could say... I liked the cows so much that I wanted to be like them. And so, I took one of their DairE Pills... To cut a long story short, I was happy with the results at first, becoming more like my bovine friends. Until eventually I grew up and realized my predicament. And, well, ever since then, I\'ve been like this...\"\r\rShe shuffles uncomfortably in position for a bit, not quite sure what to say. She glances from side to side before deciding to step over to the milk machine, grabbing a bottle that was freshly made. Very freshly.\r\r\"I-I don\'t know how to thank you for not ruining one of the few pleasures of my life, but at least take this.\" She hands you the bottle as she bows her head.\r\rIn an instant, she turns and hurries out of the barn, her long tail squeezing against her backside and outlining her butt even more.",true);
+                           malonRep = 1;
+                           doSexP(20);
+                           stats(0,1,0,0);
+                           hrs = 2;
+                           itemAdd(214);
+                           doEnd();
+                        }
+                        if(malonRep == 1)
+                        {
+                           outputMainText("\"Hehe, thanks. Just a bit more to go...\" Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\r\rShe takes a moment before she comes down from her high. \"Mmm... I\'m just going to hang out here for a bit. Feel free to take the bottle from the machine. It\'s really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",true);
+                           hrs = 2;
+                           doSexP(5);
+                           itemAdd(214);
+                           stats(0,1,0,0);
+                           doEnd();
+                        }
+                     }
+                  };
+               }
+            }
+            elif(buttonChoice == 5)
+            {
+               if(malonRep < 1)
+               {
+                  outputMainText("The woman doesn\'t see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneath the tubes of the milking cups.\r\r\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as you wrap your hands around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. Unable to resist, her breasts weighing her down and your hands keeping it that way, she rests upon the guardrail and waits for you to finish, her large ears drooping in embarrassment.\r\rEvery few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"",true);
+                  doNext();
+                  doListen = function():void
+                  {
+                     if(buttonChoice == 6)
+                     {
+                        outputMainText("She huffs for a few moments, her mind returning to its senses. The realization of her excessively cattle-like behaviour, especially in front of you, embarrasses her immensely. She jerks backward to stand up, a breast swinging out and slapping you in the face with a wet kiss from her nipple, before she turns and runs in the opposite direction. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in to further amplify her endowments.\r\rA bit afraid of what happens next, you decide it best to disappear yourself.",true);
+                        ++malonRep;
+                        if(malonRep == 1)
+                        {
+                           doNext();
+                           doListen = function():void
+                           {
+                              outputMainText("However, on your way out, you feel a tug on your " + clothesTop() + ".\r\rYou turn around to see the woman again, covering her chest with the yellow shawl she had left behind.\r\r\"Uhh... umm... Th-that was a bit rude of me. I\'m sorry... You seem like you were genuinely trying to help.\" She fumbles a little as she tries to hold the shawl to her chest with a single arm, managing to let a nipple pop out with a blush before she gets it right. She holds out her free hand to shake yours. \"I\'m Malon.\"\r\rYou take her hand and shake with the formal introduction.\r\r\"I\'m... kinda ashamed for being such a... well, cow. Let\'s just say I liked them too much when I was younger and took some DairE Pills to act like them. And then I wound up being a little too much like them, resulting in some rather... bothersome attributes for a woman like me. Anyways, here. At least you should get something for your efforts.\"\r\rShe turns away and adjusts her shirt back into place so she doesn\'t have to worry about her shawl, though her naked breasts are still visible on either side of her body. Then she picks up the bucket you had used and pours it into one of the bottles meant for the milk of normal cows, handing it to you.\r\r\"I-It\'s not much, but that\'s all I can offer at the moment...\"\r\rAfter you take the milk, she says her goodbyes and tells you she\'ll be more welcoming from now on, leaving you to head back to Softlik.",true);
+                              stats(1,2,1,2);
+                              doSexP(20);
+                              itemAdd(214);
+                              hrs = 2;
+                              doEnd();
+                           };
+                        }
+                        else
+                        {
+                           stats(1,1,1,1);
+                           doSexP(2);
+                           hrs = 2;
+                           doEnd();
+                        }
+                     }
+                  };
+               }
+               else if(malonRep >= 1)
+               {
+                  outputMainText("Malon doesn\'t see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneathe the tubes of the milking cups.\r\r\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as she recognies you and your hands wrap around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. With a small smile, though still a slight blush, she allows you to take care of her milk for her.\r\rEvery few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"\r\rShe takes a few moments to come down from her climax, heaving slightly, her breasts bobbing up and down. Then she leans over the rail, her tits squirting milk across your lap, as she kisses you on the forehead.\r\r\"Thanks for that\", she whispers. \"Feel free to take a bottle and fill it for your kind efforts.\"\r\rShe dozes off a little on the rail, her tail flicking back and forth contently as she reflects on her orgasm, her nipples dripping into the hay on the ground.\r\rNot wanting to disrupt her pleasant thoughts, you take a bottle of her milk and leave.",true);
+                  stats(1,1,1,0);
+                  itemAdd(214);
+                  hrs = 2;
+                  if(malonRep == 1)
+                  {
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("You don\'t get far, however, as you feel a tug at your " + clothesTop() + " from behind.\r\rYou turn to see Malon huffing a little, her shirt covered with milk, as she had ran to catch up with you.\r\r\"Umm... I... I just wanted to thank you for being so kind to me... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I\'ll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can\'t help but think that they\'re right. I\'m nothing but a big fat cow...\"\r\rHer head hangs low, her bovine ears drooping in shame.\r\r\rDo you want to tell her that she shouldn\'t act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",true);
+                        viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                        viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                        buttonWrite(5,"Don\'t Moo");
+                        buttonWrite(7,"Moo");
+                        doListen = function():void
+                        {
+                           if(buttonChoice == 5)
+                           {
+                              outputMainText("You nod and tell her that it\'d probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, althouth the effort merely shows off her large rump even more...",true);
+                              stats(0,2,0,-2);
+                              doSexP(5);
+                              malonRep = 2;
+                              doEnd();
+                           }
+                           if(buttonChoice == 7)
+                           {
+                              outputMainText("You smile and pat her on the head, telling her that she shouldn\'t be ashamed of being a cow. There\'s a lot of races out there that are like other animals, so she\'s more like a new race on her own.\r\rHearing your uplifting words, her head rises back up with a big, goofy smile, her ears nearly flapping. \"M-Mooo?\"\r\rYou nod in acceptance.\r\rShe giggles loudly, lunging out at you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your " + boobDesc() + " chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flits about happily behind her.\r\r\rAs you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...",true);
+                              stats(0,1,0,2);
+                              doSexP(25);
+                              malonRep = 3;
+                              itemAdd(215);
+                              doEnd();
+                           }
+                        };
+                     };
+                  }
+                  else
+                  {
+                     doEnd();
+                  }
+               }
+            }
+            elif(buttonChoice == 7)
+            {
+               if(malonRep < 1)
+               {
+                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you pull her narrow tail to make sure she can\'t stand.",true);
+                  if(cockTotal > 0)
+                  {
+                     if(cockSize * cockSizeMod <= eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks in terror as you plunge your " + cockDesc() + " cock into her hungry sex.\r\r\"No, don\'t!\" She cries out in fear. \"Somebody help!\"\r\rNobody hears her over the machine that continues to pump away at her breasts. She whines and mewls as you churn her insides, pumping in tune to the machine. Her body defies her and begins to quiver around your cock, a gush of milk stuttering through the tubes. Her mouth opens wide to shout one last time but all that comes out is a long \"MOOOOOO!\"",false);
+                     }
+                     if(cockSize * cockSizeMod > eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks in terror as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you\'re literally tit-fucking her from behind.\r\r\"No, don\'t!\" She cries out in fear and bewilderment.\r\rHowever, the shouts of dissension quickly die down as you thrust your cock back and forth across her clit and through her cleavage, pumping in tune to the machine. The vibrations reverberate through her chest and connect to the sensations from her clit, making her whole body begin to quiver.\r\rA moment later, her mouth yawns wide to either shout or moan, but what comes out is nothing but a loud \"Moooooo!\"",false);
+                     }
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("Before you can come yourself, the loud bovine expression makes the girl jump with embarrassment, her tail slipping from your hand",true);
+                        if(knot == true)
+                        {
+                           outputMainText(" and tries to pull herself from your cock. She recoils at first, your knot yanking at her tender cunt, but her will is greater and she tugs again with a yelp, making your erection ache a little from the force as it flies out",false);
+                        }
+                        else
+                        {
+                           outputMainText(" and your cock sliding out",false);
+                        }
+                        outputMainText(" from between her legs as she turns to run. The milking cups pop from her long nipples, flinging milk everywhere as she runs away, her large breasts swinging from side to side and her skirt a mess.",false);
+                        if(cockSize * cockSizeMod <= eVagLimit(56))
+                        {
+                           outputMainText("\r\rObviously having thoroughly terrified the girl, you turn the opposite direction to make a quick getaway yourself, your cock hard in your " + clothesBottom() + "...",false);
+                           malonRep = -1;
+                        }
+                        if(cockSize * cockSizeMod > eVagLimit(56))
+                        {
+                           outputMainText("\r\rYou\'re not quite sure if it was because of your actions that frightened her so, or her own reaction to them... Either way, you think it best to not dawdle, despite your cock still being hard...",false);
+                        }
+                        stats(0,-3,2,0);
+                        doSexP(5);
+                        doLust(30,0);
+                        hrs = 2;
+                        doEnd();
+                     };
+                  }
+                  if(cockTotal < 1)
+                  {
+                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin.\r\r\"No, don\'t!\" She whines as you nibble her fat clit and lick through her folds.\r\rHowever, the shouts of dissension quickly die down as your tongue works its way into her supple hole. Muffled whines still escape her lips every now and again, but as the machine works at her breasts in tune to your devouring of her sex, her wide hips soon begin to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air...",false);
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and runs away. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in until it blotches with her feminine mess.\r\rNot quite sure what she was thinking, you decide it best to disappear yourself.",true);
+                        stats(0,-1,1,0);
+                        doSexP(5);
+                        doLust(Math.floor(lib / 5),1);
+                        hrs = 2;
+                        doEnd();
+                     };
+                  }
+               }
+               if(malonRep == 1 || malonRep == 2)
+               {
+                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",true);
+                  if(cockTotal > 0)
+                  {
+                     if(cockSize * cockSizeMod <= eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks in terror as you plunge your " + cockDesc() + " cock into her hungry sex.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly recognizes you and begins to whine. \"Please, not like this!\"\r\rYou ignore her pleas and continue anyways. She whines and mewls as you churn her insides, pumping in tune to the machine. Her body soon reacts and begins to quiver around your cock, a gush of milk stuttering through the tubes. Her mouth opens wide to shout one last time but all that comes out is a long \"MOOOOOO!\"",false);
+                     }
+                     if(cockSize * cockSizeMod > eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks in terror as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you\'re literally tit-fucking her from behind.\r\r\"No, don\'t!\" She cries out in fear and bewilderment. However, she quickly recognizes you and bites her lip; not entirely happy with the situation but not fighting much more either.\r\rYou thrust your cock back and forth across her clit and through her cleavage, pumping in tune to the machine. The vibrations reverberate through her chest and connect to the sensations from her clit, making her whole body begin to quiver.\r\rA moment later, her mouth yawns wide to either shout or moan, but what comes out is nothing but a loud \"Moooooo!\"",false);
+                     }
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("Before you can come yourself, the loud bovine expression makes the girl jump with embarrassment, her tail slipping from your hand and ",true);
+                        if(knot == true)
+                        {
+                           outputMainText(" reaches into her pussy with her fingers, wincing as she squeezes your swollen knot, slipping it out ",false);
+                        }
+                        else
+                        {
+                           outputMainText(" your cock sliding out ",false);
+                        }
+                        outputMainText("from between her legs as she turns and stands. The milking cups pop from her long nipples, flinging milk everywhere as she turns to face you.\r\r\"P-Please! I don\'t want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence.",false);
+                        outputMainText("\r\rThe way she said it didn\'t seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm, your cock even harder than before...",false);
+                        stats(0,-1,1,0);
+                        doSexP(5);
+                        doLust(20,0);
+                        hrs = 2;
+                        doEnd();
+                     };
+                  }
+                  if(cockTotal < 1)
+                  {
+                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin.\r\r\"No, don\'t!\" She whines as you nibble her fat clit and lick through her folds.\r\rHowever, the shouts of dissension quickly die down as your tongue works its way into her supple hole. Muffled whines still escape her lips every now and again, but as the machine works at her breasts in tune to your devouring of her sex, her wide hips soon begin to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air...",true);
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and turns towards you.\r\r\"P-Please! I don\'t want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence, her tail pushing the skirt between her legs in until it blotches with her feminine mess.\r\rThe way she said it didn\'t seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm.",true);
+                        stats(0,-1,1,0);
+                        doSexP(5);
+                        doLust(Math.floor(lib / 5),1);
+                        hrs = 2;
+                        doEnd();
+                     };
+                  }
+               }
+               if(malonRep == 3)
+               {
+                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",true);
+                  if(cockTotal > 0)
+                  {
+                     if(cockSize * cockSizeMod <= eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks as you plunge your " + cockDesc() + " cock into her hungry sex.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly recognizes you and her head descends behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness.\r\rYou nod with a smile.\r\r\"O-Okay!\" She forces a smile back, then braces herself against the guardrail.\r\rShe quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits.",false);
+                        if(percent() <= 20)
+                        {
+                           malonRep = 4;
+                           malonPreg = 0;
+                        }
+                     }
+                     if(cockSize * cockSizeMod > eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you\'re literally tit-fucking her from behind.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly recognizes you and her head descends behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness.\r\rYou nod with a smile.\r\r\"O-Okay!\" She forces a smile back, then braces herself against the guardrail.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
+                     }
+                     outputMainText("\r\rYou thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward, hugging her tight as she begins to shudder. Her thighs clench and her hands wring the rail. Her mouth yawns widely. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as your cock begins to gush with cum, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",false);
+                     cumAmount();
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face.\r\r\"Th-Thank you so much!\" Her lips reach out and softly kisses your own...\r\r\rThoroughly satisfied, the two of you spend the next hour",true);
+                        if(knot == true)
+                        {
+                           outputMainText("waiting for your knot to deflate before ",false);
+                        }
+                        outputMainText("cleaning up all the cum and milk you left everywhere... But you\'re quite happy nevertheless.\r\rEventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she\'s caught with her little pleasure.",false);
+                        stats(0,2,2,2);
+                        doLust(-Math.floor(sen / 2),2,1);
+                        doSexP(20);
+                        if(malonRep == 3)
+                        {
+                           malonRep = 5;
+                        }
+                        hrs = 3;
+                        doEnd();
+                     };
+                  }
+                  if(cockTotal < 1)
+                  {
+                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly turns and recognizes you, her head descending behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness.\r\rYou nod with a smile.\r\r\"O-Okay!\" She forces a smile back, then braces herself against the guardrail.\r\rShe pushes her plump rump towards your face, letting you nibble her fat clit and lick through her folds. Her hips rock beack and forth while your tongue works its way into her supple hole, her arousal drizzling down your face. Soft moans escape her lips every now and again, and increase as the machine works at her breasts in tune to your devouring of her sex, her breasts beginning to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you. Her mouth yawns widely. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as you bite down on her orgasming clit, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",true);
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, hugging her tits to your chest.\r\r\"Th-thank you!\" She presses her lips to your own, kissing you through her own slickness that covers your face.\r\rThe two of your relax in each others arms. However, eventually she has to get back to her duties before she is missed. She pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",true);
+                        stats(0,2,2,2);
+                        doSexP(20);
+                        if(malonRep == 3)
+                        {
+                           malonRep = 5;
+                        }
+                        doLust(Math.floor(lib / 4),0);
+                        hrs = 2;
+                        doEnd();
+                     };
+                  }
+               }
+               if(malonRep >= 4)
+               {
+                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",true);
+                  if(cockTotal > 0)
+                  {
+                     if(cockSize * cockSizeMod <= eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks as you plunge your " + cockDesc() + " cock into her hungry sex. She immediately turns to spot her assailent and her face calms as she begins to smile.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits.",false);
+                        if(malonRep == 5 && percent() <= 20)
+                        {
+                           malonRep = 4;
+                           malonPreg = 0;
+                        }
+                     }
+                     if(cockSize * cockSizeMod > eVagLimit(56))
+                     {
+                        outputMainText(" She shrieks as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt,",false);
+                        if(malonRep == 4)
+                        {
+                           if(malonPreg < 54)
+                           {
+                              outputMainText(" wedging it between her hanging breasts until you\'re literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn\'t terribly surprised to see you.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
+                           }
+                           if(malonPreg >= 54 && malonPreg < 72)
+                           {
+                              outputMainText(" curving around her pregnant belly until it wedges between her hanging breasts, literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn\'t terribly surprised to see you.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
+                           }
+                           if(malonPreg >= 72 && malonPreg < 108)
+                           {
+                              outputMainText(" diverting down towards the ground from her massive belly until your ramming into the hay. She turns to spot who could possibly hump her belly likse that and isn\'t terribly surprised.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
+                           }
+                           if(malonPreg >= 108)
+                           {
+                              outputMainText(" diverting down towards the ground from her massive belly until you\'re lifting her slightly as your cock wedges between the belly and the hay on the floor. She turns to spot who could possibly hump her belly likse that and isn\'t terribly surprised.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
+                           }
+                        }
+                        else
+                        {
+                           outputMainText(" wedging it between her hanging breasts until you\'re literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn\'t terribly surprised to see you.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
+                        }
+                     }
+                     outputMainText("\r\rYou thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward,",false);
+                     if(malonRep == 3 && malonPreg >= 54)
+                     {
+                        outputMainText(" hugging her and her pregnant belly ",false);
+                     }
+                     else
+                     {
+                        outputMainText(" hugging her ",false);
+                     }
+                     outputMainText("tight as she begins to shudder. Her thighs clench and her hands wring the rail, her mouth proudly yawning wide with a loud \"Moooooooo!\", squeezing your cock until you gush with cum.",false);
+                     cumAmount();
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face.\r\r\"Thank you~\" She kisses you...\r\r\rThoroughly satisfied, the two of you spend the next hour cleaning up all the cum and milk you left everywhere... But you\'re quite happy nevertheless.\r\rEventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she\'s caught with her little pleasure.",true);
+                        stats(0,2,2,2);
+                        doSexP(2);
+                        doLust(-Math.floor(sen / 2),2,1);
+                        hrs = 3;
+                        doEnd();
+                     };
+                  }
+                  if(cockTotal < 1)
+                  {
+                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin. She turns to see who it is and giggles.\r\r\"Don\'t frighten me like that!\" She presses back against your face as punishment, stuffing you into the cheeks of her plump rump.\r\rThe \'punishment\' quickly subsides as you nibble her fat clit and lick through her folds. Her hips rock beack and forth while your tongue works its way into her supple hole, her arousal drizzling down your face. Soft moans escape her lips every now and again, and increase as the machine works at her breasts in tune to your devouring of her sex, her breasts beginning to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air.",true);
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, kissing you through her own slickness that covers your face.\r\r\"Thank you~\"\r\rHaving to get back to her duties, however, she pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",true);
+                        stats(0,2,2,2);
+                        doSexP(2);
+                        doLust(Math.floor(lib / 4),0);
+                        hrs = 2;
+                        doEnd();
+                     };
+                  }
+               }
+            }
+            elif(buttonChoice == 10)
+            {
+               outputMainText("You turn around and head back to Softlik, deciding it best to leave her to her privacy.",true);
+               hrs = 1;
+               doEnd();
+            }
+            };
+         }
+         elif (buttonChoice == 7)
          {
-            this.outputMainText("While taking a nice stroll along the beach, you see the silhouette of somebody sunning themselves on the sand in the distance. Judging by the ample curves at their chest, they seem to be a rather well-endowed in the breast department. Considering you can also spot the plump perk nipples protruding unrestrained from where you are, you also assume the person is likely to be nude. And judging by the large, swollen belly, you suspect that \'she\' may be quite pregnant as well...\r\rWould you like to inspect her more closely?",true);
+            outputMainText("A little too dangerous, and probably illegal with the whole trespassing thing, you turn around and walk away.",true);
+            hrs = 1;
+            doEnd();
+         }
+         };
+      }
+      else if(this.malonRep > 0)
+      {
+         if(this.malonRep == 1 && (this.milkEngorgementLevel > 0 || this.udderEngorgementLevel > 0))
+         {
+            this.outputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + this.clothesTop() + " and shouts to the other workers that she\'s got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her \'condition\'. Nevertheless, she smiles as she heads towards you.\r\r\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",true);
             this.buttonConfirm();
             this.doListen = function():void
             {
                if(buttonChoice == 6)
                {
-                  outputMainText("Moving closer, you squint in an attempt for a better view. However, her body seems moist as the sun reflects off her slick skin easily, making it difficult for you to see. It\'s not until you\'re nearly on top of her that you can clearly make out what she is...\r\rShe has curly hair that hangs past her shoulders, coral pink in color. It looks like it\'s completely drenched, despite laying out in the sun, and has bits of seaweed caught within it.\r\rHer face is slightly slightly round, with incredibly smooth looking skin that is oddly pinker than usual, though not nearly as noticeable as her hair. She wears a very relaxed and content expression, her eyes closed as she soaks up the warmth of the sun.\r\rUpon her chest heaves two quite enourmous breasts, each larger than her head. She doesn\'t seem to be completely nude as two starfish cover her nipples. They stick out against her breasts quite far, easily mistaken from your first observations. They also pulsate slightly, their twitching causing the fleshy mounds to jiggle, as though they were suckling from her.\r\rAs suspected, her belly is quite gravid indeed. Her slender hands caress it as she lays there, practically glowing with her engorged fertility. In relation to the rest of her torso, the belly seems far too large for her. Although, as you look further still, it\'s no surprise that she can manage to carry it...",true);
+                  outputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she\'s quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom.\r\rIn the center of the room sits a good-sized bed, with downy blankets and soft mattress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. Malon leads you towards her bed, motioning for you to sit.\r\r\"Just relax and I\'ll take care of it for you.\" She speaks sweetly.",true);
                   doNext();
                   doListen = function():void
                   {
-                     outputMainText("Her \'butt\' is large for her slender torso, her hips wider than you\'d expect. And she has no legs...\r\rEight large, long tentacles squirm idly below her waist. They share a similar tone of pink as her hair, though much deeper and nearly purple, with a thin membrane of fleshy webbing between them. Their undersides are riddled with little suction cups, popping and sticking onto each other as they writhe. And as you step too close, one twitches out and touches you, realizing you\'re there.\r\rThe octopus girl\'s eyes snap open. They\'re large and nearly all a deep purple in color, with a slight amount of white around the edges. She glares at you in an instant and smirks. And you\'re quite unsure if it\'s a playful smirk or a predatory one...\r\rEither way, as her tentacles roll beneath her body and bring her to a \'stand\', wobbling slightly from her large bosom and belly, you\'ll soon find out!",true);
-                     doNext();
+                     outputMainText("\r\rYou sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + legDesc(6) + ".\r\r\"Your " + clothesTop() + ", please.\" She motions to it being in the way.",true);
+                     if(ment > lib)
+                     {
+                        outputMainText("\r\rWith a heavy blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", slowly exposing your ",false);
+                     }
+                     else if(ment > lib - 10)
+                     {
+                        outputMainText("\r\rWith a slight blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", exposing your ",false);
+                     }
+                     else
+                     {
+                        outputMainText("\r\rWith a quick nod and no hesitation, you pull " + pullUD(1) + " your " + clothesTop() + ", exposing your ",false);
+                     }
+                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(boobDesc() + " leaky breasts and letting your " + udderDesc() + " udder spill into your lap.",false);
+                     }
+                     else if(milkEngorgementLevel > 0)
+                     {
+                        outputMainText(boobDesc() + " leaky breasts.",false);
+                     }
+                     else if(udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(udderDesc() + " udder, your teats dripping into your lap.",false);
+                     }
+                     outputMainText(" Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",false);
+                     if(milkEngorgementLevel > 0)
+                     {
+                        outputMainText(nipDesc() + " nipples",false);
+                     }
+                     else if(udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(teatDesc() + " teats",false);
+                     }
+                     outputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you\'re already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\r\rThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you\'d think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\r\rHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it\'s that time... Y-You don\'t mind, do you?\" She plucks at her shirt to indicate what she means.",false);
+                     viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                     viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                     buttonWrite(5,"Help her");
+                     buttonWrite(7,"Let her");
                      doListen = function():void
                      {
-                        enemyID = 303;
-                        currentState = 2;
-                        enemyBaseStats();
-                        eMaxHP = eHP;
-                        doBattle();
+                        var getMilk:int = 0;
+                        if(buttonChoice == 5)
+                        {
+                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1) + milkAmount(2);
+                           }
+                           else if(milkEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1);
+                           }
+                           else if(udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(2);
+                           }
+                           nipplePlay += 12;
+                           if(udders == true)
+                           {
+                              udderPlay += 12;
+                           }
+                           outputMainText("You shake your head, telling her it\'s not alright.\r\rA bit defeated, the redness in her cheeks intensifies as she attempts to continue milking you while she drips away. However, you tell her to stop with that as well.\r\rCompletely confused, her eyes quickly go wide as you reach out for her shirt and pull it up. When your hands gently caress her 6-inch long nipples, aiming them towards the bucket and squirting out some of her own milk, the blush in her face recedes as a soft smile grows on her face, cheerfully accepting your efforts.\r\rFacing each other, with your hands on each other\'s milky bits, the two of you tug and pull until each other sprays into the bucket with a gasp. More and more milk spills from you both, though the moans echoing between you two would suggest something more as they rise in volume. Until, eventually, Malon\'s tits gush into the bucket as her body quivers and her mouth yawns wide to cry out in ecstacy, only to let out a long \"Mooooooo!\"",true);
+                           doNext();
+                           doListen = function():void
+                           {
+                              outputMainText("Her hands let go of you, springing up to cover her mouth in fright. Her ears droop in shame and tears begin to well up in her eyes as she buries the rest of her face behind her hands. She jumps up from her stool, milk still spraying from her nipples and drenching you slightly, before she runs out of the room in utter embarrassment, her breasts swinging from side to side and painting the walls of the house with more milk.\r\rUnsure of what just happened, you clean yourself off and finish the last of your own lactation, neatly putting the buckets aside. You attempt to look for her, but with a farm so big you have no idea where to start. With a sigh, you head back to Softlik.",true);
+                              doNext();
+                              doListen = function():void
+                              {
+                                 outputMainText("You don\'t get far, however, as you feel a tug at your " + clothesTop() + " from behind.\r\rYou turn to see Malon huffing a little, her shirt covered with milk after having been hastily put on having ran to catch up with you. She wipes her eyes with a sniffle.\r\r\"Umm... I... I\'m so sorry for running out on you like that. I just wanted to thank you for being so kind to me, though... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I\'ll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can\'t help but think that they\'re right. I\'m nothing but a big fat cow...\"\r\rHer head hangs low, another tear dripping from her cheek, her bovine ears drooping in shame.\r\r\rDo you want to tell her that she shouldn\'t act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",true);
+                                 viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                                 viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                                 buttonWrite(5,"Don\'t Moo");
+                                 buttonWrite(7,"Moo");
+                                 doListen = function():void
+                                 {
+                                    if(buttonChoice == 5)
+                                    {
+                                       outputMainText("You nod and tell her that it\'d probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, altouth the effort merely shows off her large rump even more...",true);
+                                       stats(0,2,0,-2);
+                                       doSexP(10);
+                                       malonRep = 2;
+                                       doEnd();
+                                    }
+                                    if(buttonChoice == 7)
+                                    {
+                                       outputMainText("You smile and pat her on the head, telling her that she shouldn\'t be ashamed of being a cow. There\'s a lot of races out there that are like other animals, so she\'s actually a whole new race on her own rather than a mere animal.\r\rHearing your uplifting words, her head rises back up with a small smile, her ears twitching hesitantly. \"M-Mooo?\"\r\rYou nod in acceptance.\r\rShe giggles cheerfully, lunging out you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your " + boobDesc() + " chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flails about happily behind her.\r\r\rAs you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...",true);
+                                       stats(0,1,0,2);
+                                       doSexP(25);
+                                       malonRep = 3;
+                                       itemAdd(215);
+                                       doEnd();
+                                    }
+                                 };
+                              };
+                           };
+                        }
+                        if(buttonChoice == 7)
+                        {
+                           outputMainText("Nodding your head to say it\'s alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\r\r",true);
+                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1) + milkAmount(2);
+                           }
+                           else if(milkEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1);
+                           }
+                           else if(udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(2);
+                           }
+                           if(getMilk <= 4000)
+                           {
+                              outputMainText("After filling up two buckets of milk, most of which was Malon\'s, she pushes them off to the side with a clap.",true);
+                           }
+                           else if(getMilk <= 18000)
+                           {
+                              outputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",true);
+                           }
+                           else if(getMilk <= 35500)
+                           {
+                              outputMainText("After filling up several buckets of milk, far surpassing Malon\'s amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",true);
+                           }
+                           else if(getMilk > 35500)
+                           {
+                              outputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I\'m so sorry! I didn\'t know it was that bad for you. Here!\"\r\rShe takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"\r\rShe wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",true);
+                           }
+                           outputMainText(" \"There, all done!\" She gently pats your " + boobDesc() + " breasts",false);
+                           if(udders == true)
+                           {
+                              outputMainText(" and your " + udderDesc() + " milky bag.",false);
+                           }
+                           outputMainText("\r\r\"I enjoyed this little milking session between us \'cows\'. I hope to do it again with you some time!\" She smiles as she pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on your forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a wave, you say goodbye and head back to Softlik.",false);
+                           hrs = 3;
+                           doLust(5,0);
+                           doSexP(2);
+                           stats(0,1,1,1);
+                           doEnd();
+                        }
                      };
                   };
                }
                else
                {
-                  outputMainText("Deciding it best to leave the curvy woman in peace, you turn around and head back to Siz\'Calit.",true);
+                  outputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. However, as her own shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground, she blushes a little as she has now found a new reason for her excuse. She pulls her shawl down to cover her huge chest, turning away and scampering off into the main house to take care of business, leaving you to head back to Softlik.",true);
                   hrs = 1;
-                  stats(0,1,0,0);
                   doEnd();
                }
             };
          }
-         else if(chance == 2)
+         else if(this.malonRep == 3 && (this.milkEngorgementLevel > 0 || this.udderEngorgementLevel > 0))
          {
-            this.outputMainText("While taking a nice stroll along the beach, you see the silhouette of somebody sunning themselves on the sand in the distance. Judging by the ample curves at their chest, they seem to be a rather well-endowed in the breast department. Considering you can also spot the plump perk nipples protruding unrestrained from where you are, you also assume the person is likely to be nude. And judging by the large, swollen belly, you suspect that \'she\' may be quite pregnant as well...\r\rWould you like to inspect her more closely?",true);
+            this.outputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + this.clothesTop() + " and shouts to the other workers that she\'s got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her \'condition\'. Nevertheless, she smiles as she heads towards you.\r\r\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",true);
             this.buttonConfirm();
             this.doListen = function():void
             {
                if(buttonChoice == 6)
                {
-                  outputMainText("Moving closer, you can make out her figure much more easily. She has a slender frame, quite lithe, with a thick tail that narrows to a point and swishes through the sand between her spread legs. Oddly, she seems to be covered in scales, ranging from green to a light purple. And you seem to be able to see ALL of her scales, as she is quite nude while she soaks up the sun.\r\rShe spots you as you approach and gently turns to face you, a smile on her reptillian face \"Hello dearie. Do you enjoy the view?\" She sticks out her tongue as her hand gropes at her large breast. \"Mmm, but I don\'t mind. I\'m much too happy. Days like this with my husband are so nice~ When he gets so horny and just absolutely fills me up~!\"\r\rHer other hand roams over her huge belly before finding its way to her crotch. You can hear a slurp as she pleasure herself and you spot a spurt of white gunk spew across the sand.\r\r\"He went off to fetch some food, though, and I don\'t know when he\'ll be back. Would you be a dear and help me with something down there while he\'s gone, if you would?\"",true);
-                  buttonConfirm();
+                  outputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she\'s quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom.\r\rIn the center of the room sits a good-sized bed, with downy blankets and soft matress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. Malon leads you towards her bed, motioning for you to sit.\r\r\"Just relax and I\'ll take care of it for you.\" She speaks sweetly.",true);
+                  doNext();
                   doListen = function():void
                   {
-                     if(buttonChoice == 6)
+                     outputMainText("\r\rYou sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + legDesc(6) + ".\r\r\"Your " + clothesTop() + ", please.\" She motions to it being in the way.",true);
+                     if(ment > lib)
                      {
-                        outputMainText("You nod your head and begin to move towards her legs.\r\r\"Thank you so much, dearie~ I have a tendency to build up my eggs, unlike other lizan girls, and my husband\'s stuff is the easiest way for me to lay them all at once. I just need you to sit there and be ready to catch them when they do, or else they\'ll float into the water and be such a waste...\"\r\rNodding once again, you maneuver around her body and kneel down between her legs, straddling her thick reptilian tail. Your eyes go wide, however, as there\'s much more white gunk than you expected, spunk literally oozing from her scaley slit, despite the fact she\'s clenching to keep it in.\r\r\"Just like that dearie. Sitting on my tail helps me push. Now, get ready!\"\r\rYou reach out in preparation, your fingers slipping across her supple lips and making her moan. Her thighs shudder as she lets out a gasp, letting her cunt stretch wide.\r\rCum floods from her loins, pooling around your " + legDesc(6) + " and over her tail. You quickly realize that her large belly had mostly been inflated with cum rather than some mere eggs! Especially as the eggs that rush out are relatively small, maybe twice the size of a chicken\'s. You scramble to pluck them from the river of cum, trying to spot their white shells amidst the white fluid. Your hands slip and stick from all the spunk, but you manage to get them all. Hardly half a dozen...",true);
-                        doNext();
-                        doListen = function():void
-                        {
-                           outputMainText("\"Whew... Thanks a lot, dearie. Sorry to umm...\" She looks at your " + clothesBottom() + " and how drenched it is with her husband\'s seed. \"come on you like that... Don\'t worry though, it\'ll wash right out. And he takes a drug to keep it sterile for our little outtings. Wouldn\'t want to have all these eggs be alive now, would we?\" She chuckles. \"But here, take one for yourself. They\'re good for you, when they don\'t have babies in them!\"\r\rShe giggles and kisses you on the cheek, thanking you once again before you head off. She dozes back off, her tail idly swishing in the pool of semen, her thighs drenched in the stuff, and looking all the happier for it.",true);
-                           itemAdd(219);
-                           if(percent() < 35)
-                           {
-                              outputMainText("\r\rAs you begin to leave, however, you spot something move towards you. Another reptillian, this one seems quite male as two cocks hang from his groin and knock against his knees. He seems a bit sheepish at first, blush filling the scales of his face due to his rather immodest lack of an outfit, but realizes the damage is already done and waves you over.\r\r\"Umm... I suppose you helped out my wife then?\" He spots the egg in your hand and the lack of belly on his wife. \"Well, thank you for that. Sometimes I just can\'t get back in time. Here, take one of these at least, I think I\'ve got plenty.\"\r\rHe hands you a berry but actually refers to his scrotum. It hangs past his wangs and seems stuffed with testicles, though you can\'t easily count how many. They\'re each at least the size of a small melon and can easily explain how his wife was so bloated.\r\rNevertheless, he thanks you again and lets you head off, wanting some more time with his wife.",false);
-                              itemAdd(218);
-                           }
-                           hrs = 4;
-                           doEnd();
-                        };
+                        outputMainText("\r\rWith a heavy blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", slowly exposing your ",false);
+                     }
+                     else if(ment > lib - 10)
+                     {
+                        outputMainText("\r\rWith a slight blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", exposing your ",false);
                      }
                      else
                      {
-                        outputMainText("You shake your head no, not wanting to interrupt their time together.\r\r\"Ahh, thank you dearie, I appreciate the sentiment. Here, at least take one of these. My husband uses them on occasion, but he prefers a different kind. Not that it matters to me, either way he makes me happy~\" She twitches as her head leans back with a strong sigh, another spurt spewing over the sand.\r\rShe then picks something from her pack beside her and tosses it over to you, letting you head back to Siz\'Calit.",true);
-                        itemAdd(208);
-                        hrs = 2;
-                        doEnd();
+                        outputMainText("\r\rWith a quick nod and no hesitation, you pull " + pullUD(1) + " your " + clothesTop() + ", exposing your ",false);
                      }
+                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(boobDesc() + " leaky breasts and letting your " + udderDesc() + " udder spill into your lap.",false);
+                     }
+                     else if(milkEngorgementLevel > 0)
+                     {
+                        outputMainText(boobDesc() + " leaky breasts.",false);
+                     }
+                     else if(udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(udderDesc() + " udder, your teats dripping into your lap.",false);
+                     }
+                     outputMainText(" Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",false);
+                     if(milkEngorgementLevel > 0)
+                     {
+                        outputMainText(nipDesc() + " nipples",false);
+                     }
+                     else if(udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(teatDesc() + " teats",false);
+                     }
+                     outputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you\'re already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\r\rThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you\'d think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\r\rHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it\'s that time... Y-You don\'t mind, do you?\" She plucks at her shirt to indicate what she means.",false);
+                     viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                     viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                     buttonWrite(5,"Help her");
+                     buttonWrite(7,"Let her");
+                     doListen = function():void
+                     {
+                        var getMilk:int = 0;
+                        if(buttonChoice == 5)
+                        {
+                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1) + milkAmount(2);
+                           }
+                           else if(milkEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1);
+                           }
+                           else if(udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(2);
+                           }
+                           nipplePlay += 12;
+                           if(udders == true)
+                           {
+                              udderPlay += 12;
+                           }
+                           outputMainText("You shake your head, telling her it\'s not alright.\r\rA bit defeated, the redness in her cheeks intensifies as she attempts to continue milking you while she drips away. However, you tell her to stop with that as well.\r\rHer eyes brightening, she quickly realizes your intention as you reach out for her shirt and pull it up. When your hands gently caress her 6-inch long nipples, aiming them towards the bucket and squirting out some of her own milk, the blush in her face recedes as a soft smile grows on her face, cheerfully accepting your efforts.\r\rFacing each other, with your hands on each other\'s milky bits, the two of you tug and pull until each other sprays into the bucket with a gasp. More and more milk spills from you both, though the moans echoing between you two would suggest something more as they rise in volume. Until, eventually, Malon\'s tits gush into the bucket as her body quivers and her mouth begins to yawn wide. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as you give her breasts a strong, sensual squeeze, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",true);
+                           doNext();
+                           doListen = function():void
+                           {
+                              outputMainText("She collapses forward onto your " + boobDesc() + " chest, huffing and heaving. After a few moments, her eyelashes flutter as she turns her head towards you with a glimmer in her eye.",true);
+                              viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                              viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                              buttonWrite(5,"Kiss Her");
+                              buttonWrite(7,"Help Up");
+                              doListen = function():void
+                              {
+                                 if(buttonChoice == 5)
+                                 {
+                                    outputMainText("Your hand slips behind her head, pulling her face to your own. You press your lips to hers.\r\rWithout any resistance, she returns the favor, hugging your head and kissing you deeply. She pushes you forward, back onto her bed. With fervor, you lift her long purple skirt, revealing her wide, cow-like hips and large, dripping, animalistic nether-region.",true);
+                                    if(cockTotal > 0)
+                                    {
+                                       outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ", letting " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " flop out. She licks and kisses it ravenously, as though something had come over her. She sucks at the tip, slipping her tongue across and through your urethra and savoring the salty taste of your pre.",false);
+                                       if(cockSize * cockSizeMod <= eVagLimit(56))
+                                       {
+                                          outputMainText("\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she slides your cock into her supple folds, devouring its entire length.",false);
+                                          if(percent() <= 20)
+                                          {
+                                             malonRep = 4;
+                                             malonPreg = 0;
+                                          }
+                                          else
+                                          {
+                                             malonRep = 5;
+                                          }
+                                       }
+                                       if(cockSize * cockSizeMod > eVagLimit(56))
+                                       {
+                                          outputMainText("\r\rHowever, she can easily tell that you\'re far too large for her. So, instead, she crawls back up your body, licking your\tmilk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your " + cockDesc() + " erection" + plural(1) + ", humping her clit along your length" + plural(1) + ".",false);
+                                       }
+                                       outputMainText("\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you begin to gush with cum, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                                       cumAmount();
+                                    }
+                                    else if(cockTotal < 1 && vagTotal > 0)
+                                    {
+                                       outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your " + vulvaDesc() + " slit" + plural(2) + ", she dives in and begins devouring your clit" + plural(2) + ".\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where presses her supple folds to your own, letting them kiss erotically.\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit" + plural(2) + " against hers as you come, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                                       malonRep = 5;
+                                    }
+                                    else
+                                    {
+                                       outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your lack of any genitalia, she kisses your crotch softly several times anyways, before crawling back up your body She licks up your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she humps your empty crotch.\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. So hot is her body that you can feel yourself climax as well! She keeps her mouth shut at first, but as you thrust back with the phantom orgasm, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                                       malonRep = 5;
+                                    }
+                                    outputMainText("\r\r\rThe two of you soon pass out beneath the blankets, trapped within the sea of milk and sensual fluids...",false);
+                                    doLust(-Math.floor(sen / 2),2,1,2);
+                                    hrs = 9;
+                                    exhaustion = 0;
+                                    skipExhaustion = true;
+                                    doNext();
+                                    doListen = function():void
+                                    {
+                                       outputMainText("Many hours later, you awaken to gentle kissing from your bovine lover. You open your eyes to see Malon\'s face, a soft smile greeting you and a happy glimmer in her eyes.\r\r\"Thank you so much~\" She whispers before kissing you once more.\r\rAfter some cuddling, she eventually needs to get back to work. She hugs you again and tells you that she\'d love for you to come back any time you can. You hug her back, giving her a sweet goodbye as you squeeze her plush tush, her tail jerking excitedly as she giggles. With another kiss, you head back to Softlik, your " + skinDesc() + " nice and soft from the extended milk bath.",true);
+                                       stats(1,2,2,4);
+                                       doSexP(20);
+                                       doEnd();
+                                    };
+                                 }
+                                 if(buttonChoice == 7)
+                                 {
+                                    outputMainText("You help her back up onto her stool, the last of both of your milk emptying into the final bucket. With a big sigh, she smiles.\r\r\"W-Well, I suppose I should get this cleaned up. Thanks for helping me!\"\r\rShe leans forward, giving you a great view of her deep cleavage as she kisses you on the forehead. Then she pulls her shirt back up and takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a hug, you say goodbye and head back to Softlik.",true);
+                                    stats(1,1,0,2);
+                                    doSexP(2);
+                                    doEnd();
+                                 }
+                              };
+                           };
+                        }
+                        if(buttonChoice == 7)
+                        {
+                           outputMainText("Nodding your head to say it\'s alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\r\r",true);
+                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1) + milkAmount(2);
+                           }
+                           else if(milkEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1);
+                           }
+                           else if(udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(2);
+                           }
+                           if(getMilk <= 4000)
+                           {
+                              outputMainText("After filling up two buckets of milk, most of which was Malon\'s, she pushes them off to the side with a clap.",true);
+                           }
+                           else if(getMilk <= 18000)
+                           {
+                              outputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",true);
+                           }
+                           else if(getMilk <= 35500)
+                           {
+                              outputMainText("After filling up several buckets of milk, far surpassing Malon\'s amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",true);
+                           }
+                           else if(getMilk > 35500)
+                           {
+                              outputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I\'m so sorry! I didn\'t know it was that bad for you. Here!\"\r\rShe takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"\r\rShe wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",true);
+                           }
+                           outputMainText(" \"There, all done!\" She gently pats your " + boobDesc() + " breasts",false);
+                           if(udders == true)
+                           {
+                              outputMainText(" and your " + udderDesc() + " milky bag.",false);
+                           }
+                           outputMainText("\r\r\"I enjoyed this little milking session between us \'cows\'. I hope to do it again with you some time!\" She smiles as she pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on your forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a wave, you say goodbye and head back to Softlik.",false);
+                           hrs = 3;
+                           doSexP(2);
+                           doLust(5,0,3,4);
+                           stats(0,1,1,1);
+                           doEnd();
+                        }
+                     };
                   };
                }
                else
                {
-                  outputMainText("Deciding it best to leave the curvy woman in peace, you turn around and head back to Siz\'Calit.",true);
+                  outputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. However, as her own shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground, she blushes a little as she has now found a new reason for her excuse. She pulls her shawl down to cover her huge chest, turning away and scampering off into the main house to take care of business, leaving you to head back to Softlik.",true);
                   hrs = 1;
-                  stats(0,1,0,0);
                   doEnd();
                }
             };
          }
-         else if(chance == 3)
+         else if(this.malonRep == 4 || this.malonRep == 5)
          {
-            this.outputMainText("Walking along the beach, you spot something shiny in the sand.",true);
-            this.itemAdd(206);
-            this.hrs = 2;
+            this.outputMainText("Malon is working outside as you approach the farm once again",true);
+            if(this.malonRep == 4)
+            {
+               if(this.malonPreg > 36 && this.malonPreg <= 72)
+               {
+                  this.outputMainText(", an arm slung under her slightly protruding yet obviously pregnant belly",false);
+               }
+               if(this.malonPreg > 72 && this.malonPreg <= 144)
+               {
+                  this.outputMainText(", her arms hugging her giant belly that nearly pushes past her breasts, easily working despite it",false);
+               }
+               if(this.malonPreg > 144 && this.malonPreg <= 216)
+               {
+                  this.outputMainText(", her breasts swollen with pregnancy and supported by her enormously pregnant belly, looking to be even larger than she is. You actually wonder how she manages to work with it",false);
+               }
+            }
+            if(this.malonChildren == 1)
+            {
+               this.outputMainText(", your large-eared and wide-hipped child running around playing, her tail swishing happily through a little white dress just like her mother used to wear, except with a little bulge at the front where her udder jiggles with each step",false);
+            }
+            if(this.malonChildren > 1)
+            {
+               this.outputMainText(", your " + this.malonChildren + " large-eared and wide-hipped children running around playing, their tails swishing happily through little white dresses just like their mother used to wear, except with little bulges at the front where their udders jiggles with each step",false);
+            }
+            this.outputMainText(". The half-bovine woman spots you and her face shines up, turning to come and greet you.\r\r\"Hello hun!\" Her arms wrap around you with a big hug.",false);
+            if(this.malonChildren == 1)
+            {
+               this.outputMainText("\r\rYour child also spots you and runs up with her own hug, shouting \"Daddy!\"",false);
+            }
+            if(this.malonChildren > 1)
+            {
+               this.outputMainText("\r\rYour children also spot you and run up with their own hugs, shouting \"Daddy!\"",false);
+            }
+            this.outputMainText("\r\rYou visit for a while and help Malon with a bit of work, earning you some coin. You spend the time chatting and enjoying yourselves, but eventually Malon gives you a wink.\r\r\"Would you like to do something?\"",false);
+            this.doCoin(Math.floor(this.percent() / 20));
+            this.viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+            this.viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+            if(this.lactation < 1 && this.udderLactation < 1)
+            {
+               this.Choice5.visible = false;
+            }
+            this.buttonWrite(5,"Milk");
+            this.buttonWrite(7,"Sex");
+            this.doListen = function():void
+            {
+               if(buttonChoice == 5)
+               {
+                  outputMainText("Poking her nipple while you wink back, Malon shouts to the other workers that she\'s got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her \'condition\', but don\'t give her any other guff as she takes you into an empty barn, where she\'s since become comfortable indulging in her bovine assets.\r\rYou both pull over some buckets and sit down in rather comfortable chairs, removing your tops. Humming the same tune, you begin to work on each other, hugging and gently caressing each other.",true);
+                  if(malonChildren == 1)
+                  {
+                     outputMainText(" Your little girl also joins in, taking a free nipple when she can. She pulls up her white dress and massages her small udder, tugging at the short teats as her hips jerk in wry sensitivity, until little drops start to form and drip down her legs.",false);
+                  }
+                  if(malonChildren > 1)
+                  {
+                     outputMainText(" Your little girls also joins in, taking a free nipples when they can. They pull up their white dresses and massage their small udders, tugging at the short teats as their hips jerk in wry sensitivity, until little drops start to form and drip down their legs. When there aren\'t enough nipples to suckle from on their parents, they take to suckling from each other, happily downing their meal.",false);
+                  }
+                  outputMainText("\r\rWith so much experience with each other, it doesn\'t take long before sparks start to fly and milk starts to spew, orgasms wracking your bodies. Malon opens her mouth and lets out several long, hearty moos of ecstasy,",false);
+                  if(malonChildren == 1)
+                  {
+                     outputMainText(" the little girl mimicking her mother with her own little \"Moo~\",",false);
+                  }
+                  if(malonChildren > 1)
+                  {
+                     outputMainText(" the little girls mimicking their mother with their own little \"Moo~\'s\",",false);
+                  }
+                  outputMainText(" until you\'re both gasping for air.\r\rThoroughly milked, you spend another hour enjoying the company before eventually giving your goodbye kisses and heading back to Softlik, happy and content.",false);
+                  milkAmount(1);
+                  milkAmount(2);
+                  nipplePlay += 15;
+                  if(udders == true)
+                  {
+                     udderPlay += 15;
+                  }
+                  doSexP(5);
+                  stats(1,1,0,2);
+                  hrs = 4;
+                  doEnd();
+               }
+               if(buttonChoice == 7)
+               {
+                  outputMainText("With a perverse grin, you give Malon a wink of your own and grab her ample tush. She jumps with a giggle and shouts to the other workers that she\'s got some business she needs to take care of. The others smirk and chuckle to themselves, noticing the extra-excited perkiness in her voice and knowing exactly what \'business\' means exactly. She sticks her tongue out at them and pulls you back into the house, eager to get you under the sheets.",true);
+                  outputMainText("\r\rQuickly making your way to her room, your clothes littering the hallway along the way, the two of you jump onto the bed. The two of you kiss again and again, until she knocks you onto your back.\r\rWith fervor, you lift her long purple skirt, revealing her wide, cow-like hips and large, dripping, animalistic nether-region.",true);
+                  if(cockTotal > 0)
+                  {
+                     outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ", letting " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " flop out. She licks and kisses it ravenously, as though something had come over her. She sucks at the tip, slipping her tongue across and through your urethra and savoring the salty taste of your pre.",false);
+                     if(cockSize * cockSizeMod <= eVagLimit(56))
+                     {
+                        outputMainText("\r\rIt doesn\'t take long before she grows too hungry and crawls back up your body, dragging across your erection" + plural(1) + ". Her breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she slides your cock into her supple folds, devouring its entire length.",false);
+                        if(percent() <= 20 && malonRep == 5)
+                        {
+                           malonRep = 4;
+                           malonPreg = 0;
+                        }
+                     }
+                     if(cockSize * cockSizeMod > eVagLimit(56))
+                     {
+                        outputMainText("\r\rHowever, she can easily tell that you\'re far too large for her. So, instead, she crawls back up your body, licking you as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your " + cockDesc() + " erection" + plural(1) + ", humping her clit along your length" + plural(1) + ".",false);
+                     }
+                     if(malonRep == 4)
+                     {
+                        if(malonPreg > 36 && malonPreg <= 72)
+                        {
+                           outputMainText("\r\rYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn\'t prevent the room from getting hot...",false);
+                        }
+                        if(malonPreg > 72 && malonPreg <= 144)
+                        {
+                           outputMainText("\r\rYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it.",false);
+                        }
+                        if(malonPreg > 144 && malonPreg <= 216)
+                        {
+                           outputMainText("\r\rHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She rolls back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well.",false);
+                        }
+                     }
+                     if(malonChildren == 1)
+                     {
+                        outputMainText("\r\rAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm.",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText("\r\rAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don\'t. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success.",false);
+                     }
+                     outputMainText("\r\rOver and over, Malon grinds her wide hips",false);
+                     if(knot == true)
+                     {
+                        outputMainText(", lifting your rump off the bed as she lifts you by your thick knot with each pass and makes her gasp each time from the stretching of her slit",false);
+                     }
+                     outputMainText(". She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets, drenching you all. Her mouth quickly stretches wide, the sound echoing around the room. \r\r\"MOOOOOOO!\"",false);
+                     if(malonChildren == 1)
+                     {
+                        outputMainText("\r\rYour child does the same, coming to the small peak of her own pleasuring with a weaker, cute encore of \"Moooo~!\"",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText("\r\rYour children do the same, coming to the small peaks of their own pleasuring with weaker, cute encores of \"Moooo~!\"",false);
+                     }
+                     cumAmount();
+                  }
+                  else if(cockTotal < 1 && vagTotal > 0)
+                  {
+                     outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your " + vulvaDesc() + " slit" + plural(2) + ", she dives in and begins devouring your clit" + plural(2) + ".\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she presses her supple folds to your own, letting them kiss erotically.",false);
+                     if(malonChildren == 1)
+                     {
+                        outputMainText("\r\rAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm.",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText("\r\rAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don\'t. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success.",false);
+                     }
+                     if(malonRep == 4)
+                     {
+                        if(malonPreg > 36 && malonPreg <= 72)
+                        {
+                           outputMainText("\r\rYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn\'t prevent the room from getting hot...",false);
+                        }
+                        if(malonPreg > 72 && malonPreg <= 144)
+                        {
+                           outputMainText("\r\rYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it.",false);
+                        }
+                        if(malonPreg > 144 && malonPreg <= 216)
+                        {
+                           outputMainText("\r\rHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She roll back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well.",false);
+                        }
+                     }
+                     outputMainText("\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit" + plural(2) + " against hers as you come, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                     if(malonChildren == 1)
+                     {
+                        outputMainText("\r\rYour child does the same, coming to the small peak of her own pleasuring with a weaker, cute encore of \"Moooo~!\"",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText("\r\rYour children do the same, coming to the small peaks of their own pleasuring with weaker, cute encores of \"Moooo~!\"",false);
+                     }
+                  }
+                  else
+                  {
+                     outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your lack of any genitalia, she kisses your crotch softly several times anyways, before crawling back up your body She licks up your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she humps your empty crotch.",false);
+                     if(malonChildren == 1)
+                     {
+                        outputMainText("\r\rAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm.",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText("\r\rAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don\'t. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success.",false);
+                     }
+                     if(malonRep == 4)
+                     {
+                        if(malonPreg > 36 && malonPreg <= 72)
+                        {
+                           outputMainText("\r\rYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn\'t prevent the room from getting hot...",false);
+                        }
+                        if(malonPreg > 72 && malonPreg <= 144)
+                        {
+                           outputMainText("\r\rYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it.",false);
+                        }
+                        if(malonPreg > 144 && malonPreg <= 216)
+                        {
+                           outputMainText("\r\rHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She roll back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well.",false);
+                        }
+                     }
+                     outputMainText("\r\rOver and over, she grinds her wide hips",false);
+                     if(knot == true)
+                     {
+                        outputMainText(", tugging your cock by the thick knot again and again",false);
+                     }
+                     outputMainText(". She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. So hot is her body that you can feel yourself climax as well! She keeps her mouth shut at first, but as you thrust back with the phantom orgasm, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                     if(malonChildren == 1)
+                     {
+                        outputMainText("\r\rYour child does the same, coming to the small peak of her own pleasuring with a weaker, cute encore of \"Moooo~!\"",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText("\r\rYour children do the same, coming to the small peaks of their own pleasuring with weaker, cute encores of \"Moooo~!\"",false);
+                     }
+                  }
+                  outputMainText("\r\r\rYou soon pass out beneath the blankets, trapped within the sea of milk and sensual fluids",false);
+                  if(knot == true)
+                  {
+                     outputMainText(", your knot still tied to her",false);
+                  }
+                  outputMainText("...",false);
+                  doLust(-Math.floor(sen / 2),2,1,2);
+                  hrs = 9;
+                  exhaustion = 0;
+                  skipExhaustion = true;
+                  doNext();
+                  doListen = function():void
+                  {
+                     outputMainText("Many hours later, you awaken to gentle kissing from your bovine lover. You open your eyes to see Malon\'s face, a soft smile greeting you and a happy glimmer in her eyes.\r\r\"Thank you so much~\" She whispers before kissing you once more.\r\rAfter some cuddling, she eventually needs to get back to work. She hugs you again and tells you that she\'d love for you to come back any time you can. You hug her back, giving her a sweet goodbye as you squeeze her plush tush, her tail jerking excitedly as she giggles. With a round of kisses and hugs, you head back to Softlik, your " + skinDesc() + " nice and soft from the extended milk bath",true);
+                     if(malonChildren == 1)
+                     {
+                        outputMainText(", your little girl growing up with probably the fairest skin of anyone in Nimin",false);
+                     }
+                     if(malonChildren > 1)
+                     {
+                        outputMainText(", your little girls growing up with probably the fairest skins of anyone in Nimin",false);
+                     }
+                     outputMainText(".",false);
+                     doSexP(5);
+                     stats(0,1,2,4);
+                     doEnd();
+                  };
+               }
+            };
+         }
+         else if(this.malonRep == 2)
+         {
+            this.outputMainText("You spot Malon out of the corner of your eye. She spots you and waves with a slight smile. However, she quickly stops as her shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground. She blushes intently and pulls her shawl down to cover her huge chest, turning away and running off, her tail pushing her skirt between her legs and outlining her ample bum.\r\rNot wanting to be so much like a cow, she avoids you in hopes of taking care of the situation herself. With a shrug, you head back to Softlik.",true);
+            this.hrs = 1;
             this.doEnd();
          }
-         else if(chance == 4)
+         else
          {
-            this.outputMainText("Combing the beach, you find something odd buried in the sand.",true);
-            this.itemAdd(207);
-            this.hrs = 2;
-            this.doEnd();
-         }
-         else if(chance == 5)
-         {
-            this.outputMainText("Strolling along the beach, you suddenly begin to hop up and down, your " + this.legDesc(9) + " aching painfully as you step on an urchin!",true);
-            this.doHP(-Math.floor(this.percent() / 10));
-            this.hrs = 2;
-            this.doEnd();
-         }
-         else if(chance == 6)
-         {
-            this.outputMainText("You walk along the beach, the ocean breeze blowing through your hair, the smell of salt on the wind. You take a deep breath and feel a bit rejuvenated.",true);
-            this.doLust(-5,0);
-            this.stats(0,0,-1,0);
-            this.exhaustion -= 2;
+            this.outputMainText("You spot Malon out of the corner of your eye. She spots you and waves with a slight smile. However, she quickly stops as her shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground. She blushes intently and pulls her shawl down to cover her huge chest, turning away and running off, her tail pushing her skirt between her legs and outlining her ample bum.\r\rA bit distracted with her \'issues\', you leave her be and head back to Softlik.",true);
             this.hrs = 1;
             this.doEnd();
          }
       }
-!def DoLake():
-{
-         var chance:int = 0;
-         chance = this.eventSelect("Lake");
-         if(chance == 1)
+      else if(this.malonRep == 0 && (this.milkEngorgement > 300 && this.milkEngorgementLevel > 0 || this.udderEngorgement > 300 && this.udderEngorgementLevel > 0))
+      {
+         this.outputMainText("Heading towards the farm, you spot a strange farm-hand. A young woman, with an exceptionally well-endowed figure... Beautiful, with long, flowing red hair, she wears a yellow shirt and long purple skirt with a brown apron around her waist and yellow shawl around her shoulders. However, the shawl seems fairly wet and she\'s careful to drape its ends over breasts larger than watermelons, trying to hide the large blotches on her shirt with it and keeping it at the ready to use at any moment. Her ears are also quite long, hanging perpendicular from her head, nearly 5 inches, and droop a little. Behind her you see a long, narrow tail, tipped with a tuft of long hairs, swish about her calves with each step.\r\rAs you watch her, she seems to avoid most of the other workers. It doesn\'t take long before she spots you eyeing her. At first redness tinges her cheeks, but then her eyes spot the large blotches on your " + this.clothesTop() + " with a curious look. Checking to make sure nobody else is around, she heads towards you...",true);
+         this.doNext();
+         this.doListen = function():void
          {
-            this.outputMainText("At the edge of the lake, knocking against the bank with the subtle waves, you spot a piece of cloth. Pulling it out, you let out an \"ew\" as long strands of clear slime drip from it. Nevertheless, you think it\'s a fantastic idea to hold onto it.\r\r(You should really get your kleptomania checked)",true);
-            this.itemAdd(213);
-            this.hrs = 2;
-            this.doEnd();
-         }
-         else if(chance == 2)
-         {
-            if(this.countItem(219) >= 5)
+            outputMainText("With a gentle voice, she speaks,\r\r\"Oh my, w-would you like some help with that?\" She nods down to your milkiness. \"I, umm... Kinda know the feeling and can help you out if you would like.\"\r\r\rDo you accept her offer?",true);
+            buttonConfirm();
+            doListen = function():void
             {
-               this.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\r\r\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I\'m a little low on my bait so I\'m just going on luck. It\'s been a while since I\'ve been able to get me those things from the people down south...\"\r\rHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard\'s. This man has obviously traveled a bit...\r\r\"If I could get maybe 5 of those eggs they kept plopping out, I\'m sure one of them would be just what I need to really haul in some nice catch!\"\r\rAt this you realize that you actually have 5 such eggs on you right now. Would you like to offer them?",true);
-               this.buttonConfirm();
-               this.doListen = function():void
+               if(buttonChoice == 6)
                {
-                  if(buttonChoice == 6)
+                  outputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she\'s quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom.\r\rIn the center of the room sits a good-sized bed, with downy blankets and soft matress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. The strange woman leads you towards her bed, motioning for you to sit.\r\r\"Just relax and I\'ll take care of it for you.\" She speaks sweetly.",true);
+                  doNext();
+                  doListen = function():void
                   {
-                     outputMainText("Pausing his rambling for a moment, you mention how you have 5 such eggs on you and offer them to him. His eyes light up and he graciously takes them from you. Ducking into his boat, he pulls out an odd machine and begins to slip them into an insertion point that is perfectly fitted for such eggs. The machine churns a little and dings before popping out a slightly different egg. He does this " + (Math.ceil(percent() / 25) + 1) + " times, whereafter he lets out a happy yip as an egg decorated with pretty red hearts pops out.\r\r\"Well lookie at that, a superb specimen! Just what I needed to make my special bait that can catch all sorts of fish! Thank you so much, stranger, we\'ll be eating well for some time to come thanks to this.\" He pauses for a moment, trying to think how he could repay you. \"Umm... I don\'t have much to give, but I\'ll tell you what. I can give you the recipe to my secret bait. Since you seem to have access to these kinds of eggs, I\'m sure you could do quite well with this recipe.\"\r\rHe proceeds to rattle off all the ingredients you need and how the process to mixing it goes. You try to keep up, but you only get some of what you think are the main points. However, you do kinda miss out on some of the \'diluting\' instructions, so your concoction might be a tad strong...\r\rYou have gained: Strong Pheromone Recipe!\r\rYou thank each other again, but he seems to be quite eager to get out on the lake and use some of his fresh bait, wishing you farewell and good luck on your journey!",true);
-                     loseManyItem(219,5);
-                     knowPheromone = true;
-                     hrs = 3;
-                     doEnd();
-                  }
-                  else
+                     outputMainText("\r\rYou sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + legDesc(6) + ".\r\r\"Your " + clothesTop() + ", please.\" She motions to it being in the way.",true);
+                     if(ment > lib)
+                     {
+                        outputMainText("\r\rWith a heavy blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", slowly exposing your ",false);
+                     }
+                     else if(ment > lib - 10)
+                     {
+                        outputMainText("\r\rWith a slight blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", exposing your ",false);
+                     }
+                     else
+                     {
+                        outputMainText("\r\rWith a quick nod and no hesitation, you pull " + pullUD(1) + " your " + clothesTop() + ", exposing your ",false);
+                     }
+                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(boobDesc() + " leaky breasts and letting your " + udderDesc() + " udder spill into your lap.",false);
+                     }
+                     else if(milkEngorgementLevel > 0)
+                     {
+                        outputMainText(boobDesc() + " leaky breasts.",false);
+                     }
+                     else if(udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(udderDesc() + " udder, your teats dripping into your lap.",false);
+                     }
+                     outputMainText(" The woman then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",false);
+                     if(milkEngorgementLevel > 0)
+                     {
+                        outputMainText(nipDesc() + " nipples",false);
+                     }
+                     else if(udderEngorgementLevel > 0 && udders == true)
+                     {
+                        outputMainText(teatDesc() + " teats",false);
+                     }
+                     outputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you\'re already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\r\rAs the room fills with the sound of your squirts hitting the metallic bucket, the strange woman finally introduces herself. \"I\'m Malon, it\'s nice to meet you.\" She giggles as she shakes your milky flesh with a hand in greeting. \"Usually I\'m the one with the milky problem around here.\" She motions down to her shirt. The redness tinges her cheeks. \"Oh-Oh my...\" Her shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it\'s that time... Y-You don\'t mind, do you?\" She plucks at her shirt to indicate what she means.\r\rAs you nod your head to say it\'s alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.",false);
+                     doNext();
+                     doListen = function():void
+                     {
+                        outputMainText("She continues to speak, trying to distract herself from her shyness and ignore the redness in her face as she milks the both of you.\r\r\"When I was little, I loved the animals, and I still do. However, in my naive youth, I attempted to get to know some of the cows better... by taking one of those DairE Pills. At first I was ecstatic. Imagine a little girl, in a long white dress, with larger than average nipples that poked at the fabric, dripping with milk, just like the cows! I even had the same shawl back then,\" she tugs the yellow shawl around her shoulders, \"and I used to soak it through after an hour of sitting with the cows, playing with my nipples and mooing to be just like them.\"\r\rShe sighs.\r\r\"Having such success, I kept taking the pills. And taking them. And taking them... Before I was even 15 years old, I had a chest larger than any woman\'s in Softlik and could make more milk than most cows on the farm. Added to the fact that I had these ears and this tail,\" the thing swishes behind her as a big gush of milk shoots from her nipples as she shudder slightly. \"E-Excuse me.. \" She blushes instensely, waiting for a moment as her climax passes. \"W-Well, let\'s just say I became a little self-aware. I still kept up with the milkings to keep the engorgement away and, well, I\'m sure you can guess the rest.\"",true);
+                        doNext();
+                        doListen = function():void
+                        {
+                           var getMilk:int = 0;
+                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1) + milkAmount(2);
+                           }
+                           else if(milkEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(1);
+                           }
+                           else if(udderEngorgementLevel > 0)
+                           {
+                              getMilk = milkAmount(2);
+                           }
+                           if(getMilk <= 4000)
+                           {
+                              outputMainText("After filling up two buckets of milk, most of which was Malon\'s, she pushes them off to the side with a clap.",true);
+                           }
+                           else if(getMilk <= 18000)
+                           {
+                              outputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",true);
+                           }
+                           else if(getMilk <= 35500)
+                           {
+                              outputMainText("After filling up several buckets of milk, far surpassing Malon\'s amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",true);
+                           }
+                           else if(getMilk > 35500)
+                           {
+                              outputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I\'m so sorry! I didn\'t know it was that bad for you. Here!\"\r\rShe takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"\r\rShe wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",true);
+                           }
+                           outputMainText(" \"There, all done!",false);
+                           if(udders == true)
+                           {
+                              outputMainText(" Although, I probably shouldn\'t be rambling about my problems. It seems like you\'ve gone far beyond my own troubles.\" She gently pats your milky bag. \"Anyways...",false);
+                           }
+                           outputMainText(" If you ever have trouble again, come see me and I\'ll help you out. Otherwise, don\'t be a stranger.\" She pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. \"Us \'cows\' should stick together.\" With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on the forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a wave, you say goodbye and head back to Softlik.",false);
+                           hrs = 3;
+                           doLust(10,0);
+                           nipplePlay += 10;
+                           malonRep = 1;
+                           if(udders == true)
+                           {
+                              udderPlay += 10;
+                           }
+                           doSexP(5);
+                           stats(0,2,2,1);
+                           doEnd();
+                        };
+                     };
+                  };
+               }
+               else
+               {
+                  outputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. Her extrovert moment quickly passes, however, as her own shirt begins to blotch more, white liquid spilling out and dribbling onto her apron and ground. She blushes intensely as she pulls her shawl down to cover her huge chest, turning away and running off, her tail pushing her skirt between her legs and outlining her ample bum.\r\rShe disappears into a building. With a shrug, you head back to Softlik.",true);
+                  hrs = 1;
+                  doEnd();
+               }
+            };
+         };
+      }
+      else
+      {
+         this.outputMainText("You spot a farm-hand out of the corner of your eye. A young woman, with an exceptionally well-endowed figure... Beautiful, with long, flowing red hair, she wears a yellow shirt and long purple skirt with a brown apron around her waist and yellow shawl around her shoulders. However, the shawl seems fairly wet and she\'s careful to drape its ends over breasts larger than watermelons, trying to hide the large blotches on her shirt with it and keeping it at the ready to use at any moment. Her ears are also quite long, hanging perpendicular from her head, nearly 5 inches, and droop a little. Behind her you see a long, narrow tail, tipped with a tuft of long hairs, swish about her calves with each step.\r\rAs you watch her, she seems to avoid most of the other workers. It doesn\'t take long before she spots you eyeing her. She immediately averts her eyes, redness tinging her cheeks. Her shy moment quickly passes, however, as her shirt begins to blotch more, white liquid spilling out and dribbling onto her apron and ground. Her blush intensifies as she pulls her shawl down to cover her huge chest, turning away and running off, her tail pushing her skirt between her legs and outlining her ample bum.\r\rShe disappears into a building. With a shrug, you head back to Softlik.",true);
+         this.hrs = 1;
+         this.doEnd();
+      }
+   }
+   else if(chance == 5)
+   {
+      this.outputMainText("You manage to approach the farm without being seen or stopped by a farmer. You find a bottle of milk that has yet to be shipped out with the rest. ",true);
+      if(this.milkEngorgement > 15000 && this.lactation > 0 && this.malonRep > 3)
+      {
+         this.outputMainText("However, as you feel your " + this.boobDesc() + " tits slosh about with the massive amount of milk within, you realize you could take this opportunity to do what Malon does and sneak some time with the larger and much more efficient milkers of the farm... Would save you quite a bit of time and effort.\r\rWill you?",false);
+         this.buttonConfirm();
+         this.doListen = function():void
+         {
+            var getMilk:int = 0;
+            if(buttonChoice == 6)
+            {
+               getMilk = milkAmount(1);
+               outputMainText("Feeling a bit daring, you sneak into the barn where all the milking happens. After catching Malon in here, you have a fairly good idea as to how things work. You grab up some of the cow\'s milking cups and carry them over to the hitching-rail. Using the rail for support, you lean forward and stick out your " + boobDesc() + " tits, pulling your " + clothesTop() + " " + pullUD(1) + " and letting your " + nipDesc() + " nipples pop out. They\'re already stiff and leaking profusely, a steady stream of milk trickling out in anticipation over what you\'re about to do.\r\rSheathing the cups over your " + nipDesc() + " \'erections\', ",true);
+               if(nippleSize < 15)
+               {
+                  outputMainText("barely filling the cups at all",false);
+               }
+               else if(nippleSize <= 50)
+               {
+                  outputMainText("fitting the cups almost a little too perfectly",false);
+               }
+               else if(nippleSize <= 70)
+               {
+                  outputMainText("taking a bit of effort to stuff them into the cups intended for cow teats",false);
+               }
+               else
+               {
+                  outputMainText("barely covering the tips of your giant monsters",false);
+               }
+               outputMainText(", and switch the machine on to make the cups latch on with their suction. You let out a moan as the machine begins to chug away, sucking your nipples in deeper, pulling the milk from your " + nipDesc() + " handles, and drinking the milk in long gluttonous slurps through the clear tubes. It feels so delightful, perfectly timed for large amounts of milk and completely hands-free, allowing your fingers to provide you with more sensual attention elsewhere, letting you moan even more loudly.\r\rBetween the noises of the machine and your moaning, you don\'t even notice somebody sneaking up on you until you feel thir arms wrap around you and grabs into your swollen chest.\r\r\"Gotcha!\"\r\rA pleasantly familiar voice, you turn around to see the tell-tale tail swishing upon her backside with her own shirt slightly soaked in front",false);
+               if(malonPreg > 100)
+               {
+                  outputMainText(", her large pregnant belly swollen with your child",false);
+               }
+               outputMainText(".\r\r\"Hehe, I guess I wasn\'t the only one who thought to use this, hmm? Well then, I suppose it\'s only fair to do to you what you usually do to me~\" Malon gives you a devious smirk. Her hands massage your " + boobDesc() + " mammaries while she grinds against your " + buttDesc() + " backside. Even though she has no phallic thing to penetrate you with, she still manages to arouse you further with the effort alone, making the machine chug harder as it tries to gulp down the increasing flow of your dairy goodness. She leans forward to kiss you from the side, her large chest mushing up against your back\tuntil her own bovine leakage seeps out through her shirt into small rivers ",false);
+               if(malonPreg > 100)
+               {
+                  outputMainText("around her fertile girth and ",false);
+               }
+               outputMainText("down to your rump, quickly making both your crotches warm and wet with her milk, making yours flow even more and more and...\r\rSploosh! The milking cups fly off from your " + nipDesc() + " nipples. Geysers of white spray from your tits with enough volume and pressure to have defeated the suction of a machine meant for cows. This doesn\'t seem to phase Malon, however. Instead, as she watches you erupt with so much arousal, it seems to only entice her further as she pulls you back to the wall and slides down to the floor with you between her legs. She continues to kiss and grope at your chest, grabbing a tit and milking by hand while another hand sneaks down into your " + clothesBottom() + ", fondling your crotch and making you gyrate against her own in rhythm.",false);
+               if(getMilk <= 25000)
+               {
+                  outputMainText(" A good deal of your milk having already been taken by the machine, the gushing quickly dies down as you calm within her embrace, focusing more on sending you both to orgasm rather than on the milk that rolls down Malon\'s arm and into your connected laps, forming a puddle beneath the two of you.",false);
+               }
+               else if(getMilk <= 40000)
+               {
+                  outputMainText(" Your milk continues to spray out from your bosom for a while, showering down upon you both, thoroughly drenching you in the warm fluid while making a large puddle beneath you, getting into all sorts of cracks and crevices and making Malon quake beneath you.",false);
+               }
+               else if(getMilk <= 60000)
+               {
+                  outputMainText(" The gushing continues for a while, drenching you both in the warm fluids in moments until your mouths are filling with it and gulping it down with each kiss. A grand puddle forms beneath you, splitting off into several small rivers that spread throughout the floor of the barn, even some trickling to the outside.",false);
+               }
+               else
+               {
+                  outputMainText(" The gushing persists and even increases in power as the two of you make love beneath the torrent of milk. In between each kiss is a gulp of the sweet fluid, in between each grope and grind flows some of the warm fluids across your sensitive bits. Milk spreads throughout the barn, a near-river of the stuff that flows out under the doorway while the floor grows soaked.",false);
+               }
+               outputMainText(" It doesn\'t take long before you\'re both letting out a long \"Moooooo\" of ecstacy in unison, gasping into each other\'s mouths as you climax and lactate. It takes several minutes before you come to your senses...",false);
+               doLust(-Math.floor(sen / 2),2,3);
+               doNext();
+               doListen = function():void
+               {
+                  outputMainText("You both sigh as you try to stand up. The milk everywhere doesn\'t exactly help, flowing down from your bodies and making the ground even more slippery. Yet, you manage to lean against each other and eventually stand, giving each other one last kiss before parting.",true);
+                  outputMainText("\r\r\"I\'m surprised...\" Malon can\'t help but comment. \"You... You actually made a lot more milk than me... And it felt fantastic~\" She blushes at the thought, her long erect nipples pratically bare through the soaking wet white shirt. Then she looks around. \"Though... I guess we\'re worse than the cows... Not that I\'m embarassed about that anymore but... We made quite a mess!\"\r\rWith a giggle, she steps over and grabs some empty milk jugs. She strategically places them on the floor, laying them down sideways. \"Howabout we just say some cows kicked over some \'filled\' jugs,\" She says with a wink.\r\rYou aren\'t one to object and quickly depart in the opposite direction as Malon to ensure nobody notices what has transpired...",false);
+                  if(checkItem(215))
                   {
-                     outputMainText("Deciding not to give him any, the old man continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he\'s talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you\'ll meet again before he pushes off into the water, rowing to get to the good spots.",true);
-                     hrs = 2;
-                     doEnd();
+                     outputMainText(" However, you notice a warmth from the pendant Malon had given you. Inspecting it, you notice it has been turned almost completely white, but somewhat pearlescant. A sort of milky complexion that looks like it\'s slowly flowing around the pendant, though nothing actually moves. Whatever the case may be, things seem lighter now, like you\'re able to, well, support your milky habits more easily...",false);
+                     loseManyItem(215,1);
+                     itemAdd(252);
                   }
+                  hrs = 4;
+                  doSexP(20);
+                  nipplePlay += 25;
+                  doEnd();
                };
             }
             else
             {
-               this.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\r\r\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I\'m a little low on my bait so I\'m just going on luck. It\'s been a while since I\'ve been able to get me those things from the people down south...\"\r\rHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard\'s. This man has obviously traveled a bit...\r\r\"If I could get maybe 5 of those eggs they kept plopping out, I\'m sure one of them would be just what I need to really haul in some nice catch!\"\r\rHe continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he\'s talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you\'ll meet again before he pushes off into the water, rowing to get to the good spots.",true);
-               this.hrs = 2;
-               this.doEnd();
+               outputMainText("Nah. Instead you pocket the stray bottle before you get caught and head back to Softlik.",true);
+               itemAdd(500);
+               hrs = 2;
+               doEnd();
             }
-         }
-         else if(chance == 3)
-         {
-            this.outputMainText("You wander around the lake, but you don\'t find much. However, in the distance you hear some soft singing that elates your body and mind.",true);
-            this.stats(1,2,-1,0);
-            this.hrs = 1;
-            this.doEnd();
-         }
+         };
       }
-!def DoDairyFarm():
+      else
+      {
+         this.outputMainText("Pocketing it before being caught, you head back to Softlik.",false);
+         this.itemAdd(500);
+         this.hrs = 2;
+         this.doEnd();
+      }
+   }
+}
 !def DoOldCave():
 !def DoDen():
 !def DoValley():
@@ -18633,16 +19666,14 @@ def KnotholeUpstairs():
 
 def DoBattle():
    global lust, buttonChoice, runMod, inDungeon, currentZone, currentState, hrs, gender, eGen, _str_, rapeMod, eStr, eLust, ePref, enemyID, eSen, eMenta
-   a1 = 0
    BC()
    templist = [1, "Bag", 2, "Run", 5, "Attack", 7, "Special", 9, "Rape", 10, "Entice"]
    if (lust >= 15):
-      a1 = 1
       templist.append(12)
       templist.append("Submit")
    dmg = 0
    eLustChange = 0
-   ButtonFunctions.Visible(1,1,0,0,1,0,1,0,1,1,0,a1)
+   ButtonFunctions.Visible(1,1,0,0,1,0,1,0,1,1,0,1)
    DoButtonChoices(templist)
    #this.doListen = function():void
    if (buttonChoice == 1):
@@ -21256,7 +22287,7 @@ def Aff(tempRace, tempChange, otherChange):
          heatMaxTime += 12
       heat -= 1
    #trace(cowAffinity + cow);
-   if(this.cowAffinity + this.cow >= 10 && this.cowAffinity < 10)
+!   if(this.cowAffinity + this.cow >= 10 && this.cowAffinity < 10)
    {
       this.outputMainText("\r\rYour nipples stiffen beneath your " + this.clothesTop() + ". They protrude nearly half an inch further than before!",False);
       this.nippleSize += 2;
