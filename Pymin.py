@@ -22150,7 +22150,7 @@ def Aff(tempRace, tempChange, otherChange):
       bug += math.ceil(tempChange * changeMod) - math.ceil(otherChange * changeMod)
 
 !def AffinityChange():
-   global humanAffinity, human, horseAffinity, horse, wolfAffinity, wolf, catAffinity, cat, cowAffinity, cow, lizardAffinity, lizard, rabbitAffinity, rabbit, mouseAffinity, mouse, birdAffinity, bird, pigAffinity, pig, skunkAffinity, skunk, bugAffinity, bug, changeMod, cockTotal, vagTotal, cockSizeMod, vagSizeMod, knot, cumMod, heat, heatMaxTime, heatTime, nippleSize, milkMod, hips, udders, udderSize, teatSize, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, eggLaying, eggType, eggMaxTime, eggTime, pregRate, runMod, balls, showBalls, coinMod, bellyMod, buttMod, skinType, tail, enticeMod, butt, lockSkin, lockFace, faceType, lockTail, wings, lockEars, ears, lockBreasts, breastSize, boobTotal, lockLegs, legType, cowTaurAffinity, humanTaurAffinity, lockNipples, nipType, lockCock, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks
+   global humanAffinity, human, horseAffinity, horse, wolfAffinity, wolf, catAffinity, cat, cowAffinity, cow, lizardAffinity, lizard, rabbitAffinity, rabbit, mouseAffinity, mouse, birdAffinity, bird, pigAffinity, pig, skunkAffinity, skunk, bugAffinity, bug, changeMod, cockTotal, vagTotal, cockSizeMod, vagSizeMod, knot, cumMod, heat, heatMaxTime, heatTime, nippleSize, milkMod, hips, lactation, udders, udderSize, teatSize, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, eggLaying, eggType, eggMaxTime, eggTime, pregRate, runMod, balls, showBalls, coinMod, bellyMod, buttMod, skinType, tail, enticeMod, butt, lockSkin, lockFace, faceType, lockTail, wings, lockEars, ears, lockBreasts, breastSize, boobTotal, lockLegs, legType, cowTaurAffinity, humanTaurAffinity, lockNipples, nipType, lockCock, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, dominant
    affinityCheckArray = list(())
    domCheck = 0
    second = 0
@@ -22287,904 +22287,519 @@ def Aff(tempRace, tempChange, otherChange):
          heatMaxTime += 12
       heat -= 1
    #trace(cowAffinity + cow);
-!   if(this.cowAffinity + this.cow >= 10 && this.cowAffinity < 10)
-   {
-      this.outputMainText("\r\rYour nipples stiffen beneath your " + this.clothesTop() + ". They protrude nearly half an inch further than before!",False);
-      this.nippleSize += 2;
-      this.milkMod += 50;
-   }
-   if(this.cowAffinity + this.cow >= 25 && this.cowAffinity < 25)
-   {
-      this.outputMainText("\r\rYour nipples stiffen beneath your " + this.clothesTop() + ". They protrude an inch further than before! And your hips seem slightly broader...",False);
-      this.lactChange(1,75);
-      this.nippleSize += 5;
-      this.hips += 4;
-      this.milkMod += 50;
-   }
-   if(this.cowAffinity + this.cow >= 40 && this.cowAffinity < 40)
-   {
-      this.outputMainText("\r\rYour nipples squirm within your " + this.clothesTop() + ". They\'ve grown over an inch and a half in length! And your hips feel like they\'re more \'square\' than before...",False);
-      this.lactChange(1,75);
-      this.nippleSize += 8;
-      this.hips += 6;
-      this.milkMod += 50;
-   }
-   if(this.cowAffinity + this.cow >= 55 && this.cowAffinity < 55)
-   {
-      this.outputMainText("\r\rJust above your groin, your belly begins to feel bloated. You wince as it pushes against your " + this.clothesBottom() + ", especially noticing the increased sensitivity of four spots in particular. Before you can act, your " + this.clothesBottom() + " tears at the waist, as a mound crashes through. Hanging naked and free, with four teats twice as long as your nipples, an udder about twice as large as your chest dribbles milk. You\'ll definitely be getting a special bra or perhaps adjust your " + this.clothesBottom() + " when you get back to town, at least to account for your surprisingly wider hips... ",False);
-      this.lactChange(1,150);
-      this.lactChange(2,this.lactation);
-      this.hips += 8;
-      this.udders = True
-      this.udderSize = 2 * this.breastSize;
-      this.teatSize = 2 * this.nippleSize;
-   }
-   if(this.cowAffinity + this.cow < 10 && this.cowAffinity >= 10)
-   {
-      this.outputMainText("\r\rYour nipples are less noticeable, shrinking by nearly half an inch.",False);
-      this.nippleSize -= 2;
-      this.milkMod -= 50;
-   }
-   if(this.cowAffinity + this.cow < 25 && this.cowAffinity >= 25)
-   {
-      this.outputMainText("\r\rYour nipples seem less noticeable as they shrink by an inch and your hips are less wide.",False);
-      this.lactChange(1,-50);
-      if(this.udders == True)
-      {
-         this.lactChange(2,-50);
-      }
-      this.nippleSize -= 5;
-      this.hips -= 4;
-      this.milkMod -= 50;
-   }
-   if(this.cowAffinity + this.cow < 40 && this.cowAffinity >= 40)
-   {
-      this.outputMainText("\r\rYour " + this.clothesTop() + " feels slightly looser, as your nipples shrink by over an inch and a half. You hips also narrow a little, protruding less than before.",False);
-      this.lactChange(1,-50);
-      if(this.udders == True)
-      {
-         this.lactChange(2,-50);
-      }
-      this.hips -= 6;
-      this.nippleSize -= 8;
-      this.milkMod -= 50;
-   }
-   if(this.cowAffinity + this.cow < 55 && this.cowAffinity >= 55)
-   {
-      if(!this.udderCheck(1))
-      {
-         this.outputMainText("\r\rThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You\'re no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.",False);
-         this.lactChange(1,-100);
-         this.hips -= 8;
-         this.udders = False
-         this.udderLactation = 0;
-         this.udderEngorgement = 0;
-         this.udderEngorgementLevel = 0;
-         this.udderPlay = 0;
-         this.udderSize = 0;
-         this.teatSize = 0;
-      }
-      else
-      {
-         this.outputMainText("\r\rYour waistbands seem quite loose after your hips shrink by a few inches.",False);
-         this.lactChange(1,-100);
-         this.hips -= 8;
-      }
-   }
-   if(this.lizardAffinity + this.lizard >= 40 && this.lizardAffinity < 40)
-   {
-      if(this.cockTotal == 1)
-      {
-         this.cockChange(0,1);
-      }
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rAn odd sensation of warmth fills your womb" + this.plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you\'re not pregnant.",False);
-      }
-      if(this.eggLaying == 0)
-      {
-         ++this.eggLaying;
-         this.eggType = 0;
-         this.eggMaxTime = 36;
-         this.eggTime = 36;
-      }
-      else
-      {
-         this.eggMaxTime -= 6;
-         ++this.eggLaying;
-      }
-   }
-   if(this.lizardAffinity + this.lizard < 40 && this.lizardAffinity >= 40)
-   {
-      if(this.cockTotal == 2)
-      {
-         this.cockChange(0,-1);
-      }
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rYour womb" + this.plural(2) + " calm" + this.plural(4) + " down, no longer working as hard to pop out more eggs.",False);
-      }
-      if(this.eggLaying == 1)
-      {
-         --this.eggLaying;
-         this.eggMaxTime = 0;
-         this.eggTime = 0;
-      }
-      else if(this.eggLaying > 1)
-      {
-         this.eggMaxTime += 6;
-         --this.eggLaying;
-      }
-   }
-   if(this.rabbitAffinity + this.rabbit >= 10 && this.rabbitAffinity < 10)
-   {
-      this.stats(0,0,2,0);
-   }
-   if(this.rabbitAffinity + this.rabbit >= 30 && this.rabbitAffinity < 30)
-   {
-      this.stats(0,0,5,0);
-   }
-   if(this.rabbitAffinity + this.rabbit >= 50 && this.rabbitAffinity < 50)
-   {
-      this.stats(0,0,7,0);
-   }
-   if(this.rabbitAffinity + this.rabbit >= 40 && this.rabbitAffinity < 40)
-   {
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rYour womb" + this.plural(2) + " feel" + this.plural(4) + " a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal.",False);
-      }
-      this.pregRate += 1;
-   }
-   if(this.rabbitAffinity + this.rabbit < 10 && this.rabbitAffinity >= 10)
-   {
-      this.stats(0,0,-2,0);
-   }
-   if(this.rabbitAffinity + this.rabbit < 30 && this.rabbitAffinity >= 30)
-   {
-      this.stats(0,0,-5,0);
-   }
-   if(this.rabbitAffinity + this.rabbit < 50 && this.rabbitAffinity >= 50)
-   {
-      this.stats(0,0,-7,0);
-   }
-   if(this.rabbitAffinity + this.rabbit < 40 && this.rabbitAffinity >= 40)
-   {
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rYour womb" + this.plural(2) + " feel" + this.plural(4) + " calmer. Now you can take your fertility nice and easy... relatively.",False);
-      }
-      this.pregRate = this.pregRate - 1;
-   }
-   if(this.mouseAffinity + this.mouse >= 40 && this.mouseAffinity < 40)
-   {
-      this.outputMainText("\r\rA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle.",False);
-      if(this.balls > 0 && this.showBalls == True)
-      {
-         this.outputMainText(" Your " + this.ballDesc() + " nuts also feel slightly \'skittish\', like they\'re making far more than they just were...",False);
-      }
-      this.runMod += 25;
-      this.cumMod += 3;
-   }
-   if(this.mouseAffinity + this.mouse < 40 && this.mouseAffinity >= 40)
-   {
-      this.outputMainText("\r\rThe paranoia dissipates from your mind, your body languishing and no longer as flighty.",False);
-      if(this.balls > 0 && this.showBalls == True)
-      {
-         this.outputMainText(" Your " + this.ballDesc() + " nuts also calm down, their production diminishing.",False);
-      }
-      this.runMod -= 25;
-      this.cumMod -= 3;
-   }
-   if(this.birdAffinity + this.bird >= 40 && this.birdAffinity < 40)
-   {
-      this.outputMainText("\r\rYours eyes dart about for a moment as shiny things become suddenly more noticeable. After a few moments, you calm down, but your definitely able to spot shiny things more accurately, able to find an extra couple coins whenever you come across any.",False);
-      this.coinMod += 2;
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rAn odd sensation of warmth fills your womb" + this.plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you\'re not pregnant.",False);
-      }
-      if(this.eggLaying == 0)
-      {
-         ++this.eggLaying;
-         this.eggMaxTime = 36;
-         this.eggTime = 36;
-         this.eggType = 0;
-      }
-      else
-      {
-         this.eggMaxTime -= 6;
-         ++this.eggLaying;
-      }
-   }
-   if(this.birdAffinity + this.bird < 40 && this.birdAffinity >= 40)
-   {
-      this.outputMainText("\r\rYour affinity for shinies dissipates. Not quite as focused on them, you aren\'t able to find an extra couple coins anymore.",False);
-      this.coinMod -= 2;
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rYour womb" + this.plural(2) + " calm" + this.plural(4) + " down, no longer working as hard to pop out more eggs.",False);
-      }
-      if(this.eggLaying == 1)
-      {
-         --this.eggLaying;
-         this.eggMaxTime = 0;
-         this.eggTime = 0;
-      }
-      else if(this.eggLaying > 1)
-      {
-         --this.eggLaying;
-         this.eggMaxTime += 6;
-      }
-   }
-   if(this.pigAffinity + this.pig >= 10 && this.pigAffinity < 10)
-   {
-      this.outputMainText("\r\rYour belly jiggles a bit more than you remember. Seems you\'ve gotten a bit chubbier, despite what you have eaten...",False);
-      this.bellyMod += 20;
-   }
-   if(this.pigAffinity + this.pig >= 30 && this.pigAffinity < 30)
-   {
-      this.outputMainText("\r\rYour belly jiggles a bit more than you remember. Seems you\'ve gotten a bit chubbier, despite what you have eaten...",False);
-      this.bellyMod += 20;
-   }
-   if(this.pigAffinity + this.pig >= 50 && this.pigAffinity < 50)
-   {
-      this.outputMainText("\r\rYour belly jiggles a bit more than you remember. Seems you\'ve gotten a bit chubbier, despite what you have eaten...",False);
-      this.bellyMod += 20;
-   }
-   if(this.pigAffinity + this.pig >= 70 && this.pigAffinity < 70)
-   {
-      this.outputMainText("\r\rYour belly jiggles a bit more than you remember. Seems you\'ve gotten a bit chubbier, despite what you have eaten...",False);
-      this.bellyMod += 20;
-   }
-   if(this.pigAffinity + this.pig >= 40 && this.pigAffinity < 40)
-   {
-      this.outputMainText("\r\rYou groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness.",False);
-      if(this.balls > 0 && this.showBalls == True)
-      {
-         this.outputMainText(" Your " + this.ballDesc() + " balls also feel rather \'fat\', growing heavy with seed...",False);
-      }
-      this.cumMod += 5;
-      this.hipMod += 0.5;
-      this.buttMod += 0.5;
-   }
-   if(this.pigAffinity + this.pig < 10 && this.pigAffinity >= 10)
-   {
-      this.outputMainText("\r\rYour belly feels lighter, your extra porkiness dissipating.",False);
-      this.bellyMod -= 20;
-   }
-   if(this.pigAffinity + this.pig < 30 && this.pigAffinity >= 30)
-   {
-      this.outputMainText("\r\rYour belly feels lighter, your extra porkiness diminishing.",False);
-      this.bellyMod -= 20;
-   }
-   if(this.pigAffinity + this.pig < 50 && this.pigAffinity >= 50)
-   {
-      this.outputMainText("\r\rYour belly feels lighter, your extra porkiness diminishing.",False);
-      this.bellyMod -= 20;
-   }
-   if(this.pigAffinity + this.pig < 70 && this.pigAffinity >= 70)
-   {
-      this.outputMainText("\r\rYour belly feels lighter, your extra porkiness diminishing.",False);
-      this.bellyMod -= 20;
-   }
-   if(this.pigAffinity + this.pig < 40 && this.pigAffinity >= 40)
-   {
-      this.outputMainText("\r\rYou moan as you feel some of your extra weight lift from you. Your hips and rump shrink, no longer nearly as chubby.",False);
-      if(this.balls > 0 && this.showBalls == True)
-      {
-         this.outputMainText(" Your " + this.ballDesc() + " balls also feel lighter, no longer producing as much seed.",False);
-      }
-      this.cumMod -= 5;
-      this.hipMod -= 0.5;
-      this.buttMod -= 0.5;
-   }
-   if(this.skunkAffinity + this.skunk >= 40 && this.skunkAffinity < 40)
-   {
-      this.outputMainText("\r\rYou feel your " + this.buttDesc() + " rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn\'t stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma.\r\rYou try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions.",False);
-      if(this.skinType == 2)
-      {
-         this.outputMainText("\r\rAnd to accentuate the change further, two parallel stripes emerge in your fur, connecting together at your brow and rung over your head all the way down to your rump",False);
-         if(this.tail == 11)
-         {
-            this.outputMainText(" where it connects to the stripes on your tail",False);
-         }
-         this.outputMainText(".",False);
-      }
-      this.enticeMod += 10;
-      this.butt += 2;
-   }
-   if(this.skunkAffinity + this.skunk < 40 && this.skunkAffinity >= 40)
-   {
-      this.outputMainText("\r\rYou feel your " + this.buttDesc() + " rump shrink slightly. The pleasant scent that exudes from it disappears, as well as the other scent you could produce.",False);
-      if(this.skinType == 2)
-      {
-         this.outputMainText("\r\rThe twin stripes in your fur from your head to your rump also fade",False);
-         if(this.tail == 11)
-         {
-            this.outputMainText(", though the ones on your tail remain",False);
-         }
-         this.outputMainText(".",False);
-      }
-      this.enticeMod -= 10;
-      this.butt -= 2;
-   }
-   if(this.bugAffinity + this.bug >= 40 && this.bugAffinity < 40)
-   {
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rAn odd sensation of warmth fills your womb" + this.plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing soft shells to protect them, whenever you\'re not pregnant.",False);
-      }
-      if(this.eggLaying == 0)
-      {
-         ++this.eggLaying;
-         this.eggType = 1;
-         this.eggMaxTime = 14;
-         this.eggTime = 14;
-      }
-      else
-      {
-         this.eggMaxTime -= 6;
-         ++this.eggLaying;
-      }
-   }
-   if(this.bugAffinity + this.bug < 40 && this.bugAffinity >= 40)
-   {
-      if(this.vagTotal > 0)
-      {
-         this.outputMainText("\r\rYour womb" + this.plural(2) + " calm" + this.plural(4) + " down, no longer working as hard to pop out more insect-like eggs.",False);
-      }
-      if(this.eggLaying == 1)
-      {
-         --this.eggLaying;
-         this.eggMaxTime = 0;
-         this.eggTime = 0;
-      }
-      else if(this.eggLaying > 1)
-      {
-         this.eggMaxTime += 6;
-         --this.eggLaying;
-      }
-   }
-   if(this.humanAffinity + this.human < 0)
-   {
-      this.humanAffinity = 0;
-   }
-   else if(this.humanAffinity + this.human > 100)
-   {
-      this.humanAffinity = 100;
-   }
-   else
-   {
-      this.humanAffinity += this.human;
-   }
-   if(this.horseAffinity + this.horse < 0)
-   {
-      this.horseAffinity = 0;
-   }
-   else if(this.horseAffinity + this.horse > 100)
-   {
-      this.horseAffinity = 100;
-   }
-   else
-   {
-      this.horseAffinity += this.horse;
-   }
-   if(this.wolfAffinity + this.wolf < 0)
-   {
-      this.wolfAffinity = 0;
-   }
-   else if(this.wolfAffinity + this.wolf > 100)
-   {
-      this.wolfAffinity = 100;
-   }
-   else
-   {
-      this.wolfAffinity += this.wolf;
-   }
-   if(this.catAffinity + this.cat < 0)
-   {
-      this.catAffinity = 0;
-   }
-   else if(this.catAffinity + this.cat > 100)
-   {
-      this.catAffinity = 100;
-   }
-   else
-   {
-      this.catAffinity += this.cat;
-   }
-   if(this.cowAffinity + this.cow < 0)
-   {
-      this.cowAffinity = 0;
-   }
-   else if(this.cowAffinity + this.cow > 100)
-   {
-      this.cowAffinity = 100;
-   }
-   else
-   {
-      this.cowAffinity += this.cow;
-   }
-   if(this.lizardAffinity + this.lizard < 0)
-   {
-      this.lizardAffinity = 0;
-   }
-   else if(this.lizardAffinity + this.lizard > 100)
-   {
-      this.lizardAffinity = 100;
-   }
-   else
-   {
-      this.lizardAffinity += this.lizard;
-   }
-   if(this.rabbitAffinity + this.rabbit < 0)
-   {
-      this.rabbitAffinity = 0;
-   }
-   else if(this.rabbitAffinity + this.rabbit > 100)
-   {
-      this.rabbitAffinity = 100;
-   }
-   else
-   {
-      this.rabbitAffinity += this.rabbit;
-   }
-   if(this.mouseAffinity + this.mouse < 0)
-   {
-      this.mouseAffinity = 0;
-   }
-   else if(this.mouseAffinity + this.mouse > 100)
-   {
-      this.mouseAffinity = 100;
-   }
-   else
-   {
-      this.mouseAffinity += this.mouse;
-   }
-   if(this.birdAffinity + this.bird < 0)
-   {
-      this.birdAffinity = 0;
-   }
-   else if(this.birdAffinity + this.bird > 100)
-   {
-      this.birdAffinity = 100;
-   }
-   else
-   {
-      this.birdAffinity += this.bird;
-   }
-   if(this.pigAffinity + this.pig < 0)
-   {
-      this.pigAffinity = 0;
-   }
-   else if(this.pigAffinity + this.pig > 100)
-   {
-      this.pigAffinity = 100;
-   }
-   else
-   {
-      this.pigAffinity += this.pig;
-   }
-   if(this.skunkAffinity + this.skunk < 0)
-   {
-      this.skunkAffinity = 0;
-   }
-   else if(this.skunkAffinity + this.skunk > 100)
-   {
-      this.skunkAffinity = 100;
-   }
-   else
-   {
-      this.skunkAffinity += this.skunk;
-   }
-   if(this.bugAffinity + this.bug < 0)
-   {
-      this.bugAffinity = 0;
-   }
-   else if(this.bugAffinity + this.bug > 100)
-   {
-      this.bugAffinity = 100;
-   }
-   else
-   {
-      this.bugAffinity += this.bug;
-   }
-   maxSkin = Math.max(this.humanAffinity,this.pigAffinity);
-   maxFur = Math.max(this.horseAffinity,this.wolfAffinity,this.catAffinity,this.cowAffinity,this.rabbitAffinity,this.mouseAffinity,this.skunkAffinity);
-   maxScale = Math.max(this.lizardAffinity);
-   maxFeather = Math.max(this.birdAffinity);
-   maxChitin = Math.max(this.bugAffinity);
-   maxNonSkin = Math.max(maxFur,maxScale,maxFeather,maxChitin);
-   maxNonFur = Math.max(maxSkin,maxScale,maxFeather,maxChitin);
-   maxNonScale = Math.max(maxFur,maxSkin,maxFeather,maxChitin);
-   maxNonFeather = Math.max(maxFur,maxScale,maxSkin,maxChitin);
-   maxNonChitin = Math.max(maxFur,maxScale,maxSkin,maxFeather);
-   if(this.lockSkin == 0)
-   {
-      if(maxSkin > maxNonSkin + 35 && this.skinType != 1)
-      {
-         this.outputMainText("\r\rYour " + this.skinDesc() + " feels oddly cool. Looking at it, your " + this.skinDesc() + " shrinks into your skin, leaving you \'bald\' all over. You feel a little naked as you get used to your bare skin.",False);
-         this.skinType = 1;
-      }
-      if(maxFur > maxNonFur + 35 && this.skinType != 2)
-      {
-         this.outputMainText("\r\rYour " + this.skinDesc() + " begins to itch all over as soft hairs begin to sprout in patches. Before you know it, your whole body is soon covered in a coat of fur.",False);
-         this.skinType = 2;
-         if(this.skunkAffinity >= 40)
-         {
-            this.outputMainText(" The fur is mostly a single color, except for two parallel stripes that connect at your brow and run over your head and down your back to your rump",False);
-            if(this.tail == 11)
-            {
-               this.outputMainText(" where it connects to the stripes on your tail",False);
-            }
-            this.outputMainText(".",False);
-         }
-      }
-      if(maxScale > maxNonScale + 35 && this.skinType != 3)
-      {
-         this.outputMainText("\r\rYour " + this.skinDesc() + " begins to feel oddly dry, feeling somewhat flaky. Before you know it, your whole body feels soft and extremely smooth, covered in a thin layer of scales.",False);
-         this.skinType = 3;
-      }
-      if(maxFeather > maxNonFeather + 35 && this.skinType != 4)
-      {
-         this.outputMainText("\r\rYour " + this.skinDesc() + " begins to tickle all over, tiny hair sprouting up all over and collecting into groups. Before you know it, you\'re rustling and fluffing up, sleeking back a layer of feathers.",False);
-         this.skinType = 4;
-      }
-      if(maxChitin > maxNonChitin + 35 && this.skinType != 5)
-      {
-         this.outputMainText("\r\rYour " + this.skinDesc() + " begins to feel stiff, as though it were getting harder. Before you know it, your whole body is covered with a layer of chitin, almost like full suit of segmented armor. However, unlike armor, this doesn\'t really afford you any protection, since you seem to have all the usual sensations through it like any other kind of skin.",False);
-         if(this.legDesc(10) == "feet")
-         {
-            this.outputMainText(" And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes.",False);
-         }
-         this.skinType = 5;
-      }
-   }
+   if (((cowAffinity + cow) >= 10) and (cowAffinity < 10)):
+      OutputMainText("\n" + "\n" + "Your nipples stiffen beneath your " + ClothesTop() + ". They protrude nearly half an inch further than before!",False)
+      nippleSize += 2
+      milkMod += 50
+   if (((cowAffinity + cow) >= 25) and (cowAffinity < 25)):
+      OutputMainText("\n" + "\n" + "Your nipples stiffen beneath your " + ClothesTop() + ". They protrude an inch further than before! And your hips seem slightly broader...",False)
+      LactChange(1,75)
+      nippleSize += 5
+      hips += 4
+      milkMod += 50
+   if (((cowAffinity + cow) >= 40) and (cowAffinity < 40)):
+      OutputMainText("\n" + "\n" + "Your nipples squirm within your " + ClothesTop() + ". They've grown over an inch and a half in length! And your hips feel like they\'re more 'square' than before...",False)
+      LactChange(1,75)
+      nippleSize += 8
+      hips += 6
+      milkMod += 50
+   if (((cowAffinity + cow) >= 55) and (cowAffinity < 55)):
+      OutputMainText("\n" + "\n" + "Just above your groin, your belly begins to feel bloated. You wince as it pushes against your " + ClothesBottom() + ", especially noticing the increased sensitivity of four spots in particular. Before you can act, your " + ClothesBottom() + " tears at the waist, as a mound crashes through. Hanging naked and free, with four teats twice as long as your nipples, an udder about twice as large as your chest dribbles milk. You'll definitely be getting a special bra or perhaps adjust your " + ClothesBottom() + " when you get back to town, at least to account for your surprisingly wider hips... ",False)
+      LactChange(1,150)
+      LactChange(2,lactation)
+      hips += 8
+      udders = True
+      udderSize = 2 * breastSize
+      teatSize = 2 * nippleSize
+   if (((cowAffinity + cow) < 10) and (cowAffinity >= 10)):
+      OutputMainText("\n" + "\n" + "Your nipples are less noticeable, shrinking by nearly half an inch.",False)
+      nippleSize -= 2
+      milkMod -= 50
+   if (((cowAffinity + cow) < 25) and (cowAffinity >= 25)):
+      OutputMainText("\n" + "\n" + "Your nipples seem less noticeable as they shrink by an inch and your hips are less wide.",False)
+      LactChange(1,-50)
+      if (udders == True):
+         LactChange(2,-50)
+      nippleSize -= 5
+      hips -= 4
+      milkMod -= 50
+   if (((cowAffinity + cow) < 40) and (cowAffinity >= 40)):
+      OutputMainText("\n" + "\n" + "Your " + ClothesTop() + " feels slightly looser, as your nipples shrink by over an inch and a half. You hips also narrow a little, protruding less than before.",False)
+      LactChange(1,-50)
+      if (udders == True):
+         LactChange(2,-50)
+      hips -= 6
+      nippleSize -= 8
+      milkMod -= 50
+   if (((cowAffinity + cow) < 55) and (cowAffinity >= 55)):
+      if (UdderCheck(1) == False):
+         OutputMainText("\n" + "\n" + "The fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You\'re no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.",False)
+         LactChange(1,-100)
+         hips -= 8
+         udders = False
+         udderLactation = 0
+         udderEngorgement = 0
+         udderEngorgementLevel = 0
+         udderPlay = 0
+         udderSize = 0
+         teatSize = 0
+      else:
+         OutputMainText("\n" + "\n" + "Your waistbands seem quite loose after your hips shrink by a few inches.",False)
+         LactChange(1,-100)
+         hips -= 8
+   if (((lizardAffinity + lizard) >= 40) and (lizardAffinity < 40)):
+      if (cockTotal == 1):
+         CockChange(0,1)
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "An odd sensation of warmth fills your womb" + Plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.",False)
+      if (eggLaying == 0):
+         eggLaying += 1
+         eggType = 0
+         eggMaxTime = 36
+         eggTime = 36
+      else:
+         eggMaxTime -= 6
+         eggLaying += 1
+   if (((lizardAffinity + lizard) < 40) and (lizardAffinity >= 40)):
+      if (cockTotal == 2):
+         CockChange(0,-1)
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "Your womb" + Plural(2) + " calm" + Plural(4) + " down, no longer working as hard to pop out more eggs.",False)
+      if (eggLaying == 1):
+         eggLaying -= 1
+         eggMaxTime = 0
+         eggTime = 0
+      elif (eggLaying > 1):
+         eggMaxTime += 6
+         eggLaying -= 1
+   if (((rabbitAffinity + rabbit) >= 10) and (rabbitAffinity < 10)):
+      Stats(0,0,2,0)
+   if (((rabbitAffinity + rabbit) >= 30) and (rabbitAffinity < 30)):
+      Stats(0,0,5,0)
+   if (((rabbitAffinity + rabbit) >= 50) and (rabbitAffinity < 50)):
+      Stats(0,0,7,0)
+   if (((rabbitAffinity + rabbit) >= 40) and (rabbitAffinity < 40)):
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "Your womb" + Plural(2) + " feel" + Plural(4) + " a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal.",False)
+      pregRate += 1
+   if (((rabbitAffinity + rabbit) < 10) and (rabbitAffinity >= 10)):
+      Stats(0,0,-2,0)
+   if (((rabbitAffinity + rabbit) < 30) and (rabbitAffinity >= 30)):
+      Stats(0,0,-5,0)
+   if (((rabbitAffinity + rabbit) < 50) and (rabbitAffinity >= 50)):
+      Stats(0,0,-7,0)
+   if (((rabbitAffinity + rabbit) < 40) and (rabbitAffinity >= 40)):
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "Your womb" + Plural(2) + " feel" + Plural(4) + " calmer. Now you can take your fertility nice and easy... relatively.",False)
+      pregRate -= 1
+   if (((mouseAffinity + mouse) >= 40) and (mouseAffinity < 40)):
+      OutputMainText("\n" + "\n" + "A slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle.",False)
+      if ((balls > 0) and (showBalls == True)):
+         OutputMainText(" Your " + BallDesc() + " nuts also feel slightly 'skittish', like they're making far more than they just were...",False)
+      runMod += 25
+      cumMod += 3
+   if (((mouseAffinity + mouse) < 40) and (mouseAffinity >= 40)):
+      OutputMainText("\n" + "\n" + "The paranoia dissipates from your mind, your body languishing and no longer as flighty.",False)
+      if ((balls > 0) and (showBalls == True)):
+         OutputMainText(" Your " + BallDesc() + " nuts also calm down, their production diminishing.",False)
+      runMod -= 25
+      cumMod -= 3
+   if (((birdAffinity + bird) >= 40) and (birdAffinity < 40)):
+      OutputMainText("\n" + "\n" + "Yours eyes dart about for a moment as shiny things become suddenly more noticeable. After a few moments, you calm down, but your definitely able to spot shiny things more accurately, able to find an extra couple coins whenever you come across any.",False)
+      coinMod += 2
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "An odd sensation of warmth fills your womb" + Plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.",False);
+      if (eggLaying == 0):
+         eggLaying += 1
+         eggMaxTime = 36
+         eggTime = 36
+         eggType = 0
+      else:
+         eggMaxTime -= 6
+         eggLaying += 1
+   if (((birdAffinity + bird) < 40) and (birdAffinity >= 40)):
+      OutputMainText("\n" + "\n" + "Your affinity for shinies dissipates. Not quite as focused on them, you aren't able to find an extra couple coins anymore.",False)
+      coinMod -= 2
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "Your womb" + Plural(2) + " calm" + Plural(4) + " down, no longer working as hard to pop out more eggs.",False)
+      if (eggLaying == 1):
+         eggLaying -= 1
+         eggMaxTime = 0
+         eggTime = 0
+      elif (eggLaying > 1):
+         eggLaying -= 1
+         eggMaxTime += 6
+   if (((pigAffinity + pig) >= 10) and (pigAffinity < 10)):
+      OutputMainText("\n" + "\n" + "Your belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
+      bellyMod += 20
+   if (((pigAffinity + pig) >= 30) and (pigAffinity < 30)):
+      OutputMainText("\n" + "\n" + "Your belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
+      bellyMod += 20
+   if (((pigAffinity + pig) >= 50) and (pigAffinity < 50)):
+      OutputMainText("\n" + "\n" + "Your belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
+      bellyMod += 20
+   if (((pigAffinity + pig) >= 70) and (pigAffinity < 70)):
+      OutputMainText("\n" + "\n" + "Your belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
+      bellyMod += 20
+   if (((pigAffinity + pig) >= 40) and (pigAffinity < 40)):
+      OutputMainText("\n" + "\n" + "You groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness.",False)
+      if ((balls > 0) and (showBalls == True)):
+         OutputMainText(" Your " + BallDesc() + " balls also feel rather 'fat', growing heavy with seed...",False)
+      cumMod += 5
+      hipMod += 0.5
+      buttMod += 0.5
+   if (((pigAffinity + pig) < 10) and (pigAffinity >= 10)):
+      OutputMainText("\n" + "\n" + "Your belly feels lighter, your extra porkiness dissipating.",False)
+      bellyMod -= 20
+   if (((pigAffinity + pig) < 30) and (pigAffinity >= 30)):
+      OutputMainText("\n" + "\n" + "Your belly feels lighter, your extra porkiness diminishing.",False)
+      bellyMod -= 20
+   if (((pigAffinity + pig) < 50) and (pigAffinity >= 50)):
+      OutputMainText("\n" + "\n" + "Your belly feels lighter, your extra porkiness diminishing.",False)
+      bellyMod -= 20
+   if (((pigAffinity + pig) < 70) and (pigAffinity >= 70)):
+      OutputMainText("\n" + "\n" + "Your belly feels lighter, your extra porkiness diminishing.",False)
+      bellyMod -= 20
+   if (((pigAffinity + pig) < 40) and (pigAffinity >= 40)):
+      OutputMainText("\n" + "\n" + "You moan as you feel some of your extra weight lift from you. Your hips and rump shrink, no longer nearly as chubby.",False)
+      if ((balls > 0) and (showBalls == True)):
+         OutputMainText(" Your " + BallDesc() + " balls also feel lighter, no longer producing as much seed.",False)
+      cumMod -= 5
+      hipMod -= 0.5
+      buttMod -= 0.5
+   if (((skunkAffinity + skunk) >= 40) and (skunkAffinity < 40)):
+      OutputMainText("\n" + "\n" + "You feel your " + ButtDesc() + " rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn't stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma." + "\n" + "\n" + "You try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions.",False)
+      if (skinType == 2):
+         OutputMainText("\n" + "\n" + "And to accentuate the change further, two parallel stripes emerge in your fur, connecting together at your brow and rung over your head all the way down to your rump",False)
+         if (tail == 11):
+            OutputMainText(" where it connects to the stripes on your tail",False)
+         OutputMainText(".",False)
+      enticeMod += 10
+      butt += 2
+   if (((skunkAffinity + skunk) < 40) and (skunkAffinity >= 40)):
+      OutputMainText("\n" + "\n" + "You feel your " + ButtDesc() + " rump shrink slightly. The pleasant scent that exudes from it disappears, as well as the other scent you could produce.",False)
+      if (skinType == 2):
+         OutputMainText("\n" + "\n" + "The twin stripes in your fur from your head to your rump also fade",False)
+         if (tail == 11):
+            OutputMainText(", though the ones on your tail remain",False)
+         OutputMainText(".",False)
+      enticeMod -= 10
+      butt -= 2
+   if (((bugAffinity + bug) >= 40) and (bugAffinity < 40)):
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "An odd sensation of warmth fills your womb" + Plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing soft shells to protect them, whenever you're not pregnant.",False)
+      if (eggLaying == 0):
+         eggLaying += 1
+         eggType = 1
+         eggMaxTime = 14
+         eggTime = 14
+      else:
+         eggMaxTime -= 6
+         eggLaying += 1
+   if (((bugAffinity + bug) < 40) and (bugAffinity >= 40)):
+      if (vagTotal > 0):
+         OutputMainText("\n" + "\n" + "Your womb" + Plural(2) + " calm" + Plural(4) + " down, no longer working as hard to pop out more insect-like eggs.",False)
+      if (eggLaying == 1):
+         eggLaying -= 1
+         eggMaxTime = 0
+         eggTime = 0
+      elif (eggLaying > 1):
+         eggMaxTime += 6
+         eggLaying -= 1
+   if ((humanAffinity + human) < 0):
+      humanAffinity = 0
+   elif ((humanAffinity + human) > 100):
+      this.humanAffinity = 100
+   else:
+      humanAffinity += human
+   if (horseAffinity + horse < 0):
+      horseAffinity = 0
+   elif ((horseAffinity + horse) > 100):
+      horseAffinity = 100
+   else:
+      horseAffinity += horse
+   if ((wolfAffinity + wolf) < 0):
+      wolfAffinity = 0
+   elif ((wolfAffinity + wolf) > 100):
+      wolfAffinity = 100
+   else:
+      wolfAffinity += wolf
+   if ((catAffinity + cat) < 0):
+      catAffinity = 0
+   elif ((catAffinity + cat) > 100):
+      catAffinity = 100
+   else:
+      catAffinity += cat
+   if ((cowAffinity + cow) < 0):
+      cowAffinity = 0
+   elif ((cowAffinity + cow) > 100):
+      cowAffinity = 100
+   else:
+      cowAffinity += cow
+   if ((lizardAffinity + lizard) < 0):
+      lizardAffinity = 0
+   elif ((lizardAffinity + lizard) > 100):
+      lizardAffinity = 100
+   else:
+      lizardAffinity += lizard
+   if ((rabbitAffinity + rabbit) < 0):
+      rabbitAffinity = 0
+   elif ((rabbitAffinity + rabbit) > 100):
+      rabbitAffinity = 100
+   else:
+      rabbitAffinity += rabbit
+   if ((mouseAffinity + mouse) < 0):
+      mouseAffinity = 0
+   elif ((mouseAffinity + mouse) > 100):
+      mouseAffinity = 100
+   else:
+      mouseAffinity += mouse
+   if ((birdAffinity + bird) < 0):
+      birdAffinity = 0
+   elif ((birdAffinity + bird) > 100):
+      birdAffinity = 100
+   else:
+      birdAffinity += bird
+   if ((pigAffinity + pig) < 0):
+      pigAffinity = 0
+   elif ((pigAffinity + pig) > 100):
+      pigAffinity = 100
+   else:
+      pigAffinity += pig
+   if ((skunkAffinity + skunk) < 0):
+      skunkAffinity = 0
+   elif ((skunkAffinity + skunk) > 100):
+      skunkAffinity = 100
+   else:
+      skunkAffinity += skunk
+   if ((bugAffinity + bug) < 0):
+      bugAffinity = 0
+   elif ((bugAffinity + bug) > 100):
+      bugAffinity = 100
+   else:
+      bugAffinity += bug
+   maxSkin = max(humanAffinity,pigAffinity)
+   maxFur = max(horseAffinity,wolfAffinity,catAffinity,cowAffinity,rabbitAffinity,mouseAffinity,skunkAffinity)
+   maxScale = max(lizardAffinity)
+   maxFeather = max(birdAffinity)
+   maxChitin = max(bugAffinity)
+   maxNonSkin = max(maxFur,maxScale,maxFeather,maxChitin)
+   maxNonFur = max(maxSkin,maxScale,maxFeather,maxChitin)
+   maxNonScale = max(maxFur,maxSkin,maxFeather,maxChitin)
+   maxNonFeather = max(maxFur,maxScale,maxSkin,maxChitin)
+   maxNonChitin = max(maxFur,maxScale,maxSkin,maxFeather)
+   if (lockSkin == 0):
+      if ((maxSkin > (maxNonSkin + 35)) and (skinType != 1)):
+         OutputMainText("\n" + "\n" + "Your " + SkinDesc() + " feels oddly cool. Looking at it, your " + SkinDesc() + " shrinks into your skin, leaving you 'bald' all over. You feel a little naked as you get used to your bare skin.",False)
+         skinType = 1
+      if ((maxFur > (maxNonFur + 35)) and (skinType != 2)):
+         OutputMainText("\n" + "\n" + "Your " + SkinDesc() + " begins to itch all over as soft hairs begin to sprout in patches. Before you know it, your whole body is soon covered in a coat of fur.",False)
+         skinType = 2
+         if (skunkAffinity >= 40):
+            OutputMainText(" The fur is mostly a single color, except for two parallel stripes that connect at your brow and run over your head and down your back to your rump",False)
+            if (tail == 11):
+               OutputMainText(" where it connects to the stripes on your tail",False)
+            OutputMainText(".",False)
+      if ((maxScale > (maxNonScale + 35)) and (skinType != 3)):
+         OutputMainText("\n" + "\n" + "Your " + SkinDesc() + " begins to feel oddly dry, feeling somewhat flaky. Before you know it, your whole body feels soft and extremely smooth, covered in a thin layer of scales.",False)
+         skinType = 3
+      if ((maxFeather > (maxNonFeather + 35)) and (skinType != 4)):
+         OutputMainText("\n" + "\n" + "Your " + SkinDesc() + " begins to tickle all over, tiny hair sprouting up all over and collecting into groups. Before you know it, you're rustling and fluffing up, sleeking back a layer of feathers.",False)
+         skinType = 4
+      if ((maxChitin > (maxNonChitin + 35)) and (skinType != 5)):
+         OutputMainText("\n" + "\n" + "Your " + SkinDesc() + " begins to feel stiff, as though it were getting harder. Before you know it, your whole body is covered with a layer of chitin, almost like full suit of segmented armor. However, unlike armor, this doesn't really afford you any protection, since you seem to have all the usual sensations through it like any other kind of skin.",False)
+         if (LegDesc(10) == "feet")
+            OutputMainText(" And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes.",False)
+         skinType = 5
    hasMuzzle = False
-   if(this.lockFace == 0)
-   {
-      if(this.faceType == 21 || this.faceType == 31 || this.faceType == 61)
-      {
+   if (lockFace == 0):
+      if ((faceType == 21) or (faceType == 31) or (faceType == 61)):
          hasMuzzle = True
-      }
-      if(this.dominant == 1 && this.faceType != 10)
-      {
-         this.outputMainText("\r\r",False);
-         if(hasMuzzle == True)
-         {
-            this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-         }
-         this.outputMainText("Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human\'s.",False);
-         this.faceType = 10;
+      if ((dominant == 1) and (faceType != 10)):
+         OutputMainText("\r\r",False)
+         if (hasMuzzle == True)
+            OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+         OutputMainText("Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human's.",False)
+         faceType = 10
          hasMuzzle = False
-      }
-      if(this.dominant == 2 && (this.faceType != 20 || this.faceType != 21))
-      {
-         if(this.faceType != 20 && this.faceType != 21)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also appears wider to make up for the slightly stretched appearance.",False);
-            }
-            this.faceType = 20;
-         }
-         else if(this.faceType != 21 && this.horseAffinity > 70)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large eyes peering down the strong jaw, you seem to have a more equine appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse.",False);
-            }
-            this.faceType = 21;
+      if ((dominant == 2) and ((faceType != 20) or (faceType != 21))):
+         if ((faceType != 20) and (faceType != 21))
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your jaw seems to be a bit low and wide, your face looking longer than average. Your nose also appears wider to make up for the slightly stretched appearance.",False)
+            faceType = 20
+         elif ((faceType != 21) and (horseAffinity > 70)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large eyes peering down the strong jaw, you seem to have a more equine appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse.",False)
+            faceType = 21
             hasMuzzle = True
-         }
-      }
-      if(this.dominant == 3 && (this.faceType != 30 || this.faceType != 31))
-      {
-         if(this.faceType != 30 && this.faceType != 31)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour teeth grow sharper and your eyes focus more. The tip of your nose also moistens and becomes softer, giving you a more feral appearance.",False);
-            }
-            this.faceType = 30;
-         }
-         else if(this.faceType != 31 && this.wolfAffinity > 70)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour muzzle narrows and your teeth grow long and sharp, your canines especially visible. With your narrow eyes peering down the vicious jaw, you seem to have a more lupin appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf.",False);
-            }
-            this.faceType = 31;
+      if ((dominant == 3) and ((faceType != 30) or (faceType != 31))):
+         if ((faceType != 30) and (faceType != 31)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your teeth grow sharper and your eyes focus more. The tip of your nose also moistens and becomes softer, giving you a more feral appearance.",False)
+            faceType = 30
+         elif ((faceType != 31) and (wolfAffinity > 70)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your muzzle narrows and your teeth grow long and sharp, your canines especially visible. With your narrow eyes peering down the vicious jaw, you seem to have a more lupin appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf.",False)
+            faceType = 31
             hasMuzzle = True
-         }
-      }
-      if(this.dominant == 4 && (this.faceType != 40 || this.faceType != 41))
-      {
-         if(this.faceType != 40 && this.faceType != 41)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your face flattens and your nose shrinks a bit, the tip changing color slightly and becoming softer. Your eyes grow narrow as well, making you seem like a hunter.",False);
-            this.faceType = 40;
+      if ((dominant == 4) and ((faceType != 40) or (faceType != 41))):
+         if ((faceType != 40) and (faceType != 41)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your face flattens and your nose shrinks a bit, the tip changing color slightly and becoming softer. Your eyes grow narrow as well, making you seem like a hunter.",False)
+            faceType = 40
             hasMuzzle = False
-         }
-         else if(this.faceType != 41 && this.catAffinity > 60)
-         {
-            this.outputMainText("\r\rYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. They\'re a bit sensitive when you touch them and give you a rather cat-like appearance.",False);
-            this.faceType = 41;
-         }
-      }
-      if(this.dominant == 5 && (this.faceType != 50 || this.faceType != 51))
-      {
-         if(this.faceType != 50 && this.faceType != 51)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also seems noticeably broader.",False);
-            }
-            this.faceType = 50;
-         }
-         else if(this.faceType != 51 && this.cowAffinity > 70)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large droopy eyes peering down the broad muzzle, you seem to have a more bovine appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow.",False);
-            }
-            this.faceType = 51;
+         elif ((faceType != 41) and (catAffinity > 60)):
+            OutputMainText("\n" + "\n" + "Your upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. They\'re a bit sensitive when you touch them and give you a rather cat-like appearance.",False)
+            faceType = 41
+      if ((dominant == 5) and ((faceType != 50) or (faceType != 51))):
+         if ((faceType != 50) and (faceType != 51)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your jaw seems to be a bit low and wide, your face looking longer than average. Your nose also seems noticeably broader.",False)
+            faceType = 50
+         elif ((faceType != 51) and (cowAffinity > 70)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large droopy eyes peering down the broad muzzle, you seem to have a more bovine appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow.",False)
+            faceType = 51
             hasMuzzle = True
-         }
-      }
-      if(this.dominant == 6 && (this.faceType != 60 || this.faceType != 61))
-      {
-         if(this.faceType != 60 && this.faceType != 61)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour nostrils flatten into slits against your muzzle, giving you a more reptillian appearance.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour nose flattens until your nostrils are almost merely slits. Your lips also thin slightly, giving you a more reptillian appearance.",False);
-            }
-            this.faceType = 60;
-         }
-         else if(this.faceType != 61 && this.lizardAffinity > 70)
-         {
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("\r\rYour muzzle narrows and flattens out a bit more, making you look more like some kind of lizard.",False);
-            }
-            else
-            {
-               this.outputMainText("\r\rYour jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard.",False);
-            }
-            this.faceType = 61;
+      if ((dominant == 6) and ((faceType != 60) or (faceType != 61))):
+         if ((faceType != 60) and (faceType != 61)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your nostrils flatten into slits against your muzzle, giving you a more reptillian appearance.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your nose flattens until your nostrils are almost merely slits. Your lips also thin slightly, giving you a more reptillian appearance.",False)
+            faceType = 60
+         elif ((faceType != 61) and (lizardAffinity > 70)):
+            if (hasMuzzle == True):
+               OutputMainText("\n" + "\n" + "Your muzzle narrows and flattens out a bit more, making you look more like some kind of lizard.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Your jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard.",False)
+            faceType = 61
             hasMuzzle = True
-         }
-      }
-      if(this.dominant == 7 && (this.faceType != 70 || this.faceType != 71))
-      {
-         if(this.faceType != 70 && this.faceType != 71)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your face flattens while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become round and soft, making you seem relatively meek.",False);
-            this.faceType = 70;
+      if ((dominant == 7) and ((faceType != 70) or (faceType != 71))):
+         if ((faceType != 70) and (faceType != 71)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your face flattens while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become round and soft, making you seem relatively meek.",False)
+            faceType = 70
             hasMuzzle = False
-         }
-         else if(this.faceType != 71 && this.rabbitAffinity > 60)
-         {
-            this.outputMainText("\r\rYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a bunny.",False);
-            this.faceType = 71;
-         }
-      }
-      if(this.dominant == 8 && (this.faceType != 80 || this.faceType != 81))
-      {
-         if(this.faceType != 80 && this.faceType != 81)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your lower face protrudes outward while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become slightly smaller yet more open, making you seem more cautious of your surroundings.",False);
-            this.faceType = 80;
+         elif ((faceType != 71) and (rabbitAffinity > 60)):
+            OutputMainText("\n" + "\n" + "Your upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a bunny.",False)
+            faceType = 71
+      if ((dominant == 8) and ((faceType != 80) or (faceType != 81))):
+         if ((faceType != 80) and (faceType != 81)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your lower face protrudes outward while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become slightly smaller yet more open, making you seem more cautious of your surroundings.",False)
+            faceType = 80
             hasMuzzle = False
-         }
-         else if(this.faceType != 81 && this.mouseAffinity > 60)
-         {
-            this.outputMainText("\r\rThin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a mouse.",False);
-            this.faceType = 81;
-         }
-      }
-      if(this.dominant == 9 && (this.faceType != 90 || this.faceType != 91))
-      {
-         if(this.faceType != 90 && this.faceType != 91)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your jaw becomes sharper while your nose grows larger from the rest of your face, almost have a hooked shape. Your eyes become wide and aware, making you seem more focused.",False);
-            this.faceType = 90;
+         elif ((faceType != 81) and (mouseAffinity > 60)):
+            OutputMainText("\n" + "\n" + "Thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a mouse.",False)
+            faceType = 81
+      if ((dominant == 9) and ((faceType != 90) or (faceType != 91))):
+         if ((faceType != 90) and (faceType != 91)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your jaw becomes sharper while your nose grows larger from the rest of your face, almost have a hooked shape. Your eyes become wide and aware, making you seem more focused.",False)
+            faceType = 90
             hasMuzzle = False
-         }
-         else if(this.faceType != 91 && this.birdAffinity > 70)
-         {
-            this.outputMainText("\r\rYour upper lip molds up against your large nose, becoming stiff and hard while the bottom lip protrudes and matches the hooked shape. Your nose and mouth morph into a sturdy powerful beak, making you look much like a bird.",False);
-            this.faceType = 91;
-         }
-      }
-      if(this.dominant == 10 && (this.faceType != 100 || this.faceType != 101 || this.faceType != 102))
-      {
-         if(this.faceType != 100 && this.faceType != 101 && this.faceType != 102)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look.",False);
-            this.faceType = 100;
+         elif ((faceType != 91) and (birdAffinity > 70)):
+            OutputMainText("\n" + "\n" + "Your upper lip molds up against your large nose, becoming stiff and hard while the bottom lip protrudes and matches the hooked shape. Your nose and mouth morph into a sturdy powerful beak, making you look much like a bird.",False)
+            faceType = 91
+      if ((dominant == 10) and ((faceType != 100) or (faceType != 101) or (faceType != 102))):
+         if ((faceType != 100) and (faceType != 101) and (faceType != 102)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look.",False)
+            faceType = 100
             hasMuzzle = False
-         }
-         else if(this.faceType != 101 && this.faceType != 102 && this.pigAffinity > 60)
-         {
-            this.outputMainText("\r\rYour nose flattens and turns upward, your nostrils growing larger and pointing straight out, making you look much like a pig.",False);
-            this.faceType = 101;
-         }
-         else if(this.faceType != 102 && this.pigAffinity > 85)
-         {
-            this.outputMainText("\r\rTwo of your lower teeth suddenly begin to surge outward, growing rapidly into two large tusks that stick out from your lips and curl upward.",False);
-            this.faceType = 102;
-         }
-      }
-      if(this.dominant == 11 && (this.faceType != 110 || this.faceType != 111))
-      {
-         if(this.faceType != 110 && this.faceType != 111)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your face stretches out along your nose a bit, the tip growing smaller and more narrow and becoming softer. Your eyes become soft and gentle, but with the potential to become defensive and vicious at any moment.",False);
-            this.faceType = 110;
+         elif ((faceType != 101) and (faceType != 102) and (pigAffinity > 60)):
+            OutputMainText("\n" + "\n" + "Your nose flattens and turns upward, your nostrils growing larger and pointing straight out, making you look much like a pig.",False)
+            faceType = 101
+         elif ((faceType != 102) and (pigAffinity > 85)):
+            OutputMainText("\n" + "\n" + "Two of your lower teeth suddenly begin to surge outward, growing rapidly into two large tusks that stick out from your lips and curl upward.",False)
+            faceType = 102
+      if ((dominant == 11) and ((faceType != 110) or (faceType != 111))):
+         if ((faceType != 110) and (faceType != 111)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your face stretches out along your nose a bit, the tip growing smaller and more narrow and becoming softer. Your eyes become soft and gentle, but with the potential to become defensive and vicious at any moment.",False)
+            faceType = 110
             hasMuzzle = False
-         }
-         else if(this.faceType != 111 && this.skunkAffinity > 60)
-         {
-            this.outputMainText("\r\rLong stiff thin whiskers sprout from the front of your cheeks. They\'re a bit sensitive when you touch them and give you a rather skunk-like appearance.",False);
-            this.faceType = 111;
-         }
-      }
-      if(this.dominant == 12 && (this.faceType != 120 || this.faceType != 121))
-      {
-         if(this.faceType != 120 && this.faceType != 121)
-         {
-            this.outputMainText("\r\r",False);
-            if(hasMuzzle == True)
-            {
-               this.outputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False);
-            }
-            this.outputMainText("Your face flattens and your nose shrinks a bit, a chitinous \'bandage\' forming over the bridge of your nose to protect it. Your eyes grow much larger compared to the rest of your face, almost alien but still able to show plenty of emotion.",False);
-            this.faceType = 120;
+         elif ((faceType != 111) and (skunkAffinity > 60)):
+            OutputMainText("\n" + "\n" + "Long stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather skunk-like appearance.",False)
+            faceType = 111
+      if ((dominant == 12) and ((faceType != 120) or (faceType != 121))):
+         if ((faceType != 120) and (faceType != 121)):
+            OutputMainText("\n" + "\n",False)
+            if (hasMuzzle == True):
+               OutputMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ",False)
+            OutputMainText("Your face flattens and your nose shrinks a bit, a chitinous 'bandage' forming over the bridge of your nose to protect it. Your eyes grow much larger compared to the rest of your face, almost alien but still able to show plenty of emotion.",False)
+            faceType = 120
             hasMuzzle = False
-         }
-         else if(this.faceType != 121 && this.bugAffinity > 60)
-         {
-            this.outputMainText("\r\rYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.",False);
-            this.faceType = 121;
-         }
-      }
-   }
-   trace("Face :" + this.faceType);
-   tempTailArray = [this.horseAffinity,this.wolfAffinity,this.catAffinity,this.cowAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.pigAffinity,this.skunkAffinity,this.bugAffinity,this.humanTaurAffinity];
-   tempTailArray.sort(16);
-   maxTail = tempTailArray.pop();
-   secondTail = tempTailArray.pop();
-   maxNonTail = Math.max(this.humanAffinity);
-   if(this.lockTail == 0)
-   {
-      if(this.tail < 1)
-      {
-         if(this.dominant == 2 && this.horseAffinity > maxNonTail + 15)
-         {
-            this.tail = 2;
-         }
-         if(this.dominant == 3 && this.wolfAffinity > maxNonTail + 15)
-         {
-            this.tail = 3;
-         }
-         if(this.dominant == 4 && this.catAffinity > maxNonTail + 15)
-         {
-            this.tail = 4;
-         }
-         if(this.dominant == 5 && this.cowAffinity > maxNonTail + 15)
-         {
-            this.tail = 5;
-         }
-         if(this.dominant == 6 && this.lizardAffinity > maxNonTail + 15)
-         {
-            this.tail = 6;
-         }
-         if(this.dominant == 7 && this.rabbitAffinity > maxNonTail + 15)
-         {
-            this.tail = 7;
-         }
-         if(this.dominant == 8 && this.mouseAffinity > maxNonTail + 15)
-         {
-            this.tail = 8;
-         }
-         if(this.dominant == 9 && this.birdAffinity > maxNonTail + 15)
-         {
-            this.tail = 9;
-         }
-         if(this.dominant == 10 && this.pigAffinity > maxNonTail + 15)
-         {
-            this.tail = 10;
-         }
-         if(this.dominant == 11 && this.skunkAffinity > maxNonTail + 15)
-         {
-            this.tail = 11;
-         }
-         if(this.dominant == 12 && this.bugAffinity > maxNonTail + 15)
-         {
-            this.tail = 12;
-         }
-         if(this.tail > 1)
-         {
-            this.outputMainText("\r\rYou feel a tickle upon your backside as your " + this.clothesBottom() + " feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new " + this.tailDesc() + " tail bobbing above your " + this.buttDesc() + " bum. Next time you go to town, you\'ll be visiting a tailor to fix your clothes to account for your new appendage...",False);
-         }
-      }
-      if(this.dominant == 1 && this.humanAffinity > maxTail + 10 && this.tail > 1)
-      {
-         this.tail = 0;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail.",False);
-      }
-      if(this.dominant == 2 && this.horseAffinity > secondTail + 10 && this.tail > 1 && this.tail != 2)
-      {
-         this.tail = 2;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse\'s.",False);
-      }
-      if(this.dominant == 3 && this.wolfAffinity > secondTail + 10 && this.tail > 1 && this.tail != 3)
-      {
-         this.tail = 3;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don\'t really have control over it otherwise, and it\'s oh so fluffy. Just like a wolf\'s.",False);
-      }
-      if(this.dominant == 4 && this.catAffinity > secondTail + 10 && this.tail > 1 && this.tail != 4)
+         elif ((faceType != 121) and (bugAffinity > 60)):
+            OutputMainText("\n" + "\n" + "Your lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.",False)
+            faceType = 121
+   #trace("Face :" + faceType)
+   tempTailArray = [horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,pigAffinity,skunkAffinity,bugAffinity,humanTaurAffinity]
+   tempTailArray.sort(16) #!!!!!
+   maxTail = tempTailArray.pop()
+   secondTail = tempTailArray.pop()
+   maxNonTail = max(humanAffinity)
+   if (lockTail == 0):
+      if (tail < 1):
+         if ((dominant == 2) and (horseAffinity > (maxNonTail + 15))):
+            tail = 2
+         if ((dominant == 3) and (wolfAffinity > (maxNonTail + 15))):
+            tail = 3
+         if ((dominant == 4) and (catAffinity > (maxNonTail + 15))):
+            tail = 4
+         if ((dominant == 5) and (cowAffinity > (maxNonTail + 15))):
+            tail = 5
+         if ((dominant == 6) and (lizardAffinity > (maxNonTail + 15))):
+            tail = 6
+         if ((dominant == 7) and (rabbitAffinity > (maxNonTail + 15)))
+            tail = 7
+         if ((dominant == 8) and (mouseAffinity > (maxNonTail + 15))):
+            tail = 8
+         if ((dominant == 9) and (birdAffinity > (maxNonTail + 15))):
+            tail = 9
+         if ((dominant == 10) and (pigAffinity > (maxNonTail + 15))):
+            tail = 10
+         if ((dominant == 11) and (skunkAffinity > (maxNonTail + 15))):
+            tail = 11
+         if ((dominant == 12) and (bugAffinity > (maxNonTail + 15)))
+            tail = 12
+         if (tail > 1):
+            OutputMainText("\n" + "\n" + "You feel a tickle upon your backside as your " + ClothesBottom() + " feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new " + TailDesc() + " tail bobbing above your " + ButtDesc() + " bum. Next time you go to town, you'll be visiting a tailor to fix your clothes to account for your new appendage...",False)
+      if ((dominant == 1) and (humanAffinity > (maxTail + 10)) and (tail > 1)):
+         tail = 0
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail.",False)
+      if ((dominant == 2) and (horseAffinity > (secondTail + 10)) and (tail > 1) and (tail != 2)):
+         tail = 2
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse's.",False)
+      if ((dominant == 3) and (wolfAffinity > (secondTail + 10)) and (tail > 1) and (tail != 3)):
+         tail = 3
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's.",False)
+!      if(this.dominant == 4 && this.catAffinity > secondTail + 10 && this.tail > 1 && this.tail != 4)
       {
          this.tail = 4;
          this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it\'s oh so soft. Just like a cat\'s.",False);
@@ -23525,33 +23140,23 @@ def Aff(tempRace, tempChange, otherChange):
          this.boobTotal = 10;
       }
    }
-   bipedal = Math.max(this.humanAffinity,this.horseAffinity,this.wolfAffinity,this.catAffinity,this.cowAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.birdAffinity,this.pigAffinity);
-   bipedalDigiPaw = Math.max(this.skunkAffinity);
-   otherLegs = [this.cowTaurAffinity,this.humanTaurAffinity];
-   legArray = [bipedal,bipedalDigiPaw,0];
-   legArray = legArray.concat(otherLegs);
-   legArray.sort(16);
-   legArray.pop();
-   secondLegs = legArray.pop();
-   if(this.lockLegs == 0)
-   {
-      if(bipedalDigiPaw > secondLegs + 50 && this.legType != 1)
-      {
-         this.legChange(1);
-      }
-      if(bipedal > secondLegs + 50 && this.legType != 0)
-      {
-         this.legChange(0);
-      }
-      if(this.cowTaurAffinity > secondLegs + 50 && this.legType != 1001)
-      {
-         this.legChange(1001);
-      }
-      if(this.humanTaurAffinity > secondLegs + 50 && this.legType != 1002)
-      {
-         this.legChange(1002);
-      }
-   }
+   bipedal = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity,pigAffinity)
+   bipedalDigiPaw = max(skunkAffinity)
+   otherLegs = [cowTaurAffinity,humanTaurAffinity]
+   legArray = [bipedal,bipedalDigiPaw,0]
+   legArray = legArray.concat(otherLegs)
+   legArray.sort(16) #!!!!!!!
+   legArray.pop()
+   secondLegs = legArray.pop()
+   if (lockLegs == 0):
+      if ((bipedalDigiPaw > (secondLegs + 50)) and (legType != 1)):
+         LegChange(1)
+      if ((bipedal > (secondLegs + 50)) and (legType != 0)):
+         LegChange(0)
+      if ((cowTaurAffinity > (secondLegs + 50)) and (legType != 1001)):
+         LegChange(1001)
+      if ((humanTaurAffinity > (secondLegs + 50)) and (legType != 1002)):
+         LegChange(1002)
    nip0 = Math.max(this.humanAffinity,this.horseAffinity,this.wolfAffinity,this.catAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.birdAffinity,this.pigAffinity);
    nip1 = Math.max(this.cowAffinity);
    nip2 = Math.max(this.bugAffinity);
@@ -23667,27 +23272,24 @@ def Aff(tempRace, tempChange, otherChange):
          this.cockLoss();
       }
    }
-   this.human = 0;
-   this.horse = 0;
-   this.wolf = 0;
-   this.cat = 0;
-   this.cow = 0;
-   this.lizard = 0;
-   this.rabbit = 0;
-   this.mouse = 0;
-   this.bird = 0;
-   this.pig = 0;
-   this.skunk = 0;
-   this.bug = 0;
-   if(this.currentText == "Something feels odd...")
-   {
-      this.outputMainText("",True);
-      this.doProcess();
-   }
-   else
-   {
-      this.doEnd();
-   }}}}
+   human = 0
+   horse = 0
+   wolf = 0
+   cat = 0
+   cow = 0
+   lizard = 0
+   rabbit = 0
+   mouse = 0
+   bird = 0
+   pig = 0
+   skunk = 0
+   bug = 0
+   if (textmain["text"] == "Something feels odd..."):
+      OutputMainText("",True)
+      DoProcess()
+   else:
+      DoEnd()
+
 def CockChange(sizeChange:int, totalChange:int):
    global humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity, dominant, nonCock, cockSize, cockTotal, vagTotal, gender, balls, ballSize, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, maxCock, showBalls
    maxCock = max(humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity)
