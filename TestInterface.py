@@ -12,6 +12,53 @@ again.
 
 theme = 0
 fontColor = "#000000"
+fontSize = 12
+fontBold = False
+
+def FontSizeDown():
+     global fontSize
+     if fontSize > 4:
+          fontSize -= 2
+     UpdateText()
+     #SavePreferences()
+
+def FontSizeReset():
+     global fontSize
+     fontSize = 14
+     UpdateText()
+     #SavePreferences()
+
+def FontSizeUp():
+     global fontSize
+     if fontSize < 26:
+          fontSize += 2
+     UpdateText()
+     #SavePreferences()
+
+def ToggleBold():
+     global fontBold
+     if fontBold == False:
+          fontBold = True
+     else:
+          fontBold = False
+     UpdateText()
+     #SavePreferences()
+
+def UTCheckBold():
+    global fontBold
+    if fontBold == True:
+        a = 'bold'
+        return a
+    else:
+        return ""
+
+def UpdateText():
+     global fontSize, fontBold, fontMain
+     a = UTCheckBold()
+     #fontMain = "(" + "Times New Roman" + ", " + str(fontSize) + a + ")"
+     fontMain = ("Times New Roman", fontSize, a)
+     textmain["font"] = fontMain
+     textside["font"] = fontMain
 
 def ToggleTheme():
      global theme
@@ -69,189 +116,723 @@ def ToggleColor():
      #SavePreferences()
 
 def ChangeTKBColor(color):
-    bccolorlabel1["background"] = color
-    bccolorlabel2["background"] = color
-    bccolorlabel3["background"] = color
-    bccolorlabel4["background"] = color
-    bccolorlabel5["background"] = color
-    textmain["background"] = color
-    textside["background"] = color
-    label1["background"] = color
-    strlabel["background"] = color
-    strcolonlabel["background"] = color
-    strvallabel["background"] = color
-    strimglabel["background"] = color
-    mentlabel["background"] = color
-    mentcolonlabel["background"] = color
-    mentvallabel["background"] = color
-    mentimglabel["background"] = color
-    liblabel["background"] = color
-    libcolonlabel["background"] = color
-    libvallabel["background"] = color
-    libimglabel["background"] = color
-    senlabel["background"] = color
-    sencolonlabel["background"] = color
-    senvallabel["background"] = color
-    senimglabel["background"] = color
-    label6["background"] = color
-    hplabel["background"] = color
-    hpcolonlabel["background"] = color
-    hpvallabel["background"] = color
-    hpimglabel["background"] = color
-    lustlabel["background"] = color
-    lustcolonlabel["background"] = color
-    lustvallabel["background"] = color
-    lustimglabel["background"] = color
-    hungerlabel["background"] = color
-    hungercolonlabel["background"] = color
-    hungervallabel["background"] = color
-    label10["background"] = color
-    currentregionlabel["background"] = color
-    levellabel["background"] = color
-    levelcolonlabel["background"] = color
-    levelvallabel["background"] = color
-    sexplabel["background"] = color
-    sexpcolonlabel["background"] = color
-    sexpvallabel["background"] = color
-    coinlabel["background"] = color
-    coincolonlabel["background"] = color
-    coinvallabel["background"] = color
-    daylabel["background"] = color
-    daycolonlabel["background"] = color
-    dayvallabel["background"] = color
-    hourlabel["background"] = color
-    hourcolonlabel["background"] = color
-    hourvallabel["background"] = color
-    bagstashlabel["background"] = color
+    try:
+        bccolorlabel1["background"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel2["background"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel3["background"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel4["background"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel5["background"] = color
+    except:
+        x = 0
+    try:
+        textmain["background"] = color
+    except:
+        x = 0
+    try:
+        textside["background"] = color
+    except:
+        x = 0
+    try:
+        label1["background"] = color
+    except:
+        x = 0
+    try:
+        strlabel["background"] = color
+    except:
+        x = 0
+    try:
+        strcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        strvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        strimglabel["background"] = color
+    except:
+        x = 0
+    try:
+        mentlabel["background"] = color
+    except:
+        x = 0
+    try:
+        mentcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        mentvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        mentimglabel["background"] = color
+    except:
+        x = 0
+    try:
+        liblabel["background"] = color
+    except:
+        x = 0
+    try:
+        libcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        libvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        libimglabel["background"] = color
+    except:
+        x = 0
+    try:
+        senlabel["background"] = color
+    except:
+        x = 0
+    try:
+        sencolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        senvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        senimglabel["background"] = color
+    except:
+        x = 0
+    try:
+        label6["background"] = color
+    except:
+        x = 0
+    try:
+        hplabel["background"] = color
+    except:
+        x = 0
+    try:
+        hpcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        hpvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        hpimglabel["background"] = color
+    except:
+        x = 0
+    try:
+        lustlabel["background"] = color
+    except:
+        x = 0
+    try:
+        lustcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        lustvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        lustimglabel["background"] = color
+    except:
+        x = 0
+    try:
+        hungerlabel["background"] = color
+    except:
+        x = 0
+    try:
+        hungercolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        hungervallabel["background"] = color
+    except:
+        x = 0
+    try:
+        label10["background"] = color
+    except:
+        x = 0
+    try:
+        currentregionlabel["background"] = color
+    except:
+        x = 0
+    try:
+        levellabel["background"] = color
+    except:
+        x = 0
+    try:
+        levelcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        levelvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        sexplabel["background"] = color
+    except:
+        x = 0
+    try:
+        sexpcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        sexpvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        coinlabel["background"] = color
+    except:
+        x = 0
+    try:
+        coincolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        coinvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        daylabel["background"] = color
+    except:
+        x = 0
+    try:
+        daycolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        dayvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        hourlabel["background"] = color
+    except:
+        x = 0
+    try:
+        hourcolonlabel["background"] = color
+    except:
+        x = 0
+    try:
+        hourvallabel["background"] = color
+    except:
+        x = 0
+    try:
+        bagstashlabel["background"] = color
+    except:
+        x = 0
 
-    savegamebutton["background"] = color
-    savegamebutton["background"] = color
-    loadgamebutton["background"] = color
-    newgamebutton["background"] = color
-    quitbutton["background"] = color
-    resetbutton["background"] = color
-    refreshbutton["background"] = color
-    button1["background"] = color
-    button2["background"] = color
-    button3["background"] = color
-    button4["background"] = color
-    button5["background"] = color
-    button6["background"] = color
-    button7["background"] = color
-    button8["background"] = color
-    button9["background"] = color
-    button10["background"] = color
-    button11["background"] = color
-    button12["background"] = color
-    looksbutton["background"] = color
-    statsbutton["background"] = color
-    effectsbutton["background"] = color
-    helpbutton["background"] = color
-    levelsbutton["background"] = color
-    gearbutton["background"] = color
-    titlesbutton["background"] = color
-    creditsbutton["background"] = color
-    appearancebutton["background"] = color
-    themebutton["background"] = color
-    textsizedownbutton["background"] = color
-    textsizeresetbutton["background"] = color
-    textsizeupbutton["background"] = color
-    textboldbutton["background"] = color
-    textcolourbutton["background"] = color
-    themebutton7["background"] = color
+    try:
+        savegamebutton["background"] = color
+    except:
+        x = 0
+    try:
+        savegamebutton["background"] = color
+    except:
+        x = 0
+    try:
+        loadgamebutton["background"] = color
+    except:
+        x = 0
+    try:
+        newgamebutton["background"] = color
+    except:
+        x = 0
+    try:
+        quitbutton["background"] = color
+    except:
+        x = 0
+    try:
+        resetbutton["background"] = color
+    except:
+        x = 0
+    try:
+       refreshbutton["background"] = color
+    except:
+        x = 0
+    try:
+        button1["background"] = color
+    except:
+        x = 0
+    try:
+        button2["background"] = color
+    except:
+        x = 0
+    try:
+        button3["background"] = color
+    except:
+        x = 0
+    try:
+        button4["background"] = color
+    except:
+        x = 0
+    try:
+        button5["background"] = color
+    except:
+        x = 0
+    try:
+        button6["background"] = color
+    except:
+        x = 0
+    try:
+        button7["background"] = color
+    except:
+        x = 0
+    try:
+        button8["background"] = color
+    except:
+        x = 0
+    try:
+        button9["background"] = color
+    except:
+        x = 0
+    try:
+        button10["background"] = color
+    except:
+        x = 0
+    try:
+        button11["background"] = color
+    except:
+        x = 0
+    try:
+        button12["background"] = color
+    except:
+        x = 0
+    try:
+        looksbutton["background"] = color
+    except:
+        x = 0
+    try:
+        statsbutton["background"] = color
+    except:
+        x = 0
+    try:
+        effectsbutton["background"] = color
+    except:
+        x = 0
+    try:
+        helpbutton["background"] = color
+    except:
+        x = 0
+    try:
+        levelsbutton["background"] = color
+    except:
+        x = 0
+    try:
+        gearbutton["background"] = color
+    except:
+        x = 0
+    try:
+        titlesbutton["background"] = color
+    except:
+        x = 0
+    try:
+        creditsbutton["background"] = color
+    except:
+        x = 0
+    try:
+        appearancebutton["background"] = color
+    except:
+        x = 0
+    try:
+        themebutton["background"] = color
+    except:
+        x = 0
+    try:
+        textsizedownbutton["background"] = color
+    except:
+        x = 0
+    try:
+        textsizeresetbutton["background"] = color
+    except:
+        x = 0
+    try:
+        textsizeupbutton["background"] = color
+    except:
+        x = 0
+    try:
+        textboldbutton["background"] = color
+    except:
+        x = 0
+    try:
+        textcolourbutton["background"] = color
+    except:
+        x = 0
+    try:
+        themebutton7["background"] = color
+    except:
+        x = 0
 
 
 def ChangeTKFColor(color):
-    bccolorlabel1["foreground"] = color
-    bccolorlabel2["foreground"] = color
-    bccolorlabel3["foreground"] = color
-    bccolorlabel4["foreground"] = color
-    bccolorlabel5["foreground"] = color
-    textmain["foreground"] = color
-    textside["foreground"] = color
-    label1["foreground"] = color
-    strlabel["foreground"] = color
-    strcolonlabel["foreground"] = color
-    strvallabel["foreground"] = color
-    strimglabel["foreground"] = color
-    mentlabel["foreground"] = color
-    mentcolonlabel["foreground"] = color
-    mentvallabel["foreground"] = color
-    mentimglabel["foreground"] = color
-    liblabel["foreground"] = color
-    libcolonlabel["foreground"] = color
-    libvallabel["foreground"] = color
-    libimglabel["foreground"] = color
-    senlabel["foreground"] = color
-    sencolonlabel["foreground"] = color
-    senvallabel["foreground"] = color
-    senimglabel["foreground"] = color
-    label6["foreground"] = color
-    hplabel["foreground"] = color
-    hpcolonlabel["foreground"] = color
-    hpvallabel["foreground"] = color
-    hpimglabel["foreground"] = color
-    lustlabel["foreground"] = color
-    lustcolonlabel["foreground"] = color
-    lustvallabel["foreground"] = color
-    lustimglabel["foreground"] = color
-    hungerlabel["foreground"] = color
-    hungercolonlabel["foreground"] = color
-    hungervallabel["foreground"] = color
-    label10["foreground"] = color
-    currentregionlabel["foreground"] = color
-    levellabel["foreground"] = color
-    levelcolonlabel["foreground"] = color
-    levelvallabel["foreground"] = color
-    sexplabel["foreground"] = color
-    sexpcolonlabel["foreground"] = color
-    sexpvallabel["foreground"] = color
-    coinlabel["foreground"] = color
-    coincolonlabel["foreground"] = color
-    coinvallabel["foreground"] = color
-    daylabel["foreground"] = color
-    daycolonlabel["foreground"] = color
-    dayvallabel["foreground"] = color
-    hourlabel["foreground"] = color
-    hourcolonlabel["foreground"] = color
-    hourvallabel["foreground"] = color
-    bagstashlabel["foreground"] = color
+    try:
+        bccolorlabel1["foreground"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel2["foreground"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel3["foreground"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel4["foreground"] = color
+    except:
+        x = 0
+    try:
+        bccolorlabel5["foreground"] = color
+    except:
+        x = 0
+    try:
+       textmain["foreground"] = color
+    except:
+        x = 0
+    try:
+        textside["foreground"] = color
+    except:
+        x = 0
+    try:
+        label1["foreground"] = color
+    except:
+        x = 0
+    try:
+        strlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        strcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        strvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        strimglabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        mentlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        mentcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        mentvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        mentimglabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        liblabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        libcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        libvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        libimglabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        senlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        sencolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        senvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        senimglabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        label6["foreground"] = color
+    except:
+        x = 0
+    try:
+        hplabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hpcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hpvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hpimglabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        lustlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        lustcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        lustvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        lustimglabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hungerlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hungercolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hungervallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        label10["foreground"] = color
+    except:
+        x = 0
+    try:
+        currentregionlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        levellabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        levelcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        levelvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        sexplabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        sexpcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        sexpvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        coinlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        coincolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        coinvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        daylabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        daycolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        dayvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hourlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hourcolonlabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        hourvallabel["foreground"] = color
+    except:
+        x = 0
+    try:
+        bagstashlabel["foreground"] = color
+    except:
+        x = 0
+    try:
 
-    savegamebutton["foreground"] = color
-    savegamebutton["foreground"] = color
-    loadgamebutton["foreground"] = color
-    newgamebutton["foreground"] = color
-    quitbutton["foreground"] = color
-    resetbutton["foreground"] = color
-    refreshbutton["foreground"] = color
-    button1["foreground"] = color
-    button2["foreground"] = color
-    button3["foreground"] = color
-    button4["foreground"] = color
-    button5["foreground"] = color
-    button6["foreground"] = color
-    button7["foreground"] = color
-    button8["foreground"] = color
-    button9["foreground"] = color
-    button10["foreground"] = color
-    button11["foreground"] = color
-    button12["foreground"] = color
-    looksbutton["foreground"] = color
-    statsbutton["foreground"] = color
-    effectsbutton["foreground"] = color
-    helpbutton["foreground"] = color
-    levelsbutton["foreground"] = color
-    gearbutton["foreground"] = color
-    titlesbutton["foreground"] = color
-    creditsbutton["foreground"] = color
-    appearancebutton["foreground"] = color
-    themebutton["foreground"] = color
-    textsizedownbutton["foreground"] = color
-    textsizeresetbutton["foreground"] = color
-    textsizeupbutton["foreground"] = color
-    textboldbutton["foreground"] = color
-    textcolourbutton["foreground"] = color
-    themebutton7["foreground"] = color
+        savegamebutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        savegamebutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        loadgamebutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        newgamebutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        quitbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        resetbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        refreshbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        button1["foreground"] = color
+    except:
+        x = 0
+    try:
+        button2["foreground"] = color
+    except:
+        x = 0
+    try:
+        button3["foreground"] = color
+    except:
+        x = 0
+    try:
+        button4["foreground"] = color
+    except:
+        x = 0
+    try:
+        button5["foreground"] = color
+    except:
+        x = 0
+    try:
+        button6["foreground"] = color
+    except:
+        x = 0
+    try:
+        button7["foreground"] = color
+    except:
+        x = 0
+    try:
+        button8["foreground"] = color
+    except:
+        x = 0
+    try:
+        button9["foreground"] = color
+    except:
+        x = 0
+    try:
+        button10["foreground"] = color
+    except:
+        x = 0
+    try:
+        button11["foreground"] = color
+    except:
+        x = 0
+    try:
+        button12["foreground"] = color
+    except:
+        x = 0
+    try:
+        looksbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        statsbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        effectsbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        helpbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        levelsbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        gearbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        titlesbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        creditsbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        appearancebutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        themebutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        textsizedownbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        textsizeresetbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        textsizeupbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        textboldbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        textcolourbutton["foreground"] = color
+    except:
+        x = 0
+    try:
+        themebutton7["foreground"] = color
+    except:
+        x = 0
 
 def imgchange():
     global _str_, ment, lib, sen, HP, lust
@@ -500,6 +1081,30 @@ button11.place(anchor=NW, height=46, width=140, x=320, y=132)
 button12 = tkinter.Button(buttonpanel, text="Button 12")
 button12.place(anchor=NW, height=46, width=140, x=480, y=132)
 
+amountlabel1 = ttk.Label(buttonpanel, text="000")
+amountlabel1.place(anchor=NW, height=15, width=30, x=110, y=33)
+amountlabel2 = ttk.Label(buttonpanel, text="000")
+amountlabel2.place(anchor=NW, height=15, width=30, x=270, y=33)
+amountlabel3 = ttk.Label(buttonpanel, text="000")
+amountlabel3.place(anchor=NW, height=15, width=30, x=430, y=33)
+amountlabel4 = ttk.Label(buttonpanel, text="000")
+amountlabel4.place(anchor=NW, height=15, width=30, x=590, y=33)
+amountlabel5 = ttk.Label(buttonpanel, text="000")
+amountlabel5.place(anchor=NW, height=15, width=30, x=110, y=99)
+amountlabel6 = ttk.Label(buttonpanel, text="000")
+amountlabel6.place(anchor=NW, height=15, width=30, x=270, y=99)
+amountlabel7 = ttk.Label(buttonpanel, text="000")
+amountlabel7.place(anchor=NW, height=15, width=30, x=430, y=99)
+amountlabel8 = ttk.Label(buttonpanel, text="000")
+amountlabel8.place(anchor=NW, height=15, width=30, x=590, y=99)
+amountlabel9 = ttk.Label(buttonpanel, text="000")
+amountlabel9.place(anchor=NW, height=15, width=30, x=110, y=165)
+amountlabel10 = ttk.Label(buttonpanel, text="000")
+amountlabel10.place(anchor=NW, height=15, width=30, x=270, y=165)
+amountlabel11 = ttk.Label(buttonpanel, text="000")
+amountlabel11.place(anchor=NW, height=15, width=30, x=430, y=165)
+amountlabel12 = ttk.Label(buttonpanel, text="000")
+amountlabel12.place(anchor=NW, height=15, width=30, x=590, y=165)
 
 #textmain
 textmain = tkScrolledText(mainframe, cursor="arrow", wrap="word")
@@ -556,23 +1161,29 @@ appearancebutton.place(anchor=CENTER, height=50, width=150, x=167, y=216)
 
 themebutton = tkinter.Button(sidebar, text="Theme", command=ToggleTheme)
 themebutton.place(anchor=NW, height=30, width=60, x=0, y=385)
-textsizedownbutton = tkinter.Button(sidebar, text="A")
+textsizedownbutton = tkinter.Button(sidebar, text="A", command=FontSizeDown)
 textsizedownbutton.place(anchor=NW, height=30, width=30, x=83, y=385)
 textsizedownbutton["font"] = ("Times New Roman", 10)
-textsizeresetbutton = tkinter.Button(sidebar, text="A")
+textsizeresetbutton = tkinter.Button(sidebar, text="A", command=FontSizeReset)
 textsizeresetbutton.place(anchor=NW, height=30, width=30, x=118, y=385)
 textsizeresetbutton["font"] = ("Times New Roman", 12)
-textsizeupbutton = tkinter.Button(sidebar, text="A")
+textsizeupbutton = tkinter.Button(sidebar, text="A", command=FontSizeUp)
 textsizeupbutton.place(anchor=NW, height=30, width=30, x=153, y=385)
 textsizeupbutton["font"] = ("Times New Roman", 14)
-textboldbutton = tkinter.Button(sidebar, text="B")
+textboldbutton = tkinter.Button(sidebar, text="B", command=ToggleBold)
 textboldbutton.place(anchor=NW, height=30, width=30, x=200, y=385)
 textcolourbutton = tkinter.Button(sidebar, text="C", command=ToggleColor)
 textcolourbutton.place(anchor=NW, height=30, width=30, x=245, y=385)
 themebutton7 = tkinter.Button(sidebar, text="O")
 themebutton7.place(anchor=NW, height=30, width=30, x=301, y=385)
 
+appearancebutton.destroy()
 ChangeTKBColor("#FFFFFF")
 ChangeTKFColor("#000000")
+
+UpdateText()
+textmain.delete(1.0,"end")
+textmain.insert(1.0, "'\033[1m', '\x1B[4m', test, '\x1B[0m', '\033[0m'")
+
 
 root.mainloop()
