@@ -1225,6 +1225,54 @@ def ChangeBackgroundColor(color):
       themebutton7["background"] = color
    except:
       x = 0
+   try:
+      amountlabel1["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel2["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel3["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel4["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel5["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel6["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel7["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel8["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel9["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel10["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel11["background"] = color
+   except:
+      x = 0
+   try:
+      amountlabel12["background"] = color
+   except:
+      x = 0
 
 def ChangeTextColor(color):
    global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlable, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, creditsbutton, appearancebutton, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7
@@ -1580,6 +1628,54 @@ def ChangeTextColor(color):
       themebutton7["foreground"] = color
    except:
       x = 0
+   try:
+      amountlabel1["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel2["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel3["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel4["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel5["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel6["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel7["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel8["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel9["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel10["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel11["foreground"] = color
+   except:
+      x = 0
+   try:
+      amountlabel12["foreground"] = color
+   except:
+      x = 0
 
 def UpdateTheme():
    global theme
@@ -1887,17 +1983,26 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
    #DoButtonChoices
 #def ViewButtonOutline():
    #ButtonFunctions.Visible
-!def AmountWrite():
-!def ViewAmount():
-!def HideAmount():
+
+def AmountWrite(buttonNum:int, buttonText:str):
+   Amount.WriteAmount(buttonNum, buttonText)
+  
+def ViewAmount(buttonNum:int, tempBool:bool):
+   Amount.ViewAmount(buttonNum, tempBool)
+
+def HideAmount():
+   #for(this.i = 1; this.i < 13; this.viewAmount(this.i,false),++this.i)
+   for i in range(1, 13):
+      ViewAmount(i, False)
+
 !def ChoiceListButtons(which:str):
    global bagArray, inBag, choicePage, bagPage, stashArray, choiceListArray, bagStackArray, stashStackArray
    tempInt = 0
    tempArray = list(())
-   viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,1);
-   viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1);
-   this.buttonWrite(4,"<<");
-   this.buttonWrite(8,">>");
+   viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,1)
+   viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1)
+   this.buttonWrite(4,"<<")
+   this.buttonWrite(8,">>")
    this.buttonWrite(12,"Return");
    var tempArray:Array = [];
    if (which == "Bag"):
@@ -2027,7 +2132,15 @@ def ButtonWrite(buttonNumber:int, buttonText:str):
 !def ChoiceListBlanks():
 !def ChoiceListSelect():
 !def ChoiceListCheck():
-!def ShowPage():
+def ShowPage(changes:bool, which:str):
+   global choicePage, pagelabel
+   if (changes == True):
+      Page.Show()
+   if (changes == False):
+      Page.Hide()
+   text = which + " " + choicePage
+   Page.ChangeText(text)
+
 def CheckZero():
    global bagArray, bagStackArray, stashArray, stashStackArray, cockSize, cockTotal, ball, blueBalls, ballSize, cockMoist, breastSize, boobTotal, nippleSize, udderSize, teatSize, clitSize, vagSize, vagTotal, vagMoist, vulvaSize, exhaustion, exhaustionPenalty, hips, butt, body, tallness, cockSizeMod, vagSizeMod, vagBellyMod, pregChance, lactation, MilkMod, MilkCap, coin, hipMod, buttMod, bellyMod, pregArray
    for i in range(0, 26):
@@ -17620,7 +17733,7 @@ def DoLake():
       DoEnd()
 
 !def DoDairyFarm():
-   global malonRep, malonPreg, malonChildren, hrs, buttonChoice, dairyFarmBrand, gender, cockTotal, sen, vagTotal, pregArray, udderSize, teatSize, teatPump, udderPlay, exhaustion, skipExhaustion, clitSize, clitPump, dominant, showBalls, udderLactation, lactation, milkEngorgementLevel, coin
+   global malonRep, malonPreg, malonChildren, hrs, buttonChoice, dairyFarmBrand, gender, cockTotal, sen, vagTotal, pregArray, udderSize, teatSize, teatPump, udderPlay, exhaustion, skipExhaustion, clitSize, clitPump, dominant, showBalls, udderLactation, lactation, milkEngorgementLevel, coin, cockSize, cockSizeMod, knot, lib, milkEngorgement, nippleSize, nipplePlay
    chance = EventSelect("Dairy Farm")
    if ((malonRep == 4) and (malonPreg > 216)):
       OutputMainText("As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly." + "\n" + "\n" + "\"Hurry! Malon's gone into labor!!\"" + "\n" + "\n" + "The farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction." + "\n" + "\n" + "\"Here it comes!\", one of the farmhands announces as the baby begins to crown." + "\n" + "\n" + "An eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl",True)
@@ -18052,418 +18165,261 @@ def DoLake():
             if (buttonChoice == 2):
                OutputMainText("You tap on the rail beside her, notifying her of your presence. Her eyes go wide as she jumps, her tits bouncing and wobbling around the rail as she looks up at you.",True)
                if (malonRep < 0):
-                  OutputMainText("\r\rWith fear in her eyes, she grabs her shawl from the rail and runs in the opposite direction until the cups pop from her nipples with a milky flood. Her breasts swing from side to side, more milk splashing about the walls as she goes, she disappears out another door, leaving you with nothing.",false);
-                  stats(0,-1,0,0);
-                  doSexP(5);
-                  hrs = 2;
-                  doEnd();
-               }
-               else if(malonRep > 2)
-               {
-                  outputMainText("\r\r\"Meanie. Why\'d you go and scare me like that?\" She winks and sticks out her tongue at you.\r\rHer eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\r\rShe takes a moment before she comes down from her high. \"Mmm... I\'m just going to hang out here for a bit. Feel free to take the bottle from the machine. It\'s really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",false);
-                  hrs = 2;
-                  doSexP(2);
-                  itemAdd(214);
-                  doEnd();
-               }
-               else if(malonRep == 2)
-               {
-                  outputMainText("\"O-Oh, umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it.\r\r\"I-I just got so full that I, umm...\" Her eyes glance from side to side. \"I-I know it\'s very much like a cow, but with all the work around here and how long it takes to do it manually...\" Sadness fills her face at having been caught, despite what you said before. \"D-Don\'t worry, I\'ll clean up now...\"\r\rHer ears drooping, her tail pushing against her dress trying to hide between her legs, she pulls the cups from her long nipples and lets the excess milk dribble off onto the floor. Turning away and trying to avoid any eyecontact, she wipes herself down with the yellow shawl and pulls up her shirt. She looks over her shoulder, her eyes to the ground, and says meekly, \"Sorry...\", before heading out the other end of the building, leaving you to head back to Softlik.",false);
-                  hrs = 2;
-                  doEnd();
-               }
-               else if(malonRep == 0 || malonRep == 1)
-               {
-                  if(malonRep == 0)
-                  {
-                     outputMainText("\r\r\"Uhh... umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it. \"Who-Who\'re you? Please, please don\'t tell anyone I\'ve been in here!\"",false);
-                  }
-                  if(malonRep == 1)
-                  {
-                     outputMainText("\r\r\"Oh, whew...\" She puts a hand to her chest. \"It\'s just you. I-I\'m not exactly supposed to be here, but, well, I\'m sure you can see the benefits...\" She stands there awkwardly, the machine still sucking milk from her long nipples. \"You... You won\'t tell anyone, will you?\"",false);
-                  }
-                  viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
-                  viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
-                  buttonWrite(5,"Tell");
-                  buttonWrite(7,"Don\'t Tell");
-                  doListen = function():void
-                  {
-                     if(buttonChoice == 5)
-                     {
-                        outputMainText("With tears welling up in her eyes, she rips away from the cups, letting them pop from her nipples with a milky flood. She turns and runs the other way, her tits bouncing from side to side and milk splashing across the walls as she goes, until she disappears out another door, leaving you with nothing.",true);
-                        stats(0,-3,0,0);
-                        malonRep = -1;
-                        hrs = 2;
-                        doEnd();
-                     }
-                     if(buttonChoice == 7)
-                     {
-                        if(malonRep == 0)
-                        {
-                           outputMainText("\"Ahh, thank you so much!\" She looks like she wants to hug you, but she\'s a bit tethered at the moment... and half naked.\r\rShe begins to gather herself, trying to turn away as she removes the milk-cups. You get a short flash of her over-ample chest before she pulls her shirt back into position, rubbing her nipples so they don\'t show through as well and dabbing the resulting blotch with her shawl.\r\r\"M-My name is Malon. I\'ve been this way most of my life... As a child, I always loved animals. A little too much, you could say... I liked the cows so much that I wanted to be like them. And so, I took one of their DairE Pills... To cut a long story short, I was happy with the results at first, becoming more like my bovine friends. Until eventually I grew up and realized my predicament. And, well, ever since then, I\'ve been like this...\"\r\rShe shuffles uncomfortably in position for a bit, not quite sure what to say. She glances from side to side before deciding to step over to the milk machine, grabbing a bottle that was freshly made. Very freshly.\r\r\"I-I don\'t know how to thank you for not ruining one of the few pleasures of my life, but at least take this.\" She hands you the bottle as she bows her head.\r\rIn an instant, she turns and hurries out of the barn, her long tail squeezing against her backside and outlining her butt even more.",true);
-                           malonRep = 1;
-                           doSexP(20);
-                           stats(0,1,0,0);
-                           hrs = 2;
-                           itemAdd(214);
-                           doEnd();
-                        }
-                        if(malonRep == 1)
-                        {
-                           outputMainText("\"Hehe, thanks. Just a bit more to go...\" Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\r\rShe takes a moment before she comes down from her high. \"Mmm... I\'m just going to hang out here for a bit. Feel free to take the bottle from the machine. It\'s really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",true);
-                           hrs = 2;
-                           doSexP(5);
-                           itemAdd(214);
-                           stats(0,1,0,0);
-                           doEnd();
-                        }
-                     }
-                  };
-               }
-            }
-            elif(buttonChoice == 5)
-            {
-               if(malonRep < 1)
-               {
-                  outputMainText("The woman doesn\'t see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneath the tubes of the milking cups.\r\r\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as you wrap your hands around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. Unable to resist, her breasts weighing her down and your hands keeping it that way, she rests upon the guardrail and waits for you to finish, her large ears drooping in embarrassment.\r\rEvery few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"",true);
-                  doNext();
-                  doListen = function():void
-                  {
-                     if(buttonChoice == 6)
-                     {
-                        outputMainText("She huffs for a few moments, her mind returning to its senses. The realization of her excessively cattle-like behaviour, especially in front of you, embarrasses her immensely. She jerks backward to stand up, a breast swinging out and slapping you in the face with a wet kiss from her nipple, before she turns and runs in the opposite direction. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in to further amplify her endowments.\r\rA bit afraid of what happens next, you decide it best to disappear yourself.",true);
-                        ++malonRep;
-                        if(malonRep == 1)
-                        {
-                           doNext();
-                           doListen = function():void
-                           {
-                              outputMainText("However, on your way out, you feel a tug on your " + clothesTop() + ".\r\rYou turn around to see the woman again, covering her chest with the yellow shawl she had left behind.\r\r\"Uhh... umm... Th-that was a bit rude of me. I\'m sorry... You seem like you were genuinely trying to help.\" She fumbles a little as she tries to hold the shawl to her chest with a single arm, managing to let a nipple pop out with a blush before she gets it right. She holds out her free hand to shake yours. \"I\'m Malon.\"\r\rYou take her hand and shake with the formal introduction.\r\r\"I\'m... kinda ashamed for being such a... well, cow. Let\'s just say I liked them too much when I was younger and took some DairE Pills to act like them. And then I wound up being a little too much like them, resulting in some rather... bothersome attributes for a woman like me. Anyways, here. At least you should get something for your efforts.\"\r\rShe turns away and adjusts her shirt back into place so she doesn\'t have to worry about her shawl, though her naked breasts are still visible on either side of her body. Then she picks up the bucket you had used and pours it into one of the bottles meant for the milk of normal cows, handing it to you.\r\r\"I-It\'s not much, but that\'s all I can offer at the moment...\"\r\rAfter you take the milk, she says her goodbyes and tells you she\'ll be more welcoming from now on, leaving you to head back to Softlik.",true);
-                              stats(1,2,1,2);
-                              doSexP(20);
-                              itemAdd(214);
-                              hrs = 2;
-                              doEnd();
-                           };
-                        }
-                        else
-                        {
-                           stats(1,1,1,1);
-                           doSexP(2);
-                           hrs = 2;
-                           doEnd();
-                        }
-                     }
-                  };
-               }
-               else if(malonRep >= 1)
-               {
-                  outputMainText("Malon doesn\'t see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneathe the tubes of the milking cups.\r\r\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as she recognies you and your hands wrap around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. With a small smile, though still a slight blush, she allows you to take care of her milk for her.\r\rEvery few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"\r\rShe takes a few moments to come down from her climax, heaving slightly, her breasts bobbing up and down. Then she leans over the rail, her tits squirting milk across your lap, as she kisses you on the forehead.\r\r\"Thanks for that\", she whispers. \"Feel free to take a bottle and fill it for your kind efforts.\"\r\rShe dozes off a little on the rail, her tail flicking back and forth contently as she reflects on her orgasm, her nipples dripping into the hay on the ground.\r\rNot wanting to disrupt her pleasant thoughts, you take a bottle of her milk and leave.",true);
-                  stats(1,1,1,0);
-                  itemAdd(214);
-                  hrs = 2;
-                  if(malonRep == 1)
-                  {
-                     doNext();
+                  OutputMainText("\n" + "\n" + "With fear in her eyes, she grabs her shawl from the rail and runs in the opposite direction until the cups pop from her nipples with a milky flood. Her breasts swing from side to side, more milk splashing about the walls as she goes, she disappears out another door, leaving you with nothing.",False)
+                  Stats(0,-1,0,0)
+                  DoSexP(5)
+                  hrs = 2
+                  DoEnd()
+               elif (malonRep > 2):
+                  OutputMainText("\n" + "\n" + "\"Meanie. Why\'d you go and scare me like that?\" She winks and sticks out her tongue at you." + "\n" + "\n" + "Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments." + "\n" + "\n" + "She takes a moment before she comes down from her high. \"Mmm... I'm just going to hang out here for a bit. Feel free to take the bottle from the machine. It's really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",False)
+                  hrs = 2
+                  DoSexP(2)
+                  ItemAdd(214)
+                  DoEnd()
+               elif (malonRep == 2):
+                  OutputMainText("\"O-Oh, umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it." + "\n" + "\n" + "\"I-I just got so full that I, umm...\" Her eyes glance from side to side. \"I-I know it's very much like a cow, but with all the work around here and how long it takes to do it manually...\" Sadness fills her face at having been caught, despite what you said before. \"D-Don't worry, I'll clean up now...\"" + "\n" + "\n" + "Her ears drooping, her tail pushing against her dress trying to hide between her legs, she pulls the cups from her long nipples and lets the excess milk dribble off onto the floor. Turning away and trying to avoid any eyecontact, she wipes herself down with the yellow shawl and pulls up her shirt. She looks over her shoulder, her eyes to the ground, and says meekly, \"Sorry...\", before heading out the other end of the building, leaving you to head back to Softlik.",False)
+                  hrs = 2
+                  DoEnd()
+               elif ((malonRep == 0) or (malonRep == 1)):
+                  if (malonRep == 0):
+                     OutputMainText("\n" + "\n" + "\"Uhh... umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it. \"Who-Who're you? Please, please don't tell anyone I've been in here!\"",False)
+                  if (malonRep == 1):
+                     OutputMainText("\n" + "\n" + "\"Oh, whew...\" She puts a hand to her chest. \"It's just you. I-I'm not exactly supposed to be here, but, well, I'm sure you can see the benefits...\" She stands there awkwardly, the machine still sucking milk from her long nipples. \"You... You won't tell anyone, will you?\"",False)
+                  ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
+                  templist = [5, "Tell", 7, "Don't Tell"]
+                  DoButtonChoices(templist)
+                  #doListen = function():void
+                  if (buttonChoice == 5):
+                     OutputMainText("With tears welling up in her eyes, she rips away from the cups, letting them pop from her nipples with a milky flood. She turns and runs the other way, her tits bouncing from side to side and milk splashing across the walls as she goes, until she disappears out another door, leaving you with nothing.",True)
+                     Stats(0,-3,0,0)
+                     malonRep = -1
+                     hrs = 2
+                     DoEnd()
+                  elif (buttonChoice == 7):
+                     if (malonRep == 0):
+                        OutputMainText("\"Ahh, thank you so much!\" She looks like she wants to hug you, but she's a bit tethered at the moment... and half naked." + "\n" + "\n" + "She begins to gather herself, trying to turn away as she removes the milk-cups. You get a short flash of her over-ample chest before she pulls her shirt back into position, rubbing her nipples so they don't show through as well and dabbing the resulting blotch with her shawl." + "\n" + "\n" + "\"M-My name is Malon. I\'ve been this way most of my life... As a child, I always loved animals. A little too much, you could say... I liked the cows so much that I wanted to be like them. And so, I took one of their DairE Pills... To cut a long story short, I was happy with the results at first, becoming more like my bovine friends. Until eventually I grew up and realized my predicament. And, well, ever since then, I've been like this...\"" + "\n" + "\n" + "She shuffles uncomfortably in position for a bit, not quite sure what to say. She glances from side to side before deciding to step over to the milk machine, grabbing a bottle that was freshly made. Very freshly." + "\n" + "\n" + "\"I-I don't know how to thank you for not ruining one of the few pleasures of my life, but at least take this.\" She hands you the bottle as she bows her head." + "\n" + "\n" + "In an instant, she turns and hurries out of the barn, her long tail squeezing against her backside and outlining her butt even more.",True)
+                        malonRep = 1
+                        DoSexP(20)
+                        Stats(0,1,0,0)
+                        hrs = 2
+                        ItemAdd(214)
+                        DoEnd()
+                     if (malonRep == 1):
+                        OutputMainText("\"Hehe, thanks. Just a bit more to go...\" Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments." + "\n" + "\n" + "She takes a moment before she comes down from her high. \"Mmm... I'm just going to hang out here for a bit. Feel free to take the bottle from the machine. It's really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",True)
+                        hrs = 2
+                        DoSexP(5)
+                        ItemAdd(214)
+                        Stats(0,1,0,0)
+                        DoEnd()
+            elif (buttonChoice == 5):
+               if (malonRep < 1):
+                  OutputMainText("The woman doesn't see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneath the tubes of the milking cups." + "\n" + "\n" + "\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as you wrap your hands around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. Unable to resist, her breasts weighing her down and your hands keeping it that way, she rests upon the guardrail and waits for you to finish, her large ears drooping in embarrassment." + "\n" + "\n" + "Every few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"",True)
+                  DoNext()
+                  #doListen = function():void
+                  if (buttonChoice == 6):
+                     OutputMainText("She huffs for a few moments, her mind returning to its senses. The realization of her excessively cattle-like behaviour, especially in front of you, embarrasses her immensely. She jerks backward to stand up, a breast swinging out and slapping you in the face with a wet kiss from her nipple, before she turns and runs in the opposite direction. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in to further amplify her endowments." + "\n" + "\n" + "A bit afraid of what happens next, you decide it best to disappear yourself.",True)
+                     malonRep += 1
+                     if (malonRep == 1):
+                        DoNext()
+                        #doListen = function():void
+                        OutputMainText("However, on your way out, you feel a tug on your " + ClothesTop() + "." + "\n" + "\n" + "You turn around to see the woman again, covering her chest with the yellow shawl she had left behind." + "\n" + "\n" + "\"Uhh... umm... Th-that was a bit rude of me. I'm sorry... You seem like you were genuinely trying to help.\" She fumbles a little as she tries to hold the shawl to her chest with a single arm, managing to let a nipple pop out with a blush before she gets it right. She holds out her free hand to shake yours. \"I'm Malon.\"" + "\n" + "\n" + "You take her hand and shake with the formal introduction." + "\n" + "\n" + "\"I'm... kinda ashamed for being such a... well, cow. Let's just say I liked them too much when I was younger and took some DairE Pills to act like them. And then I wound up being a little too much like them, resulting in some rather... bothersome attributes for a woman like me. Anyways, here. At least you should get something for your efforts.\"" + "\n" + "\n" + "She turns away and adjusts her shirt back into place so she doesn't have to worry about her shawl, though her naked breasts are still visible on either side of her body. Then she picks up the bucket you had used and pours it into one of the bottles meant for the milk of normal cows, handing it to you." + "\n" + "\n" + "\"I-It's not much, but that's all I can offer at the moment...\"" + "\n" + "\n" + "After you take the milk, she says her goodbyes and tells you she'll be more welcoming from now on, leaving you to head back to Softlik.",True)
+                        Stats(1,2,1,2)
+                        DoSexP(20)
+                        ItemAdd(214)
+                        hrs = 2
+                        DoEnd()
+                     else:
+                        Stats(1,1,1,1)
+                        DoSexP(2)
+                        hrs = 2
+                        DoEnd()
+               elif (malonRep >= 1):
+                  OutputMainText("Malon doesn't see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneathe the tubes of the milking cups." + "\n" + "\n" + "\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as she recognies you and your hands wrap around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. With a small smile, though still a slight blush, she allows you to take care of her milk for her." + "\n" + "\n" + "Every few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"" + "\n" + "\n" + "She takes a few moments to come down from her climax, heaving slightly, her breasts bobbing up and down. Then she leans over the rail, her tits squirting milk across your lap, as she kisses you on the forehead." + "\n" + "\n" + "\"Thanks for that\", she whispers. \"Feel free to take a bottle and fill it for your kind efforts.\"" + "\n" + "\n" + "She dozes off a little on the rail, her tail flicking back and forth contently as she reflects on her orgasm, her nipples dripping into the hay on the ground." + "\n" + "\n" + "Not wanting to disrupt her pleasant thoughts, you take a bottle of her milk and leave.",True)
+                  Stats(1,1,1,0)
+                  ItemAdd(214)
+                  hrs = 2
+                  if (malonRep == 1):
+                     DoNext()
+                     #doListen = function():void
+                     outputMainText("You don\'t get far, however, as you feel a tug at your " + clothesTop() + " from behind.\r\rYou turn to see Malon huffing a little, her shirt covered with milk, as she had ran to catch up with you.\r\r\"Umm... I... I just wanted to thank you for being so kind to me... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I\'ll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can\'t help but think that they\'re right. I\'m nothing but a big fat cow...\"\r\rHer head hangs low, her bovine ears drooping in shame.\r\r\rDo you want to tell her that she shouldn\'t act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",true);
+                     ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
+                     templist = [5, "Don't Moo", 7, "Moo"]
+                     DoButtonChoices(templist)
+                     #doListen = function():void
+                     if (buttonChoice == 5):
+                        OutputMainText("You nod and tell her that it'd probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, althouth the effort merely shows off her large rump even more...",True)
+                        Stats(0,2,0,-2)
+                        DoSexP(5)
+                        malonRep = 2
+                        DoEnd()
+                     elif (buttonChoice == 7):
+                        OutputMainText("You smile and pat her on the head, telling her that she shouldn't be ashamed of being a cow. There's a lot of races out there that are like other animals, so she's more like a new race on her own." + "\n" + "\n" + "Hearing your uplifting words, her head rises back up with a big, goofy smile, her ears nearly flapping. \"M-Mooo?\"" + "\n" + "\n" + "You nod in acceptance." + "\n" + "\n" + "She giggles loudly, lunging out at you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your " + BoobDesc() + " chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flits about happily behind her." + "\n" + "\n" + "\n" + "As you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...",True)
+                        Stats(0,1,0,2)
+                        DoSexP(25)
+                        malonRep = 3
+                        ItemAdd(215)
+                        DoEnd()
+                  else:
+                     DoEnd()
+            elif (buttonChoice == 7):
+               if (malonRep < 1):
+                  OutputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking." + "\n" + "\n" + "She lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you pull her narrow tail to make sure she can't stand.",True)
+                  if (cockTotal > 0):
+                     if ((cockSize * cockSizeMod) <= eVagLimit(56)):
+                        OutputMainText(" She shrieks in terror as you plunge your " + CockDesc() + " cock into her hungry sex." + "\n" + "\n" + "\"No, don't!\" She cries out in fear. \"Somebody help!\"" + "\n" + "\n" + "Nobody hears her over the machine that continues to pump away at her breasts. She whines and mewls as you churn her insides, pumping in tune to the machine. Her body defies her and begins to quiver around your cock, a gush of milk stuttering through the tubes. Her mouth opens wide to shout one last time but all that comes out is a long \"MOOOOOO!\"",False)
+                     if ((cockSize * cockSizeMod) > eVagLimit(56)):
+                        OutputMainText(" She shrieks in terror as you ram your " + CockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you're still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you're literally tit-fucking her from behind." + "\n" + "\n" + "\"No, don't!\" She cries out in fear and bewilderment." + "\n" + "\n" + "However, the shouts of dissension quickly die down as you thrust your cock back and forth across her clit and through her cleavage, pumping in tune to the machine. The vibrations reverberate through her chest and connect to the sensations from her clit, making her whole body begin to quiver." + "\n" + "\n" + "A moment later, her mouth yawns wide to either shout or moan, but what comes out is nothing but a loud \"Moooooo!\"",False)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("Before you can come yourself, the loud bovine expression makes the girl jump with embarrassment, her tail slipping from your hand",True)
+                     if (knot == True):
+                        OutputMainText(" and tries to pull herself from your cock. She recoils at first, your knot yanking at her tender cunt, but her will is greater and she tugs again with a yelp, making your erection ache a little from the force as it flies out",False)
+                     else:
+                        OutputMainText(" and your cock sliding out",False)
+                     OutputMainText(" from between her legs as she turns to run. The milking cups pop from her long nipples, flinging milk everywhere as she runs away, her large breasts swinging from side to side and her skirt a mess.",False)
+                     if ((cockSize * cockSizeMod) <= eVagLimit(56)):
+                        OutputMainText("\n" + "\n" + "Obviously having thoroughly terrified the girl, you turn the opposite direction to make a quick getaway yourself, your cock hard in your " + ClothesBottom() + "...",False)
+                        malonRep = -1
+                     if ((cockSize * cockSizeMod) > eVagLimit(56)):
+                        OutputMainText("\n" + "\n" + "You're not quite sure if it was because of your actions that frightened her so, or her own reaction to them... Either way, you think it best to not dawdle, despite your cock still being hard...",False)
+                     Stats(0,-3,2,0)
+                     DoSexP(5)
+                     DoLust(30,0)
+                     hrs = 2
+                     DoEnd()
+                  if (cockTotal < 1):
+                     OutputMainText(" She gasps loudly as you fall to your " + LegDesc(6) + " and dive your face into her plush groin." + "\n" + "\n" + "\"No, don't!\" She whines as you nibble her fat clit and lick through her folds." + "\n" + "\n" + "However, the shouts of dissension quickly die down as your tongue works its way into her supple hole. Muffled whines still escape her lips every now and again, but as the machine works at her breasts in tune to your devouring of her sex, her wide hips soon begin to sway in harmony." + "\n" + "\n" + "Quite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air...",False)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and runs away. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in until it blotches with her feminine mess." + "\n" + "\n" + "Not quite sure what she was thinking, you decide it best to disappear yourself.",True)
+                     Stats(0,-1,1,0)
+                     DoSexP(5)
+                     DoLust(math.floor(lib / 5),1)
+                     hrs = 2
+                     DoEnd()
+               if ((malonRep == 1) or (malonRep == 2)):
+                  OutputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking." + "\n" + "\n" + "She lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",True)
+                  if (cockTotal > 0):
+                     if ((cockSize * cockSizeMod) <= eVagLimit(56)):
+                        OutputMainText(" She shrieks in terror as you plunge your " + CockDesc() + " cock into her hungry sex." + "\n" + "\n" + "\"No, don't!\" She cries out in fear. However, she quickly recognizes you and begins to whine. \"Please, not like this!\"" + "\n" + "\n" + "You ignore her pleas and continue anyways. She whines and mewls as you churn her insides, pumping in tune to the machine. Her body soon reacts and begins to quiver around your cock, a gush of milk stuttering through the tubes. Her mouth opens wide to shout one last time but all that comes out is a long \"MOOOOOO!\"",False)
+                     if ((cockSize * cockSizeMod) > eVagLimit(56)):
+                        OutputMainText(" She shrieks in terror as you ram your " + CockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you're still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you're literally tit-fucking her from behind." + "\n" + "\n" + "\"No, don't!\" She cries out in fear and bewilderment. However, she quickly recognizes you and bites her lip; not entirely happy with the situation but not fighting much more either." + "\n" + "\n" + "You thrust your cock back and forth across her clit and through her cleavage, pumping in tune to the machine. The vibrations reverberate through her chest and connect to the sensations from her clit, making her whole body begin to quiver." + "\n" + "\n" + "A moment later, her mouth yawns wide to either shout or moan, but what comes out is nothing but a loud \"Moooooo!\"",False)
+                     DoNext()
                      doListen = function():void
-                     {
-                        outputMainText("You don\'t get far, however, as you feel a tug at your " + clothesTop() + " from behind.\r\rYou turn to see Malon huffing a little, her shirt covered with milk, as she had ran to catch up with you.\r\r\"Umm... I... I just wanted to thank you for being so kind to me... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I\'ll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can\'t help but think that they\'re right. I\'m nothing but a big fat cow...\"\r\rHer head hangs low, her bovine ears drooping in shame.\r\r\rDo you want to tell her that she shouldn\'t act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",true);
-                        viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
-                        viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
-                        buttonWrite(5,"Don\'t Moo");
-                        buttonWrite(7,"Moo");
-                        doListen = function():void
-                        {
-                           if(buttonChoice == 5)
-                           {
-                              outputMainText("You nod and tell her that it\'d probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, althouth the effort merely shows off her large rump even more...",true);
-                              stats(0,2,0,-2);
-                              doSexP(5);
-                              malonRep = 2;
-                              doEnd();
-                           }
-                           if(buttonChoice == 7)
-                           {
-                              outputMainText("You smile and pat her on the head, telling her that she shouldn\'t be ashamed of being a cow. There\'s a lot of races out there that are like other animals, so she\'s more like a new race on her own.\r\rHearing your uplifting words, her head rises back up with a big, goofy smile, her ears nearly flapping. \"M-Mooo?\"\r\rYou nod in acceptance.\r\rShe giggles loudly, lunging out at you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your " + boobDesc() + " chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flits about happily behind her.\r\r\rAs you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...",true);
-                              stats(0,1,0,2);
-                              doSexP(25);
-                              malonRep = 3;
-                              itemAdd(215);
-                              doEnd();
-                           }
-                        };
-                     };
-                  }
-                  else
-                  {
-                     doEnd();
-                  }
-               }
-            }
-            elif(buttonChoice == 7)
-            {
-               if(malonRep < 1)
-               {
-                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you pull her narrow tail to make sure she can\'t stand.",true);
-                  if(cockTotal > 0)
-                  {
-                     if(cockSize * cockSizeMod <= eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks in terror as you plunge your " + cockDesc() + " cock into her hungry sex.\r\r\"No, don\'t!\" She cries out in fear. \"Somebody help!\"\r\rNobody hears her over the machine that continues to pump away at her breasts. She whines and mewls as you churn her insides, pumping in tune to the machine. Her body defies her and begins to quiver around your cock, a gush of milk stuttering through the tubes. Her mouth opens wide to shout one last time but all that comes out is a long \"MOOOOOO!\"",false);
-                     }
-                     if(cockSize * cockSizeMod > eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks in terror as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you\'re literally tit-fucking her from behind.\r\r\"No, don\'t!\" She cries out in fear and bewilderment.\r\rHowever, the shouts of dissension quickly die down as you thrust your cock back and forth across her clit and through her cleavage, pumping in tune to the machine. The vibrations reverberate through her chest and connect to the sensations from her clit, making her whole body begin to quiver.\r\rA moment later, her mouth yawns wide to either shout or moan, but what comes out is nothing but a loud \"Moooooo!\"",false);
-                     }
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("Before you can come yourself, the loud bovine expression makes the girl jump with embarrassment, her tail slipping from your hand",true);
-                        if(knot == true)
-                        {
-                           outputMainText(" and tries to pull herself from your cock. She recoils at first, your knot yanking at her tender cunt, but her will is greater and she tugs again with a yelp, making your erection ache a little from the force as it flies out",false);
-                        }
-                        else
-                        {
-                           outputMainText(" and your cock sliding out",false);
-                        }
-                        outputMainText(" from between her legs as she turns to run. The milking cups pop from her long nipples, flinging milk everywhere as she runs away, her large breasts swinging from side to side and her skirt a mess.",false);
-                        if(cockSize * cockSizeMod <= eVagLimit(56))
-                        {
-                           outputMainText("\r\rObviously having thoroughly terrified the girl, you turn the opposite direction to make a quick getaway yourself, your cock hard in your " + clothesBottom() + "...",false);
-                           malonRep = -1;
-                        }
-                        if(cockSize * cockSizeMod > eVagLimit(56))
-                        {
-                           outputMainText("\r\rYou\'re not quite sure if it was because of your actions that frightened her so, or her own reaction to them... Either way, you think it best to not dawdle, despite your cock still being hard...",false);
-                        }
-                        stats(0,-3,2,0);
-                        doSexP(5);
-                        doLust(30,0);
-                        hrs = 2;
-                        doEnd();
-                     };
-                  }
-                  if(cockTotal < 1)
-                  {
-                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin.\r\r\"No, don\'t!\" She whines as you nibble her fat clit and lick through her folds.\r\rHowever, the shouts of dissension quickly die down as your tongue works its way into her supple hole. Muffled whines still escape her lips every now and again, but as the machine works at her breasts in tune to your devouring of her sex, her wide hips soon begin to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air...",false);
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and runs away. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in until it blotches with her feminine mess.\r\rNot quite sure what she was thinking, you decide it best to disappear yourself.",true);
-                        stats(0,-1,1,0);
-                        doSexP(5);
-                        doLust(Math.floor(lib / 5),1);
-                        hrs = 2;
-                        doEnd();
-                     };
-                  }
-               }
-               if(malonRep == 1 || malonRep == 2)
-               {
-                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",true);
-                  if(cockTotal > 0)
-                  {
-                     if(cockSize * cockSizeMod <= eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks in terror as you plunge your " + cockDesc() + " cock into her hungry sex.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly recognizes you and begins to whine. \"Please, not like this!\"\r\rYou ignore her pleas and continue anyways. She whines and mewls as you churn her insides, pumping in tune to the machine. Her body soon reacts and begins to quiver around your cock, a gush of milk stuttering through the tubes. Her mouth opens wide to shout one last time but all that comes out is a long \"MOOOOOO!\"",false);
-                     }
-                     if(cockSize * cockSizeMod > eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks in terror as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you\'re literally tit-fucking her from behind.\r\r\"No, don\'t!\" She cries out in fear and bewilderment. However, she quickly recognizes you and bites her lip; not entirely happy with the situation but not fighting much more either.\r\rYou thrust your cock back and forth across her clit and through her cleavage, pumping in tune to the machine. The vibrations reverberate through her chest and connect to the sensations from her clit, making her whole body begin to quiver.\r\rA moment later, her mouth yawns wide to either shout or moan, but what comes out is nothing but a loud \"Moooooo!\"",false);
-                     }
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("Before you can come yourself, the loud bovine expression makes the girl jump with embarrassment, her tail slipping from your hand and ",true);
-                        if(knot == true)
-                        {
-                           outputMainText(" reaches into her pussy with her fingers, wincing as she squeezes your swollen knot, slipping it out ",false);
-                        }
-                        else
-                        {
-                           outputMainText(" your cock sliding out ",false);
-                        }
-                        outputMainText("from between her legs as she turns and stands. The milking cups pop from her long nipples, flinging milk everywhere as she turns to face you.\r\r\"P-Please! I don\'t want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence.",false);
-                        outputMainText("\r\rThe way she said it didn\'t seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm, your cock even harder than before...",false);
-                        stats(0,-1,1,0);
-                        doSexP(5);
-                        doLust(20,0);
-                        hrs = 2;
-                        doEnd();
-                     };
-                  }
-                  if(cockTotal < 1)
-                  {
-                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin.\r\r\"No, don\'t!\" She whines as you nibble her fat clit and lick through her folds.\r\rHowever, the shouts of dissension quickly die down as your tongue works its way into her supple hole. Muffled whines still escape her lips every now and again, but as the machine works at her breasts in tune to your devouring of her sex, her wide hips soon begin to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air...",true);
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and turns towards you.\r\r\"P-Please! I don\'t want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence, her tail pushing the skirt between her legs in until it blotches with her feminine mess.\r\rThe way she said it didn\'t seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm.",true);
-                        stats(0,-1,1,0);
-                        doSexP(5);
-                        doLust(Math.floor(lib / 5),1);
-                        hrs = 2;
-                        doEnd();
-                     };
-                  }
-               }
-               if(malonRep == 3)
-               {
-                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",true);
-                  if(cockTotal > 0)
-                  {
-                     if(cockSize * cockSizeMod <= eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks as you plunge your " + cockDesc() + " cock into her hungry sex.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly recognizes you and her head descends behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness.\r\rYou nod with a smile.\r\r\"O-Okay!\" She forces a smile back, then braces herself against the guardrail.\r\rShe quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits.",false);
-                        if(percent() <= 20)
-                        {
-                           malonRep = 4;
-                           malonPreg = 0;
-                        }
-                     }
-                     if(cockSize * cockSizeMod > eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you\'re literally tit-fucking her from behind.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly recognizes you and her head descends behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness.\r\rYou nod with a smile.\r\r\"O-Okay!\" She forces a smile back, then braces herself against the guardrail.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
-                     }
-                     outputMainText("\r\rYou thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward, hugging her tight as she begins to shudder. Her thighs clench and her hands wring the rail. Her mouth yawns widely. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as your cock begins to gush with cum, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",false);
-                     cumAmount();
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face.\r\r\"Th-Thank you so much!\" Her lips reach out and softly kisses your own...\r\r\rThoroughly satisfied, the two of you spend the next hour",true);
-                        if(knot == true)
-                        {
-                           outputMainText("waiting for your knot to deflate before ",false);
-                        }
-                        outputMainText("cleaning up all the cum and milk you left everywhere... But you\'re quite happy nevertheless.\r\rEventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she\'s caught with her little pleasure.",false);
-                        stats(0,2,2,2);
-                        doLust(-Math.floor(sen / 2),2,1);
-                        doSexP(20);
-                        if(malonRep == 3)
-                        {
-                           malonRep = 5;
-                        }
-                        hrs = 3;
-                        doEnd();
-                     };
-                  }
-                  if(cockTotal < 1)
-                  {
-                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin.\r\r\"No, don\'t!\" She cries out in fear. However, she quickly turns and recognizes you, her head descending behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness.\r\rYou nod with a smile.\r\r\"O-Okay!\" She forces a smile back, then braces herself against the guardrail.\r\rShe pushes her plump rump towards your face, letting you nibble her fat clit and lick through her folds. Her hips rock beack and forth while your tongue works its way into her supple hole, her arousal drizzling down your face. Soft moans escape her lips every now and again, and increase as the machine works at her breasts in tune to your devouring of her sex, her breasts beginning to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you. Her mouth yawns widely. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as you bite down on her orgasming clit, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",true);
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, hugging her tits to your chest.\r\r\"Th-thank you!\" She presses her lips to your own, kissing you through her own slickness that covers your face.\r\rThe two of your relax in each others arms. However, eventually she has to get back to her duties before she is missed. She pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",true);
-                        stats(0,2,2,2);
-                        doSexP(20);
-                        if(malonRep == 3)
-                        {
-                           malonRep = 5;
-                        }
-                        doLust(Math.floor(lib / 4),0);
-                        hrs = 2;
-                        doEnd();
-                     };
-                  }
-               }
-               if(malonRep >= 4)
-               {
-                  outputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\r\rShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",true);
-                  if(cockTotal > 0)
-                  {
-                     if(cockSize * cockSizeMod <= eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks as you plunge your " + cockDesc() + " cock into her hungry sex. She immediately turns to spot her assailent and her face calms as she begins to smile.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits.",false);
-                        if(malonRep == 5 && percent() <= 20)
-                        {
-                           malonRep = 4;
-                           malonPreg = 0;
-                        }
-                     }
-                     if(cockSize * cockSizeMod > eVagLimit(56))
-                     {
-                        outputMainText(" She shrieks as you ram your " + cockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you\'re still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt,",false);
-                        if(malonRep == 4)
-                        {
-                           if(malonPreg < 54)
-                           {
-                              outputMainText(" wedging it between her hanging breasts until you\'re literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn\'t terribly surprised to see you.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
-                           }
-                           if(malonPreg >= 54 && malonPreg < 72)
-                           {
-                              outputMainText(" curving around her pregnant belly until it wedges between her hanging breasts, literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn\'t terribly surprised to see you.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
-                           }
-                           if(malonPreg >= 72 && malonPreg < 108)
-                           {
-                              outputMainText(" diverting down towards the ground from her massive belly until your ramming into the hay. She turns to spot who could possibly hump her belly likse that and isn\'t terribly surprised.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
-                           }
-                           if(malonPreg >= 108)
-                           {
-                              outputMainText(" diverting down towards the ground from her massive belly until you\'re lifting her slightly as your cock wedges between the belly and the hay on the floor. She turns to spot who could possibly hump her belly likse that and isn\'t terribly surprised.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
-                           }
-                        }
-                        else
-                        {
-                           outputMainText(" wedging it between her hanging breasts until you\'re literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn\'t terribly surprised to see you.\r\r\"Don\'t frighten me like that!\" She sticks out her tongue and kicks you with a foot.\r\rShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",false);
-                        }
-                     }
-                     outputMainText("\r\rYou thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward,",false);
-                     if(malonRep == 3 && malonPreg >= 54)
-                     {
-                        outputMainText(" hugging her and her pregnant belly ",false);
-                     }
-                     else
-                     {
-                        outputMainText(" hugging her ",false);
-                     }
-                     outputMainText("tight as she begins to shudder. Her thighs clench and her hands wring the rail, her mouth proudly yawning wide with a loud \"Moooooooo!\", squeezing your cock until you gush with cum.",false);
-                     cumAmount();
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face.\r\r\"Thank you~\" She kisses you...\r\r\rThoroughly satisfied, the two of you spend the next hour cleaning up all the cum and milk you left everywhere... But you\'re quite happy nevertheless.\r\rEventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she\'s caught with her little pleasure.",true);
-                        stats(0,2,2,2);
-                        doSexP(2);
-                        doLust(-Math.floor(sen / 2),2,1);
-                        hrs = 3;
-                        doEnd();
-                     };
-                  }
-                  if(cockTotal < 1)
-                  {
-                     outputMainText(" She gasps loudly as you fall to your " + legDesc(6) + " and dive your face into her plush groin. She turns to see who it is and giggles.\r\r\"Don\'t frighten me like that!\" She presses back against your face as punishment, stuffing you into the cheeks of her plump rump.\r\rThe \'punishment\' quickly subsides as you nibble her fat clit and lick through her folds. Her hips rock beack and forth while your tongue works its way into her supple hole, her arousal drizzling down your face. Soft moans escape her lips every now and again, and increase as the machine works at her breasts in tune to your devouring of her sex, her breasts beginning to sway in harmony.\r\rQuite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air.",true);
-                     doNext();
-                     doListen = function():void
-                     {
-                        outputMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, kissing you through her own slickness that covers your face.\r\r\"Thank you~\"\r\rHaving to get back to her duties, however, she pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",true);
-                        stats(0,2,2,2);
-                        doSexP(2);
-                        doLust(Math.floor(lib / 4),0);
-                        hrs = 2;
-                        doEnd();
-                     };
-                  }
-               }
-            }
-            elif(buttonChoice == 10)
-            {
-               outputMainText("You turn around and head back to Softlik, deciding it best to leave her to her privacy.",true);
-               hrs = 1;
-               doEnd();
-            }
-            };
-         }
-         elif (buttonChoice == 7)
-         {
-            outputMainText("A little too dangerous, and probably illegal with the whole trespassing thing, you turn around and walk away.",true);
-            hrs = 1;
-            doEnd();
-         }
-         };
-      }
-      else if(this.malonRep > 0)
-      {
+                     OutputMainText("Before you can come yourself, the loud bovine expression makes the girl jump with embarrassment, her tail slipping from your hand and ",True)
+                     if (knot == True):
+                        OutputMainText(" reaches into her pussy with her fingers, wincing as she squeezes your swollen knot, slipping it out ",False)
+                     else:
+                        OutputMainText(" your cock sliding out ",False)
+                     OutputMainText("from between her legs as she turns and stands. The milking cups pop from her long nipples, flinging milk everywhere as she turns to face you." + "\n" + "\n" + "\"P-Please! I don't want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence.",False)
+                     OutputMainText("\n" + "\n" + "The way she said it didn't seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm, your cock even harder than before...",False)
+                     Stats(0,-1,1,0)
+                     DoSexP(5)
+                     DoLust(20,0)
+                     hrs = 2
+                     DoEnd()
+                  if (cockTotal < 1):
+                     OutputMainText(" She gasps loudly as you fall to your " + LegDesc(6) + " and dive your face into her plush groin." + "\n" + "\n" + "\"No, don't!\" She whines as you nibble her fat clit and lick through her folds." + "\n" + "\n" + "However, the shouts of dissension quickly die down as your tongue works its way into her supple hole. Muffled whines still escape her lips every now and again, but as the machine works at her breasts in tune to your devouring of her sex, her wide hips soon begin to sway in harmony." + "\n" + "\n" + "Quite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air...",True)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and turns towards you." + "\n" + "\n" + "\"P-Please! I don't want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence, her tail pushing the skirt between her legs in until it blotches with her feminine mess." + "\n" + "\n" + "The way she said it didn't seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm.",True)
+                     Stats(0,-1,1,0)
+                     DoSexP(5)
+                     DoLust(math.floor(lib / 5),1)
+                     hrs = 2
+                     DoEnd()
+               if (malonRep == 3):
+                  OutputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking." + "\n" + "\n" + "She lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",True)
+                  if (cockTotal > 0):
+                     if ((cockSize * cockSizeMod) <= eVagLimit(56)):
+                        OutputMainText(" She shrieks as you plunge your " + CockDesc() + " cock into her hungry sex." + "\n" + "\n" + "\"No, don't!\" She cries out in fear. However, she quickly recognizes you and her head descends behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness." + "\n" + "\n" + "You nod with a smile." + "\n" + "\n" + "\"O-Okay!\" She forces a smile back, then braces herself against the guardrail." + "\n" + "\n" + "She quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits.",False)
+                        if (Percent() <= 20):
+                           malonRep = 4
+                           malonPreg = 0
+                     if ((cockSize * cockSizeMod) > eVagLimit(56)):
+                        OutputMainText(" She shrieks as you ram your " + CockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you're still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt, wedging it between her hanging breasts until you're literally tit-fucking her from behind." + "\n" + "\n" + "\"No, don't!\" She cries out in fear. However, she quickly recognizes you and her head descends behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness." + "\n" + "\n" + "You nod with a smile." + "\n" + "\n" + "\"O-Okay!\" She forces a smile back, then braces herself against the guardrail." + "\n" + "\n" + "She leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",False)
+                     OutputMainText("\n" + "\n" + "You thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward, hugging her tight as she begins to shudder. Her thighs clench and her hands wring the rail. Her mouth yawns widely. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as your cock begins to gush with cum, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions." + "\n" + "\n" + "\"MOOOOOOOOO!\"",False)
+                     CumAmount()
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face." + "\n" + "\n" + "\"Th-Thank you so much!\" Her lips reach out and softly kisses your own..." + "\n" + "\n" + "\n" + "Thoroughly satisfied, the two of you spend the next hour",True)
+                     if (knot == True):
+                        OutputMainText("waiting for your knot to deflate before ",False)
+                     OutputMainText("cleaning up all the cum and milk you left everywhere... But you're quite happy nevertheless." + "\n" + "\n" + "Eventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she's caught with her little pleasure.",False)
+                     Stats(0,2,2,2)
+                     DoLust(-math.floor(sen / 2),2,1)
+                     DoSexP(20)
+                     if (malonRep == 3):
+                        malonRep = 5
+                     hrs = 3
+                     DoEnd()
+                  if (cockTotal < 1):
+                     OutputMainText(" She gasps loudly as you fall to your " + LegDesc(6) + " and dive your face into her plush groin." + "\n" + "\n" + "\"No, don't!\" She cries out in fear. However, she quickly turns and recognizes you, her head descending behind her shoulders. \"A-Are you sure?\" She looks at you with complete seriousness." + "\n" + "\n" + "You nod with a smile." + "\n" + "\n" + "\"O-Okay!\" She forces a smile back, then braces herself against the guardrail." + "\n" + "\n" + "She pushes her plump rump towards your face, letting you nibble her fat clit and lick through her folds. Her hips rock beack and forth while your tongue works its way into her supple hole, her arousal drizzling down your face. Soft moans escape her lips every now and again, and increase as the machine works at her breasts in tune to your devouring of her sex, her breasts beginning to sway in harmony." + "\n" + "\n" + "Quite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you. Her mouth yawns widely. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as you bite down on her orgasming clit, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions." + "\n" + "\n" + "\"MOOOOOOOOO!\"",True)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, hugging her tits to your chest." + "\n" + "\n" + "\"Th-thank you!\" She presses her lips to your own, kissing you through her own slickness that covers your face." + "\n" + "\n" + "The two of your relax in each others arms. However, eventually she has to get back to her duties before she is missed. She pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",True)
+                     Stats(0,2,2,2)
+                     DoSexP(20)
+                     if (malonRep == 3):
+                        malonRep = 5
+                     DoLust(math.floor(lib / 4),0)
+                     hrs = 2
+                     DoEnd()
+               if (malonRep >= 4):
+                  OutputMainText("You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking." + "\n" + "\n" + "She lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down.",True)
+                  if (cockTotal > 0):
+                     if ((cockSize * cockSizeMod) <= eVagLimit(56)):
+                        OutputMainText(" She shrieks as you plunge your " + CockDesc() + " cock into her hungry sex. She immediately turns to spot her assailent and her face calms as she begins to smile." + "\n" + "\n" + "\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot." + "\n" + "\n" + "She quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits.",False)
+                        if ((malonRep == 5) and (Percent() <= 20)):
+                           malonRep = 4
+                           malonPreg = 0
+                     if ((cockSize * cockSizeMod) > eVagLimit(56)):
+                        OutputMainText(" She shrieks as you ram your " + CockDesc() + " cock against her fat lips. Yet, despite her rather pronounced size, you're still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt,",False)
+                        if (malonRep == 4):
+                           if (malonPreg < 54):
+                              OutputMainText(" wedging it between her hanging breasts until you're literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you." + "\n" + "\n" + "\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot." + "\n" + "\n" + "She leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",False)
+                           if ((malonPreg >= 54) and (malonPreg < 72)):
+                              OutputMainText(" curving around her pregnant belly until it wedges between her hanging breasts, literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you." + "\n" + "\n" + "\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot." + "\n" + "\n" + "She leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",False)
+                           if ((malonPreg >= 72) and (malonPreg < 108)):
+                              OutputMainText(" diverting down towards the ground from her massive belly until your ramming into the hay. She turns to spot who could possibly hump her belly likse that and isn't terribly surprised." + "\n" + "\n" + "\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot." + "\n" + "\n" + "She leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",False)
+                           if (malonPreg >= 108):
+                              OutputMainText(" diverting down towards the ground from her massive belly until you're lifting her slightly as your cock wedges between the belly and the hay on the floor. She turns to spot who could possibly hump her belly likse that and isn't terribly surprised." + "\n" + "\n" + "\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot." + "\n" + "\n" + "She leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",False)
+                        else:
+                           OutputMainText(" wedging it between her hanging breasts until you're literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you." + "\n" + "\n" + "\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot." + "\n" + "\n" + "She leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits.",False)
+                     OutputMainText("\n" + "\n" + "You thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward,",False)
+                     if ((malonRep == 3) and (malonPreg >= 54)):
+                        OutputMainText(" hugging her and her pregnant belly ",False)
+                     else:
+                        OutputMainText(" hugging her ",False)
+                     OutputMainText("tight as she begins to shudder. Her thighs clench and her hands wring the rail, her mouth proudly yawning wide with a loud \"Moooooooo!\", squeezing your cock until you gush with cum.",False)
+                     CumAmount()
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face." + "\n" + "\n" + "\"Thank you~\" She kisses you..." + "\n" + "\n" + "\n" + "Thoroughly satisfied, the two of you spend the next hour cleaning up all the cum and milk you left everywhere... But you're quite happy nevertheless." + "\n" + "\n" + "Eventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she's caught with her little pleasure.",True)
+                     Stats(0,2,2,2)
+                     DoSexP(2)
+                     DoLust(-math.floor(sen / 2),2,1)
+                     hrs = 3
+                     DoEnd()
+                  if (cockTotal < 1):
+                     OutputMainText(" She gasps loudly as you fall to your " + LegDesc(6) + " and dive your face into her plush groin. She turns to see who it is and giggles." + "\n" + "\n" + "\"Don't frighten me like that!\" She presses back against your face as punishment, stuffing you into the cheeks of her plump rump." + "\n" + "\n" + "The 'punishment' quickly subsides as you nibble her fat clit and lick through her folds. Her hips rock beack and forth while your tongue works its way into her supple hole, her arousal drizzling down your face. Soft moans escape her lips every now and again, and increase as the machine works at her breasts in tune to your devouring of her sex, her breasts beginning to sway in harmony." + "\n" + "\n" + "Quite soon, you hear the machine stutter on a sudden increase in her flow. A second later, wet ecstasy gushes around your face and slimes down to your chin, her whole body quivering around you, while a low and loud \"Mooooo!\" fills the air.",True)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, kissing you through her own slickness that covers your face." + "\n" + "\n" + "\"Thank you~\"" + "\n" + "\n" + "Having to get back to her duties, however, she pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",True)
+                     Stats(0,2,2,2)
+                     DoSexP(2)
+                     DoLust(math.floor(lib / 4),0)
+                     hrs = 2
+                     DoEnd()
+            elif (buttonChoice == 10):
+               OutputMainText("You turn around and head back to Softlik, deciding it best to leave her to her privacy.",True)
+               hrs = 1
+               DoEnd()
+         elif (buttonChoice == 7):
+            OutputMainText("A little too dangerous, and probably illegal with the whole trespassing thing, you turn around and walk away.",True)
+            hrs = 1
+            DoEnd()
+!      elif (malonRep > 0):
          if(this.malonRep == 1 && (this.milkEngorgementLevel > 0 || this.udderEngorgementLevel > 0))
          {
             this.outputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + this.clothesTop() + " and shouts to the other workers that she\'s got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her \'condition\'. Nevertheless, she smiles as she heads towards you.\r\r\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",true);
@@ -19208,103 +19164,2094 @@ def DoLake():
          this.doEnd();
       }
    }
-   else if(chance == 5)
+   elif (chance == 5):
+      OutputMainText("You manage to approach the farm without being seen or stopped by a farmer. You find a bottle of milk that has yet to be shipped out with the rest. ",True)
+      if ((milkEngorgement > 15000) and (lactation > 0) and (malonRep > 3)):
+         OutputMainText("However, as you feel your " + BoobDesc() + " tits slosh about with the massive amount of milk within, you realize you could take this opportunity to do what Malon does and sneak some time with the larger and much more efficient milkers of the farm... Would save you quite a bit of time and effort." + "\n" + "\n" + "Will you?",False)
+         ButtonConfirm()
+         #this.doListen = function():void
+         getMilk = 0
+         if (buttonChoice == 6):
+            getMilk = MilkAmount(1)
+            OutputMainText("Feeling a bit daring, you sneak into the barn where all the milking happens. After catching Malon in here, you have a fairly good idea as to how things work. You grab up some of the cow's milking cups and carry them over to the hitching-rail. Using the rail for support, you lean forward and stick out your " + BoobDesc() + " tits, pulling your " + ClothesTop() + " " + PullUD(1) + " and letting your " + NipDesc() + " nipples pop out. They're already stiff and leaking profusely, a steady stream of milk trickling out in anticipation over what you're about to do." + "\n" + "\n" + "Sheathing the cups over your " + NipDesc() + " 'erections', ",True)
+            if (nippleSize < 15):
+               OutputMainText("barely filling the cups at all",False)
+            elif (nippleSize <= 50):
+               OutputMainText("fitting the cups almost a little too perfectly",False)
+            elif (nippleSize <= 70):
+               OutputMainText("taking a bit of effort to stuff them into the cups intended for cow teats",False)
+            else:
+               OutputMainText("barely covering the tips of your giant monsters",False)
+            OutputMainText(", and switch the machine on to make the cups latch on with their suction. You let out a moan as the machine begins to chug away, sucking your nipples in deeper, pulling the milk from your " + NipDesc() + " handles, and drinking the milk in long gluttonous slurps through the clear tubes. It feels so delightful, perfectly timed for large amounts of milk and completely hands-free, allowing your fingers to provide you with more sensual attention elsewhere, letting you moan even more loudly." + "\n" + "\n" + "Between the noises of the machine and your moaning, you don't even notice somebody sneaking up on you until you feel thir arms wrap around you and grabs into your swollen chest." + "\n" + "\n" + "\"Gotcha!\"" + "\n" + "\n" + "A pleasantly familiar voice, you turn around to see the tell-tale tail swishing upon her backside with her own shirt slightly soaked in front",False)
+            if (malonPreg > 100):
+               OutputMainText(", her large pregnant belly swollen with your child",False)
+            OutputMainText("." + "\n" + "\n" + "\"Hehe, I guess I wasn't the only one who thought to use this, hmm? Well then, I suppose it's only fair to do to you what you usually do to me~\" Malon gives you a devious smirk. Her hands massage your " + BoobDesc() + " mammaries while she grinds against your " + ButtDesc() + " backside. Even though she has no phallic thing to penetrate you with, she still manages to arouse you further with the effort alone, making the machine chug harder as it tries to gulp down the increasing flow of your dairy goodness. She leans forward to kiss you from the side, her large chest mushing up against your back" + "\t" + "until her own bovine leakage seeps out through her shirt into small rivers ",False)
+            if (malonPreg > 100):
+               OutputMainText("around her fertile girth and ",False)
+            OutputMainText("down to your rump, quickly making both your crotches warm and wet with her milk, making yours flow even more and more and..." + "\n" + "\n" + "Sploosh! The milking cups fly off from your " + NipDesc() + " nipples. Geysers of white spray from your tits with enough volume and pressure to have defeated the suction of a machine meant for cows. This doesn't seem to phase Malon, however. Instead, as she watches you erupt with so much arousal, it seems to only entice her further as she pulls you back to the wall and slides down to the floor with you between her legs. She continues to kiss and grope at your chest, grabbing a tit and milking by hand while another hand sneaks down into your " + ClothesBottom() + ", fondling your crotch and making you gyrate against her own in rhythm.",False)
+            if (getMilk <= 25000):
+               OutputMainText(" A good deal of your milk having already been taken by the machine, the gushing quickly dies down as you calm within her embrace, focusing more on sending you both to orgasm rather than on the milk that rolls down Malon's arm and into your connected laps, forming a puddle beneath the two of you.",False)
+            elif (getMilk <= 40000):
+               OutputMainText(" Your milk continues to spray out from your bosom for a while, showering down upon you both, thoroughly drenching you in the warm fluid while making a large puddle beneath you, getting into all sorts of cracks and crevices and making Malon quake beneath you.",False)
+            elif (getMilk <= 60000):
+               OutputMainText(" The gushing continues for a while, drenching you both in the warm fluids in moments until your mouths are filling with it and gulping it down with each kiss. A grand puddle forms beneath you, splitting off into several small rivers that spread throughout the floor of the barn, even some trickling to the outside.",False)
+            else:
+               OutputMainText(" The gushing persists and even increases in power as the two of you make love beneath the torrent of milk. In between each kiss is a gulp of the sweet fluid, in between each grope and grind flows some of the warm fluids across your sensitive bits. Milk spreads throughout the barn, a near-river of the stuff that flows out under the doorway while the floor grows soaked.",False)
+            OutputMainText(" It doesn't take long before you're both letting out a long \"Moooooo\" of ecstacy in unison, gasping into each other's mouths as you climax and lactate. It takes several minutes before you come to your senses...",False)
+            DoLust(-math.floor(sen / 2),2,3)
+            DoNext()
+            #doListen = function():void
+            OutputMainText("You both sigh as you try to stand up. The milk everywhere doesn't exactly help, flowing down from your bodies and making the ground even more slippery. Yet, you manage to lean against each other and eventually stand, giving each other one last kiss before parting.",True)
+            OutputMainText("\n" + "\n" + "\"I'm surprised...\" Malon can't help but comment. \"You... You actually made a lot more milk than me... And it felt fantastic~\" She blushes at the thought, her long erect nipples pratically bare through the soaking wet white shirt. Then she looks around. \"Though... I guess we're worse than the cows... Not that I'm embarassed about that anymore but... We made quite a mess!\"" + "\n" + "\n" + "With a giggle, she steps over and grabs some empty milk jugs. She strategically places them on the floor, laying them down sideways. \"Howabout we just say some cows kicked over some 'filled' jugs,\" She says with a wink." + "\n" + "\n" + "You aren't one to object and quickly depart in the opposite direction as Malon to ensure nobody notices what has transpired...",False)
+            if (CheckItem(215) == True):
+               OutputMainText(" However, you notice a warmth from the pendant Malon had given you. Inspecting it, you notice it has been turned almost completely white, but somewhat pearlescant. A sort of milky complexion that looks like it's slowly flowing around the pendant, though nothing actually moves. Whatever the case may be, things seem lighter now, like you're able to, well, support your milky habits more easily...",False)
+               LoseManyItem(215,1)
+               ItemAdd(252)
+            hrs = 4
+            DoSexP(20)
+            nipplePlay += 25
+            DoEnd()
+         else:
+            OutputMainText("Nah. Instead you pocket the stray bottle before you get caught and head back to Softlik.",True)
+            ItemAdd(500)
+            hrs = 2
+            DoEnd()
+      else:
+         OutputMainText("Pocketing it before being caught, you head back to Softlik.",False)
+         ItemAdd(500)
+         hrs = 2
+         DoEnd()
+
+def DoOldCave():
+   global hrs, buttonChoice, tallness, ment, gender, cockSize, cockSizeMod, sen, vagSize, vagSizeMod, pregArray, attireTop, attireBot, enemyID, currentState, eMaxHP, eHP, currentDungeon, inDungeon
+   chance = 0
+   chance = EventSelect("Old Cave")
+   if (chance == 1):
+      OutputMainText("Growing on the wall of the cave, you find a small, odd looking mushroom. It has a red cap speckled with a few large white dots. You pluck it.",True)
+      ItemAdd(212)
+      hrs = 2
+      DoEnd()
+   elif (chance == 2):
+      if (Percent() <= 50):
+         OutputMainText("Strangely, there's a small ornate coffee table sitting before the entrance to the cave. Looking around, you don't see a single soul, there seems to be no logical reason for it to be there. Moving closer, you notice a slice of cake sitting upon it. The label reads \"EAT ME\"." + "\n" + "\n" + "Will you eat it?",True)
+         ButtonConfirm()
+         #this.doListen = function():void
+         getCum = 0
+         if (buttonChoice == 6):
+            tallness += 2
+            OutputMainText("You pick up the cake and lift it to your lips. Barely a nibble and it's already gone, hardly enough for even a full swallow. It was somewhat sweet, like a cross between chocolate and the number 3, which is rather ludicrous when you think about it. Wondering why it should have been eaten at all, you attempt to check the table for any sort of shenanigans. You begin to bend down to reach it, only to find yourself bending lower and lower with the table seemingly further and further away. It seems to be shrinking beside you, but then again so is everything else at an increasingly rapid rate..." + "\n" + "\n" + "Very quickly, you realize that you're the one who's growing.",True)
+            if (ment < 30):
+               OutputMainText(" Your " + CurrentClothes() + " rapidly grows tighter and tighter, squeezing your body until you can hardly breathe. Tearing can be heard along the stitching, flesh from your " + BoobDesc() + " chest squeezing through the newly torn holes and a painful wedgie of ripped cloth slips into your " + ButtDesc() + " rump, your cheeks slapped by a light breeze. Your " + HipDesc() + " hips soon relieve your ass of the torment as they stretch the waist of your " + ClothesBottom() + " to the point to where it barely hangs around your body by thin strands, the rest of the garment flapping in the wind and no longer concealing your genitals. Your " + BoobDesc() + " chest follows suit, growing so tight until you can hardly breath until your " + ClothesTop() + " bursts into shreds around you, your " + NipDesc() + "nipples perking freely in the cooler air through what's left of your outfit.",False)
+               ChangeTop(-1)
+               ChangeBot(-1)
+            else:
+               OutputMainText(" Your " + CurrentClothes() + " rapidly grows tighter and tighter, squeezing your body until you can hardly breath. With your quick wit, however, you think fast enough to remove your outfit to prevent yourself from being crushed. You're just in time to slip " + PullUD(1) + " your " + ClothesTop() + " before your " + BoobDesc() + " chest plows through it and step out of your " + ClothesBottom() + " before your " + ButtDesc() + " tush shone through the backside. Growing to fast to lay them neatly on the ground, however, you simply let them fall idly, leaving you with a naked bosom and your genitals being frisked by a slight breeze.",False)
+            if (tallness <= 18):
+               OutputMainText(" By the time you finish growing, you're... just about the size of a particularly tall, but not terribly giant, person. You take a few minutes enjoying the feeling of being big, able to actually see over the grass and spot a few trees in the distance, but it doesn't take long before you find yourself dwindling back to your normal diminutive stature, though with an added couple of inches.",False)
+               if (ment >= 30):
+                  OutputMainText(" You grab your clothes, finding them to be a little small for you, but they're otherwise fine.",False)
+               OutputMainText(" Then you head back to Firmshaft, slightly confused by the whole experience...",False)
+               hrs = 2
+               DoEnd()
+            else:
+               OutputMainText(" By the time you finish growing, you tower over the hill that the cave resides in. You can see far into the distance and you can feel a great draft in your loins.",False)
+               if ((gender == 1) or ((gender == 3) and (Percent() <= 50))):
+                  getCum = CumAmount()
+                  if ((cockSize * cockSizeMod) > 400):
+                     OutputMainText(" The wind across your " + CockDesc() + " cock" + Plural(1) + " feel" + Plural(3) + " rather... nice, to say the least. And considering " + Plural(5) + " rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Quite soon you find yourself barely able to see the " + Plural(5) + " tip" + Plural(1) + " as " + Plural(11) + " grow" + Plural(3) + " off into the distance. Quickly, you find yourself falling over your relatively " + CockDesc() + " girth" + Plural(1) + ", the ground rumbling around you as you connect, while you feel " + Plural(9) + " drag across the open fields, plowing through forests, and who knows what else you manage to destroy.",False)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("The exhilirating sensation of your massive size compared to everything around you excites you even further. Your " + LegDesc(10) + " dig into the ground, carving out holes, and thrust your erection" + Plural(1) + " forward. You can hear the sounds of wood cracking beneath your massive stiffness in the distance and the air fills with birds flying away to avoid your cock-head" + Plural(1) + ". All the little bushes and trees provide a rather unique sensation, their leaves wrapping about your underside" + Plural(1) + " en masse. Your voice echoes into the horizon as you let out a loud howl, rapidly coming to climax.",True)
+                     if (getCum > 10000):
+                        OutputMainText(" More crashing can be heard, along with a roar, as spunk erupts from the other end, flooding the far-off land and rushing into its own river!",False)
+                     else:
+                        OutputMainText(" You cum gushes from the other end, raining down around the far-off terrain like some sort of lewd weather.",False)
+                     OutputMainText("\n" + "\n" + "Your heavy breathing blows about grass about beneath you as you come to your senses. You can feel your cock" + Plural(1) + " begin to drag across the grass once more, though not by your own power. Looking up, you can see " + Plural(11) + " shrinking back towards you. However, it is the devastation that lies beyond that truly catches your eye. Despite all the damage you did, you can see nature shifting around, like the planet itself were healing, sucking in your cum and returning the land to a more healthy state. Though, before you can get a good look, you find yourself finally shrink back to your normal size, plus a couple inches. Too far to travel into the wilderness, it seems you'll have to leave the mystery for later.",False)
+                     OutputMainText("\n" + "\n" + "Rather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.",False)
+                     if (ment >= 30):
+                        OutputMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...",False)
+                     DoLust(-math.floor(sen / 2),2,1)
+                     hrs = 3
+                     DoEnd()
+                  else:
+                     OutputMainText(" The wind across your " + CockDesc() + " cock" + Plural(1) + " feel" + Plural(3) + " rather... nice, to say the least. And considering " + Plural(5) + " rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. You soon find yourself rather stiff, and as you look down at " + Plural(11) + ", your eyes spot the cave below. From this new perspective, you begin to think the hole in the ground is a bit... lewd?",False)
+                     DoNext()
+                     #doListen = function():void
+                     OutputMainText("The thought doesn't make it a second time through your mind before you find yourself crashing to your " + LegDesc(6) + ", the ground rumbling as you touch down. You collapse over the hill, thrusting " + OneYour(1) + " cock" + Plural(1) + " into the natural glory hole. And much to your surprise, the internal walls of the cave seem to be coated with a slick substance, lubricating you through its dark interior. With your giant size, the rocks feel like mere bumps, more pleasurable than you could have imagined, and the ground soon shakes again and again as you hump into the hill." + "\n" + "\n" + "Rather quickly, you let out a loud shout that echoes across the fields.",True)
+                     if (getCum > 10000):
+                        OutputMainText(" You can feel your spunk churn and gush around you. Though some of it spits back out across your thighs, painting the mouth of the cave, most of it amazingly guzzles deeper into the ground. So much so that you could swear you hear a small \"EEK!\" cry out from within, though your brain is too foggy to be sure.",False)
+                     else:
+                        OutputMainText(" You can hear your spunk splatter about within and seems to run away from your cock-tip, somewhere deeper into the ground. With you brain fuzzy from orgasm, you're not sure if the tiny \"Eehehe!\" you hear is real or just your ears ringing from the slight breeze.",False)
+                     OutputMainText(" Either way, you find yourself slipping back down the hill, shrinking and falling back before the cave, almost returning to your original height. It's still far too dark to explore inside the cave to see where it all went, you can definitely smell the erotic odor that blows back out, some of your spunk still dripping in thick strands and webs from the mouth.",False)
+                     OutputMainText("\n" + "\n" + "Rather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.",False)
+                     if (ment >= 30):
+                        OutputMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...",False)
+                     DoLust(-math.floor(sen / 2),2,1)
+                     hrs = 3
+                     doEnd()
+               elif ((gender == 2) or (gender == 3)):
+                  OutputMainText(" The wind through your " + VulvaDesc() + " slit" + Plural(2) + " feel" + Plural(4) + " a bit... nice, to say the least. And considering " + Plural(6) + " rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Looking down at your swelling attributes your eyes focus on the cave below. From this new perspective, the hill looks rather like a rather... lewdly shaped saddle.",False)
+                  DoNext()
+                  #doListen = function():void
+                  OutputMainText("The thought doesn't make it a second time through your mind before you find yourself turning around and crashing your " + ButtDesc() + " rump down onto the hill with a rumble. Your " + LegDesc(2) + " " + LegVerb(5) + " it on either side, your " + ClitDesc() + " clit" + Plural(2) + " grinding against a protruding grassy mound that slides perfectly into your relatively " + VulvaDesc() + " lips. You can hear rocks crash to the floor of the cave within as your " + HipDesc() + " hips rock back and forth, making the ground quake beneath you. Your sensual fluids flood about the grass, making it perfectly slick for your needs." + "\n" + "\n" + "Rather quickly, with all the extra sensitive area of your genitals humping an entire hill, you find yourself letting out a shout that echoes across the fields, your body trembling with orgasm.",True)
+                  if (cockTotal > 1):
+                     OutputMainText(" Your proportionately " + CockDesc() + " cock" + Plural(1) + " bounce" + Plural(3) + " up and down as spunk gushes from the tip, flinging about the landscape and forming large puddles.",False)
+                     CumAmount()
+                  OutputMainText(" Yet, you don't have much time to enjoy your quivering state before you find yourself beginning to shrink, sliding down one side of the hill as you're caught off balance. You become slick with your own lubrication as you roll through the messy grass and splash down in your own puddle. Picking yourself up, the slime sticking to your body in webs and strands, you take a moment to flick off some of the goop before heading back to the cave.",False)
+                  if ((PregCheck(1) == True) and (Percent() <= 60) and ((vagSize * vagSizeMod) > 56)):
+                     OutputMainText(" And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?",False)
+                     i = 0
+                     while (i < len(pregArray)):
+                        if (pregArray[i] == False):
+                           pregArray[i] = True
+                           if (Percent() <= 50):
+                              pregArray[i + 1] = 201
+                           else:
+                              pregArray[i + 1] = 202
+                           pregArray[i + 2] = 230
+                           pregArray[i + 3] = 220
+                           i = len(pregArray)
+                        i += 5
+                     DoLust(-math.floor(sen / 2),2,1,2)
+                  else:
+                     DoLust(-math.floor(sen / 2),2,1,2)
+                  OutputMainText("\n" + "\n" + "Rather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.",False)
+                  if (ment >= 30):
+                     OutputMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...",False)
+                  hrs = 3
+                  DoEnd()
+               else:
+                  OutputMainText(" Though, with nothing in your loins to speak of, it simply makes you giggle a little as it tickles you. You stand there for a moment, in awe of the world around you, your mind running through all the possibilities of things you could do with such a massive size!",False)
+                  DoNext()
+                  #doListen = function():void
+                  OutputMainText("However, you feel a sudden warmth flush through you and with a slight sparking sound and you find yourself shrinking instead. Soon you're nearly as tall as you were before and slightly more aroused as well. What the heck just happened?...",True)
+                  DoLust(15,0)
+                  OutputMainText("\n" + "\n" + "Rather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.",False)
+                  if (ment >= 30):
+                     OutputMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...",False)
+                  hrs = 3
+                  DoEnd()
+         else:
+            OutputMainText("Wary of free cake that desires to be eaten, you ignore it and quickly make your way back to Firmshaft.",True)
+            hrs = 1
+            DoEnd()
+      else:
+         OutputMainText("Strangely, there's a small ornate coffee table sitting before the entrance to the cave. Looking around, you don't see a single soul, there seems to be no logical reason for it to be there. Moving closer, you notice a lone bottle sitting upon it. The label reads \"DRINK ME\"." + "\n" + "\n" + "Will you drink it?",True)
+         ButtonConfirm()
+         #this.doListen = function():void
+         if (buttonChoice == 6):
+            OutputMainText("You pick up the bottle and lift it to your lips. Only a few sips and it's already empty, barely enough for even a full gulp. It hardly had any taste to it, the closest flavor you can relate it to is 'purple', which hardly makes any sense at all when you think about it. Wondering why it should have been drunk at all, you place the empty bottle back on the table. Which proves to be more difficult than you would have imagined as the table seems start growing beside you. As well as everything else around you at an increasingly rapid rate..." + "\n" + "\n" + "Very quickly, you realize that you're the one who's shrinking.",True)
+            if (attireTop == attireBot):
+               OutputMainText(" Your " + ClothesTop() + " plummets down your " + BoobDesc() + " chest. You catch it with your hands, but soon the material bundles over your arms that you can no longer maintain your hold. When you let go, the " + ClothesTop() + " simply sits there, piled around you.",False)
+            else:
+               OutputMainText(" Your " + ClothesTop() + " begins to plummet down your " + BoobDesc() + " chest, while your " + ClothesBottom() + " slips from your " + HipDesc() + " hips. One hand flails to catch your " + ClothesTop() + " while the other heads for the " + ClothesBottom() + ", but neither is successful. For a moment your " + BoobDesc() + " chest and your nether region are both exposed to the fresh air as your outfit falls around you, but you quickly find yourself falling back into the fabric, a pile around you.",False)
+            OutputMainText("\n" + "\n" + "You climb out from your overgrown clothes, completely nude. Though you doubt anybody could see you if they passed by, considering you're now a fraction of the height you were before, maybe a whole " + math.floor(tallness / 12) + " inches tall.",False)
+            tallness -= 2
+            DoNext()
+            #doListen = function():void
+            chance = Percent()
+            if (chance <= 40):
+               OutputMainText("Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you." + "\n" + "\n" + "Long ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The fuzzy swinging testicles makes it quite obvious what gender he is..." + "\n" + "\n" + "He spots you quickly, as though he had known you were there. With a grin, his nose and long whiskers twitch, and a rather mishievous twinkle lights in his eyes. Probably two feet high ",True)
+               if (tallness <= 216):
+                  OutputMainText(" he towers over you, pleased with the result.",False)
+               if (tallness > 216):
+                  OutputMainText(" you seem to still be on par with him, though he seems pleased you're much more manageable than before.",False)
+               DoNext()
+               #doListen = function():void
+               enemyID = 304
+               currentState = 2
+               EnemyBaseStats()
+               eMaxHP = eHP
+               DoBattle()
+            if ((chance > 40) and (chance <= 80)):
+               OutputMainText("Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you." + "\n" + "\n" + "Long ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The wobbling tits and thick labia makes it quite obvious what gender she is..." + "\n" + "\n" + "She spots you quickly, as though she had known you were there. With a grin, her nose and long whiskers twitch, and a rather mishievous twinkle lights in her eyes. Probably two feet high ",True)
+               if (tallness <= 216):
+                  OutputMainText(" she towers over you, pleased with the result.",False)
+               if(tallness > 216):
+                  OutputMainText(" you seem to still be on par with her, though she seems pleased you're much more manageable than before.",False)
+               DoNext()
+               #doListen = function():void
+               enemyID = 305
+               currentState = 2
+               EnemyBaseStats()
+               eMaxHP = eHP
+               DoBattle()
+            if (chance > 80):
+               OutputMainText("With the extra-tall grass barring your path behind you, you decide to look around a bit. So small, you're not terribly worried about people spotting your indecency. However, you are careful of the ants and other 'large' creatures that skitter by." + "\n" + "\n" + "Fortunately, none pay you any heed and you manage to make your way to the mouth of the cave. It's still as dark and dank as before, so you don't think to venture inside. Yet, from your shortened vantage point, you notice a small door in the wall at the mouth of the cave. You head towards it, curious as to its existence. How could you have not noticed it when it was bigger?" + "\n" + "\n" + "The thought doesn't seem to matter, though. When you attempt to open the door, it turns out to be locked. And judging by the keyhole beneath the knob, it would require a rather small key, which you don't have. Nor does this world, yet." + "\n" + "\n" + "With a shrug, you turn back towards your pile of clothes. Along the way, your surroundings seem to grow smaller and smaller as you grow taller and taller. By the time you reach the pile, you seem to be back to your normal size, the bottle's effects having worn off." + "\n" + "\n" + "Redonning your clothing before heading back to Firmshaft, you notice they seem a bit baggier than before... It seems you're still missing a couple inches in height.",True)
+               hrs = 2
+               DoEnd()
+         else:
+            OutputMainText("Wary of strange liquids that desire to be drunk, you ignore it and quickly make your way back to Firmshaft.",True)
+            hrs = 1
+            DoEnd()
+   elif (chance == 3):
+      if (CheckItem(254) == True):
+         OutputMainText("Normally this cave is too dark to go inside. However, you have a lantern that can provide enough light to venture within. Would you like to go inside?",True)
+         ButtonConfirm()
+         #this.doListen = function():void
+         if (buttonChoice == 6):
+            currentDungeon = 1001
+            inDungeon = True
+            DoOldCaveDescent()
+         else:
+            OutputMainText("Deciding not to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...",True)
+            Stats(0,-1,2,0)
+            DoLust(5,0)
+            hrs = 1
+            DoEnd()
+      else:
+         OutputMainText("Too dark to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...",True)
+         Stats(0,-1,2,0)
+         DoLust(5,0)
+         hrs = 1
+         DoEnd()
+
+!def DoDen():
+{
+   var chance:int = 0;
+   chance = this.eventSelect("Den");
+   if(chance == 1)
    {
-      this.outputMainText("You manage to approach the farm without being seen or stopped by a farmer. You find a bottle of milk that has yet to be shipped out with the rest. ",true);
-      if(this.milkEngorgement > 15000 && this.lactation > 0 && this.malonRep > 3)
+      this.outputMainText("You head to the den, but this time Silandrias isn\'t there to greet you at the entrance. Just checking to make sure she\'s not there, you head inside to see if you can find her.\r\rYou quickly discover this was a bad idea.\r\rThe maze of tunnels is so confusing that you wind up lost and wandering about. You have no idea where you are going, though you intended to meet her in a main room, and instead find yourself in some sort of storage room. It\'s obviously been a long time since it has really been used, there\'s hardly any items in it. However, you do spot a strange piece of leather. Holding it up and eyeing it, the leather strap is circular with a few large holes. Thinking more carefully, you realize this would fit perfectly around the base of Silandrias\' tail, with room for the spikes, and tie tightly.\r\rWith a shrug, you take it with you as you may find some use for it eventually.",true);
+      this.hrs = 4;
+      this.itemAdd(229);
+      this.doEnd();
+   }
+   else if(this.silRep == 6)
+   {
+      this.outputMainText("Knowing your way through the tunnels well enough by now, you don\'t bother to ring the chimes. You head inside, finding your way through to the birthing chamber where Silandrias still resides, carefully watching over her ",true);
+      if(this.silPreg <= 1000)
       {
-         this.outputMainText("However, as you feel your " + this.boobDesc() + " tits slosh about with the massive amount of milk within, you realize you could take this opportunity to do what Malon does and sneak some time with the larger and much more efficient milkers of the farm... Would save you quite a bit of time and effort.\r\rWill you?",false);
-         this.buttonConfirm();
-         this.doListen = function():void
+         this.outputMainText("" + Math.floor(this.silPreg / 100) + "",false);
+      }
+      else if(this.silPreg <= 5000)
+      {
+         this.outputMainText("" + Math.floor(this.silPreg / 75) + "",false);
+      }
+      else
+      {
+         this.outputMainText("" + Math.floor(this.silPreg / 50) + "",false);
+      }
+      this.outputMainText(" giant eggs with Naeru and Daeru.\r\rThe two caretakers, born to help both the their siblings and mother as well as provide loyal company, trot around and roll the eggs from bedding to bedding to make sure they\'re all clean and warm. They also snuggle up with their mother when they aren\'t busy, suckling from her for sustenance or bringing her food and other interests from Oviasis. When they spot you coming they start yipping happily, wagging their lizard-like tails while their large vulpine ear bounce about, running in circles around you as you approach.\r\rSilandrias hasn\'t quite returned to her original height yet, still a few feet taller from the massive birth with plenty of breasts running down her front, the topmost pair threatening to tip her over with their milk-laden size and weight. Staying down here to watch over her children, waiting for the day they\'ll hatch so she\'ll be there for them, has left her without need for clothes, letting her naked body rub against you as she gives you a welcoming hug.\r\r\"Welcome back, honey~\" She gives you a kiss and motions for you to cuddle up with her.\r\rThe two of you lovingly entwined about each other with Naeru and Daeru curled up upon you, you talk about everything. Even though she\'s not in the mood for sex, as she spends more time milking herself than getting aroused, she still makes for some good company.\r\rAfter a few hours together, the pups really need to get back to their duties and Silandrias could use a nap from her exhausting form, she offers to share her now-secondary hobby with you. \"Would you like to borrow one of my treasures before you go?\"",false);
+      this.hrs = 4;
+      this.doNext();
+      this.doListen = function():void
+      {
+         if(checkStash(232) || checkStash(233) || checkStash(234) || checkStash(235) || checkStash(236))
          {
-            var getMilk:int = 0;
-            if(buttonChoice == 6)
+            outputMainText("While you may potentially want another one of Silandrias\' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn\'t want to take advantage of a waiting mother (you wouldn\'t, RIGHT?!), so you decline and thank her kindly before heading out.",true);
+            doEnd();
+         }
+         else
+         {
+            viewButtonOutline(0,1,0,0,1,1,1,0,0,1,0,1);
+            viewButtonText(0,1,0,0,1,1,1,0,0,1,0,1);
+            buttonWrite(2,"Flying Carp");
+            buttonWrite(5,"A-Grav Rock");
+            buttonWrite(6,"Rein Charm");
+            buttonWrite(7,"Fell Rod");
+            buttonWrite(10,"Recept Bell");
+            buttonWrite(12,"No Thanks");
+            outputMainText("\"Anything you might be interested in?\"",true);
+            if(checkItem(232))
             {
-               getMilk = milkAmount(1);
-               outputMainText("Feeling a bit daring, you sneak into the barn where all the milking happens. After catching Malon in here, you have a fairly good idea as to how things work. You grab up some of the cow\'s milking cups and carry them over to the hitching-rail. Using the rail for support, you lean forward and stick out your " + boobDesc() + " tits, pulling your " + clothesTop() + " " + pullUD(1) + " and letting your " + nipDesc() + " nipples pop out. They\'re already stiff and leaking profusely, a steady stream of milk trickling out in anticipation over what you\'re about to do.\r\rSheathing the cups over your " + nipDesc() + " \'erections\', ",true);
-               if(nippleSize < 15)
+               Choice2.visible = false;
+            }
+            if(checkItem(233))
+            {
+               Choice5.visible = false;
+            }
+            if(checkItem(234))
+            {
+               Choice6.visible = false;
+            }
+            if(checkItem(235))
+            {
+               Choice7.visible = false;
+            }
+            if(checkItem(236))
+            {
+               Choice10.visible = false;
+            }
+            if(!checkItem(232))
+            {
+               outputMainText("\r\rFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.",false);
+            }
+            if(!checkItem(233))
+            {
+               outputMainText("\r\rAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.",false);
+            }
+            if(!checkItem(234))
+            {
+               outputMainText("\r\rReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.",false);
+            }
+            if(!checkItem(235))
+            {
+               outputMainText("\r\rFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.",false);
+            }
+            if(!checkItem(236))
+            {
+               outputMainText("\r\rReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.",false);
+            }
+            doListen = function():void
+            {
+               if(buttonChoice == 12)
                {
-                  outputMainText("barely filling the cups at all",false);
-               }
-               else if(nippleSize <= 50)
-               {
-                  outputMainText("fitting the cups almost a little too perfectly",false);
-               }
-               else if(nippleSize <= 70)
-               {
-                  outputMainText("taking a bit of effort to stuff them into the cups intended for cow teats",false);
-               }
-               else
-               {
-                  outputMainText("barely covering the tips of your giant monsters",false);
-               }
-               outputMainText(", and switch the machine on to make the cups latch on with their suction. You let out a moan as the machine begins to chug away, sucking your nipples in deeper, pulling the milk from your " + nipDesc() + " handles, and drinking the milk in long gluttonous slurps through the clear tubes. It feels so delightful, perfectly timed for large amounts of milk and completely hands-free, allowing your fingers to provide you with more sensual attention elsewhere, letting you moan even more loudly.\r\rBetween the noises of the machine and your moaning, you don\'t even notice somebody sneaking up on you until you feel thir arms wrap around you and grabs into your swollen chest.\r\r\"Gotcha!\"\r\rA pleasantly familiar voice, you turn around to see the tell-tale tail swishing upon her backside with her own shirt slightly soaked in front",false);
-               if(malonPreg > 100)
-               {
-                  outputMainText(", her large pregnant belly swollen with your child",false);
-               }
-               outputMainText(".\r\r\"Hehe, I guess I wasn\'t the only one who thought to use this, hmm? Well then, I suppose it\'s only fair to do to you what you usually do to me~\" Malon gives you a devious smirk. Her hands massage your " + boobDesc() + " mammaries while she grinds against your " + buttDesc() + " backside. Even though she has no phallic thing to penetrate you with, she still manages to arouse you further with the effort alone, making the machine chug harder as it tries to gulp down the increasing flow of your dairy goodness. She leans forward to kiss you from the side, her large chest mushing up against your back\tuntil her own bovine leakage seeps out through her shirt into small rivers ",false);
-               if(malonPreg > 100)
-               {
-                  outputMainText("around her fertile girth and ",false);
-               }
-               outputMainText("down to your rump, quickly making both your crotches warm and wet with her milk, making yours flow even more and more and...\r\rSploosh! The milking cups fly off from your " + nipDesc() + " nipples. Geysers of white spray from your tits with enough volume and pressure to have defeated the suction of a machine meant for cows. This doesn\'t seem to phase Malon, however. Instead, as she watches you erupt with so much arousal, it seems to only entice her further as she pulls you back to the wall and slides down to the floor with you between her legs. She continues to kiss and grope at your chest, grabbing a tit and milking by hand while another hand sneaks down into your " + clothesBottom() + ", fondling your crotch and making you gyrate against her own in rhythm.",false);
-               if(getMilk <= 25000)
-               {
-                  outputMainText(" A good deal of your milk having already been taken by the machine, the gushing quickly dies down as you calm within her embrace, focusing more on sending you both to orgasm rather than on the milk that rolls down Malon\'s arm and into your connected laps, forming a puddle beneath the two of you.",false);
-               }
-               else if(getMilk <= 40000)
-               {
-                  outputMainText(" Your milk continues to spray out from your bosom for a while, showering down upon you both, thoroughly drenching you in the warm fluid while making a large puddle beneath you, getting into all sorts of cracks and crevices and making Malon quake beneath you.",false);
-               }
-               else if(getMilk <= 60000)
-               {
-                  outputMainText(" The gushing continues for a while, drenching you both in the warm fluids in moments until your mouths are filling with it and gulping it down with each kiss. A grand puddle forms beneath you, splitting off into several small rivers that spread throughout the floor of the barn, even some trickling to the outside.",false);
-               }
-               else
-               {
-                  outputMainText(" The gushing persists and even increases in power as the two of you make love beneath the torrent of milk. In between each kiss is a gulp of the sweet fluid, in between each grope and grind flows some of the warm fluids across your sensitive bits. Milk spreads throughout the barn, a near-river of the stuff that flows out under the doorway while the floor grows soaked.",false);
-               }
-               outputMainText(" It doesn\'t take long before you\'re both letting out a long \"Moooooo\" of ecstacy in unison, gasping into each other\'s mouths as you climax and lactate. It takes several minutes before you come to your senses...",false);
-               doLust(-Math.floor(sen / 2),2,3);
-               doNext();
-               doListen = function():void
-               {
-                  outputMainText("You both sigh as you try to stand up. The milk everywhere doesn\'t exactly help, flowing down from your bodies and making the ground even more slippery. Yet, you manage to lean against each other and eventually stand, giving each other one last kiss before parting.",true);
-                  outputMainText("\r\r\"I\'m surprised...\" Malon can\'t help but comment. \"You... You actually made a lot more milk than me... And it felt fantastic~\" She blushes at the thought, her long erect nipples pratically bare through the soaking wet white shirt. Then she looks around. \"Though... I guess we\'re worse than the cows... Not that I\'m embarassed about that anymore but... We made quite a mess!\"\r\rWith a giggle, she steps over and grabs some empty milk jugs. She strategically places them on the floor, laying them down sideways. \"Howabout we just say some cows kicked over some \'filled\' jugs,\" She says with a wink.\r\rYou aren\'t one to object and quickly depart in the opposite direction as Malon to ensure nobody notices what has transpired...",false);
-                  if(checkItem(215))
-                  {
-                     outputMainText(" However, you notice a warmth from the pendant Malon had given you. Inspecting it, you notice it has been turned almost completely white, but somewhat pearlescant. A sort of milky complexion that looks like it\'s slowly flowing around the pendant, though nothing actually moves. Whatever the case may be, things seem lighter now, like you\'re able to, well, support your milky habits more easily...",false);
-                     loseManyItem(215,1);
-                     itemAdd(252);
-                  }
-                  hrs = 4;
-                  doSexP(20);
-                  nipplePlay += 25;
+                  outputMainText("Happy with what you have now, you decline the offer but thank her and the pups with a hug before leaving.",true);
                   doEnd();
-               };
+               }
+               else
+               {
+                  outputMainText("You are, in fact, interested in something. ",true);
+                  if(checkItem(232) || checkItem(233) || checkItem(234) || checkItem(235) || checkItem(236))
+                  {
+                     outputMainText("Handing back the ",true);
+                     if(checkItem(232))
+                     {
+                        outputMainText("Flying Carpet",false);
+                        loseManyItem(232,1);
+                     }
+                     if(checkItem(233))
+                     {
+                        outputMainText("Anti-Gravity Rock",false);
+                        loseManyItem(233,1);
+                     }
+                     if(checkItem(234))
+                     {
+                        outputMainText("Reindeer Charm",false);
+                        loseManyItem(234,1);
+                     }
+                     if(checkItem(235))
+                     {
+                        outputMainText("Fellatio Rod",false);
+                        loseManyItem(235,1);
+                     }
+                     if(checkItem(236))
+                     {
+                        outputMainText("Reception Bell",false);
+                        loseManyItem(236,1);
+                     }
+                     outputMainText(" you borrowed before, you thank her graciously again for letting you try it out. ",false);
+                  }
+                  outputMainText("Deciding you would like to test the ",false);
+                  if(buttonChoice == 2)
+                  {
+                     outputMainText("Flying Carpet",true);
+                     itemAdd(232);
+                  }
+                  if(buttonChoice == 5)
+                  {
+                     outputMainText("Anti-Gravity Rock",true);
+                     itemAdd(233);
+                  }
+                  if(buttonChoice == 6)
+                  {
+                     outputMainText("Reindeer Charm",true);
+                     itemAdd(234);
+                  }
+                  if(buttonChoice == 7)
+                  {
+                     outputMainText("Fellatio Rod",true);
+                     itemAdd(235);
+                  }
+                  if(buttonChoice == 10)
+                  {
+                     outputMainText("Reception Bell",true);
+                     itemAdd(236);
+                  }
+                  outputMainText(", Silandrias hands it to you with a smile.\r\r\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It\'s quite alright dear, I want to share everything with you~\"\r\rYou soon finish saying your goodbyes to both her and the pups and make your way out.",false);
+                  doEnd();
+               }
+            };
+         }
+      };
+   }
+   else if(this.silRep == 5 && (this.silGrowthTime > 360 || this.silPreg >= 10000))
+   {
+      this.outputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\r\rAfter waiting for several minutes, there\'s no sign of Silandrias. Instead, a four-legged fox-like animal with a scaled belly and lizard-like tail runs full throttle up to you an urgent look on its face. ",true);
+      if(this.percent() <= 50)
+      {
+         this.outputMainText("Naeru (or Daeru?)",false);
+      }
+      else
+      {
+         this.outputMainText("Daeru (or Naeru?)",false);
+      }
+      this.outputMainText(" yips loudly, begging you to follow as she turns and runs away, stopping only to make sure you\'re following. She guides you rapidly through a much different network than Silandrias used too and picks up her pace as you reach your destination, imperative that you get there soon.\r\rThe tunnel opens up into an enormous room. Several stories high and nearly spherical in shape, it\'s amazing such a structure existed below the sands. Grander than a ballroom of a palace, balconies circle the curved walls every several feet high, at least fifty feet in diameter, marking the many floors with an open view to the spacious inner portion of the room. And right in its center lies Silandrias.\r\r",false);
+      if(this.silPreg <= 150)
+      {
+         this.outputMainText("Supported solely by her breasts and growing belly, she seems quite comfortable laying on her front. Her tail flicks back and forth idly as her wings casually stroke about her top pair of breasts, which have been up-turned so the pups could access them. Even now the round orbs spurt thin streams of milk from her weight, with even more soaking into her bedding from the rest beneath.",false);
+      }
+      else if(this.silPreg <= 500)
+      {
+         this.outputMainText("Supported mostly by her large belly, her feet barely touch the ground and her tail moves to help keep her balanced. A rather precarious position, but she seems rather comfortable nonetheless. Her breasts have swollen slightly more, the bottom pair preventing her from rolling forward, and they dribble slightly from the pups\' feedings.",false);
+      }
+      else if(this.silPreg <= 1000)
+      {
+         this.outputMainText("Supported entirely by her huge belly, her legs reach for the floor without being able to touch. Yet, she still manages to remain balanced with casual swings of her tail and her breasts holding her still. Oddly, she seems to have grown an extra pair or two across the stretched belly-scales, already spraying a bit of milk...",false);
+      }
+      else if(this.silPreg <= 2000)
+      {
+         this.outputMainText("Held aloft by her giant belly, the poor girl can only fold her legs behind her, trying not to touch the masculine erection that would be better measured in feet than inches now, thanks to the swelling from her massive pregnancy. More breasts have blossomed along her stretched belly-scales, with all of her orbs looking swollen. They do provide some nice cushions for her head, however, as her wings can barely wrap around her top pair and moosh them together while they spray milk everywhere.",false);
+      }
+      else if(this.silPreg <= 4000)
+      {
+         this.outputMainText("Looking as though she\'s trapped on top of a house, the girl\'s belly has grown so large that even her torso has stretched to accomodate its size, a sign of how flexible her body can really be. She idly rubs the giant nipples of her topmost pair of breasts, her wings stretching to reach, with plenty more milk fountains lining her front. Her backside is nearly just as moist as her feet slowly stroke the enormous shaft of her engorged cock, pre dribbling down the scales nearly nonstop with more slickness descending from her slit.",false);
+      }
+      else if(this.silPreg <= 7000)
+      {
+         this.outputMainText("A building of belly, the girl is but a stretched decoration on top. She seems perfectly happy though, her feathers brushing across the sensitive breastflesh of her topmost pair of boobs while her feet massage her testicles and squeeze the shaft of her pre-drooling cock through the scrotum that covers it. Breasts upon breasts spurt milk across her scales, leaving the floor quite moist and giving the pups plenty to drink. It\'s amazing she\'s so flexible and so fertile, and almost frightening how many eggs she may be filled with...",false);
+      }
+      else if(this.silPreg <= 10000)
+      {
+         this.outputMainText("Very nearing the maximum size of the room, her belly fills most of your vision. Large breasts everywhere gush with milk from the tautness of her scales, with the topmost providing a nice pillows for her to fold her wings and lay upon, individually. Her feet can barely massage her testicles, unable to even reach her own giant cock which threatens to break through some of the balconies while pre coats her underside and leaves a large puddle on the floor. She has grown so large, you wonder how tall she would possibly be without the grand gut throwing off your perspective...",false);
+      }
+      if(this.silPreg > 10000)
+      {
+         this.outputMainText("Absolutely filled with belly and breasts, milk leaking everywhere and mixing with the pre to nearly form a lake on the floor, it\'s amazing she can even fit. Or, more accurately, that she can\'t.\r\r\"I-I can\'t fit anymore!\" The girl\'s voice cries out from the ceiling. \"I need to lay these things NOW!\" She lets out a panting howl as she forces herself to term, her talongs digging into her breast-flesh and her hips jerking in preparation.",false);
+      }
+      else
+      {
+         this.outputMainText("\r\rHowever, her comforted appearance is dashed when you notice she is panting very heavily and is actually rubbing herself as a distraction. \"Hoo, hoo. Thank goodness you\'re here!\" She fakes a smile but then winces as she feels something press against her insides. \"I, I waited for you to come, but... IT\'S TIME!\"\r\rShe lets out a howl as her talons dig into her own breast-flesh, her hips jerking with the pressure.",false);
+      }
+      this.doNext();
+      this.doListen = function():void
+      {
+         outputMainText("The pup grabs you by your " + clothesBottom() + " and yanks you toward a flying carpet to aid with the laying. The two of you fly up and meet the other pup at her ",true);
+         if(silTied == true)
+         {
+            outputMainText("nethers, just in time to see her pussy gape surprisingly wide, her hips spreading for the object within. Her cock visibly twitches, spitting out pre in large gobs as the egg approaches, and begins to gush across her scales with steamy spunk as the white shell begins to crown. The seed-cannon doesn\'t end, continually spurting as the egg pushes its way out as lubrication spills across her swollen testicles, which drops onto the carpet a pup has readied.",false);
+         }
+         else
+         {
+            outputMainText("tail, just in time to see the base of her tail swell obscenely, her hips spreading for the object within. Her cock visible twitches, spitting out pre in large gobs as the egg stalls at her rump, her legs furiously bucking trying to push it. She groans and howls, desperately trying to get it through, but her muscles are too tense to allow it through. So, taking matters into your own hands, you lean up against her erection and knead it roughly.\r\rThe howl turns from pained to ecstatic as the organ bursts across her scales with steamy spunk as the bulge pushes through the base of her tail. The seed-cannon doesn\'t end, continually spurting as the egg pushes its way through her tail, making it look many times thicker than before, as lubrication spills out from the tip until the egg plops onto the carpet a pup has readied.",false);
+         }
+         outputMainText("\r\rThe ejaculation only dies down to a steady gurgle as the next egg prepares itself for birth, giving you a moment to gawk at the egg. Over three feet high and two feet in diameter, it\'s nearly twice the size of the eggs of the pups. You almost cringe at the thought of trying to birth such a thing yourself.\r\rYour admiration is quickly interupted as the warbling howls echo about again, the increased splurting of semen announcing the next arrival.",false);
+         if(silPreg > 2000)
+         {
+            outputMainText(" The pup quickly deposits the egg on a nearby balcony before returning for the next, alternating with her sister to carry the eggs away as they squeeze out of their mother.",false);
+         }
+         if(silPreg > 4000)
+         {
+            outputMainText(" When she eventually shrinks from the loss of enough eggs, the pups then deposit the eggs on the next lowest balcony, spreading them out nicely.",false);
+         }
+         if(silPreg > 8000)
+         {
+            outputMainText(" After several hours, nearly all of the balconies are filled with giant eggs, rolled around and resting safely against the walls.",false);
+         }
+         if(silPreg <= 2000)
+         {
+            outputMainText(" The pup quickly deposits the egg on the floor nearby, easier than using the balconies at this height, before returning for the next egg, alternating with her sister to carry the ovoid objects away as they squeeze out of their mother.",false);
+         }
+         doNext();
+         doListen = function():void
+         {
+            outputMainText("Hours later, Silandrias is panting upon the floor, cushioned by her soft breasts, her belly finally empty.",true);
+            if(silPreg > 2000)
+            {
+               outputMainText(" With eggs everywhere",false);
             }
             else
             {
-               outputMainText("Nah. Instead you pocket the stray bottle before you get caught and head back to Softlik.",true);
-               itemAdd(500);
+               outputMainText(" With eggs circling you",false);
+            }
+            outputMainText(", the laying process has finally finished.\r\rYou crawl up besides the exhausted woman, stroking her auburn hair and coaxing her to relax, she gives you a big smile. \"I\'m pretty sure are real too.\"",false);
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("The next day, after plenty of cleaning of spunk and slime and milk, and especially sleep, the four of you can finally breath. Silandrias, though a bit taller from being stretched by her belly and carrying a massive amount of boob-flesh, is able to walk with the aid of a carpet thanks to much of her body having deflated along with her belly. Eager to overlook her eggs, the four of you gather around and begin counting as you set up individual beddings for each egg, just like the kind Silandrias was hatched from.\r\r",true);
+               if(silPreg <= 1000)
+               {
+                  outputMainText("A whole " + Math.floor(silPreg / 100) + " eggs. Around the same size as the clutch she grew up with, she\'s quite satisfied. \"I\'m sure it\'ll be a good \'start\' in building a new family\" She winks with a giggle.",false);
+               }
+               else if(silPreg <= 5000)
+               {
+                  outputMainText("A total of " + Math.floor(silPreg / 75) + ", spread across the lower balconies of the birthing chamber, its far more than the clutch she grew up with. \"I didn\'t know I could make so many... And it\'ll be such a big family!\" She looks around in awe.",false);
+               }
+               else
+               {
+                  outputMainText("A massive " + Math.floor(silPreg / 50) + ", spread across all of the balconies of the birthing chamber, you wonder if the clutch she grew up with was just a fraction of a bigger bunch. \"Wow... I-I didn\'t think this was even possible. From up there, I couldn\'t really tell but... Wow... I. I think we have just restarted my race\" Her eyes are wide as the number finally sinks in. Oh how her breasts are going to hurt...",false);
+               }
+               outputMainText("\r\r\"Although, I have no idea how long it will take them to hatch. I mean, I don\'t know how long we were down in that room before we hatched. And I definitely don\'t want them to hatch without parents, I\'m going to stay here and wait for them, no matter how long it takes. While I\'m sure Naeru and Daeru would do well, I want to be there for my children when they hatch. And I hope you will be there too, when it eventually starts.\" She turns and embraces you, putting much of her weight into you for support but also nearly crushing you with her loving hug in the meantime. \"It may be years from now, but I will definitely try to let you know when it happens, since I\'m sure you won\'t be able to stay here. And I could even send out letters to my sisters as well, make a great big family reunion! But... that\'s really getting ahead of myself. Thank you, honey.\" She hugs you again, kissing you gently.",false);
+               doNext();
+               doListen = function():void
+               {
+                  outputMainText("Spending a few more hours with the family, everything settles down and there really isn\'t much to do anymore except to wait. With not a problem to be had, Silandrias and the pups nuzzle you goodbye, since there\'s things you could actually be doing in the meantime.\r\rOh, and I can\'t believe I\'ve forgotten about it until now, maybe because of the, umm...\" Her face blushes at what she had been distracted with this whole time. \"But you\'re welcome to borrow any of the magical treasures I\'ve found as part of my hobby. Although only a few are actually worth using, you can pick one up whenever you\'re here.\" She smiles and gives you another hug, gushing milk across your front, and finally lets you leave.",true);
+                  hrs = 30 + Math.floor(silPreg / 1000);
+                  silRep = 6;
+                  doSexP(50 + Math.floor(silPreg / 100));
+                  doEnd();
+               };
+            };
+         };
+      };
+   }
+   else if(this.silRep == 5 && this.silPreg > 30)
+   {
+      this.outputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\r\rAfter waiting for several minutes, there\'s no sign of Silandrias. Instead, a four-legged fox-like animal with a scaled belly and lizard-like tail comes trotting up to you with a happy smile and lolling tongue. ",true);
+      if(this.percent() <= 50)
+      {
+         this.outputMainText("Naeru (or Daeru?)",false);
+      }
+      else
+      {
+         this.outputMainText("Daeru (or Naeru?)",false);
+      }
+      this.outputMainText(" lovingly rubs her head up against your " + this.legDesc(1) + ", then turns and trots away, stopping only to make sure you\'re following. She guides you through a much different network than Silandrias used too and picks up her pace as you reach your destination.\r\rThe tunnel opens up into an enormous room. Several stories high and nearly spherical in shape, it\'s amazing such a structure existed below the sands. Grander than a ballroom of a palace, balconies circle the curved walls every several feet high, at least fifty feet in diameter, marking the many floors with an open view to the spacious inner portion of the room. And right in its center lies Silandrias.\r\r",false);
+      if(this.silPreg <= 150)
+      {
+         this.outputMainText("Supported solely by her breasts and growing belly, she seems quite comfortable laying on her front. Her tail flicks back and forth idly as her wings casually stroke about her top pair of breasts, which have been up-turned so the pups could access them. Even now the round orbs spurt thin streams of milk from her weight, with even more soaking into her bedding from the rest beneath.",false);
+      }
+      else if(this.silPreg <= 500)
+      {
+         this.outputMainText("Supported mostly by her large belly, her feet barely touch the ground and her tail moves to help keep her balanced. A rather precarious position, but she seems rather comfortable nonetheless. Her breasts have swollen slightly more, the bottom pair preventing her from rolling forward, and they dribble slightly from the pups\' feedings.",false);
+      }
+      else if(this.silPreg <= 1000)
+      {
+         this.outputMainText("Supported entirely by her huge belly, her legs reach for the floor without being able to touch. Yet, she still manages to remain balanced with casual swings of her tail and her breasts holding her still. Oddly, she seems to have grown an extra pair or two across the stretched belly-scales, already spraying a bit of milk...",false);
+      }
+      else if(this.silPreg <= 2000)
+      {
+         this.outputMainText("Held aloft by her giant belly, the poor girl can only fold her legs behind her, trying not to touch the masculine erection that would be better measured in feet than inches now, thanks to the swelling from her massive pregnancy. More breasts have blossomed along her stretched belly-scales, with all of her orbs looking swollen. They do provide some nice cushions for her head, however, as her wings can barely wrap around her top pair and moosh them together while they spray milk everywhere.",false);
+      }
+      else if(this.silPreg <= 4000)
+      {
+         this.outputMainText("Looking as though she\'s trapped on top of a house, the girl\'s belly has grown so large that even her torso has stretched to accomodate its size, a sign of how flexible her body can really be. She idly rubs the giant nipples of her topmost pair of breasts, her wings stretching to reach, with plenty more milk fountains lining her front. Her backside is nearly just as moist as her feet slowly stroke the enormous shaft of her engorged cock, pre dribbling down the scales nearly nonstop with more slickness descending from her slit.",false);
+      }
+      else if(this.silPreg <= 7000)
+      {
+         this.outputMainText("A building of belly, the girl is but a stretched decoration on top. She seems perfectly happy though, her feathers brushing across the sensitive breastflesh of her topmost pair of boobs while her feet massage her testicles and squeeze the shaft of her pre-drooling cock through the scrotum that covers it. Breasts upon breasts spurt milk across her scales, leaving the floor quite moist and giving the pups plenty to drink. It\'s amazing she\'s so flexible and so fertile, and almost frightening how many eggs she may be filled with...",false);
+      }
+      else if(this.silPreg <= 10000)
+      {
+         this.outputMainText("Very nearing the maximum size of the room, her belly fills most of your vision. Large breasts everywhere gush with milk from the tautness of her scales, with the topmost providing a nice pillows for her to fold her wings and lay upon, individually. Her feet can barely massage her testicles, unable to even reach her own giant cock which threatens to break through some of the balconies while pre coats her underside and leaves a large puddle on the floor. She has grown so large, you wonder how tall she would possibly be without the grand gut throwing off your perspective...",false);
+      }
+      if(this.silPreg > 1000)
+      {
+         this.outputMainText("\r\rThe other pup that isn\'t attached to you at the moment flies around on a magical carpet, one of Silandrias\' treasures, guiding it with just some clawing and a few yips. With her mother so large, its the only way to reach the giant woman without wings of her own, as well as carrying supplies.",false);
+      }
+      else
+      {
+         this.outputMainText("\r\rThe other pup that isn\'t attached to you at the moment flies around on a magical carpet, one of Silandrias\' treasures, guiding it with just some clawing and a few yips. She uses it to carry food and other supplies around, especially in such a big room.",false);
+      }
+      this.outputMainText("\r\r\"Hi!\" She calls out with a smile. \"Ever since I started getting... \'bigger\' again, I just had an urge to come to this room and lay on my belly like this. And from there, I haven\'t really moved...\" She laughs a little at how lazy it must make her sound. \"But Naeru and Daeru seem to understand it just fine. They even made sure that I didn\'t get up at first. Instead, they\'ve been bringing me all the food and stuff I need, and keeping me very good company, taking care of me just as well as Saeru did when we were little. And it would explain why I found some flying carpets around these tunnels, even though my people can fly. I guess we made them so the caretaker-kind could join us. Meanwhile, I\'ve just been getting... well, bigger.\" She sticks out her tongue at her own bluntness. Then she smiles at your presence. \"I\'m glad you\'re here to, though. So how would you like to help me pass that time?\"",false);
+      this.viewButtonOutline(1,0,1,0,1,0,1,0,1,0,0,0);
+      this.viewButtonText(0,0,0,0,0,0,0,0,1,0,0,0);
+      this.buttonWrite(1,"Fuck");
+      this.buttonWrite(3,"Be Fucked");
+      this.buttonWrite(7,"Eggcelerator");
+      this.buttonWrite(9,"Cuddle");
+      if(this.cockTotal > 0)
+      {
+         this.Choice1.visible = true;
+      }
+      if(this.vagTotal > 0 && this.vagLimit() > 22 + this.silPreg / 24)
+      {
+         this.Choice3.visible = true;
+      }
+      if(this.checkItem(229) && this.silTied == false)
+      {
+         this.buttonWrite(5,"Tie Tail");
+         this.Choice5.visible = true;
+      }
+      if(this.silTied == true)
+      {
+         this.buttonWrite(5,"Untie");
+         this.Choice5.visible = true;
+      }
+      if(this.checkItem(230) && this.silPreg > 30)
+      {
+         this.Choice7.visible = true;
+      }
+      this.doListen = function():void
+      {
+         var getCum:int = 0;
+         if(buttonChoice == 1)
+         {
+            getCum = cumAmount();
+            outputMainText("Even though Silandrias doesn\'t seem like she can move much, it doesn\'t mean she doesn\'t have needs. Stripping your clothes, ",true);
+            if(silPreg / 100 > tallness / 24)
+            {
+               outputMainText(" you hop onto a flying carpet so you can actually reach her moist cunt.",false);
+            }
+            else
+            {
+               outputMainText(" you move to her backside to attend to her moist cunt.",false);
+            }
+            if(silPreg < 400)
+            {
+               outputMainText(" Lifting her tail aside, her pussy is slightly swollen from her growing girth and doesn\'t take much effort to stretch around " + oneYour(1) + " cock" + plural(1) + " as you push it in.",false);
+            }
+            else if(silPreg < 2000)
+            {
+               outputMainText(" Lifting her tail aside, her pussy has grown large with her enormous belly, so much so you could probably fit your whole hand inside without much effort, making inserting " + oneYour(1) + " cock" + plural(1) + " a breeze.",false);
+            }
+            else
+            {
+               outputMainText(" Lifting her tail aside, the hole is gaping and stretched from her enormous belly, large enough to insert a whole limb if you wanted to, allowing " + oneYour(1) + " cock" + plural(1) + " to press in with ease.",false);
+            }
+            outputMainText(" Despite her larger size, the passage still manages to suck you in and grind about your cock, her hips twitching as she lets out a howl to suck it in. Her pregnant condition seems to only make her body want to suck out your cum more. And you\'re in a rather generous mood.\r\rGrabbing her widened thighs, you pound against her again and again",false);
+            if(knot == true)
+            {
+               outputMainText(", tugging at her entrance from the inside with your thick knot",false);
+            }
+            outputMainText(". She takes in your length without issue, with plenty of malleable room within. Below, her own erection spits up larger gobs of pre, growing whiter and whiter as she come close to climax",false);
+            if(showBalls == true)
+            {
+               outputMainText(", the slapping of your " + ballDesc() + " against her scrotum not helping any",false);
+            }
+            outputMainText(".\r\rIt isn\'t until you explode within, your seed churning about her velvety walls, that the downward-pointing member erupts with hot spunk all over the belly-scales and floor. You plunge and pump all of your spunk inside of her, letting her soak it all in without a drop going to waste. The cum-hungry womb immediately grows larger, sucking in every milliliter for its fertile production. The poor girl is weighted down even more by your efforts, yet the erotic cries echoing around the room would hardly suggest that she objects...",false);
+            doLust(-Math.floor(sen / 2),2,1);
+            if(Math.ceil(getCum / 50) > 100 && silPreg > 0)
+            {
+               silPreg += 100;
+            }
+            else if(silPreg > 0)
+            {
+               silPreg += Math.ceil(getCum / 50);
+            }
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("With her own cum still dribbling down her scales, Silandrias calls you over to the other side. After she\'s caught her breath, of course. Her front also covered in white from the milk that sprayed as she climaxed, she hugs you close and gives you a kiss, snuggling up with you for a while until she passes out on your shoulder. Pregnant women can sleep so soundly when they\'re becoming even more pregnant...",true);
+               hrs = 4;
+               doEnd();
+            };
+         }
+         if(buttonChoice == 3)
+         {
+            outputMainText("Even though Silandrias doesn\'t seem like she can move much, her stiff cock does look like it could use some release. Stripping your clothes, ",true);
+            if(silPreg / 100 > tallness / 24)
+            {
+               outputMainText(" you hop onto a flying carpet so you can actually reach her member.",false);
+            }
+            else
+            {
+               outputMainText(" you move to her backside to attend to her member.",false);
+            }
+            outputMainText(" A few moments pass as you try to figure things out, considering the",false);
+            if(silPreg < 500)
+            {
+               outputMainText(" thick rod is pointing downward with the heavy scrotum pinning it against her belly",false);
+            }
+            else if(silPreg < 1500)
+            {
+               outputMainText(" huge rod is pointing downward, barely able to keep the large testicles aloft as it rests against her belly",false);
+            }
+            else if(silPreg < 4500)
+            {
+               outputMainText(" massive rod is pointing downward, barely lifting the hefty scrotum aloft as the testicles brush against her belly",false);
+            }
+            else
+            {
+               outputMainText(" gigantic rod is heavily pointing downward, curving along the belly with anchor-like testicles keeping it pinned",false);
+            }
+            outputMainText(", eventually managing to lie on your back and shuffle your rump up until the thing presses into your " + vulvaDesc() + " folds.\r\rIn one of the most awkward positions possible, you still manage to ellicit a moan from the other side of the belly as you begin to reverse-hump her backside. The phallus pumps through you, dribbling pre all the while until the slick stuff is pooling out of your hole and back over your body. You can hear her pant and groan, feebly bouncing her legs as she wiggles her hips to dig deeper into you. Considering her rather static state, your efforts upon her sensitive flesh quickly overcome her, being one of the few sensations she has had, making her explode within.\r\rThe amount of spunk is surprising, even in proportion to her size. It just keeps gushing and gushing, making you quake in orgasm as your filled, until it spills out about your body and drools down her scales.",false);
+            if(cockTotal > 0)
+            {
+               outputMainText(" Even more covers you from your own spurting appendage" + plural(1) + ", coating you in a mix of both fluids.",false);
+            }
+            outputMainText(" By the time the flow actually comes to a halt, there is such a mess everywhere...",false);
+            doImpregnate(dominant);
+            if(cockTotal > 0)
+            {
+               cumAmount();
+            }
+            else if(silPreg > 400)
+            {
+               doLust(-Math.floor(sen / 2),2,2,5);
+            }
+            else
+            {
+               doLust(-Math.floor(sen / 2),2,2,5);
+            }
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("Leaving the stuff to be cleaned up by the pups later, Silandrias calls you over to the other side. After she\'s caught her breath, of course. Her front also covered in white from the milk that sprayed as she climaxed, she hugs you close and gives you a kiss, snuggling up with you for a while until she passes out on your shoulder. Pregnant women can sleep so soundly when they\'ve ejaculated excessively...",true);
+               hrs = 4;
+               doEnd();
+            };
+         }
+         if(buttonChoice == 5)
+         {
+            if(silTied == false)
+            {
+               outputMainText("Even though she doesn\'t seem to be constantly laying from her tail now, or at all for that matter, you thinkg it\'s a good idea to attach the leather strap anyways. Silandrias nods and trusts you, lifting up her tail ",true);
+               if(silPreg / 100 > tallness / 12)
+               {
+                  outputMainText("as you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, ",false);
+               }
+               outputMainText("and gives you a nice view of her engorged bits in the process. The leather strap easily slips up the length of her tail and tightens comfortably around the base made perfectly for such a task.\r\rYou take a few minutes to check the straps to ensure no blood is being cut off and that even if she were dropping eggs through that passage, they wouldn\'t be able to push through. Leaving her backside like that, you come around to her face and spend some time with her chit-chatting and petting Naeru and Daeru before you eventually head back out.",false);
+               silTied = true;
+               loseManyItem(229,1);
+               hrs = 3;
+               doEnd();
+            }
+            else
+            {
+               outputMainText("Deciding to remove the leather strap that is blocking her tail passage, ",true);
+               if(silPreg / 100 > tallness / 12)
+               {
+                  outputMainText("you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, and ",false);
+               }
+               outputMainText("your fingers play with the latch until you can pull it lose and slip it off of her tail. Once removed, you see the base of her tail swell slightly as the eggs inside settle against the passageway. However, none seem to get any further, not exiting her tail at all like her previous pregnancies. You inspect her rump to make sure nothing is wrong, your poking and prodding only making her giggle at the other end, but she seems to be perfectly fine.\r\rAssuming it\'s natural, you leave her backside and come around to her front to spend some time with her, chit-chatting and petting Naeru and Daeru before you eventually head back out.",false);
+               silTied = false;
+               itemAdd(229);
+               hrs = 3;
+               doEnd();
+            }
+         }
+         if(buttonChoice == 7)
+         {
+            outputMainText("To help the pregnancy progress, you take out a dose of eggcelerator. ",true);
+            if(silPreg / 100 > tallness / 12)
+            {
+               outputMainText("Her nethers too high for you to reach, however, you have to step on a flying carpet to lift you up.",false);
+            }
+            else
+            {
+               outputMainText(" You walk around to her backside to access her nethers as she lies there.",false);
+            }
+            outputMainText(" Lifting up her tail, she does her best to prop up her rump towards you for easier access.",false);
+            if(silPreg < 400)
+            {
+               outputMainText(" With her pussy being slightly swollen from her growing girth, it doesn\'t take much effort to slip the eggcelerator inside.",false);
+            }
+            else if(silPreg < 2000)
+            {
+               outputMainText(" Her pussy grown large with her enormous belly, you could fit your whole hand inside without much effort, making inserting the eggcelerator a breeze.",false);
+            }
+            else
+            {
+               outputMainText(" Gaping and stretched from her enormous belly, you nearly lose your whole arm within as you insert the eggcelerator, making it more difficult to pull out than administering the dose.",false);
+            }
+            outputMainText("\r\rYou can hear the stuff rumble in her belly as it dissolves, almost immediately noting an increase in production. However, nothing presses back out, leaving her to grow even larger. Spending a couple of hours to make sure she\'s alright and provide her and your children some company, everything seems well and you can be on your way.",false);
+            ++silRate;
+            loseManyItem(230,1);
+            hrs = 3;
+            doEnd();
+         }
+         if(buttonChoice == 9)
+         {
+            if(silPreg / 100 > tallness / 24)
+            {
+               outputMainText("You hop on a flying carpet and direct it up to Silandrias\' torso, allowing you to give her a hug and sit beside her as you cuddle.",true);
+            }
+            else
+            {
+               outputMainText("You move in beside Silandrias, giving her a hug and sitting down beside her as you cuddle.",true);
+            }
+            outputMainText(" Daeru and Naeru soon join, curling up amongst you two the best they can as you all spend some nice time together, despite mooshing against one of the pregnant woman\'s boobs and making it casually spurt over you all. She reprises you of her time sitting around and how well the two pups have been coming along, so smart and responsible. Mostly you tell her your own stories of what\'s going on outside, since there tends to be much more to tell, but in the end it doesn\'t matter what\'s being said. As long as you\'re all together.\r\rAfter several hours, you\'re all thoroughly cuddled out, especially as the pups need to get back to caring for their mother. With the loving company, Silandrias\' belly also looks to have enjoyed it, growing even larger with your time together...",false);
+            hrs = 4;
+            silPreg += 20;
+            doEnd();
+         }
+      };
+   }
+   else if(this.silRep == 5)
+   {
+      this.outputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\r\rAfter waiting for several minutes, the large ears of the foxy lizard-like woman come into view with the two pups, Naeru and Daeru, hopping and trotting about her legs as she walks.",true);
+      this.outputMainText(" With her curves back to a more manageable state, Silandrias seems to be trying to wear her cloak again. Though with all of her many engorged breasts, all dribbling with milk as the two quadrapeds lapping it up from her legs, she doesn\'t bother to close it, letting all four pairs bob about as they may. Even her loin cloth is rather useless as the head of her flaccid member is exposed beneath with a generous portion of her scrotum peeking out from the sides. But she\'s as happy as can be with her children. ",false);
+      this.outputMainText("\r\r\"Hello~\" Silandrias greets you with joy, happy to have your company again, while the kits yip cheerfully at their father as well. \"Come on in, please.\" She turns to lead you into the network of tunnels. \"Would you care to do something, hun?\"",false);
+      this.viewButtonOutline(1,0,1,0,0,0,0,0,1,0,0,0);
+      this.viewButtonText(0,0,0,0,0,0,0,0,1,0,0,0);
+      this.buttonWrite(1,"Fuck");
+      this.buttonWrite(3,"Be Fucked");
+      this.buttonWrite(9,"Cuddle");
+      if(this.cockTotal > 0)
+      {
+         this.Choice1.visible = true;
+      }
+      if(this.vagTotal > 0 && this.vagLimit() > 22 + this.silPreg / 24)
+      {
+         this.Choice3.visible = true;
+      }
+      this.doListen = function():void
+      {
+         var getCum:int = 0;
+         if(buttonChoice == 1)
+         {
+            getCum = cumAmount();
+            outputMainText("Rubbing the " + cockDesc() + " bulge in your " + clothesBottom() + ", you make it fairly obvious what you would like to do. The tall girl blushes and doesn\'t object, leading you right to her room with a rapid pace in her step, telling Daeru and Naeru to go take a nap in the meantime. The obedient pups comply, leaving you alone with the half-naked woman. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",true);
+            outputMainText(" Taking the lead, she pushes you back onto her bed, " + legVerb(2) + " your " + legDesc(2) + " to lick",false);
+            if(showBalls == true)
+            {
+               outputMainText(" your " + ballDesc() + " testicles",false);
+            }
+            else
+            {
+               outputMainText(" the base" + plural(1) + " of your cock" + plural(1) + "",false);
+            }
+            outputMainText(" before nibbling up the length of " + oneYour(1) + " shaft" + plural(1) + " and gulping down the tip the best she can.\r\rOnce you\'re thoroughly lubricated with saliva and pre, standing stiff and aching to fill her, she can hardly resist jumping onto it. Yet, she still manages to slowly climb up the bed, her finger-like talons clawing at the sheets as the feathers tickle over your thighs, until she finally struggles to sit upright over your waist squat down over your erection. She lets out a cooing howl as she feels your girth slip through her lips and burrow into her moist inner-walls. Her wings pressing against your " + boobDesc() + " chest",false);
+            outputMainText(", she steadies herself while her hips begin to grind and twist hungrily on top of you. Her tongue lolls from her muzzle and she pants happily while her ears bob up and down, her tail flicking about sporadically from the joy of having you inside of her.",false);
+            outputMainText("\r\rHaving remained swollen quite a bit with her last pregnancy, her cock slaps loudly against you with each hop and flings pre all over your front. The large testicles rest around your groin, hugging your cock" + plural(1) + " whenever she lifts high enough to allow them to roll beneath her.",false);
+            if(cockSize * cockSizeMod >= 66)
+            {
+               outputMainText(" Your own length, meanwhile, stretches her belly out further, forcing her belly-scales to protrude from within, yet seems to have no sign of hurting her or her womb. In fact, she seems to enjoy it even more as she blissfully hugs your head whenever it presses out far enough, tenderly rubbing it until it disappears back inside.",false);
+            }
+            else if(cockSize * cockSizeMod >= 36)
+            {
+               outputMainText("\tYour own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again.",false);
+            }
+            outputMainText(" She bounces upon you so roughly that her ",false);
+            outputMainText("four pairs of",false);
+            outputMainText(" breasts jiggle obscenely, the nipples stiff and tossing milk about everywhere.\r\rAt this rate, it doesn\'t take long before Silandrias is letting out a loud, lustful howl as you erupt within her.",false);
+            if(getCum < 1000)
+            {
+               outputMainText(" Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in.",false);
+            }
+            else if(getCum < 5000)
+            {
+               outputMainText(" Your hot load forces her belly to visibly distend as you spray within, the grand amount of spunk churning around and drowning your gushing head, yet hardly any seems to spill from her slit as her womb drinks it in, thirsty for seed.",false);
+            }
+            else
+            {
+               outputMainText(" Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed.",false);
+            }
+            outputMainText(" With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she\'s sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh.",false);
+            if(Math.ceil(getCum / 50) > 100 && silPreg > 0)
+            {
+               silPreg += 100;
+            }
+            else if(silPreg > 0)
+            {
+               silPreg += Math.ceil(getCum / 50);
+            }
+            else
+            {
+               silPreg = 1;
+            }
+            doLust(-Math.floor(sen / 2),2,1);
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("The two of you rest for a while, snuggling together with her sticky mess between you. Significantly satisfied, she kisses you before rolling onto the bed for a nice nap, her womb quite busy with what you left inside. You kiss her back as she sleeps, taking your sweet time before leaving to continue with other matters.",true);
+               hrs = 4;
+               doEnd();
+            };
+         }
+         if(buttonChoice == 3)
+         {
+            outputMainText("Stepping towards her and placing a hand upon the bulge in her loincloth, it doesn\'t take a scholar to figure out what you\'d like. The tall girl blushes and the bulge jumps with sudden bloodflow. She doesn\'t object, telling Daeru and Naeru to go take a nap in the meantime. The obedient pups comply, leaving her to lead you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",true);
+            outputMainText(" Eager to release, she pushes you back onto her bed, wedging herself between your thighs as she flops the stiffening erection on top of your ",false);
+            if(cockTotal > 0)
+            {
+               outputMainText("own",false);
+            }
+            else if(cockTotal < 1)
+            {
+               outputMainText("belly",false);
+            }
+            outputMainText(" with a splatter of slimy pre.",false);
+            outputMainText(" Then, her finger-like talons grab onto your " + hipDesc() + " hips, the feathers of her wings tickling your thighs as she drags her cock over you until it falls into the " + vulvaDesc() + " crevice between. With a moaning grunt, she plunges in.\r\rThe hard phallus pumps in and out of your soft velvety walls while the ",false);
+            outputMainText("large and heavy",false);
+            outputMainText(" balls slap against your " + buttDesc() + " rump",false);
+            if(silPreg + pregnancyTime + vagBellyMod > 1000)
+            {
+               outputMainText(", her pregnant belly bumping against your own,",false);
+            }
+            outputMainText(" with each thrust. Her breasts wobble with her fervor, spraying milk everywhere in tune to her panting as her long tongue lolls from her vulpine muzzle.",false);
+            if(breastSize > 3)
+            {
+               outputMainText(" Your own chest jiggles as well, your body dragging across the bed from her strength.",false);
+            }
+            else if(cockTotal > 0)
+            {
+               outputMainText(" More pre slops across yourself as your " + cockDesc() + " cock" + plural(1) + " bounce around, leaving you rather slick.",false);
+            }
+            outputMainText("\r\rThanks to her generous efforts, you both find yourselves reaching orgasm within minutes. Her body quivers and seizes as it forces a few more loud squishes into your pussy before it explodes within, drenching your insides with thick gooey cum. You shiver in turn,",false);
+            if(cockTotal > 0)
+            {
+               outputMainText(" more eruptions gushing from your own rod" + plural(1) + ",",false);
+            }
+            outputMainText(" shouting along with her howling with sensual joy. By the time your both done with your erotic fits, Silandrias collapses upon your belly, rubbing it with a wing as her seed fills you, her cock slipping out and trailing white strands across her sheets. She then crawls up onto the bed beside you to snuggle and kiss you lovingly, before eventually passing out for a nap.",false);
+            doImpregnate(dominant);
+            if(cockTotal > 0)
+            {
+               cumAmount();
+            }
+            doLust(-Math.floor(sen / 2),2,2,5);
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("You rest with her for a while before you decide to clean up the mess left behind. Then you quietly don your clothes and sneak out, allowing her to rest peacefully.",true);
+               hrs = 4;
+               doEnd();
+            };
+         }
+         if(buttonChoice == 9)
+         {
+            outputMainText("Just wanting to spend some time together, you give her a hug. She smiles back at you and leads you through the tunnels with children in tow to a nice room to socialize. There are a few seats of plush pillows and reed mats to sit upon, fitting for someone of her height, with a few tables cluttered with various knick-knacks. Torches light the room and several crystalline chandeliers and chimes break the light into vivid sparkling colors, providing a rather soothing atmosphere. Some of the crystals even glow on their own; shards of magical artifacts long lost to the ravages of the desert.\r\rSilandrias lies down upon one of the mats",true);
+            outputMainText(" and lets you cuddle up behind her. You hug and caress her curves, causing milk to spit across the floor and soak into everything from her multitude of breasts, which the pups are happy to lap up as they bounce around you and curl up with you. Gently kissing her shoulders as you talk the two of you alternate between stories of your travels and how well Naeru and Daeru have been coming along. There\'s even a bit of small talk mixed in as well as periods of silence where you simply enjoy the company of your small family.\r\rEventually, however, you must be on your way so that something can get done. As much as the two of you would like to continue, you can\'t ignore the need to get some food or other preparations or ignore the rest of your lives.",false);
+            outputMainText("\r\rYou soon give each other a kiss and exchange farewells, giving each of the pups a hug as they lick you, hopefully to not spend too much time apart.",false);
+            hrs = 4;
+            doEnd();
+         }
+      };
+   }
+   else if(this.silRep == 1 && this.silPreg > 150 || this.silRep == 2 && this.silPreg > 240 || this.silRep == 3 && this.silPreg > 360 || this.silPreg > 550)
+   {
+      this.outputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\r\rAfter waiting for several minutes, the large ears of the foxy lizard-like woman come into view.",true);
+      if(this.silPreg > 36)
+      {
+         if(this.silPreg <= 72)
+         {
+            this.outputMainText(" She has a slight smile as her wings roam about the growing bulge in her belly, the shape so obvious against her normally lithe form. A smile on her face when she looks at you silently passes the message that she knows it\'s because of you, but finds the sensation too blissful to actually speak about it.",false);
+         }
+         else if(this.silPreg <= 150)
+         {
+            this.outputMainText(" Her wings hug under her gravid form, holding and groping it as she feels it sway with each step, so big on her thin form; her belly-scales looking larger as they stretch across the girth. She seems a bit giggly at her state as she looks to you as the cause, but doesn\'t think it needs stating at this point.",false);
+         }
+         else if(this.silPreg <= 240)
+         {
+            this.outputMainText(" Her belly has grown so large that the tips of her wings can no longer connect around her form, but that doesn\'t keep her from trying as she rubs over the stretched scales again and again, relishing in their sensitivity. She still manages to stand up straight, though, as her strong lithe build can handle it.",false);
+         }
+         else if(this.silPreg <= 360)
+         {
+            this.outputMainText(" She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks.",false);
+         }
+         else if(this.silPreg <= 550)
+         {
+            this.outputMainText(" She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she \'accidentally\' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant...",false);
+         }
+      }
+      if(this.silRep == 1)
+      {
+         this.outputMainText(" And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh...",false);
+      }
+      if(this.silRep == 2)
+      {
+         this.outputMainText(" Having completely given up on the clasp of her cloak, the thick nipples of her top breasts barely hold the cloak over most of her mammary flesh. Bigger than her head now, the top pair swings from side to side as she walks, while the smaller pair below jiggle slightly as her belly bobs between them, almost completely bare if it weren\'t for her wings in the way.",false);
+      }
+      if(this.silRep == 3)
+      {
+         this.outputMainText(" Completely bare, it seems as though she has given up on her cloak... With a heavy blush of embarrassment from her exposed curves, she tries her best to cover herself with her wings, with little success. The top pair of breasts rest heavily atop the second pair, which is squished against her belly, and overall makes it difficult for her to look at you over them when covering them. The third pair jiggle obscenely without any coverage, even larger than her top breasts originally were when you first met her. Most of her efforts in trying to grope her belly mostly wind up fondling this lower pair as well, making them quiver even more lewdly...",false);
+      }
+      if(this.silRep == 4)
+      {
+         this.outputMainText(" It\'s\' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It\'s amazing she can even move in such a state...",false);
+      }
+      this.outputMainText("\r\r\"H-Hello- Ungh!\" Her greeting is cut short as she doubles over. It is only now that you see the exorbitant amount of slime spilling ",false);
+      if(this.silTied == true)
+      {
+         this.outputMainText("between her legs from behind her loincloth",false);
+      }
+      else
+      {
+         this.outputMainText("from the tip of her tail",false);
+      }
+      this.outputMainText(". She gathers herself for a moment to explain. \"I-I\'ve been waiting for you before I did it. I can\'t hold them back any longer; I can\'t hold any more, there\'s too many!\" She grunts again and grasps her belly as she desperately attempts to hold her womb shut.",false);
+      this.doNext();
+      this.doListen = function():void
+      {
+         if(silRep == 1)
+         {
+            outputMainText("You run up and grab her, rushing her to her bedroom so she can be more comfortable. Laying her onto her back, you make sure her back is supported appropriately to help with the lay.",true);
+            if(silTied == true)
+            {
+               outputMainText("\r\rHer tail extends itself through the cheeks of her bum and straight across the bed in preparation. Yet, Silandrias quickly gasps loudly as her body realizes that passage is blocked and redirects the flow elsewhere. She spreads her legs wide as she feels her pussy stretch and gape as the eggs force their way through. Her breathing grows rapid and she lets out a warbling howl when the first one breaches her passage, burrowing beneath her testicles and leaving a slimy trail with the next following soon behind. Her wings press down on her belly, trying to help push the orbs out, but they mostly shake from the array of throbbing sensations that blare between her legs like a drum. Slight pain mixed with intense pleasure, she\'s unsure of what to do and merely pushes harder.\r\rYour hands dive in to lift her package out of the way and help pull the eggs from her supple flesh, making her twitch slightly from your touch. Egg after egg slips out from her, each as large as a grapefruit and smothered in lubrication. Her belly quickly diminishes and within ten minutes she has passed them all.",false);
+            }
+            else
+            {
+               outputMainText("\r\rHer tail extends itself through the cheeks of her bum and straight across the bed in preparation. Silandrias then pushes her bum up from the sheets with her legs and lets out a warbling howls as the base of her tail swells with the first egg, the bulge quickly running down its length. Before it can even get halfway through, another bulge already forms at the base, making her clench the sheets with her talons. Her back arches higher and higher as she pushes, her round belly pointing straight into the air while her muzzle buries itself within her cleavage, moaning loudly into the flesh. Her cock dangles half-hard above, dribbling a bit of its own lubricant over the base of her tail.\r\rYour hands grope along her tail, encouraging the passing of the eggs from the outside, watching them reach and stretch the tip wide before they\'re quickly desposited. Egg after egg slips out from her, each as large as a grapefruit and smothered in lubrication. Her belly quickly diminishes and within ten minutes she has passed them all.",false);
+            }
+         }
+         if(silRep == 2)
+         {
+            outputMainText("You run up and grab her, rushing her to her bedroom so she can be more comfortable. However, just as you can get her onto the bed, Silandrias collapses to her knees before it and leans forward over the edge, unable to go any further. The finger-like talons at the tips of her wings reach out over the sheets and clench the fabric as her back arches into the bed, her top breasts preventing her from going to far while the second pair brushes across the edge and make her nipples grow stiff.\r\rOnce more, her tail thrusts itself straight out,",true);
+            if(silTied == true)
+            {
+               outputMainText(" only to find the passage is blocked by the leather strap. This result only makes her grunt and moan louder as she feels the eggs shift and stretch her cunt. The intense sensation makes her cock flip her loincloth up and pound against the bed with a strange sense of arousal, strands of pre with a mixture of escaping cum splattering with each whack, her testicles groaning to eject some semen as they feel feminine lubricant drool down their backside.\r\rAs your hands reach in to help pull the eggs out, you accidentally brush over her clit, making her howl and push her entire rump into you while an egg forces its way out. Short stuttered spurts of spunk gently paint the overhanging bedsheets with the confused orgasm, not quite a full climax but the sensations are altogether powerful enough to cause the ejaculation. And between each bout of subtle shooting, an egg slips through her tightening and loosening passage, practically firing out into your hands. Her large belly quickly dwindles and by the time she has made a nice waterfall of cum running down her sheets, she has also made a hefty pile of eggs between her feet.",false);
+            }
+            else
+            {
+               outputMainText(" preparing for the onslaught of eggs to come from her large belly. You can hear her gasp and moan into the sheets as her rump pushes back towards you, forcing the eggs into the base of her tail and down its length in turn. The intense pressure from the eggs at her backside causes all of her genitals to engorge themselves, both cunt and cock dribbling with lubricant as they swell slightly.\r\rYour hands grope along her tail, holding it up and encouraging the passing of the eggs from the outside, watching them reach and stretch the tip wide before they\'re quickly desposited. All the while she claws at the bed, writhing her breasts across the sheets and making her bum wave erotically. The process is almost torturous as it takes so long for the eggs to travel one and two at a time through her tail, making the rest of her a dribbling mess. Her large belly eventually dwindles in size and by the time she has made a nice waterfall of clear fluids from penis and testicles down to the floor, she has also made a hefty pile of eggs beside you.",false);
+            }
+         }
+         if(silRep == 3)
+         {
+            outputMainText("You run up and grab her, but notice Silandrias is already beginning to squat as her body forces her to start laying. So, rather than head to her room for comfort, you hug her from behind and gently guide her down to the floor of the tunnel, letting her lean back into your for support. Her head nestles back over your shoulder, her muzzle pressing into your face as she groans with the building pressure below, her wings digging her talons into the floor to anchor herself. In preparation, her tail curls up through your crotch and stretches out over your thigh so she is no longer sitting upon it,",true);
+            if(silTied == true)
+            {
+               outputMainText(" but with the passage blocked her legs spread wide as well. You reach around her huge belly the best you can to access her slit. Thankfully, she\'s already quite half-hard and her increased engorgement allows you to easily grab her masculine portion as it pushes the loin cloth aside and point the rod over her thigh, letting pre drool over her fur. Reaching further, the large orbs are a bit more difficult to lift from this angle, but your fingertips manage to pull at the scaly scrotum and drag it up, propping one hefty testicle against her thigh and shuffling the member around to rest upon your arm.\r\rBefore you can yank the other orb up as well, she lets out a moan and shudders into your body. The second testicle moves further away as the exiting egg pushes it aside, slipping out into a messy puddle of her lubrication below while her cock bucks upon your arm as you hold it back. More pre drizzles down your forearm and over your hand, with even more slick stuff drenching about from underneath. The slippery combination threatens to release the ball from your grip and let it crash against the next oncoming egg, forcing you to grab the sensitive sphere harder to prevent such a tragedy. Her tail whips at you as you do so, her body writhing and an erotic howl escaping her lips as the next egg presses out, with a nice large wad of spunk shooting up to your shoulder. From there, a steady gurgle of hot seed dribbles down your arm and over her thigh, smearing about her dwindling belly and her lower tits, coating her testicles and icing the eggs beneath a white waterfall as they are laid into a pile. On occasion, the egg being laid stretches her especially wide, causing the ejaculating erection to launch a volley up at both of your faces.\r\rBy the time she\'s finished, you could swear her testicle feels quite lighter...",false);
+            }
+            else
+            {
+               outputMainText(" a growing bulge at its base already pushing into your groin. You reach around her huge belly to stroke and coax the egg out, feeling the bulge push over your thigh and gently slip out the tip of her tail beside you.\r\rShe arches her back slightly with the continuing oviposition, her loin cloth tenting from the half-hard rod rising beneath. The cloth is moist with pre and grows even wetter with each egg that passes as gobs push through her urethra. Since her tail and backside are doing fine with their steady progress, you manage to reach around with a hand and grab the hunched shaft, smearing the pre down its length. She lets out a guttural moan as she jerks against your body, the loin cloth falling aside and leaving her engorged erection to grow to full length in your grip. The eggs begin to quicken in pace as her hips begin to gently buck up and down with your strokes, clearly expedited by your efforts. By the time a few eggs have slipped out, large wads of hot spunk shoot up over her belly, coating her lower pairs of breasts. The stuff continues to pump out with a gentle gurgle, running down her length and over your hand, spilling from her testicles and forming a nice puddle below. With the occassional larger egg that requires a bit more pushing than the rest, the gentle flood is replaced by lobbing volleys that splatter across your faces and sufficiently make a mess of everything.\r\rBy the time she\'s finished, even the eggs have been nearly completely coated...",false);
+            }
+         }
+         if(silRep == 4)
+         {
+            outputMainText("You run up and grab her, but she lifts a hand, motioning she\'s alright. Silandrias hugs over your shoulders with one wing while the other cradles her massive tummy the best it can. \"F-First, I want to show you something...\"\r\rUsing you as a crutch, she slowly waddles down the tunnels, taking you down paths you had never seen before. She grunts and wheezes a little as she goes, even having to stop halfway as an egg forces its way through her ",true);
+            if(silTied == true)
+            {
+               outputMainText(" slit, allowing you to catch it and a bunch of slime just before it falls to the floor.",false);
+            }
+            else
+            {
+               outputMainText(" tail, slipping out with a puddle of slime onto the floor behind her.",false);
+            }
+            outputMainText(" \"D-Don\'t worry about it...,\" she ensures you.\r\rThe two of you quicken your paces to get to your destination before she pops, and soon find yourselves in a relatively small room much deeper underground than you have ever been before in her home. The room is quite odd, with old dirt beddings dotting the floor, hemispherically shaped for some large round object, much larger than any of the eggs you\'ve seen Silandrias lay. And all around, the walls are covered with many, many pictures, with a particularly series centered and more prominent than the rest.\r\rSilandrias takes a deep breath and rests against a wall, making sure her womb has settled enough before speaking. \"This is where me and my sisters hatched...\"\r\r\"I don\'t know exactly why it\'s so deep and the tunnels around here look different, like they were made in a hurry, but I believe these pictures can somewhat tell why.\" She takes another deep breath and prepares to explain as much as she can, motioning across the images as she speaks. \"These pictures show that my people were once a much more common race. These tunnels were filled with many families, all living together, with even more tunnel networks like these scattered over what was once a rather lively savannah. Food was plentiful, people were happy, and life was good. However, they saw... something coming.\"\r\rShe focuses on a picture that resembles a wave washing over the land, although the wave itself seems distorted, confused, not clear at all. \"I don\'t think they knew exactly what it was, but they knew that it would mean the end of our people. Maybe some kind of destructive force? It would explain the many magical items I find strewn throughout the dunes, but even then they are largely intact, not damaged in ways you would expect if that were the case... But anyways, they knew it was coming and in fear of losing us all, they made this room to hide some of their eggs in hopes of making at least some of us survive. And, well, they did.\"\r\r\"Yet, on the other hand, it seems like me and my sisters were the only ones that did survive. I\'m sure our parents knew it would happen too, which is why they made all of these pictures. They wouldn\'t be able to teach us their language, but they could at least teach us some of our history with these images. They taught us how to navigate the tunnels, how to find food, how to live, how to fly. They couldn\'t teach us everything though, and if it weren\'t for our caretaker, who we named Saeru - a creature who couldn\'t speak but could understand us and did her best to take care of us - we probably wouldn\'t have survived to this day. But even she couldn\'t help us - me learn how certain things work. None of us ever tried to get... well, like now...\"",false);
+         }
+         doNext();
+         doListen = function():void
+         {
+            silPreg = 0;
+            if(silRep == 1)
+            {
+               outputMainText("A small pile of eggs between her legs, Silandrias leans back against her bed with a deep sigh. Her chest still huffing for air, she lazily fondles her engorged breasts through her cloak, feeling them shrink a little now that her eggy pregnancy has completed.\r\rShe looks down at the pile with another sigh. \"Mmm... They aren\'t real either. I don\'t know how I know that exactly, but my body tells me they aren\'t. Actually...\" She pauses, opening a wing to let you scoot up beside her so she can rest her head on your shoulder as she speaks. \"As you could tell, I\'m kinda alone here now... We were alone since the beginning and now I\'m alone now, so I have no idea how my kind works...\"\r\rA serious expression of sadness flushes over her face and she stops the story there.\r\rShe soon cheers up, nuzzling her vulpine muzzle into your neck. \"But you made me not lonely and, well... thank you.\" Planting a kiss upon your cheek, she then whispers into your ear. \"And maybe we can discover what my body can do together~\"\r\r\rYou stay a few more hours with her to ensure that she is alright. Her breasts continue to shrink slowly, but are still fairly large by the time you decide to leave, when she is up and about and back to her usual self. For having had such an intense \'birth\', she really recovered quite fast, already moving the eggs away and cleaning the mess she made. You give her another hug and a kiss goodbye before leaving the den to continue with your endeavors.",true);
+               hrs = 5;
+               doSexP(20);
+               silRep = 2;
+               doEnd();
+            }
+            else if(silRep == 2)
+            {
+               outputMainText("The process finished, Silandrias collapses against the bed into her own mess. You move in to check and make sure she\'s alright, but smile as you see her eyes are shut with her wings folded around her vulpine muzzle, sleeping with a rather content look on her face. The rush to the bedroom and resulting position from the \'failure\' therein must have exhausted the poor girl. So, you take the initiative and clean up as well as you can, wiping and spreading out the eggs to dry, before eventually trying to lift her back up onto the bed. She blinks awake only for a few moments to look at the eggs you carefully laid out. \"Don\'t worry, those aren\'t real either,\" she says with a chuckle, then curls up and passes back out on the bed as you lay her down to rest.\r\rStaying with her a few more hours to ensure she\'s alright, you notice both pairs of breasts beginning to shrink once more. Other than that, her blissful sleep confirms that she\'s quite alright, allowing you to be on your way. With a kiss on her cheek and a subtle whisper of \"Goodnight~\" into her large ear, you head back out and let her sleep peacefully.",true);
+               hrs = 5;
+               doSexP(35);
+               silRep = 3;
+               doEnd();
+            }
+            else if(silRep == 3)
+            {
+               outputMainText("A grand pile of eggs beside you, painted with the creamy sauce of her loins, Silandrias takes a deep breath and lets out a loud humming sigh. Relaxing against you, she seems perfectly pleased sitting at the entrance to her home, right in view of the open desert, half naked and covered in her own naughty mess with you.\r\rShe stares out into the vast expanse of sand and nuzzles you gently. \"At first there were just eight of us, all by ourselves in these tunnels. Well, nine if you count our caretaker, though she was more like a pet, a creature much like ourselves that raised us and made sure we survived. We never knew where she came from, but we saw her like a mother and she was one of the first to leave, with two of my sisters who ventured out to find others like us.\"\r\r\"Then there were two other sisters who went exploring and found Oviasis. The lizan people were afraid at first, but since we were still so young and innocent it didn\'t take long before they were teaching us their language and trading supplies with us. Soon three of my sisters were staying in Oviasis nearly all the time, building their own lives there and falling in love. However, the waters there slowly changed them, making them more and more like the lizan people, until eventually you couldn\'t even tell they were like us. I still visit them every now and then, but without their wings they don\'t come out here as much anymore. There\'s so many people there and it\'s so crowded... well, it\'s not exactly a place I could call home, like here.\"\r\r\"When my first two sisters came back after a few years with Saeru, they were different too. They still had their wings at least, so they could travel, but they were afraid they might lose them soon as well. But oh, the wonders they said they saw. So many other kinds of people and places, things that they could study and experience. Kinda like my fascination with magical items, except more outgoing. There was so much out there that they couldn\'t stay here for long. And my other two sisters loved them tremendously and couldn\'t let them go by themselves. I told them that it was alright, that I still had our sisters in Oviasis to keep me company, that the five of them could head off on their adventures together. They were hesitant, but I wouldn\'t let them choose otherwise. I even still get letters from them every now and then, somehow sent to Oviasis from some elaborate route, keeping us apprised of their ventures and the different ways they\'ve changed.\"\r\r\"It\'s quite odd, really. Although my sisters have been able to change into other races so much - and I\'m sure even I would too if I spent as much time with other peoples as they have - I have not heard any word of someone else becoming like one of us. Maybe that\'s why there were so few of us?...\"",true);
+               doNext();
+               doListen = function():void
+               {
+                  outputMainText("As the nostalgia of her past and the high of the long orgasm lifts from her mind, she blushes heavily as she finally notices the massive mess. \"Oh dear..\"\r\rSilandrias stumbles at first as she stands, the slimy puddle beneath proving difficult footing and her lack of enormous belly leaving her off balance, but with your help she steadies herself and manages to walk on her own soon enough. Her other sites of swelling are shrinking as well, returning the lithe power to her body and making her as spry as usual. The two of you are able to clean up the entrance, as well as all the many many eggs, within just a couple of hours. Although, again, she mentions that these are fakes just like the rest.\r\r\"I actually don\'t know when or how they become real...,\" she mentions curiously. But soon after cleaning up she\'s much to tired to think about it further and you help her to her bedroom for a nice long nap. Seeing as she\'s snoring like a log with such a deep sleep within minutes, you know she\'ll be just fine, allowing you to head out on your own.",true);
+                  hrs = 7;
+                  doSexP(50);
+                  silRep = 4;
+                  doEnd();
+               };
+            }
+            else if(silRep == 4)
+            {
+               outputMainText("Unable to focus any longer, she doubles over once more. This time she doesn\'t seem to be able to stop it as ",true);
+               if(silTied == true)
+               {
+                  outputMainText("a steady stream of lubrication dribbles down the insides of her thighs.",false);
+               }
+               else
+               {
+                  outputMainText("a steady flow of lubrication spills from the tip of her tail.",false);
+               }
+               outputMainText(" You attempt to aid her in sitting down, but she continues to bend forward, her instincts rather adamant about rolling onto her belly.\r\rWith her tummy so large, it doesn\'t take much more than bending slightly at her knees to touch the belly-scales to the floor. She slowly rolls forward, her legs spreading wide to step forward while flanking her own girth, with her lowest pair of breasts soon squishing against the floor, squirting out jets of milk. Then she continues going as the next pair sprays everywhere, followed by the next, and finally her top pair bulges out the sides of her torso like fleshy pillows as she lays down upon them, her legs no longer able to touch the ground. Her wings fold over her bloated chest, covering the white streams to prevent any from spraying into her face, allowing her to yawn wide with a low howl.\r\rFrom behind, her tail lurches forward, ",false);
+               if(silTied == true)
+               {
+                  outputMainText("only to turn straight up as the passage is blocked, giving you a fantastic view of her nethers. The underside of her belly is already thoroughly soaked in pre as her greatly engorged erection pulses out large gobs of the stuff, while her testicles, larger than cantaloupes, hang down heavily over the base of the shaft and are drenched from the slit above. Her tush tenses and her moaning howls stutter as the first egg begins to crown through her lips. You jump in to catch it, coating your hands with slime in the process. Placing the egg aside, you prepare for the next, slipping your fingers slightly into her nethers to help pull the eggs out. Her cock throbs with each passing and looks so close to blowing a massive load, but it seems to be waiting...\r\rIt doesn\'t wait long.\r\rThe eggs stop for a moment, giving Silandrias a moment to breathe. However, after a deep breath, her howling renews with a much louder and warbling sensual tone. You see white beginning to crown once more as white splatters all over her belly-scales in audible bouts of thick steamy ropes. The crowning progresses, stretching her slit wider and wider than you have seen any of her palmable eggs done before. Your eyes go wide as you even watch her hips spread wider, her body much more elastic than you could have guessed, while her pussy gapes larger than her own head, completely filled with an enormous white shell.\r\rHer gushing peaks as the widest part of the giant egg passes through, quickly slipping out into your arms and right to the floor as you gently settle it upon the ground. Easily more than two feet in height and more than a foot in diameter, the big egg half-fits into one of the several round beddings that decorate the floor of this room. You don\'t have much time to analyze it, however, as you hear the mother begin to cry out again.\r\rAnother egg just as large pushes through her passage with a spunk-filled greeting into the world. This second egg seems to be the last as Silandrias\' belly deflates with its departure, leaving her gasping and moaning as she lay upon her many milky tits, her ejaculation diminishing to a few leftover throbs of oozing cum.",false);
+               }
+               else
+               {
+                  outputMainText("pointing straight back to the floor in preparation. The underside of her belly is already thoroughly soaked in pre as her greatly engorged erection pulses out large gobs of the stuff, while her testicles, larger than cantaloupes, hang down heavily over the base of the shaft. Her tush tenses and her moaning howls stutter as the first egg begins to bulge through her tail. You tenderly massage the scales from the outside, coaxing the egg along until it slips out the tip. Placing the egg aside, you prepare for the next, returning to her rump and rubbing the small of her back to help direct the eggs out. Her cock throbs with each passing and looks so close to blowing a massive load, but it seems to be waiting...\r\rIt doesn\'t wait long.\r\rThe eggs stop for a moment, giving Silandrias a moment to breathe. However, after a deep breath, her howling renews with a much louder and warbling sensual tone. You see another bulge begin to grow at the base of her tail, but it keeps growing and growing, much larger than you have ever seen before. It stretches both her tail and hips obscenely wide, her body far more elastic than you could have ever guessed. However, this new giant egg comes to a halt before the widest portion can enter the passage in her tail. Silandrias grunts and groans, feebly rocking her legs and humping her own belly slightly as she tries to push it through. Her cock also turns redder and redder as she forces more blood to her bottom, making it drool incessantly. Taking a chance to help her out, you smear the slime along her length and stroke the throbbing rod roughly.\r\rSilandrias\' howls turn into an erotic outcry as white splatters all over her belly-scales in audible bouts of thick steamy ropes. The intense orgasm relaxes some of her muscles, letting the giant egg into her tail-passage and rapidly push through to the floor as you gently settle it upon the ground. Easily more than two feet in height and more than a foot in diameter, the big egg half-fits into one of the several round beddings that decorate the floor of this room. You don\'t have much time to analyze it, however, as you hear the mother begin to cry out again.\r\rAnother egg just as large pushes through her passage with a noisy spunk-filled greeting into the world. This second egg seems to be the last as Silandrias\' belly deflates with its departure, leaving her gasping and moaning as she lay upon her many milky tits, her ejaculation diminishing to a few leftover throbs of oozing cum.",false);
+               }
+               doNext();
+               doListen = function():void
+               {
+                  outputMainText("Fairly drenched in her own mess, Silandrias eventually gathers herself and rolls onto her back. Milk still dribbles down her front and her cock twitches lazily as she sits up to inspect her clutch. \"Those... are definitely real.\" She states with a pant. \"Though I never expected them to be so... huge!\"\r\rThe two of you sit there, staring at the two fertilized eggs, confounded by their size, for less than a minute before the room is filled with the sounds of cracking.\r\r\"Already?!\" Silandrias crawls forward, still quite tired, surprised by the rapid hatching and eager to attend to her young. And her eyes grow much wider as a large piece of eggshell falls away, revealing its inhabitant. \"It couldn\'t be!...\"\r\rThe creature within easily breaks through the rest of the hole, bounding out from the egg with awkward steps and excitement. This furry pup has the face of a cute little fennec fox with large ears and a scaley underside that leads to the long lizard-like tail, much like its mother. However, unlike its mother, it walks on all four paws with no sign of wings and doesn\'t look like it would have the ability to speak, much like a feral animal. Yet, the sight of it, along with its sister as the other egg breaks away, makes Silandrias break out in tears.\r\r\"They... They are just like my caretaker, Saeru!\"",true);
+                  doNext();
+                  doListen = function():void
+                  {
+                     outputMainText("The kits quickly fumble their way toward their mother with squeaky happy yips, bumping into her fleshy boobs and latching onto her milky nipples as she hugs them into herself with her wings.\r\r\"I-I can\'t believe it. The creature who we thought had found us and just took care of us out of the goodness of her heart was actually one of us! I still have no idea why, but I guess it\'s just a natural part of our life to give birth to such adorable pups.\" She leans down and nuzzles them with her muzzle as they nuzzle back. \"Although... I know we weren\'t born like this and Saeru was much older and didn\'t become like us. So... How do we have normal children?\"\r\rDespite the question, Silandrias seems perfectly happy caring for her two newborns. It also seems quite hard to call them newborns as within just a couple of hours of feeding from their mother\'s numerous milky breasts (far too much milk for just two of them to ingest alone), they have grown quite a bit more and are running around and playing like they were much more developed than their age would suggest. Nevertheless, the two of you care for them like children. You spend over a day helping out and making sure all three are doing well, only two find they are doing better than well. It\'s surprising how self-sufficient the pups are. And, in the end, Silandrias decides to name them after her original caretaker, \"Naeru and Daeru.\"\r\rSince they seem to be doing perfectly well, you eventually head on your way, quite proud of being a father.",true);
+                     doSexP(75);
+                     silRep = 5;
+                     hrs = 30;
+                     doEnd();
+                  };
+               };
+            }
+         };
+      };
+   }
+   else if(this.silRep < 5)
+   {
+      this.outputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\r\rAfter waiting for several minutes, the large ears of the foxy lizard-like woman come into view.",true);
+      if(this.silPreg > 36)
+      {
+         if(this.silPreg <= 72)
+         {
+            this.outputMainText(" She has a slight smile as her wings roam about the growing bulge in her belly, the shape so obvious against her normally lithe form. A smile on her face when she looks at you silently passes the message that she knows it\'s because of you, but finds the sensation too blissful to actually speak about it.",false);
+         }
+         else if(this.silPreg <= 150)
+         {
+            this.outputMainText(" Her wings hug under her gravid form, holding and groping it as she feels it sway with each step, so big on her thin form; her belly-scales looking larger as they stretch across the girth. She seems a bit giggly at her state as she looks to you as the cause, but doesn\'t think it needs stating at this point.",false);
+         }
+         else if(this.silPreg <= 240)
+         {
+            this.outputMainText(" Her belly has grown so large that the tips of her wings can no longer connect around her form, but that doesn\'t keep her from trying as she rubs over the stretched scales again and again, relishing in their sensitivity. She still manages to stand up straight, though, as her strong lithe build can handle it.",false);
+         }
+         else if(this.silPreg <= 360)
+         {
+            this.outputMainText(" She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks.",false);
+         }
+         else if(this.silPreg <= 550)
+         {
+            this.outputMainText(" She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she \'accidentally\' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant...",false);
+         }
+      }
+      if(this.silRep == 1)
+      {
+         if(this.silPreg > 120)
+         {
+            this.outputMainText(" And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh...",false);
+         }
+         else if(this.silPreg > 60)
+         {
+            this.outputMainText(" Plus, it seems her breasts have also begun to swell slightly with her belly, the clasp in her cloak being much more \'obvious\' than before...",false);
+         }
+         else
+         {
+            this.outputMainText(" Clad in her white cloak as before, the clasp in front nestles between her breasts and seems extra shiny for your arrival.",false);
+         }
+      }
+      if(this.silRep == 2)
+      {
+         if(this.silPreg > 200)
+         {
+            this.outputMainText(" Having completely given up on the clasp of her cloak, the thick nipples of her top breasts barely hold the cloak over most of her mammary flesh. Bigger than her head now, the top pair swings from side to side as she walks, while the smaller pair below jiggle slightly as her belly bobs between them, almost completely bare if it weren\'t for her wings in the way.",false);
+         }
+         else if(this.silPreg > 120)
+         {
+            this.outputMainText(" Both pairs of breasts are becoming quite swollen now. The top pair threatens to break through the clasp once more while the second pair pushes against the edge of the cloak, the smaller mounds nearly slipping out with the protruding belly spreading the cloak open. She still manages to cover the exposed side-boob with her wings, unsure what to do about them.",false);
+         }
+         else if(this.silPreg > 60)
+         {
+            this.outputMainText(" Also her breasts seem to have begun swelling once more, although this time she seems a little embarrassed about some extra growth... Just below her burgeoning bust, another pair of mounds have begun to swell. Her cloak still manages to cover them, but she still tries to cover them with her wings just in case.",false);
+         }
+         else
+         {
+            this.outputMainText(" And her white cloak seems to fit better now after the growth in her breasts has diminished with her belly, though it does look a bit tighter than before the whole thing.",false);
+         }
+      }
+      if(this.silRep == 3)
+      {
+         if(this.silPreg > 300)
+         {
+            this.outputMainText(" Completely bare, it seems as though she has given up on her cloak... With a heavy blush of embarrassment from her exposed curves, she tries her best to cover herself with her wings, with little success. The top pair of breasts rest heavily atop the second pair, which is squished against her belly, and overall makes it difficult for her to look at you over them when covering them. The third pair jiggle obscenely without any coverage, even larger than her top breasts originally were when you first met her. Most of her efforts in trying to grope her belly mostly wind up fondling this lower pair as well, making them quiver even more lewdly...",false);
+         }
+         else if(this.silPreg > 200)
+         {
+            this.outputMainText(" The upper clasp already undone and the second clasp close to being the same, her cloak doesn\'t seem to be doing much for her. Half of her top areolas peek out from the edge of the draped cloak, easily the size of small dinner plates, while the second pair press obviously against the tight cloak. Meanwhile, the third pair simply jiggles freely, well more than a handful, as they bounce with the belly. She tries to cover them with her feathers, but with all the other masses she has to deal with she often neglects them...",false);
+         }
+         else if(this.silPreg > 120)
+         {
+            this.outputMainText(" And she tends to pull at the upper clasp in her cloak, trying to give herself more breathing room as the orbs billow out about and below, much larger than her head. The pair directly beneath isn\'t fairing much better either, as the second clasp it stretched across both the large mounds and the upper portion of her growing belly. Her third pair, on other hand, make for good hooks as the nipples catch the edge of the cloak on either side, keeping the sides of her belly covered as she hugs it, at least.",false);
+         }
+         else if(this.silPreg > 60)
+         {
+            this.outputMainText(" In spite of her adjustments to her cloak, her top pair of breasts are once more pushing at the expanded clasp, with her second pair seemingly following suit against their own. However, the most embarrassing part for her is that another pair looks to be growing in as well, flanking her belly with small mounds beneath the cloak...",false);
+         }
+         else
+         {
+            this.outputMainText(" It also seems as though she\'s made some adjustments to her cloak. Though her breasts may have reduced in size after the last laying, she still retains the second pair which has been nicely covered by an additional clasp. However the top pair seems to have had some extra cloth added to the bust, to make up for the increased size...",false);
+         }
+      }
+      if(this.silRep == 4)
+      {
+         if(this.silPreg > 450)
+         {
+            this.outputMainText(" It\'s\' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It\'s amazing she can even move in such a state...",false);
+         }
+         else if(this.silPreg > 300)
+         {
+            this.outputMainText(" The many breasts jiggle around her girth, dribbling with milk as she steps. There\'s so much boob-flesh around the large mound of her belly that it\'s hard to believe she has a lithe frame beneath it all. Having difficulty looking out you over the top pair, she seems better off simply resting her muzzle on top of them to keep them out of her way. With such a round body, it\'s no wonder she hardly goes out anymore...",false);
+         }
+         else if(this.silPreg > 200)
+         {
+            this.outputMainText(" And she\'s not even bothering with a cloak anymore... For now she\'s completely bare, she\'s at least comfortable being naked around you. Jiggling all over with each step, all four pairs of breasts are larger than she was when you met her long ago. The thick nipples stand perk with the air and seem to... have small drops of milk beading upon them. She has apparently begun lactating, though not much, which is quite odd considering the previous layings haven\'t had any. Which is probably the reason she only tosses a bedsheet on when she goes out to shop, as her dripping around home would simply soil the cloth anyways.",false);
+         }
+         else if(this.silPreg > 120)
+         {
+            this.outputMainText(" Having found some twine somewhere, she has managed to creat make-do clasps for her cloak to more effeciently cover herself. However, those clasps are across her back as the cloak is on backwards in an attempt to cover her front with as much fabric as possible. And yet, despite the effort, her upper pair is already peeking out from the sides as it stands and all of her nipples press obviously against the cloth as her belly pushes them firmly against the make-do outfit...",false);
+         }
+         else if(this.silPreg > 60)
+         {
+            this.outputMainText(" And just as before, her breasts have begun to swell already. In anticipation... she didn\'t even bother latching the clasps. Depending on her large perk nipples and the occasional tug to keep it shut, the cloak manages to cover some of herself. Suffice it to say, there\'s a lot of exposed belly-scales as the breast flesh stretches them in curvy manners. What\'s most troublesome, though, is that there is yet another pair beginning to blossom below the third, accentuating the size of her relatively small belly even more.",false);
+         }
+         else
+         {
+            this.outputMainText(" With her curves back to a relatively normal state, she seems to be trying to wear her cloak again. However, her top breasts are already pressing tightly against the upper clasp, despite her reduced sizes from the laying. The lower clasp looks like how the top one used to be when you first met her, which isn\'t too bad. The bottom pair of decent sized breasts seem to peek out with even the slightest breeze, on the other hand, as she hasn\'t made a third clasp yet...",false);
+         }
+      }
+      if(this.vagLimit() < 22 + this.silPreg / 24 && this.vagTotal > 0)
+      {
+         this.outputMainText(" Just looking at the bulge in her loincloth, ",false);
+         if(this.silPreg > 36)
+         {
+            this.outputMainText("yet another thing having swollen with her pregnancy, ",false);
+         }
+         this.outputMainText(" you can tell that you definitely wouldn\'t be able to fit her maleness, so that is pretty much out of the question.",false);
+      }
+      this.outputMainText("\r\r\"Hello~\" Silandrias greets you with joy, happy to have your company again. \"Come on in, please.\" She turns to lead you into the network of tunnels. \"Would you care to do something, hun?\"",false);
+      if(this.silPreg > 40)
+      {
+         if(this.silTied == false)
+         {
+            if(this.silRep == 1)
+            {
+               this.outputMainText("\r\rOnly a few steps in, however, she pauses for a moment and lets out a gasp as the base of her tail expands. A round object passes through, stretching her tail as it moves, before her tail reflexively flicks to the side of the tunnel. As the round object approaches the narrow tip, she shivers a little as the tip opens to let the hard-shelled egg through. Laid gently against the wall, lubrication stretches and snaps off from her secondary vaginal passage that is hidden within her tail, leaving the egg still moist.\r\rShe looks down at what she had done before you and blushes. \"Oh dear... I-I\'ve been a little embarrassed since I\'ve begun laying them all over, and even moreso now that I\'ve done it in front of you... D-Don\'t worry about it though. I just kinda... \'know\' that they aren\'t real, they won\'t grow or hatch at all, there\'s nothing in them except normal egg-stuff. Don\'t really know why though... But it just kinda happens every now and then since we\'ve, umm, had our fun.\" She glances to the side. \"We can leave it for now, I\'ll pick it up later, with the rest of them...\" Her stride picks up in eagerness to spend some time with you.",false);
+            }
+            else
+            {
+               this.outputMainText("\r\rA few steps in, she pauses and gasps as another egg begins its way down her tail. Just like the lizan people, she lays the infertile things whenever they\'re ready, though down a different passage. Quite used to it by now, she naturally flicks her tail to the side to desposit it against the wall of the tunnel for retrieval later and continues on.",false);
+            }
+         }
+         else
+         {
+            this.outputMainText("\r\rFrom behind, you can see her tail is a bit swollen at its base, just behind the leather strap you bound. The eggs press around her tail, wanting to get out, but simply accumulate instead as they\'re blocked. It makes her walk a little more awkwardly, but doesn\'t seem to bother her much otherwise.",false);
+         }
+      }
+      this.viewButtonOutline(1,0,1,0,1,0,1,0,1,0,0,0);
+      this.viewButtonText(0,0,0,0,0,0,0,0,1,0,0,0);
+      this.buttonWrite(1,"Fuck");
+      this.buttonWrite(3,"Be Fucked");
+      this.buttonWrite(7,"Eggcelerator");
+      this.buttonWrite(9,"Cuddle");
+      if(this.cockTotal > 0)
+      {
+         this.Choice1.visible = true;
+      }
+      if(this.vagTotal > 0 && this.vagLimit() > 22 + this.silPreg / 24)
+      {
+         this.Choice3.visible = true;
+      }
+      if(this.checkItem(229) && this.silTied == false)
+      {
+         this.buttonWrite(5,"Tie Tail");
+         this.Choice5.visible = true;
+      }
+      if(this.silTied == true)
+      {
+         this.buttonWrite(5,"Untie");
+         this.Choice5.visible = true;
+      }
+      if(this.checkItem(230) && this.silPreg > 30)
+      {
+         this.Choice7.visible = true;
+      }
+      this.doListen = function():void
+      {
+         var getCum:int = 0;
+         if(buttonChoice == 1)
+         {
+            getCum = cumAmount();
+            outputMainText("Rubbing the " + cockDesc() + " bulge in your " + clothesBottom() + ", you make it fairly obvious what you would like to do. The tall girl blushes and doesn\'t object, leading you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",true);
+            if(silPreg <= 240)
+            {
+               outputMainText(" Taking the lead, she pushes you back onto her bed, " + legVerb(2) + " your " + legDesc(2) + " to lick",false);
+               if(showBalls == true)
+               {
+                  outputMainText(" your " + ballDesc() + " testicles",false);
+               }
+               else
+               {
+                  outputMainText(" the base" + plural(1) + " of your cock" + plural(1) + "",false);
+               }
+               outputMainText(" before nibbling up the length of " + oneYour(1) + " shaft" + plural(1) + " and gulping down the tip the best she can.\r\rOnce you\'re thoroughly lubricated with saliva and pre, standing stiff and aching to fill her, she can hardly resist jumping onto it. Yet, she still manages to slowly climb up the bed, her finger-like talons clawing at the sheets as the feathers tickle over your thighs, until she finally manages to sit upright over your waist and squatting down over your erection. She lets out a cooing howl as she feels your girth slip through her lips and burrow into her moist inner-walls. Her wings pressing against your " + boobDesc() + " chest",false);
+               if(silPreg > 150)
+               {
+                  outputMainText(", her large belly resting heavily atop your own",false);
+               }
+               else if(silPreg > 72)
+               {
+                  outputMainText(", leaning over her swollen belly",false);
+               }
+               else if(silPreg > 36)
+               {
+                  outputMainText(", her bulging belly slightly touching yours",false);
+               }
+               outputMainText(", she steadies herself while her hips begin to grind and twist hungrily on top of you. Her tongue lols from her muzzle and she pants happily while her ears bob up and down, her tail flicking about sporadically from the joy of having you inside of her.",false);
+               if(silRate > 2 && silTied == false)
+               {
+                  outputMainText(" She pauses only for a moment as she feels an egg drop into her tail, the eggcelerator causing some rather unexpected layings, making her moan a little as she deposits it on the bed beside you, only to make her even more aroused.",false);
+               }
+               if(silPreg > 150)
+               {
+                  outputMainText("\r\rHaving swollen quite a bit with her pregnancy with her belly, her cock slaps loudly against you with each hop and flings pre all over your front. The large testicles rest around your groin, hugging your cock" + plural(1) + " whenever she lifts high enough to allow them to roll beneath her.",false);
+               }
+               else if(silPreg > 72)
+               {
+                  outputMainText("\r\rIt also seems that another part of her has swollen slightly with her pregnancy, her phallic appendage and orbs slapping more loudly against you than before, flinging pre over your front with each hop.",false);
+               }
+               else
+               {
+                  outputMainText("\r\rHer phallic portion pats against you with each hop as it jumps up and down, splattering puddles of pre against you every time her balls rest upon you.",false);
+               }
+               if(cockSize * cockSizeMod >= 66)
+               {
+                  outputMainText(" Your own length, meanwhile, stretches her belly out further, forcing her belly-scales to protrude from within, yet seems to have no sign of hurting her or her womb. In fact, she seems to enjoy it even more as she blissfully hugs your head whenever it presses out far enough, tenderly rubbing it until it disappears back inside.",false);
+               }
+               else if(cockSize * cockSizeMod >= 36)
+               {
+                  outputMainText("\tYour own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again.",false);
+               }
+               outputMainText(" She bounces upon you so roughly that her ",false);
+               if(silRep > 3 && silPreg > 60)
+               {
+                  outputMainText("four pairs of",false);
+               }
+               else if(silRep > 2 && silPreg > 60)
+               {
+                  outputMainText("three pairs of",false);
+               }
+               else if(silRep > 1 && silPreg > 60)
+               {
+                  outputMainText("two pairs of",false);
+               }
+               outputMainText(" breasts jiggle obscenely, the nipples stiff as though already preparing for a suckling child.\r\rAt this rate, it doesn\'t take long before Silandrias is letting out a loud, lustful howl as you erupt within her.",false);
+               if(getCum < 1000)
+               {
+                  outputMainText(" Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in.",false);
+               }
+               else if(getCum < 5000)
+               {
+                  outputMainText(" Your hot load forces her belly to visibly distend as you spray within, the grand amount of spunk churning around and drowning your gushing head, yet hardly any seems to spill from her slit as her womb drinks it in, thirsty for seed.",false);
+               }
+               else
+               {
+                  outputMainText(" Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed.",false);
+               }
+               if(silPreg > 36)
+               {
+                  outputMainText(" Her belly swells above you as her fertile nature quickly processes your stuff, pushing forward her eggy pregnancy with blossoming fecundity.",false);
+               }
+               outputMainText(" With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she\'s sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh.",false);
+               if(silRate > 4 && silTied == false)
+               {
+                  outputMainText(" And though she may be spent, she clenches your body as her cock kicks up a bit more spunk, yet another egg making its way through her tail...",false);
+               }
+            }
+            else
+            {
+               outputMainText(" Her belly too large to wield on top of you, she opts to lie back onto her bed, spreading her legs wide with welcoming access. Prepping " + oneYour(1) + " member" + plural(1) + " for action with a gentle rubbing about the tip, you move in on your prey.",false);
+               if(silPreg > 360)
+               {
+                  outputMainText(" She has to lift her gigantic form even higher with her thighs, bending her legs up so you can even manage to reach her genitals.",false);
+               }
+               else
+               {
+                  outputMainText(" You manage to reach beneath her grand girth, maneuvering around the round form to reach her genitals.",false);
+               }
+               outputMainText(" Then you have to pull the large package out of your way, both her cock and balls swollen from her engorged pregnancy and blocking the desired entrance.",false);
+               if(tallness < Math.floor(silPreg / 9))
+               {
+                  outputMainText(" Lifting them up, you droop her large shaft over your shoulder, pinning the lower portion between your " + boobDesc() + " chest and her belly while drooping the scrotum over your own length.",false);
+               }
+               else
+               {
+                  outputMainText(" Lifting them up, you trap her appendage between your " + boobDesc() + " chest and her belly and droop her scrotum over your own length.",false);
+               }
+               if(silRate > 2 && silTied == false)
+               {
+                  outputMainText(" Thanks to this odd position and the doses of eggcelerator, she lets out an early moan as an egg pushes its way through her tail and down onto the floor.",false);
+               }
+               outputMainText("\r\rNow with clear access, you slip into her thirsty hole. She is already drenched in lubricant, with plenty spilling and drooling down her tail, the heavy belly and hormones having made her especially aroused. You squeeze her testicles with your " + hipDesc() + " hips while you press in for the first thrust, eliciting a guttural moan of joy from the girl behind the fertile mound. She tries to hump back a little but merely wiggles her rod between your bodies. To help, you lean up against her, moving your whole body with each pump of your cock, slathering the pre that spills from her own over your body to reduce the friction. Quite soon, the lower hemisphere of her belly is shining in slick juices, allowing you to easily rub across her belly-scales. Maybe a little too easily as you have to ",false);
+               if(silRep > 3)
+               {
+                  outputMainText(" grab her lowest pair of tits, milk squirting through your fingers,",false);
+               }
+               else
+               {
+                  outputMainText(" hug her girth the best you can manage",false);
+               }
+               outputMainText(" just to hold hold against her. All of her breasts shake about",false);
+               if(silRep > 4)
+               {
+                  outputMainText(", jets of milk squirting out everywhere,",false);
+               }
+               outputMainText(" as you pound into her again and again. She moans and howls, her wings groping over her massive form and her tail wrapping up through your " + legDesc(2) + " and wedging into your " + buttDesc() + " rump to pull you closer. It doesn\'t take long before the extra-pregnant girl to cry out.",false);
+               if(tallness < Math.floor(silPreg / 9))
+               {
+                  outputMainText("\r\rHot spunk sprays behind you, coating your back and painting the floor white.",false);
+               }
+               else
+               {
+                  outputMainText("\r\rHot spunk gushes between you, splattering all over her body and painting your face white.",false);
+               }
+               outputMainText(" Her knees crush you like a vice as she comes, forcing you to give into your own pressure and explode inside. It\'s all a blur as you feel your cum churn about within her, and no matter how much you gush, she seems to take in the majority of it as little squirts out from her extra-slick hole. Having so much contact with her gravid shape, you definitely feel it shift and grow from your blast, devouring your seed and feeding her fertile womb. It takes so long for her cries of ecstasy to eventually die down, so lost in bliss...",false);
+               if(silRate > 4 && silTied == false)
+               {
+                  outputMainText("\r\rAnd interjecting into the pleasant relaxing, she lets out a gasp as yet another egg forces its way through to be laid on the bed with you.",false);
+               }
+            }
+            if(Math.ceil(getCum / 50) > 100 && silPreg > 0)
+            {
+               silPreg += 100;
+            }
+            else if(silPreg > 0)
+            {
+               silPreg += Math.ceil(getCum / 50);
+            }
+            else
+            {
+               silPreg = 1;
+            }
+            doLust(-Math.floor(sen / 2),2,1);
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("The two of you rest for a while, snuggling together with her sticky mess between you. Significantly satisfied, she kisses you before rolling onto the bed for a nice nap",true);
+               if(knot == true)
+               {
+                  outputMainText(", pausing for a moment as she bucks her hips to loosen yourself from your softening knot before laying back down to rest",false);
+               }
+               outputMainText(", her womb quite busy with what you left inside. You kiss her back as she sleeps, taking your sweet time before leaving to continue with other matters.",false);
+               hrs = 4;
+               doEnd();
+            };
+         }
+         if(buttonChoice == 3)
+         {
+            outputMainText("Stepping towards her and placing a hand upon the bulge in her loincloth, it doesn\'t take a scholar to figure out what you\'d like. The tall girl blushes and the bulge jumps with sudden bloodflow. She doesn\'t object and leads you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",true);
+            if(silPreg <= 240)
+            {
+               outputMainText(" Eager to release, she pushes you back onto her bed, wedging herself between your thighs as she flops the stiffening erection on top of your ",false);
+               if(cockTotal > 0)
+               {
+                  outputMainText("own",false);
+               }
+               else if(cockTotal < 1)
+               {
+                  outputMainText("belly",false);
+               }
+               outputMainText(" with a splatter of slimy pre.",false);
+               if(silRate > 3 && silTied == false)
+               {
+                  outputMainText(" She pauses as her rear pulls back a bit, her talons clenching as a bulge travels down her tail. The eggcelerator doses obviously working, she lays the egg on the floor and quickly returns her attention to you.",false);
+               }
+               if(silPreg > 36)
+               {
+                  outputMainText(" Slightly swollen from her growing pregnancy, she takes a moment to caress her longer member, getting a feel for how large it has become.",false);
+               }
+               outputMainText(" Then, her finger-like talons grab onto your " + hipDesc() + " hips, the feathers of her wings tickling your thighs as she drags her cock over you until it falls into the " + vulvaDesc() + " crevice between. With a moaning grunt, she plunges in.\r\rThe hard phallus pumps in and out of your soft velvety walls while the ",false);
+               if(silPreg > 150)
+               {
+                  outputMainText("large and heavy",false);
+               }
+               else
+               {
+                  outputMainText("big",false);
+               }
+               outputMainText(" balls slap against your " + buttDesc() + " rump",false);
+               if(silPreg + pregnancyTime + vagBellyMod > 1000)
+               {
+                  outputMainText(", her pregnant belly bumping against your own,",false);
+               }
+               outputMainText(" with each thrust. Her breasts wobble with her fervor, in tune to her panting as her long tongue lolls from her vulpine muzzle.",false);
+               if(breastSize > 3)
+               {
+                  outputMainText(" Your own chest jiggles as well, your body dragging across the bed from her strength.",false);
+               }
+               if(silPreg > 100 && cockTotal > 0)
+               {
+                  outputMainText(" More pre slops across her pregnant belly as your " + cockDesc() + " cock" + plural(1) + " gently slap it, making her even more aroused from the taut sensitive scales.",false);
+               }
+               else if(cockTotal > 0)
+               {
+                  outputMainText(" More pre slops across yourself as your " + cockDesc() + " cock" + plural(1) + " bounce around, leaving you rather slick.",false);
+               }
+               outputMainText("\r\rThanks to her generous efforts, you both find yourselves reaching orgasm within minutes. Her body quivers and seizes as it forces a few more loud squishes into your pussy before it explodes within, drenching your insides with thick gooey cum. You shiver in turn,",false);
+               if(cockTotal > 0)
+               {
+                  outputMainText(" more eruptions gushing from your own rod" + plural(1) + ",",false);
+               }
+               outputMainText(" shouting along with her howling with sensual joy. By the time your both done with your erotic fits, Silandrias collapses upon your belly, rubbing it with a wing as her seed fills you, her cock slipping out and trailing white strands across her sheets. She then crawls up onto the bed beside you to snuggle and kiss you lovingly, before eventually passing out for a nap.",false);
+            }
+            else
+            {
+               outputMainText(" Although she\'s quite eager for some release, her belly prevents her from taking the initiative, leaving her to lay down upon the bed and waiting for you to make the next move. With her erection smearing pre all over the underside of her belly as it stands stiff and hard, all you have to do is climb up the pregnant mound and squat down upon the pole. Wrapping your arms around her girth, she howls as you grab her ",true);
+               if(silRep > 3)
+               {
+                  outputMainText("lowest pair of tits, milk squirting through your fingers,",false);
+               }
+               else
+               {
+                  outputMainText("sensitive belly scales",false);
+               }
+               outputMainText(" and begin to bounce up and down on top of her, the swollen shaft plunging through your velvety folds.",false);
+               if(silRate > 3)
+               {
+                  outputMainText("Then she gasps, holding you still with her thighs for a moment as a bulge grows at the base of her tail and descends down its length, depositing an egg upon to floor before she releases you to continue.",false);
+               }
+               if(silPreg + pregnancyTime + vagBellyMod > 1400)
+               {
+                  outputMainText(" Your own gravid belly drags across hers, pushing you away as they gently bump and bang against each other",false);
+               }
+               else
+               {
+                  outputMainText(" Your own belly lays over hers as you try to get as close as possible, feeling how taut and smooth and suppler her belly-scales really are",false);
+               }
+               if(cockTotal > 0)
+               {
+                  outputMainText(", while your own " + cockDesc() + " member" + plural(1) + " " + plural(13) + " caught between, being squished and ground between the flesh until your pre is coating them both",false);
+               }
+               outputMainText(".\r\rHer extra-fertile status has made her so horny and sensitive that it doesn\'t take long before her hips to jerk and her erection to explode within you. You\'re nearly lifted from the powerful blow, the stuff churning through you and spitting back out across her thighs and sheets, her heavily engorged testicles pumping out an excessive load. Your mind grows fuzzy with your own orgasm, ",false);
+               if(cockTotal > 0)
+               {
+                  outputMainText("ropes of cum leaping from your cock" + plural(1) + " and across her belly to decorate her many tits, ",false);
+               }
+               outputMainText("until you collapse over her girth and try to catch your breath. It takes several minutes for the rod inside to soften up and slip out of your nethers with a noisy splurt, allowing you to crawl up beside her and lay with the panting vulpine as her tongue lolls out of her muzzle. She turns a wing to snuggle with you and kiss you lovingly, before eventually passing out for a nap.",false);
+            }
+            doImpregnate(dominant);
+            if(cockTotal > 0)
+            {
+               cumAmount();
+            }
+            doLust(-Math.floor(sen / 2),2,2,5);
+            doNext();
+            doListen = function():void
+            {
+               outputMainText("You rest with her for a while before you decide to clean up the mess left behind. Then you quietly don your clothes and sneak out, allowing her to rest peacefully.",true);
+               hrs = 4;
+               doEnd();
+            };
+         }
+         if(buttonChoice == 5)
+         {
+            if(silTied == false)
+            {
+               outputMainText("You think it\'s a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn\'t seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation.\r\rYou take a few minutes to check the straps to ensure no blood is being cut off and notice she\'s starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail\'s vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen.\r\rAfter a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion.\r\rTying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you\'re soon on your way.",true);
+               silTied = true;
+               loseManyItem(229,1);
+               hrs = 3;
+               doEnd();
+            }
+            else
+            {
+               outputMainText("You decide to let the eggs flow freely once more. She leans against the wall again to give you easy access, allowing you to quickly untie the leather strap and slip it off. Immediately after you loosen it up, the bulge at the base of her tail shifts, making her gasp and her tail whip to the side as the egg within moves and starts its way out. Silandrias lets out a relaxed sigh as the egg is deposited upon the tunnel floor, her belly already looks a little smaller.\r\rYet, despite how much she has built up, no more eggs attempt to exit right away. Staying with her a bit longer, she does eventually lay more, though at her normal cycle from before rather than trying to catch up, leaving her womb swollen in the meantime. Otherwise, she is doing very well, allowing you to head back out.",true);
+               silTied = false;
+               itemAdd(229);
+               hrs = 3;
+               doEnd();
+            }
+         }
+         if(buttonChoice == 7)
+         {
+            outputMainText("To help her along with her current eggy pregnancy, you consider giving her a dose of eggcelerator. Even though she isn\'t of lizan descent, the egg-aid may help her somehow.\r\rSilandrias agrees to take it, as long as you help her administer it. Leading you back to her room, ",true);
+            if(silRate > 2 && silTied == false)
+            {
+               outputMainText("her tail already laying another egg along the way thanks to previous doses,",false);
+            }
+            outputMainText("she readily sits down on her bed and leans back while spreading her legs wide for your convenience.\r\rTaking a moment to stare at the wonderful view, you lean in and pull her veiling loin cloth aside.",false);
+            if(silPreg <= 200)
+            {
+               outputMainText(" Then you easily lift her flaccid maleness, giving yourself access to the soft slit beneath.",false);
+            }
+            else if(silPreg <= 400)
+            {
+               outputMainText(" Then you take some effort to lift her swollen maleness, both cock and balls having grown slightly with the pregnant arousal, and manuever beneath the large belly to access her soft slit.",false);
+            }
+            else if(silPreg <= 600)
+            {
+               outputMainText(" It then takes quite a bit of effort to both hold aloft the engorged penis and testicles, a bit of pre drooling over your arm from her pregnant arousal, and do your best to feel under her huge belly until you can find her soft slit beneath all the swollen bits.",false);
+            }
+            outputMainText(" From there, slipping the small suppository inside is simple, as it sucks itself in thanks to its torpedo-like shape.\r\rWithin moments you can feel her shiver as the stuff dissolves and makes her giggle a little.",false);
+            if(silRate > 5 && silTied == false)
+            {
+               outputMainText(" However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more.",false);
+            }
+            else if(silTied == false)
+            {
+               outputMainText(" She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she\'s breathing normally again.",false);
+            }
+            else
+            {
+               outputMainText(" She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles.",false);
+            }
+            outputMainText("\r\rThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I\'m sure this will make the process move along faster...\"\r\rYou stay with her another couple of hours to make sure she\'s alright and to spend some time together, then you head back out to continue on.",false);
+            ++silRate;
+            if(silTied == false)
+            {
+               doLust(Math.floor(lib / 5),0);
+            }
+            else
+            {
+               doLust(Math.floor(lib / 5),0);
+            }
+            loseManyItem(230,1);
+            hrs = 3;
+            doEnd();
+         }
+         if(buttonChoice == 9)
+         {
+            outputMainText("Just wanting to spend some time together, you give her a hug. She smiles back at you and leads you through the tunnels to a nice room to socialize. There are a few seats of plush pillows and reed mats to sit upon, fitting for someone of her height, with a few tables cluttered with various knick-knacks. Torches light the room and several crystalline chandeliers and chimes break the light into vivid sparkling colors, providing a rather soothing atmosphere. Some of the crystals even glow on their own; shards of magical artifacts long lost to the ravages of the desert.\r\rSilandrias lies down upon one of the mats",true);
+            if(silPreg > 36)
+            {
+               outputMainText(", upon her side so as to give her growing girth some room,",false);
+            }
+            outputMainText(" and lets you cuddle up behind her. You hug and caress her curves,",false);
+            if(silPreg > 360)
+            {
+               outputMainText(" hardly able to cover much of her pregnancy as you grope the massive belly and make her moan ocassionally from the great sensitivity,",false);
+            }
+            else if(silPreg > 240)
+            {
+               outputMainText(" groping as much of her giant belly as you can and cause her to gasp softly from the sensation,",false);
+            }
+            else if(silPreg > 150)
+            {
+               outputMainText(" groping about her belly and making her toes curl,",false);
+            }
+            else if(silPreg > 75)
+            {
+               outputMainText(" petting her large belly,",false);
+            }
+            else if(silPreg > 36)
+            {
+               outputMainText(" palming her growing belly,",false);
+            }
+            if(silRep > 3 && silPreg > 150)
+            {
+               outputMainText(" causing milk to spit across the floor and soak into everything from her multitude of breasts,",false);
+            }
+            outputMainText(" gently kissing her shoulders as you talk. The two of you alternate between stories of your travels and the findings of her treasures. There\'s even a bit of small talk mixed in as well as periods of silence where you simply enjoy each others company.\r\rEventually, however, you must be on your way so that something can get done. As much as the two of you would like to continue, you can\'t ignore the need to get some food or other preparations or ignore the rest of your lives.",false);
+            if(silPreg > 36)
+            {
+               outputMainText(" However, you could swear her form grew bigger than when you started. It seems your company has really made her feel comfortable and... motherly.",false);
+            }
+            if(silRate > 3 && silTied == false)
+            {
+               outputMainText(" Despite her having laid a few eggs during your time together as well.",false);
+            }
+            outputMainText("\r\rYou soon give each other a kiss and exchange farewells, hopefully to not spend too much time apart.",false);
+            hrs = 4;
+            if(silPreg > 1)
+            {
+               silPreg += 10;
+            }
+            doEnd();
+         }
+      };
+   }
+}
+!def DoValley():
+   global buttonChoice, boobTotal, breastSize, fourBoobAffinity, ment, fertilityStatueCurse, minLust, hrs
+   chance = 0
+   chance = EventSelect("Valley")
+   if (chance == 1):
+      ButtonFunctions.Visible(1,0,1,0,0,1,0,0,0,1,0,1)
+      templist = [1, "Mouth", 3, "Ear", 6, "Breasts", 10, "Pussy", 12, "Leave"]
+      OutputMainText("Amidst the lush overgrowth in the middle of the valley, something particularly unique catches your eye. A statue nearly hidden by the large leaves of vines around it, it stands out as being the only thing not of natural origin. It is relatively large, about eight feet in height, and is of a woman presenting herself to the observer. Her arms out, her legs spread slightly, and her face pleasantly aroused. Plus she's completely nude, showing off her four ample breasts upon her chest and three slits between her legs." + "\n" + "\n" + "Inspecting more closely, you can see that her middle vagina is gaping, with a hole that reaches inside. Her mouth is likewise, open lustfully, and there's even holes in her ears. Searching the base of the statue, you notice some intricate lettering that you couldn't possibly understand and, most oddly, there seems to be some mechanical components that have been exposed over the years..." + "\n" + "\n" + "You think this statue might be more than just a statue. Will you try to do anything with it?",True)
+      DoButtonChoices(templist)
+      #this.doListen = function():void
+      if (buttonChoice == 1):
+         ButtonFunctions.Visible(1,0,1,0,0,0,0,1,1,0,1,0)
+         templist = [1, "Lick", 3, "Poke", 8, "Leave"]
+         if (CheckItem(207) == True):
+            templist.append(9)
+            templist.append("Cock Carv")
+         if ((CheckItem(500) == True) or (CheckItem(501) == True)):
+            templist.append(11)
+            templist.append("Milk Bottle")
+         OutputMainText("What would you like to do with the statue's open mouth?",True)
+         DoButtonChoices(templist)
+         #doListen = function():void
+         if (buttonChoice == 1):
+            OutputMainText("You attempt to lick the statue's mouth. It's quite awkward, considering you chose to lick it rather than actually kiss it, and the statue doesn't seem to pleased either.",True)
+            OutputMainText("\n" + "\n" + "You hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + SkinDesc() + ".",False)
+            if (boobTotal == 2):
+               OutputMainText("\n" + "\n" + "Your chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+               if (breastSize > 4):
+                  OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+               boobTotal = 4
+               fourBoobAffinity = 100
+            OutputMainText("\n" + "\n" + "As the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.",False)
+            if (ment > 60):
+               OutputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",False)
+            fertilityStatueCurse = 48
+            minLust += 10
+            DoLust(0,0)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 3):
+            OutputMainText("You attempt to poke the statue's mouth. That's soooo erotic. Poke. Poke. Poke. Poke. You're an idiot...",True)
+            OutputMainText("\n" + "\n" + "You hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + SkinDesc() + ".",false)
+            if (boobTotal == 2):
+               OutputMainText("\n" + "\n" + "Your chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+               if (breastSize > 4):
+                  OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+               boobTotal = 4
+               fourBoobAffinity = 100
+            OutputMainText("\n" + "\n" + "As the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.",False)
+            if (ment > 60):
+               OutputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",False)
+            fertilityStatueCurse = 48
+            minLust += 10
+            DoLust(0,0)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 9):
+            OutputMainText("You stick the cock carving into the statue's open mouth. It seems to be a perfect fit and a rather lewd activity. Not exactly pleasurable for the statue, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.",True)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            DoSexP(15)
+            LoseManyItem(207,1)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 11):
+            OutputMainText("You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...",True)
+            OutputMainText("\n" + "\n" + "A loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door." + "\n" + "\n" + "Once the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",False)
+            if ((CheckItem(254) == True) or (CheckStash(254) == True)):
+               OutputMainText("\n" + "\n" + "You have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",False)
+            else:
+               OutputMainText("\n" + "\n" + "The only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and you're left having to head back to town.",False)
+               ItemAdd(254)
+            if (CheckItem(500) == True):
+               LoseManyItem(500,1)
+            else:
+               LoseManyItem(501,1)
+            hrs = 3
+            DoEnd()
+         elif (buttonChoice == 8):
+            OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
+            hrs = 1
+            DoEnd()
+!      elif (buttonChoice == 3):
+         viewButtonOutline(1,0,1,0,0,0,0,1,1,0,1,0);
+         viewButtonText(1,0,1,0,0,0,0,1,0,0,0,0);
+         buttonWrite(1,"Lick");
+         buttonWrite(3,"Poke");
+         buttonWrite(9,"Cock Carv");
+         buttonWrite(11,"Milk Bottle");
+         buttonWrite(8,"Leave");
+         if(checkItem(207))
+         {
+            Choice9.visible = true;
+         }
+         if(checkItem(500) || checkItem(501))
+         {
+            Choice11.visible = true;
+         }
+         outputMainText("What would you like to do with the statue\'s ear?",true);
+         doListen = function():void
+         {
+            if(buttonChoice == 1)
+            {
+               outputMainText("You lick the statue\'s ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...",true);
+               outputMainText("\r\rA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they\'re pushed aside. Birds fly up and away to escape the tremors. And soon enough, you\'re staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\r\rOnce the process settles, you move in to inspect it. You can\'t read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",false);
+               if(checkItem(254) || checkStash(254))
+               {
+                  outputMainText("\r\rYou have already taken the lantern from here, so there\'s not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",false);
+               }
+               else
+               {
+                  outputMainText("\r\rThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can\'t seem to find anything else to do with this hidden entrance and your left having to head back to town.",false);
+                  itemAdd(254);
+               }
+               hrs = 3;
+               doEnd();
+            }
+            if(buttonChoice == 3)
+            {
+               outputMainText("You attempt to poke the statue\'s ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn\'t seem to like it.",true);
+               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
+               if(boobTotal == 2)
+               {
+                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
+                  if(breastSize > 4)
+                  {
+                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
+                  }
+                  boobTotal = 4;
+                  fourBoobAffinity = 100;
+               }
+               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
+               if(ment > 60)
+               {
+                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
+               }
+               fertilityStatueCurse = 48;
+               minLust += 10;
+               doLust(0,0);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
                hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 9)
+            {
+               outputMainText("You attempt to stick a cock carving into the statue\'s ear. You attempt to stick a penis-like object into someone\'s ear. What the hell is wrong with you?!",true);
+               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
+               if(boobTotal == 2)
+               {
+                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
+                  if(breastSize > 4)
+                  {
+                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
+                  }
+                  boobTotal = 4;
+                  fourBoobAffinity = 100;
+               }
+               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
+               if(ment > 60)
+               {
+                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
+               }
+               fertilityStatueCurse = 48;
+               loseManyItem(207,1);
+               minLust += 10;
+               doLust(0,0);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 11)
+            {
+               outputMainText("You attempt pour the milk into the statue\'s ear. Why? Maybe if there was a buildup of ear-wax that might be a good idea, but even then that\'s not exactly smart.",true);
+               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
+               if(boobTotal == 2)
+               {
+                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
+                  if(breastSize > 4)
+                  {
+                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
+                  }
+                  boobTotal = 4;
+                  fourBoobAffinity = 100;
+               }
+               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
+               if(ment > 60)
+               {
+                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
+               }
+               fertilityStatueCurse = 48;
+               if(checkItem(500))
+               {
+                  loseManyItem(500,1);
+               }
+               else
+               {
+                  loseManyItem(501,1);
+               }
+               minLust += 10;
+               doLust(0,0);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 8)
+            {
+               outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",true);
+               hrs = 1;
                doEnd();
             }
          };
       }
-      else
+      elif(buttonChoice == 6)
       {
-         this.outputMainText("Pocketing it before being caught, you head back to Softlik.",false);
-         this.itemAdd(500);
-         this.hrs = 2;
-         this.doEnd();
+         viewButtonOutline(1,0,1,0,0,0,0,1,1,0,1,0);
+         viewButtonText(1,0,1,0,0,0,0,1,0,0,0,0);
+         buttonWrite(1,"Lick");
+         buttonWrite(3,"Poke");
+         buttonWrite(9,"Cock Carv");
+         buttonWrite(11,"Milk Bottle");
+         if(checkItem(207))
+         {
+            Choice9.visible = true;
+         }
+         if(checkItem(500) || checkItem(501))
+         {
+            Choice11.visible = true;
+         }
+         buttonWrite(8,"Leave");
+         outputMainText("What would you like to do with the statue\'s four breasts?",true);
+         doListen = function():void
+         {
+            if(buttonChoice == 1)
+            {
+               outputMainText("You lick the statue\'s breasts, pleasuring the nipples that stick out. It\'s not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               doSexP(10);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 3)
+            {
+               outputMainText("You attempt to poke the statue\'s boobs. The boobs definitely don\'t bite back, but it seems like a rather annoying way to react to boobs.",true);
+               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
+               if(boobTotal == 2)
+               {
+                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
+                  if(breastSize > 4)
+                  {
+                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
+                  }
+                  boobTotal = 4;
+                  fourBoobAffinity = 100;
+               }
+               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
+               if(ment > 60)
+               {
+                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
+               }
+               fertilityStatueCurse = 48;
+               minLust += 10;
+               doLust(0,0);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 9)
+            {
+               outputMainText("You wedge a cock carving in between the statue\'s two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               doSexP(15);
+               loseManyItem(207,1);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 11)
+            {
+               outputMainText("You pour the milk out over the breasts until they\'re completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within.\r\rAt the base of the statue, a hidden compartment pops out.",true);
+               if(knowBazoomba == false)
+               {
+                  outputMainText(" A scroll rolls out, allowing you to take it. You open it up and read through the various pictographs. It seems to be an alchemical recipe! You can make out the actual ingredients for the concoction, but you can\'t seem to tell what it is exactly, only able to determine that it creates \"more of the best things in life\"?\r\rYou have learned the recipe for Bazoomba!",false);
+                  knowBazoomba = true;
+               }
+               else
+               {
+                  outputMainText(" However, it\'s completely empty. You already took the recipe that was in here before, so there\'s nothing left within.",false);
+               }
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               hrs = 2;
+               if(checkItem(500))
+               {
+                  loseManyItem(500,1);
+               }
+               else
+               {
+                  loseManyItem(501,1);
+               }
+               doEnd();
+            }
+            if(buttonChoice == 8)
+            {
+               outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",true);
+               hrs = 1;
+               doEnd();
+            }
+         };
       }
+      elif(buttonChoice == 10)
+      {
+         viewButtonOutline(1,0,1,0,0,0,0,1,1,0,1,0);
+         viewButtonText(1,0,1,0,0,0,0,1,0,0,0,0);
+         buttonWrite(1,"Lick");
+         buttonWrite(3,"Poke");
+         buttonWrite(9,"Cock Carv");
+         buttonWrite(11,"Milk Bottle");
+         if(checkItem(207))
+         {
+            Choice9.visible = true;
+         }
+         if(checkItem(500) || checkItem(501))
+         {
+            Choice11.visible = true;
+         }
+         buttonWrite(8,"Leave");
+         outputMainText("What would you like to do with the statue\'s gaping pussy?",true);
+         doListen = function():void
+         {
+            if(buttonChoice == 1)
+            {
+               outputMainText("You lick the statue\'s pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               doSexP(20);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 3)
+            {
+               outputMainText("You poke the statue\'s gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It\'s not quite like the real thing, but a fun thing to do nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
+               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
+               doSexP(8);
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 9)
+            {
+               outputMainText("You slide a cock carving up into the statue\'s open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...",true);
+               outputMainText("\r\rA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they\'re pushed aside. Birds fly up and away to escape the tremors. And soon enough, you\'re staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\r\rOnce the process settles, you move in to inspect it. You can\'t read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",false);
+               if(checkItem(254) || checkStash(254))
+               {
+                  outputMainText("\r\rYou have already taken the lantern from here, so there\'s not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",false);
+               }
+               else
+               {
+                  outputMainText("\r\rThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can\'t seem to find anything else to do with this hidden entrance and your left having to head back to town.",false);
+                  itemAdd(254);
+               }
+               loseManyItem(207,1);
+               hrs = 3;
+               doEnd();
+            }
+            if(buttonChoice == 11)
+            {
+               outputMainText("You push the bottle of milk up against the statue\'s pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you\'re looking rather pregnant!\r\rThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...",true);
+               pregArray.push(true,504,208,200,0);
+               if(checkItem(500))
+               {
+                  loseManyItem(500,1);
+               }
+               else
+               {
+                  loseManyItem(501,1);
+               }
+               hrs = 2;
+               doEnd();
+            }
+            if(buttonChoice == 8)
+            {
+               outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",true);
+               hrs = 1;
+               doEnd();
+            }
+         };
+      }
+      elif (buttonChoice == 12):
+         OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
+         hrs = 1
+         DoEnd()
+   else if(chance == 2)
+   {
+      this.outputMainText("With all the flowers in this vibrant valley, one in particular seems to lure you in. The scent caught your nose from quite the distance, so delightfully fragrant, and yet its petals are merely black with white stripes, not nearly as colorful as the rest.\r\rHowever, the smell alone is worth holding on to, so you pick the flower and slip it into your bag.",true);
+      this.itemAdd(255);
+      this.hrs = 2;
+      this.doEnd();
+   }
+   else if(chance == 3)
+   {
+      this.outputMainText("Strolling through the pleasant valley, a bush catches your eye. Its fruit are large and round, looking quite delicious. You find a ripe one and pluck it, storing it for later when you\'re hungry.",true);
+      this.itemAdd(251);
+      this.hrs = 2;
+      this.doEnd();
+   }
+   else if(chance == 4)
+   {
+      this.outputMainText("While exploring the valley, you step on something rather hard. Quickly lifting your " + this.legDesc(9) + ", you find a small item sticking up out of the ground. With a tear-drop shape, it seems to be completely made of wood and rather old. Its surface is engraved with depictions of tree-like people losing their limbs and growing up towards the sun at the tip of the tear-drop.\r\rThis might be of some use, so you pocket it.",true);
+      this.itemAdd(249);
+      this.hrs = 2;
+      this.doEnd();
+   }
+   else if(chance == 5)
+   {
+      this.outputMainText("The valley is just so bright and lively that... you feel like you could just rest here forever... In fact... you lie down in a bed of flowers and drift off to sleep...",true);
+      this.doNext();
+      this.doListen = function():void
+      {
+         outputMainText("You wake up some time later. You have no idea how long you were out at first, but the fact that some of the flowers have grown around you and a few bugs have taken up home is a bit disconcerting. You feel completely refreshed, though a little drowsy in some respects. You quickly jump up and head out of the valley before any more time passes and head back into town.\r\rApparently you had been gone for a couple days...",true);
+         hrs += 48;
+         exhaustion = 0;
+         skipExhaustion = true;
+         doLust(-10,0);
+         stats(0,0,-1,0);
+         doHP(1000000);
+         doEnd();
+      };
    }
 }
-!def DoOldCave():
-!def DoDen():
-!def DoValley():
 def DoDungeon():
    global currentDungeon
    if (currentDungeon > 1000) and (currentDungeon <= 1010):
@@ -22149,28 +24096,28 @@ def Aff(tempRace, tempChange, otherChange):
    if (tempRace == 12):
       bug += math.ceil(tempChange * changeMod) - math.ceil(otherChange * changeMod)
 
-!def AffinityChange():
-   global humanAffinity, human, horseAffinity, horse, wolfAffinity, wolf, catAffinity, cat, cowAffinity, cow, lizardAffinity, lizard, rabbitAffinity, rabbit, mouseAffinity, mouse, birdAffinity, bird, pigAffinity, pig, skunkAffinity, skunk, bugAffinity, bug, changeMod, cockTotal, vagTotal, cockSizeMod, vagSizeMod, knot, cumMod, heat, heatMaxTime, heatTime, nippleSize, milkMod, hips, lactation, udders, udderSize, teatSize, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, eggLaying, eggType, eggMaxTime, eggTime, pregRate, runMod, balls, showBalls, coinMod, bellyMod, buttMod, skinType, tail, enticeMod, butt, lockSkin, lockFace, faceType, lockTail, wings, lockEars, ears, lockBreasts, breastSize, boobTotal, lockLegs, legType, cowTaurAffinity, humanTaurAffinity, lockNipples, nipType, lockCock, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, dominant
+def AffinityChange():
+   global humanAffinity, human, horseAffinity, horse, wolfAffinity, wolf, catAffinity, cat, cowAffinity, cow, lizardAffinity, lizard, rabbitAffinity, rabbit, mouseAffinity, mouse, birdAffinity, bird, pigAffinity, pig, skunkAffinity, skunk, bugAffinity, bug, changeMod, cockTotal, vagTotal, cockSizeMod, vagSizeMod, knot, cumMod, heat, heatMaxTime, heatTime, nippleSize, milkMod, hips, lactation, udders, udderSize, teatSize, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, eggLaying, eggType, eggMaxTime, eggTime, pregRate, runMod, balls, showBalls, coinMod, bellyMod, buttMod, skinType, tail, enticeMod, butt, lockSkin, lockFace, faceType, lockTail, weapon, wings, lockEars, ears, twoBoobAffinity, fourBoobAffinity, sixBoobAffinity, eightBoobAffinity, tenBoobAffinity, lockBreasts, breastSize, boobTotal, lockLegs, legType, cowTaurAffinity, humanTaurAffinity, lockNipples, nipType, lockCock, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, dominant
    affinityCheckArray = list(())
    domCheck = 0
    second = 0
-   var maxSkin:* = undefined;
-   var maxFur:* = undefined;
-   var maxScale:* = undefined;
-   var maxFeather:* = undefined;
-   var maxChitin:* = undefined;
-   var maxNonSkin:* = undefined;
-   var maxNonFur:* = undefined;
-   var maxNonScale:* = undefined;
-   var maxNonFeather:* = undefined;
-   var maxNonChitin:* = undefined;
-   var hasMuzzle:Boolean = False
-   var tempTailArray:Array = null;
-   var maxTail:* = undefined;
-   var secondTail:* = undefined;
-   var maxNonTail:* = undefined;
-   var maxNonWings:* = undefined;
-   var maxWings:* = undefined;
+   maxSkin = ""
+   maxFur = ""
+   maxScale = ""
+   maxFeather = ""
+   maxChitin = ""
+   maxNonSkin = ""
+   maxNonFur = ""
+   maxNonScale = ""
+   maxNonFeather = ""
+   maxNonChitin = ""
+   hasMuzzle:bool = False
+   tempTailArray:list = ""
+   maxTail = ""
+   secondTail = ""
+   maxNonTail = ""
+   maxNonWings = ""
+   maxWings = ""
    twoBoob = 0
    sixBoob = 0
    fourBoob = 0
@@ -22183,8 +24130,8 @@ def Aff(tempRace, tempChange, otherChange):
    nonTenBoob = 0
    bipedal = 0
    bipedalDigiPaw = 0
-   otherLegs = list(())
-   legArray = list(())
+   otherLegs = []
+   legArray = []
    secondLegs = 0
    nip0 = 0
    nip1 = 0
@@ -22194,8 +24141,8 @@ def Aff(tempRace, tempChange, otherChange):
    nonNip2 = 0
    egg0 = 0
    egg1 = 0
-   var nonEgg0:* = undefined;
-   var nonEgg1:* = undefined;
+   nonEgg0 = ""
+   nonEgg1 = ""
    OutputMainText("Something feels odd...",True)
    chance = Percent()
    affinityCheckArray = []
@@ -22799,347 +24746,199 @@ def Aff(tempRace, tempChange, otherChange):
       if ((dominant == 3) and (wolfAffinity > (secondTail + 10)) and (tail > 1) and (tail != 3)):
          tail = 3
          OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's.",False)
-!      if(this.dominant == 4 && this.catAffinity > secondTail + 10 && this.tail > 1 && this.tail != 4)
-      {
-         this.tail = 4;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it\'s oh so soft. Just like a cat\'s.",False);
-      }
-      if(this.dominant == 5 && this.cowAffinity > secondTail + 10 && this.tail > 1 && this.tail != 5)
-      {
-         this.tail = 5;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your " + this.buttDesc() + " backside and you can swat yourself with the tip like a soft whip. Just like a cow\'s.",False);
-      }
-      if(this.dominant == 6 && this.lizardAffinity > secondTail + 10 && this.tail > 1 && this.tail != 6)
-      {
-         this.tail = 6;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It\'s quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard\'s.",False);
-      }
-      if(this.dominant == 7 && this.rabbitAffinity > secondTail + 10 && this.tail > 1 && this.tail != 7)
-      {
-         this.tail = 7;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your " + this.buttDesc() + " bum cutely and quite fluffy. Much like a rabbit\'s.",False);
-      }
-      if(this.dominant == 8 && this.mouseAffinity > secondTail + 10 && this.tail > 1 && this.tail != 8)
-      {
-         this.tail = 8;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn\'t really hide the pink skin underneath. It whips above your " + this.buttDesc() + " bum and you can curl it around with limited control. Just like a mouse\'s.",False);
-      }
-      if(this.dominant == 9 && this.birdAffinity > secondTail + 10 && this.tail > 1 && this.tail != 9)
-      {
-         this.tail = 9;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird\'s.",False);
-      }
-      if(this.dominant == 10 && this.pigAffinity > secondTail + 10 && this.tail > 1 && this.tail != 10)
-      {
-         this.tail = 10;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig\'s.",False);
-      }
-      if(this.dominant == 11 && this.skunkAffinity > secondTail + 10 && this.tail > 1 && this.tail != 11)
-      {
-         this.tail = 11;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base",False);
-         if(this.skinType == 2 && this.skunkAffinity >= 40)
-         {
-            this.outputMainText(" where it meets up with the stripes of your fur",False);
-         }
-         this.outputMainText(". Just like a skunk\'s.",False);
-      }
-      if(this.dominant == 12 && this.bugAffinity > secondTail + 10 && this.tail > 1 && this.tail != 12)
-      {
-         this.tail = 12;
-         this.outputMainText("\r\rYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It\'s so big and weighty with flesh that you can hardly move it, merely resting against your " + this.buttDesc() + " butt. And at the tip where it\'s rather blunt, you can feel another hole. It\'s not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?",False);
-      }
-      if(this.weapon == 127 && this.tail != 4 && this.tail != 5 && this.tail != 6 && this.tail != 8)
-      {
-         this.weapon = 10;
-      }
-   }
-   maxNonWings = Math.max(this.humanAffinity,this.horseAffinity,this.wolfAffinity,this.catAffinity,this.cowAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.pigAffinity);
-   maxWings = Math.max(this.birdAffinity);
-   if(this.wings < 1 && maxWings > maxNonWings + 60)
-   {
-      if(this.dominant == 9 && this.birdAffinity > maxNonWings + 60)
-      {
-         this.outputMainText("\r\rA sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and " + this.legDesc(6) + " as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your " + this.clothesTop() + ", stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself.\r\rStanding, you flap your new feathery wings. While not strong enough to carry you long distances, they\'ll definitely help you flee from unwanted threats.",False);
-         this.wings = 9;
-      }
-      this.runMod += 20;
-   }
-   if(this.wings > 0 && maxNonWings > maxWings + 60)
-   {
-      this.outputMainText("\r\rYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the " + this.skinDesc() + " left smooth as though there were never anything there. You have lost your wings, it seems.",False);
-      this.runMod -= 20;
-      this.wings = 0;
-   }
-   if(this.wings > 0 && this.dominant != this.wings)
-   {
-   }
-   if(this.lockEars == 0)
-   {
-      if(this.dominant == 1 && this.humanAffinity > second + 15 && this.ears != 1)
-      {
-         this.ears = 1;
-         this.outputMainText("\r\rYour ears twitch as they become rounded and hug the sides of you head, looking more like a human\'s.",False);
-      }
-      if(this.dominant == 2 && this.horseAffinity > second + 15 && this.ears != 2)
-      {
-         this.ears = 2;
-         this.outputMainText("\r\rYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse\'s.",False);
-      }
-      if(this.dominant == 3 && this.wolfAffinity > second + 15 && this.ears != 3)
-      {
-         this.ears = 3;
-         this.outputMainText("\r\rYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf\'s.",False);
-      }
-      if(this.dominant == 4 && this.catAffinity > second + 15 && this.ears != 4)
-      {
-         this.ears = 4;
-         this.outputMainText("\r\rYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat\'s.",False);
-      }
-      if(this.dominant == 5 && this.cowAffinity > second + 15 && this.ears != 5)
-      {
-         this.ears = 5;
-         this.outputMainText("\r\rYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow\'s.",False);
-      }
-      if(this.dominant == 6 && this.lizardAffinity > second + 15 && this.ears != 6)
-      {
-         this.ears = 6;
-         this.outputMainText("\r\rYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.",False);
-      }
-      if(this.dominant == 7 && this.rabbitAffinity > second + 15 && this.ears != 7)
-      {
-         this.ears = 7;
-         this.outputMainText("\r\rYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit\'s.",False);
-      }
-      if(this.dominant == 8 && this.mouseAffinity > second + 15 && this.ears != 8)
-      {
-         this.ears = 8;
-         this.outputMainText("\r\rYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse\'s.",False);
-      }
-      if(this.dominant == 9 && this.birdAffinity > second + 15 && this.ears != 9)
-      {
-         this.ears = 9;
-         this.outputMainText("\r\rYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird\'s.",False);
-      }
-      if(this.dominant == 10 && this.pigAffinity > second + 15 && this.ears != 10)
-      {
-         this.ears = 10;
-         this.outputMainText("\r\rYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig\'s.",False);
-      }
-      if(this.dominant == 11 && this.skunkAffinity > second + 15 && this.ears != 11)
-      {
-         this.ears = 11;
-         this.outputMainText("\r\rYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk\'s.",False);
-      }
-      if(this.dominant == 12 && this.bugAffinity > second + 15 && this.ears != 12)
-      {
-         this.ears = 12;
-         this.outputMainText("\r\rYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.",False);
-      }
-   }
-   twoBoob = Math.max(this.twoBoobAffinity,this.humanAffinity,this.horseAffinity,this.cowAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.birdAffinity);
-   sixBoob = Math.max(this.sixBoobAffinity,this.catAffinity,this.wolfAffinity,this.skunkAffinity);
-   fourBoob = Math.max(this.fourBoobAffinity);
-   eightBoob = Math.max(this.eightBoobAffinity,this.pigAffinity);
-   tenBoob = Math.max(this.tenBoobAffinity,this.bugAffinity);
-   nonTwoBoob = Math.max(sixBoob,fourBoob,eightBoob,tenBoob);
-   nonSixBoob = Math.max(twoBoob,fourBoob,eightBoob,tenBoob);
-   nonFourBoob = Math.max(twoBoob,sixBoob,eightBoob,tenBoob);
-   nonEightBoob = Math.max(twoBoob,sixBoob,fourBoob,tenBoob);
-   nonTenBoob = Math.max(twoBoob,fourBoob,eightBoob,sixBoob);
-   if(this.lockBreasts == 0)
-   {
-      if(twoBoob > nonTwoBoob + 20 && this.boobTotal != 2)
-      {
-         if(this.boobTotal == 4)
-         {
-            this.outputMainText("\r\rYour lower chest tickles",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", both growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your second set of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the highest pair on your chest.",False);
-         }
-         if(this.boobTotal == 6)
-         {
-            this.outputMainText("\r\rYour lower chest and belly tickle",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", both growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the primary pair on your chest.",False);
-         }
-         if(this.boobTotal == 8)
-         {
-            this.outputMainText("\r\rYour lower chest and belly tickle",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", both growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",False);
-         }
-         if(this.boobTotal == 10)
-         {
-            this.outputMainText("\r\rYour lower chest and belly tickle",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", both growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",False);
-         }
-         this.boobTotal = 2;
-      }
-      if(fourBoob > nonFourBoob + 20 && this.boobTotal != 4)
-      {
-         if(this.boobTotal == 2)
-         {
-            this.outputMainText("\r\rYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + this.skinDesc() + ", creating an extra row of breasts beneath the originals.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 6)
-         {
-            this.outputMainText("\r\rYour belly tickles",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your bottom set of nipples disappear flat into your " + this.skinDesc() + ", while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.",False);
-         }
-         if(this.boobTotal == 8)
-         {
-            this.outputMainText("\r\rYour belly tickles",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",False);
-         }
-         if(this.boobTotal == 10)
-         {
-            this.outputMainText("\r\rYour belly tickles",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your three lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",False);
-         }
-         this.boobTotal = 4;
-      }
-      if(sixBoob > nonSixBoob + 20 && this.boobTotal != 6)
-      {
-         if(this.boobTotal == 2)
-         {
-            this.outputMainText("\r\rYour lower chest and belly tickle. Four new nipples form amongst your " + this.skinDesc() + ", a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The nipples protrude as fleshy mounds form beneath them. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 4)
-         {
-            this.outputMainText("\r\rYour belly tickles. Two new nipples form amongst your " + this.skinDesc() + ", right below your second pair on your upper belly, leaving you with three rows of two breasts.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 8)
-         {
-            this.outputMainText("\r\rYour lower belly tickles",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your lowest set of nipples disappear flat into your " + this.skinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",False);
-         }
-         if(this.boobTotal == 10)
-         {
-            this.outputMainText("\r\rYour lower belly and the area above your crotch tickle",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",False);
-         }
-         this.boobTotal = 6;
-      }
-      if(eightBoob > nonEightBoob + 20 && this.boobTotal != 8)
-      {
-         if(this.boobTotal == 2)
-         {
-            this.outputMainText("\r\rYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + this.skinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they\'re all slightly smaller than your original pair.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 4)
-         {
-            this.outputMainText("\r\rYour chest and belly tickle. Four new nipples form amongst your " + this.skinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they\'re all the same size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 6)
-         {
-            this.outputMainText("\r\rYour belly tickles. Two new nipples form amongst your " + this.skinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 10)
-         {
-            this.outputMainText("\r\rThe area above your crotch tickles",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(", growing much lighter",False);
-            }
-            this.outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the rest grow slightly larger.",False);
-         }
-         this.boobTotal = 8;
-      }
-      if(tenBoob > nonTenBoob + 20 && this.boobTotal != 10)
-      {
-         if(this.boobTotal == 2)
-         {
-            this.outputMainText("\r\rYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + this.skinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they\'re all slightly smaller than your original pair.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 4)
-         {
-            this.outputMainText("\r\rYour chest and belly tickle. Six new nipples form amongst your " + this.skinDesc() + ", right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crtoch.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they\'re all the same size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 6)
-         {
-            this.outputMainText("\r\rYour lower belly  and the area above your crotch tickle. Four new nipples form amongst your " + this.skinDesc() + ", right below your third pair, leaving you with five rows of two breasts, from your chest down to your crotch.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         if(this.boobTotal == 8)
-         {
-            this.outputMainText("\r\rThe area above your crotch tickles. Two new nipples form amongst your " + this.skinDesc() + ", right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.",False);
-            if(this.breastSize > 4)
-            {
-               this.outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",False);
-            }
-         }
-         this.boobTotal = 10;
-      }
-   }
+      if ((dominant == 4) and (catAffinity > (secondTail + 10)) and (tail > 1) and (tail != 4)):
+         tail = 4
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it's oh so soft. Just like a cat's.",False)
+      if ((dominant == 5) and (cowAffinity > (secondTail + 10)) and (tail > 1) and (tail != 5)):
+         tail = 5
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your " + ButtDesc() + " backside and you can swat yourself with the tip like a soft whip. Just like a cow's.",False)
+      if ((dominant == 6) and (lizardAffinity > (secondTail + 10)) and (tail > 1) and (tail != 6)):
+         tail = 6
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It's quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard's.",False)
+      if ((dominant == 7) and (rabbitAffinity > (secondTail + 10)) and (tail > 1) and (tail != 7)):
+         tail = 7
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your " + ButtDesc() + " bum cutely and quite fluffy. Much like a rabbit's.",False)
+      if ((dominant == 8) and (mouseAffinity > (secondTail + 10)) and (tail > 1) and (tail != 8)):
+         tail = 8
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn't really hide the pink skin underneath. It whips above your " + ButtDesc() + " bum and you can curl it around with limited control. Just like a mouse's.",False)
+      if ((dominant == 9) and (birdAffinity > (secondTail + 10)) and (tail > 1) and (tail != 9)):
+         tail = 9
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird's.",False)
+      if ((dominant == 10) and (pigAffinity > (secondTail + 10)) and (tail > 1) and (tail != 10)):
+         tail = 10
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig's.",False)
+      if ((dominant == 11) and (skunkAffinity > (secondTail + 10)) and (tail > 1) and (tail != 11)):
+         tail = 11
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base",False)
+         if ((skinType == 2) and (skunkAffinity >= 40)):
+            OutputMainText(" where it meets up with the stripes of your fur",False)
+         OutputMainText(". Just like a skunk's.",False)
+      if ((dominant == 12) and (bugAffinity > (secondTail + 10)) and (tail > 1) and (tail != 12)):
+         tail = 12
+         OutputMainText("\n" + "\n" + "Your tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your " + ButtDesc() + " butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?",False)
+      if ((weapon == 127) and (tail != 4) and (tail != 5) and (tail != 6) and (tail != 8)):
+         weapon = 10
+   maxNonWings = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,pigAffinity, bugAffinity)
+   maxWings = max(birdAffinity)
+   if ((wings < 1) and (maxWings > (maxNonWings + 60))):
+      if ((dominant == 9) and (birdAffinity > (maxNonWings + 60))):
+         OutputMainText("\n" + "\n" + "A sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and " + LegDesc(6) + " as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your " + ClothesTop() + ", stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself." + "\n" + "\n" + "Standing, you flap your new feathery wings. While not strong enough to carry you long distances, they'll definitely help you flee from unwanted threats.",False)
+         wings = 9
+      runMod += 20
+   if ((wings > 0) and (maxNonWings > (maxWings + 60))):
+      OutputMainText("\n" + "\n" + "Your wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the " + SkinDesc() + " left smooth as though there were never anything there. You have lost your wings, it seems.",False)
+      runMod -= 20
+      wings = 0
+   if ((wings > 0) and (dominant != wings)):
+      x = 0
+   if (lockEars == 0):
+      if ((dominant == 1) and (humanAffinity > (second + 15)) and (ears != 1)):
+         ears = 1
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become rounded and hug the sides of you head, looking more like a human's.",False)
+      if ((dominant == 2) and (horseAffinity > (second + 15)) and (ears != 2)):
+         ears = 2
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse's.",False)
+      if ((dominant == 3) and (wolfAffinity > (second + 15)) and (ears != 3)):
+         ears = 3
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become triangular, standing pert atop your head, looking more like a wolf's.",False)
+      if ((dominant == 4) and (catAffinity > (second + 15)) and (ears != 4)):
+         ears = 4
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become triangular, standing pert atop your head, looking more like a cat's.",False)
+      if ((dominant == 5) and (cowAffinity > (second + 15)) and (ears != 5)):
+         ears = 5
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow's.",False)
+      if ((dominant == 6) and (lizardAffinity > (second + 15)) and (ears != 6)):
+         ears = 6
+         OutputMainText("\n" + "\n" + "Your ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.",False)
+      if ((dominant == 7) and (rabbitAffinity > (second + 15)) and (ears != 7)):
+         ears = 7
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit's.",False)
+      if ((dominant == 8) and (mouseAffinity > (second + 15)) and (ears != 8)):
+         ears = 8
+         OutputMainText("\n" + "\n" + "Your ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse's.",False)
+      if ((dominant == 9) and (birdAffinity > (second + 15)) and (ears != 9)):
+         ears = 9
+         OutputMainText("\n" + "\n" + "Your ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird's.",False)
+      if ((dominant == 10) and (pigAffinity > (second + 15)) and (ears != 10)):
+         ears = 10
+         OutputMainText("\n" + "\n" + "Your ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig's.",False)
+      if ((dominant == 11) and (skunkAffinity > (second + 15)) and (ears != 11)):
+         ears = 11
+         OutputMainText("\n" + "\n" + "Your ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk's.",False)
+      if ((dominant == 12) and (bugAffinity > (second + 15)) and (ears != 12)):
+         ears = 12
+         OutputMainText("\n" + "\n" + "Your ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.",False)
+   twoBoob = max(twoBoobAffinity,humanAffinity,horseAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity)
+   sixBoob = max(sixBoobAffinity,catAffinity,wolfAffinity,skunkAffinity)
+   fourBoob = max(fourBoobAffinity)
+   eightBoob = max(eightBoobAffinity,pigAffinity)
+   tenBoob = max(tenBoobAffinity,bugAffinity)
+   nonTwoBoob = max(sixBoob,fourBoob,eightBoob,tenBoob)
+   nonSixBoob = max(twoBoob,fourBoob,eightBoob,tenBoob)
+   nonFourBoob = max(twoBoob,sixBoob,eightBoob,tenBoob)
+   nonEightBoob = max(twoBoob,sixBoob,fourBoob,tenBoob)
+   nonTenBoob = max(twoBoob,fourBoob,eightBoob,sixBoob)
+   if (lockBreasts == 0):
+      if ((twoBoob > (nonTwoBoob + 20)) and (boobTotal != 2)):
+         if (boobTotal == 4):
+            OutputMainText("\n" + "\n" + "Your lower chest tickles",False)
+            if (breastSize > 4):
+               OutputMainText(", both growing much lighter",False)
+            OutputMainText(". Checking, you catch your second set of nipples disappear flat into your " + SkinDesc() + ", leaving you with only the highest pair on your chest.",False)
+         if (boobTotal == 6):
+            OutputMainText("\n" + "\n" + "Your lower chest and belly tickle",False)
+            if (breastSize > 4):
+               OutputMainText(", both growing much lighter",False)
+            OutputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + SkinDesc() + ", leaving you with only the primary pair on your chest.",False)
+         if (boobTotal == 8):
+            OutputMainText("\n" + "\n" + "Your lower chest and belly tickle",False)
+            if (breastSize > 4):
+               OutputMainText(", both growing much lighter",False)
+            OutputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + SkinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",False)
+         if (boobTotal == 10):
+            OutputMainText("\n" + "\n" + "Your lower chest and belly tickle",False)
+            if (breastSize > 4):
+               OutputMainText(", both growing much lighter",False)
+            OutputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + SkinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",False)
+         boobTotal = 2
+      if ((fourBoob > (nonFourBoob + 20)) and (boobTotal != 4)):
+         if (boobTotal == 2):
+            OutputMainText("\n" + "\n" + "Your lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+            if (breastSize > 4):
+               OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 6):
+            OutputMainText("\n" + "\n" + "Your belly tickles",False)
+            if (breastSize > 4):
+               OutputMainText(", growing much lighter",False)
+            OutputMainText(". Checking, you catch your bottom set of nipples disappear flat into your " + SkinDesc() + ", while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.",False)
+         if (boobTotal == 8):
+            OutputMainText("\n" + "\n" + "Your belly tickles",False)
+            if (breastSize > 4):
+               OutputMainText(", growing much lighter",False)
+            OutputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + SkinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",False)
+         if (boobTotal == 10):
+            OutputMainText("\n" + "\n" + "Your belly tickles",False)
+            if (breastSize > 4):
+               OutputMainText(", growing much lighter",False)
+            OutputMainText(". Checking, you catch your three lowest sets of nipples disappear flat into your " + SkinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",False)
+         boobTotal = 4
+      if ((sixBoob > (nonSixBoob + 20)) and (boobTotal != 6)):
+         if (boobTotal == 2):
+            OutputMainText("\n" + "\n" + "Your lower chest and belly tickle. Four new nipples form amongst your " + SkinDesc() + ", a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly.",False)
+            if (breastSize > 4):
+               OutputMainText(" The nipples protrude as fleshy mounds form beneath them. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 4):
+            OutputMainText("\n" + "\n" + "Your belly tickles. Two new nipples form amongst your " + SkinDesc() + ", right below your second pair on your upper belly, leaving you with three rows of two breasts.",False)
+            if (breastSize > 4):
+               OutputMainText(" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 8):
+            OutputMainText("\n" + "\n" + "Your lower belly tickles",False)
+            if (breastSize > 4):
+               OutputMainText(", growing much lighter",False)
+            OutputMainText(". Checking, you catch your lowest set of nipples disappear flat into your " + SkinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",False)
+         if (boobTotal == 10):
+            OutputMainText("\n" + "\n" + "Your lower belly and the area above your crotch tickle",False)
+            if (breastSize > 4):
+               OutputMainText(", growing much lighter",False)
+            OutputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + SkinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",False)
+         boobTotal = 6
+      if ((eightBoob > (nonEightBoob + 20)) and (boobTotal != 8)):
+         if (boobTotal == 2):
+            OutputMainText("\n" + "\n" + "Your lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they're all slightly smaller than your original pair.",False)
+            if (breastSize > 4):
+               OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 4):
+            OutputMainText("\n" + "\n" + "Your chest and belly tickle. Four new nipples form amongst your " + SkinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",False)
+            if (breastSize > 4):
+               OutputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 6):
+            OutputMainText("\n" + "\n" + "Your belly tickles. Two new nipples form amongst your " + SkinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",False)
+            if (breastSize > 4):
+               OutputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 10):
+            OutputMainText("\n" + "\n" + "The area above your crotch tickles",False)
+            if (breastSize > 4):
+               OutputMainText(", growing much lighter",False)
+            OutputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + SkinDesc() + ", while the rest grow slightly larger.",False)
+         boobTotal = 8
+      if ((tenBoob > (nonTenBoob + 20)) and (boobTotal != 10)):
+         if (boobTotal == 2):
+            OutputMainText("\n" + "\n" + "Your lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they're all slightly smaller than your original pair.",False)
+            if (breastSize > 4):
+               OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 4):
+            OutputMainText("\n" + "\n" + "Your chest and belly tickle. Six new nipples form amongst your " + SkinDesc() + ", right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crtoch.",False)
+            if (breastSize > 4):
+               OutputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 6):
+            OutputMainText("\n" + "\n" + "Your lower belly  and the area above your crotch tickle. Four new nipples form amongst your " + SkinDesc() + ", right below your third pair, leaving you with five rows of two breasts, from your chest down to your crotch.",False)
+            if (breastSize > 4):
+               OutputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         if (boobTotal == 8):
+            OutputMainText("\n" + "\n" + "The area above your crotch tickles. Two new nipples form amongst your " + SkinDesc() + ", right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.",False)
+            if (breastSize > 4):
+               OutputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+         boobTotal = 10
    bipedal = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity,pigAffinity)
    bipedalDigiPaw = max(skunkAffinity)
    otherLegs = [cowTaurAffinity,humanTaurAffinity]
@@ -23157,121 +24956,75 @@ def Aff(tempRace, tempChange, otherChange):
          LegChange(1001)
       if ((humanTaurAffinity > (secondLegs + 50)) and (legType != 1002)):
          LegChange(1002)
-   nip0 = Math.max(this.humanAffinity,this.horseAffinity,this.wolfAffinity,this.catAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.birdAffinity,this.pigAffinity);
-   nip1 = Math.max(this.cowAffinity);
-   nip2 = Math.max(this.bugAffinity);
-   nonNip0 = Math.max(nip1,nip2);
-   nonNip1 = Math.max(nip0,nip2);
-   nonNip2 = Math.max(nip0,nip1);
-   if(this.lockNipples == 0)
-   {
-      if(nip0 > nonNip0 + 60 && this.nipType != 0)
-      {
-         if(this.nipType == 1)
-         {
-            this.outputMainText("\r\rMany of your nipples begin to tickle. They begin to shrink beneath your " + this.clothesTop() + ", receding back into your breasts. As you lift the clothing away to see what\'s going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.",False);
-         }
-         if(this.nipType == 2)
-         {
-            this.outputMainText("\r\rYour nipples pop out from your breast, no longer sunken or hidden within.",False);
-         }
-         this.nipType = 0;
-      }
-      if(nip1 > nonNip1 + 60 && this.nipType != 1)
-      {
-         if(this.nipType == 2)
-         {
-            this.outputMainText("\r\rYour nipples pop out from your breast, no longer sunken or hidden within.",False);
-         }
-         if(this.nipType == 0 || this.nipType == 2)
-         {
-            this.outputMainText("\r\rSpots begin to tingle around your nipples. Your hand roves under your " + this.clothesTop() + " to inspect the areas, noticeably more sensitive than before. The patches grow softer and puff up beneath your fingertips, feeling rather... familiar? Pulling your " + this.clothesTop() + " " + this.pullUD(1) + ", you can see extra nipples form around the ones you already have, complete with darkened areoles and matching size.\r\rYour breasts now each have four nipples equidistant from each other, just as functional as the originals, and just as sensitive, each looking almost like a cow\'s udder...",False);
-         }
-         this.nipType = 1;
-      }
-      if(nip2 > nonNip2 + 60 && this.nipType != 2)
-      {
-         if(this.nipType == 1)
-         {
-            this.outputMainText("\r\rMany of your nipples begin to tickle. They begin to shrink beneath your " + this.clothesTop() + ", receding back into your breasts. As you lift the clothing away to see what\'s going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.",False);
-         }
-         if(this.nipType == 0 || this.nipType == 1)
-         {
-            this.outputMainText("\r\rYour nipples sink into your breasts, becoming inverted slits within your areola, only coming out when aroused.",False);
-         }
-         this.nipType = 2;
-      }
-   }
-   if(this.eggLaying > 0)
-   {
-      egg0 = Math.max(this.lizardAffinity,this.birdAffinity);
-      egg1 = Math.max(this.bugAffinity);
-      nonEgg0 = Math.max(egg1);
-      nonEgg1 = Math.max(egg0);
-      if(egg0 > nonEgg0 + 20 && this.eggType != 0)
-      {
-         this.outputMainText("\r\rYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.",False);
-         if(this.eggType == 1)
-         {
-            this.eggMaxTime += 22;
-         }
-         this.eggType = 0;
-      }
-      if(egg1 > nonEgg1 + 20 && this.eggType != 1)
-      {
-         this.outputMainText("\r\rYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.",False);
-         if(this.eggType == 0)
-         {
-            this.eggMaxTime -= 22;
-         }
-         this.eggType = 1;
-      }
-   }
-   if(this.lockCock == 0)
-   {
-      if(this.dominant == 1 && this.humanAffinity > second + 25 && this.human > 0 && this.cockTotal > 0 && this.humanCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to see " + this.oneYour(1) + " cock" + this.plural(1) + " hanging out from your body, limp and flaccid. It\'s smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human\'s.",False);
-         ++this.humanCocks;
-         this.cockLoss();
-      }
-      if(this.dominant == 2 && this.horseAffinity > second + 25 && this.horse > 0 && this.cockTotal > 0 && this.horseCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + this.clothesBottom() + ". It\'s long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse\'s.",False);
-         ++this.horseCocks;
-         this.cockLoss();
-      }
-      if(this.dominant == 3 && this.wolfAffinity > second + 25 && this.wolf > 0 && this.cockTotal > 0 && this.wolfCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Flexing your muscles, " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It\'s veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf\'s.",False);
-         ++this.wolfCocks;
-         this.cockLoss();
-      }
-      if(this.dominant == 4 && this.catAffinity > second + 25 && this.cat > 0 && this.cockTotal > 0 && this.catCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Flexing your muscles, " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, pink and soft. It\'s smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat\'s.",False);
-         ++this.catCocks;
-         this.cockLoss();
-      }
-      if(this.dominant == 6 && this.lizardAffinity > second + 25 && this.lizard > 0 && this.cockTotal > 0 && this.lizardCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as your cock" + this.plural(1) + " sink" + this.plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, looking quite purple. It\'s bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard\'s?",False);
-         ++this.lizardCocks;
-         this.cockLoss();
-      }
-      if(this.dominant == 7 && this.rabbitAffinity > second + 25 && this.rabbit > 0 && this.cockTotal > 0 && this.rabbitCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Flexing your muscles, " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, red and pointy. It\'s smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit\'s.",False);
-         ++this.rabbitCocks;
-         this.cockLoss();
-      }
-      if(this.dominant == 12 && this.bugAffinity > second + 25 && this.bug > 0 && this.cockTotal > 0 && this.bugCocks < this.cockTotal)
-      {
-         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to see " + this.oneYour(1) + " cock" + this.plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You\'re not really sure what it is, but some bugs do have rather... \'wild\' penises that could come close.",False);
-         ++this.bugCocks;
-         this.cockLoss();
-      }
-   }
+   nip0 = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity,pigAffinity)
+   nip1 = max(cowAffinity)
+   nip2 = max(bugAffinity)
+   nonNip0 = max(nip1,nip2)
+   nonNip1 = max(nip0,nip2)
+   nonNip2 = max(nip0,nip1)
+   if (lockNipples == 0):
+      if ((nip0 > (nonNip0 + 60)) and (nipType != 0)):
+         if (nipType == 1):
+            OutputMainText("\n" + "\n" + "Many of your nipples begin to tickle. They begin to shrink beneath your " + ClothesTop() + ", receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.",False)
+         if (nipType == 2):
+            OutputMainText("\n" + "\n" + "Your nipples pop out from your breast, no longer sunken or hidden within.",False)
+         nipType = 0
+      if ((nip1 > (nonNip1 + 60)) and (nipType != 1)):
+         if (nipType == 2):
+            OutputMainText("\n" + "\n" + "Your nipples pop out from your breast, no longer sunken or hidden within.",False)
+         if ((nipType == 0) or (nipType == 2)):
+            OutputMainText("\n" + "\n" + "Spots begin to tingle around your nipples. Your hand roves under your " + ClothesTop() + " to inspect the areas, noticeably more sensitive than before. The patches grow softer and puff up beneath your fingertips, feeling rather... familiar? Pulling your " + ClothesTop() + " " + PullUD(1) + ", you can see extra nipples form around the ones you already have, complete with darkened areoles and matching size." + "\n" + "\n" + "Your breasts now each have four nipples equidistant from each other, just as functional as the originals, and just as sensitive, each looking almost like a cow's udder...",False)
+         nipType = 1
+      if ((nip2 > (nonNip2 + 60)) and (nipType != 2)):
+         if (nipType == 1):
+            OutputMainText("\n" + "\n" + "Many of your nipples begin to tickle. They begin to shrink beneath your " + ClothesTop() + ", receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.",False)
+         if ((nipType == 0) or (nipType == 1)):
+            OutputMainText("\n" + "\n" + "Your nipples sink into your breasts, becoming inverted slits within your areola, only coming out when aroused.",False)
+         nipType = 2
+   if (eggLaying > 0):
+      egg0 = max(lizardAffinity,birdAffinity)
+      egg1 = max(bugAffinity)
+      nonEgg0 = max(egg1)
+      nonEgg1 = max(egg0)
+      if ((egg0 > (nonEgg0 + 20)) and (eggType != 0)):
+         OutputMainText("\n" + "\n" + "You sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.",False)
+         if (eggType == 1):
+            eggMaxTime += 22
+         eggType = 0
+      if ((egg1 > (nonEgg1 + 20)) and (eggType != 1)):
+         OutputMainText("\n" + "\n" + "You sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.",False)
+         if (eggType == 0):
+            eggMaxTime -= 22
+         eggType = 1
+   if (lockCock == 0):
+      if ((dominant == 1) and (humanAffinity > (second + 25)) and (human > 0) and (cockTotal > 0) and (humanCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to see " + OneYour(1) + " cock" + Plural(1) + " hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.",False)
+         humanCocks += 1
+         CockLoss()
+      if ((dominant == 2) and (horseAffinity > (second + 25)) and (horse > 0) and (cockTotal > 0) and (horseCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + OneYour(1) + " cock" + Plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + ClothesBottom() + ". It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.",False)
+         horseCocks += 1
+         CockLoss()
+      if ((dominant == 3) and (wolfAffinity > (second + 25)) and (wolf > 0) and (cockTotal > 0) and (wolfCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + OneYour(1) + " cock" + Plural(1) + ". Flexing your muscles, " + OneYour(1) + " cock" + Plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.",False)
+         wolfCocks += 1
+         CockLoss()
+      if ((dominant == 4) and (catAffinity > (second + 25)) and (cat > 0) and (cockTotal > 0) and (catCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + OneYour(1) + " cock" + Plural(1) + ". Flexing your muscles, " + OneYour(1) + " cock" + Plural(1) + " slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.",False)
+         catCocks += 1
+         CockLoss()
+      if ((dominant == 6) and (lizardAffinity > (second + 25)) and (lizard > 0) and (cockTotal > 0) and (lizardCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to watch as your cock" + Plural(1) + " sink" + Plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + OneYour(1) + " cock" + Plural(1) + " slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?",False)
+         lizardCocks += 1
+         CockLoss()
+      if ((dominant == 7) and (rabbitAffinity > (second + 25)) and (rabbit > 0) and (cockTotal > 0) and (rabbitCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + OneYour(1) + " cock" + Plural(1) + ". Flexing your muscles, " + OneYour(1) + " cock" + Plural(1) + " slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.",False)
+         rabbitCocks += 1
+         CockLoss()
+      if ((dominant == 12) and (bugAffinity > (second + 25)) and (bug > 0) and (cockTotal > 0) and (bugCocks < cockTotal)):
+         OutputMainText("\n" + "\n" + "Your " + HipDesc() + " hips twitch as " + OneYour(1) + " cock" + Plural(1) + " begins to feel strange. You open your " + ClothesBottom() + " to see what is happening, only to see " + OneYour(1) + " cock" + Plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... \'wild\' penises that could come close.",False)
+         bugCocks += 1
+         CockLoss()
    human = 0
    horse = 0
    wolf = 0
@@ -25514,6 +27267,8 @@ def Frame1():
    appearanceBoxVisible = False
    SideHide()
    ButtonFunctions.Visible(0,0,0,0,0,0,0,0,0,0,0,0)
+   for i in range(1, 13):
+      Amount.ViewAmount(i, False)
    HideAmount()
    HideUpDown()
    LoadPreferences()
@@ -25706,7 +27461,22 @@ class PanelButton12:
         if button12Visible == True:
             button12.destroy()
             button12Visible = False
-
+class Page:
+   def __init__():
+      global pagelabel, pageShow
+   def Show():
+      if (pageShow == False):
+         pagelabel = ttk.Label(frame2, text="BAG 1")
+         pagelabel.place(anchor=NW, height=30, width=80, x=20, y=0)
+         pageShow = True
+   def Hide():
+      if (pageShow == True):
+         pagelabel.destroy()
+         pageShow = False
+   def TextChange(text):
+      pagelabel["text"] = text
+   def TextClear():
+      pagelabel["text"] = ""
 class ButtonFunctions:
    def __init__():
       global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
@@ -25786,7 +27556,134 @@ class ButtonFunctions:
       if a == 12:
          button12["text"] = b
 
-    def WriteCommand():
+   def WriteCommand():
+      pass
+class Amount:
+   def __init__():
+      global amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, amountlabel1visible, amountlabel2visible, amountlabel3visible, amountlabel4visible, amountlabel5visible, amountlabel6visible, amountlabel7visible, amountlabel8visible, amountlabel9visible, amountlabel10visible, amountlabel11visible, amountlabel12visible
+   def WriteAmount(number, amount):
+      if (number == 1):
+         amountlabel1["text"] = amount
+      elif (number == 2):
+         amountlabel2["text"] = amount
+      elif (number == 3):
+         amountlabel3["text"] = amount
+      elif (number == 4):
+         amountlabel4["text"] = amount
+      elif (number == 5):
+         amountlabel5["text"] = amount
+      elif (number == 6):
+         amountlabel6["text"] = amount
+      elif (number == 7):
+         amountlabel7["text"] = amount
+      elif (number == 8):
+         amountlabel8["text"] = amount
+      elif (number == 9):
+         amountlabel9["text"] = amount
+      elif (number == 10):
+         amountlabel10["text"] = amount
+      elif (number == 11):
+         amountlabel11["text"] = amount
+      elif (number == 12):
+         amountlabel12["text"] = amount
+   def ViewAmount(buttonNum:int, tempBool:bool):
+      if (buttonNum == 1):
+         if (tempBool == True and amountlabel1visible == False):
+            amountlabel1 = ttk.Label(buttonpanel, text="000")
+            amountlabel1.place(anchor=NW, height=15, width=30, x=110, y=33)
+            amountlabel1visible = True
+         elif (tempBool == False and amountlabel1visible == True):
+            amountlabel1.destroy()
+            amountlabel1visible = False
+      elif (buttonNum == 2):
+         if (tempBool == True and amountlabel2visible == False):
+            amountlabel2 = ttk.Label(buttonpanel, text="000")
+            amountlabel2.place(anchor=NW, height=15, width=30, x=270, y=33)
+            amountlabel2visible = True
+         elif (tempBool == False and amountlabel2visible == True):
+            amountlabel2.destroy()
+            amountlabel2visible = False
+      elif (buttonNum == 3):
+         if (tempBool == True and amountlabel3visible == False):
+            amountlabel3 = ttk.Label(buttonpanel, text="000")
+            amountlabel3.place(anchor=NW, height=15, width=30, x=430, y=33)
+            amountlabel3visible = True
+         elif (tempBool == False and amountlabel3visible == True):
+            amountlabel3.destroy()
+            amountlabel3visible = False
+      elif (buttonNum == 4):
+         if (tempBool == True and amountlabel4visible == False):
+            amountlabel4 = ttk.Label(buttonpanel, text="000")
+            amountlabel4.place(anchor=NW, height=15, width=30, x=590, y=33)
+            amountlabel4visible = True
+         elif (tempBool == False and amountlabel4visible == True):
+            amountlabel4.destroy()
+            amountlabel4visible = False
+      elif (buttonNum == 5):
+         if (tempBool == True and amountlabel5visible == False):
+            amountlabel5 = ttk.Label(buttonpanel, text="000")
+            amountlabel5.place(anchor=NW, height=15, width=30, x=110, y=99)
+            amountlabel5visible = True
+         elif (tempBool == False and amountlabel5visible == True):
+            amountlabel5.destroy()
+            amountlabel5visible = False
+      elif (buttonNum == 6):
+         if (tempBool == True and amountlabel6visible == False):
+            amountlabel6 = ttk.Label(buttonpanel, text="000")
+            amountlabel6.place(anchor=NW, height=15, width=30, x=270, y=99)
+            amountlabel6visible = True
+         elif (tempBool == False and amountlabel6visible == True):
+            amountlabel6.destroy()
+            amountlabel6visible = False
+      elif (buttonNum == 7):
+         if (tempBool == True and amountlabel7visible == False):
+            amountlabel7 = ttk.Label(buttonpanel, text="000")
+            amountlabel7.place(anchor=NW, height=15, width=30, x=430, y=99)
+            amountlabel7visible = True
+         elif (tempBool == False and amountlabel7visible == True):
+            amountlabel7.destroy()
+            amountlabel7visible = False
+      elif (buttonNum == 8):
+         if (tempBool == True and amountlabel8visible == False):
+            amountlabel8 = ttk.Label(buttonpanel, text="000")
+            amountlabel8.place(anchor=NW, height=15, width=30, x=590, y=99)
+            amountlabel8visible = True
+         elif (tempBool == False and amountlabel8visible == True):
+            amountlabel8.destroy()
+            amountlabel8visible = False
+      elif (buttonNum == 9):
+         if (tempBool == True and amountlabel9visible == False):
+            amountlabel9 = ttk.Label(buttonpanel, text="000")
+            amountlabel9.place(anchor=NW, height=15, width=30, x=110, y=165)
+            amountlabel9visible = True
+         elif (tempBool == False and amountlabel9visible == True):
+            amountlabel9.destroy()
+            amountlabel9visible = False
+      elif (buttonNum == 10):
+         if (tempBool == True and amountlabel10visible == False):
+            amountlabel10 = ttk.Label(buttonpanel, text="000")
+            amountlabel10.place(anchor=NW, height=15, width=30, x=270, y=165)
+            amountlabel10visible = True
+         elif (tempBool == False and amountlabel10visible == True):
+            amountlabel10.destroy()
+            amountlabel10visible = False
+      elif (buttonNum == 11):
+         if (tempBool == True and amountlabel11visible == False):
+            amountlabel11 = ttk.Label(buttonpanel, text="000")
+            amountlabel11.place(anchor=NW, height=15, width=30, x=430, y=165)
+            amountlabel11visible = True
+         elif (tempBool == False and amountlabel11visible == True):
+            amountlabel11.destroy()
+            amountlabel11visible = False
+      elif (buttonNum == 12):
+         if (tempBool == True and amountlabel12visible == False):
+            amountlabel12 = ttk.Label(buttonpanel, text="000")
+            amountlabel12.place(anchor=NW, height=15, width=30, x=590, y=165)
+            amountlabel12visible = True
+         elif (tempBool == False and amountlabel12visible == True):
+            amountlabel12.destroy()
+            amountlabel12visible = False
+
 class SidePanel:
    def __init__():
       global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, appearancebutton
@@ -26069,6 +27966,43 @@ button11.place(anchor=NW, height=46, width=140, x=320, y=132)
 button12 = tkinter.Button(buttonpanel, text="Button 12", command=ButtonEvent12)
 button12.place(anchor=NW, height=46, width=140, x=480, y=132)
 
+amountlabel1 = ttk.Label(buttonpanel, text="000")
+amountlabel1.place(anchor=NW, height=15, width=30, x=110, y=33)
+amountlabel2 = ttk.Label(buttonpanel, text="000")
+amountlabel2.place(anchor=NW, height=15, width=30, x=270, y=33)
+amountlabel3 = ttk.Label(buttonpanel, text="000")
+amountlabel3.place(anchor=NW, height=15, width=30, x=430, y=33)
+amountlabel4 = ttk.Label(buttonpanel, text="000")
+amountlabel4.place(anchor=NW, height=15, width=30, x=590, y=33)
+amountlabel5 = ttk.Label(buttonpanel, text="000")
+amountlabel5.place(anchor=NW, height=15, width=30, x=110, y=99)
+amountlabel6 = ttk.Label(buttonpanel, text="000")
+amountlabel6.place(anchor=NW, height=15, width=30, x=270, y=99)
+amountlabel7 = ttk.Label(buttonpanel, text="000")
+amountlabel7.place(anchor=NW, height=15, width=30, x=430, y=99)
+amountlabel8 = ttk.Label(buttonpanel, text="000")
+amountlabel8.place(anchor=NW, height=15, width=30, x=590, y=99)
+amountlabel9 = ttk.Label(buttonpanel, text="000")
+amountlabel9.place(anchor=NW, height=15, width=30, x=110, y=165)
+amountlabel10 = ttk.Label(buttonpanel, text="000")
+amountlabel10.place(anchor=NW, height=15, width=30, x=270, y=165)
+amountlabel11 = ttk.Label(buttonpanel, text="000")
+amountlabel11.place(anchor=NW, height=15, width=30, x=430, y=165)
+amountlabel12 = ttk.Label(buttonpanel, text="000")
+amountlabel12.place(anchor=NW, height=15, width=30, x=590, y=165)
+
+amountlabel1visible = True
+amountlabel2visible = True
+amountlabel3visible = True
+amountlabel4visible = True
+amountlabel5visible = True
+amountlabel6visible = True
+amountlabel7visible = True
+amountlabel8visible = True
+amountlabel9visible = True
+amountlabel10visible = True
+amountlabel11visible = True
+amountlabel12visible = True
 
 #textmain
 textmain = tkScrolledText(mainframe, cursor="arrow", wrap="word")
@@ -26085,8 +28019,8 @@ frame2.place(anchor=NW, height=179, width=334, x=802, y=0)
 bccolorlabel4 = ttk.Label(frame2)
 bccolorlabel4.place(anchor=NW, height=179, width=334)
 
-bagstashlabel = ttk.Label(frame2, text="BAG 1")
-bagstashlabel.place(anchor=NW, height=30, width=80, x=20, y=0)
+pagelabel = ttk.Label(frame2, text="BAG 1")
+pagelabel.place(anchor=NW, height=30, width=80, x=20, y=0)
 """
 moveitembutton = tkinter.Button(frame2, text="Move Item")
 moveitembutton.place(anchor=CENTER, height=46, width=140, x=167, y=90)
