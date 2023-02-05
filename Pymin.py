@@ -1,3 +1,4 @@
+#!usr/bin/env python3
 import math
 import random
 import tkinter
@@ -2003,7 +2004,7 @@ def HideAmount():
    viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1)
    this.buttonWrite(4,"<<")
    this.buttonWrite(8,">>")
-   this.buttonWrite(12,"Return");
+   this.buttonWrite(12,"Return")
    var tempArray:Array = [];
    if (which == "Bag"):
       for i in range(0, 26):
@@ -17733,7 +17734,7 @@ def DoLake():
       DoEnd()
 
 !def DoDairyFarm():
-   global malonRep, malonPreg, malonChildren, hrs, buttonChoice, dairyFarmBrand, gender, cockTotal, sen, vagTotal, pregArray, udderSize, teatSize, teatPump, udderPlay, exhaustion, skipExhaustion, clitSize, clitPump, dominant, showBalls, udderLactation, lactation, milkEngorgementLevel, coin, cockSize, cockSizeMod, knot, lib, milkEngorgement, nippleSize, nipplePlay
+   global malonRep, malonPreg, malonChildren, hrs, buttonChoice, dairyFarmBrand, gender, cockTotal, sen, vagTotal, pregArray, udderSize, teatSize, teatPump, udderPlay, exhaustion, skipExhaustion, clitSize, clitPump, dominant, showBalls, udderLactation, lactation, milkEngorgementLevel, coin, cockSize, cockSizeMod, knot, lib, milkEngorgement, nippleSize, nipplePlay, udderEngorgementLevel, ment
    chance = EventSelect("Dairy Farm")
    if ((malonRep == 4) and (malonPreg > 216)):
       OutputMainText("As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly." + "\n" + "\n" + "\"Hurry! Malon's gone into labor!!\"" + "\n" + "\n" + "The farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction." + "\n" + "\n" + "\"Here it comes!\", one of the farmhands announces as the baby begins to crown." + "\n" + "\n" + "An eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl",True)
@@ -18419,366 +18420,294 @@ def DoLake():
             OutputMainText("A little too dangerous, and probably illegal with the whole trespassing thing, you turn around and walk away.",True)
             hrs = 1
             DoEnd()
-!      elif (malonRep > 0):
-         if(this.malonRep == 1 && (this.milkEngorgementLevel > 0 || this.udderEngorgementLevel > 0))
-         {
-            this.outputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + this.clothesTop() + " and shouts to the other workers that she\'s got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her \'condition\'. Nevertheless, she smiles as she heads towards you.\r\r\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",true);
-            this.buttonConfirm();
-            this.doListen = function():void
-            {
-               if(buttonChoice == 6)
+      elif (malonRep > 0):
+         if ((malonRep == 1) and ((milkEngorgementLevel > 0) or (udderEngorgementLevel > 0))):
+            OutputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + ClothesTop() + " and shouts to the other workers that she's got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her 'condition'. Nevertheless, she smiles as she heads towards you." + "\n" + "\n" + "\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",True)
+            ButtonConfirm()
+            #this.doListen = function():void
+            if (buttonChoice == 6):
+               OutputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she's quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom." + "\n" + "\n" + "In the center of the room sits a good-sized bed, with downy blankets and soft mattress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. Malon leads you towards her bed, motioning for you to sit." + "\n" + "\n" + "\"Just relax and I'll take care of it for you.\" She speaks sweetly.",True)
+               DoNext()
+               #doListen = function():void
+               OutputMainText("\n" + "\n" + "You sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + LegDesc(6) + "." + "\n" + "\n" + "\"Your " + ClothesTop() + ", please.\" She motions to it being in the way.",True)
+               if (ment > lib):
+                  OutputMainText("\n" + "\n" + "With a heavy blush in your cheeks, you nod back, pulling your " + ClothesTop() + " " + PullUD(1) + ", slowly exposing your ",False)
+               elif (ment > (lib - 10)):
+                  OutputMainText("\n" + "\n" + "With a slight blush in your cheeks, you nod back, pulling your " + ClothesTop() + " " + PullUD(1) + ", exposing your ",False)
+               else:
+                  OutputMainText("\n" + "\n" + "With a quick nod and no hesitation, you pull " + PullUD(1) + " your " + ClothesTop() + ", exposing your ",False)
+               if ((milkEngorgementLevel > 0) and (udderEngorgementLevel > 0) and (udders == True)):
+                  OutputMainText(BoobDesc() + " leaky breasts and letting your " + UdderDesc() + " udder spill into your lap.",False)
+               elif (milkEngorgementLevel > 0):
+                  OutputMainText(BoobDesc() + " leaky breasts.",False)
+               elif ((udderEngorgementLevel > 0) and (udders == True)):
+                  OutputMainText(UdderDesc() + " udder, your teats dripping into your lap.",False)
+               OutputMainText(" Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",False)
+               if (milkEngorgementLevel > 0):
+                  OutputMainText(NipDesc() + " nipples",False)
+               elif ((udderEngorgementLevel > 0) and (udders == True)):
+                  OutputMainText(TeatDesc() + " teats",False)
+               OutputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you're already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage." + "\n" + "\n" + "The room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you'd think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"" + "\n" + "\n" + "Her shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it's that time... Y-You don't mind, do you?\" She plucks at her shirt to indicate what she means.",False)
+               ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
+               templist = [5, "Help her", 7, "Let her"]
+               DoButtonChoices(templist)
+               #doListen = function():void
+               getMilk = 0
+               if (buttonChoice == 5):
+                  if ((milkEngorgementLevel > 0) and (udderEngorgementLevel > 0)):
+                     getMilk = MilkAmount(1) + MilkAmount(2)
+                  elif (milkEngorgementLevel > 0):
+                     getMilk = MilkAmount(1)
+                  elif (udderEngorgementLevel > 0):
+                     getMilk = MilkAmount(2)
+                  nipplePlay += 12
+                  if (udders == True):
+                     udderPlay += 12
+                  OutputMainText("You shake your head, telling her it's not alright." + "\n" + "\n" + "A bit defeated, the redness in her cheeks intensifies as she attempts to continue milking you while she drips away. However, you tell her to stop with that as well." + "\n" + "\n" + "Completely confused, her eyes quickly go wide as you reach out for her shirt and pull it up. When your hands gently caress her 6-inch long nipples, aiming them towards the bucket and squirting out some of her own milk, the blush in her face recedes as a soft smile grows on her face, cheerfully accepting your efforts." + "\n" + "\n" + "Facing each other, with your hands on each other's milky bits, the two of you tug and pull until each other sprays into the bucket with a gasp. More and more milk spills from you both, though the moans echoing between you two would suggest something more as they rise in volume. Until, eventually, Malon's tits gush into the bucket as her body quivers and her mouth yawns wide to cry out in ecstacy, only to let out a long \"Mooooooo!\"",True)
+                  DoNext()
+                  #doListen = function():void
+                  OutputMainText("Her hands let go of you, springing up to cover her mouth in fright. Her ears droop in shame and tears begin to well up in her eyes as she buries the rest of her face behind her hands. She jumps up from her stool, milk still spraying from her nipples and drenching you slightly, before she runs out of the room in utter embarrassment, her breasts swinging from side to side and painting the walls of the house with more milk." + "\n" + "\n" + "Unsure of what just happened, you clean yourself off and finish the last of your own lactation, neatly putting the buckets aside. You attempt to look for her, but with a farm so big you have no idea where to start. With a sigh, you head back to Softlik.",True)
+                  DoNext()
+                  #doListen = function():void
+                  OutputMainText("You don't get far, however, as you feel a tug at your " + ClothesTop() + " from behind." + "\n" + "\n" + "You turn to see Malon huffing a little, her shirt covered with milk after having been hastily put on having ran to catch up with you. She wipes her eyes with a sniffle." + "\n" + "\n" + "\"Umm... I... I'm so sorry for running out on you like that. I just wanted to thank you for being so kind to me, though... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I'll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can't help but think that they're right. I'm nothing but a big fat cow...\"" + "\n" + "\n" + "Her head hangs low, another tear dripping from her cheek, her bovine ears drooping in shame." + "\n" + "\n" + "\n" + "Do you want to tell her that she shouldn't act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",True)
+                  ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
+                  templist = [5, "Don't Moo", 7, "Moo"]
+                  DoButtonChoices(templist)
+                  #doListen = function():void
+                  if (buttonChoice == 5):
+                     OutputMainText("You nod and tell her that it'd probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, altouth the effort merely shows off her large rump even more...",True)
+                     Stats(0,2,0,-2)
+                     DoSexP(10)
+                     malonRep = 2
+                     DoEnd()
+                  elif (buttonChoice == 7):
+                     OutputMainText("You smile and pat her on the head, telling her that she shouldn't be ashamed of being a cow. There's a lot of races out there that are like other animals, so she's actually a whole new race on her own rather than a mere animal." + "\n" + "\n" + "Hearing your uplifting words, her head rises back up with a small smile, her ears twitching hesitantly. \"M-Mooo?\"" + "\n" + "\n" + "You nod in acceptance." + "\n" + "\n" + "She giggles cheerfully, lunging out you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your " + BoobDesc() + " chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flails about happily behind her." + "\n" + "\n" + "\n" + "As you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...",True)
+                     Stats(0,1,0,2)
+                     DoSexP(25)
+                     malonRep = 3
+                     ItemAdd(215)
+                     DoEnd()
+               elif (buttonChoice == 7):
+                  OutputMainText("Nodding your head to say it's alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly." + "\n" + "\n",True)
+                  if ((milkEngorgementLevel > 0) and (udderEngorgementLevel > 0)):
+                     getMilk = MilkAmount(1) + MilkAmount(2)
+                  elif (milkEngorgementLevel > 0):
+                     getMilk = MilkAmount(1)
+                  elif (udderEngorgementLevel > 0):
+                     getMilk = MilkAmount(2)
+                  if (getMilk <= 4000):
+                     OutputMainText("After filling up two buckets of milk, most of which was Malon's, she pushes them off to the side with a clap.",True)
+                  elif (getMilk <= 18000):
+                     OutputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",True)
+                  elif (getMilk <= 35500):
+                     OutputMainText("After filling up several buckets of milk, far surpassing Malon's amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",True)
+                  elif (getMilk > 35500):
+                     OutputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I'm so sorry! I didn't know it was that bad for you. Here!\"" + "\n" + "\n" + "She takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"" + "\n" + "\n" + "She wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",True)
+                  OutputMainText(" \"There, all done!\" She gently pats your " + BoobDesc() + " breasts",False)
+                  if (udders == True):
+                     OutputMainText(" and your " + UdderDesc() + " milky bag.",False)
+                  OutputMainText("\n" + "\n" + "\"I enjoyed this little milking session between us 'cows'. I hope to do it again with you some time!\" She smiles as she pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on your forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself." + "\n" + "\n" + "With a wave, you say goodbye and head back to Softlik.",False)
+                  hrs = 3
+                  DoLust(5,0)
+                  DoSexP(2)
+                  Stats(0,1,1,1)
+                  DoEnd()
+            else:
+               OutputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. However, as her own shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground, she blushes a little as she has now found a new reason for her excuse. She pulls her shawl down to cover her huge chest, turning away and scampering off into the main house to take care of business, leaving you to head back to Softlik.",True)
+               hrs = 1
+               DoEnd()
+         elif ((malonRep == 3) and ((milkEngorgementLevel > 0) or (udderEngorgementLevel > 0))):
+            OutputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + ClothesTop() + " and shouts to the other workers that she's got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her 'condition'. Nevertheless, she smiles as she heads towards you." + "\n" + "\n" + "\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",True)
+            ButtonConfirm()
+            #this.doListen = function():void
+            if (buttonChoice == 6):
+               OutputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she's quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom." + "\n" + "\n" + "In the center of the room sits a good-sized bed, with downy blankets and soft matress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. Malon leads you towards her bed, motioning for you to sit." + "\n" + "\n" + "\"Just relax and I'll take care of it for you.\" She speaks sweetly.",True)
+               DoNext()
+               #doListen = function():void
+!               outputMainText("\r\rYou sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + legDesc(6) + ".\r\r\"Your " + clothesTop() + ", please.\" She motions to it being in the way.",true);
+               if(ment > lib)
                {
-                  outputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she\'s quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom.\r\rIn the center of the room sits a good-sized bed, with downy blankets and soft mattress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. Malon leads you towards her bed, motioning for you to sit.\r\r\"Just relax and I\'ll take care of it for you.\" She speaks sweetly.",true);
-                  doNext();
-                  doListen = function():void
-                  {
-                     outputMainText("\r\rYou sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + legDesc(6) + ".\r\r\"Your " + clothesTop() + ", please.\" She motions to it being in the way.",true);
-                     if(ment > lib)
-                     {
-                        outputMainText("\r\rWith a heavy blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", slowly exposing your ",false);
-                     }
-                     else if(ment > lib - 10)
-                     {
-                        outputMainText("\r\rWith a slight blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", exposing your ",false);
-                     }
-                     else
-                     {
-                        outputMainText("\r\rWith a quick nod and no hesitation, you pull " + pullUD(1) + " your " + clothesTop() + ", exposing your ",false);
-                     }
-                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0 && udders == true)
-                     {
-                        outputMainText(boobDesc() + " leaky breasts and letting your " + udderDesc() + " udder spill into your lap.",false);
-                     }
-                     else if(milkEngorgementLevel > 0)
-                     {
-                        outputMainText(boobDesc() + " leaky breasts.",false);
-                     }
-                     else if(udderEngorgementLevel > 0 && udders == true)
-                     {
-                        outputMainText(udderDesc() + " udder, your teats dripping into your lap.",false);
-                     }
-                     outputMainText(" Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",false);
-                     if(milkEngorgementLevel > 0)
-                     {
-                        outputMainText(nipDesc() + " nipples",false);
-                     }
-                     else if(udderEngorgementLevel > 0 && udders == true)
-                     {
-                        outputMainText(teatDesc() + " teats",false);
-                     }
-                     outputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you\'re already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\r\rThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you\'d think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\r\rHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it\'s that time... Y-You don\'t mind, do you?\" She plucks at her shirt to indicate what she means.",false);
-                     viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
-                     viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
-                     buttonWrite(5,"Help her");
-                     buttonWrite(7,"Let her");
-                     doListen = function():void
-                     {
-                        var getMilk:int = 0;
-                        if(buttonChoice == 5)
-                        {
-                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(1) + milkAmount(2);
-                           }
-                           else if(milkEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(1);
-                           }
-                           else if(udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(2);
-                           }
-                           nipplePlay += 12;
-                           if(udders == true)
-                           {
-                              udderPlay += 12;
-                           }
-                           outputMainText("You shake your head, telling her it\'s not alright.\r\rA bit defeated, the redness in her cheeks intensifies as she attempts to continue milking you while she drips away. However, you tell her to stop with that as well.\r\rCompletely confused, her eyes quickly go wide as you reach out for her shirt and pull it up. When your hands gently caress her 6-inch long nipples, aiming them towards the bucket and squirting out some of her own milk, the blush in her face recedes as a soft smile grows on her face, cheerfully accepting your efforts.\r\rFacing each other, with your hands on each other\'s milky bits, the two of you tug and pull until each other sprays into the bucket with a gasp. More and more milk spills from you both, though the moans echoing between you two would suggest something more as they rise in volume. Until, eventually, Malon\'s tits gush into the bucket as her body quivers and her mouth yawns wide to cry out in ecstacy, only to let out a long \"Mooooooo!\"",true);
-                           doNext();
-                           doListen = function():void
-                           {
-                              outputMainText("Her hands let go of you, springing up to cover her mouth in fright. Her ears droop in shame and tears begin to well up in her eyes as she buries the rest of her face behind her hands. She jumps up from her stool, milk still spraying from her nipples and drenching you slightly, before she runs out of the room in utter embarrassment, her breasts swinging from side to side and painting the walls of the house with more milk.\r\rUnsure of what just happened, you clean yourself off and finish the last of your own lactation, neatly putting the buckets aside. You attempt to look for her, but with a farm so big you have no idea where to start. With a sigh, you head back to Softlik.",true);
-                              doNext();
-                              doListen = function():void
-                              {
-                                 outputMainText("You don\'t get far, however, as you feel a tug at your " + clothesTop() + " from behind.\r\rYou turn to see Malon huffing a little, her shirt covered with milk after having been hastily put on having ran to catch up with you. She wipes her eyes with a sniffle.\r\r\"Umm... I... I\'m so sorry for running out on you like that. I just wanted to thank you for being so kind to me, though... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I\'ll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can\'t help but think that they\'re right. I\'m nothing but a big fat cow...\"\r\rHer head hangs low, another tear dripping from her cheek, her bovine ears drooping in shame.\r\r\rDo you want to tell her that she shouldn\'t act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",true);
-                                 viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
-                                 viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
-                                 buttonWrite(5,"Don\'t Moo");
-                                 buttonWrite(7,"Moo");
-                                 doListen = function():void
-                                 {
-                                    if(buttonChoice == 5)
-                                    {
-                                       outputMainText("You nod and tell her that it\'d probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, altouth the effort merely shows off her large rump even more...",true);
-                                       stats(0,2,0,-2);
-                                       doSexP(10);
-                                       malonRep = 2;
-                                       doEnd();
-                                    }
-                                    if(buttonChoice == 7)
-                                    {
-                                       outputMainText("You smile and pat her on the head, telling her that she shouldn\'t be ashamed of being a cow. There\'s a lot of races out there that are like other animals, so she\'s actually a whole new race on her own rather than a mere animal.\r\rHearing your uplifting words, her head rises back up with a small smile, her ears twitching hesitantly. \"M-Mooo?\"\r\rYou nod in acceptance.\r\rShe giggles cheerfully, lunging out you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your " + boobDesc() + " chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flails about happily behind her.\r\r\rAs you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...",true);
-                                       stats(0,1,0,2);
-                                       doSexP(25);
-                                       malonRep = 3;
-                                       itemAdd(215);
-                                       doEnd();
-                                    }
-                                 };
-                              };
-                           };
-                        }
-                        if(buttonChoice == 7)
-                        {
-                           outputMainText("Nodding your head to say it\'s alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\r\r",true);
-                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(1) + milkAmount(2);
-                           }
-                           else if(milkEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(1);
-                           }
-                           else if(udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(2);
-                           }
-                           if(getMilk <= 4000)
-                           {
-                              outputMainText("After filling up two buckets of milk, most of which was Malon\'s, she pushes them off to the side with a clap.",true);
-                           }
-                           else if(getMilk <= 18000)
-                           {
-                              outputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",true);
-                           }
-                           else if(getMilk <= 35500)
-                           {
-                              outputMainText("After filling up several buckets of milk, far surpassing Malon\'s amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",true);
-                           }
-                           else if(getMilk > 35500)
-                           {
-                              outputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I\'m so sorry! I didn\'t know it was that bad for you. Here!\"\r\rShe takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"\r\rShe wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",true);
-                           }
-                           outputMainText(" \"There, all done!\" She gently pats your " + boobDesc() + " breasts",false);
-                           if(udders == true)
-                           {
-                              outputMainText(" and your " + udderDesc() + " milky bag.",false);
-                           }
-                           outputMainText("\r\r\"I enjoyed this little milking session between us \'cows\'. I hope to do it again with you some time!\" She smiles as she pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on your forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a wave, you say goodbye and head back to Softlik.",false);
-                           hrs = 3;
-                           doLust(5,0);
-                           doSexP(2);
-                           stats(0,1,1,1);
-                           doEnd();
-                        }
-                     };
-                  };
+                  outputMainText("\r\rWith a heavy blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", slowly exposing your ",false);
+               }
+               else if(ment > lib - 10)
+               {
+                  outputMainText("\r\rWith a slight blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", exposing your ",false);
                }
                else
                {
-                  outputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. However, as her own shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground, she blushes a little as she has now found a new reason for her excuse. She pulls her shawl down to cover her huge chest, turning away and scampering off into the main house to take care of business, leaving you to head back to Softlik.",true);
-                  hrs = 1;
-                  doEnd();
+                  outputMainText("\r\rWith a quick nod and no hesitation, you pull " + pullUD(1) + " your " + clothesTop() + ", exposing your ",false);
                }
-            };
-         }
-         else if(this.malonRep == 3 && (this.milkEngorgementLevel > 0 || this.udderEngorgementLevel > 0))
-         {
-            this.outputMainText("Malon is working outside as you approach the farm once again. She spots the blotches in your " + this.clothesTop() + " and shouts to the other workers that she\'s got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her \'condition\'. Nevertheless, she smiles as she heads towards you.\r\r\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",true);
-            this.buttonConfirm();
-            this.doListen = function():void
-            {
-               if(buttonChoice == 6)
+               if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0 && udders == true)
                {
-                  outputMainText("She nods with a soft smile, taking you by the hand. Leading you into the main farmhouse, she\'s quick to look around corners and check hallways, as if she were smuggling you into the building. Eventually, she brings you upstairs to a bedroom.\r\rIn the center of the room sits a good-sized bed, with downy blankets and soft matress. However, the sheets seem to be coated with some sort of wax, making them shiny and most likely waterproof. In a corner beside the bed stands a stack of several buckets, all clean and ready to be used. Malon leads you towards her bed, motioning for you to sit.\r\r\"Just relax and I\'ll take care of it for you.\" She speaks sweetly.",true);
-                  doNext();
-                  doListen = function():void
+                  outputMainText(boobDesc() + " leaky breasts and letting your " + udderDesc() + " udder spill into your lap.",false);
+               }
+               else if(milkEngorgementLevel > 0)
+               {
+                  outputMainText(boobDesc() + " leaky breasts.",false);
+               }
+               else if(udderEngorgementLevel > 0 && udders == true)
+               {
+                  outputMainText(udderDesc() + " udder, your teats dripping into your lap.",false);
+               }
+               outputMainText(" Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",false);
+               if(milkEngorgementLevel > 0)
+               {
+                  outputMainText(nipDesc() + " nipples",false);
+               }
+               else if(udderEngorgementLevel > 0 && udders == true)
+               {
+                  outputMainText(teatDesc() + " teats",false);
+               }
+               outputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you\'re already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\r\rThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you\'d think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\r\rHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it\'s that time... Y-You don\'t mind, do you?\" She plucks at her shirt to indicate what she means.",false);
+               viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+               viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+               buttonWrite(5,"Help her");
+               buttonWrite(7,"Let her");
+               doListen = function():void
+               {
+                  var getMilk:int = 0;
+                  if(buttonChoice == 5)
                   {
-                     outputMainText("\r\rYou sit down upon the soft bed, sinking in slightly from the extra cushioning. She then grabs a bucket from the stack and pulls a short stool over to your " + legDesc(6) + ".\r\r\"Your " + clothesTop() + ", please.\" She motions to it being in the way.",true);
-                     if(ment > lib)
+                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
                      {
-                        outputMainText("\r\rWith a heavy blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", slowly exposing your ",false);
-                     }
-                     else if(ment > lib - 10)
-                     {
-                        outputMainText("\r\rWith a slight blush in your cheeks, you nod back, pulling your " + clothesTop() + " " + pullUD(1) + ", exposing your ",false);
-                     }
-                     else
-                     {
-                        outputMainText("\r\rWith a quick nod and no hesitation, you pull " + pullUD(1) + " your " + clothesTop() + ", exposing your ",false);
-                     }
-                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0 && udders == true)
-                     {
-                        outputMainText(boobDesc() + " leaky breasts and letting your " + udderDesc() + " udder spill into your lap.",false);
+                        getMilk = milkAmount(1) + milkAmount(2);
                      }
                      else if(milkEngorgementLevel > 0)
                      {
-                        outputMainText(boobDesc() + " leaky breasts.",false);
+                        getMilk = milkAmount(1);
                      }
-                     else if(udderEngorgementLevel > 0 && udders == true)
+                     else if(udderEngorgementLevel > 0)
                      {
-                        outputMainText(udderDesc() + " udder, your teats dripping into your lap.",false);
+                        getMilk = milkAmount(2);
                      }
-                     outputMainText(" Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your ",false);
-                     if(milkEngorgementLevel > 0)
+                     nipplePlay += 12;
+                     if(udders == true)
                      {
-                        outputMainText(nipDesc() + " nipples",false);
+                        udderPlay += 12;
                      }
-                     else if(udderEngorgementLevel > 0 && udders == true)
-                     {
-                        outputMainText(teatDesc() + " teats",false);
-                     }
-                     outputMainText(" and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you\'re already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\r\rThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you\'d think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\r\rHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it\'s that time... Y-You don\'t mind, do you?\" She plucks at her shirt to indicate what she means.",false);
-                     viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
-                     viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
-                     buttonWrite(5,"Help her");
-                     buttonWrite(7,"Let her");
+                     outputMainText("You shake your head, telling her it\'s not alright.\r\rA bit defeated, the redness in her cheeks intensifies as she attempts to continue milking you while she drips away. However, you tell her to stop with that as well.\r\rHer eyes brightening, she quickly realizes your intention as you reach out for her shirt and pull it up. When your hands gently caress her 6-inch long nipples, aiming them towards the bucket and squirting out some of her own milk, the blush in her face recedes as a soft smile grows on her face, cheerfully accepting your efforts.\r\rFacing each other, with your hands on each other\'s milky bits, the two of you tug and pull until each other sprays into the bucket with a gasp. More and more milk spills from you both, though the moans echoing between you two would suggest something more as they rise in volume. Until, eventually, Malon\'s tits gush into the bucket as her body quivers and her mouth begins to yawn wide. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as you give her breasts a strong, sensual squeeze, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",true);
+                     doNext();
                      doListen = function():void
                      {
-                        var getMilk:int = 0;
-                        if(buttonChoice == 5)
+                        outputMainText("She collapses forward onto your " + boobDesc() + " chest, huffing and heaving. After a few moments, her eyelashes flutter as she turns her head towards you with a glimmer in her eye.",true);
+                        viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
+                        viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
+                        buttonWrite(5,"Kiss Her");
+                        buttonWrite(7,"Help Up");
+                        doListen = function():void
                         {
-                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                           if(buttonChoice == 5)
                            {
-                              getMilk = milkAmount(1) + milkAmount(2);
-                           }
-                           else if(milkEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(1);
-                           }
-                           else if(udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(2);
-                           }
-                           nipplePlay += 12;
-                           if(udders == true)
-                           {
-                              udderPlay += 12;
-                           }
-                           outputMainText("You shake your head, telling her it\'s not alright.\r\rA bit defeated, the redness in her cheeks intensifies as she attempts to continue milking you while she drips away. However, you tell her to stop with that as well.\r\rHer eyes brightening, she quickly realizes your intention as you reach out for her shirt and pull it up. When your hands gently caress her 6-inch long nipples, aiming them towards the bucket and squirting out some of her own milk, the blush in her face recedes as a soft smile grows on her face, cheerfully accepting your efforts.\r\rFacing each other, with your hands on each other\'s milky bits, the two of you tug and pull until each other sprays into the bucket with a gasp. More and more milk spills from you both, though the moans echoing between you two would suggest something more as they rise in volume. Until, eventually, Malon\'s tits gush into the bucket as her body quivers and her mouth begins to yawn wide. With some slight hestitation, she lets out a soft \"M-Mooo!\". Then, as you give her breasts a strong, sensual squeeze, her mouth yawns wider as her eyes go wide, completely ignoring her inhibitions.\r\r\"MOOOOOOOOO!\"",true);
-                           doNext();
-                           doListen = function():void
-                           {
-                              outputMainText("She collapses forward onto your " + boobDesc() + " chest, huffing and heaving. After a few moments, her eyelashes flutter as she turns her head towards you with a glimmer in her eye.",true);
-                              viewButtonOutline(0,0,0,0,1,0,1,0,0,0,0,0);
-                              viewButtonText(0,0,0,0,1,0,1,0,0,0,0,0);
-                              buttonWrite(5,"Kiss Her");
-                              buttonWrite(7,"Help Up");
-                              doListen = function():void
+                              outputMainText("Your hand slips behind her head, pulling her face to your own. You press your lips to hers.\r\rWithout any resistance, she returns the favor, hugging your head and kissing you deeply. She pushes you forward, back onto her bed. With fervor, you lift her long purple skirt, revealing her wide, cow-like hips and large, dripping, animalistic nether-region.",true);
+                              if(cockTotal > 0)
                               {
-                                 if(buttonChoice == 5)
+                                 outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ", letting " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " flop out. She licks and kisses it ravenously, as though something had come over her. She sucks at the tip, slipping her tongue across and through your urethra and savoring the salty taste of your pre.",false);
+                                 if(cockSize * cockSizeMod <= eVagLimit(56))
                                  {
-                                    outputMainText("Your hand slips behind her head, pulling her face to your own. You press your lips to hers.\r\rWithout any resistance, she returns the favor, hugging your head and kissing you deeply. She pushes you forward, back onto her bed. With fervor, you lift her long purple skirt, revealing her wide, cow-like hips and large, dripping, animalistic nether-region.",true);
-                                    if(cockTotal > 0)
+                                    outputMainText("\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she slides your cock into her supple folds, devouring its entire length.",false);
+                                    if(percent() <= 20)
                                     {
-                                       outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ", letting " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " flop out. She licks and kisses it ravenously, as though something had come over her. She sucks at the tip, slipping her tongue across and through your urethra and savoring the salty taste of your pre.",false);
-                                       if(cockSize * cockSizeMod <= eVagLimit(56))
-                                       {
-                                          outputMainText("\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she slides your cock into her supple folds, devouring its entire length.",false);
-                                          if(percent() <= 20)
-                                          {
-                                             malonRep = 4;
-                                             malonPreg = 0;
-                                          }
-                                          else
-                                          {
-                                             malonRep = 5;
-                                          }
-                                       }
-                                       if(cockSize * cockSizeMod > eVagLimit(56))
-                                       {
-                                          outputMainText("\r\rHowever, she can easily tell that you\'re far too large for her. So, instead, she crawls back up your body, licking your\tmilk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your " + cockDesc() + " erection" + plural(1) + ", humping her clit along your length" + plural(1) + ".",false);
-                                       }
-                                       outputMainText("\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you begin to gush with cum, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
-                                       cumAmount();
-                                    }
-                                    else if(cockTotal < 1 && vagTotal > 0)
-                                    {
-                                       outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your " + vulvaDesc() + " slit" + plural(2) + ", she dives in and begins devouring your clit" + plural(2) + ".\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where presses her supple folds to your own, letting them kiss erotically.\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit" + plural(2) + " against hers as you come, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
-                                       malonRep = 5;
+                                       malonRep = 4;
+                                       malonPreg = 0;
                                     }
                                     else
                                     {
-                                       outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your lack of any genitalia, she kisses your crotch softly several times anyways, before crawling back up your body She licks up your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she humps your empty crotch.\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. So hot is her body that you can feel yourself climax as well! She keeps her mouth shut at first, but as you thrust back with the phantom orgasm, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
                                        malonRep = 5;
                                     }
-                                    outputMainText("\r\r\rThe two of you soon pass out beneath the blankets, trapped within the sea of milk and sensual fluids...",false);
-                                    doLust(-Math.floor(sen / 2),2,1,2);
-                                    hrs = 9;
-                                    exhaustion = 0;
-                                    skipExhaustion = true;
-                                    doNext();
-                                    doListen = function():void
-                                    {
-                                       outputMainText("Many hours later, you awaken to gentle kissing from your bovine lover. You open your eyes to see Malon\'s face, a soft smile greeting you and a happy glimmer in her eyes.\r\r\"Thank you so much~\" She whispers before kissing you once more.\r\rAfter some cuddling, she eventually needs to get back to work. She hugs you again and tells you that she\'d love for you to come back any time you can. You hug her back, giving her a sweet goodbye as you squeeze her plush tush, her tail jerking excitedly as she giggles. With another kiss, you head back to Softlik, your " + skinDesc() + " nice and soft from the extended milk bath.",true);
-                                       stats(1,2,2,4);
-                                       doSexP(20);
-                                       doEnd();
-                                    };
                                  }
-                                 if(buttonChoice == 7)
+                                 if(cockSize * cockSizeMod > eVagLimit(56))
                                  {
-                                    outputMainText("You help her back up onto her stool, the last of both of your milk emptying into the final bucket. With a big sigh, she smiles.\r\r\"W-Well, I suppose I should get this cleaned up. Thanks for helping me!\"\r\rShe leans forward, giving you a great view of her deep cleavage as she kisses you on the forehead. Then she pulls her shirt back up and takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a hug, you say goodbye and head back to Softlik.",true);
-                                    stats(1,1,0,2);
-                                    doSexP(2);
-                                    doEnd();
+                                    outputMainText("\r\rHowever, she can easily tell that you\'re far too large for her. So, instead, she crawls back up your body, licking your\tmilk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your " + cockDesc() + " erection" + plural(1) + ", humping her clit along your length" + plural(1) + ".",false);
                                  }
+                                 outputMainText("\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you begin to gush with cum, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                                 cumAmount();
+                              }
+                              else if(cockTotal < 1 && vagTotal > 0)
+                              {
+                                 outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your " + vulvaDesc() + " slit" + plural(2) + ", she dives in and begins devouring your clit" + plural(2) + ".\r\rIt doesn\'t take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where presses her supple folds to your own, letting them kiss erotically.\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit" + plural(2) + " against hers as you come, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                                 malonRep = 5;
+                              }
+                              else
+                              {
+                                 outputMainText("\r\rFlipping back her long red hair, she grinds down your " + legDesc(2) + " and across the bed to pull " + pullUD(2) + " your " + clothesBottom() + ". Seeing your lack of any genitalia, she kisses your crotch softly several times anyways, before crawling back up your body She licks up your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she humps your empty crotch.\r\rOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\r\rQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. So hot is her body that you can feel yourself climax as well! She keeps her mouth shut at first, but as you thrust back with the phantom orgasm, she can no longer resist, allowing her mouth stretch wide.\r\r\"MOOOOOOO!\"",false);
+                                 malonRep = 5;
+                              }
+                              outputMainText("\r\r\rThe two of you soon pass out beneath the blankets, trapped within the sea of milk and sensual fluids...",false);
+                              doLust(-Math.floor(sen / 2),2,1,2);
+                              hrs = 9;
+                              exhaustion = 0;
+                              skipExhaustion = true;
+                              doNext();
+                              doListen = function():void
+                              {
+                                 outputMainText("Many hours later, you awaken to gentle kissing from your bovine lover. You open your eyes to see Malon\'s face, a soft smile greeting you and a happy glimmer in her eyes.\r\r\"Thank you so much~\" She whispers before kissing you once more.\r\rAfter some cuddling, she eventually needs to get back to work. She hugs you again and tells you that she\'d love for you to come back any time you can. You hug her back, giving her a sweet goodbye as you squeeze her plush tush, her tail jerking excitedly as she giggles. With another kiss, you head back to Softlik, your " + skinDesc() + " nice and soft from the extended milk bath.",true);
+                                 stats(1,2,2,4);
+                                 doSexP(20);
+                                 doEnd();
                               };
-                           };
-                        }
-                        if(buttonChoice == 7)
-                        {
-                           outputMainText("Nodding your head to say it\'s alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\r\r",true);
-                           if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(1) + milkAmount(2);
                            }
-                           else if(milkEngorgementLevel > 0)
+                           if(buttonChoice == 7)
                            {
-                              getMilk = milkAmount(1);
+                              outputMainText("You help her back up onto her stool, the last of both of your milk emptying into the final bucket. With a big sigh, she smiles.\r\r\"W-Well, I suppose I should get this cleaned up. Thanks for helping me!\"\r\rShe leans forward, giving you a great view of her deep cleavage as she kisses you on the forehead. Then she pulls her shirt back up and takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a hug, you say goodbye and head back to Softlik.",true);
+                              stats(1,1,0,2);
+                              doSexP(2);
+                              doEnd();
                            }
-                           else if(udderEngorgementLevel > 0)
-                           {
-                              getMilk = milkAmount(2);
-                           }
-                           if(getMilk <= 4000)
-                           {
-                              outputMainText("After filling up two buckets of milk, most of which was Malon\'s, she pushes them off to the side with a clap.",true);
-                           }
-                           else if(getMilk <= 18000)
-                           {
-                              outputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",true);
-                           }
-                           else if(getMilk <= 35500)
-                           {
-                              outputMainText("After filling up several buckets of milk, far surpassing Malon\'s amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",true);
-                           }
-                           else if(getMilk > 35500)
-                           {
-                              outputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I\'m so sorry! I didn\'t know it was that bad for you. Here!\"\r\rShe takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"\r\rShe wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",true);
-                           }
-                           outputMainText(" \"There, all done!\" She gently pats your " + boobDesc() + " breasts",false);
-                           if(udders == true)
-                           {
-                              outputMainText(" and your " + udderDesc() + " milky bag.",false);
-                           }
-                           outputMainText("\r\r\"I enjoyed this little milking session between us \'cows\'. I hope to do it again with you some time!\" She smiles as she pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on your forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a wave, you say goodbye and head back to Softlik.",false);
-                           hrs = 3;
-                           doSexP(2);
-                           doLust(5,0,3,4);
-                           stats(0,1,1,1);
-                           doEnd();
-                        }
+                        };
                      };
-                  };
-               }
-               else
-               {
-                  outputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. However, as her own shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground, she blushes a little as she has now found a new reason for her excuse. She pulls her shawl down to cover her huge chest, turning away and scampering off into the main house to take care of business, leaving you to head back to Softlik.",true);
-                  hrs = 1;
-                  doEnd();
-               }
+                  }
+                  if(buttonChoice == 7)
+                  {
+                     outputMainText("Nodding your head to say it\'s alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\r\r",true);
+                     if(milkEngorgementLevel > 0 && udderEngorgementLevel > 0)
+                     {
+                        getMilk = milkAmount(1) + milkAmount(2);
+                     }
+                     else if(milkEngorgementLevel > 0)
+                     {
+                        getMilk = milkAmount(1);
+                     }
+                     else if(udderEngorgementLevel > 0)
+                     {
+                        getMilk = milkAmount(2);
+                     }
+                     if(getMilk <= 4000)
+                     {
+                        outputMainText("After filling up two buckets of milk, most of which was Malon\'s, she pushes them off to the side with a clap.",true);
+                     }
+                     else if(getMilk <= 18000)
+                     {
+                        outputMainText("After filling up few buckets of milk, most of which was yours, Malon pushes them off to the side with a sigh.",true);
+                     }
+                     else if(getMilk <= 35500)
+                     {
+                        outputMainText("After filling up several buckets of milk, far surpassing Malon\'s amount, she pushes them off to the side with a tired sigh, stretching her adept fingers.",true);
+                     }
+                     else if(getMilk > 35500)
+                     {
+                        outputMainText("After a while, Malon begins to panic. \"Umm... I-I seem to have run out of buckets!\" She sloshes the last one from the stack to the side as you still spill with milk. \"I-I\'m so sorry! I didn\'t know it was that bad for you. Here!\"\r\rShe takes off her shawl, holding it to your mammaries and waiting for the flow to come to a halt. A few minutes pass before she can remove it, your lactation having ceased and her hands covered in the white stuff. \"Whew... That was close.\"\r\rShe wrings her shawl out in a bucket that has yet to overflow before slinging it around her neck again.",true);
+                     }
+                     outputMainText(" \"There, all done!\" She gently pats your " + boobDesc() + " breasts",false);
+                     if(udders == true)
+                     {
+                        outputMainText(" and your " + udderDesc() + " milky bag.",false);
+                     }
+                     outputMainText("\r\r\"I enjoyed this little milking session between us \'cows\'. I hope to do it again with you some time!\" She smiles as she pulls her shirt back down, lifting her massive tits a few time to get them to settle within the shirt without her large nipples being so obvious. With a wink, she leans forward, giving you a great view of her deep cleavage as she kisses you on your forehead. Then she takes your hand once more, leading your back out of the farmhouse, saying she can take care of the buckets herself.\r\rWith a wave, you say goodbye and head back to Softlik.",false);
+                     hrs = 3;
+                     doSexP(2);
+                     doLust(5,0,3,4);
+                     stats(0,1,1,1);
+                     doEnd();
+                  }
+               };
+               };
+            }
+            else
+            {
+               outputMainText("You shake your head, not accepting her assistance. She gives you a soft smile, not offended by the choice. However, as her own shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground, she blushes a little as she has now found a new reason for her excuse. She pulls her shawl down to cover her huge chest, turning away and scampering off into the main house to take care of business, leaving you to head back to Softlik.",true);
+               hrs = 1;
+               doEnd();
+            }
             };
          }
          else if(this.malonRep == 4 || this.malonRep == 5)
@@ -19407,163 +19336,143 @@ def DoOldCave():
          DoEnd()
 
 !def DoDen():
-{
-   var chance:int = 0;
-   chance = this.eventSelect("Den");
-   if(chance == 1)
-   {
-      this.outputMainText("You head to the den, but this time Silandrias isn\'t there to greet you at the entrance. Just checking to make sure she\'s not there, you head inside to see if you can find her.\r\rYou quickly discover this was a bad idea.\r\rThe maze of tunnels is so confusing that you wind up lost and wandering about. You have no idea where you are going, though you intended to meet her in a main room, and instead find yourself in some sort of storage room. It\'s obviously been a long time since it has really been used, there\'s hardly any items in it. However, you do spot a strange piece of leather. Holding it up and eyeing it, the leather strap is circular with a few large holes. Thinking more carefully, you realize this would fit perfectly around the base of Silandrias\' tail, with room for the spikes, and tie tightly.\r\rWith a shrug, you take it with you as you may find some use for it eventually.",true);
-      this.hrs = 4;
-      this.itemAdd(229);
-      this.doEnd();
-   }
-   else if(this.silRep == 6)
-   {
-      this.outputMainText("Knowing your way through the tunnels well enough by now, you don\'t bother to ring the chimes. You head inside, finding your way through to the birthing chamber where Silandrias still resides, carefully watching over her ",true);
-      if(this.silPreg <= 1000)
-      {
-         this.outputMainText("" + Math.floor(this.silPreg / 100) + "",false);
-      }
-      else if(this.silPreg <= 5000)
-      {
-         this.outputMainText("" + Math.floor(this.silPreg / 75) + "",false);
-      }
-      else
-      {
-         this.outputMainText("" + Math.floor(this.silPreg / 50) + "",false);
-      }
-      this.outputMainText(" giant eggs with Naeru and Daeru.\r\rThe two caretakers, born to help both the their siblings and mother as well as provide loyal company, trot around and roll the eggs from bedding to bedding to make sure they\'re all clean and warm. They also snuggle up with their mother when they aren\'t busy, suckling from her for sustenance or bringing her food and other interests from Oviasis. When they spot you coming they start yipping happily, wagging their lizard-like tails while their large vulpine ear bounce about, running in circles around you as you approach.\r\rSilandrias hasn\'t quite returned to her original height yet, still a few feet taller from the massive birth with plenty of breasts running down her front, the topmost pair threatening to tip her over with their milk-laden size and weight. Staying down here to watch over her children, waiting for the day they\'ll hatch so she\'ll be there for them, has left her without need for clothes, letting her naked body rub against you as she gives you a welcoming hug.\r\r\"Welcome back, honey~\" She gives you a kiss and motions for you to cuddle up with her.\r\rThe two of you lovingly entwined about each other with Naeru and Daeru curled up upon you, you talk about everything. Even though she\'s not in the mood for sex, as she spends more time milking herself than getting aroused, she still makes for some good company.\r\rAfter a few hours together, the pups really need to get back to their duties and Silandrias could use a nap from her exhausting form, she offers to share her now-secondary hobby with you. \"Would you like to borrow one of my treasures before you go?\"",false);
-      this.hrs = 4;
-      this.doNext();
-      this.doListen = function():void
-      {
-         if(checkStash(232) || checkStash(233) || checkStash(234) || checkStash(235) || checkStash(236))
+   global silRep, hrs, silPreg
+   chance = 0
+   chance = EventSelect("Den")
+   if (chance == 1):
+      OutputMainText("You head to the den, but this time Silandrias isn't there to greet you at the entrance. Just checking to make sure she's not there, you head inside to see if you can find her." + "\n" + "\n" + "You quickly discover this was a bad idea." + "\n" + "\n" + "The maze of tunnels is so confusing that you wind up lost and wandering about. You have no idea where you are going, though you intended to meet her in a main room, and instead find yourself in some sort of storage room. It's obviously been a long time since it has really been used, there's hardly any items in it. However, you do spot a strange piece of leather. Holding it up and eyeing it, the leather strap is circular with a few large holes. Thinking more carefully, you realize this would fit perfectly around the base of Silandrias' tail, with room for the spikes, and tie tightly." + "\n" + "\n" + "With a shrug, you take it with you as you may find some use for it eventually.",True)
+      hrs = 4
+      ItemAdd(229)
+      DoEnd()
+   elif (silRep == 6):
+      OutputMainText("Knowing your way through the tunnels well enough by now, you don't bother to ring the chimes. You head inside, finding your way through to the birthing chamber where Silandrias still resides, carefully watching over her ",True)
+      if (silPreg <= 1000):
+         OutputMainText("" + math.floor(silPreg / 100) + "",False)
+      elif (silPreg <= 5000):
+         OutputMainText("" + math.floor(silPreg / 75) + "",False)
+      else:
+         OutputMainText("" + math.floor(silPreg / 50) + "",False)
+      OutputMainText(" giant eggs with Naeru and Daeru." + "\n" + "\n" + "The two caretakers, born to help both the their siblings and mother as well as provide loyal company, trot around and roll the eggs from bedding to bedding to make sure they're all clean and warm. They also snuggle up with their mother when they aren't busy, suckling from her for sustenance or bringing her food and other interests from Oviasis. When they spot you coming they start yipping happily, wagging their lizard-like tails while their large vulpine ear bounce about, running in circles around you as you approach." + "\n" + "\n" + "Silandrias hasn't quite returned to her original height yet, still a few feet taller from the massive birth with plenty of breasts running down her front, the topmost pair threatening to tip her over with their milk-laden size and weight. Staying down here to watch over her children, waiting for the day they'll hatch so she'll be there for them, has left her without need for clothes, letting her naked body rub against you as she gives you a welcoming hug." + "\n" + "\n" + "\"Welcome back, honey~\" She gives you a kiss and motions for you to cuddle up with her." + "\n" + "\n" + "The two of you lovingly entwined about each other with Naeru and Daeru curled up upon you, you talk about everything. Even though she's not in the mood for sex, as she spends more time milking herself than getting aroused, she still makes for some good company." + "\n" + "\n" + "After a few hours together, the pups really need to get back to their duties and Silandrias could use a nap from her exhausting form, she offers to share her now-secondary hobby with you. \"Would you like to borrow one of my treasures before you go?\"",False)
+      hrs = 4
+      DoNext()
+      #this.doListen = function():void
+      if ((CheckStash(232) == True) or (CheckStash(233) == True) or (CheckStash(234) == True) or (CheckStash(235) == True) or (CheckStash(236) == True)):
+         OutputMainText("While you may potentially want another one of Silandrias' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn't want to take advantage of a waiting mother (you wouldn't, RIGHT?!), so you decline and thank her kindly before heading out.",True)
+         DoEnd()
+      else:
+         ButtonFunctions.Visible(0,1,0,0,1,1,1,0,0,1,0,1)
+         templist = [2,"Flying Carp", 5,"A-Grav Rock", 6,"Rein Charm", 7,"Fell Rod", 10,"Recept Bell", 12,"No Thanks"]
+         OutputMainText("\"Anything you might be interested in?\"",True)
+         if (checkItem(232) == True):
+!            Choice2.visible = false
+         if(checkItem(233))
          {
-            outputMainText("While you may potentially want another one of Silandrias\' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn\'t want to take advantage of a waiting mother (you wouldn\'t, RIGHT?!), so you decline and thank her kindly before heading out.",true);
-            doEnd();
+            Choice5.visible = false;
          }
-         else
+         if(checkItem(234))
          {
-            viewButtonOutline(0,1,0,0,1,1,1,0,0,1,0,1);
-            viewButtonText(0,1,0,0,1,1,1,0,0,1,0,1);
-            buttonWrite(2,"Flying Carp");
-            buttonWrite(5,"A-Grav Rock");
-            buttonWrite(6,"Rein Charm");
-            buttonWrite(7,"Fell Rod");
-            buttonWrite(10,"Recept Bell");
-            buttonWrite(12,"No Thanks");
-            outputMainText("\"Anything you might be interested in?\"",true);
-            if(checkItem(232))
-            {
-               Choice2.visible = false;
-            }
-            if(checkItem(233))
-            {
-               Choice5.visible = false;
-            }
-            if(checkItem(234))
-            {
-               Choice6.visible = false;
-            }
-            if(checkItem(235))
-            {
-               Choice7.visible = false;
-            }
-            if(checkItem(236))
-            {
-               Choice10.visible = false;
-            }
-            if(!checkItem(232))
-            {
-               outputMainText("\r\rFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.",false);
-            }
-            if(!checkItem(233))
-            {
-               outputMainText("\r\rAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.",false);
-            }
-            if(!checkItem(234))
-            {
-               outputMainText("\r\rReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.",false);
-            }
-            if(!checkItem(235))
-            {
-               outputMainText("\r\rFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.",false);
-            }
-            if(!checkItem(236))
-            {
-               outputMainText("\r\rReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.",false);
-            }
-            doListen = function():void
-            {
-               if(buttonChoice == 12)
-               {
-                  outputMainText("Happy with what you have now, you decline the offer but thank her and the pups with a hug before leaving.",true);
-                  doEnd();
-               }
-               else
-               {
-                  outputMainText("You are, in fact, interested in something. ",true);
-                  if(checkItem(232) || checkItem(233) || checkItem(234) || checkItem(235) || checkItem(236))
-                  {
-                     outputMainText("Handing back the ",true);
-                     if(checkItem(232))
-                     {
-                        outputMainText("Flying Carpet",false);
-                        loseManyItem(232,1);
-                     }
-                     if(checkItem(233))
-                     {
-                        outputMainText("Anti-Gravity Rock",false);
-                        loseManyItem(233,1);
-                     }
-                     if(checkItem(234))
-                     {
-                        outputMainText("Reindeer Charm",false);
-                        loseManyItem(234,1);
-                     }
-                     if(checkItem(235))
-                     {
-                        outputMainText("Fellatio Rod",false);
-                        loseManyItem(235,1);
-                     }
-                     if(checkItem(236))
-                     {
-                        outputMainText("Reception Bell",false);
-                        loseManyItem(236,1);
-                     }
-                     outputMainText(" you borrowed before, you thank her graciously again for letting you try it out. ",false);
-                  }
-                  outputMainText("Deciding you would like to test the ",false);
-                  if(buttonChoice == 2)
-                  {
-                     outputMainText("Flying Carpet",true);
-                     itemAdd(232);
-                  }
-                  if(buttonChoice == 5)
-                  {
-                     outputMainText("Anti-Gravity Rock",true);
-                     itemAdd(233);
-                  }
-                  if(buttonChoice == 6)
-                  {
-                     outputMainText("Reindeer Charm",true);
-                     itemAdd(234);
-                  }
-                  if(buttonChoice == 7)
-                  {
-                     outputMainText("Fellatio Rod",true);
-                     itemAdd(235);
-                  }
-                  if(buttonChoice == 10)
-                  {
-                     outputMainText("Reception Bell",true);
-                     itemAdd(236);
-                  }
-                  outputMainText(", Silandrias hands it to you with a smile.\r\r\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It\'s quite alright dear, I want to share everything with you~\"\r\rYou soon finish saying your goodbyes to both her and the pups and make your way out.",false);
-                  doEnd();
-               }
-            };
+            Choice6.visible = false;
          }
+         if(checkItem(235))
+         {
+            Choice7.visible = false;
+         }
+         if(checkItem(236))
+         {
+            Choice10.visible = false;
+         }
+         if(!checkItem(232))
+         {
+            outputMainText("\r\rFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.",false);
+         }
+         if(!checkItem(233))
+         {
+            outputMainText("\r\rAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.",false);
+         }
+         if(!checkItem(234))
+         {
+            outputMainText("\r\rReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.",false);
+         }
+         if(!checkItem(235))
+         {
+            outputMainText("\r\rFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.",false);
+         }
+         if(!checkItem(236))
+         {
+            outputMainText("\r\rReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.",false);
+         }
+         DoButtonChoices(templist)
+         doListen = function():void
+         {
+            if(buttonChoice == 12)
+            {
+               outputMainText("Happy with what you have now, you decline the offer but thank her and the pups with a hug before leaving.",true);
+               doEnd();
+            }
+            else
+            {
+               outputMainText("You are, in fact, interested in something. ",true);
+               if(checkItem(232) || checkItem(233) || checkItem(234) || checkItem(235) || checkItem(236))
+               {
+                  outputMainText("Handing back the ",true);
+                  if(checkItem(232))
+                  {
+                     outputMainText("Flying Carpet",false);
+                     loseManyItem(232,1);
+                  }
+                  if(checkItem(233))
+                  {
+                     outputMainText("Anti-Gravity Rock",false);
+                     loseManyItem(233,1);
+                  }
+                  if(checkItem(234))
+                  {
+                     outputMainText("Reindeer Charm",false);
+                     loseManyItem(234,1);
+                  }
+                  if(checkItem(235))
+                  {
+                     outputMainText("Fellatio Rod",false);
+                     loseManyItem(235,1);
+                  }
+                  if(checkItem(236))
+                  {
+                     outputMainText("Reception Bell",false);
+                     loseManyItem(236,1);
+                  }
+                  outputMainText(" you borrowed before, you thank her graciously again for letting you try it out. ",false);
+               }
+               outputMainText("Deciding you would like to test the ",false);
+               if(buttonChoice == 2)
+               {
+                  outputMainText("Flying Carpet",true);
+                  itemAdd(232);
+               }
+               if(buttonChoice == 5)
+               {
+                  outputMainText("Anti-Gravity Rock",true);
+                  itemAdd(233);
+               }
+               if(buttonChoice == 6)
+               {
+                  outputMainText("Reindeer Charm",true);
+                  itemAdd(234);
+               }
+               if(buttonChoice == 7)
+               {
+                  outputMainText("Fellatio Rod",true);
+                  itemAdd(235);
+               }
+               if(buttonChoice == 10)
+               {
+                  outputMainText("Reception Bell",true);
+                  itemAdd(236);
+               }
+               outputMainText(", Silandrias hands it to you with a smile.\r\r\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It\'s quite alright dear, I want to share everything with you~\"\r\rYou soon finish saying your goodbyes to both her and the pups and make your way out.",false);
+               doEnd();
+            }
+         };
+      }
       };
    }
    else if(this.silRep == 5 && (this.silGrowthTime > 360 || this.silPreg >= 10000))
@@ -20826,8 +20735,8 @@ def DoOldCave():
       };
    }
 }
-!def DoValley():
-   global buttonChoice, boobTotal, breastSize, fourBoobAffinity, ment, fertilityStatueCurse, minLust, hrs
+def DoValley():
+   global buttonChoice, boobTotal, breastSize, fourBoobAffinity, ment, fertilityStatueCurse, minLust, hrs, knowBazoomba, pregArray, exhaustion, skipExhaustion
    chance = 0
    chance = EventSelect("Valley")
    if (chance == 1):
@@ -20909,358 +20818,241 @@ def DoOldCave():
             OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
             hrs = 1
             DoEnd()
-!      elif (buttonChoice == 3):
-         viewButtonOutline(1,0,1,0,0,0,0,1,1,0,1,0);
-         viewButtonText(1,0,1,0,0,0,0,1,0,0,0,0);
-         buttonWrite(1,"Lick");
-         buttonWrite(3,"Poke");
-         buttonWrite(9,"Cock Carv");
-         buttonWrite(11,"Milk Bottle");
-         buttonWrite(8,"Leave");
-         if(checkItem(207))
-         {
-            Choice9.visible = true;
-         }
-         if(checkItem(500) || checkItem(501))
-         {
-            Choice11.visible = true;
-         }
-         outputMainText("What would you like to do with the statue\'s ear?",true);
-         doListen = function():void
-         {
-            if(buttonChoice == 1)
-            {
-               outputMainText("You lick the statue\'s ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...",true);
-               outputMainText("\r\rA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they\'re pushed aside. Birds fly up and away to escape the tremors. And soon enough, you\'re staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\r\rOnce the process settles, you move in to inspect it. You can\'t read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",false);
-               if(checkItem(254) || checkStash(254))
-               {
-                  outputMainText("\r\rYou have already taken the lantern from here, so there\'s not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",false);
-               }
-               else
-               {
-                  outputMainText("\r\rThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can\'t seem to find anything else to do with this hidden entrance and your left having to head back to town.",false);
-                  itemAdd(254);
-               }
-               hrs = 3;
-               doEnd();
-            }
-            if(buttonChoice == 3)
-            {
-               outputMainText("You attempt to poke the statue\'s ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn\'t seem to like it.",true);
-               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
-               if(boobTotal == 2)
-               {
-                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
-                  if(breastSize > 4)
-                  {
-                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
-                  }
-                  boobTotal = 4;
-                  fourBoobAffinity = 100;
-               }
-               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
-               if(ment > 60)
-               {
-                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
-               }
-               fertilityStatueCurse = 48;
-               minLust += 10;
-               doLust(0,0);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 9)
-            {
-               outputMainText("You attempt to stick a cock carving into the statue\'s ear. You attempt to stick a penis-like object into someone\'s ear. What the hell is wrong with you?!",true);
-               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
-               if(boobTotal == 2)
-               {
-                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
-                  if(breastSize > 4)
-                  {
-                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
-                  }
-                  boobTotal = 4;
-                  fourBoobAffinity = 100;
-               }
-               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
-               if(ment > 60)
-               {
-                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
-               }
-               fertilityStatueCurse = 48;
-               loseManyItem(207,1);
-               minLust += 10;
-               doLust(0,0);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 11)
-            {
-               outputMainText("You attempt pour the milk into the statue\'s ear. Why? Maybe if there was a buildup of ear-wax that might be a good idea, but even then that\'s not exactly smart.",true);
-               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
-               if(boobTotal == 2)
-               {
-                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
-                  if(breastSize > 4)
-                  {
-                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
-                  }
-                  boobTotal = 4;
-                  fourBoobAffinity = 100;
-               }
-               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
-               if(ment > 60)
-               {
-                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
-               }
-               fertilityStatueCurse = 48;
-               if(checkItem(500))
-               {
-                  loseManyItem(500,1);
-               }
-               else
-               {
-                  loseManyItem(501,1);
-               }
-               minLust += 10;
-               doLust(0,0);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 8)
-            {
-               outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",true);
-               hrs = 1;
-               doEnd();
-            }
-         };
-      }
-      elif(buttonChoice == 6)
-      {
-         viewButtonOutline(1,0,1,0,0,0,0,1,1,0,1,0);
-         viewButtonText(1,0,1,0,0,0,0,1,0,0,0,0);
-         buttonWrite(1,"Lick");
-         buttonWrite(3,"Poke");
-         buttonWrite(9,"Cock Carv");
-         buttonWrite(11,"Milk Bottle");
-         if(checkItem(207))
-         {
-            Choice9.visible = true;
-         }
-         if(checkItem(500) || checkItem(501))
-         {
-            Choice11.visible = true;
-         }
-         buttonWrite(8,"Leave");
-         outputMainText("What would you like to do with the statue\'s four breasts?",true);
-         doListen = function():void
-         {
-            if(buttonChoice == 1)
-            {
-               outputMainText("You lick the statue\'s breasts, pleasuring the nipples that stick out. It\'s not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               doSexP(10);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 3)
-            {
-               outputMainText("You attempt to poke the statue\'s boobs. The boobs definitely don\'t bite back, but it seems like a rather annoying way to react to boobs.",true);
-               outputMainText("\r\rYou hear a whir and move back, the statue\'s face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + skinDesc() + ".",false);
-               if(boobTotal == 2)
-               {
-                  outputMainText("\r\rYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
-                  if(breastSize > 4)
-                  {
-                     outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",false);
-                  }
-                  boobTotal = 4;
-                  fourBoobAffinity = 100;
-               }
-               outputMainText("\r\rAs the mist disappears, you also have this deep feeling of lust building inside... It doesn\'t seem to dissipate either, constantly nagging.",false);
-               if(ment > 60)
-               {
-                  outputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",false);
-               }
-               fertilityStatueCurse = 48;
-               minLust += 10;
-               doLust(0,0);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 9)
-            {
-               outputMainText("You wedge a cock carving in between the statue\'s two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               doSexP(15);
-               loseManyItem(207,1);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 11)
-            {
-               outputMainText("You pour the milk out over the breasts until they\'re completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within.\r\rAt the base of the statue, a hidden compartment pops out.",true);
-               if(knowBazoomba == false)
-               {
-                  outputMainText(" A scroll rolls out, allowing you to take it. You open it up and read through the various pictographs. It seems to be an alchemical recipe! You can make out the actual ingredients for the concoction, but you can\'t seem to tell what it is exactly, only able to determine that it creates \"more of the best things in life\"?\r\rYou have learned the recipe for Bazoomba!",false);
-                  knowBazoomba = true;
-               }
-               else
-               {
-                  outputMainText(" However, it\'s completely empty. You already took the recipe that was in here before, so there\'s nothing left within.",false);
-               }
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               hrs = 2;
-               if(checkItem(500))
-               {
-                  loseManyItem(500,1);
-               }
-               else
-               {
-                  loseManyItem(501,1);
-               }
-               doEnd();
-            }
-            if(buttonChoice == 8)
-            {
-               outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",true);
-               hrs = 1;
-               doEnd();
-            }
-         };
-      }
-      elif(buttonChoice == 10)
-      {
-         viewButtonOutline(1,0,1,0,0,0,0,1,1,0,1,0);
-         viewButtonText(1,0,1,0,0,0,0,1,0,0,0,0);
-         buttonWrite(1,"Lick");
-         buttonWrite(3,"Poke");
-         buttonWrite(9,"Cock Carv");
-         buttonWrite(11,"Milk Bottle");
-         if(checkItem(207))
-         {
-            Choice9.visible = true;
-         }
-         if(checkItem(500) || checkItem(501))
-         {
-            Choice11.visible = true;
-         }
-         buttonWrite(8,"Leave");
-         outputMainText("What would you like to do with the statue\'s gaping pussy?",true);
-         doListen = function():void
-         {
-            if(buttonChoice == 1)
-            {
-               outputMainText("You lick the statue\'s pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               doSexP(20);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 3)
-            {
-               outputMainText("You poke the statue\'s gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It\'s not quite like the real thing, but a fun thing to do nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue\'s face seems happy with it as well.",true);
-               outputMainText("\r\rThen, a glint of light obscures your view for just a moment and when it\'s gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",false);
-               doSexP(8);
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 9)
-            {
-               outputMainText("You slide a cock carving up into the statue\'s open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...",true);
-               outputMainText("\r\rA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they\'re pushed aside. Birds fly up and away to escape the tremors. And soon enough, you\'re staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\r\rOnce the process settles, you move in to inspect it. You can\'t read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",false);
-               if(checkItem(254) || checkStash(254))
-               {
-                  outputMainText("\r\rYou have already taken the lantern from here, so there\'s not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",false);
-               }
-               else
-               {
-                  outputMainText("\r\rThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can\'t seem to find anything else to do with this hidden entrance and your left having to head back to town.",false);
-                  itemAdd(254);
-               }
-               loseManyItem(207,1);
-               hrs = 3;
-               doEnd();
-            }
-            if(buttonChoice == 11)
-            {
-               outputMainText("You push the bottle of milk up against the statue\'s pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you\'re looking rather pregnant!\r\rThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...",true);
-               pregArray.push(true,504,208,200,0);
-               if(checkItem(500))
-               {
-                  loseManyItem(500,1);
-               }
-               else
-               {
-                  loseManyItem(501,1);
-               }
-               hrs = 2;
-               doEnd();
-            }
-            if(buttonChoice == 8)
-            {
-               outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",true);
-               hrs = 1;
-               doEnd();
-            }
-         };
-      }
+      elif (buttonChoice == 3):
+         ButtonFunctions.Visible(1,0,1,0,0,0,0,1,1,0,1,0)
+         templist = [1, "Lick", 3, "Poke", 8, "Leave"]
+         if (CheckItem(207) == True):
+            templist.append(9)
+            templist.append("Cock Carv")
+         if ((CheckItem(500) == True) or (CheckItem(501) == True)):
+            templist.append(11)
+            templist.append("Milk Bottle")
+         OutputMainText("What would you like to do with the statue's ear?",True)
+         DoButtonChoices(templist)
+         #doListen = function():void
+         if (buttonChoice == 1):
+            OutputMainText("You lick the statue's ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...",True)
+            OutputMainText("\n" + "\n" + "A loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door." + "\n" + "\n" + "Once the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",False)
+            if ((CheckItem(254) == True) or (CheckStash(254) == True)):
+               OutputMainText("\n" + "\n" + "You have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",False)
+            else:
+               OutputMainText("\n" + "\n" + "The only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.",False)
+               ItemAdd(254)
+            hrs = 3
+            DoEnd()
+         elif (buttonChoice == 3):
+            OutputMainText("You attempt to poke the statue's ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn't seem to like it.",True)
+            OutputMainText("\n" + "\n" + "You hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + SkinDesc() + ".",False)
+            if (boobTotal == 2):
+               OutputMainText("\n" + "\n" + "Your chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+               if (breastSize > 4):
+                  OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+               boobTotal = 4
+               fourBoobAffinity = 100
+            OutputMainText("\n" + "\n" + "As the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.",False)
+            if (ment > 60):
+               OutputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",False)
+            fertilityStatueCurse = 48
+            minLust += 10
+            DoLust(0,0)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 9):
+            OutputMainText("You attempt to stick a cock carving into the statue's ear. You attempt to stick a penis-like object into someone's ear. What the hell is wrong with you?!",True)
+            OutputMainText("\n" + "\n" + "You hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + SkinDesc() + ".",False)
+            if (boobTotal == 2):
+               OutputMainText("\n" + "\n" + "Your chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+               if (breastSize > 4):
+                  OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+               boobTotal = 4
+               fourBoobAffinity = 100
+            OutputMainText("\n" + "\n" + "As the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.",False)
+            if (ment > 60):
+               OutputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",False)
+            fertilityStatueCurse = 48
+            LoseManyItem(207,1)
+            minLust += 10
+            DoLust(0,0)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 11):
+            OutputMainText("You attempt pour the milk into the statue's ear. Why? Maybe if there was a buildup of ear-wax that might be a good idea, but even then that's not exactly smart.",True)
+            OutputMainText("\n" + "\n" + "You hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + SkinDesc() + ".",False)
+            if (boobTotal == 2):
+               OutputMainText("\n" + "\n" + "Your chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+               if (breastSize > 4):
+                  OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+               boobTotal = 4
+               fourBoobAffinity = 100
+            OutputMainText("\n" + "\n" + "As the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.",False)
+            if (ment > 60):
+               OutputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",False)
+            fertilityStatueCurse = 48
+            if (CheckItem(500) == True):
+               LoseManyItem(500,1)
+            else:
+               LoseManyItem(501,1)
+            minLust += 10
+            DoLust(0,0)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 8):
+            OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
+            hrs = 1
+            DoEnd()
+      elif (buttonChoice == 6):
+         ButtonFunctions.Visible(1,0,1,0,0,0,0,1,1,0,1,0)
+         templist = [1, "Lick", 3, "Poke", 8, "Leave"]
+         if (CheckItem(207) == True):
+            templist.append(9)
+            templist.append("Cock Carv")
+         if ((checkItem(500) == True) or (CheckItem(501) == True)):
+            templist.append(11)
+            templist.append("Milk Bottle")
+         OutputMainText("What would you like to do with the statue's four breasts?",True)
+         DoButtonChoices(templist)
+         #doListen = function():void
+         if (buttonChoice == 1):
+            OutputMainText("You lick the statue's breasts, pleasuring the nipples that stick out. It's not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.",True)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            DoSexP(10)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 3):
+            OutputMainText("You attempt to poke the statue's boobs. The boobs definitely don't bite back, but it seems like a rather annoying way to react to boobs.",True)
+            OutputMainText("\n" + "\n" + "You hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your " + SkinDesc() + ".",False)
+            if (boobTotal == 2):
+               OutputMainText("\n" + "\n" + "Your chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + SkinDesc() + ", creating an extra row of breasts beneath the originals.",False)
+               if (breastSize > 4):
+                  OutputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + ClothesTop() + " accordingly.",False)
+               boobTotal = 4
+               fourBoobAffinity = 100
+            OutputMainText("\n" + "\n" + "As the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.",False)
+            if (ment > 60):
+               OutputMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...",False)
+            fertilityStatueCurse = 48
+            minLust += 10
+            DoLust(0,0)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 9):
+            OutputMainText("You wedge a cock carving in between the statue's two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you\'re slightly more experienced with this practice and the statue's face seems happy with it as well.",True)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            DoSexP(15)
+            LoseManyItem(207,1)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 11):
+            OutputMainText("You pour the milk out over the breasts until they're completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within." + "\n" + "\n" + "At the base of the statue, a hidden compartment pops out.",True)
+            if (knowBazoomba == False):
+               OutputMainText(" A scroll rolls out, allowing you to take it. You open it up and read through the various pictographs. It seems to be an alchemical recipe! You can make out the actual ingredients for the concoction, but you can't seem to tell what it is exactly, only able to determine that it creates \"more of the best things in life\"?" + "\n" + "\n" + "You have learned the recipe for Bazoomba!",False)
+               knowBazoomba = True
+            else:
+               OutputMainText(" However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within.",False)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            hrs = 2
+            if (CheckItem(500) == True):
+               LoseManyItem(500,1)
+            else:
+               LoseManyItem(501,1)
+            DoEnd()
+         elif (buttonChoice == 8):
+            OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
+            hrs = 1
+            DoEnd()
+      elif (buttonChoice == 10):
+         ButtonFunctions.Visible(1,0,1,0,0,0,0,1,1,0,1,0)
+         templist = [1, "Lick", 3, "Poke", 8, "Leave"]
+         if (CheckItem(207) == True):
+            templist.append(9)
+            templist.apend("Cock Carv")
+         if ((CheckItem(500) == True) or (CheckItem(501) == True)):
+            templist.append(11)
+            templist.append("Milk Bottle")
+         OutputMainText("What would you like to do with the statue's gaping pussy?",True)
+         DoButtonChoices(templist)
+         #doListen = function():void
+         if (buttonChoice == 1):
+            OutputMainText("You lick the statue's pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.",True)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            DoSexP(20)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 3):
+            OutputMainText("You poke the statue's gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It's not quite like the real thing, but a fun thing to do nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.",True)
+            OutputMainText("\n" + "\n" + "Then, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.",False)
+            DoSexP(8)
+            hrs = 2
+            doEnd()
+         elif (buttonChoice == 9):
+            OutputMainText("You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...",True)
+            OutputMainText("\n" + "\n" + "A loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door." + "\n" + "\n" + "Once the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.",False)
+            if ((CheckItem(254) == True) or (CheckStash(254) == True))
+               OutputMainText("\n" + "\n" + "You have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.",False)
+            else:
+               OutputMainText("\n" + "\n" + "The only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.",False)
+               ItemAdd(254)
+            LoseManyItem(207,1)
+            hrs = 3
+            DoEnd()
+         elif (buttonChoice == 11):
+            OutputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!" + "\n" + "\n" + "Then, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...",True)
+            pregArray.push(True,504,208,200,0)
+            if (CheckItem(500) == True)
+               LoseManyItem(500,1)
+            else:
+               LoseManyItem(501,1)
+            hrs = 2
+            DoEnd()
+         elif (buttonChoice == 8):
+            OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
+            hrs = 1
+            DoEnd()
       elif (buttonChoice == 12):
          OutputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.",True)
          hrs = 1
          DoEnd()
-   else if(chance == 2)
-   {
-      this.outputMainText("With all the flowers in this vibrant valley, one in particular seems to lure you in. The scent caught your nose from quite the distance, so delightfully fragrant, and yet its petals are merely black with white stripes, not nearly as colorful as the rest.\r\rHowever, the smell alone is worth holding on to, so you pick the flower and slip it into your bag.",true);
-      this.itemAdd(255);
-      this.hrs = 2;
-      this.doEnd();
-   }
-   else if(chance == 3)
-   {
-      this.outputMainText("Strolling through the pleasant valley, a bush catches your eye. Its fruit are large and round, looking quite delicious. You find a ripe one and pluck it, storing it for later when you\'re hungry.",true);
-      this.itemAdd(251);
-      this.hrs = 2;
-      this.doEnd();
-   }
-   else if(chance == 4)
-   {
-      this.outputMainText("While exploring the valley, you step on something rather hard. Quickly lifting your " + this.legDesc(9) + ", you find a small item sticking up out of the ground. With a tear-drop shape, it seems to be completely made of wood and rather old. Its surface is engraved with depictions of tree-like people losing their limbs and growing up towards the sun at the tip of the tear-drop.\r\rThis might be of some use, so you pocket it.",true);
-      this.itemAdd(249);
-      this.hrs = 2;
-      this.doEnd();
-   }
-   else if(chance == 5)
-   {
-      this.outputMainText("The valley is just so bright and lively that... you feel like you could just rest here forever... In fact... you lie down in a bed of flowers and drift off to sleep...",true);
-      this.doNext();
-      this.doListen = function():void
-      {
-         outputMainText("You wake up some time later. You have no idea how long you were out at first, but the fact that some of the flowers have grown around you and a few bugs have taken up home is a bit disconcerting. You feel completely refreshed, though a little drowsy in some respects. You quickly jump up and head out of the valley before any more time passes and head back into town.\r\rApparently you had been gone for a couple days...",true);
-         hrs += 48;
-         exhaustion = 0;
-         skipExhaustion = true;
-         doLust(-10,0);
-         stats(0,0,-1,0);
-         doHP(1000000);
-         doEnd();
-      };
-   }
-}
+   elif (chance == 2):
+      OutputMainText("With all the flowers in this vibrant valley, one in particular seems to lure you in. The scent caught your nose from quite the distance, so delightfully fragrant, and yet its petals are merely black with white stripes, not nearly as colorful as the rest." + "\n" + "\n" + "However, the smell alone is worth holding on to, so you pick the flower and slip it into your bag.",True)
+      ItemAdd(255)
+      hrs = 2
+      DoEnd()
+   elif (chance == 3):
+      OutputMainText("Strolling through the pleasant valley, a bush catches your eye. Its fruit are large and round, looking quite delicious. You find a ripe one and pluck it, storing it for later when you're hungry.",True)
+      ItemAdd(251)
+      hrs = 2
+      DoEnd()
+   elif (chance == 4):
+      OutputMainText("While exploring the valley, you step on something rather hard. Quickly lifting your " + LegDesc(9) + ", you find a small item sticking up out of the ground. With a tear-drop shape, it seems to be completely made of wood and rather old. Its surface is engraved with depictions of tree-like people losing their limbs and growing up towards the sun at the tip of the tear-drop." + "\n" + "\n" + "This might be of some use, so you pocket it.",True)
+      ItemAdd(249)
+      hrs = 2
+      DoEnd()
+   elif (chance == 5):
+      OutputMainText("The valley is just so bright and lively that... you feel like you could just rest here forever... In fact... you lie down in a bed of flowers and drift off to sleep...",True)
+      DoNext()
+      #this.doListen = function():void
+      OutputMainText("You wake up some time later. You have no idea how long you were out at first, but the fact that some of the flowers have grown around you and a few bugs have taken up home is a bit disconcerting. You feel completely refreshed, though a little drowsy in some respects. You quickly jump up and head out of the valley before any more time passes and head back into town." + "\n" + "\n" + "Apparently you had been gone for a couple days...",True)
+      hrs += 48
+      exhaustion = 0
+      skipExhaustion = True
+      DoLust(-10,0)
+      Stats(0,0,-1,0)
+      DoHP(1000000)
+      DoEnd()
+
 def DoDungeon():
    global currentDungeon
-   if (currentDungeon > 1000) and (currentDungeon <= 1010):
+   if ((currentDungeon > 1000) and (currentDungeon <= 1010)):
       DoOldCaveDescent()
 
-!def DoOldCaveDescent():
-   global currentDungeon, defeatedMinotaur, enemyID, currentState, eMaxHP, eHP, buttonChoice, defeatedFreakyGirl, defeatedSuccubus
-   if (currentDungeon == 1001) or (currentDungeon == 1002) or (currentDungeon == 1003):
-      if defeatedMinotaur == False:
+def DoOldCaveDescent():
+   global currentDungeon, defeatedMinotaur, enemyID, currentState, eMaxHP, eHP, buttonChoice, defeatedFreakyGirl, defeatedSuccubus, 
+   if ((currentDungeon == 1001) or (currentDungeon == 1002) or (currentDungeon == 1003)):
+      if (defeatedMinotaur == False):
          OutputMainText("With the lantern allowing you to actually see where you're going, you're able to venture much deeper into the old cave. It is surpisingly long for a cave that doesn't open up into a large cavern and there's not terribly much of note either, nothing you could have accidentally bumped into. The only thing particularly interesting are holes that line the bottom of the walls that angle downward, as a sort of natural drainage system for fluids. Otherwise, things are just rather... humid and slimy. It's not something you think too much about, however, as your light eventually begins to glisten off of the back wall of the cave, finally having reached the end. Or so you think it's the end." + "\n" + "\n" + "As you reach the back wall, you notice another cave branching off. Yet, it's not exactly another cave. From the way the stone is hewn and the entrance is elevated from the normal floor of the original cave, this appears to have been carved out. You step up inside and immediately notice... There's stairs going down. Since ventured this far in, you continue on, walking down the spiraling staircase." + "\n" + "\n" + "This passage appears to be ancient, with many of the steps rather worn from all the footsteps. The walls are slightly warped and scratched, but otherwise in good condition for their age. And they just keep going down and down and down... You quickly lose count of how many steps you've descended and it just becomes a relentless trek downward until... you find a room!" + "\n" + "\n" + "Although, it's not much of a room... Rectangular, somewhat large, lighted by a couple torches and relatively boring, with another stairwell against the opposite wall. This is just a sort of waypoint along the stairwell... But it's not empty either.",True)
          DoNext()
          #doListen = function():void
@@ -21271,180 +21063,173 @@ def DoDungeon():
          eMaxHP = eHP
          DoBattle()
       else:
-         if currentDungeon == 1001:
+         if (currentDungeon == 1001):
             OutputMainText("You make your way back to the first 'checkpoint' along the large staircase in the old cave. The Minotaur you had bested is currently facing the wall, grunting and sweating, but quickly jerks to attention as he hears you enter. He quickly spins around to face you, acting like he had been busy guarding attentively the whole time. However, his big fat cock still throbs beneath his lazily drooped loin cloth, the aroused head poking out the side with a gob of pre drooling down. He pretends not to notice so he can tend to his duties, but exhales with a grunt as he sees you." + "\n" + "\n" + "\"Oh, just you. You can go, I know you now. Unless you want to try Minotaur again?\"",True)
-         if currentDungeon == 1002:
+         elif (currentDungeon == 1002):
             OutputMainText("With the Minotaur sitting in a corner sulking over his loss, you're free to either go up to the surface or venture further down the stairs.",True)
-         if currentDungeon == 1003:
+         elif (currentDungeon == 1003):
             OutputMainText("With the Minotaur laying on the ground, continuing to pleasure himself, you're free to either go up to the surface or venture further down the stairs.",True)
-         ViewButtonOutline(1,1,0,1,0,0,0,0,0,0,0,0)
-         ViewButtonText(1,1,0,1,0,0,0,0,0,0,0,0)
-         ButtonWrite(4,"Firmshaft")
-         ButtonWrite(1,"Fight")
-         ButtonWrite(2,"Down")
-         if currentDungeon != 1001:
-            this.Choice1.visible = False
-         doListen = function():void
-            if buttonChoice == 2:
-               if currentDungeon == 1001:
-                  OutputMainText("The beast-man gives you a grunt. \"Fine.\"" + "\n" + "\n" + "Before you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head down the next set of stairs.",True)
-               else:
-                  outputMainText("You leave the beast-man to himself and head towards the stairs.",True)
-               DoNext()
-               doListen = function():void
-                  currentDungeon = 1004
-                  DoOldCaveDescent()
-            if buttonChoice == 4:
-               if currentDungeon == 1001:
-                  OutputMainText("The beast-man gives you a grunt. \"Fine.\"" + "\n" + "\n" + "Before you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head back out to Firmshaft.",True)
-               else:
-                  OutputMainText("You leave the beast-man to himself and head towards the stairs.",True)
-               DoNext()
-               doListen = function():void
-                  inDungeon = False
-                  RegionChange(2)
-                  DoEnd()
-            if buttonChoice == 1:
-               OutputMainText("\"Ahh, goody. Me need something to do!\" The beast-man begins to charge after you once more.",True)
-               DoNext()
-               doListen = function():void
-                  enemyID = 307
-                  currentState = 2
-                  EnemyBaseStats()
-                  eMaxHP = eHP
-                  DoBattle()
-   if currentDungeon == 1004 or currentDungeon == 1005 or currentDungeon == 1006:
-      if defeatedFreakyGirl == False:
+         ButtonFunctions.Visible(1,1,0,1,0,0,0,0,0,0,0,0)
+         templist = [2, "Down", 4, "Firmshaft"]
+         if (currentDungeon != 1001):
+            templist.append(1)
+            templist.append("Fight")
+         #doListen = function():void
+         if (buttonChoice == 2):
+            if (currentDungeon == 1001):
+               OutputMainText("The beast-man gives you a grunt. \"Fine.\"" + "\n" + "\n" + "Before you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head down the next set of stairs.",True)
+            else:
+               OutputMainText("You leave the beast-man to himself and head towards the stairs.",True)
+            DoNext()
+            #doListen = function():void
+            currentDungeon = 1004
+            DoOldCaveDescent()
+         elif (buttonChoice == 4):
+            if (currentDungeon == 1001):
+               OutputMainText("The beast-man gives you a grunt. \"Fine.\"" + "\n" + "\n" + "Before you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head back out to Firmshaft.",True)
+            else:
+               OutputMainText("You leave the beast-man to himself and head towards the stairs.",True)
+            DoNext()
+            #doListen = function():void
+            inDungeon = False
+            RegionChange(2)
+            DoEnd()
+         elif (buttonChoice == 1):
+            OutputMainText("\"Ahh, goody. Me need something to do!\" The beast-man begins to charge after you once more.",True)
+            DoNext()
+            #doListen = function():void
+            enemyID = 307
+            currentState = 2
+            EnemyBaseStats()
+            eMaxHP = eHP
+            DoBattle()
+   if ((currentDungeon == 1004) or (currentDungeon == 1005) or (currentDungeon == 1006)):
+      if (defeatedFreakyGirl == False):
          OutputMainText("Even more stairs than before, you keep going and going, deeper below the surface. You don't know how long it takes, but you do know it's a while before you find the end and step into another room. Just like before, it's nothing too grandoise, just a rectangular room hewn in the ancient stone. And at the far and, you see even more stairs descending down... However, something far more interesting grabs your attention." + "\n" + "\n" + "\"Ooo, look Mr. Snuggles, someone to pway with!\" The cute little girly voice cuts through the boredom of stairs like a sweet delicate knife." + "\n" + "\n" + "Only as the girl gets up from sitting cross-legged do you notice a flash of her white panties. With the short frilly skirt that curls outward and shows off much of her supple legs, she must have been exposing her undergarments to you much longer as she sat on the floor. Although, you quickly try to dash that thought as you realize how young she seems to be. Barely over four feet tall, she hardly has any curves to speak of; a rather flat chest that hardly pushes out her soft shirt just by the slightly puffy nipples beneath and her hips more emphasized by the short bouncy skirt then their own girth. Her hair is bound on either side by big ribbons, pulled into two pigtails the dangle down past her shoulders, brushing across the puffed short sleeves of the otherwise tight-fitting shirt and exposing her large long ears that look almost goofy on her small form." + "\n" + "\n" + "And as she stands, her immaturity is further amplified by the large plushy doll she lifts with her. Nearly as large as herself, it looks like the minotaur you defeated in the previous room, except small and adorable. The thing seems to have seen a fair deal of use, however, as it's completely covered in patches of leather. You can't really tell how old it is, considering much of the leather looks brand new whereas other places look quite worn and faded, with quite a few gashes from some kind of scratches that should probably be patched up as well soon. Nevertheless, the girl hugs it close as she begins to skip around in a circle, her skirt bouncing with small glimpses of her undies as she frolics. \"We're gonna pla-ay~ We're gonna pla-ay~ We're gonna pla-ay~\"" + "\n" + "\n" + "She seems just so adorable that you almost feel obligated to play. That is... until she stops dead in her tracks and turns to you with a ferocious stare, her eyes looking far darker and her pigtails looking almost like wings as the hair curls outward sinisterly. Her nails dig into the leather of Mr. Snuggles, scratching it like all the other gashes you noticed, and she speaks in a much louder, much more snarling voice. \"IT'S BEEN YEARS SINCE I'VE HAD A GOOD TOY~\"" + "\n" + "\n" + "Uh oh...",True)
          DoNext()
-         doListen = function():void
+         #doListen = function():void
+         enemyID = 308
+         currentState = 2
+         EnemyBaseStats()
+         eMaxHP = eHP
+         DoBattle()
+      else:
+         if (currentDungeon == 1004):
+            OutputMainText("Returning to the second floor of the cave descent, the strange little girl sits on the floor playing with Mr. Snuggles in her lap. As she spots you, she lifts the plushy leather minotaur up to her eyes and turns it toward you, using it as a puppet as she speaks in a fake menacing voice. \"Grr, did you come back to play some more~?\"",True)
+         elif (currentDungeon == 1005):
+            OutputMainText("The girl hides behind Mr. Snuggles, grumbling about how you're a \"Big fat meanie face\" and how she's \"GOING TO FEAST ON YOUR BONES\" for having defeated her, but she allows you to go as you please.",True)
+         elif (currentDungeon == 1006):
+            OutputMainText("The girl cuddles up with Mr. Snuggles, her hips still twitching and thrusting her enlarged clit into the doll, allowing you to go as you please.",True)
+         ButtonFunctions.Visible(0,1,0,1,0,1,1,0,0,0,0,0)
+         templist = [2, "Up", 4, "Firmshaft", 6, "'Play'", 7, "Down"]
+         #if currentDungeon != 1004:
+            #this.Choice11.visible = False
+         DoButtonChoices(templist)
+         #doListen = function():void
+         if (buttonChoice == 2):
+            if (currentDungeon == 1004):
+               OutputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up to the above floor.",True)
+            else:
+               OutputMainText("She continues on with her doll and you take to the stairs.",True)
+            DoNext()
+            #doListen = function():void
+            currentDungeon = 1001
+            DoOldCaveDescent()
+         elif (buttonChoice == 4):
+            if (currentDungeon == 1004):
+               OutputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up the stairs and out of the cave to Firmshaft.",True)
+            else:
+               OutputMainText("She continues on with her doll and you take to the stairs.",True)
+            DoNext()
+            #doListen = function():void
+            inDungeon = False
+            RegionChange(2)
+            DoEnd()
+         elif (buttonChoice == 6):
+            OutputMainText("\"Ooo, really?! Yay~!\" The girl hops up to her feet, her skirt flipping up a little to flash you her panties. With Mr. Snuggles in hand, the excitement gets the best of her and she bellows out with her fiercer side. \"I'LL TRY NOT TO TEAR YOU TO SHREDS~\"",True)
+            DoNext()
+            #doListen = function():void
             enemyID = 308
             currentState = 2
             EnemyBaseStats()
             eMaxHP = eHP
             DoBattle()
-      else:
-         if currentDungeon == 1004:
-            OutputMainText("Returning to the second floor of the cave descent, the strange little girl sits on the floor playing with Mr. Snuggles in her lap. As she spots you, she lifts the plushy leather minotaur up to her eyes and turns it toward you, using it as a puppet as she speaks in a fake menacing voice. \"Grr, did you come back to play some more~?\"",True)
-         if currentDungeon == 1005:
-            OutputMainText("The girl hides behind Mr. Snuggles, grumbling about how you're a \"Big fat meanie face\" and how she's \"GOING TO FEAST ON YOUR BONES\" for having defeated her, but she allows you to go as you please.",True)
-         if currentDungeon == 1006:
-            OutputMainText("The girl cuddles up with Mr. Snuggles, her hips still twitching and thrusting her enlarged clit into the doll, allowing you to go as you please.",True)
-         ViewButtonOutline(0,1,0,1,0,1,1,0,0,0,0,0)
-         ViewButtonText(0,1,0,1,0,1,1,0,0,0,0,0)
-         ButtonWrite(2,"Up")
-         ButtonWrite(4,"Firmshaft")
-         ButtonWrite(6,"'Play'")
-         ButtonWrite(7,"Down")
-         if currentDungeon != 1004:
-            this.Choice11.visible = False
-         doListen = function():void
-            if buttonChoice == 2:
-               if currentDungeon == 1004:
-                  OutputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up to the above floor.",True)
-               else:
-                  OutputMainText("She continues on with her doll and you take to the stairs.",True)
-               DoNext()
-               doListen = function():void
-                  currentDungeon = 1001
-                  DoOldCaveDescent()
-            if buttonChoice == 4:
-               if currentDungeon == 1004:
-                  OutputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up the stairs and out of the cave to Firmshaft.",True)
-               else:
-                  OutputMainText("She continues on with her doll and you take to the stairs.",True)
-               DoNext()
-               doListen = function():void
-                  inDungeon = False
-                  RegionChange(2)
-                  DoEnd()
-            if buttonChoice == 6:
-               OutputMainText("\"Ooo, really?! Yay~!\" The girl hops up to her feet, her skirt flipping up a little to flash you her panties. With Mr. Snuggles in hand, the excitement gets the best of her and she bellows out with her fiercer side. \"I'LL TRY NOT TO TEAR YOU TO SHREDS~\"",True)
-               DoNext()
-               doListen = function():void
-                  enemyID = 308
-                  currentState = 2
-                  EnemyBaseStats()
-                  eMaxHP = eHP
-                  DoBattle()
-            if buttonChoice == 7:
-               if currentDungeon == 1004:
-                  OutputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you venture down the next set of stairs.",True)
-               else:
-                  OutputMainText("She continues on with her doll and you take to the stairs.",True)
-               DoNext()
-               doListen = function():void
-                  currentDungeon = 1007
-                  DoOldCaveDescent()
-   if currentDungeon == 1007 or currentDungeon == 1008 or currentDungeon == 1009:
-      if defeatedSuccubus == False:
+         elif (buttonChoice == 7):
+            if (currentDungeon == 1004):
+               OutputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you venture down the next set of stairs.",True)
+            else:
+               OutputMainText("She continues on with her doll and you take to the stairs.",True)
+            DoNext()
+            #doListen = function():void
+            currentDungeon = 1007
+            DoOldCaveDescent()
+   if ((currentDungeon == 1007) or (currentDungeon == 1008) or (currentDungeon == 1009)):
+      if (defeatedSuccubus == False):
          OutputMainText("The spiraling stairs just keep going down further and further... You don't know how far down below the surface you've traveled, there's no signs of being any deeper. The rock walls look the same, the steps look the same, even the air isn't as stale as you would expect such a deep cavern to be. Even as you muse over these thoughts, the fact that you have reach yet another room almost eludes you until your feet attempt to continue down non-existant steps and slam into the floor abruptly. You've reached another room, just like the others, except your eyes widen in hope as you see a door on the far wall, no more stairs! Yet, your attention is turned as a sweet feminine voice tantalizes your ears and blocks your exit." + "\n" + "\n" + "\"Well, well. Looks like I've finally got a visitor. So you managed to get past the other two guardians? That's quite the feat. To be honest, that little girl creeps the hell out of me.\"" + "\n" + "\n" + "The figure steps into your view of the door as she shudders at the thought. Her chest wobbles with two grandoise mounds, the things barely held back by an overburdened red leather bikini top. They look even larger when compared to her surprisingly thin waist that widens back out to some very ample hips, the cheeks of her rump jiggling erotically in the matching red leather panties and her long thin tail tipped with a fleshy spade waves behind her to accentuate the movement further. Garters descend down to help hold up her thigh-high high-heeled boots from a belt that lazily hangs around her waist, adorned with glowing vials and a long beatiful whip. To top the whole image off, her milky white skin, long black hair, short little horns, short bat-like wings, and eyes as red as her outfit, all amount to a single idea. A succubus. A creature popular in legends passed down from earlier generations. A creature that, according to the myths, is known for being extremely attractive and for sucking out the essence of men." + "\n" + "\n" + "Sure you've encountered a lot of strange things, but this is something you already knew about and is something that supposedly did NOT exist. However, you don't have time to contemplate such things further as she proceeds to take her whip in hand and lash it against the floor." + "\n" + "\n" + "\"On the other hand, if you were able to beat those two, then you must be quite a treat for me. Don't worry, I won't hurt you... much. I doubt you'll be able to pass, but if you do it would be worth it. I'd probably like to try my hand at you again sometime.\" She gives you a wink before lunging in to fight.",True)
          DoNext()
-         doListen = function():void
+         #doListen = function():void
+         enemyID = 309
+         currentState = 2
+         EnemyBaseStats()
+         eMaxHP = eHP
+         DoBattle()
+      else:
+         if (currentDungeon == 1007):
+            OutputMainText("On the last floor before Sanctuary, the succubus toys around with her vials filled with the masculinity of various victims. She perks up at your presence, something to cut into the boredom. \"Hello again~ Don't worry. Now that you've defeated all of us, you're free to come and go as you please since you've shown you can handle yourself and won't be dead weight, so I won't fight you. Unless you want to go another round~\" She gives you a wink.",True)
+         elif (currentDungeon == 1008):
+            OutputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually hurt her at all and waiting for you to leave so she can rub the achy bits.",True)
+         elif (currentDungeon == 1008):
+            OutputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually best her in the art of sex and waiting for you to leave so she can rub her tingly bits.",True)
+         ButtonFunctions.Visible(0,0,0,1,0,0,1,0,0,0,1,1)
+         templist = [4, "Firmshaft", 7, "Up", 12, "Sanctuary"]
+         if (defeatedSuccubus == True):
+            templist.append(11)
+            templist.append("Fight")
+         DoButtonChoices(templist)
+         #doListen = function():void
+         if (buttonChoice == 7):
+            if (currentDungeon == 1007):
+               OutputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials.",True)
+            else:
+               OutputMainText("\"Take care~\" She seems relieved as you leave.",True)
+            DoNext()
+            #doListen = function():void
+            currentDungeon = 1004
+            DoOldCaveDescent()
+         elif (buttonChoice == 4):
+            if (currentDungeon == 1007):
+               OutputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials while you head up out to Firmshaft.",True)
+            else:
+               OutputMainText("\"Take care~\" She seems relieved as you leave.",True)
+            DoNext()
+            #doListen = function():void
+            inDungeon = False
+            RegionChange(2)
+            DoEnd()
+         elif (buttonChoice == 11):
+            OutputMainText("\"Oh, so you want to have another go at little ole me? Don't mind if I do; I could go for a nice snack~\" Her breasts bounce as she steps to attention, grabbing for her whip in anticipation of some excitement.",True)
+            DoNext()
+            #doListen = function():void
             enemyID = 309
             currentState = 2
             EnemyBaseStats()
             eMaxHP = eHP
             DoBattle()
-      else:
-         if currentDungeon == 1007:
-            OutputMainText("On the last floor before Sanctuary, the succubus toys around with her vials filled with the masculinity of various victims. She perks up at your presence, something to cut into the boredom. \"Hello again~ Don't worry. Now that you've defeated all of us, you're free to come and go as you please since you've shown you can handle yourself and won't be dead weight, so I won't fight you. Unless you want to go another round~\" She gives you a wink.",True)
-         if currentDungeon == 1008:
-            OutputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually hurt her at all and waiting for you to leave so she can rub the achy bits.",True)
-         if currentDungeon == 1008:
-            OutputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually best her in the art of sex and waiting for you to leave so she can rub her tingly bits.",True)
-         ViewButtonOutline(0,0,0,1,0,0,1,0,0,0,1,1)
-         ViewButtonText(0,0,0,1,0,0,1,0,0,0,1,1)
-         ButtonWrite(4,"Firmshaft")
-         ButtonWrite(7,"Up")
-         ButtonWrite(11,"Fight")
-         ButtonWrite(12,"Sanctuary")
-         if defeatedSuccubus == True:
-            this.Choice11Outline.visible = True
-         doListen = function():void
-            if buttonChoice == 7:
-               if currentDungeon == 1007:
-                  OutputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials.",True)
-               else:
-                  OutputMainText("\"Take care~\" She seems relieved as you leave.",True)
-               DoNext()
-               doListen = function():void
-                  currentDungeon = 1004
-                  DoOldCaveDescent()
-            if buttonChoice == 4:
-               if currentDungeon == 1007:
-                  outputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials while you head up out to Firmshaft.",True)
-               else:
-                  outputMainText("\"Take care~\" She seems relieved as you leave.",True)
-               DoNext()
-               doListen = function():void
-                  inDungeon = False
-                  RegionChange(2)
-                  DoEnd()
-            if buttonChoice == 11:
-               OutputMainText("\"Oh, so you want to have another go at little ole me? Don't mind if I do; I could go for a nice snack~\" Her breasts bounce as she steps to attention, grabbing for her whip in anticipation of some excitement.",True)
-               DoNext()
-               doListen = function():void
-                  enemyID = 309
-                  currentState = 2
-                  EnemyBaseStats()
-                  eMaxHP = eHP
-                  DoBattle()
-            if buttonChoice == 12)
-               if currentDungeon == 1007:
-                  OutputMainText("\"Alright, try not to do anything I'd want to do~\" She returns her focus to her vials.",True)
-               else:
-                  OutputMainText("\"Take care~\" She seems relieved as you leave.",True)
-               DoNext()
-               doListen = function():void
-                  inDungeon = False
-                  RegionChange(12)
-                  DoEnd()
-   if currentDungeon == 1010:
+         elif (buttonChoice == 12):
+            if (currentDungeon == 1007):
+               OutputMainText("\"Alright, try not to do anything I'd want to do~\" She returns her focus to her vials.",True)
+            else:
+               OutputMainText("\"Take care~\" She seems relieved as you leave.",True)
+            DoNext()
+            #doListen = function():void
+            inDungeon = False
+            RegionChange(12)
+            DoEnd()
+   if (currentDungeon == 1010):
       OutputMainText("The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open." + "\n" + "\n" + "Gazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting." + "\n" + "\n" + "A massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground." + "\n" + "\n" + "\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle." + "\n" + "\n" + "\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"" + "\n" + "\n" + "\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"" + "\n" + "\n" + "\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"" + "\n" + "\n" + "The succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own.",True)
       inDungeon = False
       RegionChange(12)
-      if foundSanctuary == False:
+      if (foundSanctuary == False):
          foundSanctuary = True
 
 def LilaDesc():
@@ -21477,11 +21262,11 @@ def LilaDesc():
       OutputMainText(" And between her knees hangs her overgrown lips, making her stand slightly bow-legged. Her legs almost constantly twist about, using her knees to squish the flesh again and again since her hands can hardly hold it all if she tried. Her clitoris can hardly be called a button, stroked like a small penis as it pushes out from the massive folds. Her inner lips are so pink with arousal that they seem to be growing longer, due to the the amount of slickness flowing down them that creates the illusion and forms a puddle around her feet.",False)
    elif (lilaVulva <= 19):
       OutputMainText(" And she hardly seems like she's standing at all. With how much her legs bend around and squeeze the large squishy labia that fills the space between them, it seems like she's nearly sitting on her own pussy. However, it barely hovers over the floor, the inner labia dangling down and brushing across it when she presses down slightly to push her clit against the floor to please it a bit. If she curled up and actually wrapped her whole hand around the sensitive thing, there would have still been some more length to cover. Which only makes her original 'wetness' problem worse, the overall size of her genitals causing a flood about her feet and leaving them almost constantly slick and wet with a trail of more following her wherever she goes. However, thanks to her size, when she slips from her moisture she simply lets out an erotic mewl as she falls down onto her soft flesh.",False)
-   if (lilaPreg <= 35) and (lilaVulva >= 11):
+   if ((lilaPreg <= 35) and (lilaVulva >= 11)):
       OutputMainText(" Her belly seems to be sporting some extra cushioning as well. Not exactly chubby, her excess vaginal flesh from all the growth causes it to protrude, her lower breasts pushing out even more.",False)
-   elif (lilaPreg <= 70) and (lilaPreg > 35):
-        OutputMainText(" Her hands have a tendancy to cup her growing belly as well, imagining how big she will get. Already protruding quite a bit, her belly button just beginning to stick out, she giggles a little to herself at the thoughts of what's to come.",False)
-   elif (lilaPreg <= 100) and (lilaPreg > 70):
+   elif ((lilaPreg <= 70) and (lilaPreg > 35)):
+      OutputMainText(" Her hands have a tendancy to cup her growing belly as well, imagining how big she will get. Already protruding quite a bit, her belly button just beginning to stick out, she giggles a little to herself at the thoughts of what's to come.",False)
+   elif ((lilaPreg <= 100) and (lilaPreg > 70)):
       OutputMainText("Yet, despite all of that, her focus mostly remains on her large belly. Nearly as large as herself if she were to curl up, the thing hangs forward to the point where she can't see her messy arousal below. Her hands often roam over the taut fur, taking her naked opportunity to caress it and pleasure in it, cradling it gently.",False)
 
 def Gibberish():
@@ -21518,10 +21303,10 @@ def KnotholeMain(entering:bool):
    else:
       OutputMainText("You return to the main floor of the Knothole, looking around to see what else you would like to do." + "\n" + "\n",True)
    OutputMainText("Many Lupans are gathered in the drum-house, beating on sturdy, yet beautifully crafted drums built into the very foundation, the source of the deep, hard thumps that got your heart racing in the first place now pounding at your ears.",False)
-   if (ment <= 20) and (entering == True):
+   if ((ment <= 20) and (entering == True)):
       OutputMainText("The few who look like they are done for the night that you can see look like they've either just ran a marathon, or have just released after being pent up for a month or five. And to you right now, those vacant drums are looking very inviting.",False)
    OutputMainText("To the right, you see more Lupans dancing to the beating rhythm. Pheromones and mixed scents fill the Knothole, making your heart race harder. As you start feeling the blood pump through your veins, almost in sync with the beat of the drums, you find your body bouncing slightly with the rhythm.",False)
-   if (lust >= 50) and (entering == True):
+   if ((lust >= 50) and (entering == True)):
       OutputMainText("As if there was a subtle draft, the scents coming from the dancers start to entice you to join them, the movement of bodies a welcome sight right now. Watching the movement of bodies and tails dancing to the beat, you find your body starting to sway with the flow of the dances, as if the very essence of the drum-house was moving it for you.",False)
       DoLust(10,0)
    OutputMainText("On the left, you spot a wide staircase leading up, and another leading down. A good portion of Lupans are going to the other floors, some holding others on leashes linked to collars wrapped and locked around the necks of the ones being walked. Those on leashes heading up seemed to be more high-spirited than those heading down, which half seemed to be 'zoned out' or in a trance, following their Masters and Mistresses.",False)
@@ -21564,14 +21349,14 @@ def KnotholeUpstairs():
    DoButtonChoices(templist)
    #this.doListen = function():void
    if (buttonChoice == 1):
-      if (breastSize > 2) and (hips > 2) and (body < 20):
+      if ((breastSize > 2) and (hips > 2) and (body < 20)):
          OutputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone." + "\n" + "\n" + "The moment you take a seat on the soft comfortable cushions, a dark gray collared Lupan takes notice of you and makes their way over to you. Slowly approaching you (and crawling on all fours), you notice that they are male, and he is avoiding eye contact with you, focusing more on your " + LegDesc(10) + " and " + LegDesc(2) + "." + "\n" + "\n" + "Reaching your corner of the room, the collared male kneels at your " + LegDesc(10) + ", keeping his eyes low and bows his head. “Would you like me to dance for you?” he asks almost indirectly, his voice sounding timid." + "\n" + "\n" + "You consider for a moment, looking over the dark fur of the male's slender, nude frame before you.",True)
       else:
          OutputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone." + "\n" + "\n" + "The moment you take a seat on the soft, comfortable cushions, a collared Lupan takes notice of you and makes their way over to you. Getting closer to you (and crawling on all fours), you notice that they are female, and she avoids eye contact despite you almost getting lost in her beautiful deep emerald green eyes." + "\n" + "\n" + "Reaching your corner of the room, she kneels before you, pressing her bare chest out to display her ample breasts, showing her Lupan qualities to you. Her legs spread to expose her snatch between her legs, her hands on her legs with palms up. “Would you like me to dance for you?” she asks, still avoiding eye contact and keeping her head down, her tone of voice very timid." + "\n" + "\n" + "You consider for a moment, looking over the dark fur of the female's slender, nude frame before you.",True)
       ButtonConfirm()
       #doListen = function():void
       if (buttonChoice == 6):
-         if (breastSize > 2) and (hips > 2) and (body < 20):
+         if ((breastSize > 2) and (hips > 2) and (body < 20)):
             OutputMainText("The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath." + "\n" + "\n" + "The beat of the drums below rumbles softly through the floor, being felt through your " + LegDesc(10) + ". Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass." + "\n" + "\n" + "The dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat." + "\n" + "\n" + "The collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft." + "\n" + "\n" + "After a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar." + "\n" + "\n" + "Seeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.",True)
             DoLust(math.floor(lib / 4),0)
          else:
@@ -21626,7 +21411,7 @@ def DoBattle():
    if (buttonChoice == 1):
       DoBag()
    elif (buttonChoice == 2):
-      if (Percent() <= 20 + runMod):
+      if (Percent() <= (20 + runMod)):
          OutputMainText("You successfully run away!",True)
          if (inDungeon == True):
             RegionChange(currentZone)
@@ -21650,9 +21435,9 @@ def DoBattle():
    elif (buttonChoice == 7):
       DoSpecialAbility(1)
    elif (buttonChoice == 9):
-      if (gender == 0) or (eGen == 0):
+      if ((gender == 0) or (eGen == 0)):
          OutputMainText("What are you going to rape it with? Good intentions?" + "\n" + "\n" + "Choose another option.",True)
-         if currentState == 2:
+         if (currentState == 2):
             DoBattle()
       else:
          OutputMainText("You attempt to toss the " + EnemyName() + " to the ground and fuck it wildly!",True)
@@ -21675,9 +21460,9 @@ def DoBattle():
          else:
             DoRape()
             eLustChange = math.floor((Percent() / 10) + (eSen / 5))
-            if (eLust - eLustChange) <= 0:
+            if ((eLust - eLustChange) <= 0):
                eLust = 0
-            if (eMenta - eLustChange) < 0:
+            if ((eMenta - eLustChange) < 0):
                SpecialRapeWin()
                OutputMainText("\n" + "\n" + "You win!",False)
                currentState = 1
@@ -21698,7 +21483,7 @@ def DoBattle():
          DoBattle()
    elif (buttonChoice == 12):
       OutputMainText("No longer wishing to fight, you attempt to submit yourself to the " + EnemyName() + "'s whims in hopes of leaving the battle with a little fun.",True)
-      if (ePref == 0) or ((ePref == 1) and (gender == 2)) or ((ePref == 2) and (gender == 1)) or (gender == 0):
+      if ((ePref == 0) or ((ePref == 1) and (gender == 2)) or ((ePref == 2) and (gender == 1)) or (gender == 0)):
          OutputMainText("\n" + "\n" + "However, it is quickly apparent that the enemy has no interest in you, in that fashion.",False)
          if (currentState == 2):
             EnemyAttack()
