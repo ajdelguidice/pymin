@@ -19,7 +19,12 @@ class lists:
          for i in range(0, len(d)):
             templist.insert(b+i, d[i])
       return templist
-
+   def indexOf(a:list, b):
+      try:
+         x = a.index(b)
+      except:
+         x = -1
+      return x
 class logic:
    def inv(a:bool):
       "Returns the inverse of a boolean"
