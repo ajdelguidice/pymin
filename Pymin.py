@@ -8,120 +8,120 @@ import pyminlib.FunctionExtensions as FE
 from os.path import exists
 
 fontMain = ("Times New Roman", 12) #Array
-Option3 #TextField
-Side2 #TextField
-lustDown #downArrow
-Amount1 #TextField
-Amount11 #TextField
-AmountOutline2 #MovieClip
-Choice3 #TextField
-Choice2Outline #MovieClip
-Option4 #TextField
-Side3 #TextField
-scrollBar1 #UIScrollBar
-Amount2 #TextField
-Amount12 #TextField
-AmountOutline1 #MovieClip
-AmountOutline10 #MovieClip
-Choice4 #TextField
-Choice10 #TextField
-Choice1Outline #MovieClip
-Option5 #TextField
-Side4 #TextField
-scrollBar2 #UIScrollBar
-strDown #downArrow
-DayPane #TextField
-Amount3 #TextField
-AmountOutline11 #MovieClip
-Choice5 #TextField
-Choice11 #TextField
-Option6 #TextField
-Option4Outline #MovieClip
-Side5 #TextField
-Amount4 #TextField
-AmountOutline12 #MovieClip
-Choice12 #TextField
-Choice6 #TextField
-Choice7Outline #MovieClip
-newGame #TextField
-newGameOutline #MovieClip
-Option7 #TextField
-Option5Outline #MovieClip
-Side6 #TextField
-Side3Outline #MovieClip
-senUp #upArrow
-currentRegion #TextField
-Amount5 #TextField
-Choice7 #TextField
-Choice6Outline #MovieClip
-Option6Outline #MovieClip
-Side7 #TextField
-Side2Outline #MovieClip
-statPane #TextField
-Amount6 #TextField
-Choice8 #TextField
-Choice5Outline #MovieClip
-loadGameOutline #MovieClip
-Option7Outline #MovieClip
-Side8 #TextField
-Side1Outline #MovieClip
-Amount7 #TextField
-Choice9 #TextField
-Choice4Outline #MovieClip
-saveGameOutline #MovieClip
-senDown #downArrow
-Amount8 #TextField
-loadGame #TextField
-appearanceBox #MovieClip
-Option1Outline #MovieClip
-Side7Outline #MovieClip
-region #TextField
-moveItemAmount #TextField
-Amount9 #TextField
-Option2Outline #MovieClip
-Side6Outline #MovieClip
-lustUp #upArrow
-levelPane #TextField
-Option3Outline #MovieClip
-Side5Outline #MovieClip
-AmountOutline9 #MovieClip
-Choice9Outline #MovieClip
-pageNum #TextField
-Side4Outline #MovieClip
-hpUp #upArrow
-libUp #upArrow
-mentaUp #upArrow
-AmountOutline8 #MovieClip
-moveItem #TextField
-Choice8Outline #MovieClip
-AmountOutline7 #MovieClip
-Choice12Outline #MovieClip
-outputWindow #TextField
-AmountOutline6 #MovieClip
-Choice11Outline #MovieClip
-sideWindow #TextField
-hpDown #downArrow
-libDown #downArrow
-AmountOutline5 #MovieClip
-MoveOutline #MovieClip
-Choice10Outline #MovieClip
-Option1 #TextField
-AmountOutline4 #MovieClip
-Choice1 #TextField
-appearanceText #TextField
-Option2 #TextField
-Side1 #TextField
-Side8Outline #MovieClip
-strUp #upArrow
-mentaDown #downArrow
-Amount10 #TextField
-MoveAmountOutline #MovieClip
-AmountOutline3 #MovieClip
-Choice2 #TextField
-Choice3Outline #MovieClip
-saveGame #TextField
-doListen #Function
-versionNumber #str
+#Option3 #TextField
+#Side2 #TextField
+#lustDown #downArrow
+#Amount1 #TextField
+#Amount11 #TextField
+#AmountOutline2 #MovieClip
+#Choice3 #TextField
+#Choice2Outline #MovieClip
+#Option4 #TextField
+#Side3 #TextField
+#scrollBar1 #UIScrollBar
+#Amount2 #TextField
+#Amount12 #TextField
+#AmountOutline1 #MovieClip
+#AmountOutline10 #MovieClip
+#Choice4 #TextField
+#Choice10 #TextField
+#Choice1Outline #MovieClip
+#Option5 #TextField
+#Side4 #TextField
+#scrollBar2 #UIScrollBar
+#strDown #downArrow
+#DayPane #TextField
+#Amount3 #TextField
+#AmountOutline11 #MovieClip
+#Choice5 #TextField
+#Choice11 #TextField
+#Option6 #TextField
+#Option4Outline #MovieClip
+#Side5 #TextField
+#Amount4 #TextField
+#AmountOutline12 #MovieClip
+#Choice12 #TextField
+#Choice6 #TextField
+#Choice7Outline #MovieClip
+#newGame #TextField
+#newGameOutline #MovieClip
+#Option7 #TextField
+#Option5Outline #MovieClip
+#Side6 #TextField
+#Side3Outline #MovieClip
+#senUp #upArrow
+#currentRegion #TextField
+#Amount5 #TextField
+#Choice7 #TextField
+#Choice6Outline #MovieClip
+#Option6Outline #MovieClip
+#Side7 #TextField
+#Side2Outline #MovieClip
+#statPane #TextField
+#Amount6 #TextField
+#Choice8 #TextField
+#Choice5Outline #MovieClip
+#loadGameOutline #MovieClip
+#Option7Outline #MovieClip
+#Side8 #TextField
+#Side1Outline #MovieClip
+#Amount7 #TextField
+#Choice9 #TextField
+#Choice4Outline #MovieClip
+#saveGameOutline #MovieClip
+#senDown #downArrow
+#Amount8 #TextField
+#loadGame #TextField
+#appearanceBox #MovieClip
+#Option1Outline #MovieClip
+#Side7Outline #MovieClip
+#region #TextField
+#moveItemAmount #TextField
+#Amount9 #TextField
+#Option2Outline #MovieClip
+#Side6Outline #MovieClip
+#lustUp #upArrow
+#levelPane #TextField
+#Option3Outline #MovieClip
+#Side5Outline #MovieClip
+#AmountOutline9 #MovieClip
+#Choice9Outline #MovieClip
+#pageNum #TextField
+#Side4Outline #MovieClip
+#hpUp #upArrow
+#libUp #upArrow
+#mentaUp #upArrow
+#AmountOutline8 #MovieClip
+#moveItem #TextField
+#Choice8Outline #MovieClip
+#AmountOutline7 #MovieClip
+#Choice12Outline #MovieClip
+#outputWindow #TextField
+#AmountOutline6 #MovieClip
+#Choice11Outline #MovieClip
+#sideWindow #TextField
+#hpDown #downArrow
+#libDown #downArrow
+#AmountOutline5 #MovieClip
+#MoveOutline #MovieClip
+#Choice10Outline #MovieClip
+#Option1 #TextField
+#AmountOutline4 #MovieClip
+#Choice1 #TextField
+#appearanceText #TextField
+#Option2 #TextField
+#Side1 #TextField
+#Side8Outline #MovieClip
+#strUp #upArrow
+#mentaDown #downArrow
+#Amount10 #TextField
+#MoveAmountOutline #MovieClip
+#AmountOutline3 #MovieClip
+#Choice2 #TextField
+#Choice3Outline #MovieClip
+#saveGame #TextField
+#doListen #Function
+#versionNumber #str
 theme = 0 #int
 fontSize = 12 #int
 fontBold = False #bool
@@ -135,9 +135,9 @@ sideFocus = 1 #int
 pregTempInt = 0 #int
 pregTempBool = False #bool
 lustArray = [] #Array
-loadFile #FileReference
-fileLoader #URLLoader
-bg #Sprite
+#loadFile #FileReference
+#fileLoader #URLLoader
+#bg #Sprite
 rndResult = 0 #int
 rndArray = [] #Array
 textCheckArray = [] #Array
@@ -1734,12 +1734,14 @@ def ToggleColor():
    #SavePreferences()
 
 def ToggleSide():
-   global showSide, themebutton7, Option7Visible
+   global currentState, showSide, themebutton7, Option7Visible
+   if (currentState == 0):
+      pass
    if showSide == True:
       showSide = False
       SidePanel.Hide()
       themebutton7["text"] = "--"
-   elif showside == False:
+   elif showSide == False:
       showSide = True
       SidePanel.Show()
       UpdateSide()
@@ -1763,16 +1765,18 @@ def UTCheckBold():
       return ""
 
 def UpdateText():
-   global fontMain, textMain, textSide
+   global fontMain, textMain, textSide, textsidevisible
    a = UTCheckBold()
    #fontMain = "(" + "Times New Roman" + ", " + str(fontSize) + a + ")"
    fontMain = ("Times New Roman", fontSize, a)
    textmain.configure(state="normal")
-   textside.configure(state="normal")
    textmain["font"] = fontMain
-   textside["font"] = fontMain
    textmain.configure(state="disabled")
-   textside.configure(state="disabled")
+   if textsidevisible == True:
+      textside.configure(state="normal")
+      textside["font"] = fontMain
+      textside.configure(state="disabled")
+   
 
 """
 def SideHide():
@@ -1855,7 +1859,7 @@ def LoadPreferences():
    else:
       theme = 0
       fontSize = 14
-      fontBold = false
+      fontBold = False
       fontColor = "#000000"
       showSide = True
       UpdateText()
@@ -2182,7 +2186,8 @@ def ChoiceListSelect(which:str):
 
 def ChoiceListCheck(which):
    global choiceListArray, choicePage 
-   if ((choiceListArray.index(which[0]) >= (choicePage * 9 - 9)) and (choiceListArray.index(which[0]) < (choicePage * 9))):
+   #if ((choiceListArray.index(which[0]) >= (choicePage * 9 - 9)) and (choiceListArray.index(which[0]) < (choicePage * 9))):
+   if ((FE.lists.indexOf(choiceListArray, which[0]) >= (choicePage * 9 - 9))and (FE.lists.indexOf(choiceListArray, which[0])< (choicePage * 9))):
       return True
    return False
 
@@ -2192,8 +2197,8 @@ def ShowPage(changes:bool, which:str):
       Page.Show()
    if (changes == False):
       Page.Hide()
-   text = which + " " + choicePage
-   Page.ChangeText(text)
+   text = str(which) + " " + str(choicePage)
+   Page.TextChange(text)
 
 def CheckZero():
    global bagArray, bagStackArray, stashArray, stashStackArray, cockSize, cockTotal, ball, blueBalls, ballSize, cockMoist, breastSize, boobTotal, nippleSize, udderSize, teatSize, clitSize, vagSize, vagTotal, vagMoist, vulvaSize, exhaustion, exhaustionPenalty, hips, butt, body, tallness, cockSizeMod, vagSizeMod, vagBellyMod, pregChance, lactation, MilkMod, MilkCap, coin, hipMod, buttMod, bellyMod, pregArray
@@ -2309,32 +2314,43 @@ def CheckDecimal():
    hyperFetish = round(hyperFetish * 10) / 10
 
 def BC():
-   global buttonChoice
+   global buttonChoice, bctest
    buttonChoice = 0
+   bctest.set("")
+
+def UselessFunction():
+   pass
 
 def ButtonConfirm(b6:int = 1, b7:int = 1):
+   global wait, buttonChoice
    BC()
    ButtonFunctions.Visible(0,0,0,0,0,b6,b7,0,0,0,0,0)
    if (b6 == 1):
       ButtonFunctions.WriteText(6,"Yes")
    if (b7 == 1):
       ButtonFunctions.WriteText(7,"No")
-   while (buttonChoice != 6) and (buttonChoice != 7):
-      sleep()
+   wait.wait_variable(bctest)
+   if int(bctest.get()) == 6:
+      ButtonEvent6()
+   elif int(bctest.get()) == 7:
+      ButtonEvent7()
+   else:
+      print(bctest.get())
+   #while (buttonChoice != 6) and (buttonChoice != 7):
+   #   threading.Timer(1, UselessFunction)
 
 def DoNext():
    global buttonChoice
    BC()
    ButtonFunctions.Visible(0,0,0,0,0,1,0,0,0,0,0,0)
    ButtonFunctions.WriteText(6,"Next")
-   while buttonChoice != 6:
-      sleep()
+   wait.wait_variable(bctest)
 
 def DoEnd():
    global choicePage, inBag, lust, currentState, buttonChoice
    choicePage = 1
    ShowPage(False,"")
-   StatDisplay()
+   StatsDisplay()
    if inBag == True and lust > 99 and currentState == 2:
       inBag = False
       HideAmount()
@@ -2347,13 +2363,40 @@ def DoEnd():
 def DoButtonChoices(buttonlist:list):
    global buttonChoice
    BC()
-   templist = list(())
-   while i < (len(buttonlist) / 2):
-      ButtonFunctions.WriteText(buttonlist[(2 * i) - 1], buttonlist[2 * i])
-      templist.append(buttonlist[(2 * i) - 1])
-      i += 1
-   while any(buttonChoices == a for a in templist) == False:
-      sleep()
+   templist = []
+   i = 0
+   while i < len(buttonlist):
+      ButtonFunctions.WriteText(buttonlist[i], buttonlist[i + 1])
+      templist.append(buttonlist[i])
+      i += 2
+   wait.wait_variable(bctest)
+   #while any(int(bctest.get()) == a for a in templist) == False:
+   if int(bctest.get()) == 1 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent1()
+   elif int(bctest.get()) == 2 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent2()
+   elif int(bctest.get()) == 3 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent3()
+   elif int(bctest.get()) == 4 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent4()
+   elif int(bctest.get()) == 5 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent5()
+   elif int(bctest.get()) == 6 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent6()
+   elif int(bctest.get()) == 7 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent7()
+   elif int(bctest.get()) == 8 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent8()
+   elif int(bctest.get()) == 9 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent9()
+   elif int(bctest.get()) == 10 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent10()
+   elif int(bctest.get()) == 11 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent11()
+   elif int(bctest.get()) == 12 and any(int(bctest.get()) == a for a in templist) == True:
+      ButtonEvent12()
+   else:
+      print(bctest.get())
 
 def DoProcess():
    global choicePage, moveItemID, moveItemStack, itemGainArray, human, horse, wolf, cat, cow, hrs
@@ -2373,15 +2416,15 @@ def DoProcess():
          moveItemID = 0
          moveItemStack = 0
          ShowMoveItem(False)
-      if len(itemGainArray) != 0:
-         itemGainArray.sort()
-         GainItem(itemGainArray.pop())
-      elif human != 0 or horse != 0 or wolf != 0 or cat != 0 or cow != 0:
-         AffinityChange()
-      elif hrs != 0:
-         DayTime(hrs)
-      else:
-         DoReturn()
+   if len(itemGainArray) != 0:
+      itemGainArray.sort()
+      GainItem(itemGainArray.pop())
+   elif human != 0 or horse != 0 or wolf != 0 or cat != 0 or cow != 0:
+      AffinityChange()
+   elif hrs != 0:
+      DayTime(hrs)
+   else:
+      DoReturn()
 
 def DoReturn():
    global choicePage, showSide, inBag, inShop, currentState, inDungeon
@@ -2412,7 +2455,7 @@ def MoistCalc(which:int):
       tempNum = cockMoist + cockMoistMod
    if which == 2:
       tempNum = vagMoist + vagMoistMod
-   if b < 0:
+   if tempNum < 0:
       tempNum = 0
    if lust >= 75:
       tempNum = math.ceil(tempNum * 1.5)
@@ -2437,7 +2480,8 @@ def DecGet(number, places:int):
    tempStr = str(number)
    tempStr2 = ""
    tempInt = 0
-   tempInt = tempStr.index(".", 0)
+   #tempInt = tempStr.index(".", 0)
+   tempInt = tempStr.find(".")
    if tempInt > 0:
       tempStr2 = tempStr[0: tempInt + places + 1]
    else:
@@ -2497,7 +2541,8 @@ def DoWeight():
 def CheckItem(ID:int):
    global bagArray
    tempBool = False
-   if (bagArray.index(ID) != -1):
+   #if (bagArray.index(ID) != -1):
+   if (FE.lists.indexOf(bagArray, ID) != -1):
       tempBool = True
    return tempBool
 
@@ -2530,7 +2575,8 @@ def CheckMagicItem():
 def CheckStash():
    global stashArray
    tempBool = False
-   if (stashArray.index(ID) != -1):
+   #if (stashArray.index(ID) != -1):
+   if (FE.lists.indexOf(stashArray, ID) != -1):
       tempBool = True
    return tempBool
 
@@ -2603,7 +2649,7 @@ def Stats(stre:int, menta:int, libi:int, sens:int):
       UpDown.SenImg(valupimg)
    if (sens < 0):
       UpDown.SenImg(valdownimg)
-   StatDisplay()
+   StatsDisplay()
 
 def StatsMod(stre:int, menta:int, libi:int, sens:int):
    global strMod, mentMod, libMod, senMod
@@ -2628,14 +2674,20 @@ def StatsMod(stre:int, menta:int, libi:int, sens:int):
       UpDown.SenImg(valupimg)
    if sens < 0:
       UpDown.SenImg(valdownimg)
-   StatDisplay()
+   StatsDisplay()
 
 def StatsDisplay():
+   global _str_, strength, strMod, ment, mentality, mentMod, lib, libido, libMod, sen, sensitivity, senMod
    _str_ = strength + strMod
    ment = mentality + mentMod
    lib = libido + libMod
    sen = sensitivity + senMod
    StatPane.SetCStats()
+   StatPane.SetHPStat()
+   StatPane.SetSCStats()
+   StatPane.SetLevelStat()
+   StatPane.SetLustStat()
+   StatPane.SetLevelStat()
 
 def DoSexP(changes:int):
    global SexP, SexPMod, level, levelUP
@@ -2713,7 +2765,7 @@ def DoHP(changes:int):
    else:
       HP += changes
    StatPane.SetHPStat()
-   StatDisplay()
+   StatsDisplay()
 
 def DoPassOut():
    global level, coin, currentState, inDungeon, exhaustion, skipExhaustion, hrs
@@ -2747,17 +2799,21 @@ def DoLust(changes:int, source:int, triggers):
       if fertilityStatueCurse > 0:
          OutputMainText("\n" + "\n" + "With your orgasm, you feel strange as wispy fumes escape from your crotch, just like those that descended from the statue you encountered...",False)
          VagChange(0,1)
-      if (cockSnakeVenom > 0) and (triggers.index(1) != -1) and (cockTotal > 0):
+      #if (cockSnakeVenom > 0) and (triggers.index(1) != -1) and (cockTotal > 0):
+      if (cockSnakeVenom > 0) and (FE.lists.indexOf(triggers, 1)!= -1) and (cockTotal > 0):
          OutputMainText("\n" + "\n" + "However, after you have finished, you realize there's a bit more meat to your meat... The venom from the cock-snake fed off of your orgasm, causing your appendage" + Plural(1) + " to flop a bit lower down your " + LegDesc(3) + " as " + Plural(11) + " shrink" + Plural(3) + " back down...",False)
          CockChange(2,0)
-      if (cockSnakeVenom > 0) and (triggers.indexOf(2) != -1) and (vagTotal > 0):
+      #if (cockSnakeVenom > 0) and (triggers.indexOf(2) != -1) and (vagTotal > 0):
+      if (cockSnakeVenom > 0) and (FE.lists.indexOf(triggers, 2)!= -1) and (vagTotal > 0):
          OutputMainText("\n" + "\n" + "However, after you have finished, you realize your clit" + Plural(2) + " " + Plural(14) + " a bit more prominent... The venom from the cock-snake fed off of your orgasm, causing the button" + Plural(2) + " swell larger than before, and aren't shrinking all the way back down...",False)
          clitSize += 3
-      if (milkCPoisonNip > 0) and (triggers.indexOf(3) != -1):
+      #if (milkCPoisonNip > 0) and (triggers.indexOf(3) != -1):
+      if (milkCPoisonNip > 0) and (FE.lists.indexOf(triggers, 3)!= -1):
          OutputMainText("\n" + "\n" + "However, now that you've calmed down, you notice a bit more weight at your chest... The warmth from the milk creeper poison in your bosom intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder.",False)
          BoobChange(1)
          nipplePlay += 15
-      if (milkCPoisonUdd > 0) and (triggers.indexOf(4) != -1):
+      #if (milkCPoisonUdd > 0) and (triggers.indexOf(4) != -1):
+      if (milkCPoisonUdd > 0) and (FE.lists.indexOf(triggers, 4)!= -1):
          OutputMainText("\n" + "\n" + "However, now that you've calmed down, you notice a bit more weight at your belly... The warmth from the milk creeper poison in your udder intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder.",False)
          BoobChange(1)
          nipplePlay += 15
@@ -2854,7 +2910,7 @@ def DoLust(changes:int, source:int, triggers):
       lust = minLust
       changes = 0
    lust += changes
-   StatDisplay()
+   StatsDisplay()
 
 def DoLustForcedMasturbate():
    global currentState, ePref, gender, button6
@@ -2873,23 +2929,19 @@ def DoLustForcedMasturbate():
 def NewGameGo():
 #!
    global currentState, buttonChoice, currentZone, inBag, inShop, inDungeon, currentDungeon, _str_, ment, lib, sen, HP, lust, coin, strMod, mentMod, libMod, senMod, hunger, day, hour, SexP, levelUP, level, runMod, rapeMod, cockSizeMod, vagSizeMod, vagElastic, milkMod, carryMod, vagBellyMod, pregChanceMod, extraPregChance, pregTimeMod, milkHPMod, changeMod, HPMod, SexPMod, minLust, milkCap, coinMod, hipMod, buttMod, bellyMod, cockMoistMod, vagMoistMod, lockTail, lockFace, lockSkin, lockBreasts, lockEars, lockLegs, lockNipples, lockCock, gender, race, body, dominant, hips, butt, tallness, skinType, tail, ears, hair, hairLength, hairColor, legType, wings, faceType, skinColor, cockTotal, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, cockSize, cockMoist, balls, ballSize, showBalls, knot, bugCocks, breastSize, boobTotal, nippleSize, udders, udderSize, teatSize, clitSize, vagTotal, vagSize, vagMoist, vulvaSize, nipType, attireTop, attireBot, weapon, pregArray, pregStatus, pregnancyTime, pregRate, eggLaying, eggMaxTime, eggTime, eggRate, exhaustion, exhaustionPenalty, milkEngorgement, milkEngorgementLevel, udderEngorgement, udderEngorgementLevel, heat, heatTime, heatMaxTime, lactation, udderLactation, nipplePlay, udderPlay, blueBalls, teatPump, nipPump, cockPump, clitPump, vulvaPump, masoPot, sMasoPot, babyFree, charmTime, pheromone, eggceleratorTime, eggceleratorDose, bodyOil, lustPenalty, snuggleBall, fertileGel, eggType, milkSuppressant, milkSuppressantLact, milkSuppressantUdder, suppHarness, fertilityStatueCurse, plumpQuats, lilaWetStatus, cockSnakePreg, milkCPoisonNip, milkCPoisonUdd, cockSnakeVenom, humanAffinity, horseAffinity, wolfAffinity, catAffinity, cowAffinity, lizardAffinity, rabbitAffinity, fourBoobAffinity, mouseAffinity, birdAffinity, pigAffinity, twoBoobAffinity, sixBoobAffinity, eightBoobAffinity, tenBoobAffinity, cowTaurAffinity, humanTaurAffinity, skunkAffinity, bugAffinity, lilaRep, lilaVulva, lilaMilk, lilaPreg, malonRep, malonPreg, malonChildren, mistressRep, jamieRep, jamieSize, jamieChildren, silRep, silPreg, silRate, silLay, silTied, silGrowthTime, lilaUB, jamieRep1, jamieRep2, jamieRep3, lilaWetness, foundSoftlik, foundFirmshaft, foundTieden, foundSizCalit, foundOviasis, foundValley, foundSanctuary, defeatedMinotaur, defeatedFreakyGirl, defeatedSuccubus, firstExplore, knowLustDraft, knowRejuvPot, knowExpPreg, knowBallSwell, knowMaleEnhance, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowGenSwap, knowMasoPot, knowBabyFree, knowPotPot, knowMilkSuppress, knowSGenSwap, knowSMasoPot, knowSBabyFree, knowSPotPot, knowPussJuice, knowPheromone, knowBazoomba, babyFactLevel, hyperHappyLevel, alchemistLevel, fetishMasterLevel, milkMaidLevel, shapeshiftyLevel, shapeshiftyFirst, shapeshiftySecond, maleFetish, femaleFetish, hermFetish, narcissistFetish, dependentFetish, dominantFetish, submissiveFetish, lboobFetish, sboobFetish, furryFetish, scalyFetish, smoothyFetish, pregnancyFetish, bestialityFetish, milkFetish, unbirthingFetish, ovipositionFetish, toyFetish, hyperFetish, currentDayCare, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, lizanEggs, lizanChildren, bunnionChildren, pigChildren, birdEggs, birdChildren, pigChildren, bugEggs, bugChildren, skunkChildren, minotaurChildren, freakyGirlChildren, wolfPupChildren, calfChildren, bagPage, bagArray, bagStackArray, stashArray, stashStackArray
-   this.appearanceText.visible = false;
-   this.appearanceBox.visible = false;
+   ApButton.Hide()
+   #this.appearanceText.visible = false;
+   #this.appearanceBox.visible = false;
    SGButton.Hide()
    #this.saveGame.visible = false;
    #this.saveGameOutline.visible = false
    OutputMainText("Are you sure you would like to start a new game?",True)
-   if (currentState == 0):
-      this.Choice7.visible = false;
    ButtonConfirm()
    #this.doListen = function():void
    if (buttonChoice == 6):
-      HideUpDown()
-      statPane.visible = true
-      DayPane.visible = true
-      levelPane.visible = true
-      Option7.visible = false
-      SideHide()
+      UpDown.HideAll()
+      StatPane.Show()
+      SidePanel.Hide()
       currentState = 0
       currentZone = 0
       inBag = False
@@ -3168,7 +3220,7 @@ def NewGameGo():
       bagPage = 1
       bagArray = []
       bagStackArray = []
-      bagSlotAdd(27)
+      BagSlotAdd(27)
       stashArray = []
       stashStackArray = []
       StashSlotAdd(27)
@@ -3179,7 +3231,7 @@ def NewGameGo():
 def AppearanceGo():
    global tallness, hair, tail, skunkAffinity, skinType, dominant, legType, attireTop, attireBot, snuggleBall, weapon, lilaWetStatus, pregnancyTime, vagBellyMod, bellyMod, wings, dairyFarmBrand, breastSize, boobTotal, lust, nipType, lactation, milkEngourgement, milkEngourgementLevel, milkSuppressantLact, udders, udderEngourgement, udderEngourgementLevel, cowAffinity, teatSize, udderLactation, cockTotal, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, bugCocks, rabbitCocks, cockSize, cockSizeMod, showBalls, balls, ballSize, ballSizeMod, blueBalls, vagTotal, vagSize, vagSizeMod, clitSize, vulvaSize, heat, heatTime, showSide, buttonChoice
    tempStr = ""
-   tempStr += "You began your journey as a " + RaceName() + "." + "\n" + "\n" + math.floor(tallness / 12) + " feet and " + (tallness - math.floor(tallness / 12) * 12) + " inches tall, you wield " + HipDesc() + " hips and a " + ButtDesc() + " butt on an overall " + BodyDesc() + " figure."
+   tempStr += "You began your journey as a " + RaceName() + "." + "\n" + "\n" + str(math.floor(tallness / 12)) + " feet and " + str(tallness - math.floor(tallness / 12) * 12) + " inches tall, you wield " + HipDesc() + " hips and a " + ButtDesc() + " butt on an overall " + BodyDesc() + " figure."
    if (hair > 0):
       tempStr += " With " + HairC() + "" + HairDesc() + ""
    if (HairstyleLength(hair) == True):
@@ -3247,15 +3299,15 @@ def AppearanceGo():
       tempStr += " Beneath your " + ClothesBottom() + ", the shape of a bucket with milk splashing out over the edges is forever imprinted upon your " + ButtDesc() + " hind, marking you as property of the Softlik Dairy Farm."
    if (breastSize > 0):
       if (boobTotal == 2):
-         tempStr += "\n" + "\n" + "Upon your chest heaves " + boobTotal + " " + BoobDesc() + " breasts. Your bust measures " + DecGet(breastSize * 0.5,1) + " inches in circumference beyond that of your chest, with " + NipDesc()
+         tempStr += "\n" + "\n" + "Upon your chest heaves " + str(boobTotal) + " " + BoobDesc() + " breasts. Your bust measures " + DecGet(breastSize * 0.5,1) + " inches in circumference beyond that of your chest, with " + NipDesc()
       if (boobTotal == 4):
-         tempStr += "\n" + "\n" + "Upon your chest heaves " + boobTotal + " " + BoobDesc() + " breasts; two pairs of equal size, one close below the other. Your dual busts each measure " + DecGet(breastSize * 0.5,1) + " inches in circumference beyond that of your chest, with " + NipDesc()
+         tempStr += "\n" + "\n" + "Upon your chest heaves " + str(boobTotal) + " " + BoobDesc() + " breasts; two pairs of equal size, one close below the other. Your dual busts each measure " + DecGet(breastSize * 0.5,1) + " inches in circumference beyond that of your chest, with " + NipDesc()
       if (boobTotal == 6):
-         tempStr += "\n" + "\n" + "Upon your chest and down to your belly heaves " + boobTotal + " " + BoobDesc() + " breasts; three pairs diminishing in size the lower they go. Your bust measures " + DecGet(breastSize * 0.5,1) + " inches in circumference beyond that of your chest, the next pair measuring " + DecGet(breastSize * 0.25,2) + " inches and the next measuring " + DecGet(breastSize * 0.15,2) + " inches; each with " + NipDesc()
+         tempStr += "\n" + "\n" + "Upon your chest and down to your belly heaves " + str(boobTotal) + " " + BoobDesc() + " breasts; three pairs diminishing in size the lower they go. Your bust measures " + DecGet(breastSize * 0.5,1) + " inches in circumference beyond that of your chest, the next pair measuring " + DecGet(breastSize * 0.25,2) + " inches and the next measuring " + DecGet(breastSize * 0.15,2) + " inches; each with " + NipDesc()
       if (boobTotal == 8):
-         tempStr += "\n" + "\n" + "Upon your chest and down to your lower belly heaves " + boobTotal + " " + BoobDesc() + " breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures " + DecGet(breastSize * 0.38,1) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + NipDesc()
+         tempStr += "\n" + "\n" + "Upon your chest and down to your lower belly heaves " + str(boobTotal) + " " + BoobDesc() + " breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures " + DecGet(breastSize * 0.38,1) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + NipDesc()
       if (boobTotal == 10):
-         tempStr += "\n" + "\n" + "Upon your chest and down to just above your crotch heaves " + boobTotal + " " + BoobDesc() + " breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures " + DecGet(breastSize * 0.4,1) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + NipDesc()
+         tempStr += "\n" + "\n" + "Upon your chest and down to just above your crotch heaves " + str(boobTotal) + " " + BoobDesc() + " breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures " + DecGet(breastSize * 0.4,1) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + NipDesc()
       if (dominant == 5):
          tempStr += "teats"
       if (dominant != 5):
@@ -3301,15 +3353,15 @@ def AppearanceGo():
       tempStr += "\n" + "\n" + "Above your groin rests " + cockTotal + " " + CockDesc() + " wang" + Plural(1) + "."
       if (lust <= 30):
          if (humanCocks > 0):
-            tempStr += " " + humanCocks + " dangle" + Plural(3) + " flaccidly from your groin, reaching " + DecGet(cockSize * cockSizeMod * 0.25,2) + " inches down, with smooth skin and a mushroom-like glans, just like a human's."
+            tempStr += " " + str(humanCocks) + " dangle" + Plural(3) + " flaccidly from your groin, reaching " + DecGet(cockSize * cockSizeMod * 0.25,2) + " inches down, with smooth skin and a mushroom-like glans, just like a human's."
          if (horseCocks > 0):
-            tempStr += " " + horseCocks + " hide" + Plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + DecGet(cockSize * cockSizeMod / 12,1) + " inches in thickness."
+            tempStr += " " + str(horseCocks) + " hide" + Plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + DecGet(cockSize * cockSizeMod / 12,1) + " inches in thickness."
          if ((wolfCocks > 0) or (catCocks > 0) or (rabbitCocks > 0)):
-            tempStr += " " + (wolfCocks + catCocks + rabbitCocks) + " hide" + Plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + DecGet(cockSize * cockSizeMod / 16,1) + " inches in thickness."
+            tempStr += " " + str(wolfCocks + catCocks + rabbitCocks) + " hide" + Plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + DecGet(cockSize * cockSizeMod / 16,1) + " inches in thickness."
          if (lizardCocks > 0):
-            tempStr += " " + lizardCocks + " hide" + Plural(3) + " in a slit, flush against your body."
+            tempStr += " " + str(lizardCocks) + " hide" + Plural(3) + " in a slit, flush against your body."
          if (bugCocks > 0):
-            tempStr += " " + bugCocks + " dangle" + Plural(3) + " flaccidly from your groin, reaching " + DecGet(cockSize * cockSizeMod * 0.25,2) + " inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
+            tempStr += " " + str(bugCocks) + " dangle" + Plural(3) + " flaccidly from your groin, reaching " + DecGet(cockSize * cockSizeMod * 0.25,2) + " inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
          if (MoistCalc(1) > 2):
             tempStr += " Drops of pre slowly bead at the tip of your cock" + Plural(1) + ", "
             if ((horseCocks > 0) or (wolfCocks > 0) or (catCocks > 0) or (rabbitCocks > 0)):
@@ -3317,19 +3369,19 @@ def AppearanceGo():
             tempStr += " running down your thighs as it continually blotches your " + ClothesBottom() + ", even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
       if ((lust > 30) and (lust <= 70)):
          if (humanCocks > 0):
-            tempStr += " " + humanCocks + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, with smooth skin and a mushroom-like glans, just like a human's."
+            tempStr += " " + str(humanCocks) + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, with smooth skin and a mushroom-like glans, just like a human's."
          if (horseCocks > 0):
-            tempStr += " " + horseCocks + " droop" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 12,1) + "-inch thick smooth sheath, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
+            tempStr += " " + str(horseCocks) + " droop" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 12,1) + "-inch thick smooth sheath, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
          if (wolfCocks > 0):
-            tempStr += " " + wolfCocks + " poke" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a wolf's."
+            tempStr += " " + str(wolfCocks) + " poke" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a wolf's."
          if (catCocks > 0):
-            tempStr += " " + catCocks + " poke" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a cat's."
+            tempStr += " " + str(catCocks) + " poke" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a cat's."
          if (lizardCocks > 0):
-            tempStr += " " + lizardCocks + " poke" + Plural(3) + " through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, probably like a reptile's."
+            tempStr += " " + str(lizardCocks) + " poke" + Plural(3) + " through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, probably like a reptile's."
          if (rabbitCocks > 0):
-            tempStr += " " + rabbitCocks + " poke" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip" + Plural(1) + ", somewhat like a carrot, standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a rabbit's."
+            tempStr += " " + str(rabbitCocks) + " poke" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip" + Plural(1) + ", somewhat like a carrot, standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a rabbit's."
          if (bugCocks > 0):
-            tempStr += " " + bugCocks + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
+            tempStr += " " + str(bugCocks) + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
          if (knot == True):
             tempStr += " Your cock" + Plural(1) + " swell" + Plural(3) + " a little near the base, preparing for a chance for the knot" + Plural(1) + " to expand."
          if ((MoistCalc(1) > 2) and (MoistCalc(1) <= 5)):
@@ -3339,19 +3391,19 @@ def AppearanceGo():
             tempStr += " Pre steadily drips from your groin, making a large wet spot on your " + ClothesBottom() + ", looking more like you had peed yourself from all the seminal fluid.  Fortunately, you could probably slip " + OneYour(1) + " cock" + Plural(1) + " into a pussy smaller than you are, thanks to all the lubrication."
       if (lust > 70):
          if (humanCocks > 0):
-            tempStr += " " + humanCocks + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
+            tempStr += " " + str(humanCocks) + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
          if (horseCocks > 0):
-            tempStr += " " + horseCocks + " twitches out of a " + DecGet(cockSize * cockSizeMod / 12,1) + "-inch thick smooth sheath, trying to stand " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
+            tempStr += " " + str(horseCocks) + " twitches out of a " + DecGet(cockSize * cockSizeMod / 12,1) + "-inch thick smooth sheath, trying to stand " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
          if (wolfCocks > 0):
-            tempStr += " " + wolfCocks + " throb" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look purple, they're so full of blood, with a narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a wolf's."
+            tempStr += " " + str(wolfCocks) + " throb" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look purple, they're so full of blood, with a narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a wolf's."
          if (catCocks > 0):
-            tempStr += " " + catCocks + " stiffly stand" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a cat's."
+            tempStr += " " + str(catCocks) + " stiffly stand" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip" + Plural(1) + ", standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a cat's."
          if (lizardCocks > 0):
-            tempStr += " " + lizardCocks + " harden" + Plural(3) + " through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, probably like a reptile's."
+            tempStr += " " + str(lizardCocks) + " harden" + Plural(3) + " through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, probably like a reptile's."
          if (rabbitCocks > 0):
-            tempStr += " " + rabbitCocks + " stiffly stand" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a rabbit's."
+            tempStr += " " + str(rabbitCocks) + " stiffly stand" + Plural(3) + " out of a " + DecGet(cockSize * cockSizeMod / 16,1) + "-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches high, just like a rabbit's."
          if (bugCocks > 0):
-            tempStr += " " + bugCocks + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
+            tempStr += " " + str(bugCocks) + " stand" + Plural(3) + " erect, reaching " + DecGet(cockSize * cockSizeMod * 0.5,1) + " inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
          if (knot == True):
             tempStr += " Your cock" + Plural(1) + " bulge" + Plural(3) + " tremendously at " + Plural(5) + " base" + Plural(1) + ", the knot" + Plural(1) + " completely expecting to come at any moment and nearly " + DecGet(cockSize * cockSizeMod / 4,1) + " inches thick."
          if ((MoistCalc(1) > 2) and (MoistCalc(1) <= 5)):
@@ -3362,13 +3414,13 @@ def AppearanceGo():
          if (MoistCalc(1) > 10):
             tempStr += " Your " + ClothesBottom() + " feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff " + OneYour(1) + " cock" + Plural(1) + " into a pussy half your size without any difficulty, you're so slimy!"
    if ((showBalls == True) and (balls > 0)):
-      tempStr += "\n" + "\n" + "Beneath your cock" + Plural(1) + " swing" + Plural(3) + " a scrotum filled with " + balls + " " + BallDesc() + " testicles."
+      tempStr += "\n" + "\n" + "Beneath your cock" + Plural(1) + " swing" + Plural(3) + " a scrotum filled with " + str(balls) + " " + BallDesc() + " testicles."
       if ((blueBalls > 36) and (blueBalls <= 84)):
          tempStr += " They groan and squirm, full of hot cum just waiting to blow."
       if (blueBalls > 84):
          tempStr += " They groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
    if (vagTotal > 0):
-      tempStr += "\n" + "\n" + "Also, " + LegWhere(1) + " your " + LegDesc(2) + " nestles " + vagTotal + " " + VulvaDesc() + " pair" + Plural(2) + " of feminine nether-lips, about " + DecGet(vagSize * vagSizeMod * 0.5,1) + " inches deep, when aroused."
+      tempStr += "\n" + "\n" + "Also, " + LegWhere(1) + " your " + LegDesc(2) + " nestles " + str(vagTotal) + " " + VulvaDesc() + " pair" + Plural(2) + " of feminine nether-lips, about " + DecGet(vagSize * vagSizeMod * 0.5,1) + " inches deep, when aroused."
       if ((vagSize * vagSizeMod * vagTotal) > (tallness / 2)):
          tempStr += " So deep, in fact, that your belly bulges more because of the excess vaginal flesh."
       if (lust <= 30):
@@ -4019,9 +4071,9 @@ def DoRace():
       DoGender()
 
 def DoGender():
-   global currentDayCare, dominant, buttonChoice, gender, cockSize, ballSize, balls, cockTotal, cockMoist, strength, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, vagSize, vulvaSize, pregArray, vagTotal, vagMoist, clitSize, mentality
+   global currentDayCare, dominant, buttonChoice, gender, cockSize, ballSize, balls, cockTotal, cockMoist, strength, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, vagSize, vulvaSize, pregArray, vagTotal, vagMoist, clitSize, mentality, libido
    currentDayCare = dominant
-   StatDisplay()
+   StatsDisplay()
    OutputMainText("Choose which gender you want to be:" + "\n" + "\n" + "Male - You has painus!" + "\n" + "\n" + "Female - You has vagoo!" + "\n" + "\n" + "Herm - You has painus and vagoo!",True)
    ButtonFunctions.Visible(0,0,0,0,1,1,1,0,0,0,0,0)
    templist = [5, "Male", 6, "Female", 7, "Herm"]
@@ -4086,7 +4138,7 @@ def DoGender():
 
 def BodyType():
    global gender, buttonChoice, body, hips, butt, tallness, strength, libido, cockSize, ballSize, balls, cockTotal, cockMoist, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, vagSize, vulvaSize, pregArray, vagTotal, vagMoist, clitSize, breastSize, nippleSize, sensitivity, mentality
-   StatDisplay()
+   StatsDisplay()
    OutputMainText("Choose your body type. Types determine height and a few beginning characteristics. Their names describe what they look like and may potentially alter your true gender.",True)
    if (gender == 1):
       ButtonFunctions.Visible(1,0,1,0,1,0,1,0,0,1,0,0)
@@ -4268,8 +4320,8 @@ def DoStartingDescription():
    global currentZone, race, currentState
    RegionChange(currentZone)
    DayTime(0)
-   currentRegion.visible = True
-   region.visible = True
+   #currentRegion.visible = True
+   #region.visible = True
    DoHP(10000)
    DoSexP(0)
    OutputMainText("\n" + "\"...Hello?\"",True)
@@ -4309,7 +4361,7 @@ def DoStartingDescription():
    #doListen = function():void
    ToggleSide()
    ToggleSide()
-   Option7.visible = true
+   #Option7.visible = true
    currentState = 1
    DoGeneral()
 
@@ -4364,8 +4416,9 @@ def DoGeneral():
       templist = [6, "Sleep"]
       OutputMainText("\n" + "\n" + "There's only one thing on your mind right now...",False)
    if (showSide == False):
-      this.appearanceText.visible = true;
-      this.appearanceBox.visible = true;
+      ApButton.Show()
+      #this.appearanceText.visible = true;
+      #this.appearanceBox.visible = true;
    ButtonFunctions.Visible(1,1,1,1,1,1,1,a8,1,1,0,1)
    DoButtonChoices(templist)
    #this.doListen = function():void
@@ -4504,7 +4557,7 @@ def UseItem(ID:int):
                   bagStackArray[choiceListResult[1]] = bagStackArray[choiceListResult[1]] - 1
             FoodItem(ID)
             DoItemUse(ID)
-            StatDisplay()
+            StatsDisplay()
          else:
             DoBag()
       else:
@@ -4524,14 +4577,16 @@ def GainItem(ID:int):
          bagStackArray[openSlot] = 1
          PassiveItemAdd(ID)
          tempNum += 1
-         while (bagStackArray[openSlot] < ItemStackMax(ID)) and (itemGainArray.index(ID) != -1):
+         #while (bagStackArray[openSlot] < ItemStackMax(ID)) and (itemGainArray.index(ID) != -1):
+         while (bagStackArray[openSlot] < ItemStackMax(ID)) and (FE.lists.indexOf(itemGainArray, ID) != -1):
             itemGainArray.pop()
             bagStackArray[openSlot] += 1
             tempNum += 1
       else:
          tempNum += 1
          bagStackArray[openSlot] += 1
-         while (bagStackArray[openSlot] < ItemStackMax(ID)) and (itemGainArray.index(ID) != -1):
+         #while (bagStackArray[openSlot] < ItemStackMax(ID)) and (itemGainArray.index(ID) != -1):
+         while (bagStackArray[openSlot] < ItemStackMax(ID)) and (FE.lists.indexOf(itemGainArray, ID) != -1):
             itemGainArray.pop()
             bagStackArray[openSlot] += 1
             tempNum += 1
@@ -4558,8 +4613,8 @@ def CheckOpenSlots(ID:int):
 def BagSlotAdd(amount:int):
    for i in range(0, int(amount)):
    #for (this.i = 1; this.i <= amount; ++this.i)
-      bagArray.push(0)
-      bagStackArray.push(0)
+      bagArray.append(0)
+      bagStackArray.append(0)
 
 def BagSlotRemove(param1:int):
    _loc2_ = 0
@@ -4587,7 +4642,8 @@ def DoDiscard(ID:int):
    #this.doListen = function():void
    ChoiceListSelect("Bag")
    if (buttonChoice == 12):
-      while (itemGainArray.index(ID) != -1):
+      #while (itemGainArray.index(ID) != -1):
+      while (FE.lists.indexOf(itemGainArray) != -1):
          itemGainArray.pop()
       DoProcess()
    elif ((buttonChoice == 4) or (buttonChoice == 8)):
@@ -8302,8 +8358,8 @@ def StashSlotAdd(amount:int):
    global stashArray, stashStackArray
    for i in range(1, int(amount)):
    #for(this.i = 1; this.i <= amount; ++this.i)
-      stashArray.push(0)
-      stashStackArray.push(0)
+      stashArray.append(0)
+      stashStackArray.append(0)
       i += 1
 
 def StashSlotRemove(param1:int):
@@ -9736,7 +9792,7 @@ def ClothesDescription(ID:int):
 
 def ClothesTop():
    global attireTop, boobTotal
-   tempStr = "CLOTHES TOP ERROR " + attireTop
+   tempStr = "CLOTHES TOP ERROR " + str(attireTop)
    if (attireTop == -1):
       tempStr = "tattered shreds"
    if (attireTop == 0):
@@ -9782,7 +9838,7 @@ def ClothesTop():
 
 def ClothesBottom():
    global attireBot
-   tempStr = "CLOTHES BOTTOM ERROR " + attireBot
+   tempStr = "CLOTHES BOTTOM ERROR " + str(attireBot)
    if (attireBot == -1):
       tempStr = "tattered shreds"
    if (attireBot == 0):
@@ -9842,7 +9898,7 @@ def CurrentClothes():
 
 def PullUD(source:int):
    global attireTop, attireBot
-   tempStr = "PULL UP/DOWN ERROR " + attireTop + " " + attireBot
+   tempStr = "PULL UP/DOWN ERROR " + str(attireTop) + " " + str(attireBot)
    if (source == 1):
       if (attireTop == -1):
          tempStr = "open"
@@ -10934,7 +10990,7 @@ def DoSleep():
       OutputMainText("\n" + "\n" + "Your sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your udder, having formed a small puddle throughout the night.",False)
    if (udderEngorgementLevel > 2):
       OutputMainText("\n" + "\n" + "Your sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your udder, as you sit up, a pool of the stuff all around you.",False)
-   if (pregCheck(0) == True):
+   if (PregCheck(0) == True):
       if (pregnancyTime > 18) and (pregnancyTime <= 36):
          OutputMainText("\n" + "\n" + "After waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely.",False)
       elif (pregnancyTime > 36) and (pregnancyTime <= 72):
@@ -17991,8 +18047,7 @@ def DoOldCave():
          DoEnd()
 
 def DoDen():
-#!
-   global silRep, hrs, silPreg, buttonChoice, silGrowthTime, silTied, cockTotal, vagTotal, tallness, knot, showBalls, sen, dominant, silRate, cockSize, cockSizeMod, pregnancyTime, vagBellyMod, breastSize
+   global silRep, hrs, silPreg, buttonChoice, silGrowthTime, silTied, cockTotal, vagTotal, tallness, knot, showBalls, sen, dominant, silRate, cockSize, cockSizeMod, pregnancyTime, vagBellyMod, breastSize, lib
    chance = 0
    chance = EventSelect("Den")
    if (chance == 1):
@@ -18045,7 +18100,7 @@ def DoDen():
          if (CheckItem(236) == False):
             OutputMainText("\n" + "\n" + "Reception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.",False)
          DoButtonChoices(templist)
-         doListen = function():void
+         #doListen = function():void
          if (buttonChoice == 12):
             OutputMainText("Happy with what you have now, you decline the offer but thank her and the pups with a hug before leaving.",True)
             DoEnd()
@@ -18485,574 +18540,321 @@ def DoDen():
             OutputMainText("pointing straight back to the floor in preparation. The underside of her belly is already thoroughly soaked in pre as her greatly engorged erection pulses out large gobs of the stuff, while her testicles, larger than cantaloupes, hang down heavily over the base of the shaft. Her tush tenses and her moaning howls stutter as the first egg begins to bulge through her tail. You tenderly massage the scales from the outside, coaxing the egg along until it slips out the tip. Placing the egg aside, you prepare for the next, returning to her rump and rubbing the small of her back to help direct the eggs out. Her cock throbs with each passing and looks so close to blowing a massive load, but it seems to be waiting..." + "\n" + "\n" + "It doesn't wait long." + "\n" + "\n" + "The eggs stop for a moment, giving Silandrias a moment to breathe. However, after a deep breath, her howling renews with a much louder and warbling sensual tone. You see another bulge begin to grow at the base of her tail, but it keeps growing and growing, much larger than you have ever seen before. It stretches both her tail and hips obscenely wide, her body far more elastic than you could have ever guessed. However, this new giant egg comes to a halt before the widest portion can enter the passage in her tail. Silandrias grunts and groans, feebly rocking her legs and humping her own belly slightly as she tries to push it through. Her cock also turns redder and redder as she forces more blood to her bottom, making it drool incessantly. Taking a chance to help her out, you smear the slime along her length and stroke the throbbing rod roughly." + "\n" + "\n" + "Silandrias' howls turn into an erotic outcry as white splatters all over her belly-scales in audible bouts of thick steamy ropes. The intense orgasm relaxes some of her muscles, letting the giant egg into her tail-passage and rapidly push through to the floor as you gently settle it upon the ground. Easily more than two feet in height and more than a foot in diameter, the big egg half-fits into one of the several round beddings that decorate the floor of this room. You don't have much time to analyze it, however, as you hear the mother begin to cry out again." + "\n" + "\n" + "Another egg just as large pushes through her passage with a noisy spunk-filled greeting into the world. This second egg seems to be the last as Silandrias' belly deflates with its departure, leaving her gasping and moaning as she lay upon her many milky tits, her ejaculation diminishing to a few leftover throbs of oozing cum.",False)
          DoNext()
          #doListen = function():void
-            OutputMainText("Fairly drenched in her own mess, Silandrias eventually gathers herself and rolls onto her back. Milk still dribbles down her front and her cock twitches lazily as she sits up to inspect her clutch. \"Those... are definitely real.\" She states with a pant. \"Though I never expected them to be so... huge!\"" + "\n" + "\n" + "The two of you sit there, staring at the two fertilized eggs, confounded by their size, for less than a minute before the room is filled with the sounds of cracking." + "\n" + "\n" + "\"Already?!\" Silandrias crawls forward, still quite tired, surprised by the rapid hatching and eager to attend to her young. And her eyes grow much wider as a large piece of eggshell falls away, revealing its inhabitant. \"It couldn't be!...\"" + "\n" + "\n" + "The creature within easily breaks through the rest of the hole, bounding out from the egg with awkward steps and excitement. This furry pup has the face of a cute little fennec fox with large ears and a scaley underside that leads to the long lizard-like tail, much like its mother. However, unlike its mother, it walks on all four paws with no sign of wings and doesn't look like it would have the ability to speak, much like a feral animal. Yet, the sight of it, along with its sister as the other egg breaks away, makes Silandrias break out in tears." + "\n" + "\n" + "\"They... They are just like my caretaker, Saeru!\"",True)
-            DoNext()
-            #doListen = function():void
-            OutputMainText("The kits quickly fumble their way toward their mother with squeaky happy yips, bumping into her fleshy boobs and latching onto her milky nipples as she hugs them into herself with her wings." + "\n" + "\n" + "\"I-I can't believe it. The creature who we thought had found us and just took care of us out of the goodness of her heart was actually one of us! I still have no idea why, but I guess it's just a natural part of our life to give birth to such adorable pups.\" She leans down and nuzzles them with her muzzle as they nuzzle back. \"Although... I know we weren't born like this and Saeru was much older and didn't become like us. So... How do we have normal children?\"" + "\n" + "\n" + "Despite the question, Silandrias seems perfectly happy caring for her two newborns. It also seems quite hard to call them newborns as within just a couple of hours of feeding from their mother's numerous milky breasts (far too much milk for just two of them to ingest alone), they have grown quite a bit more and are running around and playing like they were much more developed than their age would suggest. Nevertheless, the two of you care for them like children. You spend over a day helping out and making sure all three are doing well, only two find they are doing better than well. It's surprising how self-sufficient the pups are. And, in the end, Silandrias decides to name them after her original caretaker, \"Naeru and Daeru.\"" + "\n" + "\n" + "Since they seem to be doing perfectly well, you eventually head on your way, quite proud of being a father.",True)
-            DoSexP(75)
-            silRep = 5
-            hrs = 30
-            DoEnd()
+         OutputMainText("Fairly drenched in her own mess, Silandrias eventually gathers herself and rolls onto her back. Milk still dribbles down her front and her cock twitches lazily as she sits up to inspect her clutch. \"Those... are definitely real.\" She states with a pant. \"Though I never expected them to be so... huge!\"" + "\n" + "\n" + "The two of you sit there, staring at the two fertilized eggs, confounded by their size, for less than a minute before the room is filled with the sounds of cracking." + "\n" + "\n" + "\"Already?!\" Silandrias crawls forward, still quite tired, surprised by the rapid hatching and eager to attend to her young. And her eyes grow much wider as a large piece of eggshell falls away, revealing its inhabitant. \"It couldn't be!...\"" + "\n" + "\n" + "The creature within easily breaks through the rest of the hole, bounding out from the egg with awkward steps and excitement. This furry pup has the face of a cute little fennec fox with large ears and a scaley underside that leads to the long lizard-like tail, much like its mother. However, unlike its mother, it walks on all four paws with no sign of wings and doesn't look like it would have the ability to speak, much like a feral animal. Yet, the sight of it, along with its sister as the other egg breaks away, makes Silandrias break out in tears." + "\n" + "\n" + "\"They... They are just like my caretaker, Saeru!\"",True)
+         DoNext()
+         #doListen = function():void
+         OutputMainText("The kits quickly fumble their way toward their mother with squeaky happy yips, bumping into her fleshy boobs and latching onto her milky nipples as she hugs them into herself with her wings." + "\n" + "\n" + "\"I-I can't believe it. The creature who we thought had found us and just took care of us out of the goodness of her heart was actually one of us! I still have no idea why, but I guess it's just a natural part of our life to give birth to such adorable pups.\" She leans down and nuzzles them with her muzzle as they nuzzle back. \"Although... I know we weren't born like this and Saeru was much older and didn't become like us. So... How do we have normal children?\"" + "\n" + "\n" + "Despite the question, Silandrias seems perfectly happy caring for her two newborns. It also seems quite hard to call them newborns as within just a couple of hours of feeding from their mother's numerous milky breasts (far too much milk for just two of them to ingest alone), they have grown quite a bit more and are running around and playing like they were much more developed than their age would suggest. Nevertheless, the two of you care for them like children. You spend over a day helping out and making sure all three are doing well, only two find they are doing better than well. It's surprising how self-sufficient the pups are. And, in the end, Silandrias decides to name them after her original caretaker, \"Naeru and Daeru.\"" + "\n" + "\n" + "Since they seem to be doing perfectly well, you eventually head on your way, quite proud of being a father.",True)
+         DoSexP(75)
+         silRep = 5
+         hrs = 30
+         DoEnd()
    elif (silRep < 5):
-!      this.outputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\r\rAfter waiting for several minutes, the large ears of the foxy lizard-like woman come into view.",true);
-      if(this.silPreg > 36)
-      {
-         if(this.silPreg <= 72)
-         {
-            this.outputMainText(" She has a slight smile as her wings roam about the growing bulge in her belly, the shape so obvious against her normally lithe form. A smile on her face when she looks at you silently passes the message that she knows it\'s because of you, but finds the sensation too blissful to actually speak about it.",false);
-         }
-         else if(this.silPreg <= 150)
-         {
-            this.outputMainText(" Her wings hug under her gravid form, holding and groping it as she feels it sway with each step, so big on her thin form; her belly-scales looking larger as they stretch across the girth. She seems a bit giggly at her state as she looks to you as the cause, but doesn\'t think it needs stating at this point.",false);
-         }
-         else if(this.silPreg <= 240)
-         {
-            this.outputMainText(" Her belly has grown so large that the tips of her wings can no longer connect around her form, but that doesn\'t keep her from trying as she rubs over the stretched scales again and again, relishing in their sensitivity. She still manages to stand up straight, though, as her strong lithe build can handle it.",false);
-         }
-         else if(this.silPreg <= 360)
-         {
-            this.outputMainText(" She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks.",false);
-         }
-         else if(this.silPreg <= 550)
-         {
-            this.outputMainText(" She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she \'accidentally\' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant...",false);
-         }
-      }
-      if(this.silRep == 1)
-      {
-         if(this.silPreg > 120)
-         {
-            this.outputMainText(" And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh...",false);
-         }
-         else if(this.silPreg > 60)
-         {
-            this.outputMainText(" Plus, it seems her breasts have also begun to swell slightly with her belly, the clasp in her cloak being much more \'obvious\' than before...",false);
-         }
-         else
-         {
-            this.outputMainText(" Clad in her white cloak as before, the clasp in front nestles between her breasts and seems extra shiny for your arrival.",false);
-         }
-      }
-      if(this.silRep == 2)
-      {
-         if(this.silPreg > 200)
-         {
-            this.outputMainText(" Having completely given up on the clasp of her cloak, the thick nipples of her top breasts barely hold the cloak over most of her mammary flesh. Bigger than her head now, the top pair swings from side to side as she walks, while the smaller pair below jiggle slightly as her belly bobs between them, almost completely bare if it weren\'t for her wings in the way.",false);
-         }
-         else if(this.silPreg > 120)
-         {
-            this.outputMainText(" Both pairs of breasts are becoming quite swollen now. The top pair threatens to break through the clasp once more while the second pair pushes against the edge of the cloak, the smaller mounds nearly slipping out with the protruding belly spreading the cloak open. She still manages to cover the exposed side-boob with her wings, unsure what to do about them.",false);
-         }
-         else if(this.silPreg > 60)
-         {
-            this.outputMainText(" Also her breasts seem to have begun swelling once more, although this time she seems a little embarrassed about some extra growth... Just below her burgeoning bust, another pair of mounds have begun to swell. Her cloak still manages to cover them, but she still tries to cover them with her wings just in case.",false);
-         }
-         else
-         {
-            this.outputMainText(" And her white cloak seems to fit better now after the growth in her breasts has diminished with her belly, though it does look a bit tighter than before the whole thing.",false);
-         }
-      }
-      if(this.silRep == 3)
-      {
-         if(this.silPreg > 300)
-         {
-            this.outputMainText(" Completely bare, it seems as though she has given up on her cloak... With a heavy blush of embarrassment from her exposed curves, she tries her best to cover herself with her wings, with little success. The top pair of breasts rest heavily atop the second pair, which is squished against her belly, and overall makes it difficult for her to look at you over them when covering them. The third pair jiggle obscenely without any coverage, even larger than her top breasts originally were when you first met her. Most of her efforts in trying to grope her belly mostly wind up fondling this lower pair as well, making them quiver even more lewdly...",false);
-         }
-         else if(this.silPreg > 200)
-         {
-            this.outputMainText(" The upper clasp already undone and the second clasp close to being the same, her cloak doesn\'t seem to be doing much for her. Half of her top areolas peek out from the edge of the draped cloak, easily the size of small dinner plates, while the second pair press obviously against the tight cloak. Meanwhile, the third pair simply jiggles freely, well more than a handful, as they bounce with the belly. She tries to cover them with her feathers, but with all the other masses she has to deal with she often neglects them...",false);
-         }
-         else if(this.silPreg > 120)
-         {
-            this.outputMainText(" And she tends to pull at the upper clasp in her cloak, trying to give herself more breathing room as the orbs billow out about and below, much larger than her head. The pair directly beneath isn\'t fairing much better either, as the second clasp it stretched across both the large mounds and the upper portion of her growing belly. Her third pair, on other hand, make for good hooks as the nipples catch the edge of the cloak on either side, keeping the sides of her belly covered as she hugs it, at least.",false);
-         }
-         else if(this.silPreg > 60)
-         {
-            this.outputMainText(" In spite of her adjustments to her cloak, her top pair of breasts are once more pushing at the expanded clasp, with her second pair seemingly following suit against their own. However, the most embarrassing part for her is that another pair looks to be growing in as well, flanking her belly with small mounds beneath the cloak...",false);
-         }
-         else
-         {
-            this.outputMainText(" It also seems as though she\'s made some adjustments to her cloak. Though her breasts may have reduced in size after the last laying, she still retains the second pair which has been nicely covered by an additional clasp. However the top pair seems to have had some extra cloth added to the bust, to make up for the increased size...",false);
-         }
-      }
-      if(this.silRep == 4)
-      {
-         if(this.silPreg > 450)
-         {
-            this.outputMainText(" It\'s\' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It\'s amazing she can even move in such a state...",false);
-         }
-         else if(this.silPreg > 300)
-         {
-            this.outputMainText(" The many breasts jiggle around her girth, dribbling with milk as she steps. There\'s so much boob-flesh around the large mound of her belly that it\'s hard to believe she has a lithe frame beneath it all. Having difficulty looking out you over the top pair, she seems better off simply resting her muzzle on top of them to keep them out of her way. With such a round body, it\'s no wonder she hardly goes out anymore...",false);
-         }
-         else if(this.silPreg > 200)
-         {
-            this.outputMainText(" And she\'s not even bothering with a cloak anymore... For now she\'s completely bare, she\'s at least comfortable being naked around you. Jiggling all over with each step, all four pairs of breasts are larger than she was when you met her long ago. The thick nipples stand perk with the air and seem to... have small drops of milk beading upon them. She has apparently begun lactating, though not much, which is quite odd considering the previous layings haven\'t had any. Which is probably the reason she only tosses a bedsheet on when she goes out to shop, as her dripping around home would simply soil the cloth anyways.",false);
-         }
-         else if(this.silPreg > 120)
-         {
-            this.outputMainText(" Having found some twine somewhere, she has managed to creat make-do clasps for her cloak to more effeciently cover herself. However, those clasps are across her back as the cloak is on backwards in an attempt to cover her front with as much fabric as possible. And yet, despite the effort, her upper pair is already peeking out from the sides as it stands and all of her nipples press obviously against the cloth as her belly pushes them firmly against the make-do outfit...",false);
-         }
-         else if(this.silPreg > 60)
-         {
-            this.outputMainText(" And just as before, her breasts have begun to swell already. In anticipation... she didn\'t even bother latching the clasps. Depending on her large perk nipples and the occasional tug to keep it shut, the cloak manages to cover some of herself. Suffice it to say, there\'s a lot of exposed belly-scales as the breast flesh stretches them in curvy manners. What\'s most troublesome, though, is that there is yet another pair beginning to blossom below the third, accentuating the size of her relatively small belly even more.",false);
-         }
-         else
-         {
-            this.outputMainText(" With her curves back to a relatively normal state, she seems to be trying to wear her cloak again. However, her top breasts are already pressing tightly against the upper clasp, despite her reduced sizes from the laying. The lower clasp looks like how the top one used to be when you first met her, which isn\'t too bad. The bottom pair of decent sized breasts seem to peek out with even the slightest breeze, on the other hand, as she hasn\'t made a third clasp yet...",false);
-         }
-      }
-      if(this.vagLimit() < 22 + this.silPreg / 24 && this.vagTotal > 0)
-      {
-         this.outputMainText(" Just looking at the bulge in her loincloth, ",false);
-         if(this.silPreg > 36)
-         {
-            this.outputMainText("yet another thing having swollen with her pregnancy, ",false);
-         }
-         this.outputMainText(" you can tell that you definitely wouldn\'t be able to fit her maleness, so that is pretty much out of the question.",false);
-      }
-      this.outputMainText("\r\r\"Hello~\" Silandrias greets you with joy, happy to have your company again. \"Come on in, please.\" She turns to lead you into the network of tunnels. \"Would you care to do something, hun?\"",false);
-      if(this.silPreg > 40)
-      {
-         if(this.silTied == false)
-         {
-            if(this.silRep == 1)
-            {
-               this.outputMainText("\r\rOnly a few steps in, however, she pauses for a moment and lets out a gasp as the base of her tail expands. A round object passes through, stretching her tail as it moves, before her tail reflexively flicks to the side of the tunnel. As the round object approaches the narrow tip, she shivers a little as the tip opens to let the hard-shelled egg through. Laid gently against the wall, lubrication stretches and snaps off from her secondary vaginal passage that is hidden within her tail, leaving the egg still moist.\r\rShe looks down at what she had done before you and blushes. \"Oh dear... I-I\'ve been a little embarrassed since I\'ve begun laying them all over, and even moreso now that I\'ve done it in front of you... D-Don\'t worry about it though. I just kinda... \'know\' that they aren\'t real, they won\'t grow or hatch at all, there\'s nothing in them except normal egg-stuff. Don\'t really know why though... But it just kinda happens every now and then since we\'ve, umm, had our fun.\" She glances to the side. \"We can leave it for now, I\'ll pick it up later, with the rest of them...\" Her stride picks up in eagerness to spend some time with you.",false);
-            }
-            else
-            {
-               this.outputMainText("\r\rA few steps in, she pauses and gasps as another egg begins its way down her tail. Just like the lizan people, she lays the infertile things whenever they\'re ready, though down a different passage. Quite used to it by now, she naturally flicks her tail to the side to desposit it against the wall of the tunnel for retrieval later and continues on.",false);
-            }
-         }
-         else
-         {
-            this.outputMainText("\r\rFrom behind, you can see her tail is a bit swollen at its base, just behind the leather strap you bound. The eggs press around her tail, wanting to get out, but simply accumulate instead as they\'re blocked. It makes her walk a little more awkwardly, but doesn\'t seem to bother her much otherwise.",false);
-         }
-      }
-      this.viewButtonOutline(1,0,1,0,1,0,1,0,1,0,0,0);
-      this.viewButtonText(0,0,0,0,0,0,0,0,1,0,0,0);
-      this.buttonWrite(1,"Fuck");
-      this.buttonWrite(3,"Be Fucked");
-      this.buttonWrite(7,"Eggcelerator");
-      this.buttonWrite(9,"Cuddle");
-      if(this.cockTotal > 0)
-      {
-         this.Choice1.visible = true;
-      }
-      if(this.vagTotal > 0 && this.vagLimit() > 22 + this.silPreg / 24)
-      {
-         this.Choice3.visible = true;
-      }
-      if(this.checkItem(229) && this.silTied == false)
-      {
-         this.buttonWrite(5,"Tie Tail");
-         this.Choice5.visible = true;
-      }
-      if(this.silTied == true)
-      {
-         this.buttonWrite(5,"Untie");
-         this.Choice5.visible = true;
-      }
-      if(this.checkItem(230) && this.silPreg > 30)
-      {
-         this.Choice7.visible = true;
-      }
-      this.doListen = function():void
-      {
-         var getCum:int = 0;
-         if(buttonChoice == 1)
-         {
-            getCum = cumAmount();
-            outputMainText("Rubbing the " + cockDesc() + " bulge in your " + clothesBottom() + ", you make it fairly obvious what you would like to do. The tall girl blushes and doesn\'t object, leading you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",true);
-            if(silPreg <= 240)
-            {
-               outputMainText(" Taking the lead, she pushes you back onto her bed, " + legVerb(2) + " your " + legDesc(2) + " to lick",false);
-               if(showBalls == true)
-               {
-                  outputMainText(" your " + ballDesc() + " testicles",false);
-               }
-               else
-               {
-                  outputMainText(" the base" + plural(1) + " of your cock" + plural(1) + "",false);
-               }
-               outputMainText(" before nibbling up the length of " + oneYour(1) + " shaft" + plural(1) + " and gulping down the tip the best she can.\r\rOnce you\'re thoroughly lubricated with saliva and pre, standing stiff and aching to fill her, she can hardly resist jumping onto it. Yet, she still manages to slowly climb up the bed, her finger-like talons clawing at the sheets as the feathers tickle over your thighs, until she finally manages to sit upright over your waist and squatting down over your erection. She lets out a cooing howl as she feels your girth slip through her lips and burrow into her moist inner-walls. Her wings pressing against your " + boobDesc() + " chest",false);
-               if(silPreg > 150)
-               {
-                  outputMainText(", her large belly resting heavily atop your own",false);
-               }
-               else if(silPreg > 72)
-               {
-                  outputMainText(", leaning over her swollen belly",false);
-               }
-               else if(silPreg > 36)
-               {
-                  outputMainText(", her bulging belly slightly touching yours",false);
-               }
-               outputMainText(", she steadies herself while her hips begin to grind and twist hungrily on top of you. Her tongue lols from her muzzle and she pants happily while her ears bob up and down, her tail flicking about sporadically from the joy of having you inside of her.",false);
-               if(silRate > 2 && silTied == false)
-               {
-                  outputMainText(" She pauses only for a moment as she feels an egg drop into her tail, the eggcelerator causing some rather unexpected layings, making her moan a little as she deposits it on the bed beside you, only to make her even more aroused.",false);
-               }
-               if(silPreg > 150)
-               {
-                  outputMainText("\r\rHaving swollen quite a bit with her pregnancy with her belly, her cock slaps loudly against you with each hop and flings pre all over your front. The large testicles rest around your groin, hugging your cock" + plural(1) + " whenever she lifts high enough to allow them to roll beneath her.",false);
-               }
-               else if(silPreg > 72)
-               {
-                  outputMainText("\r\rIt also seems that another part of her has swollen slightly with her pregnancy, her phallic appendage and orbs slapping more loudly against you than before, flinging pre over your front with each hop.",false);
-               }
-               else
-               {
-                  outputMainText("\r\rHer phallic portion pats against you with each hop as it jumps up and down, splattering puddles of pre against you every time her balls rest upon you.",false);
-               }
-               if(cockSize * cockSizeMod >= 66)
-               {
-                  outputMainText(" Your own length, meanwhile, stretches her belly out further, forcing her belly-scales to protrude from within, yet seems to have no sign of hurting her or her womb. In fact, she seems to enjoy it even more as she blissfully hugs your head whenever it presses out far enough, tenderly rubbing it until it disappears back inside.",false);
-               }
-               else if(cockSize * cockSizeMod >= 36)
-               {
-                  outputMainText("\tYour own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again.",false);
-               }
-               outputMainText(" She bounces upon you so roughly that her ",false);
-               if(silRep > 3 && silPreg > 60)
-               {
-                  outputMainText("four pairs of",false);
-               }
-               else if(silRep > 2 && silPreg > 60)
-               {
-                  outputMainText("three pairs of",false);
-               }
-               else if(silRep > 1 && silPreg > 60)
-               {
-                  outputMainText("two pairs of",false);
-               }
-               outputMainText(" breasts jiggle obscenely, the nipples stiff as though already preparing for a suckling child.\r\rAt this rate, it doesn\'t take long before Silandrias is letting out a loud, lustful howl as you erupt within her.",false);
-               if(getCum < 1000)
-               {
-                  outputMainText(" Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in.",false);
-               }
-               else if(getCum < 5000)
-               {
-                  outputMainText(" Your hot load forces her belly to visibly distend as you spray within, the grand amount of spunk churning around and drowning your gushing head, yet hardly any seems to spill from her slit as her womb drinks it in, thirsty for seed.",false);
-               }
-               else
-               {
-                  outputMainText(" Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed.",false);
-               }
-               if(silPreg > 36)
-               {
-                  outputMainText(" Her belly swells above you as her fertile nature quickly processes your stuff, pushing forward her eggy pregnancy with blossoming fecundity.",false);
-               }
-               outputMainText(" With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she\'s sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh.",false);
-               if(silRate > 4 && silTied == false)
-               {
-                  outputMainText(" And though she may be spent, she clenches your body as her cock kicks up a bit more spunk, yet another egg making its way through her tail...",false);
-               }
-            }
-            else
-            {
-               outputMainText(" Her belly too large to wield on top of you, she opts to lie back onto her bed, spreading her legs wide with welcoming access. Prepping " + oneYour(1) + " member" + plural(1) + " for action with a gentle rubbing about the tip, you move in on your prey.",false);
-               if(silPreg > 360)
-               {
-                  outputMainText(" She has to lift her gigantic form even higher with her thighs, bending her legs up so you can even manage to reach her genitals.",false);
-               }
-               else
-               {
-                  outputMainText(" You manage to reach beneath her grand girth, maneuvering around the round form to reach her genitals.",false);
-               }
-               outputMainText(" Then you have to pull the large package out of your way, both her cock and balls swollen from her engorged pregnancy and blocking the desired entrance.",false);
-               if(tallness < Math.floor(silPreg / 9))
-               {
-                  outputMainText(" Lifting them up, you droop her large shaft over your shoulder, pinning the lower portion between your " + boobDesc() + " chest and her belly while drooping the scrotum over your own length.",false);
-               }
-               else
-               {
-                  outputMainText(" Lifting them up, you trap her appendage between your " + boobDesc() + " chest and her belly and droop her scrotum over your own length.",false);
-               }
-               if(silRate > 2 && silTied == false)
-               {
-                  outputMainText(" Thanks to this odd position and the doses of eggcelerator, she lets out an early moan as an egg pushes its way through her tail and down onto the floor.",false);
-               }
-               outputMainText("\r\rNow with clear access, you slip into her thirsty hole. She is already drenched in lubricant, with plenty spilling and drooling down her tail, the heavy belly and hormones having made her especially aroused. You squeeze her testicles with your " + hipDesc() + " hips while you press in for the first thrust, eliciting a guttural moan of joy from the girl behind the fertile mound. She tries to hump back a little but merely wiggles her rod between your bodies. To help, you lean up against her, moving your whole body with each pump of your cock, slathering the pre that spills from her own over your body to reduce the friction. Quite soon, the lower hemisphere of her belly is shining in slick juices, allowing you to easily rub across her belly-scales. Maybe a little too easily as you have to ",false);
-               if(silRep > 3)
-               {
-                  outputMainText(" grab her lowest pair of tits, milk squirting through your fingers,",false);
-               }
-               else
-               {
-                  outputMainText(" hug her girth the best you can manage",false);
-               }
-               outputMainText(" just to hold hold against her. All of her breasts shake about",false);
-               if(silRep > 4)
-               {
-                  outputMainText(", jets of milk squirting out everywhere,",false);
-               }
-               outputMainText(" as you pound into her again and again. She moans and howls, her wings groping over her massive form and her tail wrapping up through your " + legDesc(2) + " and wedging into your " + buttDesc() + " rump to pull you closer. It doesn\'t take long before the extra-pregnant girl to cry out.",false);
-               if(tallness < Math.floor(silPreg / 9))
-               {
-                  outputMainText("\r\rHot spunk sprays behind you, coating your back and painting the floor white.",false);
-               }
-               else
-               {
-                  outputMainText("\r\rHot spunk gushes between you, splattering all over her body and painting your face white.",false);
-               }
-               outputMainText(" Her knees crush you like a vice as she comes, forcing you to give into your own pressure and explode inside. It\'s all a blur as you feel your cum churn about within her, and no matter how much you gush, she seems to take in the majority of it as little squirts out from her extra-slick hole. Having so much contact with her gravid shape, you definitely feel it shift and grow from your blast, devouring your seed and feeding her fertile womb. It takes so long for her cries of ecstasy to eventually die down, so lost in bliss...",false);
-               if(silRate > 4 && silTied == false)
-               {
-                  outputMainText("\r\rAnd interjecting into the pleasant relaxing, she lets out a gasp as yet another egg forces its way through to be laid on the bed with you.",false);
-               }
-            }
-            if(Math.ceil(getCum / 50) > 100 && silPreg > 0)
-            {
-               silPreg += 100;
-            }
-            else if(silPreg > 0)
-            {
-               silPreg += Math.ceil(getCum / 50);
-            }
-            else
-            {
-               silPreg = 1;
-            }
-            doLust(-Math.floor(sen / 2),2,1);
-            doNext();
-            doListen = function():void
-            {
-               outputMainText("The two of you rest for a while, snuggling together with her sticky mess between you. Significantly satisfied, she kisses you before rolling onto the bed for a nice nap",true);
-               if(knot == true)
-               {
-                  outputMainText(", pausing for a moment as she bucks her hips to loosen yourself from your softening knot before laying back down to rest",false);
-               }
-               outputMainText(", her womb quite busy with what you left inside. You kiss her back as she sleeps, taking your sweet time before leaving to continue with other matters.",false);
-               hrs = 4;
-               doEnd();
-            };
-         }
-         if(buttonChoice == 3)
-         {
-            outputMainText("Stepping towards her and placing a hand upon the bulge in her loincloth, it doesn\'t take a scholar to figure out what you\'d like. The tall girl blushes and the bulge jumps with sudden bloodflow. She doesn\'t object and leads you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",true);
-            if(silPreg <= 240)
-            {
-               outputMainText(" Eager to release, she pushes you back onto her bed, wedging herself between your thighs as she flops the stiffening erection on top of your ",false);
-               if(cockTotal > 0)
-               {
-                  outputMainText("own",false);
-               }
-               else if(cockTotal < 1)
-               {
-                  outputMainText("belly",false);
-               }
-               outputMainText(" with a splatter of slimy pre.",false);
-               if(silRate > 3 && silTied == false)
-               {
-                  outputMainText(" She pauses as her rear pulls back a bit, her talons clenching as a bulge travels down her tail. The eggcelerator doses obviously working, she lays the egg on the floor and quickly returns her attention to you.",false);
-               }
-               if(silPreg > 36)
-               {
-                  outputMainText(" Slightly swollen from her growing pregnancy, she takes a moment to caress her longer member, getting a feel for how large it has become.",false);
-               }
-               outputMainText(" Then, her finger-like talons grab onto your " + hipDesc() + " hips, the feathers of her wings tickling your thighs as she drags her cock over you until it falls into the " + vulvaDesc() + " crevice between. With a moaning grunt, she plunges in.\r\rThe hard phallus pumps in and out of your soft velvety walls while the ",false);
-               if(silPreg > 150)
-               {
-                  outputMainText("large and heavy",false);
-               }
-               else
-               {
-                  outputMainText("big",false);
-               }
-               outputMainText(" balls slap against your " + buttDesc() + " rump",false);
-               if(silPreg + pregnancyTime + vagBellyMod > 1000)
-               {
-                  outputMainText(", her pregnant belly bumping against your own,",false);
-               }
-               outputMainText(" with each thrust. Her breasts wobble with her fervor, in tune to her panting as her long tongue lolls from her vulpine muzzle.",false);
-               if(breastSize > 3)
-               {
-                  outputMainText(" Your own chest jiggles as well, your body dragging across the bed from her strength.",false);
-               }
-               if(silPreg > 100 && cockTotal > 0)
-               {
-                  outputMainText(" More pre slops across her pregnant belly as your " + cockDesc() + " cock" + plural(1) + " gently slap it, making her even more aroused from the taut sensitive scales.",false);
-               }
-               else if(cockTotal > 0)
-               {
-                  outputMainText(" More pre slops across yourself as your " + cockDesc() + " cock" + plural(1) + " bounce around, leaving you rather slick.",false);
-               }
-               outputMainText("\r\rThanks to her generous efforts, you both find yourselves reaching orgasm within minutes. Her body quivers and seizes as it forces a few more loud squishes into your pussy before it explodes within, drenching your insides with thick gooey cum. You shiver in turn,",false);
-               if(cockTotal > 0)
-               {
-                  outputMainText(" more eruptions gushing from your own rod" + plural(1) + ",",false);
-               }
-               outputMainText(" shouting along with her howling with sensual joy. By the time your both done with your erotic fits, Silandrias collapses upon your belly, rubbing it with a wing as her seed fills you, her cock slipping out and trailing white strands across her sheets. She then crawls up onto the bed beside you to snuggle and kiss you lovingly, before eventually passing out for a nap.",false);
-            }
-            else
-            {
-               outputMainText(" Although she\'s quite eager for some release, her belly prevents her from taking the initiative, leaving her to lay down upon the bed and waiting for you to make the next move. With her erection smearing pre all over the underside of her belly as it stands stiff and hard, all you have to do is climb up the pregnant mound and squat down upon the pole. Wrapping your arms around her girth, she howls as you grab her ",true);
-               if(silRep > 3)
-               {
-                  outputMainText("lowest pair of tits, milk squirting through your fingers,",false);
-               }
-               else
-               {
-                  outputMainText("sensitive belly scales",false);
-               }
-               outputMainText(" and begin to bounce up and down on top of her, the swollen shaft plunging through your velvety folds.",false);
-               if(silRate > 3)
-               {
-                  outputMainText("Then she gasps, holding you still with her thighs for a moment as a bulge grows at the base of her tail and descends down its length, depositing an egg upon to floor before she releases you to continue.",false);
-               }
-               if(silPreg + pregnancyTime + vagBellyMod > 1400)
-               {
-                  outputMainText(" Your own gravid belly drags across hers, pushing you away as they gently bump and bang against each other",false);
-               }
-               else
-               {
-                  outputMainText(" Your own belly lays over hers as you try to get as close as possible, feeling how taut and smooth and suppler her belly-scales really are",false);
-               }
-               if(cockTotal > 0)
-               {
-                  outputMainText(", while your own " + cockDesc() + " member" + plural(1) + " " + plural(13) + " caught between, being squished and ground between the flesh until your pre is coating them both",false);
-               }
-               outputMainText(".\r\rHer extra-fertile status has made her so horny and sensitive that it doesn\'t take long before her hips to jerk and her erection to explode within you. You\'re nearly lifted from the powerful blow, the stuff churning through you and spitting back out across her thighs and sheets, her heavily engorged testicles pumping out an excessive load. Your mind grows fuzzy with your own orgasm, ",false);
-               if(cockTotal > 0)
-               {
-                  outputMainText("ropes of cum leaping from your cock" + plural(1) + " and across her belly to decorate her many tits, ",false);
-               }
-               outputMainText("until you collapse over her girth and try to catch your breath. It takes several minutes for the rod inside to soften up and slip out of your nethers with a noisy splurt, allowing you to crawl up beside her and lay with the panting vulpine as her tongue lolls out of her muzzle. She turns a wing to snuggle with you and kiss you lovingly, before eventually passing out for a nap.",false);
-            }
-            doImpregnate(dominant);
-            if(cockTotal > 0)
-            {
-               cumAmount();
-            }
-            doLust(-Math.floor(sen / 2),2,2,5);
-            doNext();
-            doListen = function():void
-            {
-               outputMainText("You rest with her for a while before you decide to clean up the mess left behind. Then you quietly don your clothes and sneak out, allowing her to rest peacefully.",true);
-               hrs = 4;
-               doEnd();
-            };
-         }
-         if(buttonChoice == 5)
-         {
-            if(silTied == false)
-            {
-               outputMainText("You think it\'s a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn\'t seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation.\r\rYou take a few minutes to check the straps to ensure no blood is being cut off and notice she\'s starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail\'s vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen.\r\rAfter a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion.\r\rTying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you\'re soon on your way.",true);
-               silTied = true;
-               loseManyItem(229,1);
-               hrs = 3;
-               doEnd();
-            }
-            else
-            {
-               outputMainText("You decide to let the eggs flow freely once more. She leans against the wall again to give you easy access, allowing you to quickly untie the leather strap and slip it off. Immediately after you loosen it up, the bulge at the base of her tail shifts, making her gasp and her tail whip to the side as the egg within moves and starts its way out. Silandrias lets out a relaxed sigh as the egg is deposited upon the tunnel floor, her belly already looks a little smaller.\r\rYet, despite how much she has built up, no more eggs attempt to exit right away. Staying with her a bit longer, she does eventually lay more, though at her normal cycle from before rather than trying to catch up, leaving her womb swollen in the meantime. Otherwise, she is doing very well, allowing you to head back out.",true);
-               silTied = false;
-               itemAdd(229);
-               hrs = 3;
-               doEnd();
-            }
-         }
-         if(buttonChoice == 7)
-         {
-            outputMainText("To help her along with her current eggy pregnancy, you consider giving her a dose of eggcelerator. Even though she isn\'t of lizan descent, the egg-aid may help her somehow.\r\rSilandrias agrees to take it, as long as you help her administer it. Leading you back to her room, ",true);
-            if(silRate > 2 && silTied == false)
-            {
-               outputMainText("her tail already laying another egg along the way thanks to previous doses,",false);
-            }
-            outputMainText("she readily sits down on her bed and leans back while spreading her legs wide for your convenience.\r\rTaking a moment to stare at the wonderful view, you lean in and pull her veiling loin cloth aside.",false);
-            if(silPreg <= 200)
-            {
-               outputMainText(" Then you easily lift her flaccid maleness, giving yourself access to the soft slit beneath.",false);
-            }
-            else if(silPreg <= 400)
-            {
-               outputMainText(" Then you take some effort to lift her swollen maleness, both cock and balls having grown slightly with the pregnant arousal, and manuever beneath the large belly to access her soft slit.",false);
-            }
-            else if(silPreg <= 600)
-            {
-               outputMainText(" It then takes quite a bit of effort to both hold aloft the engorged penis and testicles, a bit of pre drooling over your arm from her pregnant arousal, and do your best to feel under her huge belly until you can find her soft slit beneath all the swollen bits.",false);
-            }
-            outputMainText(" From there, slipping the small suppository inside is simple, as it sucks itself in thanks to its torpedo-like shape.\r\rWithin moments you can feel her shiver as the stuff dissolves and makes her giggle a little.",false);
-            if(silRate > 5 && silTied == false)
-            {
-               outputMainText(" However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more.",false);
-            }
-            else if(silTied == false)
-            {
-               outputMainText(" She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she\'s breathing normally again.",false);
-            }
-            else
-            {
-               outputMainText(" She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles.",false);
-            }
-            outputMainText("\r\rThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I\'m sure this will make the process move along faster...\"\r\rYou stay with her another couple of hours to make sure she\'s alright and to spend some time together, then you head back out to continue on.",false);
-            ++silRate;
-            if(silTied == false)
-            {
-               doLust(Math.floor(lib / 5),0);
-            }
-            else
-            {
-               doLust(Math.floor(lib / 5),0);
-            }
-            loseManyItem(230,1);
-            hrs = 3;
-            doEnd();
-         }
-         if(buttonChoice == 9)
-         {
-            outputMainText("Just wanting to spend some time together, you give her a hug. She smiles back at you and leads you through the tunnels to a nice room to socialize. There are a few seats of plush pillows and reed mats to sit upon, fitting for someone of her height, with a few tables cluttered with various knick-knacks. Torches light the room and several crystalline chandeliers and chimes break the light into vivid sparkling colors, providing a rather soothing atmosphere. Some of the crystals even glow on their own; shards of magical artifacts long lost to the ravages of the desert.\r\rSilandrias lies down upon one of the mats",true);
-            if(silPreg > 36)
-            {
-               outputMainText(", upon her side so as to give her growing girth some room,",false);
-            }
-            outputMainText(" and lets you cuddle up behind her. You hug and caress her curves,",false);
-            if(silPreg > 360)
-            {
-               outputMainText(" hardly able to cover much of her pregnancy as you grope the massive belly and make her moan ocassionally from the great sensitivity,",false);
-            }
-            else if(silPreg > 240)
-            {
-               outputMainText(" groping as much of her giant belly as you can and cause her to gasp softly from the sensation,",false);
-            }
-            else if(silPreg > 150)
-            {
-               outputMainText(" groping about her belly and making her toes curl,",false);
-            }
-            else if(silPreg > 75)
-            {
-               outputMainText(" petting her large belly,",false);
-            }
-            else if(silPreg > 36)
-            {
-               outputMainText(" palming her growing belly,",false);
-            }
-            if(silRep > 3 && silPreg > 150)
-            {
-               outputMainText(" causing milk to spit across the floor and soak into everything from her multitude of breasts,",false);
-            }
-            outputMainText(" gently kissing her shoulders as you talk. The two of you alternate between stories of your travels and the findings of her treasures. There\'s even a bit of small talk mixed in as well as periods of silence where you simply enjoy each others company.\r\rEventually, however, you must be on your way so that something can get done. As much as the two of you would like to continue, you can\'t ignore the need to get some food or other preparations or ignore the rest of your lives.",false);
-            if(silPreg > 36)
-            {
-               outputMainText(" However, you could swear her form grew bigger than when you started. It seems your company has really made her feel comfortable and... motherly.",false);
-            }
-            if(silRate > 3 && silTied == false)
-            {
-               outputMainText(" Despite her having laid a few eggs during your time together as well.",false);
-            }
-            outputMainText("\r\rYou soon give each other a kiss and exchange farewells, hopefully to not spend too much time apart.",false);
-            hrs = 4;
-            if(silPreg > 1)
-            {
-               silPreg += 10;
-            }
-            doEnd();
-         }
-      };
-   }
-}
+      OutputMainText("You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell." + "\n" + "\n" + "After waiting for several minutes, the large ears of the foxy lizard-like woman come into view.",True)
+      if (silPreg > 36):
+         if (silPreg <= 72):
+            OutputMainText(" She has a slight smile as her wings roam about the growing bulge in her belly, the shape so obvious against her normally lithe form. A smile on her face when she looks at you silently passes the message that she knows it's because of you, but finds the sensation too blissful to actually speak about it.",False)
+         elif (silPreg <= 150):
+            OutputMainText(" Her wings hug under her gravid form, holding and groping it as she feels it sway with each step, so big on her thin form; her belly-scales looking larger as they stretch across the girth. She seems a bit giggly at her state as she looks to you as the cause, but doesn't think it needs stating at this point.",False)
+         elif (silPreg <= 240):
+            OutputMainText(" Her belly has grown so large that the tips of her wings can no longer connect around her form, but that doesn't keep her from trying as she rubs over the stretched scales again and again, relishing in their sensitivity. She still manages to stand up straight, though, as her strong lithe build can handle it.",False)
+         elif (silPreg <= 360):
+            OutputMainText(" She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks.",False)
+         elif (silPreg <= 550):
+            OutputMainText(" She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she 'accidentally' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant...",False)
+      if (silRep == 1):
+         if (silPreg > 120):
+            OutputMainText(" And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh...",False)
+         elif (silPreg > 60):
+            OutputMainText(" Plus, it seems her breasts have also begun to swell slightly with her belly, the clasp in her cloak being much more 'obvious' than before...",False)
+         else:
+            OutputMainText(" Clad in her white cloak as before, the clasp in front nestles between her breasts and seems extra shiny for your arrival.",False)
+      elif (silRep == 2):
+         if (silPreg > 200):
+            OutputMainText(" Having completely given up on the clasp of her cloak, the thick nipples of her top breasts barely hold the cloak over most of her mammary flesh. Bigger than her head now, the top pair swings from side to side as she walks, while the smaller pair below jiggle slightly as her belly bobs between them, almost completely bare if it weren\'t for her wings in the way.",False)
+         elif (silPreg > 120):
+            OutputMainText(" Both pairs of breasts are becoming quite swollen now. The top pair threatens to break through the clasp once more while the second pair pushes against the edge of the cloak, the smaller mounds nearly slipping out with the protruding belly spreading the cloak open. She still manages to cover the exposed side-boob with her wings, unsure what to do about them.",False)
+         elif (silPreg > 60):
+            OutputMainText(" Also her breasts seem to have begun swelling once more, although this time she seems a little embarrassed about some extra growth... Just below her burgeoning bust, another pair of mounds have begun to swell. Her cloak still manages to cover them, but she still tries to cover them with her wings just in case.",False)
+         else:
+            OutputMainText(" And her white cloak seems to fit better now after the growth in her breasts has diminished with her belly, though it does look a bit tighter than before the whole thing.",False)
+      elif (silRep == 3):
+         if (silPreg > 300):
+            OutputMainText(" Completely bare, it seems as though she has given up on her cloak... With a heavy blush of embarrassment from her exposed curves, she tries her best to cover herself with her wings, with little success. The top pair of breasts rest heavily atop the second pair, which is squished against her belly, and overall makes it difficult for her to look at you over them when covering them. The third pair jiggle obscenely without any coverage, even larger than her top breasts originally were when you first met her. Most of her efforts in trying to grope her belly mostly wind up fondling this lower pair as well, making them quiver even more lewdly...",False)
+         elif (silPreg > 200):
+            OutputMainText(" The upper clasp already undone and the second clasp close to being the same, her cloak doesn't seem to be doing much for her. Half of her top areolas peek out from the edge of the draped cloak, easily the size of small dinner plates, while the second pair press obviously against the tight cloak. Meanwhile, the third pair simply jiggles freely, well more than a handful, as they bounce with the belly. She tries to cover them with her feathers, but with all the other masses she has to deal with she often neglects them...",False)
+         elif (silPreg > 120):
+            OutputMainText(" And she tends to pull at the upper clasp in her cloak, trying to give herself more breathing room as the orbs billow out about and below, much larger than her head. The pair directly beneath isn't fairing much better either, as the second clasp it stretched across both the large mounds and the upper portion of her growing belly. Her third pair, on other hand, make for good hooks as the nipples catch the edge of the cloak on either side, keeping the sides of her belly covered as she hugs it, at least.",False)
+         elif (silPreg > 60):
+            OutputMainText(" In spite of her adjustments to her cloak, her top pair of breasts are once more pushing at the expanded clasp, with her second pair seemingly following suit against their own. However, the most embarrassing part for her is that another pair looks to be growing in as well, flanking her belly with small mounds beneath the cloak...",False)
+         else:
+            OutputMainText(" It also seems as though she's made some adjustments to her cloak. Though her breasts may have reduced in size after the last laying, she still retains the second pair which has been nicely covered by an additional clasp. However the top pair seems to have had some extra cloth added to the bust, to make up for the increased size...",False)
+      elif (silRep == 4):
+         if (silPreg > 450):
+            OutputMainText(" It's' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It's amazing she can even move in such a state...",False)
+         elif (silPreg > 300):
+            OutputMainText(" The many breasts jiggle around her girth, dribbling with milk as she steps. There's so much boob-flesh around the large mound of her belly that it's hard to believe she has a lithe frame beneath it all. Having difficulty looking out you over the top pair, she seems better off simply resting her muzzle on top of them to keep them out of her way. With such a round body, it's no wonder she hardly goes out anymore...",False)
+         elif (silPreg > 200):
+            OutputMainText(" And she's not even bothering with a cloak anymore... For now she's completely bare, she's at least comfortable being naked around you. Jiggling all over with each step, all four pairs of breasts are larger than she was when you met her long ago. The thick nipples stand perk with the air and seem to... have small drops of milk beading upon them. She has apparently begun lactating, though not much, which is quite odd considering the previous layings haven\'t had any. Which is probably the reason she only tosses a bedsheet on when she goes out to shop, as her dripping around home would simply soil the cloth anyways.",False)
+         elif (silPreg > 120):
+            OutputMainText(" Having found some twine somewhere, she has managed to creat make-do clasps for her cloak to more effeciently cover herself. However, those clasps are across her back as the cloak is on backwards in an attempt to cover her front with as much fabric as possible. And yet, despite the effort, her upper pair is already peeking out from the sides as it stands and all of her nipples press obviously against the cloth as her belly pushes them firmly against the make-do outfit...",False)
+         elif (silPreg > 60):
+            OutputMainText(" And just as before, her breasts have begun to swell already. In anticipation... she didn't even bother latching the clasps. Depending on her large perk nipples and the occasional tug to keep it shut, the cloak manages to cover some of herself. Suffice it to say, there's a lot of exposed belly-scales as the breast flesh stretches them in curvy manners. What's most troublesome, though, is that there is yet another pair beginning to blossom below the third, accentuating the size of her relatively small belly even more.",False)
+         else:
+            OutputMainText(" With her curves back to a relatively normal state, she seems to be trying to wear her cloak again. However, her top breasts are already pressing tightly against the upper clasp, despite her reduced sizes from the laying. The lower clasp looks like how the top one used to be when you first met her, which isn\'t too bad. The bottom pair of decent sized breasts seem to peek out with even the slightest breeze, on the other hand, as she hasn't made a third clasp yet...",False)
+      if ((VagLimit() < (22 + (silPreg / 24))) and (vagTotal > 0)):
+         outputMainText(" Just looking at the bulge in her loincloth, ",False)
+         if (silPreg > 36):
+            OutputMainText("yet another thing having swollen with her pregnancy, ",False)
+         OutputMainText(" you can tell that you definitely wouldn't be able to fit her maleness, so that is pretty much out of the question.",False)
+      OutputMainText("\n" + "\n" + "\"Hello~\" Silandrias greets you with joy, happy to have your company again. \"Come on in, please.\" She turns to lead you into the network of tunnels. \"Would you care to do something, hun?\"",False)
+      if (silPreg > 40):
+         if (silTied == False):
+            if (silRep == 1):
+               OutputMainText("\n" + "\n" + "Only a few steps in, however, she pauses for a moment and lets out a gasp as the base of her tail expands. A round object passes through, stretching her tail as it moves, before her tail reflexively flicks to the side of the tunnel. As the round object approaches the narrow tip, she shivers a little as the tip opens to let the hard-shelled egg through. Laid gently against the wall, lubrication stretches and snaps off from her secondary vaginal passage that is hidden within her tail, leaving the egg still moist." + "\n" + "\n" + "She looks down at what she had done before you and blushes. \"Oh dear... I-I've been a little embarrassed since I've begun laying them all over, and even moreso now that I've done it in front of you... D-Don't worry about it though. I just kinda... 'know' that they aren't real, they won't grow or hatch at all, there's nothing in them except normal egg-stuff. Don't really know why though... But it just kinda happens every now and then since we've, umm, had our fun.\" She glances to the side. \"We can leave it for now, I'll pick it up later, with the rest of them...\" Her stride picks up in eagerness to spend some time with you.",False)
+            else:
+               OutputMainText("\n" + "\n" + "A few steps in, she pauses and gasps as another egg begins its way down her tail. Just like the lizan people, she lays the infertile things whenever they're ready, though down a different passage. Quite used to it by now, she naturally flicks her tail to the side to desposit it against the wall of the tunnel for retrieval later and continues on.",False)
+         else:
+            OutputMainText("\n" + "\n" + "From behind, you can see her tail is a bit swollen at its base, just behind the leather strap you bound. The eggs press around her tail, wanting to get out, but simply accumulate instead as they're blocked. It makes her walk a little more awkwardly, but doesn't seem to bother her much otherwise.",False)
+      ButtonFunctions.Visible(1,0,1,0,1,0,1,0,1,0,0,0)
+      templist = [9,"Cuddle"]
+      if (cockTotal > 0):
+         templist.append(1)
+         templist.append("Fuck")
+      if ((vagTotal > 0) and (VagLimit() > (22 + (silPreg / 24)))):
+         templist.append(3)
+         templist.append("Be Fucked")
+      if ((CheckItem(229) == True) and (silTied == False)):
+         templist.append(5)
+         templist.append("Tie Tail")
+      elif (silTied == True):
+         templist.append(5)
+         templist.append("Untie")
+      if ((CheckItem(230) == True) and (silPreg > 30)):
+         templist.append(7)
+         templist.append("Eggcelerator")
+      DoButtonChoices(templist)
+      #this.doListen = function():void
+      getCum = 0
+      if (buttonChoice == 1):
+         getCum = CumAmount()
+         OutputMainText("Rubbing the " + CockDesc() + " bulge in your " + ClothesBottom() + ", you make it fairly obvious what you would like to do. The tall girl blushes and doesn't object, leading you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",True)
+         if (silPreg <= 240):
+            OutputMainText(" Taking the lead, she pushes you back onto her bed, " + LegVerb(2) + " your " + LegDesc(2) + " to lick",False)
+            if (showBalls == True):
+               OutputMainText(" your " + BallDesc() + " testicles",False)
+            else:
+               OutputMainText(" the base" + Plural(1) + " of your cock" + Plural(1) + "",False)
+            OutputMainText(" before nibbling up the length of " + OneYour(1) + " shaft" + Plural(1) + " and gulping down the tip the best she can." + "\n" + "\n" + "Once you're thoroughly lubricated with saliva and pre, standing stiff and aching to fill her, she can hardly resist jumping onto it. Yet, she still manages to slowly climb up the bed, her finger-like talons clawing at the sheets as the feathers tickle over your thighs, until she finally manages to sit upright over your waist and squatting down over your erection. She lets out a cooing howl as she feels your girth slip through her lips and burrow into her moist inner-walls. Her wings pressing against your " + BoobDesc() + " chest",False)
+            if (silPreg > 150):
+               OutputMainText(", her large belly resting heavily atop your own",False)
+            elif (silPreg > 72):
+               OutputMainText(", leaning over her swollen belly",False)
+            elif (silPreg > 36):
+               OutputMainText(", her bulging belly slightly touching yours",False)
+            OutputMainText(", she steadies herself while her hips begin to grind and twist hungrily on top of you. Her tongue lols from her muzzle and she pants happily while her ears bob up and down, her tail flicking about sporadically from the joy of having you inside of her.",False)
+            if ((silRate > 2) and (silTied == False)):
+               OutputMainText(" She pauses only for a moment as she feels an egg drop into her tail, the eggcelerator causing some rather unexpected layings, making her moan a little as she deposits it on the bed beside you, only to make her even more aroused.",False)
+            if (silPreg > 150):
+               OutputMainText("\n" + "\n" + "Having swollen quite a bit with her pregnancy with her belly, her cock slaps loudly against you with each hop and flings pre all over your front. The large testicles rest around your groin, hugging your cock" + Plural(1) + " whenever she lifts high enough to allow them to roll beneath her.",False)
+            elif (silPreg > 72):
+               OutputMainText("\n" + "\n" + "It also seems that another part of her has swollen slightly with her pregnancy, her phallic appendage and orbs slapping more loudly against you than before, flinging pre over your front with each hop.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Her phallic portion pats against you with each hop as it jumps up and down, splattering puddles of pre against you every time her balls rest upon you.",False)
+            if ((cockSize * cockSizeMod) >= 66):
+               OutputMainText(" Your own length, meanwhile, stretches her belly out further, forcing her belly-scales to protrude from within, yet seems to have no sign of hurting her or her womb. In fact, she seems to enjoy it even more as she blissfully hugs your head whenever it presses out far enough, tenderly rubbing it until it disappears back inside.",False)
+            elif ((cockSize * cockSizeMod) >= 36):
+               OutputMainText("\t" + "Your own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again.",False)
+            OutputMainText(" She bounces upon you so roughly that her ",False)
+            if ((silRep > 3) and (silPreg > 60)):
+               OutputMainText("four pairs of",False)
+            elif ((silRep > 2) and (silPreg > 60)):
+               OutputMainText("three pairs of",False)
+            elif ((silRep > 1) and (silPreg > 60)):
+               OutputMainText("two pairs of",False)
+            OutputMainText(" breasts jiggle obscenely, the nipples stiff as though already preparing for a suckling child." + "\n" + "\n" + "At this rate, it doesn't take long before Silandrias is letting out a loud, lustful howl as you erupt within her.",False)
+            if (getCum < 1000):
+               OutputMainText(" Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in.",False)
+            elif (getCum < 5000):
+               outputMainText(" Your hot load forces her belly to visibly distend as you spray within, the grand amount of spunk churning around and drowning your gushing head, yet hardly any seems to spill from her slit as her womb drinks it in, thirsty for seed.",False)
+            else:
+               OutputMainText(" Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed.",False)
+            if (silPreg > 36):
+               OutputMainText(" Her belly swells above you as her fertile nature quickly processes your stuff, pushing forward her eggy pregnancy with blossoming fecundity.",False)
+            OutputMainText(" With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she's sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh.",False)
+            if ((silRate > 4) and (silTied == False)):
+               OutputMainText(" And though she may be spent, she clenches your body as her cock kicks up a bit more spunk, yet another egg making its way through her tail...",False)
+         else:
+            OutputMainText(" Her belly too large to wield on top of you, she opts to lie back onto her bed, spreading her legs wide with welcoming access. Prepping " + OneYour(1) + " member" + Plural(1) + " for action with a gentle rubbing about the tip, you move in on your prey.",False)
+            if (silPreg > 360):
+               OutputMainText(" She has to lift her gigantic form even higher with her thighs, bending her legs up so you can even manage to reach her genitals.",False)
+            else:
+               OutputMainText(" You manage to reach beneath her grand girth, maneuvering around the round form to reach her genitals.",False)
+            OutputMainText(" Then you have to pull the large package out of your way, both her cock and balls swollen from her engorged pregnancy and blocking the desired entrance.",False)
+            if (tallness < math.floor(silPreg / 9)):
+               OutputMainText(" Lifting them up, you droop her large shaft over your shoulder, pinning the lower portion between your " + BoobDesc() + " chest and her belly while drooping the scrotum over your own length.",False)
+            else:
+               OutputMainText(" Lifting them up, you trap her appendage between your " + BoobDesc() + " chest and her belly and droop her scrotum over your own length.",False)
+            if ((silRate > 2) and (silTied == False)):
+               OutputMainText(" Thanks to this odd position and the doses of eggcelerator, she lets out an early moan as an egg pushes its way through her tail and down onto the floor.",False)
+            OutputMainText("\n" + "\n" + "Now with clear access, you slip into her thirsty hole. She is already drenched in lubricant, with plenty spilling and drooling down her tail, the heavy belly and hormones having made her especially aroused. You squeeze her testicles with your " + HipDesc() + " hips while you press in for the first thrust, eliciting a guttural moan of joy from the girl behind the fertile mound. She tries to hump back a little but merely wiggles her rod between your bodies. To help, you lean up against her, moving your whole body with each pump of your cock, slathering the pre that spills from her own over your body to reduce the friction. Quite soon, the lower hemisphere of her belly is shining in slick juices, allowing you to easily rub across her belly-scales. Maybe a little too easily as you have to ",False)
+            if (silRep > 3):
+               OutputMainText(" grab her lowest pair of tits, milk squirting through your fingers,",False)
+            else:
+               OutputMainText(" hug her girth the best you can manage",False)
+            OutputMainText(" just to hold hold against her. All of her breasts shake about",False)
+            if (silRep > 4):
+               OutputMainText(", jets of milk squirting out everywhere,",False)
+            OutputMainText(" as you pound into her again and again. She moans and howls, her wings groping over her massive form and her tail wrapping up through your " + LegDesc(2) + " and wedging into your " + ButtDesc() + " rump to pull you closer. It doesn\'t take long before the extra-pregnant girl to cry out.",False)
+            if (tallness < math.floor(silPreg / 9)):
+               OutputMainText("\n" + "\n" + "Hot spunk sprays behind you, coating your back and painting the floor white.",False)
+            else:
+               OutputMainText("\n" + "\n" + "Hot spunk gushes between you, splattering all over her body and painting your face white.",False)
+            OutputMainText(" Her knees crush you like a vice as she comes, forcing you to give into your own pressure and explode inside. It's all a blur as you feel your cum churn about within her, and no matter how much you gush, she seems to take in the majority of it as little squirts out from her extra-slick hole. Having so much contact with her gravid shape, you definitely feel it shift and grow from your blast, devouring your seed and feeding her fertile womb. It takes so long for her cries of ecstasy to eventually die down, so lost in bliss...",False)
+            if ((silRate > 4) and (silTied == False)):
+               OutputMainText("\n" + "\n" + "And interjecting into the pleasant relaxing, she lets out a gasp as yet another egg forces its way through to be laid on the bed with you.",False)
+         if ((math.ceil(getCum / 50) > 100) and (silPreg > 0)):
+            silPreg += 100
+         elif (silPreg > 0):
+            silPreg += math.ceil(getCum / 50)
+         else:
+            silPreg = 1
+         DoLust(-math.floor(sen / 2),2,1)
+         DoNext()
+         #doListen = function():void
+         OutputMainText("The two of you rest for a while, snuggling together with her sticky mess between you. Significantly satisfied, she kisses you before rolling onto the bed for a nice nap",True)
+         if (knot == True):
+            OutputMainText(", pausing for a moment as she bucks her hips to loosen yourself from your softening knot before laying back down to rest",False)
+         OutputMainText(", her womb quite busy with what you left inside. You kiss her back as she sleeps, taking your sweet time before leaving to continue with other matters.",False)
+         hrs = 4
+         DoEnd()
+      elif (buttonChoice == 3):
+         OutputMainText("Stepping towards her and placing a hand upon the bulge in her loincloth, it doesn't take a scholar to figure out what you'd like. The tall girl blushes and the bulge jumps with sudden bloodflow. She doesn't object and leads you right to her room with a rapid pace in her step. In a flurry of kisses and hugs, the two of you are soon stripped of your clothes.",True)
+         if (silPreg <= 240):
+            OutputMainText(" Eager to release, she pushes you back onto her bed, wedging herself between your thighs as she flops the stiffening erection on top of your ",False)
+            if (cockTotal > 0):
+               OutputMainText("own",False)
+            elif (cockTotal < 1):
+               OutputMainText("belly",False)
+            OutputMainText(" with a splatter of slimy pre.",False)
+            if ((silRate > 3) and (silTied == False)):
+               OutputMainText(" She pauses as her rear pulls back a bit, her talons clenching as a bulge travels down her tail. The eggcelerator doses obviously working, she lays the egg on the floor and quickly returns her attention to you.",False)
+            if (silPreg > 36):
+               OutputMainText(" Slightly swollen from her growing pregnancy, she takes a moment to caress her longer member, getting a feel for how large it has become.",False)
+            OutputMainText(" Then, her finger-like talons grab onto your " + HipDesc() + " hips, the feathers of her wings tickling your thighs as she drags her cock over you until it falls into the " + VulvaDesc() + " crevice between. With a moaning grunt, she plunges in." + "\n" + "\n" + "The hard phallus pumps in and out of your soft velvety walls while the ",False)
+            if (silPreg > 150):
+               OutputMainText("large and heavy",False)
+            else:
+               OutputMainText("big",False)
+            OutputMainText(" balls slap against your " + ButtDesc() + " rump",False)
+            if ((silPreg + pregnancyTime + vagBellyMod) > 1000):
+               OutputMainText(", her pregnant belly bumping against your own,",False)
+            OutputMainText(" with each thrust. Her breasts wobble with her fervor, in tune to her panting as her long tongue lolls from her vulpine muzzle.",False)
+            if (breastSize > 3):
+               OutputMainText(" Your own chest jiggles as well, your body dragging across the bed from her strength.",False)
+            if ((silPreg > 100) and (cockTotal > 0)):
+               OutputMainText(" More pre slops across her pregnant belly as your " + CockDesc() + " cock" + Plural(1) + " gently slap it, making her even more aroused from the taut sensitive scales.",False)
+            elif (cockTotal > 0):
+               OutputMainText(" More pre slops across yourself as your " + CockDesc() + " cock" + Plural(1) + " bounce around, leaving you rather slick.",False)
+            OutputMainText("\n" + "\n" + "Thanks to her generous efforts, you both find yourselves reaching orgasm within minutes. Her body quivers and seizes as it forces a few more loud squishes into your pussy before it explodes within, drenching your insides with thick gooey cum. You shiver in turn,",False)
+            if (cockTotal > 0):
+               OutputMainText(" more eruptions gushing from your own rod" + Plural(1) + ",",False)
+            OutputMainText(" shouting along with her howling with sensual joy. By the time your both done with your erotic fits, Silandrias collapses upon your belly, rubbing it with a wing as her seed fills you, her cock slipping out and trailing white strands across her sheets. She then crawls up onto the bed beside you to snuggle and kiss you lovingly, before eventually passing out for a nap.",False)
+         else:
+            OutputMainText(" Although she's quite eager for some release, her belly prevents her from taking the initiative, leaving her to lay down upon the bed and waiting for you to make the next move. With her erection smearing pre all over the underside of her belly as it stands stiff and hard, all you have to do is climb up the pregnant mound and squat down upon the pole. Wrapping your arms around her girth, she howls as you grab her ",True)
+            if (silRep > 3):
+               OutputMainText("lowest pair of tits, milk squirting through your fingers,",False)
+            else:
+               OutputMainText("sensitive belly scales",False)
+            OutputMainText(" and begin to bounce up and down on top of her, the swollen shaft plunging through your velvety folds.",False)
+            if (silRate > 3):
+               OutputMainText("Then she gasps, holding you still with her thighs for a moment as a bulge grows at the base of her tail and descends down its length, depositing an egg upon to floor before she releases you to continue.",False)
+            if ((silPreg + pregnancyTime + vagBellyMod) > 1400):
+               OutputMainText(" Your own gravid belly drags across hers, pushing you away as they gently bump and bang against each other",False)
+            else:
+               OutputMainText(" Your own belly lays over hers as you try to get as close as possible, feeling how taut and smooth and suppler her belly-scales really are",False)
+            if (cockTotal > 0):
+               OutputMainText(", while your own " + CockDesc() + " member" + Plural(1) + " " + Plural(13) + " caught between, being squished and ground between the flesh until your pre is coating them both",False)
+            OutputMainText("." + "\n" + "\n" + "Her extra-fertile status has made her so horny and sensitive that it doesn't take long before her hips to jerk and her erection to explode within you. You're nearly lifted from the powerful blow, the stuff churning through you and spitting back out across her thighs and sheets, her heavily engorged testicles pumping out an excessive load. Your mind grows fuzzy with your own orgasm, ",False)
+            if (cockTotal > 0):
+               OutputMainText("ropes of cum leaping from your cock" + Plural(1) + " and across her belly to decorate her many tits, ",False)
+            OutputMainText("until you collapse over her girth and try to catch your breath. It takes several minutes for the rod inside to soften up and slip out of your nethers with a noisy splurt, allowing you to crawl up beside her and lay with the panting vulpine as her tongue lolls out of her muzzle. She turns a wing to snuggle with you and kiss you lovingly, before eventually passing out for a nap.",False)
+         DoImpregnate(dominant)
+         if (cockTotal > 0):
+            CumAmount()
+         DoLust(-math.floor(sen / 2),2,2,5)
+         DoNext()
+         #doListen = function():void
+         OutputMainText("You rest with her for a while before you decide to clean up the mess left behind. Then you quietly don your clothes and sneak out, allowing her to rest peacefully.",True)
+         hrs = 4
+         DoEnd()
+      elif (buttonChoice == 5):
+         if (silTied == False):
+            OutputMainText("You think it's a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn't seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation." + "\n" + "\n" + "You take a few minutes to check the straps to ensure no blood is being cut off and notice she's starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail's vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen." + "\n" + "\n" + "After a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion." + "\n" + "\n" + "Tying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you're soon on your way.",True)
+            silTied = True
+            LoseManyItem(229,1)
+            hrs = 3
+            DoEnd()
+         else:
+            OutputMainText("You decide to let the eggs flow freely once more. She leans against the wall again to give you easy access, allowing you to quickly untie the leather strap and slip it off. Immediately after you loosen it up, the bulge at the base of her tail shifts, making her gasp and her tail whip to the side as the egg within moves and starts its way out. Silandrias lets out a relaxed sigh as the egg is deposited upon the tunnel floor, her belly already looks a little smaller." + "\n" + "\n" + "Yet, despite how much she has built up, no more eggs attempt to exit right away. Staying with her a bit longer, she does eventually lay more, though at her normal cycle from before rather than trying to catch up, leaving her womb swollen in the meantime. Otherwise, she is doing very well, allowing you to head back out.",True)
+            silTied = False
+            ItemAdd(229)
+            hrs = 3
+            DoEnd()
+      elif (buttonChoice == 7):
+         OutputMainText("To help her along with her current eggy pregnancy, you consider giving her a dose of eggcelerator. Even though she isn't of lizan descent, the egg-aid may help her somehow." + "\n" + "\n" + "Silandrias agrees to take it, as long as you help her administer it. Leading you back to her room, ",True)
+         if ((silRate > 2) and (silTied == False)):
+            OutputMainText("her tail already laying another egg along the way thanks to previous doses,",False)
+         OutputMainText("she readily sits down on her bed and leans back while spreading her legs wide for your convenience." + "\n" + "\n" + "Taking a moment to stare at the wonderful view, you lean in and pull her veiling loin cloth aside.",False)
+         if (silPreg <= 200):
+            OutputMainText(" Then you easily lift her flaccid maleness, giving yourself access to the soft slit beneath.",False)
+         elif (silPreg <= 400):
+            OutputMainText(" Then you take some effort to lift her swollen maleness, both cock and balls having grown slightly with the pregnant arousal, and manuever beneath the large belly to access her soft slit.",False)
+         elif (silPreg <= 600):
+            OutputMainText(" It then takes quite a bit of effort to both hold aloft the engorged penis and testicles, a bit of pre drooling over your arm from her pregnant arousal, and do your best to feel under her huge belly until you can find her soft slit beneath all the swollen bits.",False)
+         OutputMainText(" From there, slipping the small suppository inside is simple, as it sucks itself in thanks to its torpedo-like shape." + "\n" + "\n" + "Within moments you can feel her shiver as the stuff dissolves and makes her giggle a little.",False)
+         if ((silRate > 5) and (silTied == False)):
+            OutputMainText(" However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more.",False)
+         elif (silTied == False):
+            OutputMainText(" She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she's breathing normally again.",False)
+         else:
+            OutputMainText(" She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles.",False)
+         OutputMainText("\n" + "\n" + "Though the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I'm sure this will make the process move along faster...\"" + "\n" + "\n" + "You stay with her another couple of hours to make sure she's alright and to spend some time together, then you head back out to continue on.",False)
+         silRate += 1
+         if (silTied == False):
+            DoLust(math.floor(lib / 5),0)
+         else:
+            DoLust(math.floor(lib / 5),0)
+         LoseManyItem(230,1)
+         hrs = 3
+         DoEnd()
+      elif (buttonChoice == 9):
+         OutputMainText("Just wanting to spend some time together, you give her a hug. She smiles back at you and leads you through the tunnels to a nice room to socialize. There are a few seats of plush pillows and reed mats to sit upon, fitting for someone of her height, with a few tables cluttered with various knick-knacks. Torches light the room and several crystalline chandeliers and chimes break the light into vivid sparkling colors, providing a rather soothing atmosphere. Some of the crystals even glow on their own; shards of magical artifacts long lost to the ravages of the desert." + "\n" + "\n" + "Silandrias lies down upon one of the mats",True)
+         if (silPreg > 36):
+            OutputMainText(", upon her side so as to give her growing girth some room,",False)
+         OutputMainText(" and lets you cuddle up behind her. You hug and caress her curves,",False)
+         if (silPreg > 360):
+            OutputMainText(" hardly able to cover much of her pregnancy as you grope the massive belly and make her moan ocassionally from the great sensitivity,",False)
+         elif (silPreg > 240):
+            OutputMainText(" groping as much of her giant belly as you can and cause her to gasp softly from the sensation,",False)
+         elif (silPreg > 150):
+            OutputMainText(" groping about her belly and making her toes curl,",False)
+         elif (silPreg > 75):
+            OutputMainText(" petting her large belly,",False)
+         elif (silPreg > 36):
+            OutputMainText(" palming her growing belly,",False)
+         if ((silRep > 3) and (silPreg > 150)):
+            OutputMainText(" causing milk to spit across the floor and soak into everything from her multitude of breasts,",False)
+         OutputMainText(" gently kissing her shoulders as you talk. The two of you alternate between stories of your travels and the findings of her treasures. There's even a bit of small talk mixed in as well as periods of silence where you simply enjoy each others company." + "\n" + "\n" + "Eventually, however, you must be on your way so that something can get done. As much as the two of you would like to continue, you can't ignore the need to get some food or other preparations or ignore the rest of your lives.",False)
+         if (silPreg > 36):
+            OutputMainText(" However, you could swear her form grew bigger than when you started. It seems your company has really made her feel comfortable and... motherly.",False)
+         if ((silRate > 3) and (silTied == False)):
+            OutputMainText(" Despite her having laid a few eggs during your time together as well.",False)
+         OutputMainText("\n" + "\n" + "You soon give each other a kiss and exchange farewells, hopefully to not spend too much time apart.",False)
+         hrs = 4
+         if (silPreg > 1):
+            silPreg += 10
+         DoEnd()
+
 def DoValley():
    global buttonChoice, boobTotal, breastSize, fourBoobAffinity, ment, fertilityStatueCurse, minLust, hrs, knowBazoomba, pregArray, exhaustion, skipExhaustion
    chance = 0
@@ -19855,42 +19657,44 @@ def WeaponAttack():
       DoeHP(-dmg)
       DoHP(dmg)
 
-!def DoSpecialAbility(more:int):
-   global choicePage, skukAffinity
+def DoSpecialAbility(more:int):
+#!
+   global choicePage, skunkAffinity, buttonChoice
    specialAbilityArray = null
-   ButtonFunctions.Visible(0,0,0,0,0,0,0,0,0,0,0,1)
+   a1 = 0
+   a2 = 0
+   a3 = 0
+   a4 = 0
+   a5 = 0
+   a6 = 0
+   a7 = 0
+   a8 = 0
+   a9 = 0
+   a10 = 0
+   a11 = 0
    choicePage = more
    ShowPage(True,"Spc Abilities")
-   this.buttonWrite(4,"<<")
-   this.buttonWrite(8,">>")
-   this.buttonWrite(12,"Return")
+   templist = [12, "Return"]
    specialAbilityArray = []
-   if(this.skunkAffinity >= 40)
-   {
-      specialAbilityArray.push(1);
-   }
-   if(specialAbilityArray.length < 1)
-   {
-      this.outputMainText("Your do not currently have any special abilities that you can use.",true);
-   }
-   else
-   {
-      this.outputMainText("Which special ability would you like to use?",true);
-   }
-   if(specialAbilityArray.length > 9)
-   {
-      this.Choice4Outline.visible = true;
-      this.Choice4.visible = true;
-      this.Choice8Outline.visible = true;
-      this.Choice8.visible = true;
-   }
-   if(specialAbilityArray[0 + (more * 9 - 9)])
-   {
-      this.buttonWrite(1,this.specialAbilityName(specialAbilityArray[0 + (more * 9 - 9)]));
-      this.specialAbilityDescription(specialAbilityArray[0 + (more * 9 - 9)]);
-      this.Choice1Outline.visible = true;
-      this.Choice1.visible = true;
-   }
+   if (skunkAffinity >= 40):
+      specialAbilityArray.append(1)
+   if (len(specialAbilityArray) < 1):
+      OutputMainText("Your do not currently have any special abilities that you can use.",True)
+   else:
+      OutputMainText("Which special ability would you like to use?",True)
+   if (len(specialAbilityArray) > 9):
+      a4 = 1
+      a8 = 1
+      templist.append(4)
+      templist.append("<<")
+      templist.append(8)
+      templist.append(">>")
+   if (specialAbilityArray[0 + (more * 9 - 9)]):
+      a1 = 1
+      templist.append(1)
+      templist.append(SpecialAbilityName(specialAbilityArray[0 + (more * 9 - 9)]))
+      SpecialAbilityDescription(specialAbilityArray[0 + (more * 9 - 9)])
+   """
    if(specialAbilityArray[1 + (more * 9 - 9)])
    {
       this.buttonWrite(2,this.specialAbilityName(specialAbilityArray[1 + (more * 9 - 9)]));
@@ -19947,73 +19751,42 @@ def WeaponAttack():
       this.Choice11Outline.visible = true;
       this.Choice11.visible = true;
    }
-   this.doListen = function():void
-   {
-      if(buttonChoice == 1)
-      {
-         specialAbilityUse(specialAbilityArray[0 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 2)
-      {
-         specialAbilityUse(specialAbilityArray[1 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 3)
-      {
-         specialAbilityUse(specialAbilityArray[2 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 5)
-      {
-         specialAbilityUse(specialAbilityArray[3 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 6)
-      {
-         specialAbilityUse(specialAbilityArray[4 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 7)
-      {
-         specialAbilityUse(specialAbilityArray[5 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 9)
-      {
-         specialAbilityUse(specialAbilityArray[6 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 10)
-      {
-         specialAbilityUse(specialAbilityArray[7 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 11)
-      {
-         specialAbilityUse(specialAbilityArray[8 + (more * 9 - 9)]);
-      }
-      if(buttonChoice == 4)
-      {
-         if(specialAbilityArray.length / 9 < more)
-         {
-            doSpecialAbility(1);
-         }
-         else
-         {
-            doSpecialAbility(more + 1);
-         }
-      }
-      if(buttonChoice == 8)
-      {
-         if(more == 1)
-         {
-            doSpecialAbility(Math.floor(specialAbilityArray.length / 9));
-         }
-         else
-         {
-            doSpecialAbility(more - 1);
-         }
-      }
-      if(buttonChoice == 12)
-      {
-         showPage(false,"");
-         doReturn();
-      }
-   };
-}
+   """
+   ButtonFunctions.Visible(a1,0,0,a4,0,0,0,a8,0,0,0,1)
+   DoButtonChoices(templist)
+   #this.doListen = function():void
+   if (buttonChoice == 1):
+      SpecialAbilityUse(specialAbilityArray[0 + (more * 9 - 9)])
+   elif (buttonChoice == 2):
+      SpecialAbilityUse(specialAbilityArray[1 + (more * 9 - 9)])
+   elif (buttonChoice == 3):
+      SpecialAbilityUse(specialAbilityArray[2 + (more * 9 - 9)])
+   elif (buttonChoice == 5):
+      SpecialAbilityUse(specialAbilityArray[3 + (more * 9 - 9)])
+   elif (buttonChoice == 6):
+      SpecialAbilityUse(specialAbilityArray[4 + (more * 9 - 9)])
+   elif (buttonChoice == 7):
+      SpecialAbilityUse(specialAbilityArray[5 + (more * 9 - 9)])
+   elif (buttonChoice == 9):
+      SpecialAbilityUse(specialAbilityArray[6 + (more * 9 - 9)])
+   elif (buttonChoice == 10):
+      SpecialAbilityUse(specialAbilityArray[7 + (more * 9 - 9)])
+   elif (buttonChoice == 11):
+      SpecialAbilityUse(specialAbilityArray[8 + (more * 9 - 9)])
+   elif (buttonChoice == 4):
+      if (len(specialAbilityArray) / 9 < more):
+         DoSpecialAbility(1)
+      else:
+         DoSpecialAbility(more + 1)
+   elif (buttonChoice == 8):
+      if (more == 1):
+         DoSpecialAbility(math.floor(len(specialAbilityArray) / 9))
+      else:
+         DoSpecialAbility(more - 1)
+   elif(buttonChoice == 12):
+      ShowPage(False,"")
+      DoReturn()
+
 def SpecialAbilityName(ID:int):
    tempStr = "SPECIAL ABILITY NAME ERROR " + ID + ""
    if (ID == 1):
@@ -20845,7 +20618,7 @@ def DoeHP(changes:int):
       BattleWin()
    eHP += changes
    if (eHP > 0):
-      OutputMainText("\n" + "\n" + "Your enemy now seems to be under " + math.ceil(eHP / eMaxHP * 10) * 10 + "% HP.",False):
+      OutputMainText("\n" + "\n" + "Your enemy now seems to be under " + math.ceil(eHP / eMaxHP * 10) * 10 + "% HP.",False)
 
 def DoeLust(changes:int):
    global eGen, eLust
@@ -21142,7 +20915,7 @@ def EnemyAttack():
                if (teatSize < 2):
                   teatSize = 2
                DoeHP(10)
-            elif (nippleSize < 2):
+            if (nippleSize < 2):
                OutputMainText("nipples. However, they're so tiny that the devil can't siphon any more moisture from them, proving a fruitless attack.",False)
             else:
                OutputMainText("" + NipDesc() + "nipples, siphoning out a lot of moisture and causing them to shrink dramatically, restoring a good deal of power to the devil's winds.",False)
@@ -21726,6 +21499,7 @@ def DoStatus(param1:int):
       udderLactation = 0
    if (milkSuppressant > 0):
       if (milkSuppressantLact > 0):
+#!
          if ((milkEngorgementLevel < 3) and (milkEngorgement + (milkSuppressantLact + milkMod) * param1 > ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (milkEngorgement <= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2)):
             OutputMainText("\n" + "\n" + "Your breasts are so swollen that they feel like balloons on your chest. When standing still, it takes a while for the fluid inside to stop swishing, they're so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds their capacities, but the excess just gets absorbed back into your body since the milk suppressant prevents any other escape...",False)
             if (milkEngorgementLevel < 1):
@@ -21735,133 +21509,83 @@ def DoStatus(param1:int):
             else:
                BoobChange(1)
             milkEngorgementLevel += 1
-!         else if(this.milkEngorgementLevel < 2 && this.milkEngorgement + (this.milkSuppressantLact + this.milkMod) * param1 > ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1.5 && this.milkEngorgement <= ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1.5)
-         {
-            this.outputMainText("\r\rYour breasts feel stretched and heavy, so full of milk and almost aching because none of the white fluid will escape with the milk suppressant active...",False);
-            if(this.milkEngorgementLevel < 1)
-            {
-               this.boobChange(2);
-            }
-            else
-            {
-               this.boobChange(1);
-            }
-            ++this.milkEngorgementLevel;
-         }
-         else if(this.milkEngorgementLevel < 1 && this.milkEngorgement + (this.milkSuppressantLact + this.milkMod) * param1 > (this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap && this.milkEngorgement <= (this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap)
-         {
-            this.outputMainText("\rYour breasts feel slightly swollen and heavy, your mammaries laden with milk. It\'s a sign that they are nice and full for a good breastfeeding, or whatever your kinky mind has for them, if you could only leak...",False);
-            ++this.milkEngorgementLevel;
-            this.boobChange(1);
-         }
-         this.milkEngorgement += (this.milkSuppressantLact + this.milkMod) * param1;
-         if(this.milkEngorgement >= ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 7)
-         {
-            this.milkEngorgement = ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 7;
-         }
-      }
-      if(this.milkSuppressantUdder > 0 && this.udders == True)
-      {
-         if(this.udderEngorgementLevel < 3 && this.udderEngorgement + (this.milkSuppressantUdder + this.milkMod) * param1 > ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2 && this.udderEngorgement <= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2)
-         {
-            this.outputMainText("\r\rYour udder is so swollen that it feels like a balloon. When standing still, it takes a while for the fluid inside to stop swishing, it\'s so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds its capacities, but the excess just gets absorbed back into your body since the milk suppressant prevents any other escape...",False);
-            if(this.udderEngorgementLevel < 1)
-            {
-               this.udderChange(5);
-            }
-            else if(this.udderEngorgementLevel == 1)
-            {
-               this.udderChange(3);
-            }
-            ++this.udderEngorgementLevel;
-            this.udderChange(3);
-         }
-         else if(this.udderEngorgementLevel < 2 && this.udderEngorgement + (this.milkSuppressantUdder + this.milkMod) * param1 > ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1.5 && this.udderEngorgement <= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1.5)
-         {
-            this.outputMainText("\r\rYour udder feels so stretch and heavy, so full of milk and almost aching because none of the white fluid will escape with the milk suppressant active...",False);
-            if(this.udderEngorgementLevel < 1)
-            {
-               this.udderChange(2);
-            }
-            ++this.udderEngorgementLevel;
-            this.udderChange(3);
-         }
-         else if(this.udderEngorgementLevel < 1 && this.udderEngorgement + (this.milkSuppressantUdder + this.milkMod) * param1 > (this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap && this.udderEngorgement <= (this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap)
-         {
-            this.outputMainText("\r\rYour udder feels slightly swollen, even though there is no milk flowing. It is nice and full enough for a good milking, if the milk suppressant wasn\'t stopping it.",False);
-            ++this.udderEngorgementLevel;
-            this.udderChange(2);
-         }
-         this.udderEngorgement += (this.milkSuppressantUdder + this.milkMod) * param1;
-         if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 7)
-         {
-            this.udderEngorgement = ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 7;
-         }
-      }
-      this.milkSuppressant -= param1;
-      if(this.milkSuppressant <= 0)
-      {
-         if(this.milkEngorgement >= ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 6)
-         {
-            this.outputMainText("\r\rYou feel a rumbling in your breasts as the milk suppressant begins to wear off. Your arms shake as you try to take care of your " + this.clothesTop() + ", but to no avail.\r\rYou only see white as a roaring sound escapes your chest. Milk explodes from your nipples, spraying around and around, tearing apart your " + this.clothesTop() + " from the sheer pressure and drenching everything in the area. You can\'t hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your nipples feeling limp and de-sensitized, your breasts still huge from the engorgement though feeling much more lighter. There\'s not much that can be said about your " + this.clothesTop() + " anymore though...",False);
-            this.milkEngorgement = ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 0.5;
-            this.milkEngorgementLevel = 0;
-            this.stats(0,0,0,-5);
-            this.changeTop(-1);
-         }
-         else if(this.milkEngorgement >= ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 4)
-         {
-            this.outputMainText("\r\rYou suddenly can\'t breath as your chest tenses up. For an instant, you feel your " + this.nipDesc() + " nipples soften.\r\rMilk sprays with fervor all around you, spewing from your nipples like hoses. You shudder in orgasm from the force, milk getting everywhere. There\'s so much in there that you nearly tear apart your " + this.clothesTop() + " from the pressure of the gushing. But thankfully, the fabric survives and your nipples die back down, allowing you to see again... So much milk lost, but your breasts have returned to normal in those few moments...",False);
-            this.milkAmount(1);
-            this.doLust(-Math.floor(this.sen / 2),2,3);
-         }
-         else if(this.milkEngorgement >= ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2)
-         {
-            this.outputMainText("\r\rJets of milk spray from beneath your " + this.clothesTop() + " as the milk suppressant wears off. It quickly dies down without losing much milk, but you\'re now leaking again.",False);
-            this.milkEngorgement = ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2;
-         }
-         else if(this.milkEngorgement >= ((this.breastSize * (this.breastSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1)
-         {
-            this.outputMainText("\r\rMilk spurts up and begins dribbling down your chest as the milk suppressant wears off, your nipples calming down and leaking again.",False);
-         }
-         else
-         {
-            this.outputMainText("\r\rYour nipples soften up as the milk suppressant wears off, allowing you to leak once more.",False);
-         }
-         if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 6 && this.udders == True)
-         {
-            this.outputMainText("\r\rYou feel a rumbling in your udder as the milk suppressant begins to wear off. Your legs shake as you try to take care of your " + this.clothesBottom() + ", but to no avail.\r\rYou only see white as a roaring sound echoes around your belly. Milk explodes from your teats, spraying around and around, tearing apart your " + this.clothesBottom() + " from the sheer pressure and drenching everything in the area. You can\'t hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your teats feeling limp and de-sensitized, your udder still huge from the engorgement though feeling much more lighter. There\'s not much that can be said about your " + this.clothesBottom() + " anymore though...",False);
-            this.udderEngorgement = ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 0.5;
-            this.udderEngorgementLevel = 0;
-            this.stats(0,0,0,-5);
-            this.changeBot(-1);
-         }
-         else if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 4 && this.udders == True)
-         {
-            this.outputMainText("\r\rYou suddenly feel sick as your belly tenses up. For an instant, you feel your " + this.teatDesc() + " teats soften.\r\rMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There\'s so much in there that you nearly tear apart your " + this.clothesBottom() + " from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...",False);
-            this.milkAmount(1);
-            this.doLust(-Math.floor(this.sen / 2),2,4);
-         }
-         else if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2 && this.udders == True)
-         {
-            this.outputMainText("\r\rJets of milk spray from beneath your " + this.clothesBottom() + " as the milk suppressant wears off. It quickly dies down without losing much milk, but you\'re now leaking again.",False);
-            this.udderEngorgement = ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2;
-         }
-         else if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1 && this.udders == True)
-         {
-            this.outputMainText("\r\rMilk spurts up and begins dribbling down your " + this.legDesc(2) + " as the milk suppressant wears off, your teats calming down and leaking again.",False);
-         }
-         else
-         {
-            this.outputMainText("\r\rYour teats soften up as the milk suppressant wears off, allowing you to leak once more.",False);
-         }
-         this.lactation = this.milkSuppressantLact;
-         this.udderLactation = this.milkSuppressantUdder;
-         this.milkSuppressantLact = 0;
-         this.milkSuppressantUdder = 0;
-         this.milkSuppressant = 0;
-      }
-   }
+         elif ((milkEngorgementLevel < 2) and (milkEngorgement + (milkSuppressantLact + milkMod) * param1 > ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 1.5) and (milkEngorgement <= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 1.5)):
+            OutputMainText("\n" + "\n" + "Your breasts feel stretched and heavy, so full of milk and almost aching because none of the white fluid will escape with the milk suppressant active...",False)
+            if (milkEngorgementLevel < 1):
+               BoobChange(2)
+            else:
+               BoobChange(1)
+            milkEngorgementLevel += 1
+         elif ((milkEngorgementLevel < 1) and (milkEngorgement + (milkSuppressantLact + milkMod) * param1 > (breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) and (milkEngorgement <= (breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap)):
+            OutputMainText("\n" + "Your breasts feel slightly swollen and heavy, your mammaries laden with milk. It's a sign that they are nice and full for a good breastfeeding, or whatever your kinky mind has for them, if you could only leak...",False)
+            milkEngorgementLevel += 1
+            BoobChange(1)
+         milkEngorgement += (milkSuppressantLact + milkMod) * param1
+         if (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 7):
+            milkEngorgement = ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 7
+      if ((milkSuppressantUdder > 0) and (udders == True)):
+         if ((udderEngorgementLevel < 3) and (udderEngorgement + (milkSuppressantUdder + milkMod) * param1 > ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (udderEngorgement <= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2)):
+            OutputMainText("\n" + "\n" + "Your udder is so swollen that it feels like a balloon. When standing still, it takes a while for the fluid inside to stop swishing, it's so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds its capacities, but the excess just gets absorbed back into your body since the milk suppressant prevents any other escape...",False)
+            if (udderEngorgementLevel < 1):
+               UdderChange(5)
+            elif (udderEngorgementLevel == 1):
+               UdderChange(3)
+            udderEngorgementLevel += 1
+            UdderChange(3)
+         elif ((udderEngorgementLevel < 2) and (udderEngorgement + (milkSuppressantUdder + milkMod) * param1 > ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1.5) and (udderEngorgement <= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1.5)):
+            OutputMainText("\n" + "\n" + "Your udder feels so stretch and heavy, so full of milk and almost aching because none of the white fluid will escape with the milk suppressant active...",False)
+            if (udderEngorgementLevel < 1):
+               UdderChange(2)
+            udderEngorgementLevel += 1
+            UdderChange(3)
+         elif ((udderEngorgementLevel < 1) and (udderEngorgement + (milkSuppressantUdder + milkMod) * param1 > (udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) and (udderEngorgement <= (udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap)):
+            OutputMainText("\n" + "\n" + "Your udder feels slightly swollen, even though there is no milk flowing. It is nice and full enough for a good milking, if the milk suppressant wasn't stopping it.",False)
+            udderEngorgementLevel += 1
+            UdderChange(2)
+         udderEngorgement += (milkSuppressantUdder + milkMod) * param1
+         if (udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 7):
+            udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 7
+      milkSuppressant -= param1
+      if(milkSuppressant <= 0):
+         if (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 6):
+            OutputMainText("\n" + "\n" + "You feel a rumbling in your breasts as the milk suppressant begins to wear off. Your arms shake as you try to take care of your " + ClothesTop() + ", but to no avail." + "\n" + "\n" + "You only see white as a roaring sound escapes your chest. Milk explodes from your nipples, spraying around and around, tearing apart your " + ClothesTop() + " from the sheer pressure and drenching everything in the area. You can't hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your nipples feeling limp and de-sensitized, your breasts still huge from the engorgement though feeling much more lighter. There's not much that can be said about your " + ClothesTop() + " anymore though...",False)
+            milkEngorgement = ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 0.5
+            milkEngorgementLevel = 0
+            Stats(0,0,0,-5)
+            ChangeTop(-1)
+         elif (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 4):
+            OutputMainText("\n" + "\n" + "You suddenly can't breath as your chest tenses up. For an instant, you feel your " + NipDesc() + " nipples soften." + "\n" + "\n" + "Milk sprays with fervor all around you, spewing from your nipples like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your " + ClothesTop() + " from the pressure of the gushing. But thankfully, the fabric survives and your nipples die back down, allowing you to see again... So much milk lost, but your breasts have returned to normal in those few moments...",False)
+            MilkAmount(1)
+            DoLust(-math.floor(sen / 2),2,3)
+         elif (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2):
+            OutputMainText("\n" + "\n" + "Jets of milk spray from beneath your " + ClothesTop() + " as the milk suppressant wears off. It quickly dies down without losing much milk, but you're now leaking again.",False)
+            milkEngorgement = ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2
+         elif (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 1):
+            OutputMainText("\n" + "\n" + "Milk spurts up and begins dribbling down your chest as the milk suppressant wears off, your nipples calming down and leaking again.",False)
+         else:
+            OutputMainText("\n" + "\n" + "Your nipples soften up as the milk suppressant wears off, allowing you to leak once more.",False)
+         if ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 6) and (udders == True)):
+            OutputMainText("\n" + "\n" + "You feel a rumbling in your udder as the milk suppressant begins to wear off. Your legs shake as you try to take care of your " + ClothesBottom() + ", but to no avail." + "\n" + "\n" + "You only see white as a roaring sound echoes around your belly. Milk explodes from your teats, spraying around and around, tearing apart your " + ClothesBottom() + " from the sheer pressure and drenching everything in the area. You can't hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your teats feeling limp and de-sensitized, your udder still huge from the engorgement though feeling much more lighter. There's not much that can be said about your " + ClothesBottom() + " anymore though...",False)
+            udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 0.5
+            udderEngorgementLevel = 0
+            Stats(0,0,0,-5)
+            ChangeBot(-1)
+         elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 4) and (udders == True)):
+            OutputMainText("\n" + "\n" + "You suddenly feel sick as your belly tenses up. For an instant, you feel your " + TeatDesc() + " teats soften." + "\n" + "\n" + "Milk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your " + ClothesBottom() + " from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...",False)
+            MilkAmount(1)
+            DoLust(-math.floor(sen / 2),2,4)
+         elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (udders == True)):
+            OutputMainText("\n" + "\n" + "Jets of milk spray from beneath your " + ClothesBottom() + " as the milk suppressant wears off. It quickly dies down without losing much milk, but you're now leaking again.",False)
+            udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2
+         elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1) and (udders == True)):
+            OutputMainText("\n" + "\n" + "Milk spurts up and begins dribbling down your " + LegDesc(2) + " as the milk suppressant wears off, your teats calming down and leaking again.",False)
+         else:
+            OutputMainText("\n" + "\n" + "Your teats soften up as the milk suppressant wears off, allowing you to leak once more.",False)
+         lactation = this.milkSuppressantLact
+         udderLactation = milkSuppressantUdder
+         milkSuppressantLact = 0
+         milkSuppressantUdder = 0
+         milkSuppressant = 0
    if ((hunger - param1) <= -50):
       OutputMainText("\n" + "\n" + "With the lack of eating and all the action, you've managed to shave off a bit of your excess weight around your belly.",False)
       bellyMod -= 2
@@ -22023,8 +21747,8 @@ def DoStatus(param1:int):
          cockSnakeVenom = 0
       else:
          cockSnakeVenom -= param1
-   StatDisplay()
-   if (textmain["text"] == "Afterwards..."):
+   StatsDisplay()
+   if (textmain.get("1.0", tkinter.END) == "Afterwards..."):
       OutputMainText("",True)
       DoProcess()
    else:
@@ -23027,7 +22751,7 @@ def AffinityChange():
    pig = 0
    skunk = 0
    bug = 0
-   if (textmain["text"] == "Something feels odd..."):
+   if (textmain.get("1.0", tkinter.END) == "Something feels odd..."):
       OutputMainText("",True)
       DoProcess()
    else:
@@ -23788,7 +23512,7 @@ def Plural(topic:int):
 
 def OneYour(topic:int):
    global cockTotal, vagTotal
-   tempStr = "ONE YOUR ERROR " + cockTotal + " " + vagTotal
+   tempStr = "ONE YOUR ERROR " + str(cockTotal) + " " + str(vagTotal)
    if (topic == 1):
       if (cockTotal > 1):
          tempStr = "one of your"
@@ -23803,7 +23527,7 @@ def OneYour(topic:int):
 
 def BodyDesc():
    global gender, body, hips, breastSize, butt
-   tempStr = "BODY ERROR " + gender + " " + body
+   tempStr = "BODY ERROR " + str(gender) + " " + str(body)
    if (gender == 1):
       if (body > 11) and (body <= 17):
          if (hips > 3) and (breastSize > 4):
@@ -23856,7 +23580,7 @@ def BodyDesc():
 def TailDesc():
    global tail
    chance = Percent()
-   tempStr = "TAIL ERROR " + tail
+   tempStr = "TAIL ERROR " + str(tail)
    if (chance <= 100):
       if (tail == 2):
          tempStr = "equine"
@@ -23959,7 +23683,7 @@ def HumanTaurTailDesc():
 def EarDesc():
    global ears
    chance = Percent()
-   tempStr = "EAR ERROR " + ears
+   tempStr = "EAR ERROR " + str(ears)
    if (chance <= 100):
       if (ears == 1):
          tempStr = "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
@@ -24043,7 +23767,7 @@ def FaceDesc():
 def BoobDesc():
    global breastSize
    chance = Percent()
-   tempStr = "BOOB ERROR " + breastSize
+   tempStr = "BOOB ERROR " + str(breastSize)
    if (chance <= 100):
       if (breastSize <= 0):
          tempStr = "flat"
@@ -24095,7 +23819,7 @@ def BoobDesc():
 def UdderDesc():
    global udderSize
    chance = Percent()
-   tempStr = "udder ERROR " + (udderSize / 2)
+   tempStr = "udder ERROR " + str(udderSize / 2)
    if (chance <= 100):
       if ((udderSize / 2) <= 2):
          tempStr = "nearly flat"
@@ -24143,7 +23867,7 @@ def UdderDesc():
 def TeatDesc():
    global teatSize
    chance = Percent()
-   tempStr = "TEAT ERROR " + teatSize
+   tempStr = "TEAT ERROR " + str(teatSize)
    if (chance <= 100):
       if (teatSize <= 2):
          tempStr = "normal"
@@ -24187,7 +23911,7 @@ def TeatDesc():
 def ButtDesc():
    global butt, buttMod
    chance = Percent()
-   tempStr = "BUTT ERROR " + butt
+   tempStr = "BUTT ERROR " + str(butt)
    if (chance <= 100):
       if ((butt * buttMod) <= 2):
          tempStr = "flat"
@@ -24231,7 +23955,7 @@ def ButtDesc():
 def VulvaDesc():
    global vulvaSize
    chance = Percent()
-   tempStr = "VULVA ERROR " + vulvaSize
+   tempStr = "VULVA ERROR " + str(vulvaSize)
    if (chance <= 100):
       if (vulvaSize <= 2):
          tempStr = "tiny"
@@ -24280,7 +24004,7 @@ def CockDesc():
    global cockSize, cockSizeMod
    chance = Percent()
    tempCock = str(cockSize) * str(cockSizeMod)
-   tempStr = "COCK ERROR " + tempCock
+   tempStr = "COCK ERROR " + str(tempCock)
    if (chance <= 100):
       if (tempCock <= 8):
          tempStr = "puny"
@@ -24336,7 +24060,7 @@ def CockDesc():
 def BallDesc():
    global ballSize
    chance = Percent()
-   tempStr = "BALLS ERROR " + ballSize
+   tempStr = "BALLS ERROR " + str(ballSize)
    if (chance <= 100):
       if (ballSize <= 1):
          tempStr = "tiny"
@@ -24392,7 +24116,7 @@ def BallDesc():
 def NipDesc():
    global nippleSize
    chance = Percent()
-   tempStr = "NIPPLE ERROR " + nippleSize
+   tempStr = "NIPPLE ERROR " + str(nippleSize)
    if (chance <= 100):
       if (nippleSize <= 2):
          tempStr = "small "
@@ -24446,7 +24170,7 @@ def NipDesc():
 def ClitDesc():
    global clitSize
    chance = Percent()
-   tempStr = "CLIT ERROR " + clitSize
+   tempStr = "CLIT ERROR " + str(clitSize)
    if (chance <= 100):
       if (clitSize <= 2):
          tempStr = "tiny"
@@ -24494,7 +24218,7 @@ def ClitDesc():
 def HipDesc():
    global hips, hipMod
    chance = Percent()
-   tempStr = "HIP ERROR " + hips
+   tempStr = "HIP ERROR " + str(hips)
    if (chance <= 100):
       if ((hips * hipMod) <= 3):
          tempStr = "narrow"
@@ -24539,7 +24263,7 @@ def BellyDesc():
    global pregnancyTime, vagBellyMod, bellyMod, tallness
    chance = Percent()
    tempBelly = ((pregnancyTime / 10) + (vagBellyMod / 3) + (bellyMod / 5)) * 60 / tallness
-   tempStr = "BELLY ERROR " + tempBelly
+   tempStr = "BELLY ERROR " + str(tempBelly)
    if (pregnancyTime > bellyMod):
       if (tempBelly <= 2):
          tempStr = "flat"
@@ -24614,7 +24338,7 @@ def BellyDesc():
 
 def SkinDesc():
    global skinType, snuggleBall, skinColor
-   tempStr = "SKIN ERROR " + skinType
+   tempStr = "SKIN ERROR " + str(skinType)
    if (skinType == 1):
       tempStr = "skin"
    if (skinType == 2):
@@ -24633,7 +24357,7 @@ def SkinDesc():
 
 def SkinC():
    global skinColor
-   tempStr = "SKIN COLOR ERROR " + skinColor
+   tempStr = "SKIN COLOR ERROR " + str(skinColor)
    if (skinColor == 0):
       tempStr = ""
    if (skinColor == 1):
@@ -24656,9 +24380,9 @@ def SkinC():
       tempStr = "white "
    return tempStr
 
-def legDesc(part:int):
+def LegDesc(part:int):
    global legType
-   tempStr = "LEG ERROR PART " + part + " TYPE " + legType
+   tempStr = "LEG ERROR PART " + str(part) + " TYPE " + str(legType)
    if (part == 1):
       tempStr = "leg"
    if (part == 2):
@@ -24695,7 +24419,7 @@ def legDesc(part:int):
 
 def LegVerb(part:int):
    global legType
-   tempStr = "LEG VERB ERROR " + part + " TYPE " + legType
+   tempStr = "LEG VERB ERROR " + str(part) + " TYPE " + str(legType)
    if (part == 1):
       tempStr = "spreading"
    if (part == 2):
@@ -24710,7 +24434,7 @@ def LegVerb(part:int):
 
 def LegWhere(part:int):
    global legType
-   tempStr = "LEG WHERE ERROR " + part + " TYPE " + legType
+   tempStr = "LEG WHERE ERROR " + str(part) + " TYPE " + str(legType)
    if (part == 1):
       tempStr = "between"
       if (legType == 1001):
@@ -24721,7 +24445,7 @@ def LegWhere(part:int):
 
 def LegPlural(which:int):
    global legType
-   tempStr = "LEG PLURAL ERROR TYPE " + legType
+   tempStr = "LEG PLURAL ERROR TYPE " + str(legType)
    if (which == 1):
       tempStr = ""
    if (which == 2):
@@ -24730,7 +24454,7 @@ def LegPlural(which:int):
 
 def RegionName(tempInt:int):
    global currentZone
-   tempStr = "REGION ERROR " + currentZone
+   tempStr = "REGION ERROR " + str(currentZone)
    if (tempInt == 1):
       tempStr = "Softlik"
    if (tempInt == 2):
@@ -24747,7 +24471,7 @@ def RegionName(tempInt:int):
 
 def RaceName():
    global race
-   tempStr = "RACE ERROR " + race
+   tempStr = "RACE ERROR " + str(race)
    if (race == 1):
       tempStr = "Human"
    if (race == 2):
@@ -24762,7 +24486,7 @@ def RaceName():
 
 def DomName():
    global dominant
-   tempStr = "DOMINANT ERROR " + dominant
+   tempStr = "DOMINANT ERROR " + str(dominant)
    if (dominant == 1):
       tempStr = "human"
    if (dominant == 2):
@@ -24791,7 +24515,7 @@ def DomName():
 
 def GenName():
    global gender, hips, breastSize, body
-   tempStr = "GENDER ERROR " + gender
+   tempStr = "GENDER ERROR " + str(gender)
    if (gender == 0):
       tempStr = "n androgynous"
    if (gender == 1):
@@ -24921,7 +24645,7 @@ def Frame1():
    pregTempInt = 0
    pregTempBool = False
    lustArray = list(())
-   bg = new Sprite()
+#   bg = new Sprite()
    rndResult = 0
    rndArray = list(())
    textCheckArray = list(())
@@ -25058,7 +24782,6 @@ def Frame1():
    teatSize = 0
    clitSize = 0
    vagTotal = 0
-   globalvagSize
    vagSize = 0
    vagMoist = 0
    vulvaSize = 0
@@ -25257,234 +24980,450 @@ def Frame1():
    Option7Visible = False
    appearanceTextVisible = False
    appearanceBoxVisible = False
-   SideHide()
+   SidePanel.Hide()
    ButtonFunctions.Visible(0,0,0,0,0,0,0,0,0,0,0,0)
    for i in range(1, 13):
       Amount.ViewAmount(i, False)
    HideAmount()
-   HideUpDown()
+   UpDown.HideAll()
+   StatPane.Hide()
+   ApButton.Hide()
+   SGButton.Hide()
    LoadPreferences()
    OutputMainText("Nimin: Fetish Fantasy" + "\n" + "    v" + versionNumber + "\n" + "\n" + "Click 'New Game' to begin a new game." + "\n" + "\n" + "Created by:    --Xadera" + "\n" + "    www.furaffinity.net/user/xadera/" + "\n" + "\n" + "Original concept by:     --Fenoxo" + "\n" + "    fenoxo.com" + "\n" + "\n" + "Currently maintained by:    ajdelguidice" + "\n" + "    github.com/ajdelguidice" + "\n" + "For tutorial/guide, questions, or bug reports, visit github.com/ajdelguidice/pymin/", True)
 
 class StatPane:
-    def __init__():
-        global _str_, ment, lib, sen, SexP, coin, day, hour, HP, lust
-        global strvallabel, mentvallabel, libvallabel, senvallabel, sexpvallabel, coinvallabel, dayvallabel, hourvallabel, hpvallabel, lustvallabel
-    def SetCStats():
-        strvallabel["text"] = _str_
-        mentvallabel["text"] = ment
-        libvallabel["text"] = lib
-        senvallabel["text"] = sen
-    def SetSCStats():
-        sexpvallabel["text"] = SexP
-        coinvallabel["text"] = coin
-    def SetDHStats():
-        dayvallabel["text"] = day
-        hourvallabel["text"] = hour + ":00"
-    def SetHPStat():
-        hpvallabel["text"] = HP
-    def SetLustStat():
-        lustvallabel["text"] = lust
-class SGButton:
-   def __init__():
-      global savegamebutton, showsavegame
    def Show():
+      global label1, label1visible, strlabel, strcolonlabel, strvallabel, strimglabel, strlabelvisible, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, mentlabelvisible, liblabel, libcolonlabel, libvallabel, libimglabel, liblabelvisible, senlabel, sencolonlabel, senvallabel, senimglabel, senlabelvisible, label6, label6visible, hplabel, hpcolonlabel, hpvallabel, hpimglabel, hplabelvisible, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, lustlabelvisible, hungerlabel, hungercolonlabel, hungervallabel, humgerimglabel, hungerlabelvisible, label10, label10visible, currentregionlabel, currentregionlabelvisible, levellabel, levelcolonlabel, levelvallabel, levellabelvisible, sexplabel, sexpcolonlabel, sexpvallabel, sexplabelvisible, coinlabel, coincolonlabel, coinvallabel, coinlabelvisible, daylabel, daycolonlabel, dayvallabel, daylabelvisible, hourlabel, hourcolonlabel, hourvallabel, hourlabelvisible
+      if label1visible == False:
+         label1 = ttk.Label(statframe, text="Base Stats")
+         label1.place(x=0, y=0)
+         label1visible = True
+      if strlabelvisible == False:
+         strlabel = ttk.Label(statframe, text="Strength")
+         strlabel.place(anchor="nw", x=0, y=40)
+         strcolonlabel = ttk.Label(statframe, text=":")
+         strcolonlabel.place(anchor="n", x=90, y=39)
+         strvallabel = ttk.Label(statframe, text="")
+         strvallabel.place(anchor="nw", x=110, y=40)
+         strimglabel = ttk.Label(statframe)
+         strimglabel.place(anchor="nw", height=21, width=21, x=154, y=40)
+         strlabelvisible = True
+      if mentlabelvisible == False:
+         mentlabel = ttk.Label(statframe, text="Mentality")
+         mentlabel.place(anchor="nw", x=0, y=60)
+         mentcolonlabel = ttk.Label(statframe, text=":")
+         mentcolonlabel.place(anchor="n", x=90, y=59)
+         mentvallabel = ttk.Label(statframe, text="")
+         mentvallabel.place(anchor="nw", x=110, y=60)
+         mentimglabel = ttk.Label(statframe)
+         mentimglabel.place(anchor="nw", height=21, width=21, x=154, y=60)
+         mentlabelvisible = True
+      if liblabelvisible == False:
+         liblabel = ttk.Label(statframe, text="Libido")
+         liblabel.place(anchor="nw", x=0, y=80)
+         libcolonlabel = ttk.Label(statframe, text=":")
+         libcolonlabel.place(anchor="n", x=90, y=79)
+         libvallabel = ttk.Label(statframe, text="")
+         libvallabel.place(anchor="nw", x=110, y=80)
+         libimglabel = ttk.Label(statframe)
+         libimglabel.place(anchor="nw", height=21, width=21, x=154, y=80)
+         liblabelvisible = True
+      if senlabelvisible == False:
+         senlabel = ttk.Label(statframe, text="Sensitivity")
+         senlabel.place(anchor="nw", x=0, y=100)
+         sencolonlabel = ttk.Label(statframe, text=":")
+         sencolonlabel.place(anchor="n", x=90, y=99)
+         senvallabel = ttk.Label(statframe, text="")
+         senvallabel.place(anchor="nw", x=110, y=100)
+         senimglabel = ttk.Label(statframe)
+         senimglabel.place(anchor="nw", height=21, width=21, x=154, y=100)
+         senlabelvisible = True
+      if label6visible == False:
+         label6 = ttk.Label(statframe, text="Combat Stats")
+         label6.place(anchor="nw", x=0, y=140)
+         label6visible = True
+      if hplabelvisible == False:
+         hplabel = ttk.Label(statframe, text="HP")
+         hplabel.place(anchor="nw", x=0, y=160)
+         hpcolonlabel = ttk.Label(statframe, text=":")
+         hpcolonlabel.place(anchor="n", x=90, y=159)
+         hpvallabel = ttk.Label(statframe, text="")
+         hpvallabel.place(anchor="nw", x=110, y=160)
+         hpimglabel = ttk.Label(statframe)
+         hpimglabel.place(anchor="nw", height=21, width=21, x=154, y=160)
+         hplabelvisible = True
+      if lustlabelvisible == False:
+         lustlabel = ttk.Label(statframe, text="Lust")
+         lustlabel.place(anchor="nw", x=0, y=180)
+         lustcolonlabel = ttk.Label(statframe, text=":")
+         lustcolonlabel.place(anchor="n", x=90, y=179)
+         lustvallabel = ttk.Label(statframe, text="")
+         lustvallabel.place(anchor="nw", x=110, y=180)
+         lustimglabel = ttk.Label(statframe)
+         lustimglabel.place(anchor="nw", height=21, width=21, x=154, y=180)
+         lustlabelvisible = True
+      if hungerlabelvisible == False:
+         hungerlabel = ttk.Label(statframe, text="Hunger")
+         hungerlabel.place(anchor="nw", x=0, y=200)
+         hungercolonlabel = ttk.Label(statframe, text=":")
+         hungercolonlabel.place(anchor="n", x=90, y=199)
+         hungervallabel = ttk.Label(statframe, text="")
+         hungervallabel.place(anchor="nw", x=110, y=200)
+         hungerlabelvisible = True
+      if label10visible == False:
+         label10 = ttk.Label(statframe, justify="center", text="Current Region")
+         label10.place(anchor="n", x=90, y=250)
+         label10visible = True
+      if currentregionlabelvisible == False:
+         currentregionlabel = tkinter.Label(statframe, justify="center", text="Region", font=('TimesNewRoman', 20, 'bold'))
+         currentregionlabel.place(anchor="n", height=40, width=120, x=90, y=270)
+         currentregionlabelvisible = True
+      if levellabelvisible == False:
+         levellabel = ttk.Label(statframe, text="Level")
+         levellabel.place(anchor="nw", x=0, y=340)
+         levelcolonlabel = ttk.Label(statframe, text=":")
+         levelcolonlabel.place(anchor="n", x=90, y=339)
+         levelvallabel = ttk.Label(statframe, text="")
+         levelvallabel.place(anchor="nw", x=110, y=340)
+         levellabelvisible = True
+      if sexplabelvisible == False:
+         sexplabel = ttk.Label(statframe, text="SexP")
+         sexplabel.place(anchor="nw", x=0, y=360)
+         sexpcolonlabel = ttk.Label(statframe, text=":")
+         sexpcolonlabel.place(anchor="n", x=90, y=359)
+         sexpvallabel = ttk.Label(statframe, text="")
+         sexpvallabel.place(anchor="nw", x=110, y=360)
+         sexplabelvisible = True
+      if coinlabelvisible == False:
+         coinlabel = ttk.Label(statframe, text="Coin")
+         coinlabel.place(anchor="nw", x=0, y=380)
+         coincolonlabel = ttk.Label(statframe, text=":")
+         coincolonlabel.place(anchor="n", x=90, y=379)
+         coinvallabel = ttk.Label(statframe, text="")
+         coinvallabel.place(anchor="nw", x=110, y=380)
+         coinlabelvisible = True
+      if daylabelvisible == False:
+         daylabel = ttk.Label(statframe, text="Day")
+         daylabel.place(anchor="nw", x=0, y=420)
+         daycolonlabel = ttk.Label(statframe, text=":")
+         daycolonlabel.place(anchor="n", x=90, y=419)
+         dayvallabel = ttk.Label(statframe, text="")
+         dayvallabel.place(anchor="nw", x=110, y=420)
+         daylabelvisible = True
+      if hourlabelvisible == False:
+         hourlabel = ttk.Label(statframe, text="Hour")
+         hourlabel.place(anchor="nw", x=0, y=440)
+         hourcolonlabel = ttk.Label(statframe, text=":")
+         hourcolonlabel.place(anchor="n", x=90, y=439)
+         hourvallabel = ttk.Label(statframe, text="")
+         hourvallabel.place(anchor="nw", x=110, y=440)
+         hourlabelvisible = True
+   def Hide():
+      global label1, label1visible, strlabel, strcolonlabel, strvallabel, strimglabel, strlabelvisible, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, mentlabelvisible, liblabel, libcolonlabel, libvallabel, libimglabel, liblabelvisible, senlabel, sencolonlabel, senvallabel, senimglabel, senlabelvisible, label6, label6visible, hplabel, hpcolonlabel, hpvallabel, hpimglabel, hplabelvisible, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, lustlabelvisible, hungerlabel, hungercolonlabel, hungervallabel, humgerimglabel, hungerlabelvisible, label10, label10visible, currentregionlabel, currentregionlabelvisible, levellabel, levelcolonlabel, levelvallabel, levellabelvisible, sexplabel, sexpcolonlabel, sexpvallabel, sexplabelvisible, coinlabel, coincolonlabel, coinvallabel, coinlabelvisible, daylabel, daycolonlabel, dayvallabel, daylabelvisible, hourlabel, hourcolonlabel, hourvallabel, hourlabelvisible
+      if label1visible == True:
+         label1.destroy()
+         label1visible = False
+      if strlabelvisible == True:
+         strlabel.destroy()
+         strcolonlabel.destroy()
+         strvallabel.destroy()
+         strimglabel.destroy()
+         strlabelvisible = False
+      if mentlabelvisible == True:
+         mentlabel.destroy()
+         mentcolonlabel.destroy()
+         mentvallabel.destroy()
+         mentimglabel.destroy()
+         mentlabelvisible = False
+      if liblabelvisible == True:
+         liblabel.destroy()
+         libcolonlabel.destroy()
+         libvallabel.destroy()
+         libimglabel.destroy()
+         liblabelvisible = False
+      if senlabelvisible == True:
+         senlabel.destroy()
+         sencolonlabel.destroy()
+         senvallabel.destroy()
+         senimglabel.destroy()
+         senlabelvisible = False
+      if label6visible == True:
+         label6.destroy()
+         label6visible = False
+      if hplabelvisible == True:
+         hplabel.destroy()
+         hpcolonlabel.destroy()
+         hpvallabel.destroy()
+         hpimglabel.destroy()
+         hplabelvisible = False
+      if lustlabelvisible == True:
+         lustlabel.destroy()
+         lustcolonlabel.destroy()
+         lustvallabel.destroy()
+         lustimglabel.destroy()
+         lustlabelvisible = False
+      if hungerlabelvisible == True:
+         hungerlabel.destroy()
+         hungercolonlabel.destroy()
+         hungervallabel.destroy()
+         hungerlabelvisible = False
+      if label10visible == True:
+         label10.destroy()
+         label10visible = False
+      if currentregionlabelvisible == True:
+         currentregionlabel.destroy()
+         currentregionlabelvisible = False
+      if levellabelvisible == True:
+         levellabel.destroy()
+         levelcolonlabel.destroy()
+         levelvallabel.destroy()
+         levellabelvisible = False
+      if sexplabelvisible == True:
+         sexplabel.destroy()
+         sexpcolonlabel.destroy()
+         sexpvallabel.destroy()
+         sexplabelvisible = False
+      if coinlabelvisible == True:
+         coinlabel.destroy()
+         coincolonlabel.destroy()
+         coinvallabel.destroy()
+         coinlabelvisible = False
+      if daylabelvisible == True:
+         daylabel.destroy()
+         daycolonlabel.destroy()
+         dayvallabel.destroy()
+         daylabelvisible = False
+      if hourlabelvisible == True:
+         hourlabel.destroy()
+         hourcolonlabel.destroy()
+         hourvallabel.destroy()
+         hourlabelvisible = False
+   def SetCStats():
+      global strvallabel, mentvallabel, libvallabel, senvallabel, levelvallabel, hungervallabel, _str_, ment, lib, sen, level, hunger
+      strvallabel["text"] = _str_
+      mentvallabel["text"] = ment
+      libvallabel["text"] = lib
+      senvallabel["text"] = sen
+      hungervallabel["text"] = hunger
+   def SetSCStats():
+      global sexpvallabel, coinvallabel, SexP, coin
+      sexpvallabel["text"] = SexP
+      coinvallabel["text"] = coin
+   def SetDHStats():
+      global dayvallabel, hourvallabel, day, hour
+      dayvallabel["text"] = day
+      hourvallabel["text"] = str(hour) + ":00"
+   def SetHPStat():
+      global hpvallabel, hp
+      hpvallabel["text"] = HP
+   def SetLustStat():
+      global lustvallabel, lust
+      lustvallabel["text"] = lust
+   def SetLevelStat():
+      global levelvallabel
+      levelvallabel["text"] = level
+class SGButton:
+   def Show():
+      global savegamebutton, showsavegame
       if (showsavegame == False):
-         savegamebutton = tkinter.Button(statframe, text="Save Game")
-         savegamebutton.place(anchor=N, height=30, width=100, x=90, y=480)
+         savegamebutton = tkinter.Button(statframe, text="Save Game", command=SaveG)
+         savegamebutton.place(anchor="n", height=30, width=100, x=90, y=480)
          showsavegame = True
    def Hide():
+      global savegamebutton, showsavegame
       if (showsavegame == True):
          savegamebutton.destroy()
          showsavegame = False
 class LGButton:
-   def __init__():
-      global loadgamebutton, showloadgame
    def Show():
+      global loadgamebutton, showloadgame
       if (showloadgame == False):
-         loadgamebutton = tkinter.Button(statframe, text="Load Game")
-         loadgamebutton.place(anchor=N, height=30, width=100, x=90, y=515)
+         loadgamebutton = tkinter.Button(statframe, text="Load Game", command=LoadG)
+         loadgamebutton.place(anchor="n", height=30, width=100, x=90, y=515)
          showloadgame = True
    def Hide():
+      global loadgamebutton, showloadgame
       if (showloadgame == True):
          loadgamebutton.destroy()
          showloadgame = False
 class NGButton:
-   def __init__():
-      global newgamebutton, shownewgame
    def Show():
+      global newgamebutton, shownewgame
       if (shownewgame == False):
-         newgamebutton = tkinter.Button(statframe, text="New Game")
-         newgamebutton.place(anchor=N, height=30, width=100, x=90, y=550)
+         newgamebutton = tkinter.Button(statframe, text="New Game", command=NewGameStart)
+         newgamebutton.place(anchor="n", height=30, width=100, x=90, y=550)
          shownewgame = True
    def Hide():
+      global newgamebutton, shownewgame
       if (shownewgame == True):
          newgamebutton.destroy()
          shownewgame = False
 class PanelButton1:
-    def __init__():
-        global button1, button1Visible
-    def Show():
-        if button1Visible == False:
-            button1 = tkinter.Button(buttonpanel, text="Button 1", command=ButtonEvent1)
-            button1.place(anchor=NW, height=46, width=140, x=0, y=0)
-            button1Visible = True
-    def Hide():
-        if button1Visible == True:
-            button1.destroy()
-            button1Visible = False
-class PanelButton2:
-    def __init__():
-        global button2, button2Visible
-    def Show():
-        if button2Visible == False:
-            button2 = tkinter.Button(buttonpanel, text="Button 2", command=ButtonEvent2)
-            button2.place(anchor=NW, height=46, width=140, x=160, y=0)
-            button2Visible = True
-    def Hide():
-        if button2Visible == True:
-            button2.destroy()
-            button2Visible = False 
-class PanelButton3:
-    def __init__():
-        global button3, button3Visible
-    def Show():
-        if button3Visible == False:
-            button3 = tkinter.Button(buttonpanel, text="Button 3", command=ButtonEvent3)
-            button3.place(anchor=NW, height=46, width=140, x=320, y=0)
-            button3Visible = True
-    def Hide():
-        if button3Visible == True:
-            button3.destroy()
-            button3Visible = False
-class PanelButton4:
-    def __init__():
-        global button4, button4Visible
-    def Show():
-        if button4Visible == False:
-            button4 = tkinter.Button(buttonpanel, text="Button 4", command=ButtonEvent4)
-            button4.place(anchor=NW, height=46, width=140, x=480, y=0)
-            button4Visible = True
-    def Hide():
-        if button4Visible == True:
-            button4.destroy()
-            button4Visible = False
-class PanelButton5:
-    def __init__():
-        global button5, button5Visible
-    def Show():
-        if button5Visible == False:
-            button5 = tkinter.Button(buttonpanel, text="Button 5", command=ButtonEvent5)
-            button5.place(anchor=NW, height=46, width=140, x=0, y=66)
-            button5Visible = True
-    def Hide():
-        if button5Visible ==True:
-            button5.destroy()
-            button5Visible = False
-class PanelButton6:
-    def __init__():
-        global button6, button6Visible
-    def Show():
-        if button6Visible == False:
-            button6 = tkinter.Button(buttonpanel, text="Button 6", command=ButtonEvent6)
-            button6.place(anchor=NW, height=46, width=140, x=160, y=66)
-            button6Visible = True
-    def Hide():
-        if button6Visible ==True:
-            button6.destroy()
-            button6Visible = False
-class PanelButton7:
-    def __init__():
-        global button7, button7Visible
-    def Show():
-        if button7Visible == False:
-            button7 = tkinter.Button(buttonpanel, text="Button 7", command=ButtonEvent7)
-            button7.place(anchor=NW, height=46, width=140, x=320, y=66)
-            button7Visible = True
-    def Hide():
-        if button7Visible == True:
-            button7.destroy()
-            button7Visible = False
-class PanelButton8:
-    def __init__():
-        global button8, button8Visible
-    def Show():
-        if button8Visible == False:
-            button8 = tkinter.Button(buttonpanel, text="Button 8", command=ButtonEvent8)
-            button8.place(anchor=NW, height=46, width=140, x=480, y=66)
-            button8Visible = True
-    def Hide():
-        if button8Visible == True:
-            button8.destroy()
-            button8Visible = False
-class PanelButton9:
-    def __init__():
-        global button9, button9Visible
-    def Show():
-        if button9Visible == False:
-            button9 = tkinter.Button(buttonpanel, text="Button 9", command=ButtonEvent9)
-            button9.place(anchor=NW, height=46, width=140, x=0, y=132)
-            button9Visible = True
-    def Hide():
-        if button9Visible == True:
-            button9.destroy()
-            button9Visible = False
-class PanelButton10:
-    def __init__():
-        global button10, button10Visible
-    def Show():
-        if button10Visible == False:
-            button10 = tkinter.Button(buttonpanel, text="Button 10", command=ButtonEvent10)
-            button10.place(anchor=NW, height=46, width=140, x=160, y=132)
-            button10Visible = True
-    def Hide():
-        if button10Visible == True:
-            button10.destroy()
-            button10Visible = False
-class PanelButton11:
-    def __init__():
-        global button11, button11Visible
-    def Show():
-        if button11Visible == False:
-            button11 = tkinter.Button(buttonpanel, text="Button 11", command=ButtonEvent11)
-            button11.place(anchor=NW, height=46, width=140, x=320, y=132)
-            button11Visible = True
-    def Hide():
-        if button11Visible == True:
-            button11.destroy()
-            button11Visible = False
-class PanelButton12:
-    def __init__():
-        global button12, button12Visible
-    def Show():
-        if button12Visible == False:
-            button12 = tkinter.Button(buttonpanel, text="Button 12", command=ButtonEvent12)
-            button12.place(anchor=NW, height=46, width=140, x=480, y=132)
-            button12Visible = True
-    def Hide():
-        if button12Visible == True:
-            button12.destroy()
-            button12Visible = False
-class Page:
-   def __init__():
-      global pagelabel, pageShow
    def Show():
+      global button1, button1Visible
+      if button1Visible == False:
+         button1 = tkinter.Button(buttonpanel, text="Button 1", command=lambda: bctest.set(1))
+         button1.place(anchor="nw", height=46, width=140, x=0, y=0)
+         button1Visible = True
+   def Hide():
+      global button1, button1Visible
+      if button1Visible == True:
+         button1.destroy()
+         button1Visible = False
+class PanelButton2:
+   def Show():
+      global button2, button2Visible
+      if button2Visible == False:
+         button2 = tkinter.Button(buttonpanel, text="Button 2", command=lambda: bctest.set(2))
+         button2.place(anchor="nw", height=46, width=140, x=160, y=0)
+         button2Visible = True
+   def Hide():
+      global button2, button2Visible
+      if button2Visible == True:
+         button2.destroy()
+         button2Visible = False 
+class PanelButton3:
+   def Show():
+      global button3, button3Visible
+      if button3Visible == False:
+         button3 = tkinter.Button(buttonpanel, text="Button 3", command=lambda: bctest.set(3))
+         button3.place(anchor="nw", height=46, width=140, x=320, y=0)
+         button3Visible = True
+   def Hide():
+      global button3, button3Visible
+      if button3Visible == True:
+         button3.destroy()
+         button3Visible = False
+class PanelButton4:
+   def Show():
+      global button4, button4Visible
+      if button4Visible == False:
+         button4 = tkinter.Button(buttonpanel, text="Button 4", command=lambda: bctest.set(4))
+         button4.place(anchor="nw", height=46, width=140, x=480, y=0)
+         button4Visible = True
+   def Hide():
+      global button4, button4Visible
+      if button4Visible == True:
+         button4.destroy()
+         button4Visible = False
+class PanelButton5:
+   def Show():
+      global button5, button5Visible
+      if button5Visible == False:
+         button5 = tkinter.Button(buttonpanel, text="Button 5", command=lambda: bctest.set(5))
+         button5.place(anchor="nw", height=46, width=140, x=0, y=66)
+         button5Visible = True
+   def Hide():
+      global button5, button5Visible
+      if button5Visible ==True:
+         button5.destroy()
+         button5Visible = False
+class PanelButton6:
+   def Show():
+      global button6, button6Visible
+      if button6Visible == False:
+         button6 = tkinter.Button(buttonpanel, text="Button 6", command=lambda: bctest.set(6))
+         button6.place(anchor="nw", height=46, width=140, x=160, y=66)
+         button6Visible = True
+   def Hide():
+      global button6, button6Visible
+      if button6Visible ==True:
+         button6.destroy()
+         button6Visible = False
+class PanelButton7:
+   def Show():
+      global button7, button7Visible
+      if button7Visible == False:
+         button7 = tkinter.Button(buttonpanel, text="Button 7", command=lambda: bctest.set(7))
+         button7.place(anchor="nw", height=46, width=140, x=320, y=66)
+         button7Visible = True
+   def Hide():
+      global button7, button7Visible
+      if button7Visible == True:
+         button7.destroy()
+         button7Visible = False
+class PanelButton8:
+   def Show():
+      global button8, button8Visible
+      if button8Visible == False:
+         button8 = tkinter.Button(buttonpanel, text="Button 8", command=lambda: bctest.set(8))
+         button8.place(anchor="nw", height=46, width=140, x=480, y=66)
+         button8Visible = True
+   def Hide():
+      global button8, button8Visible
+      if button8Visible == True:
+         button8.destroy()
+         button8Visible = False
+class PanelButton9:
+   def Show():
+      global button9, button9Visible
+      if button9Visible == False:
+         button9 = tkinter.Button(buttonpanel, text="Button 9", command=lambda: bctest.set(9))
+         button9.place(anchor="nw", height=46, width=140, x=0, y=132)
+         button9Visible = True
+   def Hide():
+      global button9, button9Visible
+      if button9Visible == True:
+         button9.destroy()
+         button9Visible = False
+class PanelButton10:
+   def Show():
+      global button10, button10Visible
+      if button10Visible == False:
+         button10 = tkinter.Button(buttonpanel, text="Button 10", command=lambda: bctest.set(10))
+         button10.place(anchor="nw", height=46, width=140, x=160, y=132)
+         button10Visible = True
+   def Hide():
+      global button10, button10Visible
+      if button10Visible == True:
+         button10.destroy()
+         button10Visible = False
+class PanelButton11:
+   def Show():
+      global button11, button11Visible
+      if button11Visible == False:
+         button11 = tkinter.Button(buttonpanel, text="Button 11", command=lambda: bctest.set(11))
+         button11.place(anchor="nw", height=46, width=140, x=320, y=132)
+         button11Visible = True
+   def Hide():
+      global button11, button11Visible
+      if button11Visible == True:
+         button11.destroy()
+         button11Visible = False
+class PanelButton12:
+   def Show():
+      global button12, button12Visible
+      if button12Visible == False:
+         button12 = tkinter.Button(buttonpanel, text="Button 12", command=lambda: bctest.set(12))
+         button12.place(anchor="nw", height=46, width=140, x=480, y=132)
+         button12Visible = True
+   def Hide():
+      global button12, button12Visible
+      if button12Visible == True:
+         button12.destroy()
+         button12Visible = False
+class Page:
+   def Show():
+      global pagelabel, pageShow
       if (pageShow == False):
          pagelabel = ttk.Label(frame2, text="BAG 1")
-         pagelabel.place(anchor=NW, height=30, width=80, x=20, y=0)
+         pagelabel.place(anchor="nw", height=30, width=80, x=20, y=0)
          pageShow = True
    def Hide():
+      global pagelabel, pageShow
       if (pageShow == True):
          pagelabel.destroy()
          pageShow = False
    def TextChange(text):
+      global pagelabel
       pagelabel["text"] = text
    def TextClear():
+      global pagelabel
       pagelabel["text"] = ""
 class ButtonFunctions:
-   def __init__():
-      global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
    def Visible(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12):
+      global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
       if a1 == 0:
          PanelButton1.Hide()
       elif a1 == 1:
@@ -25535,6 +25474,7 @@ class ButtonFunctions:
          PanelButton12.Show()
 
    def WriteText(a, b):
+      global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
       if a == 1:
          button1["text"] = b
       if a == 2:
@@ -25561,9 +25501,8 @@ class ButtonFunctions:
          button12["text"] = b
 
 class Amount:
-   def __init__():
-      global amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, amountlabel1visible, amountlabel2visible, amountlabel3visible, amountlabel4visible, amountlabel5visible, amountlabel6visible, amountlabel7visible, amountlabel8visible, amountlabel9visible, amountlabel10visible, amountlabel11visible, amountlabel12visible
    def WriteAmount(number, amount):
+      global amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, amountlabel1visible, amountlabel2visible, amountlabel3visible, amountlabel4visible, amountlabel5visible, amountlabel6visible, amountlabel7visible, amountlabel8visible, amountlabel9visible, amountlabel10visible, amountlabel11visible, amountlabel12visible
       if (number == 1):
          amountlabel1["text"] = amount
       elif (number == 2):
@@ -25589,10 +25528,11 @@ class Amount:
       elif (number == 12):
          amountlabel12["text"] = amount
    def ViewAmount(buttonNum:int, tempBool:bool):
+      global amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, amountlabel1visible, amountlabel2visible, amountlabel3visible, amountlabel4visible, amountlabel5visible, amountlabel6visible, amountlabel7visible, amountlabel8visible, amountlabel9visible, amountlabel10visible, amountlabel11visible, amountlabel12visible
       if (buttonNum == 1):
          if (tempBool == True and amountlabel1visible == False):
             amountlabel1 = ttk.Label(buttonpanel, text="000")
-            amountlabel1.place(anchor=NW, height=15, width=30, x=110, y=33)
+            amountlabel1.place(anchor="nw", height=15, width=30, x=110, y=33)
             amountlabel1visible = True
          elif (tempBool == False and amountlabel1visible == True):
             amountlabel1.destroy()
@@ -25600,7 +25540,7 @@ class Amount:
       elif (buttonNum == 2):
          if (tempBool == True and amountlabel2visible == False):
             amountlabel2 = ttk.Label(buttonpanel, text="000")
-            amountlabel2.place(anchor=NW, height=15, width=30, x=270, y=33)
+            amountlabel2.place(anchor="nw", height=15, width=30, x=270, y=33)
             amountlabel2visible = True
          elif (tempBool == False and amountlabel2visible == True):
             amountlabel2.destroy()
@@ -25608,7 +25548,7 @@ class Amount:
       elif (buttonNum == 3):
          if (tempBool == True and amountlabel3visible == False):
             amountlabel3 = ttk.Label(buttonpanel, text="000")
-            amountlabel3.place(anchor=NW, height=15, width=30, x=430, y=33)
+            amountlabel3.place(anchor="nw", height=15, width=30, x=430, y=33)
             amountlabel3visible = True
          elif (tempBool == False and amountlabel3visible == True):
             amountlabel3.destroy()
@@ -25616,7 +25556,7 @@ class Amount:
       elif (buttonNum == 4):
          if (tempBool == True and amountlabel4visible == False):
             amountlabel4 = ttk.Label(buttonpanel, text="000")
-            amountlabel4.place(anchor=NW, height=15, width=30, x=590, y=33)
+            amountlabel4.place(anchor="nw", height=15, width=30, x=590, y=33)
             amountlabel4visible = True
          elif (tempBool == False and amountlabel4visible == True):
             amountlabel4.destroy()
@@ -25624,7 +25564,7 @@ class Amount:
       elif (buttonNum == 5):
          if (tempBool == True and amountlabel5visible == False):
             amountlabel5 = ttk.Label(buttonpanel, text="000")
-            amountlabel5.place(anchor=NW, height=15, width=30, x=110, y=99)
+            amountlabel5.place(anchor="nw", height=15, width=30, x=110, y=99)
             amountlabel5visible = True
          elif (tempBool == False and amountlabel5visible == True):
             amountlabel5.destroy()
@@ -25632,7 +25572,7 @@ class Amount:
       elif (buttonNum == 6):
          if (tempBool == True and amountlabel6visible == False):
             amountlabel6 = ttk.Label(buttonpanel, text="000")
-            amountlabel6.place(anchor=NW, height=15, width=30, x=270, y=99)
+            amountlabel6.place(anchor="nw", height=15, width=30, x=270, y=99)
             amountlabel6visible = True
          elif (tempBool == False and amountlabel6visible == True):
             amountlabel6.destroy()
@@ -25640,7 +25580,7 @@ class Amount:
       elif (buttonNum == 7):
          if (tempBool == True and amountlabel7visible == False):
             amountlabel7 = ttk.Label(buttonpanel, text="000")
-            amountlabel7.place(anchor=NW, height=15, width=30, x=430, y=99)
+            amountlabel7.place(anchor="nw", height=15, width=30, x=430, y=99)
             amountlabel7visible = True
          elif (tempBool == False and amountlabel7visible == True):
             amountlabel7.destroy()
@@ -25648,7 +25588,7 @@ class Amount:
       elif (buttonNum == 8):
          if (tempBool == True and amountlabel8visible == False):
             amountlabel8 = ttk.Label(buttonpanel, text="000")
-            amountlabel8.place(anchor=NW, height=15, width=30, x=590, y=99)
+            amountlabel8.place(anchor="nw", height=15, width=30, x=590, y=99)
             amountlabel8visible = True
          elif (tempBool == False and amountlabel8visible == True):
             amountlabel8.destroy()
@@ -25656,7 +25596,7 @@ class Amount:
       elif (buttonNum == 9):
          if (tempBool == True and amountlabel9visible == False):
             amountlabel9 = ttk.Label(buttonpanel, text="000")
-            amountlabel9.place(anchor=NW, height=15, width=30, x=110, y=165)
+            amountlabel9.place(anchor="nw", height=15, width=30, x=110, y=165)
             amountlabel9visible = True
          elif (tempBool == False and amountlabel9visible == True):
             amountlabel9.destroy()
@@ -25664,7 +25604,7 @@ class Amount:
       elif (buttonNum == 10):
          if (tempBool == True and amountlabel10visible == False):
             amountlabel10 = ttk.Label(buttonpanel, text="000")
-            amountlabel10.place(anchor=NW, height=15, width=30, x=270, y=165)
+            amountlabel10.place(anchor="nw", height=15, width=30, x=270, y=165)
             amountlabel10visible = True
          elif (tempBool == False and amountlabel10visible == True):
             amountlabel10.destroy()
@@ -25672,7 +25612,7 @@ class Amount:
       elif (buttonNum == 11):
          if (tempBool == True and amountlabel11visible == False):
             amountlabel11 = ttk.Label(buttonpanel, text="000")
-            amountlabel11.place(anchor=NW, height=15, width=30, x=430, y=165)
+            amountlabel11.place(anchor="nw", height=15, width=30, x=430, y=165)
             amountlabel11visible = True
          elif (tempBool == False and amountlabel11visible == True):
             amountlabel11.destroy()
@@ -25680,38 +25620,40 @@ class Amount:
       elif (buttonNum == 12):
          if (tempBool == True and amountlabel12visible == False):
             amountlabel12 = ttk.Label(buttonpanel, text="000")
-            amountlabel12.place(anchor=NW, height=15, width=30, x=590, y=165)
+            amountlabel12.place(anchor="nw", height=15, width=30, x=590, y=165)
             amountlabel12visible = True
          elif (tempBool == False and amountlabel12visible == True):
             amountlabel12.destroy()
             amountlabel12visible = False
 
 class SidePanel:
-   def __init__():
-      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, appearancebutton
    def Show():
+      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, appearancebutton
       looksbutton = tkinter.Button(sidebar, text="Look")
-      looksbutton.place(anchor=NW, width=80, x=0, y=0)
+      looksbutton.place(anchor="nw", width=80, x=0, y=0)
       statsbutton = tkinter.Button(sidebar, text="Stats")
-      statsbutton.place(anchor=NW, width=80, x=83, y=0)
+      statsbutton.place(anchor="nw", width=80, x=83, y=0)
       effectsbutton = tkinter.Button(sidebar, text="Effects")
-      effectsbutton.place(anchor=NW, width=80, x=166, y=0)
+      effectsbutton.place(anchor="nw", width=80, x=166, y=0)
       helpbutton = tkinter.Button(sidebar, text="Help")
-      helpbutton.place(anchor=NW, width=80, x=249, y=0)
+      helpbutton.place(anchor="nw", width=80, x=249, y=0)
       levelsbutton = tkinter.Button(sidebar, text="Levels")
-      levelsbutton.place(anchor=NW, width=80, x=0, y=30)
+      levelsbutton.place(anchor="nw", width=80, x=0, y=30)
       gearbutton = tkinter.Button(sidebar, text="Gear")
-      gearbutton.place(anchor=NW, width=80, x=83, y=30)
+      gearbutton.place(anchor="nw", width=80, x=83, y=30)
       titlesbutton = tkinter.Button(sidebar, text="Titles")
-      titlesbutton.place(anchor=NW, width=80, x=166, y=30)
+      titlesbutton.place(anchor="nw", width=80, x=166, y=30)
       creditsbutton = tkinter.Button(sidebar, text="Credits")
-      creditsbutton.place(anchor=NW, width=80, x=249, y=30)
-      textside = tkScrolledText(sidebar, cursor="arrow", wrap="word")
-      textside.place(anchor=NW, height=300, width=330, x=0, y=80)
-      textside.configure(state="disabled")
+      creditsbutton.place(anchor="nw", width=80, x=249, y=30)
+      if textsidevisible == False:
+         textside = ScrolledText(sidebar, cursor="arrow", wrap="word")
+         textside.place(anchor="nw", height=300, width=330, x=0, y=80)
+         textside.configure(state="disabled")
+         textsidevisible = True
 
-      appearancebutton.destroy()
+      ApButton.Hide()
    def Hide():
+      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, appearancebutton
       looksbutton.destroy()
       statsbutton.destroy()
       effectsbutton.destroy()
@@ -25720,66 +25662,99 @@ class SidePanel:
       gearbutton.destroy()
       titlesbutton.destroy()
       creditsbutton.destroy()
-      textside.destroy()
+      if textsidevisible == True:
+         textside.destroy()
+         textsidevisible = False
 
-      appearancebutton = tkinter.Button(sidebar, text="Appearance")
-      appearancebutton.place(anchor=CENTER, height=50, width=150, x=167, y=216)
-
+      ApButton.Show()
+class ApButton:
+   def Show():
+      global appearancebutton, appearancebuttonvisible
+      if appearancebuttonvisible == False:
+         appearancebutton = tkinter.Button(sidebar, text="Appearance")
+         appearancebutton.place(anchor="center", height=50, width=150, x=167, y=216)
+         appearancebuttonvisible = True
+   def Hide():
+      global appearancebutton, appearancebuttonvisible
+      if appearancebuttonvisible == True:
+         appearancebutton.destroy()
+         appearancebuttonvisible = False
 class TextBoxes:
    def ClearMain():
+      global textmain
       textmain.configure(state="normal")
       textmain.delete(1.0,"end")
       textmain.configure(state="disabled")
    def ClearAddMain(text):
+      global textmain
       textmain.configure(state="normal")
       textmain.delete(1.0,"end")
       textmain.insert(1.0, text)
       textmain.configure(state="disabled")
    def AddMain(text):
+      global textmain
       textmain.configure(state="normal")
       textmain.insert("end", text)
       textmain.configure(state="disabled")
    def ClearSide():
+      global textside
       textside.configure(state="normal")
       textside.delete(1.0,"end")
       textside.configure(state="disabled")
    def ClearAddSide(text):
+      global textside
       textside.configure(state="normal")
       textside.delete(1.0,"end")
       textside.insert(1.0, text)
       textside.configure(state="disabled")
    def AddSide(text):
+      global textside
       textside.configure(state="normal")
       textside.insert("end", text)
       textside.configure(state="disabled")
 
 class UpDown:
-   def __init__():
-      global strimglabel, mentimglabel, libimglabel, senimglabel, hpimglabel, lustimglabel
    def HideAll():
-      strimglabel["image"] = ""
-      mentimglabel["image"] = ""
-      libimglabel["image"] = ""
-      senimglabel["image"] = ""
-      hpimglabel["image"] = ""
-      lustimglabel["image"] = ""
+      global strimglabel, mentimglabel, libimglabel, senimglabel, hpimglabel, lustimglabel, strlabelvisible, mentlabelvisible, liblabelvisible, senlabelvisible, hplabelvisible, lustlabelvisible
+      if strlabelvisible == True:
+         strimglabel["image"] = ""
+      if mentlabelvisible == True:
+         mentimglabel["image"] = ""
+      if liblabelvisible == True:
+         libimglabel["image"] = ""
+      if senlabelvisible == True:
+         senimglabel["image"] = ""
+      if hplabelvisible == True:
+         hpimglabel["image"] = ""
+      if lustlabelvisible == True:
+         lustimglabel["image"] = ""
    def StrImg(img):
-      strimglabel["image"] = img
+      global strimglabel, strlabelvisible
+      if strlabelvisible == True:
+         strimglabel["image"] = img
    def MentImg(img):
-      mentimglabel["image"] = img
+      global mentimglabel, mentlabelvisible
+      if mentlabelvisible == True:
+         mentimglabel["image"] = img
    def LibImg(img):
-      libimglabel["image"] = img
+      global libimglabel, liblabelvisible
+      if liblabelvisible == True:
+         libimglabel["image"] = img
    def SenImg(img):
-      senimglabel["image"] = img
+      global senimglabel, senlabelvisible
+      if senlabelvisible == True:
+         senimglabel["image"] = img
    def hpImg(img):
-      hpimglabel["image"] = img
+      global hpimglabel, hplabelvisible
+      if hplabelvisible == True:
+         hpimglabel["image"] = img
    def LustImg(img):
-      lustimglabel["image"] = img
-   def hpImg(img):
-      hpimglabel["image"] = img
+      global lustimglabel, lustlabelvisible
+      if lustlabelvisible == True:
+         lustimglabel["image"] = img
 
 #window
-root = Tk()
+root = tkinter.Tk()
 root.title("Pymin")
 root.geometry("1176x662")
 
@@ -25800,202 +25775,234 @@ refreshimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x0
 valupimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x01\xedIDATx^\x95\x91\xcdO\xd2\x01\x18\xc7\xfd\x0f\xda:t\xaeu\xe8\x94\xd7\\\xb4U\xae\xa2\x01\xa5\xcd\x86\xb5h\xadt\xad\xb9\xca\xb5\xdaz\xb5\xda\xb2\x8bk\xe5Z\xcb\x03m\xe5fI"\x8b\x10,R\x98B5A\xad\\\x86\xa0\x84 "o?\xe45\n\xb0>a\x1c\xb4\xd1\xa5\xcf\xe5\xb9<\x9f=\xcf\xf3}**V\xd1a\xea\xe2k\xc6\x8b;\xe7\xc7\x9dw\x12#\xc0%e\x0b\xab{\xfe\xc2.L\xe0X\x18e:=\xcaT\xe4\x03\x9f\xe7\xdf\xe2\x08Y\xf0\xf8\xad\x8cEF\xcaE\xd5\x8c\x16\xa3O\xc3\xc8\xb4\x96\xf73:\n\x858\x85\xa5\x0c\x1f\xbdC|Y\xd0a\x13z\xb0x{W\xc4Gf\r\xcf\xdd]\xbc\x9c|\x80\xc1\xf1\x18gr\x02\x96 \xff\x1d\x12d\xb1z\x94\x8c\xcd\xb63\xe0\xee\xe0\x9e\xb9\xbd$*\x9d\xf7i\xb5\xb7\xf2\xd0v\x9d[\xfak\xa4\x84,\xd1\xd4\x0f\xb2\xa94\xb9D\x12\x9b\xdfN\xbf\xeb\x06/\x1c\xb7QO\xb5\x95\xa4&\xf3M\xee\x0c\x9d\xe5\xcax\x0bA\xc1\x890\xe7\'\x10\x08\x12\x88\x86\xf1\xc5\xc2\xcc\x05}\\\xedmB5\xae\xe0\xee\xa7\xd3%\xa9\xee\xd5Qj\xfa\x0e\xb0\x98\x16\x08D`6\xe2"&\x84\x88\xc4\xa3\x04\xe2I\xe2\xd1\x10\xa1p\x8cFc#m\xd6\x13%\xa9J]\xcb\x8e\xfe\xbd\x1c\x1fl\xa6\xae\xa7\x1aO1\xe6D:Bf1A.\x96\xe3\xfc\xbb\x06\xe4\xcf\x8eqyP\xca~\xd5\xe6\x92\xb4\xa7S\xc16C5\x07u\xbb8\xd2\'e\xfe\x97\xabx\xfe7\xb2\xf9\xc2\x9f4.\x0e\xc8h6\xed\xe6\xcc\xb0\x98\xfaa\xc5J\x82U\xda\xc3\x88\xf5R\xea\xf5;\x8b\x93B,\x93\xff\t\xa9b=i\x92q\xea\xf5v6\xa8E\xe5\xbf\xda\xa8\x96SY\x9cVc\x94 5\x88\x91\xbd\x91 7\xeeCb\xaceSq\xedsO.\x94K\xcbTv\x1fb\xbdF\xcc\xda\xce-\xac\xe9\xde\xca\xba\xa7"D\x96\x86\x7f7\xff/\xbf\x01\x7f(s\x97\x8cN\xac\xd0\x00\x00\x00\x00IEND\xaeB`\x82')
 valdownimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x01\xe1IDATx^\x95\x91=h\x13a\x18\x80?%\xa9\x8a\x15l\'\x1d\xaa\xe2\xeab\x17\x05q\xc9R\x07A\xfc\xc9$U\x043\xa9(\x19D,6\xd4\x1f\x10\x04\xb1H;)\x14\xa9\xe2_ \x14"B\x1c,\x05\x83\xd86\xc6\xaa\xa7\x963M\x93\\r\xb9$w\x97\xc4\xe4rI\xf51\x92B+q\xf1\x81w\xf9x\x9e\xe1\xfd^!V\x91\x7ft\x89\x8f\x17\xb625\xd4\xcd\xcbA\xc1\x07\xdf\x16BC{X\xed\xfcE\xa4\xbf\x87\xf7\xde.\x14\x97\x03\xbdO\xa0\x1f\x16\xc4\xfa\xd7\x139\xdb\xc1\x9b\x01g{8\xd1\xb7\x96\xb4k\x1d\x8dm\x0e\x90\x1fC~\x16T\t\xb2\xd3\xe4\x8el y\xba\x93\xaf\x977\xad\x84\x85\xf1[\x98\xbb\xd7\xa0w\x0b\x96\x9c\x02t\x05\xbbl\x81\x015\xbbA\xc2%0\x0e\t\x92\xc7\x04\xa1\x8b\xcba\xa0\xb7\xf9\xd0\x94\xbf\xed\xdc\x8c\xed\xec\x02m\x9e\x1f5\x8b\xbaa\x91\xad\x95Im\x17\xcc\x1d\xdc\x88\xe1v\x10\xf7v\xb4"{_\x0f\xb9N\'\xb2*S\xacJ\x14J2\x95T\x1eSkM\xa3\xae\xa2\x185>\x9f\xd8\x85\xe6\xdd\xd1\x8aR\xee\xfd\xd0\xe7F\xf2\x1cGM\xd6Y\xc8-\x90O6E%I.\x91\xa1\xb8\x98\xa0\x1a}\x80yf/\xb1+\xbd\xadh\xd1s\x12\xd5\xe3\xc5\xf4\r2?s\x8f\xbaYD\xb1-\xf2U\x9db\xb9D\xf9\x97D\xc2{\x00\xe5\xfa)\xa4\xdb\xe7\x96w\x1a8Jud\x1csx\x84\xec\xfd\xbb4l\x8d\xb2\xd1\x0c\xea\x15lK#r\xc7G\xe6\xe6y\xe4\xb1k\xc4\xfd7V~0\xfel\x98T\xf0\t\x99\x17~\xe4WA*E\x9d\x9fK\x16\x9f\x02O\xc9\x05F\xd1\x02\xcfI\x87F\xdbo\x15\x9f\xf5\xa3\xbc\x9d\xa2\x14\r3\x1d\x9e\xa4\x90\x8e\xa1\xbe{\x8d\x1a\x0e\x91\x96\x82L<\xbc\xda\x1e\xfd!:9F!1C6\xfe\x05=\xf3\x1dM\x9bC)\x84\xff-\xff/\xbf\x01\xaa\xdfn\x93\xd1\x12\xd9\x91\x00\x00\x00\x00IEND\xaeB`\x82')
 
+bctest = tkinter.StringVar()
 
 #main
 mainframe = ttk.Frame(root)
-mainframe.place(anchor=NW, height=662, width=1176)
+mainframe.place(anchor="nw", height=662, width=1176)
 mainframe['padding'] = (20,30,0,0)
 
+wait = tkinter.Label(mainframe)
+wait.place(anchor="nw", height=1, width=1, x=-20, y=-30)
+
 bccolorlabel1 = ttk.Label(mainframe)
-bccolorlabel1.place(anchor=NW, height=662, width=1176, x=-20, y=-30)
+bccolorlabel1.place(anchor="nw", height=662, width=1176, x=-20, y=-30)
 
 #statframe
 statframe = ttk.Frame(mainframe)
-statframe.place(anchor=NW, height=611, width=180, x=0, y=0)
+statframe.place(anchor="nw", height=611, width=180, x=0, y=0)
 
 bccolorlabel2 = ttk.Label(statframe)
-bccolorlabel2.place(anchor=NW, height=611, width=180)
+bccolorlabel2.place(anchor="nw", height=611, width=180)
 
 label1 = ttk.Label(statframe, text="Base Stats")
 label1.place(x=0, y=0)
+label1visible = True
 
 strlabel = ttk.Label(statframe, text="Strength")
-strlabel.place(anchor=NW, x=0, y=40)
+strlabel.place(anchor="nw", x=0, y=40)
 strcolonlabel = ttk.Label(statframe, text=":")
-strcolonlabel.place(anchor=N, x=90, y=39)
-strvallabel = ttk.Label(statframe, text="value")
-strvallabel.place(anchor=NW, x=110, y=40)
+strcolonlabel.place(anchor="n", x=90, y=39)
+strvallabel = ttk.Label(statframe, text="")
+strvallabel.place(anchor="nw", x=110, y=40)
 strimglabel = ttk.Label(statframe)
-strimglabel.place(anchor=NW, height=21, width=21, x=154, y=40)
+strimglabel.place(anchor="nw", height=21, width=21, x=154, y=40)
+strlabelvisible = True
 
 mentlabel = ttk.Label(statframe, text="Mentality")
-mentlabel.place(anchor=NW, x=0, y=60)
+mentlabel.place(anchor="nw", x=0, y=60)
 mentcolonlabel = ttk.Label(statframe, text=":")
-mentcolonlabel.place(anchor=N, x=90, y=59)
-mentvallabel = ttk.Label(statframe, text="vabel")
-mentvallabel.place(anchor=NW, x=110, y=60)
+mentcolonlabel.place(anchor="n", x=90, y=59)
+mentvallabel = ttk.Label(statframe, text="")
+mentvallabel.place(anchor="nw", x=110, y=60)
 mentimglabel = ttk.Label(statframe)
-mentimglabel.place(anchor=NW, height=21, width=21, x=154, y=60)
+mentimglabel.place(anchor="nw", height=21, width=21, x=154, y=60)
+mentlabelvisible = True
 
 liblabel = ttk.Label(statframe, text="Libido")
-liblabel.place(anchor=NW, x=0, y=80)
+liblabel.place(anchor="nw", x=0, y=80)
 libcolonlabel = ttk.Label(statframe, text=":")
-libcolonlabel.place(anchor=N, x=90, y=79)
-libvallabel = ttk.Label(statframe, text="value")
-libvallabel.place(anchor=NW, x=110, y=80)
+libcolonlabel.place(anchor="n", x=90, y=79)
+libvallabel = ttk.Label(statframe, text="")
+libvallabel.place(anchor="nw", x=110, y=80)
 libimglabel = ttk.Label(statframe)
-libimglabel.place(anchor=NW, height=21, width=21, x=154, y=80)
+libimglabel.place(anchor="nw", height=21, width=21, x=154, y=80)
+liblabelvisible = True
 
 senlabel = ttk.Label(statframe, text="Sensitivity")
-senlabel.place(anchor=NW, x=0, y=100)
+senlabel.place(anchor="nw", x=0, y=100)
 sencolonlabel = ttk.Label(statframe, text=":")
-sencolonlabel.place(anchor=N, x=90, y=99)
-senvallabel = ttk.Label(statframe, text="value")
-senvallabel.place(anchor=NW, x=110, y=100)
+sencolonlabel.place(anchor="n", x=90, y=99)
+senvallabel = ttk.Label(statframe, text="")
+senvallabel.place(anchor="nw", x=110, y=100)
 senimglabel = ttk.Label(statframe)
-senimglabel.place(anchor=NW, height=21, width=21, x=154, y=100)
+senimglabel.place(anchor="nw", height=21, width=21, x=154, y=100)
+senlabelvisible = True
 
 label6 = ttk.Label(statframe, text="Combat Stats")
-label6.place(anchor=NW, x=0, y=140)
+label6.place(anchor="nw", x=0, y=140)
+label6visible = True
 
 hplabel = ttk.Label(statframe, text="HP")
-hplabel.place(anchor=NW, x=0, y=160)
+hplabel.place(anchor="nw", x=0, y=160)
 hpcolonlabel = ttk.Label(statframe, text=":")
-hpcolonlabel.place(anchor=N, x=90, y=159)
-hpvallabel = ttk.Label(statframe, text="value")
-hpvallabel.place(anchor=NW, x=110, y=160)
+hpcolonlabel.place(anchor="n", x=90, y=159)
+hpvallabel = ttk.Label(statframe, text="")
+hpvallabel.place(anchor="nw", x=110, y=160)
 hpimglabel = ttk.Label(statframe)
-hpimglabel.place(anchor=NW, height=21, width=21, x=154, y=160)
+hpimglabel.place(anchor="nw", height=21, width=21, x=154, y=160)
+hplabelvisible = True
 
 lustlabel = ttk.Label(statframe, text="Lust")
-lustlabel.place(anchor=NW, x=0, y=180)
+lustlabel.place(anchor="nw", x=0, y=180)
 lustcolonlabel = ttk.Label(statframe, text=":")
-lustcolonlabel.place(anchor=N, x=90, y=179)
-lustvallabel = ttk.Label(statframe, text="value")
-lustvallabel.place(anchor=NW, x=110, y=180)
+lustcolonlabel.place(anchor="n", x=90, y=179)
+lustvallabel = ttk.Label(statframe, text="")
+lustvallabel.place(anchor="nw", x=110, y=180)
 lustimglabel = ttk.Label(statframe)
-lustimglabel.place(anchor=NW, height=21, width=21, x=154, y=180)
+lustimglabel.place(anchor="nw", height=21, width=21, x=154, y=180)
+lustlabelvisible = True
 
 hungerlabel = ttk.Label(statframe, text="Hunger")
-hungerlabel.place(anchor=NW, x=0, y=200)
+hungerlabel.place(anchor="nw", x=0, y=200)
 hungercolonlabel = ttk.Label(statframe, text=":")
-hungercolonlabel.place(anchor=N, x=90, y=199)
-hungervallabel = ttk.Label(statframe, text="value")
-hungervallabel.place(anchor=NW, x=110, y=200)
+hungercolonlabel.place(anchor="n", x=90, y=199)
+hungervallabel = ttk.Label(statframe, text="")
+hungervallabel.place(anchor="nw", x=110, y=200)
+hungerlabelvisible = True
 
-label10 = ttk.Label(statframe, justify=CENTER, text="Current Region")
-label10.place(anchor=N, x=90, y=250)
-currentregionlabel = tkinter.Label(statframe, justify=CENTER, text="Region", font=('TimesNewRoman', 20, 'bold'))
-currentregionlabel.place(anchor=N, height=40, width=120, x=90, y=270)
+label10 = ttk.Label(statframe, justify="center", text="Current Region")
+label10.place(anchor="n", x=90, y=250)
+currentregionlabel = tkinter.Label(statframe, justify="center", text="Region", font=('TimesNewRoman', 20, 'bold'))
+currentregionlabel.place(anchor="n", height=40, width=120, x=90, y=270)
+label10visible = True
+currentregionlabelvisible = True
 
 levellabel = ttk.Label(statframe, text="Level")
-levellabel.place(anchor=NW, x=0, y=340)
+levellabel.place(anchor="nw", x=0, y=340)
 levelcolonlabel = ttk.Label(statframe, text=":")
-levelcolonlabel.place(anchor=N, x=90, y=339)
-levelvallabel = ttk.Label(statframe, text="value")
-levelvallabel.place(anchor=NW, x=110, y=340)
+levelcolonlabel.place(anchor="n", x=90, y=339)
+levelvallabel = ttk.Label(statframe, text="")
+levelvallabel.place(anchor="nw", x=110, y=340)
+levellabelvisible = True
 
 sexplabel = ttk.Label(statframe, text="SexP")
-sexplabel.place(anchor=NW, x=0, y=360)
+sexplabel.place(anchor="nw", x=0, y=360)
 sexpcolonlabel = ttk.Label(statframe, text=":")
-sexpcolonlabel.place(anchor=N, x=90, y=359)
-sexpvallabel = ttk.Label(statframe, text="value")
-sexpvallabel.place(anchor=NW, x=110, y=360)
+sexpcolonlabel.place(anchor="n", x=90, y=359)
+sexpvallabel = ttk.Label(statframe, text="")
+sexpvallabel.place(anchor="nw", x=110, y=360)
+sexplabelvisible = True
 
 coinlabel = ttk.Label(statframe, text="Coin")
-coinlabel.place(anchor=NW, x=0, y=380)
+coinlabel.place(anchor="nw", x=0, y=380)
 coincolonlabel = ttk.Label(statframe, text=":")
-coincolonlabel.place(anchor=N, x=90, y=379)
-coinvallabel = ttk.Label(statframe, text="value")
-coinvallabel.place(anchor=NW, x=110, y=380)
+coincolonlabel.place(anchor="n", x=90, y=379)
+coinvallabel = ttk.Label(statframe, text="")
+coinvallabel.place(anchor="nw", x=110, y=380)
+coinlabelvisible = True
 
 daylabel = ttk.Label(statframe, text="Day")
-daylabel.place(anchor=NW, x=0, y=420)
+daylabel.place(anchor="nw", x=0, y=420)
 daycolonlabel = ttk.Label(statframe, text=":")
-daycolonlabel.place(anchor=N, x=90, y=419)
-dayvallabel = ttk.Label(statframe, text="value")
-dayvallabel.place(anchor=NW, x=110, y=420)
+daycolonlabel.place(anchor="n", x=90, y=419)
+dayvallabel = ttk.Label(statframe, text="")
+dayvallabel.place(anchor="nw", x=110, y=420)
 hourlabel = ttk.Label(statframe, text="Hour")
-hourlabel.place(anchor=NW, x=0, y=440)
+hourlabel.place(anchor="nw", x=0, y=440)
 hourcolonlabel = ttk.Label(statframe, text=":")
-hourcolonlabel.place(anchor=N, x=90, y=439)
-hourvallabel = ttk.Label(statframe, text="value")
-hourvallabel.place(anchor=NW, x=110, y=440)
-
+hourcolonlabel.place(anchor="n", x=90, y=439)
+hourvallabel = ttk.Label(statframe, text="")
+hourvallabel.place(anchor="nw", x=110, y=440)
+daylabelvisible = True
+hourlabelvisible = True
 
 showsavegame = True
 showloadgame = True
 shownewgame = True
-savegamebutton = tkinter.Button(statframe, text="Save Game")
-savegamebutton.place(anchor=N, height=30, width=100, x=90, y=480)
-loadgamebutton = tkinter.Button(statframe, text="Load Game")
-loadgamebutton.place(anchor=N, height=30, width=100, x=90, y=515)
-newgamebutton = tkinter.Button(statframe, text="New Game", command="NewGameStart")
-newgamebutton.place(anchor=N, height=30, width=100, x=90, y=550)
+savegamebutton = tkinter.Button(statframe, text="Save Game", command=SaveG)
+savegamebutton.place(anchor="n", height=30, width=100, x=90, y=480)
+loadgamebutton = tkinter.Button(statframe, text="Load Game", command=LoadG)
+loadgamebutton.place(anchor="n", height=30, width=100, x=90, y=515)
+newgamebutton = tkinter.Button(statframe, text="New Game", command=NewGameStart)
+newgamebutton.place(anchor="n", height=30, width=100, x=90, y=550)
 
 quitbutton = tkinter.Button(statframe, image=quitimg,command=root.destroy)
-quitbutton.place(anchor=NW, height=20, width=20, x=0, y=591)
+quitbutton.place(anchor="nw", height=20, width=20, x=0, y=591)
 resetbutton = tkinter.Button(statframe, image=resetimg,command="reset()")
-resetbutton.place(anchor=NW, height=20, width=20, x=25, y=591)
+resetbutton.place(anchor="nw", height=20, width=20, x=25, y=591)
 refreshbutton = tkinter.Button(statframe, image=refreshimg,command="refreshall()")
-refreshbutton.place(anchor=NW, height=20, width=20, x=50, y=591)
+refreshbutton.place(anchor="nw", height=20, width=20, x=50, y=591)
 
 
 buttonpanel = ttk.Frame(mainframe)
-buttonpanel.place(anchor=NW, height=179, width=662, x=180, y=0)
+buttonpanel.place(anchor="nw", height=179, width=662, x=180, y=0)
 
 bccolorlabel3 = ttk.Label(buttonpanel)
-bccolorlabel3.place(anchor=NW, height=179, width=662)
+bccolorlabel3.place(anchor="nw", height=179, width=662)
 
 button1 = tkinter.Button(buttonpanel, text="Button 1", command=ButtonEvent1)
-button1.place(anchor=NW, height=46, width=140, x=0, y=0)
+button1.place(anchor="nw", height=46, width=140, x=0, y=0)
 button2 = tkinter.Button(buttonpanel, text="Button 2", command=ButtonEvent2)
-button2.place(anchor=NW, height=46, width=140, x=160, y=0)
+button2.place(anchor="nw", height=46, width=140, x=160, y=0)
 button3 = tkinter.Button(buttonpanel, text="Button 3", command=ButtonEvent3)
-button3.place(anchor=NW, height=46, width=140, x=320, y=0)
+button3.place(anchor="nw", height=46, width=140, x=320, y=0)
 button4 = tkinter.Button(buttonpanel, text="Button 4", command=ButtonEvent4)
-button4.place(anchor=NW, height=46, width=140, x=480, y=0)
+button4.place(anchor="nw", height=46, width=140, x=480, y=0)
 button5 = tkinter.Button(buttonpanel, text="Button 5", command=ButtonEvent5)
-button5.place(anchor=NW, height=46, width=140, x=0, y=66)
+button5.place(anchor="nw", height=46, width=140, x=0, y=66)
 button6 = tkinter.Button(buttonpanel, text="Button 6", command=ButtonEvent6)
-button6.place(anchor=NW, height=46, width=140, x=160, y=66)
+button6.place(anchor="nw", height=46, width=140, x=160, y=66)
 button7 = tkinter.Button(buttonpanel, text="Button 7", command=ButtonEvent7)
-button7.place(anchor=NW, height=46, width=140, x=320, y=66)
+button7.place(anchor="nw", height=46, width=140, x=320, y=66)
 button8 = tkinter.Button(buttonpanel, text="Button 8", command=ButtonEvent8)
-button8.place(anchor=NW, height=46, width=140, x=480, y=66)
+button8.place(anchor="nw", height=46, width=140, x=480, y=66)
 button9 = tkinter.Button(buttonpanel, text="Button 9", command=ButtonEvent9)
-button9.place(anchor=NW, height=46, width=140, x=0, y=132)
+button9.place(anchor="nw", height=46, width=140, x=0, y=132)
 button10 = tkinter.Button(buttonpanel, text="Button 10", command=ButtonEvent10)
-button10.place(anchor=NW, height=46, width=140, x=160, y=132)
+button10.place(anchor="nw", height=46, width=140, x=160, y=132)
 button11 = tkinter.Button(buttonpanel, text="Button 11", command=ButtonEvent11)
-button11.place(anchor=NW, height=46, width=140, x=320, y=132)
+button11.place(anchor="nw", height=46, width=140, x=320, y=132)
 button12 = tkinter.Button(buttonpanel, text="Button 12", command=ButtonEvent12)
-button12.place(anchor=NW, height=46, width=140, x=480, y=132)
+button12.place(anchor="nw", height=46, width=140, x=480, y=132)
+
+button1Visible = True
+button2Visible = True
+button3Visible = True
+button4Visible = True
+button5Visible = True
+button6Visible = True
+button7Visible = True
+button8Visible = True
+button9Visible = True
+button10Visible = True
+button11Visible = True
+button12Visible = True
 
 amountlabel1 = ttk.Label(buttonpanel, text="000")
-amountlabel1.place(anchor=NW, height=15, width=30, x=110, y=33)
+amountlabel1.place(anchor="nw", height=15, width=30, x=110, y=33)
 amountlabel2 = ttk.Label(buttonpanel, text="000")
-amountlabel2.place(anchor=NW, height=15, width=30, x=270, y=33)
+amountlabel2.place(anchor="nw", height=15, width=30, x=270, y=33)
 amountlabel3 = ttk.Label(buttonpanel, text="000")
-amountlabel3.place(anchor=NW, height=15, width=30, x=430, y=33)
+amountlabel3.place(anchor="nw", height=15, width=30, x=430, y=33)
 amountlabel4 = ttk.Label(buttonpanel, text="000")
-amountlabel4.place(anchor=NW, height=15, width=30, x=590, y=33)
+amountlabel4.place(anchor="nw", height=15, width=30, x=590, y=33)
 amountlabel5 = ttk.Label(buttonpanel, text="000")
-amountlabel5.place(anchor=NW, height=15, width=30, x=110, y=99)
+amountlabel5.place(anchor="nw", height=15, width=30, x=110, y=99)
 amountlabel6 = ttk.Label(buttonpanel, text="000")
-amountlabel6.place(anchor=NW, height=15, width=30, x=270, y=99)
+amountlabel6.place(anchor="nw", height=15, width=30, x=270, y=99)
 amountlabel7 = ttk.Label(buttonpanel, text="000")
-amountlabel7.place(anchor=NW, height=15, width=30, x=430, y=99)
+amountlabel7.place(anchor="nw", height=15, width=30, x=430, y=99)
 amountlabel8 = ttk.Label(buttonpanel, text="000")
-amountlabel8.place(anchor=NW, height=15, width=30, x=590, y=99)
+amountlabel8.place(anchor="nw", height=15, width=30, x=590, y=99)
 amountlabel9 = ttk.Label(buttonpanel, text="000")
-amountlabel9.place(anchor=NW, height=15, width=30, x=110, y=165)
+amountlabel9.place(anchor="nw", height=15, width=30, x=110, y=165)
 amountlabel10 = ttk.Label(buttonpanel, text="000")
-amountlabel10.place(anchor=NW, height=15, width=30, x=270, y=165)
+amountlabel10.place(anchor="nw", height=15, width=30, x=270, y=165)
 amountlabel11 = ttk.Label(buttonpanel, text="000")
-amountlabel11.place(anchor=NW, height=15, width=30, x=430, y=165)
+amountlabel11.place(anchor="nw", height=15, width=30, x=430, y=165)
 amountlabel12 = ttk.Label(buttonpanel, text="000")
-amountlabel12.place(anchor=NW, height=15, width=30, x=590, y=165)
+amountlabel12.place(anchor="nw", height=15, width=30, x=590, y=165)
 
 amountlabel1visible = True
 amountlabel2visible = True
@@ -26011,75 +26018,77 @@ amountlabel11visible = True
 amountlabel12visible = True
 
 #textmain
-textmain = tkScrolledText(mainframe, cursor="arrow", wrap="word")
-textmain.place(anchor=NW, height=430, width=622, x=180, y=180)
+textmain = ScrolledText(mainframe, cursor="arrow", wrap="word")
+textmain.place(anchor="nw", height=430, width=622, x=180, y=180)
 textmain.delete(1.0,"end")
-textmain.insert(1.0, "yeet")
 textmain.configure(state="disabled")
 
 
 #frame
 frame2 = ttk.Frame(mainframe)
-frame2.place(anchor=NW, height=179, width=334, x=802, y=0)
+frame2.place(anchor="nw", height=179, width=334, x=802, y=0)
 
 bccolorlabel4 = ttk.Label(frame2)
-bccolorlabel4.place(anchor=NW, height=179, width=334)
+bccolorlabel4.place(anchor="nw", height=179, width=334)
 
 pagelabel = ttk.Label(frame2, text="BAG 1")
-pagelabel.place(anchor=NW, height=30, width=80, x=20, y=0)
+pagelabel.place(anchor="nw", height=30, width=80, x=20, y=0)
+pageShow = False
 """
 moveitembutton = tkinter.Button(frame2, text="Move Item")
-moveitembutton.place(anchor=CENTER, height=46, width=140, x=167, y=90)
+moveitembutton.place(anchor="center", height=46, width=140, x=167, y=90)
 """
 
 #sidebar
 sidebar = ttk.Frame(mainframe)
-sidebar.place(anchor=NW, height=432, width=334, x=803, y=180)
+sidebar.place(anchor="nw", height=432, width=334, x=803, y=180)
 
 bccolorlabel5 = ttk.Label(sidebar)
-bccolorlabel5.place(anchor=NW, height=432, width=334)
+bccolorlabel5.place(anchor="nw", height=432, width=334)
 
 looksbutton = tkinter.Button(sidebar, text="Look")
-looksbutton.place(anchor=NW, width=80, x=0, y=0)
+looksbutton.place(anchor="nw", width=80, x=0, y=0)
 statsbutton = tkinter.Button(sidebar, text="Stats")
-statsbutton.place(anchor=NW, width=80, x=83, y=0)
+statsbutton.place(anchor="nw", width=80, x=83, y=0)
 effectsbutton = tkinter.Button(sidebar, text="Effects")
-effectsbutton.place(anchor=NW, width=80, x=166, y=0)
+effectsbutton.place(anchor="nw", width=80, x=166, y=0)
 helpbutton = tkinter.Button(sidebar, text="Help")
-helpbutton.place(anchor=NW, width=80, x=249, y=0)
+helpbutton.place(anchor="nw", width=80, x=249, y=0)
 levelsbutton = tkinter.Button(sidebar, text="Levels")
-levelsbutton.place(anchor=NW, width=80, x=0, y=30)
+levelsbutton.place(anchor="nw", width=80, x=0, y=30)
 gearbutton = tkinter.Button(sidebar, text="Gear")
-gearbutton.place(anchor=NW, width=80, x=83, y=30)
+gearbutton.place(anchor="nw", width=80, x=83, y=30)
 titlesbutton = tkinter.Button(sidebar, text="Titles")
-titlesbutton.place(anchor=NW, width=80, x=166, y=30)
+titlesbutton.place(anchor="nw", width=80, x=166, y=30)
 creditsbutton = tkinter.Button(sidebar, text="Credits")
-creditsbutton.place(anchor=NW, width=80, x=249, y=30)
+creditsbutton.place(anchor="nw", width=80, x=249, y=30)
 
-textside = tkScrolledText(sidebar, cursor="arrow", wrap="word")
-textside.place(anchor=NW, height=300, width=330, x=0, y=80)
+textside = ScrolledText(sidebar, cursor="arrow", wrap="word")
+textside.place(anchor="nw", height=300, width=330, x=0, y=80)
 textside.configure(state="disabled")
+textsidevisible = True
 
 appearancebutton = tkinter.Button(sidebar, text="Appearance")
-appearancebutton.place(anchor=CENTER, height=50, width=150, x=167, y=216)
+appearancebutton.place(anchor="center", height=50, width=150, x=167, y=216)
+appearancebuttonvisible = True
 
 themebutton = tkinter.Button(sidebar, text="Theme", command=Option1Event)
-themebutton.place(anchor=NW, height=30, width=60, x=0, y=385)
+themebutton.place(anchor="nw", height=30, width=60, x=0, y=385)
 textsizedownbutton = tkinter.Button(sidebar, text="A", command=Option2Event)
-textsizedownbutton.place(anchor=NW, height=30, width=30, x=83, y=385)
+textsizedownbutton.place(anchor="nw", height=30, width=30, x=83, y=385)
 textsizedownbutton["font"] = ("Times New Roman", 10)
 textsizeresetbutton = tkinter.Button(sidebar, text="A", command=Option3Event)
-textsizeresetbutton.place(anchor=NW, height=30, width=30, x=118, y=385)
+textsizeresetbutton.place(anchor="nw", height=30, width=30, x=118, y=385)
 textsizeresetbutton["font"] = ("Times New Roman", 12)
 textsizeupbutton = tkinter.Button(sidebar, text="A", command=Option4Event)
-textsizeupbutton.place(anchor=NW, height=30, width=30, x=153, y=385)
+textsizeupbutton.place(anchor="nw", height=30, width=30, x=153, y=385)
 textsizeupbutton["font"] = ("Times New Roman", 14)
 textboldbutton = tkinter.Button(sidebar, text="B", command=Option5Event)
-textboldbutton.place(anchor=NW, height=30, width=30, x=200, y=385)
+textboldbutton.place(anchor="nw", height=30, width=30, x=200, y=385)
 textcolorbutton = tkinter.Button(sidebar, text="C", command=Option6Event)
-textcolorbutton.place(anchor=NW, height=30, width=30, x=245, y=385)
+textcolorbutton.place(anchor="nw", height=30, width=30, x=245, y=385)
 themebutton7 = tkinter.Button(sidebar, text="O", command=Option7Event)
-themebutton7.place(anchor=NW, height=30, width=30, x=301, y=385)
+themebutton7.place(anchor="nw", height=30, width=30, x=301, y=385)
 """
 appearancebutton.destroy()
 ChangeTKBColor("#FFFFFF")
