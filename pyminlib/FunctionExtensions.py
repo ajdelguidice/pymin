@@ -25,6 +25,12 @@ class lists:
       except:
          x = -1
       return x
+   def push(a:list, b:list):
+      i = 0
+      while (i < len(b)):
+         a.append(b[i])
+         i += 1
+      return a
 class logic:
    def inv(a:bool):
       "Returns the inverse of a boolean"
@@ -60,7 +66,6 @@ class logic:
       "Logical xnor of two booleans"
       c = logic.lor(logic.nand(a, b), logic.land(a, b))
       return c
-
 class operations:
    def roundup(a:float, b:float=""):
       """
@@ -92,3 +97,9 @@ class operations:
    #   global str(b)
    #   str(b) += 1
    #   return a
+class convert:
+   def strtobool(a):
+      if (a == "True" or a == "true"):
+         return True
+      if (a == "False" or a == "false"):
+         return False
