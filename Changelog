@@ -1,2 +1,5 @@
 Rearranged some statements to make more sense
-Added "Do Nothing" option to bug egg
+
+doItemUse
+- Added "Do Nothing" option to bug egg
+- Removed a redundant if statement in item 528
