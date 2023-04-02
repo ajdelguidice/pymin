@@ -6,6 +6,8 @@ Replaced "||" with or and "&&" with "and"
 Removed "this." becuase it isn't needed
 Commented out unused parts of the origional code instead of removing them
 Interface rewritten in tkinter becuase it looked the most similar to the origional
+Removed backslashes before single quotes where they weren't necessary because python knows how to handle single quotes within double quotes and can tell the difference between the two
+Global statements everywhere because python is a local default language
 
 doItemUse
 - Added "Do Nothing" option to bug egg
