@@ -1,3 +1,4 @@
+Changed str variable to _str_ because it conflicts with a built in function
 Rearranged some statements to make more sense
 
 doItemUse
