@@ -1,6 +1,7 @@
 Changed str variable to _str_ because it conflicts with a built in function
 Rearranged some statements to make more sense
 Converted variables before displaying them to the screen because "TypeError: can only concatenate str (not 'int') to str"
+Changed "\r" to "\n" becuase python uses universal backslash expressions instead of adobe's bullshit
 
 doItemUse
 - Added "Do Nothing" option to bug egg
