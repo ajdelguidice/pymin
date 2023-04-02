@@ -1,5 +1,5 @@
 # pymin
-//WARNING: PORN// Python conversion of Nimin Fetish Fantasy. Heavily WIP (Main menu and some other stuff work but no exploring or saving)
+//WARNING: PORN// Python conversion of Nimin Fetish Fantasy. Heavily WIP (Main menu and some other stuff work but no exploring or saving, anything to do with the choiceList functions is only partially functional)
 
 Made with python3.8
 
