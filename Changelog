@@ -2,6 +2,10 @@ Changed str variable to _str_ because it conflicts with a built in function
 Rearranged some statements to make more sense
 Converted variables before displaying them to the screen because "TypeError: can only concatenate str (not 'int') to str"
 Changed "\r" to "\n" becuase python uses universal backslash expressions instead of adobe's bullshit
+Replaced "||" with or and "&&" with "and"
+Removed "this." becuase it isn't needed
+Commented out unused parts of the origional code instead of removing them
+
 
 doItemUse
 - Added "Do Nothing" option to bug egg
