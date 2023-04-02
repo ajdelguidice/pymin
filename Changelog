@@ -5,7 +5,7 @@ Changed "\r" to "\n" becuase python uses universal backslash expressions instead
 Replaced "||" with or and "&&" with "and"
 Removed "this." becuase it isn't needed
 Commented out unused parts of the origional code instead of removing them
-
+Interface rewritten in tkinter becuase it looked the most similar to the origional
 
 doItemUse
 - Added "Do Nothing" option to bug egg
