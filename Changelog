@@ -11,6 +11,8 @@ Global statements everywhere because python is a local default language
 Pointed functions to the correct place in python (ex: in flash it's Math.random() but in python it's random.random())
 Save data and preferences are now stored in xml format instead of shared objects because I couldn't find any libraries for action messaging format that still worked. If I get arround to it, I might make my own library or at least make a way to convert old save files to new ones but that is a lot of work and amf is very confusing
 Remade images 1 and 2 to be centered
+Added addManyItems command to replace multiple itemAdd functions with the same item next to each other
+
 
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
