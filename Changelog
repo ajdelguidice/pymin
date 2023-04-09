@@ -18,3 +18,6 @@ enemyAttack
 doItemUse
 - Added "Do Nothing" option to bug egg
 - Removed a redundant if statement in item 528
+
+doLevelUP
+- Fixed spelling errors
