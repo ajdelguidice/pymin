@@ -479,6 +479,9 @@ tempColor = 0
 #   __setProp_scrollBar2_Scene1_TextFields_0()
 #   __setProp_scrollBar1_Scene1_TextFields_0()
 
+def between(a,b,c,Type:int):
+   return FE.operations.between(a,b,c,Type:int)
+
 def ButtonEvent1():
    global shiftHeld, inBag, buttonChoice
    if (shiftHeld == True) and (inBag == True):
@@ -1460,7 +1463,7 @@ def doButtonChoices(buttonlist:list):
    dlist = [1,2,3,4,5,6,7,8,9,10,11,12]
    #templist = []
    i = 0
-   while i < len(buttonlist):
+   while (i < len(buttonlist)):
       dlist.remove(buttonlist[i])
       ButtonFunctions.WriteText(buttonlist[i], buttonlist[i + 1])
       #templist.append(buttonlist[i])
@@ -1509,17 +1512,17 @@ def doReturn():
    if (inBag == False):
       showPage(False,"")
       hideAmount()
-   if (inBag == True):
+   elif (inBag == True):
       doBag()
-   elif (inShop == True):
+   if (inShop == True):
       doShop()
-   elif (currentState == 2):
+   if (currentState == 2):
       doBattle()
-   elif (currentState == 3):
+   if (currentState == 3):
       doMasturbate()
-   elif (inDungeon == True):
+   if (inDungeon == True):
       doDungeon()
-   elif (currentState == 1):
+   if (currentState == 1):
       doGeneral()
 
 def moistCalc(which:int):
@@ -1857,7 +1860,7 @@ def doPassOut():
    doEnd()
 
 def doLust(changes:int, source:int, triggers:list=[]):
-   global ment, fertilityStatueCurse, cockSnakeVenom, cockTotal, vagTotal, clitSize, milkCPoisonNip, nipplePlay, milkCPoisonUdd, level, lust, _str_, nipType, inBag, minLust, heat, heatTime
+   global ment, fertilityStatueCurse, cockSnakeVenom, cockTotal, vagTotal, clitSize, milkCPoisonNip, nipplePlay, milkCPoisonUdd, level, lust, _str_, nipType, inBag, minLust, heat, heatTime, lustPenalty
    if (source == 1):
       if (changes > 0):
          changes -= math.floor(changes * ment / 125)
@@ -1870,11 +1873,11 @@ def doLust(changes:int, source:int, triggers:list=[]):
       changes -= 6
       if (fertilityStatueCurse > 0):
          outputMainText("\n\nWith your orgasm, you feel strange as wispy fumes escape from your crotch, just like those that descended from the statue you encountered...",False)
-         VagChange(0,1)
+         vagChange(0,1)
       #if (cockSnakeVenom > 0) and (triggers.index(1) != -1) and (cockTotal > 0):
       if ((cockSnakeVenom > 0) and (FE.lists.indexOf(triggers, 1)!= -1) and (cockTotal > 0)):
          outputMainText("\n\nHowever, after you have finished, you realize there's a bit more meat to your meat... The venom from the cock-snake fed off of your orgasm, causing your appendage" + plural(1) + " to flop a bit lower down your " + legDesc(3) + " as " + plural(11) + " shrink" + plural(3) + " back down...",False)
-         CockChange(2,0)
+         cockChange(2,0)
       #if (cockSnakeVenom > 0) and (triggers.indexOf(2) != -1) and (vagTotal > 0):
       if ((cockSnakeVenom > 0) and (FE.lists.indexOf(triggers, 2)!= -1) and (vagTotal > 0)):
          outputMainText("\n\nHowever, after you have finished, you realize your clit" + plural(2) + " " + plural(14) + " a bit more prominent... The venom from the cock-snake fed off of your orgasm, causing the button" + plural(2) + " swell larger than before, and aren't shrinking all the way back down...",False)
@@ -8146,8 +8149,95 @@ def doShops():
          doReturn()
 
 def doShop():
-#!
-   pass
+   #Should work
+   global inShop, buy
+   global doListen
+   buy = 0
+   bc()
+   inShop = True
+   ButtonFunctions.Visible(1,1,1,1,1,1,1,1,1,1,1,1)
+   templist = [4, "Buy", 8, "Sell", 12, "Return"]
+   dlist = []
+   #for(this.i = 1; this.i < 13; ++this.i)
+   for i in range(1,12):
+      if ((i != 4) and (i != 8) and (i != 12)):
+         templist = FE.lists.push(templist, [i,itemName(goodsID(i))])
+      if ((i != 4) and (i != 8) and (i != 12) and (itemName(goodsID(i)) == " ")):
+         dlist.append(i)
+   outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.",True)
+   doButtonChoices(templist)
+   ButtonFunctions.DisableSelected(dlist)
+   def doListen():
+      global buttonChoice, buy, inShop
+      global doListen
+      if ((buttonChoice != 4) and (buttonChoice != 8) and (buttonChoice != 12) and (goodsID(buttonChoice) != 0)):
+         outputMainText(itemDescription(goodsID(buttonChoice)) + "\n\nCost: " + str(3 * itemValue(goodsID(buttonChoice))) + " coins.",True)
+         buy = buttonChoice
+      if ((buttonChoice == 4) and (buy != 0)):
+         outputMainText("\n\nAre you sure you would like to buy " + itemName(goodsID(buy)) + "?",False)
+         if (itemStackMax(goodsID(buy)) > 1):
+            a1 = 0
+            a2 = 0
+            templist = [1, "Buy 1", 2, "Buy 2", 3, "Buy 5", 12, "Nevermind"]
+            outputMainText("\n\nThis item can be bought in the following quantities: 1 for " + str(3 * itemValue(goodsID(buy))) + " coins, 2 for " + str(6 * itemValue(goodsID(buy))) + " coins, 5 for " + str(15 * itemValue(goodsID(buy))) + " coins",False)
+            if (itemStackMax(goodsID(buy)) >= 10):
+               a1 = 1
+               templist = FE.lists.push(templist, [9,"Buy 10"])
+               outputMainText(", 10 for " + str(30 * itemValue(goodsID(buy))) + " coins",False)
+            if (itemStackMax(goodsID(buy)) >= 15):
+               a2 = 1
+               templist = FE.lists.push(templist, [10,"Buy 15"])
+               outputMainText(", 15 for " + str(45 * itemValue(goodsID(buy))) + " coins",False)
+            outputMainText(".",False)
+            ButtonFunctions.Visible(1,1,1,0,0,0,0,0,a1,a2,0,1)
+            doButtonChoices(templist)
+         else:
+            buttonConfirm()
+         def doListen():
+            global buttonChoice, coin, buy
+            tempInt = 0
+            if ((buttonChoice != 7) and (buttonChoice != 12)):
+               if (buttonChoice == 1):
+                  tempInt = 1
+               elif (buttonChoice == 6):
+                  tempInt = 1
+               elif (buttonChoice == 2):
+                  tempInt = 2
+               elif (buttonChoice == 3):
+                  tempInt = 5
+               elif (buttonChoice == 9):
+                  tempInt = 10
+               elif (buttonChoice == 10):
+                  tempInt = 15
+               if (coin < 3 * tempInt * itemValue(goodsID(buy))):
+                  outputMainText("Sorry, but you only have " + str(coin) + " coins. You require at least " + str(3 * tempInt * itemValue(goodsID(buy)) - coin) + " more coins to purchase ",True)
+                  if (tempInt > 1):
+                     outputMainText(str(tempInt) + "x " + itemName(goodsID(buy)) + ".",False)
+                  else:
+                     outputMainText("" + itemName(goodsID(buy)) + ".",False)
+                  doNext()
+                  def doListen():
+                     doShop()
+               elif ((checkItem(goodsID(buy)) == True) and (conItem(goodsID(buy)) == False)):
+                  outputMainText("Sorry, but you cannot buy " + itemName(goodsID(buy)) + " if you already have one. Please choose something else.",True)
+                  doNext()
+                  def doListen():
+                     doShop()
+               else:
+                  #for(i = 1; i <= tempInt; itemAdd(goodsID(buy)),++i)
+                  i = 1
+                  while (i <= tempInt):
+                     itemAdd(goodsID(buy))
+                     i += 1
+                  doCoin(-3 * tempInt * itemValue(goodsID(buy)))
+                  doProcess()
+            else:
+               doShop()
+      if (buttonChoice == 8):
+         doSell()
+      if (buttonChoice == 12):
+         inShop = False
+         doReturn()
 
 def doSell():
    #Should work
@@ -8316,6 +8406,7 @@ def goodsID(goodsSlot:int):
 
 def doDyeShop():
    #Should work
+   global buy
    global doListen
    buy = 0
    ButtonFunctions.Visible(1,1,1,1,1,1,1,1,1,1,1,1)
@@ -8395,7 +8486,9 @@ def dyeThing(ID, color):
 
 def doApothecary():
    #Should work
+   global buy
    global doListen
+   buy = 0
    ButtonFunctions.Visible(1,1,1,1,1,1,1,1,1,1,1,1)
    dlist = []
    templist = [4, "Buy", 12, "Return"]
@@ -8403,7 +8496,7 @@ def doApothecary():
    for i in range(1,12):
       if ((i != 4) and (i != 12)):
          templist = FE.lists.push(templist, [i,apothName(apothID(i))])
-      if (apothName(apothID(i)) == ""):
+      if ((i != 4) and (i != 12) and (apothName(apothID(i)) == "")):
          dlist.append(i)
    outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.",True)
    doButtonChoices(templist)
@@ -8740,7 +8833,9 @@ def apothValue(ID:int):
 
 def doSalon():
    #Should work
+   global buy
    global doListen
+   buy = 0
    bc()
    ButtonFunctions.Visible(1,1,1,1,1,1,1,0,1,1,1,1)
    dlist = []
@@ -9084,7 +9179,7 @@ def hairstyleLength(ID:int):
       tempBool = True
    return tempBool
 
-def HairstyleDescription(ID:int):
+def hairstyleDescription(ID:int):
    tempStr = "CLOTHES NAME ERROR " + str(ID)
    if (ID == 0):
       tempStr = "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
@@ -9119,7 +9214,10 @@ def HairstyleDescription(ID:int):
    return tempStr
 
 def doTailor():
+   #Should work
+   global buy
    global doListen
+   buy = 0
    bc()
    ButtonFunctions.Visible(1,1,1,1,1,1,1,0,1,1,1,1)
    templist = [4, "Buy", 12, "Return"]
@@ -9131,54 +9229,34 @@ def doTailor():
    outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.",True)
    doButtonChoices(templist)
    def doListen():
-   {
-      if(buttonChoice != 4 && buttonChoice != 8 && buttonChoice != 12 && clothesID(buttonChoice) != 0)
-      {
-         outputMainText(clothesDescription(clothesID(buttonChoice)) + "\r\rCost: " + clothesValue(clothesID(buttonChoice)) + " coins.",true);
-         buy = buttonChoice;
-      }
-      if(buttonChoice == 4 && buy != 0)
-      {
-         outputMainText("\r\rAre you sure you would like to buy " + clothesName(clothesID(buy)) + "?",false);
-         if(attireTop == attireBot)
-         {
-            outputMainText("\r\rBe wary, replacing your " + clothesTop() + " with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.",false);
-         }
-         buttonConfirm();
-         doListen = function():void
-         {
-            if(buttonChoice == 6)
-            {
-               if(coin < clothesValue(clothesID(buy)))
-               {
-                  outputMainText("Sorry, but you only have " + coin + " coins. You require at least " + (clothesValue(clothesID(buy)) - coin) + " more coins to purchase " + clothesName(clothesID(buy)) + ".",true);
-                  doNext();
-                  doListen = function():void
-                  {
-                     doTailor();
-                  };
-               }
-               else
-               {
-                  clothesChange(clothesID(buy));
-                  doCoin(-clothesValue(clothesID(buy)));
-                  doTailor();
-               }
-            }
-            else
-            {
-               doTailor();
-            }
-         };
-      }
-      if(buttonChoice == 12)
-      {
-         doReturn();
-      }
-   };
-}
+      global buttonChoice, buy, attireTop, attireBot
+      global doListen
+      if ((buttonChoice != 4) and (buttonChoice != 8) and (buttonChoice != 12) and (clothesID(buttonChoice) != 0)):
+         outputMainText(clothesDescription(clothesID(buttonChoice)) + "\n\nCost: " + str(clothesValue(clothesID(buttonChoice))) + " coins.",True)
+         buy = buttonChoice
+      if ((buttonChoice == 4) and (buy != 0)):
+         outputMainText("\n\nAre you sure you would like to buy " + clothesName(clothesID(buy)) + "?",False)
+         if (attireTop == attireBot):
+            outputMainText("\n\nBe wary, replacing your " + clothesTop() + " with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.",False)
+         buttonConfirm()
+         def doListen():
+            global buttonChoice, coin, buy
+            if (buttonChoice == 6):
+               if (coin < clothesValue(clothesID(buy))):
+                  outputMainText("Sorry, but you only have " + str(coin) + " coins. You require at least " + str(clothesValue(clothesID(buy)) - coin) + " more coins to purchase " + clothesName(clothesID(buy)) + ".",True)
+                  doNext()
+                  def doListen():
+                     doTailor()
+               else:
+                  clothesChange(clothesID(buy))
+                  doCoin(-clothesValue(clothesID(buy)))
+                  doTailor()
+            else:
+               doTailor()
+      if (buttonChoice == 12):
+         doReturn()
 
-def ClothesName(ID:int):
+def clothesName(ID:int):
    tempStr = "CLOTHES NAME ERROR"
    if (ID == 1):
       tempStr = "Shirt"
@@ -9242,7 +9320,7 @@ def ClothesName(ID:int):
       tempStr = "Bouncy Bra"
    return tempStr
 
-def ClothesID(choice:int):
+def clothesID(choice:int):
    global currentZone
    tempNum = 0
    if (currentZone == 1):
@@ -9361,7 +9439,7 @@ def ClothesID(choice:int):
          tempNum = 19
    return tempNum
 
-def ClothesValue(ID:int):
+def clothesValue(ID:int):
    tempNum = 0
    if (ID == 1):
       tempNum = 5
@@ -9425,7 +9503,7 @@ def ClothesValue(ID:int):
       tempNum = 45
    return tempNum
 
-def ClothesDescription(ID:int):
+def clothesDescription(ID:int):
    tempStr = "CLOTHES NAME ERROR"
    if (ID == 1):
       tempStr = "A generic shirt with no special attributes.\n\nTakes top clothes slot."
@@ -9621,7 +9699,7 @@ def pullUD(source:int):
          tempStr = "down"
       if (attireTop == 18):
          tempStr = "up"
-      if(attireTop == 19):
+      if (attireTop == 19):
          tempStr = "down"
       if (attireTop == 21):
          tempStr = "open"
@@ -9686,77 +9764,77 @@ def pullUD(source:int):
          tempStr = "open"
    return tempStr
 
-def ClothesChange(ID:int):
+def clothesChange(ID:int):
    if (ID == 1):
-      ChangeTop(1)
+      changeTop(1)
    if (ID == 2):
-      ChangeBot(2)
+      changeBot(2)
    if (ID == 3):
-      ChangeTop(3)
+      changeTop(3)
    if (ID == 4):
-      ChangeBot(4)
+      changeBot(4)
    if (ID == 5):
-      ChangeTop(5)
-      ChangeBot(5)
+      changeTop(5)
+      changeBot(5)
    if (ID == 6):
-      ChangeTop(6)
-      ChangeBot(6)
+      changeTop(6)
+      changeBot(6)
    if (ID == 7):
-      ChangeBot(7)
+      changeBot(7)
    if (ID == 8):
-      ChangeBot(8)
+      changeBot(8)
    if (ID == 9):
-      ChangeTop(9)
+      changeTop(9)
    if (ID == 10):
-      ChangeBot(10)
+      changeBot(10)
    if (ID == 11):
-      ChangeBot(11)
+      changeBot(11)
    if (ID == 12):
-      ChangeTop(12)
-      ChangeBot(12)
+      changeTop(12)
+      changeBot(12)
    if (ID == 13):
-      ChangeTop(13)
-      ChangeBot(13)
+      changeTop(13)
+      changeBot(13)
    if (ID == 14):
-      ChangeBot(14)
+      changeBot(14)
    if (ID == 15):
-      ChangeBot(15)
+      changeBot(15)
    if (ID == 16):
-      ChangeBot(16)
+      changeBot(16)
    if (ID == 17):
-      ChangeTop(17)
-      ChangeBot(17)
+      changeTop(17)
+      changeBot(17)
    if (ID == 18):
-      ChangeTop(18)
+      changeTop(18)
    if (ID == 19):
-      ChangeTop(19)
+      changeTop(19)
    if (ID == 20):
-      ChangeBot(20)
+      changeBot(20)
    if (ID == 21):
-      ChangeTop(21)
-      ChangeBot(21)
+      changeTop(21)
+      changeBot(21)
    if (ID == 22):
-      ChangeBot(22)
+      changeBot(22)
    if (ID == 23):
-      ChangeBot(23)
+      changeBot(23)
    if (ID == 24):
-      ChangeBot(24)
+      changeBot(24)
    if (ID == 25):
-      ChangeTop(25)
-      ChangeBot(25)
+      changeTop(25)
+      changeBot(25)
    if (ID == 26):
-      ChangeTop(26)
+      changeTop(26)
    if (ID == 27):
-      ChangeTop(27)
+      changeTop(27)
    if (ID == 28):
-      ChangeTop(28)
+      changeTop(28)
    if (ID == 29):
-      ChangeTop(29)
-      ChangeBot(29)
+      changeTop(29)
+      changeBot(29)
    if (ID == 30):
-      ChangeTop(30)
+      changeTop(30)
 
-def ChangeTop(ID:int):
+def changeTop(ID:int):
    global attireTop, enticeMod, milkMod, pregRate, cumMod, runMod, pregChanceMod, vagMoistMod, cockMoistMod, breastSize, hips, HPMod, minLust, rapeMod, vagElastic, nippleSize, milkCap, carryMod, attireBot
    if (ID != attireTop):
       if (attireTop == -1):
@@ -9831,9 +9909,9 @@ def ChangeTop(ID:int):
       if (attireTop == 30):
          carryMod -= 15
       if (ID == -1):
-         if (attireTop == attireBot) and (attireBot != -1):
+         if ((attireTop == attireBot) and (attireBot != -1)):
             attireTop = ID
-            ChangeBot(-1)
+            changeBot(-1)
          statsMod(-2,-2,0,0)
       if (ID == 0):
          statsMod(0,-4,0,0)
@@ -9904,13 +9982,13 @@ def ChangeTop(ID:int):
          HPMod += 10
       if (ID == 30):
          carryMod += 15
-      if (attireTop == attireBot) and (ID != 0) and (ID != -1):
+      if ((attireTop == attireBot) and (ID != 0) and (ID != -1)):
          attireTop = ID
-         ChangeBot(2)
+         changeBot(2)
       else:
          attireTop = ID
 
-def ChangeBot(ID:int):
+def changeBot(ID:int):
    global attireBot, enticeMod, cumMod, runMod, pregChanceMod, vagMoistMod, cockMoistMod, hips, butt, vulvaSize, attireTop
    if (ID != attireBot):
       if (attireBot == -1):
@@ -9977,9 +10055,9 @@ def ChangeBot(ID:int):
          pregChanceMod += 3
          statsMod(0,0,0,-2)
       if (ID == -1):
-         if (attireTop == attireBot) and (attireTop != -1):
+         if ((attireTop == attireBot) and (attireTop != -1)):
             attireBot = ID
-            ChangeTop(-1)
+            changeTop(-1)
          statsMod(-2,-2,0,0)
       if (ID == 0):
          statsMod(0,-4,0,0)
@@ -10042,9 +10120,9 @@ def ChangeBot(ID:int):
          cumMod -= 0.2
          pregChanceMod -= 3
          statsMod(0,0,0,2)
-      if (attireTop == attireBot) and (ID != 0) and (ID != -1):
+      if ((attireTop == attireBot) and (ID != 0) and (ID != -1)):
          attireBot = ID
-         ChangeTop(1)
+         changeTop(1)
       else:
          attireBot = ID
 
@@ -10739,19 +10817,15 @@ def doMasturbate():
    currentState = 3
    templist = [4, "Bag", 7, "Breasts", 12, "Return"]
    if (cockTotal > 0):
-      templist.append(1)
-      templist.append("Penis")
+      templist = FE.lists.push(templist, [1,"Penis"])
    """
    if (cockTotal > 0) and (vagTotal > 0):
-      templist.append(2)
-      templist.append("Both")
+      templist = FE.lists.push(templist, [2,"Both"])
    """
    if (vagTotal > 0):
-      templist.append(3)
-      templist.append("Vagina")
+      templist = FE.lists.push(templist, [3,"Vagina"])
    if (udders == True):
-      templist.append(10)
-      templist.append("Udder")
+      templist = FE.lists.push(templist, [10,"Udder"])
    ButtonFunctions.Visible(1,0,1,1,0,0,1,0,0,1,0,1)
    outputMainText("How would you like to masturbate?",True)
    doButtonChoices(templist)
@@ -16158,13 +16232,13 @@ def doDesert():
             elif (chance <= 35):
                if ((cockTotal > 0) and (vagTotal < (cockTotal + 1))):
                   outputMainText("You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...",True)
-                  VagChange(0,cockTotal - vagTotal + 1)
+                  vagChange(0,cockTotal - vagTotal + 1)
                   outputMainText("\n\nOne more vagina than you have cock" + plural(1) + ". Why that is will forever be a mystery...\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.",False)
                   hrs = 2
                   doEnd()
                else:
                   outputMainText("You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...",True)
-                  VagChange(0,1)
+                  vagChange(0,1)
                   outputMainText("\n\nMaybe you were enjoying the licking of tasty flaps of meat a little too much?..\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.",False)
                   hrs = 2
                   doEnd()
@@ -17768,8 +17842,8 @@ def doOldCave():
                outputMainText("You pick up the cake and lift it to your lips. Barely a nibble and it's already gone, hardly enough for even a full swallow. It was somewhat sweet, like a cross between chocolate and the number 3, which is rather ludicrous when you think about it. Wondering why it should have been eaten at all, you attempt to check the table for any sort of shenanigans. You begin to bend down to reach it, only to find yourself bending lower and lower with the table seemingly further and further away. It seems to be shrinking beside you, but then again so is everything else at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's growing.",True)
                if (ment < 30):
                   outputMainText(" Your " + currentClothes() + " rapidly grows tighter and tighter, squeezing your body until you can hardly breathe. Tearing can be heard along the stitching, flesh from your " + boobDesc() + " chest squeezing through the newly torn holes and a painful wedgie of ripped cloth slips into your " + buttDesc() + " rump, your cheeks slapped by a light breeze. Your " + hipDesc() + " hips soon relieve your ass of the torment as they stretch the waist of your " + clothesBottom() + " to the point to where it barely hangs around your body by thin strands, the rest of the garment flapping in the wind and no longer concealing your genitals. Your " + boobDesc() + " chest follows suit, growing so tight until you can hardly breath until your " + clothesTop() + " bursts into shreds around you, your " + nipDesc() + "nipples perking freely in the cooler air through what's left of your outfit.",False)
-                  ChangeTop(-1)
-                  ChangeBot(-1)
+                  changeTop(-1)
+                  changeBot(-1)
                else:
                   outputMainText(" Your " + currentClothes() + " rapidly grows tighter and tighter, squeezing your body until you can hardly breath. With your quick wit, however, you think fast enough to remove your outfit to prevent yourself from being crushed. You're just in time to slip " + pullUD(1) + " your " + clothesTop() + " before your " + boobDesc() + " chest plows through it and step out of your " + clothesBottom() + " before your " + buttDesc() + " tush shone through the backside. Growing to fast to lay them neatly on the ground, however, you simply let them fall idly, leaving you with a naked bosom and your genitals being frisked by a slight breeze.",False)
                if (tallness <= 18):
@@ -19902,7 +19976,7 @@ def doRape():
       outputMainText("\n\n\nEventually, his knot deflates. You rub your ",False)
       if (vagLimit() < 8):
          outputMainText("sore little pussy, a bit stretched from the size of the thing,",False)
-         VagChange(1,0)
+         vagChange(1,0)
       else:
          outputMainText("satiated cunt,",False)
       outputMainText(" the cock sliding out with cum dripping down " + legWhere(1) + " your " + legDesc(2) + ".",False)
@@ -20151,15 +20225,15 @@ def doGetRaped():
             doLust(-5,0)
    if (enemyID == 201):
       outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs your cunt" + plural(2) + ", lapping at the wetness that soaks through your " + clothesBottom() + ". He jumps up, clawing your " + clothesBottom() + " to shreds until your " + vulvaDesc() + " hot crotch is put on display. Scratching your back, he mounts you from behind.\n\nHis rock-hard rod pokes and prods around your sex until it finds " + OneYour(2) + " gaping hole" + plural(2) + " and plunges it in. You gasp as the steaming meaty flesh pounds into you, the wolf roughly humping away, the inner fur of his thighs rubbing back and forth along your " + buttDesc() + " naked bum. He hugs you with his paws, his muzzle panting beside your ear while drool drips down from his lolling tongue and down your cheek. It only takes a minute before he howls loudly, cum spurting into your pussy at an astonishing rate. You shout as it floods your insides, a thick knot growing at your entrance and spreading you open further...",True)
-      ChangeBot(-1)
+      changeBot(-1)
       doNext()
       outputMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated cunt in an attempt to get away. Still tied by his knot, his cock squirting away within, ",False)
       if (vagLimit() < 32):
          outputMainText("you wince with each pull, the knot stretching you wider,",False)
-         VagChange(1,0)
+         vagChange(1,0)
       elif (vagLimit() < 8):
          outputMainText("you yelp with each pull, the knot far too large for your little pussy and stretches you much wider and wider while causing you some pain,",False)
-         VagChange(2,0)
+         vagChange(2,0)
          doHP(-5)
       else:
          outputMainText("but your gaping cunt is more than enough to handle it,",False)
@@ -20168,13 +20242,13 @@ def doGetRaped():
       doLust(-math.floor(sen / 2),2,1)
    if (EnemyID == 202):
       outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your " + clothesBottom() + " to shreds until your " + buttDesc() + " ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff.\n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own " + cockDesc() + " erection" + plural(1) + " burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...",True)
-      ChangeBot(-1)
+      changeBot(-1)
       doNext()
       outputMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated ass in an attempt to get away, gush after gush of spent spunk blowing out each time. Still tied by his knot, his cock now slowly squirting away within, you can't help but get yanked backwards several feet as he drags you over the ground by your sensitive hole. Eventually, you manage to grab at the ground and hold yourself firm, allowing the knot to pop out from your ass, the member spraying across your cheeks with more rushing out about your thighs. Freed of your ass, the wolf takes off into the forest, satisfied, leaving you to lay in the white mess below. ",False)
       doLust(-math.floor(sen / 2),2,5)
    if (enemyID == 301):
       outputMainText("Finally having someone as horny as she is, she pounces onto you. She presses your face against her exposed nipples, forcing you to lick the soreness that had been caused by her own rubbing. She grinds up and down your belly, tearing your " + clothesTop() + " to tattered shreds with her claws while biting and suckling from your own " + nipDesc() + "nipples",True)
-      ChangeTop(-1)
+      changeTop(-1)
       if (lactation > 0):
          outputMainText(", delighting in the taste of your milk",False)
       outputMainText(". However, it doesn't take long until she reaches beneath her loin cloth and pulls her bikini bottom to the side before she goes diving into your " + clothesBottom() + ",",False)
@@ -20224,12 +20298,12 @@ def doGetRaped():
             doHP(-5)
          elif (vagLimit() < 28):
             outputMainText(" With a cry, the large horse-cock proves too big for your relatively small pussy, stretching it dramatically and causing you some pain.",False)
-            VagChange(3,0)
+            vagChange(3,0)
             doHP(-math.floor(eStr / 2))
             DoImpregnate(enemyBaby())
          elif (vagLimit() < 52):
             outputMainText(" You wince as it pushes in too far, pounding your cervix further and further into your belly, permanently stretching you a bit.",False)
-            VagChange(1,0)
+            vagChange(1,0)
             DoImpregnate(enemyBaby())
          else:
             outputMainText(" You feel it push against your belly from within, the mound slightly protruding through your " + skinDesc() + ", taking his entire length inside of you.",False)
@@ -20380,13 +20454,13 @@ def doGetRaped():
          outputMainText(" " + OneYour(2) + " cunt" + plural(2) + "",False)
          if (vagLimit() < 16):
             outputMainText(", stretching you terribly wide and making you yelp in pain",False)
-            VagChange(4,0)
+            vagChange(4,0)
          elif (vagLimit() < 36):
             outputMainText(", stretching you much wider to the point that you grunt slightly from the pain",False)
-            VagChange(2,0)
+            vagChange(2,0)
          elif (vagLimit() < 60):
             outputMainText(", stretching you to make more room for itself",False)
-            VagChange(1,0)
+            vagChange(1,0)
          else:
             outputMainText(", slipping in without much trouble",False)
       else:
@@ -21403,7 +21477,7 @@ def doStatus(param1:int):
             milkEngorgement = ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 0.5
             milkEngorgementLevel = 0
             stats(0,0,0,-5)
-            ChangeTop(-1)
+            changeTop(-1)
          elif (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 4):
             outputMainText("\n\nYou suddenly can't breath as your chest tenses up. For an instant, you feel your " + nipDesc() + " nipples soften.\n\nMilk sprays with fervor all around you, spewing from your nipples like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your " + clothesTop() + " from the pressure of the gushing. But thankfully, the fabric survives and your nipples die back down, allowing you to see again... So much milk lost, but your breasts have returned to normal in those few moments...",False)
             milkAmount(1)
@@ -21420,7 +21494,7 @@ def doStatus(param1:int):
             udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 0.5
             udderEngorgementLevel = 0
             stats(0,0,0,-5)
-            ChangeBot(-1)
+            changeBot(-1)
          elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 4) and (udders == True)):
             outputMainText("\n\nYou suddenly feel sick as your belly tenses up. For an instant, you feel your " + teatDesc() + " teats soften.\n\nMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your " + clothesBottom() + " from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...",False)
             milkAmount(1)
@@ -21861,7 +21935,7 @@ def affinityChange():
          hips -= 8
    if (((lizardAffinity + lizard) >= 40) and (lizardAffinity < 40)):
       if (cockTotal == 1):
-         CockChange(0,1)
+         cockChange(0,1)
       if (vagTotal > 0):
          outputMainText("\n\nAn odd sensation of warmth fills your womb" + plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.",False)
       if (eggLaying == 0):
@@ -21874,7 +21948,7 @@ def affinityChange():
          eggLaying += 1
    if (((lizardAffinity + lizard) < 40) and (lizardAffinity >= 40)):
       if (cockTotal == 2):
-         CockChange(0,-1)
+         cockChange(0,-1)
       if (vagTotal > 0):
          outputMainText("\n\nYour womb" + plural(2) + " calm" + plural(4) + " down, no longer working as hard to pop out more eggs.",False)
       if (eggLaying == 1):
@@ -22608,7 +22682,7 @@ def affinityChange():
    else:
       doEnd()
 
-def CockChange(sizeChange:int, totalChange:int):
+def cockChange(sizeChange:int, totalChange:int):
    global humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity, dominant, nonCock, cockSize, cockTotal, vagTotal, gender, balls, ballSize, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, maxCock, showBalls
    maxCock = max(humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity)
    nonCock = False
@@ -22672,7 +22746,7 @@ def CockChange(sizeChange:int, totalChange:int):
       cockTotal = 1
       cockSize += sizeChange
       totalChange -= 1
-      CockChange(0,totalChange)
+      cockChange(0,totalChange)
    elif (totalChange > 0) and (cockTotal > 0):
       this.outputMainText("\n\nA strange sensation of arousal engulfs your groin. Your " + this.clothesBottom() + " grows tight as you feel something swell within. You don't have much time to open your " + this.clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,",False);
       if (totalChange > 1):
@@ -22761,7 +22835,7 @@ def CockLoss():
       outputMainText("\n\nYou have lost one bug cock.",False)
       bugCocks -= 1
 
-def VagChange(sizeChange:int, totalChange:int):
+def vagChange(sizeChange:int, totalChange:int):
 #!
    global cockSnakePreg, pregArray, birthCount, sen, vagSize, vagTotal, cockTotal, gender, vulvaSize, clitSize
    birthCount = 0
@@ -22922,7 +22996,7 @@ def legChange(which:int):
       if (legType == 1):
          carryMod += 10
          runMod -= 10
-      ChangeBot(-1)
+      changeBot(-1)
       carryMod += 100
    if (legType != 1001) and (which == 1001):
       outputMainText("\n\nYour tauric half feels strange and tingly.",False)
@@ -23138,7 +23212,7 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
    global pregArray, vagTotal, hrs, vulvaSize, wolfPupChildren, calfChildren, minotaurChildren, freaktGirlChildren, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, bunnionChildren, miceChildren, birdEggs, pigChildren, skunkChildren, bugEggs, sen, dominant
    birthNumber = 0
    if (len(pregArray) > (vagTotal * 5)):
-      VagChange(0,1)
+      vagChange(0,1)
    hrs += 1
    if (birthCount == 0):
       outputMainText("\n\nSuddenly, you feel water splash across your thighs, flooding from " + OneYour(2) + " cunt" + plural(2) + ". You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!",False)
@@ -23149,18 +23223,18 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       outputMainText(" Rather quickly, a small body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a small, high-pitched whine come from it. Pausing from your labor, you pull the child up to your chest, cradling it. Covered in fur, eyes shut to the world, it's a small puppy. A wolf puppy, to be more accurate. Although, you have little time to consider the symantics as another contraction makes you seize in pain. Soon, another whine cries out. Followed by another contraction... Until you have given birth to a litter of " + birthNumber + " wolf pups! Congratulations, Mommy!\n\nYou'll bring the pups to your personal day-care the next time you're in town.",False)
       if (vagLimit() < 12):
          vulvaSize += 1
-         VagChange(1,0)
+         vagChange(1,0)
       wolfPupChildren += birthNumber
    if (pregnancyType == 101):
       birthNumber = 1 + extra
       outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". Hooves scrape across the ground as the forelegs come out first. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn lets out a surprised moo, trying to figure out what happened, you reach down and bring it up to your " + boobDesc() + " chest. A cow from head to hoof, the calf is already licking over the fabric in an attempt to latch onto your teat. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False);
       if (vagLimit() < 36):
          vulvaSize += 1
-         VagChange(1,0)
+         vagChange(1,0)
       if (vagLimit() < 20):
          outputMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...",False)
          VulvaSize += 2
-         VagChange(2,0)
+         vagChange(2,0)
       if (birthNumber > 1):
          outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more calves, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
@@ -23173,11 +23247,11 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a snort as the long muzzle breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your " + boobDesc() + " chest. With a bull-like muzzle, small horns, and rather huge human-like body, it looks like you've given birth to the Minotaur's child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 25):
          vulvaSize += 1
-         VagChange(1,0)
+         vagChange(1,0)
       if (vagLimit() < 15):
          outputMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...",False)
          vulvaSize += 3
-         VagChange(3,0)
+         vagChange(3,0)
       if (birthNumber > 1):
          outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more minotaur babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
@@ -23194,7 +23268,7 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       outputMainText(" Slowly, a large round head pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a cry as it breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your " + boobDesc() + " chest. With a round face and soft skin, it's easy to tell you've given birth to a human child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 16):
          vulvaSize += 1
-         VagChange(1,0)
+         vagChange(1,0)
       if (birthNumber > 1):
          outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more human babies, each about the same size as the first. By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
@@ -23207,11 +23281,11 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a snort as the long muzzle breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your " + boobDesc() + " chest. With a horse-like muzzle and rather large body, it's easy to tell you've given birth to an equan child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 36):
          vulvaSize += 1
-         VagChange(1,0)
+         vagChange(1,0)
       if (vagLimit() < 20):
          outputMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...",False)
          vulvaSize += 2
-         VagChange(2,0)
+         vagChange(2,0)
       if (birthNumber > 1):
          outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more equan babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
@@ -23232,11 +23306,11 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a quiet groan as the muzzle breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your " + boobDesc() + " chest. With a cow-like muzzle and rather large body, it seems as though you have given birth to a cow-like child. The relatively large nipples for a newborn and small udder, its obviously a she before even checking her genitals, and a long thin tail that ends with a bushy-haired tip. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting her suckle from her mother.",False)
       if (vagLimit() < 36):
          vulvaSize
-         VagChange(1,0)
+         vagChange(1,0)
       if (vagLimit() < 20):
          outputMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...",False)
          vulvaSize += 2
-         VagChange(2,0)
+         vagChange(2,0)
       if (birthNumber > 1):
          outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more bovine baby girls, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom",False)
          if (udders == True):
@@ -24396,83 +24470,84 @@ def cumAmount():
    return int(math.floor(tempNum))
 
 def milkAmount(origin:int):
-   global milkEngorgement, breastSize, tallness, milkCap, milkEngorgementLevel, udderEngorgement, udderSize
+   #Should work
+   global milkEngorgement, breastSize, tallness, milkCap, milkEngorgementLevel, boobTotal, udderEngorgement, udderSize, udderEngorgementLevel
    tempNum = 0
-   if origin == 1:
-      if (milkEngorgement > ((breastSize * (breastSize + 1) + (tallness / 4) + milkCap) * 2)):
-         milkEngorgement = (breastSize * (breastSize + 1) + (tallness / 4) + milkCap) * 2
+   if (origin == 1):
+      if (milkEngorgement > (breastSize * (breastSize + 1) + tallness / 4 + milkCap) * 2):
+         milkEngorgement = (breastSize * (breastSize + 1) + tallness / 4 + milkCap) * 2
       if (milkEngorgementLevel == 0):
          if (boobTotal == 2):
             tempNum = milkEngorgement * 0.5 * 2
-         if (boobTotal == 4):
+         elif (boobTotal == 4):
             tempNum = milkEngorgement * 0.5 * 4
-         if (boobTotal == 6):
+         elif (boobTotal == 6):
             tempNum = milkEngorgement * 0.5 * 3.5
-         if (boobTotal == 8):
+         elif (boobTotal == 8):
             tempNum = milkEngorgement * 0.5 * 6
-         if (boobTotal == 10):
+         elif (boobTotal == 10):
             tempNum = milkEngorgement * 0.5 * 8
-      if (milkEngorgementLevel == 1):
+      elif (milkEngorgementLevel == 1):
          if (boobTotal == 2):
             tempNum = milkEngorgement * 1 * 2
-         if (boobTotal == 4):
+         elif (boobTotal == 4):
             tempNum = milkEngorgement * 1 * 4
-         if (boobTotal == 6):
+         elif (boobTotal == 6):
             tempNum = milkEngorgement * 1 * 3.5
-         if (boobTotal == 8):
+         elif (boobTotal == 8):
             tempNum = milkEngorgement * 1 * 6
-         if (boobTotal == 10):
+         elif (boobTotal == 10):
             tempNum = milkEngorgement * 1 * 8
-      if (milkEngorgementLevel == 2):
+      elif (milkEngorgementLevel == 2):
          if (boobTotal == 2):
             tempNum = milkEngorgement * 1.2 * 2
-         if (boobTotal == 4):
+         elif (boobTotal == 4):
             tempNum = milkEngorgement * 1.2 * 4
-         if (boobTotal == 6):
+         elif (boobTotal == 6):
             tempNum = milkEngorgement * 1.2 * 3.5
-         if (boobTotal == 8):
+         elif (boobTotal == 8):
             tempNum = milkEngorgement * 1.2 * 6
-         if (boobTotal == 10):
+         elif (boobTotal == 10):
             tempNum = milkEngorgement * 1.2 * 8
-      if (milkEngorgementLevel == 3):
+      elif (milkEngorgementLevel == 3):
          if (boobTotal == 2):
             tempNum = milkEngorgement * 1.5 * 2
-         if (boobTotal == 4):
+         elif (boobTotal == 4):
             tempNum = milkEngorgement * 1.5 * 4
-         if (boobTotal == 6):
+         elif (boobTotal == 6):
             tempNum = milkEngorgement * 1.5 * 3.5
-         if (boobTotal == 8):
+         elif (boobTotal == 8):
             tempNum = milkEngorgement * 1.5 * 6
-         if (boobTotal == 10):
+         elif (boobTotal == 10):
             tempNum = milkEngorgement * 1.5 * 8
       if (milkEngorgementLevel == 1):
          milkEngorgementLevel = 0
          boobChange(-1)
-      if (milkEngorgementLevel == 2):
+      elif (milkEngorgementLevel == 2):
          milkEngorgementLevel = 0
          boobChange(-2)
-      if (milkEngorgementLevel > 2):
+      elif (milkEngorgementLevel > 2):
          milkEngorgementLevel = 0
          boobChange(-3)
       milkEngorgement = 0
-   if origin == 2:
-      if (udderEngorgement > ((udderSize * (udderSize + 1) + (tallness / 4) + milkCap) * 2)):
-         udderEngorgement = (udderSize * (udderSize + 1) + (tallness / 4) + milkCap) * 2
+   elif (origin == 2):
+      if (udderEngorgement > (udderSize * (udderSize + 1) + tallness / 4 + milkCap) * 2):
+         udderEngorgement = (udderSize * (udderSize + 1) + tallness / 4 + milkCap) * 2
       if (udderEngorgementLevel == 0):
          tempNum = udderEngorgement * 1
-      if (udderEngorgementLevel == 1):
+      elif (udderEngorgementLevel == 1):
          tempNum = udderEngorgement * 2.1
-      if (udderEngorgementLevel == 2):
+      elif (udderEngorgementLevel == 2):
          tempNum = udderEngorgement * 2.7
-      if (udderEngorgementLevel == 3):
+      elif (udderEngorgementLevel == 3):
          tempNum = udderEngorgement * 3.5
       if (udderEngorgementLevel == 1):
          udderEngorgementLevel = 0
          udderChange(-2)
-      if (udderEngorgementLevel == 2):
+      elif (udderEngorgementLevel == 2):
          udderEngorgementLevel = 0
          udderChange(-5)
-      if (udderEngorgementLevel > 2):
+      elif (udderEngorgementLevel > 2):
          udderEngorgementLevel = 0
          udderChange(-8)
       udderEngorgement = 0
