@@ -13,6 +13,9 @@ Save data and preferences are now stored in xml format instead of shared objects
 Remade images 1 and 2 to be centered
 Added addManyItems command to replace multiple itemAdd functions with the same item next to each other
 Merged some redundant if statements
+Created a disable button function to disable buttons when not used but on screen
+Changed shops to use disable button functions for empty slots
+
 
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
@@ -22,4 +25,4 @@ doItemUse
 - Removed a redundant if statement in item 528
 
 doLevelUP
-- Fixed spelling errors
+- Fixed some spelling errors
