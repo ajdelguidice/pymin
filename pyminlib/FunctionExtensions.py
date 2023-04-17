@@ -31,6 +31,24 @@ class lists:
          a.append(b[i])
          i += 1
       return a
+   def createtosizestr(a:int):
+      templist = []
+      while (len(templist) < a):
+         templist.append("")
+      return templist
+   def createtosizeint(a:int):
+      templist
+      while (len(templist) < b):
+         templist.append(0)
+      return templist
+   def filltosizestr(a:list, b:int):
+      while (len(a) < b):
+         a.append("")
+      return a
+   def filltosizeint(a:list, b:int):
+      while (len(a) < b):
+         a.append(0)
+      return a
 class logic:
    def inv(a:bool):
       "Returns the inverse of a boolean"
@@ -97,6 +115,40 @@ class operations:
    #   global str(b)
    #   str(b) += 1
    #   return a
+   def between(a, b, c, Type:int):
+      """
+      Returns True if the conditions defined by Type are met, otherwise returns False
+      Returns False if a, b, or c are not integers or floating point numbers
+      a, b, and c are either integers or floating point numbers
+      Type is a number between 1 and 4 that defines what to do with a, b, and c
+         Type=1: b < a < c
+         Type=2: b <= a < c
+         Type=3: b < a <= c
+         Type=4: b <= a <= c
+      """
+      if (((type(a) == int) or (type(a) == float)) and ((type(b) == int) or (type(b) == float)) and ((type(c) == int) or (type(c) == float))):
+         if (Type == 1):
+            if ((a > b) and (a < c)):
+               return True
+            else:
+               return False
+         elif (Type == 2):
+            if ((a >= b) and (a < c)):
+               return True
+            else:
+               return False
+         elif (Type == 3):
+            if ((a > b) and (a <= c)):
+               return True
+            else:
+               return False
+         elif (Type == 4):
+            if ((a >= b) and (a <= c)):
+               return True
+            else:
+               return False
+      else:
+         return False
 class convert:
    def strtobool(a):
       if (a == "True" or a == "true"):
