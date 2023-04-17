@@ -27,6 +27,18 @@ doItemUse
 doLevelUP
 - Fixed some spelling errors
 
+plural
+- Removed redundant if statements
+
+udderDesc
+- Replaced the repeated multiplication in each statement with a variable used to calculate it once
+
+buttDesc
+- Replaced the repeated multiplication in each statement with a variable used to calculate it once
+
+hipDesc
+- Replaced the repeated multiplication in each statement with a variable used to calculate it once
+
 bellyDesc
 - Removed redundant if statements
 
