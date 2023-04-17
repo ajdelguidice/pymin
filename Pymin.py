@@ -22639,31 +22639,31 @@ def affinityChange():
       if ((dominant == 1) and (humanAffinity > (second + 25)) and (human > 0) and (cockTotal > 0) and (humanCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + oneYour(1) + " cock" + plural(1) + " hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.",False)
          humanCocks += 1
-         CockLoss()
+         cockLoss()
       if ((dominant == 2) and (horseAffinity > (second + 25)) and (horse > 0) and (cockTotal > 0) and (horseCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + clothesBottom() + ". It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.",False)
          horseCocks += 1
-         CockLoss()
+         cockLoss()
       if ((dominant == 3) and (wolfAffinity > (second + 25)) and (wolf > 0) and (cockTotal > 0) and (wolfCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.",False)
          wolfCocks += 1
-         CockLoss()
+         cockLoss()
       if ((dominant == 4) and (catAffinity > (second + 25)) and (cat > 0) and (cockTotal > 0) and (catCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.",False)
          catCocks += 1
-         CockLoss()
+         cockLoss()
       if ((dominant == 6) and (lizardAffinity > (second + 25)) and (lizard > 0) and (cockTotal > 0) and (lizardCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as your cock" + plural(1) + " sink" + plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?",False)
          lizardCocks += 1
-         CockLoss()
+         cockLoss()
       if ((dominant == 7) and (rabbitAffinity > (second + 25)) and (rabbit > 0) and (cockTotal > 0) and (rabbitCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.",False)
          rabbitCocks += 1
-         CockLoss()
+         cockLoss()
       if ((dominant == 12) and (bugAffinity > (second + 25)) and (bug > 0) and (cockTotal > 0) and (bugCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + oneYour(1) + " cock" + plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.",False)
          bugCocks += 1
-         CockLoss()
+         cockLoss()
    human = 0
    horse = 0
    wolf = 0
@@ -22683,6 +22683,7 @@ def affinityChange():
       doEnd()
 
 def cockChange(sizeChange:int, totalChange:int):
+   #!
    global humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity, dominant, nonCock, cockSize, cockTotal, vagTotal, gender, balls, ballSize, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, maxCock, showBalls
    maxCock = max(humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity)
    nonCock = False
@@ -22748,7 +22749,7 @@ def cockChange(sizeChange:int, totalChange:int):
       totalChange -= 1
       cockChange(0,totalChange)
    elif (totalChange > 0) and (cockTotal > 0):
-      this.outputMainText("\n\nA strange sensation of arousal engulfs your groin. Your " + this.clothesBottom() + " grows tight as you feel something swell within. You don't have much time to open your " + this.clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,",False);
+      outputMainText("\n\nA strange sensation of arousal engulfs your groin. Your " + this.clothesBottom() + " grows tight as you feel something swell within. You don't have much time to open your " + this.clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,",False);
       if (totalChange > 1):
          outputMainText(" " + totalChange,False)
       if (dominant == 1) or ((nonCock == True) and (maxCock == humanAffinity)):
@@ -22783,13 +22784,14 @@ def cockChange(sizeChange:int, totalChange:int):
       this.outputMainText("\n\nYou notice an odd sensation of numbness within your groin. Your " + clothesBottom() + " feels looser, something going missing within. By the time you open your " + clothesBottom() + " you notice that you have lost something.",False)
       cockTotal += totalChange
       while (totalChange < 0):
-         CockLoss()
+         cockLoss()
          totalChange += 1
       stats(0,0,2 * totalChange,0)
    elif (cockTotal > 0):
       cockSize += sizeChange
 
-def CockLoss():
+def cockLoss():
+   #Should work
    global humanCocks, humanAffinity, horseCocks, horseAffinity, wolfCocks, wolfAffinity, catCocks, catAffinity, lizardCocks, lizardAffinity, rabbitCocks, rabbitAffinity, bugCocks, bugAffinity
    hasHumanCock = 101
    hasHorseCock = 101
@@ -22813,35 +22815,35 @@ def CockLoss():
    if (bugCocks > 0):
       hasBugCock = bugAffinity
    minCock = min(hasHumanCock,hasHorseCock,hasWolfCock,hasCatCock,hasLizardCock,hasRabbitCock,hasBugCock)
-   if (minCock == humanAffinity) and (humanCocks > 0):
+   if ((minCock == humanAffinity) and (humanCocks > 0)):
       outputMainText("\n\nYou have lost one human cock.",False)
       humanCocks -= 1
-   elif (minCock == horseAffinity) and (horseCocks > 0):
+   elif ((minCock == horseAffinity) and (horseCocks > 0)):
       outputMainText("\n\nYou have lost one horse cock.",False)
       horseCocks -= 1
-   elif (minCock == wolfAffinity) and (wolfCocks > 0):
+   elif ((minCock == wolfAffinity) and (wolfCocks > 0)):
       outputMainText("\n\nYou have lost one wolf cock.",False)
       wolfCocks -= 1
-   elif (minCock == catAffinity) and (catCocks > 0):
+   elif ((minCock == catAffinity) and (catCocks > 0)):
       outputMainText("\n\nYou have lost one cat cock.",False)
       catCocks -= 1
-   elif (minCock == lizardAffinity) and (lizardCocks > 0):
+   elif ((minCock == lizardAffinity) and (lizardCocks > 0)):
       outputMainText("\n\nYou have lost one lizard cock.",False)
       lizardCocks -= 1
-   elif (minCock == rabbitAffinity) and (rabbitCocks > 0):
+   elif ((minCock == rabbitAffinity) and (rabbitCocks > 0)):
       outputMainText("\n\nYou have lost one rabbit cock.",False)
       rabbitCocks -= 1
-   elif (minCock == bugAffinity) and (bugCocks > 0):
+   elif ((minCock == bugAffinity) and (bugCocks > 0)):
       outputMainText("\n\nYou have lost one bug cock.",False)
       bugCocks -= 1
 
 def vagChange(sizeChange:int, totalChange:int):
-#!
-   global cockSnakePreg, pregArray, birthCount, sen, vagSize, vagTotal, cockTotal, gender, vulvaSize, clitSize
+   #Should work
+   global cockSnakePreg, pregArray, sen, vagSize, vagTotal, cockTotal, gender, vulvaSize, clitSize
    birthCount = 0
    if (cockSnakePreg > 0):
       birthCount = 0
-      if (sizeChange < 0) or (totalChange < 0):
+      if ((sizeChange < 0) or (totalChange < 0)):
          outputMainText("\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your " + clothesBottom() + " becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your " + vulvaDesc() + " lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your " + legDesc(1) + ". You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...",False)
          cockSnakePreg = 0
          i = 0
@@ -22849,17 +22851,17 @@ def vagChange(sizeChange:int, totalChange:int):
             if (pregArray[i + 1] == 503):
                pregArray[i] = False
                pregArray[i + 3] = 0
-               birthCount += 1
                if (birthCount == 2):
                   outputMainText("\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your " + clothesBottom() + " and down your " + legDesc(1) + ", fleeing like the first.",False)
                if (birthCount == 3):
                   outputMainText("\n\nFollowed by another...",False)
                if (birthCount > 3):
-                  outputMainText("\n\nAnd another...",False)
+                  this.outputMainText("\n\nAnd another...",False)
+               birthCount += 1
                doLust(-math.floor(sen / 4),2,2)
             i += 5
          cockSnakePreg = 0
-   if (vagSize + sizeChange <= 0) or (vagTotal + totalChange < 1) and (vagSize > 0) and (vagTotal > 0):
+   if (((vagSize + sizeChange <= 0) or (vagTotal + totalChange < 1)) and (vagSize > 0) and (vagTotal > 0)):
       outputMainText("\n\nSudden intense cramping makes you double over. A slight moistness in your " + clothesBottom() + " causes your hand to inspect the situation. It reaches your once " + vulvaDesc() + " vulva just in time to feel it shrink to nothing, sealing over with " + skinDesc() + ". It seems you have lost your vagina" + plural(2) + ", ",False)
       if (cockTotal > 0):
          outputMainText("leaving only your cock" + plural(1) + " remaining. You are now considered only male.",False)
@@ -22868,7 +22870,7 @@ def vagChange(sizeChange:int, totalChange:int):
          outputMainText("leaving you with no genetalia, completely androgynous where it matters. Things might be difficult...",False)
          gender = 0
       vagBellyChange(sizeChange,totalChange)
-      stats(0,0,2 * this.vagTotal,0)
+      stats(0,0,2 * vagTotal,0)
       vagSize = 0
       vagTotal = 0
       vulvaSize = 0
@@ -22876,11 +22878,10 @@ def vagChange(sizeChange:int, totalChange:int):
       i = 0
       while (i < len(pregArray)):
          if (pregArray[i] == False):
-            pregArray = FE.lists.splice(pregArray, i, 5)
-#            pregArray.splice(i,5)
+            pregArray = FE.lists.splice(pregArray,i,5)
             i = -5
          i += 5
-   elif (vagTotal + totalChange > 0) and (vagTotal < 1):
+   elif ((vagTotal + totalChange > 0) and (vagTotal < 1)):
       outputMainText("\n\nYour tummy feels weird as your thighs rub against each other. Your " + clothesBottom() + " feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across the sensitive bump at the front of the crevice, your finger sinking into a hole. The tip brushes against an even more sensitive ring that sinks further into your body - a fresh womb.",False)
       if (totalChange > 1):
          outputMainText(" Yet, that's simply the first. More moistness slimes your hand as " + totalChange + " more gashes fill your " + vulvaDesc() + " groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills.",False)
@@ -22898,12 +22899,12 @@ def vagChange(sizeChange:int, totalChange:int):
          outputMainText("\n\nYou have now graduated from androgynous to female, congratulations!",False)
          gender = 2
       while (totalChange > 0):
-         if ((len(pregArray) / 5) < vagTotal):
-            pregArray.push(False,0,0,0,0)
+         if (len(pregArray) / 5 < vagTotal):
+            pregArray = FE.lists.push(pregArray,[False,0,0,0,0])
             totalChange -= 1
          else:
             totalChange = 0
-   elif (totalChange > 0) and (vagTotal > 0):
+   elif ((totalChange > 0) and (vagTotal > 0)):
       outputMainText("\n\nYour " + clothesBottom() + " feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across another slit of sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across another bump at the front of the crevice, your finger sinking into a hole. A brand new vagina to go with the rest.",False)
       if (totalChange > 1):
          outputMainText(" Yet, that's simply the first. More moistness slimes your hand as " + totalChange + " more gashes fill your " + vulvaDesc() + " groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills.",False)
@@ -22912,13 +22913,13 @@ def vagChange(sizeChange:int, totalChange:int):
       vagTotal += totalChange
       vagSize += sizeChange
       while (totalChange > 0):
-         if ((len(pregArray) / 5) < vagTotal):
-            pregArray.push(False,0,0,0,0)
+         if (len(pregArray) / 5 < vagTotal):
+            pregArray = FE.lists.push(pregArray,[False,0,0,0,0])
             totalChange -= 1
          else:
             totalChange = 0
-   elif (totalChange < 0) and ((vagTotal + totalChange) > 0):
-      outputMainText("\n\nYou notice an odd sensation of numbness within your groin. Slipping a hand into your " + clothesBottom() + ", you notice you're missing " + -totalChange + " of your vaginas.",False)
+   elif ((totalChange < 0) and (vagTotal + totalChange > 0)):
+      outputMainText("\n\nYou notice an odd sensation of numbness within your groin. Slipping a hand into your " + clothesBottom() + ", you notice you're missing " + str(-totalChange) + " of your vaginas.",False)
       vagBellyChange(sizeChange,totalChange)
       stats(0,0,2 * totalChange,0)
       vagTotal += totalChange
@@ -22928,9 +22929,8 @@ def vagChange(sizeChange:int, totalChange:int):
             i = 0
             while (i < len(pregArray)):
                if (pregArray[i] == False):
+                  pregArray = FE.lists.splice(pregArray,i,5)
                   totalChange += 1
-                  pregArray = FE.lists.splice(pregArray, i, 5)
-#                  pregArray.splice(i,5)
                   i += len(pregArray)
                i += 5
          else:
@@ -22940,6 +22940,7 @@ def vagChange(sizeChange:int, totalChange:int):
       vagSize += sizeChange
 
 def vagBellyChange(sizeChange:int, totalChange:int):
+   #Should work
    global vagSize, vagTotal, vagSizeMod, tallness, vagBellyMod
    newBelly = (vagSize + sizeChange) * (vagTotal + totalChange) * vagSizeMod - tallness / 2
    if (newBelly < 0):
@@ -22953,12 +22954,13 @@ def vagBellyChange(sizeChange:int, totalChange:int):
       vagBellyMod = 0
 
 def legChange(which:int):
-   global legType, udders, udderLactation, udderEngourgement, udderEngourgementLevel, udderPlay, udderSize, teatSize, tail, runMod, carryMod, hair, skinType
-   if (legType > 1000) and (which < 1000):
+   #Should work
+   global legType, udders, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, udderSize, teatSize, tail, runMod, carryMod, breastSize, nippleSize, hair
+   if ((legType > 1000) and (which < 1000)):
       outputMainText("\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your " + buttDesc() + " ass while your crotch shifts forward to nestle between your front legs.",False)
       if (legType == 1001):
          outputMainText(" Your keratin hooves soften and elongate into bipedal feet, the black and white fur disappearing to match your " + skinDesc() + ".",False)
-         if (udderCheck(2) != True) and (udders == True):
+         if ((udderCheck(2) == False) and (udders == True)):
             outputMainText(" Your udder also shrinks away into nothing...",False)
             udders = False
             udderLactation = 0
@@ -22977,28 +22979,28 @@ def legChange(which:int):
          carryMod -= 15
       outputMainText("\n\nIt takes several minutes before you can manage to stand without the extra legs to square you off... It feels so strange, like a great weight has been lifted yet at the same time things feel heavier. It's going to take a bit of walking to get used to...",False)
       carryMod -= 100
-   if (legType != 0) and (which == 0):
+   if ((legType != 0) and (which == 0)):
       if (legType == 1):
          outputMainText("\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier.",False)
-   if (legType != 1) and (which == 1):
+   if ((legType != 1) and (which == 1)):
       if (legType == 0):
          outputMainText("\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. Eventually, you quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things.",False)
       if (legType >= 1000):
          outputMainText("\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. Eventually, you quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things.",False)
       carryMod -= 10
       runMod += 10
-   if (legType == 1) and (which != 1):
+   if ((legType == 1) and (which != 1)):
       carryMod += 10
       runMod -= 10
-   if (legType < 1000) and (which > 1000):
-      if (legType == 0) or (legType == 1):
+   if ((legType < 1000) and (which > 1000)):
+      if ((legType == 0) or (legType == 1)):
          outputMainText("\n\nYour " + hipDesc() + " hips begin to ache as you feel something grow from them within your " + clothesBottom() + ". Not outward, however, but towards your backside. As your hands grasp them, you can feel your thickening pelvis split in two. Your " + buttDesc() + " rear moves away from your body as the second pelvis grows along your tailbone, your spine forming more vertebrae to extend further. You collapse to your knees while your ass tears through your " + clothesBottom() + ", taking your crotch away from your original legs with it. Bumps form from the new pelvis as two new limbs begin to grow from the sides of your crotch, a second set of legs that touch down upon the ground, making you stumble as they grow longer and turn your rump and crotch upwards to face straight out, as though you were bending over. Your insides feel even stranger as many of your internal organs shift around, doubling or expanding down in between your two sets of legs. More ribs sprout from the lengthening spine, forming a second chest cavity that guards the organs.\n\nIt takes a few minutes before your body finishes growing its second set of legs and nearly a complete second body. A tauric body. You falter a bit as you try to stand on all 4 of your legs, your arms helping pick you up from the ground but waving for balance as your original torso teeters on top. It's a very strange sensation as your mind adjusts to account for a second set of legs, working them in unison until you can walk while your second belly swings between them. Though you do feel like you can hold up much more with this strong, broader frame, so that's a plus. On the other hand, your ass and genital region are much further away now, while your original crotch feels more like a neck to the second body, so that's going to take some getting used to...",False)
       if (legType == 1):
          carryMod += 10
          runMod -= 10
       changeBot(-1)
       carryMod += 100
-   if (legType != 1001) and (which == 1001):
+   if ((legType != 1001) and (which == 1001)):
       outputMainText("\n\nYour tauric half feels strange and tingly.",False)
       if (skinType != 2):
          outputMainText(" Short fur sprouts up from your " + skinDesc() + ", only on your tauric half, white in color with large black spots",False)
@@ -23012,8 +23014,8 @@ def legChange(which:int):
          teatSize = 2 * nippleSize
       else:
          outputMainText(" Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist.",False)
-   if (legType == 1001) and (which != 1001) and (which > 1000):
-      if (udderCheck(2) != True) and (udders == True):
+   if ((legType == 1001) and (which != 1001) and (which > 1000)):
+      if ((udderCheck(2) == False) and (udders == True)):
          outputMainText("\n\nYour udder shrinks into your " + skinDesc() + " and disappears...",False)
          udders = False
          udderLactation = 0
@@ -23022,18 +23024,18 @@ def legChange(which:int):
          udderPlay = 0
          udderSize = 0
          teatSize = 0
-   if (legType != 1002) and (which == 1002):
+   if ((legType != 1002) and (which == 1002)):
       outputMainText("\n\nAll four feet relax themselves against the ground, level from toes to heels, standing plantigrade and sturdy. Not exactly fast and a bit awkward, but they can hold much more weight, especially considering your second half is as thin as the first and would have otherwise not been the best frame for carrying things across your extended back.",False)
-      if (tail > 0) and (tail != 1002) and (hair != 0):
+      if ((tail > 0) and (tail != 1002) and (hair != 0)):
          outputMainText(" And your " + tailDesc() + " shifts into hairs that matches the hair on your head.",False)
-      elif (tail) == 0 and (hair != 0):
+      elif ((tail == 0) and (hair != 0)):
          outputMainText(" And to finish off the transformation, just above your butt sprouts a tail of hairs from your tailbone that matches the hair on your head and swishes with your control.",False)
       else:
          outputMainText(" You also feel some extra muscle control above your butt, around your tailbone, where it feels like you've got a tail, but there's nothing there to speak of yet.",False)
       tail = 1002
       runMod -= 10
       carryMod += 15
-   if (legType == 1002) and (which != 1002) and (which > 1000):
+   if ((legType == 1002) and (which != 1002) and (which > 1000)):
       runMod += 10
       carryMod -= 15
    legType = which
