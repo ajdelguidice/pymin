@@ -480,7 +480,7 @@ tempColor = 0
 #   __setProp_scrollBar1_Scene1_TextFields_0()
 
 def between(a,b,c,Type:int):
-   return FE.operations.between(a,b,c,Type:int)
+   return FE.operations.between(a,b,c,Type)
 
 def ButtonEvent1():
    global shiftHeld, inBag, buttonChoice
@@ -10261,7 +10261,7 @@ def doProstitute():
                hrs = 2
                i += 1
             elif ((chance == 2) and (cockTotal > 0)):
-               outputMainText("You wander around the city of Softlik, putting yourself on display, hoping to earn some coin with the only asset you have to peddle. The crowds seem to largely ignore you. Some of the more prudish citizen even actively avoid you. As time passes, you worry that your efforts may be in vain. Just as you are about to give up, a very nervous young man hesitantly approaches you.\n\n\"Hey, I know, this might sound stupid, but you look like a...\" he blushes and stammers a bit \"well,..\" He looks around and lowers his voice, hoping no one can hear him, \"I always wanted to try to suck off a " + domName() + " like you. I'll pay you, if you let me...\" He blushes deeply as he looks at you with downcast eyes, his face turning almost as red as his hair. You find it rather endearing as you watch his nervousness warring with his desire.\n\nNeeding the money, you nod your head in acceptance. The young man grabs your arm as his enthusiasm overcomes his nervousness. He practically drags you into an empty alley before looking around, ensuring no one can see you two. Now that he has you in private, however, his nervousness reasserts itself, looking a bit unsure. You decide to take the lead for this moment and pull out " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + ".",True)
+               outputMainText("You wander around the city of Softlik, putting yourself on display, hoping to earn some coin with the only asset you have to peddle. The crowds seem to largely ignore you. Some of the more prudish citizen even actively avoid you. As time passes, you worry that your efforts may be in vain. Just as you are about to give up, a very nervous young man hesitantly approaches you.\n\n\"Hey, I know, this might sound stupid, but you look like a...\" he blushes and stammers a bit \"well,..\" He looks around and lowers his voice, hoping no one can hear him, \"I always wanted to try to suck off a " + domName() + " like you. I'll pay you, if you let me...\" He blushes deeply as he looks at you with downcast eyes, his face turning almost as red as his hair. You find it rather endearing as you watch his nervousness warring with his desire.\n\nNeeding the money, you nod your head in acceptance. The young man grabs your arm as his enthusiasm overcomes his nervousness. He practically drags you into an empty alley before looking around, ensuring no one can see you two. Now that he has you in private, however, his nervousness reasserts itself, looking a bit unsure. You decide to take the lead for this moment and pull out " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ".",True)
                if ((cockSize * cockSizeMod) <= 20):
                   outputMainText("\n\nThe young man promptly falls down to his knees in front of you and touches it with a trace of wonder. Finally he begins stroking it in earnest and you realize that despite his uncertainty, he certainly has some talent. As he gains courage from your gasp of pleasure, he starts applying his tongue, teasing along the underside of your shaft. Despite his initial shyness, he is really quite good at this. He takes the tip of your cock into his mouth, licking around the tip and moaning softly. His expression is one of sheer bliss as he tastes the drop of pre that emerges. His head starts bobbing on your cock, going down on you in earnest, eliciting a low growl from you. If this guy is really new to this, he is a natural. He picks up speed and moves your up and down on your cock sucking harder and faster.",False)
                   if (knot == False):
@@ -10280,7 +10280,7 @@ def doProstitute():
                cumAmount()
                i += 1
             elif ((chance == 3) and (cockTotal > 0)):
-               outputMainText("You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your " + cockDesc() + " cock" + plural(1) + " begin" + plural(3) + " to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your " + cockDesc() + " cock" + plural(1) + " throb" + plural(3) + " with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub " + OneYour(1) + " hard cock" + plural(1) + " along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load.",True)
+               outputMainText("You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your " + cockDesc() + " cock" + plural(1) + " begin" + plural(3) + " to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your " + cockDesc() + " cock" + plural(1) + " throb" + plural(3) + " with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub " + oneYour(1) + " hard cock" + plural(1) + " along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load.",True)
                outputMainText("\n\nWhen your orgasm settles down, you ease your member out of her slit with a thick trickle of your seed dribbling out of her hole and coating your cock.\n\nYou go into the bathroom and bathe and, when you return, you find that your client has left some coins on the table.",False)
                hrs = 2
                cumAmount()
@@ -10311,16 +10311,16 @@ def doProstitute():
                   outputMainText("Despite being incredibly drunk the two women move rather quickly, pushing you over to lay on the somewhat clean cobblestones of the alleyway. Wasting no time, they begin vying for your cocks, sloppily arguing over who will get what member. Having decided, the two intertwine their arms and begin to lower themselves on top of you in unison, guiding the heads of your selected members to momentarily rest softly in the gape of their identical vulvas. Almost letting themselves fall onto your shafts, the two are already dripping wet and your twin dicks are swallowed almost instantly to the hilt because of it.\n\nThe two begin to expertly bounce on top of you and soon have you screaming at the dual sensations of your " + cockDesc() + " cocks being squeezed and milked by the tight cunts surrounding them. As the two horny women gyrate on top of you, one of the sisters reaches down and guides her shaft toward your face. Taking the hint, you immediately slide the member into your mouth and begin to suck and stroke it with your tongue as best as you can, striving to match the incredible rhythm of the two women mercilessly grinding on top of you. It's only a matter of time before the dual sensations of your cocks being milked causes you to erupt in orgasm. Stifling a scream you tense and begin to forcefully ejaculate deep into the two women.\n\nThe sister in your mouth erupts down your throat like a volcano and soon leaves you gulping, fruitlessly trying to keep up with the torrent she is releasing. The other sister grabs her own cock and directs it toward her mouth as she orgasms, spraying thick ropes of semen into her gaping mouth and somehow managing to gulp it down as quickly as it appears.\n\nAlmost falling off of you, the two women stagger to their feet and begin to gather their clothes, leaving you panting and oozing cum. The two sisters throw another small bag of coins at your " + legDesc(10) + ", thanking you for the best fuck they have had in a while. Not even bothering to get dressed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your cum as they leave and can't help but wonder if they will get pregnant from the deluge you have just released.",False)
                elif (vagTotal > 1):
                   outputMainText("Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and an argument erupts behind you as to who gets dibs on what orifice. The two quickly come to an agreement and waste no time in guiding the tips of their rigid tumescences to rest lightly on the lips of two of your vaginas. With only a moments hesitation spent arranging their body parts so as to not collide with each other, the two begin to urgently slide their lengths into you. The two women's cocks are some of the biggest you have taken and soon bottom out inside you.\n\nThe two thrust in unison, the combined sensation of being filled by two cocks at the same time soon leaves you panting and drooling, barely conscious of anything but the motion of the two cocks inside you. Their thrusts come faster and faster as they push you closer and closer to the edge, their lengths sliding in and out of your slick cunts with ease. As they near orgasm their thrusts become more and more shallow. You can feel the heads of their cocks hitting the walls of your cervices with every movement, and without warning the two tense and shudder in unison as they begin to spasm jets of torrid jizz deep into your wombs. They continue to ejaculate for what seems like forever. If you could muster the energy you wouldn't be surprised to look and see your belly has begun to swell from the sheer amount of liquid which has been pumped into you. Exhausted and still rather tipsy the two fall off you, their quickly softening cocks make a wet slap against the insides of your thighs as they slide from you.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you below still panting and oozing cum. The two sisters throw another small bag of coins at your " + legDesc(10) + ", thanking you for the best fuck they have had in a while. Not even bothering to get clothed, the two stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of cum, their cocks still oozing the white sticky substance onto the ground below them. You cant help but wonder if you will get pregnant from the deluge they just released.",False)
-                  DoImpregnate(1)
-                  DoImpregnate(1)
+                  doImpregnate(1)
+                  doImpregnate(1)
                elif ((cockTotal == 1) and (vagTotal == 1)):
                   outputMainText("Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and while doing so an argument erupts behind you as to who gets dibs on your pussy and who gets your cock. The two quickly reach an agreement and one of the sisters wastes no time in guiding the tip of her rigid tumescence to rest lightly on the swollen lips of your vagina. The other sister vying for your cock eases underneath you and raises her ass up to the level of your crotch. Reaching behind her she takes your now absolutely rigid member and begins to guide it to rest against her vulva. With only a moments hesitation spent arranging their body parts so as to not collide with one another, the two begin to urgently grind against you.\n\nThe sister behind you begins by sliding her rigid length into you and following her thrust you plunge deep into the sister below you. Your movement is reciprocated by the sister below you as she grinds her hips against your groin, your balls wetly slapping the inside of her thighs. The cock inside of you is one of the biggest you have taken and it soon bottoms out, rubbing the wall of your cervix pleasurably. The two move in near perfect unison, the combined sensation of being filled and filling another at the same time soon leaves you panting and drooling, barely conscious of the outside world.\n\nThe two women's thrusts come faster and faster as they surge closer and closer towards the edge. As they near orgasm, their movements get shorter and faster and you can feel the head of your cock hitting the wall of the bottom sister's cervix with your every movement. Without warning you feel the sister in your pussy tense and shudder as she begins to spasm jets of torrid jizz deep into your womb. The immense warmth filling you sends you flying over the edge and you erupt into the depths of the beauty below you as she lets loose onto the ground below her, her jism quickly forming a small pool. You all continue to ejaculate for what seems forever; if you could muster the energy you wouldn't be surprised to look and see that your belly and the belly of the sister below you have swelled from the sheer amount of liquid which has been expelled. Exhausted and still rather tipsy, the two help each other up.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you on the ground still panting and oozing cum. The two sisters throw another small bag of coins at your " + legDesc(10) + ", thanking you for the best fuck they have had in a long while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your combined cum, their cocks still oozing the white sticky substance onto the ground below them and the excessive amount you pumped into the womb of the sister dripping slowly out. You can't help but wonder if you will get pregnant from the deluge they just released or if they will get pregnant from the seed you just planted deep in one of the sister's bellies.",False)
-                  DoImpregnate(1)
+                  doImpregnate(1)
                elif (cockTotal == 1):
                   outputMainText("Despite being incredibly drunk the two women move rather quickly, pushing you over to lay on the somewhat clean cobblestones of the alleyway. Wasting no time they begin desperately fighting over your cock, sloppily arguing over who will get 'the privilege'. Having almost come to blows, an agreement is finally reached and one of the sisters begins to lower herself on top of you. She gently grabs and guides the head of your member to momentarily rest softly in the gape of her drooling vulva before letting herself fall onto your shaft, the wet lubrication more than adequate to any resistance. The other sister, feeling somewhat put off, sits to one side and wraps a hand around the base of her cock, inserting several fingers of her other hand into the oozing cunt below to begin jacking and jilling off at the sight of the two of you going at it.\n\nThe sister on top of you expertly grinds and slides along your entire length, and you're surprised to find her cunt is almost a perfect fit. She soon has you screaming at the sensation of your cock being squeezed and milked by her perfect cunt. The other sister is now vigorously jacking herself off with the hand previously probing the depths of her pussy, using her own juices as a lubricant. It's only a matter of time before the sensation of your cock being milked within the steaming depths of this drunken beauty causes you to orgasm.\n\nYou stifle a scream as you tense and begin to forcefully ejaculate deep into her. The sister to your side and the one on top of you loudly reach climax in uncanny unison. Both of their cocks shudder visibly and shoot thick ropes of fertile seed into the air, arcing to land on top of the both of you. Falling off of you, the women stagger to their feet and begin to gather their clothes, leaving you below still panting and oozing cum.\n\nThe two sisters throw another small bag of coins at your " + legDesc(10) + ", thanking you for the best fuck they had had in a while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice the one you just fucked leaves behind a trail of your cum and you can't help but wonder if she will get pregnant from the deluge you've just released.",False)
                elif (vagTotal == 1):
                   outputMainText("Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and while doing so an argument erupts behind you as to who gets dibs on which orifice. The two come to an agreement and waste no time in guiding the tips of their rigid tumescences to rest lightly on the lips of vagina and the slight pucker of your backdoor. With only a moments hesitation spent arranging their body parts so as to not collide with each other, the two begin to urgently slide their lengths into you.\n\nThe two herms' cocks are some of the biggest you have taken and both soon bottom out. The two thrust in unison and the combined sensation of being filled by two dicks at the same time soon leaves you panting and drooling, barely conscious of the outside world. Their thrusts come faster and faster as they come closer to the edge, their lengths sliding in and out of your slick cunt and ass with ease. As they near orgasm their thrusts become more and more shallow. You can feel the heads of their cocks hitting the wall of your cervix and colon with every movement. Without warning, the two tense and shudder in unison as they begin to spasm jets of torrid jizz deep into your womb and stomach.\n\nThey continue to ejaculate for what seems forever. If you could muster the energy, you wouldn't be surprised to look and see your belly has swelled from the sheer amount of liquid which has been injected into you. Exhausted and still rather tipsy the two fall off of you, their now flaccid members making a wet slap against the insides of your thighs.\n\nFalling off of you the two women stagger to their feet, share a kiss, and begin to gather their clothes. Leaving you below still panting and oozing cum, the two sisters throw another small bag of coins at your " + legDesc(10) + ", thanking you for the best fuck they have had in a while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of cum, their cocks still oozing the white sticky substance onto the ground below them. You can't help but wonder if you will get pregnant from the deluge they have just released.",False)
-                  DoImpregnate(1)
+                  doImpregnate(1)
                hrs = 2
                cumAmount()
                if ((cockTotal > 1) and (cockTotal >= vagTotal)):
@@ -10367,7 +10367,7 @@ def doProstitute():
                else:
                   if (vagLimit() > 60):
                      outputMainText("\n\nYou straddle his lap after he lays down on the bed. For a moment, you toy with the tip of his erection before slowly lowering yourself onto it. The feeling is intense as you proceed to take his cock all the way to the hilt. His hands grip your hips and he slowly begins to lift you up, shuddering slightly as your inner walls massage his incredible length. He pulls you back down after only half of his impressive tool is exposed to the air between you. You use your " + legDesc(2) + " to take your weight off of his arms and help guide him into a steady rhythm. Eventually the two of you are in sync while one of your hands moves to your breasts to feel them and play with your sensitive nipples. Your other has gone to your cunt to stroke and rub your clit. It's only a few minutes before the Equan begins to breathe hard. It's pretty obvious to you that this is probably his first time. You speed up your own actions, wanting to give him his money’s worth. Each time your fingers dart across your clit, you feel a pleasurable wave creep up your spine. Moans escape your mouth as your fingers work fast on your sensitive body. Soon your pussy begins to contract and clench as your toes curl. The boy lets out a loud whinny, the new feelings too great for him as he erupts into you pussy like a firehose. The constant gushing begins to distort your stomach. By the time you feel he’s stopped, it almost looks like a basketball has been shoved inside your womb. You wait for a moment before carefully lifting yourself off of him. His cock falls to the bed with a wet slap. You giggle softly as you notice he’s fallen asleep.\n\nSmiling proudly, you get dressed and see yourself out, though you feel quite full.",False)
-                     DoImpregnate(2)
+                     doImpregnate(2)
                   else:
                      outputMainText("\n\nYou're a bit worried as you begin to sink his massive cock into your pussy. Only part of the way in, you know it won’t fit, but the boy has paid for the full service. You suggest trying something else and sigh with relief as he nods in agreement. You quickly get into a doggy style position and pat your ass. He catches on quickly and prods at your asshole with his very large member. Why you thought this might be a good idea is beyond you, but as the flared head sinks in and the rest follows, you can only grin and bear it. To both his surprise and yours, his balls touch your pussy with a slap.\n\nGrabbing you carefully around the waist, the Equan begins to pull himself out, only to thrust himself back in after a few inches. Once the initial pain fades, pleasure begins to fill your body. You move forward and backwards on his shaft to further encourage him. Soon his erratic pace evens out and the only sound is the tell-tale slap of his large balls hitting against your now wet pussy. Before you can find real pleasure in the act though, the Equan begins to whinny in warning of his coming climax. His frantic thrusts become more apparent as you feel the thick cock pulse and grow slightly. He bottoms out one last time and a waterfall of Equan seed erupts from his flared head, which you are now painfully aware of deep inside you. You don’t even notice that your belly has started to grow, getting bigger and bigger until it almost touches the bed. You feel nauseous for a moment and cough a little, the surprising taste of semen fills your mouth. Just as he pulls free from your backside, you swallow it back down with all your willpower. \n\nSlowly, you get up and proceed to get dressed. You're rather satisfied with yourself and decide to keep your belly as it is, a trophy of sorts.",False)
                   doLust(-math.floor(sen / 2),2,2)
@@ -10377,7 +10377,7 @@ def doProstitute():
                outputMainText("You begin wandering around the equan village of Firmshaft, looking for ways to gain some coin. As you wander you notice that you've captured the attention of a few horny women with 'attributes' such as yours, so you find the best option would be to sell yourself for sex.\n\nYou begin your search for someone to fuck, giving an array of horny looks to every female that passes you by. It doesn't take long for one to take notice of you and your 'package'. She starts to walk slowly towards you, swaying her ample hips, curvy body and huge tits. Her face full of lust and her loins hungry for your cock" + plural(1) + ". You feel your " + cockDesc() + " thing" + plural(1) + " harden to full size, which only draws the woman in faster, You can only stand still and do nothing, as you are dazed by her amazing body.\n\nNot caring about the setting you are in, she lunges at you. and forces you down to the ground. Without even pausing, she starts tearing away your " + clothesBottom() + "",True)
                if (showBalls == True):
                   outputMainText(" and letting your " + ballDesc() + " balls hang free",False)
-               outputMainText(" followed by her tearing off her own clothes. She grabs " + OneYour(1) + " wang" + plural(1) + ", gets down onto all fours and presses the head of you penis against her quivering lips. She does not hesitate to force your " + cockDesc() + " cock inside of her sex, letting out a loud orgasmic moan as you sink deep into her folds. You don't even have time to think about being inside her hot, wet depths as the sexy mare begins bucking against the length of your " + cockDesc() + " tool inside her. Your penis and balls begin to shudder furiously after only a few minutes of the intense fucking, a warning to both you and her that you're about to blow. You hold tightly to her hips as you peak and thick ropes of your " + domName() + " cum paint her inner walls. After several, almost painful, minutes, you finally release all of your sperm into her womb. You breathe a small sigh of relief as you gather your thoughts. Your gaze falls to the equan woman and you can see her lying face first on the floor, barely conscious from her intense orgasm. She lets out a small moan as you gently pull your cock from her netherlips. In almost no time, it returns to its flaccid state.\n\nAfter a minute or two, she manages to recover from her climax and get back on her hooves. She stumbles, bow-legged towards you, still recovering from the stretching her nethers received from your " + cockDesc() + " cock. She slowly leans over you and gives you a kiss. You grin as you feel her press something against your stomach. A something that makes a faint metallic noise as its weight shifts in your hands. Without another word, she stands and walks away. You look down and smile as you confirm that she has given you a purse full of coins.\n\nYou get to your " + legDesc(10) + " and, as you are pulling " + pullUD(2) + " your " + clothesBottom() + ", you notice you have drawn a rather large crowd. It consists mainly of women, thirsting for sex. There are also several families with mothers and fathers covering their children's' eyes. You quickly leave the area, carrying on with your journey.",False)
+               outputMainText(" followed by her tearing off her own clothes. She grabs " + oneYour(1) + " wang" + plural(1) + ", gets down onto all fours and presses the head of you penis against her quivering lips. She does not hesitate to force your " + cockDesc() + " cock inside of her sex, letting out a loud orgasmic moan as you sink deep into her folds. You don't even have time to think about being inside her hot, wet depths as the sexy mare begins bucking against the length of your " + cockDesc() + " tool inside her. Your penis and balls begin to shudder furiously after only a few minutes of the intense fucking, a warning to both you and her that you're about to blow. You hold tightly to her hips as you peak and thick ropes of your " + domName() + " cum paint her inner walls. After several, almost painful, minutes, you finally release all of your sperm into her womb. You breathe a small sigh of relief as you gather your thoughts. Your gaze falls to the equan woman and you can see her lying face first on the floor, barely conscious from her intense orgasm. She lets out a small moan as you gently pull your cock from her netherlips. In almost no time, it returns to its flaccid state.\n\nAfter a minute or two, she manages to recover from her climax and get back on her hooves. She stumbles, bow-legged towards you, still recovering from the stretching her nethers received from your " + cockDesc() + " cock. She slowly leans over you and gives you a kiss. You grin as you feel her press something against your stomach. A something that makes a faint metallic noise as its weight shifts in your hands. Without another word, she stands and walks away. You look down and smile as you confirm that she has given you a purse full of coins.\n\nYou get to your " + legDesc(10) + " and, as you are pulling " + pullUD(2) + " your " + clothesBottom() + ", you notice you have drawn a rather large crowd. It consists mainly of women, thirsting for sex. There are also several families with mothers and fathers covering their children's' eyes. You quickly leave the area, carrying on with your journey.",False)
                doLust(-math.floor(sen / 2),2,1)
                cumAmount()
                hrs = 2
@@ -10398,7 +10398,7 @@ def doProstitute():
                   outputMainText("Your cunt" + plural(2) + " " + plural(14) + " throbbing and oozing " + legWhere(1) + " your " + legDesc(2) + " onto the quilts under your hands and " + legDesc(6) + " so much so it looks like a river is flowing beneath you. Your ass clenches from the brutal beating, your head feeling full of fluff. It is almost like cotton is being stuffed inside your ears as a feeling of disorientation sets in. Your puss" + plural(16) + " seem" + plural(4) + " to delight in your torture as your lips flex almost nonstop for the dominating Equan.",False)
                outputMainText("A finger delves inside of you making you almost forget the Equan male has two hands. From the way your ass is smarting, and the way a groan of rapture breaks free from your lips, you finally feel yourself getting fucked the way you thought you should have been from the start. As the fat digit pierces your tailhole you scream yet again as the broad hand slaps your bottom. You moan as another choked cry seeps from between your lips and in the next few minutes you’re not sure if you’ve wandered into hell as both pain, pleasure and madness sweep you up into a whirling cycle of delirium.\n\nOver and over the Equan slaps your ass until finally you start to sob and huff as the pain becomes too much to bear. Just when you think you’ll receive another swat you thankfully find you are wrong as the finger inside of you pulls out and away. The Equan looks you over with a superior gaze in his eyes. Seeing your sweaty form lying on his bedding the male obviously feels like the epitome of masculine dominance, a true stallion born in the days of his ancestors. His look says more than words ever could about how much he would like to keep you for his personal harem, to both have and use to his heart’s desire; but shaking his head he knows better than to try to bind a paid whore.\n\nThe Equan rubs over your ass soothingly while at the same time reaching around to grip your shaft, pulling and stroking as you moan loud enough to be heard outside. The emptiness inside of you leaves you feeling somewhat vulnerable, though soon there is something else replacing it as the Equan leans down to stick his tongue deep inside you.\n\nHis warm organ feels like a balm for the soul as he licks inside of you so far you swear he is trying to reach for your guts as he laps over your insides with sensual yet tender affection. At the same time, the Equan draws his meaty shaft over and across your bare back. Suddenly and without notice he begins to ease his cock into your body with gentle thrusts, trying to bring himself off while pleasuring you. His balls sway heavy in the crux of your bent " + legDesc(6) + " as the Equan rubs and rolls them with a hand, using every part of you to stimulate himself without your control.",False)
                if (vagTotal > 0):
-                  outputMainText("Moving his tongue deep inside of " + OneYour(2) + " cunt" + plural(2) + " the Equan tastes the thoroughly used tunnel of your female sex and nods in approval as he begins to slowly eat you out. His lips, breath, and tongue are so warm you push back into his face hard enough to make your hurting ass ache as your tender rump lets its sensitivity be known. Rolling his tongue up, down, and all around the Equan spreads you open farther than his finger ever could and pushes forward into your belly so much you think he may have touched your womb.",False)
+                  outputMainText("Moving his tongue deep inside of " + oneYour(2) + " cunt" + plural(2) + " the Equan tastes the thoroughly used tunnel of your female sex and nods in approval as he begins to slowly eat you out. His lips, breath, and tongue are so warm you push back into his face hard enough to make your hurting ass ache as your tender rump lets its sensitivity be known. Rolling his tongue up, down, and all around the Equan spreads you open farther than his finger ever could and pushes forward into your belly so much you think he may have touched your womb.",False)
                outputMainText("Groaning and writhing as a hand takes up your balls and massages them, you try to bite out a few words of praise. Every attempt is lost as the Equan continues to use you for his own personal pleasure. Your body is like an instrument being strummed by a professional minstrel, and as the Equan keeps tuning you in just the right way you begin to feel the signs of impending orgasm about to overtake you. Against your will you clench up and cry out towards the ceiling as an orgasm tears through you when the Equan nips at your ass. Cums spews from your balls so hard it almost feels painful. Behind you the unseen Equan plunges his face into your backside so deeply his tongue surges up into you with enough force to bring about a second orgasm just seconds behind the first.",False)
                if (vagTotal > 0):
                   outputMainText("Your pussy slams down on the Equan male’s tongue minutes later as he continues to flick over the inside of your cervix with merciless force. Gently nibbling at your female lips with his blunt teeth, he causes you to gasp out a bitten off yelp as shivers rack your spine.\n\nToes curling and hands almost giving out, you press back into the Equan with your gropable rump trying to make sure that he gets that talented tongue up inside of you as deeply as possible. You try to warm him of the coming storm almost upon him but the Equan pays no mind and stands before it like a champion, taking the full breadth of your climax as if he were born to do so.",False)
@@ -10410,11 +10410,11 @@ def doProstitute():
          if (currentZone == 3):
             chance = math.floor(random.random() * (1 + 6 - 1)) + 1
             if ((chance == 1) and (cockTotal > 0)):
-               outputMainText("A young female rushes down the street, moving with a much more feline quality than the other females of Tieden. She looks to be in a mild panic, scanning the crowds until her eyes lock onto your body. She undresses you with her eyes, lingering on the bulge in your " + clothesBottom() + " until she’s satisfied that you're the one she wants. By the time you notice she’s been teasing her nipples though her blouse, she is already half-way across the street, headed right for you!\n\nBefore you can react she’s already pressing her plush bosom to your body, grinding possessively against you as she coos in a decidedly un-Lupan manner. Preempting anything you might say, she pushes you against the wall, betraying a strength her body wouldn’t show otherwise, and pulls up her skirt just high enough to reveal her sopping slit. She presses it into your " + clothesBottom() + " leaving a warm stain against your cock. She claws hungrily at your chest, revealing ever more of her feline nature as she nips at your neck hoping to entice you while she humps up and down the bulge of your " + cockDesc() + " erection.\n\nDespite the suddenness of it all, you find yourself responding. Her scent makes your head swim as you begin fumbling with your " + clothesBottom() + " until your schlong" + plural(1) + " slap" + plural(3) + " against her drooling pussy with a sloppy slurping noise. She rubs herself against your " + cockDesc() + " member, making you shiver in time with her slow, deep thrusts. She starts to pant heavily and your skin tingles as it rubs against hers. Before either of you can angle " + OneYour(1) + " " + cockDesc() + " erection" + plural(1) + " to penetrate her, her whole body quakes and sprays your loins with hot, slick female cum. It rushes down your " + legDesc(2) + " and down to her feet. The smell reeks of the particular scent which makes it obvious that she is deep in her heat, if her desperation wasn't a big enough hint.",True)
+               outputMainText("A young female rushes down the street, moving with a much more feline quality than the other females of Tieden. She looks to be in a mild panic, scanning the crowds until her eyes lock onto your body. She undresses you with her eyes, lingering on the bulge in your " + clothesBottom() + " until she’s satisfied that you're the one she wants. By the time you notice she’s been teasing her nipples though her blouse, she is already half-way across the street, headed right for you!\n\nBefore you can react she’s already pressing her plush bosom to your body, grinding possessively against you as she coos in a decidedly un-Lupan manner. Preempting anything you might say, she pushes you against the wall, betraying a strength her body wouldn’t show otherwise, and pulls up her skirt just high enough to reveal her sopping slit. She presses it into your " + clothesBottom() + " leaving a warm stain against your cock. She claws hungrily at your chest, revealing ever more of her feline nature as she nips at your neck hoping to entice you while she humps up and down the bulge of your " + cockDesc() + " erection.\n\nDespite the suddenness of it all, you find yourself responding. Her scent makes your head swim as you begin fumbling with your " + clothesBottom() + " until your schlong" + plural(1) + " slap" + plural(3) + " against her drooling pussy with a sloppy slurping noise. She rubs herself against your " + cockDesc() + " member, making you shiver in time with her slow, deep thrusts. She starts to pant heavily and your skin tingles as it rubs against hers. Before either of you can angle " + oneYour(1) + " " + cockDesc() + " erection" + plural(1) + " to penetrate her, her whole body quakes and sprays your loins with hot, slick female cum. It rushes down your " + legDesc(2) + " and down to her feet. The smell reeks of the particular scent which makes it obvious that she is deep in her heat, if her desperation wasn't a big enough hint.",True)
                if ((cockSize * cockSizeMod) < eVagLimit(24)):
-                  outputMainText("\n\nYou, of course, are too happy to oblige. Shifting your hips and lifting her by her plump ass, you plunge " + OneYour(1) + " " + domName() + " cock" + plural(1) + " deep into her folds and don’t stop until you feel her deep, fleshy walls fight against you. She bites down on her lip to suppress a wild squeal while shoving your face into her breasts. There is a ripping sound as she tears open her blouse so she can feed you her firm teat. Sweet milk leaks into your mouth while you hump again and again into her hungry body.\n\nWith her taste and smell surrounding you, you don’t think you'll last terribly long. Each hard thrust brings her closer to a second climax and before you reach yours, she floods your " + cockDesc() + " rod with her slick juices again, washing your hips in cum and quivering around your shaft tightly. That sends you over the edge, pumping your load into her womb and dousing the lustful flames of her heat.",False)
+                  outputMainText("\n\nYou, of course, are too happy to oblige. Shifting your hips and lifting her by her plump ass, you plunge " + oneYour(1) + " " + domName() + " cock" + plural(1) + " deep into her folds and don’t stop until you feel her deep, fleshy walls fight against you. She bites down on her lip to suppress a wild squeal while shoving your face into her breasts. There is a ripping sound as she tears open her blouse so she can feed you her firm teat. Sweet milk leaks into your mouth while you hump again and again into her hungry body.\n\nWith her taste and smell surrounding you, you don’t think you'll last terribly long. Each hard thrust brings her closer to a second climax and before you reach yours, she floods your " + cockDesc() + " rod with her slick juices again, washing your hips in cum and quivering around your shaft tightly. That sends you over the edge, pumping your load into her womb and dousing the lustful flames of her heat.",False)
                else:
-                  outputMainText("\n\nUnfortunately you are simply too big for her to handle. Luckily though, she seems to be the resourceful type. With a nimble spring she wraps her arms around your shoulders and her legs around your waist so she can rock her sopping wet pussy along your " + cockDesc() + " cock" + plural(1) + ". She shivers and moans deeply, leaking her wet juices down your length while you hump back in time with her. All the while you are savoring the feeling of her folds against you.\n\nWith her scent so strong around you and her heat seeping right into your skin, you don’t last very long. She senses it and quickly pulls back. Without wasting any time, she takes the tip of " + OneYour(1) + " " + cockDesc() + " shaft" + plural(1) + " and presses it just far enough into her cunt that the eruptions of your seed course deep into her.",False)
+                  outputMainText("\n\nUnfortunately you are simply too big for her to handle. Luckily though, she seems to be the resourceful type. With a nimble spring she wraps her arms around your shoulders and her legs around your waist so she can rock her sopping wet pussy along your " + cockDesc() + " cock" + plural(1) + ". She shivers and moans deeply, leaking her wet juices down your length while you hump back in time with her. All the while you are savoring the feeling of her folds against you.\n\nWith her scent so strong around you and her heat seeping right into your skin, you don’t last very long. She senses it and quickly pulls back. Without wasting any time, she takes the tip of " + oneYour(1) + " " + cockDesc() + " shaft" + plural(1) + " and presses it just far enough into her cunt that the eruptions of your seed course deep into her.",False)
                if (cumAmount() < 5000):
                   outputMainText("\n\nShe sighs gratefully as you let her down off your cock and she haphazardly rearranges her clothes enough to be decent. \"I'm sorry. I just needed to get that taken care of. I still go into heat even though I'm more Lupan than ever. Please take a few coins for your trouble.\"\n\nWith that she hurries off again, still looking the males up and down predatorially despite the cum very plainly dripping from under her skirt. And that leaves you alone in the smell of sex and heat to get dressed and make your way back.",False)
                else:
@@ -10456,7 +10456,7 @@ def doProstitute():
                      outputMainText(" The younger priest starts to stroke your now highly sensitive and throbbing erection" + plural(1) + " in rhythm with the chanting, grinning as your pre begins leaking out at the slightest touch.",False)
                   outputMainText("All of the priests fuck you in rhythm with the chanting, changing places in turn, fucking all of your needy holes. You writhe in ecstasy as your whole body is used, giving in to your baser instincts, straining at the cuffs which limit how much you can move in rhythm with their tempo. You start climaxing uncontrollably, over and over, too overcome by your lust to bother counting them, for what seems like an eternity. The chanting takes on more desperate note and then, on one final word, all four of them cum simultaneously, filling your every hole to overflowing, with the rest spraying on your body, ripping one final climax out of you, more powerful than the rest, before you pass out in a haze of sheer bliss.",False)
                   if (vagTotal > 0):
-                     DoImpregnate(3)
+                     doImpregnate(3)
                   doLust(-math.floor(sen / 1.5),2,1,2)
                else:
                   milkAmount(1)
@@ -10480,7 +10480,7 @@ def doProstitute():
                   if (vagLimit() > 24):
                      outputMainText("\n\nYou were prepared for this. Your hungry cunt eagerly envelops and squeezes him. He grabs you by the waist now and begins to pound away into you with a great deal of force. You have been fucked like this before, but it still makes you bite your lip as you feel him push onto your back while his hands move to your breasts. He kneads and squishes them in his hands without remorse while his hips jack-hammer his thick cock into your depths. Very few times can you remember a fuck as great as this. Powerful waves of pleasure run through your body as you feel his hot breath on your neck.\n\nA sharp cry leaves your mouth as you feel something all too familiar... the strain of his knot as it pushes into you. It's then that the fast strokes of the Lupan become even faster and more powerful. You can barely contain yourself as plunges into you over and over again, his claws raking harshly over your skin; tomorrow's reminder of this encounter being etched into your skin brings you only more pleasure. You pant heavily, half in fear that this experienced lover is going to actually give you an orgasm, which only seconds later, hits like a rock. Your muscles tense up around him and you let out a small cry of pleasure as your eyes roll into the back of your head, but he does not stop or even slow down.\n\nEven after recovering from your climax, even after your pussy stops pulsing and trying to milk him, he continues on with his vigorous assault. It's only a front however. It is not long before his breath quickens and his pace becomes a bit more erratic. Just as he hits your buttons for one more climax, he plunges into you and you feel him reach his own. His cum fires into you like a hot stream and soon you find your belly distending a little bit as your pussy fills with his Lupan seed.\n\nIt takes him a few minutes to recover, catching his breath while waiting for his knot to deflate, but soon he pulls from you with a slurping noise and shoves his manhood back into his pants before leaving you in the alley.",False)
                      doLust(-math.floor(sen / 2),2,2)
-                     DoImpregnate(3)
+                     doImpregnate(3)
                   else:
                      outputMainText("\n\nWith a squeal of pain, you feel as he pushes against the entrance of your womb, your pussy stretches beyond anything you’ve ever experienced before. You look back and in the dim light, you realize that he’s not even fully in yet! Some still remains, as well as the painful looking knot. He mutters as he slowly pulls out of you. You turn around to face him, only to find that he is forcing you on your " + legDesc(6) + ".\n\nSuddenly his cock is in your mouth, his hands grab you roughly around the back of the head! He thrusts hard and strong, the pointed tip of his cock assaults your poor mouth mercilessly. Even if you try to fight, you are no match for the Lupan as he manages to continue his relentless charge down your throat. You feel a strange pain in your jaw and realize that he’s forcing his knot into your maw as well! You struggle and protest, but eventually the large bulb jams into your mouth. It’s hard to breathe, but you quickly fall into a rhythm, breathing through your nose when you can to grab fresh air. Your hands lower to your snatch, which you begin to rub furiously as the intruder in your mouth continues to ram down your throat. It doesn’t take long for the Lupan to near his end. You feel him tense up and you gag horrendously as he shoves himself as far down your throat as possible. You can feel every pulsing vein of his cock on your tongue as you try to push him out, but to no avail. You can feel something hot spray down your throat and a somewhat powerful wave of nausea trembles over you. Once his knot deflates, he pulls from your mouth, pulses of his seed still spray from his cock, filling your mouth as it goes. You swallow it all quickly, if only to get some air.\n\nPanting harshly, you stagger to your " + legDesc(10) + " while he leaves.",False)
                      doLust(math.floor(lib / 8),0,2)
@@ -10540,7 +10540,7 @@ def doProstitute():
                hrs = 2
                i += 1
             elif ((chance == 2) and (cockTotal > 0)):
-               outputMainText("As you wait on the corner of a bridge in a somewhat less-traveled area of Siz'Calit, a woman catches your eye. She walks with an awkward step... and she's already half naked! She spots you and instantly rushes up to you. The woman grabs you by the shoulders and nearly screams, \"You! Fuck me! I need to be filled NOW!\"\n\nBefore you can even attempt to negotiate a price, she's pulling you onto the floor and pulling your " + clothesBottom() + " off. You've heard that Felin women were forward... but you were never expecting this! As she pulls " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + " up and pulls her thong to the side, you realize why. Her puffy red nethers are a tell-tale sign that she's in heat.\n\nFeminine juices drip from the Felin's cunt onto your " + cockDesc() + " erection as she slides herself on you. You wince and grunt a bit as her pussy is surprisingly tight and she wastes no time before starting to bounce herself up and down on you. Her loud moans echo throughout the area as she finally has what she desires. The heat-driven Felin pounds herself against you repeatedly, using you as a living sex toy.\n\nIt doesn't take her long to drive you, and herself, over the edge and her nethers clasp over your " + cockDesc() + " member tightly, coaxing out your climax. You groan loudly as you buck up into her, shooting your seed deep inside of her and pushing her to another climax. She claws your shoulder and holds onto you tightly, letting out a feral growl as her heat is finally satisfied.\n\nYou both lay there panting heavily, drenched in your own fluids and sweat, as she pulls herself off of you. Cum and juices drip on the street as she throws some coins into your lap. You watch as she staggers off in an almost drunken looking state, her groin covered in fem cum and a small amount of your seed runs down her thigh.\n\nYou can't help but smirk as you notice that her thong is still out of place.",True)
+               outputMainText("As you wait on the corner of a bridge in a somewhat less-traveled area of Siz'Calit, a woman catches your eye. She walks with an awkward step... and she's already half naked! She spots you and instantly rushes up to you. The woman grabs you by the shoulders and nearly screams, \"You! Fuck me! I need to be filled NOW!\"\n\nBefore you can even attempt to negotiate a price, she's pulling you onto the floor and pulling your " + clothesBottom() + " off. You've heard that Felin women were forward... but you were never expecting this! As she pulls " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " up and pulls her thong to the side, you realize why. Her puffy red nethers are a tell-tale sign that she's in heat.\n\nFeminine juices drip from the Felin's cunt onto your " + cockDesc() + " erection as she slides herself on you. You wince and grunt a bit as her pussy is surprisingly tight and she wastes no time before starting to bounce herself up and down on you. Her loud moans echo throughout the area as she finally has what she desires. The heat-driven Felin pounds herself against you repeatedly, using you as a living sex toy.\n\nIt doesn't take her long to drive you, and herself, over the edge and her nethers clasp over your " + cockDesc() + " member tightly, coaxing out your climax. You groan loudly as you buck up into her, shooting your seed deep inside of her and pushing her to another climax. She claws your shoulder and holds onto you tightly, letting out a feral growl as her heat is finally satisfied.\n\nYou both lay there panting heavily, drenched in your own fluids and sweat, as she pulls herself off of you. Cum and juices drip on the street as she throws some coins into your lap. You watch as she staggers off in an almost drunken looking state, her groin covered in fem cum and a small amount of your seed runs down her thigh.\n\nYou can't help but smirk as you notice that her thong is still out of place.",True)
                hrs = 1
                cumAmount()
                doLust(-math.floor(sen / 2),2,1)
@@ -10591,7 +10591,7 @@ def doProstitute():
                   outputMainText(" Streams of your own semen fly into the air and land mostly on your chest.",False)
                outputMainText("You've broken in plenty of beginners, but this is one you probably won't be forgetting any time soon.\n\nTired from his exertions, you help him lay down and he pulls a bag of coins from beneath the bed.\n\n\"That was fun.\" He purrs softly as he puts the whole bag in your hands.",False)
                doLust(-math.floor(sen / 2),2,2)
-               DoImpregnate(4)
+               doImpregnate(4)
                hrs = 2
                i += 1
             elif ((chance == 6) and (cockTotal > 0) and (showBalls == True)):
@@ -10618,11 +10618,11 @@ def doProstitute():
                getCum = cumAmount()
                outputMainText("While roaming across the wooden bridges, wiggling your " + buttDesc() + " rear in hopes of attracting some sort of attention, you pause as you think you see someone approaching you. It's difficult to tell at first, since the slim felin steps off to the side multiple times along the way, nearly changing his path hesitantly before coming back on course, but sure enough he makes his way to you. Dark hair hanging just past his head, with bangs hanging over his eyes as if to hide behind them, the purple-furred felin takes his time speaking up. \"H-Hello? Umm... I... I think you look kinda cute and might be interested in, well... you know.\" Not once does he look up.\n\nYou smile and nod, gently taking his hand in yours and letting him silently lead the way back to his place. When you arrive, he quietly mumbles, \"W-We're here.\"\n\nYou give him another smile to assure him there's nothing to be nervous about, but you're caught off guard as he begins to strip even before you do. His slender figure has hardly any tone, quite small and lithe overall, covered in an oddly purple fur. You're not sure if the color is natural or if he's just been rolling around in a pile of berries, but the color does seem suitable for his shy demeanor. Even the rings of black fur around his neck and tip of his tail are reminiscent of some sort of collar. And upon his chest is another patch of dark fur in the shape of an ankh that also seems rather odd. But, your curiousity over his markings is quickly dismissed as he pulls down his pants to reveal a half-hardened prick that seems more excited about the upcoming venture than he is. Until he turns towards away and bends forward, his tight butt spreading and tail lifting for your access as he steadies himself against the wall.\n\nStill surrounded by silence, you take his body language as an obvious hint and slide " + pullUD(2) + " your " + clothesBottom() + " as well and begin to rub some life into your " + cockDesc() + " rod" + plural(1) + ". You close the distance and lean up against his back, softly running a hand up his spine to soothe his tensions. His tail flicks about in response, you tenderness actually elliciting a soft mewl from the quiet boy. Then you prepare to do what you came for.\n\n",True)
                if ((cockSize * cockSizeMod) < 14):
-                  outputMainText("Taking " + OneYour(1) + " " + cockDesc() + " cock in hand" + plural(1) + ", you guide it under his tail. You can feel him quiver beneath your body as you press yourself in, the warm hole tightening down on you.",False)
+                  outputMainText("Taking " + oneYour(1) + " " + cockDesc() + " cock in hand" + plural(1) + ", you guide it under his tail. You can feel him quiver beneath your body as you press yourself in, the warm hole tightening down on you.",False)
                elif ((cockSize * cockSizeMod) < 28):
-                  outputMainText("Grabbing up " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + ", you angle it under his tail. He noticeably shivers as you drive yourself into his smaller hole, stretching him out. There is no sign of pain as his ass clenches down upon you, though his breathing has definitely increased in pace.",False)
+                  outputMainText("Grabbing up " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ", you angle it under his tail. He noticeably shivers as you drive yourself into his smaller hole, stretching him out. There is no sign of pain as his ass clenches down upon you, though his breathing has definitely increased in pace.",False)
                else:
-                  outputMainText("Hefting up " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + ", you point it in a general direction under his tail. A much louder mewl escapes his lips as you ram yourself deep into his hole, stretching him tremendously. His legs give out for a moment as his own thorny cock bounces below his belly from the pulsing beat of his heart, nearly climaxing right then and there. After a few moments to gather his wits, though, he doesn't seem to be in much, if any, pain, and adjusts his feet to regain his stance the best he can with your girth stuck in his backside.",False)
+                  outputMainText("Hefting up " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ", you point it in a general direction under his tail. A much louder mewl escapes his lips as you ram yourself deep into his hole, stretching him tremendously. His legs give out for a moment as his own thorny cock bounces below his belly from the pulsing beat of his heart, nearly climaxing right then and there. After a few moments to gather his wits, though, he doesn't seem to be in much, if any, pain, and adjusts his feet to regain his stance the best he can with your girth stuck in his backside.",False)
                outputMainText("\n\nOnce fully engulfed by his flesh, you slowly begin to drag yourself back out. An erotic sigh accompanies your movements, the slender boy tensing beneath you. Which each subsequent thrust and tug of your member, he grows less and less silent, the air rapidly filling with louder and more frequent mewls and gasps. His legs quiver and dig into the floor while his claws scratch at the wooden wall. Eventually he even begins to thrust his rear back against you when you pull out, eagerly devouring your cock with a voracious hunger. His pointy prick drools with pre, swollen and ready to burst at any moment. Then, as your own pressure begins to rise, he slams back into you, clenching his ass tightly.\n\nHe drinks in your seed while his own flies up to the ankh on his chest, forming webs along his fur across the way. A loud cry of orgasmic pleasure defies his earlier disposition, fading in volume with your waning eruption, until he falls silent as he slumps to the floor, your softening cock slipping out.\n\n",False)
                if (getCum < 1000):
                   outputMainText("Hand pressed against his cum-filled belly, he breathes heavily and curls up on the floor in bliss.",False)
@@ -10646,7 +10646,7 @@ def doProstitute():
                if (gender == 1):
                   outputMainText("" + buttDesc() + " ass. Without any warning he pushes both into your ass",False)
                elif ((gender == 2) or (gender == 3)):
-                  outputMainText("" + vulvaDesc() + " puss" + plural(16) + ". Without any warning he pushes both into " + OneYour(2) + " slit" + plural(2) + "",False)
+                  outputMainText("" + vulvaDesc() + " puss" + plural(16) + ". Without any warning he pushes both into " + oneYour(2) + " slit" + plural(2) + "",False)
                outputMainText(".\n\nYou groan in pleasure as you are penetrated by two cocks, and gasp with a mixture of pain and pleasure as he begins to rapidly push all the way into your hungry hole with a loud and satisfied sounding grunt. It doesn't take him long to hilt inside of you, his massive balls resting against your bottom.\n\nHe stays that way, letting your hole get used to his size, then he begins to hump into you. He starts slowly, then begins to pick up pace, moaning and gasping with each thrust into your quivering hole. As he fucks you, his hands reach around and begin to rub your ",False)
                if (gender == 2):
                   outputMainText("" + clitDesc() + " clit" + plural(2) + "",False)
@@ -10659,7 +10659,7 @@ def doProstitute():
                   outputMainText("pussy",False)
                outputMainText(". Even through his own climax, he keeps rubbing your tender arousal, and brings you to orgasm, making your sexual fluids spill all over the bed.\n\nHe slowly pulls, out grinning at you. \"So, have you ever had a fuck like that sexy?\" he asks, sounding on the arrogant side about his size and skill in the sexual fields. As you turn to leave he presses a few more coins into your hand.\n\n\"A bonus, you're a good fuck.\" he tells you before he steps aside to let you leave his home.",False)
                if (vagTotal > 0):
-                  DoImpregnate(4)
+                  doImpregnate(4)
                if (cockTotal > 0):
                   cumAmount()
                doLust(-math.floor(sen / 2),2,1,2)
@@ -10683,7 +10683,7 @@ def doProstitute():
                hrs = 2
                i += 1
             elif ((chance == 2) and (gender == 1)):
-               outputMainText("Either feeling a little short of cash, or because it's a way to have fun and make some gold, you have decided to sell your body. Donning your " + currentClothes() + ", you stand on a corner of the hot streets of Oviasis, presenting your form for all to admire. Your " + cockDesc() + " package attracts many lustful gazes, however it seems today's whoring will not pay off.\n\nAs you are about to give up for a while and go find something more interesting to do, like eating, a young femmie male lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your " + cockDesc() + " cock" + plural(1) + " stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of " + OneYour(1) + " " + cockDesc() + " ",True)
+               outputMainText("Either feeling a little short of cash, or because it's a way to have fun and make some gold, you have decided to sell your body. Donning your " + currentClothes() + ", you stand on a corner of the hot streets of Oviasis, presenting your form for all to admire. Your " + cockDesc() + " package attracts many lustful gazes, however it seems today's whoring will not pay off.\n\nAs you are about to give up for a while and go find something more interesting to do, like eating, a young femmie male lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your " + cockDesc() + " cock" + plural(1) + " stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of " + oneYour(1) + " " + cockDesc() + " ",True)
                if (catCocks > 0):
                   outputMainText("barbed",False)
                elif (wolfCocks > 0):
@@ -14277,7 +14277,7 @@ def doSizCalit():
                            outputMainText(" Yet, she continues to hump against your body, her huge sensitive cunt slapping against you wildly until she comes again and again with even more mess.",False)
                         outputMainText(" You can't help but shortly come after her, your combined messes drenching the bed beneath you.\n\nOnce you have both calmed down, her panting returning to a soft purr, she takes some time to cuddle with you, licking your body to clean up some of the mess. But, it doesn't take long before the two of you pass out with the delightful stress, snuggling upon the moist bed.",False)
                   elif ((cockTotal > 0) and ((cockSize * cockSizeMod) <= eVagLimit(8 + 5 * lilaVulva))):
-                     outputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",False)
+                     outputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",False)
                      if (lilaPreg == -2):
                         outputMainText(" Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation.",False)
                      else:
@@ -14321,7 +14321,7 @@ def doSizCalit():
                      else:
                         outputMainText("she passes out within your arms, napping with a soft purr. You giggle a little and shrug, slowly slipping out of her and curling up around her, falling asleep as well.",False)
                   elif (clitSize <= eVagLimit(20 + 12.5 * lilaVulva)):
-                     outputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + OneYour(2) + " " + clitDesc() + " clit" + plural(2) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",False)
+                     outputMainText(" As she melts within your embrace, she gasps as she feels the tip of " + oneYour(2) + " " + clitDesc() + " clit" + plural(2) + " slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole.",False)
                      if (lilaPreg == -2):
                         outputMainText(" Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation.",False)
                      else:
@@ -14494,7 +14494,7 @@ def doSizCalit():
                                  doLust(10,0)
                               outputMainText("\n\nLila soon recovers from her bit of fun with red cheeks and tries to jump right in as well. Without thinking too well, she takes a swig and immediately falls forward into your body, unintentionally starting at your lap. Trying to play it off as part of the plan, the small girl begins to lick away at your groin, making you begin to really squirm.",False)
                               if (cockTotal > 0):
-                                 outputMainText(" Her tongue climbs higher and higher along " + OneYour(1) + " growing length" + plural(1) + ", not really looking at what it could possibly be. All that she does know is that once she reaches the tip, a bit of pre keeps seeping from a hole and her tongue keeps lapping up all she can to keep it clean, until strands of it stretch between you and her mouth and dribble down her chin.\n\nWhatever is in the stuff she used, it tingles tremendously and causes you to quickly buck and spurt all over the little girl's face. Caught by surprise, Lila jumps backward and wipes the stuff off with an arm, then proceeds to clean her arm off as well, making strange faces as she tastes the stuff.\n\nHer mother much more wary, the woman moves in to take care of the rest of the mess. Although, afraid to explain to her daughter what really just happened, she's left licking it up herself as though it was a normal occurence, giving you quite the evil eye. Though she can't help but giggle at the humor in the situation as her daughter continues to lick up the white spunk oblivious to its lewdness.",False)
+                                 outputMainText(" Her tongue climbs higher and higher along " + oneYour(1) + " growing length" + plural(1) + ", not really looking at what it could possibly be. All that she does know is that once she reaches the tip, a bit of pre keeps seeping from a hole and her tongue keeps lapping up all she can to keep it clean, until strands of it stretch between you and her mouth and dribble down her chin.\n\nWhatever is in the stuff she used, it tingles tremendously and causes you to quickly buck and spurt all over the little girl's face. Caught by surprise, Lila jumps backward and wipes the stuff off with an arm, then proceeds to clean her arm off as well, making strange faces as she tastes the stuff.\n\nHer mother much more wary, the woman moves in to take care of the rest of the mess. Although, afraid to explain to her daughter what really just happened, she's left licking it up herself as though it was a normal occurence, giving you quite the evil eye. Though she can't help but giggle at the humor in the situation as her daughter continues to lick up the white spunk oblivious to its lewdness.",False)
                                  doLust(-math.floor(sen / 2),2,1)
                                  if (cumAmount() > 2000):
                                     outputMainText("\n\nOn the other hand, she herself is having trouble keeping up with your enormous load, gulping down more and more despartely. Eventually, however, she gives up. Grabbing a bowl, she pushes it over the tip of your cock and presses it firmly against your urethra until the ejaculation comes to an abrupt halt, backing up inside of you.\n\nShe leans in and whispers in your ear. \"Could you please take care of that elsewhere? I'm afraid you're a bit too... messy to finish here, so if you don't mind...\"\n\nYou nod, understandingly. With Lila still busy, you hold the bowl tightly against your erection while you attempt to put on your clothes. Then you run out of the hut with a meager goodbye, rushing",False)
@@ -15167,7 +15167,7 @@ def doSizCalit():
                               if (cockTotal > 0):
                                  outputMainText(", your cock" + plural(1) + " exploding over the Mistress' womb,",False)
                               outputMainText(" and you drench Fidoris in your fem-cum.\n\nYour intense climax reverberates through the other two, causing the Mistress to writhe upon her bed and Fidoris to spray his seed against your own womb. The hot spunk coats your inner walls, being smeared about by his fur and mixed with your juices. The high energy permeates all three of you, quickly exhausting your muscles and minds.\n\nYou all soon pass out blissfully in your cozy states...",False)
-                              DoImpregnate(4)
+                              doImpregnate(4)
                               doLust(-math.floor(sen / 2),2,2)
                               doNext()
                               def doListen():
@@ -15193,8 +15193,8 @@ def doSizCalit():
                               if ((gender == 1) or ((gender == 3) and (percent() <= 50)) or (gender == 0)):
                                  outputMainText("you find yourself turned away from Fidoris, your " + buttDesc() + " rump grinding his small prick between your cheeks. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your butt first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into your moist ass.",False)
                               elif ((gender == 2) or (gender == 3)):
-                                 outputMainText("you find your " + legDesc(2) + " " + legVerb(2) + ", straddling Fidoris' lap, your " + vulvaDesc() + " slit" + plural(2) + " wedging around his small prick. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your folds first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into " + OneYour(2) + " wet cunt" + plural(2) + ".",False)
-                                 DoImpregnate(4)
+                                 outputMainText("you find your " + legDesc(2) + " " + legVerb(2) + ", straddling Fidoris' lap, your " + vulvaDesc() + " slit" + plural(2) + " wedging around his small prick. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your folds first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into " + oneYour(2) + " wet cunt" + plural(2) + ".",False)
+                                 doImpregnate(4)
                               outputMainText("\n\nThe two of you quickly begin writhing against each other within the mistress' belly, Fidoris plunging his cat-cock into you again and again. The barbs around the tip of his tiny prick scrape against the walls of your flesh insides, but not nearly large enough to cause any pain. The scraping merely arouses you further, bringing you to orgasm much faster, despite his small size. His little cock begins to squirt a smoldering batch of cum into you, making your own hips buck back in turn with climax.",False)
                               if ((gender == 1) or (gender == 3)):
                                  outputMainText(" Your cock" + plural(1) + " begin" + plural(3) + " to launch your cum within the confined space, smearing about the mistress' womb and making you both sticky.",False)
@@ -15216,7 +15216,7 @@ def doSizCalit():
                                  mistressRep += 1
                                  doEnd()
                         elif (buttonChoice == 11):
-                           outputMainText("Amazed at how large her pussy is, the bulge in your " + clothesBottom() + " throbs in anticipation. You pull out " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + ", thinking that she might actually be able to take your giant size. Fidoris and his mistress both blink at you for a moment, taking in what they see. Then, a giant, giddy grin grows upon her face.\n\n\"Yes!\" Her pussy squishes and squirts with a gush of feminine honey in her excitement.\n\nFidoris blushes as he steps towards you, gauging your massive erection. He wraps his arms around it, lifting it and helping you guide it into his mistress. The effort is a bit of a strain on his small build, relying mostly on the leverage from your body to kiss the tip of your cock against the soft flesh. From there, nature easily takes its course... if you consider the situation 'natural'.\n\nThe mistress lets out a long warbling moan as you step towards her, the velvelty folds sucking in your " + cockDesc() + " cock. Her belly begines to stretch, pulling out larger and longer to conform to your man-meat. Eventually, her belly begins to push past her chest, her arms wrapping around your cock from outside, hugging it close and grinding her many tits into it. And as you push her belly past her own head, she licks at her own fur, the sensation merely a light caress against your monster within. Eventually, you stand up against her vulva, pressing your body against her massive labia.\n\nYou both pause for a moment, relishing both the feeling of being completely engulfed/filled and the sensation of having a cock so large pushing a pussy so huge well past the mistress' own body. You squeeze her inner lips, the flesh hugging your body and oozing lubricant all about you.",True)
+                           outputMainText("Amazed at how large her pussy is, the bulge in your " + clothesBottom() + " throbs in anticipation. You pull out " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ", thinking that she might actually be able to take your giant size. Fidoris and his mistress both blink at you for a moment, taking in what they see. Then, a giant, giddy grin grows upon her face.\n\n\"Yes!\" Her pussy squishes and squirts with a gush of feminine honey in her excitement.\n\nFidoris blushes as he steps towards you, gauging your massive erection. He wraps his arms around it, lifting it and helping you guide it into his mistress. The effort is a bit of a strain on his small build, relying mostly on the leverage from your body to kiss the tip of your cock against the soft flesh. From there, nature easily takes its course... if you consider the situation 'natural'.\n\nThe mistress lets out a long warbling moan as you step towards her, the velvelty folds sucking in your " + cockDesc() + " cock. Her belly begines to stretch, pulling out larger and longer to conform to your man-meat. Eventually, her belly begins to push past her chest, her arms wrapping around your cock from outside, hugging it close and grinding her many tits into it. And as you push her belly past her own head, she licks at her own fur, the sensation merely a light caress against your monster within. Eventually, you stand up against her vulva, pressing your body against her massive labia.\n\nYou both pause for a moment, relishing both the feeling of being completely engulfed/filled and the sensation of having a cock so large pushing a pussy so huge well past the mistress' own body. You squeeze her inner lips, the flesh hugging your body and oozing lubricant all about you.",True)
                            if (showBalls == True):
                               outputMainText(" Your " + ballDesc() + " balls rest upon her bed, the honey drizzling over them as they squish comfortably between her legs.",False)
                            outputMainText(" You bury your face against her giant clitoris, nuzzling it at first before kissing and biting it. Quite quickly, the mistress begins to writhe behind your attention, grabbing and kneading her breasts so much that her nipples poke out from her gown. Her belly flesh twists about your member, urging you to start pumping while you still can. And so you oblige.\n\nAlthough your " + hipDesc() + " hips can hardly pull back, relative to the size of your endowment, you both shudder immensely. The grand genitals and all their nerves rubbing so gently against each other, with so much slime that you begin to slip on the floor from what just happens to spill out, you can tell this will end quickly. So, with a fervor, you begin to pump in and out, faster and faster, while you gnaw at her clit. The two of you wince and whine, trying to hold back the tsunami-like wave of instense climax in hopes of just a few more seconds of this extreme intercourse!\n\nYet, it's difficult to beat nature...",False)
@@ -15288,7 +15288,7 @@ def doOviasis():
                   getCum = 0
                   outputMainText("Her eagerness kicks in once again as she grabs your hand and pulls you along. Inside numerous torches line the walls and keep it well lit, though that doesn't help give you any idea where you're going. You pass through several forks in the tunnel, this underground network seemingly quite large, with few markings to help guide you through. Nevertheless, you quickly find yourself in what appears to be a bedroom. Various outfits glitter with jewels along one wall while another has a large bed of fluffy sheets and another leads to more tunnels. You don't exactly have time to look around though, as she pulls you right to the bed and gently pushes you onto the plush sheets.\n\nTaking the hint, you work at removing your clothes as she hastily begins to drop her own. Then undone clasp falls away with the rest of her cloak, her average-sized breasts standing perk with nipples standing beyond the soft smooth scales. Her frame is rather small, despite her height, her body being quite thin and lithe, with her lush fur masking the toned muscles underneath. Then her hands fiddle with her loin cloth for a bit, gasping when the air touches her nude genitals as the cloth falls away. Hefty testicles squirm with seed beneath a sheath that hugs around the large erection. Slick and smooth, the shaft runs straight to the rounded rim of a thick head which tapers to a point that drools with pre. And between her thighs more slick lubricant runs down her fur, a distinctly feminine aspect hidden behind the big balls.",True)
                   if (cockTotal > 0):
-                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + OneYour(1) + " own " + cockDesc() + " phallic endowment" + plural(1) + ", making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ",False)
+                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + oneYour(1) + " own " + cockDesc() + " phallic endowment" + plural(1) + ", making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ",False)
                      if (moistCalc(1) < 5):
                         outputMainText("slick",False)
                      elif (moistCalc(1) < 9):
@@ -15317,11 +15317,11 @@ def doOviasis():
                      doLust(-math.floor(sen / 2),2,1)
                      silPreg = 1
                   elif ((vagTotal > 0) and (vagLimit() > 28)):
-                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + OneYour(2) + " own " + vulvaDesc() + " slit" + plural(2) + ", making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ",False)
+                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + oneYour(2) + " own " + vulvaDesc() + " slit" + plural(2) + ", making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ",False)
                      if ((tallness / 2) < (vagSize * vagSizeMod)):
                         outputMainText("pushing your belly out from within, ",False)
                      outputMainText("until her balls slam against your " + buttDesc() + " rear beneath. Straddling her own scrotum to grind her hidden slit against as she moves, she begins to thrust through your tender flesh, making her moan and whine from the fantastic sensations your pussy provides. Her wings curl around to embrace you and steady herself, trapping you both within a dome made by her feathers. The heat rapidly begins to build as she pounds into you vigorously, panting and moaning as she begins to drool from the overwhelming lust.\n\nIt doesn't take long before she let's out a loud erotic vulpine howl. Hot spunk floods through your womb, gushing and churning as she presses her breasts against your " + boobDesc() + " chest. Her eyes clench as you climax as well, your walls chewing upon her erection and making her twitch sporadically. The hot heavy feeling of your pussy around her cock proves to be too much, forcing her to pull out to let the cooler air kiss her wet shlong as it finishes its explosion between the two of you, spitting across her scales and fur and your " + skinDesc() + ". The smell of sex rapidly intensifies within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...",False)
-                     DoImpregnate(dominant)
+                     doImpregnate(dominant)
                   else:
                      if (vagTotal > 0):
                         outputMainText("\n\nNoticing she is far too large for you and still having the sense to not hurt you,",False)
@@ -15523,7 +15523,7 @@ def doOviasis():
                   outputMainText(" multiple males approach you, noticing your rather generous amount of available pussies and beginning to stroke their stiffening appendages. They crowd around you, pulling " + pullUD(2) + " your " + clothesBottom() + " for easier access as they lift you up amongst them, " + legVerb(2) + " your " + legDesc(2) + " wide while their many cocks swarm about beneath you. Each of your holes soon finds a guest burrowing inside, stretching your " + vulvaDesc() + " lips all the way to accomodate the many invaders. The men all grunt and groan as they toss you about, jiggling you up and down in the air and thrusting in different rhythms. The whole situation is difficult to track, yet soon enough you can feel a flood of fluid spray about beneath you as they go off one after the other, each feeling the churning of cum through the walls of your separate cunts. Your own orgasm forces the semen to squirt about your thighs and drench their legs, with even more leaking out in collective gobs as the guys slowly bring you back down to the ground, your " + legDesc(2) + " a bit bowed from the experience.",False)
                   i = 0
                   while (i < vagTotal):
-                     DoImpregnate(6)
+                     doImpregnate(6)
                      i += 1
                   doLust(math.floor(-sen / 1.5),2,2)
                   tempInt += 1
@@ -15532,16 +15532,16 @@ def doOviasis():
                   outputMainText("\n\nThen ",False)
                if (vagTotal > 1):
                   outputMainText("a lizan man seems surprised to see your exra attributes. Already hard from thinking about it, he happily kisses you and presses his two pricks against your " + bellyDesc() + " belly before each slips them " + legWhere(1) + " your " + legDesc(2) + " to dive into seperate passages. He hugs you tight as he plunges both in at the same time, quivering slightly as he can feel himself through the fleshy wall that separates the rods. In and out, pre and lubrication spitting into the cleft between the bases of the two cocks and dribbling down his scrotum. He nuzzles into your neck, grunting loudly as both things jerk inside of you, pounding both holes in unison until painting them with spunk. You can feel both wombs filling at almost the same time, bringing you to quite a high. The experience was so powerful that when he eventually pulls out, he's as limp as a noodle and can hardly participate in the orgy anymore...",False)
-                  DoImpregnate(6)
-                  DoImpregnate(6)
+                  doImpregnate(6)
+                  doImpregnate(6)
                   doLust(math.floor(-sen / 2),2,2)
                   tempInt += 1
                   hrs += 1
                if ((tempInt > 0) and ((vagSize * vagSizeMod) > 30)):
                   outputMainText("\n\nSoon after, ",False)
                if ((vagSize * vagSizeMod) > 30):
-                  outputMainText("one of the males approaches you, stroking his double dongs as they point towards you. He nudges you towards a wall until you lean back up against it and he lifts your " + legDesc(2) + " for easier access to your slit" + plural(2) + ". Smiling at how large " + OneYour(2) + " hole" + plural(2) + " is, just from glancing at it, he grabs his two cocks together and inserts them both slowly into your entrance, letting you stretch and easily gobble them both up. Delighted with how well he was able to get both into your passageway, he immediately begins to thrust, bouncing you up and down the side of the wall, letting your body toss about with it. You brace yourself, biting your lip as he thoroughly fucks you, his cocks slipping past each other and twisting about inside of you. The feel of your walls with the thumping of his wangs together quickly makes his tail curl around behind him, flexing as he pumps two large loads into you at the same time. You climax soon after, squeezing his cocks back out as they soften, spunk spilling from your " + vulvaDesc() + " pussy, the hole still gaping after he releases your " + legDesc(2) + ".",False)
-                  DoImpregnate(6)
+                  outputMainText("one of the males approaches you, stroking his double dongs as they point towards you. He nudges you towards a wall until you lean back up against it and he lifts your " + legDesc(2) + " for easier access to your slit" + plural(2) + ". Smiling at how large " + oneYour(2) + " hole" + plural(2) + " is, just from glancing at it, he grabs his two cocks together and inserts them both slowly into your entrance, letting you stretch and easily gobble them both up. Delighted with how well he was able to get both into your passageway, he immediately begins to thrust, bouncing you up and down the side of the wall, letting your body toss about with it. You brace yourself, biting your lip as he thoroughly fucks you, his cocks slipping past each other and twisting about inside of you. The feel of your walls with the thumping of his wangs together quickly makes his tail curl around behind him, flexing as he pumps two large loads into you at the same time. You climax soon after, squeezing his cocks back out as they soften, spunk spilling from your " + vulvaDesc() + " pussy, the hole still gaping after he releases your " + legDesc(2) + ".",False)
+                  doImpregnate(6)
                   doLust(math.floor(-sen / 2),2,2)
                   tempInt += 1
                   hrs += 1
@@ -15549,7 +15549,7 @@ def doOviasis():
                   outputMainText("\n\nHaving had a moment to gather yourself, ",False)
                outputMainText("your attention is taken by one of the few lizan girls there, who waves you over as she lays on her back with a guy on top of her. You move closer and see she's already plugged up with one of his two shlongs. Looking a tad pained, it seemed the guy tried to fit both in at the same time, to no success, leaving his other cock bouncing awkwardly upon her clit. Yet, with you there, she's able to get a bit more fun as she directs you to lay on top of her, mushing her soft breasts against your own. She leans up to kiss you, pressing your " + buttDesc() + " rump down so the man can slip his other schlong into you while your own " + clitDesc() + " clit grinds against hers. A few seconds pass as the three of you gain momentum and soon you become a writhing mass, humping against each other with the twin pistons plunging into the shared cunts. The girl's tongue swirls around yours and her hands reach between to pinch each your nipples together. The man quickly begins to seize, greatly enjoying the taste of pussies from two different girls, and gushes within. A slight harmony of vibrations can be felt between your two bellies, causing both of your to cry out into each others mouths in orgasm. Eventually, the guy can't stand it anymore and has to pull out to collapse in bliss, letting his spunk drip down from your pussy onto hers and down her crack to her tail. The girl, however, remains latched on for a couple minutes longer before letting go with an enthused gasp, rolling you off to catch her breath.",False)
                doLust(math.floor(-sen / 2),2,2)
-               DoImpregnate(6)
+               doImpregnate(6)
                tempInt += 1
                hrs += 2
                outputMainText("\n\nHaving taken all you can for now, you slowly clean yourself up and thank the carnal group for the delightful experience, then walk away with a satisfied kink in your step.",False)
@@ -16282,7 +16282,7 @@ def doDesert():
                   getCum = 0
                   outputMainText("Her eagerness kicks in once again as she grabs your hand and pulls you along. Inside numerous torches line the walls and keep it well lit, though that doesn't help give you any idea where you're going. You pass through several forks in the tunnel, this underground network seemingly quite large, with few markings to help guide you through. Nevertheless, you quickly find yourself in what appears to be a bedroom. Various outfits glitter with jewels along one wall while another has a large bed of fluffy sheets and another leads to more tunnels. You don't exactly have time to look around though, as she pulls you right to the bed and gently pushes you onto the plush sheets.\n\nTaking the hint, you work at removing your clothes as she hastily begins to drop her own. Then undone clasp falls away with the rest of her cloak, her average-sized breasts standing perk with nipples standing beyond the soft smooth scales. Her frame is rather small, despite her height, her body being quite thin and lithe, with her lush fur masking the toned muscles underneath. Then her hands fiddle with her loin cloth for a bit, gasping when the air touches her nude genitals as the cloth falls away. Hefty testicles squirm with seed beneath a sheath that hugs around the large erection. Slick and smooth, the shaft runs straight to the rounded rim of a thick head which tapers to a point that drools with pre. And between her thighs more slick lubricant runs down her fur, a distinctly feminine aspect hidden behind the big balls.",True)
                   if (cockTotal > 0):
-                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + OneYour(1) + " own " + cockDesc() + " phallic endowment" + plural(1) + ", making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ",False)
+                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + oneYour(1) + " own " + cockDesc() + " phallic endowment" + plural(1) + ", making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ",False)
                      if (moistCalc(1) < 5):
                         outputMainText("slick",False)
                      elif (moistCalc(1) < 9):
@@ -16311,11 +16311,11 @@ def doDesert():
                      doLust(-math.floor(sen / 2),2,1)
                      silPreg = 1
                   elif ((vagTotal > 0) and (vagLimit() > 28)):
-                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + OneYour(2) + " own " + vulvaDesc() + " slit" + plural(2) + ", making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ",False)
+                     outputMainText("\n\nShe crawls up your " + legDesc(2) + ", licking at " + oneYour(2) + " own " + vulvaDesc() + " slit" + plural(2) + ", making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ",False)
                      if ((tallness / 2) < (vagSize * vagSizeMod)):
                         outputMainText("pushing your belly out from within, ",False)
                      outputMainText("until her balls slam against your " + buttDesc() + " rear beneath. Straddling her own scrotum to grind her hidden slit against as she moves, she begins to thrust through your tender flesh, making her moan and whine from the fantastic sensations your pussy provides. Her wings curl around to embrace you and steady herself, trapping you both within a dome made by her feathers. The heat rapidly begins to build as she pounds into you vigorously, panting and moaning as she begins to drool from the overwhelming lust.\n\nIt doesn't take long before she let's out a loud erotic vulpine howl. Hot spunk floods through your womb, gushing and churning as she presses her breasts against your " + boobDesc() + " chest. Her eyes clench as you climax as well, your walls chewing upon her erection and making her twitch sporadically. The hot heavy feeling of your pussy around her cock proves to be too much, forcing her to pull out to let the cooler air kiss her wet shlong as it finishes its explosion between the two of you, spitting across her scales and fur and your " + skinDesc() + ". The smell of sex rapidly intensifies within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...",False)
-                     DoImpregnate(dominant)
+                     doImpregnate(dominant)
                   else:
                      if (vagTotal > 0):
                         outputMainText("\n\nNoticing she is far too large for you and still having the sense to not hurt you,",False)
@@ -17879,7 +17879,7 @@ def doOldCave():
                         doNext()
                         def doListen():
                            global getCum, ment, sen, hrs
-                           outputMainText("The thought doesn't make it a second time through your mind before you find yourself crashing to your " + legDesc(6) + ", the ground rumbling as you touch down. You collapse over the hill, thrusting " + OneYour(1) + " cock" + plural(1) + " into the natural glory hole. And much to your surprise, the internal walls of the cave seem to be coated with a slick substance, lubricating you through its dark interior. With your giant size, the rocks feel like mere bumps, more pleasurable than you could have imagined, and the ground soon shakes again and again as you hump into the hill.\n\nRather quickly, you let out a loud shout that echoes across the fields.",True)
+                           outputMainText("The thought doesn't make it a second time through your mind before you find yourself crashing to your " + legDesc(6) + ", the ground rumbling as you touch down. You collapse over the hill, thrusting " + oneYour(1) + " cock" + plural(1) + " into the natural glory hole. And much to your surprise, the internal walls of the cave seem to be coated with a slick substance, lubricating you through its dark interior. With your giant size, the rocks feel like mere bumps, more pleasurable than you could have imagined, and the ground soon shakes again and again as you hump into the hill.\n\nRather quickly, you let out a loud shout that echoes across the fields.",True)
                            if (getCum > 10000):
                               outputMainText(" You can feel your spunk churn and gush around you. Though some of it spits back out across your thighs, painting the mouth of the cave, most of it amazingly guzzles deeper into the ground. So much so that you could swear you hear a small \"EEK!\" cry out from within, though your brain is too foggy to be sure.",False)
                            else:
@@ -19526,18 +19526,18 @@ def knotholeUpstairs():
             global gender
             global doListen
             if (gender == 2):
-               outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn" + plural(16) + ". The next thing you feel, is a thick, canine shaft thrusting into " + OneYour(2) + " puss" + plural(16) + ", a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
+               outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn" + plural(16) + ". The next thing you feel, is a thick, canine shaft thrusting into " + oneYour(2) + " puss" + plural(16) + ", a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
             if (gender == 1):
                outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your stiffened shaft. You wiggle your ass teasingly and spread your legs wide, giving him a nice view of your tailhole. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you start to tease your cock, lightly stroking it with a few fingers, starting to please yourself in front of the Lupan male.\n\nThe teasing not enough, you grip your rod tighter, stroking faster, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nHard, moaning, and so lost in yourself, you don't notice the male now behind you. The next thing you feel, is a thick, canine shaft thrusting into your ass, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your tight hole.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your ass drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your tailhole stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your rump feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
             if (gender == 3):
-               outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing " + OneYour(1) + " shaft" + plural(1) + " down " + legWhere(1) + " your " + legDesc(2) + ", giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt" + plural(16) + ". The next thing you feel, is a thick, canine shaft thrusting into " + OneYour(2) + " puss" + plural(16) + ", a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
+               outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing " + oneYour(1) + " shaft" + plural(1) + " down " + legWhere(1) + " your " + legDesc(2) + ", giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt" + plural(16) + ". The next thing you feel, is a thick, canine shaft thrusting into " + oneYour(2) + " puss" + plural(16) + ", a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
             doNext()
             def doListen():
                global vagTotal, sen, hrs
                outputMainText("A couple hours later, you wake up and find yourself laying on a bench, clothes stacked next to you, and feeling very relieved from the experience.\n\nGathering your clothes, and trying to stand, you wobble a bit, still feeling the fuck you had not long ago, your ",True)
                if (vagTotal > 0):
                   outputMainText("pussy",False)
-                  DoImpregnate(3)
+                  doImpregnate(3)
                else:
                   outputMainText("ass",False)
                outputMainText(" dripping a bit from the cum still filling it as you -slowly- take your leave of the knothole.",False)
@@ -19969,7 +19969,7 @@ def doRape():
       if (gender == 3):
          outputMainText("You stuff your cock in the test enemy's butt, then sit on its cock and cum.",True)
    if (enemyID == 201):
-      outputMainText("You easily roll the wolf onto his back. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you squat your " + vulvaDesc() + " cunt over his sheath, wedging it between your folds while you grind against it. Once his bright red prick twitches as it stretches from its sheath, reaching long and hard while dribbling with pre, you slip it into " + OneYour(2) + " hungry hole" + plural(2) + ". You bounce on top of his belly,",True)
+      outputMainText("You easily roll the wolf onto his back. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you squat your " + vulvaDesc() + " cunt over his sheath, wedging it between your folds while you grind against it. Once his bright red prick twitches as it stretches from its sheath, reaching long and hard while dribbling with pre, you slip it into " + oneYour(2) + " hungry hole" + plural(2) + ". You bounce on top of his belly,",True)
       if (moistCalc(2) > 7):
          outputMainText(" your honey splashing about everywhere,",False)
       outputMainText(" his hard doggy dick scraping against your inner walls. The lone wolf howls and drools, his tongue lolling out the side of his muzzle, as hot spurts of fresh cum gush within you. You shudder at the raw sensation, squeezing his coarse fur between your thighs. Then, you shiver as you feel the base of his cock swell, knotting within you. You collapse beside him, your pussy throbbing with orgasm, as you gasp and moan with his howls...",False)
@@ -19980,7 +19980,7 @@ def doRape():
       else:
          outputMainText("satiated cunt,",False)
       outputMainText(" the cock sliding out with cum dripping down " + legWhere(1) + " your " + legDesc(2) + ".",False)
-      DoImpregnate(enemyBaby())
+      doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,2)
    if (enemyID == 202):
       outputMainText("You easily roll the wolf onto his back. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you squat your " + buttDesc() + " ass over the pointy prick. You grab the hard, meaty rod and gently squeeze out some of the pre, slipping it about between your cheeks to make things nice and slick. Slowly sitting down, you wince as the narrow tip kisses your tight hole and moan as it slides in, easily stretching your ass around its curvy girth.",True)
@@ -19994,7 +19994,7 @@ def doRape():
       chance = percent()
       if (gender == 1) or ((percent() <= 50) and (gender == 3)):
          if (chance <= 100):
-            outputMainText("The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you slide " + OneYour(1) + " " + cockDesc() + " prick" + plural(1) + " out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.",True)
+            outputMainText("The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you slide " + oneYour(1) + " " + cockDesc() + " prick" + plural(1) + " out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.",True)
             if ((cockSize * cockSizeMod) > eVagLimit(40)):
                outputMainText("\n\nHowever, she cries out in pain and disappointment, your " + cockDesc() + " cock far to big to fit inside without tearing her apart. So, instead, you slip it between her legs, rubbing it across her stiff clit and through her loincloth and over her belly as you ",False)
             if ((cockSize * cockSizeMod) <= eVagLimit(40)) and ((cockSize * cockSizeMod) > eVagLimit(24)):
@@ -20020,7 +20020,7 @@ def doRape():
          if (vagLimit() < 32):
             outputMainText("\n\nHis man-meat is far too large for your cunt" + plural(2) + " however, so you do the next best thing and sit down in his lap. Grinding your hips forward, your " + clitDesc() + " clit" + plural(2) + " hump" + plural(4) + " into his length. The long prick squeezes between your " + boobDesc() + " tits as you press against him, making him tense even more.",False)
          else:
-            outputMainText("\n\nYou plunge down onto his giant man-meat with " + OneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + ". It fills you up so much you grin with a drool. You hug him close, your " + boobDesc() + " tits pressing against his firm chest, making the thing inside you even harder.",False)
+            outputMainText("\n\nYou plunge down onto his giant man-meat with " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + ". It fills you up so much you grin with a drool. You hug him close, your " + boobDesc() + " tits pressing against his firm chest, making the thing inside you even harder.",False)
          outputMainText(" Your hips jerk up and down again and again as you rub along his length. Tingling sparks between the two of you as you feel his softball-sized testicles tighten up beneath your " + buttDesc() + " butt. Within seconds, the two of you echo in ecstacy, his whinnying quickly over-taking your moans,",False)
          if (vagLimit() < 32):
             outputMainText(" his cock erupting like a volcano between the two of you",False)
@@ -20032,9 +20032,9 @@ def doRape():
             if (cockTotal > 0) and (cumAmount() > 0):
                outputMainText(", while yours sprays across his chest and face",False)
             outputMainText(".\n\nYou don't give him much time to recover as you pull him out, a bit of after-cum gushing across your clit" + plural(2) + ".",False)
-            DoImpregnate(enemyBaby())
+            doImpregnate(enemyBaby())
       elif (gender == 1) or (gender == 3):
-         outputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + pullUD(2) + " your " + clothesBottom() + " and brandishing " + OneYour(1) + " own " + cockDesc() + " cock" + plural(1) + ". You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.",True)
+         outputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + pullUD(2) + " your " + clothesBottom() + " and brandishing " + oneYour(1) + " own " + cockDesc() + " cock" + plural(1) + ". You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.",True)
          outputMainText("\n\nHe whinnies loudly as you plunge your " + cockDesc() + " erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,",False)
          if (cumAmount() > 0):
             outputMainText(" while yours erupts into his ass, churning his insides,",False)
@@ -20068,12 +20068,12 @@ def doRape():
       doLust(-math.floor(sen / 2),2,1,2)
    if (enemyID == 304):
       if (vagTotal > 0) and (vagLimit() > 80):
-         outputMainText("Somehow managing to push the little big bunny-man onto his tail, you pull " + pullUD(2) + " your " + clothesBottom() + ", climb up through his thighs, and plant your " + legDesc(10) + " on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, " + legVerb(5) + " it at the top with your " + legDesc(2) + ". The narrow tip easily fits between your thighs and slips into " + OneYour(2) + " " + vulvaDesc() + " vagina" + plural(4) + " as you descend upon it.\n\nHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.",True)
+         outputMainText("Somehow managing to push the little big bunny-man onto his tail, you pull " + pullUD(2) + " your " + clothesBottom() + ", climb up through his thighs, and plant your " + legDesc(10) + " on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, " + legVerb(5) + " it at the top with your " + legDesc(2) + ". The narrow tip easily fits between your thighs and slips into " + oneYour(2) + " " + vulvaDesc() + " vagina" + plural(4) + " as you descend upon it.\n\nHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.",True)
          if (tallness < 180):
             outputMainText(" Your belly begins to stretch as the tip burrows through your inner flesh, the giant cock filling you tremendously. By the time your " + buttDesc() + " rump lands upon his balls, your " + legDesc(2) + " wedge" + legPlural(1) + " into his sheath, the " + skinDesc() + " of your belly reaches past your head. You stand again to fuck his massive prick, though... you quickly find it's difficult to manage such a thing with his body so much larger that yours.\n\nTo your surprise, you find a white hand wrapping around your body, hugging you against the cock. Before you know it, you're being lifted into the air, slipping up the shaft, only to come back down once more. Difficult to tell who's raping who at the point, but he overtaken bunny-man masturbates with you as his toy. Fast and faster he pumps you up and down his length, quickly bringing you both to orgasm. His seed gushes into your belly, causing it to visibly ripple and distend from outside. It splashes back down the cock and spills around his sheath, quickly soaking through the fur of his balls. The warmth sends you to climax as well, slowly slipping off his shlong as it receeds into his sheath...",False)
          else:
             outputMainText(" Taking in his entire length, you bounce again and again, letting it penetrate you thoroughly. His long foot beats against the ground in ecstasy while the whiskers around his nose twitch. It doesn't take long for him to freeze, his hips bucking into you, as your cunt fills with his seed, spilling back down around his sheath and soaking into the fur on his balls.",False)
-         DoImpregnate(enemyBaby())
+         doImpregnate(enemyBaby())
       else:
          outputMainText("Rather intimidated by his size, you still manage to pull his head down until he's on all fours. You pull " + pullUD(2) + " your " + clothesBottom() + " and shove his face into your naked groin. He quickly notices your scent and lustfully opens his mouth. You debate whether this is actually rape or not as he seems eager to lap at your",True)
          if (gender == 1):
@@ -20118,7 +20118,7 @@ def doRape():
    if (enemyID == 306):
       outputMainText("Conceding to your assault rather willingly, she actually bends back over her tail and pulls up her sash, exposing herself to you. A supple slit amidst her belly-scales, the green of her scales part with a delicious and moist pink tunnel. Her fingers even roam down to part herself for you, waiting for you to please yourself with her.",True)
       if (cockTotal > 0):
-         outputMainText("\n\nYou prepare " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + " as you remove it from your " + clothesBottom() + ". You slide it over the scales of her tail as you approach her hips, making her shiver expectantly.",False)
+         outputMainText("\n\nYou prepare " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " as you remove it from your " + clothesBottom() + ". You slide it over the scales of her tail as you approach her hips, making her shiver expectantly.",False)
          if ((cockSize * cockSizeMod) > eVagLimit(80)):
             outputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and her eyes go wide as you begin to press in. Your member far greater than her large yet tight entrance, her hips seem to unhinge, her lower maw stretching wider and wider to take in your full girth. The belly-scales distend with the thick rod driving deeper within, filling her so much that she wraps the tip of her tail around her chest and over her face, squeezing and biting it in ecstasy.",False)
          else:
@@ -20126,7 +20126,7 @@ def doRape():
          outputMainText("\n\nThe muscular flesh gnaws around your cock once you're fully devoured, making you collapse into the soft-scaled body. Your face presses into her chest, sneaking beneath the silken shawl and nibbling at the hills therein, making her writhe beneath you. Your hips quickly find a rhythm with hers, though her inner walls seem to be doing most of the work. Twisting and tenderly gnashing upon the meat you've fed her, the velvety flesh makes you both moan and shudder. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're spraying your seed inside and she's clawing at her own scales in orgasm.\n\nAfter blowing your load, it takes another several minutes before her muscles release your softening member, allowing you to slip out and stumble back.",False)
          cumAmount()
       else:
-         outputMainText("\n\nYou pull " + pullUD(2) + " your own " + clothesBottom() + " to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your " + vulvaDesc() + " lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh.\n\nYou grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don't see the tip of her tail sneaking up behind you. It's not until you pleasantly find the thick thing pressing itself into " + OneYour(2) + " hole" + plural(2) + " that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're bucking your hips and she's bucking back in orgasm.\n\nAfter an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.",False)
+         outputMainText("\n\nYou pull " + pullUD(2) + " your own " + clothesBottom() + " to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your " + vulvaDesc() + " lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh.\n\nYou grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don't see the tip of her tail sneaking up behind you. It's not until you pleasantly find the thick thing pressing itself into " + oneYour(2) + " hole" + plural(2) + " that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're bucking your hips and she's bucking back in orgasm.\n\nAfter an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.",False)
       doLust(-math.floor(sen / 2),2,1,2)
    if (enemyID == 307):
       outputMainText("You pull " + pullUD(2) + " your " + clothesBottom() + " and push the Minotaur down onto his ",True)
@@ -20135,10 +20135,10 @@ def doRape():
          if (vagLimit() < 72):
             outputMainText(" Way too big for you, the most you can do is sit your " + buttDesc() + " ass down on his head-sized testicles and hug yourself around his rod, grinding against it. He doesn't seem to mind though and rather eagerly snorts in excitement, taking your efforts as a rather physical lap dance. He grunts and groans as you grind your " + clitDesc() + " clit" + plural(2) + " against his shaft, especially when you begin to lick and knead his thick head.\n\nRather abruptly, steam blows out his bovine nostrils as spunk blows out his cock. The stuff sprays hard, making you lean back to dodge direct contact with the geyser. You focus more on getting yourself off as you're showered with semen from above, until your hips are twitching and bucking against his meat.\n\nHe was probably more pleasured by the performance than you were, but you manage.",False)
          else:
-            outputMainText(" You climb up his bulky body and he doesn't make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into " + OneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + ". The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your " + buttDesc() + " ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work.\n\nIt's a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He's a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you...\n\nYou continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...",False)
-            DoImpregnate(enemyBaby())
+            outputMainText(" You climb up his bulky body and he doesn't make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + ". The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your " + buttDesc() + " ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work.\n\nIt's a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He's a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you...\n\nYou continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...",False)
+            doImpregnate(enemyBaby())
       else:
-         outputMainText("face and flip up his loin cloth to expose his large ass. The thing looks rather used already, though, and it doesn't take much to push in " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + ". The bull-man even snorts across the floor like he was enjoying it and his large meaty cock rises to attention below him. Nevertheless, you continue to pump in and out grand rump, slapping the hard muscular buttocks",False)
+         outputMainText("face and flip up his loin cloth to expose his large ass. The thing looks rather used already, though, and it doesn't take much to push in " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ". The bull-man even snorts across the floor like he was enjoying it and his large meaty cock rises to attention below him. Nevertheless, you continue to pump in and out grand rump, slapping the hard muscular buttocks",False)
          if (showBalls == True):
             outputMainText(" while your " + ballDesc() + " balls slap against his head-sized testicles",False)
          outputMainText(" and you're both quick to start spraying your loads. Yours gurgles down deeper into his body while his nearly knocks himself out with the blast, plenty of semen volleying into his face and pooling below him.\n\nOnce you're satisfied, you have this nagging feeling like he might have enjoyed it more. Whatever the case may be, you got what you wanted.",False)
@@ -20149,9 +20149,9 @@ def doRape():
       if ((cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24))) or ((vagTotal > 0) and (clitSize < 60)):
          outputMainText("Pulling " + pullUD(2) + " your " + clothesBottom() + ", you angle ",False)
          if (cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24)):
-            outputMainText("" + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
+            outputMainText("" + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
          else:
-            outputMainText("" + OneYour(2) + " " + clitDesc() + " clit" + plural(2) + "",False)
+            outputMainText("" + oneYour(2) + " " + clitDesc() + " clit" + plural(2) + "",False)
          outputMainText(" towards her tight dainty folds, sinking it in as you push her down upon it as she lets out a slightly pained yet quite erotic squeal. By the time you're completely hilted inside of her, the protruding clit in front bucks up and down, jerking just from being penetrated. Such sensitivity only makes you want to thrill her more, making up for the pain she's given to you. You lift her slightly and slam her back down, thrusting with your hips in rhythm.\n\n\"Eeek!\" She cries out from the rough treatment, but the immediate cooing thereafter and the warmth you feel coming from her only shows that she enjoys it more. So the more you give to her...\n\nPounding again and again, you plow the small body in your lap, making her bounce up and down with your thrusting alone. The pigtails flail about, her mouth yawning wide and Mr. Snuggles riding on top of her tiny erection. She practically burns in your embrace, wildly reaching moaning and gasping orgasms while your own climax goes off",False)
          if (cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24)):
             outputMainText(", your spunk spraying into her womb",False)
@@ -20169,9 +20169,9 @@ def doRape():
       if (cockTotal > 0) or ((vagTotal > 0) and (clitSize > 20)):
          outputMainText("\n\nYou plunge ",False)
          if (cockTotal > 0):
-            outputMainText("" + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
+            outputMainText("" + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
          else:
-            outputMainText("" + OneYour(2) + " " + clitDesc() + " clit" + plural(2) + "",False)
+            outputMainText("" + oneYour(2) + " " + clitDesc() + " clit" + plural(2) + "",False)
          outputMainText(" into her awaiting entrance, pushing in deep.",False)
          if (cockTotal > 0) and ((cockSize * cockSizeMod) > 48):
             outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your cock pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False)
@@ -20183,7 +20183,7 @@ def doRape():
             outputMainText(", spraying your seed inside of her until it's pouring back out against your combined thighs",False)
          outputMainText(".",False)
       else:
-         outputMainText("\n\nYou fall to your knees and push your face into her nethers. You bite into the swollen labia and lick up through the crevice, devouring her sex until you can feel her quiver. The plush flesh around your face feels pleasant, encouraging you to dive in more, slipping your tongue in and out of her hole while her ass shakes in delight.\n\nAnd while you're busy eating out the oversexual pussy, the serpentine tail creeps down to " + OneYour(2) + " own. The spade at the tip of the tail folds in on itself, narrowing for a quick entrance into your tunnel. You buck as you're caught off guard, but with your face planted in her round ass you quickly sit back down, driving her tail deeper into you.\n\nThe succubus seems pleased with the way things are, content with bringing you to orgasm as you do so for her. She lets out an ecstatic shrill, her wings spreading wide as she climaxes, a flood of honey pouring down around your mouth. The tail inside of you unfurls and drags across your inner walls, making your hips twitch with a writhing high in turn.",False)
+         outputMainText("\n\nYou fall to your knees and push your face into her nethers. You bite into the swollen labia and lick up through the crevice, devouring her sex until you can feel her quiver. The plush flesh around your face feels pleasant, encouraging you to dive in more, slipping your tongue in and out of her hole while her ass shakes in delight.\n\nAnd while you're busy eating out the oversexual pussy, the serpentine tail creeps down to " + oneYour(2) + " own. The spade at the tip of the tail folds in on itself, narrowing for a quick entrance into your tunnel. You buck as you're caught off guard, but with your face planted in her round ass you quickly sit back down, driving her tail deeper into you.\n\nThe succubus seems pleased with the way things are, content with bringing you to orgasm as you do so for her. She lets out an ecstatic shrill, her wings spreading wide as she climaxes, a flood of honey pouring down around your mouth. The tail inside of you unfurls and drags across your inner walls, making your hips twitch with a writhing high in turn.",False)
       outputMainText(" Yet, the climax feels a bit more draining than you might have expected. You feel slightly weaker, your body seemingly slimming down a bit, as the vials around the woman's belt glow slightly.\n\n\"Mmmm~\" She moans in concert with the glow. \"Tastes sooo good~\"\n\nJust as you thought you had been the one in charge the whole time, the succubus pulls away from you and comes to a stand while zipping herself up. \"That was a nice snack~\"",False)
       stats(-1,0,0,0)
       body = body - 1
@@ -20200,7 +20200,7 @@ def doGetRaped():
          outputMainText("The test enemy pokes its cock in your vagina and cums while stroking you off.",True)
    if (enemyID == 101):
       if (cockTotal > 0):
-         outputMainText("As your growing erection" + plural(1) + " spill" + plural(3) + " from your " + clothesBottom() + ", the cock-snake's mouth grows wide. It slithers forward, engulfing " + OneYour(1) + " cock" + plural(1) + ", its mouth stretching wider and wider to fully engulf it, its body so elastic it could take on any length.\n\nIn an instant, your body begins to writhe and shudder as the cock-snake's gullet strongly massages along your length, quickly building you to orgasm. You clench at the ground beneath you as the cum is sucked right from your body, your hips jerking while you pump it out. The cock-snake guzzles it down, drinking it until you're completely finished, some of the spunk splashing back out across your thighs...\n\nHunger sated, the cock-snake slithers away",True)
+         outputMainText("As your growing erection" + plural(1) + " spill" + plural(3) + " from your " + clothesBottom() + ", the cock-snake's mouth grows wide. It slithers forward, engulfing " + oneYour(1) + " cock" + plural(1) + ", its mouth stretching wider and wider to fully engulf it, its body so elastic it could take on any length.\n\nIn an instant, your body begins to writhe and shudder as the cock-snake's gullet strongly massages along your length, quickly building you to orgasm. You clench at the ground beneath you as the cum is sucked right from your body, your hips jerking while you pump it out. The cock-snake guzzles it down, drinking it until you're completely finished, some of the spunk splashing back out across your thighs...\n\nHunger sated, the cock-snake slithers away",True)
          if (cumAmount() > 2300):
             outputMainText(", its belly obviously distended from your massive load",False)
          outputMainText(".",False)
@@ -20224,7 +20224,7 @@ def doGetRaped():
             outputMainText("\n\nHowever, it seems to not be satisfied with what it has found. Barely sating any of your desire, the snake turns around and slithers off, completely losing interest...",False)
             doLust(-5,0)
    if (enemyID == 201):
-      outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs your cunt" + plural(2) + ", lapping at the wetness that soaks through your " + clothesBottom() + ". He jumps up, clawing your " + clothesBottom() + " to shreds until your " + vulvaDesc() + " hot crotch is put on display. Scratching your back, he mounts you from behind.\n\nHis rock-hard rod pokes and prods around your sex until it finds " + OneYour(2) + " gaping hole" + plural(2) + " and plunges it in. You gasp as the steaming meaty flesh pounds into you, the wolf roughly humping away, the inner fur of his thighs rubbing back and forth along your " + buttDesc() + " naked bum. He hugs you with his paws, his muzzle panting beside your ear while drool drips down from his lolling tongue and down your cheek. It only takes a minute before he howls loudly, cum spurting into your pussy at an astonishing rate. You shout as it floods your insides, a thick knot growing at your entrance and spreading you open further...",True)
+      outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs your cunt" + plural(2) + ", lapping at the wetness that soaks through your " + clothesBottom() + ". He jumps up, clawing your " + clothesBottom() + " to shreds until your " + vulvaDesc() + " hot crotch is put on display. Scratching your back, he mounts you from behind.\n\nHis rock-hard rod pokes and prods around your sex until it finds " + oneYour(2) + " gaping hole" + plural(2) + " and plunges it in. You gasp as the steaming meaty flesh pounds into you, the wolf roughly humping away, the inner fur of his thighs rubbing back and forth along your " + buttDesc() + " naked bum. He hugs you with his paws, his muzzle panting beside your ear while drool drips down from his lolling tongue and down your cheek. It only takes a minute before he howls loudly, cum spurting into your pussy at an astonishing rate. You shout as it floods your insides, a thick knot growing at your entrance and spreading you open further...",True)
       changeBot(-1)
       doNext()
       outputMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated cunt in an attempt to get away. Still tied by his knot, his cock squirting away within, ",False)
@@ -20238,7 +20238,7 @@ def doGetRaped():
       else:
          outputMainText("but your gaping cunt is more than enough to handle it,",False)
       outputMainText(" until it finally pulls free and he runs back off into the forest.",False)
-      DoImpregnate(enemyBaby())
+      doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,1)
    if (EnemyID == 202):
       outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your " + clothesBottom() + " to shreds until your " + buttDesc() + " ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff.\n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own " + cockDesc() + " erection" + plural(1) + " burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...",True)
@@ -20253,7 +20253,7 @@ def doGetRaped():
          outputMainText(", delighting in the taste of your milk",False)
       outputMainText(". However, it doesn't take long until she reaches beneath her loin cloth and pulls her bikini bottom to the side before she goes diving into your " + clothesBottom() + ",",False)
       if (gender == 1) or (gender == 3):
-         outputMainText(" digging out " + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + ".",False)
+         outputMainText(" digging out " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ".",False)
          if ((cockSize * cockSizeMod) > eVagLimit(40)):
             outputMainText(" She attempts to stand and squat down upon it, but, to her dismay, she can't seem to push it into her hungry pussy, even though she tried until tears welled up in her eyes from the painful stretching. Instead, she settles for hugging and humping the " + cockDesc() + " thing, grinding her own stiff little erection into it, her feminine juices spilling down its length and over your body.",False)
          elif ((cockSize * cockSizeMod) > eVagLimit(20)):
@@ -20275,11 +20275,11 @@ def doGetRaped():
          if (clitSize > 25):
             outputMainText(" With a wicked grin, she eyes your " + clitDesc() + " clit" + plural(2) + " hungrily.",False)
             if (clitSize > 100):
-               outputMainText(" She attempts to stand and squat down upon " + OneYour(2) + " erect button" + plural(2) + ", but, to her dismay, she can't seem to push it into her hungry pussy, even though she tried until tears welled up in her eyes from the painful stretching. Instead, she settles for hugging and humping the " + clitDesc() + " thing, grinding her own stiff little erection into it, her feminine juices spilling down its length and over your body.",False)
+               outputMainText(" She attempts to stand and squat down upon " + oneYour(2) + " erect button" + plural(2) + ", but, to her dismay, she can't seem to push it into her hungry pussy, even though she tried until tears welled up in her eyes from the painful stretching. Instead, she settles for hugging and humping the " + clitDesc() + " thing, grinding her own stiff little erection into it, her feminine juices spilling down its length and over your body.",False)
             elif (clitSize > 50):
-               outputMainText(" She mewls and mrowls in pain as she stands up and squats down upon " + OneYour(2) + " erect button" + plural(2) + ". It spreads her so wide that it hurts her so much, yet she doesn't care, so desperate to fuck. Tears roll down her cheeks, but her mouth yawns wide with erotic joy, being filled so much.",False)
+               outputMainText(" She mewls and mrowls in pain as she stands up and squats down upon " + oneYour(2) + " erect button" + plural(2) + ". It spreads her so wide that it hurts her so much, yet she doesn't care, so desperate to fuck. Tears roll down her cheeks, but her mouth yawns wide with erotic joy, being filled so much.",False)
             else:
-               outputMainText(" She rises up, only to squat back down upon " + OneYour(2) + " erect button" + plural(2) + ", your clit slipping into her supple folds. So absolutely overjoyed to finally have a hard phallic object in her, she scratches at your chest with her claws and bites down upon your neck.",False)
+               outputMainText(" She rises up, only to squat back down upon " + oneYour(2) + " erect button" + plural(2) + ", your clit slipping into her supple folds. So absolutely overjoyed to finally have a hard phallic object in her, she scratches at your chest with her claws and bites down upon your neck.",False)
          else:
             outputMainText(" She glides back up your chest and presses her sloppy cunt to yours, grinding the two together.",False)
          outputMainText(" Her hips speed up faster and faster, wildly working her pussy so much that the slick liquids spilling from her gurgle and churn into a bubbly mess. You too find her efforts to be extremely effective, your body quaking along with her.",False)
@@ -20292,7 +20292,7 @@ def doGetRaped():
       if (gender == 1) or ((gender == 3) and (percent() <= 50)):
          outputMainText(" Nevertheless, not caring whether you're male or female, he turns you over to find the hole everybody has. Giving your " + buttDesc() + " ass a slap with his mug, he leans forward and plunges his erection deep inside.",False)
       elif (gender == 2) or (gender == 3):
-         outputMainText(" Nevertheless, he slips his arms behind your " + legDesc(6) + ", pushing them up and foward as his cock plows into " + OneYour(2) + " cunt" + plural(2) + ".",False)
+         outputMainText(" Nevertheless, he slips his arms behind your " + legDesc(6) + ", pushing them up and foward as his cock plows into " + oneYour(2) + " cunt" + plural(2) + ".",False)
          if (vagLimit() < 12):
             outputMainText(" You cry out in pain as the cock slams against your entrance, completely unable to fit. So, instead, the the horny equan turns you over, plunging his erection deep into your " + buttDesc() + " ass until you can see it bulge through your belly.",False)
             doHP(-5)
@@ -20300,14 +20300,14 @@ def doGetRaped():
             outputMainText(" With a cry, the large horse-cock proves too big for your relatively small pussy, stretching it dramatically and causing you some pain.",False)
             vagChange(3,0)
             doHP(-math.floor(eStr / 2))
-            DoImpregnate(enemyBaby())
+            doImpregnate(enemyBaby())
          elif (vagLimit() < 52):
             outputMainText(" You wince as it pushes in too far, pounding your cervix further and further into your belly, permanently stretching you a bit.",False)
             vagChange(1,0)
-            DoImpregnate(enemyBaby())
+            doImpregnate(enemyBaby())
          else:
             outputMainText(" You feel it push against your belly from within, the mound slightly protruding through your " + skinDesc() + ", taking his entire length inside of you.",False)
-            DoImpregnate(enemyBaby())
+            doImpregnate(enemyBaby())
       outputMainText(" Again and again, he has his way with your hole, until he lets out a loud whinny. Eyes going wide, you feel a flood of his hot stuff flush into your body, making you lose all thoughts of everything else...",False)
       if (cumAmount() > 0):
          outputMainText(" Your cock" + plural(1) + " explode" + plural(3) + " across the ground just before you collapse, forming a nice puddle to splash in.",False)
@@ -20315,7 +20315,7 @@ def doGetRaped():
       doLust(-math.floor(sen / 2),2,2,5)
    if (enemyID == 303):
       if (gender == 1):
-         outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into your " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + OneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
+         outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into your " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + oneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
          if ((cockSize * cockSizeMod) > 50):
             outputMainText(" Not wanting to stretch herself to engulf your " + cockDesc() + " thing, she instead wraps her tentacles around it, drawing it towards the center of her webbing, just beneath her hips.\n\nYou can't tell what is going on, but you quickly jerk as something nips at your urethra. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is begins to dig into your urethra, spreading the last couple of inches wider as it slips inside, holding your cock-tip open like a gaping hole.\n\nAgain, she is gentle, but any pain you might have noticed quickly disappears as all eight of her tentacles work together in harmony, writhing about your cock and making you twitch sporadically on the ground from the intense pleasure. She wrings your cock powerfully, quickly bringing you to a gushing orgasm, spraying your cum through your gaping urethra and filling her body.",False)
          else:
@@ -20345,7 +20345,7 @@ def doGetRaped():
                   i = len(pregArray)
                i += 5
       if (gender == 3):
-         outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into you " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + OneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
+         outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into you " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + oneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
          if ((cockSize * cockSizeMod) > 50):
             outputMainText(" Not wanting to stretch herself to engulf your " + cockDesc() + " thing, she instead wraps her tentacles around it, drawing it towards the center of her webbing, just beneath her hips.\n\nYou can't tell what is going on, but you quickly jerk as something nips at your urethra. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is begins to dig into your urethra, spreading the last couple of inches wider as it slips inside, holding your cock-tip open like a gaping hole.\n\nAgain, she is gentle, but any pain you might have noticed quickly disappears as all eight of her tentacles work together in harmony, writhing about your cock and making you twitch sporadically on the ground from the intense pleasure. She wrings your cock powerfully, quickly bringing you to a gushing orgasm, spraying your cum through your gaping urethra and filling her body.",False)
          else:
@@ -20379,7 +20379,7 @@ def doGetRaped():
          doLust(-math.floor(sen / 2),2,1)
    if (enemyID == 304):
       if (vagTotal > 0) and (vagLimit() > 80):
-         outputMainText("A smirk crosses the bunny-man's face as you fall before him, your cunt" + plural(2) + " dripping with arousal. His own conical prick twitches in his sheath at the size of you gaping maw, even in your reduced state, eager to hop in and make you his new bunny-hole. He falls to his knees and wraps his arms around your body, his hips quickly closing the gap between your heights. You can hardly tell at first that " + OneYour(2) + " slit" + plural(2) + " is being penetrated, the narrow tip relatively small. But as he quickly plows the rest of his length in, your eyes nearly cross from the rapid change in girth.",True)
+         outputMainText("A smirk crosses the bunny-man's face as you fall before him, your cunt" + plural(2) + " dripping with arousal. His own conical prick twitches in his sheath at the size of you gaping maw, even in your reduced state, eager to hop in and make you his new bunny-hole. He falls to his knees and wraps his arms around your body, his hips quickly closing the gap between your heights. You can hardly tell at first that " + oneYour(2) + " slit" + plural(2) + " is being penetrated, the narrow tip relatively small. But as he quickly plows the rest of his length in, your eyes nearly cross from the rapid change in girth.",True)
          if (tallness < 160):
             outputMainText(" You can feel your belly distend, your vaginal flesh stretching out within to match the shape of his cock.",False)
          if (tallness < 80):
@@ -20388,7 +20388,7 @@ def doGetRaped():
          if (cockTotal > 0):
             outputMainText(", barely noticing the extra stickiness upon his fur that rubs against your belly as your own erection" + plural(1) + " explode" + plural(3) + "",False)
          outputMainText(".\n\nAll you seem to remember is the fact that he doesn't stop until you feel yourself begin to grow. He comes to an abrupt halt, yanking out while his spunk still spits between your thighs, and soon backs off as you begin to return to your normal state, though not quite...",False)
-         DoImpregnate(enemyBaby())
+         doImpregnate(enemyBaby())
       else:
          outputMainText("A smirk crosses the bunny-man's face as you fall to your " + legDesc(6) + ". He lunges forward to hold you up, his conical prick bobbing before your face. So lost in lust, your mouth subconsciously opens as you feel a supple tip press against it, sucking it in until you quickly find your jaw wedged open by the increasing girth. Just the tip of his penis is all that manages to fit inside, but he doesn't seem to care. He twirls what little there is around the inside of your mouth, pressing it down against your tongue. Your tongue lashes back, your throat sucking it in as it tries to gulp down the pre that leaks.\n\nThough he can't face-fuck you too well, he seems perfectly happy pleasuring the rest of his shaft with a hand. With each stroke of his length, your whole body bobs to keep up with the stiffness that holds your mouth agape. Until he comes to an abrupt halt...\n\nYour throat goes numb as hot seed gushes down it. You don't even have time to swallow, it's so forceful and so plentiful. Some sprays back out from your nose and even your eyes feel wet and slightly sticky from something that isn't tears. Your stomach quickly fills and you feel oh so full... For a moment, your hands can wrap around your belly as it distends to obscene sizes.\n\nHowever, oddly, you soon find yourself sucking in more and more of his length. Your extended belly shrinks as it's able to contain more of the stuff, your throat regaining composure. As your body grows out from his hands, he suddenly pulls out from you, spraying the last bit from your face. He quickly hops away as you begin to nearly grow to your normal size, though your head is still oversexed.",True)
       doLust(-math.floor(sen / 2),2,1,5)
@@ -20419,7 +20419,7 @@ def doGetRaped():
    if (enemyID == 306):
       outputMainText("Pleased with your less-threatening state, she takes her time to tower over your prone body and wraps her tail around your " + hipDesc() + " hips and " + legDesc(2) + ", holding you still with her strength and leans in to taste her prey...\n\nPulling " + pullUD(1) + " your " + clothesTop() + ", she licks over the " + skinDesc() + " of your belly with her long serpentine tongue. She glides down, constricting her tail in an oscillating fashion to help pull your " + clothesBottom() + " " + pullUD(2) + " enough to access your",True)
       if (cockTotal > 0):
-         outputMainText(" " + cockDesc() + " erection" + plural(1) + ". Pleased with what she finds, she caresses " + plural(9) + " with her fingers and lavishes the tip" + plural(1) + " with her tongue, darting in and out of the urethra" + plural(1) + " pleasantly.\n\nQuite satisfied with your flavor, she drags her silk-covered breasts over the rod" + plural(1) + ", grinding her body up yours until the sash dangles over your glans. Lifting the cloth, her own awaiting sex spills a clear drop from the pink flesh that runs down through the valley of her fused thighs. Holding you tightly with her tail, she lifts " + OneYour(1) + " member" + plural(1) + " up and drives herself down to devour it.",False)
+         outputMainText(" " + cockDesc() + " erection" + plural(1) + ". Pleased with what she finds, she caresses " + plural(9) + " with her fingers and lavishes the tip" + plural(1) + " with her tongue, darting in and out of the urethra" + plural(1) + " pleasantly.\n\nQuite satisfied with your flavor, she drags her silk-covered breasts over the rod" + plural(1) + ", grinding her body up yours until the sash dangles over your glans. Lifting the cloth, her own awaiting sex spills a clear drop from the pink flesh that runs down through the valley of her fused thighs. Holding you tightly with her tail, she lifts " + oneYour(1) + " member" + plural(1) + " up and drives herself down to devour it.",False)
          if ((cockSize * cockSizeMod) > eVagLimit(80)):
             outputMainText("\n\nMuch larger than the entrance you're being forced into, the naga lets out a loud moan. The maw stretches to widen over your girth and you think even her hips unhinge to gobble you whole. The belly-scales bulge as you fill her up and she doesn't stop until you're completely sheathed inside of her. Her claws dig into your skin and she hisses in delight, her tail 'hugging' you tighter.",False)
          else:
@@ -20432,7 +20432,7 @@ def doGetRaped():
    if (enemyID == 307):
       outputMainText("The Minotaur grunts. \"Good. Could use a fuck!\"\n\nNot exactly a romantic, he lifts you by your " + legDesc(8) + " and pulls off your " + clothesBottom() + " so it's out of the way. He continues to " + legVerb(3) + " your " + legDesc(2) + ", inspecting what you have before he goes further. Shrugging at what he finds, he waggles his hips so that his big fat bulky cock flops out from behind his loin cloth. Already stiff and willing to go, pre dribbles down from the tip and lubes up your entire crotch, running into all your cracks and crevices.",True)
       if (vagTotal > 0) and (vagLimit() > 72):
-         outputMainText(" He proceeds to stuff his massive schlong into " + OneYour(2) + " cunt" + plural(2) + " with a loud slurp, pushing in until he can see his own cock bulge out from your belly.",False)
+         outputMainText(" He proceeds to stuff his massive schlong into " + oneYour(2) + " cunt" + plural(2) + " with a loud slurp, pushing in until he can see his own cock bulge out from your belly.",False)
       elif (vagTotal > 0):
          outputMainText(" With your cunt" + plural(2) + " obviously too small, he proceeds to stuff his massive schlong into your ass with a loud slurping squish.",False)
       else:
@@ -20443,7 +20443,7 @@ def doGetRaped():
          cumAmount()
       outputMainText(".\n\nWith all the flurry of the abrupt orgasm, the Minotaur then lets go of you, making you shiver as you slide down his shaft and plop onto the floor, seed pooling out of your orifice...",False)
       if (vagTotal > 0) and (vagLimit() > 72):
-         DoImpregnate(enemyBaby())
+         doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,2)
    if (enemyID == 308):
       outputMainText("Seeing you in your helpless state, the girl growls in delight. \"MMM... PREY~,\" Mr. Snuggles drops to the floor as her attention grows more focused upon you. Only then do you notice the large hole between the doll's legs, looking a bit moist as though it had been used many times and never able to dry. The reason for its existence also begins to grow quite clear while the freaky little girl paws at her own crotch.\n\nEach time she lifts her skirt with her fondling, you can see a bulge growing and pressing at her small panties. At first it looks like a rather large clitoris, but it continues to sweel rapidly. It bows outward, a meaty length of flesh bunching up within. Eventually, the waistband of the panties gives way, letting the phallic monster loose and lifting her skirt altogether. It coninues to grow all the way up to the little girl's chest, thick and throbbing and eager for a good meal. The cock is large and seems even larger compared to the rest of her small body, growing upward from her dripping feminine sex that is exposed from the fallen undies.\n\nShe rubs herself a bit, pleased to have it big and horny again, perfect for impaling you~ She bends down to the floor, scratching at the ground with her nails. Walking on all fours like and animal, her cock thumps up and down against her chest as she creeps toward you, sniffing at you to make sure you're ready. She crawls up between your legs, nipping here and there at your " + currentClothes() + ", until she finally reaches your chest. She pulls " + pullUD(1) + " your " + clothesTop() + " with her teeth, exposing your " + nipDesc() + " nipples which she promptly bites down upon. Hearing you gasp in slight pain and pleasure, ",True)
@@ -20451,7 +20451,7 @@ def doGetRaped():
          outputMainText("a few drops of your milk rewarding her, ",False)
       outputMainText("she finds you to be ready and she rams her large thing into",False)
       if (vagTotal > 0):
-         outputMainText(" " + OneYour(2) + " cunt" + plural(2) + "",False)
+         outputMainText(" " + oneYour(2) + " cunt" + plural(2) + "",False)
          if (vagLimit() < 16):
             outputMainText(", stretching you terribly wide and making you yelp in pain",False)
             vagChange(4,0)
@@ -20467,17 +20467,17 @@ def doGetRaped():
          outputMainText(" your ass, stirring up your insides as she forces her way through",False)
       outputMainText(".\n\nThe little girl quickly begins to thrust her small hips, powerfully drilling into you again and again as she keeps her jaw clamped around your nipple, not letting go as she fucks your brains out. Each thrust makes your whole body jerk, her strength far more formidable than her figure might let on. It doesn't take long before you feel her spraying her seed inside of you, but that doesn't stop her. She continues on and on, bringing you to your own high from the rough treatment, and she doesn't stop there...",False)
       if (vagTotal > 0):
-         DoImpregnate(enemyBaby())
-         DoImpregnate(enemyBaby())
+         doImpregnate(enemyBaby())
+         doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,2)
    if(enemyID == 309):
       outputMainText("The succubus grins as you give yourself to her. \"That's right, you know what's best for you~\"\n\nHigh-heels click on either side of you as the she-devil positions herself over you. She zips her red panties right down the center, making them part to expose her engorged large feminine lips. The things look plump and practically made for intense fucking, which only leads you to be even more anxious for her to take you. However, before you can attempt to lunge at her, she squats down and sits upon your " + bellyDesc() + " belly and leans forward to grab your arms up above your head. Pinning you to the floor, her ample bosom engulfs your face, burrowing you inside her cleavage while her hips grind against you, her plush pussy slickening up your " + skinDesc() + ".",True)
       if (cockTotal > 0) or ((vagTotal > 0) and (clitSize > 20)):
          outputMainText("\n\nHer tail wraps around ",False)
          if (cockTotal > 0):
-            outputMainText("" + OneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
+            outputMainText("" + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
          else:
-            outputMainText("" + OneYour(2) + " " + clitDesc() + " clit" + plural(1) + "",False)
+            outputMainText("" + oneYour(2) + " " + clitDesc() + " clit" + plural(1) + "",False)
          outputMainText(" and pulls it up to her awaiting hole. She teases you for a bit, sliding your tip through her thick folds, letting the supple flesh tempt you until your hips are eager to thrust all the way in. Once you're groaning and begging for her cunt, she lets your erection slip, plunging her rump back onto your shaft and impaling herself upon you.",False)
          if (CockTotal > 0) and ((cockSize * cockSizeMod) > 48):
             outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until you can see your own cock pushing back out against her belly, her body easily taking you in and hugging you tightly with her warmth.",False)
@@ -20488,7 +20488,7 @@ def doGetRaped():
             cumAmount()
             outputMainText(" Your spunk blows within her, filling her insides and drooling back out to your crotch. She doesn't seem to retain much of your cum, though.",False)
       else:
-         outputMainText("\n\nShe seems perfectly content with fucking your belly, the stiffening clitoris rumbling against you, while she keeps you planted within her bosom. Completely restrained, you're unable to resist as her tail dances between your legs. The spade at the tip folds in upon itself, growing narrow just before it drives into " + OneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + " and burrowing deep inside to fill you the best it can. You can feel it unfurl within, anchoring itself within your tunnel and spreading you apart. It pumps in and out, making you twitch and squirm beneath you. The woman keeps you pinned, however, and continues to grind against you as she fucks you with her tail. Completely dominated and at her mercy, you're rapidly growing tingly and eventually going numb as you climax.",False)
+         outputMainText("\n\nShe seems perfectly content with fucking your belly, the stiffening clitoris rumbling against you, while she keeps you planted within her bosom. Completely restrained, you're unable to resist as her tail dances between your legs. The spade at the tip folds in upon itself, growing narrow just before it drives into " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + " and burrowing deep inside to fill you the best it can. You can feel it unfurl within, anchoring itself within your tunnel and spreading you apart. It pumps in and out, making you twitch and squirm beneath you. The woman keeps you pinned, however, and continues to grind against you as she fucks you with her tail. Completely dominated and at her mercy, you're rapidly growing tingly and eventually going numb as you climax.",False)
       outputMainText("\n\nAs you orgasm, you can feel yourself being drained by more than just the sensual high. You become weaker, smaller, as though any sense of strength is being drained from you while your craving for sex grows stronger, making you more of a slutty bitch that is only good for being fucked. And all the while the vials around the succubus' belt glow as they fill themselves with what you're drained of, sending the she-devil to her own sort of orgasm.\n\nOh god, yes! Give it to me~!\" She siezes upon you, letting your essence flow throughout her and her vials until she's full. Then she slowly rises, removing her tail and sliding her fingers through her naked and now rather drippy sex before bringing them to her mouth for a taste. \"Mmm... You were definitely full of 'spunk' to have gotten this far. I'm glad I could dine on it~\"",False)
       stats(-2,-1,2,0)
       submissiveFetish += 0.05
@@ -21179,7 +21179,7 @@ def doStatus(param1:int):
          if (pregArray[i + 3] + math.ceil(param1 * pregRate) > pregArray[i + 2] + pregTimeMod):
             pregArray[i] = False
             pregArray[i + 3] = 0
-            DoBirth(pregArray[i + 1], pregArray[i + 4], _loc2_)
+            doBirth(pregArray[i + 1], pregArray[i + 4], _loc2_)
             _loc2_ += 1
          else:
             if (pregArray[i + 1] != 503):
@@ -21224,15 +21224,15 @@ def doStatus(param1:int):
       if (_loc4_ == 1):
          if (percent() < ((ment / 2) + 20)):
             if (eggType == 0):
-               outputMainText("\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of " + OneYour(2) + " " + vulvaDesc() + " nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your " + clothesBottom() + " where it cracks and spreads into a wet mess.\n\nYolky goop squishing in your groin with little bits of white shell jabbing you here and there, you take a moment to pull out the broken unfertilized egg and attempt to clean up after yourself...",False)
+               outputMainText("\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of " + oneYour(2) + " " + vulvaDesc() + " nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your " + clothesBottom() + " where it cracks and spreads into a wet mess.\n\nYolky goop squishing in your groin with little bits of white shell jabbing you here and there, you take a moment to pull out the broken unfertilized egg and attempt to clean up after yourself...",False)
             if (eggType == 1):
-               outputMainText("\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of " + OneYour(2) + " " + vulvaDesc() + " nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your " + clothesBottom() + " where it squishes and spreads into a wet mess.\n\nSlimy goop squishing in your groin with little bits of squishy shell sliding about, you take a moment to pull out the broken unfertilized bug egg and attempt to clean up after yourself...",False)
+               outputMainText("\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of " + oneYour(2) + " " + vulvaDesc() + " nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your " + clothesBottom() + " where it squishes and spreads into a wet mess.\n\nSlimy goop squishing in your groin with little bits of squishy shell sliding about, you take a moment to pull out the broken unfertilized bug egg and attempt to clean up after yourself...",False)
          else:
             if (eggType == 0):
                outputMainText("\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + this.oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying it off, you have something to snack on later.",False)
                itemAdd(219)
             if (eggType == 1):
-               outputMainText("\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + OneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying it off, you have something to snack on later.",False)
+               outputMainText("\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying it off, you have something to snack on later.",False)
                itemAdd(253)
       if (_loc4_ > 1):
          if (percent() < ((ment / 2) + 20 - (4 * _loc4_))):
@@ -21242,12 +21242,12 @@ def doStatus(param1:int):
                outputMainText("\n\nHaving been distracted and unable to lay for such a long time, you are unprepared for the buildup of spherical objects within your womb. You double over as you feel them crowd against the inside of your " + vulvaDesc() + " nether-lips, your thighs clenching to hold them back, but the smooth slick objects press on through anyways. They squeeze out into your " + clothesBottom() + " where they pile up and squish, spreading into a wet mess.\n\nSlimy goop squishing in your groin with little bits of squishy shell sliding about, you take a moment to pull out the broken unfertilized bug eggs and attempt to clean up after yourself...",False)
          else:
             if (eggType == 0):
-               outputMainText("\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + OneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying them all off, you have some snacks for later.",False)
+               outputMainText("\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying them all off, you have some snacks for later.",False)
                while (_loc4_ > 0):
                   itemAdd(219)
                   _loc4_ -= 1
             if (eggType == 1):
-               outputMainText("\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + OneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying them all off, you have some snacks for later.",False)
+               outputMainText("\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying them all off, you have some snacks for later.",False)
                while (_loc4_ > 0):
                   itemAdd(253)
                   _loc4_ -= 1
@@ -22637,31 +22637,31 @@ def affinityChange():
          eggType = 1
    if (lockCock == 0):
       if ((dominant == 1) and (humanAffinity > (second + 25)) and (human > 0) and (cockTotal > 0) and (humanCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + OneYour(1) + " cock" + plural(1) + " hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + oneYour(1) + " cock" + plural(1) + " hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.",False)
          humanCocks += 1
          CockLoss()
       if ((dominant == 2) and (horseAffinity > (second + 25)) and (horse > 0) and (cockTotal > 0) and (horseCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + OneYour(1) + " cock" + plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + clothesBottom() + ". It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + clothesBottom() + ". It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.",False)
          horseCocks += 1
          CockLoss()
       if ((dominant == 3) and (wolfAffinity > (second + 25)) and (wolf > 0) and (cockTotal > 0) and (wolfCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + OneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + OneYour(1) + " cock" + plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.",False)
          wolfCocks += 1
          CockLoss()
       if ((dominant == 4) and (catAffinity > (second + 25)) and (cat > 0) and (cockTotal > 0) and (catCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + OneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + OneYour(1) + " cock" + plural(1) + " slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.",False)
          catCocks += 1
          CockLoss()
       if ((dominant == 6) and (lizardAffinity > (second + 25)) and (lizard > 0) and (cockTotal > 0) and (lizardCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as your cock" + plural(1) + " sink" + plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + OneYour(1) + " cock" + plural(1) + " slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as your cock" + plural(1) + " sink" + plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?",False)
          lizardCocks += 1
          CockLoss()
       if ((dominant == 7) and (rabbitAffinity > (second + 25)) and (rabbit > 0) and (cockTotal > 0) and (rabbitCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + OneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + OneYour(1) + " cock" + plural(1) + " slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.",False)
          rabbitCocks += 1
          CockLoss()
       if ((dominant == 12) and (bugAffinity > (second + 25)) and (bug > 0) and (cockTotal > 0) and (bugCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + OneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + OneYour(1) + " cock" + plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.",False)
+         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + oneYour(1) + " cock" + plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.",False)
          bugCocks += 1
          CockLoss()
    human = 0
@@ -23039,33 +23039,37 @@ def legChange(which:int):
    legType = which
 
 def boobChange(sizeChange:int):
+   #Should work
    global breastSize, nippleSize
    breastSize += sizeChange
    nippleSize += sizeChange
 
 def udderChange(sizeChange:int):
+   #Should work
    global udderSize, teatSize
    udderSize += sizeChange
    teatSize += sizeChange
 
 def udderCheck(which:int):
+   #Should work
    global cowAffinity, legType
    tempBool = False
-   if (which != 1) and (cowAffinity >= 55):
+   if ((which != 1) and (cowAffinity >= 55)):
       tempBool = True
-   if (which != 2) and (legType == 1001):
+   if ((which != 2) and (legType == 1001)):
       tempBool = True
    return tempBool
 
 def lactChange(which:int, amount:int):
-   global lactation, nipplePlay, udderLactation, udderPlay, milkEngourgementLevel, milkEngourgement, udders, udderEngourgementLevel, udderEngourgement, milkSuppressant, pregStatus
-   if (which == 1) and ((lactation + amount) >= 1) and lactation < 1:
+   #Should work
+   global lactation, nipplePlay, udderLactation, udders, udderPlay, milkEngorgementLeve, milkEngorgement, udderEngorgementLevel, udderEngorgement, milkSuppressant, pregStatus
+   if ((which == 1) and (lactation + amount >= 1) and (lactation < 1)):
       outputMainText("\n\nBlotches spread across your " + clothesTop() + " around your nipples. Curiously, you dab your finger in the moistness and take a taste. Milk... Your breasts seem to have begun lactating!",False)
       nipplePlay = 20
-   if (which == 2) and ((udderLactation + amount) >= 1) and (udderLactation < 1) and (udders == True):
+   if ((which == 2) and (udderLactation + amount >= 1) and (udderLactation < 1) and (udders == True)):
       outputMainText("\n\nBlotches spread across your " + clothesBottom() + ", starting from your teats. Curiously, you dab your finger in the moistness and take a taste. Milk... Your udder seems to have begun lactating!",False)
       udderPlay = 20
-   if (which == 1) and ((lactation + amount) < 1) and (lactation >= 1):
+   if ((which == 1) and (lactation + amount < 1) and (lactation >= 1)):
       outputMainText("\n\nYour nipples feel exceptionally dry... It seems your breasts are no longer producing milk.",False)
       nipplePlay = 0
       if (milkEngorgementLevel == 1):
@@ -23076,7 +23080,7 @@ def lactChange(which:int, amount:int):
          boobChange(-3)
       milkEngorgementLevel = 0
       milkEngorgement = 0
-   if (which == 2) and ((udderLactation + amount) < 1) and (udderLactation >= 1) and (udders == True):
+   if ((which == 2) and (udderLactation + amount < 1) and (udderLactation >= 1) and (udders == True)):
       outputMainText("\n\nYour teats feel exceptionally dry... It seems your udder is no longer producing milk.",False)
       if (udderEngorgementLevel == 1):
          udderChange(-2)
@@ -23092,12 +23096,12 @@ def lactChange(which:int, amount:int):
    if (which == 2):
       udderLactation += amount
    if (milkSuppressant <= 0):
-      if (lactation <= 0) or ((udderLactation <= 0) and (udders == True) and (pregStatus > 0)):
+      if (((lactation <= 0) or (udderLactation <= 0) and (udders == True)) and (pregStatus > 0)):
          outputMainText(" ...However a few minutes later your milk starts right back up. Seems your body needs the milk for something else.",False)
          lactation = 20
-         if udders == True:
+         if (udders == True):
             udderLactation = 20
-      if (lactation < 3000) or ((udderLactation < 3000) and (udders == True) and (checkItem(252) == True)):
+      if (((lactation < 3000) or (udderLactation < 3000) and (udders == True)) and (checkItem(252) == True)):
          outputMainText(" ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy...",False)
          lactation = 3000
          if (udders == True):
@@ -23108,6 +23112,7 @@ def lactChange(which:int, amount:int):
       udderLactation = 0
 
 def pregCheck(amount:int):
+   #Should work
    global pregArray
    tempBool = False
    if (amount == 0):
@@ -23131,112 +23136,113 @@ def pregCheck(amount:int):
    return tempBool
 
 
-def DoImpregnate(erace:int):
-#!
+def doImpregnate(erace:int):
+   #Should work
    global babyFree, cockSnakePreg, pregChanceMod, extraPregChance, pregArray
-   tempPregMod = 0
    extra = 0
    chance = percent()
+   tempPregMod = 0
    if (babyFree > 0):
       tempPregMod -= 50
    if (cockSnakePreg > 0):
-      outputMainText("\n\nAs the cum fills your " + bellyDesc() + " belly, you feel it diminish from your passage as the cum-hungry snake inside squirms to drink it down. It then settles, happy with its meal and giving you some rest...",False,"snakes")
+      outputMainText("\n\nAs the cum fills your " + bellyDesc() + " belly, you feel it diminish from your passage as the cum-hungry snake inside squirms to drink it down. It then settles, happy with its meal and giving you some rest...",False)
       cockSnakePreg += 25
       if (cockSnakePreg > 100):
          cockSnakePreg = 100
       tempPregMod -= 100000
    #trace(chance + " " + pregChanceMod + " " + tempPregMod)
-   if (pregCheck(1) == True) and ((chance + pregChanceMod + tempPregMod) >= 90):
+   if ((pregCheck(1) == True) and (chance + pregChanceMod + tempPregMod >= 90)):
       i = 0
       extra = 0
-      while (percent() < (extraPregChance + 10 - 4 * (i + 1) * i)):
+      while (percent() < extraPregChance + 10 - 4 * (i + 1) * i):
          extra += 1
          i += 1
       i = 0
       while (i < len(pregArray)):
-         if pregArray[i] == False:
-            if erace == 100:
+         if (pregArray[i] == False):
+            if (erace == 100):
                pregArray[i + 2] = 80 + math.floor(percent() / 10) + extra * 30
                pregArray[i + 4] = extra * 2
-            if erace == 101:
+            if (erace == 101):
                pregArray[i + 2] = 220 + math.floor(percent() / 5) + extra * 110
                pregArray[i + 4] = extra
-            if erace == 307:
+            if (erace == 307):
                pregArray[i + 2] = 280 + math.floor(percent() / 5) + extra * 140
                pregArray[i + 4] = extra
-            if erace == 308:
+            if (erace == 308):
                pregArray[i + 2] = 80 + math.floor(percent() / 5) + extra * 30
                pregArray[i + 4] = extra * 2
-            if erace == 1:
+            if (erace == 1):
                pregArray[i + 2] = 140 + math.floor(percent() / 5) + extra * 70
                pregArray[i + 4] = extra
-            if erace == 2:
+            if (erace == 2):
                pregArray[i + 2] = 210 + math.floor(percent() / 5) + extra * 100
                pregArray[i + 4] = extra
-            if erace == 3:
+            if (erace == 3):
                pregArray[i + 2] = 110 + math.floor(percent() / 5) + extra * 40
                pregArray[i + 4] = extra * 2
-            if erace == 4:
+            if (erace == 4):
                pregArray[i + 2] = 90 + math.floor(percent() / 5) + extra * 35
                pregArray[i + 4] = extra * 2
-            if erace == 5:
+            if (erace == 5):
                pregArray[i + 2] = 240 + math.floor(percent() / 5) + extra * 120
                pregArray[i + 4] = extra
-            if erace == 6:
+            if (erace == 6):
                pregArray[i + 2] = 80 + math.floor(percent() / 10) + extra * 60
                pregArray[i + 4] = extra * 3
-            if erace == 7:
+            if (erace == 7):
                pregArray[i + 2] = 50 + math.floor(percent() / 10) + extra * 40
                pregArray[i + 4] = extra * 3
-            if erace == 8:
+            if (erace == 8):
                pregArray[i + 2] = 40 + math.floor(percent() / 10) + extra * 60
                pregArray[i + 4] = extra * 5
-            if erace == 9:
+            if (erace == 9):
                pregArray[i + 2] = 90 + math.floor(percent() / 10) + extra * 40
                pregArray[i + 4] = extra
-            if erace == 10:
+            if (erace == 10):
                pregArray[i + 2] = 180 + math.floor(percent() / 10) + extra * 70
                pregArray[i + 4] = extra * 2
-            if erace == 11:
+            if (erace == 11):
                pregArray[i + 2] = 120 + math.floor(percent() / 10) + extra * 50
                pregArray[i + 4] = extra * 2
-            if erace == 12:
+            if (erace == 12):
                pregArray[i + 2] = 50 + math.floor(percent() / 10) + extra * 40
                pregArray[i + 4] = extra * 4
             pregArray[i + 1] = erace
             pregArray[i] = True
-            i = lwn(pregArray)
-            i += 5
+            i = len(pregArray)
+         i += 5
 
-def DoBirth(pregnancyType:int, extra:int, birthCount:int):
-   global pregArray, vagTotal, hrs, vulvaSize, wolfPupChildren, calfChildren, minotaurChildren, freaktGirlChildren, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, bunnionChildren, miceChildren, birdEggs, pigChildren, skunkChildren, bugEggs, sen, dominant
+def doBirth(pregnancyType:int, extra:int, birthCount:int):
+   #Should work
+   global pregArray, vagTotal, hrs, vulvaSize, wolfPupChildren, calfChildren, minotaurChildren, freakyGirlChildren, humanChildren, equanChildren, lupanChildren, felinChildren, udders, cowChildren, lizanEggs, bunnionChildren, miceChildren, birdEggs, pigChildren, skunkChildren, bugEggs, sen, dominant
    birthNumber = 0
-   if (len(pregArray) > (vagTotal * 5)):
+   if (len(pregArray) > vagTotal * 5):
       vagChange(0,1)
    hrs += 1
    if (birthCount == 0):
-      outputMainText("\n\nSuddenly, you feel water splash across your thighs, flooding from " + OneYour(2) + " cunt" + plural(2) + ". You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!",False)
+      outputMainText("\n\nSuddenly, you feel water splash across your thighs, flooding from " + oneYour(2) + " cunt" + plural(2) + ". You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!",False)
    if (birthCount > 0):
       outputMainText("\n\nYet, you're still not quite done with the birthing process as fluid splashes out of another one of your vaginas. You tense yourself, already on the ground, and your breathing progresses rapidly as your nearly crush your belly, trying to get more of your babies out!",False)
    if (pregnancyType == 100):
       birthNumber = math.floor(percent() / 20 + 3 + extra)
-      outputMainText(" Rather quickly, a small body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a small, high-pitched whine come from it. Pausing from your labor, you pull the child up to your chest, cradling it. Covered in fur, eyes shut to the world, it's a small puppy. A wolf puppy, to be more accurate. Although, you have little time to consider the symantics as another contraction makes you seize in pain. Soon, another whine cries out. Followed by another contraction... Until you have given birth to a litter of " + birthNumber + " wolf pups! Congratulations, Mommy!\n\nYou'll bring the pups to your personal day-care the next time you're in town.",False)
+      outputMainText(" Rather quickly, a small body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a small, high-pitched whine come from it. Pausing from your labor, you pull the child up to your chest, cradling it. Covered in fur, eyes shut to the world, it's a small puppy. A wolf puppy, to be more accurate. Although, you have little time to consider the symantics as another contraction makes you seize in pain. Soon, another whine cries out. Followed by another contraction... Until you have given birth to a litter of " + str(birthNumber) + " wolf pups! Congratulations, Mommy!\n\nYou'll bring the pups to your personal day-care the next time you're in town.",False)
       if (vagLimit() < 12):
          vulvaSize += 1
          vagChange(1,0)
       wolfPupChildren += birthNumber
    if (pregnancyType == 101):
       birthNumber = 1 + extra
-      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". Hooves scrape across the ground as the forelegs come out first. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn lets out a surprised moo, trying to figure out what happened, you reach down and bring it up to your " + boobDesc() + " chest. A cow from head to hoof, the calf is already licking over the fabric in an attempt to latch onto your teat. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False);
+      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". Hooves scrape across the ground as the forelegs come out first. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn lets out a surprised moo, trying to figure out what happened, you reach down and bring it up to your " + boobDesc() + " chest. A cow from head to hoof, the calf is already licking over the fabric in an attempt to latch onto your teat. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 36):
          vulvaSize += 1
          vagChange(1,0)
       if (vagLimit() < 20):
          outputMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...",False)
-         VulvaSize += 2
+         vulvaSize += 2
          vagChange(2,0)
       if (birthNumber > 1):
-         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more calves, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
+         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + str(birthNumber - 1) + " more calves, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
          outputMainText("\n\nEventually, you prepare the calf to bring to your own personal day-care the next time you're in town.",False)
       if (birthNumber > 1):
@@ -23244,7 +23250,7 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       calfChildren += birthNumber
    if (pregnancyType == 307):
       birthNumber = 1 + extra
-      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a snort as the long muzzle breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your " + boobDesc() + " chest. With a bull-like muzzle, small horns, and rather huge human-like body, it looks like you've given birth to the Minotaur's child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
+      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a snort as the long muzzle breaches " + oneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your " + boobDesc() + " chest. With a bull-like muzzle, small horns, and rather huge human-like body, it looks like you've given birth to the Minotaur's child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 25):
          vulvaSize += 1
          vagChange(1,0)
@@ -23253,7 +23259,7 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
          vulvaSize += 3
          vagChange(3,0)
       if (birthNumber > 1):
-         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more minotaur babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
+         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + str(birthNumber - 1) + " more minotaur babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
          outputMainText("\n\nEventually, you prepare the Minotaur's child to bring to your own personal day-care the next time you're in town.",False)
       if (birthNumber > 1):
@@ -23261,16 +23267,16 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       minotaurChildren += birthNumber
    if (pregnancyType == 308):
       birthNumber = math.floor(percent() / 20 + 2 + extra)
-      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, it's... just a ball of fuzz with the face of a human in the center and two large long ears poking out on either side. You're not exactly sure what it is, only the ears look familiar, like that girl from the cave... Plus it's rather small, obviously just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a pile of " + birthNumber + " strange round fuzzy babies. They roll around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
+      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, it's... just a ball of fuzz with the face of a human in the center and two large long ears poking out on either side. You're not exactly sure what it is, only the ears look familiar, like that girl from the cave... Plus it's rather small, obviously just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a pile of " + str(birthNumber) + " strange round fuzzy babies. They roll around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
       freakyGirlChildren += birthNumber
    if (pregnancyType == 1):
       birthNumber = 1 + extra
-      outputMainText(" Slowly, a large round head pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a cry as it breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your " + boobDesc() + " chest. With a round face and soft skin, it's easy to tell you've given birth to a human child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
+      outputMainText(" Slowly, a large round head pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a cry as it breaches " + oneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your " + boobDesc() + " chest. With a round face and soft skin, it's easy to tell you've given birth to a human child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 16):
          vulvaSize += 1
          vagChange(1,0)
       if (birthNumber > 1):
-         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more human babies, each about the same size as the first. By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
+         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + str(birthNumber - 1) + " more human babies, each about the same size as the first. By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
          outputMainText("\n\nEventually, you prepare the human child to bring to your own personal day-care the next time you're in town.",False)
       if (birthNumber > 1):
@@ -23278,7 +23284,7 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       humanChildren += birthNumber
    if (pregnancyType == 2):
       birthNumber = 1 + extra
-      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a snort as the long muzzle breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your " + boobDesc() + " chest. With a horse-like muzzle and rather large body, it's easy to tell you've given birth to an equan child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
+      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a snort as the long muzzle breaches " + oneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your " + boobDesc() + " chest. With a horse-like muzzle and rather large body, it's easy to tell you've given birth to an equan child. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting it suckle from its mother.",False)
       if (vagLimit() < 36):
          vulvaSize += 1
          vagChange(1,0)
@@ -23287,33 +23293,33 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
          vulvaSize += 2
          vagChange(2,0)
       if (birthNumber > 1):
-         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more equan babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
+         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + str(birthNumber - 1) + " more equan babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.",False)
       if (birthNumber == 1):
-         this.outputMainText("\n\nEventually, you prepare the equan child to bring to your own personal day-care the next time you're in town.",False)
+         outputMainText("\n\nEventually, you prepare the equan child to bring to your own personal day-care the next time you're in town.",False)
       if (birthNumber > 1):
          outputMainText("\n\nEventually, you prepare the equan children to your bring to own personal day-care the next time you're in town.",False)
       equanChildren += birthNumber
    if (pregnancyType == 3):
       birthNumber = math.floor(percent() / 20 + 2 + extra)
-      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft yip escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with wolf-like ears and tail. Especially small, the lupan child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another whimper cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of " + birthNumber + " pup-like lupan babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
+      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft yip escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with wolf-like ears and tail. Especially small, the lupan child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another whimper cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of " + str(birthNumber) + " pup-like lupan babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
       lupanChildren += birthNumber
    if (pregnancyType == 4):
       birthNumber = math.floor(percent() / 20 + 2 + extra)
-      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with cat-like ears and tail. Especially small, the felin child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of " + birthNumber + " kitten-like felin babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
+      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with cat-like ears and tail. Especially small, the felin child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of " + str(birthNumber) + " kitten-like felin babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
       felinChildren += birthNumber
    if (pregnancyType == 5):
       birthNumber = 1 + extra
-      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a quiet groan as the muzzle breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your " + boobDesc() + " chest. With a cow-like muzzle and rather large body, it seems as though you have given birth to a cow-like child. The relatively large nipples for a newborn and small udder, its obviously a she before even checking her genitals, and a long thin tail that ends with a bushy-haired tip. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting her suckle from her mother.",False)
+      outputMainText(" Slowly, a large body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a quiet groan as the muzzle breaches " + oneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your " + boobDesc() + " chest. With a cow-like muzzle and rather large body, it seems as though you have given birth to a cow-like child. The relatively large nipples for a newborn and small udder, its obviously a she before even checking her genitals, and a long thin tail that ends with a bushy-haired tip. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting her suckle from her mother.",False)
       if (vagLimit() < 36):
-         vulvaSize
+         vulvaSize += 1
          vagChange(1,0)
       if (vagLimit() < 20):
          outputMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...",False)
          vulvaSize += 2
          vagChange(2,0)
       if (birthNumber > 1):
-         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + (birthNumber - 1) + " more bovine baby girls, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom",False)
-         if (udders == True):
+         outputMainText("\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out " + str(birthNumber - 1) + " more bovine baby girls, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom",False)
+         if (this.udders == True):
             outputMainText(" and udder",False)
          outputMainText(", letting them suckle as they can, which they do to great length.",False)
       if (birthNumber == 1):
@@ -23323,119 +23329,132 @@ def DoBirth(pregnancyType:int, extra:int, birthCount:int):
       cowChildren += birthNumber
    if (pregnancyType == 6):
       birthNumber = math.floor(percent() / 15 + 3 + extra)
-      outputMainText(" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It doesn't take much effort before it plops to the floor and rolls a little, a white egg a bit larger than your average unfertilized Lizan egg. Another contraction gets you pushing again as the rest of its brood push out, one egg right after the next.\n\nEventually, you have laid a batch of " + birthNumber + " fertilized eggs, all with Lizan embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.",False)
+      outputMainText(" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It doesn't take much effort before it plops to the floor and rolls a little, a white egg a bit larger than your average unfertilized Lizan egg. Another contraction gets you pushing again as the rest of its brood push out, one egg right after the next.\n\nEventually, you have laid a batch of " + str(birthNumber) + " fertilized eggs, all with Lizan embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.",False)
       lizanEggs += birthNumber
    if (pregnancyType == 7):
       birthNumber = math.floor(percent() / 20 + 3 + extra)
-      outputMainText(" Quite rapidly, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". Cute squeaks erupt from it as it takes its first breaths, writhing around softly. You pull it up to your chest, cradling the small humanoid body that is covered in downy fur with long ears and a puffy tail. So small, the bunny-like child is just the first, as more are most definitely on the way. They don't call it 'breeding like rabbits' for nothing...\n\nMore squeaks are soon heard as the bunny-like babes pour from your womb, until you have a litter of " + birthNumber + ". They kick about your body, trying to crawl and suckle from you, until you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
+      outputMainText(" Quite rapidly, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". Cute squeaks erupt from it as it takes its first breaths, writhing around softly. You pull it up to your chest, cradling the small humanoid body that is covered in downy fur with long ears and a puffy tail. So small, the bunny-like child is just the first, as more are most definitely on the way. They don't call it 'breeding like rabbits' for nothing...\n\nMore squeaks are soon heard as the bunny-like babes pour from your womb, until you have a litter of " + str(birthNumber) + ". They kick about your body, trying to crawl and suckle from you, until you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
       bunnionChildren += birthNumber
    if (pregnancyType == 8):
       birthNumber = math.floor(percent() / 20 + 4 + extra)
-      outputMainText(" Quite rapidly, you feel a small naked body push out " + legWhere(1) + " your " + legDesc(2) + ". Cute squeaks erupt from it as it takes its first breaths, pawing at the ground confusedly. You pull it up to your chest, cradling the small humanoid body that is quite naked, not having grown any fur yet, with large circular ears and long thin tail. So small, the mouse-like child is just the first, as more are most definitely on the way. Mice are very... 'excessive' breeders...\n\nMore squeaks are soon heard as the mouse-like babes pour from your womb, until you have a litter of " + birthNumber + ". They blindly grope about your body, trying to figure out what the hell is going on, drinking from your nipples when they can, until you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
+      outputMainText(" Quite rapidly, you feel a small naked body push out " + legWhere(1) + " your " + legDesc(2) + ". Cute squeaks erupt from it as it takes its first breaths, pawing at the ground confusedly. You pull it up to your chest, cradling the small humanoid body that is quite naked, not having grown any fur yet, with large circular ears and long thin tail. So small, the mouse-like child is just the first, as more are most definitely on the way. Mice are very... 'excessive' breeders...\n\nMore squeaks are soon heard as the mouse-like babes pour from your womb, until you have a litter of " + str(birthNumber) + ". They blindly grope about your body, trying to figure out what the hell is going on, drinking from your nipples when they can, until you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
       miceChildren += birthNumber
    if (pregnancyType == 9):
       birthNumber = math.floor(percent() / 15 + 3 + extra)
-      outputMainText(" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It takes a bit of effort before it plops to the floor and rolls a little, a speckled egg much larger than your average unfertilized egg. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next.\n\nEventually, you have laid a batch of " + birthNumber + " fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.",False)
+      outputMainText(" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It takes a bit of effort before it plops to the floor and rolls a little, a speckled egg much larger than your average unfertilized egg. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next.\n\nEventually, you have laid a batch of " + str(birthNumber) + " fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.",False)
       birdEggs += birthNumber
    if (pregnancyType == 10):
       birthNumber = math.floor(percent() / 33 + 1 + extra)
-      outputMainText(" Slowly, a round body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a squeal cutely as it breaches " + OneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air before the next body begins to make its way out. A litter of " + birthNumber + " smooth-skinned babes cry and squeal, trying to crawl around and looking for their mother's bosom. With snubbed noses and long floppy ears with little curly tails, these humanoid babies look a bit like pigs. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting them suckle before you bring them to the day-care where they'll be carefully watched after.",False)
+      outputMainText(" Slowly, a round body pushes out from " + legWhere(1) + " your " + legDesc(2) + ". You hear a squeal cutely as it breaches " + oneYour(2) + " " + vulvaDesc() + " pair" + plural(2) + " of lips. Shortly after, you heave for fresh air before the next body begins to make its way out. A litter of " + str(birthNumber) + " smooth-skinned babes cry and squeal, trying to crawl around and looking for their mother's bosom. With snubbed noses and long floppy ears with little curly tails, these humanoid babies look a bit like pigs. With a sigh, you pull " + pullUD(1) + " your " + clothesTop() + ", letting them suckle before you bring them to the day-care where they'll be carefully watched after.",False)
       pigChildren += birthNumber
    if (pregnancyType == 11):
       birthNumber = math.floor(percent() / 20 + 2 + extra)
-      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with skunk-like ears and a big fluffy tail. Especially small, the skunk-like child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of " + birthNumber + " skunk-like babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
+      outputMainText(" Quite soon, you feel a small fuzzy body push out " + legWhere(1) + " your " + legDesc(2) + ". A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with skunk-like ears and a big fluffy tail. Especially small, the skunk-like child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of " + str(birthNumber) + " skunk-like babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.",False)
       skunkChildren += birthNumber
    if (pregnancyType == 12):
       birthNumber = math.floor(percent() / 10 + 4 + extra)
-      outputMainText(" You soon feel your passage begin to stretch as a soft, smooth body begins to slip out past your lips. It slides out rather quickly, hitting the floor with a wet plop and rolls away, a soft-shelled translucent gooey egg much larger than your average bug egg, a body visibly growing within. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next until you have a small pile.\n\nEventually, you have laid a batch of " + birthNumber + " fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.",False)
+      outputMainText(" You soon feel your passage begin to stretch as a soft, smooth body begins to slip out past your lips. It slides out rather quickly, hitting the floor with a wet plop and rolls away, a soft-shelled translucent gooey egg much larger than your average bug egg, a body visibly growing within. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next until you have a small pile.\n\nEventually, you have laid a batch of " + str(birthNumber) + " fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.",False)
       bugEggs += birthNumber
    if (pregnancyType == 200):
-      outputMainText(" It doesn't take much effort as you feel a round object roll out of " + OneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + " with a wet plop. You attempt to look around your body to see what it is, but you don't have much time before another squeezes through your cervix, demanding your attention to get back to pushing.\n\nThere's not much of a rest in between contractions to see what is coming out exactly, but all you can tell is that there are a lot. At least a dozen; although it's impossible to keep track amidst all the birthing. It's not until the very last one exits that you're given a long enough reprieve to actually look...\n\nYou seem to be just in time to spot the clear, jelly-like egg unravel around something pink in the center. The pink thing tumbles out from the egg, spreading apart into several small tentacles. Eight, to be exact. And in the center of them is a cute little girl. Not quite a baby, just a really small child, no taller than half a foot. You can hear her giggle a little as she kisses your thighs, thanking you a little before wiggling her way away from you.\n\nYour " + legDesc(2) + " are too weak at the moment to chase after her, but you can see a trail of slime that all of the others had used. They seem to be headed in the same direction: back to the beach where you had obtained them.",False)
+      outputMainText(" It doesn't take much effort as you feel a round object roll out of " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + " with a wet plop. You attempt to look around your body to see what it is, but you don't have much time before another squeezes through your cervix, demanding your attention to get back to pushing.\n\nThere's not much of a rest in between contractions to see what is coming out exactly, but all you can tell is that there are a lot. At least a dozen; although it's impossible to keep track amidst all the birthing. It's not until the very last one exits that you're given a long enough reprieve to actually look...\n\nYou seem to be just in time to spot the clear, jelly-like egg unravel around something pink in the center. The pink thing tumbles out from the egg, spreading apart into several small tentacles. Eight, to be exact. And in the center of them is a cute little girl. Not quite a baby, just a really small child, no taller than half a foot. You can hear her giggle a little as she kisses your thighs, thanking you a little before wiggling her way away from you.\n\nYour " + legDesc(2) + " are too weak at the moment to chase after her, but you can see a trail of slime that all of the others had used. They seem to be headed in the same direction: back to the beach where you had obtained them.",False)
       itemAdd(217)
    if (pregnancyType == 201):
       outputMainText(" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out " + legWhere(1) + " your " + legDesc(2) + ", your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHer well-developed chest wobbles about as she turns to look at you with am absolutely naughty grin. Then she dashes off, hopping away with her large feet and one hand still jerking furiously between her legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on hers... Shortly after, however, you realize she had left something behind, fishing it out after having been caught between your " + vulvaDesc() + " pussy-lips. ",False)
       itemAdd(222)
    if (pregnancyType == 202):
       outputMainText(" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out " + legWhere(1) + " your " + legDesc(2) + ", your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHis hand still on his pointy prick, a strand of cum drooling from its tip back to your pussy, he turns to look at you with am absolutely naughty grin. Then he dashes off, hopping away with his large feet and one hand still jerking furiously between his legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on his... Shortly after, however, you realize he had left something behind, fishing it out after having been caught between your " + vulvaDesc() + " pussy-lips. ",False)
-      DoImpregnate(7)
+      doImpregnate(7)
       itemAdd(222)
    if (pregnancyType == 501):
       outputMainText(" Thick bull-cum splorts out from between your legs, coating your " + legDesc(4) + " with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...",False)
-      DoImpregnate(101)
-      DoImpregnate(101)
-      DoImpregnate(101)
-      DoImpregnate(101)
-      DoImpregnate(101)
+      doImpregnate(101)
+      doImpregnate(101)
+      doImpregnate(101)
+      doImpregnate(101)
+      doImpregnate(101)
       doLust(-math.floor(sen / 4),2,2)
    if (pregnancyType == 502):
       outputMainText(" Your own thick cum splorts out from between your legs, coating your " + legDesc(4) + " with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...",False)
-      DoImpregnate(dominant)
-      DoImpregnate(dominant)
+      doImpregnate(dominant)
+      doImpregnate(dominant)
       doImpregnate(dominant)
       doLust(-math.floor(sen / 4),2,2)
    if (pregnancyType == 504):
       outputMainText(" White fluids explode from your fresh pussy, drenching your " + legDesc(4) + " and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.",False)
 
 def plural(topic:int):
+   #Should work
    global cocktotal, vagtotal
    tempStr = ""
-   if (topic == 1) and (cockTotal > 1):
+   if ((topic == 1) and (cockTotal > 1)):
       tempStr = "s"
-   if (topic == 2) and (vagTotal > 1):
+   if ((topic == 2) and (vagTotal > 1)):
       tempStr = "s"
-   if (topic == 3) and (cockTotal < 2):
+   if ((topic == 3) and (cockTotal < 2)):
       tempStr = "s"
-   if (topic == 4) and (vagTotal < 2):
+   if ((topic == 4) and (vagTotal < 2)):
       tempStr = "s"
-   if (topic == 5) and (cockTotal < 2):
-      tempStr = "its"
-   if (topic == 5) and (cockTotal > 1):
-      tempStr = "their"
-   if (topic == 6) and (vagTotal < 2):
-      tempStr = "its"
-   if (topic == 6) and (vagTotal > 1):
-      tempStr = "their"
-   if (topic == 7) and (cockTotal < 2):
-      tempStr = "it's"
-   if (topic == 7) and (cockTotal > 1):
-      tempStr = "they're"
-   if (topic == 8) and (vagTotal < 2):
-      tempStr = "it's"
-   if (topic == 8) and (vagTotal > 1):
-      tempStr = "they're"
-   if (topic == 9) and (cockTotal < 2):
-      tempStr = "it"
-   if (topic == 9) and (cockTotal > 1):
-      tempStr = "them"
-   if (topic == 10) and (vagTotal < 2):
-      tempStr = "it"
-   if (topic == 10) and (vagTotal > 1):
-      tempStr = "them"
-   if (topic == 11) and (cockTotal < 2):
-      tempStr = "it"
-   if (topic == 11) and (cockTotal > 1):
-      tempStr = "they"
-   if (topic == 12) and (vagTotal < 2):
-      tempStr = "it"
-   if (topic == 12) and (vagTotal > 1):
-      tempStr = "they"
-   if (topic == 13) and (cockTotal < 2):
-      tempStr = "is"
-   if (topic == 13) and (cockTotal > 1):
-      tempStr = "are"
-   if (topic == 14) and (vagTotal < 2):
-      tempStr = "is"
-   if (topic == 14) and (vagTotal > 1):
-      tempStr = "are"
-   if (topic == 15) and (cockTotal > 1):
+   if (topic == 5):
+      if (cockTotal < 2):
+         tempStr = "its"
+      elif (cockTotal > 1):
+         tempStr = "their"
+   if (topic == 6):
+      if (vagTotal < 2):
+         tempStr = "its"
+      elif (vagTotal > 1):
+         tempStr = "their"
+   if (topic == 7):
+      if (cockTotal < 2):
+         tempStr = "it's"
+      elif (cockTotal > 1):
+         tempStr = "they're"
+   if (topic == 8):
+      if (vagTotal < 2):
+         tempStr = "it's"
+      elif (vagTotal > 1):
+         tempStr = "they're"
+   if (topic == 9):
+      if (cockTotal < 2):
+         tempStr = "it"
+      elif (cockTotal > 1):
+         tempStr = "them"
+   if (topic == 10):
+      if (vagTotal < 2):
+         tempStr = "it"
+      elif (vagTotal > 1):
+         tempStr = "them"
+   if (topic == 11):
+      if (cockTotal < 2):
+         tempStr = "it"
+      elif (cockTotal > 1):
+         tempStr = "they"
+   if (topic == 12):
+      if (vagTotal < 2):
+         tempStr = "it"
+      elif (vagTotal > 1):
+         tempStr = "they"
+   if (topic == 13):
+      if (cockTotal < 2):
+         tempStr = "is"
+      elif (cockTotal > 1):
+         tempStr = "are"
+   if (topic == 14):
+      if (vagTotal < 2):
+         tempStr = "is"
+      elif (vagTotal > 1):
+         tempStr = "are"
+   if ((topic == 15) and (cockTotal > 1)):
       tempStr = "es"
-   if (topic == 16) and (vagTotal < 2):
-      tempStr = "y"
-   if (topic == 16) and (vagTotal > 1):
-      tempStr = "ies"
+   if (topic == 16):
+      if (vagTotal < 2):
+         tempStr = "y"
+      elif (vagTotal > 1):
+         tempStr = "ies"
    return tempStr
 
-def OneYour(topic:int):
+def oneYour(topic:int):
+   #Should work
    global cockTotal, vagTotal
    tempStr = "ONE YOUR ERROR " + str(cockTotal) + " " + str(vagTotal)
    if (topic == 1):
@@ -23451,58 +23470,60 @@ def OneYour(topic:int):
    return tempStr
 
 def bodyDesc():
+   #Should work
    global gender, body, hips, breastSize, butt
    tempStr = "BODY ERROR " + str(gender) + " " + str(body)
    if (gender == 1):
-      if (body > 11) and (body <= 17):
-         if (hips > 3) and (breastSize > 4):
+      if ((body > 11) and (body <= 17)):
+         if ((hips > 3) and (breastSize > 4)):
             tempStr = "shemale"
          elif (hips > 2):
             tempStr = "femme-boyish"
          else:
             tempStr = "boyish"
-      elif (body > 17) and (body <= 25):
+      elif ((body > 17) and (body <= 25)):
          tempStr = "manly"
       elif (body <= 11):
          tempStr = "childish"
-#      elif (body > 25):
-#         tempStr = "musclebound"
+      elif (body > 25):
+         tempStr = "musclebound"
    elif (gender == 2):
-      if (body > 9) and (body <= 14):
+      if ((body > 9) and (body <= 14)):
          tempStr = "girly"
-      if (body > 14) and (body <= 20):
-         if (hips > 4) or (butt > 4) or (breastSize > 4):
+      if ((body > 14) and (body <= 20)):
+         if ((hips > 4) or (butt > 4) or (breastSize > 4)):
             tempStr = "voluptuous"
          else:
             tempStr = "womanly"
       if (body <= 10):
          tempStr = "childish"
-      if (body > 17) and (breastSize <= 2):
+      if ((body > 17) and (breastSize <= 2)):
          tempStr = "cunt-boy"
-#      elif (body > 20):
-#         tempStr = "musclebound"
+      elif (body > 20):
+         tempStr = "musclebound"
    elif (gender == 3):
-      if (body > 11) and (body <= 23):
-         if (hips > 2) and (breastSize > 2):
+      if ((body > 11) and (body <= 23)):
+         if ((hips > 2) and (breastSize > 2)):
             tempStr = "feminine"
          else:
             tempStr = "masculine"
       elif (body <= 11):
          tempStr = "childish"
-#      elif (body > 23):
-#         tempStr = "musclebound"
+      elif (body > 23):
+         tempStr = "musclebound"
    elif (gender == 0):
-      if (body > 11) and (body <= 15):
+      if ((body > 11) and (body <= 15)):
          tempStr = "teenage"
-      elif (body > 15) and (body <= 23):
+      elif ((body > 15) and (body <= 23)):
          tempStr = "fully grown"
       elif (body <= 11):
          tempStr = "childish"
-#      elif (body > 23):
-#         tempStr = "musclebound"
+      elif (body > 23):
+         tempStr = "musclebound"
    return tempStr
 
 def tailDesc():
+   #Should work
    global tail
    chance = percent()
    tempStr = "TAIL ERROR " + str(tail)
@@ -23606,6 +23627,7 @@ def humanTaurtailDesc():
    return tempStr
 
 def earDesc():
+   #Should work
    global ears
    chance = percent()
    tempStr = "EAR ERROR " + str(ears)
@@ -23637,6 +23659,7 @@ def earDesc():
    return tempStr
 
 def faceDesc():
+   #Should work
    global faceType
    tempStr = ""
    if (faceType == 10):
@@ -23690,242 +23713,250 @@ def faceDesc():
    return tempStr
 
 def boobDesc():
+   #Should work
    global breastSize
    chance = percent()
    tempStr = "BOOB ERROR " + str(breastSize)
    if (chance <= 100):
       if (breastSize <= 0):
          tempStr = "flat"
-      if (breastSize > 0) and (breastSize <= 2):
+      if ((breastSize > 0) and (breastSize <= 2)):
          tempStr = "nearly flat"
-      if (breastSize > 2) and  (breastSize <= 8):
+      if ((breastSize > 2) and  (breastSize <= 8)):
          tempStr = "noticeable"
-      if (breastSize > 8) and (breastSize <= 20):
+      if ((breastSize > 8) and (breastSize <= 20)):
          tempStr = "large"
-      if (breastSize > 20) and (breastSize <= 40):
+      if ((breastSize > 20) and (breastSize <= 40)):
          tempStr = "huge"
-      if (breastSize > 40) and (breastSize <= 76):
+      if ((breastSize > 40) and (breastSize <= 76)):
          tempStr = "humongous"
-      if (breastSize > 76) and (breastSize <= 146):
+      if ((breastSize > 76) and (breastSize <= 146)):
          tempStr = "massive"
-      if (breastSize > 146) and (breastSize <= 210):
+      if ((breastSize > 146) and (breastSize <= 210)):
          tempStr = "gargantuan"
-      if (breastSize > 210) and (breastSize <= 280):
+      if ((breastSize > 210) and (breastSize <= 280)):
          tempStr = "tremendous"
-      if (breastSize > 280) and (breastSize <= 560):
+      if ((breastSize > 280) and (breastSize <= 560)):
          tempStr = "colossal"
       if (breastSize > 560):
          tempStr = "ridiculously huge"
    if (chance > 50):
       if (breastSize <= 0):
          tempStr = ""
-      if (breastSize > 0) and (breastSize <= 2):
+      if ((breastSize > 0) and (breastSize <= 2)):
          tempStr = "tiny"
-      if (breastSize > 2) and (breastSize <= 4):
+      if ((breastSize > 2) and (breastSize <= 4)):
          tempStr = "palmable"
-      if (breastSize > 8) and (breastSize <= 20):
+      if ((breastSize > 8) and (breastSize <= 20)):
          tempStr = "ample"
-      if (breastSize > 20) and (breastSize <= 40):
+      if ((breastSize > 20) and (breastSize <= 40)):
          tempStr = "head-sized"
-      if (breastSize > 40) and (breastSize <= 76):
+      if ((breastSize > 40) and (breastSize <= 76)):
          tempStr = "hefty"
-      if (breastSize > 76) and (breastSize <= 146):
+      if ((breastSize > 76) and (breastSize <= 146)):
          tempStr = "beachball-sized"
-      if (breastSize > 146) and (breastSize <= 210):
+      if ((breastSize > 146) and (breastSize <= 210)):
          tempStr = "normally back-breaking"
-      if (breastSize > 210) and (breastSize <= 280):
+      if ((breastSize > 210) and (breastSize <= 280)):
          tempStr = "view-obscuring"
-      if (breastSize > 280) and (breastSize <= 560):
+      if ((breastSize > 280) and (breastSize <= 560)):
          tempStr = "bed-sized"
       if (breastSize > 560):
          tempStr = "road-filling"
    return tempStr
 
 def udderDesc():
+   #Should work
    global udderSize
    chance = percent()
-   tempStr = "udder ERROR " + str(udderSize / 2)
+   tempUdder = udderSize / 2
+   tempStr = "udder ERROR " + str(tempUdder)
    if (chance <= 100):
-      if ((udderSize / 2) <= 2):
+      if (tempUdder <= 2):
          tempStr = "nearly flat"
-      if ((udderSize / 2) > 2) and ((udderSize / 2) <= 8):
+      if ((tempUdder > 2) and (tempUdder <= 8)):
          tempStr = "noticeable"
-      if ((udderSize / 2) > 8) and ((udderSize / 2) <= 20):
+      if ((tempUdder > 8) and (tempUdder <= 20)):
          tempStr = "large"
-      if ((udderSize / 2) > 20) and ((udderSize / 2) <= 40):
+      if ((tempUdder > 20) and (tempUdder <= 40)):
          tempStr = "huge"
-      if ((udderSize / 2) > 40) and ((udderSize / 2) <= 76):
+      if ((tempUdder > 40) and (tempUdder <= 76)):
          tempStr = "humongous"
-      if ((udderSize / 2) > 76) and ((udderSize / 2) <= 146):
+      if ((tempUdder > 76) and (tempUdder <= 146)):
          tempStr = "massive"
-      if ((udderSize / 2) > 146) and ((udderSize / 2) <= 210):
+      if ((tempUdder > 146) and (tempUdder <= 210)):
          tempStr = "gargantuan"
-      if ((udderSize / 2) > 210) and ((udderSize / 2) <= 280):
+      if ((tempUdder > 210) and (tempUdder <= 280)):
          tempStr = "tremendous"
-      if ((udderSize / 2) > 280) and ((udderSize / 2) <= 560):
+      if ((tempUdder > 280) and (tempUdder <= 560)):
          tempStr = "colossal"
-      if ((udderSize / 2) > 560):
+      if (tempUdder > 560):
          tempStr = "ridiculously huge"
    if (chance > 50):
-      if ((udderSize / 2) <= 2):
+      if (tempUdder <= 2):
          tempStr = "tiny"
-      if ((udderSize / 2) > 2) and ((udderSize / 2) <= 8):
+      if ((tempUdder > 2) and (tempUdder <= 8)):
          tempStr = "palmable"
-      if ((udderSize / 2) > 8) and ((udderSize / 2) <= 20):
+      if ((tempUdder > 8) and (tempUdder <= 20)):
          tempStr = "ample"
-      if ((udderSize / 2) > 20) and ((udderSize / 2) <= 40):
+      if ((tempUdder > 20) and (tempUdder <= 40)):
          tempStr = "head-sized"
-      if ((udderSize / 2) > 40) and ((udderSize / 2) <= 76):
+      if ((tempUdder > 40) and (tempUdder <= 76)):
          tempStr = "hefty"
-      if ((udderSize / 2) > 76) and ((udderSize / 2) <= 146):
+      if ((tempUdder > 76) and (tempUdder <= 146)):
          tempStr = "beachball-sized"
-      if ((udderSize / 2) > 146) and ((udderSize / 2) <= 210):
+      if ((tempUdder > 146) and (tempUdder <= 210)):
          tempStr = "normally back-breaking"
-      if ((udderSize / 2) > 210) and ((udderSize / 2) <= 280):
+      if ((tempUdder > 210) and (tempUdder <= 280)):
          tempStr = "view-obscuring"
-      if ((udderSize / 2) > 280) and ((udderSize / 2) <= 560):
+      if ((tempUdder > 280) and (tempUdder <= 560)):
          tempStr = "bed-sized"
-      if ((udderSize / 2) > 560):
+      if (tempUdder > 560):
          tempStr = "road-filling"
    return tempStr
 
 def teatDesc():
+   #Should work
    global teatSize
    chance = percent()
    tempStr = "TEAT ERROR " + str(teatSize)
    if (chance <= 100):
       if (teatSize <= 2):
          tempStr = "normal"
-      if (teatSize > 2) and (teatSize <= 5):
+      if ((teatSize > 2) and (teatSize <= 5)):
          tempStr = "noticeable"
-      if (teatSize > 5) and (teatSize <= 9):
+      if ((teatSize > 5) and (teatSize <= 9)):
          tempStr = "blatant"
-      if (teatSize > 9) and (teatSize <= 30):
+      if ((teatSize > 9) and (teatSize <= 30)):
          tempStr = "normal-for-a-cow"
-      if (teatSize > 30) and (teatSize <= 50):
+      if ((teatSize > 30) and (teatSize <= 50)):
          tempStr = "cock-like"
-      if (teatSize > 50) and (teatSize <= 100):
+      if ((teatSize > 50) and (teatSize <= 100)):
          tempStr = "horsecock-like"
-      if (teatSize > 100) and (teatSize <= 140):
+      if ((teatSize > 100) and (teatSize <= 140)):
          tempStr = "arm-length"
-      if (teatSize > 140) and (teatSize <= 300):
+      if ((teatSize > 140) and (teatSize <= 300)):
          tempStr = "street-clearing"
       if (teatSize > 300):
          tempStr = "obscene"
    if (chance > 50):
       if (teatSize <= 2):
          tempStr = ""
-      if (teatSize > 2) and (teatSize <= 5):
+      if ((teatSize > 2) and (teatSize <= 5)):
          tempStr = "perky"
-      if (teatSize > 5) and (teatSize <= 9):
+      if ((teatSize > 5) and (teatSize <= 9)):
          tempStr = "hypnotizing"
-      if (teatSize > 9) and (teatSize <= 30):
+      if ((teatSize > 9) and (teatSize <= 30)):
          tempStr = "long"
-      if (teatSize > 30) and (teatSize <= 50):
+      if ((teatSize > 30) and (teatSize <= 50)):
          tempStr = "huge"
-      if (teatSize > 50) and (teatSize <= 100):
+      if ((teatSize > 50) and (teatSize <= 100)):
          tempStr = "enormous"
-      if (teatSize > 100) and (teatSize <= 140):
+      if ((teatSize > 100) and (teatSize <= 140)):
          tempStr = "extreme"
-      if (teatSize > 140) and (teatSize <= 300):
+      if ((teatSize > 140) and (teatSize <= 300)):
          tempStr = "ridiculous"
       if (teatSize > 300):
          tempStr = "obscene"
    return tempStr
 
 def buttDesc():
+   #Should work
    global butt, buttMod
    chance = percent()
+   tempButt = butt * buttMod
    tempStr = "BUTT ERROR " + str(butt)
    if (chance <= 100):
-      if ((butt * buttMod) <= 2):
+      if (tempButt <= 2):
          tempStr = "flat"
-      if ((butt * buttMod) > 2) and ((butt * buttMod) <= 5):
+      if ((tempButt > 2) and (tempButt <= 5)):
          tempStr = "tight"
-      if ((butt * buttMod) > 5) and ((butt * buttMod) <= 15):
+      if ((tempButt > 5) and (tempButt <= 15)):
          tempStr = "ample"
-      if ((butt * buttMod) > 15) and ((butt * buttMod) <= 30):
+      if ((tempButt > 15) and (tempButt <= 30)):
          tempStr = "large"
-      if ((butt * buttMod) > 30) and ((butt * buttMod) <= 50):
+      if ((tempButt > 30) and (tempButt <= 50)):
          tempStr = "huge"
-      if ((butt * buttMod) > 50) and ((butt * buttMod) <= 80):
+      if ((tempButt > 50) and (tempButt <= 80)):
          tempStr = "grand"
-      if ((butt * buttMod) > 80) and ((butt * buttMod) <= 130):
+      if ((tempButt > 80) and (tempButt <= 130)):
          tempStr = "jumbo"
-      if ((butt * buttMod) > 130) and ((butt * buttMod) <= 175):
+      if ((tempButt > 130) and (tempButt <= 175)):
          tempStr = "giant"
-      if ((butt * buttMod) > 175):
+      if (tempButt > 175):
          tempStr = "ginormous"
    if (chance > 50):
-      if ((butt * buttMod) <= 2):
+      if (tempButt <= 2):
          tempStr = "boney"
-      if ((butt * buttMod) > 2) and ((butt * buttMod) <= 5):
+      if ((tempButt > 2) and (tempButt <= 5)):
          tempStr = "firm"
-      if ((butt * buttMod) > 5) and ((butt * buttMod) <= 15):
+      if ((tempButt > 5) and (tempButt <= 15)):
          tempStr = "grope-able"
-      if ((butt * buttMod) > 15) and ((butt * buttMod) <= 30):
+      if ((tempButt > 15) and (tempButt <= 30)):
          tempStr = "jiggly"
-      if ((butt * buttMod) > 30) and ((butt * buttMod) <= 50):
+      if ((tempButt > 30) and (tempButt <= 50)):
          tempStr = "pillow-like"
-      if ((butt * buttMod) > 50) and ((butt * buttMod) <= 80):
+      if ((tempButt > 50) and (tempButt <= 80)):
          tempStr = "wobbling"
-      if ((butt * buttMod) > 80) and ((butt * buttMod) <= 130):
+      if ((tempButt > 80) and (tempButt <= 130)):
          tempStr = "swaying"
-      if ((butt * buttMod) > 130) and ((butt * buttMod) <= 175):
+      if ((tempButt > 130) and (tempButt <= 175)):
          tempStr = "bouncing"
-      if ((butt * buttMod) > 175):
+      if (tempButt > 175):
          tempStr = "constantly quivering"
    return tempStr
 
 def vulvaDesc():
+   #Should work
    global vulvaSize
    chance = percent()
    tempStr = "VULVA ERROR " + str(vulvaSize)
    if (chance <= 100):
       if (vulvaSize <= 2):
          tempStr = "tiny"
-      if (vulvaSize > 2) and (vulvaSize <= 8):
+      if ((vulvaSize > 2) and (vulvaSize <= 8)):
          tempStr = "plush"
-      if (vulvaSize > 8) and (vulvaSize <= 16):
+      if ((vulvaSize > 8) and (vulvaSize <= 16)):
          tempStr = "plump"
-      if (vulvaSize > 16) and (vulvaSize <= 24):
+      if ((vulvaSize > 16) and (vulvaSize <= 24)):
          tempStr = "huge"
-      if (vulvaSize > 24) and (vulvaSize <= 36):
+      if ((vulvaSize > 24) and (vulvaSize <= 36)):
          tempStr = "enormous"
-      if (vulvaSize > 36) and (vulvaSize <= 54):
+      if ((vulvaSize > 36) and (vulvaSize <= 54)):
          tempStr = "gigantic"
-      if (vulvaSize > 54) and (vulvaSize <= 84):
+      if ((vulvaSize > 54) and (vulvaSize <= 84)):
          tempStr = "humongous"
-      if (vulvaSize > 84) and (vulvaSize <= 124):
+      if ((vulvaSize > 84) and (vulvaSize <= 124)):
          tempStr = "tremendous"
-      if (vulvaSize > 124) and (vulvaSize <= 160):
+      if ((vulvaSize > 124) and (vulvaSize <= 160)):
          tempStr = "colossal"
       if (vulvaSize > 160):
          tempStr = "ridiculous"
    if (chance > 50):
       if (vulvaSize == 2):
          tempStr = "childlike"
-      if (vulvaSize > 2) and (vulvaSize <= 8):
+      if ((vulvaSize > 2) and (vulvaSize <= 8)):
          tempStr = "dainty"
-      if (vulvaSize > 8) and (vulvaSize <= 16):
+      if ((vulvaSize > 8) and (vulvaSize <= 16)):
          tempStr = "kissable"
-      if (vulvaSize > 16) and (vulvaSize <= 24):
+      if ((vulvaSize > 16) and (vulvaSize <= 24)):
          tempStr = "groin-filling"
-      if (vulvaSize > 24) and (vulvaSize <= 36):
+      if ((vulvaSize > 24) and (vulvaSize <= 36)):
          tempStr = "thigh-spreading"
-      if (vulvaSize > 36) and (vulvaSize <= 54):
+      if ((vulvaSize > 36) and (vulvaSize <= 54)):
          tempStr = "" + legDesc(1) + "-" + legVerb(2) + ""
-      if (vulvaSize > 54) and (vulvaSize <= 84):
+      if ((vulvaSize > 54) and (vulvaSize <= 84)):
          tempStr = "ground-scraping"
-      if (vulvaSize > 84) and (vulvaSize <= 124):
+      if ((vulvaSize > 84) and (vulvaSize <= 124)):
          tempStr = "person-sized"
-      if (vulvaSize > 124) and (vulvaSize <= 160):
+      if ((vulvaSize > 124) and (vulvaSize <= 160)):
          tempStr = "room-sized"
       if (vulvaSize > 160):
          tempStr = "building-sized"
    return tempStr
 
 def cockDesc():
+   #Should work
    global cockSize, cockSizeMod
    chance = percent()
    tempCock = cockSize * cockSizeMod
@@ -23933,157 +23964,161 @@ def cockDesc():
    if (chance <= 100):
       if (tempCock <= 8):
          tempStr = "puny"
-      if (tempCock > 8) and (tempCock <= 12):
+      if ((tempCock > 8) and (tempCock <= 12)):
          tempStr = "average-sized"
-      if (tempCock > 12) and (tempCock <= 24):
+      if ((tempCock > 12) and (tempCock <= 24)):
          tempStr = "big"
-      if (tempCock > 24) and (tempCock <= 32):
+      if ((tempCock > 24) and (tempCock <= 32)):
          tempStr = "large"
-      if (tempCock > 32) and (tempCock <= 56):
+      if ((tempCock > 32) and (tempCock <= 56)):
          tempStr = "huge"
-      if (tempCock > 56) and (tempCock <= 72):
+      if ((tempCock > 56) and (tempCock <= 72)):
          tempStr = "enormous"
-      if (tempCock > 72) and (tempCock <= 100):
+      if ((tempCock > 72) and (tempCock <= 100)):
          tempStr = "gigantic"
-      if (tempCock > 100) and (tempCock <= 152):
+      if ((tempCock > 100) and (tempCock <= 152)):
          tempStr = "humongous"
-      if (tempCock > 152) and (tempCock <= 304):
+      if ((tempCock > 152) and (tempCock <= 304)):
          tempStr = "tremendous"
-      if (tempCock > 304) and (tempCock <= 608):
+      if ((tempCock > 304) and (tempCock <= 608)):
          tempStr = "colossal"
-      if (tempCock > 608) and (tempCock <= 1200):
+      if ((tempCock > 608) and (tempCock <= 1200)):
          tempStr = "ridiculous"
       if (tempCock > 1200):
          tempStr = "impossibly-ginormous"
    if (chance > 50):
       if (tempCock <= 8):
          tempStr = "infantile"
-      if (tempCock > 8) and (tempCock <= 12):
+      if ((tempCock > 8) and (tempCock <= 12)):
          tempStr = "hand-length"
-      if (tempCock > 12) and (tempCock <= 24):
+      if ((tempCock > 12) and (tempCock <= 24)):
          tempStr = "larger than normal"
-      if (tempCock > 24) and (tempCock <= 32):
+      if ((tempCock > 24) and (tempCock <= 32)):
          tempStr = "foot-long"
-      if (tempCock > 32) and (tempCock <= 56):
+      if ((tempCock > 32) and (tempCock <= 56)):
          tempStr = "thigh-slapping"
-      if (tempCock > 56) and (tempCock <= 72):
+      if ((tempCock > 56) and (tempCock <= 72)):
          tempStr = "knee-knocking"
-      if (tempCock > 72) and (tempCock <= 100):
+      if ((tempCock > 72) and (tempCock <= 100)):
          tempStr = "leg-sized"
-      if (tempCock > 100) and (tempCock <= 152):
+      if ((tempCock > 100) and (tempCock <= 152)):
          tempStr = "person-sized"
-      if (tempCock > 152) and (tempCock <= 304):
+      if ((tempCock > 152) and (tempCock <= 304)):
          tempStr = "car-sized"
-      if (tempCock > 304) and (tempCock <= 608):
+      if ((tempCock > 304) and (tempCock <= 608)):
          tempStr = "bus-sized"
-      if (tempCock > 608) and (tempCock <= 1200):
+      if ((tempCock > 608) and (tempCock <= 1200)):
          tempStr = "building-sized"
       if (tempCock > 1200):
          tempStr = "landscape-filling"
    return tempStr
 
 def ballDesc():
+   #Should work
    global ballSize
    chance = percent()
    tempStr = "BALLS ERROR " + str(ballSize)
    if (chance <= 100):
       if (ballSize <= 1):
          tempStr = "tiny"
-      if (ballSize > 1) and (ballSize <= 3):
+      if ((ballSize > 1) and (ballSize <= 3)):
          tempStr = "small"
-      if (ballSize > 3) and (ballSize <= 5):
+      if ((ballSize > 3) and (ballSize <= 5)):
          tempStr = "big"
-      if (ballSize > 5) and (ballSize <= 8):
+      if ((ballSize > 5) and (ballSize <= 8)):
          tempStr = "large"
-      if (ballSize > 8) and (ballSize <= 13):
+      if ((ballSize > 8) and (ballSize <= 13)):
          tempStr = "hand-filling"
-      if (ballSize > 13) and (ballSize <= 17):
+      if ((ballSize > 13) and (ballSize <= 17)):
          tempStr = "huge"
-      if (ballSize > 17) and (ballSize <= 26):
+      if ((ballSize > 17) and (ballSize <= 26)):
          tempStr = "barely palmable"
-      if (ballSize > 26) and (ballSize <= 40):
+      if ((ballSize > 26) and (ballSize <= 40)):
          tempStr = "enormous"
-      if (ballSize > 40) and (ballSize <= 80):
+      if ((ballSize > 40) and (ballSize <= 80)):
          tempStr = "tremendous"
-      if (ballSize > 80) and (ballSize <= 120):
+      if ((ballSize > 80) and (ballSize <= 120)):
          tempStr = "huggable"
-      if (ballSize > 120) and (ballSize <= 240):
+      if ((ballSize > 120) and (ballSize <= 240)):
          tempStr = "gargantuan"
       if (ballSize > 240):
          tempStr = "colossal"
    if (chance > 50):
       if (ballSize <= 1):
          tempStr = "marble-sized"
-      if (ballSize > 1) and (ballSize <= 3):
+      if ((ballSize > 1) and (ballSize <= 3)):
          tempStr = "golfball-sized"
-      if (ballSize > 3) and (ballSize <= 5):
+      if ((ballSize > 3) and (ballSize <= 5)):
          tempStr = "kiwi-sized"
-      if (ballSize > 5) and (ballSize <= 8):
+      if ((ballSize > 5) and (ballSize <= 8)):
          tempStr = "tennisball-sized"
-      if (ballSize > 8) and (ballSize <= 13):
+      if ((ballSize > 8) and (ballSize <= 13)):
          tempStr = "baseball-sized"
-      if (ballSize > 13) and (ballSize <= 17):
+      if ((ballSize > 13) and (ballSize <= 17)):
          tempStr = "softball-sized"
-      if (ballSize > 17) and (ballSize <= 26):
+      if ((ballSize > 17) and (ballSize <= 26)):
          tempStr = "cantaloupe-sized"
-      if (ballSize > 26) and (ballSize <= 40):
+      if ((ballSize > 26) and (ballSize <= 40)):
          tempStr = "basketball-sized"
-      if (ballSize > 40) and (ballSize <= 80):
+      if ((ballSize > 40) and (ballSize <= 80)):
          tempStr = "watermelon-sized"
-      if (ballSize > 80) and (ballSize <= 120):
+      if ((ballSize > 80) and (ballSize <= 120)):
          tempStr = "beachball-sized"
-      if (ballSize > 120) and (ballSize <= 240):
+      if ((ballSize > 120) and (ballSize <= 240)):
          tempStr = "boulder-sized"
       if (ballSize > 240):
          tempStr = "landscape-crushing"
    return tempStr
 
 def nipDesc():
-   global nippleSize
+   #Should work
+   global nippleSize, nipType, lust
    chance = percent()
    tempStr = "NIPPLE ERROR " + str(nippleSize)
    if (chance <= 100):
-      if (nippleSize <= 2):
-         tempStr = "small "
-      if (nippleSize > 2) and (nippleSize <= 5):
-         tempStr = "noticeable "
-      if (nippleSize > 5) and (nippleSize <= 15):
-         tempStr = "blatant "
-      if (nippleSize > 15) and (nippleSize <= 30):
-         tempStr = "teat-like "
-      if (nippleSize > 30) and (nippleSize <= 50):
-         tempStr = "cock-like "
-      if (nippleSize > 50) and (nippleSize <= 100):
-         tempStr = "horsecock-like "
-      if (nippleSize > 100) and (nippleSize <= 140):
-         tempStr = "arm-length "
-      if (nippleSize > 140) and (nippleSize <= 300):
-         tempStr = "street-clearing "
-      if (nippleSize > 300):
-         tempStr = "obscene "
-      if (nipType == 2) and (lust < 50):
+      if ((nipType == 2) and (lust < 50)):
          tempStr = "inverted "
+      else:
+         if (nippleSize <= 2):
+            tempStr = "small "
+         if ((nippleSize > 2) and (nippleSize <= 5)):
+            tempStr = "noticeable "
+         if ((nippleSize > 5) and (nippleSize <= 15)):
+            tempStr = "blatant "
+         if ((nippleSize > 15) and (nippleSize <= 30)):
+            tempStr = "teat-like "
+         if ((nippleSize > 30) and (nippleSize <= 50)):
+            tempStr = "cock-like "
+         if ((nippleSize > 50) and (nippleSize <= 100)):
+            tempStr = "horsecock-like "
+         if ((nippleSize > 100) and (nippleSize <= 140)):
+            tempStr = "arm-length "
+         if ((nippleSize > 140) and (nippleSize <= 300)):
+            tempStr = "street-clearing "
+         if (nippleSize > 300):
+            tempStr = "obscene "
    if (chance > 50):
-      if (nippleSize <= 2):
-         tempStr = ""
-      if (nippleSize > 2) and (nippleSize <= 5):
-         tempStr = "perky "
-      if (nippleSize > 5) and (nippleSize <= 15):
-         tempStr = "hypnotizing "
-      if (nippleSize > 15) and (nippleSize <= 30):
-         tempStr = "long "
-      if (nippleSize > 30) and (nippleSize <= 50):
-         tempStr = "huge "
-      if (nippleSize > 50) and (nippleSize <= 100):
-         tempStr = "enormous "
-      if (nippleSize > 100) and (nippleSize <= 140):
-         tempStr = "extreme "
-      if (nippleSize > 140) and (nippleSize <= 300):
-         tempStr = "ridiculous "
-      if (nippleSize > 300):
-         tempStr = "obscene "
-      if (nipType == 2) and (lust < 50):
+      if ((nipType == 2) and (lust < 50)):
          tempStr = "sunken "
+      else:
+         if (nippleSize <= 2):
+            tempStr = ""
+         if ((nippleSize > 2) and (nippleSize <= 5)):
+            tempStr = "perky "
+         if ((nippleSize > 5) and (nippleSize <= 15)):
+            tempStr = "hypnotizing "
+         if ((nippleSize > 15) and (nippleSize <= 30)):
+            tempStr = "long "
+         if ((nippleSize > 30) and (nippleSize <= 50)):
+            tempStr = "huge "
+         if ((nippleSize > 50) and (nippleSize <= 100)):
+            tempStr = "enormous "
+         if ((nippleSize > 100) and (nippleSize <= 140)):
+            tempStr = "extreme "
+         if ((nippleSize > 140) and (nippleSize <= 300)):
+            tempStr = "ridiculous "
+         if (nippleSize > 300):
+            tempStr = "obscene "
    chance = percent()
    if (nipType == 1):
       if (chance <= 50):
@@ -24093,101 +24128,105 @@ def nipDesc():
    return tempStr
 
 def clitDesc():
+   #Should work
    global clitSize
    chance = percent()
    tempStr = "CLIT ERROR " + str(clitSize)
    if (chance <= 100):
       if (clitSize <= 2):
          tempStr = "tiny"
-      if (clitSize > 2) and (clitSize <= 3):
+      if ((clitSize > 2) and (clitSize <= 3)):
          tempStr = "nibble-able"
-      if (clitSize > 3) and (clitSize <= 6):
+      if ((clitSize > 3) and (clitSize <= 6)):
          tempStr = "protruding"
-      if (clitSize > 6) and (clitSize <= 12):
+      if ((clitSize > 6) and (clitSize <= 12)):
          tempStr = "blatant"
-      if (clitSize > 12) and (clitSize <= 25):
+      if ((clitSize > 12) and (clitSize <= 25)):
          tempStr = "suckable"
-      if (clitSize > 25) and (clitSize <= 50):
+      if ((clitSize > 25) and (clitSize <= 50)):
          tempStr = "cock-like"
-      if (clitSize > 50) and (clitSize <= 100):
+      if ((clitSize > 50) and (clitSize <= 100)):
          tempStr = "horsecock-like"
-      if (clitSize > 100) and (clitSize <= 140):
+      if ((clitSize > 100) and (clitSize <= 140)):
          tempStr = "arm-length"
-      if (clitSize > 140) and (clitSize <= 300):
+      if ((clitSize > 140) and (clitSize <= 300)):
          tempStr = "person-sized"
       if (clitSize > 300):
          tempStr = "obscene"
    if (chance > 50):
       if (clitSize <= 2):
          tempStr = "small"
-      if (clitSize > 2) and (clitSize <= 3):
+      if ((clitSize > 2) and (clitSize <= 3)):
          tempStr = "pinchable"
-      if (clitSize > 3) and (clitSize <= 6):
+      if ((clitSize > 3) and (clitSize <= 6)):
          tempStr = "flickable"
-      if (clitSize > 6) and (clitSize <= 12):
+      if ((clitSize > 6) and (clitSize <= 12)):
          tempStr = "panty-tenting"
-      if (clitSize > 12) and (clitSize <= 25):
+      if ((clitSize > 12) and (clitSize <= 25)):
          tempStr = "stroke-able"
-      if (clitSize > 25) and (clitSize <= 50):
+      if ((clitSize > 25) and (clitSize <= 50)):
          tempStr = "huge"
-      if (clitSize > 50) and (clitSize <= 100):
+      if ((clitSize > 50) and (clitSize <= 100)):
          tempStr = "gigantic"
-      if (clitSize > 100) and (clitSize <= 140):
+      if ((clitSize > 100) and (clitSize <= 140)):
          tempStr = "doorway-smacking"
-      if (clitSize > 140) and (clitSize <= 300):
+      if ((clitSize > 140) and (clitSize <= 300)):
          tempStr = "snuggle-able"
       if (clitSize > 300):
          tempStr = "obscene"
    return tempStr
 
 def hipDesc():
+   #Should work
    global hips, hipMod
    chance = percent()
+   tempHips = hips * hipMod
    tempStr = "HIP ERROR " + str(hips)
    if (chance <= 100):
-      if ((hips * hipMod) <= 3):
+      if (tempHips <= 3):
          tempStr = "narrow"
-      if ((hips * hipMod) > 3) and ((hips * hipMod) <= 8):
+      if ((tempHips > 3) and (tempHips <= 8)):
          tempStr = "unnoticeable"
-      if ((hips * hipMod) > 8) and ((hips * hipMod) <= 16):
+      if ((tempHips > 8) and (tempHips <= 16)):
          tempStr = "wide"
-      if ((hips * hipMod) > 16) and ((hips * hipMod) <= 28):
+      if ((tempHips > 16) and (tempHips <= 28)):
          tempStr = "endowed"
-      if ((hips * hipMod) > 28) and ((hips * hipMod) <= 40):
+      if ((tempHips > 28) and (tempHips <= 40)):
          tempStr = "protruding"
-      if ((hips * hipMod) > 40) and ((hips * hipMod) <= 55):
+      if ((tempHips > 40) and (tempHips <= 55)):
          tempStr = "cow-like"
-      if ((hips * hipMod) > 55) and ((hips * hipMod) <= 75):
+      if ((tempHips > 55) and (tempHips <= 75)):
          tempStr = "shelf-like"
-      if ((hips * hipMod) > 75) and ((hips * hipMod) <= 100):
+      if ((tempHips > 75) and (tempHips <= 100)):
          tempStr = "doorway-jamming"
-      if ((hips * hipMod) > 100):
+      if (tempHips > 100):
          tempStr = "perpetually-swaying"
    if (chance > 50):
-      if ((hips * hipMod) <= 3):
+      if (tempHips <= 3):
          tempStr = "prepubescent"
-      if (((hips * hipMod) > 3) and ((hips * hipMod) <= 8)):
+      if ((tempHips > 3) and (tempHips <= 8)):
          tempStr = "average"
-      if (((hips * hipMod) > 8) and ((hips * hipMod) <= 16)):
+      if ((tempHips > 8) and (tempHips <= 16)):
          tempStr = "child-bearing"
-      if (((hips * hipMod) > 16) and ((hips * hipMod) <= 28)):
+      if ((tempHips > 16) and (tempHips <= 28)):
          tempStr = "especially fertile"
-      if (((hips * hipMod) > 28) and ((hips * hipMod) <= 40)):
+      if ((tempHips > 28) and (tempHips <= 40)):
          tempStr = "hypnotizing"
-      if (((hips * hipMod) > 40) and ((hips * hipMod) <= 55)):
+      if ((tempHips > 40) and (tempHips <= 55)):
          tempStr = "blatantly obvious"
-      if (((hips * hipMod) > 55) and ((hips * hipMod) <= 75)):
+      if ((tempHips > 55) and (tempHips <= 75)):
          tempStr = "excessively wide"
-      if (((hips * hipMod) > 75) and ((hips * hipMod) <= 100)):
+      if ((tempHips > 75) and (tempHips <= 100)):
          tempStr = "greatly protruding"
-      if ((hips * hipMod) > 100):
+      if (tempHips > 100):
          tempStr = "gigantic"
    return tempStr
 
 def bellyDesc():
+   #Should work
    global pregnancyTime, vagBellyMod, bellyMod, tallness
    chance = percent()
-   tempBelly = ((pregnancyTime / 10) + (vagBellyMod / 3) + (bellyMod / 5)) * 60 / tallness
+   tempBelly = (pregnancyTime / 10 + vagBellyMod / 3 + bellyMod / 5) * 60 / tallness
    tempStr = "BELLY ERROR " + str(tempBelly)
    if (pregnancyTime > bellyMod):
       if (tempBelly <= 2):
@@ -24220,10 +24259,11 @@ def bellyDesc():
          tempStr = "portable-apartment"
       else:
          tempStr = "breeding-factory"
-      if ((chance <= 50) and (tempBelly > 11)):
-         tempStr += " pregnant"
-      elif (tempBelly > 11):
-         tempStr += " gravid"
+      if (tempBelly > 11):
+         if (chance <= 50):
+            tempStr += " pregnant"
+         else:
+            tempStr += " gravid"
    else:
       if (tempBelly <= 2):
          tempStr = "flat"
@@ -24255,13 +24295,15 @@ def bellyDesc():
          tempStr = "inhumanly large"
       else:
          tempStr = "gigantic blubbery mass of"
-      if ((chance <= 50) and (tempBelly > 11)):
-         tempStr += " jiggly"
-      elif (tempBelly > 11):
-         tempStr += " meaty"
+      if (tempBelly > 11):
+         if (chance <= 50):
+            tempStr += " jiggly"
+         else:
+            tempStr += " meaty"
    return tempStr
 
 def skinDesc():
+   #Should work
    global skinType, snuggleBall, skinColor
    tempStr = "SKIN ERROR " + str(skinType)
    if (skinType == 1):
@@ -24277,10 +24319,11 @@ def skinDesc():
    if (snuggleBall == True):
       tempStr = "plush and snuggly " + tempStr
    if (skinColor > 0):
-      tempStr = "" + SkinC() + "" + tempStr
+      tempStr = "" + skinC() + "" + tempStr
    return tempStr
 
-def SkinC():
+def skinC():
+   #Should work
    global skinColor
    tempStr = "SKIN COLOR ERROR " + str(skinColor)
    if (skinColor == 0):
@@ -24306,6 +24349,7 @@ def SkinC():
    return tempStr
 
 def legDesc(part:int):
+   #Should work
    global legType
    tempStr = "LEG ERROR PART " + str(part) + " TYPE " + str(legType)
    if (part == 1):
@@ -24328,21 +24372,18 @@ def legDesc(part:int):
       tempStr = "foot"
       if (legType == 1):
          tempStr = "paw"
-      if (legType == 1001):
-         tempStr = "hoof"
-      if (checkItem(102) == True):
+      if ((legType == 1001) or (checkItem(102) == True)):
          tempStr = "hoof"
    if (part == 10):
       tempStr = "feet"
       if (legType == 1):
          tempStr = "paws"
-      if (legType == 1001):
-         tempStr = "hooves"
-      if (checkItem(102) == True):
+      if ((legType == 1001) or (checkItem(102) == True)):
          tempStr = "hooves"
    return tempStr
 
 def legVerb(part:int):
+   #Should work
    global legType
    tempStr = "LEG VERB ERROR " + str(part) + " TYPE " + str(legType)
    if (part == 1):
@@ -24358,6 +24399,7 @@ def legVerb(part:int):
    return tempStr
 
 def legWhere(part:int):
+   #Should work
    global legType
    tempStr = "LEG WHERE ERROR " + str(part) + " TYPE " + str(legType)
    if (part == 1):
@@ -24369,6 +24411,7 @@ def legWhere(part:int):
    return tempStr
 
 def legPlural(which:int):
+   #Should work
    global legType
    tempStr = "LEG PLURAL ERROR TYPE " + str(legType)
    if (which == 1):
@@ -24378,6 +24421,7 @@ def legPlural(which:int):
    return tempStr
 
 def regionName(tempInt:int):
+   #Should work
    global currentZone
    tempStr = "REGION ERROR " + str(currentZone)
    if (tempInt == 1):
@@ -24395,6 +24439,7 @@ def regionName(tempInt:int):
    return tempStr
 
 def raceName():
+   #Should work
    global race
    tempStr = "RACE ERROR " + str(race)
    if (race == 1):
@@ -24410,6 +24455,7 @@ def raceName():
    return tempStr
 
 def domName():
+   #Should work
    global dominant
    tempStr = "DOMINANT ERROR " + str(dominant)
    if (dominant == 1):
@@ -24439,32 +24485,36 @@ def domName():
    return tempStr
 
 def genName():
+   #Should work
    global gender, hips, breastSize, body
    tempStr = "GENDER ERROR " + str(gender)
    if (gender == 0):
       tempStr = "n androgynous"
-   if (gender == 1):
-      tempStr = " male"
-   if ((gender == 1) and (hips > 3) and (breastSize > 4)):
-      tempStr = " female"
-   if gender == 2:
-      tempStr = " female"
-   if ((gender == 2) and (body > 17) and (breastSize <= 2)):
-      tempStr = " male"
-   if (gender == 3):
+   elif (gender == 1):
+      if ((hips > 3) and (breastSize > 4)):
+         tempStr = " female"
+      else:
+         tempStr = " male"
+   elif (gender == 2):
+      if ((body > 17) and (breastSize <= 2)):
+         tempStr = " male"
+      else:
+         tempStr = " female"
+   elif (gender == 3):
       tempStr = " herm"
    return tempStr
 
 def cumAmount():
+   #Should work
    global blueBalls, ballSize, balls, cumMod
    tempNum = 0
    if (blueBalls <= 12):
       tempNum = ballSize * (ballSize / 2) * balls * cumMod * 0.5
-   if ((blueBalls > 12) and (blueBalls <= 36)):
+   elif ((blueBalls > 12) and (blueBalls <= 36)):
       tempNum = ballSize * (ballSize / 2) * balls * cumMod * 1
-   if ((blueBalls > 36) and (blueBalls <= 84)):
+   elif ((blueBalls > 36) and (blueBalls <= 84)):
       tempNum = ballSize * (ballSize / 2) * balls * cumMod * 2
-   if (blueBalls > 84):
+   elif (blueBalls > 84):
       tempNum = ballSize * (ballSize / 2) * balls * cumMod * 2.5
    blueBalls = 0
    return int(math.floor(tempNum))
@@ -25940,6 +25990,7 @@ resetimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x0
 refreshimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\x08\x04\x00\x00\x00\';\x076\x00\x00\x01%iCCPICC profile\x00\x00(\x91\x9d\x90\xcdJ\xc3P\x10\x85\xbfV\xf1\x0f\x05\xc1\xe2B\\d\xe1\xb6\xe2\xc6\xae\xdcT\x85PP\x88\xb5\x82\xd1Uz\xd3b0\x89!I)\xbe\x81o\xa2\x0f\xd3\x85 \xf8\x08>\x80\x82k\xcf\x8d.\\\x98\x8d\x17\x86\xf9\x18f\xce\x99\xb9\xd0tb\x93\x14\xf3{\x90\xa4e\xee\xf6\xbb\xfe\xa5\x7f\xe5,\xbe\xb1\xcc:-\xda\xec\x06\xa6\xc8\xba\x9ewB\xed\xfb|\xa5a\xf3K\xdbj\xd5\xf7\xfd\xf9\x16\xc2Qa\x94g\x8a\xd4dy\t\x8d\x03qgZf\x96\x15\xb4n\x07\xfd#\xf1\x83\xd8\t\x934\x14?\x89w\xc2$\xb4lg\xfbI<1?\x9av\x9b\xd5Qzqn\xeb\x8am\\z\x9c\xe2\xe10dBDL\xa9\xdb"RU\x8e\xe9\xb0\xaf\xec\x92\x13pO\x81Q\x8e\x19\xa96UO\xc9\x8d\xa8\x90\x92\xcb\xa1h \xd265~[\x95\x9f\'\x97\xa14"iY\x87;\x12iZ?\xec\xff~\x8f}\x9cU\x93\x8d\xcdY\x16\xe4AU\x9aS4\xc7cx\x7f\x845\x1f6\x9ea\xe5\xba\xc6k\xe9\xf7m5=\x9d\xaa\xe7\x9f7~\x01:\x9cP\x8ei!\xbbN\x00\x00\x00\x02bKGD\x00\xff\x87\x8f\xcc\xbf\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe6\t\x10\x14:#\xcd!\xc3v\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x00\xddIDAT\x08\x1d\x01\xd2\x00-\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\xff\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x01\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\'2\n\x01*N\xdf\x02\x00\x00\x00\x00IEND\xaeB`\x82""")
 valupimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x1a\xf7zTXtRaw profile type exif\x00\x00x\xda\xad\x9bir\x1c\xb9v\x85\xffc\x15^\x02\xe6a9\x18#\xbc\x03/\xdf\xdf\x01\x8a\x14\xa5\x96\x9f\x9f#,\xb6X\xa5\xac\xacL\xe0\x0eg\x00\xb2\xcd\xfe\xaf\xff<\xe6?\xf8\x93s\xb4&\xa6Rs\xcb\xd9\xf2\'\xb6\xd8|\xe7M\xb5\xefO\xbb\xbf\x9d\x8d\xf7\xf7\xfb\xb3>\xaf\xee\xf7\xe3\xe6\xfb\x03\xcf\xa1\xc0kx\xff,\xfds~\xe7x\xfa\xf5\x85\xaf{\xb8\xf1\xfbqS?\x9f\xf8\xfa\xb9\x90\xfb\xbe\xf0\xfd\x13tg\xffk$\xed\xf3q\xf0\xef\xb8\x8b\x9f\x0b\xb5\xfd\xde\xe4V\xcb\xcf\xa1\x8e\xcf\x85\xe6\xe7\xc4;\x94\xcf\xdf\xf8=\xac\xf7\xa2\x7f\x9b\xdf\x0e\x14\xa2\xb4\x127\n\xde\xef\xe0\x82\xbd\xbf\xeb\x1bA\xd0\xdf\x10:\xaf\xf1\xfe.\x9c\xe78\xd6u\x8e\xe1%\x04\xff\xb9\x18\x01\xf9mz_\xaf\xd6\xfe\x0c\xd0\xef\xc1\xff\xbc3\x7fF\xff\xfb\xdd\x1f\xc1\xf7\xfds<\xfc\x11\xcb\xfc\x95\xb5\xfc\xf7\x0f\\\xfa\xe3x\xf8\xbe\x8d\xffy\xe3\xf0="\xff\xfb\x07\xa3\xb9\xfa\x8f\xe9|\xfe\x9e\xb3\xea9\xfb\xcd\xae\xc7LD\xf3\xa7\xa2n\xb0\xdd\xd7e8q\x10\xf2p\xbf\x96\xf9)\xfcM\xbc/\xf7\xa7\xf1Sm\xb7\x93\x94/;\xed\xe0g\xba\xe6<Y9\xc6E\xb7\\w\xc7\xed\xfb:\xddd\x88\xd1oON\xbc\xf7\xd3\x87{\xac\x92\xa3\xe6gP\x9e\xa2~\xdc\xf1%\xb4\xb0B%o\xd3oC\xceb\xf0\xdfcq\xf7\xbe\xed\xdeo2\xc9e\x97\xe3T\xef\xb8\x98R\xfd?\xfe\x98\x7f\xf5\xe1\xff\xe5\xc7\x9c3\x15"g\xebw\xac\x18\x97We1\x0ceN\xbf9\x8b\x84\xb8\xf3\xc9[\xba\x01\xfe\xfa\xf9\xa4\xdf\xfe\xa8\x1fJ\x95\x0c\xa6\x1b\xe6\xca\x04\xbb\x1d\xef\x12#\xb9_\xb5\x15n\x9e\x03\xe7%^_\x0b9S\xd6\xe7\x02\x84\x88{\'\x06\xe3\x02\x19\xb0\xd9\x85\xe4\xb2\xb3\xc5\xfb\xe2\x1cq\xac$\xa83r\x1f\xa2\x1fd\xc0\xa5\xe4\x17\x83\xf41\x84\xecM\xf1\xd5\xeb\xde|\xa7\xb8{\xaeO>{\x1d\x06\x9bHD\n9\x14r\xd3B\'Y1&\xea\xa7\xc4J\r\xf5\x14RL)\xe5TR5\xa9\xa5\x9eC\x8e9\xe5\x9cK\x16\xc8\xf5\x12J,\xa9\xe4RJ-\xad\xf4\x1aj\xac\xa9\xe6Zj\xad\xad\xf6\xe6[\x00\x03S\xcb\xad\xb4\xdaZ\xeb\xdd\x9b\xce\x8d:\xd7\xea\x9c\xdf92\xfc\x08#\x8e4\xf2(\xa3\x8e6\xfa\xa4|f\x9ci\xe6Yf\x9dm\xf6\xe5WX\xc0\xc4\xca\xab\xac\xba\xda\xea\xdb\x99\rR\xec\xb8\xd3\xce\xbb\xec\xba\xdb\xee\x87Z;\xe1\xc4\x93N>\xe5\xd4\xd3N\xff\xce\xda\'\xab\xff\xf8\xf9?d\xcd}\xb2\xe6o\xa6t^\xf9\xce\x1aGM)_\x97p\x82\x93\xa4\x9c\x911\x1f\x1d\x19/\xca\x00\x05\xed\x953[]\x8c^\x99S\xcel\x13\xca%\xcf \x93rc\x96S\xc6Ha\xdc\xce\xa7\xe3\xbes\xf7+s\xffV\xdeL\xaa\xffV\xde\xfc\xff\x969\xa3\xd4\xfd\x7fd\xce\x90\xba\x7f\xe6\xed/Y[\xe2\xb9y3\xf6\xbaP1\xb5\x81\xee;1v_M\xf7\xe3\x84\x01S\xd4\xbc\xc3\xa9\xe58\xe6\xd1\x19\xc8\xd9\xee\xcc\xdcm?\xcb\xeb8_\xd91\xadx\xf6}Ox\xc2\xee\xc5\xefs\x08\xc7\x99F\x07\x03\xe9\xe6\x03\xdf\xf6}\x19\x8c\x9f\xa4\xd7\xed\xe6*;\xd4\xd3m\x8a.\x94E\x85\xc5\xce\x88m\x1b\x9b\x91\xf6T\xda\x9e\xc7\xbb=#\xc1\xf6\xab\xebb\xb3\xac\x19\xceI\xcb\x95\xd3VL\x7f?\xee}\xdc-W\xa6\xd2m\x0e\xdcf\x13+\xef\xcfZ\x86 7\xefjr\x91\xff*\xcc\xad\x93\xa8&\xe6\x14\xf3\x19\x9d\x1c67\xf6n\xca\x93\x03\x8eu\xde\x1c\xa1\x951t#f\xd5\xf4j\xf6\xe8\xa1\x9c\xd0k\xee\xf9\xf7\x8f~|2\xe7Ln\xe9\x9a\xb6$\xe5\xb7R\xaf\x0c\xbb\x13\x82\xd2&\xb8\x97\x0ca8-\x15\x7f\xfe\xf8\xe0s<\x03K\xdb\xe7\xe22\xb1\xa5\xb2W\xa2\x18\x06\xa7\rwo\xca\x84#\xa5\xd0\xa7Y+\x8d\xb3S\xbd\xf1\xa0\xb5\x88 \xa5z\xa8\xee\xd9"\xa1\x8e9\xdf\xe9$\x02Z\x98\x9ff\x96\n\xf7\x1a\xbe\x96\x1cv;\xbb\xa7\x18\x8ei$\x9c\x82&\x93\xa5\x9c\x9c\x8e\x1f;\xae5F GufJS\xb7\x18\xe9N\x16\xc5r(\x12\xbd_\xb9\xb7s\x8f\x9e\xc67\x8f\xf9\x1a\xdeL\xfd\x10\x8bA\x9d%\xdf2S\xb15\x0c\x9f\x98\xc5j3\xa5\x01\xb2\x16{h\x9d\xde(\xfbTh\x83C\xabuOiq\x8a\xa1\x89\xa1:7V\xf5\x9bA\xc5I!\x12\xab\x1d\xcba\x18L4\x10\xe2C\x05\x11\xe7\xb3JL\x14\xa4\xc2I\x00\x08N\xa0\xa3fks$sG@k-B@Ap\xd9\xa5Z\xee\xa9\x8e\xd8\xb8\x96g\xbc\xe1\xe4mQJ#\xf0)UD\x97\x05\x02\x1b\x08\xc1Y\x88\x81\xca\x05L^@\xee\x8a\x90\xf6\xaa$"\x9e\x1b\x93f\xef\xec;\xff\xe6\x82\x8cyg\r1\xee\x92\x87\r\xf4(\xcdW:\xff\xddr \xe8\xc3x\xd7N\xbe\xdd\x93\x07\xa1\n\xd4\xbc\xc2J\xd16"\xe0R\xa0\x86\xc6N1f\xcf\xa0\xf6\xe1x\x1c\xdf\x13\xe7\x0b\x9d4\x0e`\x04\x94\xa0\xee\xd3\xf7G\xee\xd7I I\xdc\x9b\xc6m4\x1e\xe8q\xce\xbb\xd7\xf7\xbb\xd6\xd5\x04\x99\x99\x17\xc7\x88\xbe\xe3RC>\xa8\xa3\xb5t\x15\xe2\x19\x13\xe0\x83j!\x10\x8dS\x86N\xa1|\xb8O\xe1\x8c\xd4\xbaok\xd5\x0e>\xd1\xc5f\x86\xc5\xfc\x8f\'\xb2\xb4B\xde \xac\xdb\xe9D\xda\x84\xa0\x06r\xe8n\xe3\x80,\xf0\xc0\x83\x13\x85\xe7\x08\xd6<\xb5\xbb\x98\x13Z\xc5\x08\xe3*\x17I\xb5j`\xa1dJ\x86h\x82G#%Bv\xbf\x1a\x17H\xd7w\xe5\xd0\x01@\xf4\xbb\xf0\x89\x0f\xb4D\x8a\x8d\xea\x03j)b\xdb\xc7a\xaa\x87^\xd7\xb4*\xb0\xea\x0e\xb6\xc2[\xa6\xb27\x88\xa9r\xdf\x99\x86\xab;\x04\xaa#w\xe0t\xab\xce\xe9\x90\xdb\xfd\xe5f)\xf4Q\x99\xf5\xa41s\xec=q\xe5N\x83\xce\xf5\xf0\x80{\x9e\xdd\x18\xd5AQ\xe8\x08\xd8\x03\xb0\xd1\xe3\x99\x0b\x9f\x12v2t\xca\xd9+S\xc0\x87p\xf5a{\xdf\xab\xaa\xbd\xa9\xfc@\x9c\\*\xea\x8e\xe6\xf6 \x15\x00\x02\xa7\x05ecn\xdb\'xW\xd4\xd8\xcd\x00c\xdb\xd3e+\x81\xbe\x9cMN\x98_\t\x89B\xd7\xbd\xa1\xa3]b&\xfe\xfb\xd83w\x1f\\\xfa\xceb5z\x8f\xe9\x96\x05le\xd3\xee\xc1FU\x854"\x1cF\x95 {\xdaqC\x9cD\x85,O\xca\xf7\xd4\xc4\xe6\xb1\x14\x02x\x1d\xd2\xf2"\xce1r]\x90d\xb6\x06zG\xcb\xd2\xc5\x838A\xa8PY\xb0\x1d\xb6\xda\x85Q\xf3=;\tG\xa0\xe3jd\xa2\x05\x16!Mg\xcd|f\xef\xb6\xaa\x93\xc9\xdf6\x8c\x97v\x06$\x18}\x86\xf8C\x18\x13\xa08\xa3.\x102C\xae\x14%tF\xadR\xe6\x1b\xa2\xdd\xd3\x0b\xff\xd3\xdci&r\xd6\xd6\xa4V\r\xec\xd5P\x7f\xad\x10|\x85#\xa5^\x05\xcfD\xbf;\x98\x9b@\xfd3L\xb7\x07wJsdIAu\x8a!$|\xb5k\x08T\xbcp\xaa\xf6\x81\x90\xac~.\xb8\xa5\x05@\xa2\xbd\xe9\xa8L\xa6`\xe3\xb4\x10S\xfb\x90\x15\xf1\x0b\xcc\xd2\x808\x001\xce\xa22@\xdf\xe3\r\xfd\xce\x17N\x99TG\x8e&\x84\xca\xa8\\1\x8f\xb4)P\x90f\x0b\xac%\x96\xef-(_.d\xe7\x1d\x14\xa2[}Z\xa2\x03?<dak\x0b\xe4\x97t\xe6\xed6J\x03\xa93\xc2\xce\x8e\xa8\x01\xab\x9e\xca\x8a\xad\xddO@\x97\x08\xd3R\x9d\xb3\xd2\xaccS\xf8\xf4!\xf4\x80\xe0\xaa\xfb\xb8I\xec\x80\x11\xc4\xc9\xac\xaa\xed\xd2\xde\x045\xd2\xb5\xc2\xb5\x9b\x14c\xf1iN\xb3\xb9\x07\x85HM\xc1\xe2\xb7HZ\xa0\xe0\xd6L\x83x\x80E\x85\xea\xf4\xf0>\x81\xe0\x85\xca\x99}2\xd3G\xa5\x8d\x8f\xefG\xdbte\xd5\x0e\x08\x9e\xd2\x1c\xe1\x96\xe7\t\x13d9"\xa64\x18`\x87\x18\x0f\x15M*a(\xb0\x92\xc0\xb6\xe6KF\x93\xd3\xd1\xc3\x91%S\x90\x01v{\x90\xc6\x92\x81:%8\n]\x00\xf0\xc3\xca\x93\x8c\xf4\x1e\xcbh\x99\xd2\xa1\xcf\xf3\xc4ZQ\x9d\n\xcc\xe2Z\x1d`\x00\x93J\xc6\x1cGj/\xae\x0e\x0e\xc5J\xe3@\x8e\xe8\x1c8Ce\xb0\xc5v0\x0eBl\xa2\xd82m\xbc\x87(\x92\xdaB\x16\x08\x1fG\x8cx{\xaf\xacm9\x0f\xf0\xa5\xedu\x99\x85\x90"IW\x1c\x903\x04\x19\xd6X\xa8\xdd\xda\xee+4\x83\xb1\xe0&\x04\xeer\x08\xe0E\xb5D\x1c$\x026\xcf\x13],r\xfb[X\xdc\tS\xd3\xd7@\x83P\xa4p\xc2`\x12\xd0\x02\xda:ttK\xa8\x10=\x83\x01\xe3\x9b\x85\xa5:\xee\x08\rJ<&\xf4Ow\xd1\x95\x10\xfe\x9eu\xa5<cxDE\xdc\xda\xb9y\xf2\xa2\xc0\xde\x1c5\x12Q\xcf\\vP\x7fTM6\\\x96\x087\xa4/\xd3\x1dS\x88,q\x13\xd4\xb1Tx\xe7(\x01\xf6\xa8\xde\xd9xC*P\xeb5\x0e\xc9\x9c*\xd0\xdd0+Q3)\xab\r\xdd\xa0U\xb3\x1b\xf9\xd6\xab\x8f9\xc0O\xca\xae\xcdM\x13N\xbc\x07\xd7_\x14\xeb\'l\x1a\x12\x1ff\xea:Q\xd9\x1b\x04"\n0*!#\xedE\x8b\x1c\x842Q\xb98\x90\x96n\xa8\x91F\xf7\x1a\xc0\x00>!\x7fj\xf2GE"\xfd2-}\xaf\x11}\x1c\x08\xfe\x06U\xb5;\x1d\xd0\xdfg\xfa\t&\x867"v\xaa\x9f\x82V\x08\xa0\x84\x14!BLt\x9e\':\xc6\x00\xfbHG0\x91.N\x13\xff@\x86\xfeU\xede\xf8\x17\xb0i?\xea\x17\xcd_\xad\x19\xad\xdf\xcc|\xb3F\xe2\xbe)c\x94N\xa0T\x1c\x8c\x01h\xa4\x1f\x10\x97j\\\x9b\xdb\xad\t8\x0c\x18\x8c\x86Y\xd1\x08\x1c}\xb8\x9dK\t\x0e$(\x9fQt\x13\x87\xd3\xe2\xc9\x14\xa6\x14G\xa0\x9c\xbe\xb0\xb2su\xce\x1a\xfa\x06>\xe1\xdc\xba4\x8a9-\xcfm9\xa3\xd3\xd9S\x0b6\xb1i\xf9\t*\x8b\xc0\xb0\x07Y\x05?\x97\x9e\xc0\x88;\x03u4\xca%\xc2\xa0Ar\x1a\ry\x81\xa3\xc3\xf6@\xcf\xda\xedr\xabC;\\\x08\x9d\x8a+Q(\xbdI\x13Ly~\xbe\xe9\xd4\x81\x03R\xa26\xf7\xee!\'z\x8d\xfa\xe04\xf4\x078J\x9c\x04\x97\xb8\x02\xf4\xbe\xc5\xc6\x15\xc2!A\x892\xa1\xd6\x16\x06\x9f\x84"B\xd0G\x0f\x91\x84a\xe2I\xe3E\xb2el\xe8\x9c\xeee,\x1e\xc2!#\xd4\x18S\x96rF\xdf\xee\xda%\xdf\xbd\xd0\x0f\x08<o^\xbf\x11\x82\xd1\xbc\xb6\x8aCJ\x02\x80n\xa3\xda\xadE\xc2*\x17\xd4o\x8c?\xc4\x9d&e\xe4+\x06\r\x9f\x08\xaf~\x05\xbf)E\xe6\xe5(\xda)>\xc3=1{\xd0\xe9W\xf6\xb0\x00rr\xa0\xfaH\xe5\xe6\x9d`\xccF\t\xcb/0\xc4\xeb\x16r7\x9a\xbf\xe0i\xe5\xa8\xe2\xa3\x18\xa5\xba\x07\x81\xa1\xc5\xb9::s\xa2\x9d :\xbcA\xe3\xeb\x8f\xac%\x10\xce\x17\x1d\x03\x19\xc4(\r\x19+\x84\x02\xea\x0f\x1cB\x9aL\xe9\xa8\x9a\x7f\xbd\'\xc9V\xecKB\xee\x8bVb\xba\xbd\x86\x8b8\xf5\x89F\xe8(\xb6%\xbe;\xfe*k\xa9\xbb\x8b\x06\xfd\xaf\xc7\x1b\xdf\xc1C\x01\xe5\xfd\xb9?.\xbd\x9b\x9f\xf8\x01\xb3q!\xd0&\xe0z\xc0h\t\x8e\x95\xe13\x94q\xd3\xdfF\x93\xd4\xe7\x06\x1b\xe9\xa3u\x17v\x08)\xc3W\xc8_\x07v1\xeb{&\x93\xde\xc4P!d\xb9\xbc\xda\xa8\xdflEw4\xff\xb7\xa3h\xc0t\xb4h\xe1\xe4\xf4\xb9\x9a\xc1\xc8\xadi=\x06\xaa\xeb6\xf7\xa5B\x98H\xc0Q\x90\x83\xee\xd4[\xdc\xbf\xfe\xc1\xf4\x82\x188}\xc6\x90\x02R|\x1b\xe4\x00\xba\xec\xfe\xc6\xd4e0O]\x1f\x91\xed\xa2\xc3pEE\xb8\xbau\\!\x1f\x07m\xb4R\x9dm\x0c\xc59\xbb\x8d\x17\x9b\xc7,0\x17=\x03[\xdc\xc2\x933\xa8\x80\x00S\x02\xdfB^\xa2\xb2)\x1d,\x17\x82\xff\xeae\xd2\xd1r\x86\xa8\xe8\xe2\xec\xaa|J\x1c\xc1\xec\xc8\xc9 3\x9eL<B\x0b#\xaa\xc1t\xfc=\xda.\x13\x15\x87\xc1\x9c\xb2k\xdc\x0c\xa3\xe3\x01\xdba\xeb\xa8\xfc\x89;\xa2\xbc\xe9\x0c\xc4(\x06\xf0[\x08>\x1d\xb8l\xf3\x03\x8f\x8f\x9a\x04\'\xbd\x9c\xcep\xe0\xa1\x04\xdfF\xa1\xe6YiI\xadhci\xf6\xc9ty^F\x14\x854\xcb(OH`a%)r,>]\xedp[\xfc\x0c\xe1\x9d\x0eR\x0f\xc93\x97\xcfQ\xe4\xa5VO\xb1]\x047\x18\xd9g|\t\xff\xcc3I@P\xae}\xda\xec\xe3q\xa8\x89\xee\xa3\x96L\xeaab\xf4\xc5D\xd2E\x11U\x01\xb7\x98\x05a\xa0;\x99\x853\x0b\xa0\xadZsp\xf4e\xdcg\xd0;{\xd2\xfb\x1er\xc6\x1e\xa3I\xe2\x8fh\x17\xce<+\x02\x96$q\xe1\xb5\xcb\xe2\x9a\xe8\x02\xf0\x08\x95\x07`\xfd\xc8M\x84a\x87\xc0\x17EF\xb9M\x17\xb2]\x83\x1b\x7f\x8e&@1i\x86\x0c\x08S\x92\x81\x94z\xcc]\xdc\x19J%\x0c\tW\xec\xdd\xec\xfe\xa3\xb8\xa0\x86B\xe8\x91>\\Mf8c\x00#u\xb1\xae\x95\xb8\xe3R\xb0/w#$\x17\x04IJ\xf1OY\xa3f\x8cR\x0e\xaaC\x07z\xaa\xba\xa0\xbe\x8a\x9fGY{\x07U\xa3\xd7\xd0.A\xdb<\xc1\x14\xa2i\xf1?X\xbc\xacu\x84\xf5G-@t\x853\xc03\xacG\x9d\x04\x84\xa0\xaeJy\'\xb2\x0c\r\xf8\x81]l4-h\x1f\xec\xc1\x7fVa\x126\xed<\xab>\x0b\x96\x92k&FV\xb9\x18\xac\x1d\xdc\xce!\xd3\'t\x0f\'\r4=8G\xec\x19\x86\xf1\xb8\xaa\x94Q\xb9\xbeM\x11\x1am\x8d\x10A>2D`\x11\x93\x96\xe5\x9c\x86$w\xbf\xc2\xbb\xe7\xbb\x82$?\xf9\xe3\xa8\xd1a 7u~;\xb0\x13\xd7\xc0i\xfa\xf7px\xd4\x02\xd7#<\x98VC~Ge\xf7\x8fK.n\x18\xb9\x10\x9a\x03yI\x8eN\xba\xa6\x04\xfc>Z\x0fF;xJ9\xd3)\xb8bJ\xc0[,J\xd0]~\xce\t\xf7\x83t\xaa\x18?\x02H\xda\xa2\xd0\x18RoD\xa9\xa4\x0c\xf3\xd8E\x0eh\xb5\x80b\x1aB\xa9|\xf2X\x8f\x85\xfd\xe53z\xf2\xfa\xecyR\xb1\x80?#\xc6z\x01#T0f \xc7\xcf\xe03\x1a\x8b\xde\x0cE%\x9a$o\xc7^\x1c\xdf\x18D\xaa\xcb\xe5\x8az\x85\xab\xbbd\xae\x08R\x85oi\xb8^)\xff\xc9<\x915r`\x14\x00\xe5\xb3\x10o\xa3I\x8b\xa0\x110\x9f\xab\xdcE\x8d\xa5\xe5N\x04\xa4\x0c.\x92\x1f\xee3k\x82\xdfI\x82c\xe9\x08J\x93a}\x8a\xef.\x94\xa0r\x01_\x02\xa3\x15\xcc%I"\xf4\xc3#\xc1\xf0M\xf0\xb6\x88NJ\x86\xb8\xaa&\xfa\x93\xbfK\x1d\x03\xa7\xc2\x8b\xb4qkp|\xf4H\x8e6\xbc\x96\xe4p\x8bn\xa9\xda\x86\xba\\\x8b\x02h\x01bN\x00\r\xe6\x1an\x9aSn-`\x14\x00L\xd8|\xdf5=.N<O\xdf\x92\x10\xb0\x01\x8dD\xe9<kX\xae\xb0A?2`\x88\xb8\x19+\x89\tbRzS\x1aO\x97\xa1\xe7\xc1\xc9@\xe5L2\xbf\xda\xa5\xab\xbd\x04\xebo\xa5\xc4\xe1Z\xc8\x0fF\x94\xdaG\'\x13v\xa3E\xcb\xbc\x1c\x83\xa1\x82\x98ONZ\xa8\x15za \x10\xa4\xcf\x995\x9c\'\x1a\x9aVk\xcem\xe0\x0e\xb1O-\x8e\xe8\xf1B9\x92Y\x83U,^k\xc6\xed\xc1s\xae\xad!\xaa\xe0\x10OQC\xb6Z\xc2A\xbf\xbe\xdf\x14{\xcc\xa4\x860#>\xa8y\xfd\x86\xa3Z1n4G\x0e=\xa3R\x1d@g\x8a\'\x1e\xa6\xd8\x89\xd5\x02fW(\xc3\x02\x9c]K\xa74\xf6\xd9Z\x97\xfa\x9edYZ\x9b\xdaw\x19Z\x8d/\x94c\xa8$`\xab\xf2\xb3\x85\xff\x8e\r\x04\xf5\xcdq\xdcj&O\xfd\xae\x11\xd5\x9a\xf6J(\xb1\xa3UY\xaa\xcehm\x91\x94WB)\xdfY\xb4N\xc7H\x90\x06\xe0\xa9\x85l\x91 Z\x9aL\xe3\'\xb7\xd1\x16\xae\x04-Ma\ri\xce\x8e\x15e\xce\xebW\x03@\xbc8(\xf7Z\x12b8\xe0QD>4@q`\xd5\xb3v\x1d)\x02\xccZ\x85\x17$$;\x0e}\x1d\xf3\xac\xde\xa7#`\xda,\xd1!xE\xc2\xe0\xb3\x91p\xc1\x8b\xf4\x8b\xf7\x98\x82Z\xb5h\x0e)\r\x12!\x98{\x1cQh\x11<\xaa\x96\xf0hc\n\x1c\xa1\x86vJ"\x82\xd7LZ\xa7y\xfd\x05\xec\xc8\xb3J\x14YI^$\xdf\x82\xf2\xf0\xb0\xe8K \xdd$\x89Dp\x18&\xbd \xe1] \xe5T\xb3\xe4|Gk\x9f\xc8\xdf0\x87G\x1e\xfbq\x907n"\xe7\xa5\xb53\x11\x84\xbdiS\xe8\x08\xea\x86\x8c\xafx\xd1\xea*\x1c\x87\xc6\xf3\xd2\x95\x98\xdd\x16\xb4\x1aU\xac\x1c$1\x98Z\xc3\xd5\xc2T\xc0\x8b\x14\x08\x89\xf3\xcf[l\xa9\x06\xb9\xb1]\x84\xf0P\x87DD\xcb\'\xcf\xc7B*\xb8/\xa4W\x82\xe5\x0f]\x80-\x15\xe5\x01\xf1\xb6\\\x82\xa2\xa0\x96\x96\xc5\xe0/t\xf6y\xdf\xd0FGZ0\xe5)\x19\xc9R\\\xd3\xc0\xadv\x8d\x0e\x12\x83\x94\x82\xe8\x93h0~\xaeV\x07`\x07\x04\x12TRs\x97\x0f\xb9vPi]\x99u\x0e`\xe0&.\xb9\xaaD\xaa\xd7\x82A\x00\xb1(:\x90\xbcku\x1c\xc3t\x16Z=F*\xac\xb7\xb9%\xa3\x11\xec\xeb\x11\xe3\xc2\xab\x94\xa2u\xc8(\xc2\x10\x1a\r\x14\x91F\xc4P\xc1c\xad\xfc\xefK\x8c\xc8\x16}\xa3\xd7\xea\xdd@\x07\x1c-m\xe3i\xafql\x15l\xb9\xdf\xed\xa0\x0f\xa1\x1c\xc3\n\xce\x98\x9cf\x94\x02\x8e%g\x0c\xcfFi9\x91\xcd\x10\x9c\x96\x8b\x96\x81~\xeb\x80\xff\x95 \x95f\xca\xcc\x06/\x99\x16\xb9\x0e\x14\xa4\xef\xf43\xd0\xd5\xac\xd6\x00\x86\x8d\xf8X\xac\xf0\x8b(7KZ\xc8\xddZ\x0c\xde\x01\xccV#\x011\xf9\x95\x80\x97\x97\x01}\xb9\x18\x1c\x04`\x80\xd4\xfd\xc9\x8c\xf56\xa2B\xbdy\xe6\x17\xfa\x8c\xd0\xb6}\x9d\x9b\xe1\x14\xe5\xe5\xf7K\xcd\x9d@\xa0\xa3m\x17\x14\xab\xeey\xa1\xb7\xb8\xc7gi(\xf2\xfbB\xde\xc87#\xc5\xbc\x81\xddq\xe1;W\xc4\xef37\xd4\xfd\xd2|\\\xadT/`\xbb\xb56\xb5\xfd\xf6\xda\xfeA{:\xea\x12\xd1\xffX\xbaR\x85\x86\xda\xa92\xb2\xa5N\xac\xfd\x14v5\x99mH\xe6\x9e\x95\xa4\xe6\xec\x00\xde\xef>\x15\x1de\xef\xe2j\x9bZt\xda\xf2\x031\xbbp\x0c\x08\xe5\xd4\x84\x9cW\xb5\x82\'\x89\x04\xbc\xa0ty\x1fI\x1f\x10\t\x15x_\xd6B\xdb5\xca\x8e\x0c\xf8\xa5\xfd#\x0ck\xb8\x0e]1\x12\xa9v\x00\xfc\x19\x17\x15*\xb0$\xef\x0eTZ\x946\xd7\xbe\x8ecPE\x01.#\xbcX_\xd1\x94\xbc\xe3\x89\x0c\xafk!\x8d\xca~M\xe7\xa8\xd0\xa3\xdd\x9f\x8d\xc6\x85\x1d0\x91\x8e^\xd3\xda5\xc0\xe1\x85\x01\xda\xf0\x8c\x10\x7f\xae\xcf\xf3\x05\xaa@M\xa7\xbd\x00o\xdeRS\xb5\x0f\xbb\xa3TV\x92\xba\xe4\xbe.\x84\xb7\xc7\xa5\xd6\xf1\xa8C\x98 \xb5\xf7\x1bW\xfb\xb5\xc7\xd5\xa6D\xb9y+Vo\x95a\xec\xbbmHD\xe2\xf9\xebq\xad<\xd0X9{mFe4\xc5\xb8{\x97\x98$<\xed&\xf3DcQsI\xbb\xb4\x0e^\x9feK4 \'Z\xacw\xa7oI\xbc\xe8\xc1\x81\xcf\x0e\x1bY\xce\xda\x03\xb5\xf2$\x10\x8d\xf1W/f\x997\x00\xdf\x01 \x93;\xa3D\x8e\x96\xe9\x9a\xfc\xe2\xa4L\x88.|\x8e\xb8\xb8\x0c$\xeeh2\x90\x13\x9d[Pw\x85\xee\xc7e\xf7\xda\x0eV@\xd9\xc7\xd1\x12\x8cB\x9b!\xf7\xc0m\x9a}j\'-j\xf7\x8b\x81\x16\xa7\xbd\xca\xf4r<\xb4o\xa7\xe5\xc0O\xfa\x91\xa2\x7f\xfb\x88\xccC\xb8!Ja\xf7\xfc\x8a`i\x1d\x91\x88\x00\x91V\xfb_\xe8\x99ym\xbdVk\x96\x95V\xdaw\xbe\xb0\x19\xd5A\xa1\x8c\xb7\xa2m\xfd3\t:c\x15 \x8bv\xfd\xc0\x96\xd7.4\xc1A\xdf\xde\x18\x05\x94\x07\xbdC\x00\xfd\x8b\x1d:T\xab\x9b\x14\xaf\x1e\x7f\xb9\'\xe1 \x07\x1f\xa2\x8e\xe6\x1d\x80\x93\x98\x01\x80\xb9<\x9f\xd0\xeb\xde\x16\xd3\xf4\xf8\xce\xad\x17q\x0f|2\xfd|\xbf\xb7\x8a^\xdb&\x8e\xefC`\xdb6Y\x19\xadU\xbav=\xda\xd62A\xc0\x02\xd1\xf7\x06 \xd3\x86\xd2\xd1z\nZ\x0b\x812\xe3\x9ct\xfd\x84\xfe8\xadh\x11\x9b\x0e\x05w\xc1U\'/\x9cF\xcd\xbaD\xf2\x05\xfd\x1a\x1c& ,\x03m\xf41\xf4P\xc1\xc5\x1a\x00E[\x9d\x0bE\x81xH\x00\x01\xe6s\x0b\xee\xc1\xe3\xa5\xbd_=\xe4\xe3\xe3\xdd\xed\xa6.\xb66\xa9\xbbV\xd8\xb9C\x13E\xd7\xf6\x16.\x80\x14\xb72*2\x06-\xe3\xc0\xc7x\x02=\xf6P\xd1\xec\x9c\x85j\xd0Z5\xc2\xe5\xe8\xf9\x01\x86!\xc1P\x905T\x19\x96\x18-`\xb5\xbd\x8f\t\xd6\xa3\x10\xd2\x98\x00\x00z\x1ck?\xbc[3\xd6i!\xc7\xb5)*\xad\xc1(\xe0\x18-|]\xd2\x12a7Ik\x8c\xb6W8syZ\xe2\xa0\x19\xf84\xca\xe3\xf6\t\x8c\xc9\x05\xc0HY{mU\x9d\xc3\x1c\xe0p\xb2\xdc\x91\xaaQ\xed$Qn\xb2|\xd5\xd2\xf2ytSOP\xc9\xdaxz\xfbhi\xeb-\x8b\xa1\x8ap\xaey#\x7f\xc1\xc4\x08d\xf5KE\xa4\xc9cN\xa1#L\rN\xe4,zI\xdb\x8b\xd4EV\xeb\x89\xb3\x14YL\xac6\xc2\xb1\xb6\x00\xb2\x95\xc4DTC\xc4Z9Y\xda\\\x81\x13H\xd5U1\xe8l\xa7\xed[*\xa5\xdd\xcd\x1c\xdd\x01\x85|\xf7\xea\n\x12\xea9\x82 ~\xa4)yIR\xc3\x00\x1f\x82/i\x89T\x88\xe5c1Y\x18\x96\xde.\xdb\xb9\x9b\xb1z\xc0N\xbb\xa1\x10\xf2g\x03\xe8-\xc0,\xed\xc3\xe2\xc8ae\xa2\x86<\xd5#\x0c\xa2.\xed\xbdh\x9f\xf6\xaf\xa7\xbf\r\x94X\xef\x02Y\xd1}\xee\x0e\r\x87\x1d\x9aQvRWB\xe3\x9d ,>\xd5\xe0\x1d\xde\xa6s\xf9sT\xdcwdE\x07\xeei\x01 \':V[\x11\xd1^\x0b^\xb4\xb5\xaf\x05n\xad\xf3\x14\x83.\xb82\x01\xd8Q\xb6\x85\xc9(\xbd}\r\xe0\xaf\xe4H\x12~\xd2\xf3\x97\xecP\x99\xdb\xa0\x07\xf1"\xde\xfb\xa6b\xa1\xa0\x91\xbf\xf0\x90\x0bw\xe3\xb8Tn\x9c\xb5\x19\x9f\xf5ot\xee\xb5\x93\x0c\x9a\xd99\xaa\x82\x80\x17\xe4\xf4\x1e\x867\x10f8Q\xcb\x94\r";`\xab\xf68h\xca\x99A\xa8,\x15\xe1\x07V\x1f)\xef\x0e&\x88.Y\xe0K\xa0\xccm\x9d\xb459M\xda\xce\x10 j\x01\x17E\x872\x00\x137D\n"\x01\x1a\xcbc\'\x8e\xc4\xa7.\\\xd1P\xb6\xa1{\x904\rW\t\xddhy\x13Y\xba\xa1#=\xa9PU\xcf\xbbW4H\xa7^l/\xeeja=\x05\xa0M\xd9\xf5UM\x124z\x06\xe3\x8fc\xb4\xab\xe1\x8ek\xd6\xbb\xe6\xea*b\x1d8m\xdaL\x9d\xc7\xc7\xcfJ\xba\x10l\xa6\xbb\x92~\xf7\xdf\xa8\xfd\x0b9\xae\x95"5\xbfq\xd6\xcd\xc07Z\x9fA\xffW\xf1Vg\xa4G\xe6\xa4\xf2\xf9\x19\x9c\x8e\x95\x9f\xb4L\x15\x91\x945\xbf\xa0\t\xdd\x04\x81\x83\x9e\xf0Ji\xa9\x9a&uN\xb0H\t\xce\xaf\xbc-o\xc4\xb7\xbc\xee\xee\xd9\x82\x99Tk\xa8\x1da*\x87\x1d\x8b\xb6UO\xa8!\x17\xab\r\x9c\x85\x95FJ\x99\xae\x1d\xf9b\x8f,\xc4`J\\\xf5\xc8NgT\xdf\xb4\x90\xb7\x85}\x00\x0cY]\xc2\xbb\x10\xa8\xd0W\xeb\x02\x01\xb11\x03t\x89\xee\x93b\xd3\xc2\x1b\xe2\x93\x1a\xb7(\xde\xa5\x7f\xe8\x1b!\xa2LI6\xb0\x94(\xd1\xfc\x1a\xa9\xbffY\xf4#m\xab\x1d\xce\xfe\x04;\x93\x00\x17\x1b\x86\x13K\x89L\x85\xe8\xdd[\x01I\xaa\xe5\xbb\x0f\x81\xf2C%\x8d\x89b\x00\'e\x83\xb4^\x7f\x01\x93b~\xcf\x08AG]\xd7\x95[\xd3\xf2\x04\xca\x8d\xe1\xc4Y\xb4\xa9\x85\x84Zmy\x02\x8b\xa9\x18@\xd3\xdd4\xfb:\x1d|\x1bykLt1uD\xba\xa8$(\xbf`\x04\xb3oz\x9aD\xa2\n\xf4\xdf\x08<\xa5\x9d\x0e\x97\x90\x9bAO`\xacq\xa5\x1e\xb6\xe8\xeb\x8a\x00\x9f\x1dfX\xf1\xd6\xfb\xf6keM\xab|\xf5\xb2v\x8c\xdew\x7f|\x13\r_J\xf1\xb3\x92Zj\x08\xcb\xee\x8a\xe1.\xd8cj\x02\xd4\x1e\x8e\xd6\x95\x85J\x14f`&\x9fM\x9e\xf4\xd9\xe4\xa9X\xfa2\xb5\xc9\xb3\xdecDt\x9e6\xe4\x1c\xf6\x19Y\xc3\x94\xce\x8f\xfe\x0e\\\xd0g\xed\'9\xe5/L\xb9|r\x13\xb43"\xb3\x03\xcfa\x8cW\xc7\n\xaaU\xb0L\xe2\x19\xed\xae\x03;\x01\x8b\x18\x83\x1e\x9c\xcd\xbbX\xea\x97S\xbc8}\xdfM\xb5\x1e}\xc5Yo\x07\xf2h\x9d_kQ?[=\x1eo~\x9d\xed`b\xe7-\xff\xd9\xaee\xc6[\xfc\x11\xe6\xe0\x12\xdaX\xf9\xb4\xb9\x02\xfd\xd5\xe7\x13"\xd3\xe6\x12#7\x0b/@3\xee\xbc\xa1i\x1a\t\xae\xf0Z\xc7\xa7\xee\x89\x9e\xd7\x93~X\'\xc9\xfeE)\x897\xb5<pw\x17\xa9TY\x9b\xac\x07W\x9cyJ\xed\xa25\xcc\xf8\x8e3$U\xe5\x85\x89\xf7\xb8\tF\x0e\x81\xffJ\x95\xdcY\xa9gj\x1e\xd7\xa8\xe5_\xf8\xde\x1b\x19\xa5\xd7\xaa\x9fg\xb5\xf4\xc0\x14\x8e\x9e2[(\x862\xdbP\xdcP\xc8\x01\x15,\x7f\x8bT.\x1bu\x89\xc3A\xd3\xcc\xa0\xfd\xb0\xd0LA<\x0cRN\xd9\xc1\'\xe3>\xb5\x82\xab\x07\x14\x90\xd2\xd8h\x92\x9ah\xb9TD\x1c\xda\x9f\x82\xdb+\x89 \xe2K\xcbu(\x85\xf7d\xdd}\xacH\x0f\xe2\x01\xff\xab$\xa0~K\xe2\xe5\x99\xa0\xc8\x91\x90\x0b\xa4!u9\x0b\xee\xa1\x07]\xf4<D\x12\x9c\xc1\xccK\xcb\xdb\x16\xdf2L+\x1a\x8c\xdc\xeehB&\x99"\x9f&\xfe\xe8\xeeQ\x8e\xa0\x87\xdb\x04\xb9\xe7=x\x85)#\x12[\xbcU\x87VA\x8a\xc7\xb8\xf9.5\xf2\xf5@\xd4\xf7;JL\x9f\x0b\xf8\xa4\xc0\xb5\xa1\xde\xa2\x96\xaa\xb4\xe6\xcd(P`\x050Ox?\xa7p\x05&jh2\x17\xe9\xcd\xf9\x96\x19\x19q\xd1\xbe\x03\xd7(a&\x87h\xba\x0b\x057\x83\xf9\x9a\x8c\x84=@\x9c\x8b\xa7\xa8\xd3\x81\xe8\x9a\xf0\x0b\x94}\x81*\xea\xb9F\xe7\xf0\x9e\xf8u\x1aM\xd5$\x1bH\xbb\xad;)Z\xach\xd8\x94\x9bs\x19\x9e\xbb;cM\xa1jz\x92\xceh\xf5\xe7\xc5\xfd\x86\x9d\xb19\xf4\x9e\x8f\x95\xc6*\xa7\xdf\xc2\x7f\x9cA\xe2\xb4\xd5\x8b\xff\xd3\xb3\x96Vt\xd4\n\xa52\x93`\xc8\xc0\x1d\xbb\xf5g\xc4\xc7{\xcc\xcdCG9t\xc5\xe5E\xbd\xa6\xcf\xe6\xa4\xbe\xf1\xf5\x85{\xfa}\xf0\x8b\x06\x9f\xdd@\x08\x8c\x8c\xc4\xdcg\xb4\x90\xa6\x0cI;z\xf2\xfcz.+f\xa4\x15\xf6Y2O&\t\xc4\xa7\xe1\xde\xea\xd2\xb3\x19U\xcb;\x89\xa9\x01\xadg\xf8\xf7\xa0$\xe7N=\x85\xa0\'\xfb\xf4\x18\xec\x12H\x05=\xfa\x06@\xe3&d\xc4j\x03?\xf5\xd8V\x11\\\xeb\xc1*\x9an\x1a-(\xfc\xad\xbb\xea\xfb\xa0\xbf\xfe\xfa\xee\xc6\xbb\x0c\x19q\xf6zR\xc7\xca\xcdj\x8dq\xb4h\x8a8\x85\xa2xf\x1a\t9\xb4\x1c/\x80&\xbcq|\x96\xd4\xe0#*\xf1i\xdc&\x90\x84\xef\x82\x1e\xb7\x03\x14\xf5\xf1\xea\xa6\x0b\x9b`F\xb9>t\x0b\xb6\x06\n\xc2\xcaRe\xe9=\x9d\xb9}dR\xbe\xbb\xaf\xa7i\xf5\x7f\x82\x00 Z\xf3\xc5\xc1\xd5\\&5`\xb2\x16f\x8e\x1e\xfa\xa5\xf6\xb4\x841\xef\xd0:\x0e>~6p\xcb\xd0\xd3\x0b\xf3kCT\x864\xbd\x1d\xd1$\xce\xc6R\xf85\x8d\x9e\x04\x91\xb8\xaa\xe9\x9e\xf0ve\xbb\x8b\x11g7\xb8\xff\xbdj\xbd\xcb\xb4\xf7]w\xfb\xeey[I\xb7\x0cs\xfbU\x07\xcci\xde\x03R\xe0\xc7\xb5\xa1M\xd6E[\xd5\xfeU\x16\xd3;z\xd2\x17b\xc2\xc9f49\x95\xd0\xd3\xb1Z\xc2\xd3\x1aS\x05\x83\xe5#\xb3\xd1\xee\xa0\x96zW\xb3COjk]a\xd8\x1f\xcf\xcc^d\xbeb\xfc{\x0b\xbc\xb4\xa2\xf5\x1d\x1b\xc7N\xb0\xdd\xd6b\x17\xe9\xdf\xdc\x1e\xcc\xcbD\xe7\x05e\x92Pu\xe9\xe1\xe2\xd6\xfc7\xe8\xc0v\x1b\xab^\xf0)\x00\x00\x01\x84iCCPICC profile\x00\x00x\x9c}\x91=H\xc3@\x1c\xc5_\xd3JE**v\x10q\xc8P\x9d,\x88\x8a8j\x15\x8aP!\xd4\n\xad:\x98\\\xfa!4iHR\\\x1c\x05\xd7\x82\x83\x1f\x8bU\x07\x17g]\x1d\\\x05A\xf0\x03\xc4\xd5\xc5I\xd1EJ\xfc_Rh\x11\xe3\xc1q?\xde\xdd{\xdc\xbd\x03\x84z\x99iVh\x0c\xd0t\xdbL\'\x13b6\xb7"\x86_\x11B\x18}\x88\xa0Wf\x961+I)\xf8\x8e\xaf{\x04\xf8z\x17\xe7Y\xfe\xe7\xfe\x1c\xddj\xdeb@@$\x9ea\x86i\x13\xaf\x13Om\xda\x06\xe7}\xe2(+\xc9*\xf19\xf1\xa8I\x17$~\xe4\xba\xe2\xf1\x1b\xe7\xa2\xcb\x02\xcf\x8c\x9a\x99\xf4\x1cq\x94X,\xb6\xb1\xd2\xc6\xacdj\xc4\x93\xc41U\xd3)_\xc8z\xacr\xde\xe2\xac\x95\xab\xacyO\xfe\xc2H^_^\xe2:\xcd!$\xb1\x80EH\x10\xa1\xa0\x8a\r\x94a#N\xabN\x8a\x854\xed\'|\xfc\x83\xae_"\x97B\xae\r0r\xcc\xa3\x02\r\xb2\xeb\x07\xff\x83\xdf\xddZ\x85\x89q/)\x92\x00:^\x1c\xe7c\x18\x08\xef\x02\x8d\x9a\xe3|\x1f;N\xe3\x04\x08>\x03Wz\xcb_\xa9\x03\xd3\x9f\xa4\xd7ZZ\xec\x08\xe8\xd9\x06.\xae[\x9a\xb2\x07\\\xee\x00\x03O\x86l\xca\xae\x14\xa4)\x14\n\xc0\xfb\x19}S\x0e\xe8\xbf\x05\xbaV\xbd\xde\x9a\xfb8}\x002\xd4U\xea\x0688\x04F\x8a\x94\xbd\xe6\xf3\xee\xce\xf6\xde\xfe=\xd3\xec\xef\x07\xfd\xa3rx%\xd0\xf3K\x00\x00\x00\x06bKGD\x00\xff\x00\xff\x00\xff\xa0\xbd\xa7\x93\x00\x00\x00\tpHYs\x00\x00\x0b\x13\x00\x00\x0b\x13\x01\x00\x9a\x9c\x18\x00\x00\x00\x07tIME\x07\xe7\x04\x07\x11\x12"\x1f\xb2\xe7\x93\x00\x00\x02YIDAT(\xcf\x05\xc1\xcfo\x8ba\x00\xc0\xf1\xef\xf3\xbc\xbfZk\xbb\xe9JY\xb6\x99 \xcalc\x11\x89 q\x90\x90:l\x7f\x80d\x91\x88\xb3\xc4\xd5E\xe2\xc6A8\xe1\x80\xbb\xc8vP\x91\xb89\x10?\xb2`!b\x9b\xce\xb6T\xbb\x1f\xed\xda\xbe{\xdf\xe7}\xfb\xbe\x8f\xcfG\xbcX;\xc3\xa5go\x99\x1e\x7fM\xc3\xdf*\x8e\x1c9v+v\xf4i!\xc0\xd4\x1e\xf8\xbc\xff8\xf7\xe3\x8e\x94N\x893W\t\xbf\xbfA\xd4\xdf]\xe1\xeeB\xc1\x1a\x1f\x1e\x9b>\xd0\xdfWL\xca\x18)\x04\xa66\x11\xd2\xa7#%q\x00\x1f\x96\xff\x946\xbe\xfd\x9e,\x9fU\xa1x\xfa\xf9%\x1d\xed\xbd\x1a\xda\x9b-\xa6B\x8di\xc4\xf4\xc8=\x0c\xed9\xc8bu\x01\xd8\xa4i{\x88H2\xb7T-\xa9@_\x96\xeb\xd5z\xd1\xea\x12E\xd5Z\xa1\x11\xd4h\xf8>\xbbz\x0f\xa1\x83\x0c\xd9\xde\x025\xbf\x89\xf6\xaa\xa8`\x85\xben\xbbX\xdd\xa8\x15\xa5N\xad]\xdf\n\xd6\xa9\xa9-\xea\xadu\x8e\xec<E\x1cu\xd1\xe9(\xbaB\xcd`f\x9cv\xbb\x85\xef\xd6\xd9\xd6\x152\xf9\xe8\xba\xdc4\xd5\x84\xb7\xbd\xccj\xb8N>?LZ:h\xcf\xc3\r]\x9a\x9d\x80\x1dV\x0fQ\xea\x04\xb5\xe0\x1f\xcd\xa0\x82\xab\xdd\t9\xbf\xb5I\xb5Y\'\xef\xefg\xcc9\x8d\x8bBt\\"\x1d\xa2\xe2\x18\xe97\x18\xb7G\xa8\x07\x07\xd8p\x9b4\x83\xbf\xc8\xc8\xdc\xe0K\xbcJ\xdf\xe0 \xb3\xad_|i\xfcB$\xc16\x0cz\xb4\xc3lc\x91\xb9\xf6\x1c\xfbr\xc3\x94\xdb\x15V#\x0bS\xb5\xe4L\x90\x08\'\x9e|\xbd\x8f\x91\xb09\xb7\xfb\x02\xe7\xfbO!"\t\xc0\xa2?\xcf\xef\xcdi\xb6#\x1b/\xaec\xb5s32M\xf6\xb1r\x13\xc4\x02\x92J\x91\x0eR$e\x1a\xc7\xe8"a&\xb1b\x830\xf2P\xc2c>\xcc\x12E\x99\xc7f\xce\xe9-\x05^\xe7\xf9\xcfpi\xaa?\xa1\xf8\xd0\x9e\xc5\xf8\xe1 \x11h4\x1f[\xdfh\xe2Pn\xc7\x1c6GK\x87\x07\n%QyP\xe6\x86u\xcf\xf2v\x8a\'e\xbd<e\xd8.\xdd\xa6\xc0\x96\x16ZC+\x0e\x89T\x8a\xe3\xc9\x83\xa5\xbd\x151\xb9r~$4\xae\x1dmqr\xfbQ\xbc0pq\xda\x91\xc9O\x96L\xa7\x94m\x16VU\x9b\x1df\x96\x04\xdd3y\x9d\xbb9\x9a+\xdcv\x8f\xb9\xf1\xc3\xcc\r\xfe\x03.,)t\x16uZ,\x00\x00\x00\x00IEND\xaeB`\x82""")
 valdownimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x1e\x8bzTXtRaw profile type exif\x00\x00x\xda\xad\x9bYrd\xb9rD\xff\xb1\n-\x01\xf3\xb0\x1c\x8cf\xda\x81\x96\xaf\xe3@\x92\xc5\xaaz-=\x99\xa9\xd9\x95\xcc\xe1&.\x10\x83\x87{\x004\xfb\xbf\xfe\xf3\x98\xff\xe0\xbf\x12k41\x95\x9a[\xce\x96\xffb\x8b\xcdw\x9eT\xfb\xfek\xf7\xd1\xd9x\x1f\xdf\x7f\xeb\xf3\xdb\xfd\xfe\xbe\xf9\xfe\xc0\xf3V\xe0wx/K\xff\\\xdfy?\xfd\xfa\xc2\xd7=\xdc\xf8\xfd}S?\x9f\xf8\xfa\x19\xc8}\x0f|\xff\x0b\xba\xb3\xff5\x93\xf6\xf98\xf8\xf7\xbe\x8b\x9f\x81\xda~Or\xab\xe5\xe7T\xc7g\xa0\xf9\xb9\xf0N\xe5\xf3/~O\xeb\xfd\xd2k\xf3\xdb\x1b\x05+\xad\xc4\x8d\x82\xf7;\xb8`\xefc}3\x08\xfa\x17B\xe7w\xbc\x8f\x85\xeb\x1c\xefu\x1e\x9b\xb9o}\xad\x15\x83\xfc\xb6\xbc\xaf\xdf\xd6\xfe4\xd0\xef\xc6\xff<3\x7fZ\xff\xfb\xd9\x1f\xc6\xf7\xfd\xf3~\xf8\xc3\x96\xf9\xcbk\xf9_\x7f\xe0\xd2\x1f\xef\x87\xef\xdb\xf8\x9f7\x0e\xdf3\xf2\xbf\x7f`\xb3\x9b\x7f-\xe7\xf3\xef\x9cU\xcf\xd9ou=f,\x9a?\x11u\x8d\xed\xbe\x86\xe1\xc2\x81\xc9\xc3\xfdZ\xe6\xa7\xf0/\xf1\xbc\xdc\x9f\xc6O\xb5\xddN\\\xbe\xec\xb4\x83\x9f\xe9\x9a\xf3x\xe5\x18\x17\xddr\xdd\x1d\xb7\xef\xef\xe9&S\x8c~{|\xe2\xbd\x9f>\xdc\xf7*>j~\x06\xf9)\xea\xc7\x1d_B\x0b+T\xfc6\xfd684\x06\xff=\x17w\xef\xdb\xee\xfd\xa6\xab\xdcy9.\xf5\x8e\xc1\xe4\xea\x7f\xfc1\xff\xd3\x87\xff\x97\x1fs\x8el\xeb\x9c\xad\xdf\xb6b^^q\xcd4\xe49=r\x15\x0eq\xe7\xe3\xb7t\r\xfc\xf5\xf3q\xbf\xfd\x11?\x84*\x1eL\xd7\xcc\x95\x05v;\xde\x10#\xb9_\xb1\x15\xae\x9f\x03\xd7%~\xbf\x14r\xa6\xac\xcf\x00\x98\x88{\'&\xe3\x02\x1e \x0cBr\xd9\xd9\xe2}q\x0e;V\x1c\xd4\x99\xb9\x0f\xd1\x0f<\xe0R\xf2\x8bI\xfa\x18B\xf6\xa6\xf8\xeauo\xbeS\xdc\xbd\xd6\'\x9f\xbd\xde\x06\x9bpD\n9\x14|\xd3B\xc7Y1&\xe2GH\xd6bO!\xc5\x94RN%U\x93Z\xea9\xe4\x98S\xce\xb9d\x81\\/\xa1\xc4\x92J.\xa5\xd4\xd2J\xaf\xa1\xc6\x9aj\xae\xa5\xd6\xdajo\xbe\x0500\xb5\xdcJ\xab\xad\xb5\xde\xbd\xe9\xdc\xa83V\xe7\xfa\xce;\xc3\x8f0\xe2H#\x8f2\xeah\xa3O\xc2g\xc6\x99f\x9ee\xd6\xd9f_~\x85\x05L\xac\xbc\xca\xaa\xab\xad\xbe\x9d\xd9 \xc5\x8e;\xed\xbc\xcb\xae\xbb\xed~\x88\xb5\x13N<\xe9\xe4SN=\xed\xf4o\xaf}\xbc\xfa\xd7\xcf\xff\xc1k\xee\xe35\x7f=\xa5\xeb\xca\xb7\xd7x\xd7\x94\xf25\x84\x13\x9c$\xf9\x0c\x8f\xf9\xe8\xf0x\x91\x07\x08h/\x9f\xd9\xeab\xf4\xf2\x9c|f\x9bP.y&\x99\xe4\x1b\xb3\x9c<\x86\x0b\xe3v>\x1d\xf7\xed\xbb_\x9e\xfb\xb7\xfcfR\xfd\xb7\xfc\xe6\xff7\xcf\x19\xb9\xee\xff\xc3s\x06\xd7\xfd\xed\xb7\x7f\xe1\xb5\xa5:7\xaf\xc7^\x16\xca\xa66\x90}{\xedJ\x1cU\xdc=O\xab\xbe\xaf]\x8e-;\xb0\xe4\xbe\xd2\xaf\x17c\x9d\xe9x\xe5\x03\xc3\xcfy\xfa\x9a#\x9c\xb5\xb2\xd3\xebU\x93\x8b\xc9%\xb3K\xce\x83\xb1\xc8\xb9\x13\xb3\x07\xaa\xe7:\x85\x97\x9e\xa5\xd6\x9c\xcf`\xbe-\xed\x04n\xd5\xbce\xe5s\x8a\x1b\xbb\xc5\xa1\xa7\xd4\xe4\xfb\xc2\xb46\xbc\xefo\xd4\xea\x06^*k9]\xd4N\x89\xa4e\tq\x94\x1c\\\x0b\xe5t\x06\xef-\xe5\x9d\xcfI\x18(\xf9\xd1\xfa(D\x9a3\x04A\xd0\xb8\xfc\xeec\xa5\xcaMx\xec\x95\xbb\xdbY\x92\xaf{\xc8\xcf\xa1\xaf<\x1c\xb7\xf0\'\xbb\x15u\xe3\x92\xf0Vnao\x7f\x967<u\x9f\xe7-\x8f\x9ep\x8b\x0fk\xb6lYTaQ\xf8\x86\xc8\\2\x7fo\x8cZ\xf7\x04\x92\xfbZ\xa3h\x02\xf5\xe4:\xce\x9a\xc6\x9d\xd9\x87e~yQi\xc2\xea\xfe\xae\xdb\x96\xe3\xfbn\x93{\xcc\x13\x06e\xa2\x12\xb5-\xd5\xd1\xf5\xf9\x99c\xe87\xd0~\xb8\xf9J\xd9\xf8\xcd;\xbc\xe5\xf7\xbd\xc0\xfa\xc3,\xb8\x9e\xf2\xc5\xbf\xd1[\xdb)\x9d}\x8a%\x0cv\x9c3u\x8f\xb7\xc7,\x81\xa9\xed:\x1c.j\xb9\x9a\x8e;1br{\x9d\xd6N\x8bi\xce\xba\xf2fa3\xe1\xa4\xcd\x18\x1bg\x9f\x99\xea\xc4\xe6\xcc:5\xbc?\x9an\x1c\xf9\xd6\xb9\xbe3\xd7\xd0\x9d\xc1jg\x06i\x05\xa6\xc2\xe2\x87\xdc\x85\xd7\xc9\x93I2uRx\x85\x9e\xf7$_\xdc)\xa5\x81\xb25\x0e\x02\x94\xc8.\x84\x93i\xbc`\x12\x8d\xc8\xb9\xf7\x00\x8d\xf4\xb8G\xc2\x99#\x17VZy\xb8\x9e=+\xf7\x99\x18\xa7\x16\x9e%\xe0\xac\x9f\x8a\xff\xb9Q1\xa1\x94\xb0r\xaa\xa5+e\xb0\x86\xc6\xeb\xd9=\x8f\xdc\xaf\xa7\xde\xec\xee\xa4PQ*\x85Q\xd6\xb5\'\xf7\xcai\xc5\xe6\xee\xc2M\x1e${\x82\x84\xd6\xb5\xb0\xc0p\xd5\xaf\xe4o\xe9\xc5\x8b\xed\xce\x12g\xc6Jn\xb6Du\x1e\xbb\x873\x14\x8cu\xaf4\xf7\x1e+\xeemMo\x934 \xce\x16\x9fC6V\xaeg\xc4\xc2[x!\x12w9\xed\xc5l\'a\x90\x83\xc5S\x1a:\x13F\x13|\xe1>\xd5\x81nk\\csc\x99a\xe99\x8b\xef\x84T\xa9\xcb\xa7x\xc2\xac#\x01\x8b\'\xfb5\x16\x1e\xa4\xa4\x81\x13\x01\x97\xac\x14\xc3\x96[\x82\xee\x98\xe0\xd9\x11\xe4)\x9d\x1c$k\xef\xdc\xder\xa6\x0cN\x16\x92\xe5\xb0\x18\xa0d\xc9\xa6\xdc4\x125\x0e|Z\x04R\xeag\xa4\xa3\xe9\x1b\x10\x8ap\x97\xb5\xe7\xd7\xc5\x9e\x84p\xac\x9b\xc9\xe5\xe2;O\'3\xd9\xe5\x9f\x16\x1fN\x1e\xc1\xec\r\xac\x0e_K\xf6\x1bH\xda\xdc\x1e\\#\x8f\x98d\xd9\xeb.7\xce\x17\x18\xbbc,@\x94\xdb\xf1)f\x03T(\x0fx\xdb\rS\xc6"\x94\xf9^\xc1M8#\x87\x1b\x00\xfan\xeas*3\x99-i\x03l\x91|\xf87\xe0\xdf\xe1\xdd\xf25\xc9t|\x0f\x8b\x81\xd92E\x1f\x0eT\x1cX#\x1dx3\xb5\x07\x8c\xd5,\xb89^)\x8e5a\x8e\x05\xd8\x1c\x12<\x80\x00s\xbb\x99\x93%\xd8Inr\xca`\xfe\x9b+7\x06\xef\xb3O\xd2\xb0\xce\xd8\x08\x8a\xc4\xf7X\xec\x1c\x13\xe0\xc4\x0eD\x17\x1f\x12\xf8\xb0\xbf\x99N\xa5\xd6d\xc7\xd2\xa6"%\xf6\xbe\x07\xb8\xcc\xa2I}\x82\x11\x94\x1aX\x12%\xe0WS\x027B\xb2\xec\xc9\xcd\xe2\xba8\xe4\xd6\x8bn\x88\r\xd0u:\x91}\x93\xe1\x81H\xda}\x03\xb9\x9bk\xa9r,\x88<\xd7\xf8\xb9\xb4E\xd0\r\xa5\xdd\xd4\x0f\xa8\xbac\xaa\x07j\xca]\xc6i\xcb\xb8MI=\x85\xaf\x86\xde\x05\xa0m(\xc8\x81%\xb0\x91\xcb\xa7\xed|\x19\x9bLBb\x10\x9a\xc3gj\xf1\xe1\xaak\x841\x12!\x1f\x0bq\x94\xe7\xa9J\xf0\xb4\x84f\t\xcc\x1dLy.\x16]\x00\xedN\xa9\x8e\x14\x95\x0cdl\x82\xb6*\xe8\xe3&v\x98)\xf6\xb51ow\x92\xb9\x95\x15\x87\xe8\x850\x992B-k\r\x9c\xafk*<g\xad\x08\x9f\xb9;(\xdez\x06\x9d\x1e\xa8\xa5\xaa:Ea\xe0V~\x18\x87\xb9\xba\xed=\x8e\x96\xc6\xc5\xeb\xb6DbO$;\xc7\xae\x88.2\xbfn\x1b(\xf7\xa5JAMJR\xd6\xf4\xc3\xee\x17nd\x18\xd3V\xce-\x1d\x14\x18\xe0\x8c\x19:\xc54\x03\xb9T\xae\x05.\xcc\x8e\xefq\xd0\xa8 1\x0e\x05\xad\xf3\x81\x1c\xdc\x84\x80\xb4\xe2\xc9R\xb8\x7f0>\r\x10\x1d\xfa\x00\xff\x89\xaca\xcf p\x08\x9bx=\x8b\xdcN\xba\x13C\xa11\x1c5\x9c\xfb\x10\x9b\xc4x\xd5})k\xa3\xcd\xe4g1\xd4>\xe8\xef\xa0\x9c\xe1\xc9\xec\x08;\xb2\x9fH\xa4p\xac\xa6q]\xb9\x16\xc1\x1e\x17n\xdf\xd8Cus\xc4\x85\x87(\x07\x99\xe5\x9a\t\xbbbB\xd7\x95\xd9\x8e\x9b\x9eo$\xc2Mc\x15;\x18~\x12\x03\xa5_P\xa3\xaa\xccE\x19d \xb2\x13\x05\xca$QG\xc1Rt\xeb\xaf\xe9h\x98\xf4k\x18\x9b\xf0\x1f\x19J\xac\xac\xe0{\xdd0)\x88\xe2\x18\xe0\x1f@\xa0\xe1\xa1K\xc4\x84!8!Y\x8d\xa2\xe33\xec&r{\xb8\xd8\x86dm\x80\x89\xdf\x97{Pv\x83\x90`\xef\xc0{\xe9Fn(\x80;\xd5}\xed\t\xd13\xd1niy\xcc\x8c\xf1q\x11\xf1\x12\x14\xdc\xa4\x19f\xc2\x00%\xce\xbe3u\x88\xeb\t\xc8\xe0\x8a\x08R\xcb{w\x98g\x83R\x04U)\xc3,\xc8q\xd8\xd9\xc4OY\xf5\x81\x84\xa6\xc8\'\xd7\xa9\r\xc4}\xa0r\x82\x1f\xac\x18\xc6\x94\xf6\x8f\xf4J\x93Z\xc4D\x13\xcfI\x11lA\xa9\xff\x1dsb\'A\x07a\xe8\xfb\x89\xaaU\xb0E\xfbc\x88\xb84\xa1\x02{\x06Y\xf9~+\xc9d\x8c\xf8p\xc8\xf6MZ\x93_\x0c\xe3\x1b8TNs\x10:_XO\x87%M\xb2`BB\xe7\xb8\x19E\x06\x0c\xaa\xcf\x98A\xf9n\xa8$E\x94\xb0\x0b0\x93\xf0\x08\x80\xa7\x10q]%\x8eI\xb0\xb0\xb44\x86\x1c\x85\\:\xe8\\xd\xde`o\xfa\x91\xed\xe6;\xddsIP\x15_\x9a\x83\x07\xb81z\xd9.57\xb8\x11+k\x12_P\x1crO\x11\x1c\x17\xa2\xcd\x7f\xa7:\x96 \xd7j\x9d\x9b\xb9U\xf8\xf3\x12\x15ZV\x13\xee\xe4\x1b\x19I\xcc\x12\x04\x87\xc0\xcf\x0b\xe1\xb0\x12\x11\x9aC\x14\x12\x13t\x1d\xc8\xe4\xf9\xa55\xab\xbb\xc7\xd1(O\xc2\xbd\x80PY\xd4\xa7\x10\xaaO)(\t;\xd3 R\xb6\x1b\x16\x84A\x7fl\xf814u(\x1cW\xe4K\x10q\x02\xb2\xc3\x87G\x8eL{(\xc1\x1b<h;\x16\x0e\x89\xf2!\xa3\x90\x02\xf5\xaa\x17\x07\t\xa4`\xa0Y\x88\xc5\x015\xb3\rE\x98\x89;\xf8\xfa\xad"sT\x85\x0f+ \x8c\xa6\xaf\x7f\xbd\x83\xad\xe1\x0f\x9ep\xa7t\x91\x1f\xf3_\xa0\xc12\xe0Z\xa1\x8e\x83\x07\xfco\xe3\x85Q\xb0M\x00\t\x94S\x9cUUT\x1e"\xe1\x8bwJ\x9f\xe7\x81\x99\xf2\x9c0\xf3.\xfa2\xbb\xa9\xd8\x139\x02\x96\x11)\x85 P\xd0g1e\x82\xeb~[\x89?\xd2\x05\x16\x00\x91\x9a~S\x9a\xc2\xa3\xf7\xe6\x07r\xba\xd1G\xdc\x94\xea\xd1\xc0\x8b\x14\xe7\xce\x97pg\r\x03`_\x1c\xf8\x06\x90W9\xac`\xc7.*\x1e\x01\x98\xe3\x9d\xa1\xf9L\x11\xf8=\xc1\x96\xdaE@\x0e\xf8\x9e\xec#\x7fH\x87\x03\xa5\xcc \x87\xfb,\x11rr\xde\xd8\xbf\x96\xc8\x8cH\xeb\xea2!\xd9\x82h\x95\x8f\x13CIL\xc8D\x05\x9a\x15\x19\x08C\xc3\x17=\x04\x17\xa4\xa6\x8c\x925Th\x16\x95\x0b\xee\x97\xae22\x01J\t\x10{\xd3\xfe\x00\xeb]1\x9f\x93u\x8e<\x1d\xa5:\xaa\xff\x12\x85g&8\x81\xb0\xc9\xc9\x93\x1d\x80\xb7\x863\xae\xa2\x0e\xeb$\xe2\xb6\x96\xd3\xc0\xa9*^\xdf\xb4\x82\xe2\x11\xca\xdb7\xf8\xea\x0f\x80\xc1\x88\xe0\x85\x83\x8f\xa3N@a\x88Pj\x06\xdcC\xf7\xba\x80\x94\x05\xbaK\xe4\xca\x9f\x88\x02\x02@\xaa;\xb5\x0c`#p*\xbc\x08\x1a\x84\x8ev I\xb1\x8b\xd8\x89\xdc*\x19E\xfbO(\x99\xfb\x93\xeeI`\xa2ys\xe7\xdca\xb6\x9a\xca\xceu3\x8d\x08rCS\x84\xb8\x11\xfe\x1d\x80\x05\x03\x16S\x07Q\xf9\xaba\xf5-x\x80\xcd\xf0\xf9\x81\xd9\\\x02\x03\xad\x81\x91,\xd8\x99\xb8\xe3z\xaa\x083\x11\x9dG\x01\x83\x16\x87\xea\x9a\x99`\xc4\x82\xa2\xfaC6Q\x14+\x14.L\x0f\xdb\x82\n&8{\x11_\x945\xc6\x0f\xfe\xa2Bz\xd9\x923\xf0\x86\xed2\xd0\x02\x9e\xc2\x98G\xbd\x92\xb3I\x00\xf1\x1a-\x87\xb0$O\x05\xce\xa0\x0b\xe0\xbc\xd1\xe1\x02\xd7_\xe8H\x85\x86\x8d\x1c\x8b,\xa9\x03y\x9f\x14\xfc\xd2+\xbe\xc7_p\x8a\xacu6\x910[^\x00\xc5\x16l|{\x07\xca\x87\x97,\r9]\x81\x11\xec\x1e\xaf-(|\xd0_\x85\x8d\xe0\xbf\x01N#\x03h\xef\xe2R\x1f\xbf$G!\xbb\x08z\xa4$R&\x90\x9e!P\xdf\x10~q21\xa7v\x07\x0cZ\xb4\x18?#\xe7\xa2}w\xf3*\x912\x9d\xf8\xb6\x0f\t\xe75\n\xb0#\x84\x91\xc6\x87/o\xff\x10\xd2V%\xfbg\x18\x00v*\xc1\xfc\x85O\xa2es\xfb\x80n\x1ex\xbc\xa2\xbaY\xfe\x9ds\x07B\xedS\x14K3\xe9\x06d\xcd\xd8\xabC\xef\x99\xf3\x02e\xa1\x99v\x14e(\xff\xb8OR\xec\xe8>LT+D\x81\x0c\xbds\xee\x9cw\x8d\x9ebS\x0cDba\x1b\x1c\x84\xed\xf9M\xfe?\xf1\xdbPK\xc4\xfb\x93\xce\x8dy\xe3\xef\x852=\xaa\xdfh4\x91\x92\xcb[K:\xea\xd5\x1eH)\xd4\x17\xbc\xcck\x7f\xb9\xaa`)\xe6v\x1b!=S\x16\x137&\xa9\xbf\xd4\x7f\x1f$\xe8\x80\xbc\x90h\x94\x07F\xa5\x1cQ\x07\n\x1a\x98\t\xcc\xda\xf6\xa6\x861^\x11\x8f\xedc\x03\xd3\xe9\x06\x01tF\xf5\x88  \xb30\r2Sl\x87\x9a7U"Y\x1a3\x80L|\xac\r\xc9\x80{\x904\xb39\xf89\x9f\x0c\x16z&\xc2*\xf8\xe1\xd5:\x1a\x08z\x08\x90Z\x01\x16\x07\xd7\xafeP K\xa1\xf2\xe5\xacz\xaa\x96G\x06\xcd\xc8\x12(\xf3\xe6\xca|\x1b&?^\xe82\xa4\xf5M\x08\x90\x0c\xd2\xd6!BI\x01\t[X\x96\x98\x12\xddF\xb0,81S\x84N\x07\xe8\xc8\xac\xea\xdf]\xc2\x88\x10g\xee\x94\x99@\x1e\xfd\x8ck\xa5\xe92\xbf\xc7\xf5\xe7\xf3\xcf\xa7\xd6~\xc2\xfe~X\xa1k}|Gs\xccU\xfe\x15\x1f\xaf!\x0c\x93\x97\x95@\xb1"\xd6\xaf7r^\x8c\x82R\x80\xf99\xde\xc6O_F\xf2\x06\xec\'6\xc1+\xa4+\xd6S\x1f\r\xb1\xc5\xd0f\xd8\xdb\xa8\x93\x10\x08\x12\xa8\xfc\xcft\xfc\xaaj\xd8\xa5\xa5\xd9\x85\xa4\xd2\xa6F\xc7\xcd\xb4\x90\xd4S\xbd\xa0S\xa1u\xea\x81@\x9c\xcd[\x14\x15\xbcL;\x7f\x06\xe6\xfa\x04&B\xa1\x8a$\x11%\xcc\xdc\xb7"q\xfai\x7f(\xf9\xa8\xd7\xe2\x9dW\xf7Su\xd5\x0e\xea\xfb\x89\xe0\xee(\xbe+QSI\xc8\x0cb/\x7f*\xa5\xbf\x028\x9f\xde\x00\x02\x9b\xe4\xe5\xaa\xfc\xe4\x1f\x91M\xdcM \x12B\x07[\xc0\xb4.}w\xbb4\x1a\xc5\x07\xa8"\x9c%\xa9E%+X\x1eH\x9c[\xc5\x80\x93\xaf\x17\x86W\xa8\x00\x047\xcc\x1bB\xec\x02U\xf0v\xee\x96J\x12\xf5\xb8I\xd9\xae\xab\xf6!\xe0\x87\xa9\x83\xc10\x991\x06\xc9\x00[\xa4$@\xca\x81\x11aYR \x0f`\xfcB6\xf9\xd1)\x8e\xaf\'\x83\xd5\x133\xc5\x9e~\xdf\x85\xbd\xa6W%W&)\x05\xb3\xac\x01\x801\x8b\x07l\x01\'o\xbbY\x80\xa2H\xa2#\x99v\xa1d\xe1\xb0\x08\xa1\x14\xe0\x91F\x84\x00\xd8\x93\xfbI\x97\xa9\xf80\xc3\x03<{\xbd\x06\xca\xc1\xa9.\x90\xa5\xb4#\xa1\x7fM\x0e)\rQ.\xe0\xf3wy\xa0\x88\xc3/\x00\xa5RcR5\x05%\x0e\x88N"D\x93;\xf6E\xb6\x92\xd7\xcb\x91\x13\x8c\xb8\x91n\xc7\xde\x85)Z\xaf_?\t\x01\x8b\xf0\x0e\x19\xcbX\x8aNi\xf6\xe6\xc4\x06\xb6Q\x8a\xf1\x14\r\x86h@R\xa1\x08\xe7\t\x90X"F]\x03`\x06\x0c\xffk\xf8\xf1\xc7\xf0\x81J{\xacr\xc1\x02X\xa2*h@i\xd8\x800W\x1f\x9c\xf8i\xea8\xa4\xa1\xa6\x168\xa5\xb0\x18T\xe5\xa0\x06\x11K\x00\xd7\xc8@\x7f\xe0\x907\x87[\xd4\\^\xbe\x055X$\xd1\xab\xdc\xb4)H\xfb\xf6\xba\xa9wL\xed\x86\xd9$J\xe1e\rK\x91\t\x8d\xb43\x13\x8e@\xfc\xf6\x05\xcb\xa1\x18\xe0\x1b\xd1t\xe2\xe1|\x18k\xbb\x84S\xa4\xaef\x98h\x1b9\x0c\xa9\x89\xe5\xdf7`I+\xd9j\x98\x85^\x86\xfbY\x00\x1a\xe2M\xd9\xcf\xdb\xbd\xf5FU\xda\xd2X\x10z\xd86\x0b\xadD#9\xb6\xcfk\xe4M\x8c=\x83\xf4Z\xa7\xd2M\x91\t\x14>\x01\xc6\x12\xc9\xf4\x12\xbe\x96\x07\x83\xdc\xe5\xb38\n~#x\x17\\\xbe\x90T\xa4\x06\x9a\xaa\x8e\x10+\xb96[\x06P\x8aO\r|!j(\x03e,\xa8\x04\x8c\xdc-ul\x0b_@\x15\x8d\xd7\xd7\xc2\xf0\x113\x81\x11I\xb0\x0b\x0eI^\x9b!\xdcsp%\x07\xedR\xc3J\xee\x9e\xe4\x18\xbc\x885\x14T\x95\xe8l^\xe9:Z\x04\xf4\xb2\xec\x91\xebz2\xbe(\x96\x92y\x1f\x0f\xb0\x8b\xb2\xde\x95\x84\x0c(&*\x02I\xaa\x12\xb9\x87\x02C\xe2eh\x14\x82\xc2\xab&B\xd4\x9f\x12G\x84\xdd\x9c\xe8\x94\xa3\x92\x90u\x19N\x84\x8e\t\xce\xae\x01\x10\x04\xf5\xc7\xf6\xa8\x97F\x10BT\xc4!\x92r\xd1\xfc\x94Ka\xd4\x8a\x05\xb9N\x08A%[\x0c\x1c\xc3\xc3b\x10\xbb\x92a\n\xcc\xe6\x1b~F&!mI\xfd)\x07\x8e\x85\xcf\xbc\n6\xb6wU\xad\xb9\xc6\xdb\x0e\x86/\x89a\xf0\x1c\x00S\x9a \x80\xc1@\xa3\x9e\xa0\t\x82\xd38\xd6\xa0n&w\x1f\xfd\x02\xa3\xdcmHU>G\xb6\x0b\xa2\xee/\x14\xaa7\x03\xb5\xd3\xdd\x8eQ\\\xb2\xbb\xe6\xf1\x11\x10\x86F\xceKj\x03\x9d\xd6ts\xa8 |\x8e\x1b\xa0\xcf\xafU\xf6\xed\x91/;\x99*Y"\x05i#T3h\xbb7\xa5\x89\xbeV\xbd\xda\x84d\x01o(\xb1m\x10!Rg~w\x8f\xc5\x9b\xf6\xa8\x05U{IT_%\x01\xd1\nj\xe29u\xd3@\x9bT\xe4\x19\xf7\xfa\xc3\xb7k\x05MP\xc8\x12\x80\x83\xc8#\xe8\xa1t\x16\x05\x99\xd4\x80\x8d\xc8\x8aA\xa8)\x01MR/\x0eNp\x04\x94*\x83T\x07\xd2\t9\\\xa1\x12\xb6\xa8%\xa68\xee\x84zU\xe5\xc7v\xa5\xe2\xbf\x1d\x9d\xf0pI\x0c\xcf\x9aLQ\x87\xfb\xa0\x9b\xb1bS\x83.\xa4\xb8\xb1\xa9*\x01\xaa\xe0\xe5\x8a\x8b5\xaf\x9c=h\xda\x8e\x9a\xb5\x904`ly\x88\x10$\x99\xa2\x1c!\x11\xf5V\xcb\xf2\xe9\xa5\xab\x10\xc3\xe7U[\x8f\x02\xb0@\xfd\x86\xb6\x83\x0e\x19\x85\xf2\x81\xc1S\xbb\xacS\xeb\x17FZ\xb3kS\xc4\xc7tRbl]\x8aw\x83[\xda4\x1c\xd0\xaa\x01\x83\xc1\xbf\xdf\x1fF8\xda\xdfo\xa2\xb4\x91Zz\t\x19]\xd0\xed\x90\xd1k\x0e=Ke\x11\x11j\xc2\x13\xbe\xe2\xef\x8d\x01]\x9c\xf5D\xa9P\xeeNz\xfe\x02A\x08\xc10\xa0\xabZ]\xf8\x8d\xbc\xa8"\xb6U[\xf9\\\xdd\xca\x0f#\x81XT\xcdY\xab\xc2F{~w\xff#\xd9\x80\x18\xf4\xe4B5\xb6\x90-Rt\x0e$\x1b\xca\xa6\xdd^\xf7\xb6\xf5A&\xdd\xa4F\xeb^\xff8\x95.9\x7fJ\xc5{D\x1cT\x8c\x84\xdb\xa5\x1a\x88\xc5H\x9f1$\xa9\xb4\xaf\xc0\x180c\n=\xe5\x05\xb6K\x98\xc5\xac\x1e~\xc1mT\xe7p7\x1eI\x8e\xa4\x98S3p!E3\x0eC\xbba\x03\x029\xa9\x81\x0bQM\xa0[\x93\x93J\x0b\x92T\xe5\x93\xb4\x14B\x92\xbd\x80;E\x10\xd3\xb4i\xf6\x12F\xacV\x12PV\x1d=\x90\xefT\xf8\xdc\xd5\xe1\x83~`f\x17\x97x}S\xd6\x15$x\xb6\xe4.\xe4F\x15@f\x90$S\xb7\xb20\xa3\x8bs\xd7\x07\xe9*q\x88J\x81+\x82\xbc%\x13\x84\x9f\xa4\\H\x19*\x8e\x1bw\x82]\xd2l+\xf2\x1f\xb8\xa7e\x90\xb6hB\x04e\\\xda\x89\rp\xc7:\xc9\xc4\x7f\xce9\xc6 ,\xc9k\xbe\x94\xf8\x86\x1f\xd6\xdbm"\xcb\x87 \x8d\x1c_\x03\xf5jk\xa6O:RN\xb9Z\xb1\x8c\xafA\xb0\xf6\x95f\x82\xd8\xdf\x12\x8d\xb2c\xc8\xce\xebn\xf1\x0eJ\x0b\x953\x80EA]\xa4\xf8\xc1\xe5\x84\xc6\x9f\xe1\xd3\x0e\xccHl\xbc\x8d>\x9a\x00kP\x83\xe3v\x90\x8c\xbaP)\xc2\xc8\xee\\\xc2f\xea\x14bT\xb6?\xe8\x81K\x98\x87\xb6U@\xd4J\\\x00\x1b\x85\xaf\x91s\x00\x9e\xe4\t\x8f\x88\xec\xd0L\x9eW\x9d\xb7\x1f\xa0\xcaZ\xeb\xdd\xaa\xd5\x16\t\x91\x847}\xbd\x8f\xd8\x9f\xb7\xfe|\xb7\xdaM\xf6\x13\x9b\x95\x10\x07~c\x7f\x8f\xd6\x05(6\x16\xffc\x90TW`f\x0eU\x93\x04\xc9\x1e\xe4R\xe1)@Au\x08\xbf\x9e\x01\xcc\x9cE\x19E\x18\t\xd8d\t\x19*\x075\xac|\xc0\x05\xa3n\xf5\xa66\xcc\x1f\xbe>\x06\xe3@\x9eV\x80\xe7\x92)\xad\x1a*\xa5\xbd\xa6\x14\xfa1\xe2\r\xfc\xf0\xb5\x89r\x9b6\x98\x1fUS\x1a@:l\xb9M\x14\xa6\xe2\xa8T0\x86\xa5\xd6\xdf\x8e\xe7\xed\x8a\xf2\xae\x9a\xb8CMHi\xa4\xb6?\xdb.R6=\xbb\xda|\x0c\x08IH\xc2h\x9eB\xb1\xd5b/0J\x9f\x1c\xf9\xc0\xadL\xc0\xd4\x83\nO\x8e\x92\xbao7(\xaa\xc1\x04\x03\x15\xa7nb\xb3\xf06\xc7j\xd2!\x91IE\xa4\r\xfaO\\\x9b\xc0\x05S\xe03\x90\x08\xe6\x05\xae~Qr\xb5I\xb6\xaah-\xd0~\xe5&l\xe1~\xa9d5c\xba\xceG\xf4$\xe9\x86Y)\x96\x9b\xd8\xd4f\x80\xc1\xec\xc2\xee\nK\x9fY\xbb\x9c\xcc\xbb5\x18CcF\x17\xe9\x01\x15\xd1\xa0\xd0e\x1c\x82p\xe0\x84_{\xb56\xa9\x83S\x91\xeb\xf7b\xa1\xe1\xfaFC\xd2\x8e\xe2\xbf%\x97\xc1\x84~\xac,Z\x83\xb2\x08\xe1C\xd2\x91\x02y\xfc\xfc\xc6\xb2f\xd7$2\xdc2\x1cun\xa8\x08K\x8e\xd5U_\x84\xde\xb1{D\x0f\xe9\x8dH\xa4\xc6-\xc52vZ\x90\x8e\x9b\xd2I\x99\xad\x9eM3K\xb4\x13\xaf\xa5\x1f\xbeR\x8aiWgk\x1f\x99\x9b+\xf4\x82\x8f\xb0\x9c\xb0\xc9\xa2\x91t\x12\x81\x84\x83[\xea\xdep \xf8\x11\x8a\xa7h\x87\xdd\xddJ\xc3Bp9@\xa5\xdd\xf8\x06\xe7\xa2l\x91\xe7\xad\\\x13\'\xe0\x81\xb7\x99\xf6P\xbcS\x96Z\xac\x11\xd3\xba\x88:\xba/\x9fG\xac\xfbq!\x86@\x85R\xab\x13\xf9\xa2\xddR\xe4\xfe\x96\xde~\x8f\x98%\xb5\xd6\x82\xdaV\xc2m\xb3D\xa7\xf1\x13t\x17\xf0\x8e\xda\xa8\x84\xc1F\x9c\x862\xdd\x13\x9d\x0cT\xdf3\rh\xe3<\xb4a9Oy\xb5\x850F-\xaa\xcbX\x97\xc1\xec\x8c\r\xa5\xa7D\x82\x08\xda\x85\x97\xca@\xf8>\x91\x89\xca\xdc\x94\x12\xd2\n\x0cE`\x116\x08B\x7f;\x15\xfb\xc0\xe1l\xf6\x01\x95c\\U\xbf-u\xc9\xb3\xfa\xa5\x10\x8bK\x18L:\x8a\xc8\xf4\x07\xa7\x8a\xa9B\x96\x7fI\xd3\xfa\xe3rP\xa0\x9aL\xfa\x8e\xe3/\xcf\x9fj\x82"\r\x12\xf1\x1a\xa8%\x95\xca\xa9C\x11\xf1z\xf3\x16%&S\x17\x95\xab\xe9\xa8\x97P\xc6\xf5\xbb\xfd\x1a\x88\xec"\x10\x1b\xf1\\\\\x93\x12-\x13\xb4\xc1\x02\'\xf8\xad\x8d\xa2+\xdb\x99\x07\xb4ji\x9f\x15\x01~\xe2\xee\xeam8\x16<\xb6\x8d\x88\x9a-\xfc\xea\xb7\xebE*3\xffYy\xa3\xde\x8c\x0b\xa8\x85\xaf\x13\x06Y:#\xab_R\xd4uq\x9f\xf6\x94\xb6a(\x01\xe9\x98\xfd9\xc1\xf2\xf7G\xeaa\x874Z\x85\xef\xba\\\xf2\xf8\x9c_q\xdb\xb6\xac\xcd\xc7{\x10 j#\x1cy$~\x84x\xcfT\xf2\xf19\xb7C\x8c\xb9\xa8#8-*\xdc<d\x14\x01C\xfd\xeb*8\xc5\xaeh=Y\xe8o\x8f\x85p\xa6\xb82\xbay\xf3\xe8\xea\x82,\x88\xeck\xb1\xdc\xc6@\x7fM\xd7\x9at6\x858\xd0.\xb66\x01P\xef\r\xd6\r[\x8e:\xe0\x82V\x13\x0b7\xc97\x1d*\x88\xe0\xb3\xc2\xe9\xab+FX\xab\x9b*\t\x14\xe0\xc4~\x05mo\xc7\x9dn\xfb\'\xa3\xa7\xe1\xcb\xaf\xf1\xb3\xac\xccc\xb6\xce\xf4\xea$+\xe3\x88\xdc+N\x89h\xed\xdb\x03f\x85\xba\xec\xe4\xa9\x04\x89\xf4\xe2\x9a[\x9b\xd3\xa8\x170\xea\x02\xba\x8e\x01`\xaai\xa8\x166\x1f\xb2\x8d\xf2\x07l\xa2\x98t<\xa7\x959\xea\xb9\xb1\xd7\xa4\xff\xaeK\xd5W\xa5@\x02\xb9\x82\xd4)\x95\xd6\xb8c\xcf\xea\xa5\x18\xed\x85%5\xa9\xa4\xe8\x03\xe5ri\x07\xf0]\x05\xd1\xea\x90\xb2>\xbb\x92\xa6\xf2\xbf\x181W\n\x82H\\\x1d \x82\x140\xef\x15\x8c(\xb0\x94\xb36I$=%v@\xa6K\x11\x0e\xa6U\xdb\x139:\xa8\xaf\xd8\x8e|$\x16k\xd3\x11&\xaa\x89\xf8\x18\x16\xeb,\xd6x}\x85Ll\xf6\xab1~\xdbK\x84MNRn\xfe\xe8\xd4\x1a\xfc(\x0c\xabz{\x9f"\x9a\xdd=\x89\xaa*\x1eK\x88:8\xa0SN\xdc\xc0"Ca\x98\xd4\x01\xb46\x8f8b\x06\x10\xd7"\x8e\xb1P\xc1@{|\x90a\xb4\xf1\xfaaj\x86]e=\xaa!\xb7\x91;:\x14\xf2\x04\xc0\x90\x8a*w\xf7\x19r\xe5Tu\xb7\x8e\x98\x00\xf51hw\x16\xf6\n\xf3\x03\xe6\xd4a\xc4\x109\xe3\xc3:\x0cL\x9f\x81`\x9e\xf3\xa8W\xff\xfc\xa4se[\xfe\xa1\x04A\xf1\xd56E\x14\x90?,\x96Z\xf2\xe5\x0bq\xb6G\x1c16F\x86q\x92n\x99hi=F4(T\xe46\x0c0\xba\xc4X\xd1>]\x85\x8b\x80\xfdQC\xe8\xa5\xa2\x98\xd1\xa5\xa4\x08\x15j\xffW\x84\xc1\xbb\xe0\x18\xc5v\x0b[\x06\x00&\x91\xc8\xca\xa6\xc4\x156\xd4\xf0:\x9a\xaa\xc4\x85~\xec\xa0\xfd\xf0Ka\x98\x94\x0e\x17\xe9`\xa5\xb6s~{\xd3\xde\x93\'\xf2<eq\xa9\xb5\xbeu\xd6h\xaf\x13\x86\x96\xa4\x93JQ\\\xa8\xbfCD\xba\xdb-\xd9\xdc~\xa9\x9f\x04R4oc\xf4R{Y\xdd)\xed\xde\xe6\xd8\x82H-YL\x15=\xc0\xb7:\xc7\xf7p\x0f>\xddI\xbf}3\xda\x10\x81\xd9j/\xbbM\xf4!z\xe1\x1e\x1aT6:\xab\xd6\x90\x0e\xed1O\xde\x86\xab\x81\xab\xd9B\x1a\x97\xaeq\xda3\x93p\xf6\xfeP \x87\xda\xcfT\xd0w\x18\xb2\xf6\xec\xd5\x13\x1c[g\xfd\x9aU3\xcf\rJ\x05\x82\x82\x11\xc1\xd9v\x06\xc5\xe6\xacK\x08\n&\xcc)R\xd76 \r\xd6.@\x14\x8a\xd7\x14)\x08\xe8\x0c\x1d\xaa\xb8\x0c\xb6\x08\xe8\x00lQ=\xad\x9e\x99\xdf\xd4f\xee\xd1v\xa9\xf6\xbaQ\x04\x1d\x9b\x08\x8fz]2[\x9b\xb7C\xaeS\xd6yB\xd1\x9c\\wR\xf6\xeb\x1d\xc9\x83\xae\xe8\xa0\xc1\xf1\xa0\'\xb9\x07}ej\x10<\xf11q<c\xb5\xcd,^\xa6VhH:\x82\x80Q\xd5\n\x00!\xa9o\xa0\x1d\x93D6RV\xad\x94\x94\xf6l3h\\\xeea}\xa4\xe1\xa6\x10\xb5l\x94\x1b\x90\x97a)-C\xb1\x86\x9c&\x9b+\xa4\n!\xa9\xfd[\xa6\x02\x03\xe8\x1a\xa4\x08\xa5E\xd9\x17\xd4\x0ct\xca\xcd\xe7\xf7Q\xbc\x98M\xe0k\x8bB|\xb4\x83\xb6\xb7\xb8\xa1y)\xa0\xc8\x1b\xc9\xd9\x8f\xfb\xb3\x8b*U\xd0\x83 \x84\xedo\xd3\xf5\xe5\x92\xc9b\x0cE\xe7]|\x90\xad\xb4\xe1\xcb4\xc8\xfb\xa0\x9d\x1c\xb9\x91z\xdd\xee\x11\x9a!\xa8\x9e\x93u\xc2\x96?!\xd1u\x9e\x93\xf44Hh\x98J\\w\xb7\xb4=\n\x81\xe2O\xef0L\x0fO\xa0\xe6\x9b\xca\xc5K\xfe\x1d\xbc\x0cEC\xcf\xad\xfb\xa9\xbd[\xf2\x8a\xec\r\xc1/\xe3\x9e\'k\x1e\xc1\xbdu\xa2\x91\x8a\xea\x88\x18\xc2\tZ~\xd6\xf0j\'\xab\xd1\xf8 Eg\xb5<\n`\xe9d\x1a:+\x19&\xd2u\x00B\xfb<\xda=W\x7f\x87\xe2\xd0\xd5\xb8A\x8f/\xf1~\x18\x7f\xbdM8\x8bF\xb6r\x18\xf4oUu\x18u"d\xea\x00\x8b\x81\xfc\x80\x05\xd0\x0b\xb5\x80\x13\x84\x96\xe9\x88|a\xf8=\xbc\xdaD>\xc1\x9d\xf7\xde\xaf\x05\x13\x94\xfb\xb3\xc0y%\x83q!\x19/?Q k\xd4^]K*CK\x074\x93t\xd4\xb5M\xfe*(\xf5\x07\xea\xa9\x19\xa9\xc6\xbd\x8ex\xc9\x0f\x1e\xfa\xeb\xa6A#\xb9-S\x8b\x00\xb0F~!8\xac\x8e\xa2\x89\xe6\xb9\xab\x87\xa8\x82\x84\xf5\xa20UJ0\xea_\xfbL\x8e\xe8\x19\x82\xe2\xdbX4\xaaB\xe8>u}K\x80\x7f\xb8\xd7\xf8U:\xa9s*r\x8e\xfa_\xfey\xf35\x0b\xc7\x86\x1e\x14\xedCGe\x02\xe8\xd1\x9b\xa1\xfe#\xfbQ\xd6\xf9\xcf\\\xa0P95\xe7\xf5\x00_Hv\xed\x9a%\xc0\x91\xbc2\x10\x83+<\x1e\xc4FS>\xb1Sn\xa9\xd6I\x1c\xb1tx\xf5\xdf\xd7\xbeK\xdf\x85X\xd9}\xae[\xaat\xdbt\x1d\xef\xa5lT\'>N9"\xf2\xa1\xcfj\xf2\x92p+%m~\xf6w\x1a\xaaO\xf5=\xb1\xce\xfd\x1c\x97!\xa4a&\xcc\xd0:\xe3\x11\x06\xa4k%\xf7\xaf\xda\x19|\x1b7\x92\xca$2\x99}5\x94\xfdU\xd5)\xbf\xdd\xa9zHg\x93\xb4\xf8\x80/\xafi\x80\x8bE\t\x82\xcb@\xf2tp\xa3\xbf\xbfZ`\x9c(4\xb8\xc6\xbdnw\xb7\x8c\xbdp\x18\xd0`u\xfcx\xc1\x94u\x9a\xd1\x00\xbc\xea L\xaf\xfdO\x1d\x84\xb8,M\xfc\xad\xea<\x9bm7\xa2t^\xe5m\x17\xe0\xb6\x8c\xc6U\x93\x8b\x84\x01$\xe1I\xe2\x9b\xa6h\xe3u\xa3Xg.\xef\x0crR\xd3\xf9.(\xc3\xe3SFc\xea\xdc0\xac\nb\xad\xf4\xd3yS\x9e\x00\xb6\xa8`\x9d?R\xa3\xda\xc0\x0e\xc8Wm\xbc\xa3qu\x96\xb5\xbd\x9d>\x1d\xe3]\xadf\xc7\xa4\xd0\xbdH\x0e|\x98\xc8\x86P\x86\x0e/&\xe2\x17\xd3\x80dp4\x18\x96\xb9\xe7\xd2\xd5\x19\xff\xe7\xee\x0c\xb2v\xe9d.\xba?\xe9\x0c\xe3VoE\x7f\x02Q\xac\x0eR,\xa7\xe3\xb3\x04\xa4\x9d\xea\n\xa7\xa2\xb2\xb4\x96\x0e\x8dPnqz\'\x14\x96\x84\xdc;\xb3i\x97\x0eW\xeb\xacB\x0c\xf9\x0c\xd8\xa9\x7f\xc7f\xab\xda\xc0^*\xbb\xec<\xb7\xb4*U)\xbb\xae}\xca,e\x87(\x80b\x7fN2\xafklw>\xa7\x8e\xc9kr\xac\xe0V\xa4\x8a\xfe0\x81\xa4m\xeb\xeb\xa4\xf3\xd2\xb9\x18w\xcfw\xe9\xcc\x88\x1c\xaff\xb7\xfb\xf1\x9c\xb0\xa3|\xf8\xa8c=\xd07\xd4\xb6\x95\x14*\xc5 \xa4\xb2N\x17\x11\xae\xc0\x9d\x8a\xe9\x16\x83\x05\xe5A.\xa7\x9e\x08\x00\x99\xb5\x99\xe1\xbc\x83v\xab\x87{\x9a\x12\x19\xa2\x89\x0c\xa52\xa8;\x1aL\xad\xdeI\r\xc0\xfd\xa6\x85\x95\xc10\xa3\xa4\x10\x8e(\xea\xe7:\xed\xa0\x83\x94\x96\x89\x88\xa1\xf7\x0c\x9f\xc3\xc2"\xd0sS\x9c\xd5\xd7\xc0\xedF\x92$<\x90(\xeajQ\xbb\x0b\xd4\x80\xe9\'\x1d\xfdK^\xd0\xdbE\x9e#$\x11\x06\x8bD\xbf\xca^\x1bz\xd4(\x9d\xeb\x05\xdd\xf0\xda[\xb3N\xe1m\x1d\xba<\x82w\x1d\xb9\xd5Q\xbb\xee\xbf\xae\x9c\xc0b\x84\x1f\xe5\\\x1aLofd\xc3\xd2a\x9ep\x99\xd8h\xc6KZ\x10\x17\x0e\xc9\xdd\x08\xbb\x05\xfd\x18:\x12f\xcf\xdd_{\xa4\xb9\xdc\xf3\xcd\xe4@\x7f\x87yu\x04\xfe\xed\x1dA\xefH\xff\xb3\x0crs\xca-PK\xe8\n\xe6\x9c\xda\x9c\xb7\x92\xc1mBE\xd1\xcc\xc0\xfdPo\xb1\x1f\xc0\x8f\xeb^}u \xca\xba\xea\xe5z]\x07+?\x07\xed\xd5\x8bpo\x83\\\xbb\xc4\xef\x83\xfb6e@\x1f\xbc\xbf\xd9X\x19\xcd\xc4\xc7\x90k\x92NU\x84\'\xb5\xdf\xda\x1f\xf4W.W\xb9\x1eU\xf6\xc9\xe2\xb5\xf7\x94>\xfb\xd4\xccP`N%\xe4V\xe5\x02K\xfd\x9cP\xa6\x1e\x1cxjm\xc3\xa8J\xa8\x14\xdd\xa3\xd8\xa4\xa5\xd3)<2\xbd\xbb\x8b"\x9a\x9d\x0e.\x11lR\xcd\xe5\x9d\xdb\xbf%\xd4\x89f`=\xabM\xb3b\xb2\x94J\x05lE\x97\x92\xce\x84S\x88\xb5\xa3\xa0#\nY\x7f\x1b\xa2\xbf<\x81\xc3E\xc5\xa9\x0e\xa3\x94\xa9\x92L\xb9\xa2@H<\xbfn\xafq\xda\xb5\xd1_\x97`n\x1b\x11\x19W\x02\'\xd7\xfe\xfe\xcb\x11"\xfbI\x9a\xf6\xf5\x8b"\xcc\xe8|\x02\xf5k,\x15\xdc\x83:\xeb+\xda\xf7\\>\xda\xdb\x9dTM\xf6v\xea\x94\xcf\xd2\xb9l\xb0\x8f\xf2w\xbe^\x92}z#51"\x9d\xab\x05\x0e\x1b\x95$d\x9dg\x0e_\n\x9b{A\x81\xc0\xf7\x9d\xd3\x11\xf7\x86\xa8\xcd\xa8\x13\t/~\xde\x8e\xf6\xd0\x1frl\xff\xb6\xa0\xefQ\x00\x9dS P\x82\xaa\xd6\xd4\xb6C"#\x87\xafW\x89\x94\x1b\x96\xd2\xc8O\xd0o\xef\xc8c\x1dN_\xcd\xfc7V~y6n\x9c\x12E\x00\x00\x01\x84iCCPICC profile\x00\x00x\x9c}\x91=H\xc3@\x1c\xc5_\xd3JE**v\x10q\xc8P\x9d,\x88\x8a8j\x15\x8aP!\xd4\n\xad:\x98\\\xfa!4iHR\\\x1c\x05\xd7\x82\x83\x1f\x8bU\x07\x17g]\x1d\\\x05A\xf0\x03\xc4\xd5\xc5I\xd1EJ\xfc_Rh\x11\xe3\xc1q?\xde\xdd{\xdc\xbd\x03\x84z\x99iVh\x0c\xd0t\xdbL\'\x13b6\xb7"\x86_\x11B\x18}\x88\xa0Wf\x961+I)\xf8\x8e\xaf{\x04\xf8z\x17\xe7Y\xfe\xe7\xfe\x1c\xddj\xdeb@@$\x9ea\x86i\x13\xaf\x13Om\xda\x06\xe7}\xe2(+\xc9*\xf19\xf1\xa8I\x17$~\xe4\xba\xe2\xf1\x1b\xe7\xa2\xcb\x02\xcf\x8c\x9a\x99\xf4\x1cq\x94X,\xb6\xb1\xd2\xc6\xacdj\xc4\x93\xc41U\xd3)_\xc8z\xacr\xde\xe2\xac\x95\xab\xacyO\xfe\xc2H^_^\xe2:\xcd!$\xb1\x80EH\x10\xa1\xa0\x8a\r\x94a#N\xabN\x8a\x854\xed\'|\xfc\x83\xae_"\x97B\xae\r0r\xcc\xa3\x02\r\xb2\xeb\x07\xff\x83\xdf\xddZ\x85\x89q/)\x92\x00:^\x1c\xe7c\x18\x08\xef\x02\x8d\x9a\xe3|\x1f;N\xe3\x04\x08>\x03Wz\xcb_\xa9\x03\xd3\x9f\xa4\xd7ZZ\xec\x08\xe8\xd9\x06.\xae[\x9a\xb2\x07\\\xee\x00\x03O\x86l\xca\xae\x14\xa4)\x14\n\xc0\xfb\x19}S\x0e\xe8\xbf\x05\xbaV\xbd\xde\x9a\xfb8}\x002\xd4U\xea\x0688\x04F\x8a\x94\xbd\xe6\xf3\xee\xce\xf6\xde\xfe=\xd3\xec\xef\x07\xfd\xa3rx%\xd0\xf3K\x00\x00\x00\x06bKGD\x00\xff\x00\xff\x00\xff\xa0\xbd\xa7\x93\x00\x00\x00\tpHYs\x00\x00\x0b\x13\x00\x00\x0b\x13\x01\x00\x9a\x9c\x18\x00\x00\x00\x07tIME\x07\xe7\x04\x07\x11\x13\x06:\xaa2\x03\x00\x00\x02iIDAT(\xcf\x05\xc1\xedK\x13q\x00\x07\xf0\xef\xef~w\xbb\xdb\xa6\xde&\xb3\xd397\xa6\xa6\x13\xa2\x9c\x06\x91D I\xd8\x038\xc1\xf7\xbdrA\xfd\x03Y\xef-\xa2\x7f \xa5\x17E\xf4\xa2\x08\x14bo\x02\xa37M\xd2\x81X\xa8\xa0\xe6&\xe6l\xcf\xf3\xb6\xdd\xf3]\x9f\x0fY\xc8>\xc7\xfdO7\xe1\xf2\xbd\x03\xa9\x9d\xdf%\xf5\xd3$\xef\x96gde\x0f\xbc\xbb\xab\xae\xd2\xe07\xcd\x1fY\x16\xda\xa4\xd4\xe9\xf5)\x8c\xbf\x7f\t\x16\xad)\xb4\xb6\x93 \x9c\xb1@\xc4\xf2b\xa0)\x83*\x16D[\x87\xc9\xff\x13\x1b\x9d\xa5\x84\xdd<Hp\xde\xf8[\x8e+\xcc\xbf\x9a~m\xd0\xe58\x8b\xf3\xa3\xed\x05\x91--\x0elU@\x07&An=\x06\x17\x9b\x067t\x1b\x9e\xa2\x8d\xd0\xe1>\n\xde\xec\xa8\xa0\x8a\xe11\xf9d\x855+\xe6\xbd\xfe\x96\xbc\x18HW\xe1)3\xd0\x1eN"8\xf3\x08\x8eM`\xb3\x04\xb5V\x034\xf3\x05\xb1,E\xaew\xe7\x81\xea\xed\xfa\xc8j\xeb\x99\xb9\x9e\x03\x19JC\x80\xed\xb0`\x14\n\xd52@l@#&L\x8b\x80\x14\x08t7\xd0U\xab#\xdfQH\xb2\xbd\x825\xeb\xec\x18\x10\xd2\x9f\xa1\x117T\xa3\x02\xa1\xa5\x80\x01\x81\xc5\x99\xd0G.C^Z\x03\xcf(\xc0\x8b;`\x87\xe5\x19\x86\xa9\xa9\xa2\'>\x81Fz\x0f\xae\xdeQ\xd0\xd8UX\x9a\x06]Sa\xb5\x0ct\x07\xaf\x80F.\xa2\xb6\xbb\x05G\x8cAlU\xc1\xea\x97\xc6\xa0\xfc\x15\xe1\xf9\xfd\x07\xcaD\x06\xae\xc1qXn\x02\x93q\xc0Y\x04\xb2@a\xe5\xd2`6\xd6\xe0\\\x18\x87\x12\xb0\xc1T|\xd2*\x89v\xc3\x88\xf4\xc3^\xcf\x80S\xcap\xb9Yx\\n\x10/\x01\xa7W\xd0\xfc\xba\x02K\x1a\xc0y\x8f\x84\x06\x1f[ed\xbf\xb2\xa4FE\x90>\x11\\g\x08\xc5_\xbb\xe0m\x07<C\xe0\xb5\x1c\x946\xbf\xa3\xbdc\x04\xae\xd0\x10\x10\x0cB\xe1\xb5%\xc6\x17\x1bN\x9du\xea)#\x12\x80\xde\x17\x80\x9f\x13P<\xce\x81c\t\xeaG9t\xd0v\xe8Q\t$\x1c\x82\xec%)F\n\xa6\x98\xcd\x89(~lV\x13gf>\xc5\xfb}`{\xdaA`!\x7f\x92\x83AMX\xe1nXa\ty\xb6\x99\xda9,%N\xe3\x06\xa8W\x98\xc7\xb5\xd9\xa4-)s\x1f\xb2\'\xfb\x1b\xd4\xefi\xa3T\x899D\x85Me\xc8\x8e\x91>.\xe7\x9ej:\xf3\xe4\xe7\x8d\xaa=\xf8\xe6\x19\xfe\x03\xee\xf9\x0f8\x925tH\x00\x00\x00\x00IEND\xaeB`\x82""")
+
 
 #main
 mainframe = ttk.Frame(root)
