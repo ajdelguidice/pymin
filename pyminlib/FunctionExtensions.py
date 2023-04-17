@@ -10,12 +10,12 @@ class lists:
       d is a list of elements to be added at b after b to b+c is deleted. (optional)
       """
       templist = a
-      if c == "":
+      if (c == ""):
          del templist[b:]
-      elif c != 0:
+      elif (c != 0):
          for i in range(c, 0, -1):
             templist.pop(b+i-1)
-      if d != []:
+      if (d != []):
          for i in range(0, len(d)):
             templist.insert(b+i, d[i])
       return templist
@@ -90,7 +90,7 @@ class operations:
       rounds a up to every b.
       if b is not provided, assumes b is 10
       """
-      if b == "":
+      if (b == ""):
          b = 10
       c = a / b
       d = math.ceil(c)
@@ -101,7 +101,7 @@ class operations:
       rounds a down to every b.
       if b is not provided, assumes b is 10
       """
-      if b == "":
+      if (b == ""):
          b = 10
       c = a / b
       d = math.floor(c)
@@ -150,8 +150,8 @@ class operations:
       else:
          return False
 class convert:
-   def strtobool(a):
-      if (a == "True" or a == "true"):
+   def strtobool(a:str):
+      if (a.lower() == "true"):
          return True
-      if (a == "False" or a == "false"):
+      if (a.lower() == "false"):
          return False
