@@ -26,3 +26,12 @@ doItemUse
 
 doLevelUP
 - Fixed some spelling errors
+
+bellyDesc
+- Removed redundant if statements
+
+legDesc
+- Combined redundant if statements
+
+genName
+- Rearranged if statements to look nicer and do less checks
