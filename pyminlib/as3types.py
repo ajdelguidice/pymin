@@ -1,19 +1,29 @@
 """
-This library implements methods as close to how they were implemented in ActionScript 3 as I could get them.
-Currently only Array (lists in python) methods.
-These are full types so the you can define a variable as one of them and use the Methods as you would in ActionScript3.
+This library implements types as close to how they were implemented in ActionScript 3 as I could get them.
+Currently only Array (lists in python) and Boolean methods.
+These are full types so the you can define a variable as one of them and use the methods as you would in ActionScript3.
 The length method is just to return the length so it can't be assigned as it can in ActionScript3
+The inherited properties in ActionScript3 are too complex for me to implement or aren't documented very well so I won't be implementing most of them.
 """
+def isFinite(num):
+   if num == "Infinity" or num == "-Infinity":
+      return False
+   else:
+      return True
+def isNaN(num):
+   if num == "NaN":
+      return True
+   else:
+      return False
 class Array:
    """
    Lets you create array objects similar to ActionScript3
    Instead of making two different init functions, I made init create an array based on the values passed to it and another method called toSize to make the array a specific size. toSize fills all empty slots with empty strings (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
    """
    def __init__(self, *values):
-      a = []
+      self.array = []
       for i in range(0,len(values)):
-         a.append(values[i])
-      self.array:list = a
+         self.array.append(values[i])
    def __str__(self):
       return f'{self.array}'
    def __len__(self):
@@ -25,6 +35,13 @@ class Array:
    def length(self):
       return len(self.array)
    def concat(self, *args):
+      """
+      Concatenates the elements specified in the parameters with the elements in an array and creates a new array. If the parameters specify an array, the elements of that array are concatenated. If you don't pass any parameters, the new array is a duplicate (shallow clone) of the original array.
+      Parameters:
+         *args — A value of any data type (such as numbers, elements, or strings) to be concatenated in a new array.
+      Returns:
+         Array — An array that contains the elements from this array followed by elements from the parameters.
+      """
       if len(args) == 0:
          raise Exception("Must have at least 1 arguments")
       else:
@@ -86,15 +103,12 @@ class Array:
       i = 0
       for i in range(0, len(self)):
          if i != len(self) - 1:
-            if type(self[i+1]) == list or type(self[i+1]) == tuple or type(self[i+1]) == Array or type(self[i]) == list or type(self[i]) == tuple or type(self[i]) == Array:
-               result += str(self[i]) + ","
-            else:
-               result += str(self[i]) + str(sep)
+            result += str(self[i]) + str(sep)
          else:
             result += str(self[i])
          i += 1
       return result
-   def lastIndexOf(l1:list, searchElement, fromIndex:int = 99*10^99):
+   def lastIndexOf(self, searchElement, fromIndex:int = 99*10^99):
       #!
       """
       Searches for an item in an array, working backward from the last item, and returns the index position of the matching item using ==.
@@ -105,25 +119,35 @@ class Array:
 	      int — A zero-based index position of the item in the array. If the searchElement argument is not found, the return value is -1.
       """
       i = fromIndex
-      a = l1
+      a = self
       a.reverse()
-      if i >= len(l1):
-         i = len(l1)
-      ia = len(l1) - i
+      if i >= len(self):
+         i = len(self)
+      ia = len(self) - i
       index1 = Array.indexOf(a, searchElement, ia)
       if index1 != -1:
-         index = len(l1) - index1 - 1
+         index = len(self) - index1 - 1
       else:
          index = index1
       return index
    def map():
       pass
    def pop(self):
+      """
+      Removes the last element from an array and returns the value of that element.
+      Returns:
+         * — The value of the last element (of any data type) in the specified array.
+      """
       i = len(self) - 1
       value = self[i]
       self.array.pop(i)
       return value
    def push(self, *args):
+      """
+      Adds one or more elements to the end of an array and returns the new length of the array.
+      Parameters:
+         *args — One or more values to append to the array. 
+      """
       i = 0
       while i < len(args):
          self.array.append(args[i])
@@ -156,6 +180,11 @@ class Array:
       for i in range(0, len(self)):
          self[i] = a[i]
    def shift(self):
+      """
+      Removes the first element from an array and returns that element. The remaining array elements are moved from their original position, i, to i-1.
+      Returns:
+         * — The first element (of any data type) in an array. 
+      """
       value = self[0]
       for i in range(0,len(self)):
          if i < len(self) - 1:
@@ -164,6 +193,15 @@ class Array:
             self.pop()
       return value
    def slice(self, startIndex:int=0, endIndex:int=99*10^99):
+      """
+      Returns a new array that consists of a range of elements from the original array, without modifying the original array. The returned array includes the startIndex element and all elements up to, but not including, the endIndex element.
+      If you don't pass any parameters, the new array is a duplicate (shallow clone) of the original array.
+      Parameters:
+         startIndex:int (default = 0) — A number specifying the index of the starting point for the slice. If startIndex is a negative number, the starting point begins at the end of the array, where -1 is the last element.
+         endIndex:int (default = 99*10^99) — A number specifying the index of the ending point for the slice. If you omit this parameter, the slice includes all elements from the starting point to the end of the array. If endIndex is a negative number, the ending point is specified from the end of the array, where -1 is the last element.
+      Returns:
+         Array — An array that consists of a range of elements from the original array.
+      """
       i = startIndex
       result = Array()
       if endIndex > len(self):
@@ -177,14 +215,44 @@ class Array:
    def some():
       pass
    def sort():
+      """
+      """
       pass
    def sortOn():
       pass
-   def splice():
-      pass
+   def splice(self, startIndex:int, deleteCount:int, *values):
+      """
+      Adds elements to and removes elements from an array. This method modifies the array without making a copy.
+      Parameters:
+	      startIndex:int — An integer that specifies the index of the element in the array where the insertion or deletion begins. You can use a negative integer to specify a position relative to the end of the array (for example, -1 is the last element of the array).
+	      deleteCount:int — An integer that specifies the number of elements to be deleted. This number includes the element specified in the startIndex parameter. If you do not specify a value for the deleteCount parameter, the method deletes all of the values from the startIndex element to the last element in the array. If the value is 0, no elements are deleted.
+	      *values — An optional list of one or more comma-separated values to insert into the array at the position specified in the startIndex parameter. If an inserted value is of type Array, the array is kept intact and inserted as a single element. For example, if you splice an existing array of length three with another array of length three, the resulting array will have only four elements. One of the elements, however, will be an array of length three.
+      Returns:
+	      Array — An array containing the elements that were removed from the original array. 
+      """
+      removedValues = Array()
+      i = deleteCount
+      while i > 0:
+         removedValues.push(self[startIndex])
+         self.removeAt(startIndex)
+         i -= 1
+      if len(values) > 0:
+         for i in range(0,len(values)):
+            self.insertAt(startIndex + i, values[i])
+      return removedValues
    def toLocaleString(self):
+      """
+      Returns a string that represents the elements in the specified array. Every element in the array, starting with index 0 and ending with the highest index, is converted to a concatenated string and separated by commas. In the ActionScript 3.0 implementation, this method returns the same value as the Array.toString() method.
+      Returns:
+	      String — A string of array elements. 
+      """
       return self.toString()
    def toString(self):
+      """
+      Returns a string that represents the elements in the specified array. Every element in the array, starting with index 0 and ending with the highest index, is converted to a concatenated string and separated by commas. To specify a custom separator, use the Array.join() method.
+      Returns:
+	      String — A string of array elements. 
+      """
       a = ""
       for i in range(0, len(l1)):
          if i == len(l1) - 1:
@@ -193,6 +261,13 @@ class Array:
             a += str(self[i]) + ","
       return a
    def unshift(self, *args):
+      """
+      Adds one or more elements to the beginning of an array and returns the new length of the array. The other elements in the array are moved from their original position, i, to i+1.
+      Parameters:
+	      *args — One or more numbers, elements, or variables to be inserted at the beginning of the array.
+      Returns:
+	      int — An integer representing the new length of the array.
+      """
       a = Array()
       for i in range(0, len(args)):
          a.push(args[i])
@@ -204,6 +279,9 @@ class Array:
          self.push(a[i])
       return len(self)
    def toSize(self, numElements:int=0):
+      """
+      Instead of making two different init functions, I made init create an array based on the values passed to it and this method to make the array a specific size. This method fills all empty slots with empty strings (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
+      """
       if numElements == 0:
          self.array = []
       elif len(self) > numElements:
@@ -212,10 +290,41 @@ class Array:
       elif len(self) < numElements:
          while len(self) < numElements:
             self.push("")
-
-
-l1 = Array(1,2,3)
-l2 = Array(4,5,6)
-l1.concat(l2)
-l1.insertAt(2,8)
-print(l1)
+class Boolean:
+   """
+   Lets you create boolean object similar to ActionScript3
+   Since python is case sensitive the values are "True" or "False" instead of "true" or "false"
+   """
+   def __init__(self, expression=False):
+      self.bool = self.Boolean(expression)
+   def __str__(self):
+      return f'{self.bool}'
+   def __getitem__(self):
+      return self.bool
+   def __setitem__(self, value):
+      self.bool = value
+   def Boolean(self, expression):
+      if type(expresssion) == int or type(expresssion) == float or type(expresssion) == Number:
+         if expresssion == 0:
+            result = False
+         else:
+            result = True
+      if expresssion == "NaN":
+         result = False
+      if type(expresssion) == str or type(expression) == String:
+         if exression == "":
+            result = False
+         else:
+            result = True
+      if expression == "null":
+         result = False
+      if expression == "undefined":
+         result = False
+      return result
+   def toString(self):
+      return str(self.bool)
+   def valueOf(self):
+      if self.bool == True:
+         return True
+      else:
+         return False
