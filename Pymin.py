@@ -976,7 +976,7 @@ def loadPreferences():
    UpdateText()
    UpdateTheme()
 
-def outputMainText(texts:str, reset:bool):
+def outputMainText(texts:str, reset:bool, *textCheck):
    #!
    if (reset == False):
       TextBoxes.AddMain(texts)
@@ -1279,10 +1279,10 @@ def choiceListSelect(which:str):
       showPage(False,"")
       choicePage = 1
 
-def choiceListCheck(which):
+def choiceListCheck(*which):
    global choiceListArray, choicePage 
    #if ((choiceListArray.index(which[0]) >= (choicePage * 9 - 9)) and (choiceListArray.index(which[0]) < (choicePage * 9))):
-   if ((FE.lists.indexOf(choiceListArray, which) >= (choicePage * 9 - 9))and (FE.lists.indexOf(choiceListArray, which)< (choicePage * 9))):
+   if ((FE.lists.indexOf(choiceListArray, which[0]) >= (choicePage * 9 - 9))and (FE.lists.indexOf(choiceListArray, which[0])< (choicePage * 9))):
       return True
    return False
 
@@ -1859,7 +1859,7 @@ def doPassOut():
    hrs = 2 + math.floor(percent() / 20)
    doEnd()
 
-def doLust(changes:int, source:int, triggers:list=[]):
+def doLust(changes:int, source:int, *triggers):
    global ment, fertilityStatueCurse, cockSnakeVenom, cockTotal, vagTotal, clitSize, milkCPoisonNip, nipplePlay, milkCPoisonUdd, level, lust, _str_, nipType, inBag, minLust, heat, heatTime, lustPenalty
    if (source == 1):
       if (changes > 0):
@@ -21736,127 +21736,82 @@ def aff(tempRace, tempChange, otherChange):
       bug += math.ceil(tempChange * changeMod) - math.ceil(otherChange * changeMod)
 
 def affinityChange():
-   global humanAffinity, human, horseAffinity, horse, wolfAffinity, wolf, catAffinity, cat, cowAffinity, cow, lizardAffinity, lizard, rabbitAffinity, rabbit, mouseAffinity, mouse, birdAffinity, bird, pigAffinity, pig, skunkAffinity, skunk, bugAffinity, bug, changeMod, cockTotal, vagTotal, cockSizeMod, vagSizeMod, knot, cumMod, heat, heatMaxTime, heatTime, nippleSize, milkMod, hips, lactation, udders, udderSize, teatSize, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, eggLaying, eggType, eggMaxTime, eggTime, pregRate, runMod, balls, showBalls, coinMod, bellyMod, buttMod, skinType, tail, enticeMod, butt, lockSkin, lockFace, faceType, lockTail, weapon, wings, lockEars, ears, twoBoobAffinity, fourBoobAffinity, sixBoobAffinity, eightBoobAffinity, tenBoobAffinity, lockBreasts, breastSize, boobTotal, lockLegs, legType, cowTaurAffinity, humanTaurAffinity, lockNipples, nipType, lockCock, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, dominant
-   affinityCheckArray = list(())
-   domCheck = 0
-   second = 0
-   maxSkin = ""
-   maxFur = ""
-   maxScale = ""
-   maxFeather = ""
-   maxChitin = ""
-   maxNonSkin = ""
-   maxNonFur = ""
-   maxNonScale = ""
-   maxNonFeather = ""
-   maxNonChitin = ""
-   hasMuzzle:bool = False
-   tempTailArray:list = ""
-   maxTail = ""
-   secondTail = ""
-   maxNonTail = ""
-   maxNonWings = ""
-   maxWings = ""
-   twoBoob = 0
-   sixBoob = 0
-   fourBoob = 0
-   eightBoob = 0
-   tenBoob = 0
-   nonTwoBoob = 0
-   nonSixBoob = 0
-   nonFourBoob = 0
-   nonEightBoob = 0
-   nonTenBoob = 0
-   bipedal = 0
-   bipedalDigiPaw = 0
-   otherLegs = []
-   legArray = []
-   secondLegs = 0
-   nip0 = 0
-   nip1 = 0
-   nip2 = 0
-   nonNip0 = 0
-   nonNip1 = 0
-   nonNip2 = 0
-   egg0 = 0
-   egg1 = 0
-   nonEgg0 = ""
-   nonEgg1 = ""
+   global humanAffinity, human, horseAffinity, horse, wolfAffinity, wolf, catAffinity, cat, cowAffinity, cow, lizardAffinity, lizard, rabbitAffinity, rabbit, mouseAffinity, mouse, birdAffinity, bird, pigAffinity, pig, skunkAffinity, skunk, bugAffinity, bug, dominant, changeMod, cockTotal, vagTotal, cockSizeMod, vagSizeMod, knot, cumMod, heat, heatMaxTime, heatTime, nippleSize, milkMod, hips, udders, udderSize, breastSize, teatSize, nippleSize, udderLactation, udderEngorgement, udderEngorgementLevel, udderPlay, eggLaying, eggType, eggMaxTime, eggTime, pregRate, balls, showBalls, runMod, coinMod, bellyMod, hipMod, buttMod, enticeMod, butt, lockSkin, skinType, tail, lockFace, faceType, humanTaurAffinity, lockTail, weapon, wings, lockEars, twoBoobAffinity, sixBoobAffinity, fourBoobAffinity, eightBoobAffinity, tenBoobAffinity, lockBreasts, boobTotal, cowTaurAffinity, lockLegs, legType, lockNipples, nipType, lockCock, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, maintext
    outputMainText("Something feels odd...",True)
    chance = percent()
    affinityCheckArray = []
-   affinityCheckArray.push(humanAffinity + human)
-   affinityCheckArray.push(horseAffinity + horse)
-   affinityCheckArray.push(wolfAffinity + wolf)
-   affinityCheckArray.push(catAffinity + cat)
-   affinityCheckArray.push(cowAffinity + cow)
-   affinityCheckArray.push(lizardAffinity + lizard)
-   affinityCheckArray.push(rabbitAffinity + rabbit)
-   affinityCheckArray.push(mouseAffinity + mouse)
-   affinityCheckArray.push(birdAffinity + bird)
-   affinityCheckArray.push(pigAffinity + pig)
-   affinityCheckArray.push(skunkAffinity + skunk)
-   affinityCheckArray.push(bugAffinity + bug)
-   affinityCheckArray.sort(16)
+   affinityCheckArray.append(humanAffinity + human)
+   affinityCheckArray.append(horseAffinity + horse)
+   affinityCheckArray.append(wolfAffinity + wolf)
+   affinityCheckArray.append(catAffinity + cat)
+   affinityCheckArray.append(cowAffinity + cow)
+   affinityCheckArray.append(lizardAffinity + lizard)
+   affinityCheckArray.append(rabbitAffinity + rabbit)
+   affinityCheckArray.append(mouseAffinity + mouse)
+   affinityCheckArray.append(birdAffinity + bird)
+   affinityCheckArray.append(pigAffinity + pig)
+   affinityCheckArray.append(skunkAffinity + skunk)
+   affinityCheckArray.append(bugAffinity + bug)
+   affinityCheckArray.sort()
    domCheck = affinityCheckArray.pop()
    second = affinityCheckArray.pop()
-   if (domCheck == (humanAffinity + human)) and (human >= 0):
+   if ((domCheck == humanAffinity + human) and (human >= 0)):
       dominant = 1
-   elif (domCheck == (horseAffinity + horse)) and (horse >= 0):
+   elif ((domCheck == horseAffinity + horse) and (horse >= 0)):
       dominant = 2
-   elif (domCheck == (wolfAffinity + wolf)) and (wolf >= 0):
+   elif ((domCheck == wolfAffinity + wolf) and (wolf >= 0)):
       dominant = 3
-   elif (domCheck == (catAffinity + cat)) and (cat >= 0):
+   elif ((domCheck == catAffinity + cat) and (cat >= 0)):
       dominant = 4
-   elif (domCheck == (cowAffinity + cow)) and (cow >= 0):
+   elif ((domCheck == cowAffinity + cow) and (cow >= 0)):
       dominant = 5
-   elif (domCheck == (lizardAffinity + lizard)) and (lizard >= 0):
+   elif ((domCheck == lizardAffinity + lizard) and (lizard >= 0)):
       dominant = 6
-   elif (domCheck == (rabbitAffinity + rabbit)) and (rabbit >= 0):
+   elif ((domCheck == rabbitAffinity + rabbit) and (rabbit >= 0)):
       dominant = 7
-   elif (domCheck == (mouseAffinity + mouse)) and (mouse >= 0):
+   elif ((domCheck == mouseAffinity + mouse) and (mouse >= 0)):
       dominant = 8
-   elif (domCheck == (birdAffinity + bird)) and (bird >= 0):
+   elif ((domCheck == birdAffinity + bird) and (bird >= 0)):
       dominant = 9
-   elif (domCheck == (pigAffinity + pig)) and (pig >= 0):
+   elif ((domCheck == pigAffinity + pig) and (pig >= 0)):
       dominant = 10
-   elif (domCheck == (skunkAffinity + skunk)) and (skunk >= 0):
+   elif ((domCheck == skunkAffinity + skunk) and (skunk >= 0)):
       dominant = 11
-   elif (domCheck == (bugAffinity + bug)) and (bug >= 0):
+   elif ((domCheck == bugAffinity + bug) and (bug >= 0)):
       dominant = 12
-   if ((humanAffinity + human) >= 40) and (humanAffinity < 40):
+   if ((humanAffinity + human >= 40) and (humanAffinity < 40)):
       outputMainText("\n\nYour body feels quite... adaptive? There's a strange sense of being more susceptible to change",False)
       changeMod += 0.5
-   if ((humanAffinity + human) < 40) and (humanAffinity >= 40):
+   if ((humanAffinity + human < 40) and (humanAffinity >= 40)):
       outputMainText("\n\nYour body feels less ready to bend to your surroundings as much as it had anymore.",False)
       changeMod -= 0.5
-   if ((horseAffinity + horse) >= 40) and (horseAffinity < 40):
+   if ((horseAffinity + horse >= 40) and (horseAffinity < 40)):
       if (cockTotal > 0):
-         outputMainText("\n\nYour " + clothesBottom() + " grows tight, filling with extra cockflesh. Opening the " + clothesBottom() + ", your cock" + plural(1) + " spill" + plural(3) + " out, dangling while swelling larger and larger. The growth slows to a halt, much, much longer than before. 'Hung like a horse' seems like the appropriate phrase. And you're also going to have to sneak back into town while you hide your perverse excess flesh, rushing to a tailor to refit you.",False)
+         outputMainText("\n\nYour " + clothesBottom() + " grows tight, filling with extra cockflesh. Opening the " + this.clothesBottom() + ", your cock" + plural(1) + " spill" + plural(3) + " out, dangling while swelling larger and larger. The growth slows to a halt, much, much longer than before. 'Hung like a horse' seems like the appropriate phrase. And you're also going to have to sneak back into town while you hide your perverse excess flesh, rushing to a tailor to refit you.",False)
       if (vagTotal > 0):
          outputMainText("\n\nDoubling over, you hug your belly as it begins to cramp. You can clearly feel your vaginal flesh grow within, the walls growing much deeper. By the time it's over, you feel somewhat like a mare, able to take cocks much larger than you could have before...",False)
-      CockSizeMod += 1
-      VagSizeMod += 1
+      cockSizeMod += 1
+      vagSizeMod += 1
       vagBellyChange(0,0)
-   if ((horseAffinity + horse) < 40) and (horseAffinity >= 40):
+   if ((horseAffinity + horse < 40) and (horseAffinity >= 40)):
       if (cockTotal > 0):
          outputMainText("\n\nYour " + clothesBottom() + " feel baggier. Opening the " + clothesBottom() + ", your cock" + plural(1) + " shrinking towards your groin, losing a great deal of length. It seems like you have lost your equine engorgement.",False)
       if (vagTotal > 0):
          outputMainText("\n\nYour belly feels rather empty all of a sudden. Placing your hand over it, you can feel the vaginal flesh recede, no longer built like mare.",False)
-      cockSizeMod -= 1
-      vagSizeMod -= 1
+      cockSizeMod = cockSizeMod - 1
+      vagSizeMod = vagSizeMod - 1
       vagBellyChange(0,0)
-   if ((wolfAffinity + wolf) >= 40) and (wolfAffinity < 40):
+   if ((wolfAffinity + wolf >= 40) and (wolfAffinity < 40)):
       if (cockTotal > 0):
          outputMainText("\n\nA sudden wave of lust washes over you, your cock" + plural(1) + " growing stiff in your " + clothesBottom() + ". You quickly open open your " + clothesBottom() + " to see what's going on. Within, the base" + plural(1) + " of your shaft" + plural(1) + " swell" + plural(3) + ". In an instant, you're surprised by spurts of cum that shower you, a small volley from a quick unexpected orgasm. Wiping your eyes so you can see, the swelling persists as you continue to come for a while. It would be very difficult to remove your cock from a hot hole with a large 'knot' like that, until finished draining your seed.",False)
       knot = True
       cumMod += 0.5
-   if ((wolfAffinity + wolf) < 40) and (wolfAffinity >= 40):
+   if ((wolfAffinity + wolf < 40) and (wolfAffinity >= 40)):
       if (cockTotal > 0):
          outputMainText("\n\nAn odd draining fills your " + clothesBottom() + ". Looking within, you see your cock" + plural(1) + " grow slightly stiff, your knot" + plural(1) + " swelling. Pre lazily seeps from your urethra" + plural(1) + " as the knot" + plural(1) + " deflate" + plural(1) + " immediately while your cock" + plural(1) + " remain" + plural(3) + " stiff. It seems as though you have lost your knot" + plural(1) + ".",False)
       knot = False
       cumMod -= 0.5
-   if ((catAffinity + cat) >= 40) and (catAffinity < 40):
+   if ((catAffinity + cat >= 40) and (catAffinity < 40)):
       if (vagTotal > 0):
          outputMainText("\n\nYour " + clothesBottom() + " grows slightly moist, your cunt" + plural(2) + " burning with arousal. The feeling quickly fades, but something tells you your reproductive instincts might occasionally take over...",False)
       if (heat < 1):
@@ -21866,30 +21821,30 @@ def affinityChange():
       elif (heat >= 1):
          heatMaxTime -= 12
          heat += 1
-   if ((catAffinity + cat) < 40) and (catAffinity >= 40):
+   if ((catAffinity + cat < 40) and (catAffinity >= 40)):
       if (vagTotal > 0):
          outputMainText(" You also feel your vagina" + plural(2) + " cool a little, no longer as eager to be impregnated on certain days.",False)
       if (heat >= 2):
          heatMaxTime += 12
       heat -= 1
-   #trace(cowAffinity + cow);
-   if (((cowAffinity + cow) >= 10) and (cowAffinity < 10)):
+   #trace(this.cowAffinity + this.cow);
+   if ((cowAffinity + cow >= 10) and (cowAffinity < 10)):
       outputMainText("\n\nYour nipples stiffen beneath your " + clothesTop() + ". They protrude nearly half an inch further than before!",False)
       nippleSize += 2
       milkMod += 50
-   if (((cowAffinity + cow) >= 25) and (cowAffinity < 25)):
+   if ((cowAffinity + cow >= 25) and (cowAffinity < 25)):
       outputMainText("\n\nYour nipples stiffen beneath your " + clothesTop() + ". They protrude an inch further than before! And your hips seem slightly broader...",False)
       lactChange(1,75)
       nippleSize += 5
       hips += 4
       milkMod += 50
-   if (((cowAffinity + cow) >= 40) and (cowAffinity < 40)):
+   if ((cowAffinity + cow >= 40) and (cowAffinity < 40)):
       outputMainText("\n\nYour nipples squirm within your " + clothesTop() + ". They've grown over an inch and a half in length! And your hips feel like they're more 'square' than before...",False)
       lactChange(1,75)
       nippleSize += 8
       hips += 6
       milkMod += 50
-   if (((cowAffinity + cow) >= 55) and (cowAffinity < 55)):
+   if ((cowAffinity + cow >= 55) and (cowAffinity < 55)):
       outputMainText("\n\nJust above your groin, your belly begins to feel bloated. You wince as it pushes against your " + clothesBottom() + ", especially noticing the increased sensitivity of four spots in particular. Before you can act, your " + clothesBottom() + " tears at the waist, as a mound crashes through. Hanging naked and free, with four teats twice as long as your nipples, an udder about twice as large as your chest dribbles milk. You'll definitely be getting a special bra or perhaps adjust your " + clothesBottom() + " when you get back to town, at least to account for your surprisingly wider hips... ",False)
       lactChange(1,150)
       lactChange(2,lactation)
@@ -21897,11 +21852,11 @@ def affinityChange():
       udders = True
       udderSize = 2 * breastSize
       teatSize = 2 * nippleSize
-   if (((cowAffinity + cow) < 10) and (cowAffinity >= 10)):
+   if ((cowAffinity + cow < 10) and (cowAffinity >= 10)):
       outputMainText("\n\nYour nipples are less noticeable, shrinking by nearly half an inch.",False)
       nippleSize -= 2
       milkMod -= 50
-   if (((cowAffinity + cow) < 25) and (cowAffinity >= 25)):
+   if ((cowAffinity + cow < 25) and (cowAffinity >= 25)):
       outputMainText("\n\nYour nipples seem less noticeable as they shrink by an inch and your hips are less wide.",False)
       lactChange(1,-50)
       if (udders == True):
@@ -21909,7 +21864,7 @@ def affinityChange():
       nippleSize -= 5
       hips -= 4
       milkMod -= 50
-   if (((cowAffinity + cow) < 40) and (cowAffinity >= 40)):
+   if ((cowAffinity + cow < 40) and (cowAffinity >= 40)):
       outputMainText("\n\nYour " + clothesTop() + " feels slightly looser, as your nipples shrink by over an inch and a half. You hips also narrow a little, protruding less than before.",False)
       lactChange(1,-50)
       if (udders == True):
@@ -21917,7 +21872,7 @@ def affinityChange():
       hips -= 6
       nippleSize -= 8
       milkMod -= 50
-   if (((cowAffinity + cow) < 55) and (cowAffinity >= 55)):
+   if ((cowAffinity + cow < 55) and (cowAffinity >= 55)):
       if (udderCheck(1) == False):
          outputMainText("\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.",False)
          lactChange(1,-100)
@@ -21933,7 +21888,7 @@ def affinityChange():
          outputMainText("\n\nYour waistbands seem quite loose after your hips shrink by a few inches.",False)
          lactChange(1,-100)
          hips -= 8
-   if (((lizardAffinity + lizard) >= 40) and (lizardAffinity < 40)):
+   if ((lizardAffinity + lizard >= 40) and (lizardAffinity < 40)):
       if (cockTotal == 1):
          cockChange(0,1)
       if (vagTotal > 0):
@@ -21946,7 +21901,7 @@ def affinityChange():
       else:
          eggMaxTime -= 6
          eggLaying += 1
-   if (((lizardAffinity + lizard) < 40) and (lizardAffinity >= 40)):
+   if ((lizardAffinity + lizard < 40) and (lizardAffinity >= 40)):
       if (cockTotal == 2):
          cockChange(0,-1)
       if (vagTotal > 0):
@@ -21958,43 +21913,43 @@ def affinityChange():
       elif (eggLaying > 1):
          eggMaxTime += 6
          eggLaying -= 1
-   if (((rabbitAffinity + rabbit) >= 10) and (rabbitAffinity < 10)):
+   if ((rabbitAffinity + rabbit >= 10) and (rabbitAffinity < 10)):
       stats(0,0,2,0)
-   if (((rabbitAffinity + rabbit) >= 30) and (rabbitAffinity < 30)):
+   if ((rabbitAffinity + rabbit >= 30) and (rabbitAffinity < 30)):
       stats(0,0,5,0)
-   if (((rabbitAffinity + rabbit) >= 50) and (rabbitAffinity < 50)):
+   if ((rabbitAffinity + rabbit >= 50) and (rabbitAffinity < 50)):
       stats(0,0,7,0)
-   if (((rabbitAffinity + rabbit) >= 40) and (rabbitAffinity < 40)):
+   if ((rabbitAffinity + rabbit >= 40) and (rabbitAffinity < 40)):
       if (vagTotal > 0):
          outputMainText("\n\nYour womb" + plural(2) + " feel" + plural(4) + " a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal.",False)
       pregRate += 1
-   if (((rabbitAffinity + rabbit) < 10) and (rabbitAffinity >= 10)):
+   if ((rabbitAffinity + rabbit < 10) and (rabbitAffinity >= 10)):
       stats(0,0,-2,0)
-   if (((rabbitAffinity + rabbit) < 30) and (rabbitAffinity >= 30)):
+   if ((rabbitAffinity + rabbit < 30) and (rabbitAffinity >= 30)):
       stats(0,0,-5,0)
-   if (((rabbitAffinity + rabbit) < 50) and (rabbitAffinity >= 50)):
+   if ((rabbitAffinity + rabbit < 50) and (rabbitAffinity >= 50)):
       stats(0,0,-7,0)
-   if (((rabbitAffinity + rabbit) < 40) and (rabbitAffinity >= 40)):
+   if ((rabbitAffinity + rabbit < 40) and (rabbitAffinity >= 40)):
       if (vagTotal > 0):
          outputMainText("\n\nYour womb" + plural(2) + " feel" + plural(4) + " calmer. Now you can take your fertility nice and easy... relatively.",False)
-      pregRate -= 1
-   if (((mouseAffinity + mouse) >= 40) and (mouseAffinity < 40)):
+      pregRate = pregRate - 1
+   if ((mouseAffinity + mouse >= 40) and (mouseAffinity < 40)):
       outputMainText("\n\nA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle.",False)
       if ((balls > 0) and (showBalls == True)):
          outputMainText(" Your " + ballDesc() + " nuts also feel slightly 'skittish', like they're making far more than they just were...",False)
       runMod += 25
       cumMod += 3
-   if (((mouseAffinity + mouse) < 40) and (mouseAffinity >= 40)):
+   if ((mouseAffinity + mouse < 40) and (mouseAffinity >= 40)):
       outputMainText("\n\nThe paranoia dissipates from your mind, your body languishing and no longer as flighty.",False)
       if ((balls > 0) and (showBalls == True)):
          outputMainText(" Your " + ballDesc() + " nuts also calm down, their production diminishing.",False)
       runMod -= 25
       cumMod -= 3
-   if (((birdAffinity + bird) >= 40) and (birdAffinity < 40)):
+   if ((birdAffinity + bird >= 40) and (birdAffinity < 40)):
       outputMainText("\n\nYours eyes dart about for a moment as shiny things become suddenly more noticeable. After a few moments, you calm down, but your definitely able to spot shiny things more accurately, able to find an extra couple coins whenever you come across any.",False)
       coinMod += 2
       if (vagTotal > 0):
-         outputMainText("\n\nAn odd sensation of warmth fills your womb" + plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.",False);
+         outputMainText("\n\nAn odd sensation of warmth fills your womb" + plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.",False)
       if (eggLaying == 0):
          eggLaying += 1
          eggMaxTime = 36
@@ -22003,7 +21958,7 @@ def affinityChange():
       else:
          eggMaxTime -= 6
          eggLaying += 1
-   if (((birdAffinity + bird) < 40) and (birdAffinity >= 40)):
+   if ((birdAffinity + bird < 40) and (birdAffinity >= 40)):
       outputMainText("\n\nYour affinity for shinies dissipates. Not quite as focused on them, you aren't able to find an extra couple coins anymore.",False)
       coinMod -= 2
       if (vagTotal > 0):
@@ -22015,45 +21970,45 @@ def affinityChange():
       elif (eggLaying > 1):
          eggLaying -= 1
          eggMaxTime += 6
-   if (((pigAffinity + pig) >= 10) and (pigAffinity < 10)):
+   if ((pigAffinity + pig >= 10) and (pigAffinity < 10)):
       outputMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
       bellyMod += 20
-   if (((pigAffinity + pig) >= 30) and (pigAffinity < 30)):
+   if ((pigAffinity + pig >= 30) and (pigAffinity < 30)):
       outputMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
       bellyMod += 20
-   if (((pigAffinity + pig) >= 50) and (pigAffinity < 50)):
+   if ((pigAffinity + pig >= 50) and (pigAffinity < 50)):
       outputMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
       bellyMod += 20
-   if (((pigAffinity + pig) >= 70) and (pigAffinity < 70)):
+   if ((pigAffinity + pig >= 70) and (pigAffinity < 70)):
       outputMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...",False)
       bellyMod += 20
-   if (((pigAffinity + pig) >= 40) and (pigAffinity < 40)):
+   if ((pigAffinity + pig >= 40) and (pigAffinity < 40)):
       outputMainText("\n\nYou groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness.",False)
       if ((balls > 0) and (showBalls == True)):
          outputMainText(" Your " + ballDesc() + " balls also feel rather 'fat', growing heavy with seed...",False)
       cumMod += 5
       hipMod += 0.5
       buttMod += 0.5
-   if (((pigAffinity + pig) < 10) and (pigAffinity >= 10)):
+   if ((pigAffinity + pig < 10) and (pigAffinity >= 10)):
       outputMainText("\n\nYour belly feels lighter, your extra porkiness dissipating.",False)
       bellyMod -= 20
-   if (((pigAffinity + pig) < 30) and (pigAffinity >= 30)):
+   if ((pigAffinity + pig < 30) and (pigAffinity >= 30)):
       outputMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.",False)
       bellyMod -= 20
-   if (((pigAffinity + pig) < 50) and (pigAffinity >= 50)):
+   if ((pigAffinity + pig < 50) and (pigAffinity >= 50)):
       outputMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.",False)
       bellyMod -= 20
-   if (((pigAffinity + pig) < 70) and (pigAffinity >= 70)):
+   if ((pigAffinity + pig < 70) and (pigAffinity >= 70)):
       outputMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.",False)
       bellyMod -= 20
-   if (((pigAffinity + pig) < 40) and (pigAffinity >= 40)):
+   if ((pigAffinity + pig < 40) and (pigAffinity >= 40)):
       outputMainText("\n\nYou moan as you feel some of your extra weight lift from you. Your hips and rump shrink, no longer nearly as chubby.",False)
       if ((balls > 0) and (showBalls == True)):
          outputMainText(" Your " + ballDesc() + " balls also feel lighter, no longer producing as much seed.",False)
       cumMod -= 5
       hipMod -= 0.5
       buttMod -= 0.5
-   if (((skunkAffinity + skunk) >= 40) and (skunkAffinity < 40)):
+   if ((skunkAffinity + skunk >= 40) and (skunkAffinity < 40)):
       outputMainText("\n\nYou feel your " + buttDesc() + " rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn't stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma.\n\nYou try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions.",False)
       if (skinType == 2):
          outputMainText("\n\nAnd to accentuate the change further, two parallel stripes emerge in your fur, connecting together at your brow and rung over your head all the way down to your rump",False)
@@ -22062,7 +22017,7 @@ def affinityChange():
          outputMainText(".",False)
       enticeMod += 10
       butt += 2
-   if (((skunkAffinity + skunk) < 40) and (skunkAffinity >= 40)):
+   if ((skunkAffinity + skunk < 40) and (skunkAffinity >= 40)):
       outputMainText("\n\nYou feel your " + buttDesc() + " rump shrink slightly. The pleasant scent that exudes from it disappears, as well as the other scent you could produce.",False)
       if (skinType == 2):
          outputMainText("\n\nThe twin stripes in your fur from your head to your rump also fade",False)
@@ -22071,7 +22026,7 @@ def affinityChange():
          outputMainText(".",False)
       enticeMod -= 10
       butt -= 2
-   if (((bugAffinity + bug) >= 40) and (bugAffinity < 40)):
+   if ((bugAffinity + bug >= 40) and (bugAffinity < 40)):
       if (vagTotal > 0):
          outputMainText("\n\nAn odd sensation of warmth fills your womb" + plural(2) + ". You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing soft shells to protect them, whenever you're not pregnant.",False)
       if (eggLaying == 0):
@@ -22082,7 +22037,7 @@ def affinityChange():
       else:
          eggMaxTime -= 6
          eggLaying += 1
-   if (((bugAffinity + bug) < 40) and (bugAffinity >= 40)):
+   if ((bugAffinity + bug < 40) and (bugAffinity >= 40)):
       if (vagTotal > 0):
          outputMainText("\n\nYour womb" + plural(2) + " calm" + plural(4) + " down, no longer working as hard to pop out more insect-like eggs.",False)
       if (eggLaying == 1):
@@ -22092,75 +22047,75 @@ def affinityChange():
       elif (eggLaying > 1):
          eggMaxTime += 6
          eggLaying -= 1
-   if ((humanAffinity + human) < 0):
+   if (humanAffinity + human < 0):
       humanAffinity = 0
-   elif ((humanAffinity + human) > 100):
-      this.humanAffinity = 100
+   elif (humanAffinity + human > 100):
+      humanAffinity = 100
    else:
       humanAffinity += human
    if (horseAffinity + horse < 0):
       horseAffinity = 0
-   elif ((horseAffinity + horse) > 100):
+   elif (horseAffinity + horse > 100):
       horseAffinity = 100
    else:
       horseAffinity += horse
-   if ((wolfAffinity + wolf) < 0):
+   if (wolfAffinity + wolf < 0):
       wolfAffinity = 0
-   elif ((wolfAffinity + wolf) > 100):
+   elif (wolfAffinity + wolf > 100):
       wolfAffinity = 100
    else:
       wolfAffinity += wolf
-   if ((catAffinity + cat) < 0):
+   if (catAffinity + cat < 0):
       catAffinity = 0
-   elif ((catAffinity + cat) > 100):
+   elif (catAffinity + cat > 100):
       catAffinity = 100
    else:
       catAffinity += cat
-   if ((cowAffinity + cow) < 0):
+   if (cowAffinity + cow < 0):
       cowAffinity = 0
-   elif ((cowAffinity + cow) > 100):
+   elif (cowAffinity + cow > 100):
       cowAffinity = 100
    else:
       cowAffinity += cow
-   if ((lizardAffinity + lizard) < 0):
+   if (lizardAffinity + lizard < 0):
       lizardAffinity = 0
-   elif ((lizardAffinity + lizard) > 100):
+   elif (lizardAffinity + lizard > 100):
       lizardAffinity = 100
    else:
       lizardAffinity += lizard
-   if ((rabbitAffinity + rabbit) < 0):
+   if (rabbitAffinity + rabbit < 0):
       rabbitAffinity = 0
-   elif ((rabbitAffinity + rabbit) > 100):
+   elif (rabbitAffinity + rabbit > 100):
       rabbitAffinity = 100
    else:
       rabbitAffinity += rabbit
-   if ((mouseAffinity + mouse) < 0):
+   if (mouseAffinity + mouse < 0):
       mouseAffinity = 0
-   elif ((mouseAffinity + mouse) > 100):
+   elif (mouseAffinity + mouse > 100):
       mouseAffinity = 100
    else:
       mouseAffinity += mouse
-   if ((birdAffinity + bird) < 0):
+   if (birdAffinity + bird < 0):
       birdAffinity = 0
-   elif ((birdAffinity + bird) > 100):
+   elif (birdAffinity + bird > 100):
       birdAffinity = 100
    else:
       birdAffinity += bird
-   if ((pigAffinity + pig) < 0):
+   if (pigAffinity + pig < 0):
       pigAffinity = 0
-   elif ((pigAffinity + pig) > 100):
+   elif (pigAffinity + pig > 100):
       pigAffinity = 100
    else:
       pigAffinity += pig
-   if ((skunkAffinity + skunk) < 0):
+   if (skunkAffinity + skunk < 0):
       skunkAffinity = 0
-   elif ((skunkAffinity + skunk) > 100):
+   elif (skunkAffinity + skunk > 100):
       skunkAffinity = 100
    else:
       skunkAffinity += skunk
-   if ((bugAffinity + bug) < 0):
+   if (bugAffinity + bug < 0):
       bugAffinity = 0
-   elif ((bugAffinity + bug) > 100):
+   elif (bugAffinity + bug > 100):
       bugAffinity = 100
    else:
       bugAffinity += bug
@@ -22175,10 +22130,10 @@ def affinityChange():
    maxNonFeather = max(maxFur,maxScale,maxSkin,maxChitin)
    maxNonChitin = max(maxFur,maxScale,maxSkin,maxFeather)
    if (lockSkin == 0):
-      if ((maxSkin > (maxNonSkin + 35)) and (skinType != 1)):
+      if ((maxSkin > maxNonSkin + 35) and (skinType != 1)):
          outputMainText("\n\nYour " + skinDesc() + " feels oddly cool. Looking at it, your " + skinDesc() + " shrinks into your skin, leaving you 'bald' all over. You feel a little naked as you get used to your bare skin.",False)
          skinType = 1
-      if ((maxFur > (maxNonFur + 35)) and (skinType != 2)):
+      if ((maxFur > maxNonFur + 35) and (skinType != 2)):
          outputMainText("\n\nYour " + skinDesc() + " begins to itch all over as soft hairs begin to sprout in patches. Before you know it, your whole body is soon covered in a coat of fur.",False)
          skinType = 2
          if (skunkAffinity >= 40):
@@ -22186,13 +22141,13 @@ def affinityChange():
             if (tail == 11):
                outputMainText(" where it connects to the stripes on your tail",False)
             outputMainText(".",False)
-      if ((maxScale > (maxNonScale + 35)) and (skinType != 3)):
+      if ((maxScale > maxNonScale + 35) and (skinType != 3)):
          outputMainText("\n\nYour " + skinDesc() + " begins to feel oddly dry, feeling somewhat flaky. Before you know it, your whole body feels soft and extremely smooth, covered in a thin layer of scales.",False)
          skinType = 3
-      if ((maxFeather > (maxNonFeather + 35)) and (skinType != 4)):
+      if ((maxFeather > maxNonFeather + 35) and (skinType != 4)):
          outputMainText("\n\nYour " + skinDesc() + " begins to tickle all over, tiny hair sprouting up all over and collecting into groups. Before you know it, you're rustling and fluffing up, sleeking back a layer of feathers.",False)
          skinType = 4
-      if ((maxChitin > (maxNonChitin + 35)) and (skinType != 5)):
+      if ((maxChitin > maxNonChitin + 35) and (skinType != 5)):
          outputMainText("\n\nYour " + skinDesc() + " begins to feel stiff, as though it were getting harder. Before you know it, your whole body is covered with a layer of chitin, almost like full suit of segmented armor. However, unlike armor, this doesn't really afford you any protection, since you seem to have all the usual sensations through it like any other kind of skin.",False)
          if (legDesc(10) == "feet"):
             outputMainText(" And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes.",False)
@@ -22344,257 +22299,384 @@ def affinityChange():
          elif ((faceType != 121) and (bugAffinity > 60)):
             outputMainText("\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.",False)
             faceType = 121
-   #trace("Face :" + faceType)
+   #trace("Face :" + this.faceType);
    tempTailArray = [horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,pigAffinity,skunkAffinity,bugAffinity,humanTaurAffinity]
-   tempTailArray.sort(16) #!!!!!
+   tempTailArray.sort()
    maxTail = tempTailArray.pop()
    secondTail = tempTailArray.pop()
    maxNonTail = max(humanAffinity)
    if (lockTail == 0):
       if (tail < 1):
-         if ((dominant == 2) and (horseAffinity > (maxNonTail + 15))):
+         if ((dominant == 2) and (horseAffinity > maxNonTail + 15)):
             tail = 2
-         if ((dominant == 3) and (wolfAffinity > (maxNonTail + 15))):
+         if ((dominant == 3) and (wolfAffinity > maxNonTail + 15)):
             tail = 3
-         if ((dominant == 4) and (catAffinity > (maxNonTail + 15))):
+         if ((dominant == 4) and (catAffinity > maxNonTail + 15)):
             tail = 4
-         if ((dominant == 5) and (cowAffinity > (maxNonTail + 15))):
+         if ((dominant == 5) and (cowAffinity > maxNonTail + 15)):
             tail = 5
-         if ((dominant == 6) and (lizardAffinity > (maxNonTail + 15))):
+         if ((dominant == 6) and (lizardAffinity > maxNonTail + 15)):
             tail = 6
-         if ((dominant == 7) and (rabbitAffinity > (maxNonTail + 15))):
+         if ((dominant == 7) and (rabbitAffinity > maxNonTail + 15)):
             tail = 7
-         if ((dominant == 8) and (mouseAffinity > (maxNonTail + 15))):
+         if ((dominant == 8) and (mouseAffinity > maxNonTail + 15)):
             tail = 8
-         if ((dominant == 9) and (birdAffinity > (maxNonTail + 15))):
+         if ((dominant == 9) and (birdAffinity > maxNonTail + 15)):
             tail = 9
-         if ((dominant == 10) and (pigAffinity > (maxNonTail + 15))):
+         if ((dominant == 10) and (pigAffinity > maxNonTail + 15)):
             tail = 10
-         if ((dominant == 11) and (skunkAffinity > (maxNonTail + 15))):
+         if ((dominant == 11) and (skunkAffinity > maxNonTail + 15)):
             tail = 11
-         if ((dominant == 12) and (bugAffinity > (maxNonTail + 15))):
+         if ((dominant == 12) and (bugAffinity > maxNonTail + 15)):
             tail = 12
          if (tail > 1):
             outputMainText("\n\nYou feel a tickle upon your backside as your " + clothesBottom() + " feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new " + tailDesc() + " tail bobbing above your " + buttDesc() + " bum. Next time you go to town, you'll be visiting a tailor to fix your clothes to account for your new appendage...",False)
-      if ((dominant == 1) and (humanAffinity > (maxTail + 10)) and (tail > 1)):
+      if ((dominant == 1) and (humanAffinity > maxTail + 10) and (tail > 1)):
          tail = 0
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail.",False)
-      if ((dominant == 2) and (horseAffinity > (secondTail + 10)) and (tail > 1) and (tail != 2)):
+      if ((dominant == 2) and (horseAffinity > secondTail + 10) and (tail > 1) and (tail != 2)):
          tail = 2
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse's.",False)
-      if ((dominant == 3) and (wolfAffinity > (secondTail + 10)) and (tail > 1) and (tail != 3)):
+      if ((dominant == 3) and (wolfAffinity > secondTail + 10) and (tail > 1) and (tail != 3)):
          tail = 3
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's.",False)
-      if ((dominant == 4) and (catAffinity > (secondTail + 10)) and (tail > 1) and (tail != 4)):
+      if ((dominant == 4) and (catAffinity > secondTail + 10) and (tail > 1) and (tail != 4)):
          tail = 4
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it's oh so soft. Just like a cat's.",False)
-      if ((dominant == 5) and (cowAffinity > (secondTail + 10)) and (tail > 1) and (tail != 5)):
+      if ((dominant == 5) and (cowAffinity > secondTail + 10) and (tail > 1) and (tail != 5)):
          tail = 5
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your " + buttDesc() + " backside and you can swat yourself with the tip like a soft whip. Just like a cow's.",False)
-      if ((dominant == 6) and (lizardAffinity > (secondTail + 10)) and (tail > 1) and (tail != 6)):
+      if ((dominant == 6) and (lizardAffinity > secondTail + 10) and (tail > 1) and (tail != 6)):
          tail = 6
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It's quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard's.",False)
-      if ((dominant == 7) and (rabbitAffinity > (secondTail + 10)) and (tail > 1) and (tail != 7)):
+      if ((dominant == 7) and (rabbitAffinity > secondTail + 10) and (tail > 1) and (tail != 7)):
          tail = 7
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your " + buttDesc() + " bum cutely and quite fluffy. Much like a rabbit's.",False)
-      if ((dominant == 8) and (mouseAffinity > (secondTail + 10)) and (tail > 1) and (tail != 8)):
+      if ((dominant == 8) and (mouseAffinity > secondTail + 10) and (tail > 1) and (tail != 8)):
          tail = 8
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn't really hide the pink skin underneath. It whips above your " + buttDesc() + " bum and you can curl it around with limited control. Just like a mouse's.",False)
-      if ((dominant == 9) and (birdAffinity > (secondTail + 10)) and (tail > 1) and (tail != 9)):
+      if ((dominant == 9) and (birdAffinity > secondTail + 10) and (tail > 1) and (tail != 9)):
          tail = 9
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird's.",False)
-      if ((dominant == 10) and (pigAffinity > (secondTail + 10)) and (tail > 1) and (tail != 10)):
+      if ((dominant == 10) and (pigAffinity > secondTail + 10) and (tail > 1) and (tail != 10)):
          tail = 10
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig's.",False)
-      if ((dominant == 11) and (skunkAffinity > (secondTail + 10)) and (tail > 1) and (tail != 11)):
+      if ((dominant == 11) and (skunkAffinity > secondTail + 10) and (tail > 1) and (tail != 11)):
          tail = 11
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base",False)
          if ((skinType == 2) and (skunkAffinity >= 40)):
             outputMainText(" where it meets up with the stripes of your fur",False)
          outputMainText(". Just like a skunk's.",False)
-      if ((dominant == 12) and (bugAffinity > (secondTail + 10)) and (tail > 1) and (tail != 12)):
+      if ((dominant == 12) and (bugAffinity > secondTail + 10) and (tail > 1) and (tail != 12)):
          tail = 12
          outputMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your " + buttDesc() + " butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?",False)
       if ((weapon == 127) and (tail != 4) and (tail != 5) and (tail != 6) and (tail != 8)):
          weapon = 10
-   maxNonWings = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,pigAffinity, bugAffinity)
+   maxNonWings = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,pigAffinity)
    maxWings = max(birdAffinity)
-   if ((wings < 1) and (maxWings > (maxNonWings + 60))):
-      if ((dominant == 9) and (birdAffinity > (maxNonWings + 60))):
+   if ((wings < 1) and (maxWings > maxNonWings + 60)):
+      if ((dominant == 9) and (birdAffinity > maxNonWings + 60)):
          outputMainText("\n\nA sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and " + legDesc(6) + " as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your " + clothesTop() + ", stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself.\n\nStanding, you flap your new feathery wings. While not strong enough to carry you long distances, they'll definitely help you flee from unwanted threats.",False)
          wings = 9
       runMod += 20
-   if ((wings > 0) and (maxNonWings > (maxWings + 60))):
+   if ((wings > 0) and (maxNonWings > maxWings + 60)):
       outputMainText("\n\nYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the " + skinDesc() + " left smooth as though there were never anything there. You have lost your wings, it seems.",False)
       runMod -= 20
       wings = 0
    #if ((wings > 0) and (dominant != wings)):
-      #{}
+   # {}
    if (lockEars == 0):
-      if ((dominant == 1) and (humanAffinity > (second + 15)) and (ears != 1)):
-         ears = 1
-         outputMainText("\n\nYour ears twitch as they become rounded and hug the sides of you head, looking more like a human's.",False)
-      if ((dominant == 2) and (horseAffinity > (second + 15)) and (ears != 2)):
-         ears = 2
-         outputMainText("\n\nYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse's.",False)
-      if ((dominant == 3) and (wolfAffinity > (second + 15)) and (ears != 3)):
-         ears = 3
-         outputMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf's.",False)
-      if ((dominant == 4) and (catAffinity > (second + 15)) and (ears != 4)):
-         ears = 4
-         outputMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat's.",False)
-      if ((dominant == 5) and (cowAffinity > (second + 15)) and (ears != 5)):
-         ears = 5
-         outputMainText("\n\nYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow's.",False)
-      if ((dominant == 6) and (lizardAffinity > (second + 15)) and (ears != 6)):
-         ears = 6
-         outputMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.",False)
-      if ((dominant == 7) and (rabbitAffinity > (second + 15)) and (ears != 7)):
-         ears = 7
-         outputMainText("\n\nYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit's.",False)
-      if ((dominant == 8) and (mouseAffinity > (second + 15)) and (ears != 8)):
-         ears = 8
-         outputMainText("\n\nYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse's.",False)
-      if ((dominant == 9) and (birdAffinity > (second + 15)) and (ears != 9)):
-         ears = 9
-         outputMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird's.",False)
-      if ((dominant == 10) and (pigAffinity > (second + 15)) and (ears != 10)):
-         ears = 10
-         outputMainText("\n\nYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig's.",False)
-      if ((dominant == 11) and (skunkAffinity > (second + 15)) and (ears != 11)):
-         ears = 11
-         outputMainText("\n\nYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk's.",False)
-      if ((dominant == 12) and (bugAffinity > (second + 15)) and (ears != 12)):
-         ears = 12
-         outputMainText("\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.",False)
-   twoBoob = max(twoBoobAffinity,humanAffinity,horseAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity)
-   sixBoob = max(sixBoobAffinity,catAffinity,wolfAffinity,skunkAffinity)
-   fourBoob = max(fourBoobAffinity)
-   eightBoob = max(eightBoobAffinity,pigAffinity)
-   tenBoob = max(tenBoobAffinity,bugAffinity)
-   nonTwoBoob = max(sixBoob,fourBoob,eightBoob,tenBoob)
-   nonSixBoob = max(twoBoob,fourBoob,eightBoob,tenBoob)
-   nonFourBoob = max(twoBoob,sixBoob,eightBoob,tenBoob)
-   nonEightBoob = max(twoBoob,sixBoob,fourBoob,tenBoob)
-   nonTenBoob = max(twoBoob,fourBoob,eightBoob,sixBoob)
-   if (lockBreasts == 0):
-      if ((twoBoob > (nonTwoBoob + 20)) and (boobTotal != 2)):
-         if (boobTotal == 4):
-            outputMainText("\n\nYour lower chest tickles",False)
-            if (breastSize > 4):
-               outputMainText(", both growing much lighter",False)
-            outputMainText(". Checking, you catch your second set of nipples disappear flat into your " + skinDesc() + ", leaving you with only the highest pair on your chest.",False)
-         if (boobTotal == 6):
-            outputMainText("\n\nYour lower chest and belly tickle",False)
-            if (breastSize > 4):
-               outputMainText(", both growing much lighter",False)
-            outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + skinDesc() + ", leaving you with only the primary pair on your chest.",False)
-         if (boobTotal == 8):
-            outputMainText("\n\nYour lower chest and belly tickle",False)
-            if (breastSize > 4):
-               outputMainText(", both growing much lighter",False)
-            outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + skinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",False)
-         if (boobTotal == 10):
-            outputMainText("\n\nYour lower chest and belly tickle",False)
-            if (breastSize > 4):
-               outputMainText(", both growing much lighter",False)
-            outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + skinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",False)
-         boobTotal = 2
-      if ((fourBoob > (nonFourBoob + 20)) and (boobTotal != 4)):
-         if (boobTotal == 2):
-            outputMainText("\n\nYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals.",False)
-            if (breastSize > 4):
-               outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 6):
-            outputMainText("\n\nYour belly tickles",False)
-            if (breastSize > 4):
-               outputMainText(", growing much lighter",False)
-            outputMainText(". Checking, you catch your bottom set of nipples disappear flat into your " + skinDesc() + ", while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.",False)
-         if (boobTotal == 8):
-            outputMainText("\n\nYour belly tickles",False)
-            if (breastSize > 4):
-               outputMainText(", growing much lighter",False)
-            outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + skinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",False)
-         if (boobTotal == 10):
-            outputMainText("\n\nYour belly tickles",False)
-            if (breastSize > 4):
-               outputMainText(", growing much lighter",False)
-            outputMainText(". Checking, you catch your three lowest sets of nipples disappear flat into your " + skinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",False)
-         boobTotal = 4
-      if ((sixBoob > (nonSixBoob + 20)) and (boobTotal != 6)):
-         if (boobTotal == 2):
-            outputMainText("\n\nYour lower chest and belly tickle. Four new nipples form amongst your " + skinDesc() + ", a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly.",False)
-            if (breastSize > 4):
-               outputMainText(" The nipples protrude as fleshy mounds form beneath them. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 4):
-            outputMainText("\n\nYour belly tickles. Two new nipples form amongst your " + skinDesc() + ", right below your second pair on your upper belly, leaving you with three rows of two breasts.",False)
-            if (breastSize > 4):
-               outputMainText(" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 8):
-            outputMainText("\n\nYour lower belly tickles",False)
-            if (breastSize > 4):
-               outputMainText(", growing much lighter",False)
-            outputMainText(". Checking, you catch your lowest set of nipples disappear flat into your " + skinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",False)
-         if (boobTotal == 10):
-            outputMainText("\n\nYour lower belly and the area above your crotch tickle",False)
-            if (breastSize > 4):
-               outputMainText(", growing much lighter",False)
-            outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + skinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",False)
-         boobTotal = 6
-      if ((eightBoob > (nonEightBoob + 20)) and (boobTotal != 8)):
-         if (boobTotal == 2):
-            outputMainText("\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they're all slightly smaller than your original pair.",False)
-            if (breastSize > 4):
-               outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 4):
-            outputMainText("\n\nYour chest and belly tickle. Four new nipples form amongst your " + skinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",False)
-            if (breastSize > 4):
-               outputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 6):
-            outputMainText("\n\nYour belly tickles. Two new nipples form amongst your " + skinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",False)
-            if (breastSize > 4):
-               outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 10):
-            outputMainText("\n\nThe area above your crotch tickles",False)
-            if (breastSize > 4):
-               outputMainText(", growing much lighter",False)
-            outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + skinDesc() + ", while the rest grow slightly larger.",False)
-         boobTotal = 8
-      if ((tenBoob > (nonTenBoob + 20)) and (boobTotal != 10)):
-         if (boobTotal == 2):
-            outputMainText("\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + skinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they're all slightly smaller than your original pair.",False)
-            if (breastSize > 4):
-               outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth." + "\t" + "When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 4):
-            outputMainText("\n\nYour chest and belly tickle. Six new nipples form amongst your " + skinDesc() + ", right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crtoch.",False)
-            if (breastSize > 4):
-               outputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 6):
-            outputMainText("\n\nYour lower belly  and the area above your crotch tickle. Four new nipples form amongst your " + skinDesc() + ", right below your third pair, leaving you with five rows of two breasts, from your chest down to your crotch.",False)
-            if (breastSize > 4):
-               outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         if (boobTotal == 8):
-            outputMainText("\n\nThe area above your crotch tickles. Two new nipples form amongst your " + skinDesc() + ", right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.",False)
-            if (breastSize > 4):
-               outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + clothesTop() + " accordingly.",False)
-         boobTotal = 10
-   bipedal = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,cowAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity,pigAffinity)
-   bipedalDigiPaw = max(skunkAffinity)
-   otherLegs = [cowTaurAffinity,humanTaurAffinity]
-   legArray = [bipedal,bipedalDigiPaw,0]
-   legArray = legArray.concat(otherLegs)
-   legArray.sort(16) #!!!!!!!
-   legArray.pop()
-   secondLegs = legArray.pop()
-   if (lockLegs == 0):
-      if ((bipedalDigiPaw > (secondLegs + 50)) and (legType != 1)):
-         legChange(1)
-      if ((bipedal > (secondLegs + 50)) and (legType != 0)):
-         legChange(0)
-      if ((cowTaurAffinity > (secondLegs + 50)) and (legType != 1001)):
-         legChange(1001)
-      if ((humanTaurAffinity > (secondLegs + 50)) and (legType != 1002)):
-         legChange(1002)
+      if (this.dominant == 1 && this.humanAffinity > second + 15 && this.ears != 1)
+      {
+         this.ears = 1;
+         this.outputMainText("\r\rYour ears twitch as they become rounded and hug the sides of you head, looking more like a human\'s.",false);
+      }
+      if(this.dominant == 2 && this.horseAffinity > second + 15 && this.ears != 2)
+      {
+         this.ears = 2;
+         this.outputMainText("\r\rYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse\'s.",false);
+      }
+      if(this.dominant == 3 && this.wolfAffinity > second + 15 && this.ears != 3)
+      {
+         this.ears = 3;
+         this.outputMainText("\r\rYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf\'s.",false);
+      }
+      if(this.dominant == 4 && this.catAffinity > second + 15 && this.ears != 4)
+      {
+         this.ears = 4;
+         this.outputMainText("\r\rYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat\'s.",false);
+      }
+      if(this.dominant == 5 && this.cowAffinity > second + 15 && this.ears != 5)
+      {
+         this.ears = 5;
+         this.outputMainText("\r\rYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow\'s.",false);
+      }
+      if(this.dominant == 6 && this.lizardAffinity > second + 15 && this.ears != 6)
+      {
+         this.ears = 6;
+         this.outputMainText("\r\rYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.",false);
+      }
+      if(this.dominant == 7 && this.rabbitAffinity > second + 15 && this.ears != 7)
+      {
+         this.ears = 7;
+         this.outputMainText("\r\rYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit\'s.",false);
+      }
+      if(this.dominant == 8 && this.mouseAffinity > second + 15 && this.ears != 8)
+      {
+         this.ears = 8;
+         this.outputMainText("\r\rYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse\'s.",false);
+      }
+      if(this.dominant == 9 && this.birdAffinity > second + 15 && this.ears != 9)
+      {
+         this.ears = 9;
+         this.outputMainText("\r\rYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird\'s.",false);
+      }
+      if(this.dominant == 10 && this.pigAffinity > second + 15 && this.ears != 10)
+      {
+         this.ears = 10;
+         this.outputMainText("\r\rYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig\'s.",false);
+      }
+      if(this.dominant == 11 && this.skunkAffinity > second + 15 && this.ears != 11)
+      {
+         this.ears = 11;
+         this.outputMainText("\r\rYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk\'s.",false);
+      }
+      if(this.dominant == 12 && this.bugAffinity > second + 15 && this.ears != 12)
+      {
+         this.ears = 12;
+         this.outputMainText("\r\rYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.",false);
+      }
+   }
+   twoBoob = Math.max(this.twoBoobAffinity,this.humanAffinity,this.horseAffinity,this.cowAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.birdAffinity);
+   sixBoob = Math.max(this.sixBoobAffinity,this.catAffinity,this.wolfAffinity,this.skunkAffinity);
+   fourBoob = Math.max(this.fourBoobAffinity);
+   eightBoob = Math.max(this.eightBoobAffinity,this.pigAffinity);
+   tenBoob = Math.max(this.tenBoobAffinity,this.bugAffinity);
+   nonTwoBoob = Math.max(sixBoob,fourBoob,eightBoob,tenBoob);
+   nonSixBoob = Math.max(twoBoob,fourBoob,eightBoob,tenBoob);
+   nonFourBoob = Math.max(twoBoob,sixBoob,eightBoob,tenBoob);
+   nonEightBoob = Math.max(twoBoob,sixBoob,fourBoob,tenBoob);
+   nonTenBoob = Math.max(twoBoob,fourBoob,eightBoob,sixBoob);
+   if(this.lockBreasts == 0)
+   {
+      if(twoBoob > nonTwoBoob + 20 && this.boobTotal != 2)
+      {
+         if(this.boobTotal == 4)
+         {
+            this.outputMainText("\r\rYour lower chest tickles",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", both growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your second set of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the highest pair on your chest.",false);
+         }
+         if(this.boobTotal == 6)
+         {
+            this.outputMainText("\r\rYour lower chest and belly tickle",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", both growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the primary pair on your chest.",false);
+         }
+         if(this.boobTotal == 8)
+         {
+            this.outputMainText("\r\rYour lower chest and belly tickle",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", both growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",false);
+         }
+         if(this.boobTotal == 10)
+         {
+            this.outputMainText("\r\rYour lower chest and belly tickle",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", both growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your extra sets of nipples disappear flat into your " + this.skinDesc() + ", leaving you with only the primary pair on your chest, which seems to have grown larger.",false);
+         }
+         this.boobTotal = 2;
+      }
+      if(fourBoob > nonFourBoob + 20 && this.boobTotal != 4)
+      {
+         if(this.boobTotal == 2)
+         {
+            this.outputMainText("\r\rYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your " + this.skinDesc() + ", creating an extra row of breasts beneath the originals.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 6)
+         {
+            this.outputMainText("\r\rYour belly tickles",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your bottom set of nipples disappear flat into your " + this.skinDesc() + ", while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.",false);
+         }
+         if(this.boobTotal == 8)
+         {
+            this.outputMainText("\r\rYour belly tickles",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",false);
+         }
+         if(this.boobTotal == 10)
+         {
+            this.outputMainText("\r\rYour belly tickles",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your three lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.",false);
+         }
+         this.boobTotal = 4;
+      }
+      if(sixBoob > nonSixBoob + 20 && this.boobTotal != 6)
+      {
+         if(this.boobTotal == 2)
+         {
+            this.outputMainText("\r\rYour lower chest and belly tickle. Four new nipples form amongst your " + this.skinDesc() + ", a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The nipples protrude as fleshy mounds form beneath them. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 4)
+         {
+            this.outputMainText("\r\rYour belly tickles. Two new nipples form amongst your " + this.skinDesc() + ", right below your second pair on your upper belly, leaving you with three rows of two breasts.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 8)
+         {
+            this.outputMainText("\r\rYour lower belly tickles",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your lowest set of nipples disappear flat into your " + this.skinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",false);
+         }
+         if(this.boobTotal == 10)
+         {
+            this.outputMainText("\r\rYour lower belly and the area above your crotch tickle",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.",false);
+         }
+         this.boobTotal = 6;
+      }
+      if(eightBoob > nonEightBoob + 20 && this.boobTotal != 8)
+      {
+         if(this.boobTotal == 2)
+         {
+            this.outputMainText("\r\rYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + this.skinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they\'re all slightly smaller than your original pair.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 4)
+         {
+            this.outputMainText("\r\rYour chest and belly tickle. Four new nipples form amongst your " + this.skinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they\'re all the same size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 6)
+         {
+            this.outputMainText("\r\rYour belly tickles. Two new nipples form amongst your " + this.skinDesc() + ", right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 10)
+         {
+            this.outputMainText("\r\rThe area above your crotch tickles",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(", growing much lighter",false);
+            }
+            this.outputMainText(". Checking, you catch your two lowest sets of nipples disappear flat into your " + this.skinDesc() + ", while the rest grow slightly larger.",false);
+         }
+         this.boobTotal = 8;
+      }
+      if(tenBoob > nonTenBoob + 20 && this.boobTotal != 10)
+      {
+         if(this.boobTotal == 2)
+         {
+            this.outputMainText("\r\rYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your " + this.skinDesc() + ", creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they\'re all slightly smaller than your original pair.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 4)
+         {
+            this.outputMainText("\r\rYour chest and belly tickle. Six new nipples form amongst your " + this.skinDesc() + ", right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crtoch.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" Your original breasts shrink a little to match the ingrowing ones, until they\'re all the same size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 6)
+         {
+            this.outputMainText("\r\rYour lower belly  and the area above your crotch tickle. Four new nipples form amongst your " + this.skinDesc() + ", right below your third pair, leaving you with five rows of two breasts, from your chest down to your crotch.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         if(this.boobTotal == 8)
+         {
+            this.outputMainText("\r\rThe area above your crotch tickles. Two new nipples form amongst your " + this.skinDesc() + ", right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.",false);
+            if(this.breastSize > 4)
+            {
+               this.outputMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you\'ll be covering your extra indecency with your arms the best you can while you head for the tailor to update your " + this.clothesTop() + " accordingly.",false);
+            }
+         }
+         this.boobTotal = 10;
+      }
+   }
+   bipedal = Math.max(this.humanAffinity,this.horseAffinity,this.wolfAffinity,this.catAffinity,this.cowAffinity,this.lizardAffinity,this.rabbitAffinity,this.mouseAffinity,this.birdAffinity,this.pigAffinity);
+   bipedalDigiPaw = Math.max(this.skunkAffinity);
+   otherLegs = [this.cowTaurAffinity,this.humanTaurAffinity];
+   legArray = [bipedal,bipedalDigiPaw,0];
+   legArray = legArray.concat(otherLegs);
+   legArray.sort(16);
+   legArray.pop();
+   secondLegs = legArray.pop();
+   if(this.lockLegs == 0)
+   {
+      if(bipedalDigiPaw > secondLegs + 50 && this.legType != 1)
+      {
+         this.legChange(1);
+      }
+      if(bipedal > secondLegs + 50 && this.legType != 0)
+      {
+         this.legChange(0);
+      }
+      if(this.cowTaurAffinity > secondLegs + 50 && this.legType != 1001)
+      {
+         this.legChange(1001);
+      }
+      if(this.humanTaurAffinity > secondLegs + 50 && this.legType != 1002)
+      {
+         this.legChange(1002);
+      }
+   }
    nip0 = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,lizardAffinity,rabbitAffinity,mouseAffinity,birdAffinity,pigAffinity)
    nip1 = max(cowAffinity)
    nip2 = max(bugAffinity)
@@ -22602,19 +22684,19 @@ def affinityChange():
    nonNip1 = max(nip0,nip2)
    nonNip2 = max(nip0,nip1)
    if (lockNipples == 0):
-      if ((nip0 > (nonNip0 + 60)) and (nipType != 0)):
+      if ((nip0 > nonNip0 + 60) and (nipType != 0)):
          if (nipType == 1):
             outputMainText("\n\nMany of your nipples begin to tickle. They begin to shrink beneath your " + clothesTop() + ", receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.",False)
          if (nipType == 2):
             outputMainText("\n\nYour nipples pop out from your breast, no longer sunken or hidden within.",False)
          nipType = 0
-      if ((nip1 > (nonNip1 + 60)) and (nipType != 1)):
+      if ((nip1 > nonNip1 + 60) and (nipType != 1)):
          if (nipType == 2):
             outputMainText("\n\nYour nipples pop out from your breast, no longer sunken or hidden within.",False)
          if ((nipType == 0) or (nipType == 2)):
             outputMainText("\n\nSpots begin to tingle around your nipples. Your hand roves under your " + clothesTop() + " to inspect the areas, noticeably more sensitive than before. The patches grow softer and puff up beneath your fingertips, feeling rather... familiar? Pulling your " + clothesTop() + " " + pullUD(1) + ", you can see extra nipples form around the ones you already have, complete with darkened areoles and matching size.\n\nYour breasts now each have four nipples equidistant from each other, just as functional as the originals, and just as sensitive, each looking almost like a cow's udder...",False)
          nipType = 1
-      if ((nip2 > (nonNip2 + 60)) and (nipType != 2)):
+      if ((nip2 > nonNip2 + 60) and (nipType != 2)):
          if (nipType == 1):
             outputMainText("\n\nMany of your nipples begin to tickle. They begin to shrink beneath your " + clothesTop() + ", receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.",False)
          if ((nipType == 0) or (nipType == 1)):
@@ -22625,45 +22707,59 @@ def affinityChange():
       egg1 = max(bugAffinity)
       nonEgg0 = max(egg1)
       nonEgg1 = max(egg0)
-      if ((egg0 > (nonEgg0 + 20)) and (eggType != 0)):
+      if ((egg0 > nonEgg0 + 20) and (eggType != 0)):
          outputMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.",False)
          if (eggType == 1):
             eggMaxTime += 22
          eggType = 0
-      if ((egg1 > (nonEgg1 + 20)) and (eggType != 1)):
+      if ((egg1 > nonEgg1 + 20) and (eggType != 1)):
          outputMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.",False)
          if (eggType == 0):
             eggMaxTime -= 22
          eggType = 1
    if (lockCock == 0):
-      if ((dominant == 1) and (humanAffinity > (second + 25)) and (human > 0) and (cockTotal > 0) and (humanCocks < cockTotal)):
+      if ((dominant == 1) and (humanAffinity > second + 25) and (human > 0) and (cockTotal > 0) and (humanCocks < cockTotal)):
          outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + oneYour(1) + " cock" + plural(1) + " hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.",False)
          humanCocks += 1
          cockLoss()
-      if ((dominant == 2) and (horseAffinity > (second + 25)) and (horse > 0) and (cockTotal > 0) and (horseCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + clothesBottom() + ". It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.",False)
-         horseCocks += 1
-         cockLoss()
-      if ((dominant == 3) and (wolfAffinity > (second + 25)) and (wolf > 0) and (cockTotal > 0) and (wolfCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.",False)
-         wolfCocks += 1
-         cockLoss()
-      if ((dominant == 4) and (catAffinity > (second + 25)) and (cat > 0) and (cockTotal > 0) and (catCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.",False)
-         catCocks += 1
-         cockLoss()
-      if ((dominant == 6) and (lizardAffinity > (second + 25)) and (lizard > 0) and (cockTotal > 0) and (lizardCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as your cock" + plural(1) + " sink" + plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?",False)
-         lizardCocks += 1
-         cockLoss()
-      if ((dominant == 7) and (rabbitAffinity > (second + 25)) and (rabbit > 0) and (cockTotal > 0) and (rabbitCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + oneYour(1) + " cock" + plural(1) + ". Flexing your muscles, " + oneYour(1) + " cock" + plural(1) + " slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.",False)
-         rabbitCocks += 1
-         cockLoss()
-      if ((dominant == 12) and (bugAffinity > (second + 25)) and (bug > 0) and (cockTotal > 0) and (bugCocks < cockTotal)):
-         outputMainText("\n\nYour " + hipDesc() + " hips twitch as " + oneYour(1) + " cock" + plural(1) + " begins to feel strange. You open your " + clothesBottom() + " to see what is happening, only to see " + oneYour(1) + " cock" + plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.",False)
-         bugCocks += 1
-         cockLoss()
+#!
+      if(this.dominant == 2 && this.horseAffinity > second + 25 && this.horse > 0 && this.cockTotal > 0 && this.horseCocks < this.cockTotal)
+      {
+         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thick sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Relaxing your muscles, the cock slowly droops out over your " + this.clothesBottom() + ". It\'s long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse\'s.",false);
+         ++this.horseCocks;
+         this.cockLoss();
+      }
+      if(this.dominant == 3 && this.wolfAffinity > second + 25 && this.wolf > 0 && this.cockTotal > 0 && this.wolfCocks < this.cockTotal)
+      {
+         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Flexing your muscles, " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, red and hard, no matter how aroused you are. It\'s veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf\'s.",false);
+         ++this.wolfCocks;
+         this.cockLoss();
+      }
+      if(this.dominant == 4 && this.catAffinity > second + 25 && this.cat > 0 && this.cockTotal > 0 && this.catCocks < this.cockTotal)
+      {
+         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Flexing your muscles, " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, pink and soft. It\'s smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat\'s.",false);
+         ++this.catCocks;
+         this.cockLoss();
+      }
+      if(this.dominant == 6 && this.lizardAffinity > second + 25 && this.lizard > 0 && this.cockTotal > 0 && this.lizardCocks < this.cockTotal)
+      {
+         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as your cock" + this.plural(1) + " sink" + this.plural(3) + " into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, looking quite purple. It\'s bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard\'s?",false);
+         ++this.lizardCocks;
+         this.cockLoss();
+      }
+      if(this.dominant == 7 && this.rabbitAffinity > second + 25 && this.rabbit > 0 && this.cockTotal > 0 && this.rabbitCocks < this.cockTotal)
+      {
+         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to watch as a thin sheath envelopes " + this.oneYour(1) + " cock" + this.plural(1) + ". Flexing your muscles, " + this.oneYour(1) + " cock" + this.plural(1) + " slowly pushes out, red and pointy. It\'s smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit\'s.",false);
+         ++this.rabbitCocks;
+         this.cockLoss();
+      }
+      if(this.dominant == 12 && this.bugAffinity > second + 25 && this.bug > 0 && this.cockTotal > 0 && this.bugCocks < this.cockTotal)
+      {
+         this.outputMainText("\r\rYour " + this.hipDesc() + " hips twitch as " + this.oneYour(1) + " cock" + this.plural(1) + " begins to feel strange. You open your " + this.clothesBottom() + " to see what is happening, only to see " + this.oneYour(1) + " cock" + this.plural(1) + " hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You\'re not really sure what it is, but some bugs do have rather... \'wild\' penises that could come close.",false);
+         ++this.bugCocks;
+         this.cockLoss();
+      }
+   }
    human = 0
    horse = 0
    wolf = 0
@@ -22676,25 +22772,26 @@ def affinityChange():
    pig = 0
    skunk = 0
    bug = 0
-   if (str(TextBoxes.GetMain("1.0", "end")) == "Something feels odd...\n"):
+   if (maintext == "Something feels odd..."):
       outputMainText("",True)
       doProcess()
    else:
       doEnd()
+}
 
 def cockChange(sizeChange:int, totalChange:int):
-   #!
-   global humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity, dominant, nonCock, cockSize, cockTotal, vagTotal, gender, balls, ballSize, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, maxCock, showBalls
-   maxCock = max(humanAffinity, horseAffinity, wolfAffinity, catAffinity, lizardAffinity, rabbitAffinity, bugAffinity)
+   #Should work
+   global humanAffinity, horseAffinity, wolfAffinity, carAffinity, lizardAffinity, rabbitAffinity, bugAffinity, dominant, cockSize, cockTotal, vagTotal, gender, balls, ballSize, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, bugCocks, showBalls
    nonCock = False
-   if (dominant == 5) or (dominant == 8) or (dominant == 9) or (dominant == 10) or (dominant == 11):
+   maxCock = max(humanAffinity,horseAffinity,wolfAffinity,catAffinity,lizardAffinity,rabbitAffinity,bugAffinity)
+   if ((dominant == 5) or (dominant == 8) or (dominant == 9) or (dominant == 10) or (dominant == 11)):
       nonCock = True
-   if (((cockSize + sizeChange) <= 0) or ((cockTotal + totalChange) < 1)) and (cockSize > 0) and (cockTotal > 0):
+   if (((cockSize + sizeChange <= 0) or (cockTotal + totalChange < 1)) and (cockSize > 0) and (cockTotal > 0)):
       outputMainText("\n\nYou shiver a little as your cock" + plural(1) + " and balls shrink into your body, disappearing",False)
-      if vagTotal > 0:
+      if (vagTotal > 0):
          outputMainText(", leaving you with only your vagina" + plural(2) + " and making you solely female.",False)
          gender = 2
-      if vagTotal < 1:
+      elif (vagTotal < 1):
          outputMainText(", leaving you with no genitals whatsoever. This is going to make things tough...",False)
          gender = 0
       balls = 0
@@ -22709,31 +22806,31 @@ def cockChange(sizeChange:int, totalChange:int):
       lizardCocks = 0
       rabbitCocks = 0
       bugCocks = 0
-   elif((cockTotal + totalChange) > 0) and (cockTotal < 1):
+   elif ((cockTotal + totalChange > 0) and (cockTotal < 1)):
       outputMainText("\n\nA strange sensation of arousal engulfs your groin. Your " + clothesBottom() + " grows tight as you feel something swell within. You don't have much time to pull " + pullUD(2) + " your " + clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, a fresh, new ",False)
-      if (dominant == 1) or (nonCock == True) and (maxCock == humanAffinity):
+      if ((dominant == 1) or (nonCock == True) and (maxCock == humanAffinity)):
          outputMainText("human ",False)
          humanCocks += 1
-      elif (dominant == 2) or (nonCock == True) and (maxCock == horseAffinity):
+      elif ((dominant == 2) or (nonCock == True) and (maxCock == horseAffinity)):
          outputMainText("equine ",False)
          horseCocks += 1
-      elif (dominant == 3) or (nonCock == True) and (maxCock == wolfAffinity):
+      elif ((dominant == 3) or (nonCock == True) and (maxCock == wolfAffinity)):
          outputMainText("canine ",False)
          wolfCocks += 1
-      elif (dominant == 4) or (nonCock == True) and (maxCock == catAffinity):
+      elif ((dominant == 4) or (nonCock == True) and (maxCock == catAffinity)):
          outputMainText("feline ",False)
          catCocks += 1
-      elif (dominant == 6) or (nonCock == True) and (maxCock == lizardAffinity):
+      elif ((dominant == 6) or (nonCock == True) and (maxCock == lizardAffinity)):
          outputMainText("reptillian ",False)
          lizardCocks += 1
-      elif (dominant == 7) or (nonCock == True) and (maxCock == rabbitAffinity):
+      elif ((dominant == 7) or (nonCock == True) and (maxCock == rabbitAffinity)):
          outputMainText("lapin ",False)
          rabbitCocks += 1
-      elif (dominant == 12) or (nonCock == True) and (maxCock == bugAffinity):
+      elif ((dominant == 12) or (nonCock == True) and (maxCock == bugAffinity)):
          outputMainText("insectile ",False)
          bugCocks += 1
       outputMainText("penis stands erect and balls to match settle within your crotch beneath",False)
-      if vagTotal > 0:
+      if (vagTotal > 0):
          outputMainText(", slipping into your " + vulvaDesc() + " lips. You now are considered a cross between genders, a herm.",False)
          gender = 3
       else:
@@ -22748,29 +22845,29 @@ def cockChange(sizeChange:int, totalChange:int):
       cockSize += sizeChange
       totalChange -= 1
       cockChange(0,totalChange)
-   elif (totalChange > 0) and (cockTotal > 0):
-      outputMainText("\n\nA strange sensation of arousal engulfs your groin. Your " + this.clothesBottom() + " grows tight as you feel something swell within. You don't have much time to open your " + this.clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,",False);
+   elif ((totalChange > 0) and (cockTotal > 0)):
+      outputMainText("\n\nA strange sensation of arousal engulfs your groin. Your " + clothesBottom() + " grows tight as you feel something swell within. You don't have much time to open your " + clothesBottom() + " as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,",False)
       if (totalChange > 1):
-         outputMainText(" " + totalChange,False)
-      if (dominant == 1) or ((nonCock == True) and (maxCock == humanAffinity)):
+         outputMainText(" " + str(totalChange),False)
+      if ((dominant == 1) or (nonCock == True) and (maxCock == humanAffinity)):
          outputMainText(" human ",False)
          humanCocks += totalChange
-      elif (dominant == 2) or ((nonCock == True) and (maxCock == horseAffinity)):
+      elif ((dominant == 2) or (nonCock == True) and (maxCock == horseAffinity)):
          outputMainText(" equine ",False)
          horseCocks += totalChange
-      elif (dominant == 3) or ((nonCock == True) and (maxCock == wolfAffinity)):
+      elif ((dominant == 3) or (nonCock == True) and (maxCock == wolfAffinity)):
          outputMainText(" canine ",False)
          wolfCocks += totalChange
-      elif (dominant == 4) or ((nonCock == True) and (maxCock == this.catAffinity)):
+      elif ((dominant == 4) or (nonCock == True) and (maxCock == catAffinity)):
          outputMainText(" feline ",False)
          catCocks += totalChange
-      elif (dominant == 6) or ((nonCock == True) and (maxCock == lizardAffinity)):
+      elif ((dominant == 6) or (nonCock == True) and (maxCock == lizardAffinity)):
          outputMainText(" reptillian ",False)
          lizardCocks += totalChange
-      elif (dominant == 7) or ((nonCock == True) and (maxCock == rabbitAffinity)):
+      elif ((dominant == 7) or (nonCock == True) and (maxCock == rabbitAffinity)):
          outputMainText(" lapin ",False)
          rabbitCocks += totalChange
-      elif (dominant == 12) or ((nonCock == True) and (maxCock == bugAffinity)):
+      elif ((dominant == 12) or (nonCock == True) and (maxCock == bugAffinity)):
          outputMainText(" insectile ",False)
          bugCocks += totalChange
       outputMainText("penis",False)
@@ -22780,8 +22877,8 @@ def cockChange(sizeChange:int, totalChange:int):
       stats(0,0,2 * totalChange,0)
       cockTotal += totalChange
       cockSize += sizeChange
-   elif (totalChange < 0) and (cockTotal > 0) and (cockSize > 0):
-      this.outputMainText("\n\nYou notice an odd sensation of numbness within your groin. Your " + clothesBottom() + " feels looser, something going missing within. By the time you open your " + clothesBottom() + " you notice that you have lost something.",False)
+   elif ((totalChange < 0) and (cockTotal > 0) and (cockSize > 0)):
+      outputMainText("\n\nYou notice an odd sensation of numbness within your groin. Your " + clothesBottom() + " feels looser, something going missing within. By the time you open your " + clothesBottom() + " you notice that you have lost something.",False)
       cockTotal += totalChange
       while (totalChange < 0):
          cockLoss()
@@ -23147,7 +23244,7 @@ def doImpregnate(erace:int):
    if (babyFree > 0):
       tempPregMod -= 50
    if (cockSnakePreg > 0):
-      outputMainText("\n\nAs the cum fills your " + bellyDesc() + " belly, you feel it diminish from your passage as the cum-hungry snake inside squirms to drink it down. It then settles, happy with its meal and giving you some rest...",False)
+      outputMainText("\n\nAs the cum fills your " + bellyDesc() + " belly, you feel it diminish from your passage as the cum-hungry snake inside squirms to drink it down. It then settles, happy with its meal and giving you some rest...",False,"snakes")
       cockSnakePreg += 25
       if (cockSnakePreg > 100):
          cockSnakePreg = 100
