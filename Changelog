@@ -16,6 +16,8 @@ Merged some redundant if statements
 Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
 
+affinityChange
+- Fixed a spelling mistake
 
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
