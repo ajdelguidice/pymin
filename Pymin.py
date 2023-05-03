@@ -11289,7 +11289,7 @@ def doBoobMasturbate():
             doHP(10 + milkHPMod)
          else:
             outputMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ",False)
-            doHP(Math.ceil((30 + math.floor(_str_ / 2) + HPMod) / 4) + milkHPMod)
+            doHP(math.ceil((30 + math.floor(_str_ / 2) + HPMod) / 4) + milkHPMod)
          outputMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~",False)
          doLust(-math.floor(sen / 2),2,3)
          hrs += 2
@@ -13795,9 +13795,9 @@ def doFirmshaft():
                outputMainText("After a few hours, you find yourself being awoken to the feeling of warm wet sponges. The girls that have recovered smile and gently clean you with a nice sponge-bath. They seemed to have already cleaned and clothed themselves, though a couple still have hands lingering in their loins.\n\nOnce most of the mess has been cleaned up, you get a round of thanks, with some voices a bit warbly from the experience. You're also presented with a fair sum for your efforts, as well as a couple parting gifts to help clean you up in case another mess occurs.",True)
                doSexP(2 * cockTotal)
                doCoin(5 * cockTotal)
-               doLust(-Math.floor(sen / 3),2,1)
-               doLust(-Math.floor(sen / 3),2,1)
-               doLust(-Math.floor(sen / 3),2,1)
+               doLust(-math.floor(sen / 3),2,1)
+               doLust(-math.floor(sen / 3),2,1)
+               doLust(-math.floor(sen / 3),2,1)
                addManyItems(225, 2)
                hrs = 5
                exhaustion -= 3
@@ -14970,7 +14970,7 @@ def doSizCalit():
                      outputMainText("Carefully, you slurp the stuff up from her fur. Slowly going up her thighs, her hips twitch, her tail flailing wildly behind her. Her eyes clench as you come closer to her naughty bits, her hands clenching the bedsheets with anxiety.\n\nNot wanting to go too far, you gently lap at her swollen nether-lips, the soft, delicate folds like flower petals. Flower petals completely drenched in dew. Quickly and cautiously, you take care of what you can before she lets out a soft moan.\n\nEyes still clenched shut, you nudge her and tell her you're finished. Her eyes blink open and she looks down at herself. She looks a bit happier, noticing she's relatively dry, but a shiver shoots through her small body and she clenches her thighs.\n\nIn an instant, she flips her dress down and hops from the bed, running out of the hut, calling back, \"Th-Thank you!\"\n\nAs she darts through the doorway, you hear a splash. A large gob of feminine honey marks the floor, just before the exit, trailing along her path. You wipe the massive amount of slick fluids from your own face, feeling a bit tingly yourself, and go on your way.",True)
                      lilaRep = 1
                      doLust(math.floor(lib / 4),0)
-                     aff(4,Math.floor(percent() / 20 + 4),-1)
+                     aff(4,math.floor(percent() / 20 + 4),-1)
                      hrs = 3
                      doEnd()
                   elif (buttonChoice == 7):
@@ -20951,7 +20951,7 @@ def enemyAttack():
             outputMainText(" He skips right up to you, towering over you. His legs bend down, lowering his testicles before your face, his knees straddling either side of your head. He presses his relatively enormous balls into your face, practically smothering you with the scent of his nuts while he grinds his hips into your head.\n\nHappy with the quick massage, he bounds back, letting you breath again.",False)
          elif (tallness > 144):
             outputMainText(" His feet spring him forward at you, his legs wrapping around your neck. Sitting on your shoulders, he presses his relatively giant balls into your face, making sure you get a nice whiff while he grinds his hips into your head.\n\nHappy with the quick massage, he bounds back, letting you breath again.",False)
-         doLust(Math.floor(percent() / 10 + lib / 5),1)
+         doLust(math.floor(percent() / 10 + lib / 5),1)
          doeLust(10)
       elif ((_loc1_ > 85) and (eLust >= 70)):
          outputMainText("\n\nHis pointy, carrot-like prick standing from his fuzzy sheath and dripping with pre, he decides to lunge at you.",False)
@@ -20965,7 +20965,7 @@ def enemyAttack():
          else:
             outputMainText(" He aims at your chest, ramming the cock against it. The slick prick slides up your body and past your head, the wet flesh pressing against your cheek. He hugs you tight as he fervently humps you, blurring your vision with the pre that flood down to lubricate. Very quickly, he lets out a groan as the conical member geysers above you, showering you in his hot spunk. \n\nThe whole thing taking less than a minute, he hops off of you, leaving you a cum-coated mess and a sore cheek before returning to the battle, his lust somewhat sated.",False)
          doeLust(-30)
-         doLust(Math.floor(percent() / 5 + lib / 6),1)
+         doLust(math.floor(percent() / 5 + lib / 6),1)
       else:
          outputMainText("\n\nHe bounces closer and kicks you with one of his big feet, trying to soften you up a little.",False)
          doHP(-eDmg(8))
@@ -20996,7 +20996,7 @@ def enemyAttack():
             outputMainText(" Her legs spread wide as she hops over you, casting you in the shadow of her cunt. You feel a splash across your face as you look up, a strand of her fem-juice falling down as one of her hands spreads her lips open. The other hand pinches her clit, masturbating it fiercely as her rump comes down upon you.\n\nBefore you know it, you're surrounding by wet soft flesh. Two of her fingers clamp onto your " + legDesc(2) + ", holding you against the ground while she stands back up, nearly lifting your " + clothesTop() + " off of your body. You have a small moment to breath before she descends once again, ramming your whole body into her vagina. The hot walls pulse and contract around you, squeezing you tightly. You can hear her furiously stroke her clit and moans escape from above. Then she rises, exposing you to the cooler air. She continues to use her like her own personal dildo, thrusting you in and out again and again until she lets out a howl, a waterfall of slime spilling out around you and forming a puddle where you stand.",False)
          outputMainText("\n\nShe then steps away, her quick climax being enough to satiate herself for a bit. However, she's not quite done with you yet.",False)
          doeLust(-30)
-         doLust(Math.floor(percent() / 5 + lib / 6),1)
+         doLust(math.floor(percent() / 5 + lib / 6),1)
       else:
          outputMainText("\n\nShe bounces closer and kicks you with one of her big feet, trying to soften you up a little.",False)
          doHP(-eDmg(8))
@@ -21167,6 +21167,7 @@ def enemyAttack():
 def doStatus(param1:int):
 #!
    global hrs, pregnancyTime, pregArray, pregTimeMod, pregRate, pregStatus, lactation, eggLaying, vagTotal, eggRate, eggTime, eggMaxTime, ment, eggType, cockSnakePreg, sen, malonPreg, lilaPreg, lilaMilk, silPreg, silRep, silRate, silTied, silLay, silGrowthTime, heat, heatTime, pregChanceMod, vagMoistMod, heatMaxTime, milkEngorgementLevel, milkEngorgement, milkMod, breastSize, tallness, milkCap, udderLactation, udders, udderEngorgementLevel, udderEngorgement, udderSize, tallness, nipplePlay, udderPlay, attireTop, milkSuppressant, milkSuppressantLact, milkSuppressantUdder, hunger, bellyMod, skipExhaustion, exhaustion, exhaustionPenalty, currentState, lib, lust, lustPenalty, blueBalls, showBalls, balls, ballSize, bodyOil, enticeMod, masoPot, sMasoPot, babyFree, charmTime, pheromone, eggceleratorTime, eggceleratorDose, fertileGel, plumpQuats, fertilityStatueCurse, minLust, lilaWetStatus, cockMoistMod, vagMoistMod, milkCPoisonNip, milkCPoisonUdd, cockSnakeVenom
+   global maintext
    _loc2_ = 0
    _loc3_ = 0
    _loc4_ = 0
@@ -21180,63 +21181,63 @@ def doStatus(param1:int):
          if (pregArray[i + 3] + math.ceil(param1 * pregRate) > pregArray[i + 2] + pregTimeMod):
             pregArray[i] = False
             pregArray[i + 3] = 0
-            doBirth(pregArray[i + 1], pregArray[i + 4], _loc2_)
+            doBirth(pregArray[i + 1],pregArray[i + 4],_loc2_)
             _loc2_ += 1
          else:
             if (pregArray[i + 1] != 503):
-               pregArray[i + 3] += math.ceil(param1 * pregRate)
+               pregArray[i + 3] += math.ceil(param1 * pregRate):
             pregnancyTime += pregArray[i + 3]
       i += 5
-   if (pregnancyTime >= 80) and (pregnancyTime < 140) and (pregStatus < 1):
+   if ((pregnancyTime >= 80) and (pregnancyTime < 140) and (pregStatus < 1)):
       pregStatus = 1
       lactChange(1,10)
       lactChange(2,10)
       boobChange(1)
       udderChange(1)
-      if ((lactation - 50) <= 0):
+      if (lactation - 50 <= 0):
          outputMainText(" Your body must be getting ready for the baby that's growing inside of you. Even your breasts feel fuller...",False)
       else:
          outputMainText("\n\nYour breasts are producing even more milk than normal. They're even a little fuller... Your body must be getting ready for the baby that's growing inside of you.",False)
-   elif (pregnancyTime >= 140) and (pregnancyTime < 210) and (pregStatus < 2):
+   elif ((pregnancyTime >= 140) and (pregnancyTime < 210) and (pregStatus < 2)):
       pregStatus = 2
       lactChange(1,20)
       lactChange(2,20)
       boobChange(2)
       udderChange(2)
       outputMainText("\n\nYour breasts feel sore from the all the milky swelling. They've grown three cup sizes since you've gotten pregnant and dribble more and more!",False)
-   elif (pregnancyTime >= 210) and (pregStatus < 3):
+   elif ((pregnancyTime >= 210) and (pregStatus < 3)):
       pregStatus = 3
       lactChange(1,50)
       lactChange(2,50)
       boobChange(1)
       udderChange(1)
       outputMainText("\n\nYour breasts have slowed in their pregnant swelling. They should definitely be prepared for whatever you might give birth to... you hope.",False)
-   if (pregnancyTime < 80) and (pregStatus > 0):
+   if ((pregnancyTime < 80) and (pregStatus > 0)):
       pregStatus = 0
-   if (eggLaying > 0) and (vagTotal > 0) and (pregCheck(1) == True) and (param1 > 0):
-      _loc3_ = param1 + (2 * eggRate)
+   if ((eggLaying > 0) and (vagTotal > 0) and (pregCheck(1) == True) and (param1 > 0)):
+      _loc3_ = param1 + 2 * eggRate
       _loc4_ = 0
       while (_loc3_ > 0):
-         eggTime -= 1
+         eggTime += 1
          if (eggTime <= 0):
             _loc4_ += 1
             eggTime = eggMaxTime
          _loc3_ -= 1
       if (_loc4_ == 1):
-         if (percent() < ((ment / 2) + 20)):
+         if (percent() < ment / 2 + 20):
             if (eggType == 0):
                outputMainText("\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of " + oneYour(2) + " " + vulvaDesc() + " nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your " + clothesBottom() + " where it cracks and spreads into a wet mess.\n\nYolky goop squishing in your groin with little bits of white shell jabbing you here and there, you take a moment to pull out the broken unfertilized egg and attempt to clean up after yourself...",False)
             if (eggType == 1):
                outputMainText("\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of " + oneYour(2) + " " + vulvaDesc() + " nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your " + clothesBottom() + " where it squishes and spreads into a wet mess.\n\nSlimy goop squishing in your groin with little bits of squishy shell sliding about, you take a moment to pull out the broken unfertilized bug egg and attempt to clean up after yourself...",False)
          else:
             if (eggType == 0):
-               outputMainText("\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + this.oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying it off, you have something to snack on later.",False)
+               outputMainText("\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying it off, you have something to snack on later.",False)
                itemAdd(219)
             if (eggType == 1):
                outputMainText("\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you " + legVerb(1) + " your " + legDesc(2) + " in preparation, a hand pushing your " + clothesBottom() + " aside and helping spread " + vulvaDesc() + " nether-lips. You hold your breath and with a quick push, you feel " + oneYour(2) + " cunt" + plural(2) + " stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your " + clothesBottom() + ". Drying it off, you have something to snack on later.",False)
                itemAdd(253)
       if (_loc4_ > 1):
-         if (percent() < ((ment / 2) + 20 - (4 * _loc4_))):
+         if (percent() < ment / 2 + 20 - 4 * _loc4_):
             if (eggType == 0):
                outputMainText("\n\nHaving been distracted and unable to lay for such a long time, you are unprepared for the buildup of ovid objects within your womb. You double over as you feel them crowd against the inside of your " + vulvaDesc() + " nether-lips, your thighs clenching to hold them back, but the smooth slick objects press on through anyways. They squeeze out into your " + clothesBottom() + " where they pile up and crack, spreading into a wet mess.\n\nYolky goop squishing in your groin with little bits of white shell jabbing you here and there, you take a moment to pull out the broken unfertilized eggs and attempt to clean up after yourself...",False)
             if (eggType == 1):
@@ -21253,7 +21254,7 @@ def doStatus(param1:int):
                   itemAdd(253)
                   _loc4_ -= 1
    if (cockSnakePreg > 0):
-      if ((cockSnakePreg - param1) <= 0):
+      if (cockSnakePreg - param1 <= 0):
          _loc2_ = 0
          outputMainText("\n\nYou feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your " + clothesBottom() + " becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your " + vulvaDesc() + " lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your " + legDesc(1) + ". You gasp and regain yourself, the snake slithering away. It must have been too hungry too survive inside you any longer...",False)
          cockSnakePreg = 0
@@ -21262,7 +21263,6 @@ def doStatus(param1:int):
             if (pregArray[i + 1] == 503):
                pregArray[i] = False
                pregArray[i + 3] = 0
-               _loc2_ += 1
                if (_loc2_ == 2):
                   outputMainText("\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your " + clothesBottom() + " and down your " + legDesc(1) + ", giving up on you like the first.",False)
                if (_loc2_ == 3):
@@ -21270,16 +21270,17 @@ def doStatus(param1:int):
                if (_loc2_ > 3):
                   outputMainText("\n\nAnd another...",False)
                doLust(-math.floor(sen / 4),2,2)
+               _loc2_ += 1
             i += 5
-      elif ((cockSnakePreg - param1) <= 10):
+      elif (cockSnakePreg - param1 <= 10):
          outputMainText("\n\nYour " + bellyDesc() + " belly twists and jiggles about as the snake inside boinks about your womb. It seems to know all the best places to touch, greatly arousing you over time with its squirming, teasing you much more vigorously to make you thirst for cum down below...",False)
          cockSnakePreg -= param1
          doLust(5 * param1,1)
-      elif ((cockSnakePreg - param1) <= 30):
+      elif (cockSnakePreg - param1 <= 30):
          outputMainText("\n\nYour " + bellyDesc() + " belly shudders as the snake inside clamors for cum, arousing you over time with its twisting and squirming, helping your passage grow sensitive and thirsty for penetration...",False)
          cockSnakePreg -= param1
          doLust(3 * param1,1)
-      elif ((cockSnakePreg - param1) <= 50):
+      elif (cockSnakePreg - param1 <= 50):
          outputMainText("\n\nYour " + bellyDesc() + " belly wiggles a bit as the snake inside tries to tease your passage, making you thirsty for cock below and arousing you over time...",False)
          cockSnakePreg -= param1
          doLust(param1,1)
@@ -21287,66 +21288,66 @@ def doStatus(param1:int):
          cockSnakePreg -= param1
    if (malonRep == 4):
       malonPreg += param1
-   if ((lilaPreg + param1) > 40) and (lilaPreg <= 40) and (lilaPreg > 0):
+   if ((lilaPreg + param1 > 40) and (lilaPreg <= 40) and (lilaPreg > 0)):
       lilaMilk += 1
       if (lilaMilk > 19):
          lilaMilk = 19
-   if ((lilaPreg + param1) > 80) and (lilaPreg <= 80) and (lilaPreg > 0):
+   if ((lilaPreg + param1 > 80) and (lilaPreg <= 80) and (lilaPreg > 0)):
       lilaMilk += 2
       if (lilaMilk > 19):
          lilaMilk = 19
    if (lilaPreg > 0):
       lilaPreg += param1
-   if (silPreg > 0) and (silRep < 5) and (param1 > 0):
-      silPreg += param1 + (2 * silRate)
+   if ((silPreg > 0) and (silRep < 5) and (param1 > 0)):
+      silPreg += param1 + 2 * silRate
       _loc3_ = param1 + silRate
-      if (silPreg > 30) and (silTied == False):
+      if ((silPreg > 30) and (silTied == False)):
          while (_loc3_ > 0):
             silLay -= 1
             if (silLay <= 0):
                silPreg -= 10
                silLay = 10
             _loc3_ -= 1
-   elif (silPreg > 0) and (silRep == 5) and (param1 > 0) and (silGrowthTime <= 360) and (silPreg < 10000):
-      silPreg += param1 + (2 * silRate)
+   elif ((silPreg > 0) and (silRep == 5) and (param1 > 0) and (silGrowthTime <= 360) and (silPreg < 10000)):
+      silPreg += param1 + 2 * silRate
       silGrowthTime += param1
-   if (heat > 0) and (vagTotal > 0) and (pregCheck(0) == False):
-      if (heatTime >= 0) and ((heatTime - param1) < 0):
+   if ((heat > 0) and (vagTotal > 0) and (pregCheck(0) == False)):
+      if ((heatTime >= 0) and (heatTime - param1 < 0)):
          outputMainText("\n\nYour crotch feels hot and tingly, your face becoming flush. Thoughts of sex, being pounded and filled with seed until your womb has been sufficiently impregnated, permeate your mind and makes you greatly aroused. You're feeling especially fertile and extremely lustful as you go into heat...",False)
          pregChanceMod += 15
          statsMod(0,-5,10,0)
          doLust(15,0)
          vagMoistMod += 3
          heatTime = -24
-      elif (heatTime < 0) and ((heatTime + param1) >= 0):
+      elif ((heatTime < 0) and (heatTime + param1 >= 0)):
          outputMainText("\n\nYou breath a sigh of relief as the heat finally passes, your body calming and no longer needing to reproduce as much.",False)
          pregChanceMod -= 15
          statsMod(0,5,-10,0)
          vagMoistMod -= 3
          heatTime = heatMaxTime
-      elif (heatTime > 0) and ((heatTime - param1) > 0):
+      elif ((heatTime > 0) and (heatTime - param1 > 0)):
          heatTime -= param1
-      elif (heatTime < 0) and ((heatTime + param1) < 0):
+      elif ((heatTime < 0) and (heatTime + param1 < 0)):
          heatTime += param1
-   elif (heat > 0) and (heatTime < 0) and (pregCheck(0) == True):
+   elif ((heat > 0) and (heatTime < 0) and (pregCheck(0) == True)):
       outputMainText("\n\nYou breath a sigh of relief as the heat passes, your body calming and no longer needing to reproduce as much. However, it seems to have ended a bit early...",False)
       pregChanceMod -= 15
       statsMod(0,5,-10,0)
       vagMoistMod -= 3
       heatTime = heatMaxTime
-   elif (heat > 0) and (heatTime != heatMaxTime) and (pregCheck(0) == True):
+   elif ((heat > 0) and (heatTime != heatMaxTime) and (pregCheck(0) == True)):
       heatTime = heatMaxTime
-   elif (heat < 1) and (heatTime > 0):
+   elif ((heat < 1) and (heatTime > 0)):
       heatMaxTime = 0
       heatTime = 0
-   elif(((heat < 1) or (vagTotal < 1)) and (heatTime < 0)):
+   elif (((heat < 1) or (vagTotal < 1)) and (heatTime < 0)):
       pregChanceMod -= 15
       statsMod(0,5,-10,0)
       vagMoistMod -= 3
       heatMaxTime = 0
       heatTime = 0
    if (lactation > 0):
-      if (milkEngorgementLevel < 3) and ((milkEngorgement + ((lactation + milkMod) * param1)) > ((((breastSize * (breastSize + 1) + (tallness / 4)) * 4) + milkCap) * 2)) and (milkEngorgement <= (((((breastSize * (breastSize + 1)) + (tallness / 4)) * 4) + milkCap) * 2)):
+      if ((milkEngorgementLevel < 3) and (milkEngorgement + (lactation + milkMod) * param1 > ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (milkEngorgement <= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2)):
          outputMainText("\n\nPulling " + pullUD(1) + " your " + clothesTop() + ", streams of milk shoot from your aching tits. Your nipples dribble uncontrollably, occasionally spitting the milk quite far. Your mammaries are producing far more milk than your breasts can hold and will continue to waste breastmilk until you drain them or they dry up from lack of demand.",False)
          if (milkEngorgementLevel < 1):
             boobChange(3)
@@ -21355,20 +21356,20 @@ def doStatus(param1:int):
          else:
             boobChange(1)
          milkEngorgementLevel += 1
-      elif (milkEngorgementLevel < 2) and ((milkEngorgement + (lactation + milkMod) * param1) > ((((breastSize * (breastSize + 1)) + ((tallness / 4) * 4)) + milkCap) * 1.5)) and (milkEngorgement <= (((((breastSize * (breastSize + 1)) + (tallness / 4)) * 4) + milkCap) * 1.5)):
+      elif ((milkEngorgementLevel < 2) and (milkEngorgement + (lactation + milkMod) * param1 > ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 1.5) and (milkEngorgement <= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 1.5)):
          outputMainText("\n\nYour " + clothesTop() + " is soaked in front. Milk dribbles from your nipples almost constantly, your breasts slightly overfull and engorged. The abundant supply is getting to be a little more than the plush mounds can handle.",False)
          if (milkEngorgementLevel < 1):
             boobChange(2)
          else:
             boobChange(1)
          milkEngorgementLevel += 1
-      elif (milkEngorgementLevel < 1) and ((milkEngorgement + ((lactation + milkMod) * param1)) > ((((breastSize * (breastSize + 1)) + ((tallness / 4)) * 4)) + milkCap)) and (milkEngorgement <= (((breastSize * (breastSize + 1)) + ((tallness / 4)) * 4) + milkCap)):
+      elif ((milkEngorgementLevel < 1) and (milkEngorgement + (lactation + milkMod) * param1 > (breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) and (milkEngorgement <= (breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap)):
          outputMainText("\n\nYour " + clothesTop() + " feels moist around your nipples. Your breasts feel slightly swollen as the wet blotches spread, milk leaking from your laden mammaries. It's a sign that they are nice and full for a good breastfeeding, or whatever your kinky mind has for them.",False)
          milkEngorgementLevel += 1
          boobChange(1)
       milkEngorgement += (lactation + milkMod) * param1
-   if (udderLactation > 0) and (udders == True):
-      if ((udderEngorgementLevel < 3) and ((udderEngorgement + ((udderLactation + milkMod) * param1)) > ((((udderSize * (udderSize + 1) + (tallness / 4)) * 4) + milkCap) * 2)) and (udderEngorgement <= (((udderSize * (udderSize + 1) + (tallness / 4)) * 4 + milkCap) * 2))):
+   if ((udderLactation > 0) and (udders == True)):
+      if ((udderEngorgementLevel < 3) and (udderEngorgement + (udderLactation + milkMod) * param1 > ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (udderEngorgement <= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2)):
          outputMainText("\n\nJets of milk shoot from the teats of your udder with each step. When standing still, it dribbles constantly, your udder so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds its capacities, wasting milk until you drain it or it dries up.",False)
          if (udderEngorgementLevel < 1):
             udderChange(5)
@@ -21376,13 +21377,13 @@ def doStatus(param1:int):
             udderChange(3)
          udderEngorgementLevel += 1
          udderChange(3)
-      elif ((udderEngorgementLevel < 2) and ((udderEngorgement + ((udderLactation + milkMod) * param1)) > ((((udderSize * (udderSize + 1) + (tallness / 4)) * 4) + milkCap) * 1.5)) and (udderEngorgement <= ((((udderSize * (udderSize + 1) + (tallness / 4)) * 4) + milkCap) * 1.5))):
+      elif ((udderEngorgementLevel < 2) and (udderEngorgement + (udderLactation + milkMod) * param1 > ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1.5) and (udderEngorgement <= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1.5)):
          outputMainText("\n\nYour " + clothesBottom() + " is soaked in front. Milk dribbles from your teats almost constantly, too much to retain. The abundant supply seems to be overwhelming the lack of demand...",False)
          if (udderEngorgementLevel < 1):
             udderChange(2)
          udderEngorgementLevel += 1
          udderChange(3)
-      elif ((udderEngorgementLevel < 1) and ((udderEngorgement + (udderLactation + milkMod) * param1) > (((udderSize * (udderSize + 1) + (tallness / 4)) * 4) + milkCap)) and (udderEngorgement <= ((udderSize * (udderSize + 1) + (tallness / 4)) * 4) + milkCap)):
+      elif ((udderEngorgementLevel < 1) and (udderEngorgement + (udderLactation + milkMod) * param1 > (udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) and (udderEngorgement <= (udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap)):
          outputMainText("\n\nYour " + clothesBottom() + " feels moist beneath your teats. Your udder feels slightly swollen as milk leaks out. It is nice and full enough for a good milking.",False)
          udderEngorgementLevel += 1
          udderChange(2)
@@ -21425,7 +21426,6 @@ def doStatus(param1:int):
       udderLactation = 0
    if (milkSuppressant > 0):
       if (milkSuppressantLact > 0):
-#!
          if ((milkEngorgementLevel < 3) and (milkEngorgement + (milkSuppressantLact + milkMod) * param1 > ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (milkEngorgement <= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 2)):
             outputMainText("\n\nYour breasts are so swollen that they feel like balloons on your chest. When standing still, it takes a while for the fluid inside to stop swishing, they're so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds their capacities, but the excess just gets absorbed back into your body since the milk suppressant prevents any other escape...",False)
             if (milkEngorgementLevel < 1):
@@ -21472,7 +21472,7 @@ def doStatus(param1:int):
          if (udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 7):
             udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 7
       milkSuppressant -= param1
-      if(milkSuppressant <= 0):
+      if (milkSuppressant <= 0):
          if (milkEngorgement >= ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 6):
             outputMainText("\n\nYou feel a rumbling in your breasts as the milk suppressant begins to wear off. Your arms shake as you try to take care of your " + clothesTop() + ", but to no avail.\n\nYou only see white as a roaring sound escapes your chest. Milk explodes from your nipples, spraying around and around, tearing apart your " + clothesTop() + " from the sheer pressure and drenching everything in the area. You can't hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your nipples feeling limp and de-sensitized, your breasts still huge from the engorgement though feeling much more lighter. There's not much that can be said about your " + clothesTop() + " anymore though...",False)
             milkEngorgement = ((breastSize * (breastSize + 1) + tallness / 4) * 4 + milkCap) * 0.5
@@ -21490,198 +21490,336 @@ def doStatus(param1:int):
             outputMainText("\n\nMilk spurts up and begins dribbling down your chest as the milk suppressant wears off, your nipples calming down and leaking again.",False)
          else:
             outputMainText("\n\nYour nipples soften up as the milk suppressant wears off, allowing you to leak once more.",False)
-         if ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 6) and (udders == True)):
-            outputMainText("\n\nYou feel a rumbling in your udder as the milk suppressant begins to wear off. Your legs shake as you try to take care of your " + clothesBottom() + ", but to no avail.\n\nYou only see white as a roaring sound echoes around your belly. Milk explodes from your teats, spraying around and around, tearing apart your " + clothesBottom() + " from the sheer pressure and drenching everything in the area. You can't hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your teats feeling limp and de-sensitized, your udder still huge from the engorgement though feeling much more lighter. There's not much that can be said about your " + clothesBottom() + " anymore though...",False)
-            udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 0.5
-            udderEngorgementLevel = 0
-            stats(0,0,0,-5)
-            changeBot(-1)
-         elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 4) and (udders == True)):
-            outputMainText("\n\nYou suddenly feel sick as your belly tenses up. For an instant, you feel your " + teatDesc() + " teats soften.\n\nMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your " + clothesBottom() + " from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...",False)
-            milkAmount(1)
-            doLust(-math.floor(sen / 2),2,4)
-         elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2) and (udders == True)):
-            outputMainText("\n\nJets of milk spray from beneath your " + clothesBottom() + " as the milk suppressant wears off. It quickly dies down without losing much milk, but you're now leaking again.",False)
-            udderEngorgement = ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 2
-         elif ((udderEngorgement >= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1) and (udders == True)):
-            outputMainText("\n\nMilk spurts up and begins dribbling down your " + legDesc(2) + " as the milk suppressant wears off, your teats calming down and leaking again.",False)
-         else:
-            outputMainText("\n\nYour teats soften up as the milk suppressant wears off, allowing you to leak once more.",False)
-         lactation = this.milkSuppressantLact
-         udderLactation = milkSuppressantUdder
-         milkSuppressantLact = 0
-         milkSuppressantUdder = 0
-         milkSuppressant = 0
-   if ((hunger - param1) <= -50):
-      outputMainText("\n\nWith the lack of eating and all the action, you've managed to shave off a bit of your excess weight around your belly.",False)
-      bellyMod -= 2
-      hunger = 0
-      if (bellyMod <= 0):
-         outputMainText(" Although, you don't exactly have any belly to shave off anymore, so instead your stomach growls with the hunger pains...",False)
-         hunger = 0
-         bellyMod = 0
-   elif ((hunger - param1) >= 100):
-      outputMainText("\n\nYou notice a bit more chub around your belly thanks to all you've been eating lately. You may want to watch your diet more closely.",False)
-      bellyMod += 5
-      hunger = hunger - param1 - 30
-   else:
-      hunger -= param1
-   if (skipExhaustion == True):
-      skipExhaustion = False
-   else:
-      exhaustion += param1
-   if ((exhaustion > 20) and (exhaustion <= 32)):
-      outputMainText("\n\nYour body is getting tired, affecting your ability to do things. Sleep is sounding like a nice idea...",False)
-      if (exhaustionPenalty == 0):
-         exhaustionPenalty = 1
-         statsMod(-3,-3,0,0)
-   elif ((exhaustion > 32) and (exhaustion <= 44)):
-      outputMainText("\n\nExhaustion is creeping over you, making any task seem tedious. Your wits are a lot less witty and your muscles are fatigued.",False)
-      if (exhaustionPenalty == 1):
-         exhaustionPenalty = 2
-         statsMod(-8,-8,0,0)
-      elif (exhaustionPenalty == 0):
-         exhaustionPenalty = 2
-         statsMod(-11,-11,0,0)
-   elif (exhaustion > 44):
-      currentState = 1
-   else:
-      if ((exhaustionPenalty == 1) and (exhaustion <= 20)):
-         exhaustionPenalty = 0
-         statsMod(3,3,0,0)
-      elif ((exhaustionPenalty == 2) and (exhaustion <= 20)):
-         exhaustionPenalty = 0
-         statsMod(11,11,0,0)
-      elif ((exhaustionPenalty == 2) and (exhaustion <= 32)):
-         exhaustionPenalty = 1
-         statsMod(8,8,0,0)
-   if (param1 > 0):
-      if ((percent() <= lib) and (lust < 90)):
-         doLust(math.floor((lib / 25) + 1),0)
-   if ((lust < 90) and (lustPenalty == 3)):
-      outputMainText("\n\nYour " + skinDesc() + " feels calmer, no longer hypersensitive.",False)
-      statsMod(0,0,0,-10)
-      lustPenalty = 2
-   if ((lust < 60) and (lustPenalty == 2)):
-      outputMainText("\n\nStrength returns to your muscles now that the strong arousal has been sated.",False)
-      statsMod(5,0,0,0)
-      lustPenalty = 1
-   if ((lust < 30) and (lustPenalty == 1)):
-      outputMainText("\n\nWith the distracting 'itch' lifted from your mind, you're now able to focus better than before.",False)
-      statsMod(0,4,0,0)
-      lustPenalty = 0
-   vagBellyChange(0,0)
-   if (((blueBalls + param1) > 84) and (blueBalls <= 84) and (showBalls == True) and (balls > 0)):
-      outputMainText("\n\nYour " + ballDesc() + " balls feel swollen and heavy within your " + clothesBottom() + ". The need to spill your seed makes you a little aroused.",False)
-      doLust(math.ceil(ballSize / 4),0)
-   if (balls > 0):
-      blueBalls += param1
-   if (bodyOil > 0):
-      if ((bodyOil - param1) <= 0):
-         outputMainText("\n\nThe body oil finally dries off, leaving you " + skinDesc() + " not looking quite as shiny and attractive as before.",False)
-         enticeMod -= 5
-         bodyOil = 0
-      else:
-         bodyOil -= 5
-   if (((masoPot - param1) <= 0) and (masoPot > 0)):
-      outputMainText("\n\nYou shiver a little as your nerves seem to feel more... normal. The effects of the Masochism Potion have apparently worn off, so you might want to be slightly more cautious once again.",False)
-      masoPot = 0
-   elif (masoPot > 0):
-      masoPot -= param1
-   if (((sMasoPot - param1) <= 0) and (sMasoPot > 0)):
-      outputMainText("\n\nYou shiver a lot as your nerves seem to feel more... normal. The effects of the Superior Masochism Potion have apparently worn off, so you might want to be much more cautious once again.",False)
-      sMasoPot = 0
-   elif (sMasoPot > 0):
-      sMasoPot -= param1
-   if (((babyFree - param1) <= 0) and (babyFree > 0)):
-      outputMainText("\n\nYour belly groans as you feel your fertility return to you, urging you to remain cautious of becoming pregnant again. It seems as though you're no longer as baby free as before.",False)
-      if (vagTotal < 1):
-         outputMainText(" Not that any of that means anything to you, considering you don't even have a womb to become pregnant in the first place.",False)
-      babyFree = 0
-   elif (babyFree > 0):
-      babyFree -= param1
-   if (charmTime > 0):
-      if ((charmTime - param1) <= 0):
-         outputMainText("\n\nYour charming effect wears off, making you not so alluring as before.",False)
-         charmTime = 0
-         enticeMod -= 13
-      else:
-         charmTime -= param1
-   if (pheromone > 0):
-      if ((pheromone - param1) <= 0):
-         outputMainText("\n\nThe scent of pheromones finally fades away, leaving you not so unexpectedly desireable to nearly everything.",False)
-         pheromone = 0
-         enticeMod -= 25
-         statsMod(0,0,-3,0)
-      else:
-         pheromone -= param1
-   if (eggceleratorTime > 0):
-      if ((eggceleratorTime - param1) <= 0):
-         outputMainText("\n\nYour belly feels calmer as the eggcelerator wears off, allowing your womb to relax a little.",False)
-         eggceleratorTime = 0
-         eggRate -= eggceleratorDose
-         eggceleratorDose = 0
-      else:
-         eggceleratorTime -= param1
-   if (fertileGel > 0):
-      if ((fertileGel - param1) <= 0):
-         outputMainText("\n\nYour womb cools off a little as the fertile gel wears off.",False)
-         fertileGel = 0
-         pregChanceMod -= 10
-      else:
-         fertileGel -= param1
-   if (plumpQuats > 0):
-      if ((plumpQuats - param1) <= 0):
-         outputMainText("\n\nThe last of the quat dissolves inside your stomach, your belly bloating further as the abundant energy is added to your figure. Your stomach cools off, finished with the digestive process.",False)
-         bellyMod += 5 * plumpQuats
-         plumpQuats = 0
-      else:
-         outputMainText("\n\nYour stomach gurgles warmly as it continues to digest the quat. So much energy from the fruit's flesh gets absorbed by your body, swelling your belly a little and giving you a bit more girth...",False)
-         bellyMod += 5 * param1
-         plumpQuats -= param1
-   if (fertilityStatueCurse > 0):
-      if ((fertilityStatueCurse - param1) <= 0):
-         outputMainText("\n\nThe overbearing feeling of lust finally subdues. Seems as though the statue's curse has finally worn off, so you won't be getting as much of a lesson about how to please the female gender. Well, at least for now...",False)
-         fertilityStatueCurse = 0
-         minLust -= 10
-      else:
-         fertilityStatueCurse -= param1
-   if (lilaWetStatus > 0):
-      if ((lilaWetStatus - param1) <= 0):
-         outputMainText("\n\nThe flow in your loins calms down a bit after not having been influenced by a certain little felin in a while.",False)
-         lilaWetStatus = 0
-         cockMoistMod -= 6
-         vagMoistMod -= 6
-         minLust -= 5
-      else:
-         lilaWetStatus -= param1
-   if (milkCPoisonNip > 0):
-      if ((milkCPoisonNip - param1) <= 0):
-         outputMainText("\n\nThe warmth from the poison in your bosom fades, no longer as tingly.",False)
-         milkCPoisonNip = 0
-      else:
-         milkCPoisonNip -= param1
-   if (milkCPoisonUdd > 0):
-      if ((milkCPoisonUdd - param1) <= 0):
-         outputMainText("\n\nThe warmth from the poison in your bosom fades, no longer as tingly.",False)
-         milkCPoisonUdd = 0
-      else:
-         milkCPoisonUdd -= param1
-   if (cockSnakeVenom > 0):
-      if ((cockSnakeVenom - param1) <= 0):
-         outputMainText("\n\nThe warmth from the venom in your loins fades, your body fully metabolizing it and rendering it neutral.",False)
-         cockSnakeVenom = 0
-      else:
-         cockSnakeVenom -= param1
+         if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 6 && this.udders == true)
+         {
+            this.outputMainText("\r\rYou feel a rumbling in your udder as the milk suppressant begins to wear off. Your legs shake as you try to take care of your " + this.clothesBottom() + ", but to no avail.\r\rYou only see white as a roaring sound echoes around your belly. Milk explodes from your teats, spraying around and around, tearing apart your " + this.clothesBottom() + " from the sheer pressure and drenching everything in the area. You can\'t hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your teats feeling limp and de-sensitized, your udder still huge from the engorgement though feeling much more lighter. There\'s not much that can be said about your " + this.clothesBottom() + " anymore though...",false);
+            this.udderEngorgement = ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 0.5;
+            this.udderEngorgementLevel = 0;
+            this.stats(0,0,0,-5);
+            this.changeBot(-1);
+         }
+         else if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 4 && this.udders == true)
+         {
+            this.outputMainText("\r\rYou suddenly feel sick as your belly tenses up. For an instant, you feel your " + this.teatDesc() + " teats soften.\r\rMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There\'s so much in there that you nearly tear apart your " + this.clothesBottom() + " from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...",false);
+            this.milkAmount(1);
+            this.doLust(-Math.floor(this.sen / 2),2,4);
+         }
+         else if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2 && this.udders == true)
+         {
+            this.outputMainText("\r\rJets of milk spray from beneath your " + this.clothesBottom() + " as the milk suppressant wears off. It quickly dies down without losing much milk, but you\'re now leaking again.",false);
+            this.udderEngorgement = ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 2;
+         }
+         else if(this.udderEngorgement >= ((this.udderSize * (this.udderSize + 1) + this.tallness / 4) * 4 + this.milkCap) * 1 && this.udders == true)
+         {
+            this.outputMainText("\r\rMilk spurts up and begins dribbling down your " + this.legDesc(2) + " as the milk suppressant wears off, your teats calming down and leaking again.",false);
+         }
+         else
+         {
+            this.outputMainText("\r\rYour teats soften up as the milk suppressant wears off, allowing you to leak once more.",false);
+         }
+         this.lactation = this.milkSuppressantLact;
+         this.udderLactation = this.milkSuppressantUdder;
+         this.milkSuppressantLact = 0;
+         this.milkSuppressantUdder = 0;
+         this.milkSuppressant = 0;
+      }
+   }
+   if(this.hunger - param1 <= -50)
+   {
+      this.outputMainText("\r\rWith the lack of eating and all the action, you\'ve managed to shave off a bit of your excess weight around your belly.",false);
+      this.bellyMod -= 2;
+      this.hunger = 0;
+      if(this.bellyMod <= 0)
+      {
+         this.outputMainText(" Although, you don\'t exactly have any belly to shave off anymore, so instead your stomach growls with the hunger pains...",false);
+         this.hunger = 0;
+         this.bellyMod = 0;
+      }
+   }
+   else if(this.hunger - param1 >= 100)
+   {
+      this.outputMainText("\r\rYou notice a bit more chub around your belly thanks to all you\'ve been eating lately. You may want to watch your diet more closely.",false);
+      this.bellyMod += 5;
+      this.hunger = this.hunger - param1 - 30;
+   }
+   else
+   {
+      this.hunger -= param1;
+   }
+   if(this.skipExhaustion == true)
+   {
+      this.skipExhaustion = false;
+   }
+   else
+   {
+      this.exhaustion += param1;
+   }
+   if(this.exhaustion > 20 && this.exhaustion <= 32)
+   {
+      this.outputMainText("\r\rYour body is getting tired, affecting your ability to do things. Sleep is sounding like a nice idea...",false);
+      if(this.exhaustionPenalty == 0)
+      {
+         this.exhaustionPenalty = 1;
+         this.statsMod(-3,-3,0,0);
+      }
+   }
+   else if(this.exhaustion > 32 && this.exhaustion <= 44)
+   {
+      this.outputMainText("\r\rExhaustion is creeping over you, making any task seem tedious. Your wits are a lot less witty and your muscles are fatigued.",false);
+      if(this.exhaustionPenalty == 1)
+      {
+         this.exhaustionPenalty = 2;
+         this.statsMod(-8,-8,0,0);
+      }
+      if(this.exhaustionPenalty == 0)
+      {
+         this.exhaustionPenalty = 2;
+         this.statsMod(-11,-11,0,0);
+      }
+   }
+   else if(this.exhaustion > 44)
+   {
+      this.currentState = 1;
+   }
+   else
+   {
+      if(this.exhaustionPenalty == 1 && this.exhaustion <= 20)
+      {
+         this.exhaustionPenalty = 0;
+         this.statsMod(3,3,0,0);
+      }
+      if(this.exhaustionPenalty == 2 && this.exhaustion <= 20)
+      {
+         this.exhaustionPenalty = 0;
+         this.statsMod(11,11,0,0);
+      }
+      if(this.exhaustionPenalty == 2 && this.exhaustion <= 32)
+      {
+         this.exhaustionPenalty = 1;
+         this.statsMod(8,8,0,0);
+      }
+   }
+   if(param1 > 0)
+   {
+      if(this.percent() <= this.lib && this.lust < 90)
+      {
+         this.doLust(Math.floor(this.lib / 25 + 1),0);
+      }
+   }
+   if(this.lust < 90 && this.lustPenalty == 3)
+   {
+      this.outputMainText("\r\rYour " + this.skinDesc() + " feels calmer, no longer hypersensitive.",false);
+      this.statsMod(0,0,0,-10);
+      this.lustPenalty = 2;
+   }
+   if(this.lust < 60 && this.lustPenalty == 2)
+   {
+      this.outputMainText("\r\rStrength returns to your muscles now that the strong arousal has been sated.",false);
+      this.statsMod(5,0,0,0);
+      this.lustPenalty = 1;
+   }
+   if(this.lust < 30 && this.lustPenalty == 1)
+   {
+      this.outputMainText("\r\rWith the distracting \'itch\' lifted from your mind, you\'re now able to focus better than before.",false);
+      this.statsMod(0,4,0,0);
+      this.lustPenalty = 0;
+   }
+   this.vagBellyChange(0,0);
+   if(this.blueBalls + param1 > 84 && this.blueBalls <= 84 && this.showBalls == true && this.balls > 0)
+   {
+      this.outputMainText("\r\rYour " + this.ballDesc() + " balls feel swollen and heavy within your " + this.clothesBottom() + ". The need to spill your seed makes you a little aroused.",false);
+      this.doLust(Math.ceil(this.ballSize / 4),0);
+   }
+   if(this.balls > 0)
+   {
+      this.blueBalls += param1;
+   }
+   if(this.bodyOil > 0)
+   {
+      if(this.bodyOil - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe body oil finally dries off, leaving you " + this.skinDesc() + " not looking quite as shiny and attractive as before.",false);
+         this.enticeMod -= 5;
+         this.bodyOil = 0;
+      }
+      else
+      {
+         this.bodyOil -= 5;
+      }
+   }
+   if(this.masoPot - param1 <= 0 && this.masoPot > 0)
+   {
+      this.outputMainText("\r\rYou shiver a little as your nerves seem to feel more... normal. The effects of the Masochism Potion have apparently worn off, so you might want to be slightly more cautious once again.",false);
+      this.masoPot = 0;
+   }
+   else if(this.masoPot > 0)
+   {
+      this.masoPot -= param1;
+   }
+   if(this.sMasoPot - param1 <= 0 && this.sMasoPot > 0)
+   {
+      this.outputMainText("\r\rYou shiver a lot as your nerves seem to feel more... normal. The effects of the Superior Masochism Potion have apparently worn off, so you might want to be much more cautious once again.",false);
+      this.sMasoPot = 0;
+   }
+   else if(this.sMasoPot > 0)
+   {
+      this.sMasoPot -= param1;
+   }
+   if(this.babyFree - param1 <= 0 && this.babyFree > 0)
+   {
+      this.outputMainText("\r\rYour belly groans as you feel your fertility return to you, urging you to remain cautious of becoming pregnant again. It seems as though you\'re no longer as baby free as before.",false);
+      if(this.vagTotal < 1)
+      {
+         this.outputMainText(" Not that any of that means anything to you, considering you don\'t even have a womb to become pregnant in the first place.",false);
+      }
+      this.babyFree = 0;
+   }
+   else if(this.babyFree > 0)
+   {
+      this.babyFree -= param1;
+   }
+   if(this.charmTime > 0)
+   {
+      if(this.charmTime - param1 <= 0)
+      {
+         this.outputMainText("\r\rYour charming effect wears off, making you not so alluring as before.",false);
+         this.charmTime = 0;
+         this.enticeMod -= 13;
+      }
+      else
+      {
+         this.charmTime -= param1;
+      }
+   }
+   if(this.pheromone > 0)
+   {
+      if(this.pheromone - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe scent of pheromones finally fades away, leaving you not so unexpectedly desireable to nearly everything.",false);
+         this.pheromone = 0;
+         this.enticeMod -= 25;
+         this.statsMod(0,0,-3,0);
+      }
+      else
+      {
+         this.pheromone -= param1;
+      }
+   }
+   if(this.eggceleratorTime > 0)
+   {
+      if(this.eggceleratorTime - param1 <= 0)
+      {
+         this.outputMainText("\r\rYour belly feels calmer as the eggcelerator wears off, allowing your womb to relax a little.",false);
+         this.eggceleratorTime = 0;
+         this.eggRate -= this.eggceleratorDose;
+         this.eggceleratorDose = 0;
+      }
+      else
+      {
+         this.eggceleratorTime -= param1;
+      }
+   }
+   if(this.fertileGel > 0)
+   {
+      if(this.fertileGel - param1 <= 0)
+      {
+         this.outputMainText("\r\rYour womb cools off a little as the fertile gel wears off.",false);
+         this.fertileGel = 0;
+         this.pregChanceMod -= 10;
+      }
+      else
+      {
+         this.fertileGel -= param1;
+      }
+   }
+   if(this.plumpQuats > 0)
+   {
+      if(this.plumpQuats - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe last of the quat dissolves inside your stomach, your belly bloating further as the abundant energy is added to your figure. Your stomach cools off, finished with the digestive process.",false);
+         this.bellyMod += 5 * this.plumpQuats;
+         this.plumpQuats = 0;
+      }
+      else
+      {
+         this.outputMainText("\r\rYour stomach gurgles warmly as it continues to digest the quat. So much energy from the fruit\'s flesh gets absorbed by your body, swelling your belly a little and giving you a bit more girth...",false);
+         this.bellyMod += 5 * param1;
+         this.plumpQuats -= param1;
+      }
+   }
+   if(this.fertilityStatueCurse > 0)
+   {
+      if(this.fertilityStatueCurse - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe overbearing feeling of lust finally subdues. Seems as though the statue\'s curse has finally worn off, so you won\'t be getting as much of a lesson about how to please the female gender. Well, at least for now...",false);
+         this.fertilityStatueCurse = 0;
+         this.minLust -= 10;
+      }
+      else
+      {
+         this.fertilityStatueCurse -= param1;
+      }
+   }
+   if(this.lilaWetStatus > 0)
+   {
+      if(this.lilaWetStatus - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe flow in your loins calms down a bit after not having been influenced by a certain little felin in a while.",false);
+         this.lilaWetStatus = 0;
+         this.cockMoistMod -= 6;
+         this.vagMoistMod -= 6;
+         this.minLust -= 5;
+      }
+      else
+      {
+         this.lilaWetStatus -= param1;
+      }
+   }
+   if(this.milkCPoisonNip > 0)
+   {
+      if(this.milkCPoisonNip - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe warmth from the poison in your bosom fades, no longer as tingly.",false);
+         this.milkCPoisonNip = 0;
+      }
+      else
+      {
+         this.milkCPoisonNip -= param1;
+      }
+   }
+   if(this.milkCPoisonUdd > 0)
+   {
+      if(this.milkCPoisonUdd - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe warmth from the poison in your bosom fades, no longer as tingly.",false);
+         this.milkCPoisonUdd = 0;
+      }
+      else
+      {
+         this.milkCPoisonUdd -= param1;
+      }
+   }
+   if(this.cockSnakeVenom > 0)
+   {
+      if(this.cockSnakeVenom - param1 <= 0)
+      {
+         this.outputMainText("\r\rThe warmth from the venom in your loins fades, your body fully metabolizing it and rendering it neutral.",false);
+         this.cockSnakeVenom = 0;
+      }
+      else
+      {
+         this.cockSnakeVenom -= param1;
+      }
+   }
    statDisplay()
-   if (str(TextBoxes.GetMain("1.0", "end")) == "Afterwards...\n"):
+   if (maintext == "Afterwards..."):
       outputMainText("",True)
       doProcess()
    else:
       doEnd()
 
 def affinity(humanChange:int, horseChange:int, wolfChange:int, catChange:int, cowChange:int, lizardChange:int, rabbitChange:int):
-   global human, horse, wolf, cat, cow, lizard, rabbit
+   global changeMod, human, horse, wolf, cat, cow, lizard, rabbit
    human += math.ceil(humanChange * changeMod)
    horse += math.ceil(horseChange * changeMod)
    wolf += math.ceil(wolfChange * changeMod)
@@ -21691,6 +21829,7 @@ def affinity(humanChange:int, horseChange:int, wolfChange:int, catChange:int, co
    rabbit += math.ceil(rabbitChange * changeMod)
 
 def aff(tempRace, tempChange, otherChange):
+   #Should work
    global changeMod, human, horse, wolf, cat, cow, lizard, rabbit, mouse, bird, pig, skunk, bug, twoBoobAffinity, fourBoobAffinity, sixBoobAffinity, eightBoobAffinity, tenBoobAffinity, cowTaurAffinity, humanTaurAffinity
    human += math.ceil(otherChange * changeMod)
    horse += math.ceil(otherChange * changeMod)
