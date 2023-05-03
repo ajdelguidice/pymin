@@ -1,3 +1,6 @@
+from numpy import nan
+from numpy import inf
+from numpy import NINF
 """
 This library implements types as close to how they were implemented in ActionScript 3 as I could get them.
 Currently only Array (lists in python) and Boolean methods.
@@ -6,19 +9,19 @@ The length method is just to return the length so it can't be assigned as it can
 The inherited properties in ActionScript3 are too complex for me to implement or aren't documented very well so I won't be implementing most of them.
 """
 def isFinite(num):
-   if num == "Infinity" or num == "-Infinity":
+   if num == inf or num == NINF:
       return False
    else:
       return True
 def isNaN(num):
-   if num == "NaN":
+   if num == nan:
       return True
    else:
       return False
 class Array:
    """
    Lets you create array objects similar to ActionScript3
-   Instead of making two different init functions, I made init create an array based on the values passed to it and another method called toSize to make the array a specific size. toSize fills all empty slots with empty strings (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
+   Instead of making two different init functions, I made init create an array based on the values passed to it and another method called toSize to make the array a specific size. toSize fills all empty slots with the None object (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
    """
    def __init__(self, *values):
       self.array = []
@@ -32,6 +35,20 @@ class Array:
       return self.array[item]
    def __setitem__(self, item, value):
       self.array[item] = value
+   def toSize(self, numElements:int=0):
+      """
+      Instead of making two different init functions, I made init create an array based on the values passed to it and this method to make the array a specific size. This method fills all empty slots with the None object (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
+      """
+      if numElements < 0:
+         raise Exception("RangeError")
+      elif numElements == 0:
+         self.array = []
+      elif len(self) > numElements:
+         while len(self) > numElements:
+            self.pop()
+      elif len(self) < numElements:
+         while len(self) < numElements:
+            self.push(None)
    def length(self):
       return len(self.array)
    def concat(self, *args):
@@ -56,12 +73,44 @@ class Array:
                      self.push(b[c])
                else:
                   self.push(args[i])
-   def every():
-      pass
-   def filter():
-      pass
-   def forEach():
-      pass
+   def every(self, callback):
+      """
+      Executes a test function on each item in the array until an item is reached that returns False for the specified function. You use this method to determine whether all items in an array meet a criterion, such as having values less than a particular number.
+      Parameters:
+         callback:Function — The function to run on each item in the array. This function can contain a simple comparison (for example, item < 20) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+         - function callback(item:*, index:int, array:Array)
+      Returns:
+         Boolean — A Boolean value of True if all items in the array return True for the specified function; otherwise, False.
+      """
+      tempBool = True
+      for i in range(0,len(self)):
+         if callback(self[i], i, self) == False:
+            tempBool == False
+            break
+      return tempBool
+   def filter(self, callback):
+      """
+      Executes a test function on each item in the array and constructs a new array for all items that return True for the specified function. If an item returns False, it is not included in the new array.
+      Parameters:
+         callback:Function — The function to run on each item in the array. This function can contain a simple comparison (for example, item < 20) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+         - function callback(item:*, index:int, array:Array)
+      Returns:
+         Array — A new array that contains all items from the original array that returned True. 
+      """
+      tempArray = Array()
+      for i in range(0,len(self)):
+         if callback(self[i], i, self) == True:
+            tempArray.push(self[i])
+      return tempArray
+   def forEach(self, callback):
+      """
+      Executes a function on each item in the array.
+      Parameters:
+         callback:Function — The function to run on each item in the array. This function can contain a simple command (for example, a trace() statement) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+         - function callback(item:*, index:int, array:Array)
+      """
+      for i in range(0, len(self)):
+         self[i] = callback(self[i], i, self)
    def indexOf(self, searchElement, fromIndex:int=0):
       """
       Searches for an item in an array using == and returns the index position of the item.
@@ -109,7 +158,6 @@ class Array:
          i += 1
       return result
    def lastIndexOf(self, searchElement, fromIndex:int = 99*10^99):
-      #!
       """
       Searches for an item in an array, working backward from the last item, and returns the index position of the matching item using ==.
       Parameters:
@@ -118,20 +166,27 @@ class Array:
       Returns:
 	      int — A zero-based index position of the item in the array. If the searchElement argument is not found, the return value is -1.
       """
-      i = fromIndex
-      a = self
-      a.reverse()
-      if i >= len(self):
-         i = len(self)
-      ia = len(self) - i
-      index1 = Array.indexOf(a, searchElement, ia)
-      if index1 != -1:
-         index = len(self) - index1 - 1
-      else:
-         index = index1
+      index = -1
+      for i in range(0,len(self)):
+         l = len(self) - i - 1
+         if self[l] == searchElement:
+            index = l
+            break
       return index
-   def map():
-      pass
+   def map(self, callback):
+      """
+      Executes a function on each item in an array, and constructs a new array of items corresponding to the results of the function on each item in the original array.
+      Parameters:
+         callback:Function — The function to run on each item in the array. This function can contain a simple command (such as changing the case of an array of strings) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+         - function callback(item:*, index:int, array:Array)
+      Returns:
+         Array — A new array that contains the results of the function on each item in the original array.
+      """
+      output = Array()
+      output.toSize(len(self))
+      for i in range(0,len(self)):
+         output[i] = callback(self[i], i, self)
+      return output
    def pop(self):
       """
       Removes the last element from an array and returns the value of that element.
@@ -212,12 +267,37 @@ class Array:
          result.push(self[i])
          i += 1
       return result
-   def some():
-      pass
-   def sort():
+   def some(self, callback):
+      """
+      Executes a test function on each item in the array until an item is reached that returns True. Use this method to determine whether any items in an array meet a criterion, such as having a value less than a particular number.
+      Parameters:
+         callback:Function — The function to run on each item in the array. This function can contain a simple comparison (for example item < 20) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+         - function callback(item:*, index:int, array:Array)
+      Returns:
+         Boolean — A Boolean value of True if any items in the array return True for the specified function; otherwise False.
+      """
+      tempBool = False
+      for i in range(0,len(self)):
+         if callback(self[i], i, self) == Ture:
+            tempBool == True
+            break
+      return tempBool
+   def sort(sortOptions:int=0):
       """
       """
-      pass
+      if sortOptions == 0:
+         raise Exception("Not yet implemented")
+      elif sortOptions == 1:
+         raise Exception("Not yet implemented")
+      elif sortOptions == 2:
+         raise Exception("Not yet implemented")
+      elif sortOptions == 4:
+         raise Exception("Not yet implemented")
+         pass
+      elif sortOptions == 8:
+         raise Exception("Not yet implemented")
+      elif sortOptions == 16:
+         self.array.sort()
    def sortOn():
       pass
    def splice(self, startIndex:int, deleteCount:int, *values):
@@ -278,18 +358,6 @@ class Array:
       for i in range(len(self), len(a)):
          self.push(a[i])
       return len(self)
-   def toSize(self, numElements:int=0):
-      """
-      Instead of making two different init functions, I made init create an array based on the values passed to it and this method to make the array a specific size. This method fills all empty slots with empty strings (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
-      """
-      if numElements == 0:
-         self.array = []
-      elif len(self) > numElements:
-         while len(self) > numElements:
-            self.pop()
-      elif len(self) < numElements:
-         while len(self) < numElements:
-            self.push("")
 class Boolean:
    """
    Lets you create boolean object similar to ActionScript3
@@ -328,3 +396,14 @@ class Boolean:
          return True
       else:
          return False
+def trace(*args):
+   output = ""
+   for i in range(0, len(args)):
+      if len(args) == 1:
+         output = str(args[0])
+      else:
+         if i == len(args) - 1:
+            output += str(args[i])
+         else:
+            output += str(args[i]) + ", "
+   print(output)
