@@ -15,12 +15,17 @@ Added addManyItems command to replace multiple itemAdd functions with the same i
 Merged some redundant if statements
 Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
+Rearranged post-increment statements to work in python
 
-affinityChange
-- Fixed a spelling mistake
 
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
+
+aff
+- Removed redundant line
+
+affinityChange
+- Fixed a spelling mistake
 
 doItemUse
 - Added "Do Nothing" option to bug egg
