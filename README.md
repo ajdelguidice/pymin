@@ -9,4 +9,5 @@ random (Built-in),
 os (Built-in),
 pathlib (Built-in),
 xml (Built-in),
-tkinter (sometimes called python-tk) 
+tkinter (sometimes called python-tk),
+miniamf (Mini-AMF on pypi.org)
