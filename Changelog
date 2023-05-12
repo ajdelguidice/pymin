@@ -21,6 +21,9 @@ Rearranged post-increment statements to work in python
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
 
+doStatus
+- Continued optimizing the if else statements from where Xadera left off
+
 aff
 - Removed redundant line
 
