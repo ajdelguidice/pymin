@@ -473,6 +473,7 @@ dmg = 0
 eLustChange = 0
 tempID = 0
 tempColor = 0
+specialAbilityArray = as3.Array()
 
 #def MainTimeline():
 #   super()
@@ -590,7 +591,7 @@ def ButtonEvent12():
       buttonChoice = 12
       UpDown.HideAll()
       doListen()
-#!
+
 def doListen():
    pass
 
@@ -623,19 +624,19 @@ def SideEvent(which:int):
    sideFocus = which
    if (which == 1):
       appearanceGo()
-   if (which == 2):
+   elif (which == 2):
       detailedStats()
-   if (which == 3):
+   elif (which == 3):
       detailedStatuses()
-   if (which == 4):
+   elif (which == 4):
       detailedHelp()
-   if (which == 5):
+   elif (which == 5):
       detailedLevels()
-   if (which == 6):
+   elif (which == 6):
       detailedGear()
-   if (which == 7):
+   elif (which == 7):
       detailedTitles()
-   if (which == 8):
+   elif (which == 8):
       detailedCredits()
 
 def Option1Event():
@@ -660,7 +661,7 @@ def Option7Event():
    toggleSide()
 
 """
-def KeysUp():      {
+def keysUp():      {
    if(!e.shiftKey)
    {
       this.shiftHeld = False
@@ -668,7 +669,7 @@ def KeysUp():      {
 }
 """
 """
-def HotKeys():
+def hotKeys():
    if (shiftHeld == False)
       if((e.keyCode == 103 || e.keyCode == 81) && this.Choice1.visible == True)
          this.buttonChoice = 1;
@@ -19698,27 +19699,117 @@ def weaponAttack():
       doHP(dmg)
 
 def doSpecialAbility(more:int):
-#!
-   pass
+   #Should work
+   global choicePage, skunkAffinity, specialAbilityArray, fp1
+   global doListen
+   viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,1)
+   viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1)
+   choicePage = more
+   showPage(True,"Spc Abilities")
+   fp1 = more
+   templist = [12, "Return"]
+   specialAbilityArray = as3.Array()
+   if (skunkAffinity >= 40):
+      specialAbilityArray.push(1)
+   if (specialAbilityArray.length() < 1):
+      outputMainText("Your do not currently have any special abilities that you can use.",True)
+   else:
+      outputMainText("Which special ability would you like to use?",True)
+   if (specialAbilityArray.length() > 9):
+      templist.append(4)
+      templist.append("<<")
+      templist.append(8)
+      templist.append(">>")
+   if (specialAbilityArray[0 + (more * 9 - 9)]):
+      templist.append(1)
+      templist.append(specialAbilityName(specialAbilityArray[0 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[0 + (more * 9 - 9)])
+   if (specialAbilityArray[1 + (more * 9 - 9)]):
+      templist.append(2)
+      templist.append(specialAbilityName(specialAbilityArray[1 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[1 + (more * 9 - 9)])
+   if (specialAbilityArray[2 + (more * 9 - 9)]):
+      templist.append(3)
+      templist.append(specialAbilityName(specialAbilityArray[2 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[2 + (more * 9 - 9)])
+   if (specialAbilityArray[3 + (more * 9 - 9)]):
+      templist.append(5)
+      templist.append(specialAbilityName(specialAbilityArray[3 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[3 + (more * 9 - 9)])
+   if (specialAbilityArray[4 + (more * 9 - 9)]):
+      templist.append(6)
+      templist.append(specialAbilityName(specialAbilityArray[4 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[4 + (more * 9 - 9)])
+   if (specialAbilityArray[5 + (more * 9 - 9)]):
+      templist.append(7)
+      templist.append(specialAbilityName(specialAbilityArray[5 + (more * 9 - 9)]))
+      this.specialAbilityDescription(specialAbilityArray[5 + (more * 9 - 9)])
+   if (specialAbilityArray[6 + (more * 9 - 9)]):
+      templist.append(9)
+      templist.append(specialAbilityName(specialAbilityArray[6 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[6 + (more * 9 - 9)])
+   if (specialAbilityArray[7 + (more * 9 - 9)]):
+      templist.append(10)
+      templist.append(specialAbilityName(specialAbilityArray[7 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[7 + (more * 9 - 9)])
+   if (specialAbilityArray[8 + (more * 9 - 9)]):
+      templist.append(11)
+      templist.append(specialAbilityName(specialAbilityArray[8 + (more * 9 - 9)]))
+      specialAbilityDescription(specialAbilityArray[8 + (more * 9 - 9)])
+   doButtonChoices(templist)
+   def doListen():
+      global specialAbilityArray, fp1
+      if (buttonChoice == 1):
+         specialAbilityUse(specialAbilityArray[0 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 2):
+         specialAbilityUse(specialAbilityArray[1 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 3):
+         specialAbilityUse(specialAbilityArray[2 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 5):
+         specialAbilityUse(specialAbilityArray[3 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 6):
+         specialAbilityUse(specialAbilityArray[4 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 7):
+         specialAbilityUse(specialAbilityArray[5 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 9):
+         specialAbilityUse(specialAbilityArray[6 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 10):
+         specialAbilityUse(specialAbilityArray[7 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 11):
+         specialAbilityUse(specialAbilityArray[8 + (fp1 * 9 - 9)])
+      elif (buttonChoice == 4):
+         if (specialAbilityArray.length() / 9 < fp1):
+            doSpecialAbility(1)
+         else:
+            doSpecialAbility(fp1 + 1)
+      elif (buttonChoice == 8):
+         if (fp1 == 1):
+            doSpecialAbility(math.floor(specialAbilityArray.length() / 9))
+         else:
+            doSpecialAbility(fp1 - 1)
+      elif (buttonChoice == 12):
+         showPage(False,"")
+         doReturn()
 
-def SpecialAbilityName(ID:int):
-   tempStr = "SPECIAL ABILITY NAME ERROR " + ID + ""
+def specialAbilityName(ID:int):
+   tempStr = "SPECIAL ABILITY NAME ERROR " + str(ID) + ""
    if (ID == 1):
       tempStr = "Skunk Spray"
    return tempStr
 
-def SpecialAbilityDescription(ID:int):
-   tempStr = "SPECIAL ABILITY DESC ERROR " + ID + ""
+def specialAbilityDescription(ID:int):
+   tempStr = "SPECIAL ABILITY DESC ERROR " + str(ID) + ""
    if (ID == 1):
       tempStr = "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
    return tempStr
 
-def SpecialAbilityUse(ID:int):
-   global currentState
+def specialAbilityUse(ID:int):
+   #!
+   global currentState, dmg
    dmg = 0
    if (ID == 1):
       dmg = math.floor(10 + percent() / 10)
-      outputMainText("\n\nYou turn around and aim your " + buttDesc() + " butt at the " + enemyName() + " and spray out a foul odor. The " + enemyName() + " snorts and shakes, taking " + dmg + " damage.",False)
+      outputMainText("\n\nYou turn around and aim your " + buttDesc() + " butt at the " + enemyName() + " and spray out a foul odor. The " + enemyName() + " snorts and shakes, taking " + str(dmg) + " damage.",False)
       doeHP(-dmg)
       if (percent() < 35) and (currentState == 2):
          outputMainText("\n\nThe " + enemyName() + " flinches so badly from the stench that it misses its chance to counter.",False)
@@ -19728,6 +19819,7 @@ def SpecialAbilityUse(ID:int):
       doBattle()
 
 def doEntice():
+   #!
    global eGen, gender, ePref, tail, eLib, enticeMod, lust, nippleSize
    chance = percent()
    if (eGen == 1) and (gender == 1) and (ePref != 2) and (ePref != 0):
@@ -19884,6 +19976,7 @@ def battleWin():
    doEnd()
 
 def specialRapeWin():
+   #!
    global enemyID, defeatedMinotaur, currentDungeon, defeatedFreakyGirl, defeatedSuccubus
    if (enemyID == 303):
       outputMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.",False)
@@ -19916,6 +20009,7 @@ def specialRapeWin():
       outputMainText("\n\nThe " + enemyName() + " collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.",False)
 
 def specialKOWin():
+   #!
    global enemyID, defeatedMinotaur, currentDungeon, defeatedFreakyGirl, defeatedSuccubus
    if (enemyID == 303):
       outputMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.",False)
@@ -19950,27 +20044,28 @@ def specialKOWin():
       outputMainText("\n\nYou have made the " + enemyName() + " pass out from all the pain.",False)
 
 def specialKOLose():
+   #Should work
    global currentState, enemyID
    if (currentState == 2):
       if (enemyID == 303):
-         outputMainText("\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you weren't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.",False)
-      elif (enemyID == 304) or (enemyID == 305):
+         outputMainText("\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you were't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.",False)
+      elif ((enemyID == 304) or (enemyID == 305)):
          outputMainText("\n\nJust as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way...",False)
-      elif (enemyID == 30):
+      elif (enemyID == 309):
          outputMainText("\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\"",False)
-   
+
 def doRape():
-   #!
+   #Should work
    global enemyID, gender, sen, showBalls, cockSize, cockSizeMod, cockTotal, vagTotal, tallness, knot, clitSize, body
    chance = 0
    if (enemyID == 1):
       if (gender == 1):
          outputMainText("You stick your cock in the test enemy's butt and cum.",True)
-      if (gender == 2):
+      elif (gender == 2):
          outputMainText("You sit on the test enemy's cock until you cum.",True)
-      if (gender == 3):
+      elif (gender == 3):
          outputMainText("You stuff your cock in the test enemy's butt, then sit on its cock and cum.",True)
-   if (enemyID == 201):
+   elif (enemyID == 201):
       outputMainText("You easily roll the wolf onto his back. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you squat your " + vulvaDesc() + " cunt over his sheath, wedging it between your folds while you grind against it. Once his bright red prick twitches as it stretches from its sheath, reaching long and hard while dribbling with pre, you slip it into " + oneYour(2) + " hungry hole" + plural(2) + ". You bounce on top of his belly,",True)
       if (moistCalc(2) > 7):
          outputMainText(" your honey splashing about everywhere,",False)
@@ -19984,7 +20079,7 @@ def doRape():
       outputMainText(" the cock sliding out with cum dripping down " + legWhere(1) + " your " + legDesc(2) + ".",False)
       doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,2)
-   if (enemyID == 202):
+   elif (enemyID == 202):
       outputMainText("You easily roll the wolf onto his back. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you squat your " + buttDesc() + " ass over the pointy prick. You grab the hard, meaty rod and gently squeeze out some of the pre, slipping it about between your cheeks to make things nice and slick. Slowly sitting down, you wince as the narrow tip kisses your tight hole and moan as it slides in, easily stretching your ass around its curvy girth.",True)
       if (showBalls == True):
          outputMainText(" Your " + ballDesc() + " testicles eventually come to a rest upon the wolf's belly, with your own " + cockDesc() + " cock" + plural(1) + " bobbing above.",False)
@@ -19992,32 +20087,32 @@ def doRape():
          outputMainText(" Your own " + cockDesc() + " cock" + plural(1) + " eventually come to a rest upon the wolf's belly, slightly tickled by his course fur.",False)
       outputMainText("\n\nAfter a couple breaths from taking in the warm intruder, you begin to bounce your hips upon the animal. It howls back up at you in pleasure, your own gasps matching as your erection" + plural(1) + " drum" + plural(3) + " the fur. The wolf's tongue lolls out of the side of its mouth, allowing you to do all the work as its hind legs twitch in the air and its tail swishes over the ground. It seems to be quite happy with the result of this ordeal, so much so that it begins to spurt into your rectum rather quickly, coating your insides with hot sticky spunk.\n\nHowever, you're not left out of the fun as you feel something swell within the entrance to your ass. The wolf's knot expanding, the prick grinds against your inner walls more and more as it sprays about. You can't last any longer and explode above the wolf, drenching its fur in strand after strand of fresh steamy semen. More soon begins to spew back out your ass as the pent-up wolf overflows your cavity, forming sticky webs about the cheeks of your rump.\n\nFur is eventually completely matted, dripping with wads of white, while your own " + skinDesc() + " is sufficiently gunked up around your bottom and thighs. The wolf pants below you, tired and elated. With an attempt to stand, you lift the hind legs with you, still tied to your backside. But, with all the mess that has been made, the cock slips out with a wet pop and sends the animal back into the puddle below with a splash.",False)
       doLust(-math.floor(sen / 2),2,5)
-   if (enemyID == 301):
+   elif (enemyID == 301):
       chance = percent()
-      if (gender == 1) or ((percent() <= 50) and (gender == 3)):
+      if ((gender == 1) or (percent() <= 50) and (gender == 3)):
          if (chance <= 100):
             outputMainText("The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling " + pullUD(2) + " your " + clothesBottom() + ", you slide " + oneYour(1) + " " + cockDesc() + " prick" + plural(1) + " out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.",True)
-            if ((cockSize * cockSizeMod) > eVagLimit(40)):
+            if (cockSize * cockSizeMod > eVagLimit(40)):
                outputMainText("\n\nHowever, she cries out in pain and disappointment, your " + cockDesc() + " cock far to big to fit inside without tearing her apart. So, instead, you slip it between her legs, rubbing it across her stiff clit and through her loincloth and over her belly as you ",False)
-            if ((cockSize * cockSizeMod) <= eVagLimit(40)) and ((cockSize * cockSizeMod) > eVagLimit(24)):
+            if ((cockSize * cockSizeMod <= eVagLimit(40)) and (cockSize * cockSizeMod > eVagLimit(24))):
                outputMainText("\n\nShe cries out in pain and pleasure as your " + cockDesc() + " cock stretches her thirsting cunt wide, pushing her bikini in until it tears from your path. She pushes her rump back towards you, trying her best to devour the hot rod all the way to its hilt as you ",False)
-            if ((cockSize * cockSizeMod) <= eVagLimit(24)):
+            if (cockSize * cockSizeMod <= eVagLimit(24)):
                outputMainText("\n\nShe cries out in ecstacy as her hungry cunt devours your " + cockDesc() + " cock, along with her own bikini until it tears from your path. She takes it all the way in to your hilt as you ",False)
             outputMainText("lean forward and hug her from behind, your hands groping about her many breasts. You pump hard, again and again, until the unavoidable pressure begins to build. Soon, you blow your load ",False)
-            if ((cockSize * cockSizeMod) > eVagLimit(40)):
+            if (cockSize * cockSizeMod > eVagLimit(40)):
                outputMainText("across her chest while she tries to lap up the spray with her tongue. You pull back, leaving her a mess.",False)
-            if ((cockSize * cockSizeMod) <= eVagLimit(40)):
+            if (cockSize * cockSizeMod <= eVagLimit(40)):
                outputMainText("into her womb, making her let out a long and joyful mewl. Before she can become too content, you pull out of her with a slurp, your cum still dribbling from her used sex.",False)
             cumAmount()
-      elif (gender == 2) or (gender == 3):
+      elif ((gender == 2) or (gender == 3)):
          outputMainText("You knock the felin woman backwards onto her ample ass, her legs spreading wide. She cries out as you duck beneath her loincloth and lick her stiff clit through her bikini. Juices flood within your mouth as she instantly reacts, her swollen cunt-lips gnawing at the crotch of the messy bottom. You pull it aside, diving in and getting a good mouthful of her supple flavor. You devour her folds until she twitches uncontrollably, so desparate to come. But, before she does, you consider your own needs and draw your head out before repaclacing it with your own crotch.",True)
          outputMainText("\n\nYou grind against her stiff clit as it pokes through her loin cloth, your own " + clitDesc() + " button" + plural(2) + " throbbing through your " + clothesBottom() + ".",False)
-         if (cockTotal > 0) and (cumAmount() > 0):
+         if ((cockTotal > 0) and (cumAmount() > 0)):
             outputMainText(" You pull your " + cockDesc() + " cock" + plural(1) + ", letting the engorged length" + plural(1) + " bounce against her belly and hump through her many breasts.",False)
          outputMainText(" You grind, cunt to cunt" + plural(2) + ", until you both let out a yowl as you climax together.\n\nYou're quick to gather your wits and clean yourself up, standing before her pussy even stops gushing with honey.",False)
       doLust(-math.floor(sen / 2),2,1)
-   if (enemyID == 302):
-      if (gender == 2) or ((percent() <= 50) and (gender == 3)):
+   elif (enemyID == 302):
+      if ((gender == 2) or (percent() <= 50) and (gender == 3)):
          outputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + pullUD(2) + " your " + clothesBottom() + " and showing him your own hungry flesh. You " + legVerb(1) + " your " + legDesc(2) + " over his twitchy rod, kissing the flat head of the horsy member with your " + vulvaDesc() + " lips.",True)
          if (vagLimit() < 32):
             outputMainText("\n\nHis man-meat is far too large for your cunt" + plural(2) + " however, so you do the next best thing and sit down in his lap. Grinding your hips forward, your " + clitDesc() + " clit" + plural(2) + " hump" + plural(4) + " into his length. The long prick squeezes between your " + boobDesc() + " tits as you press against him, making him tense even more.",False)
@@ -20026,31 +20121,31 @@ def doRape():
          outputMainText(" Your hips jerk up and down again and again as you rub along his length. Tingling sparks between the two of you as you feel his softball-sized testicles tighten up beneath your " + buttDesc() + " butt. Within seconds, the two of you echo in ecstacy, his whinnying quickly over-taking your moans,",False)
          if (vagLimit() < 32):
             outputMainText(" his cock erupting like a volcano between the two of you",False)
-            if (cockTotal > 0) and (cumAmount() > 0):
+            if ((cockTotal > 0) and (cumAmount() > 0)):
                outputMainText(", with yours joining in the volley,",False)
             outputMainText(" and the hot spunk spills back down all over your bodies.\n\nYou don't give him much time to recover as you pull away, leaving a bit of after-cum to gush out over his belly.",False)
          else:
             outputMainText(" his cock erupting within you like a powerful volcano, the molten spunk making your belly swell slightly before spilling back out onto the ground",False)
-            if (cockTotal > 0) and (cumAmount() > 0):
+            if ((cockTotal > 0) and (cumAmount() > 0)):
                outputMainText(", while yours sprays across his chest and face",False)
             outputMainText(".\n\nYou don't give him much time to recover as you pull him out, a bit of after-cum gushing across your clit" + plural(2) + ".",False)
             doImpregnate(enemyBaby())
-      elif (gender == 1) or (gender == 3):
+      elif ((gender == 1) or (gender == 3)):
          outputMainText("The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling " + pullUD(2) + " your " + clothesBottom() + " and brandishing " + oneYour(1) + " own " + cockDesc() + " cock" + plural(1) + ". You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.",True)
          outputMainText("\n\nHe whinnies loudly as you plunge your " + cockDesc() + " erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,",False)
          if (cumAmount() > 0):
             outputMainText(" while yours erupts into his ass, churning his insides,",False)
          outputMainText(" until you've both had a heady orgasm. You pull out quickly, fluids still dripping from your cock, while he heaves upon the ground.",False)
       doLust(-math.floor(sen / 2),2,1,5)
-   if (enemyID == 303):
-      if (gender == 1) or (gender == 3):
+   elif (enemyID == 303):
+      if ((gender == 1) or (gender == 3)):
          outputMainText("Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull " + pullUD(2) + " your " + clothesBottom() + " and let your " + cockDesc() + " erection" + plural(2) + " wobble out. Aligning yourself, you thrust ",True)
          if (cockTotal == 1):
             outputMainText("it",False)
          else:
             outputMainText("all of them",False)
          outputMainText(" into her juicy hole.",False)
-         if ((cockTotal * cockSize * cockSizeMod) > 40):
+         if (cockTotal * cockSize * cockSizeMod > 40):
             outputMainText("\n\nSurprisingly, she's able to take in all of your length" + plural(1) + ", although you hear a dulcet, yet quite high pitched, cry as her face escapes her hands and lurches forward with her mouth wide in a strange combination of pain and confusion. She settles down quickly, however, and idly grips at the sand beneath her and her tentacles wrap around you to hang on for dear life. Her body literally stretches to form around your " + cockDesc() + " cock" + plural(1) + ", with lubrication spitting out from her beak, her skin becoming more translucent the more taut she becomes, until you can make out your throbbing erection" + plural(1) + " within. Fortunately, her belly isn't affected by the stretching, her pregnancy perfectly fine.",False)
          else:
             outputMainText("\n\nShe seems to be able to take your length" + plural(1) + " easily, her passage large and excessively lubricated. Her hands leave her face as she grins wryly, not having expected you to take her on as such. Her tentacles wrap around your body, pulling you in deeper as she gropes her large belly.",False)
@@ -20060,7 +20155,7 @@ def doRape():
          outputMainText(" until you're fully spent.\n\nJust as you're about to pull out, you see her squirm, her belly jiggling and growing slightly larger, deforming slightly as the offspring inside her shifts.",False)
       elif (gender == 2):
          outputMainText("Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, pinning her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull " + pullUD(2) + " your " + clothesBottom() + " and begin to grind your " + vulvaDesc() + " cunt" + plural(2) + " against it.\n\nShe lets out a warbling moan. Her hands leave her face, showing the blush and lustful expression she now wears. The beak nips at your " + clitDesc() + " clit" + plural(2) + " whenever the stiff thing" + plural(2) + " rub against it, making you buck in turn. Her tentacles quickly begin to grope around your body, making you slick as the move towards your crotch.",True)
-         if (vagTotal > 1) and (vagTotal < 9):
+         if ((vagTotal > 1) and (vagTotal < 9)):
             outputMainText("\n\nOne tentacle for each of your pussies, they softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.",False)
          elif (vagTotal == 1):
             outputMainText("\n\nA tentacle softly slips into your pussy, diving in as far as it can go before it feels you begin to stretch. It slips in and out as you hump the girl, quickly driving you towards climax.",False)
@@ -20068,8 +20163,8 @@ def doRape():
             outputMainText("\n\nTaking turns at each of your pussies, the tentacles softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.",False)
          outputMainText(" You can soon feel her shudder " + legWhere(1) + " your " + legDesc(2) + ", her large belly jiggling as milk drizzles past the feeding starfish and down her large breasts. The tentacles leave your slit" + plural(2) + " as you finish with your own orgasm...",False)
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 304):
-      if (vagTotal > 0) and (vagLimit() > 80):
+   elif (enemyID == 304):
+      if ((vagTotal > 0) and (vagLimit() > 80)):
          outputMainText("Somehow managing to push the little big bunny-man onto his tail, you pull " + pullUD(2) + " your " + clothesBottom() + ", climb up through his thighs, and plant your " + legDesc(10) + " on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, " + legVerb(5) + " it at the top with your " + legDesc(2) + ". The narrow tip easily fits between your thighs and slips into " + oneYour(2) + " " + vulvaDesc() + " vagina" + plural(4) + " as you descend upon it.\n\nHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.",True)
          if (tallness < 180):
             outputMainText(" Your belly begins to stretch as the tip burrows through your inner flesh, the giant cock filling you tremendously. By the time your " + buttDesc() + " rump lands upon his balls, your " + legDesc(2) + " wedge" + legPlural(1) + " into his sheath, the " + skinDesc() + " of your belly reaches past your head. You stand again to fuck his massive prick, though... you quickly find it's difficult to manage such a thing with his body so much larger that yours.\n\nTo your surprise, you find a white hand wrapping around your body, hugging you against the cock. Before you know it, you're being lifted into the air, slipping up the shaft, only to come back down once more. Difficult to tell who's raping who at the point, but he overtaken bunny-man masturbates with you as his toy. Fast and faster he pumps you up and down his length, quickly bringing you both to orgasm. His seed gushes into your belly, causing it to visibly ripple and distend from outside. It splashes back down the cock and spills around his sheath, quickly soaking through the fur of his balls. The warmth sends you to climax as well, slowly slipping off his shlong as it receeds into his sheath...",False)
@@ -20080,14 +20175,14 @@ def doRape():
          outputMainText("Rather intimidated by his size, you still manage to pull his head down until he's on all fours. You pull " + pullUD(2) + " your " + clothesBottom() + " and shove his face into your naked groin. He quickly notices your scent and lustfully opens his mouth. You debate whether this is actually rape or not as he seems eager to lap at your",True)
          if (gender == 1):
             outputMainText(" " + cockDesc() + " cock" + plural(1) + "",False)
-         if (gender == 2):
+         elif (gender == 2):
             outputMainText(" " + vulvaDesc() + " cunt" + plural(2) + "",False)
-         if (gender == 3):
+         elif (gender == 3):
             outputMainText(" " + cockDesc() + " cock" + plural(1) + " and " + vulvaDesc() + " cunt" + plural(2) + "",False)
          outputMainText(", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your " + legDesc(10) + " as well.\n\nYou both soon back away from each other, spent from the connection.",False)
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 305):
-      if((cockSize * cockSizeMod) > 140) or ((cockTotal * cockSize * cockSizeMod) > 280):
+   elif (enemyID == 305):
+      if ((cockSize * cockSizeMod > 140) or (cockTotal * cockSize * cockSizeMod > 280)):
          outputMainText("Somehow managing to push the little big bunny-girl onto her tail, you pull " + pullUD(2) + " your " + clothesBottom() + " and step in between her thighs. Her pussy is already aroused and gaping, drooling with her feminine lubrication and forming webs from her large clit down through her inner labia. Hefting up your " + cockDesc() + " erection" + plural(1) + ", you aim for the sweet spot, spreading her even wider as you push yourself in, feeling her folds hug around you.",True)
          if (tallness < 180):
             outputMainText("\n\nHowever, you quickly realize it's going to be quite... difficult to plow through someone so much larger than you... And much to your surprise, you find a white hand beginning to hug around you, lifting you up and pulling you back from her cunt. Then you find yourself being rammed back in, the clear fluids splashing about your " + skinDesc() + ". Slightly confused as to who is raping who at this point, the bunny-girl proceeds to use you like a living dildo, ramming your cock" + plural(1) + " in and out of her folds again and again.",False)
@@ -20109,19 +20204,19 @@ def doRape():
          outputMainText("Rather intimidated by her size, you still manage to pull her head down until she's on all fours. You pull " + pullUD(2) + " your " + clothesBottom() + " and shove her face into your naked groin. She quickly notices your scent and lustfully opens her mouth. You debate whether this is actually rape or not as she seems to eager lap at your",True)
          if (gender == 1):
             outputMainText(" " + cockDesc() + " cock" + plural(1) + "",False)
-         if (gender == 2):
+         elif (gender == 2):
             outputMainText(" " + vulvaDesc() + " cunt" + plural(2) + "",False)
-         if (gender == 3):
+         elif (gender == 3):
             outputMainText(" " + cockDesc() + " cock" + plural(1) + " and " + vulvaDesc() + " cunt" + plural(2) + "",False)
          outputMainText(", expertly sucking and nibbling at your genitals. Her hands reach to her underside and begins to audibly slurp in her crotch and rub at her bosom. She quickly drives you to orgasm and as her mouth fills with your fluids, you soon find a puddle of clear slime oozing its way about your " + legDesc(10) + " as well.\n\nYou both soon back away from each other, spent from the connection.",False)
          if (cockTotal > 0):
             cumAmount()
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 306):
+   elif (enemyID == 306):
       outputMainText("Conceding to your assault rather willingly, she actually bends back over her tail and pulls up her sash, exposing herself to you. A supple slit amidst her belly-scales, the green of her scales part with a delicious and moist pink tunnel. Her fingers even roam down to part herself for you, waiting for you to please yourself with her.",True)
       if (cockTotal > 0):
          outputMainText("\n\nYou prepare " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + " as you remove it from your " + clothesBottom() + ". You slide it over the scales of her tail as you approach her hips, making her shiver expectantly.",False)
-         if ((cockSize * cockSizeMod) > eVagLimit(80)):
+         if (cockSize * cockSizeMod > eVagLimit(80)):
             outputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and her eyes go wide as you begin to press in. Your member far greater than her large yet tight entrance, her hips seem to unhinge, her lower maw stretching wider and wider to take in your full girth. The belly-scales distend with the thick rod driving deeper within, filling her so much that she wraps the tip of her tail around her chest and over her face, squeezing and biting it in ecstasy.",False)
          else:
             outputMainText(" Your tip soon bumps into the valley between the mounds of her bulbous vulva and fused thighs, pressing against her sex. She gasps as it touches the sensitive pink flesh and croons as it pushes inside.",False)
@@ -20130,14 +20225,14 @@ def doRape():
       else:
          outputMainText("\n\nYou pull " + pullUD(2) + " your own " + clothesBottom() + " to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your " + vulvaDesc() + " lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh.\n\nYou grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don't see the tip of her tail sneaking up behind you. It's not until you pleasantly find the thick thing pressing itself into " + oneYour(2) + " hole" + plural(2) + " that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're bucking your hips and she's bucking back in orgasm.\n\nAfter an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.",False)
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 307):
+   elif (enemyID == 307):
       outputMainText("You pull " + pullUD(2) + " your " + clothesBottom() + " and push the Minotaur down onto his ",True)
       if (vagTotal > 0):
          outputMainText(" ass and his hefty cock bounces out from under his loin cloth, already half erect.",False)
          if (vagLimit() < 72):
             outputMainText(" Way too big for you, the most you can do is sit your " + buttDesc() + " ass down on his head-sized testicles and hug yourself around his rod, grinding against it. He doesn't seem to mind though and rather eagerly snorts in excitement, taking your efforts as a rather physical lap dance. He grunts and groans as you grind your " + clitDesc() + " clit" + plural(2) + " against his shaft, especially when you begin to lick and knead his thick head.\n\nRather abruptly, steam blows out his bovine nostrils as spunk blows out his cock. The stuff sprays hard, making you lean back to dodge direct contact with the geyser. You focus more on getting yourself off as you're showered with semen from above, until your hips are twitching and bucking against his meat.\n\nHe was probably more pleasured by the performance than you were, but you manage.",False)
          else:
-            outputMainText(" You climb up his bulky body and he doesn't make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + ". The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your " + buttDesc() + " ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work.\n\nIt's a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He's a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you...\n\nYou continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...",False)
+            outputMainText(" You climb up his bulky body and he doesnn't make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + ". The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your " + buttDesc() + " ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work.\n\nIt's a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He's a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you...\n\nYou continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...",False)
             doImpregnate(enemyBaby())
       else:
          outputMainText("face and flip up his loin cloth to expose his large ass. The thing looks rather used already, though, and it doesn't take much to push in " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ". The bull-man even snorts across the floor like he was enjoying it and his large meaty cock rises to attention below him. Nevertheless, you continue to pump in and out grand rump, slapping the hard muscular buttocks",False)
@@ -20146,17 +20241,17 @@ def doRape():
          outputMainText(" and you're both quick to start spraying your loads. Yours gurgles down deeper into his body while his nearly knocks himself out with the blast, plenty of semen volleying into his face and pooling below him.\n\nOnce you're satisfied, you have this nagging feeling like he might have enjoyed it more. Whatever the case may be, you got what you wanted.",False)
          cumAmount()
       doLust(-math.floor(sen / 2),2,2,5)
-   if (enemyID == 308):
+   elif (enemyID == 308):
       outputMainText("The freaky little girl melts into your embrace rather readily, suddenly becoming more frail and acting more like she appears, holding Mr. Snuggles tight across her chest. \"Be gentle, please?\"\n\nCatching you slightly off guard, you comply and proceed a little less roughly. You take her from behind, sitting down to the ground and pulling her into your lap with you. You kiss her cheek and nibble on her long elven ears, making her squirm in your arms as your hand reaches down beneath her skirt. Her panties are rather moist, slick with her honey, and the tender region twitches as you start to massage it. However, you soon feel something bumping against your palm.\n\nPulling her undergarments down further, you can see her pink flesh protruding out past her crotch slightly. A clitoris as big as her thumb pokes out from her folds, stiff and twitching with arousal. Not quite as little as the rest of her...\n\nSeeing as though she's rather aroused, you take the liberty of pushing things a step further. ",True)
-      if ((cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24))) or ((vagTotal > 0) and (clitSize < 60)):
+      if ((cockTotal > 0) and (cockSize * cockSizeMod < eVagLimit(24)) or (vagTotal > 0) and (clitSize < 60)):
          outputMainText("Pulling " + pullUD(2) + " your " + clothesBottom() + ", you angle ",False)
-         if (cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24)):
+         if ((cockTotal > 0) and (cockSize * cockSizeMod < eVagLimit(24))):
             outputMainText("" + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
          else:
             outputMainText("" + oneYour(2) + " " + clitDesc() + " clit" + plural(2) + "",False)
          outputMainText(" towards her tight dainty folds, sinking it in as you push her down upon it as she lets out a slightly pained yet quite erotic squeal. By the time you're completely hilted inside of her, the protruding clit in front bucks up and down, jerking just from being penetrated. Such sensitivity only makes you want to thrill her more, making up for the pain she's given to you. You lift her slightly and slam her back down, thrusting with your hips in rhythm.\n\n\"Eeek!\" She cries out from the rough treatment, but the immediate cooing thereafter and the warmth you feel coming from her only shows that she enjoys it more. So the more you give to her...\n\nPounding again and again, you plow the small body in your lap, making her bounce up and down with your thrusting alone. The pigtails flail about, her mouth yawning wide and Mr. Snuggles riding on top of her tiny erection. She practically burns in your embrace, wildly reaching moaning and gasping orgasms while your own climax goes off",False)
-         if (cockTotal > 0) and ((cockSize * cockSizeMod) < eVagLimit(24)):
-            outputMainText(", your spunk spraying into her womb",False)
+         if ((cockTotal > 0) and (cockSize * cockSizeMod < eVagLimit(24))):
+            outputMainText(", your spunk spraying into her womb",false)
             cumAmount()
          outputMainText(".\n\nAfter a few minutes of tight connection, the girl crawls out of your lap, her naked ass shaking as she pulls you out before pulling her panties back up...",False)
       elif (cockTotal > 0):
@@ -20166,18 +20261,18 @@ def doRape():
       else:
          outputMainText("Turning the girl around, you land her back upon the floor. She looks up at you over the head of the doll, fearful of your menace as you press your " + hipDesc() + " hips down against her. Your " + vulvaDesc() + " nether-lips engulf her standing erection. Not enough to actually penetrate, you merely use the stiff button as a grinding post, slipping it through your labia again and again, banging it against your own " + clitDesc() + " clit" + plural(2) + ".\n\nThe sensation sends the girl into a tizzy, her rump wiggling against the floor as her hips squirm from your succulent flesh. She bites down on one of Mr. Snuggle's horn, muffling her moans as she approaches orgasm. You make up for her with your own cries of climax, shivering and spilling your honey across her dainty sex while her own pools beneath her.\n\nA few more moments of the blissful high passes before the girl inches her way out from under you, spreading her legs to air out her heated crotch while she pulls up her panties, the undergarments becoming wet with her honey and outlining her sex, especially the button that continues to poke out...",False)
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 309):
+   elif (enemyID == 309):
       outputMainText("\"Mmm, so you want to take the lead, huh?\" The succubus concedes to your advances, bending over and putting her hands up against the wall, even going so far as to unzip her panties down the middle, exposing her engorged plump lips. The meaty things are plush and look like they're made for being fucked hard, luring you in more as you press in behind her.",True)
-      if (cockTotal > 0) or ((vagTotal > 0) and (clitSize > 20)):
+      if ((cockTotal > 0) or (vagTotal > 0) and (clitSize > 20)):
          outputMainText("\n\nYou plunge ",False)
          if (cockTotal > 0):
             outputMainText("" + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
          else:
             outputMainText("" + oneYour(2) + " " + clitDesc() + " clit" + plural(2) + "",False)
          outputMainText(" into her awaiting entrance, pushing in deep.",False)
-         if (cockTotal > 0) and ((cockSize * cockSizeMod) > 48):
+         if ((cockTotal > 0) and (cockSize * cockSizeMod > 48)):
             outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your cock pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False)
-         elif (cockTotal < 1) and (clitSize > 120):
+         elif ((cockTotal < 1) and (clitSize > 120)):
             outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your clitoris pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth.",False)
          outputMainText(" The swollen labia presses against your crotch as you sink your hilt inside. The whole tunnel slurps around your shaft, kneading and squeezing you gently with her well-trained muscles. She was definitely made for this sort of thing... You begin to thrust again and again, the divine pussy sucking you in and out with such fantastic intensity.\n\nAnd while your attention is diverted, you fail to notice the serpentine tail creeping around to your " + buttDesc() + " tush. The spaded tip foldsin on itself, narrowing for a quick entrance into your ass. You buck harder into the she-devil as you feel yourself fill with the tail while it sensually slips in and out, pinning you from behind and urging you on further. Which you oblige.\n\nThe succubus' wings spread as she lets out an ecstatic shrill, climaxing from your stimulated efforts. The grinding around your rod from her clenching passage also sends you along as well",False)
          if (cockTotal > 0):
@@ -25473,29 +25568,29 @@ class ButtonFunctions:
          PanelButton12.Show()
    def WriteText(a, b):
       global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
-      if a == 1:
+      if (a == 1):
          button1["text"] = b
-      if a == 2:
+      elif (a == 2):
          button2["text"] = b
-      if a == 3:
+      elif (a == 3):
          button3["text"] = b
-      if a == 4:
+      elif (a == 4):
          button4["text"] = b
-      if a == 5:
+      elif (a == 5):
          button5["text"] = b
-      if a == 6:
+      elif (a == 6):
          button6["text"] = b
-      if a == 7:
+      elif (a == 7):
          button7["text"] = b
-      if a == 8:
+      elif (a == 8):
          button8["text"] = b
-      if a == 9:
+      elif (a == 9):
          button9["text"] = b
-      if a == 10:
+      elif (a == 10):
          button10["text"] = b
-      if a == 11:
+      elif (a == 11):
          button11["text"] = b
-      if a == 12:
+      elif (a == 12):
          button12["text"] = b
    def ClearTextAll():
       global button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button1Visible, button2Visible, button3Visible, button4Visible, button5Visible, button6Visible, button7Visible, button8Visible, button9Visible, button10Visible, button11Visible, button12Visible
@@ -25580,37 +25675,37 @@ class ButtonFunctions:
       if (a == 1):
          if (button1Visible == True):
             button1["state"] = "disabled"
-      if (a == 2):
+      elif (a == 2):
          if (button2Visible == True):
             button2["state"] = "disabled"
-      if (a == 3):
+      elif (a == 3):
          if (button3Visible == True):
             button3["state"] = "disabled"
-      if (a == 4):
+      elif (a == 4):
          if (button4Visible == True):
             button4["state"] = "disabled"
-      if (a == 5):
+      elif (a == 5):
          if (button5Visible == True):
             button5["state"] = "disabled"
-      if (a == 6):
+      elif (a == 6):
          if (button6Visible == True):
             button6["state"] = "disabled"
-      if (a == 7):
+      elif (a == 7):
          if (button7Visible == True):
             button7["state"] = "disabled"
-      if (a == 8):
+      elif (a == 8):
          if (button8Visible == True):
             button8["state"] = "disabled"
-      if (a == 9):
+      elif (a == 9):
          if (button9Visible == True):
             button9["state"] = "disabled"
-      if (a == 10):
+      elif (a == 10):
          if (button10Visible == True):
             button10["state"] = "disabled"
-      if (a == 11):
+      elif (a == 11):
          if (button11Visible == True):
             button11["state"] = "disabled"
-      if (a == 12):
+      elif (a == 12):
          if (button12Visible == True):
             button12["state"] = "disabled"
    def DisableSelected(a:list):
@@ -25756,7 +25851,7 @@ class Amount:
             amountlabel12visible = False
 class SidePanel:
    def InitInterface():
-      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible
+      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, textsidebox
       looksbutton.destroy()
       statsbutton.destroy()
       effectsbutton.destroy()
@@ -25767,10 +25862,11 @@ class SidePanel:
       creditsbutton.destroy()
       if textsidevisible == True:
          textside.destroy()
+         textsidebox.destroy()
          textsidevisible = False
       ApButton.Hide()
    def Show():
-      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible
+      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, textsidebox
       global themeColor, fontColor
       looksbutton = tkinter.Button(sidebar, text="Look", command=appearanceGo, background=themeColor, foreground=fontColor)
       looksbutton.configure()
@@ -25790,14 +25886,16 @@ class SidePanel:
       creditsbutton = tkinter.Button(sidebar, text="Credits", command=detailedCredits, background=themeColor, foreground=fontColor)
       creditsbutton.place(anchor="nw", width=80, x=249, y=30)
       if textsidevisible == False:
-         textside = ScrolledText(sidebar, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
-         textside.place(anchor="nw", height=300, width=330, x=0, y=80)
+         textsidebox = tkinter.Frame(sidebar, background=themeColor)
+         textsidebox.place(anchor="nw", height=300, width=330, x=0, y=80)
+         textside = ScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
+         textside.place(anchor="nw", height=300, width=330, x=0, y=0)
          textside.configure(state="disabled")
          textsidevisible = True
 
       ApButton.Hide()
    def Hide():
-      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible
+      global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, textsidebox
       looksbutton.destroy()
       statsbutton.destroy()
       effectsbutton.destroy()
@@ -25808,6 +25906,7 @@ class SidePanel:
       creditsbutton.destroy()
       if textsidevisible == True:
          textside.destroy()
+         textsidebox.destroy()
          textsidevisible = False
 
       ApButton.Show()
@@ -26243,7 +26342,9 @@ titlesbutton.place(anchor="nw", width=80, x=166, y=30)
 creditsbutton = tkinter.Button(sidebar, text="Credits", background=themeColor, foreground=fontColor)
 creditsbutton.place(anchor="nw", width=80, x=249, y=30)
 
-textside = ScrolledText(sidebar, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
+textsidebox = tkinter.Frame(sidebar, background=themeColor)
+textsidebox.place(anchor="nw", height=300, width=330, x=0, y=80)
+textside = ScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
 textside.place(anchor="nw", height=300, width=330, x=0, y=80)
 textside.configure(state="disabled")
 textsidevisible = True
