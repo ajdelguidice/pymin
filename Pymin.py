@@ -20191,15 +20191,16 @@ def doRape():
       doLust(-math.floor(sen / 2),2,1,2)
 
 def doGetRaped():
-   global enemyID, gender, cockTotal, sen, vagTotal, pregArray, cockSnakePreg, lactation, cockSize, cockSizeMod, knot, clitSize, ballSize, eStr, vulvaSize, vagSize, tallness, udderSize, udderLactation, breastSize, submissiveFetish, dominantFetish, body, inDungeon, currentState, hrs, exhaustion, skipExhaustion
+   #Should work
+   global enemyID, gender, cockTotal, sen, vagTotal, pregArray, cockSnakePreg, cockSize, cockSizeMod, knot, clitSize, ballSize, eStr, vulvaSize, vagSize, tallness, udderSize, udderLactation, breastSize, lactation, submissiveFetish, dominantFetish, body, inDungeon, currentState, hrs, exhaustion, skipExhaustion
    if (enemyID == 1):
       if (gender == 1):
          outputMainText("The test enemy pokes its cock in your butt and cums.",True)
-      if (gender == 2):
+      elif (gender == 2):
          outputMainText("The test enemy pokes its cock in your vagina and cums.",True)
-      if (gender == 3):
+      elif (gender == 3):
          outputMainText("The test enemy pokes its cock in your vagina and cums while stroking you off.",True)
-   if (enemyID == 101):
+   elif (enemyID == 101):
       if (cockTotal > 0):
          outputMainText("As your growing erection" + plural(1) + " spill" + plural(3) + " from your " + clothesBottom() + ", the cock-snake's mouth grows wide. It slithers forward, engulfing " + oneYour(1) + " cock" + plural(1) + ", its mouth stretching wider and wider to fully engulf it, its body so elastic it could take on any length.\n\nIn an instant, your body begins to writhe and shudder as the cock-snake's gullet strongly massages along your length, quickly building you to orgasm. You clench at the ground beneath you as the cum is sucked right from your body, your hips jerking while you pump it out. The cock-snake guzzles it down, drinking it until you're completely finished, some of the spunk splashing back out across your thighs...\n\nHunger sated, the cock-snake slithers away",True)
          if (cumAmount() > 2300):
@@ -20208,7 +20209,7 @@ def doGetRaped():
          doLust(-math.floor(sen / 2),2,1)
       elif (vagTotal > 0):
          outputMainText("Feeling the warmth emanating from beneath your " + clothesBottom() + ", the cock-snake slithers in " + legWhere(1) + " your " + legDesc(2) + ". The phallic head nuzzles up against your " + vulvaDesc() + " lips, smearing around some of your lubricant. Its nose bumps against your " + clitDesc() + " clit" + plural(2) + ", testing your arousal until you quiver beneath.",True)
-         if (pregCheck(1)):
+         if (pregCheck(1) == True):
             outputMainText("\n\nSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your " + legDesc(1) + ", holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\n\nAnd it's quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can't help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\n\nIn that moment of peak pleasure, the snake lets go of your " + legDesc(1) + " and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\n\nIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you...",False)
             i = 0
             while (i < len(pregArray)):
@@ -20216,7 +20217,7 @@ def doGetRaped():
                   pregArray[i] = True
                   pregArray[i + 1] = 503
                   pregArray[i + 2] = 240
-                  pregArray[this.i + 3] = 150
+                  pregArray[i + 3] = 150
                   i = len(pregArray)
                i += 5
             cockSnakePreg += 50
@@ -20224,7 +20225,7 @@ def doGetRaped():
          else:
             outputMainText("\n\nHowever, it seems to not be satisfied with what it has found. Barely sating any of your desire, the snake turns around and slithers off, completely losing interest...",False)
             doLust(-5,0)
-   if (enemyID == 201):
+   elif (enemyID == 201):
       outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs your cunt" + plural(2) + ", lapping at the wetness that soaks through your " + clothesBottom() + ". He jumps up, clawing your " + clothesBottom() + " to shreds until your " + vulvaDesc() + " hot crotch is put on display. Scratching your back, he mounts you from behind.\n\nHis rock-hard rod pokes and prods around your sex until it finds " + oneYour(2) + " gaping hole" + plural(2) + " and plunges it in. You gasp as the steaming meaty flesh pounds into you, the wolf roughly humping away, the inner fur of his thighs rubbing back and forth along your " + buttDesc() + " naked bum. He hugs you with his paws, his muzzle panting beside your ear while drool drips down from his lolling tongue and down your cheek. It only takes a minute before he howls loudly, cum spurting into your pussy at an astonishing rate. You shout as it floods your insides, a thick knot growing at your entrance and spreading you open further...",True)
       changeBot(-1)
       doNext()
@@ -20241,37 +20242,37 @@ def doGetRaped():
       outputMainText(" until it finally pulls free and he runs back off into the forest.",False)
       doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,1)
-   if (EnemyID == 202):
-      outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your " + clothesBottom() + " to shreds until your " + buttDesc() + " ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff.\n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own " + cockDesc() + " erection" + plural(1) + " burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...",True)
+   elif (enemyID == 202):
+      outputMainText("The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your " + buttDesc() + " rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your " + clothesBottom() + " to shreds until your " + buttDesc() + " ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff. \n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own " + cockDesc() + " erection" + plural(1) + " burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...",True)
       changeBot(-1)
       doNext()
       outputMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated ass in an attempt to get away, gush after gush of spent spunk blowing out each time. Still tied by his knot, his cock now slowly squirting away within, you can't help but get yanked backwards several feet as he drags you over the ground by your sensitive hole. Eventually, you manage to grab at the ground and hold yourself firm, allowing the knot to pop out from your ass, the member spraying across your cheeks with more rushing out about your thighs. Freed of your ass, the wolf takes off into the forest, satisfied, leaving you to lay in the white mess below. ",False)
       doLust(-math.floor(sen / 2),2,5)
-   if (enemyID == 301):
+   elif (enemyID == 301):
       outputMainText("Finally having someone as horny as she is, she pounces onto you. She presses your face against her exposed nipples, forcing you to lick the soreness that had been caused by her own rubbing. She grinds up and down your belly, tearing your " + clothesTop() + " to tattered shreds with her claws while biting and suckling from your own " + nipDesc() + "nipples",True)
       changeTop(-1)
       if (lactation > 0):
          outputMainText(", delighting in the taste of your milk",False)
       outputMainText(". However, it doesn't take long until she reaches beneath her loin cloth and pulls her bikini bottom to the side before she goes diving into your " + clothesBottom() + ",",False)
-      if (gender == 1) or (gender == 3):
+      if ((gender == 1) or (gender == 3)):
          outputMainText(" digging out " + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + ".",False)
-         if ((cockSize * cockSizeMod) > eVagLimit(40)):
+         if (cockSize * cockSizeMod > eVagLimit(40)):
             outputMainText(" She attempts to stand and squat down upon it, but, to her dismay, she can't seem to push it into her hungry pussy, even though she tried until tears welled up in her eyes from the painful stretching. Instead, she settles for hugging and humping the " + cockDesc() + " thing, grinding her own stiff little erection into it, her feminine juices spilling down its length and over your body.",False)
-         elif ((cockSize * cockSizeMod) > eVagLimit(20)):
+         elif (cockSize * cockSizeMod > eVagLimit(20)):
             outputMainText(" She mewls and mrowls in pain as she stands up and squats down upon it. It spreads her so wide that it hurts her so much, yet she doesn't care, so desperate to fuck. Tears roll down her cheeks, but her mouth yawns wide with erotic joy, being filled so much.",False)
          else:
             outputMainText(" She rises up, only to squat back down on your erection, your cock slipping into her supple folds. So absolutely overjoyed to finally have a cock in her, she scratches at your chest with her claws and bites down upon your neck.",False)
          outputMainText(" Her hips speed up faster and faster, wildly working her pussy so much that the slick liquids spilling from her gurgle and churn into a bubbly mess. You too find her efforts to be extremely effective, your body quaking along with her.",False)
-         if (cumAmount() > 550) and ((cockSize * cockSizeMod) <= eVagLimit(40)):
+         if ((cumAmount() > 550) and (cockSize * cockSizeMod <= eVagLimit(40))):
             outputMainText(" She purrs loudly as she feels your cum explode within her, utterly pleased as it fills her so much that it squirts back out of her pussy with a loud lewd noise.",False)
-         elif ((cockSize * cockSizeMod) > eVagLimit(40)):
+         elif (cockSize * cockSizeMod > eVagLimit(40)):
             outputMainText(" She purrs hungrily as she laps at you cum as it sprays about the both of you, her face absolutely delighted in having her fur matted with the stuff.",False)
          else:
             outputMainText(" She purrs pleasantly as she feels your cum spurt within her, gyrating her hips around your rod to drink in every drop.",False)
          outputMainText("\n\n",False)
-         if (knot == True) and ((cockSize * cockSizeMod) <= eVagLimit(40)):
+         if ((knot == True) and (cockSize * cockSizeMod <= eVagLimit(40))):
             outputMainText("With a high-pitched squeak, she pulls off of your knot without thinking. She rubs her poor cunny from the pain, only to roll her eyes up into her head with the pleasant masturbation. ",False)
-      if (gender == 2):
+      elif (gender == 2):
          outputMainText(" lapping at your " + vulvaDesc() + " crotch and rouchly licking your " + clitDesc() + " clit" + plural(2) + ".",False)
          if (clitSize > 25):
             outputMainText(" With a wicked grin, she eyes your " + clitDesc() + " clit" + plural(2) + " hungrily.",False)
@@ -20285,14 +20286,14 @@ def doGetRaped():
             outputMainText(" She glides back up your chest and presses her sloppy cunt to yours, grinding the two together.",False)
          outputMainText(" Her hips speed up faster and faster, wildly working her pussy so much that the slick liquids spilling from her gurgle and churn into a bubbly mess. You too find her efforts to be extremely effective, your body quaking along with her.",False)
       outputMainText("Dazed and high with her climax, having finally overcome her heat a little, she stumbles away, her loin cloth pushed so far to the side that her lips shine between her legs for all to see.",False)
-      if (percent() < 40) and (ballSize > 1) and ((cockSize * cockSizeMod) <= eVagLimit(40)):
+      if ((percent() < 40) and (ballSize > 1) and (cockSize * cockSizeMod <= eVagLimit(40))):
          outputMainText(" And she seems oddly content, as though her heat had passed with that romp for some reason...",False)
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 302):
+   elif (enemyID == 302):
       outputMainText("Seeing you laying defenseless and utterly aroused before him, the drunken equan falls to the ground. With a grunt and a grope, he pulls his huge cock from his pants, his erection barely 2/3 its full potential. Considering how drunk he is, it probably won't get much larger.",True)
-      if (gender == 1) or ((gender == 3) and (percent() <= 50)):
+      if ((gender == 1) or ((gender == 3) and (percent() <= 50))):
          outputMainText(" Nevertheless, not caring whether you're male or female, he turns you over to find the hole everybody has. Giving your " + buttDesc() + " ass a slap with his mug, he leans forward and plunges his erection deep inside.",False)
-      elif (gender == 2) or (gender == 3):
+      elif ((gender == 2) or (gender == 3)):
          outputMainText(" Nevertheless, he slips his arms behind your " + legDesc(6) + ", pushing them up and foward as his cock plows into " + oneYour(2) + " cunt" + plural(2) + ".",False)
          if (vagLimit() < 12):
             outputMainText(" You cry out in pain as the cock slams against your entrance, completely unable to fit. So, instead, the the horny equan turns you over, plunging his erection deep into your " + buttDesc() + " ass until you can see it bulge through your belly.",False)
@@ -20314,17 +20315,17 @@ def doGetRaped():
          outputMainText(" Your cock" + plural(1) + " explode" + plural(3) + " across the ground just before you collapse, forming a nice puddle to splash in.",False)
       outputMainText("\n\nAs drunk as he is, the large equan doesn't take long to pull out, cum dribbling in long strands from his huge cock and splattering across his pants, as he sways back towards Firmshaft.",False)
       doLust(-math.floor(sen / 2),2,2,5)
-   if (enemyID == 303):
+   elif (enemyID == 303):
       if (gender == 1):
          outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into your " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + oneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
-         if ((cockSize * cockSizeMod) > 50):
+         if (cockSize * cockSizeMod > 50):
             outputMainText(" Not wanting to stretch herself to engulf your " + cockDesc() + " thing, she instead wraps her tentacles around it, drawing it towards the center of her webbing, just beneath her hips.\n\nYou can't tell what is going on, but you quickly jerk as something nips at your urethra. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is begins to dig into your urethra, spreading the last couple of inches wider as it slips inside, holding your cock-tip open like a gaping hole.\n\nAgain, she is gentle, but any pain you might have noticed quickly disappears as all eight of her tentacles work together in harmony, writhing about your cock and making you twitch sporadically on the ground from the intense pleasure. She wrings your cock powerfully, quickly bringing you to a gushing orgasm, spraying your cum through your gaping urethra and filling her body.",False)
          else:
             outputMainText(" Her whole body moves over yours, your groin being lost to her webbing.\n\nYou can't tell what is going on, but you quickly jerk as something nips at the tip of your rod. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is engulfs your length, sucking you inside. Supple folds squish and writhe around your cock, as though it were a pussy with a throat that was trying desperately to swallow you. Within moments, you find your " + hipDesc() + " hips jerking as you blow your load, filling her.",False)
          if (cumAmount() > 2300):
             outputMainText(" You come so much that her belly begins to swell larger, stretching to engulf as much of your seed as she can, before gushing back out and down your cock.",False)
          outputMainText("\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing. With a grin, she slides off of you and back into the ocean, her tentacles twitching excitedly as she disappears...",False)
-      if (gender == 2):
+      elif (gender == 2):
          outputMainText("She grins at you, particularly happy to see you submit before her. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your " + buttDesc() + " butt. They weave into your " + clothesBottom() + " and pull it " + pullUD(2) + ", exposing your swollen and hungry " + vulvaDesc() + " cunt" + plural(2) + ". She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your " + skinDesc() + ", giving her a good grip, while some in particular latch onto your clit" + plural(2) + " and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button" + plural(2) + " and vulva swelling larger as fluids from the cups seep into them.",True)
          if (pregCheck(1) == False):
             outputMainText("\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals...",False)
@@ -20345,16 +20346,16 @@ def doGetRaped():
                   pregArray[i + 3] = 180
                   i = len(pregArray)
                i += 5
-      if (gender == 3):
+      elif (gender == 3):
          outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into you " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + oneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
-         if ((cockSize * cockSizeMod) > 50):
+         if (cockSize * cockSizeMod > 50):
             outputMainText(" Not wanting to stretch herself to engulf your " + cockDesc() + " thing, she instead wraps her tentacles around it, drawing it towards the center of her webbing, just beneath her hips.\n\nYou can't tell what is going on, but you quickly jerk as something nips at your urethra. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is begins to dig into your urethra, spreading the last couple of inches wider as it slips inside, holding your cock-tip open like a gaping hole.\n\nAgain, she is gentle, but any pain you might have noticed quickly disappears as all eight of her tentacles work together in harmony, writhing about your cock and making you twitch sporadically on the ground from the intense pleasure. She wrings your cock powerfully, quickly bringing you to a gushing orgasm, spraying your cum through your gaping urethra and filling her body.",False)
          else:
             outputMainText(" Her whole body moves over yours, your groin being lost to her webbing.\n\nYou can't tell what is going on, but you quickly jerk as something nips at the tip of your rod. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is engulfs your length, sucking you inside. Supple folds squish and writhe around your cock, as though it were a pussy with a throat that was trying desperately to swallow you. Within moments, you find your " + hipDesc() + " hips jerking as you blowing your load, filling her.",False)
          if (cumAmount() > 2300):
             outputMainText(" You come so much that her belly begins to swell larger, stretching to engulf as much of your seed as she can, before gushing back out and down your cock.",False)
          outputMainText("\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing.",False)
-         outputMainText("With a grin, she seems particularly happy to have found such a suitable partner. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your " + buttDesc() + " butt once more. They squirm around your exposed swollen and hungry " + vulvaDesc() + " cunt" + plural(2) + ", making sure you're still aroused. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Its the thing you had noticed before... Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your " + skinDesc() + ", giving her a good grip, while some in particular latch onto your clit" + plural(2) + " and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button" + plural(2) + " and vulva swelling larger as fluids from the cups seep into them.",False);
+         outputMainText("With a grin, she seems particularly happy to have found such a suitable partner. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your " + buttDesc() + " butt once more. They squirm around your exposed swollen and hungry " + vulvaDesc() + " cunt" + plural(2) + ", making sure you're still aroused. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Its the thing you had noticed before... Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your " + skinDesc() + ", giving her a good grip, while some in particular latch onto your clit" + plural(2) + " and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button" + plural(2) + " and vulva swelling larger as fluids from the cups seep into them.",False)
          if (pregCheck(1) == False):
             outputMainText("\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals...",False)
             clitSize += 4
@@ -20378,8 +20379,8 @@ def doGetRaped():
          doLust(-math.floor(sen / 2),2,2)
       else:
          doLust(-math.floor(sen / 2),2,1)
-   if (enemyID == 304):
-      if (vagTotal > 0) and (vagLimit() > 80):
+   elif (enemyID == 304):
+      if ((vagTotal > 0) and (vagLimit() > 80)):
          outputMainText("A smirk crosses the bunny-man's face as you fall before him, your cunt" + plural(2) + " dripping with arousal. His own conical prick twitches in his sheath at the size of you gaping maw, even in your reduced state, eager to hop in and make you his new bunny-hole. He falls to his knees and wraps his arms around your body, his hips quickly closing the gap between your heights. You can hardly tell at first that " + oneYour(2) + " slit" + plural(2) + " is being penetrated, the narrow tip relatively small. But as he quickly plows the rest of his length in, your eyes nearly cross from the rapid change in girth.",True)
          if (tallness < 160):
             outputMainText(" You can feel your belly distend, your vaginal flesh stretching out within to match the shape of his cock.",False)
@@ -20393,10 +20394,10 @@ def doGetRaped():
       else:
          outputMainText("A smirk crosses the bunny-man's face as you fall to your " + legDesc(6) + ". He lunges forward to hold you up, his conical prick bobbing before your face. So lost in lust, your mouth subconsciously opens as you feel a supple tip press against it, sucking it in until you quickly find your jaw wedged open by the increasing girth. Just the tip of his penis is all that manages to fit inside, but he doesn't seem to care. He twirls what little there is around the inside of your mouth, pressing it down against your tongue. Your tongue lashes back, your throat sucking it in as it tries to gulp down the pre that leaks.\n\nThough he can't face-fuck you too well, he seems perfectly happy pleasuring the rest of his shaft with a hand. With each stroke of his length, your whole body bobs to keep up with the stiffness that holds your mouth agape. Until he comes to an abrupt halt...\n\nYour throat goes numb as hot seed gushes down it. You don't even have time to swallow, it's so forceful and so plentiful. Some sprays back out from your nose and even your eyes feel wet and slightly sticky from something that isn't tears. Your stomach quickly fills and you feel oh so full... For a moment, your hands can wrap around your belly as it distends to obscene sizes.\n\nHowever, oddly, you soon find yourself sucking in more and more of his length. Your extended belly shrinks as it's able to contain more of the stuff, your throat regaining composure. As your body grows out from his hands, he suddenly pulls out from you, spraying the last bit from your face. He quickly hops away as you begin to nearly grow to your normal size, though your head is still oversexed.",True)
       doLust(-math.floor(sen / 2),2,1,5)
-   if (enemyID == 305):
-      if (((gender == 1) or ((gender == 3) and (percent() > 50))) and (((cockSize * cockSizeMod) > 140) or ((cockTotal * cockSize * cockSizeMod) > 280))):
+   elif (enemyID == 305):
+      if (((gender == 1) or (gender == 3) and (percent() > 50)) and ((cockSize * cockSizeMod > 140) or (cockTotal * cockSize * cockSizeMod > 280))):
          outputMainText("A smile crosses the bunny-girl's face as you fall before her, your cock" + plural(1) + " pushing at your " + clothesBottom() + ". She ducks down and releases your member" + plural(1) + " with one hand while her other disappears between her legs. It quickly reappears as she stands up and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your cock" + plural(1) + " with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your length" + plural(1) + ". Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your cock" + plural(1) + " can't tell if " + plural(7) + " inside or not, only feeling a constant rubbing against " + plural(5) + " sensitive skin. And despite the fervent efforts on your manhood, the bunny-girl still manages to climax first, as she lets out a succulent shout of ecstasy. Her walls clamp around your appendage" + plural(1) + ", sucking " + plural(9) + " in and tugging " + plural(9) + " along with her as her bouncing only grows more enthused.\n\nIt doesn't take long until your own arousal begins to build pressure, though you find that pressure to grow much greater than you would have expected. The bunny-girl's pussy seems to only be growing tighter and tighter, lifting her from your body as your cock" + plural(1) + " push her away. When you finally reach orgasm, she groans loudly as her belly fills and swells. Opening your eyes, you realize you're growing larger, almost your full size! She flies off your erection" + plural(1) + " with a slick pop before she is really harmed and hops away, leaving you to finish gushing outside of the cave...",True)
-      elif ((udderSize / 2) > 300):
+      elif (udderSize / 2 > 300):
          outputMainText("A smile crosses the bunny-girl's face as you fall before her. Eyeing your " + udderDesc() + " udder through your " + clothesTop() + ", an idea seems to dawn upon her and she ducks down to releas your relatively massive mammaries. Then she stands and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your udder with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your " + udderDesc() + " bag, letting the fleshy balloon fill her. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your whole body is lifted by your stretching udder before being slammed back into the ground with the giant little bunny bum crashing back down upon you.",True)
          if (udderLactation > 0):
             outputMainText(" The supple massage upon your milky mound causes your " + teatDesc() + " teats to spray warm milk profusely into her belly.",False)
@@ -20411,17 +20412,17 @@ def doGetRaped():
       else:
          outputMainText("A smile crosses the bunny-girl's face as you fall before her. Though a little disappointed at the lack of anything to really have fun with, she still seems to know what to do with you. Your vision is soon obscured as she steps over you, her pussy hovering high above with thick strands of arousal drizzling over your body. Her hips then quickly bear down upon you, wedging you into her supple puffy folds. Her clit pushes into your chest and grinds up towards your face as her legs push her forward. Within moments, her powerful thighs have her running up and down your body with great fervor, nearly pasting you to the ground with all of the slickness.",True)
          if (tallness < 80):
-            outputMainText("\n\nHer speed and lack of cautiousness don't quite account for your especially small size and in one swift passing, your " + legDesc(10) + " get" + legPlural(1) + " caught by the rim of her vaginal entrance... In one pass, you're sucked up into her pussy, surrounded by wet warm fleshy walls.\n\nShe seems to be completely unphased, however, and actually increases her pace now that she has something inside of her. Humping at the ground, her fingers wrap around her clit and furiously stroke her. Her palm presses into her belly, squishing you between the tight walls. They rapidly begin to shudder as she approaches her first orgasm, squishing and pressing about your body erotically in the meantime. You soon find yourself coming to and orgasm, your genitals mashed by supple flesh, but also find your confines growing tighter and tighter... You can feel her belly distend as you grow within her, forcing her to come to an abrupt halt. She lifts from the ground, grabbing her clit tightly with a sweet shout, a strong orgasm pushing you out from her loins.\n\nWhile you continue to grow to nearly your full height in the midst of your climax, she dashes away.",False)
+            outputMainText("\n\nHer speed and lack of cautiousness don't quite account for your especially small size and in one swift passing, your " + legDesc(10) + " get" + legPlural(1) + " caught by the rim of her vaginal entrance... In one pass, you're sucked up into her pussy, surrounded by wet warm fleshy walls.\n\nShe seems to be completely unphased, however, and actually increases her pace now that she has something inside of her. Humping at the ground, her fingers wrap around her clit and furiously stroke her. Her palm presses into her belly, squishing you between the tight walls. They rapidly begin to shudder as she approaches her first orgasm, squishing and pressing about your body erotically in the meantime. You soon find yourself coming to and orgasm, your genitals mashed by supple flesh, but also find your confines growing tighter and tighter... You can feel her belly distend as you grow within her, forcing her to come to an abrupt halt. She lifts from the ground, grabbing her clit tightly with a sweet shout, a strong orgasm pushing you out from her loins\n\nWhile you continue to grow to nearly your full height in the midst of your climax, she dashes away.",False)
          else:
             outputMainText(" She humps you furiously, her speed and strength quickly bringing herself to her first orgasm. Yet, that doesn't stop her as she continues to jerk across your body, with even more enthusiasm than before. All the rubbing of soft supple flesh against your genitals every pass makes you begin to feel a little tingly as well.\n\nHowever, just as you're coming close to orgasm, you can feel her legs spread more and more, her efforts no longer making it across your entire body. Nearly growing to your full size as you climax, the bunny-girl comes to a halt and dashes away while continuing to jerk her erect clit, her advantage over you lost.",False)
          if (cockTotal > 0):
             cumAmount()
       doLust(-math.floor(sen / 2),2,1,3,4)
-   if (enemyID == 306):
+   elif (enemyID == 306):
       outputMainText("Pleased with your less-threatening state, she takes her time to tower over your prone body and wraps her tail around your " + hipDesc() + " hips and " + legDesc(2) + ", holding you still with her strength and leans in to taste her prey...\n\nPulling " + pullUD(1) + " your " + clothesTop() + ", she licks over the " + skinDesc() + " of your belly with her long serpentine tongue. She glides down, constricting her tail in an oscillating fashion to help pull your " + clothesBottom() + " " + pullUD(2) + " enough to access your",True)
       if (cockTotal > 0):
          outputMainText(" " + cockDesc() + " erection" + plural(1) + ". Pleased with what she finds, she caresses " + plural(9) + " with her fingers and lavishes the tip" + plural(1) + " with her tongue, darting in and out of the urethra" + plural(1) + " pleasantly.\n\nQuite satisfied with your flavor, she drags her silk-covered breasts over the rod" + plural(1) + ", grinding her body up yours until the sash dangles over your glans. Lifting the cloth, her own awaiting sex spills a clear drop from the pink flesh that runs down through the valley of her fused thighs. Holding you tightly with her tail, she lifts " + oneYour(1) + " member" + plural(1) + " up and drives herself down to devour it.",False)
-         if ((cockSize * cockSizeMod) > eVagLimit(80)):
+         if (cockSize * cockSizeMod > eVagLimit(80)):
             outputMainText("\n\nMuch larger than the entrance you're being forced into, the naga lets out a loud moan. The maw stretches to widen over your girth and you think even her hips unhinge to gobble you whole. The belly-scales bulge as you fill her up and she doesn't stop until you're completely sheathed inside of her. Her claws dig into your skin and she hisses in delight, her tail 'hugging' you tighter.",False)
          else:
             outputMainText("\n\nHer entrance easily takes you all the way to the hilt, yet surprisingly tight despite her size. She hisses happily, her tail pushing your rear up further to engulf more of you, even if it is a slight amount.",False)
@@ -20430,9 +20431,9 @@ def doGetRaped():
       else:
          outputMainText(" " + vulvaDesc() + " cunt" + plural(2) + ". Happy with what she finds, she slips a few fingers through your lips, followed by the long tongue.\n\nSatisfied with how swollen and aroused you are, she lifts the sash around her waist to expose her own bulbous vulva. A hungry pink amidst the green scales, she promptly thrusts it against your crotch, mashing your sexes together. Holding you tightly with her tail, she grinds against you, pushing you up from underneath to force you against her even more. Her arms wrap around your neck as she leans down, surrounding your face with her silk-covered bosom and pressing your " + skinDesc() + " to her scales.\n\nWith a whole tail of muscle the help her move, her hips gyrate so powerfully against you that it doesn't take long before you both reach climax. A concerted moan fills the air while her claws dig into you, her tail 'hugging' you even more.\n\nHowever, after a few moments of bliss, you're allowed to breath. The naga's tail unwinds, stretching out as she relishes in the last few moments of orgasm, her wings fanning out and back arching high. Then, she drops her sash with a pleased smile and slithers away over the dunes.",False)
       doLust(-math.floor(sen / 2),2,1,2)
-   if (enemyID == 307):
+   elif (enemyID == 307):
       outputMainText("The Minotaur grunts. \"Good. Could use a fuck!\"\n\nNot exactly a romantic, he lifts you by your " + legDesc(8) + " and pulls off your " + clothesBottom() + " so it's out of the way. He continues to " + legVerb(3) + " your " + legDesc(2) + ", inspecting what you have before he goes further. Shrugging at what he finds, he waggles his hips so that his big fat bulky cock flops out from behind his loin cloth. Already stiff and willing to go, pre dribbles down from the tip and lubes up your entire crotch, running into all your cracks and crevices.",True)
-      if (vagTotal > 0) and (vagLimit() > 72):
+      if ((vagTotal > 0) and (vagLimit() > 72)):
          outputMainText(" He proceeds to stuff his massive schlong into " + oneYour(2) + " cunt" + plural(2) + " with a loud slurp, pushing in until he can see his own cock bulge out from your belly.",False)
       elif (vagTotal > 0):
          outputMainText(" With your cunt" + plural(2) + " obviously too small, he proceeds to stuff his massive schlong into your ass with a loud slurping squish.",False)
@@ -20443,10 +20444,10 @@ def doGetRaped():
          outputMainText(", your cock" + plural(1) + " launching ribbons over yourself while " + plural(11) + " bounce" + plural(3) + " against you",False)
          cumAmount()
       outputMainText(".\n\nWith all the flurry of the abrupt orgasm, the Minotaur then lets go of you, making you shiver as you slide down his shaft and plop onto the floor, seed pooling out of your orifice...",False)
-      if (vagTotal > 0) and (vagLimit() > 72):
+      if ((vagTotal > 0) and (vagLimit() > 72)):
          doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,2)
-   if (enemyID == 308):
+   elif (enemyID == 308):
       outputMainText("Seeing you in your helpless state, the girl growls in delight. \"MMM... PREY~,\" Mr. Snuggles drops to the floor as her attention grows more focused upon you. Only then do you notice the large hole between the doll's legs, looking a bit moist as though it had been used many times and never able to dry. The reason for its existence also begins to grow quite clear while the freaky little girl paws at her own crotch.\n\nEach time she lifts her skirt with her fondling, you can see a bulge growing and pressing at her small panties. At first it looks like a rather large clitoris, but it continues to sweel rapidly. It bows outward, a meaty length of flesh bunching up within. Eventually, the waistband of the panties gives way, letting the phallic monster loose and lifting her skirt altogether. It coninues to grow all the way up to the little girl's chest, thick and throbbing and eager for a good meal. The cock is large and seems even larger compared to the rest of her small body, growing upward from her dripping feminine sex that is exposed from the fallen undies.\n\nShe rubs herself a bit, pleased to have it big and horny again, perfect for impaling you~ She bends down to the floor, scratching at the ground with her nails. Walking on all fours like and animal, her cock thumps up and down against her chest as she creeps toward you, sniffing at you to make sure you're ready. She crawls up between your legs, nipping here and there at your " + currentClothes() + ", until she finally reaches your chest. She pulls " + pullUD(1) + " your " + clothesTop() + " with her teeth, exposing your " + nipDesc() + " nipples which she promptly bites down upon. Hearing you gasp in slight pain and pleasure, ",True)
       if (lactation > 0):
          outputMainText("a few drops of your milk rewarding her, ",False)
@@ -20471,18 +20472,18 @@ def doGetRaped():
          doImpregnate(enemyBaby())
          doImpregnate(enemyBaby())
       doLust(-math.floor(sen / 2),2,2)
-   if(enemyID == 309):
+   elif (enemyID == 309):
       outputMainText("The succubus grins as you give yourself to her. \"That's right, you know what's best for you~\"\n\nHigh-heels click on either side of you as the she-devil positions herself over you. She zips her red panties right down the center, making them part to expose her engorged large feminine lips. The things look plump and practically made for intense fucking, which only leads you to be even more anxious for her to take you. However, before you can attempt to lunge at her, she squats down and sits upon your " + bellyDesc() + " belly and leans forward to grab your arms up above your head. Pinning you to the floor, her ample bosom engulfs your face, burrowing you inside her cleavage while her hips grind against you, her plush pussy slickening up your " + skinDesc() + ".",True)
-      if (cockTotal > 0) or ((vagTotal > 0) and (clitSize > 20)):
+      if ((cockTotal > 0) or (vagTotal > 0) and (clitSize > 20)):
          outputMainText("\n\nHer tail wraps around ",False)
          if (cockTotal > 0):
             outputMainText("" + oneYour(1) + " " + cockDesc() + " cock" + plural(1) + "",False)
          else:
             outputMainText("" + oneYour(2) + " " + clitDesc() + " clit" + plural(1) + "",False)
          outputMainText(" and pulls it up to her awaiting hole. She teases you for a bit, sliding your tip through her thick folds, letting the supple flesh tempt you until your hips are eager to thrust all the way in. Once you're groaning and begging for her cunt, she lets your erection slip, plunging her rump back onto your shaft and impaling herself upon you.",False)
-         if (CockTotal > 0) and ((cockSize * cockSizeMod) > 48):
+         if ((cockTotal > 0) and (cockSize * cockSizeMod > 48)):
             outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until you can see your own cock pushing back out against her belly, her body easily taking you in and hugging you tightly with her warmth.",False)
-         elif (cockTotal < 1) and (clitSize > 120):
+         elif ((cockTotal < 1) and (clitSize > 120)):
             outputMainText(" Amazingly, her sensual lips stretch wider and wider, taking in your whole length until you can see your own clitoris pushing back out against her belly, her body easily taking you in and hugging you tightly with her warmth.",False)
          outputMainText(" Her insides feel divine, slurping around you and gently squeezing you in soft perfection. She was definitely made for this...\n\nThe succubus' round rump begins to bounce upon you, sucking you in and out, nearly lifting you off each time as her tunnel squeezes strongly around you. Totally in control, she proceeds to further show her dominance over you by dancing her tail beneath your " + buttDesc() + " tush. The spade at the end folds in upon itself, growing narrow just before driving itself in. You wince at first, her tail burrowing deep into your ass, and you relax as more pleasure overwhelms you from behind. The tail fucks your rear 'pussy' while the succubus takes care of your rod. Completely restrained and dominated by her, you're rapidly growing tingly and eventually going numb as you climax.",False)
          if (cockTotal > 0):
@@ -20490,14 +20491,14 @@ def doGetRaped():
             outputMainText(" Your spunk blows within her, filling her insides and drooling back out to your crotch. She doesn't seem to retain much of your cum, though.",False)
       else:
          outputMainText("\n\nShe seems perfectly content with fucking your belly, the stiffening clitoris rumbling against you, while she keeps you planted within her bosom. Completely restrained, you're unable to resist as her tail dances between your legs. The spade at the tip folds in upon itself, growing narrow just before it drives into " + oneYour(2) + " " + vulvaDesc() + " cunt" + plural(2) + " and burrowing deep inside to fill you the best it can. You can feel it unfurl within, anchoring itself within your tunnel and spreading you apart. It pumps in and out, making you twitch and squirm beneath you. The woman keeps you pinned, however, and continues to grind against you as she fucks you with her tail. Completely dominated and at her mercy, you're rapidly growing tingly and eventually going numb as you climax.",False)
-      outputMainText("\n\nAs you orgasm, you can feel yourself being drained by more than just the sensual high. You become weaker, smaller, as though any sense of strength is being drained from you while your craving for sex grows stronger, making you more of a slutty bitch that is only good for being fucked. And all the while the vials around the succubus' belt glow as they fill themselves with what you're drained of, sending the she-devil to her own sort of orgasm.\n\nOh god, yes! Give it to me~!\" She siezes upon you, letting your essence flow throughout her and her vials until she's full. Then she slowly rises, removing her tail and sliding her fingers through her naked and now rather drippy sex before bringing them to her mouth for a taste. \"Mmm... You were definitely full of 'spunk' to have gotten this far. I'm glad I could dine on it~\"",False)
+      outputMainText("\n\nAs you orgasm, you can feel yourself being drained by more than just the sensual high. You become weaker, smaller, as though any sense of strength is being drained from you while your craving for sex grows stronger, making you more of a slutty bitch that is only good for being fucked. And all the while the vials around the succubus' belt glow as they fill themselves with what you're drained of, sending the she-devil to her own sort of orgasm.\n\n\"Oh god, yes! Give it to me~!\" She siezes upon you, letting your essence flow throughout her and her vials until she's full. Then she slowly rises, removing her tail and sliding her fingers through her naked and now rather drippy sex before bringing them to her mouth for a taste. \"Mmm... You were definitely full of 'spunk' to have gotten this far. I'm glad I could dine on it~\"",False)
       stats(-2,-1,2,0)
       submissiveFetish += 0.05
       dominantFetish -= 0.05
       tallness -= 2
       body -= 2
       doLust(-math.floor(sen / 2),2,1,2)
-   outputMainText("\n\nYou pass out in a puddle of mixed sensual fluids...",False);
+   outputMainText("\n\nYou pass out in a puddle of mixed sensual fluids...",False)
    if (inDungeon == True):
       inDungeon = False
    currentState = 1
