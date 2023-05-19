@@ -19960,6 +19960,7 @@ def specialKOLose():
          outputMainText("\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\"",False)
    
 def doRape():
+   #!
    global enemyID, gender, sen, showBalls, cockSize, cockSizeMod, cockTotal, vagTotal, tallness, knot, clitSize, body
    chance = 0
    if (enemyID == 1):
@@ -21584,7 +21585,7 @@ def doStatus(param1:int):
          bodyOil = 0
       else:
          bodyOil -= 5
-   if (masoPot > 0)
+   if (masoPot > 0):
       if (masoPot - param1 <= 0):
          outputMainText("\n\nYou shiver a little as your nerves seem to feel more... normal. The effects of the Masochism Potion have apparently worn off, so you might want to be slightly more cautious once again.",False)
          masoPot = 0
