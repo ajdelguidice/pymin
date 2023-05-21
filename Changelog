@@ -17,6 +17,8 @@ Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
 Rearranged post-increment statements to work in python
 
+advancedAlchemy
+- Added newline character to the final 3 recipy descriptions to be consistant with the rest
 
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
