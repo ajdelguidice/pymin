@@ -138,15 +138,15 @@ sideText = "" #str
 sideFocus = 1 #int
 pregTempInt = 0 #int
 pregTempBool = False #bool
-lustArray = [] #Array
+lustArray = as3.Array() #Array
 #loadFile #FileReference
 #fileLoader #URLLoader
 #bg #Sprite
 rndResult = 0 #int
-rndArray = [] #Array
-textCheckArray = [] #Array
-choiceListArray = [] #Array
-choiceListResult = [] #Array
+rndArray = as3.Array() #Array
+textCheckArray = as3.Array() #Array
+choiceListArray = as3.Array() #Array
+choiceListResult = as3.Array() #Array
 choicePage = 0 #int
 moveItemID = 0 #int
 moveItemStack = 0 #int
@@ -177,7 +177,7 @@ libido = 0 #int
 sensitivity = 0 #int
 hunger = 0 #int
 hrs = 0 #int
-itemGainArray = [] #Array
+itemGainArray = as3.Array() #Array
 human = 0 #int
 horse = 0 #int
 wolf = 0 #int
@@ -285,7 +285,7 @@ nipType = 0 #int
 attireTop = 0 #int
 attireBot = 0 #int
 weapon = 10 #Number
-pregArray = [] #Array
+pregArray = as3.Array() #Array
 pregStatus = 0 #int
 pregnancyTime = 0 #int
 pregRate = 1 #Number
@@ -380,7 +380,7 @@ lilaWetness = 0 #int
 jamieButt = False #bool
 jamieBreasts = False #bool
 jamieHair = False #bool
-travArray = []#Array
+travArray = as3.Array() #Array
 foundSoftlik = False #bool
 foundFirmshaft = False #bool
 foundTieden = False #bool
@@ -463,10 +463,10 @@ skunkChildren = 0 #int
 minotaurChildren = 0 #int
 freakyGirlChildren = 0 #int
 bagPage = 1 #int
-bagArray = [] #Array
-bagStackArray = [] #Array
-stashArray = [] #Array
-stashStackArray = [] #Array
+bagArray = as3.Array() #Array
+bagStackArray = as3.Array() #Array
+stashArray = as3.Array() #Array
+stashStackArray = as3.Array() #Array
 buy = 0
 getCum = 0
 dmg = 0
@@ -1124,8 +1124,8 @@ def choiceListButtons(which:str):
          else:
             tempArray[i] = itemName(stashArray[i])
    else:
-      tempArray = FE.lists.createtosizestr(len(choiceListArray))
-      for i in range(0, len(choiceListArray)):
+      tempArray = FE.lists.createtosizestr(choiceListArray.length())
+      for i in range(0, choiceListArray.length()):
       #for(this.i = 0; this.i < this.choiceListArray.length; ++this.i)
          tempArray[i] = choiceListArray[i]
    if (len(tempArray) > 9):
@@ -1235,7 +1235,7 @@ def choiceListSelect(which:str):
    tempInt = 0
    tempArray = []
    hideAmount()
-   choiceListResult = []
+   choiceListResult = as3.Array()
    if (which == "Bag"):
       tempArray = ["","","","","","","","","","","","","","","","","","","","","","","","","","",""]
       for i in range(0, 26):
@@ -1247,8 +1247,8 @@ def choiceListSelect(which:str):
       #for(this.i = 0; this.i < this.stashArray.length; ++this.i)
          tempArray[i] = stashArray[i]
    else:
-      tempArray = FE.lists.createtosizestr(len(choiceListArray))
-      for i in range(0, len(choiceListArray)):
+      tempArray = FE.lists.createtosizestr(choiceListArray.length())
+      for i in range(0, choiceListArray.length()):
       #for(this.i = 0; this.i < this.choiceListArray.length; ++this.i)
          tempArray[i] = choiceListArray[i]
    if (buttonChoice < 4):
@@ -1258,13 +1258,13 @@ def choiceListSelect(which:str):
    elif (buttonChoice < 12):
       tempInt = buttonChoice - 3
    if ((buttonChoice != 4) and (buttonChoice != 8) and (buttonChoice != 12)):
-      choiceListResult.append(tempArray[tempInt + (choicePage * 9 - 9)])
+      choiceListResult.push(tempArray[tempInt + (choicePage * 9 - 9)])
    else:
-      choiceListResult.append("")
+      choiceListResult.push("")
    if (buttonChoice != 4 and (buttonChoice != 8) and (buttonChoice != 12)):
-      choiceListResult.append(tempInt + (choicePage * 9 - 9))
+      choiceListResult.push(tempInt + (choicePage * 9 - 9))
    else:
-      choiceListResult.append(-1)
+      choiceListResult.push(-1)
    if (buttonChoice == 4):
       if (choicePage > 1):
          choicePage -= 1
@@ -1284,7 +1284,7 @@ def choiceListSelect(which:str):
 def choiceListCheck(*which):
    global choiceListArray, choicePage 
    #if ((choiceListArray.index(which[0]) >= (choicePage * 9 - 9)) and (choiceListArray.index(which[0]) < (choicePage * 9))):
-   if ((FE.lists.indexOf(choiceListArray, which[0]) >= (choicePage * 9 - 9))and (FE.lists.indexOf(choiceListArray, which[0])< (choicePage * 9))):
+   if ((choiceListArray.indexOf(which[0]) >= (choicePage * 9 - 9))and (choiceListArray.indexOf(which[0]) < (choicePage * 9))):
       return True
    return False
 
@@ -1377,9 +1377,9 @@ def checkZero():
       buttMod = 1
    if (bellyMod < 0):
       bellyMod = 0
-   if (len(pregArray) < vagTotal * 5):
-      while (len(pregArray) < vagTotal * 5):
-         pregArray = FE.lists.push(pregArray, [False,0,0,0,0])
+   if (pregArray.length() < vagTotal * 5):
+      while (pregArray.length() < vagTotal * 5):
+         pregArray.push(False,0,0,0,0)
 
 def checkDecimal():
    global cumMod, cockSizeMod, vagSizeMod, vagElastic, changeMod, SexPMod, pregRate, maleFetish, femaleFetish, hermFetish, narcissistFetish, dependentFetish, dominantFetish, submissiveFetish, lboobFetish, sboobFetish, furryFetish, scalyFetish, smoothyFetish, pregnancyFetish, bestialityFetish, milkFetish, sizeFetish, unbirthingFetish, ovipositionFetish, toyFetish, hyperFetish
@@ -1473,6 +1473,7 @@ def doButtonChoices(buttonlist:list):
    ButtonFunctions.DisableSelected(dlist)
 
 def doProcess():
+   #!Array.sort()
    global choicePage, moveItemID, moveItemStack, itemGainArray, human, horse, wolf, cat, cow, hrs
    global doListen
    choicePage = 1
@@ -1494,8 +1495,9 @@ def doProcess():
             moveItemID = 0
             moveItemStack = 0
             showMoveItem(False)
-   if (len(itemGainArray) != 0):
-      itemGainArray.sort()
+   if (itemGainArray.length() != 0):
+      #!
+      itemGainArray.array.sort()
       gainItem(itemGainArray.pop())
    elif ((human != 0) or (horse != 0) or (wolf != 0) or (cat != 0) or (cow != 0)):
       affinityChange()
@@ -1619,8 +1621,7 @@ def doWeight():
 def checkItem(ID:int):
    global bagArray
    tempBool = False
-   #if (bagArray.index(ID) != -1):
-   if (FE.lists.indexOf(bagArray, ID) != -1):
+   if (bagArray.indexOf(ID) != -1):
       tempBool = True
    return tempBool
 
@@ -1653,8 +1654,7 @@ def checkMagicItem():
 def checkStash():
    global stashArray
    tempBool = False
-   #if (stashArray.index(ID) != -1):
-   if (FE.lists.indexOf(stashArray, ID) != -1):
+   if (stashArray.indexOf(ID) != -1):
       tempBool = True
    return tempBool
 
@@ -1675,13 +1675,13 @@ def chooseFrom():
    global rndArray, hour
    tempInt = 0
    rndResult = 0
-   if (len(rndArray) < 1):
-      outputMainText("\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it (" + rndArray[0] + " at " + hour + "hour), or else you'll get the hose.",False)
-      rndArray = []
+   if (rndArray.length() < 1):
+      outputMainText("\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it (" + str(rndArray[0]) + " at " + str(hour) + "hour), or else you'll get the hose.",False)
+      rndArray = as3.Array()
    else:
-      tempInt = round(random.random() * (len(rndArray) - 1))
+      tempInt = round(random.random() * (rndArray.length() - 1))
       rndResult = rndArray[tempInt]
-      rndArray = []
+      rndArray = as3.Array()
    return rndResult
 
 def stats(stre:int, menta:int, libi:int, sens:int):
@@ -2133,7 +2133,7 @@ def newGameGo():
          attireTop = 1
          attireBot = 2
          weapon = 10
-         pregArray = []
+         pregArray = as3.Array()
          pregStatus = 0
          pregnancyTime = 0
          pregRate = 1
@@ -2307,11 +2307,11 @@ def newGameGo():
          wolfPupChildren = 0
          calfChildren = 0
          bagPage = 1
-         bagArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-         bagStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+         bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
          bagSlotAdd(27)
-         stashArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-         stashStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+         stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
          stashSlotAdd(27)
          doRace()
       else:
@@ -3330,7 +3330,7 @@ def doSave(slot:int):
          string = string + "<slot" + str(i) + ">" + str(stashStackArray[i]) + "</slot" + str(i) + ">"
       string = string + "</stashStack><preg>"
       i = 0
-      while i < len(pregArray):
+      while i < pregArray.length():
          string = string + "<i" + str(i) + ">" + str(pregArray[i]) + "</i" + str(i) + ">"
          i += 1
       string = string + "</preg></data>"
@@ -3652,10 +3652,10 @@ def doLoad(slot:int):
             stash = root.find('stash')
             stashStack = root.find('stashStack')
             preg = root.find('preg')
-            bagArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            bagStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            stashArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            stashStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             for i in range(0, 26):
                tempstr = "slot" + str(i)
                bagArray[i] = int(bag.find(tempstr).text)
@@ -3663,10 +3663,10 @@ def doLoad(slot:int):
                stashArray[i] = int(stash.find(tempstr).text)
                stashStackArray[i] = int(stashStack.find(tempstr).text)
                i += 1
-            pregArray = []
+            pregArray = as3.Array()
             i = 0
             while (i < len(list(preg))):
-               pregArray = FE.lists.push(pregArray, ["","","","",""])
+               pregArray.push("","","","","")
                pregArray[i] = FE.convert.strtobool(preg.find(str("i" + str(i))).text)
                pregArray[i+1] = int(preg.find(str("i" + str(i+1))).text)
                pregArray[i+2] = int(preg.find(str("i" + str(i+2))).text)
@@ -3678,10 +3678,10 @@ def doLoad(slot:int):
             day = strack.find('day').text
             hour = strack.find('hour').text
             inDungeon = strack.find('inDungeon').text
-            bagArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            bagStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            stashArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            stashStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
          UpDown.HideAll()
          StatsPane.ShowAll()
          #this.statPane.visible = true
@@ -3872,7 +3872,7 @@ def doGender():
       elif (gender == 2):
          vagSize = 12
          vulvaSize = 5
-         pregArray = [False,0,0,0,0]
+         pregArray = as3.Array(False,0,0,0,0)
          vagTotal = 1
          vagMoist = 1
          clitSize = 2
@@ -3883,7 +3883,7 @@ def doGender():
          balls = 2
          cockTotal = 1
          cockMoist = 1
-         pregArray = [False,0,0,0,0]
+         pregArray = as3.Array(False,0,0,0,0)
          vagTotal = 1
          vagMoist = 1
          vagSize = 8
@@ -3958,7 +3958,7 @@ def bodyType():
             lizardCocks = 0
             vagSize = 8
             vulvaSize = 3
-            pregArray = [False,0,0,0,0]
+            pregArray = as3.Array(False,0,0,0,0)
             gender = 2
             vagTotal = 1
             vagMoist = 1
@@ -4348,7 +4348,7 @@ def useItem(ID:int):
 def itemAdd(ID:int):
    #Should work
    global itemGainArray
-   itemGainArray.append(ID)
+   itemGainArray.push(ID)
 
 def gainItem(ID:int):
    #Should work
@@ -4362,7 +4362,7 @@ def gainItem(ID:int):
          passiveItemAdd(ID)
          tempNum += 1
          #while (bagStackArray[openSlot] < itemStackMax(ID)) and (itemGainArray.index(ID) != -1):
-         while (bagStackArray[openSlot] < itemStackMax(ID)) and (FE.lists.indexOf(itemGainArray, ID) != -1):
+         while (bagStackArray[openSlot] < itemStackMax(ID)) and (itemGainArray.indexOf(ID) != -1):
             itemGainArray.pop()
             bagStackArray[openSlot] += 1
             tempNum += 1
@@ -4370,7 +4370,7 @@ def gainItem(ID:int):
          tempNum += 1
          bagStackArray[openSlot] += 1
          #while (bagStackArray[openSlot] < itemStackMax(ID)) and (itemGainArray.index(ID) != -1):
-         while (bagStackArray[openSlot] < itemStackMax(ID)) and (FE.lists.indexOf(itemGainArray, ID) != -1):
+         while (bagStackArray[openSlot] < itemStackMax(ID)) and (itemGainArray.indexOf(ID) != -1):
             itemGainArray.pop()
             bagStackArray[openSlot] += 1
             tempNum += 1
@@ -4399,10 +4399,10 @@ def bagSlotAdd(amount:int):
    #Should work
    for i in range(0, int(amount)):
    #for (this.i = 1; this.i <= amount; ++this.i)
-      if (len(bagArray) > 27):
-         bagArray.append(0)
-      if (len(bagStackArray) > 27):
-         bagStackArray.append(0)
+      if (bagArray.length() > 27):
+         bagArray.push(0)
+      if (bagStackArray.length() > 27):
+         bagStackArray.push(0)
 
 def bagSlotRemove(param1:int):
    #Should work
@@ -4437,7 +4437,7 @@ def doDiscard(ID:int):
       global doListen
       choiceListSelect("Bag")
       if (buttonChoice == 12):
-         while (FE.lists.indexOf(itemGainArray, tempID) != -1):
+         while (itemGainArray.indexOf(tempID) != -1):
             itemGainArray.pop()
          doProcess()
       elif ((buttonChoice == 4) or (buttonChoice == 8)):
@@ -6231,21 +6231,21 @@ def doItemUse(ID:int):
             whichCock = ""
             getCum = 0
             if (buttonChoice == 5):
-               rndArray = []
+               rndArray = as3.Array()
                if (humanCocks > 0):
-                  rndArray.append(1)
+                  rndArray.push(1)
                if (horseCocks > 0):
-                  rndArray.append(2)
+                  rndArray.push(2)
                if (wolfCocks > 0):
-                  rndArray.append(3)
+                  rndArray.push(3)
                if (catCocks > 0):
-                  rndArray.append(4)
+                  rndArray.push(4)
                if (lizardCocks > 0):
-                  rndArray.append(6)
+                  rndArray.push(6)
                if (rabbitCocks > 0):
-                  rndArray.append(7)
+                  rndArray.push(7)
                if (bugCocks > 0):
-                  rndArray.append(12)
+                  rndArray.push(12)
                tempInt = chooseFrom()
                whichCock = "WHICH COCK ERROR"
                if (tempInt == 1):
@@ -6468,32 +6468,32 @@ def doItemUse(ID:int):
          outputMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.",True)
          doEnd()
    if (ID == 110):
-      choiceListArray = []
+      choiceListArray = as3.Array()
       if (breastSize > 0):
-         choiceListArray.append("Breasts")
+         choiceListArray.push("Breasts")
       if (nippleSize > 1):
-         choiceListArray.append("Nipples")
+         choiceListArray.push("Nipples")
       if (butt > 1):
-         choiceListArray.append("Butt")
+         choiceListArray.push("Butt")
       if (hips > 1):
-         choiceListArray.append("Hips")
+         choiceListArray.push("Hips")
       if (vagTotal > 0):
-         choiceListArray.append("Pussy")
+         choiceListArray.push("Pussy")
          if (vulvaSize > 0):
-            choiceListArray.append("Vulva")
+            choiceListArray.push("Vulva")
          if (clitSize > 1):
-            choiceListArray.append("Clit")
+            choiceListArray.push("Clit")
       if (cockTotal > 0):
-         choiceListArray.append("Cock")
+         choiceListArray.push("Cock")
          if ((showBalls == True) and (ballSize > 1)):
-            choiceListArray.append("Balls")
+            choiceListArray.push("Balls")
       if (udders == True):
          if (udderSize > 1):
-            choiceListArray.append("Udder")
+            choiceListArray.push("Udder")
          if (teatSize > 2):
-            choiceListArray.append("Teats")
+            choiceListArray.push("Teats")
       if (bellyMod > 0):
-         choiceListArray.append("Belly")
+         choiceListArray.push("Belly")
       choiceListButtons("Reduction")
       outputMainText("Select which body part you would like to halve in size. If you don't have that part, this elixer will do nothing but will still be consumed.",True)
       def doListen():
@@ -7039,18 +7039,18 @@ def doItemUse(ID:int):
          doeHP(-dmg)
          if (percent() <= 25):
             outputMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ",False)
-            rndArray = ["Desi Sand"]
+            rndArray = as3.Array("Desi Sand")
             if ((cockSizeMod > 0.5) and (cockTotal > 0)):
-               rndArray.append(1)
+               rndArray.push(1)
             if ((vagSizeMod > 0.5) and (vagTotal > 0)):
-               rndArray.append(2)
+               rndArray.push(2)
             if ((cumMod > 0.5) and (showBalls == True) and (cockTotal > 0)):
-               rndArray.append(3)
+               rndArray.push(3)
             if (milkMod > 0):
-               rndArray.append(4)
+               rndArray.push(4)
             if (pregnancyTime > 200):
-               rndArray.append(5)
-            rndArray.append(6)
+               rndArray.push(5)
+            rndArray.push(6)
             chooseFrom()
             if (rndResult == 1):
                outputMainText("The stuff rushes across your " + cockDesc() + " cock" + plural(1) + ", seeping in deep and causing some permanent shrinkage.",False)
@@ -7403,7 +7403,7 @@ def doItemUse(ID:int):
       if (pregCheck(0) == True):
          outputMainText("Drinking this potion, you can feel your " + bellyDesc() + " belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the " + skinDesc() + " creak, growing taut!",True)
          i = 0
-         while (i < len(pregArray)):
+         while (i < pregArray.length()):
             if (pregArray[i] == True):
                pregArray[i + 3] += 50
             i += 5
@@ -7447,7 +7447,7 @@ def doItemUse(ID:int):
       if (pregCheck(0) == True):
          outputMainText("Drinking this potion, you can feel your " + bellyDesc() + " belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the " + skinDesc() + " creak, growing taut, to the point where you fear it will tear!",True)
          i = 0
-         while (i < len(pregArray)):
+         while (i < pregArray.length()):
             if (pregArray[i] == True):
                pregArray[i + 3] += 120
             i += 5
@@ -7490,7 +7490,7 @@ def doItemUse(ID:int):
          bugCocks = 0
          vagBellyChange(1,1)
          vagTotal = 1
-         pregArray = [False,0,0,0,0]
+         pregArray = as3.Array(False,0,0,0,0)
          vagSize = 1
          vulvaSize = 1
          clitSize = 1
@@ -7505,9 +7505,9 @@ def doItemUse(ID:int):
          vagSize = 0
          vagTotal = 0
          i = 0
-         while (i < len(pregArray)):
+         while (i < pregArray.length()):
             if (pregArray[i] == False):
-               pregArray = FE.lists.splice(pregArray, i,5)
+               pregArray.splice(i,5)
                i = -5
             i += 5
          vulvaSize = 0
@@ -7567,11 +7567,11 @@ def doItemUse(ID:int):
          vagTotal = cockTotal
          i = 1
          while (i <= vagTotal):
-            if (len(pregArray) / 5 < 1):
-               pregArray = [False,0,0,0,0]
+            if (pregArray.length() / 5 < 1):
+               pregArray = as3.Array(False,0,0,0,0)
                i += 1
-            elif (len(pregArray) / 5 < vagTotal):
-               pregArray = FE.lists.push(pregArray, [False,0,0,0,0])
+            elif (pregArray.length() / 5 < vagTotal):
+               pregArray.push(False,0,0,0,0)
                i += 1
             else:
                i += 1
@@ -7599,9 +7599,9 @@ def doItemUse(ID:int):
          vagSize = 0
          vagTotal = 0
          i = 0
-         while (i < len(pregArray)):
+         while (i < pregArray.length()):
             if (pregArray[i] == False):
-               pregArray = FE.lists.splice(pregArray, i,5)
+               pregArray.splice(i,5)
                i = -5
             i += 5
          vulvaSize = 0
@@ -7789,32 +7789,32 @@ def doItemUse(ID:int):
          pheromone += 30
       doEnd()
    if (ID == 533):
-      choiceListArray = []
+      choiceListArray = as3.Array()
       if (breastSize > 0):
-         choiceListArray.append("Breasts")
+         choiceListArray.push("Breasts")
       if (nippleSize > 1):
-         choiceListArray.append("Nipples")
+         choiceListArray.push("Nipples")
       if (butt > 1):
-         choiceListArray.append("Butt")
+         choiceListArray.push("Butt")
       if (hips > 1):
-         choiceListArray.append("Hips")
+         choiceListArray.push("Hips")
       if (vagTotal > 0):
-         choiceListArray.append("Pussy")
+         choiceListArray.push("Pussy")
          if (vulvaSize > 0):
-            choiceListArray.append("Vulva")
+            choiceListArray.push("Vulva")
          if (clitSize > 1):
-            choiceListArray.append("Clit")
+            choiceListArray.push("Clit")
       if (cockTotal > 0):
-         choiceListArray.append("Cock")
+         choiceListArray.push("Cock")
          if ((showBalls == True) and (ballSize > 1)):
-            choiceListArray.append("Balls")
+            choiceListArray.push("Balls")
       if (udders == True):
          if (udderSize > 1):
-            choiceListArray.append("Udder")
+            choiceListArray.push("Udder")
          if (teatSize > 2):
-            choiceListArray.append("Teats")
+            choiceListArray.push("Teats")
       if (bellyMod > 0):
-         choiceListArray.append("Belly")
+         choiceListArray.push("Belly")
       choiceListButtons("Reduc Reduc")
       outputMainText("Select which body part you would like to shrink a bit. If you don't have that part, this elixir will do nothing but will still be consumed.",True)
       def doListen():
@@ -8106,10 +8106,10 @@ def stashSlotAdd(amount:int):
    global stashArray, stashStackArray
    for i in range(1, int(amount)):
    #for(this.i = 1; this.i <= amount; ++this.i)
-      if (len(stashArray) < 27):
-         stashArray.append(0)
-      if (len(stashStackArray) < 27):
-         stashStackArray.append(0)
+      if (stashArray.length() < 27):
+         stashArray.push(0)
+      if (stashStackArray.length() < 27):
+         stashStackArray.push(0)
 
 def stashSlotRemove(param1:int):
    global stashArray, stashStackArray
@@ -10855,21 +10855,21 @@ def doCockMasturbate():
    _loc2_ = ""
    _loc3_ = 0
    _loc4_ = 0
-   rndArray = []
+   rndArray = as3.Array()
    if (humanCocks > 0):
-      rndArray.append(1)
+      rndArray.push(1)
    if (horseCocks > 0):
-      rndArray.append(2)
+      rndArray.push(2)
    if (wolfCocks > 0):
-      rndArray.append(3)
+      rndArray.push(3)
    if (catCocks > 0):
-      rndArray.append(4)
+      rndArray.push(4)
    if (lizardCocks > 0):
-      rndArray.append(6)
+      rndArray.push(6)
    if (rabbitCocks > 0):
-      rndArray.append(7)
+      rndArray.push(7)
    if (bugCocks > 0):
-      rndArray.append(12)
+      rndArray.push(12)
    _loc1_ = chooseFrom()
    _loc2_ = "WHICH COCK ERROR"
    if (_loc1_ == 1):
@@ -11155,17 +11155,17 @@ def doBoobMasturbate():
    global lustArray, breastSize, lactation, ment, lib, currentZone, nippleSize, boobTotal, sen, lust, dominant, nipplePlay, nipType, milkHPMod, hrs
    _loc1_ = 0
    _loc2_ = 0
-   lustArray = [4]
+   lustArray = as3.Array(4)
    if (breastSize > 16):
-      lustArray.append(23)
+      lustArray.push(23)
    elif (breastSize < 5):
-      lustArray.append(24)
+      lustArray.push(24)
    i = 0
    while (i == 0):
       _loc1_ = math.floor(random.random() * (1 + 6 - 1)) + 1
       if (_loc1_ == 1):
          if (lactation > 0):
-            lustArray.append(53)
+            lustArray.push(53)
          if (ment >= lib - 10):
             outputMainText("You sneak off to the private place where you sleep in " + regionName(currentZone) + ". Carefully, so as to not let anybody hear, you pull " + pullUD(1) + " your " + clothesTop() + " and gently knead your " + boobDesc() + " breasts.\n\nHunching over at the side of the bed, you massage your " + nipDesc() + "nipples, tugging and squeezing them each with",True)
          if ((ment < lib - 10) and (ment >= lib - 25)):
@@ -11258,7 +11258,7 @@ def doBoobMasturbate():
          nipplePlay += 8
          i += 1
       if ((_loc1_ == 2) and (breastSize * 2 + nippleSize * 5 > tallness / 5) and (lactation > 0)):
-         lustArray.append(53)
+         lustArray.push(53)
          outputMainText("Relaxing in your room, you sneak your breasts out of your " + clothesTop() + ", palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your " + clothesBottom() + ". It looks so delicious that you can't help but...\n\nYou reach under a boob and hoist it up, craning your neck down to meet ",True)
          if (nipType == 0):
             outputMainText("the " + nipDesc() + " nipple",False)
@@ -11303,13 +11303,13 @@ def doUdderMasturbate():
    global udderLactation, lustArray, ment, lib, currentZone, teatSize, sen, lust, hrs, dominant, udderPlay, milkHPMod, _str_, HPMod
    _loc1_ = 0
    _loc2_ = 0
-   lustArray = [4]
+   lustArray = as3.Array(4)
    i = 0
    while (i == 0):
       _loc1_ = math.floor(random.random() * (1 + 2 - 1)) + 1
       if (_loc1_ == 1):
          if (udderLactation > 0):
-            lustArray.append(53)
+            lustArray.push(53)
          if (ment >= lib - 10):
             outputMainText("You sneak off to the private place where you sleep in " + regionName(currentZone) + " with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull " + pullUD(1) + " your " + clothesTop() + " and gently knead your " + udderDesc() + " udder.\n\nHunching over at the side of the bed, you massage your " + teatDesc() + " teats, tugging and squeezing them each with",True)
          if ((ment < lib - 10) and (ment >= lib - 25)):
@@ -11396,7 +11396,7 @@ def doUdderMasturbate():
          udderPlay += 8
          i += 1
       if ((_loc1_ == 2) and (udderSize + teatSize * 5 > tallness / 2) and (udderLactation > 0)):
-         lustArray.append(53)
+         lustArray.push(53)
          outputMainText("Relaxing in your room, you pull your udder out of your " + clothesBottom() + ", lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your " + legDesc(2) + " and the floor. It looks so delicious that you can't help but...\n\nYou hug around the udder and hoist it up, craning your neck down to meet a " + teatDesc() + " teat",True)
          outputMainText(" with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight.",False)
          _loc2_ = milkAmount(2)
@@ -11450,32 +11450,32 @@ def simpleAlchemy():
    #!choiceList but Should work
    global choiceListArray, knowLustDraft, knowRejuvPot, knowExpPreg, knowBallSwell, knowMaleEnhance
    global doListen
-   choiceListArray = []
+   choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
-   choiceListArray.append("Blondie")
+   choiceListArray.push("Blondie")
    if (choiceListCheck("Blondie") == True):
       outputMainText("\n\nBlondie - Dye that will turn your hair blonde.\nRequires 7 Grain.",False)
-   choiceListArray.append("Reduc Reduc")
+   choiceListArray.push("Reduc Reduc")
    if (choiceListCheck("Reduc Reduc") == True):
       outputMainText("\n\nReduced Reduction - For when you don't want the more powerful shrinkage from a Reduction, this Reduced version shrinks things at a static rate.\nRequires 2 Reductions.",False)
    if (knowLustDraft == True):
-      choiceListArray.append("Lust Draft")
+      choiceListArray.push("Lust Draft")
       if (choiceListCheck("Lust Draft") == True):
          outputMainText("\n\nLust Draft - When you're having difficulty performing, a quick sip of this will get you up and ready in no time.\nRequires 1 Grain, plus either 1 Sweet Sap, 1 Cum Vial, or moderately moist genitals at the time of creation.",False)
    if (knowRejuvPot == True):
-      choiceListArray.append("Rejuv Pot")
+      choiceListArray.push("Rejuv Pot")
       if (choiceListCheck("Rejuv Pot") == True):
          outputMainText("\n\nRejuvenating Potion - Both heals and soothes the body.\nRequires 1 Poultice and 1 Wolf Fur.",False)
    if (knowExpPreg == True):
-      choiceListArray.append("Exp Preg")
+      choiceListArray.push("Exp Preg")
       if (choiceListCheck("Exp Preg") == True):
          outputMainText("\n\nExpress Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these to get a jump on the gestation period!\nRequires 1 Sweet Sap and 1 Fresh Egg.",False)
    if (knowBallSwell == True):
-      choiceListArray.append("Ball Swell")
+      choiceListArray.push("Ball Swell")
       if (choiceListCheck("Ball Swell") == True):
-         outputMainText("\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\n\nRequires 1 Blo Berry.",False)
+         outputMainText("\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\nRequires 1 Blo Berry.",False)
    if (knowMaleEnhance == True):
-      choiceListArray.append("Male Enhance")
+      choiceListArray.push("Male Enhance")
       if (choiceListCheck("Male Enhance") == True):
          outputMainText("\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry.",False)
    choiceListButtons("Simple")
@@ -11500,359 +11500,369 @@ def simpleAlchemy():
          makeAlchemy(507,1)
       elif (choiceListResult[0] == "Male Enhance"):
          makeAlchemy(534,1)
-      elif (buttonChoice == 12):
+      if (buttonChoice == 12):
          doAlchemy()
 
 def complexAlchemy():
-#!
-   global choiceListArray, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowBabyFree, knowPotPot, knowGenSwap, knowMasoPot, knowMilkSuppress, buttonChoice, choicePage, choiceListResult
-   choiceListArray = []
+   #Should work
+   global choiceListArray, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowBabyFree, knowPotPot, knowGenSwap, knowMasoPot, knowMilkSuppress, doListen
+   choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
    choiceListArray.push("Black Dye")
-   if (choiceListCheck("Black Dye") == True):
+   if (choiceListCheck("Black Dye")):
       outputMainText("\n\nBlack Dye - Dye that will turn your hair black.\nRequires 5 Wolf Fur.",False)
    if (knowSLustDraft == True):
       choiceListArray.push("S Lust Draft")
-      if (choiceListCheck("S Lust Draft") == True):
-         outputMainText("\n\nSuperior Lust Draft - When you're having difficulty performing, a quick sip of this will get you up so fast that you may want to avoid pointing towards any nearby eyes.\nRequires 3 Grain plus either 2 Bol Juice, 1 Cum Bottle, or really moist genitals at the time of creation.",False)
+      if (choiceListCheck("S Lust Draft")):
+         this.outputMainText("\n\nSuperior Lust Draft - When you're having difficulty performing, a quick sip of this will get you up so fast that you may want to avoid pointing towards any nearby eyes.\nRequires 3 Grain plus either 2 Bol Juice, 1 Cum Bottle, or really moist genitals at the time of creation.",False)
    if (knowSRejuvPot == True):
       choiceListArray.push("S Rejuv Pot")
-      if (choiceListCheck("S Rejuv Pot") == True):
-         outputMainText("\n\nSuperior Rejuvenating Potion - Both greatly heals and soothes the body.\nRequires 1 Lust Draft (to be reversed) and either 1 Milk Jug or 3 Milk Bottle .",False)
+      if (choiceListCheck("S Rejuv Pot")):
+         outputMainText("\n\nSuperior Rejuvenating Potion - Both greatly heals and soothes the body.\nRequires 1 Lust Draft (to be reversed) and either 1 Milk Jug or 3 Milk Bottle.",False)
    if (knowSExpPreg == True):
       choiceListArray.push("S Exp Preg")
-      if (choiceListCheck("S Exp Preg") == True):
+      if (choiceListCheck("S Exp Preg")):
          outputMainText("\n\nSuperior Express Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these and that baby will be wanting out in no time!\nRequires 1 Wet Cloth and 3 Fresh Eggs.",False)
    if (knowSBallSwell == True):
       choiceListArray.push("S Ball Swell")
-      if (choiceListCheck("S Ball Swell") == True):
+      if (choiceListCheck("S Ball Swell")):
          outputMainText("\n\nSuperior Ball Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production so much that you may wanna be wary of explosions.\nRequires 1 Blo Berry and 1 Bul Berry.",False)
    if (knowBabyFree == True):
       choiceListArray.push("Baby Free")
-      if (choiceListCheck("Baby Free") == True):
+      if (choiceListCheck("Baby Free")):
          outputMainText("\n\nBaby Free Potion - Though this potion may lack babies as an ingredient, it also reduces the chances of any woman who takes it from getting pregnant for a period of time.\nRequires 1 Reduction and 1 Wolf Fur.",False)
    if (knowPotPot == True):
       choiceListArray.push("Pot Pot")
-      if (choiceListCheck("Pot Pot") == True):
+      if (choiceListCheck("Pot Pot")):
          outputMainText("\n\nPotency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will make your nuts more effective at their job!\nRequires 3 Ball Swell and 1 Cum Vial.",False)
    if (knowGenSwap == True):
       choiceListArray.push("Gen Swap")
-      if (choiceListCheck("Gen Swap") == True):
+      if (choiceListCheck("Gen Swap")):
          outputMainText("\n\nGender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. Although you may lose your proportions, you'll know what it feels to be like the opposite gender in no time. Unless you're both, in which case you'd just know how a rather undeveloped version of both genders feels, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Neuter and 1 Reduction.",False)
-   if (knowMasoPot == True):
+   if(knowMasoPot == True):
       choiceListArray.push("Maso Pot")
-      if (choiceListCheck("Maso Pot") == True):
+      if (choiceListCheck("Maso Pot")):
          outputMainText("\n\nMasochism Potion - This little drink messes up your nervous system for a while, making you perceive some damage as pleasure instead. A batch of Masochism Potion results in 2 potions.\nRequires 2 Wolf Fur and 1 Lust Draft.",False)
    if (knowMilkSuppress == True):
       choiceListArray.push("Milk Suppress")
-      if (choiceListCheck("Milk Suppress") == True):
+      if (choiceListCheck("Milk Suppress")):
          outputMainText("\n\nMilk Suppressant - A little embarassed by your inopportune leaking? This drug will help prevent any milk from flowing out, though it does not stop the production of milk.\nRequires 1 Milk C Pois and 1 Reduc Reduc.",False)
    choiceListButtons("Complex")
-   #this.doListen = function():void
-   choiceListSelect("Complex")
-   if ((buttonChoice == 4) or (buttonChoice == 8)):
-      complexAlchemy()
-   else:
-      choicePage = 1
-   if (choiceListResult[0] == "Black Dye"):
-      MakeAlchemy(515,1)
-   elif (choiceListResult[0] == "S Lust Draft"):
-      MakeAlchemy(508,1)
-   elif (choiceListResult[0] == "S Rejuv Pot"):
-      MakeAlchemy(509,1)
-   elif (choiceListResult[0] == "S Exp Preg"):
-      MakeAlchemy(511,1)
-   elif (choiceListResult[0] == "S Ball Swell"):
-      MakeAlchemy(512,1)
-   elif (choiceListResult[0] == "Baby Free"):
-      MakeAlchemy(516,1)
-   elif (choiceListResult[0] == "Pot Pot"):
-      MakeAlchemy(517,1)
-   elif (choiceListResult[0] == "Gen Swap"):
-      MakeAlchemy(513,1)
-   elif (choiceListResult[0] == "Maso Pot"):
-      MakeAlchemy(514,1)
-   elif (choiceListResult[0] == "Milk Suppress"):
-      MakeAlchemy(535,1)
-   if (buttonChoice == 12):
-      doAlchemy()
+   def doListen():
+      global buttonChoice, choicePage, choiceListResult
+      choiceListSelect("Complex")
+      if ((buttonChoice == 4) or (buttonChoice == 8)):
+         complexAlchemy()
+      else:
+         choicePage = 1
+      if (choiceListResult[0] == "Black Dye"):
+         makeAlchemy(515,1)
+      elif (choiceListResult[0] == "S Lust Draft"):
+         makeAlchemy(508,1)
+      elif (choiceListResult[0] == "S Rejuv Pot"):
+         makeAlchemy(509,1)
+      elif (choiceListResult[0] == "S Exp Preg"):
+         makeAlchemy(511,1)
+      elif (choiceListResult[0] == "S Ball Swell"):
+         makeAlchemy(512,1)
+      elif (choiceListResult[0] == "Baby Free"):
+         makeAlchemy(516,1)
+      elif (choiceListResult[0] == "Pot Pot"):
+         makeAlchemy(517,1)
+      elif (choiceListResult[0] == "Gen Swap"):
+         makeAlchemy(513,1)
+      elif (choiceListResult[0] == "Maso Pot"):
+         makeAlchemy(514,1)
+      elif (choiceListResult[0] == "Milk Suppress"):
+         makeAlchemy(535,1)
+      if (buttonChoice == 12):
+         doAlchemy()
 
 def advancedAlchemy():
-#!
-   global choiceListArray, knowSBabyFree, knowSPotPot, knowSGenSwap, knowSMasoPot, knowPussJuice, knowPheromone, knowBazoomba, buttonChoice, choicePage, choiceListResult
-   choiceListArray = []
+   #Should work
+   global choiceListArray, knowSBabyFree, knowSPotPot, knowGenSwap, knowSMasoPot, knowPussJuice, knowPheromone, knowBazoomba, doListen
+   choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
    choiceListArray.push("Red Dye")
-   if (choiceListCheck("Red Dye")):
+   if (choiceListCheck("Red Dye"))
       outputMainText("\n\nRed Dye - Dye that will turn your hair red.\nRequires 1 Pink Ink and 3 Red Mush.",False)
    if (knowSBabyFree == True):
       choiceListArray.push("S Baby Free")
-      if (choiceListCheck("S Baby Free") == True):
+      if (choiceListCheck("S Baby Free")):
          outputMainText("\n\nSuperior Baby Free Potion - This potion really has no babies in it I swear! Seriously. Please believe me! If you drink it you'll be nearly baby free as well for over a week!\nRequires 1 Neuter and 1 Puss Fruit.",False)
    if (knowSPotPot == True):
       choiceListArray.push("S Pot Pot")
-      if (choiceListCheck("S Pot Pot") == True):
+      if (choiceListCheck("S Pot Pot")):
          outputMainText("\n\nSuperior Potency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will definitely kick them... into gear!\nRequires 3 S Ball Swell and 1 Cum Bottle.",False)
    if (knowSGenSwap == True):
       choiceListArray.push("S Gen Swap")
-      if (choiceListCheck("S Gen Swap") == True):
+      if (choiceListCheck("S Gen Swap")):
          outputMainText("\n\nSuperior Gender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. And the best part is your endowments will be of equal proportion! Unless you're both, in which case your proportions will swap, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Puss Fruit, 1 Co-Sn Ven, 1 Milk C Pois, and 1 Cock Carv.",False)
    if (knowSMasoPot == True):
       choiceListArray.push("S Maso Pot")
-      if (choiceListCheck("S Maso Pot") == True):
+      if (choiceListCheck("S Maso Pot")):
          outputMainText("\n\nSuperior Masochism Potion - This little drink messes up your nervous system for a while, making you perceive all damage as pleasure instead.\nRequires 1 Kinky Carr, 1 Rejuv Pot, and 1 Trinket.",False)
    if (knowPussJuice == True):
       choiceListArray.push("Puss Juice")
-      if (choiceListCheck("Puss Juice") == True):
+      if (choiceListCheck("Puss Juice")):
          outputMainText("\n\nConcentrated Pussy Fruit Juice - A recipe learned from the felin mistress in Siz'Calit, this mixture increases the potency of the Pussy Fruit and guarantees some interesting reactions.\nRequires 6 Puss Fruit and 1 Sweet Sap.",False)
    if (knowPheromone == True):
       choiceListArray.push("Pheromone")
-      if(choiceListCheck("Pheromone") == True):
+      if (choiceListCheck("Pheromone")):
          outputMainText("\n\nStrong Pheromone - A recipe learned from an elderly lupan fisherman at the lake outside of Tieden, this concoction supposedly attracts fish quite well and makes great bait. However, due to some missing notes, your results may be a bit more... potent than advertised.\nRequires 1 Charmed Egg, 1 Red Mush, and 1 Trinket.",False)
    if (knowBazoomba == True):
       choiceListArray.push("Bazoomba!")
-      if (choiceListCheck("Bazoomba!") == True):
+      if (choiceListCheck("Bazoomba!")):
          outputMainText("\n\nBazoomba! - A secret and powerful recipe that creates more of one of the best things in the world...\nRequires 1 Strange Egg, 1 Milk Jug, 2 Cock Carv, and 3 Red Mush.",False)
    choiceListButtons("Advanced")
-   #this.doListen = function():void
-   choiceListSelect("Advanced")
-   if ((buttonChoice == 4) or (buttonChoice == 8)):
-      advancedAlchemy()
-   else:
-      choicePage = 1
-   if (choiceListResult[0] == "Red Dye"):
-      MakeAlchemy(520,1)
-   elif (choiceListResult[0] == "S Baby free"):
-      MakeAlchemy(521,1)
-   elif (choiceListResult[0] == "S Pot Pot"):
-      MakeAlchemy(522,1)
-   elif (choiceListResult[0] == "S Gen Swap"):
-      MakeAlchemy(518,1)
-   elif (choiceListResult[0] == "S Maso Pot"):
-      MakeAlchemy(519,1)
-   elif (choiceListResult[0] == "Puss Juice"):
-      MakeAlchemy(221,1)
-   elif (choiceListResult[0] == "Pheromone"):
-      MakeAlchemy(532,1)
-   elif (choiceListResult[0] == "Bazoomba!"):
-      MakeAlchemy(536,1)
-   if (buttonChoice == 12):
-      doAlchemy()
+   def doListen():
+      global buttonChoice, choicePage, choiceListResult
+      choiceListSelect("Advanced")
+      if ((buttonChoice == 4) or (buttonChoice == 8)):
+         advancedAlchemy()
+      else:
+         choicePage = 1
+      if (choiceListResult[0] == "Red Dye"):
+         makeAlchemy(520,1)
+      elif (choiceListResult[0] == "S Baby free"):
+         makeAlchemy(521,1)
+      elif (choiceListResult[0] == "S Pot Pot"):
+         makeAlchemy(522,1)
+      elif (choiceListResult[0] == "S Gen Swap"):
+         makeAlchemy(518,1)
+      elif (choiceListResult[0] == "S Maso Pot"):
+         makeAlchemy(519,1)
+      elif (choiceListResult[0] == "Puss Juice"):
+         makeAlchemy(221,1)
+      elif (choiceListResult[0] == "Pheromone"):
+         makeAlchemy(532,1)
+      elif (choiceListResult[0] == "Bazoomba!"):
+         makeAlchemy(536,1)
+      if (buttonChoice == 12):
+         doAlchemy()
 
 def makeAlchemy(ID:int, level:int):
-   global buttonChoice, alchemistLevel
-   outputMainText("You have chosen to make a " + itemName(ID) + ".\n\nAre you sure?",True)
+   #Should work
+   global tempID, tempInt, fp1, doListen
+   tempID = ID
+   tempInt = level
    buttonConfirm()
-   #this.doListen = function():void
-   tempBool = False
-   if (buttonChoice == 6):
+   outputMainText("You have chosen to make a " + itemName(ID) + ".\n\nAre you sure?",True)
+   def doListen():
+      global buttonChoice, tempID, tempInt, lust, alchemistLevel, doListen
+      ID = tempID
+      level = tempInt
       tempBool = False
-      if ((ID == 220) and (countItem(209) >= 7)):
-         tempBool = True
-      if ((ID == 221) and (countItem(210) >= 6) and (checkItem(114) == True)):
-         tempBool = True
-      if ((ID == 503) and (checkItem(209) == True) and ((checkItem(114) == True) or (checkItem(523) == True) or ((moistCalc(2) * 10 * lust) > 3000) or ((moistCalc(1) * 10 * lust) > 3000))):
-         tempBool = True
-      if ((ID == 504) and (checkItem(115) == True) and (checkItem(203) == True)):
-         tempBool = True
-      if ((ID == 506) and (checkItem(114) == True) and (checkItem(219) == True)):
-         tempBool = True
-      if ((ID == 507) and (checkItem(208) == True)):
-         tempBool = True
-      if ((ID == 508) and (countItem(209) >= 3) and ((countItem(112) >= 2) or (checkItem(524) == True) or ((moistCalc(2) * 10 * lust) > 6000) or ((moistCalc(1) * 10 * lust) > 6000))):
-         tempBool = True
-      if ((ID == 509) and (checkItem(503) == True) and ((checkItem(501) == True) or (countItem(500) >= 3))):
-         tempBool = True
-      if ((ID == 511) and (checkItem(213) == True) and (countItem(219) >= 3)):
-         tempBool = True
-      if ((ID == 512) and (checkItem(208) == True) and (checkItem(218) == True)):
-         tempBool = True
-      if ((ID == 513) and (checkItem(110) == True) and (checkItem(120) == True)):
-         tempBool = True
-      if ((ID == 514) and (countItem(203) >= 2) and (checkItem(503) == True)):
-         tempBool = True
-      if ((ID == 515) and (countItem(203) >= 5)):
-         tempBool = True
-      if ((ID == 516) and (checkItem(110) == True) and (checkItem(203) == True)):
-         tempBool = True
-      if ((ID == 517) and (countItem(507) >= 3) and (checkItem(523) == True)):
-         tempBool = True
-      if ((ID == 518) and (checkItem(201) == True) and (checkItem(202) == True) and (checkItem(207) == True) and (checkItem(210) == True)):
-         tempBool = True
-      if ((ID == 519) and (checkItem(222) == True) and (checkItem(206) == True) and (checkItem(504) == True)):
-         tempBool = True
-      if ((ID == 520) and (checkItem(216) == True) and (countItem(212) >= 3)):
-         tempBool = True
-      if ((ID == 521) and (checkItem(120) == True) and (checkItem(210) == True)):
-         tempBool = True
-      if ((ID == 522) and (countItem(512) >= 3) and (checkItem(524) == True)):
-         tempBool = True
-      if ((ID == 532) and (checkItem(530) == True) and (checkItem(212) == True) and (checkItem(206) == True)):
-         tempBool = True
-      if ((ID == 533) and (countItem(110) >= 2)):
-         tempBool = True
-      if ((ID == 534) and (countItem(202) >= 2) and ((checkItem(208) == True) or (checkItem(218) == True))):
-         tempBool = True
-      if ((ID == 535) and (checkItem(201) == True) and (checkItem(533) == True)):
-         tempBool = True
-      if ((ID == 536) and (countItem(207) >= 2) and (countItem(212) >= 3) and (checkItem(501) == True) and (checkItem(529) == True)):
-         tempBool = True
-      if (tempBool == True):
-         if (ID == 220):
-            loseManyItem(209,7)
-         if (ID == 221):
-            loseManyItem(210,6)
-            loseManyItem(114,1)
-         if (ID == 503):
-            loseManyItem(209,1)
-            if not (((moistCalc(2) * 10 * lust) > 3000) or ((moistCalc(1) * 10 * lust) > 3000)):
-               if (checkItem(523) == True):
-                  loseManyItem(523,1)
-               else:
-                  loseManyItem(114,1)
-         if (ID == 504):
-            loseManyItem(115,1)
-            loseManyItem(203,1)
-         if (ID == 506):
-            loseManyItem(114,1)
-            loseManyItem(219,1)
-         if (ID == 507):
-            loseManyItem(208,1)
-         if (ID == 508):
-            loseManyItem(209,3)
-            if not (((moistCalc(2) * 10 * lust) > 6000) or ((moistCalc(1) * 10 * lust) > 6000)):
-               if (checkItem(524) == True):
-                  loseManyItem(524,1)
-               else:
-                  loseManyItem(112,2)
-         if (ID == 509):
-            loseManyItem(503,1)
-            if (countItem(500) >= 3):
-               loseManyItem(500,3)
-            else:
-               loseManyItem(501,1)
-         if (ID == 511):
-            loseManyItem(213,1)
-            loseManyItem(219,3)
-         if (ID == 512):
-            loseManyItem(208,1)
-            loseManyItem(218,1)
-         if (ID == 513):
-            loseManyItem(110,1)
-            loseManyItem(120,1)
-         if (ID == 514):
-            loseManyItem(203,2)
-            loseManyItem(503,1)
-         if (ID == 515):
-            loseManyItem(203,5)
-         if (ID == 516):
-            loseManyItem(110,1)
-            loseManyItem(203,1)
-         if (ID == 517):
-            loseManyItem(507,3)
-            loseManyItem(523,1)
-         if (ID == 518):
-            loseManyItem(201,1)
-            loseManyItem(202,1)
-            loseManyItem(207,1)
-            loseManyItem(210,1)
-         if (ID == 519):
-            loseManyItem(206,1)
-            loseManyItem(222,1)
-            loseManyItem(504,1)
-         if (ID == 520):
-            loseManyItem(212,3)
-            loseManyItem(216,1)
-         if (ID == 521):
-            loseManyItem(120,1)
-            loseManyItem(210,1)
-         if (ID == 522):
-            loseManyItem(512,3)
-            loseManyItem(524,1)
-         if (ID == 532):
-            loseManyItem(530,1)
-            loseManyItem(212,1)
-            loseManyItem(206,1)
-         if (ID == 533):
-            loseManyItem(110,2)
-         if (ID == 534):
-            loseManyItem(202,2)
-            if (checkItem(208) == True):
+      if (buttonChoice == 6):
+         tempBool = False
+         if ((ID == 220) and (countItem(209) >= 7)):
+            tempBool = True
+         if ((ID == 221) and (countItem(210) >= 6) and (checkItem(114) == True)):
+            tempBool = True
+         if ((ID == 503) and (checkItem(209) == True) and ((checkItem(114) == True) or (checkItem(523) == True) or (moistCalc(2) * 10 * lust > 3000) or (moistCalc(1) * 10 * lust > 3000))):
+            tempBool = True
+         if ((ID == 504) and (checkItem(115) == True) and (checkItem(203) == True)):
+            tempBool = True
+         if ((ID == 506) and (checkItem(114) == True) and (checkItem(219) == True)):
+            tempBool = True
+         if ((ID == 507) and (checkItem(208) == True)):
+            tempBool = True
+         if ((ID == 508) and (countItem(209) >= 3) and ((countItem(112) >= 2) or (checkItem(524) == True) or (moistCalc(2) * 10 * lust > 6000) or (moistCalc(1) * 10 * lust > 6000))):
+            tempBool = True
+         if ((ID == 509) and (checkItem(503) == True) and ((checkItem(501) == True) or (countItem(500) >= 3))):
+            tempBool = True
+         if ((ID == 511) and (checkItem(213) == True) and (countItem(219) >= 3)):
+            tempBool = True
+         if ((ID == 512) and (checkItem(208) == True) and (checkItem(218) == True)):
+            tempBool = True
+         if ((ID == 513) and (checkItem(110) == True) and (checkItem(120) == True)):
+            tempBool = true
+         if ((ID == 514) and (countItem(203) >= 2) and (checkItem(503) == True)):
+            tempBool = True
+         if ((ID == 515) and (countItem(203) >= 5)):
+            tempBool = True
+         if ((ID == 516) and (checkItem(110) == True) and (checkItem(203) == True)):
+            tempBool = True
+         if ((ID == 517) and (countItem(507) >= 3) and (checkItem(523) == True)):
+            tempBool = True
+         if ((ID == 518) and (checkItem(201) == True) and (checkItem(202) == True) and (checkItem(207) == True) and (checkItem(210) == True)):
+            tempBool = True
+         if ((ID == 519) and (checkItem(222) == True) and (checkItem(206) == True) and (checkItem(504) == True)):
+            tempBool = True
+         if ((ID == 520) and (checkItem(216) == True) and (countItem(212) >= 3)):
+            tempBool = True
+         if ((ID == 521) and (checkItem(120) == True) and (checkItem(210) == True)):
+            tempBool = True
+         if ((ID == 522) and (countItem(512) >= 3) and (checkItem(524) == True)):
+            tempBool = True
+         if ((ID == 532) and (checkItem(530) == True) and (checkItem(212) == True) and (checkItem(206) == True)):
+            tempBool = True
+         if ((ID == 533) and (countItem(110) >= 2)):
+            tempBool = True
+         if ((ID == 534) and (countItem(202) >= 2) and ((checkItem(208) == True) or (checkItem(218) == True))):
+            tempBool = True
+         if ((ID == 535) and (checkItem(201) == True) and (checkItem(533) == True)):
+            tempBool = True
+         if ((ID == 536) and (countItem(207) >= 2) and (countItem(212) >= 3) and (checkItem(501) == True) and (checkItem(529) == True)):
+            tempBool = True
+         if (tempBool == True):
+            if (ID == 220):
+               loseManyItem(209,7)
+            if (ID == 221):
+               loseManyItem(210,6)
+               loseManyItem(114,1)
+            if (ID == 503):
+               loseManyItem(209,1)
+               if not ((moistCalc(2) * 10 * lust > 3000) or (moistCalc(1) * 10 * lust > 3000)):
+                  if (checkItem(523) == True):
+                     loseManyItem(523,1)
+                  else:
+                     loseManyItem(114,1)
+            if (ID == 504):
+               loseManyItem(115,1)
+               loseManyItem(203,1)
+            if (ID == 506):
+               loseManyItem(114,1)
+               loseManyItem(219,1)
+            if (ID == 507):
                loseManyItem(208,1)
-            else:
+            if (ID == 508):
+               loseManyItem(209,3)
+               if not ((moistCalc(2) * 10 * lust > 6000) or (moistCalc(1) * 10 * lust > 6000)):
+                  if (checkItem(524) == True):
+                     loseManyItem(524,1)
+                  else:
+                     loseManyItem(112,2)
+            if (ID == 509):
+               loseManyItem(503,1)
+               if (countItem(500) >= 3):
+                  loseManyItem(500,3)
+               else:
+                  loseManyItem(501,1)
+            if (ID == 511):
+               loseManyItem(213,1)
+               loseManyItem(219,3)
+            if (ID == 512):
+               loseManyItem(208,1)
                loseManyItem(218,1)
-         if (ID == 535):
-            loseManyItem(201,1)
-            loseManyItem(533,1)
-         if (ID == 536):
-            loseManyItem(501,1)
-            loseManyItem(529,1)
-            loseManyItem(207,2)
-            loseManyItem(212,3)
-         if (level == 1):
-            itemAdd(ID)
-            if (percent() <= 55 + alchemistLevel * 2):
+            if (ID == 513):
+               loseManyItem(110,1)
+               loseManyItem(120,1)
+            if (ID == 514):
+               loseManyItem(203,2)
+               loseManyItem(503,1)
+            if (ID == 515):
+               loseManyItem(203,5)
+            if (ID == 516):
+               loseManyItem(110,1)
+               loseManyItem(203,1)
+            if (ID == 517):
+               loseManyItem(507,3)
+               loseManyItem(523,1)
+            if (ID == 518):
+               loseManyItem(201,1)
+               loseManyItem(202,1)
+               loseManyItem(207,1)
+               loseManyItem(210,1)
+            if (ID == 519):
+               loseManyItem(206,1)
+               loseManyItem(222,1)
+               loseManyItem(504,1)
+            if (ID == 520):
+               loseManyItem(212,3)
+               loseManyItem(216,1)
+            if (ID == 521):
+               loseManyItem(120,1)
+               loseManyItem(210,1)
+            if (ID == 522):
+               loseManyItem(512,3)
+               loseManyItem(524,1)
+            if (ID == 532):
+               loseManyItem(530,1)
+               loseManyItem(212,1)
+               loseManyItem(206,1)
+            if (ID == 533):
+               loseManyItem(110,2)
+            if (ID == 534):
+               loseManyItem(202,2)
+               if (checkItem(208) == True):
+                  loseManyItem(208,1)
+               else:
+                  loseManyItem(218,1)
+            if (ID == 535):
+               loseManyItem(201,1)
+               loseManyItem(533,1)
+            if (ID == 536):
+               loseManyItem(501,1)
+               loseManyItem(529,1)
+               loseManyItem(207,2)
+               loseManyItem(212,3)
+            if (level == 1):
                itemAdd(ID)
-            if (percent() <= 25 + alchemistLevel * 2):
+               if (percent() <= 55 + alchemistLevel * 2):
+                  itemAdd(ID)
+               if (percent() <= 25 + alchemistLevel * 2):
+                  itemAdd(ID)
+               if (percent() <= 5 + alchemistLevel * 2):
+                  itemAdd(ID)
+            elif (level == 2):
                itemAdd(ID)
-            if (percent() <= 5 + alchemistLevel * 2):
+               if (percent() <= 55 + alchemistLevel):
+                  itemAdd(ID)
+               if (percent() <= 25 + alchemistLevel):
+                  itemAdd(ID)
+               if (percent() <= 5 + alchemistLevel):
+                  itemAdd(ID)
+            elif (level == 3):
                itemAdd(ID)
-         if (level == 2):
-            itemAdd(ID)
-            if (percent() <= 55 + alchemistLevel):
+               if (percent() <= 55 + alchemistLevel * 2 / 3):
+                  itemAdd(ID)
+               if (percent() <= 25 + alchemistLevel * 2 / 3):
+                  itemAdd(ID)
+               if (percent() <= 5 + alchemistLevel * 2 / 3):
+                  itemAdd(ID)
+            if (ID == 533):
                itemAdd(ID)
-            if (percent() <= 25 + alchemistLevel):
                itemAdd(ID)
-            if (percent() <= 5 + alchemistLevel):
                itemAdd(ID)
-         if (level == 3):
-            itemAdd(ID)
-            if (percent() <= 55 + alchemistLevel * 2 / 3):
                itemAdd(ID)
-            if (percent() <= 25 + alchemistLevel * 2 / 3):
-               itemAdd(ID)
-            if (percent() <= 5 + alchemistLevel * 2 / 3):
-               itemAdd(ID)
-         if (ID == 533):
-            itemAdd(ID)
-            itemAdd(ID)
-            itemAdd(ID)
-            itemAdd(ID)
-         doProcess()
+            doProcess()
+         else:
+            outputMainText("Sorry, but you do not have the necessary ingredients on hand. Please choose something else.",True)
+            doNext()
+            def doListen():
+               global tempInt
+               level = tempInt
+               if (level == 1):
+                  simpleAlchemy()
+               if (level == 2):
+                  complexAlchemy()
+               if (level == 3):
+                  advancedAlchemy()
       else:
-         outputMainText("Sorry, but you do not have the necessary ingredients on hand. Please choose something else.",True)
-         doNext()
-         #doListen = function():void
          if (level == 1):
             simpleAlchemy()
          if (level == 2):
             complexAlchemy()
          if (level == 3):
             advancedAlchemy()
-   else:
-      if (level == 1):
-         simpleAlchemy()
-      if (level == 2):
-         complexAlchemy()
-      if (level == 3):
-         advancedAlchemy()
 
 def doLevelUP():
    #Should work
    global choiceListArray, levelUP, vagTotal, lactation, udderLactation
    global doListen
-   choiceListArray = []
+   choiceListArray = as3.Array()
    outputMainText("You have this many perks pending: " + this.levelUP + "\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
-   choiceListArray.append("Super Perk")
-   choiceListArray.append("")
-   choiceListArray.append("Body Build")
-   choiceListArray.append("Hyper Happy")
+   choiceListArray.push("Super Perk")
+   choiceListArray.push("")
+   choiceListArray.push("Body Build")
+   choiceListArray.push("Hyper Happy")
    if (vagTotal > 0):
-      choiceListArray.append("Baby Fact")
-   choiceListArray.append("Alchemist")
+      choiceListArray.push("Baby Fact")
+   choiceListArray.push("Alchemist")
    if ((lactation > 0) or (udderLactation > 0)):
-      choiceListArray.append("Milk Maid")
-   choiceListArray.append("Shapeshifty")
+      choiceListArray.push("Milk Maid")
+   choiceListArray.push("Shapeshifty")
    choiceListButtons("Level Up")
    def doListen():
       global buttonChoice, choicePage, choiceListResult, bodyBuildLevel, hyperHappyLevel, babyFactLevel, fetishMasterLevel, alchemistLevel, milkMainLevel, shapeshiftyLevel, levelUP
@@ -11893,23 +11903,23 @@ def doLevelUP():
             global doListen
             if (buttonChoice == 6):
                if (math.floor((hyperHappyLevel + 1) / 5) == math.floor(hyperHappyLevel / 5)):
-                  choiceListArray = []
+                  choiceListArray = as3.Array()
                   outputMainText("Choose a body part you would like to increase.",True)
-                  choiceListArray.append("Breasts")
-                  choiceListArray.append("Nipples")
-                  choiceListArray.append("Butt")
-                  choiceListArray.append("Hips")
+                  choiceListArray.push("Breasts")
+                  choiceListArray.push("Nipples")
+                  choiceListArray.push("Butt")
+                  choiceListArray.push("Hips")
                   if (vagTotal > 0):
-                     choiceListArray.append("Pussy")
-                     choiceListArray.append("Vulva")
-                     choiceListArray.append("Clit")
+                     choiceListArray.push("Pussy")
+                     choiceListArray.push("Vulva")
+                     choiceListArray.push("Clit")
                   if (cockTotal > 0):
-                     choiceListArray.append("Cock")
+                     choiceListArray.push("Cock")
                      if (showBalls == True):
-                        choiceListArray.append("Balls")
+                        choiceListArray.push("Balls")
                   if (udders == True):
-                     choiceListArray.append("Udder")
-                     choiceListArray.append("Teats")
+                     choiceListArray.push("Udder")
+                     choiceListArray.push("Teats")
                   choiceListButtons("Hyper Happy")
                   def doListen():
                      global choiceListResult, ballSize, vulvaSize, clitSize, breastSize, nippleSize, udderSize, teatSize, butt, hips, choicePage, levelUP, hyperHappyLevel
@@ -11958,23 +11968,23 @@ def doLevelUP():
                         hyperHappyLevel += 1
                         doEnd()
                if (math.floor((hyperHappyLevel + 1) / 5) > math.floor(hyperHappyLevel / 5)):
-                  choiceListArray = []
+                  choiceListArray = as3.Array()
                   outputMainText("Choose a body part you would like to greatly increase. This will be 10x more effective than a normal level in Hyper Happy, so be careful what you choose.",True)
-                  choiceListArray.append("Breasts")
-                  choiceListArray.append("Nipples")
-                  choiceListArray.append("Butt")
-                  choiceListArray.append("Hips")
+                  choiceListArray.push("Breasts")
+                  choiceListArray.push("Nipples")
+                  choiceListArray.push("Butt")
+                  choiceListArray.push("Hips")
                   if (vagTotal > 0):
-                     choiceListArray.append("Pussy")
-                     choiceListArray.append("Vulva")
-                     choiceListArray.append("Clit")
+                     choiceListArray.push("Pussy")
+                     choiceListArray.push("Vulva")
+                     choiceListArray.push("Clit")
                   if (cockTotal > 0):
-                     choiceListArray.append("Cock")
+                     choiceListArray.push("Cock")
                      if (showBalls == True):
-                        choiceListArray.append("Balls")
+                        choiceListArray.push("Balls")
                   if (udders == True):
-                     choiceListArray.append("Udder")
-                     choiceListArray.append("Teats")
+                     choiceListArray.push("Udder")
+                     choiceListArray.push("Teats")
                   choiceListButtons("Hyper Happy")
                   def doListen():
                      global buttonChoice, choiceListResult, ballSize, vulvaSize, clitSize, breastSize, nippleSize, udderSize, teatSize, butt, hips, choicePage, levelUP, hyperHappyLevel
@@ -12205,50 +12215,50 @@ def doLevelUP():
                alchemistLevel += 1
                i = 0
                while (percent() < alchemistLevel * (10 + percent()) - 20 * (i + 2) * i):
-                  rndArray = []
-                  rndArray = FE.lists.push(rndArray, [209,110,203,212])
+                  rndArray = as3.Array()
+                  rndArray.push(209,110,203,212)
                   if (knowLustDraft == True):
-                     rndArray = FE.lists.push(rndArray, [209,114,523])
+                     rndArray.push(209,114,523)
                   if (knowRejuvPot == True):
-                     rndArray = FE.lists.push(rndArray, [115,203])
+                     rndArray.push(115,203)
                   if (knowExpPreg == True):
-                     rndArray = FE.lists.push(rndArray, [114,219])
+                     rndArray.push(114,219)
                   if (knowBallSwell == True):
-                     rndArray = FE.lists.push(rndArray, [208])
+                     rndArray.push(208)
                   if (knowMaleEnhance == True):
-                     rndArray = FE.lists.push(rndArray, [201,208,218])
+                     rndArray.push(201,208,218)
                   if (knowSLustDraft == True):
-                     rndArray = FE.lists.push(rndArray, [209,112,524])
+                     rndArray.push(209,112,524)
                   if (knowSRejuvPot == True):
-                     rndArray = FE.lists.push(rndArray, [503,500,501])
+                     rndArray.push(503,500,501)
                   if (knowSExpPreg == True):
-                     rndArray = FE.lists.push(rndArray, [213,219])
+                     rndArray.push(213,219)
                   if (knowSBallSwell == True):
-                     rndArray = FE.lists.push(rndArray, [208,218])
+                     rndArray.push(208,218)
                   if (knowGenSwap == True):
-                     rndArray = FE.lists.push(rndArray, [110,120])
+                     rndArray.push(110,120)
                   if (knowMasoPot == True):
-                     rndArray = FE.lists.push(rndArray, [203,503])
+                     rndArray.push(203,503)
                   if (knowBabyFree == True):
-                     rndArray = FE.lists.push(rndArray, [110,203])
+                     rndArray.push(110,203)
                   if (knowPotPot == True):
-                     rndArray = FE.lists.push(rndArray, [507,523])
+                     rndArray.push(507,523)
                   if (knowMilkSuppress == True):
-                     rndArray = FE.lists.push(rndArray, [201,533])
+                     rndArray.push(201,533)
                   if (knowSGenSwap == True):
-                     rndArray = FE.lists.push(rndArray, [201,202,207,210])
+                     rndArray.push(201,202,207,210)
                   if (knowSMasoPot == True):
-                     rndArray = FE.lists.push(rndArray, [222,504])
+                     rndArray.push(222,504)
                   if (knowSBabyFree == True):
-                     rndArray = FE.lists.push(rndArray, [120,210])
+                     rndArray.push(120,210)
                   if (knowSPotPot == True):
-                     rndArray = FE.lists.push(rndArray, [512,524])
+                     rndArray.push(512,524)
                   if (knowPussJuice == True):
-                     rndArray = FE.lists.push(rndArray, [210,114])
+                     rndArray.push(210,114)
                   if (knowPheromone == True):
-                     rndArray = FE.lists.push(rndArray, [530,212,206])
+                     rndArray.push(530,212,206)
                   if (knowBazoomba == True):
-                     rndArray = FE.lists.push(rndArray, [207,212,501,529])
+                     rndArray.push(207,212,501,529)
                   itemAdd(chooseFrom())
                   i += 1
                doEnd()
@@ -12289,42 +12299,42 @@ def doLevelUP():
                   tempBool = False
                   if (math.floor((shapeshiftyLevel + 1) / 6) > math.floor(shapeshiftyLevel / 6)):
                      tempBool = True
-                  choiceListArray = []
+                  choiceListArray = as3.Array()
                   outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?",True)
                   if (tempBool == False):
                      if  (shapeshiftySecond != "Face"):
-                        choiceListArray.append("Face")
+                        choiceListArray.push("Face")
                      if (shapeshiftySecond != "Skin"):
-                        choiceListArray.append("Skin")
+                        choiceListArray.push("Skin")
                      if (shapeshiftySecond != "Ears"):
-                        choiceListArray.append("Ears")
+                        choiceListArray.push("Ears")
                      if (shapeshiftySecond != "Legs"):
-                        choiceListArray.append("Legs")
+                        choiceListArray.push("Legs")
                      if (shapeshiftySecond != "Breasts"):
-                        choiceListArray.append("Breasts")
+                        choiceListArray.push("Breasts")
                      if (shapeshiftySecond != "Nipples"):
-                        choiceListArray.append("Nipples")
+                        choiceListArray.push("Nipples")
                      if (shapeshiftySecond != "Tail"):
-                        choiceListArray.append("Tail")
+                        choiceListArray.push("Tail")
                      if (shapeshiftySecond != "Cock"):
-                        choiceListArray.append("Cock")
+                        choiceListArray.push("Cock")
                   else:
                      if (shapeshiftyFirst != "Face"):
-                        choiceListArray.append("Face")
+                        choiceListArray.push("Face")
                      if (shapeshiftyFirst != "Skin"):
-                        choiceListArray.append("Skin")
+                        choiceListArray.push("Skin")
                      if (shapeshiftyFirst != "Ears"):
-                        choiceListArray.append("Ears")
+                        choiceListArray.push("Ears")
                      if (shapeshiftyFirst != "Legs"):
-                        choiceListArray.append("Legs")
+                        choiceListArray.push("Legs")
                      if (shapeshiftyFirst != "Breasts"):
-                        choiceListArray.append("Breasts")
+                        choiceListArray.push("Breasts")
                      if (shapeshiftyFirst != "Nipples"):
-                        choiceListArray.append("Nipples")
+                        choiceListArray.push("Nipples")
                      if (shapeshiftyFirst != "Tail"):
-                        choiceListArray.append("Tail")
+                        choiceListArray.push("Tail")
                      if (shapeshiftyFirst != "Cock"):
-                        choiceListArray.append("Cock")
+                        choiceListArray.push("Cock")
                   choiceListButtons("Shapeshifty")
                   def doListen():
                      global tempBool, shapeshiftyFirst, shapeshiftySecond, lockFace, lockSkin, lockEars, lockLegs, lockBreasts, lockNipples, lockTail, lockCock, choiceListResult, buttonChoice, choicePage, levelUP, shapeshiftyLevel
@@ -12450,32 +12460,32 @@ def doLevelUP():
                         shapeshiftyLevel += 1
                         doEnd()
                elif (math.floor((shapeshiftyLevel + 3) / 3) > math.floor(shapeshiftyLevel / 3)):
-                  choiceListArray = []
+                  choiceListArray = as3.Array()
                   outputMainText("What blood-type would you like to increase?",True)
                   if (humanAffinity > 0):
-                     choiceListArray.append("Human")
+                     choiceListArray.push("Human")
                   if (horseAffinity > 0):
-                     choiceListArray.append("Equan")
+                     choiceListArray.push("Equan")
                   if (wolfAffinity > 0):
-                     choiceListArray.append("Lupan")
+                     choiceListArray.push("Lupan")
                   if (catAffinity > 0):
-                     choiceListArray.append("Felin")
+                     choiceListArray.push("Felin")
                   if (cowAffinity > 0):
-                     choiceListArray.append("Cow")
+                     choiceListArray.push("Cow")
                   if (lizardAffinity > 0):
-                     choiceListArray.append("Lizan")
+                     choiceListArray.push("Lizan")
                   if (rabbitAffinity > 0):
-                     choiceListArray.append("Rabbit")
+                     choiceListArray.push("Rabbit")
                   if (mouseAffinity > 0):
-                     choiceListArray.append("Mouse")
+                     choiceListArray.push("Mouse")
                   if (birdAffinity > 0):
-                     choiceListArray.append("Bird")
+                     choiceListArray.push("Bird")
                   if (pigAffinity > 0):
-                     choiceListArray.append("Pig")
+                     choiceListArray.push("Pig")
                   if (skunkAffinity > 0):
-                     choiceListArray.append("Skunk")
+                     choiceListArray.push("Skunk")
                   if (bugAffinity > 0):
-                     choiceListArray.append("Bug")
+                     choiceListArray.push("Bug")
                   choiceListButtons("Shapeshifty")
                   def doListen():
                      global choiceListResult, buttonChoice, choicePage, levelUP, shapeshiftyLevel
@@ -12533,12 +12543,12 @@ def doLevelUP():
                if (buttonChoice == 6):
                   doLevelUP()
          else:
-            choiceListArray = []
-            choiceListArray.append("Pure Blood")
-            choiceListArray.append("Regression")
-            choiceListArray.append("Balance")
-            choiceListArray.append("HP Boost")
-            choiceListArray.append("Sex Reset")
+            choiceListArray = as3.Array()
+            choiceListArray.push("Pure Blood")
+            choiceListArray.push("Regression")
+            choiceListArray.push("Balance")
+            choiceListArray.push("HP Boost")
+            choiceListArray.push("Sex Reset")
             choiceListButtons("Super Perks")
             def doListen():
                global choiceListResult, buttonChoice, choicePage
@@ -12551,31 +12561,31 @@ def doLevelUP():
                      global  buttonChoice, choiceListArray, humanAffinity, horseAffinity, wolfAffinity, catAffinity, cowAffinity, lizardAffinity, rabbitAffinity, mouseAffinity, birdAffinity, pigAffinity, skunkAffinity, bugAffinity, dominant
                      global doListen
                      if (buttonChoice == 6):
-                        choiceListArray = []
+                        choiceListArray = as3.Array()
                         if ((humanAffinity > 50) or (dominant == 1)):
-                           choiceListArray.append("Human")
+                           choiceListArray.push("Human")
                         if ((horseAffinity > 50) or (dominant == 2)):
-                           choiceListArray.append("Equan")
+                           choiceListArray.push("Equan")
                         if ((wolfAffinity > 50) or (dominant == 3)):
-                           choiceListArray.append("Lupan")
+                           choiceListArray.push("Lupan")
                         if ((catAffinity > 50) or (dominant == 4)):
-                           choiceListArray.append("Felin")
+                           choiceListArray.push("Felin")
                         if ((cowAffinity > 50) or (dominant == 5)):
-                           choiceListArray.append("Cow")
+                           choiceListArray.push("Cow")
                         if ((lizardAffinity > 50) or (dominant == 6)):
-                           choiceListArray.append("Lizan")
+                           choiceListArray.push("Lizan")
                         if ((rabbitAffinity > 50) or (dominant == 7)):
-                           choiceListArray.append("Rabbit")
+                           choiceListArray.push("Rabbit")
                         if ((mouseAffinity > 50) or (dominant == 8)):
-                           choiceListArray.append("Mouse")
+                           choiceListArray.push("Mouse")
                         if ((birdAffinity > 50) or (dominant == 9)):
-                           choiceListArray.append("Bird")
+                           choiceListArray.push("Bird")
                         if ((pigAffinity > 50) or (dominant == 10)):
-                           choiceListArray.append("Pig")
+                           choiceListArray.push("Pig")
                         if ((skunkAffinity > 50) or (dominant == 11)):
-                           choiceListArray.append("Skunk")
+                           choiceListArray.push("Skunk")
                         if ((bugAffinity > 50) or (dominant == 12)):
-                           choiceListArray.append("Bug")
+                           choiceListArray.push("Bug")
                         choiceListButtons("Pure Blood")
                         outputMainText("Select the racial blood type you would like to purify. Only those that are significant in your body are noticeable enough to select.",True)
                         def doListen():
@@ -12852,247 +12862,247 @@ def doExplore():
 def eventSelect(which:str):
    #Should work
    global rndArray, hour, pregnancyTime, vagTotal, lilaRep, silRep, foundValley, firstExplore, currentZone, knowPheromone, udders, udderLactation, udderEngorgementLevel, malonRep, silTied
-   rndArray = []
+   rndArray = as3.Array()
    tempArray = []
    if (which == "Softlik"):
       tempArray = [0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x","x","x","x","x",0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
    elif (which == "Firmshaft"):
       tempArray = [0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x","x","x","x","x","x","x","x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
    elif (which == "Tieden"):
       tempArray = ["x","x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0]
       if ((tempArray[hour] == "x") and (pregnancyTime >= 180) and (vagTotal > 0)):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
    elif (which == "Siz'Calit"):
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,"x","x","x",0]
       if ((tempArray[hour] == "x") and (lilaRep > 3)):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
    elif (which == "Oviasis"):
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0]
       if ((tempArray[hour] == "x") and (silRep < 6)):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x",0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = ["x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = [0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x",0,0,0,0,"x","x","x",0]
       if (tempArray[hour] == "x"):
-         this.rndArray.append(4)
+         rndArray.push(4)
       tempArray = ["x","x","x","x","x","x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,"x",0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
    elif (which == "Sanctuary"):
       tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
    elif (which == "Forest"):
       tempArray = [0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = ["x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0,0,0,"x","x",0,0,0,0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = [0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
       tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(6)
+         rndArray.push(6)
    elif (which == "Jungle"):
       tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0]
       if ((tempArray[hour] == "x") and (foundValley == False) and (firstExplore == True)):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = ["x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x"];
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
       tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(6)
+         rndArray.push(6)
       tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(7)
+         rndArray.push(7)
    elif (which == "Plains"):
       tempArray = ["x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x"]
       if ((tempArray[hour] == "x") and (checkOpenSlot(244) > 0)):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,"x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = [0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = ["x","x","x","x",0,0,0,0,0,0,"x",0,0,"x",0,0,0,0,0,0,"x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
    elif (which == "Savanna"):
       tempArray = [0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,"x","x","x","x",0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
    elif (which == "Desert"):
       tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
       if ((tempArray[hour] == "x") and (currentZone == 6) and (silRep == 0)):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,"x","x","x","x",0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x",0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = ["x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
    elif (which == "Beach"):
       tempArray = [0,0,0,0,0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x","x",0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,"x",0,0,0,"x",0,0,0,0,"x","x",0,"x",0,0,0,"x","x",0,0,0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = ["x",0,0,0,0,"x",0,0,0,0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = [0,"x",0,"x",0,"x",0,0,0,"x",0,0,0,"x",0,"x",0,"x",0,0,0,"x",0]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
       tempArray = [0,"x",0,"x","x",0,0,"x",0,"x","x",0,0,"x",0,0,"x","x",0,"x",0,0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(6)
+         rndArray.push(6)
    elif (which == "Lake"):
       tempArray = ["x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = [0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0]
       if (tempArray[hour] == x and (knowPheromone != True)):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
    elif (which == "Dairy Farm"):
       tempArray = [0,0,0,0,"x","x","x",0,0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x"]
       if ((tempArray[hour] == "x") and (udders == True) and (udderLactation > 0) and (udderEngorgementLevel > 0)):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = [0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,0,0,0]
       if ((tempArray[hour] == "x") and (malonRep > 0)):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = ["x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x",0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
    elif (which == "Old Cave"):
       tempArray = [0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = ["x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
    elif (which == "Den"):
       tempArray = [0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0]
       if ((tempArray[hour] == "x") and (silTied == False) and (checkItem(229) == False) and (checkStash(229) == False)):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
    if (which == "Valley"):
       tempArray = [0,"x","x",0,0,"x","x",0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(1)
+         rndArray.push(1)
       tempArray = ["x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(2)
+         rndArray.push(2)
       tempArray = [0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(3)
+         rndArray.push(3)
       tempArray = ["x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0]
       if (tempArray[hour] == "x"):
-         rndArray.append(4)
+         rndArray.push(4)
       tempArray = [0,0,0,"x","x",0,"x","x",0,0,0,"x","x","x","x","x",0,0,0,"x","x",0,"x","x"]
       if (tempArray[hour] == "x"):
-         rndArray.append(5)
+         rndArray.push(5)
    #trace(this.rndArray)
    return chooseFrom()
 
@@ -13863,7 +13873,7 @@ def doTieden():
                      outputMainText("The strange woman lies in bed with you for another hour, cuddling up and resting your bellies side-to-side. But eventually she realizes how much time she has spent indulging herself at your 'expense'. \"I'm sorry to have taken so long to get that out of my system, but... it was very enjoyable indeed. Here, sweetie, a gift from my business. I'm actually a breeder of pets for people and this helps with the process. I do love the big swollen bellies so~ You could probably sell it for a nice chunk of change, or maybe you can find some use for it too.\" She gives you a wink as she slips a potion into your hand.\n\nThen she cradles her belly as she slinks off the bed and stands, her nipples blotching her shirt as she dons it. When she reaches for her shorts, however, she realizes they're a bit... unwearable now. Her fluffy tail curls down between her legs, snugging up against the underside of her belly on the other side like a pair of panties. She gives you another wink. \"Don't worry, I'll be alright. Wouldn't be the first time~\" and she skips out the door, so absolutely giddy from her time with you.",True)
                      if (pregCheck(0) == True):
                         i = 0
-                        while (i < len(pregArray)):
+                        while (i < pregArray.length()):
                            if (pregArray[i] == True):
                               pregArray[i + 3] += 20
                            i += 5
@@ -16691,13 +16701,13 @@ def doDairyFarm():
                                  outputMainText(", while your cum-inflated womb sloshes with each step",False)
                               outputMainText("...",False)
                               if ((vagLimit() > 72) and (vagTotal > 0) and (pregCheck(1) == True)):
-                                 while (i < len(pregArray)):
+                                 while (i < pregArray.length()):
                                     if (pregArray[i] == False):
                                        pregArray[i] = True
                                        pregArray[i + 1] = 501
                                        pregArray[i + 2] = 230
                                        pregArray[i + 3] = 220
-                                       i = len(pregArray)
+                                       i = pregArray.length()
                                     i += 5
                               elif (vagTotal > 0):
                                  tempInt = 1
@@ -16745,13 +16755,13 @@ def doDairyFarm():
                               if ((vagLimit() > 72) and (vagTotal > 0) and (pregCheck(1) == True) and (getCum > 5000)):
                                  outputMainText(" With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish.\n\nHaving spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period.",False)
                                  i = 0
-                                 while (i < len(pregArray)):
+                                 while (i < pregArray.length()):
                                     if (pregArray[i] == False):
                                        pregArray[i] = True
                                        pregArray[i + 1] = 502
                                        pregArray[i + 2] = 230
                                        pregArray[i + 3] = 220
-                                       i = len(pregArray)
+                                       i = pregArray.length()
                                     i += 5
                               else:
                                  if (vagTotal > 1):
@@ -17906,7 +17916,7 @@ def doOldCave():
                         if ((pregCheck(1) == True) and (percent() <= 60) and ((vagSize * vagSizeMod) > 56)):
                            outputMainText(" And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?",False)
                            i = 0
-                           while (i < len(pregArray)):
+                           while (i < pregArray.length()):
                               if (pregArray[i] == False):
                                  pregArray[i] = True
                                  if (percent() <= 50):
@@ -17915,7 +17925,7 @@ def doOldCave():
                                     pregArray[i + 1] = 202
                                  pregArray[i + 2] = 230
                                  pregArray[i + 3] = 220
-                                 i = len(pregArray)
+                                 i = pregArray.length()
                               i += 5
                            doLust(-math.floor(sen / 2),2,1,2)
                         else:
@@ -19121,7 +19131,7 @@ def doValley():
                   doEnd()
                elif (buttonChoice == 11):
                   outputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...",True)
-                  pregArray = FE.lists.push(pregArray, [True,504,208,200,0])
+                  pregArray.push(True,504,208,200,0)
                   if (checkItem(500) == True):
                      loseManyItem(500,1)
                   else:
@@ -19377,6 +19387,7 @@ def doOldCaveDescent():
          foundSanctuary = True
 
 def LilaDesc():
+   #Should work
    global lilaMilk, lilaVulva, lilaPreg
    if (lilaMilk == 0):
       outputMainText("\n\nHer small breasts leak only a few drops of milk as she stands there, but her nipples are quite erect and peek through her fur as she blushes at you staring at her.",False)
@@ -19405,7 +19416,7 @@ def LilaDesc():
    elif (lilaVulva <= 18):
       outputMainText(" And between her knees hangs her overgrown lips, making her stand slightly bow-legged. Her legs almost constantly twist about, using her knees to squish the flesh again and again since her hands can hardly hold it all if she tried. Her clitoris can hardly be called a button, stroked like a small penis as it pushes out from the massive folds. Her inner lips are so pink with arousal that they seem to be growing longer, due to the the amount of slickness flowing down them that creates the illusion and forms a puddle around her feet.",False)
    elif (lilaVulva <= 19):
-      outputMainText(" And she hardly seems like she's standing at all. With how much her legs bend around and squeeze the large squishy labia that fills the space between them, it seems like she's nearly sitting on her own pussy. However, it barely hovers over the floor, the inner labia dangling down and brushing across it when she presses down slightly to push her clit against the floor to please it a bit. If she curled up and actually wrapped her whole hand around the sensitive thing, there would have still been some more length to cover. Which only makes her original 'wetness' problem worse, the overall size of her genitals causing a flood about her feet and leaving them almost constantly slick and wet with a trail of more following her wherever she goes. However, thanks to her size, when she slips from her moisture she simply lets out an erotic mewl as she falls down onto her soft flesh.",False)
+      outputMainText(" And she hardly seems like's she's standing at all. With how much her legs bend around and squeeze the large squishy labia that fills the space between them, it seems like she's nearly sitting on her own pussy. However, it barely hovers over the floor, the inner labia dangling down and brushing across it when she presses down slightly to push her clit against the floor to please it a bit. If she curled up and actually wrapped her whole hand around the sensitive thing, there would have still been some more length to cover. Which only makes her original 'wetness' problem worse, the overall size of her genitals causing a flood about her feet and leaving them almost constantly slick and wet with a trail of more following her wherever she goes. However, thanks to her size, when she slips from her moisture she simply lets out an erotic mewl as she falls down onto her soft flesh.",False)
    if ((lilaPreg <= 35) and (lilaVulva >= 11)):
       outputMainText(" Her belly seems to be sporting some extra cushioning as well. Not exactly chubby, her excess vaginal flesh from all the growth causes it to protrude, her lower breasts pushing out even more.",False)
    elif ((lilaPreg <= 70) and (lilaPreg > 35)):
@@ -19414,28 +19425,30 @@ def LilaDesc():
       outputMainText("Yet, despite all of that, her focus mostly remains on her large belly. Nearly as large as herself if she were to curl up, the thing hangs forward to the point where she can't see her messy arousal below. Her hands often roam over the taut fur, taking her naked opportunity to caress it and pleasure in it, cradling it gently.",False)
 
 def Gibberish():
+   #Should work
    tempStr = "GIBBERISH ERROR"
    chance = percent()
    if (chance <= 33):
       tempStr = "¤çÑ-| ÇôG+¦æ| EÆáÜaß pOƒ§· +îdvwqe 5dfÑ¯» º¤äÜ¦) ¼ÿæ¤h ·ƒ."
-   if (chance > 33) and (chance <= 66):
+   elif ((chance > 33) and (chance <= 66)):
       tempStr = "Gs¿ fdfƒæ d§ew ¤-ÿö fs¤£· ÖÅ¢¥¬ ¼«¦ds?"
-   if (chance > 66):
+   elif (chance > 66):
       tempStr = "Tas ªÜhf¤ ÄäÑse çåÅû¿ ÑÜñ?Äsd Ü¥¦»¦ƒ ¦ÜÆ+¿æ£ we¤ rgdA-d»¦± Ü+#A¤$¤-ò. Fi?¤çÑK)^¤2 ges nec ¤?+ÿ• ºñ¡as frtr."
    return tempStr
 
 def GibButt():
+   #Should work
    tempStr = "GIB BUTTON ERROR"
    chance = percent()
    if (chance <= 20):
       tempStr = "Pk¿ºs"
-   if (chance > 20) and (chance <= 40):
+   elif ((chance > 20) and (chance <= 40)):
       tempStr = "Ju£¥)"
-   if (chance > 40) and (chance <= 60):
+   elif ((chance > 40) and (chance <= 60)):
       tempStr = "§hdsa"
-   if (chance > 60) and (chance <= 80):
+   elif ((chance > 60) and (chance <= 80)):
         tempStr = "Ö¦¤ÄT¦+"
-   if (chance > 80):
+   elif (chance > 80):
       tempStr = "Pancakes"
    return tempStr
 
@@ -19661,33 +19674,34 @@ def doBattle():
             doBattle()
 
 def weaponAttack():
-   global weapon, _str_, eSen, ment, dmg
+   #Should work
+   global dmg, weapon, _str_, eSen, ment
    dmg = 0
    if (weapon == 10):
       dmg = math.floor(random.random() * (1 + 10 - 1)) + 1 + math.floor(_str_ / 2 - (100 - eSen) / 20)
       outputMainText("You punch the " + enemyName() + " with your fists, dealing " + str(dmg) + " damage!",True)
       doeHP(-dmg)
-   if (weapon == 116):
+   elif (weapon == 116):
       dmg = math.floor(random.random() * (1 + 12 - 5)) + 5 + math.floor(_str_ / 2 - (100 - eSen) / 20)
       outputMainText("You lunge at the " + enemyName() + " and stab it with your dagger, dealing " + str(dmg) + " damage!",True)
       doeHP(-dmg)
-   if (weapon == 117):
+   elif (weapon == 117):
       dmg = math.floor(random.random() * (1 + 20 - 2)) + 2 + math.floor(_str_ / 2 - (100 - eSen) / 20)
       outputMainText("You swing your hammer at the " + enemyName() + ", dealing " + str(dmg) + " damage!",True)
       doeHP(-dmg)
-   if (weapon == 118):
+   elif (weapon == 118):
       dmg = math.floor(random.random() * (1 + 25 - 10)) + 10 + math.floor(_str_ / 2 - (100 - eSen) / 20)
       outputMainText("You slash at the " + enemyName() + " with your saber, dealing " + str(dmg) + " damage!",True)
       doeHP(-dmg)
-   if (weapon == 119):
+   elif (weapon == 119):
       dmg = math.floor(random.random() * (1 + 18 - 12)) + 12 + math.floor(_str_ / 2 - (100 - eSen) / 20)
       outputMainText("You lash at the " + enemyName() + " with your whip, dealing " + str(dmg) + " damage!",True)
       doeHP(-dmg)
-   if (weapon == 127):
+   elif (weapon == 127):
       dmg = math.floor(random.random() * (1 + 20 - 10)) + 10 + math.floor(_str_ / 2 - (100 - eSen) / 20)
       outputMainText("You whip around your tail and smack the " + enemyName() + " with the spike at the end, dealing " + str(dmg) + " damage!",True)
       doeHP(-dmg)
-   if (weapon == 235):
+   elif (weapon == 235):
       dmg = math.floor(random.random() * (1 + 5 - 1)) + 1 + math.ceil(ment / 10)
       if (ment < 30):
          outputMainText("You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain " + str(dmg) + " HP from the " + enemyName() + ".",True)
@@ -19804,14 +19818,14 @@ def specialAbilityDescription(ID:int):
    return tempStr
 
 def specialAbilityUse(ID:int):
-   #!
+   #Should work
    global currentState, dmg
    dmg = 0
    if (ID == 1):
       dmg = math.floor(10 + percent() / 10)
       outputMainText("\n\nYou turn around and aim your " + buttDesc() + " butt at the " + enemyName() + " and spray out a foul odor. The " + enemyName() + " snorts and shakes, taking " + str(dmg) + " damage.",False)
       doeHP(-dmg)
-      if (percent() < 35) and (currentState == 2):
+      if ((percent() < 35) and (currentState == 2)):
          outputMainText("\n\nThe " + enemyName() + " flinches so badly from the stench that it misses its chance to counter.",False)
       elif (currentState == 2):
          enemyAttack()
@@ -19819,37 +19833,38 @@ def specialAbilityUse(ID:int):
       doBattle()
 
 def doEntice():
-   #!
-   global eGen, gender, ePref, tail, eLib, enticeMod, lust, nippleSize
+   #Should work
+   global eGen, gender, ePref, tail, eLib, enticeMod, lust, nippleSize, eLust
+   chance = 0
    chance = percent()
-   if (eGen == 1) and (gender == 1) and (ePref != 2) and (ePref != 0):
+   if ((eGen == 1) and (gender == 1) and (ePref != 2) and (ePref != 0)):
       if (chance <= 50):
          outputMainText("You turn around and bend over before the " + enemyName() + " stroking the " + cockDesc() + " bulge in your " + clothesBottom() + " and patting your " + buttDesc() + " rump while you wave your " + hipDesc() + " hips",True)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail dancing above",False)
          outputMainText(" tantalizingly.",False)
-      if (chance > 50):
+      elif (chance > 50):
          outputMainText("You flex your muscles, trying to show off your masculinity, while you thrust your " + hipDesc() + " hips in an attempt to show off your " + cockDesc() + " bulge.",True)
-      if (ePref == 1 or ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      if ((ePref == 1) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5 + enticeMod / 2))
       elif (ePref == 3):
-         doeLust(math.floor((percent() / 10) + (eLib / 10) + (enticeMod / 2)))
-   elif (eGen == 1) and (gender == 2) and (ePref != 1) and (ePref != 0):
+         doeLust(math.floor(percent() / 10 + eLib / 10 + enticeMod / 2))
+   elif ((eGen == 1) and (gender == 2) and (ePref != 1) and (ePref != 0)):
       if (chance <= 50):
          outputMainText("You turn around and bend over before the " + enemyName() + ", stroking your " + vulvaDesc() + " vulva through your " + clothesBottom(),True)
-         if (lust > 20) and (moistCalc(2) > 3):
+         if ((lust > 20) and (moistCalc(2) > 3)):
             outputMainText(" until your feminine arousal seeps through",False)
          outputMainText(". Your " + hipDesc() + " hips wiggle erotically",False)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail dancing above",False)
          outputMainText(".",False)
-      if (chance > 50):
+      elif (chance > 50):
          outputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a " + nipDesc() + "nipple through your " + clothesTop() + " with your other hand.",True)
-      if (ePref == 2) or (ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      if ((ePref == 2) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5 + enticeMod / 2))
       elif (ePref == 3):
-         doeLust(math.floor((percent() / 10) + (eLib / 10) + (enticeMod / 2)))
-   elif (eGen == 2) and (gender == 1) and (ePref != 2) and (ePref != 0):
+         doeLust(math.floor(percent() / 10 + eLib / 10 + enticeMod / 2))
+   elif ((eGen == 2) and (gender == 1) and (ePref != 2) and (ePref != 0)):
       if (chance <= 50):
          outputMainText("You pull " + pullUD(2) + " your " + clothesBottom() + " a little, revealing the base of your cock-flesh",True)
          if (lust > 20):
@@ -19858,38 +19873,38 @@ def doEntice():
          if (moistCalc(1) > 3):
             outputMainText(", a blotch of pre beginning to seep across the fabric",False)
          outputMainText(".",False)
-      if (chance > 50):
+      elif(chance > 50):
          outputMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.",True)
-      if (ePref == 1) or (ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      if ((ePref == 1) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5 + enticeMod / 2))
       elif (ePref == 3):
-         doeLust(math.floor((percent() / 10) + (eLib / 10) + (enticeMod / 2)))
-   elif (eGen == 2) and (gender == 2) and (ePref != 1) and (ePref != 0):
+         doeLust(math.floor(percent() / 10 + eLib / 10 + enticeMod / 2))
+   elif ((eGen == 2) and (gender == 2) and (ePref != 1) and (ePref != 0)):
       if (chance <= 50):
          outputMainText("You spread your " + legDesc(6) + ", crouching down as both hands grind into your " + vulvaDesc() + " pussy",True)
-         if (lust > 20) and (moistCalc(2) > 3):
+         if ((lust > 20) and (moistCalc(2) > 3)):
             outputMainText(", your honey spreading from the crotch of your " + clothesBottom() + ",",False)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail swishing across the ground,",False)
          outputMainText(" luring the " + enemyName() + " to come grind instead.",False)
-      if (chance > 50):
+      elif (chance > 50):
          outputMainText("Your arms hug beneath your " + boobDesc() + " chest, squeezing the mounds and making them look even bigger",True)
-         if (lust > 20) and ((nippleSize > 1) or (nippleSize > 6)):
+         if ((lust > 20) and (nippleSize > 1) or (nippleSize > 6)):
             outputMainText(", your " + nipDesc() + "nipples clearly visible through your " + clothesTop(),False)
          outputMainText(".",False)
-      if (ePref == 2) or (ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      if ((ePref == 2) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5 + enticeMod / 2))
       elif (ePref == 3):
-         doeLust(math.floor((percent() / 10) + (eLib / 10) + (enticeMod / 2)))
-   elif (eGen == 3) and (gender == 1) and (ePref != 2) and (ePref != 0):
+         doeLust(math.floor(percent() / 10 + eLib / 10 + enticeMod / 2))
+   elif ((eGen == 3) and (gender == 1) and (ePref != 2) and (ePref != 0)):
       if (chance <= 25):
          outputMainText("You turn around and bend over before the " + enemyName() + " stroking the " + cockDesc() + " bulge in your " + clothesBottom() + " and patting your " + buttDesc() + " rump while you wave your " + hipDesc() + " hips",True)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail dancing above",False)
          outputMainText(" tantalizingly.",False)
-      if (chance > 25) and (chance <= 50):
+      elif ((chance > 25) and (chance <= 50)):
          outputMainText("You flex your muscles, trying to show off your masculinity, while you thrust your " + hipDesc() + " hips in an attempt to show off your " + cockDesc() + " bulge.",True)
-      if (chance > 50) and (chance <= 75):
+      elif ((chance > 50) and (chance <= 75)):
          outputMainText("You pull " + pullUD(2) + " your " + clothesBottom() + " a little, revealing the base of your cock-flesh",True)
          if (lust > 20):
             outputMainText(", the " + cockDesc() + " erection pulsing strongly beneath your " + clothesBottom(),False)
@@ -19897,63 +19912,63 @@ def doEntice():
          if (moistCalc(1) > 3):
             outputMainText(", a blotch of pre begining to seep across the fabric",False)
          outputMainText(".",False)
-      if (chance > 75):
+      elif (chance > 75):
          outputMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.",True)
-      if (ePref == 1) or (ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5) + (enticeMod / 2)))
+      if ((ePref == 1) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5 + enticeMod / 2))
       elif (ePref == 3):
-         doeLust(math.floor((percent() / 10) + (eLib / 10) + (enticeMod / 2)))
-   elif (eGen == 3) and (gender == 2) and (ePref != 1) and (ePref != 0):
+         doeLust(math.floor(percent() / 10 + eLib / 10 + enticeMod / 2))
+   elif ((eGen == 3) and (gender == 2) and (ePref != 1) and (ePref != 0)):
       if (chance <= 25):
          outputMainText("You spread your " + legDesc(6) + ", crouching down as both hands grinding into your " + vulvaDesc() + " pussy",True)
-         if (lust > 20) and (moistCalc(2) > 3):
+         if ((lust > 20) and (moistCalc(2) > 3)):
             outputMainText(", your honey spreading from the crotch of your " + clothesBottom() + ",",False)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail swishing across the ground,",False)
          outputMainText(" luring the " + enemyName() + " to come grind instead.",False)
-      if (chance > 25) and (chance <= 50):
+      elif ((chance > 25) and (chance <= 50)):
          outputMainText("Your arms hug beneath your " + boobDesc() + " chest, squeezing the mounds and making them look even bigger",True)
-         if (lust > 20) and ((nippleSize > 1) or (nippleSize > 6)):
+         if ((lust > 20) and (nippleSize > 1) or (nippleSize > 6)):
             outputMainText(", your " + nipDesc() + "nipples clearly visible through your " + clothesTop() + ".",False)
          outputMainText(".",False)
-      if (chance > 50) and (chance <= 75):
+      elif ((chance > 50) and (chance <= 75)):
          outputMainText("You turn around and bend over before the " + enemyName() + ", stroking your " + vulvaDesc() + " vulva through your " + clothesBottom(),True)
-         if (lust > 20) and (moistCalc(2) > 3):
+         if ((lust > 20) and (moistCalc(2) > 3)):
             outputMainText(" until your feminine arousal seeps through",False)
          outputMainText(". Your " + hipDesc() + " hips waggle erotically",False)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail dancing above",False)
          outputMainText(".",False)
-      if (chance > 75):
+      elif (chance > 75):
          outputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a " + nipDesc() + "nipple through your " + clothesTop() + " with your other hand.",True)
-      if (ePref == 2) or (ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5)))
+      if ((ePref == 2) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5))
       elif (ePref == 3):
-         doeLust(math.floor((percent() / 10) + (eLib / 10)))
-   elif (gender == 3) and (ePref != 0) and (eGen != 0):
+         doeLust(math.floor(percent() / 10 + eLib / 10))
+   elif ((gender == 3) and (ePref != 0) and (eGen != 0)):
       if (chance <= 25):
          outputMainText("You turn around and bend over before the " + enemyName() + ", patting your " + buttDesc() + " ass and " + vulvaDesc() + " pussy. You waggle your " + hipDesc() + " hips, the " + cockDesc() + " bulge in your " + clothesBottom() + " swaying",True)
          if (tail != 0):
             outputMainText(", your " + tailDesc() + " tail dancing above",False)
          outputMainText(" deliciously.",False)
-      if (chance > 25) and (chance <= 50):
+      elif ((chance > 25) and (chance <= 50)):
          outputMainText("Your arms hug beneath your " + boobDesc() + " chest, squeezing the mounds and making them look even bigger while you flex, thrusting at the air with your " + cockDesc() + " package bobbing.",True)
-      if (chance > 50) and (chance <= 75):
+      elif ((chance > 50) and (chance <= 75)):
          outputMainText("You pull " + pullUD(2) + " your " + clothesBottom() + " a little, revealing the base of your male anatomy while you spread your " + legDesc(6) + ", crouching down as both hands grind across the bulge and into your female portions",True)
-         if (lust > 20) and ((moistCalc(2) > 3) or (moistCalc(1) > 3)):
+         if ((lust > 20) and ((moistCalc(2) > 3) or (moistCalc(1) > 3))):
             outputMainText(", the fabric quickly growing damp",False)
          outputMainText(".",False)
          if (tail != 0):
             outputMainText("Your " + tailDesc() + " tail swishes across the ground in anticipation.",False)
-      if (chance > 75):
+      elif (chance > 75):
          outputMainText("You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the " + cockDesc() + " phallic outline in your " + clothesBottom() + " with your other hand.",True)
-      if (ePref == 3) or (ePref == 4):
-         doeLust(math.floor((percent() / 10) + (eLib / 5)))
-      elif (ePref == 1) or (ePref == 2):
-         doeLust(math.floor((percent() / 10) + (eLib / 10)))
-   elif (gender == 0) and (ePref != 0) and (eGen != 0):
+      if ((ePref == 3) or (ePref == 4)):
+         doeLust(math.floor(percent() / 10 + eLib / 5))
+      elif ((ePref == 1) or (ePref == 2)):
+         doeLust(math.floor(percent() / 10 + eLib / 10))
+   elif ((gender == 0) and (ePref != 0) and (eGen != 0)):
       outputMainText("Your " + hipDesc() + " hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.",True)
-      doeLust(math.floor((percent() / 10) + (eLib / 10)))
+      doeLust(math.floor(percent() / 10 + eLib / 10))
    else:
       outputMainText("Your attempt at an erotic display only seems to turn the " + enemyName() + " off further.",True)
       eLust -= 5
@@ -19976,11 +19991,11 @@ def battleWin():
    doEnd()
 
 def specialRapeWin():
-   #!
+   #Should work
    global enemyID, defeatedMinotaur, currentDungeon, defeatedFreakyGirl, defeatedSuccubus
    if (enemyID == 303):
       outputMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.",False)
-   elif (enemyID == 304) or (enemyID == 305):
+   elif ((enemyID == 304) or (enemyID == 305)):
       outputMainText("\n\nAs the " + enemyName() + " collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the " + enemyName() + "'s body, you find something wedged in a rather lewd location.",False)
    elif (enemyID == 306):
       outputMainText("\n\nThe naga collapses to the ground, tail still squirming in delighted orgasm and no longer wishing to battle. You take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.",False)
@@ -19992,7 +20007,7 @@ def specialRapeWin():
       else:
          currentDungeon = 1003
    elif (enemyID == 308):
-      outputMainText("\n\nA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"",False)
+      outputMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"",False)
       if (defeatedFreakyGirl == False):
          defeatedFreakyGirl = True
          currentDungeon = 1006
@@ -20009,18 +20024,18 @@ def specialRapeWin():
       outputMainText("\n\nThe " + enemyName() + " collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.",False)
 
 def specialKOWin():
-   #!
+   #Should work
    global enemyID, defeatedMinotaur, currentDungeon, defeatedFreakyGirl, defeatedSuccubus
    if (enemyID == 303):
       outputMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.",False)
-   elif (enemyID == 304) or (enemyID == 305):
+   elif ((enemyID == 304) or (enemyID == 305)):
       outputMainText("\n\nAs the " + enemyName() + " passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the " + enemyName() + "'s body, you find something wedged in a rather lewd location.",False)
    elif (enemyID == 102):
       outputMainText("\n\nFeeling itself about to dissipate from your attacks, the desiccating dust devil feebly spins away, leaving behind some of the sand it can no longer support.",False)
    elif (enemyID == 306):
       outputMainText("\n\nThe naga passes out from your attacks, allowing you take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.",False)
    elif (enemyID == 307):
-      outputMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.",False)
+      outputMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.",False)
       if (defeatedMinotaur == False):
          defeatedMinotaur = True
          currentDungeon = 1002
@@ -20034,7 +20049,7 @@ def specialKOWin():
       else:
          currentDungeon = 1004
    elif (enemyID == 309):
-      outputMainText("\n\nOw, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.",False)
+      outputMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.",False)
       if (defeatedSuccubus == False):
          defeatedSuccubus = True
          currentDungeon = 1010
@@ -20308,13 +20323,13 @@ def doGetRaped():
          if (pregCheck(1) == True):
             outputMainText("\n\nSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your " + legDesc(1) + ", holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\n\nAnd it's quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can't help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\n\nIn that moment of peak pleasure, the snake lets go of your " + legDesc(1) + " and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\n\nIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you...",False)
             i = 0
-            while (i < len(pregArray)):
+            while (i < pregArray.length()):
                if (pregArray[i] == False):
                   pregArray[i] = True
                   pregArray[i + 1] = 503
                   pregArray[i + 2] = 240
                   pregArray[i + 3] = 150
-                  i = len(pregArray)
+                  i = pregArray.length()
                i += 5
             cockSnakePreg += 50
             doLust(-math.floor(sen / 2),2,2)
@@ -20434,13 +20449,13 @@ def doGetRaped():
                vagSize += 2
             outputMainText("\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your " + clitDesc() + " clit" + plural(2) + ", you can do nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, the things inside shivering slightly at the warmth of their new home...\n\nHappy with her spawning season, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate...",False)
             i = 0
-            while (i < len(pregArray)):
+            while (i < pregArray.length()):
                if (pregArray[i] == False):
                   pregArray[i] = True
                   pregArray[i + 1] = 200
                   pregArray[i + 2] = 216
                   pregArray[i + 3] = 180
-                  i = len(pregArray)
+                  i = pregArray.length()
                i += 5
       elif (gender == 3):
          outputMainText("With a giggle at your vulnerable state, her tentacles wrap about your " + buttDesc() + " butt, weaving into you " + clothesBottom() + " and pulling out your " + cockDesc() + " erection" + plural(1) + ". She takes " + oneYour(1) + " cock" + plural(1) + " and fondles it with the slimy appendages, making sure it's nice and hard.",True)
@@ -20463,13 +20478,13 @@ def doGetRaped():
                vagSize += 3
             outputMainText("\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your " + clitDesc() + " clit" + plural(2) + ", you can nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, even the extra bit she gained from after you filled her with your cum, the things inside shivering slightly at the warmth of their new home...\n\nEspecially happy with how well her spawning season went this week, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate...",False)
             i = 0
-            while (i < len(pregArray)):
+            while (i < pregArray.length()):
                if (pregArray[i] == False):
                   pregArray[i] = True
                   pregArray[i + 1] = 200
                   pregArray[i + 2] = 252
                   pregArray[i + 3] = 216
-                  i = len(pregArray)
+                  i = pregArray.length()
                i += 5
       if (((gender == 2) or (gender == 3)) and (pregCheck(1) == True)):
          doLust(-math.floor(sen / 2),2,2)
@@ -21131,7 +21146,7 @@ def enemyAttack():
          elif (pregCheck(0) == True):
             outputMainText("\n\nYour womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust.",False)
             i = 0
-            while (i < len(pregArray)):
+            while (i < pregArray.length()):
                if (pregArray[i] == True):
                   pregArray[i + 3] += 10
                i += 5
@@ -21273,7 +21288,7 @@ def doStatus(param1:int):
    pregnancyTime = 0
    _loc2_ = 0
    i = 0
-   while (i < len(pregArray)):
+   while (i < pregArray.length()):
       if (pregArray[i] == True):
          if (pregArray[i + 3] + math.ceil(param1 * pregRate) > pregArray[i + 2] + pregTimeMod):
             pregArray[i] = False
@@ -21356,7 +21371,7 @@ def doStatus(param1:int):
          outputMainText("\n\nYou feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your " + clothesBottom() + " becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your " + vulvaDesc() + " lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your " + legDesc(1) + ". You gasp and regain yourself, the snake slithering away. It must have been too hungry too survive inside you any longer...",False)
          cockSnakePreg = 0
          i = 0
-         while (i < len(pregArray)):
+         while (i < pregArray.length()):
             if (pregArray[i + 1] == 503):
                pregArray[i] = False
                pregArray[i + 3] = 0
@@ -22908,7 +22923,7 @@ def vagChange(sizeChange:int, totalChange:int):
          outputMainText("\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your " + clothesBottom() + " becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your " + vulvaDesc() + " lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your " + legDesc(1) + ". You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...",False)
          cockSnakePreg = 0
          i = 0
-         while (i < len(pregArray)):
+         while (i < pregArray.length()):
             if (pregArray[i + 1] == 503):
                pregArray[i] = False
                pregArray[i + 3] = 0
@@ -22937,9 +22952,9 @@ def vagChange(sizeChange:int, totalChange:int):
       vulvaSize = 0
       clitSize = 0
       i = 0
-      while (i < len(pregArray)):
+      while (i < pregArray.length()):
          if (pregArray[i] == False):
-            pregArray = FE.lists.splice(pregArray,i,5)
+            pregArray.splice(i,5)
             i = -5
          i += 5
    elif ((vagTotal + totalChange > 0) and (vagTotal < 1)):
@@ -22960,8 +22975,8 @@ def vagChange(sizeChange:int, totalChange:int):
          outputMainText("\n\nYou have now graduated from androgynous to female, congratulations!",False)
          gender = 2
       while (totalChange > 0):
-         if (len(pregArray) / 5 < vagTotal):
-            pregArray = FE.lists.push(pregArray,[False,0,0,0,0])
+         if (pregArray.length() / 5 < vagTotal):
+            pregArray.push(False,0,0,0,0)
             totalChange -= 1
          else:
             totalChange = 0
@@ -22974,8 +22989,8 @@ def vagChange(sizeChange:int, totalChange:int):
       vagTotal += totalChange
       vagSize += sizeChange
       while (totalChange > 0):
-         if (len(pregArray) / 5 < vagTotal):
-            pregArray = FE.lists.push(pregArray,[False,0,0,0,0])
+         if (pregArray.length() / 5 < vagTotal):
+            pregArray.push(False,0,0,0,0)
             totalChange -= 1
          else:
             totalChange = 0
@@ -22988,11 +23003,11 @@ def vagChange(sizeChange:int, totalChange:int):
       while (totalChange < 0):
          if (pregCheck(1) == True):
             i = 0
-            while (i < len(pregArray)):
+            while (i < pregArray.length()):
                if (pregArray[i] == False):
-                  pregArray = FE.lists.splice(pregArray,i,5)
+                  pregArray.splice(i,5)
                   totalChange += 1
-                  i += len(pregArray)
+                  i += pregArray.length()
                i += 5
          else:
             totalChange = 0
@@ -23180,19 +23195,19 @@ def pregCheck(amount:int):
    tempBool = False
    if (amount == 0):
       i = 0
-      while (i < len(pregArray)):
+      while (i < pregArray.length()):
          if (pregArray[i] == True):
             tempBool = True
          i += 5
    elif (amount == 1):
       i = 0
-      while (i < len(pregArray)):
+      while (i < pregArray.length()):
          if (pregArray[i] == False):
             tempBool = True
          i += 5
    elif (amount > 1):
       i = 0
-      while (i < len(pregArray)):
+      while (i < pregArray.length()):
          if (pregArray[i + 1] == amount):
             tempBool = True
          i += 5
@@ -23221,7 +23236,7 @@ def doImpregnate(erace:int):
          extra += 1
          i += 1
       i = 0
-      while (i < len(pregArray)):
+      while (i < pregArray.length()):
          if (pregArray[i] == False):
             if (erace == 100):
                pregArray[i + 2] = 80 + math.floor(percent() / 10) + extra * 30
@@ -23273,14 +23288,14 @@ def doImpregnate(erace:int):
                pregArray[i + 4] = extra * 4
             pregArray[i + 1] = erace
             pregArray[i] = True
-            i = len(pregArray)
+            i = pregArray.length()
          i += 5
 
 def doBirth(pregnancyType:int, extra:int, birthCount:int):
    #Should work
    global pregArray, vagTotal, hrs, vulvaSize, wolfPupChildren, calfChildren, minotaurChildren, freakyGirlChildren, humanChildren, equanChildren, lupanChildren, felinChildren, udders, cowChildren, lizanEggs, bunnionChildren, miceChildren, birdEggs, pigChildren, skunkChildren, bugEggs, sen, dominant
    birthNumber = 0
-   if (len(pregArray) > vagTotal * 5):
+   if (pregArray.length() > vagTotal * 5):
       vagChange(0,1)
    hrs += 1
    if (birthCount == 0):
@@ -24684,13 +24699,13 @@ def frame1():
    sideFocus = 1
    pregTempInt = 0
    pregTempBool = False
-   lustArray = list(())
+   lustArray = as3.Array()
 #   bg = new Sprite()
    rndResult = 0
-   rndArray = list(())
-   textCheckArray = list(())
-   choiceListArray = list(())
-   choiceListResult = list(())
+   rndArray = as3.Array()
+   textCheckArray = as3.Array()
+   choiceListArray = as3.Array()
+   choiceListResult = as3.Array()
    choicePage = 0
    moveItemID = 0
    moveItemStack = 0
@@ -24721,7 +24736,7 @@ def frame1():
    sensitivity = 0
    hunger = 0
    hrs = 0
-   itemGainArray = list(())
+   itemGainArray = as3.Array()
    human = 0
    horse = 0
    wolf = 0
@@ -24829,7 +24844,7 @@ def frame1():
    attireTop = 1
    attireBot = 2
    weapon = 10
-   pregArray = list(())
+   pregArray = as3.Array()
    pregStatus = 0
    pregnancyTime = 0
    pregRate = 1
@@ -24924,7 +24939,7 @@ def frame1():
    jamieButt = False
    jamieBreasts = False
    jamieHair = False
-   travArray = list(())
+   travArray = as3.Array()
    foundSoftlik = False
    foundFirmshaft = False
    foundTieden = False
@@ -25007,10 +25022,10 @@ def frame1():
    minotaurChildren = 0
    freakyGirlChildren = 0
    bagPage = 1
-   bagArray = list(())
-   bagStackArray = list(())
-   stashArray = list(())
-   stashStackArray = list(())
+   bagArray = as3.Array()
+   bagStackArray = as3.Array()
+   stashArray = as3.Array()
+   stashStackArray = as3.Array()
    statPaneVisible = False
    levelPaneVisible = False
    currentRegionVisible = False
