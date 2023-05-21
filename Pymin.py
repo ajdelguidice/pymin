@@ -809,7 +809,7 @@ def ChangeBackgroundColor(color):
          if (eval(i).cget("background") != color):
             eval(i)["background"] = color
       except:
-         x = 0
+         continue
    
 def ChangeTextColor(color):
    global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel
@@ -818,7 +818,7 @@ def ChangeTextColor(color):
          if (eval(i).cget("foreground") != color):
             eval(i)["foreground"] = color
       except:
-         x = 0
+         continue
 
 def UpdateTheme():
    global theme, themeColor
@@ -1306,7 +1306,7 @@ def checkZero():
          if (stashStackArray[i] == 0):
             stashArray[i] = 0
       except:
-         x = 0
+         continue
    if (cockSize < 0):
       cockSize = 0
    if (cockTotal < 0):
