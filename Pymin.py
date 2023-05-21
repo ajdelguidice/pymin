@@ -1780,6 +1780,7 @@ def doSexP(changes:int):
    StatsPane.SetSCstats()
 
 def regionChange(changes:int):
+   global inDungeon, currentZone, currentregionlabel, currentDungeon
    if (inDungeon == False):
       currentZone = changes
       if (changes == 1):
@@ -1850,7 +1851,7 @@ def doPassOut():
    if (coin - tempNum < 0):
       tempNum = coin
    specialKOLose()
-   outputMainText("\n\nYou pass out from all the pain. When you wake back up, you manage to stumble back to town. However, it seems as though your pockets are a bit lighter for some reason or another.\n\nYou have lost " + tempNum + " coins.",False)
+   outputMainText("\n\nYou pass out from all the pain. When you wake back up, you manage to stumble back to town. However, it seems as though your pockets are a bit lighter for some reason or another.\n\nYou have lost " + str(tempNum) + " coins.",False)
    if (currentState == 2):
       currentState = 1
    if (inDungeon == True):
@@ -10129,13 +10130,13 @@ def changeBot(ID:int):
          attireBot = ID
 
 def doDayCare():
-   #!last if statement
-   global currentDayCare, currentZone, coin, buttonChoice, hrs, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, lizanChildren, lizanEggs, bunnionChildren, miceChildren, birdChildren, birdEggs, pigChildren, skunkChildren, bugChildren, bugEggs, wolfPupChildren, clafChildren, minotaurChildren, freakyGirlChildren
+   #Should work
+   global currentDayCare, currentZone, coin, buttonChoice, hrs, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, lizanChildren, lizanEggs, bunnionChildren, miceChildren, birdChildren, birdEggs, pigChildren, skunkChildren, bugChildren, bugEggs, wolfPupChildren, clafChildren, minotaurChildren, freakyGirlChildren, maintext
    global doListen
    tempInt = 0
    outputMainText("Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo).",True)
    if (currentDayCare != currentZone):
-      this.outputMainText("\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in " + regionName(currentDayCare) + ".",False)
+      outputMainText("\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in " + regionName(currentDayCare) + ".",False)
       outputMainText("\n\nIf you would like to send a party of well-experienced travelers to " + regionName(currentDayCare) + " to safely bring your children here, it will cost 500 coins.",False)
       if (coin < 500):
          outputMainText(" Which you don't have enough of anyways.",False)
@@ -10225,7 +10226,7 @@ def doDayCare():
          outputMainText("\n\nYou have " + minotaurChildren + " babies from the Minotaur. They are quite large and hulking compared to other babies, and powerful as well. They don't seem like the smartest children in the world, but they like to help out by lifting and carrying things.",False)
       if (freakyGirlChildren > 0):
          outputMainText("\n\nYou have " + freakyGirlChildren + " cute little balls of fuzz babies with adorable human-like faces and long ears. They roll and bounce about, acting adorable, but if you're not careful and make them angry, you might lose a finger... You're not entirely sure if they'll grow legs and a full body like their 'father'; you don't know much about them at all, really.",False)
-      if (str(TextBoxes.GetMain("1.0", "end")) == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo).\n"):
+      if (maintext == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."):
          outputMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.",True)
       doEnd()
 
@@ -11152,6 +11153,7 @@ def doBothMasturbate():
       doSexP(10)
 
 def doBoobMasturbate():
+   #!
    global lustArray, breastSize, lactation, ment, lib, currentZone, nippleSize, boobTotal, sen, lust, dominant, nipplePlay, nipType, milkHPMod, hrs
    _loc1_ = 0
    _loc2_ = 0
@@ -11504,7 +11506,7 @@ def simpleAlchemy():
          doAlchemy()
 
 def complexAlchemy():
-   #Should work
+   #!choiceList but Should work
    global choiceListArray, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowBabyFree, knowPotPot, knowGenSwap, knowMasoPot, knowMilkSuppress, doListen
    choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
@@ -11579,12 +11581,12 @@ def complexAlchemy():
          doAlchemy()
 
 def advancedAlchemy():
-   #Should work
+   #!choiceList but Should work
    global choiceListArray, knowSBabyFree, knowSPotPot, knowGenSwap, knowSMasoPot, knowPussJuice, knowPheromone, knowBazoomba, doListen
    choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
    choiceListArray.push("Red Dye")
-   if (choiceListCheck("Red Dye"))
+   if (choiceListCheck("Red Dye")):
       outputMainText("\n\nRed Dye - Dye that will turn your hair red.\nRequires 1 Pink Ink and 3 Red Mush.",False)
    if (knowSBabyFree == True):
       choiceListArray.push("S Baby Free")
@@ -12863,244 +12865,244 @@ def eventSelect(which:str):
    #Should work
    global rndArray, hour, pregnancyTime, vagTotal, lilaRep, silRep, foundValley, firstExplore, currentZone, knowPheromone, udders, udderLactation, udderEngorgementLevel, malonRep, silTied
    rndArray = as3.Array()
-   tempArray = []
+   tempArray = as3.Array()
    if (which == "Softlik"):
-      tempArray = [0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
+      tempArray = as3.Array(0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x","x","x","x","x","x",0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x"]
+      tempArray = as3.Array("x","x","x","x","x","x",0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(4)
    elif (which == "Firmshaft"):
-      tempArray = [0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x","x","x","x","x","x","x","x","x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
    elif (which == "Tieden"):
-      tempArray = ["x","x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0)
       if ((tempArray[hour] == "x") and (pregnancyTime >= 180) and (vagTotal > 0)):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
    elif (which == "Siz'Calit"):
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,"x","x","x",0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,"x","x","x",0)
       if ((tempArray[hour] == "x") and (lilaRep > 3)):
          rndArray.push(1)
-      tempArray = ["x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x"]
+      tempArray = as3.Array("x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(4)
    elif (which == "Oviasis"):
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0)
       if ((tempArray[hour] == "x") and (silRep < 6)):
          rndArray.push(1)
-      tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x",0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x",0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = ["x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = [0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x",0,0,0,0,"x","x","x",0]
+      tempArray = as3.Array(0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x",0,0,0,0,"x","x","x",0)
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = ["x","x","x","x","x","x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,"x",0,"x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,"x",0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(5)
    elif (which == "Sanctuary"):
-      tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
    elif (which == "Forest"):
-      tempArray = [0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0,"x","x"]
+      tempArray = as3.Array(0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0]
+      tempArray = as3.Array("x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = ["x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0,0,0,"x","x",0,0,0,0,"x"]
+      tempArray = as3.Array("x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0,0,0,"x","x",0,0,0,0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = [0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(5)
-      tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(6)
    elif (which == "Jungle"):
-      tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0)
       if ((tempArray[hour] == "x") and (foundValley == False) and (firstExplore == True)):
          rndArray.push(1)
-      tempArray = [0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x"]
+      tempArray = as3.Array(0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = ["x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x"];
+      tempArray = as3.Array("x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(5)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(6)
-      tempArray = [0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(7)
    elif (which == "Plains"):
-      tempArray = ["x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x"]
+      tempArray = as3.Array("x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x")
       if ((tempArray[hour] == "x") and (checkOpenSlot(244) > 0)):
          rndArray.push(1)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,"x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x"]
+      tempArray = as3.Array(0,"x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = [0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = ["x","x","x","x",0,0,0,0,0,0,"x",0,0,"x",0,0,0,0,0,0,"x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,"x",0,0,"x",0,0,0,0,0,0,"x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(5)
    elif (which == "Savanna"):
-      tempArray = [0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,"x","x","x","x",0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,"x","x","x","x",0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(5)
    elif (which == "Desert"):
-      tempArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x"]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = [0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
       if ((tempArray[hour] == "x") and (currentZone == 6) and (silRep == 0)):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,"x","x","x","x",0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,"x","x","x","x",0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x",0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x",0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = ["x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(5)
    elif (which == "Beach"):
-      tempArray = [0,0,0,0,0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = [0,0,0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x","x",0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x","x",0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,0,"x",0,0,0,"x",0,0,0,0,"x","x",0,"x",0,0,0,"x","x",0,0,0,"x"]
+      tempArray = as3.Array(0,0,"x",0,0,0,"x",0,0,0,0,"x","x",0,"x",0,0,0,"x","x",0,0,0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = ["x",0,0,0,0,"x",0,0,0,0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x"]
+      tempArray = as3.Array("x",0,0,0,0,"x",0,0,0,0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = [0,"x",0,"x",0,"x",0,0,0,"x",0,0,0,"x",0,"x",0,"x",0,0,0,"x",0]
+      tempArray = as3.Array(0,"x",0,"x",0,"x",0,0,0,"x",0,0,0,"x",0,"x",0,"x",0,0,0,"x",0)
       if (tempArray[hour] == "x"):
          rndArray.push(5)
-      tempArray = [0,"x",0,"x","x",0,0,"x",0,"x","x",0,0,"x",0,0,"x","x",0,"x",0,0,"x"]
+      tempArray = as3.Array(0,"x",0,"x","x",0,0,"x",0,"x","x",0,0,"x",0,0,"x","x",0,"x",0,0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(6)
    elif (which == "Lake"):
-      tempArray = ["x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = [0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
       if (tempArray[hour] == x and (knowPheromone != True)):
          rndArray.push(2)
-      tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
    elif (which == "Dairy Farm"):
-      tempArray = [0,0,0,0,"x","x","x",0,0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,"x","x","x",0,0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x"]
+      tempArray = as3.Array("x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
       if ((tempArray[hour] == "x") and (udders == True) and (udderLactation > 0) and (udderEngorgementLevel > 0)):
          rndArray.push(2)
-      tempArray = [0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x"]
+      tempArray = as3.Array(0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = [0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = [0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,0,0,0)
       if ((tempArray[hour] == "x") and (malonRep > 0)):
          rndArray.push(4)
-      tempArray = ["x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x",0,0]
+      tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x",0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(5)
    elif (which == "Old Cave"):
-      tempArray = [0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x"]
+      tempArray = as3.Array(0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0]
+      tempArray = as3.Array("x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = ["x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0]
+      tempArray = as3.Array("x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0)
       if (tempArray[hour] == "x"):
          rndArray.push(3)
    elif (which == "Den"):
-      tempArray = [0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0]
+      tempArray = as3.Array(0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0)
       if ((tempArray[hour] == "x") and (silTied == False) and (checkItem(229) == False) and (checkStash(229) == False)):
          rndArray.push(1)
-      tempArray = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"]
+      tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(2)
    if (which == "Valley"):
-      tempArray = [0,"x","x",0,0,"x","x",0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,"x","x"]
+      tempArray = as3.Array(0,"x","x",0,0,"x","x",0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(1)
-      tempArray = ["x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0]
+      tempArray = as3.Array("x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(2)
-      tempArray = [0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x"]
+      tempArray = as3.Array(0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
       if (tempArray[hour] == "x"):
          rndArray.push(3)
-      tempArray = ["x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0]
+      tempArray = as3.Array("x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0)
       if (tempArray[hour] == "x"):
          rndArray.push(4)
-      tempArray = [0,0,0,"x","x",0,"x","x",0,0,0,"x","x","x","x","x",0,0,0,"x","x",0,"x","x"]
+      tempArray = as3.Array(0,0,0,"x","x",0,"x","x",0,0,0,"x","x","x","x","x",0,0,0,"x","x",0,"x","x")
       if (tempArray[hour] == "x"):
          rndArray.push(5)
    #trace(this.rndArray)
@@ -23140,7 +23142,7 @@ def udderCheck(which:int):
 
 def lactChange(which:int, amount:int):
    #Should work
-   global lactation, nipplePlay, udderLactation, udders, udderPlay, milkEngorgementLeve, milkEngorgement, udderEngorgementLevel, udderEngorgement, milkSuppressant, pregStatus
+   global lactation, nipplePlay, udderLactation, udders, udderPlay, milkEngorgementLevel, milkEngorgement, udderEngorgementLevel, udderEngorgement, milkSuppressant, pregStatus
    if ((which == 1) and (lactation + amount >= 1) and (lactation < 1)):
       outputMainText("\n\nBlotches spread across your " + clothesTop() + " around your nipples. Curiously, you dab your finger in the moistness and take a taste. Milk... Your breasts seem to have begun lactating!",False)
       nipplePlay = 20
