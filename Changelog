@@ -61,3 +61,6 @@ legDesc
 
 genName
 - Rearranged if statements to look nicer and do less checks
+
+eventSelect
+- Added placeholders at the end of arrays that didn't have enough values to prevent errors
