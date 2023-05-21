@@ -17,6 +17,8 @@ Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
 Rearranged post-increment statements to work in python
 
+simpleAlchemy
+- Removed newline charater in the final recipy description to be consistant with the rest
 advancedAlchemy
 - Added newline character to the final 3 recipy descriptions to be consistant with the rest
 
