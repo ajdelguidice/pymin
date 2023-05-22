@@ -1289,13 +1289,14 @@ def choiceListCheck(*which):
    return False
 
 def showPage(changes:bool, which:str):
-   global choicePage
+   global choicePage, pageShow
    if (changes == True):
       Page.Show()
    if (changes == False):
       Page.Hide()
    text = str(which) + ": " + str(choicePage)
-   Page.TextChange(text)
+   if (pageShow == True):
+      Page.TextChange(text)
 
 def checkZero():
    global bagArray, bagStackArray, stashArray, stashStackArray, cockSize, cockTotal, balls, blueBalls, ballSize, cockMoist, breastSize, boobTotal, nippleSize, udderSize, teatSize, clitSize, vagSize, vagTotal, vagMoist, vulvaSize, exhaustion, exhaustionPenalty, hips, butt, body, tallness, cockSizeMod, vagSizeMod, vagBellyMod, pregChanceMod, lactation, milkMod, milkCap, coin, hipMod, buttMod, bellyMod, pregArray
@@ -2009,7 +2010,7 @@ def doLustForcedMasturbate():
 
 def newGameGo():
    #Should work
-   global currentState, buttonChoice, currentZone, inBag, inShop, inDungeon, currentDungeon, _str_, ment, lib, sen, HP, lust, coin, strMod, mentMod, libMod, senMod, hunger, day, hour, SexP, levelUP, level, runMod, rapeMod, cockSizeMod, vagSizeMod, vagElastic, milkMod, carryMod, vagBellyMod, pregChanceMod, extraPregChance, pregTimeMod, milkHPMod, changeMod, HPMod, SexPMod, minLust, milkCap, coinMod, hipMod, buttMod, bellyMod, cockMoistMod, vagMoistMod, lockTail, lockFace, lockSkin, lockBreasts, lockEars, lockLegs, lockNipples, lockCock, gender, race, body, dominant, hips, butt, tallness, skinType, tail, ears, hair, hairLength, hairColor, legType, wings, faceType, skinColor, cockTotal, humanCocks, horseCocks, wolfCocks, catCocks, lizardCocks, rabbitCocks, cockSize, cockMoist, balls, ballSize, showBalls, knot, bugCocks, breastSize, boobTotal, nippleSize, udders, udderSize, teatSize, clitSize, vagTotal, vagSize, vagMoist, vulvaSize, nipType, attireTop, attireBot, weapon, pregArray, pregStatus, pregnancyTime, pregRate, eggLaying, eggMaxTime, eggTime, eggRate, exhaustion, exhaustionPenalty, milkEngorgement, milkEngorgementLevel, udderEngorgement, udderEngorgementLevel, heat, heatTime, heatMaxTime, lactation, udderLactation, nipplePlay, udderPlay, blueBalls, teatPump, nipPump, cockPump, clitPump, vulvaPump, masoPot, sMasoPot, babyFree, charmTime, pheromone, eggceleratorTime, eggceleratorDose, bodyOil, lustPenalty, snuggleBall, fertileGel, eggType, milkSuppressant, milkSuppressantLact, milkSuppressantUdder, suppHarness, fertilityStatueCurse, plumpQuats, lilaWetStatus, cockSnakePreg, milkCPoisonNip, milkCPoisonUdd, cockSnakeVenom, humanAffinity, horseAffinity, wolfAffinity, catAffinity, cowAffinity, lizardAffinity, rabbitAffinity, fourBoobAffinity, mouseAffinity, birdAffinity, pigAffinity, twoBoobAffinity, sixBoobAffinity, eightBoobAffinity, tenBoobAffinity, cowTaurAffinity, humanTaurAffinity, skunkAffinity, bugAffinity, lilaRep, lilaVulva, lilaMilk, lilaPreg, malonRep, malonPreg, malonChildren, mistressRep, jamieRep, jamieSize, jamieChildren, silRep, silPreg, silRate, silLay, silTied, silGrowthTime, lilaUB, jamieRep1, jamieRep2, jamieRep3, lilaWetness, foundSoftlik, foundFirmshaft, foundTieden, foundSizCalit, foundOviasis, foundValley, foundSanctuary, defeatedMinotaur, defeatedFreakyGirl, defeatedSuccubus, firstExplore, knowLustDraft, knowRejuvPot, knowExpPreg, knowBallSwell, knowMaleEnhance, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowGenSwap, knowMasoPot, knowBabyFree, knowPotPot, knowMilkSuppress, knowSGenSwap, knowSMasoPot, knowSBabyFree, knowSPotPot, knowPussJuice, knowPheromone, knowBazoomba, babyFactLevel, hyperHappyLevel, alchemistLevel, fetishMasterLevel, milkMaidLevel, shapeshiftyLevel, shapeshiftyFirst, shapeshiftySecond, maleFetish, femaleFetish, hermFetish, narcissistFetish, dependentFetish, dominantFetish, submissiveFetish, lboobFetish, sboobFetish, furryFetish, scalyFetish, smoothyFetish, pregnancyFetish, bestialityFetish, milkFetish, unbirthingFetish, ovipositionFetish, toyFetish, hyperFetish, currentDayCare, humanChildren, equanChildren, lupanChildren, felinChildren, cowChildren, lizanEggs, lizanChildren, bunnionChildren, pigChildren, birdEggs, birdChildren, pigChildren, bugEggs, bugChildren, skunkChildren, minotaurChildren, freakyGirlChildren, wolfPupChildren, calfChildren, bagPage, bagArray, bagStackArray, stashArray, stashStackArray
+   global currentState
    global doListen
    ApButton.Hide()
    #this.appearanceText.visible = false;
@@ -23800,48 +23801,48 @@ def boobDesc():
    if (chance <= 100):
       if (breastSize <= 0):
          tempStr = "flat"
-      if ((breastSize > 0) and (breastSize <= 2)):
+      elif ((breastSize > 0) and (breastSize <= 2)):
          tempStr = "nearly flat"
-      if ((breastSize > 2) and  (breastSize <= 8)):
+      elif ((breastSize > 2) and  (breastSize <= 8)):
          tempStr = "noticeable"
-      if ((breastSize > 8) and (breastSize <= 20)):
+      elif ((breastSize > 8) and (breastSize <= 20)):
          tempStr = "large"
-      if ((breastSize > 20) and (breastSize <= 40)):
+      elif ((breastSize > 20) and (breastSize <= 40)):
          tempStr = "huge"
-      if ((breastSize > 40) and (breastSize <= 76)):
+      elif ((breastSize > 40) and (breastSize <= 76)):
          tempStr = "humongous"
-      if ((breastSize > 76) and (breastSize <= 146)):
+      elif ((breastSize > 76) and (breastSize <= 146)):
          tempStr = "massive"
-      if ((breastSize > 146) and (breastSize <= 210)):
+      elif ((breastSize > 146) and (breastSize <= 210)):
          tempStr = "gargantuan"
-      if ((breastSize > 210) and (breastSize <= 280)):
+      elif ((breastSize > 210) and (breastSize <= 280)):
          tempStr = "tremendous"
-      if ((breastSize > 280) and (breastSize <= 560)):
+      elif ((breastSize > 280) and (breastSize <= 560)):
          tempStr = "colossal"
-      if (breastSize > 560):
+      elif (breastSize > 560):
          tempStr = "ridiculously huge"
    if (chance > 50):
       if (breastSize <= 0):
          tempStr = ""
-      if ((breastSize > 0) and (breastSize <= 2)):
+      elif ((breastSize > 0) and (breastSize <= 2)):
          tempStr = "tiny"
-      if ((breastSize > 2) and (breastSize <= 4)):
+      elif ((breastSize > 2) and (breastSize <= 4)):
          tempStr = "palmable"
-      if ((breastSize > 8) and (breastSize <= 20)):
+      elif ((breastSize > 8) and (breastSize <= 20)):
          tempStr = "ample"
-      if ((breastSize > 20) and (breastSize <= 40)):
+      elif ((breastSize > 20) and (breastSize <= 40)):
          tempStr = "head-sized"
-      if ((breastSize > 40) and (breastSize <= 76)):
+      elif ((breastSize > 40) and (breastSize <= 76)):
          tempStr = "hefty"
-      if ((breastSize > 76) and (breastSize <= 146)):
+      elif ((breastSize > 76) and (breastSize <= 146)):
          tempStr = "beachball-sized"
-      if ((breastSize > 146) and (breastSize <= 210)):
+      elif ((breastSize > 146) and (breastSize <= 210)):
          tempStr = "normally back-breaking"
-      if ((breastSize > 210) and (breastSize <= 280)):
+      elif ((breastSize > 210) and (breastSize <= 280)):
          tempStr = "view-obscuring"
-      if ((breastSize > 280) and (breastSize <= 560)):
+      elif ((breastSize > 280) and (breastSize <= 560)):
          tempStr = "bed-sized"
-      if (breastSize > 560):
+      elif (breastSize > 560):
          tempStr = "road-filling"
    return tempStr
 
@@ -23854,44 +23855,44 @@ def udderDesc():
    if (chance <= 100):
       if (tempUdder <= 2):
          tempStr = "nearly flat"
-      if ((tempUdder > 2) and (tempUdder <= 8)):
+      elif ((tempUdder > 2) and (tempUdder <= 8)):
          tempStr = "noticeable"
-      if ((tempUdder > 8) and (tempUdder <= 20)):
+      elif ((tempUdder > 8) and (tempUdder <= 20)):
          tempStr = "large"
-      if ((tempUdder > 20) and (tempUdder <= 40)):
+      elif ((tempUdder > 20) and (tempUdder <= 40)):
          tempStr = "huge"
-      if ((tempUdder > 40) and (tempUdder <= 76)):
+      elif ((tempUdder > 40) and (tempUdder <= 76)):
          tempStr = "humongous"
-      if ((tempUdder > 76) and (tempUdder <= 146)):
+      elif ((tempUdder > 76) and (tempUdder <= 146)):
          tempStr = "massive"
-      if ((tempUdder > 146) and (tempUdder <= 210)):
+      elif ((tempUdder > 146) and (tempUdder <= 210)):
          tempStr = "gargantuan"
-      if ((tempUdder > 210) and (tempUdder <= 280)):
+      elif ((tempUdder > 210) and (tempUdder <= 280)):
          tempStr = "tremendous"
-      if ((tempUdder > 280) and (tempUdder <= 560)):
+      elif ((tempUdder > 280) and (tempUdder <= 560)):
          tempStr = "colossal"
-      if (tempUdder > 560):
+      elif (tempUdder > 560):
          tempStr = "ridiculously huge"
    if (chance > 50):
       if (tempUdder <= 2):
          tempStr = "tiny"
-      if ((tempUdder > 2) and (tempUdder <= 8)):
+      elif ((tempUdder > 2) and (tempUdder <= 8)):
          tempStr = "palmable"
-      if ((tempUdder > 8) and (tempUdder <= 20)):
+      elif ((tempUdder > 8) and (tempUdder <= 20)):
          tempStr = "ample"
-      if ((tempUdder > 20) and (tempUdder <= 40)):
+      elif ((tempUdder > 20) and (tempUdder <= 40)):
          tempStr = "head-sized"
-      if ((tempUdder > 40) and (tempUdder <= 76)):
+      elif ((tempUdder > 40) and (tempUdder <= 76)):
          tempStr = "hefty"
-      if ((tempUdder > 76) and (tempUdder <= 146)):
+      elif ((tempUdder > 76) and (tempUdder <= 146)):
          tempStr = "beachball-sized"
-      if ((tempUdder > 146) and (tempUdder <= 210)):
+      elif ((tempUdder > 146) and (tempUdder <= 210)):
          tempStr = "normally back-breaking"
-      if ((tempUdder > 210) and (tempUdder <= 280)):
+      elif ((tempUdder > 210) and (tempUdder <= 280)):
          tempStr = "view-obscuring"
-      if ((tempUdder > 280) and (tempUdder <= 560)):
+      elif ((tempUdder > 280) and (tempUdder <= 560)):
          tempStr = "bed-sized"
-      if (tempUdder > 560):
+      elif (tempUdder > 560):
          tempStr = "road-filling"
    return tempStr
 
@@ -23903,40 +23904,40 @@ def teatDesc():
    if (chance <= 100):
       if (teatSize <= 2):
          tempStr = "normal"
-      if ((teatSize > 2) and (teatSize <= 5)):
+      elif ((teatSize > 2) and (teatSize <= 5)):
          tempStr = "noticeable"
-      if ((teatSize > 5) and (teatSize <= 9)):
+      elif ((teatSize > 5) and (teatSize <= 9)):
          tempStr = "blatant"
-      if ((teatSize > 9) and (teatSize <= 30)):
+      elif ((teatSize > 9) and (teatSize <= 30)):
          tempStr = "normal-for-a-cow"
-      if ((teatSize > 30) and (teatSize <= 50)):
+      elif ((teatSize > 30) and (teatSize <= 50)):
          tempStr = "cock-like"
-      if ((teatSize > 50) and (teatSize <= 100)):
+      elif ((teatSize > 50) and (teatSize <= 100)):
          tempStr = "horsecock-like"
-      if ((teatSize > 100) and (teatSize <= 140)):
+      elif ((teatSize > 100) and (teatSize <= 140)):
          tempStr = "arm-length"
-      if ((teatSize > 140) and (teatSize <= 300)):
+      elif ((teatSize > 140) and (teatSize <= 300)):
          tempStr = "street-clearing"
-      if (teatSize > 300):
+      elif (teatSize > 300):
          tempStr = "obscene"
    if (chance > 50):
       if (teatSize <= 2):
          tempStr = ""
-      if ((teatSize > 2) and (teatSize <= 5)):
+      elif ((teatSize > 2) and (teatSize <= 5)):
          tempStr = "perky"
-      if ((teatSize > 5) and (teatSize <= 9)):
+      elif ((teatSize > 5) and (teatSize <= 9)):
          tempStr = "hypnotizing"
-      if ((teatSize > 9) and (teatSize <= 30)):
+      elif ((teatSize > 9) and (teatSize <= 30)):
          tempStr = "long"
-      if ((teatSize > 30) and (teatSize <= 50)):
+      elif ((teatSize > 30) and (teatSize <= 50)):
          tempStr = "huge"
-      if ((teatSize > 50) and (teatSize <= 100)):
+      elif ((teatSize > 50) and (teatSize <= 100)):
          tempStr = "enormous"
-      if ((teatSize > 100) and (teatSize <= 140)):
+      elif ((teatSize > 100) and (teatSize <= 140)):
          tempStr = "extreme"
-      if ((teatSize > 140) and (teatSize <= 300)):
+      elif ((teatSize > 140) and (teatSize <= 300)):
          tempStr = "ridiculous"
-      if (teatSize > 300):
+      elif (teatSize > 300):
          tempStr = "obscene"
    return tempStr
 
@@ -23949,40 +23950,40 @@ def buttDesc():
    if (chance <= 100):
       if (tempButt <= 2):
          tempStr = "flat"
-      if ((tempButt > 2) and (tempButt <= 5)):
+      elif ((tempButt > 2) and (tempButt <= 5)):
          tempStr = "tight"
-      if ((tempButt > 5) and (tempButt <= 15)):
+      elif ((tempButt > 5) and (tempButt <= 15)):
          tempStr = "ample"
-      if ((tempButt > 15) and (tempButt <= 30)):
+      elif ((tempButt > 15) and (tempButt <= 30)):
          tempStr = "large"
-      if ((tempButt > 30) and (tempButt <= 50)):
+      elif ((tempButt > 30) and (tempButt <= 50)):
          tempStr = "huge"
-      if ((tempButt > 50) and (tempButt <= 80)):
+      elif ((tempButt > 50) and (tempButt <= 80)):
          tempStr = "grand"
-      if ((tempButt > 80) and (tempButt <= 130)):
+      elif ((tempButt > 80) and (tempButt <= 130)):
          tempStr = "jumbo"
-      if ((tempButt > 130) and (tempButt <= 175)):
+      elif ((tempButt > 130) and (tempButt <= 175)):
          tempStr = "giant"
-      if (tempButt > 175):
+      elif (tempButt > 175):
          tempStr = "ginormous"
    if (chance > 50):
       if (tempButt <= 2):
          tempStr = "boney"
-      if ((tempButt > 2) and (tempButt <= 5)):
+      elif ((tempButt > 2) and (tempButt <= 5)):
          tempStr = "firm"
-      if ((tempButt > 5) and (tempButt <= 15)):
+      elif ((tempButt > 5) and (tempButt <= 15)):
          tempStr = "grope-able"
-      if ((tempButt > 15) and (tempButt <= 30)):
+      elif ((tempButt > 15) and (tempButt <= 30)):
          tempStr = "jiggly"
-      if ((tempButt > 30) and (tempButt <= 50)):
+      elif ((tempButt > 30) and (tempButt <= 50)):
          tempStr = "pillow-like"
-      if ((tempButt > 50) and (tempButt <= 80)):
+      elif ((tempButt > 50) and (tempButt <= 80)):
          tempStr = "wobbling"
-      if ((tempButt > 80) and (tempButt <= 130)):
+      elif ((tempButt > 80) and (tempButt <= 130)):
          tempStr = "swaying"
-      if ((tempButt > 130) and (tempButt <= 175)):
+      elif ((tempButt > 130) and (tempButt <= 175)):
          tempStr = "bouncing"
-      if (tempButt > 175):
+      elif (tempButt > 175):
          tempStr = "constantly quivering"
    return tempStr
 
@@ -23994,44 +23995,44 @@ def vulvaDesc():
    if (chance <= 100):
       if (vulvaSize <= 2):
          tempStr = "tiny"
-      if ((vulvaSize > 2) and (vulvaSize <= 8)):
+      elif ((vulvaSize > 2) and (vulvaSize <= 8)):
          tempStr = "plush"
-      if ((vulvaSize > 8) and (vulvaSize <= 16)):
+      elif ((vulvaSize > 8) and (vulvaSize <= 16)):
          tempStr = "plump"
-      if ((vulvaSize > 16) and (vulvaSize <= 24)):
+      elif ((vulvaSize > 16) and (vulvaSize <= 24)):
          tempStr = "huge"
-      if ((vulvaSize > 24) and (vulvaSize <= 36)):
+      elif ((vulvaSize > 24) and (vulvaSize <= 36)):
          tempStr = "enormous"
-      if ((vulvaSize > 36) and (vulvaSize <= 54)):
+      elif ((vulvaSize > 36) and (vulvaSize <= 54)):
          tempStr = "gigantic"
-      if ((vulvaSize > 54) and (vulvaSize <= 84)):
+      elif ((vulvaSize > 54) and (vulvaSize <= 84)):
          tempStr = "humongous"
-      if ((vulvaSize > 84) and (vulvaSize <= 124)):
+      elif ((vulvaSize > 84) and (vulvaSize <= 124)):
          tempStr = "tremendous"
-      if ((vulvaSize > 124) and (vulvaSize <= 160)):
+      elif ((vulvaSize > 124) and (vulvaSize <= 160)):
          tempStr = "colossal"
-      if (vulvaSize > 160):
+      elif (vulvaSize > 160):
          tempStr = "ridiculous"
    if (chance > 50):
       if (vulvaSize == 2):
          tempStr = "childlike"
-      if ((vulvaSize > 2) and (vulvaSize <= 8)):
+      elif ((vulvaSize > 2) and (vulvaSize <= 8)):
          tempStr = "dainty"
-      if ((vulvaSize > 8) and (vulvaSize <= 16)):
+      elif ((vulvaSize > 8) and (vulvaSize <= 16)):
          tempStr = "kissable"
-      if ((vulvaSize > 16) and (vulvaSize <= 24)):
+      elif ((vulvaSize > 16) and (vulvaSize <= 24)):
          tempStr = "groin-filling"
-      if ((vulvaSize > 24) and (vulvaSize <= 36)):
+      elif ((vulvaSize > 24) and (vulvaSize <= 36)):
          tempStr = "thigh-spreading"
-      if ((vulvaSize > 36) and (vulvaSize <= 54)):
+      elif ((vulvaSize > 36) and (vulvaSize <= 54)):
          tempStr = "" + legDesc(1) + "-" + legVerb(2) + ""
-      if ((vulvaSize > 54) and (vulvaSize <= 84)):
+      elif ((vulvaSize > 54) and (vulvaSize <= 84)):
          tempStr = "ground-scraping"
-      if ((vulvaSize > 84) and (vulvaSize <= 124)):
+      elif ((vulvaSize > 84) and (vulvaSize <= 124)):
          tempStr = "person-sized"
-      if ((vulvaSize > 124) and (vulvaSize <= 160)):
+      elif ((vulvaSize > 124) and (vulvaSize <= 160)):
          tempStr = "room-sized"
-      if (vulvaSize > 160):
+      elif (vulvaSize > 160):
          tempStr = "building-sized"
    return tempStr
 
@@ -24044,52 +24045,52 @@ def cockDesc():
    if (chance <= 100):
       if (tempCock <= 8):
          tempStr = "puny"
-      if ((tempCock > 8) and (tempCock <= 12)):
+      elif ((tempCock > 8) and (tempCock <= 12)):
          tempStr = "average-sized"
-      if ((tempCock > 12) and (tempCock <= 24)):
+      elif ((tempCock > 12) and (tempCock <= 24)):
          tempStr = "big"
-      if ((tempCock > 24) and (tempCock <= 32)):
+      elif ((tempCock > 24) and (tempCock <= 32)):
          tempStr = "large"
-      if ((tempCock > 32) and (tempCock <= 56)):
+      elif ((tempCock > 32) and (tempCock <= 56)):
          tempStr = "huge"
-      if ((tempCock > 56) and (tempCock <= 72)):
+      elif ((tempCock > 56) and (tempCock <= 72)):
          tempStr = "enormous"
-      if ((tempCock > 72) and (tempCock <= 100)):
+      elif ((tempCock > 72) and (tempCock <= 100)):
          tempStr = "gigantic"
-      if ((tempCock > 100) and (tempCock <= 152)):
+      elif ((tempCock > 100) and (tempCock <= 152)):
          tempStr = "humongous"
-      if ((tempCock > 152) and (tempCock <= 304)):
+      elif ((tempCock > 152) and (tempCock <= 304)):
          tempStr = "tremendous"
-      if ((tempCock > 304) and (tempCock <= 608)):
+      elif ((tempCock > 304) and (tempCock <= 608)):
          tempStr = "colossal"
-      if ((tempCock > 608) and (tempCock <= 1200)):
+      elif ((tempCock > 608) and (tempCock <= 1200)):
          tempStr = "ridiculous"
-      if (tempCock > 1200):
+      elif (tempCock > 1200):
          tempStr = "impossibly-ginormous"
    if (chance > 50):
       if (tempCock <= 8):
          tempStr = "infantile"
-      if ((tempCock > 8) and (tempCock <= 12)):
+      elif ((tempCock > 8) and (tempCock <= 12)):
          tempStr = "hand-length"
-      if ((tempCock > 12) and (tempCock <= 24)):
+      elif ((tempCock > 12) and (tempCock <= 24)):
          tempStr = "larger than normal"
-      if ((tempCock > 24) and (tempCock <= 32)):
+      elif ((tempCock > 24) and (tempCock <= 32)):
          tempStr = "foot-long"
-      if ((tempCock > 32) and (tempCock <= 56)):
+      elif ((tempCock > 32) and (tempCock <= 56)):
          tempStr = "thigh-slapping"
-      if ((tempCock > 56) and (tempCock <= 72)):
+      elif ((tempCock > 56) and (tempCock <= 72)):
          tempStr = "knee-knocking"
-      if ((tempCock > 72) and (tempCock <= 100)):
+      elif ((tempCock > 72) and (tempCock <= 100)):
          tempStr = "leg-sized"
-      if ((tempCock > 100) and (tempCock <= 152)):
+      elif ((tempCock > 100) and (tempCock <= 152)):
          tempStr = "person-sized"
-      if ((tempCock > 152) and (tempCock <= 304)):
+      elif ((tempCock > 152) and (tempCock <= 304)):
          tempStr = "car-sized"
-      if ((tempCock > 304) and (tempCock <= 608)):
+      elif ((tempCock > 304) and (tempCock <= 608)):
          tempStr = "bus-sized"
-      if ((tempCock > 608) and (tempCock <= 1200)):
+      elif ((tempCock > 608) and (tempCock <= 1200)):
          tempStr = "building-sized"
-      if (tempCock > 1200):
+      elif (tempCock > 1200):
          tempStr = "landscape-filling"
    return tempStr
 
@@ -24101,52 +24102,52 @@ def ballDesc():
    if (chance <= 100):
       if (ballSize <= 1):
          tempStr = "tiny"
-      if ((ballSize > 1) and (ballSize <= 3)):
+      elif ((ballSize > 1) and (ballSize <= 3)):
          tempStr = "small"
-      if ((ballSize > 3) and (ballSize <= 5)):
+      elif ((ballSize > 3) and (ballSize <= 5)):
          tempStr = "big"
-      if ((ballSize > 5) and (ballSize <= 8)):
+      elif ((ballSize > 5) and (ballSize <= 8)):
          tempStr = "large"
-      if ((ballSize > 8) and (ballSize <= 13)):
+      elif ((ballSize > 8) and (ballSize <= 13)):
          tempStr = "hand-filling"
-      if ((ballSize > 13) and (ballSize <= 17)):
+      elif ((ballSize > 13) and (ballSize <= 17)):
          tempStr = "huge"
-      if ((ballSize > 17) and (ballSize <= 26)):
+      elif ((ballSize > 17) and (ballSize <= 26)):
          tempStr = "barely palmable"
-      if ((ballSize > 26) and (ballSize <= 40)):
+      elif ((ballSize > 26) and (ballSize <= 40)):
          tempStr = "enormous"
-      if ((ballSize > 40) and (ballSize <= 80)):
+      elif ((ballSize > 40) and (ballSize <= 80)):
          tempStr = "tremendous"
-      if ((ballSize > 80) and (ballSize <= 120)):
+      elif ((ballSize > 80) and (ballSize <= 120)):
          tempStr = "huggable"
-      if ((ballSize > 120) and (ballSize <= 240)):
+      elif ((ballSize > 120) and (ballSize <= 240)):
          tempStr = "gargantuan"
-      if (ballSize > 240):
+      elif (ballSize > 240):
          tempStr = "colossal"
    if (chance > 50):
       if (ballSize <= 1):
          tempStr = "marble-sized"
-      if ((ballSize > 1) and (ballSize <= 3)):
+      elif ((ballSize > 1) and (ballSize <= 3)):
          tempStr = "golfball-sized"
-      if ((ballSize > 3) and (ballSize <= 5)):
+      elif ((ballSize > 3) and (ballSize <= 5)):
          tempStr = "kiwi-sized"
-      if ((ballSize > 5) and (ballSize <= 8)):
+      elif ((ballSize > 5) and (ballSize <= 8)):
          tempStr = "tennisball-sized"
-      if ((ballSize > 8) and (ballSize <= 13)):
+      elif ((ballSize > 8) and (ballSize <= 13)):
          tempStr = "baseball-sized"
-      if ((ballSize > 13) and (ballSize <= 17)):
+      elif ((ballSize > 13) and (ballSize <= 17)):
          tempStr = "softball-sized"
-      if ((ballSize > 17) and (ballSize <= 26)):
+      elif ((ballSize > 17) and (ballSize <= 26)):
          tempStr = "cantaloupe-sized"
-      if ((ballSize > 26) and (ballSize <= 40)):
+      elif ((ballSize > 26) and (ballSize <= 40)):
          tempStr = "basketball-sized"
-      if ((ballSize > 40) and (ballSize <= 80)):
+      elif ((ballSize > 40) and (ballSize <= 80)):
          tempStr = "watermelon-sized"
-      if ((ballSize > 80) and (ballSize <= 120)):
+      elif ((ballSize > 80) and (ballSize <= 120)):
          tempStr = "beachball-sized"
-      if ((ballSize > 120) and (ballSize <= 240)):
+      elif ((ballSize > 120) and (ballSize <= 240)):
          tempStr = "boulder-sized"
-      if (ballSize > 240):
+      elif (ballSize > 240):
          tempStr = "landscape-crushing"
    return tempStr
 
@@ -24161,21 +24162,21 @@ def nipDesc():
       else:
          if (nippleSize <= 2):
             tempStr = "small "
-         if ((nippleSize > 2) and (nippleSize <= 5)):
+         elif ((nippleSize > 2) and (nippleSize <= 5)):
             tempStr = "noticeable "
-         if ((nippleSize > 5) and (nippleSize <= 15)):
+         elif ((nippleSize > 5) and (nippleSize <= 15)):
             tempStr = "blatant "
-         if ((nippleSize > 15) and (nippleSize <= 30)):
+         elif ((nippleSize > 15) and (nippleSize <= 30)):
             tempStr = "teat-like "
-         if ((nippleSize > 30) and (nippleSize <= 50)):
+         elif ((nippleSize > 30) and (nippleSize <= 50)):
             tempStr = "cock-like "
-         if ((nippleSize > 50) and (nippleSize <= 100)):
+         elif ((nippleSize > 50) and (nippleSize <= 100)):
             tempStr = "horsecock-like "
-         if ((nippleSize > 100) and (nippleSize <= 140)):
+         elif ((nippleSize > 100) and (nippleSize <= 140)):
             tempStr = "arm-length "
-         if ((nippleSize > 140) and (nippleSize <= 300)):
+         elif ((nippleSize > 140) and (nippleSize <= 300)):
             tempStr = "street-clearing "
-         if (nippleSize > 300):
+         elif (nippleSize > 300):
             tempStr = "obscene "
    if (chance > 50):
       if ((nipType == 2) and (lust < 50)):
@@ -24183,21 +24184,21 @@ def nipDesc():
       else:
          if (nippleSize <= 2):
             tempStr = ""
-         if ((nippleSize > 2) and (nippleSize <= 5)):
+         elif ((nippleSize > 2) and (nippleSize <= 5)):
             tempStr = "perky "
-         if ((nippleSize > 5) and (nippleSize <= 15)):
+         elif ((nippleSize > 5) and (nippleSize <= 15)):
             tempStr = "hypnotizing "
-         if ((nippleSize > 15) and (nippleSize <= 30)):
+         elif ((nippleSize > 15) and (nippleSize <= 30)):
             tempStr = "long "
-         if ((nippleSize > 30) and (nippleSize <= 50)):
+         elif ((nippleSize > 30) and (nippleSize <= 50)):
             tempStr = "huge "
-         if ((nippleSize > 50) and (nippleSize <= 100)):
+         elif ((nippleSize > 50) and (nippleSize <= 100)):
             tempStr = "enormous "
-         if ((nippleSize > 100) and (nippleSize <= 140)):
+         elif ((nippleSize > 100) and (nippleSize <= 140)):
             tempStr = "extreme "
-         if ((nippleSize > 140) and (nippleSize <= 300)):
+         elif ((nippleSize > 140) and (nippleSize <= 300)):
             tempStr = "ridiculous "
-         if (nippleSize > 300):
+         elif (nippleSize > 300):
             tempStr = "obscene "
    chance = percent()
    if (nipType == 1):
@@ -24215,44 +24216,44 @@ def clitDesc():
    if (chance <= 100):
       if (clitSize <= 2):
          tempStr = "tiny"
-      if ((clitSize > 2) and (clitSize <= 3)):
+      elif ((clitSize > 2) and (clitSize <= 3)):
          tempStr = "nibble-able"
-      if ((clitSize > 3) and (clitSize <= 6)):
+      elif ((clitSize > 3) and (clitSize <= 6)):
          tempStr = "protruding"
-      if ((clitSize > 6) and (clitSize <= 12)):
+      elif ((clitSize > 6) and (clitSize <= 12)):
          tempStr = "blatant"
-      if ((clitSize > 12) and (clitSize <= 25)):
+      elif ((clitSize > 12) and (clitSize <= 25)):
          tempStr = "suckable"
-      if ((clitSize > 25) and (clitSize <= 50)):
+      elif ((clitSize > 25) and (clitSize <= 50)):
          tempStr = "cock-like"
-      if ((clitSize > 50) and (clitSize <= 100)):
+      elif ((clitSize > 50) and (clitSize <= 100)):
          tempStr = "horsecock-like"
-      if ((clitSize > 100) and (clitSize <= 140)):
+      elif ((clitSize > 100) and (clitSize <= 140)):
          tempStr = "arm-length"
-      if ((clitSize > 140) and (clitSize <= 300)):
+      elif ((clitSize > 140) and (clitSize <= 300)):
          tempStr = "person-sized"
-      if (clitSize > 300):
+      elif (clitSize > 300):
          tempStr = "obscene"
    if (chance > 50):
       if (clitSize <= 2):
          tempStr = "small"
-      if ((clitSize > 2) and (clitSize <= 3)):
+      elif ((clitSize > 2) and (clitSize <= 3)):
          tempStr = "pinchable"
-      if ((clitSize > 3) and (clitSize <= 6)):
+      elif ((clitSize > 3) and (clitSize <= 6)):
          tempStr = "flickable"
-      if ((clitSize > 6) and (clitSize <= 12)):
+      elif ((clitSize > 6) and (clitSize <= 12)):
          tempStr = "panty-tenting"
-      if ((clitSize > 12) and (clitSize <= 25)):
+      elif ((clitSize > 12) and (clitSize <= 25)):
          tempStr = "stroke-able"
-      if ((clitSize > 25) and (clitSize <= 50)):
+      elif ((clitSize > 25) and (clitSize <= 50)):
          tempStr = "huge"
-      if ((clitSize > 50) and (clitSize <= 100)):
+      elif ((clitSize > 50) and (clitSize <= 100)):
          tempStr = "gigantic"
-      if ((clitSize > 100) and (clitSize <= 140)):
+      elif ((clitSize > 100) and (clitSize <= 140)):
          tempStr = "doorway-smacking"
-      if ((clitSize > 140) and (clitSize <= 300)):
+      elif ((clitSize > 140) and (clitSize <= 300)):
          tempStr = "snuggle-able"
-      if (clitSize > 300):
+      elif (clitSize > 300):
          tempStr = "obscene"
    return tempStr
 
@@ -24265,40 +24266,40 @@ def hipDesc():
    if (chance <= 100):
       if (tempHips <= 3):
          tempStr = "narrow"
-      if ((tempHips > 3) and (tempHips <= 8)):
+      elif ((tempHips > 3) and (tempHips <= 8)):
          tempStr = "unnoticeable"
-      if ((tempHips > 8) and (tempHips <= 16)):
+      elif ((tempHips > 8) and (tempHips <= 16)):
          tempStr = "wide"
-      if ((tempHips > 16) and (tempHips <= 28)):
+      elif ((tempHips > 16) and (tempHips <= 28)):
          tempStr = "endowed"
-      if ((tempHips > 28) and (tempHips <= 40)):
+      elif ((tempHips > 28) and (tempHips <= 40)):
          tempStr = "protruding"
-      if ((tempHips > 40) and (tempHips <= 55)):
+      elif ((tempHips > 40) and (tempHips <= 55)):
          tempStr = "cow-like"
-      if ((tempHips > 55) and (tempHips <= 75)):
+      elif ((tempHips > 55) and (tempHips <= 75)):
          tempStr = "shelf-like"
-      if ((tempHips > 75) and (tempHips <= 100)):
+      elif ((tempHips > 75) and (tempHips <= 100)):
          tempStr = "doorway-jamming"
-      if (tempHips > 100):
+      elif (tempHips > 100):
          tempStr = "perpetually-swaying"
    if (chance > 50):
       if (tempHips <= 3):
          tempStr = "prepubescent"
-      if ((tempHips > 3) and (tempHips <= 8)):
+      elif ((tempHips > 3) and (tempHips <= 8)):
          tempStr = "average"
-      if ((tempHips > 8) and (tempHips <= 16)):
+      elif ((tempHips > 8) and (tempHips <= 16)):
          tempStr = "child-bearing"
-      if ((tempHips > 16) and (tempHips <= 28)):
+      elif ((tempHips > 16) and (tempHips <= 28)):
          tempStr = "especially fertile"
-      if ((tempHips > 28) and (tempHips <= 40)):
+      elif ((tempHips > 28) and (tempHips <= 40)):
          tempStr = "hypnotizing"
-      if ((tempHips > 40) and (tempHips <= 55)):
+      elif ((tempHips > 40) and (tempHips <= 55)):
          tempStr = "blatantly obvious"
-      if ((tempHips > 55) and (tempHips <= 75)):
+      elif ((tempHips > 55) and (tempHips <= 75)):
          tempStr = "excessively wide"
-      if ((tempHips > 75) and (tempHips <= 100)):
+      elif ((tempHips > 75) and (tempHips <= 100)):
          tempStr = "greatly protruding"
-      if (tempHips > 100):
+      elif (tempHips > 100):
          tempStr = "gigantic"
    return tempStr
 
@@ -24388,13 +24389,13 @@ def skinDesc():
    tempStr = "SKIN ERROR " + str(skinType)
    if (skinType == 1):
       tempStr = "skin"
-   if (skinType == 2):
+   elif (skinType == 2):
       tempStr = "fur"
-   if (skinType == 3):
+   elif (skinType == 3):
       tempStr = "scales"
-   if (skinType == 4):
+   elif (skinType == 4):
       tempStr = "feathers"
-   if (skinType == 5):
+   elif (skinType == 5):
       tempStr = "chitin"
    if (snuggleBall == True):
       tempStr = "plush and snuggly " + tempStr
@@ -24408,23 +24409,23 @@ def skinC():
    tempStr = "SKIN COLOR ERROR " + str(skinColor)
    if (skinColor == 0):
       tempStr = ""
-   if (skinColor == 1):
+   elif (skinColor == 1):
       tempStr = "black "
-   if (skinColor == 2):
+   elif (skinColor == 2):
       tempStr = "blonde "
-   if (skinColor == 3):
+   elif (skinColor == 3):
       tempStr = "red "
-   if (skinColor == 4):
+   elif (skinColor == 4):
       tempStr = "brown "
-   if (skinColor == 5):
+   elif (skinColor == 5):
       tempStr = "coral pink "
-   if (skinColor == 6):
+   elif (skinColor == 6):
       tempStr = "auburn "
-   if (skinColor == 7):
+   elif (skinColor == 7):
       tempStr = "brown "
-   if (skinColor == 8):
+   elif (skinColor == 8):
       tempStr = "grey "
-   if (skinColor == 9):
+   elif (skinColor == 9):
       tempStr = "white "
    return tempStr
 
@@ -24434,31 +24435,31 @@ def legDesc(part:int):
    tempStr = "LEG ERROR PART " + str(part) + " TYPE " + str(legType)
    if (part == 1):
       tempStr = "leg"
-   if (part == 2):
+   elif (part == 2):
       tempStr = "legs"
-   if (part == 3):
+   elif (part == 3):
       tempStr = "thigh"
-   if (part == 4):
+   elif (part == 4):
       tempStr = "thighs"
-   if (part == 5):
+   elif (part == 5):
       tempStr = "knee"
-   if (part == 6):
+   elif (part == 6):
       tempStr = "knees"
-   if (part == 7):
+   elif (part == 7):
       tempStr = "ankle"
-   if (part == 8):
+   elif (part == 8):
       tempStr = "ankles"
-   if (part == 9):
+   elif (part == 9):
       tempStr = "foot"
       if (legType == 1):
          tempStr = "paw"
-      if ((legType == 1001) or (checkItem(102) == True)):
+      elif ((legType == 1001) or (checkItem(102) == True)):
          tempStr = "hoof"
-   if (part == 10):
+   elif (part == 10):
       tempStr = "feet"
       if (legType == 1):
          tempStr = "paws"
-      if ((legType == 1001) or (checkItem(102) == True)):
+      elif ((legType == 1001) or (checkItem(102) == True)):
          tempStr = "hooves"
    return tempStr
 
@@ -24468,13 +24469,13 @@ def legVerb(part:int):
    tempStr = "LEG VERB ERROR " + str(part) + " TYPE " + str(legType)
    if (part == 1):
       tempStr = "spreading"
-   if (part == 2):
+   elif (part == 2):
       tempStr = "spread wide"
-   if (part == 3):
+   elif (part == 3):
       tempStr = "spread"
-   if (part == 4):
+   elif (part == 4):
       tempStr = "clench"
-   if (part == 5):
+   elif (part == 5):
       tempStr = "straddling"
    return tempStr
 
@@ -24486,7 +24487,7 @@ def legWhere(part:int):
       tempStr = "between"
       if (legType == 1001):
          tempStr = "behind"
-   if (part == 2):
+   elif (part == 2):
       tempStr = "between"
    return tempStr
 
@@ -24496,7 +24497,7 @@ def legPlural(which:int):
    tempStr = "LEG PLURAL ERROR TYPE " + str(legType)
    if (which == 1):
       tempStr = ""
-   if (which == 2):
+   elif (which == 2):
       tempStr = "are"
    return tempStr
 
@@ -24506,15 +24507,15 @@ def regionName(tempInt:int):
    tempStr = "REGION ERROR " + str(currentZone)
    if (tempInt == 1):
       tempStr = "Softlik"
-   if (tempInt == 2):
+   elif (tempInt == 2):
       tempStr = "Firmshaft"
-   if (tempInt == 3):
+   elif (tempInt == 3):
       tempStr = "Tieden"
-   if (tempInt == 4):
+   elif (tempInt == 4):
       tempStr = "Siz'Calit"
-   if (tempInt == 6):
+   elif (tempInt == 6):
       tempStr = "Oviasis"
-   if (tempInt == 12):
+   elif (tempInt == 12):
       tempStr = "Sanctuary"
    return tempStr
 
@@ -24524,13 +24525,13 @@ def raceName():
    tempStr = "RACE ERROR " + str(race)
    if (race == 1):
       tempStr = "Human"
-   if (race == 2):
+   elif (race == 2):
       tempStr = "Equan"
-   if (race == 3):
+   elif (race == 3):
       tempStr = "Lupan"
-   if (race == 4):
+   elif (race == 4):
       tempStr = "Felin"
-   if (race == 6):
+   elif (race == 6):
       tempStr = "Lizan"
    return tempStr
 
@@ -24540,27 +24541,27 @@ def domName():
    tempStr = "DOMINANT ERROR " + str(dominant)
    if (dominant == 1):
       tempStr = "human"
-   if (dominant == 2):
+   elif (dominant == 2):
       tempStr = "horse"
-   if (dominant == 3):
+   elif (dominant == 3):
       tempStr = "wolf"
-   if (dominant == 4):
+   elif (dominant == 4):
       tempStr = "cat"
-   if (dominant == 5):
+   elif (dominant == 5):
       tempStr = "cow"
-   if (dominant == 6):
+   elif (dominant == 6):
       tempStr = "lizard"
-   if (dominant == 7):
+   elif (dominant == 7):
       empStr = "bunny"
-   if (dominant == 8):
+   elif (dominant == 8):
       tempStr = "mouse"
-   if (dominant == 9):
+   elif (dominant == 9):
       tempStr = "bird"
-   if (dominant == 10):
+   elif (dominant == 10):
       tempStr = "pig"
-   if (dominant == 11):
+   elif (dominant == 11):
       tempStr = "skunk"
-   if (dominant == 12):
+   elif (dominant == 12):
       tempStr = "bug"
    return tempStr
 
@@ -25040,6 +25041,7 @@ def frame1():
    ButtonFunctions.Visible(0,0,0,0,0,0,0,0,0,0,0,0)
    for i in range(1, 13):
       Amount.viewAmount(i, False)
+   showPage(False,"")
    loadPreferences()
    initinterface = False
    hideAmount()
@@ -26329,7 +26331,7 @@ bccolorlabel4.place(anchor="nw", height=179, width=334)
 
 pagelabel = tkinter.Label(frame2, text="BAG 1", background=themeColor, foreground=fontColor)
 pagelabel.place(anchor="nw", height=30, width=80, x=20, y=0)
-pageShow = False
+pageShow = True
 """
 moveitembutton = tkinter.Button(frame2, text="Move Item")
 moveitembutton.place(anchor="center", height=46, width=140, x=167, y=90)
