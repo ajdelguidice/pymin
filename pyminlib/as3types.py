@@ -38,7 +38,7 @@ class Array:
          else:
             return self.array[item]
       except:
-         return "undefined"
+         return ""
    def __setitem__(self, item, value):
       if item + 1 > len(self.array):
          self.toSize(item + 1)
@@ -404,6 +404,12 @@ class Boolean:
          return True
       else:
          return False
+class Number:
+   pass
+class String:
+   pass
+
+
 def trace(*args):
    output = ""
    for i in range(0, len(args)):
