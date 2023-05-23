@@ -18,6 +18,9 @@ Changed shops to use disable button functions for empty slots
 Rearranged post-increment statements to work in python
 Added function to mimic how numbers were displayed in actionscript (numbers were displayed as floats unless there was nothing after the decimal point)
 
+detailedStats
+- Changed hip size multiplier variable to be what it says instead of something else
+
 passiveItemRemove
 - Changed (ID == num and weapon == num) to (ID == weapon == num)
 
