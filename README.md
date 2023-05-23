@@ -1,5 +1,5 @@
 # pymin
-//WARNING: PORN// Python conversion of Nimin Fetish Fantasy. Heavily WIP (Most of the game works but anything to do with the choiceList functions like the bag and stash are only partially functional) I am not resposible for anything caused by exploitation of the xml parser.
+//WARNING: PORN// Python conversion of Nimin Fetish Fantasy. Game mostly works but still has a couple issues.
 
 Made with python3.8
 
