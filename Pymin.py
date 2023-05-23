@@ -5,12 +5,402 @@ import tkinter
 from tkinter import ttk
 from tkinter.scrolledtext import ScrolledText
 from tkinter import filedialog
-import pyminlib.FunctionExtensions as FE
-import pyminlib.as3types as as3
+#import pyminlib.FunctionExtensions as FE
 import pathlib
 import xml.etree.ElementTree as xmletree
 import xml.dom.minidom as xmlminidom
 from miniamf import sol
+from numpy import nan
+from numpy import inf
+from numpy import NINF
+
+class as3:
+   class Array:
+      """
+      Lets you create array objects similar to ActionScript3
+      Instead of making two different init functions, I made init create an array based on the values passed to it and another method called toSize to make the array a specific size. toSize fills all empty slots with the None object (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
+      """
+      def __init__(self, *values):
+         self.array = []
+         for i in range(0,len(values)):
+            self.array.append(values[i])
+      def __str__(self):
+         return f'{self.array}'
+      def __len__(self):
+         return len(self.array)
+      def __getitem__(self, item):
+         try:
+            if self.array[item] == None:
+               return "undefined"
+            else:
+               return self.array[item]
+         except:
+            return ""
+      def __setitem__(self, item, value):
+         if item + 1 > len(self.array):
+            self.toSize(item + 1)
+         self.array[item] = value
+      def toSize(self, numElements:int=0):
+         """
+         Instead of making two different init functions, I made init create an array based on the values passed to it and this method to make the array a specific size. This method fills all empty slots with the None object (since python doesn't have a null or undefined type) or deletes excess slots if there are more. WARNING: If nothing is passed to this method and it is called while there is data inside the array, all data in the array will be erased.
+         """
+         if numElements < 0:
+            raise Exception("RangeError")
+         elif numElements == 0:
+            self.array = []
+         elif len(self) > numElements:
+            while len(self) > numElements:
+               self.pop()
+         elif len(self) < numElements:
+            while len(self) < numElements:
+               self.push(None)
+      def length(self):
+         return len(self.array)
+      def concat(self, *args):
+         """
+         Concatenates the elements specified in the parameters with the elements in an array and creates a new array. If the parameters specify an array, the elements of that array are concatenated. If you don't pass any parameters, the new array is a duplicate (shallow clone) of the original array.
+         Parameters:
+            *args — A value of any data type (such as numbers, elements, or strings) to be concatenated in a new array.
+         Returns:
+            Array — An array that contains the elements from this array followed by elements from the parameters.
+         """
+         if len(args) == 0:
+            raise Exception("Must have at least 1 arguments")
+         else:
+            for i in range(0,len(args)):
+               if self.array == []:
+                  self.array = args[i]
+               else:
+                  if type(args[i]) == list or type(args[i]) == tuple or type(args[i]) == Array:
+                     b = args[i]
+                     c = 0
+                     for c in range(0,len(b)):
+                        self.push(b[c])
+                  else:
+                     self.push(args[i])
+      def every(self, callback):
+         """
+         Executes a test function on each item in the array until an item is reached that returns False for the specified function. You use this method to determine whether all items in an array meet a criterion, such as having values less than a particular number.
+         Parameters:
+            callback:Function — The function to run on each item in the array. This function can contain a simple comparison (for example, item < 20) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+            - function callback(item:*, index:int, array:Array)
+         Returns:
+            Boolean — A Boolean value of True if all items in the array return True for the specified function; otherwise, False.
+         """
+         tempBool = True
+         for i in range(0,len(self)):
+            if callback(self[i], i, self) == False:
+               tempBool == False
+               break
+         return tempBool
+      def filter(self, callback):
+         """
+         Executes a test function on each item in the array and constructs a new array for all items that return True for the specified function. If an item returns False, it is not included in the new array.
+         Parameters:
+            callback:Function — The function to run on each item in the array. This function can contain a simple comparison (for example, item < 20) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+            - function callback(item:*, index:int, array:Array)
+         Returns:
+            Array — A new array that contains all items from the original array that returned True. 
+         """
+         tempArray = Array()
+         for i in range(0,len(self)):
+            if callback(self[i], i, self) == True:
+               tempArray.push(self[i])
+         return tempArray
+      def forEach(self, callback):
+         """
+         Executes a function on each item in the array.
+         Parameters:
+            callback:Function — The function to run on each item in the array. This function can contain a simple command (for example, a trace() statement) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+            - function callback(item:*, index:int, array:Array)
+         """
+         for i in range(0, len(self)):
+            self[i] = callback(self[i], i, self)
+      def indexOf(self, searchElement, fromIndex:int=0):
+         """
+         Searches for an item in an array using == and returns the index position of the item.
+         Parameters:
+            searchElement — The item to find in the array.
+            fromIndex:int (default = 0) — The location in the array from which to start searching for the item.
+         Returns:
+            index:int — A zero-based index position of the item in the array. If the searchElement argument is not found, the return value is -1.
+         """
+         index = -1
+         i = fromIndex
+         while i < len(self):
+            if self[i] == searchElement:
+               index = i
+               i = len(self)
+            else:
+               i += 1
+         return index
+      def insertAt(self, index:int, element):
+         """
+         Insert a single element into an array.
+         Parameters
+            index:int — An integer that specifies the position in the array where the element is to be inserted. You can use a negative integer to specify a position relative to the end of the array (for example, -1 is the last element of the array).
+            element — The element to be inserted.
+         """
+         if index < 0:
+            self.array.insert((len(l1) - abs(index)), element)
+         else:
+            self.array.insert(index, element)
+      def join(self, sep=","):
+         """
+         Converts the elements in an array to strings, inserts the specified separator between the elements, concatenates them, and returns the resulting string. A nested array is always separated by a comma (,), not by the separator passed to the join() method.
+         Parameters:
+            sep (default = ",") — A character or string that separates array elements in the returned string. If you omit this parameter, a comma is used as the default separator.
+         Returns:
+            String — A string consisting of the elements of an array converted to strings and separated by the specified parameter.
+         """
+         result = ""
+         i = 0
+         for i in range(0, len(self)):
+            if i != len(self) - 1:
+               result += str(self[i]) + str(sep)
+            else:
+               result += str(self[i])
+            i += 1
+         return result
+      def lastIndexOf(self, searchElement, fromIndex:int = 99*10^99):
+         """
+         Searches for an item in an array, working backward from the last item, and returns the index position of the matching item using ==.
+         Parameters:
+            searchElement — The item to find in the array.
+            fromIndex:int (default = 99*10^99) — The location in the array from which to start searching for the item. The default is the maximum value allowed for an index. If you do not specify fromIndex, the search starts at the last item in the array.
+         Returns:
+            int — A zero-based index position of the item in the array. If the searchElement argument is not found, the return value is -1.
+         """
+         index = -1
+         for i in range(0,len(self)):
+            l = len(self) - i - 1
+            if self[l] == searchElement:
+               index = l
+               break
+         return index
+      def map(self, callback):
+         """
+         Executes a function on each item in an array, and constructs a new array of items corresponding to the results of the function on each item in the original array.
+         Parameters:
+            callback:Function — The function to run on each item in the array. This function can contain a simple command (such as changing the case of an array of strings) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+            - function callback(item:*, index:int, array:Array)
+         Returns:
+            Array — A new array that contains the results of the function on each item in the original array.
+         """
+         output = Array()
+         output.toSize(len(self))
+         for i in range(0,len(self)):
+            output[i] = callback(self[i], i, self)
+         return output
+      def pop(self):
+         """
+         Removes the last element from an array and returns the value of that element.
+         Returns:
+            * — The value of the last element (of any data type) in the specified array.
+         """
+         i = len(self) - 1
+         value = self[i]
+         self.array.pop(i)
+         return value
+      def push(self, *args):
+         """
+         Adds one or more elements to the end of an array and returns the new length of the array.
+         Parameters:
+            *args — One or more values to append to the array. 
+         """
+         i = 0
+         while i < len(args):
+            self.array.append(args[i])
+            i += 1
+      def removeAt(self, index:int):
+         """
+         Remove a single element from an array. This method modifies the array without making a copy.
+         Parameters:
+            index:int — An integer that specifies the index of the element in the array that is to be deleted. You can use a negative integer to specify a position relative to the end of the array (for example, -1 is the last element of the array).
+         Returns:
+            * — The element that was removed from the original array.
+         """
+         if index >= 0:
+            value = self[index]
+            self.array.pop(index)
+         else:
+            i = len(self) - 1 + index
+            value = self[i]
+            self.array.pop(i)
+         return value
+      def reverse(self):
+         """
+         Reverses the array in place.
+         Returns:
+            Array — The new array.
+         """
+         a = Array()
+         for i in range(0, len(self)):
+            a.array.append(self[len(self) - 1 - i])
+         for i in range(0, len(self)):
+            self[i] = a[i]
+      def shift(self):
+         """
+         Removes the first element from an array and returns that element. The remaining array elements are moved from their original position, i, to i-1.
+         Returns:
+            * — The first element (of any data type) in an array. 
+         """
+         value = self[0]
+         for i in range(0,len(self)):
+            if i < len(self) - 1:
+               self[i] = self[i+1]
+            else:
+               self.pop()
+         return value
+      def slice(self, startIndex:int=0, endIndex:int=99*10^99):
+         """
+         Returns a new array that consists of a range of elements from the original array, without modifying the original array. The returned array includes the startIndex element and all elements up to, but not including, the endIndex element.
+         If you don't pass any parameters, the new array is a duplicate (shallow clone) of the original array.
+         Parameters:
+            startIndex:int (default = 0) — A number specifying the index of the starting point for the slice. If startIndex is a negative number, the starting point begins at the end of the array, where -1 is the last element.
+            endIndex:int (default = 99*10^99) — A number specifying the index of the ending point for the slice. If you omit this parameter, the slice includes all elements from the starting point to the end of the array. If endIndex is a negative number, the ending point is specified from the end of the array, where -1 is the last element.
+         Returns:
+            Array — An array that consists of a range of elements from the original array.
+         """
+         i = startIndex
+         result = Array()
+         if endIndex > len(self):
+            ei = len(self)
+         else:
+            ei = endIndex
+         while i < ei:
+            result.push(self[i])
+            i += 1
+         return result
+      def some(self, callback):
+         """
+         Executes a test function on each item in the array until an item is reached that returns True. Use this method to determine whether any items in an array meet a criterion, such as having a value less than a particular number.
+         Parameters:
+            callback:Function — The function to run on each item in the array. This function can contain a simple comparison (for example item < 20) or a more complex operation, and is invoked with three arguments; the value of an item, the index of an item, and the Array object:
+            - function callback(item:*, index:int, array:Array)
+         Returns:
+            Boolean — A Boolean value of True if any items in the array return True for the specified function; otherwise False.
+         """
+         tempBool = False
+         for i in range(0,len(self)):
+            if callback(self[i], i, self) == Ture:
+               tempBool == True
+               break
+         return tempBool
+      def sort(sortOptions:int=0):
+         """
+         """
+         if sortOptions == 0:
+            raise Exception("Not yet implemented")
+         elif sortOptions == 1:
+            raise Exception("Not yet implemented")
+         elif sortOptions == 2:
+            raise Exception("Not yet implemented")
+         elif sortOptions == 4:
+            raise Exception("Not yet implemented")
+            pass
+         elif sortOptions == 8:
+            raise Exception("Not yet implemented")
+         elif sortOptions == 16:
+            self.array.sort()
+      def sortOn():
+         pass
+      def splice(self, startIndex:int, deleteCount:int, *values):
+         """
+         Adds elements to and removes elements from an array. This method modifies the array without making a copy.
+         Parameters:
+            startIndex:int — An integer that specifies the index of the element in the array where the insertion or deletion begins. You can use a negative integer to specify a position relative to the end of the array (for example, -1 is the last element of the array).
+            deleteCount:int — An integer that specifies the number of elements to be deleted. This number includes the element specified in the startIndex parameter. If you do not specify a value for the deleteCount parameter, the method deletes all of the values from the startIndex element to the last element in the array. If the value is 0, no elements are deleted.
+            *values — An optional list of one or more comma-separated values to insert into the array at the position specified in the startIndex parameter. If an inserted value is of type Array, the array is kept intact and inserted as a single element. For example, if you splice an existing array of length three with another array of length three, the resulting array will have only four elements. One of the elements, however, will be an array of length three.
+         Returns:
+            Array — An array containing the elements that were removed from the original array. 
+         """
+         removedValues = Array()
+         i = deleteCount
+         while i > 0:
+            removedValues.push(self[startIndex])
+            self.removeAt(startIndex)
+            i -= 1
+         if len(values) > 0:
+            for i in range(0,len(values)):
+               self.insertAt(startIndex + i, values[i])
+         return removedValues
+      def toLocaleString(self):
+         """
+         Returns a string that represents the elements in the specified array. Every element in the array, starting with index 0 and ending with the highest index, is converted to a concatenated string and separated by commas. In the ActionScript 3.0 implementation, this method returns the same value as the Array.toString() method.
+         Returns:
+            String — A string of array elements. 
+         """
+         return self.toString()
+      def toString(self):
+         """
+         Returns a string that represents the elements in the specified array. Every element in the array, starting with index 0 and ending with the highest index, is converted to a concatenated string and separated by commas. To specify a custom separator, use the Array.join() method.
+         Returns:
+            String — A string of array elements. 
+         """
+         a = ""
+         for i in range(0, len(l1)):
+            if i == len(l1) - 1:
+               a += str(self[i])
+            else:
+               a += str(self[i]) + ","
+         return a
+      def unshift(self, *args):
+         """
+         Adds one or more elements to the beginning of an array and returns the new length of the array. The other elements in the array are moved from their original position, i, to i+1.
+         Parameters:
+            *args — One or more numbers, elements, or variables to be inserted at the beginning of the array.
+         Returns:
+            int — An integer representing the new length of the array.
+         """
+         a = Array()
+         for i in range(0, len(args)):
+            a.push(args[i])
+         for i in range(0, len(self)):
+            a.push(self[i])
+         for i in range(0, len(self)):
+            self[i] = a[i]
+         for i in range(len(self), len(a)):
+            self.push(a[i])
+         return len(self)
+   class Boolean:
+      """
+      Lets you create boolean object similar to ActionScript3
+      Since python is case sensitive the values are "True" or "False" instead of "true" or "false"
+      """
+      def __init__(self, expression=False):
+         self.bool = self.Boolean(expression)
+      def __str__(self):
+         return f'{self.bool}'
+      def __getitem__(self):
+         return self.bool
+      def __setitem__(self, value):
+         self.bool = value
+      def Boolean(self, expression):
+         if type(expresssion) == int or type(expresssion) == float or type(expresssion) == Number:
+            if expresssion == 0:
+               result = False
+            else:
+               result = True
+         if expresssion == "NaN":
+            result = False
+         if type(expresssion) == str or type(expression) == String:
+            if exression == "":
+               result = False
+            else:
+               result = True
+         if expression == "null":
+            result = False
+         if expression == "undefined":
+            result = False
+         return result
+      def toString(self):
+         return str(self.bool)
+      def valueOf(self):
+         if self.bool == True:
+            return True
+         else:
+            return False
 
 fontMain = ("Times New Roman", 12) #Array
 #Option3 #TextField
@@ -486,6 +876,12 @@ def repintorfloat(number):
          return number
    else:
       return number
+
+def strtobool(a:str):
+   if (a.lower() == "true"):
+      return True
+   if (a.lower() == "false"):
+      return False
 
 #def MainTimeline():
 #   super()
@@ -971,10 +1367,10 @@ def loadPreferences():
       prefs = tree.getroot()
       theme = int(prefs.find("theme").text)
       fontSize = int(prefs.find("fontSize").text)
-      fontBold = FE.convert.strtobool(prefs.find("fontBold").text)
+      fontBold = strtobool(prefs.find("fontBold").text)
       fontColor = str(prefs.find("fontColor").text)
       if (initinterface == False):
-         if (FE.convert.strtobool(prefs.find("showSide").text) == True):
+         if (strtobool(prefs.find("showSide").text) == True):
             SidePanel.Show()
          else:
             SidePanel.Hide()
@@ -1900,20 +2296,20 @@ def doLust(changes:int, source:int, *triggers):
          outputMainText("\n\nWith your orgasm, you feel strange as wispy fumes escape from your crotch, just like those that descended from the statue you encountered...",False)
          vagChange(0,1)
       #if (cockSnakeVenom > 0) and (triggers.index(1) != -1) and (cockTotal > 0):
-      if ((cockSnakeVenom > 0) and (FE.lists.indexOf(triggers, 1)!= -1) and (cockTotal > 0)):
+      if ((cockSnakeVenom > 0) and (lists.indexOf(triggers, 1)!= -1) and (cockTotal > 0)):
          outputMainText("\n\nHowever, after you have finished, you realize there's a bit more meat to your meat... The venom from the cock-snake fed off of your orgasm, causing your appendage" + plural(1) + " to flop a bit lower down your " + legDesc(3) + " as " + plural(11) + " shrink" + plural(3) + " back down...",False)
          cockChange(2,0)
       #if (cockSnakeVenom > 0) and (triggers.indexOf(2) != -1) and (vagTotal > 0):
-      if ((cockSnakeVenom > 0) and (FE.lists.indexOf(triggers, 2)!= -1) and (vagTotal > 0)):
+      if ((cockSnakeVenom > 0) and (lists.indexOf(triggers, 2)!= -1) and (vagTotal > 0)):
          outputMainText("\n\nHowever, after you have finished, you realize your clit" + plural(2) + " " + plural(14) + " a bit more prominent... The venom from the cock-snake fed off of your orgasm, causing the button" + plural(2) + " swell larger than before, and aren't shrinking all the way back down...",False)
          clitSize += 3
       #if (milkCPoisonNip > 0) and (triggers.indexOf(3) != -1):
-      if ((milkCPoisonNip > 0) and (FE.lists.indexOf(triggers, 3)!= -1)):
+      if ((milkCPoisonNip > 0) and (lists.indexOf(triggers, 3)!= -1)):
          outputMainText("\n\nHowever, now that you've calmed down, you notice a bit more weight at your chest... The warmth from the milk creeper poison in your bosom intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder.",False)
          boobChange(1)
          nipplePlay += 15
       #if (milkCPoisonUdd > 0) and (triggers.indexOf(4) != -1):
-      if ((milkCPoisonUdd > 0) and (FE.lists.indexOf(triggers4)!= -1)):
+      if ((milkCPoisonUdd > 0) and (lists.indexOf(triggers4)!= -1)):
          outputMainText("\n\nHowever, now that you've calmed down, you notice a bit more weight at your belly... The warmth from the milk creeper poison in your udder intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder.",False)
          boobChange(1)
          nipplePlay += 15
@@ -3110,59 +3506,59 @@ def saveGo():
    if (pathlib.Path("./Nimin_Save1.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save1.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [1, tempstr])
+      templist = lists.push(templist, [1, tempstr])
    else:
-      templist = FE.lists.push(templist, [1,"Empty"])
+      templist = lists.push(templist, [1,"Empty"])
    if (pathlib.Path("./Nimin_Save2.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save2.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [2, tempstr])
+      templist = lists.push(templist, [2, tempstr])
    else:
-      templist = FE.lists.push(templist, [2,"Empty"])
+      templist = lists.push(templist, [2,"Empty"])
    if (pathlib.Path("./Nimin_Save3.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save3.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [3, tempstr])
+      templist = lists.push(templist, [3, tempstr])
    else:
-      templist = FE.lists.push(templist, [3,"Empty"])
+      templist = lists.push(templist, [3,"Empty"])
    if (pathlib.Path("./Nimin_Save5.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save5.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [5, tempstr])
+      templist = lists.push(templist, [5, tempstr])
    else:
-      templist = FE.lists.push(templist, [5,"Empty"])
+      templist = lists.push(templist, [5,"Empty"])
    if (pathlib.Path("./Nimin_Save6.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save6.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [6, tempstr])
+      templist = lists.push(templist, [6, tempstr])
    else:
-      templist = FE.lists.push(templist, [6,"Empty"])
+      templist = lists.push(templist, [6,"Empty"])
    if (pathlib.Path("./Nimin_Save7.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save7.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [7, tempstr])
+      templist = lists.push(templist, [7, tempstr])
    else:
-      templist = FE.lists.push(templist, [7,"Empty"])
+      templist = lists.push(templist, [7,"Empty"])
    if (pathlib.Path("./Nimin_Save9.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save9.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [9, tempstr])
+      templist = lists.push(templist, [9, tempstr])
    else:
-      templist = FE.lists.push(templist, [9,"Empty"])
+      templist = lists.push(templist, [9,"Empty"])
    if (pathlib.Path("./Nimin_Save10.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save10.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [10, tempstr])
+      templist = lists.push(templist, [10, tempstr])
    else:
-      templist = FE.lists.push(templist, [10,"Empty"])
+      templist = lists.push(templist, [10,"Empty"])
    if (pathlib.Path("./Nimin_Save11.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save11.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [11, tempstr])
+      templist = lists.push(templist, [11, tempstr])
    else:
-      templist = FE.lists.push(templist, [11,"Empty"])
-   templist = FE.lists.push(templist, [4,"Save as"])
-   templist = FE.lists.push(templist,[12,"Return"])
+      templist = lists.push(templist, [11,"Empty"])
+   templist = lists.push(templist, [4,"Save as"])
+   templist = lists.push(templist,[12,"Return"])
    outputMainText("Click on a save slot to save your current game to that slot.",True)
    outputMainText("\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with the \".nim\" file type. Keep in mind, while you can save while playing online, you can only load the file if Nimin.swf has been saved to your computer. This is a limitation with Flash.",False)
    outputMainText("\n\nOtherwise, click Return to go back to what you were doing.",False)
@@ -3245,41 +3641,41 @@ def loadGo():
    if (pathlib.Path("./Nimin_Save1.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save1.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [1, tempstr])
+      templist = lists.push(templist, [1, tempstr])
    if (pathlib.Path("./Nimin_Save2.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save2.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [2, tempstr])
+      templist = lists.push(templist, [2, tempstr])
    if (pathlib.Path("./Nimin_Save3.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save3.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [3, tempstr])
+      templist = lists.push(templist, [3, tempstr])
    if (pathlib.Path("./Nimin_Save5.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save5.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [5, tempstr])
+      templist = lists.push(templist, [5, tempstr])
    if (pathlib.Path("./Nimin_Save6.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save6.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [6, tempstr])
+      templist = lists.push(templist, [6, tempstr])
    if (pathlib.Path("./Nimin_Save7.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save7.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [7, tempstr])
+      templist = lists.push(templist, [7, tempstr])
    if (pathlib.Path("./Nimin_Save9.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save9.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [9, tempstr])
+      templist = lists.push(templist, [9, tempstr])
    if (pathlib.Path("./Nimin_Save10.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save10.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [10, tempstr])
+      templist = lists.push(templist, [10, tempstr])
    if (pathlib.Path("./Nimin_Save11.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save11.xml")
       tempstr = "D:" + str(dh[0]) + " H:" + str(dh[1])
-      templist = FE.lists.push(templist, [11, tempstr])
-   templist = FE.lists.push(templist, [4,"Load File"])
-   templist = FE.lists.push(templist, [12,"Return"])
+      templist = lists.push(templist, [11, tempstr])
+   templist = lists.push(templist, [4,"Load File"])
+   templist = lists.push(templist, [12,"Return"])
    outputMainText("Click on a load slot to load the game that was saved to that slot.",True)
    outputMainText("\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer. This option is only available if the Nimin.swf is playing directly from your local computer (right-click the appropriate download link and \"Save as\" to save the game to your computer).",False)
    outputMainText("\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",False)
@@ -3406,7 +3802,7 @@ def doLoad(slot:int):
          day = int(strack.find('day').text)
          hour = int(strack.find('hour').text)
          currentDayCare = int(strack.find('currentDayCare').text)
-         inDungeon = FE.convert.strtobool(strack.find('inDungeon').text)
+         inDungeon = strtobool(strack.find('inDungeon').text)
          currentDungeon = int(strack.find('currentDungeon').text)
          v7 = str(strack.find('v7').text)
          strength = int(sstats.find('strength').text)
@@ -3494,13 +3890,13 @@ def doLoad(slot:int):
          cockMoist = int(scock.find('cockMoist').text)
          balls = int(scock.find('balls').text)
          ballSize = int(scock.find('ballSize').text)
-         showBalls = FE.convert.strtobool(scock.find('showBalls').text)
-         knot = FE.convert.strtobool(scock.find('knot').text)
+         showBalls = strtobool(scock.find('showBalls').text)
+         knot = strtobool(scock.find('knot').text)
          bugCocks = int(scock.find('bugCocks').text)
          breastSize = int(sgirl.find('breastSize').text)
          boobTotal = int(sgirl.find('boobTotal').text)
          nippleSize = int(sgirl.find('nippleSize').text)
-         udders = FE.convert.strtobool(sgirl.find('udders').text)
+         udders = strtobool(sgirl.find('udders').text)
          udderSize = int(sgirl.find('udderSize').text)
          teatSize = int(sgirl.find('teatSize').text)
          clitSize = int(sgirl.find('clitSize').text)
@@ -3548,12 +3944,12 @@ def doLoad(slot:int):
          bodyOil = int(sstatus.find('bodyOil').text)
          lustPenalty = int(sstatus.find('lustPenalty').text)
          fertileGel = int(sstatus.find('fertileGel').text)
-         snuggleBall = FE.convert.strtobool(sstatus.find('snuggleBall').text)
+         snuggleBall = strtobool(sstatus.find('snuggleBall').text)
          eggType = int(sstatus.find('eggType').text)
          milkSuppressant = int(sstatus.find('milkSuppressant').text)
          milkSuppressantLact = int(sstatus.find('milkSuppressantLact').text)
          milkSuppressantUdder = int(sstatus.find('milkSuppressantUdder').text)
-         suppHarness = FE.convert.strtobool(sstatus.find('suppHarness').text)
+         suppHarness = strtobool(sstatus.find('suppHarness').text)
          fertilityStatueCurse = int(sstatus.find('fertilityStatueCurse').text)
          plumpQuats = int(sstatus.find('plumpQuats').text)
          lilaWetStatus = int(sstatus.find('lilaWetStatus').text)
@@ -3596,44 +3992,44 @@ def doLoad(slot:int):
          silRate = int(srep.find('silRate').text)
          silLay = int(srep.find('silLay').text)
          silGrowthTime = int(srep.find('silGrowthTime').text)
-         silTied = FE.convert.strtobool(srep.find('silTied').text)
-         lilaUB = FE.convert.strtobool(srep.find('lilaUB').text)
-         dairyFarmBrand = FE.convert.strtobool(srep.find('dairyFarmBrand').text)
+         silTied = strtobool(srep.find('silTied').text)
+         lilaUB = strtobool(srep.find('lilaUB').text)
+         dairyFarmBrand = strtobool(srep.find('dairyFarmBrand').text)
          lilaWetness = int(srep.find('lilaWetness').text)
-         jamieButt = FE.convert.strtobool(srep.find('jamieButt').text)
-         jamieBreasts = FE.convert.strtobool(srep.find('jamieBreasts').text)
-         jamieHair = FE.convert.strtobool(srep.find('jamieHair').text)
-         foundSoftlik = FE.convert.strtobool(sknowledge.find('foundSoftlik').text)
-         foundFirmshaft = FE.convert.strtobool(sknowledge.find('foundFirmshaft').text)
-         foundTieden = FE.convert.strtobool(sknowledge.find('foundTieden').text)
-         foundSizCalit = FE.convert.strtobool(sknowledge.find('foundSizCalit').text)
-         foundOviasis = FE.convert.strtobool(sknowledge.find('foundOviasis').text)
-         foundValley = FE.convert.strtobool(sknowledge.find('foundValley').text)
-         foundSanctuary = FE.convert.strtobool(sknowledge.find('foundSanctuary').text)
-         defeatedMinotaur = FE.convert.strtobool(sboss.find('defeatedMinotaur').text)
-         defeatedFreakyGirl = FE.convert.strtobool(sboss.find('defeatedFreakyGirl').text)
-         defeatedSuccubus = FE.convert.strtobool(sboss.find('defeatedSuccubus').text)
-         knowLustDraft = FE.convert.strtobool(sknowSimpleAlchemy.find('knowLustDraft').text)
-         knowRejuvPot = FE.convert.strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text)
-         knowExpPreg = FE.convert.strtobool(sknowSimpleAlchemy.find('knowExpPreg').text)
-         knowBallSwell = FE.convert.strtobool(sknowSimpleAlchemy.find('knowBallSwell').text)
-         knowMaleEnhance = FE.convert.strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)
-         knowSLustDraft = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text)
-         knowSRejuvPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text)
-         knowSExpPreg = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text)
-         knowSBallSwell = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text)
-         knowGenSwap = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text)
-         knowMasoPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text)
-         knowBabyFree = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text)
-         knowPotPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowPotPot').text)
-         knowMilkSuppress = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)
-         knowSGenSwap = FE.convert.strtobool(sknowComplexAlchemy.find('knowSGenSwap').text)
-         knowSMasoPot = FE.convert.strtobool(sknowComplexAlchemy.find('knowSMasoPot').text)
-         knowSBabyFree = FE.convert.strtobool(sknowComplexAlchemy.find('knowSBabyFree').text)
-         knowSPotPot = FE.convert.strtobool(sknowComplexAlchemy.find('knowSPotPot').text)
-         knowPussJuice = FE.convert.strtobool(sknowComplexAlchemy.find('knowPussJuice').text)
-         knowPheromone = FE.convert.strtobool(sknowComplexAlchemy.find('knowPheromone').text)
-         knowBazoomba = FE.convert.strtobool(sknowComplexAlchemy.find('knowBazoomba').text)
+         jamieButt = strtobool(srep.find('jamieButt').text)
+         jamieBreasts = strtobool(srep.find('jamieBreasts').text)
+         jamieHair = strtobool(srep.find('jamieHair').text)
+         foundSoftlik = strtobool(sknowledge.find('foundSoftlik').text)
+         foundFirmshaft = strtobool(sknowledge.find('foundFirmshaft').text)
+         foundTieden = strtobool(sknowledge.find('foundTieden').text)
+         foundSizCalit = strtobool(sknowledge.find('foundSizCalit').text)
+         foundOviasis = strtobool(sknowledge.find('foundOviasis').text)
+         foundValley = strtobool(sknowledge.find('foundValley').text)
+         foundSanctuary = strtobool(sknowledge.find('foundSanctuary').text)
+         defeatedMinotaur = strtobool(sboss.find('defeatedMinotaur').text)
+         defeatedFreakyGirl = strtobool(sboss.find('defeatedFreakyGirl').text)
+         defeatedSuccubus = strtobool(sboss.find('defeatedSuccubus').text)
+         knowLustDraft = strtobool(sknowSimpleAlchemy.find('knowLustDraft').text)
+         knowRejuvPot = strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text)
+         knowExpPreg = strtobool(sknowSimpleAlchemy.find('knowExpPreg').text)
+         knowBallSwell = strtobool(sknowSimpleAlchemy.find('knowBallSwell').text)
+         knowMaleEnhance = strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)
+         knowSLustDraft = strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text)
+         knowSRejuvPot = strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text)
+         knowSExpPreg = strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text)
+         knowSBallSwell = strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text)
+         knowGenSwap = strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text)
+         knowMasoPot = strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text)
+         knowBabyFree = strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text)
+         knowPotPot = strtobool(sknowAdvancedAlchemy.find('knowPotPot').text)
+         knowMilkSuppress = strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)
+         knowSGenSwap = strtobool(sknowComplexAlchemy.find('knowSGenSwap').text)
+         knowSMasoPot = strtobool(sknowComplexAlchemy.find('knowSMasoPot').text)
+         knowSBabyFree = strtobool(sknowComplexAlchemy.find('knowSBabyFree').text)
+         knowSPotPot = strtobool(sknowComplexAlchemy.find('knowSPotPot').text)
+         knowPussJuice = strtobool(sknowComplexAlchemy.find('knowPussJuice').text)
+         knowPheromone = strtobool(sknowComplexAlchemy.find('knowPheromone').text)
+         knowBazoomba = strtobool(sknowComplexAlchemy.find('knowBazoomba').text)
          maleFetish = float(smajorFetish.find('maleFetish').text)
          femaleFetish = float(smajorFetish.find('femaleFetish').text)
          hermFetish = float(smajorFetish.find('hermFetish').text)
@@ -3695,7 +4091,7 @@ def doLoad(slot:int):
          i = 0
          while (i < len(list(preg))):
             pregArray.push("","","","","")
-            pregArray[i] = FE.convert.strtobool(preg.find(str("i" + str(i))).text)
+            pregArray[i] = strtobool(preg.find(str("i" + str(i))).text)
             pregArray[i+1] = int(preg.find(str("i" + str(i+1))).text)
             pregArray[i+2] = int(preg.find(str("i" + str(i+2))).text)
             pregArray[i+3] = int(preg.find(str("i" + str(i+3))).text)
@@ -6084,11 +6480,11 @@ def doItemUse(ID:int):
       ButtonFunctions.Visible(0,0,0,0,1,0,1,0,1,0,1,1)
       templist = [9, "Breasts", 12, "Cancel"]
       if (cockTotal > 0):
-         templist = FE.lists.push(templist, [5,"Penis"])
+         templist = lists.push(templist, [5,"Penis"])
       if (vagTotal > 0):
-         templist = FE.lists.push(templist, [7,"Pussy"])
+         templist = lists.push(templist, [7,"Pussy"])
       if (udders == True):
-         templist = FE.lists.push(templist, [11,"Udder"])
+         templist = lists.push(templist, [11,"Udder"])
       outputMainText("Which genitalia would you like to make a bit dryer?",True)
       doButtonChoices(templist)
       def doListen():
@@ -6124,7 +6520,7 @@ def doItemUse(ID:int):
          ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
          templist = [5,"Breasts"]
          if (udders == True):
-            templist = FE.lists.push(templist, [7,"Udder"])
+            templist = lists.push(templist, [7,"Udder"])
          outputMainText("What would you like to pump?",True)
          def doListen():
             global buttonChoice, tempNum, getMilk, lactation, udderLactation, hrs, boobTotal, nipPump, nippleSize, teatPump, teatSize
@@ -6238,9 +6634,9 @@ def doItemUse(ID:int):
          ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,1,0,0)
          templist = [10,"None"]
          if (cockTotal > 0):
-            templist = FE.lists.push(templist, [5,"Penis"])
+            templist = lists.push(templist, [5,"Penis"])
          if (vagTotal > 0):
-            templist = FE.lists.push(templist, [7,"Clit"])
+            templist = lists.push(templist, [7,"Clit"])
          outputMainText("What would you like to pump?",True)
          doButtonChoices(templist)
          def doListen():
@@ -6619,11 +7015,11 @@ def doItemUse(ID:int):
       ButtonFunctions.Visible(0,1,0,0,1,0,1,0,0,1,0,1)
       templist = [2, "None", 12, "Cancel"]
       if (cockTotal > 0):
-         templist = FE.lists.push(templist, [5,"Cock"])
+         templist = lists.push(templist, [5,"Cock"])
          if ((showBalls == True) and (balls > 0)):
-            templist = FE.lists.push(templist, [10,"Balls"])
+            templist = lists.push(templist, [10,"Balls"])
       if (vagTotal > 0):
-         templist = FE.lists.push(templist, [7,"Cunt"])
+         templist = lists.push(templist, [7,"Cunt"])
       outputMainText("What would you like to remove?\n\nNote that removing balls removes one at a time. If try to remove them when you only have two left, neuterizer simply hides them, as it would severely damage your plumbing without them.",True)
       doButtonChoices(templist)
       def doListen():
@@ -6714,7 +7110,7 @@ def doItemUse(ID:int):
       ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,1)
       templist = [5, "Breasts", 12, "Cancel"]
       if (udders == True):
-         templist = FE.lists.push(templist, [7,"Udder"])
+         templist = lists.push(templist, [7,"Udder"])
       outputMainText("What would you like to rub the Milk Creeper Poison into?",True)
       doButtonChoices(templist)
       def doListen():
@@ -6872,9 +7268,9 @@ def doItemUse(ID:int):
       ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,1,0,0)
       templist = [10, "Breasts", 12, "Cancel"]
       if (cockTotal > 0):
-         templist = FE.lists.push(templist, [5,"Cock" + plural(1)])
+         templist = lists.push(templist, [5,"Cock" + plural(1)])
       if (vagTotal > 0):
-         templist = FE.lists.push(templist, [7,"Cunt" + plural(2)])
+         templist = lists.push(templist, [7,"Cunt" + plural(2)])
       outputMainText("What would you like to rub the wet, slimy cloth on?",True)
       doButtonChoices(templist)
       def doListen():
@@ -7101,35 +7497,35 @@ def doItemUse(ID:int):
          outputMainText("Where would you like to go?",True)
          if (currentZone == 1):
             if (foundTieden == True):
-               templist = FE.lists.push(templist, [1,"Tieden"])
+               templist = lists.push(templist, [1,"Tieden"])
             if (foundFirmshaft == True):
-               templist = FE.lists.push(templist, [10,"Firmshaft"])
+               templist = lists.push(templist, [10,"Firmshaft"])
          elif (currentZone == 2):
             if (foundSoftlik == True):
-               templist = FE.lists.push(templist, [3,"Softlik"])
+               templist = lists.push(templist, [3,"Softlik"])
             if (foundSizCalit == True):
-               templist = FE.lists.push(templist, [5,"Siz'Calit"])
+               templist = lists.push(templist, [5,"Siz'Calit"])
             if (foundOviasis == True):
-               templist = FE.lists.push(templist, [10,"Oviasis"])
+               templist = lists.push(templist, [10,"Oviasis"])
             if (foundSanctuary == True):
-               templist = FE.lists.push(templist, [11,"Sanctuary"])
+               templist = lists.push(templist, [11,"Sanctuary"])
          elif (currentZone == 3):
             if (foundSoftlik == True):
-               templist = FE.lists.push(templist, [7,"Softlik"])
+               templist = lists.push(templist, [7,"Softlik"])
             if (foundSizCalit == True):
-               templist = FE.lists.push(templist, [9,"Siz'Calit"])
+               templist = lists.push(templist, [9,"Siz'Calit"])
          elif (currentZone == 4):
             if (foundTieden == True):
-               templist = FE.lists.push(templist, [2,"Tieden"])
+               templist = lists.push(templist, [2,"Tieden"])
             if (foundFirmshaft == True):
-               templist = FE.lists.push(templist, [7,"Firmshaft"])
+               templist = lists.push(templist, [7,"Firmshaft"])
             if (foundOviasis == True):
-               templist = FE.lists.push(templist, [11,"Oviasis"])
+               templist = lists.push(templist, [11,"Oviasis"])
          elif (currentZone == 6):
             if (foundSizCalit == True):
-               templist = FE.lists.push(templist, [1,"Siz'Calit"])
+               templist = lists.push(templist, [1,"Siz'Calit"])
             if (foundFirmshaft == True):
-               templist = FE.lists.push(templist, [2,"Firmshaft"])
+               templist = lists.push(templist, [2,"Firmshaft"])
          def doListen():
             global inDungeon, currentZone, buttonChoice, hrs
             inDungeon = False
@@ -8181,7 +8577,7 @@ def doShop():
    #for(this.i = 1; this.i < 13; ++this.i)
    for i in range(1,12):
       if ((i != 4) and (i != 8) and (i != 12)):
-         templist = FE.lists.push(templist, [i,itemName(goodsID(i))])
+         templist = lists.push(templist, [i,itemName(goodsID(i))])
       if ((i != 4) and (i != 8) and (i != 12) and (itemName(goodsID(i)) == " ")):
          dlist.append(i)
    outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.",True)
@@ -8202,11 +8598,11 @@ def doShop():
             outputMainText("\n\nThis item can be bought in the following quantities: 1 for " + str(3 * itemValue(goodsID(buy))) + " coins, 2 for " + str(6 * itemValue(goodsID(buy))) + " coins, 5 for " + str(15 * itemValue(goodsID(buy))) + " coins",False)
             if (itemStackMax(goodsID(buy)) >= 10):
                a1 = 1
-               templist = FE.lists.push(templist, [9,"Buy 10"])
+               templist = lists.push(templist, [9,"Buy 10"])
                outputMainText(", 10 for " + str(30 * itemValue(goodsID(buy))) + " coins",False)
             if (itemStackMax(goodsID(buy)) >= 15):
                a2 = 1
-               templist = FE.lists.push(templist, [10,"Buy 15"])
+               templist = lists.push(templist, [10,"Buy 15"])
                outputMainText(", 15 for " + str(45 * itemValue(goodsID(buy))) + " coins",False)
             outputMainText(".",False)
             ButtonFunctions.Visible(1,1,1,0,0,0,0,0,a1,a2,0,1)
@@ -8295,10 +8691,10 @@ def doSell():
             a2 = 0
             templist = [1, "1", 3, "2", 9, "All", 11, "None"]
             if (bagStackArray[choiceListResult[1]] >= 5):
-               templist = FE.lists.push(templist, [5,"5"])
+               templist = lists.push(templist, [5,"5"])
                a1 = 1
             if (bagStackArray[choiceListResult[1]] >= 10):
-               templist = FE.lists.push(templist, [7,"10"])
+               templist = lists.push(templist, [7,"10"])
                a2 = 1
             viewButtonOutline(1,0,1,0,a1,0,a2,0,1,0,1,0)
             doButtonChoices(templist)
@@ -8435,7 +8831,7 @@ def doDyeShop():
    #for(this.i = 1; this.i < 13; ++this.i)
    for i in range(1, 12):
       if ((i != 4) and (i != 12)):
-         templist = FE.lists.push(templist, [i,itemName(dyeID(i))])
+         templist = lists.push(templist, [i,itemName(dyeID(i))])
       if ((i != 4) and (i != 12) and (itemName(dyeID(i)) == " ")):
          dlist.append(i)
    outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..",True)
@@ -8490,7 +8886,7 @@ def dyeThing(ID, color):
    outputMainText("What would you like to apply the " + itemName(ID) + " to?",True)
    templist = [7, "Body", 10, "Nevermind"]
    if (hair > 0):
-      templist = FE.lists.push(templist, [5,"Hair"])
+      templist = lists.push(templist, [5,"Hair"])
    def doListen():
       global buttonChoice, hairColor, tempColor, tempID, skinColor
       if (buttonChoice == 5):
@@ -8515,7 +8911,7 @@ def doApothecary():
    #for(this.i = 1; this.i < 13; ++this.i)
    for i in range(1,12):
       if ((i != 4) and (i != 12)):
-         templist = FE.lists.push(templist, [i,apothName(apothID(i))])
+         templist = lists.push(templist, [i,apothName(apothID(i))])
       if ((i != 4) and (i != 12) and (apothName(apothID(i)) == "")):
          dlist.append(i)
    outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.",True)
@@ -8535,11 +8931,11 @@ def doApothecary():
             templist = [1, "Buy 1", 2, "Buy 2", 3, "Buy 5", 12, "Nevermind"]
             outputMainText("\n\nThis item can be bought in the following quantities: 1 for " + str(3 * strapothValue(apothID(buy))) + " coins, 2 for " + str(6 * apothValue(apothID(buy))) + " coins, 5 for " + str(15 * apothValue(apothID(buy))) + " coins",False)
             if (itemStackMax(apothID(buy)) >= 10):
-               templist = FE.lists.push(templist, [9,"Buy 10"])
+               templist = lists.push(templist, [9,"Buy 10"])
                a1 = 1
                outputMainText(", 10 for " + str(30 * apothValue(apothID(buy))) + " coins",False)
             if (itemStackMax(apothID(buy)) >= 15):
-               templist = FE.lists.push(templist, [10,"Buy 15"])
+               templist = lists.push(templist, [10,"Buy 15"])
                a2 = 1
                outputMainText(", 15 for " + str(45 * apothValue(apothID(buy))) + " coins",False)
             outputMainText(".",False)
@@ -8863,7 +9259,7 @@ def doSalon():
    i = 1
    while (i < 12):
       if ((i != 4) and (i != 8) and (i != 10)):
-         templist = FE.lists.push(templist, [i,hairstyleName(hairstyleID(i))])
+         templist = lists.push(templist, [i,hairstyleName(hairstyleID(i))])
       if ((i != 10) and (hairstyleName(hairstyleID(i)) == "")):
          dlist.append(i)
       i += 1
@@ -9244,7 +9640,7 @@ def doTailor():
    i = 1
    while (i < 12):
       if ((i != 4) and (i != 8)):
-         templist = FE.lists.push(templist, [i,clothesName(clothesID(i))])
+         templist = lists.push(templist, [i,clothesName(clothesID(i))])
       i += 1
    outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.",True)
    doButtonChoices(templist)
@@ -10837,15 +11233,15 @@ def doMasturbate():
    currentState = 3
    templist = [4, "Bag", 7, "Breasts", 12, "Return"]
    if (cockTotal > 0):
-      templist = FE.lists.push(templist, [1,"Penis"])
+      templist = lists.push(templist, [1,"Penis"])
    """
    if (cockTotal > 0) and (vagTotal > 0):
-      templist = FE.lists.push(templist, [2,"Both"])
+      templist = lists.push(templist, [2,"Both"])
    """
    if (vagTotal > 0):
-      templist = FE.lists.push(templist, [3,"Vagina"])
+      templist = lists.push(templist, [3,"Vagina"])
    if (udders == True):
-      templist = FE.lists.push(templist, [10,"Udder"])
+      templist = lists.push(templist, [10,"Udder"])
    ButtonFunctions.Visible(1,0,1,1,0,0,1,0,0,1,0,1)
    outputMainText("How would you like to masturbate?",True)
    doButtonChoices(templist)
@@ -13298,9 +13694,9 @@ def doFirmshaft():
                   ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
                   templist = [3, "Crossdress", 11, "Maybe Later"]
                   if (checkItem(533) == True):
-                     templist = FE.lists.push(templist, [1,"Reduc Reduc"])
+                     templist = lists.push(templist, [1,"Reduc Reduc"])
                   if (checkItem(534) == True):
-                     templist = FE.lists.push(templist, [5,"Male Enhance"])
+                     templist = lists.push(templist, [5,"Male Enhance"])
                   doButtonChoices(templist)
                   def doListen():
                      global buttonChoice, hrs, jamieRep
@@ -13365,9 +13761,9 @@ def doFirmshaft():
                ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
                templist = [3, "Crossdress", 11, "Maybe Later"]
                if (checkItem(533) == True):
-                  templist = FE.lists.push(templist, [1,"Reduc Reduc"])
+                  templist = lists.push(templist, [1,"Reduc Reduc"])
                if (checkItem(534) == True):
-                  templist = FE.lists.push(templist, [5,"Male Enhance"])
+                  templist = lists.push(templist, [5,"Male Enhance"])
                doButttonChoices(templist)
                def doListen():
                   global buttonChoice, hrs, jamieRep
@@ -13446,7 +13842,7 @@ def doFirmshaft():
          ButtonFunctions.Visible(1,0,0,0,0,0,0,0,0,1,0,0)
          templist = [1, "I can help", 10, "Leave"]
          if (jamieRep == 4):
-            templist = FE.lists.push(templist, [3,"Can I see it?"])
+            templist = lists.push(templist, [3,"Can I see it?"])
          doButtonChoices(templist)
          this.outputMainText("\"H-Hey.\" The familiar voice of an equan lad catches your attention. He approaches you with the usual bulge in his shorts, but without an erection, allowing him to move in public without as much embarassment. \"I was wondering if you still wanted to do something? Not that I'm expecting anything from you. You've been nice and I don't want to take advantage of that. Just wanted to check and see if you're interested in doing anything else.\" He's obviously nervous as he asks, the slight rambling a big giveaway, and then he simply stays silent as he waits for a response and digs a hole into the ground with his foot.",True)
          def doListen():
@@ -13457,9 +13853,9 @@ def doFirmshaft():
                ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
                templist = [3, "Crossdress", 11, "Maybe Later"]
                if (checkItem(533) == True):
-                  templist = FE.lists.push(templist, [1,"Reduc Reduc"])
+                  templist = lists.push(templist, [1,"Reduc Reduc"])
                if (checkItem(534) == True):
-                  templist = FE.lists.push(templist, [5,"Male Enhance"])
+                  templist = lists.push(templist, [5,"Male Enhance"])
                doButtonChoices(templist)
                def doListen():
                   global buttonChoice, hrs, jamieRep
@@ -13516,9 +13912,9 @@ def doFirmshaft():
                   ButtonFunctions.Visible(1,0,1,0,1,0,0,0,0,0,1,0)
                   templist = [3, "Crossdress", 11, "Maybe Later"]
                   if (checkItem(533) == True):
-                     templist = FE.lists.push(templist, [1,"Reduc Reduc"])
+                     templist = lists.push(templist, [1,"Reduc Reduc"])
                   if (checkItem(534) == True):
-                     templist = FE.lists.push(templist, [5,"Male Enhance"])
+                     templist = lists.push(templist, [5,"Male Enhance"])
                   doButtonChoices(templist)
                   def doListen():
                      global buttonChoice, hrs, jamieRep
@@ -13594,17 +13990,17 @@ def doFirmshaft():
          ButtonFunctions.Visible(1,0,1,0,0,1,1,0,1,0,1,1)
          templist = [12,"Not Now"]
          if (checkItem(533) == True):
-            templist = FE.lists.push(templist, [1,"Reduc Reduc"])
+            templist = lists.push(templist, [1,"Reduc Reduc"])
          if (checkItem(534) == True):
-            templist = FE.lists.push(templist, [3,"Male Enhance"])
+            templist = lists.push(templist, [3,"Male Enhance"])
          if ((vagLimit() >= (jamieSize + 1) * 4) and (vagTotal > 0)):
-            templist = FE.lists.push(templist, [6,"Sex"])
+            templist = lists.push(templist, [6,"Sex"])
          if ((cockSize * cockSizeMod > (jamieSize + 1) * 4 * 5) or ((jamieSize + 1) * 4 > cockSize * cockSizeMod * 5) and (cockTotal > 0)):
-            templist = FE.lists.push(templist, [7,"Cock Fuck"])
+            templist = lists.push(templist, [7,"Cock Fuck"])
          if (tallness > (jamieSize + 1) * 4 * 3):
-            templist = FE.lists.push(templist, [9,"Your Ass"])
+            templist = lists.push(templist, [9,"Your Ass"])
          if (cockSize * cockSizeMod <= eVagLimit(48)):
-            templist = FE.lists.push(templist, [11,"His Ass"])
+            templist = lists.push(templist, [11,"His Ass"])
          doButtonChoices(templist)
          def doListen():
             outputMainText("Not Implemented", True)
@@ -17056,7 +17452,7 @@ def doDairyFarm():
                ButtonFunctions.Visible(0,1,0,0,1,0,1,0,0,1,0,0)
                templist = [2, "Interrupt", 5, "Assist", 7, "Fuck", 10, "Leave"]
                if (malonRep < 1):
-                  templist = FE.lists.push(templist, [7,"Rape"])
+                  templist = lists.push(templist, [7,"Rape"])
                doButtonChoices(templist)
                def doListen():
                   global buttonChoice, malonRep, hrs, cockTotal, cockSize, cockSizeMod, malonPreg
@@ -17585,7 +17981,7 @@ def doDairyFarm():
             ButtonFunctions.Visible(0,0,0,0,1,0,1,0,0,0,0,0)
             templist = [7, "Sex"]
             if ((lactation < 1) and (udderLactation < 1)):
-               templist = FE.lists.push(templist, [5,"Milk"])
+               templist = lists.push(templist, [5,"Milk"])
             doButtonChoices(templist)
             def doListen():
                global buttonChoice, malonChildren, nipplePlay, udders, udderPlay, hrs, cockTotal, cockSize, cockSizeMod, malonRep, malonPreg, knot, vagTotal, sen, exhaustion, skipExhaustion
@@ -18250,15 +18646,15 @@ def doDen():
       ButtonFunctions.Visible(1,0,1,0,1,0,1,0,1,0,0,0)
       templist = [9, "Cuddle"]
       if (cockTotal > 0):
-         templist = FE.lists.push(templist, [1,"Fuck"])
+         templist = lists.push(templist, [1,"Fuck"])
       if ((vagTotal > 0) and (vagLimit() > 22 + silPreg / 24)):
-         templist = FE.lists.push(templist, [3,"Be Fucked"])
+         templist = lists.push(templist, [3,"Be Fucked"])
       if ((checkItem(229) == True) and (silTied == False)):
-         templist = FE.lists.push(templist, [5,"Tie Tail"])
+         templist = lists.push(templist, [5,"Tie Tail"])
       if (silTied == True):
-         templist = FE.lists.push(templist, [5,"Untie"])
+         templist = lists.push(templist, [5,"Untie"])
       if ((checkItem(230) == True) and (silPreg > 30)):
-         templist = FE.lists.push(templist, [7,"Eggcelerator"])
+         templist = lists.push(templist, [7,"Eggcelerator"])
       doButtonChoices(templist)
       def doListen():
          global buttonChoice, silPreg, tallness, knot, showBalls, sen, cockTotal, dominant, silTied, hrs, silRate
@@ -18380,9 +18776,9 @@ def doDen():
       ButtonFunctions.Visible(1,0,1,0,0,0,0,0,1,0,0,0)
       templist = [9, "Cuddle"]
       if (cockTotal > 0):
-         templist = FE.lists.push(templist, [1,"Fuck"])
+         templist = lists.push(templist, [1,"Fuck"])
       if ((vagTotal > 0) and (vagLimit() > 22 + silPreg / 24)):
-         templist = FE.lists.push(templist, [3,"Be Fucked"])
+         templist = lists.push(templist, [3,"Be Fucked"])
       doButtonChoices(templist)
       def doListen():
          global buttonChoice, showBalls, cockSize, cockSizeMod, silPreg, sen, cockTotal, pregnancyTime, vagBellyMod, breastSize, dominant, hrs
@@ -18640,15 +19036,15 @@ def doDen():
       ButtonFunctions.Visible(1,0,1,0,1,0,1,0,1,0,0,0)
       templist = [9, "Cuddle"]
       if (cockTotal > 0):
-         templist = FE.lists.push(templist, [1,"Fuck"])
+         templist = lists.push(templist, [1,"Fuck"])
       if ((vagTotal > 0) and (vagLimit() > 22 + silPreg / 24)):
-         templist = FE.lists.push(templist, [3,"Be Fucked"])
+         templist = lists.push(templist, [3,"Be Fucked"])
       if ((checkItem(229) == True) and (silTied == False)):
-         templist = FE.lists.push(templist, [5,"Tie Tail"])
+         templist = lists.push(templist, [5,"Tie Tail"])
       if (silTied == True):
-         templist = FE.lists.push(templist, [5,"Untie"])
+         templist = lists.push(templist, [5,"Untie"])
       if ((checkItem(230) == True) and (silPreg > 30)):
-         templist = FE.lists.push(templist, [7,"Eggcelerator"])
+         templist = lists.push(templist, [7,"Eggcelerator"])
       doButtonChoices(templist)
       def doListen():
          global buttonChoice, silPreg, showBalls, silRate, silTied, cockSize, cockSizeMod, tallness, sen, cockTotal, pregnancyTime, vagBellyMod, breastSize, dominant, hrs, lib
@@ -25929,7 +26325,7 @@ class SidePanel:
          textside.place(anchor="nw", height=300, width=330, x=0, y=0)
          textside.configure(state="disabled")
          textsidevisible = True
-
+         UpdateText()
       ApButton.Hide()
    def Hide():
       global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, textsidebox
@@ -26470,6 +26866,57 @@ def toxml(inputfile, outputfile):
    with open(outputfile, "w") as xmldoc:
       xmldoc.write(spref)
    outputMainText("Success",True)
+
+class lists:
+   def splice(a:list, b:int, c:int="", d:list=[]):
+      """
+      ActionScript Array.splice()
+      a is a list. (required)
+      b is the element to start at (refers to the first element as 1 instead of 0). (required)
+      c is the number of elements to remove (including b). If c is not provided, all elements from b on will be removed. (optional)
+      d is a list of elements to be added at b after b to b+c is deleted. (optional)
+      """
+      templist = a
+      if (c == ""):
+         del templist[b:]
+      elif (c != 0):
+         for i in range(c, 0, -1):
+            templist.pop(b+i-1)
+      if (d != []):
+         for i in range(0, len(d)):
+            templist.insert(b+i, d[i])
+      return templist
+   def indexOf(a:list, b):
+      try:
+         x = a.index(b)
+      except:
+         x = -1
+      return x
+   def push(a:list, b:list):
+      i = 0
+      while (i < len(b)):
+         a.append(b[i])
+         i += 1
+      return a
+   def createtosizestr(a:int):
+      templist = []
+      while (len(templist) < a):
+         templist.append("")
+      return templist
+   def createtosizeint(a:int):
+      templist
+      while (len(templist) < b):
+         templist.append(0)
+      return templist
+   def filltosizestr(a:list, b:int):
+      while (len(a) < b):
+         a.append("")
+      return a
+   def filltosizeint(a:list, b:int):
+      while (len(a) < b):
+         a.append(0)
+      return a
+
 
 themeColor = getThemeColor()
 initinterface = True
