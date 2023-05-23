@@ -32,8 +32,16 @@ class Array:
    def __len__(self):
       return len(self.array)
    def __getitem__(self, item):
-      return self.array[item]
+      try:
+         if self.array[item] == None:
+            return "undefined"
+         else:
+            return self.array[item]
+      except:
+         return "undefined"
    def __setitem__(self, item, value):
+      if item + 1 > len(self.array):
+         self.toSize(item + 1)
       self.array[item] = value
    def toSize(self, numElements:int=0):
       """
