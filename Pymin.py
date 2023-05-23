@@ -475,6 +475,17 @@ tempID = 0
 tempColor = 0
 specialAbilityArray = as3.Array()
 
+def repintorfloat(number):
+   tempString = str(number)
+   templist = tempString.split(".")
+   if len(templist) > 1:
+      if templist[1] == "0":
+         return templist[0]
+      else:
+         return number
+   else:
+      return number
+
 #def MainTimeline():
 #   super()
 #   addFrameScript(0,this.frame1)
@@ -2388,9 +2399,9 @@ def appearanceGo():
    if ((lilaWetStatus > 0) and ((attireBot == 10) or (attireBot == 11))):
       tempStr += " Although, your " + clothesBottom() + " doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
    if (legType >= 1000):
-      tempStr += " Your tauric waist measures " + str(decGet(tallness * 0.75 + pregnancyTime / 10 + vagBellyMod / 8 + bellyMod / 10,1)) + " inches around, your " + bellyDesc() + " belly swinging underneath."
+      tempStr += " Your tauric waist measures " + str(repintorfloat(decGet(tallness * 0.75 + pregnancyTime / 10 + vagBellyMod / 8 + bellyMod / 10,1))) + " inches around, your " + bellyDesc() + " belly swinging underneath."
    else:
-      tempStr += " Your waist measures " + str(decGet(tallness / 2 + pregnancyTime / 10 + vagBellyMod / 8 + bellyMod / 10,1)) + " inches around, sporting a " + bellyDesc() + " belly beneath your " + clothesTop() + "."
+      tempStr += " Your waist measures " + str(repintorfloat(decGet(tallness / 2 + pregnancyTime / 10 + vagBellyMod / 8 + bellyMod / 10,1))) + " inches around, sporting a " + bellyDesc() + " belly beneath your " + clothesTop() + "."
    if (dominant == 10):
       tempStr += " There's also a bit of extra pudge around your waist, some chubbiness to add to your pig-like nature."
    if (wings > 0):
@@ -2402,15 +2413,15 @@ def appearanceGo():
       tempStr += " Beneath your " + clothesBottom() + ", the shape of a bucket with milk splashing out over the edges is forever imprinted upon your " + buttDesc() + " hind, marking you as property of the Softlik Dairy Farm."
    if (breastSize > 0):
       if (boobTotal == 2):
-         tempStr += "\n\nUpon your chest heaves " + str(boobTotal) + " " + boobDesc() + " breasts. Your bust measures " + str(decGet(breastSize * 0.5,1)) + " inches in circumference beyond that of your chest, with " + nipDesc()
+         tempStr += "\n\nUpon your chest heaves " + str(boobTotal) + " " + boobDesc() + " breasts. Your bust measures " + str(repintorfloat(decGet(breastSize * 0.5,1))) + " inches in circumference beyond that of your chest, with " + nipDesc()
       elif (boobTotal == 4):
-         tempStr += "\n\nUpon your chest heaves " + str(boobTotal) + " " + boobDesc() + " breasts; two pairs of equal size, one close below the other. Your dual busts each measure " + str(decGet(breastSize * 0.5,1)) + " inches in circumference beyond that of your chest, with " + nipDesc()
+         tempStr += "\n\nUpon your chest heaves " + str(boobTotal) + " " + boobDesc() + " breasts; two pairs of equal size, one close below the other. Your dual busts each measure " + str(repintorfloat(decGet(breastSize * 0.5,1))) + " inches in circumference beyond that of your chest, with " + nipDesc()
       elif (boobTotal == 6):
-         tempStr += "\n\nUpon your chest and down to your belly heaves " + str(boobTotal) + " " + boobDesc() + " breasts; three pairs diminishing in size the lower they go. Your bust measures " + str(decGet(breastSize * 0.5,1)) + " inches in circumference beyond that of your chest, the next pair measuring " + str(decGet(breastSize * 0.25,2)) + " inches and the next measuring " + str(decGet(breastSize * 0.15,2)) + " inches; each with " + nipDesc()
+         tempStr += "\n\nUpon your chest and down to your belly heaves " + str(boobTotal) + " " + boobDesc() + " breasts; three pairs diminishing in size the lower they go. Your bust measures " + str(repintorfloat(decGet(breastSize * 0.5,1))) + " inches in circumference beyond that of your chest, the next pair measuring " + str(repintorfloat(decGet(breastSize * 0.25,2))) + " inches and the next measuring " + str(repintorfloat(decGet(breastSize * 0.15,2))) + " inches; each with " + nipDesc()
       elif (boobTotal == 8):
-         tempStr += "\n\nUpon your chest and down to your lower belly heaves " + str(boobTotal) + " " + boobDesc() + " breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures " + str(decGet(breastSize * 0.38,1)) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + nipDesc()
+         tempStr += "\n\nUpon your chest and down to your lower belly heaves " + str(boobTotal) + " " + boobDesc() + " breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures " + str(repintorfloat(decGet(breastSize * 0.38,1))) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + nipDesc()
       elif (boobTotal == 10):
-         tempStr += "\n\nUpon your chest and down to just above your crotch heaves " + str(boobTotal) + " " + boobDesc() + " breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures " + str(decGet(this.breastSize * 0.4,1)) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + nipDesc()
+         tempStr += "\n\nUpon your chest and down to just above your crotch heaves " + str(boobTotal) + " " + boobDesc() + " breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures " + str(repintorfloat(decGet(this.breastSize * 0.4,1))) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + nipDesc()
       if (dominant == 5):
          tempStr += "teats"
       if (dominant != 5):
@@ -2418,11 +2429,11 @@ def appearanceGo():
       if (nipType == 2):
          tempStr += " hidden within slits in your areola."
       elif (lust < 50):
-         tempStr += " softly bulging " + str(decGet(nippleSize * 0.1,1)) + " inches beyond that."
+         tempStr += " softly bulging " + str(repintorfloat(decGet(nippleSize * 0.1,1))) + " inches beyond that."
       elif (lust < 75):
-         tempStr += " stiffly standing " + str(decGet(nippleSize * 0.2,1)) + " inches beyond that."
+         tempStr += " stiffly standing " + str(repintorfloat(decGet(nippleSize * 0.2,1))) + " inches beyond that."
       else:
-         tempStr += " achingly hard and reaching " + str(decGet(nippleSize * 0.25,1)) + " inches beyond that."
+         tempStr += " achingly hard and reaching " + str(repintorfloat(decGet(nippleSize * 0.25,1))) + " inches beyond that."
       if (nipType == 1):
          tempStr += " With four nubs each, your breasts look quite similar to cows' udders."
       if (lactation > 0):
@@ -2440,7 +2451,7 @@ def appearanceGo():
          tempStr += "\n\nJust behind your tauric belly, squishing between your rear legs, hangs a " + udderDesc() + " udder "
       elif (cowAffinity >= 55):
          tempStr += "\n\nJust below your belly hangs a " + udderDesc() + " udder "
-      tempStr += "with 4 " + teatDesc() + " teats, each " + str(decGet(teatSize * 0.2,1)) + " inches long"
+      tempStr += "with 4 " + teatDesc() + " teats, each " + str(repintorfloat(decGet(teatSize * 0.2,1))) + " inches long"
       if (udderLactation > 0):
          if (udderEngorgementLevel == 2):
             tempStr += " and dribbling milk from your engorgement"
@@ -2456,15 +2467,15 @@ def appearanceGo():
       tempStr += "\n\nAbove your groin rests " + str(cockTotal) + " " + cockDesc() + " wang" + plural(1) + "."
       if (lust <= 30):
          if (humanCocks > 0):
-            tempStr += " " + str(humanCocks) + " dangle" + plural(3) + " flaccidly from your groin, reaching " + str(decGet(cockSize * cockSizeMod * 0.25,2)) + " inches down, with smooth skin and a mushroom-like glans, just like a human's."
+            tempStr += " " + str(humanCocks) + " dangle" + plural(3) + " flaccidly from your groin, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.25,2))) + " inches down, with smooth skin and a mushroom-like glans, just like a human's."
          if (horseCocks > 0):
-            tempStr += " " + str(horseCocks) + " hide" + plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + str(decGet(cockSize * cockSizeMod / 12,1)) + " inches in thickness."
+            tempStr += " " + str(horseCocks) + " hide" + plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + str(repintorfloat(decGet(cockSize * cockSizeMod / 12,1))) + " inches in thickness."
          if ((wolfCocks > 0) or (catCocks > 0) or (rabbitCocks > 0)):
-            tempStr += " " + str(wolfCocks + catCocks + rabbitCocks) + " hide" + plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + str(decGet(cockSize * cockSizeMod / 16,1)) + " inches in thickness."
+            tempStr += " " + str(wolfCocks + catCocks + rabbitCocks) + " hide" + plural(3) + " within a fuzzy sheath that protrudes from your groin, around " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + " inches in thickness."
          if (lizardCocks > 0):
             tempStr += " " + str(lizardCocks) + " hide" + plural(3) + " in a slit, flush against your body."
          if (bugCocks > 0):
-            tempStr += " " + str(bugCocks) + " dangle" + plural(3) + " flaccidly from your groin, reaching " + str(decGet(cockSize * cockSizeMod * 0.25,2)) + " inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
+            tempStr += " " + str(bugCocks) + " dangle" + plural(3) + " flaccidly from your groin, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.25,2))) + " inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
          if (moistCalc(1) > 2):
             tempStr += " Drops of pre slowly bead at the tip of your cock" + plural(1) + ", "
             if ((horseCocks > 0) or (wolfCocks > 0) or (catCocks > 0) or (rabbitCocks > 0)):
@@ -2472,21 +2483,21 @@ def appearanceGo():
             tempStr += " running down your thighs as it continually blotches your " + clothesBottom() + ", even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
       if ((lust > 30) and (lust <= 70)):
          if (humanCocks > 0):
-            tempStr += " " + str(humanCocks) + " stand" + plural(3) + " erect, reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches up, with smooth skin and a mushroom-like glans, just like a human's."
+            tempStr += " " + str(humanCocks) + " stand" + plural(3) + " erect, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches up, with smooth skin and a mushroom-like glans, just like a human's."
          if (horseCocks > 0):
-            tempStr += " " + str(horseCocks) + " droop" + plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 12,1)) + "-inch thick smooth sheath, reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
+            tempStr += " " + str(horseCocks) + " droop" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 12,1))) + "-inch thick smooth sheath, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
          if (wolfCocks > 0):
-            tempStr += " " + str(wolfCocks) + " poke" + this.plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 16,1)) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip" + plural(1) + ", standing " + str(decGet(this.cockSize * this.cockSizeMod * 0.5,1)) + " inches high, just like a wolf's."
+            tempStr += " " + str(wolfCocks) + " poke" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip" + plural(1) + ", standing " + str(repintorfloat(decGet(this.cockSize * this.cockSizeMod * 0.5,1))) + " inches high, just like a wolf's."
          if (catCocks > 0):
-            tempStr += " " + str(catCocks) + " poke" + plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 16,1)) + "-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip" + plural(1) + ", standing " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, just like a cat's."
+            tempStr += " " + str(catCocks) + " poke" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + "-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip" + plural(1) + ", standing " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, just like a cat's."
          if (lizardCocks > 0):
-            tempStr += " " + str(lizardCocks) + " poke" + plural(3) + " through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, probably like a reptile's."
+            tempStr += " " + str(lizardCocks) + " poke" + plural(3) + " through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, probably like a reptile's."
          if (rabbitCocks > 0):
-            tempStr += " " + str(rabbitCocks) + " poke" + plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 16,1)) + "-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip" + this.plural(1) + ", somewhat like a carrot, standing " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, just like a rabbit's."
+            tempStr += " " + str(rabbitCocks) + " poke" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + "-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip" + plural(1) + ", somewhat like a carrot, standing " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, just like a rabbit's."
          if (bugCocks > 0):
-            tempStr += " " + str(bugCocks) + " stand" + plural(3) + " erect, reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
+            tempStr += " " + str(bugCocks) + " stand" + plural(3) + " erect, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
          if (knot == True):
-            tempStr += " Your cock" + plural(1) + " swell" +plural(3) + " a little near the base, preparing for a chance for the knot" + plural(1) + " to expand."
+            tempStr += " Your cock" + plural(1) + " swell" + plural(3) + " a little near the base, preparing for a chance for the knot" + plural(1) + " to expand."
          if ((moistCalc(1) > 2) and (moistCalc(1) <= 5)):
             tempStr += " Drops of pre slowly bead at the tip of your cock" + plural(1) + ", "
             tempStr += " running down your thighs as it blotches your " + clothesBottom() + ". The slime is enough to slip yourself into a pussy smaller than you are long, at least."
@@ -2494,21 +2505,21 @@ def appearanceGo():
             tempStr += " Pre steadily drips from your groin, making a large wet spot on your " + clothesBottom() + ", looking more like you had peed yourself from all the seminal fluid.  Fortunately, you could probably slip " + oneYour(1) + " cock" + plural(1) + " into a pussy smaller than you are, thanks to all the lubrication."
       if (lust > 70):
          if (humanCocks > 0):
-            tempStr += " " + str(humanCocks) + " stand" + plural(3) + " erect, reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
+            tempStr += " " + str(humanCocks) + " stand" + plural(3) + " erect, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
          if (horseCocks > 0):
-            tempStr += " " + str(horseCocks) + " twitches out of a " + str(decGet(cockSize * cockSizeMod / 12,1)) + "-inch thick smooth sheath, trying to stand " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
+            tempStr += " " + str(horseCocks) + " twitches out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 12,1))) + "-inch thick smooth sheath, trying to stand " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
          if (wolfCocks > 0):
-            tempStr += " " + str(wolfCocks) + " throb" + plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 16,1)) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look purple, they're so full of blood, with a narrowing tip" + plural(1) + ", standing " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, just like a wolf's."
+            tempStr += " " + str(wolfCocks) + " throb" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + "-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look purple, they're so full of blood, with a narrowing tip" + plural(1) + ", standing " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, just like a wolf's."
          if (catCocks > 0):
-            tempStr += " " + str(catCocks) + " stiffly stand" + plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 16,1)) + "-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip" + plural(1) + ", standing " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, just like a cat's."
+            tempStr += " " + str(catCocks) + " stiffly stand" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + "-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip" + plural(1) + ", standing " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, just like a cat's."
          if (lizardCocks > 0):
-            tempStr += " " + str(lizardCocks) + " harden" + plural(3) + " through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, probably like a reptile's."
+            tempStr += " " + str(lizardCocks) + " harden" + plural(3) + " through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, probably like a reptile's."
          if (rabbitCocks > 0):
-            tempStr += " " + rabbitCocks + " stiffly stand" + plural(3) + " out of a " + str(decGet(cockSize * cockSizeMod / 16,1)) + "-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches high, just like a rabbit's."
+            tempStr += " " + rabbitCocks + " stiffly stand" + plural(3) + " out of a " + str(repintorfloat(decGet(cockSize * cockSizeMod / 16,1))) + "-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches high, just like a rabbit's."
          if (bugCocks > 0):
-            tempStr += " " + str(bugCocks) + " stand" + plural(3) + " erect, reaching " + str(decGet(cockSize * cockSizeMod * 0.5,1)) + " inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
+            tempStr += " " + str(bugCocks) + " stand" + plural(3) + " erect, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
          if (knot == True):
-            tempStr += " Your cock" + plural(1) + " bulge" + plural(3) + " tremendously at " + plural(5) + " base" + plural(1) + ", the knot" + plural(1) + " completely expecting to come at any moment and nearly " + str(decGet(cockSize * cockSizeMod / 4,1)) + " inches thick."
+            tempStr += " Your cock" + plural(1) + " bulge" + plural(3) + " tremendously at " + plural(5) + " base" + plural(1) + ", the knot" + plural(1) + " completely expecting to come at any moment and nearly " + str(repintorfloat(decGet(cockSize * cockSizeMod / 4,1))) + " inches thick."
          if ((moistCalc(1) > 2) and (moistCalc(1) <= 5)):
             tempStr += " Drops of pre slowly bead at the tip of your cock" + plural(1) + ", "
             tempStr += " running down your thighs as it blotches your " + clothesBottom() + ". The slime is enough to slip yourself into a pussy smaller than you are long, at least."
@@ -2523,22 +2534,22 @@ def appearanceGo():
       if (blueBalls > 84):
          tempStr += " They groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
    if (vagTotal > 0):
-      tempStr += "\n\nAlso, " + legWhere(1) + " your " + legDesc(2) + " nestles " + str(vagTotal) + " " + vulvaDesc() + " pair" + plural(2) + " of feminine nether-lips, about " + str(decGet(vagSize * vagSizeMod * 0.5,1)) + " inches deep, when aroused."
+      tempStr += "\n\nAlso, " + legWhere(1) + " your " + legDesc(2) + " nestles " + str(vagTotal) + " " + vulvaDesc() + " pair" + plural(2) + " of feminine nether-lips, about " + str(repintorfloat(decGet(vagSize * vagSizeMod * 0.5,1))) + " inches deep, when aroused."
       if (vagSize * vagSizeMod * vagTotal > tallness / 2):
          tempStr += " So deep, in fact, that your belly bulges more because of the excess vaginal flesh."
       if (lust <= 30):
          if (clitSize > vulvaSize * 3):
-            tempStr += " Although you're hardly aroused, your " + clitDesc() + " clit" + plural(2) + " dangle" + plural(4) + " softly from the front of your slit" + plural(2) + ", measuring nearly " + str(decGet(clitSize * 0.1,1)) + " inches in length."
+            tempStr += " Although you're hardly aroused, your " + clitDesc() + " clit" + plural(2) + " dangle" + plural(4) + " softly from the front of your slit" + plural(2) + ", measuring nearly " + str(repintorfloat(decGet(clitSize * 0.1,1))) + " inches in length."
          if (moistCalc(2) > 2):
             tempStr += " Lubrication makes your cunt" + plural(2) + " slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your " + clothesBottom() + ", whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
       if ((lust > 30) and (lust <= 70)):
-         tempStr += " Your " + clitDesc() + " clit" + plural(2) + " swell" + plural(4) + " from the hood" + plural(2) + " at the front of your slit" + plural(2) + ", reaching " + str(decGet(clitSize * 0.2,1)) + " inches in length and making you walk awkwardly as the sensitive button" + plural(2) + " rub" + plural(4) + " between your thighs."
+         tempStr += " Your " + clitDesc() + " clit" + plural(2) + " swell" + plural(4) + " from the hood" + plural(2) + " at the front of your slit" + plural(2) + ", reaching " + str(repintorfloat(decGet(clitSize * 0.2,1))) + " inches in length and making you walk awkwardly as the sensitive button" + plural(2) + " rub" + plural(4) + " between your thighs."
          if ((moistCalc(2) > 2) and (moistCalc(2) <= 5)):
             tempStr += " Lubrication makes your cunt" + plural(2) + " slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your " + clothesBottom() + ", whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
          if (moistCalc(2) > 5):
             tempStr += " So much feminine honey drips from your cunt" + plural(2) + " that it looks like you have peed in your " + clothesBottom() + " and webs of slime form sheets " + legWhere(2) + " your " + legDesc(2) + ". But, with all that lubrication you could take a cock around one and a half times long as you are deep."
       if (lust > 70):
-         tempStr += " Your " + clitDesc() + " clit" + plural(2) + " swell" + plural(4) + " tremendously from the hood" + plural(2) + " at the front of your slit" + plural(2) + ", reaching " + str(decGet(clitSize * 0.25,2)) + " inches in length. You walk awkwardly half the time as squeezing the clit" + plural(2) + " and swollen lips between your thighs is often too much, making you hunger to hump something."
+         tempStr += " Your " + clitDesc() + " clit" + plural(2) + " swell" + plural(4) + " tremendously from the hood" + plural(2) + " at the front of your slit" + plural(2) + ", reaching " + str(repintorfloat(decGet(clitSize * 0.25,2))) + " inches in length. You walk awkwardly half the time as squeezing the clit" + plural(2) + " and swollen lips between your thighs is often too much, making you hunger to hump something."
          if ((moistCalc(2) > 2) and (moistCalc(2) <= 5)):
             tempStr += " Lubrication makes your cunt" + plural(2) + " slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your " + clothesBottom() + ", whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
          if ((moistCalc(2) > 5) and (moistCalc(2) <= 10)):
@@ -2575,7 +2586,7 @@ def appearanceGo():
 
 def detailedStats():
    #Should work
-   global strMod, mentMod, libMod, senMod, SexPMod, changeMod, carryMod, HPMod, coinMod, cockSizeMod, vagSizeMod, cumMod, buttMod, babyFree, pregChanceMod, extraPregChance, pregTimeMod, pregRate, lactation, udders, udderLactation, milkMod, milkCap, rapeMod, enticeMod, runMod, showSide
+   global strMod, mentMod, libMod, senMod, SexPMod, changeMod, carryMod, HPMod, coinMod, cockSizeMod, vagSizeMod, cumMod, buttMod, hipMod, babyFree, pregChanceMod, extraPregChance, pregTimeMod, pregRate, lactation, udders, udderLactation, milkMod, milkCap, rapeMod, enticeMod, runMod, showSide
    global doListen
    tempStr = ""
    tempStr += "These are the modifiers and multipliers for more detailed stats beyond your base stats:\n"
@@ -2584,24 +2595,25 @@ def detailedStats():
    tempStr += "\nLibidio Modifier:\t\t\t\t" + str(libMod)
    tempStr += "\nSensitivity Modifier:\t\t\t\t" + str(senMod)
    tempStr += "\n"
-   tempStr += "\nSexP Multiplier:\t\t\t\t" + str(SexPMod)
-   tempStr += "\nAdapting Multiplier:\t\t\t\t" + str(changeMod)
+   tempStr += "\nSexP Multiplier:\t\t\t\t" + str(repintorfloat(SexPMod))
+   tempStr += "\nAdapting Multiplier:\t\t\t\t" + str(repintorfloat(changeMod))
    tempStr += "\nCarry Capacity Modifier:\t\t\t\t" + str(carryMod)
    tempStr += "\nHit Point Modifier:\t\t\t\t+" + str(HPMod)
    tempStr += "\nBonus Coin Gain:\t\t\t\t+" + str(coinMod)
    tempStr += "\n"
-   tempStr += "\nPenis Size Multiplier:\t\t\t\t" + str(cockSizeMod)
-   tempStr += "\nVagina Size Multiplier:\t\t\t\t" + str(vagSizeMod)
-   tempStr += "\nSemen Multiplier:\t\t\t\t" + str(cumMod)
+   tempStr += "\nPenis Size Multiplier:\t\t\t\t" + str(repintorfloat(cockSizeMod))
+   tempStr += "\nVagina Size Multiplier:\t\t\t\t" + str(repintorfloat(vagSizeMod))
+   tempStr += "\nSemen Multiplier:\t\t\t\t" + str(repintorfloat(cumMod))
    tempStr += "\nButt Size Multiplier:\t\t\t\t" + str(buttMod)
-   tempStr += "\nHip Size Multiplier:\t\t\t\t" + str(buttMod)
+   #!
+   tempStr += "\nHip Size Multiplier:\t\t\t\t" + str(hipMod)
    tempPregMod = 0
    if (babyFree > 0):
       tempPregMod -= 50
    tempStr += "\nPregnancy Chance:\t\t\t\t" + str(10 + pregChanceMod + tempPregMod) + "%"
    tempStr += "\nExtra Baby Chance Mod:\t\t\t\t+" + str(extraPregChance) + "%"
    tempStr += "\nPregnancy Time Mod:\t\t\t\t" + str(pregTimeMod) + "hrs"
-   tempStr += "\nPregnancy Time Rate:\t\t\t\t" + str(pregRate) + "x"
+   tempStr += "\nPregnancy Time Rate:\t\t\t\t" + str(repintorfloat(pregRate)) + "x"
    tempStr += "\nBoob Lactation Rate:\t\t\t\t" + str(lactation) + "ml/hr"
    if (udders == True):
       tempStr += "\nUdder Lactation Rate:\t\t\t\t" + str(udderLactation) + "ml/hr"
@@ -11448,7 +11460,7 @@ def doAlchemy():
          doReturn()
 
 def simpleAlchemy():
-   #!choiceList but Should work
+   #Should work
    global choiceListArray, knowLustDraft, knowRejuvPot, knowExpPreg, knowBallSwell, knowMaleEnhance
    global doListen
    choiceListArray = as3.Array()
@@ -11505,7 +11517,7 @@ def simpleAlchemy():
          doAlchemy()
 
 def complexAlchemy():
-   #!choiceList but Should work
+   #Should work
    global choiceListArray, knowSLustDraft, knowSRejuvPot, knowSExpPreg, knowSBallSwell, knowBabyFree, knowPotPot, knowGenSwap, knowMasoPot, knowMilkSuppress, doListen
    choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
@@ -11580,7 +11592,7 @@ def complexAlchemy():
          doAlchemy()
 
 def advancedAlchemy():
-   #!choiceList but Should work
+   #Should work
    global choiceListArray, knowSBabyFree, knowSPotPot, knowGenSwap, knowSMasoPot, knowPussJuice, knowPheromone, knowBazoomba, doListen
    choiceListArray = as3.Array()
    outputMainText("Click on an item you would like to create.",True)
