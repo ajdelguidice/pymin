@@ -481,12 +481,9 @@ specialAbilityArray = as3.Array()
 #   __setProp_scrollBar2_Scene1_TextFields_0()
 #   __setProp_scrollBar1_Scene1_TextFields_0()
 
-def between(a,b,c,Type:int):
-   return FE.operations.between(a,b,c,Type)
-
 def ButtonEvent1():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(1)
    else:
       buttonChoice = 1
@@ -495,7 +492,7 @@ def ButtonEvent1():
 
 def ButtonEvent2():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(2)
    else:
       buttonChoice = 2
@@ -504,7 +501,7 @@ def ButtonEvent2():
 
 def ButtonEvent3():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(3)
    else:
       buttonChoice = 3
@@ -513,8 +510,8 @@ def ButtonEvent3():
 
 def ButtonEvent4():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
-      x = 0
+   if ((shiftHeld == True) and (inBag == True)):
+      pass
    else:
       buttonChoice = 4
       UpDown.HideAll()
@@ -522,7 +519,7 @@ def ButtonEvent4():
 
 def ButtonEvent5():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(5)
    else:
       buttonChoice = 5
@@ -531,7 +528,7 @@ def ButtonEvent5():
 
 def ButtonEvent6():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(6)
    else:
       buttonChoice = 6
@@ -540,7 +537,7 @@ def ButtonEvent6():
 
 def ButtonEvent7():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(7)
    else:
       buttonChoice = 7
@@ -549,8 +546,8 @@ def ButtonEvent7():
 
 def ButtonEvent8():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
-      x = 0
+   if ((shiftHeld == True) and (inBag == True)):
+      pass
    else:
       buttonChoice = 8
       UpDown.HideAll()
@@ -558,7 +555,7 @@ def ButtonEvent8():
 
 def ButtonEvent9():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(9)
    else:
       buttonChoice = 9
@@ -567,7 +564,7 @@ def ButtonEvent9():
 
 def ButtonEvent10():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(10)
    else:
       buttonChoice = 10
@@ -576,7 +573,7 @@ def ButtonEvent10():
 
 def ButtonEvent11():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
+   if ((shiftHeld == True) and (inBag == True)):
       itemMove(11)
    else:
       buttonChoice = 11
@@ -585,8 +582,8 @@ def ButtonEvent11():
 
 def ButtonEvent12():
    global shiftHeld, inBag, buttonChoice
-   if (shiftHeld == True) and (inBag == True):
-      x = 0
+   if ((shiftHeld == True) and (inBag == True)):
+      pass
    else:
       buttonChoice = 12
       UpDown.HideAll()
@@ -803,8 +800,8 @@ def ToggleTheme():
    savePreferences()
 
 def ChangeBackgroundColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel
-   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel"]:
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount
+   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount"]:
       try:
          if (eval(i).cget("background") != color):
             eval(i)["background"] = color
@@ -812,8 +809,8 @@ def ChangeBackgroundColor(color):
          continue
    
 def ChangeTextColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel
-   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel"]:
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount
+   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount"]:
       try:
          if (eval(i).cget("foreground") != color):
             eval(i)["foreground"] = color
@@ -1089,10 +1086,10 @@ def hideAmount():
       viewAmount(i, False)
 
 def choiceListButtons(which:str):
-   #!
+   #Should work
    global bagArray, inBag, choicePage, bagPage, stashArray, choiceListArray, bagStackArray, stashStackArray
    tempInt = 0
-   tempArray = []
+   tempArray = as3.Array()
    templist = [12, "Return"]
    a1 = 0
    a2 = 0
@@ -1106,9 +1103,8 @@ def choiceListButtons(which:str):
    a10 = 0
    a11 = 0
    if (which == "Bag"):
-      tempArray = ["","","","","","","","","","","","","","","","","","","","","","","","","","",""]
-      for i in range(0, 26):
       #for(this.i = 0; this.i < this.bagArray.length; ++this.i)
+      for i in range(0, 27):
          if (bagArray[i] == 0):
             tempArray[i] = " "
          else:
@@ -1116,19 +1112,17 @@ def choiceListButtons(which:str):
       if (inBag == True):
          choicePage = bagPage
    elif (which == "Stash"):
-      tempArray = ["","","","","","","","","","","","","","","","","","","","","","","","","","",""]
-      for i in range(0, 26):
       #for(this.i = 0; this.i < this.stashArray.length; ++this.i)
+      for i in range(0, 27):
          if (stashArray[i] == 0):
             tempArray[i] = " "
          else:
             tempArray[i] = itemName(stashArray[i])
    else:
-      tempArray = FE.lists.createtosizestr(choiceListArray.length())
-      for i in range(0, choiceListArray.length()):
       #for(this.i = 0; this.i < this.choiceListArray.length; ++this.i)
+      for i in range(0, choiceListArray.length()):
          tempArray[i] = choiceListArray[i]
-   if (len(tempArray) > 9):
+   if (tempArray.length() > 9):
       #this.Choice4Outline.visible = true;
       #this.Choice4.visible = true;
       #this.Choice8Outline.visible = true;
@@ -1140,8 +1134,8 @@ def choiceListButtons(which:str):
       templist.append(8)
       templist.append(">>")
       showPage(True,which)
-   for i in range(0, 8):
    #for (this.i = 0; this.i <= 8; ++this.i)
+   for i in range(0, 9):
       if (i < 3):
          tempInt = i + 1
       elif (i < 6):
@@ -1153,7 +1147,7 @@ def choiceListButtons(which:str):
             if (bagStackArray[i + ((choicePage * 9) - 9)] > 1):
                viewAmount(tempInt, True)
                amountWrite(tempInt, "" + str(bagStackArray[i + ((choicePage * 9) - 9)]) + "")
-         if (which == "Stash"):
+         elif (which == "Stash"):
             if(stashStackArray[i + ((choicePage * 9) - 9)] > 1):
                viewAmount(tempInt, True)
                amountWrite(tempInt, "" + str(stashStackArray[i + ((choicePage * 9) - 9)]) + "")
@@ -1206,8 +1200,8 @@ def choiceListButtons(which:str):
    doButtonChoices(templist)
 
 def choiceListBlanks():
-   #!
-   global button1Visible, button2Visible, button3Visible, button4Visible, button5Visible, button6Visible, button7Visible, button8Visible, button9Visible, button10Visible, button11Visible, button12Visible
+   #Should work
+   global button1Visible, button2Visible, button3Visible, button5Visible, button6Visible, button7Visible, button9Visible, button10Visible, button11Visible
    dlist = [1,2,3,5,6,7,9,10,11]
    if (button1Visible == True):
       dlist.remove(1)
@@ -1230,26 +1224,22 @@ def choiceListBlanks():
    ButtonFunctions.DisableSelected(dlist)
 
 def choiceListSelect(which:str):
-#!
+   #Should work
    global bagArray, stashArray, choiceListArray, buttonChoice, choiceListResult, choicePage, inBag, bagPage
    tempInt = 0
-   tempArray = []
+   tempArray = as3.Array()
    hideAmount()
-   choiceListResult = as3.Array()
    if (which == "Bag"):
-      tempArray = ["","","","","","","","","","","","","","","","","","","","","","","","","","",""]
-      for i in range(0, 26):
       #for(this.i = 0; this.i < this.bagArray.length; ++this.i)
+      for i in range(0,27):
          tempArray[i] = bagArray[i]
    elif (which == "Stash"):
-      tempArray = ["","","","","","","","","","","","","","","","","","","","","","","","","","",""]
-      for i in range(0, 26):
       #for(this.i = 0; this.i < this.stashArray.length; ++this.i)
+      for i in range(0,27):
          tempArray[i] = stashArray[i]
    else:
-      tempArray = FE.lists.createtosizestr(choiceListArray.length())
-      for i in range(0, choiceListArray.length()):
       #for(this.i = 0; this.i < this.choiceListArray.length; ++this.i)
+      for i in range(0,choiceListArray.length()):
          tempArray[i] = choiceListArray[i]
    if (buttonChoice < 4):
       tempInt = buttonChoice - 1
@@ -1258,20 +1248,20 @@ def choiceListSelect(which:str):
    elif (buttonChoice < 12):
       tempInt = buttonChoice - 3
    if ((buttonChoice != 4) and (buttonChoice != 8) and (buttonChoice != 12)):
-      choiceListResult.push(tempArray[tempInt + (choicePage * 9 - 9)])
+      choiceListResult[0] = tempArray[tempInt + (choicePage * 9 - 9)]
    else:
-      choiceListResult.push("")
-   if (buttonChoice != 4 and (buttonChoice != 8) and (buttonChoice != 12)):
-      choiceListResult.push(tempInt + (choicePage * 9 - 9))
+      choiceListResult[0] = ""
+   if ((buttonChoice != 4) and (buttonChoice != 8) and (buttonChoice != 12)):
+      choiceListResult[1] = tempInt + (choicePage * 9 - 9)
    else:
-      choiceListResult.push(-1)
+      choiceListResult[1] = -1
    if (buttonChoice == 4):
       if (choicePage > 1):
          choicePage -= 1
       elif (choicePage == 1):
-         choicePage = math.ceil(len(tempArray) / 9)
-   if (buttonChoice == 8):
-      if (choicePage < math.ceil(len(tempArray) / 9)):
+         choicePage = math.ceil(tempArray.length() / 9)
+   elif (buttonChoice == 8):
+      if (choicePage < math.ceil(tempArray.length() / 9)):
          choicePage += 1
       else:
          choicePage = 1
@@ -1282,25 +1272,26 @@ def choiceListSelect(which:str):
       choicePage = 1
 
 def choiceListCheck(*which):
+   #Should work
    global choiceListArray, choicePage 
-   #if ((choiceListArray.index(which[0]) >= (choicePage * 9 - 9)) and (choiceListArray.index(which[0]) < (choicePage * 9))):
-   if ((choiceListArray.indexOf(which[0]) >= (choicePage * 9 - 9))and (choiceListArray.indexOf(which[0]) < (choicePage * 9))):
+   if ((choiceListArray.indexOf(which[0]) >= choicePage * 9 - 9)and (choiceListArray.indexOf(which[0]) < choicePage * 9)):
       return True
    return False
 
 def showPage(changes:bool, which:str):
+   #Should work
    global choicePage, pageShow
+   text = str(which) + ": " + str(choicePage)
    if (changes == True):
       Page.Show()
-   if (changes == False):
-      Page.Hide()
-   text = str(which) + ": " + str(choicePage)
-   if (pageShow == True):
       Page.TextChange(text)
+   else:
+      Page.Hide() 
 
 def checkZero():
+   #Should work
    global bagArray, bagStackArray, stashArray, stashStackArray, cockSize, cockTotal, balls, blueBalls, ballSize, cockMoist, breastSize, boobTotal, nippleSize, udderSize, teatSize, clitSize, vagSize, vagTotal, vagMoist, vulvaSize, exhaustion, exhaustionPenalty, hips, butt, body, tallness, cockSizeMod, vagSizeMod, vagBellyMod, pregChanceMod, lactation, milkMod, milkCap, coin, hipMod, buttMod, bellyMod, pregArray
-   for i in range(0, 26):
+   for i in range(0, 27):
       try:
          if (bagStackArray[i] == 0):
             bagArray[i] = 0
@@ -1383,6 +1374,7 @@ def checkZero():
          pregArray.push(False,0,0,0,0)
 
 def checkDecimal():
+   #!
    global cumMod, cockSizeMod, vagSizeMod, vagElastic, changeMod, SexPMod, pregRate, maleFetish, femaleFetish, hermFetish, narcissistFetish, dependentFetish, dominantFetish, submissiveFetish, lboobFetish, sboobFetish, furryFetish, scalyFetish, smoothyFetish, pregnancyFetish, bestialityFetish, milkFetish, sizeFetish, unbirthingFetish, ovipositionFetish, toyFetish, hyperFetish
    cumMod = round(cumMod * 10) / 10
    cockSizeMod = round(cockSizeMod * 100) / 100
@@ -1508,6 +1500,7 @@ def doProcess():
       doReturn()
 
 def doReturn():
+   #Should work
    global choicePage, showSide, inBag, inShop, currentState, inDungeon
    choicePage = 1
    checkZero()
@@ -1517,25 +1510,26 @@ def doReturn():
    if (inBag == False):
       showPage(False,"")
       hideAmount()
-   elif (inBag == True):
+   if (inBag == True):
       doBag()
-   if (inShop == True):
+   elif (inShop == True):
       doShop()
-   if (currentState == 2):
+   elif (currentState == 2):
       doBattle()
-   if (currentState == 3):
+   elif (currentState == 3):
       doMasturbate()
-   if (inDungeon == True):
+   elif (inDungeon == True):
       doDungeon()
-   if (currentState == 1):
+   elif (currentState == 1):
       doGeneral()
 
 def moistCalc(which:int):
+   #Should work
    global cockMoist, cockMoistMod, vagMoist, vagMoistMod, lust
    tempNum = 0
    if (which == 1):
       tempNum = cockMoist + cockMoistMod
-   if (which == 2):
+   elif (which == 2):
       tempNum = vagMoist + vagMoistMod
    if (tempNum < 0):
       tempNum = 0
@@ -1550,18 +1544,18 @@ def moistCalc(which:int):
    return tempNum
 
 def vagLimit():
+   #Should work
    global vagSize, vagSizeMod, vagElastic
-   a = vagSize * (vagSizeMod + vagElastic) + vagSize * vagSizeMod * moistCalc(2) / 10
-   return a
+   return vagSize * (vagSizeMod + vagElastic) + vagSize * vagSizeMod * moistCalc(2) / 10
 
 def eVagLimit(limit:int):
-   a = limit + limit * moistCalc(1) / 10
-   return a
+   #Should work
+   return limit + limit * moistCalc(1) / 10
 
 def decGet(number, places:int):
+   #Should work
    tempStr = str(number)
    tempStr2 = ""
-   tempInt = 0
    tempInt = tempStr.find(".")
    if (tempInt > 0):
       tempStr2 = tempStr[0: tempInt + places + 1]
@@ -1570,6 +1564,7 @@ def decGet(number, places:int):
    return tempStr2
 
 def doWeight():
+   #!
    global cockSize, cockSizeMod, body, _str_, carryMod, tallness, breastSize, boobTotal, ballSize, showBalls, udderSize, udders, pregnancyTime, bellyMod
    tempBool = False
    if (cockSize * cockSizeMod) > ((body * 2 + _str_ + carryMod) * (tallness / 60)):
@@ -1620,6 +1615,7 @@ def doWeight():
    return tempBool
 
 def checkItem(ID:int):
+   #Should work
    global bagArray
    tempBool = False
    if (bagArray.indexOf(ID) != -1):
@@ -1653,26 +1649,29 @@ def checkMagicItem():
    return tempBool
 
 def checkStash():
+   #Should work
    global stashArray
    tempBool = False
    if (stashArray.indexOf(ID) != -1):
       tempBool = True
    return tempBool
 
-def countItem():
+def countItem(ID:int):
+   #Should work
    global bagArray, bagStackArray
    tempInt = 0
-   for i in range(0,26):
+   for i in range(0,27):
    #for(this.i = 0; this.i <= this.bagArray.length; ++this.i)
       if (bagArray[i] == ID):
          tempInt += bagStackArray[i]
    return tempInt
     
 def percent():
-   a = math.floor(random.random() * (1 + 100 - 1)) + 1
-   return a
+   #Should work
+   return math.floor(random.random() * (1 + 100 - 1)) + 1
 
 def chooseFrom():
+   #Should work
    global rndArray, hour
    tempInt = 0
    rndResult = 0
@@ -1686,51 +1685,53 @@ def chooseFrom():
    return rndResult
 
 def stats(stre:int, menta:int, libi:int, sens:int):
+   #Should work
    global strength, mentality, libido, sensitivity, lust
    UpDown.HideAll()
    strength += stre
    mentality += menta
    libido += libi
    sensitivity += sens
-   if (strength > 1000):
-      strength = 1000
-   if (strength < 1):
+   if (strength > 100):
+      strength = 100
+   elif (strength < 1):
       strength = 1
-   if (mentality > 1000):
-      mentality = 1000
-   if (mentality < 1):
+   if (mentality > 100):
+      mentality = 100
+   elif (mentality < 1):
       mentality = 1
-   if (libido > 1000):
-      libido = 1000
-   if (libido < 1):
+   if (libido > 100):
+      libido = 100
+   elif (libido < 1):
       libido = 1
-   if (sensitivity > 1000):
-      sensitivity = 1000
-   if (sensitivity < 1):
+   if (sensitivity > 100):
+      sensitivity = 100
+   elif (sensitivity < 1):
       sensitivity = 1
    if (lust > 100):
       lust = 100
-   if (lust < 0):
+   elif (lust < 0):
       lust = 0
    if (stre > 0):
       UpDown.StrImg(valupimg)
-   if (stre < 0):
+   elif (stre < 0):
       UpDown.StrImg(valdownimg)
    if (menta > 0):
       UpDown.MentImg(valupimg)
-   if (menta < 0):
+   elif (menta < 0):
       UpDown.MentImg(valdownimg)
    if (libi > 0):
       UpDown.LibImg(valupimg)
-   if (libi < 0):
+   elif (libi < 0):
       UpDown.LibImg(valdownimg)
    if (sens > 0):
       UpDown.SenImg(valupimg)
-   if (sens < 0):
+   elif (sens < 0):
       UpDown.SenImg(valdownimg)
    statDisplay()
 
 def statsMod(stre:int, menta:int, libi:int, sens:int):
+   #Should work
    global strMod, mentMod, libMod, senMod
    UpDown.HideAll()
    strMod += stre
@@ -1739,23 +1740,24 @@ def statsMod(stre:int, menta:int, libi:int, sens:int):
    senMod += sens
    if (stre > 0):
       UpDown.StrImg(valupimg)
-   if (stre < 0):
+   elif (stre < 0):
       UpDown.StrImg(valdownimg)
    if (menta > 0):
       UpDown.MentImg(valupimg)
-   if (menta < 0):
+   elif (menta < 0):
       UpDown.MentImg(valdownimg)
    if (libi > 0):
       UpDown.LibImg(valupimg)
-   if (libi < 0):
+   elif (libi < 0):
       UpDown.LibImg(valdownimg)
    if (sens > 0):
       UpDown.SenImg(valupimg)
-   if (sens < 0):
+   elif (sens < 0):
       UpDown.SenImg(valdownimg)
    statDisplay()
 
 def statDisplay():
+   #Should work
    global _str_, strength, strMod, ment, mentality, mentMod, lib, libido, libMod, sen, sensitivity, senMod
    _str_ = strength + strMod
    ment = mentality + mentMod
@@ -1769,6 +1771,7 @@ def statDisplay():
    StatsPane.SetLevelStat()
 
 def doSexP(changes:int):
+   #Should work
    global SexP, SexPMod, level, levelUP
    if (SexP + changes * SexPMod >= 100):
       changes -= math.ceil((100 - SexP) / SexPMod)
@@ -1781,27 +1784,29 @@ def doSexP(changes:int):
    StatsPane.SetSCstats()
 
 def regionChange(changes:int):
+   #Should work
    global inDungeon, currentZone, currentregionlabel, currentDungeon
-   if (inDungeon == False):
-      currentZone = changes
-      if (changes == 1):
-         currentregionlabel["text"] = "Softlik"
-      if (changes == 2):
-         currentregionlabel["text"] = "Firmshaft"
-      if (changes == 3):
-         currentregionlabel["text"] = "Tieden"
-      if (changes == 4):
-         currentregionlabel["text"] = "Siz'Calit"
-      if (changes == 6):
-         currentregionlabel["text"] = "Oviasis"
-      if (changes == 12):
-         currentregionlabel["text"] = "Sanctuary"
    if (inDungeon == True):
       currentDungeon = changes
       if ((changes > 1000) and (changes < 1010)):
          currentregionlabel["text"] = "Cave Descent"
+   else:
+      currentZone = changes
+      if (changes == 1):
+         currentregionlabel["text"] = "Softlik"
+      elif (changes == 2):
+         currentregionlabel["text"] = "Firmshaft"
+      elif (changes == 3):
+         currentregionlabel["text"] = "Tieden"
+      elif (changes == 4):
+         currentregionlabel["text"] = "Siz'Calit"
+      elif (changes == 6):
+         currentregionlabel["text"] = "Oviasis"
+      elif (changes == 12):
+         currentregionlabel["text"] = "Sanctuary"
 
 def dayTime(Time):
+   #!
    global hour, day
    addTime = int(Time)
    while (hour + addTime >= 24):
@@ -1813,6 +1818,7 @@ def dayTime(Time):
    doStatus(Time)
 
 def doCoin(changes:int):
+   #Should work
    global coin, coinMod
    if (coin + changes < 0):
       coin = 0
@@ -1823,6 +1829,7 @@ def doCoin(changes:int):
    doSexP(0)
 
 def doHP(changes:int):
+   #!
    global masoPot, sMasoPot, lust, HP, _str_, HPMod
    if ((masoPot > 0) and (sMasoPot <= 0) and (changes < 0)):
       doLust(math.floor(-changes / 2),0)
@@ -1847,6 +1854,7 @@ def doHP(changes:int):
    statDisplay()
 
 def doPassOut():
+   #!
    global level, coin, currentState, inDungeon, exhaustion, skipExhaustion, hrs
    tempNum = math.floor(percent() / 10 * level + level * percent() / 10)
    if (coin - tempNum < 0):
@@ -1864,6 +1872,7 @@ def doPassOut():
    doEnd()
 
 def doLust(changes:int, source:int, *triggers):
+   #!
    global ment, fertilityStatueCurse, cockSnakeVenom, cockTotal, vagTotal, clitSize, milkCPoisonNip, nipplePlay, milkCPoisonUdd, level, lust, _str_, nipType, inBag, minLust, heat, heatTime, lustPenalty
    if (source == 1):
       if (changes > 0):
@@ -2888,7 +2897,7 @@ def detailedGear():
    tempStr = ""
    tempStr += "You have the following items in your Bag:\n"
    #for (this.i = 0; this.i <= this.bagArray.length; ++this.i)
-   for i in range(0, 26):
+   for i in range(0, 27):
       if (bagArray[i] != 0):
          tempStr += "\n" + itemName(bagArray[i])
       if (bagStackArray[i] > 1):
@@ -2975,7 +2984,7 @@ def detailedFetishes():
             doProcess()
 
 def detailedHelp():
-   #Needs bold, underline, and italics
+   #!Needs bold, underline, and italics
    global showSide
    global doListen
    tempStr = ""
@@ -3076,7 +3085,7 @@ def detailedCredits():
             doProcess()
 
 def saveGo():
-   #fix save instructions
+   #Should work
    global doListen
    ApButton.Hide()
    #this.appearanceText.visible = false
@@ -3210,7 +3219,7 @@ def saveGo():
          doReturn()
 
 def loadGo():
-   #fix load instructions
+   #Should work
    global doListen
    ApButton.Hide()
    #this.appearanceText.visible = false;
@@ -3319,16 +3328,16 @@ def doSave(slot:int):
       saveGo()
    else:
       string = "<data><track><currentState>" + str(currentState) + "</currentState><currentZone>" + str(currentZone) + "</currentZone><day>" + str(day) + "</day><hour>" + str(hour) + "</hour><currentDayCare>" + str(currentDayCare) + "</currentDayCare><inDungeon>" + str(inDungeon) + "</inDungeon><currentDungeon>" + str(currentDungeon) + "</currentDungeon><v7>" + str(0.75) + "</v7></track><stats><strength>" + str(strength) + "</strength><mentality>" + str(mentality) + "</mentality><libido>" + str(libido) + "</libido><sensitivity>" + str(sensitivity) + "</sensitivity><HP>" + str(HP) + "</HP><lust>" + str(lust) + "</lust><coin>" + str(coin) + "</coin><strMod>" + str(strMod) + "</strMod><mentMod>" + str(mentMod) + "</mentMod><libMod>" + str(libMod) + "</libMod><senMod>" + str(senMod) + "</senMod><hunger>" + str(hunger) + "</hunger></stats><level><SexP>" + str(SexP) + "</SexP><levelUP>" + str(levelUP) + "</levelUP><level>" + str(level) + "</level><babyFactLevel>" + str(babyFactLevel) + "</babyFactLevel><bodyBuildLevel>" + str(bodyBuildLevel) + "</bodyBuildLevel><hyperHappyLevel>" + str(hyperHappyLevel) + "</hyperHappyLevel><alchemistLevel>" + str(alchemistLevel) + "</alchemistLevel><fetishMasterLevel>" + str(fetishMasterLevel) + "</fetishMasterLevel><milkMaidLevel>" + str(milkMaidLevel) + "</milkMaidLevel><shapeshiftyLevel>" + str(shapeshiftyLevel) + "</shapeshiftyLevel><shapeshiftyFirst>" + str(shapeshiftyFirst) + "</shapeshiftyFirst><shapeshiftySecond>" + str(shapeshiftySecond) + "</shapeshiftySecond></level><mod><runMod>" + str(runMod) + "</runMod><rapeMod>" + str(rapeMod) + "</rapeMod><cumMod>" + str(cumMod) + "</cumMod><cockSizeMod>" + str(cockSizeMod) + "</cockSizeMod><milkMod>" + str(milkMod) + "</milkMod><carryMod>" + str(carryMod) + "</carryMod><vagBellyMod>" + str(vagBellyMod) + "</vagBellyMod><pregChanceMod>" + str(pregChanceMod) + "</pregChanceMod><extraPregChance>" + str(extraPregChance) + "</extraPregChance><pregTimeMod>" + str(pregTimeMod) + "</pregTimeMod><enticeMod>" + str(enticeMod) + "</enticeMod><milkHPMod>" + str(milkHPMod) + "</milkHPMod><vagSizeMod>" + str(vagSizeMod) + "</vagSizeMod><vagElastic>" + str(vagElastic) + "</vagElastic><changeMod>" + str(changeMod) + "</changeMod><HPMod>" + str(HPMod) + "</HPMod><SexPMod>" + str(SexPMod) + "</SexPMod><minLust>" + str(minLust) + "</minLust><milkCap>" + str(milkCap) + "</milkCap><coinMod>" + str(coinMod) + "</coinMod><hipMod>" + str(hipMod) + "</hipMod><buttMod>" + str(buttMod) + "</buttMod><bellyMod>" + str(bellyMod) + "</bellyMod><cockMoistMod>" + str(cockMoistMod) + "</cockMoistMod><vagMoistMod>" + str(vagMoistMod) + "</vagMoistMod><lockTail>" + str(lockTail) + "</lockTail><lockFace>" + str(lockFace) + "</lockFace><lockSkin>" + str(lockSkin) + "</lockSkin><lockBreasts>" + str(lockBreasts) + "</lockBreasts><lockEars>" + str(lockEars) + "</lockEars><lockLegs>" + str(lockLegs) + "</lockLegs><lockNipples>" + str(lockNipples) + "</lockNipples><lockCock>" + str(lockCock) + "</lockCock></mod><quality><gender>" + str(gender) + "</gender><race>" + str(race) + "</race><body>" + str(body) + "</body><dominant>" + str(dominant) + "</dominant><hips>" + str(hips) + "</hips><butt>" + str(butt) + "</butt><tallness>" + str(tallness) + "</tallness><skinType>" + str(skinType) + "</skinType><tail>" + str(tail) + "</tail><ears>" + str(ears) + "</ears><hair>" + str(hair) + "</hair><hairColor>" + str(hairColor) + "</hairColor><hairLength>" + str(hairLength) + "</hairLength><legType>" + str(legType) + "</legType><wings>" + str(wings) + "</wings><faceType>" + str(faceType) + "</faceType><skinColor>" + str(skinColor) + "</skinColor></quality><cock><cockTotal>" + str(cockTotal) + "</cockTotal><humanCocks>" + str(humanCocks) + "</humanCocks><horseCocks>" + str(horseCocks) + "</horseCocks><wolfCocks>" + str(wolfCocks) + "</wolfCocks><catCocks>" + str(catCocks) + "</catCocks><rabbitCocks>" + str(rabbitCocks) + "</rabbitCocks><lizardCocks>" + str(lizardCocks) + "</lizardCocks><cockSize>" + str(cockSize) + "</cockSize><cockMoist>" + str(cockMoist) + "</cockMoist><balls>" + str(balls) + "</balls><ballSize>" + str(ballSize) + "</ballSize><showBalls>" + str(showBalls) + "</showBalls><knot>" + str(knot) + "</knot><bugCocks>" + str(bugCocks) + "</bugCocks></cock><girl><breastSize>" + str(breastSize) + "</breastSize><boobTotal>" + str(boobTotal) + "</boobTotal><nippleSize>" + str(nippleSize) + "</nippleSize><udders>" + str(udders) + "</udders><udderSize>" + str(udderSize) + "</udderSize><teatSize>" + str(teatSize) + "</teatSize><clitSize>" + str(clitSize) + "</clitSize><vagTotal>" + str(vagTotal) + "</vagTotal><vagSize>" + str(vagSize) + "</vagSize><vagMoist>" + str(vagMoist) + "</vagMoist><vulvaSize>" + str(vulvaSize) + "</vulvaSize><nipType>" + str(nipType) + "</nipType></girl><gear><attireTop>" + str(attireTop) + "</attireTop><attireBot>" + str(attireBot) + "</attireBot><weapon>" + str(weapon) + "</weapon></gear><status><pregRate>" + str(pregRate) + "</pregRate><pregnancyTime>" + str(pregnancyTime) + "</pregnancyTime><pregStatus>" + str(pregStatus) + "</pregStatus><eggLaying>" + str(eggLaying) + "</eggLaying><eggMaxTime>" + str(eggMaxTime) + "</eggMaxTime><eggTime>" + str(eggTime) + "</eggTime><eggRate>" + str(eggRate) + "</eggRate><exhaustion>" + str(exhaustion) + "</exhaustion><exhaustionPenalty>" + str(exhaustionPenalty) + "</exhaustionPenalty><milkEngorgement>" + str(milkEngorgement) + "</milkEngorgement><milkEngorgementLevel>" + str(milkEngorgementLevel) + "</milkEngorgementLevel><udderEngorgement>" + str(udderEngorgement) + "</udderEngorgement><udderEngorgementLevel>" + str(udderEngorgementLevel) + "</udderEngorgementLevel><heat>" + str(heat) + "</heat><heatTime>" + str(heatTime) + "</heatTime><heatMaxTime>" + str(heatMaxTime) + "</heatMaxTime><lactation>" + str(lactation) + "</lactation><udderLactation>" + str(udderLactation) + "</udderLactation><nipplePlay>" + str(nipplePlay) + "</nipplePlay><udderPlay>" + str(udderPlay) + "</udderPlay><blueBalls>" + str(blueBalls) + "</blueBalls><teatPump>" + str(teatPump) + "</teatPump><nipPump>" + str(nipPump) + "</nipPump><cockPump>" + str(cockPump) + "</cockPump><clitPump>" + str(clitPump) + "</clitPump><vulvaPump>" + str(vulvaPump) + "</vulvaPump><masoPot>" + str(masoPot) + "</masoPot><sMasoPot>" + str(sMasoPot) + "</sMasoPot><babyFree>" + str(babyFree) + "</babyFree><charmTime>" + str(charmTime) + "</charmTime><pheromone>" + str(pheromone) + "</pheromone><eggceleratorTime>" + str(eggceleratorTime) + "</eggceleratorTime><eggceleratorDose>" + str(eggceleratorDose) + "</eggceleratorDose><bodyOil>" + str(bodyOil) + "</bodyOil><lustPenalty>" + str(lustPenalty) + "</lustPenalty><fertileGel>" + str(fertileGel) + "</fertileGel><snuggleBall>" + str(snuggleBall) + "</snuggleBall><eggType>" + str(eggType) + "</eggType><milkSuppressant>" + str(milkSuppressant) + "</milkSuppressant><milkSuppressantLact>" + str(milkSuppressantLact) + "</milkSuppressantLact><milkSuppressantUdder>" + str(milkSuppressantUdder) + "</milkSuppressantUdder><suppHarness>" + str(suppHarness) + "</suppHarness><fertilityStatueCurse>" + str(fertilityStatueCurse) + "</fertilityStatueCurse><plumpQuats>" + str(plumpQuats) + "</plumpQuats><lilaWetStatus>" + str(lilaWetStatus) + "</lilaWetStatus><cockSnakePreg>" + str(cockSnakePreg) + "</cockSnakePreg><milkCPoisonNip>" + str(milkCPoisonNip) + "</milkCPoisonNip><milkCPoisonUdd>" + str(milkCPoisonUdd) + "</milkCPoisonUdd><cockSnakeVenom>" + str(cockSnakeVenom) + "</cockSnakeVenom></status><affinity><humanAffinity>" + str(humanAffinity) + "</humanAffinity><horseAffinity>" + str(horseAffinity) + "</horseAffinity><wolfAffinity>" + str(wolfAffinity) + "</wolfAffinity><catAffinity>" + str(catAffinity) + "</catAffinity><cowAffinity>" + str(cowAffinity) + "</cowAffinity><lizardAffinity>" + str(lizardAffinity) + "</lizardAffinity><rabbitAffinity>" + str(rabbitAffinity) + "</rabbitAffinity><fourBoobAffinity>" + str(fourBoobAffinity) + "</fourBoobAffinity><mouseAffinity>" + str(mouseAffinity) + "</mouseAffinity><birdAffinity>" + str(birdAffinity) + "</birdAffinity><pigAffinity>" + str(pigAffinity) + "</pigAffinity><twoBoobAffinity>" + str(twoBoobAffinity) + "</twoBoobAffinity><sixBoobAffinity>" + str(sixBoobAffinity) + "</sixBoobAffinity><eightBoobAffinity>" + str(eightBoobAffinity) + "</eightBoobAffinity><tenBoobAffinity>" + str(tenBoobAffinity) + "</tenBoobAffinity><cowTaurAffinity>" + str(cowTaurAffinity) + "</cowTaurAffinity><humanTaurAffinity>" + str(humanTaurAffinity) + "</humanTaurAffinity><skunkAffinity>" + str(skunkAffinity) + "</skunkAffinity><bugAffinity>" + str(bugAffinity) + "</bugAffinity></affinity><rep><lilaRep>" + str(lilaRep) + "</lilaRep><lilaVulva>" + str(lilaVulva) + "</lilaVulva><lilaMilk>" + str(lilaMilk) + "</lilaMilk><lilaPreg>" + str(lilaPreg) + "</lilaPreg><malonRep>" + str(malonRep) + "</malonRep><malonPreg>" + str(malonPreg) + "</malonPreg><malonChildren>" + str(malonChildren) + "</malonChildren><mistressRep>" + str(mistressRep) + "</mistressRep><jamieRep>" + str(jamieRep) + "</jamieRep><jamieSize>" + str(jamieSize) + "</jamieSize><jamieChildren>" + str(jamieChildren) + "</jamieChildren><silRep>" + str(silRep) + "</silRep><silPreg>" + str(silPreg) + "</silPreg><silRate>" + str(silRate) + "</silRate><silLay>" + str(silLay) + "</silLay><silGrowthTime>" + str(silGrowthTime) + "</silGrowthTime><silTied>" + str(silTied) + "</silTied><lilaUB>" + str(lilaUB) + "</lilaUB><dairyFarmBrand>" + str(dairyFarmBrand) + "</dairyFarmBrand><lilaWetness>" + str(lilaWetness) + "</lilaWetness><jamieButt>" + str(jamieButt) + "</jamieButt><jamieBreasts>" + str(jamieBreasts) + "</jamieBreasts><jamieHair>" + str(jamieHair) + "</jamieHair></rep><knowledge><foundSoftlik>" + str(foundSoftlik) + "</foundSoftlik><foundFirmshaft>" + str(foundFirmshaft) + "</foundFirmshaft><foundTieden>" + str(foundTieden) + "</foundTieden><foundSizCalit>" + str(foundSizCalit) + "</foundSizCalit><foundOviasis>" + str(foundOviasis) + "</foundOviasis><foundValley>" + str(foundValley) + "</foundValley><foundSanctuary>" + str(foundSanctuary) + "</foundSanctuary></knowledge><boss><defeatedMinotaur>" + str(defeatedMinotaur) + "</defeatedMinotaur><defeatedFreakyGirl>" + str(defeatedFreakyGirl) + "</defeatedFreakyGirl><defeatedSuccubus>" + str(defeatedSuccubus) + "</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>" + str(knowLustDraft) + "</knowLustDraft><knowRejuvPot>" + str(knowRejuvPot) + "</knowRejuvPot><knowExpPreg>" + str(knowExpPreg) + "</knowExpPreg><knowBallSwell>" + str(knowBallSwell) + "</knowBallSwell><knowMaleEnhance>" + str(knowMaleEnhance) + "</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>" + str(knowSLustDraft) + "</knowSLustDraft><knowSRejuvPot>" + str(knowSRejuvPot) + "</knowSRejuvPot><knowSExpPreg>" + str(knowSExpPreg) + "</knowSExpPreg><knowSBallSwell>" + str(knowSBallSwell) + "</knowSBallSwell><knowGenSwap>" + str(knowGenSwap) + "</knowGenSwap><knowMasoPot>" + str(knowMasoPot) + "</knowMasoPot><knowBabyFree>" + str(knowBabyFree) + "</knowBabyFree><knowPotPot>" + str(knowPotPot) + "</knowPotPot><knowMilkSuppress>" + str(knowMilkSuppress) + "</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>" + str(knowSGenSwap) + "</knowSGenSwap><knowSMasoPot>" + str(knowSMasoPot) + "</knowSMasoPot><knowSBabyFree>" + str(knowSBabyFree) + "</knowSBabyFree><knowSPotPot>" + str(knowSPotPot) + "</knowSPotPot><knowPussJuice>" + str(knowPussJuice) + "</knowPussJuice><knowPheromone>" + str(knowPheromone) + "</knowPheromone><knowBazoomba>" + str(knowBazoomba) + "</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>" + str(maleFetish) + "</maleFetish><femaleFetish>" + str(femaleFetish) + "</femaleFetish><hermFetish>" + str(hermFetish) + "</hermFetish><narcissistFetish>" + str(narcissistFetish) + "</narcissistFetish><dependentFetish>" + str(dependentFetish) + "</dependentFetish></majorFetish><moderateFetish><dominantFetish>" + str(dominantFetish) + "</dominantFetish><submissiveFetish>" + str(submissiveFetish) + "</submissiveFetish><lboobFetish>" + str(lboobFetish) + "</lboobFetish><sboobFetish>" + str(sboobFetish) + "</sboobFetish><furryFetish>" + str(furryFetish) + "</furryFetish><scalyFetish>" + str(scalyFetish) + "</scalyFetish><smoothyFetish>" + str(smoothyFetish) + "</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>" + str(pregnancyFetish) + "</pregnancyFetish><bestialityFetish>" + str(bestialityFetish) + "</bestialityFetish><milkFetish>" + str(milkFetish) + "</milkFetish><sizeFetish>" + str(sizeFetish) + "</sizeFetish><unbirthingFetish>" + str(unbirthingFetish) + "</unbirthingFetish><ovipositionFetish>" + str(ovipositionFetish) + "</ovipositionFetish><toyFetish>" + str(toyFetish) + "</toyFetish><hyperFetish>" + str(hyperFetish) + "</hyperFetish></minorFetish><kid><humanChildren>" + str(humanChildren) + "</humanChildren><equanChildren>" + str(equanChildren) + "</equanChildren><lupanChildren>" + str(lupanChildren) + "</lupanChildren><felinChildren>" + str(felinChildren) + "</felinChildren><cowChildren>" + str(cowChildren) + "</cowChildren><lizanChildren>" + str(lizanChildren) + "</lizanChildren><lizanEggs>" + str(lizanEggs) + "</lizanEggs><bunnionChildren>" + str(bunnionChildren) + "</bunnionChildren><wolfPupChildren>" + str(wolfPupChildren) + "</wolfPupChildren><miceChildren>" + str(miceChildren) + "</miceChildren><birdEggs>" + str(birdEggs) + "</birdEggs><birdChildren>" + str(birdChildren) + "</birdChildren><pigChildren>" + str(pigChildren) + "</pigChildren><calfChildren>" + str(calfChildren) + "</calfChildren><bugEggs>" + str(bugEggs) + "</bugEggs><bugChildren>" + str(bugChildren) + "</bugChildren><skunkChildren>" + str(skunkChildren) + "</skunkChildren><minotaurChildren>" + str(minotaurChildren) + "</minotaurChildren><freakyGirlChildren>" + str(freakyGirlChildren) + "</freakyGirlChildren></kid><trav></trav><bag>"
-      for i in range(0, 26):
+      for i in range(0, 27):
          string = string + "<slot" + str(i) + ">" + str(bagArray[i]) + "</slot" + str(i) + ">"
       string = string + "</bag><bagStack>"
-      for i in range(0, 26):
+      for i in range(0, 27):
          string = string + "<slot" + str(i) + ">" + str(bagStackArray[i]) + "</slot" + str(i) + ">"
       string = string + "</bagStack><stash>"
-      for i in range(0, 26):
+      for i in range(0, 27):
          string = string + "<slot" + str(i) + ">" + str(stashArray[i]) + "</slot" + str(i) + ">"
       string = string + "</stash><stashStack>"
-      for i in range(0, 26):
+      for i in range(0, 27):
          string = string + "<slot" + str(i) + ">" + str(stashStackArray[i]) + "</slot" + str(i) + ">"
       string = string + "</stashStack><preg>"
       i = 0
@@ -3351,359 +3360,355 @@ def doLoad(slot:int):
    if (type(loadfilename) == tuple):
       loadGo()
    else:
-      #try:
-         tree = xmletree.parse(loadfilename)
-         root = tree.getroot()
-         strack = root.find('track')
-         if (strack.find('v7').text != "test"):
-            sstats = root.find('stats')
-            slevel = root.find('level')
-            smod = root.find('mod')
-            squality = root.find('quality')
-            scock = root.find('cock')
-            sgirl = root.find('girl')
-            sgear = root.find('gear')
-            sstatus = root.find('status')
-            saffinity = root.find('affinity')
-            srep = root.find('rep')
-            sknowledge = root.find('knowledge')
-            sboss = root.find('boss')
-            sknowSimpleAlchemy = root.find('knowSimpleAlchemy')
-            sknowAdvancedAlchemy = root.find('knowAdvancedAlchemy')
-            sknowComplexAlchemy = root.find('knowComplexAlchemy')
-            smajorFetish = root.find('majorFetish')
-            smoderateFetish = root.find('moderateFetish')
-            sminorFetish = root.find('minorFetish')
-            skid = root.find('kid')
-            currentState = int(strack.find('currentState').text)
-            currentZone = int(strack.find('currentZone').text)
-            day = int(strack.find('day').text)
-            hour = int(strack.find('hour').text)
-            currentDayCare = int(strack.find('currentDayCare').text)
-            inDungeon = FE.convert.strtobool(strack.find('inDungeon').text)
-            currentDungeon = int(strack.find('currentDungeon').text)
-            v7 = str(strack.find('v7').text)
-            strength = int(sstats.find('strength').text)
-            mentality = int(sstats.find('mentality').text)
-            libido = int(sstats.find('libido').text)
-            sensitivity = int(sstats.find('sensitivity').text)
-            HP = int(sstats.find('HP').text)
-            lust = int(sstats.find('lust').text)
-            coin = int(sstats.find('coin').text)
-            strMod = int(sstats.find('strMod').text)
-            mentMod = int(sstats.find('mentMod').text)
-            libMod = int(sstats.find('libMod').text)
-            senMod = int(sstats.find('senMod').text)
-            hunger = int(sstats.find('hunger').text)
-            SexP = int(slevel.find('SexP').text)
-            levelUP = int(slevel.find('levelUP').text)
-            level = int(slevel.find('level').text)
-            babyFactLevel = int(slevel.find('babyFactLevel').text)
-            bodyBuildLevel = int(slevel.find('bodyBuildLevel').text)
-            hyperHappyLevel = int(slevel.find('hyperHappyLevel').text)
-            alchemistLevel = int(slevel.find('alchemistLevel').text)
-            fetishMasterLevel = int(slevel.find('fetishMasterLevel').text)
-            milkMaidLevel = int(slevel.find('milkMaidLevel').text)
-            shapeshiftyLevel = int(slevel.find('shapeshiftyLevel').text)
-            shapeshiftyFirst = str(slevel.find('shapeshiftyFirst').text)
-            shapeshiftySecond = str(slevel.find('shapeshiftySecond').text)
-            runMod = int(smod.find('runMod').text)
-            rapeMod = int(smod.find('rapeMod').text)
-            cumMod = float(smod.find('cumMod').text)
-            cockSizeMod = float(smod.find('cockSizeMod').text)
-            milkMod = int(smod.find('milkMod').text)
-            carryMod = int(smod.find('carryMod').text)
-            vagBellyMod = int(smod.find('vagBellyMod').text)
-            pregChanceMod = int(smod.find('pregChanceMod').text)
-            extraPregChance = int(smod.find('extraPregChance').text)
-            pregTimeMod = int(smod.find('pregTimeMod').text)
-            enticeMod = int(smod.find('enticeMod').text)
-            milkHPMod = int(smod.find('milkHPMod').text)
-            vagSizeMod = float(smod.find('vagSizeMod').text)
-            vagElastic = float(smod.find('vagElastic').text)
-            changeMod = float(smod.find('changeMod').text)
-            HPMod = int(smod.find('HPMod').text)
-            SexPMod = float(smod.find('SexPMod').text)
-            minLust = int(smod.find('minLust').text)
-            milkCap = int(smod.find('milkCap').text)
-            coinMod = int(smod.find('coinMod').text)
-            hipMod = int(smod.find('hipMod').text)
-            buttMod = int(smod.find('buttMod').text)
-            bellyMod = int(smod.find('bellyMod').text)
-            cockMoistMod = int(smod.find('cockMoistMod').text)
-            vagMoistMod = int(smod.find('vagMoistMod').text)
-            lockTail = int(smod.find('lockTail').text)
-            lockFace = int(smod.find('lockFace').text)
-            lockSkin = int(smod.find('lockSkin').text)
-            lockBreasts = int(smod.find('lockBreasts').text)
-            lockEars = int(smod.find('lockEars').text)
-            lockLegs = int(smod.find('lockLegs').text)
-            lockNipples = int(smod.find('lockNipples').text)
-            lockCock = int(smod.find('lockCock').text)
-            gender = int(squality.find('gender').text)
-            race = int(squality.find('race').text)
-            body = int(squality.find('body').text)
-            dominant = int(squality.find('dominant').text)
-            hips = int(squality.find('hips').text)
-            butt = int(squality.find('butt').text)
-            tallness = int(squality.find('tallness').text)
-            skinType = int(squality.find('skinType').text)
-            tail = int(squality.find('tail').text)
-            ears = int(squality.find('ears').text)
-            hair = int(squality.find('hair').text)
-            hairColor = int(squality.find('hairColor').text)
-            hairLength = int(squality.find('hairLength').text)
-            legType = int(squality.find('legType').text)
-            wings = int(squality.find('wings').text)
-            faceType = int(squality.find('faceType').text)
-            skinColor = int(squality.find('skinColor').text)
-            cockTotal = int(scock.find('cockTotal').text)
-            humanCocks = int(scock.find('humanCocks').text)
-            horseCocks = int(scock.find('horseCocks').text)
-            wolfCocks = int(scock.find('wolfCocks').text)
-            catCocks = int(scock.find('catCocks').text)
-            rabbitCocks = int(scock.find('rabbitCocks').text)
-            lizardCocks = int(scock.find('lizardCocks').text)
-            cockSize = int(scock.find('cockSize').text)
-            cockMoist = int(scock.find('cockMoist').text)
-            balls = int(scock.find('balls').text)
-            ballSize = int(scock.find('ballSize').text)
-            showBalls = FE.convert.strtobool(scock.find('showBalls').text)
-            knot = FE.convert.strtobool(scock.find('knot').text)
-            bugCocks = int(scock.find('bugCocks').text)
-            breastSize = int(sgirl.find('breastSize').text)
-            boobTotal = int(sgirl.find('boobTotal').text)
-            nippleSize = int(sgirl.find('nippleSize').text)
-            udders = FE.convert.strtobool(sgirl.find('udders').text)
-            udderSize = int(sgirl.find('udderSize').text)
-            teatSize = int(sgirl.find('teatSize').text)
-            clitSize = int(sgirl.find('clitSize').text)
-            vagTotal = int(sgirl.find('vagTotal').text)
-            vagSize = int(sgirl.find('vagSize').text)
-            vagMoist = int(sgirl.find('vagMoist').text)
-            vulvaSize = int(sgirl.find('vulvaSize').text)
-            nipType = int(sgirl.find('nipType').text)
-            attireTop = int(sgear.find('attireTop').text)
-            attireBot = int(sgear.find('attireBot').text)
-            weapon = int(sgear.find('weapon').text)
-            pregRate = int(sstatus.find('pregRate').text)
-            pregnancyTime = int(sstatus.find('pregnancyTime').text)
-            pregStatus = int(sstatus.find('pregStatus').text)
-            eggLaying = int(sstatus.find('eggLaying').text)
-            eggMaxTime = int(sstatus.find('eggMaxTime').text)
-            eggTime = int(sstatus.find('eggTime').text)
-            eggRate = int(sstatus.find('eggRate').text)
-            exhaustion = int(sstatus.find('exhaustion').text)
-            exhaustionPenalty = int(sstatus.find('exhaustionPenalty').text)
-            milkEngorgement = int(sstatus.find('milkEngorgement').text)
-            milkEngorgementLevel = int(sstatus.find('milkEngorgementLevel').text)
-            udderEngorgement = int(sstatus.find('udderEngorgement').text)
-            udderEngorgementLevel = int(sstatus.find('udderEngorgementLevel').text)
-            heat = int(sstatus.find('heat').text)
-            heatTime = int(sstatus.find('heatTime').text)
-            heatMaxTime = int(sstatus.find('heatMaxTime').text)
-            lactation = int(sstatus.find('lactation').text)
-            udderLactation = int(sstatus.find('udderLactation').text)
-            nipplePlay = float(sstatus.find('nipplePlay').text)
-            udderPlay = float(sstatus.find('udderPlay').text)
-            blueBalls = int(sstatus.find('blueBalls').text)
-            teatPump = int(sstatus.find('teatPump').text)
-            nipPump = int(sstatus.find('nipPump').text)
-            cockPump = int(sstatus.find('cockPump').text)
-            clitPump = int(sstatus.find('clitPump').text)
-            vulvaPump = int(sstatus.find('vulvaPump').text)
-            masoPot = int(sstatus.find('masoPot').text)
-            sMasoPot = int(sstatus.find('sMasoPot').text)
-            babyFree = int(sstatus.find('babyFree').text)
-            charmTime = int(sstatus.find('charmTime').text)
-            pheromone = int(sstatus.find('pheromone').text)
-            eggceleratorTime = int(sstatus.find('eggceleratorTime').text)
-            eggceleratorDose = int(sstatus.find('eggceleratorDose').text)
-            bodyOil = int(sstatus.find('bodyOil').text)
-            lustPenalty = int(sstatus.find('lustPenalty').text)
-            fertileGel = int(sstatus.find('fertileGel').text)
-            snuggleBall = FE.convert.strtobool(sstatus.find('snuggleBall').text)
-            eggType = int(sstatus.find('eggType').text)
-            milkSuppressant = int(sstatus.find('milkSuppressant').text)
-            milkSuppressantLact = int(sstatus.find('milkSuppressantLact').text)
-            milkSuppressantUdder = int(sstatus.find('milkSuppressantUdder').text)
-            suppHarness = FE.convert.strtobool(sstatus.find('suppHarness').text)
-            fertilityStatueCurse = int(sstatus.find('fertilityStatueCurse').text)
-            plumpQuats = int(sstatus.find('plumpQuats').text)
-            lilaWetStatus = int(sstatus.find('lilaWetStatus').text)
-            cockSnakePreg = int(sstatus.find('cockSnakePreg').text)
-            milkCPoisonNip = int(sstatus.find('milkCPoisonNip').text)
-            milkCPoisonUdd = int(sstatus.find('milkCPoisonUdd').text)
-            cockSnakeVenom = int(sstatus.find('cockSnakeVenom').text)
-            humanAffinity = int(saffinity.find('humanAffinity').text)
-            horseAffinity = int(saffinity.find('horseAffinity').text)
-            wolfAffinity = int(saffinity.find('wolfAffinity').text)
-            catAffinity = int(saffinity.find('catAffinity').text)
-            cowAffinity = int(saffinity.find('cowAffinity').text)
-            lizardAffinity = int(saffinity.find('lizardAffinity').text)
-            rabbitAffinity = int(saffinity.find('rabbitAffinity').text)
-            fourBoobAffinity = int(saffinity.find('fourBoobAffinity').text)
-            mouseAffinity = int(saffinity.find('mouseAffinity').text)
-            birdAffinity = int(saffinity.find('birdAffinity').text)
-            pigAffinity = int(saffinity.find('pigAffinity').text)
-            twoBoobAffinity = int(saffinity.find('twoBoobAffinity').text)
-            sixBoobAffinity = int(saffinity.find('sixBoobAffinity').text)
-            eightBoobAffinity = int(saffinity.find('eightBoobAffinity').text)
-            tenBoobAffinity = int(saffinity.find('tenBoobAffinity').text)
-            cowTaurAffinity = int(saffinity.find('cowTaurAffinity').text)
-            humanTaurAffinity = int(saffinity.find('humanTaurAffinity').text)
-            skunkAffinity = int(saffinity.find('skunkAffinity').text)
-            bugAffinity = int(saffinity.find('bugAffinity').text)
-            lilaRep = int(srep.find('lilaRep').text)
-            lilaVulva = int(srep.find('lilaVulva').text)
-            lilaMilk = int(srep.find('lilaMilk').text)
-            lilaPreg = int(srep.find('lilaPreg').text)
-            malonRep = int(srep.find('malonRep').text)
-            malonPreg = int(srep.find('malonPreg').text)
-            malonChildren = int(srep.find('malonChildren').text)
-            mistressRep = int(srep.find('mistressRep').text)
-            jamieRep = int(srep.find('jamieRep').text)
-            jamieSize = int(srep.find('jamieSize').text)
-            jamieChildren = int(srep.find('jamieChildren').text)
-            silRep = int(srep.find('silRep').text)
-            silPreg = int(srep.find('silPreg').text)
-            silRate = int(srep.find('silRate').text)
-            silLay = int(srep.find('silLay').text)
-            silGrowthTime = int(srep.find('silGrowthTime').text)
-            silTied = FE.convert.strtobool(srep.find('silTied').text)
-            lilaUB = FE.convert.strtobool(srep.find('lilaUB').text)
-            dairyFarmBrand = FE.convert.strtobool(srep.find('dairyFarmBrand').text)
-            lilaWetness = int(srep.find('lilaWetness').text)
-            jamieButt = FE.convert.strtobool(srep.find('jamieButt').text)
-            jamieBreasts = FE.convert.strtobool(srep.find('jamieBreasts').text)
-            jamieHair = FE.convert.strtobool(srep.find('jamieHair').text)
-            foundSoftlik = FE.convert.strtobool(sknowledge.find('foundSoftlik').text)
-            foundFirmshaft = FE.convert.strtobool(sknowledge.find('foundFirmshaft').text)
-            foundTieden = FE.convert.strtobool(sknowledge.find('foundTieden').text)
-            foundSizCalit = FE.convert.strtobool(sknowledge.find('foundSizCalit').text)
-            foundOviasis = FE.convert.strtobool(sknowledge.find('foundOviasis').text)
-            foundValley = FE.convert.strtobool(sknowledge.find('foundValley').text)
-            foundSanctuary = FE.convert.strtobool(sknowledge.find('foundSanctuary').text)
-            defeatedMinotaur = FE.convert.strtobool(sboss.find('defeatedMinotaur').text)
-            defeatedFreakyGirl = FE.convert.strtobool(sboss.find('defeatedFreakyGirl').text)
-            defeatedSuccubus = FE.convert.strtobool(sboss.find('defeatedSuccubus').text)
-            knowLustDraft = FE.convert.strtobool(sknowSimpleAlchemy.find('knowLustDraft').text)
-            knowRejuvPot = FE.convert.strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text)
-            knowExpPreg = FE.convert.strtobool(sknowSimpleAlchemy.find('knowExpPreg').text)
-            knowBallSwell = FE.convert.strtobool(sknowSimpleAlchemy.find('knowBallSwell').text)
-            knowMaleEnhance = FE.convert.strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)
-            knowSLustDraft = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text)
-            knowSRejuvPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text)
-            knowSExpPreg = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text)
-            knowSBallSwell = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text)
-            knowGenSwap = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text)
-            knowMasoPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text)
-            knowBabyFree = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text)
-            knowPotPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowPotPot').text)
-            knowMilkSuppress = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)
-            knowSGenSwap = FE.convert.strtobool(sknowComplexAlchemy.find('knowSGenSwap').text)
-            knowSMasoPot = FE.convert.strtobool(sknowComplexAlchemy.find('knowSMasoPot').text)
-            knowSBabyFree = FE.convert.strtobool(sknowComplexAlchemy.find('knowSBabyFree').text)
-            knowSPotPot = FE.convert.strtobool(sknowComplexAlchemy.find('knowSPotPot').text)
-            knowPussJuice = FE.convert.strtobool(sknowComplexAlchemy.find('knowPussJuice').text)
-            knowPheromone = FE.convert.strtobool(sknowComplexAlchemy.find('knowPheromone').text)
-            knowBazoomba = FE.convert.strtobool(sknowComplexAlchemy.find('knowBazoomba').text)
-            maleFetish = float(smajorFetish.find('maleFetish').text)
-            femaleFetish = float(smajorFetish.find('femaleFetish').text)
-            hermFetish = float(smajorFetish.find('hermFetish').text)
-            narcissistFetish = float(smajorFetish.find('narcissistFetish').text)
-            dependentFetish = float(smajorFetish.find('dependentFetish').text)
-            dominantFetish = float(smoderateFetish.find('dominantFetish').text)
-            submissiveFetish = float(smoderateFetish.find('submissiveFetish').text)
-            lboobFetish = float(smoderateFetish.find('lboobFetish').text)
-            sboobFetish = float(smoderateFetish.find('sboobFetish').text)
-            furryFetish = float(smoderateFetish.find('furryFetish').text)
-            scalyFetish = float(smoderateFetish.find('scalyFetish').text)
-            smoothyFetish = float(smoderateFetish.find('smoothyFetish').text)
-            pregnancyFetish = float(sminorFetish.find('pregnancyFetish').text)
-            bestialityFetish = float(sminorFetish.find('bestialityFetish').text)
-            milkFetish = float(sminorFetish.find('milkFetish').text)
-            sizeFetish = float(sminorFetish.find('sizeFetish').text)
-            unbirthingFetish = float(sminorFetish.find('unbirthingFetish').text)
-            ovipositionFetish = float(sminorFetish.find('ovipositionFetish').text)
-            toyFetish = float(sminorFetish.find('toyFetish').text)
-            hyperFetish = float(sminorFetish.find('hyperFetish').text)
-            humanChildren = int(skid.find('humanChildren').text)
-            equanChildren = int(skid.find('equanChildren').text)
-            lupanChildren = int(skid.find('lupanChildren').text)
-            felinChildren = int(skid.find('felinChildren').text)
-            cowChildren = int(skid.find('cowChildren').text)
-            lizanChildren = int(skid.find('lizanChildren').text)
-            lizanEggs = int(skid.find('lizanEggs').text)
-            bunnionChildren = int(skid.find('bunnionChildren').text)
-            wolfPupChildren = int(skid.find('wolfPupChildren').text)
-            miceChildren = int(skid.find('miceChildren').text)
-            birdEggs = int(skid.find('birdEggs').text)
-            birdChildren = int(skid.find('birdChildren').text)
-            pigChildren = int(skid.find('pigChildren').text)
-            calfChildren = int(skid.find('calfChildren').text)
-            bugEggs = int(skid.find('bugEggs').text)
-            bugChildren = int(skid.find('bugChildren').text)
-            skunkChildren = int(skid.find('skunkChildren').text)
-            minotaurChildren = int(skid.find('minotaurChildren').text)
-            freakyGirlChildren = int(skid.find('freakyGirlChildren').text)
-            #= .find('').text
-            trav = root.find('trav')
-            bag = root.find('bag')
-            bagStack = root.find('bagStack')
-            stash = root.find('stash')
-            stashStack = root.find('stashStack')
-            preg = root.find('preg')
-            bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            for i in range(0, 26):
-               tempstr = "slot" + str(i)
-               bagArray[i] = int(bag.find(tempstr).text)
-               bagStackArray[i] = int(bagStack.find(tempstr).text)
-               stashArray[i] = int(stash.find(tempstr).text)
-               stashStackArray[i] = int(stashStack.find(tempstr).text)
-               i += 1
-            pregArray = as3.Array()
-            i = 0
-            while (i < len(list(preg))):
-               pregArray.push("","","","","")
-               pregArray[i] = FE.convert.strtobool(preg.find(str("i" + str(i))).text)
-               pregArray[i+1] = int(preg.find(str("i" + str(i+1))).text)
-               pregArray[i+2] = int(preg.find(str("i" + str(i+2))).text)
-               pregArray[i+3] = int(preg.find(str("i" + str(i+3))).text)
-               pregArray[i+4] = int(preg.find(str("i" + str(i+4))).text)
-               i += 5
-         else:
-            currentState = strack.find('currentState').text
-            day = strack.find('day').text
-            hour = strack.find('hour').text
-            inDungeon = strack.find('inDungeon').text
-            bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-         UpDown.HideAll()
-         StatsPane.ShowAll()
-         #this.statPane.visible = true
-         #this.DayPane.visible = true
-         #this.levelPane.visible = true
-         #this.currentRegion.visible = true
-         #this.region.visible = true
-         checkUpdate()
-         regionChange(currentZone)
-         stats(0,0,0,0)
-         dayTime(0)
-         doSexP(0)
-         SidePanel.Option7Show()
-         toggleSide()
-         toggleSide()
-         outputMainText("Your file has been successfully loaded.",True)
-         doReturn()
-      #except:
-      #   outputMainText("File is either corrupted or not a valid save. Please retry.",True)
-
+      tree = xmletree.parse(loadfilename)
+      root = tree.getroot()
+      strack = root.find('track')
+      if (strack.find('v7').text != "test"):
+         sstats = root.find('stats')
+         slevel = root.find('level')
+         smod = root.find('mod')
+         squality = root.find('quality')
+         scock = root.find('cock')
+         sgirl = root.find('girl')
+         sgear = root.find('gear')
+         sstatus = root.find('status')
+         saffinity = root.find('affinity')
+         srep = root.find('rep')
+         sknowledge = root.find('knowledge')
+         sboss = root.find('boss')
+         sknowSimpleAlchemy = root.find('knowSimpleAlchemy')
+         sknowAdvancedAlchemy = root.find('knowAdvancedAlchemy')
+         sknowComplexAlchemy = root.find('knowComplexAlchemy')
+         smajorFetish = root.find('majorFetish')
+         smoderateFetish = root.find('moderateFetish')
+         sminorFetish = root.find('minorFetish')
+         skid = root.find('kid')
+         currentState = int(strack.find('currentState').text)
+         currentZone = int(strack.find('currentZone').text)
+         day = int(strack.find('day').text)
+         hour = int(strack.find('hour').text)
+         currentDayCare = int(strack.find('currentDayCare').text)
+         inDungeon = FE.convert.strtobool(strack.find('inDungeon').text)
+         currentDungeon = int(strack.find('currentDungeon').text)
+         v7 = str(strack.find('v7').text)
+         strength = int(sstats.find('strength').text)
+         mentality = int(sstats.find('mentality').text)
+         libido = int(sstats.find('libido').text)
+         sensitivity = int(sstats.find('sensitivity').text)
+         HP = int(sstats.find('HP').text)
+         lust = int(sstats.find('lust').text)
+         coin = int(sstats.find('coin').text)
+         strMod = int(sstats.find('strMod').text)
+         mentMod = int(sstats.find('mentMod').text)
+         libMod = int(sstats.find('libMod').text)
+         senMod = int(sstats.find('senMod').text)
+         hunger = int(sstats.find('hunger').text)
+         SexP = int(slevel.find('SexP').text)
+         levelUP = int(slevel.find('levelUP').text)
+         level = int(slevel.find('level').text)
+         babyFactLevel = int(slevel.find('babyFactLevel').text)
+         bodyBuildLevel = int(slevel.find('bodyBuildLevel').text)
+         hyperHappyLevel = int(slevel.find('hyperHappyLevel').text)
+         alchemistLevel = int(slevel.find('alchemistLevel').text)
+         fetishMasterLevel = int(slevel.find('fetishMasterLevel').text)
+         milkMaidLevel = int(slevel.find('milkMaidLevel').text)
+         shapeshiftyLevel = int(slevel.find('shapeshiftyLevel').text)
+         shapeshiftyFirst = str(slevel.find('shapeshiftyFirst').text)
+         shapeshiftySecond = str(slevel.find('shapeshiftySecond').text)
+         runMod = int(smod.find('runMod').text)
+         rapeMod = int(smod.find('rapeMod').text)
+         cumMod = float(smod.find('cumMod').text)
+         cockSizeMod = float(smod.find('cockSizeMod').text)
+         milkMod = int(smod.find('milkMod').text)
+         carryMod = int(smod.find('carryMod').text)
+         vagBellyMod = int(smod.find('vagBellyMod').text)
+         pregChanceMod = int(smod.find('pregChanceMod').text)
+         extraPregChance = int(smod.find('extraPregChance').text)
+         pregTimeMod = int(smod.find('pregTimeMod').text)
+         enticeMod = int(smod.find('enticeMod').text)
+         milkHPMod = int(smod.find('milkHPMod').text)
+         vagSizeMod = float(smod.find('vagSizeMod').text)
+         vagElastic = float(smod.find('vagElastic').text)
+         changeMod = float(smod.find('changeMod').text)
+         HPMod = int(smod.find('HPMod').text)
+         SexPMod = float(smod.find('SexPMod').text)
+         minLust = int(smod.find('minLust').text)
+         milkCap = int(smod.find('milkCap').text)
+         coinMod = int(smod.find('coinMod').text)
+         hipMod = int(smod.find('hipMod').text)
+         buttMod = int(smod.find('buttMod').text)
+         bellyMod = int(smod.find('bellyMod').text)
+         cockMoistMod = int(smod.find('cockMoistMod').text)
+         vagMoistMod = int(smod.find('vagMoistMod').text)
+         lockTail = int(smod.find('lockTail').text)
+         lockFace = int(smod.find('lockFace').text)
+         lockSkin = int(smod.find('lockSkin').text)
+         lockBreasts = int(smod.find('lockBreasts').text)
+         lockEars = int(smod.find('lockEars').text)
+         lockLegs = int(smod.find('lockLegs').text)
+         lockNipples = int(smod.find('lockNipples').text)
+         lockCock = int(smod.find('lockCock').text)
+         gender = int(squality.find('gender').text)
+         race = int(squality.find('race').text)
+         body = int(squality.find('body').text)
+         dominant = int(squality.find('dominant').text)
+         hips = int(squality.find('hips').text)
+         butt = int(squality.find('butt').text)
+         tallness = int(squality.find('tallness').text)
+         skinType = int(squality.find('skinType').text)
+         tail = int(squality.find('tail').text)
+         ears = int(squality.find('ears').text)
+         hair = int(squality.find('hair').text)
+         hairColor = int(squality.find('hairColor').text)
+         hairLength = int(squality.find('hairLength').text)
+         legType = int(squality.find('legType').text)
+         wings = int(squality.find('wings').text)
+         faceType = int(squality.find('faceType').text)
+         skinColor = int(squality.find('skinColor').text)
+         cockTotal = int(scock.find('cockTotal').text)
+         humanCocks = int(scock.find('humanCocks').text)
+         horseCocks = int(scock.find('horseCocks').text)
+         wolfCocks = int(scock.find('wolfCocks').text)
+         catCocks = int(scock.find('catCocks').text)
+         rabbitCocks = int(scock.find('rabbitCocks').text)
+         lizardCocks = int(scock.find('lizardCocks').text)
+         cockSize = int(scock.find('cockSize').text)
+         cockMoist = int(scock.find('cockMoist').text)
+         balls = int(scock.find('balls').text)
+         ballSize = int(scock.find('ballSize').text)
+         showBalls = FE.convert.strtobool(scock.find('showBalls').text)
+         knot = FE.convert.strtobool(scock.find('knot').text)
+         bugCocks = int(scock.find('bugCocks').text)
+         breastSize = int(sgirl.find('breastSize').text)
+         boobTotal = int(sgirl.find('boobTotal').text)
+         nippleSize = int(sgirl.find('nippleSize').text)
+         udders = FE.convert.strtobool(sgirl.find('udders').text)
+         udderSize = int(sgirl.find('udderSize').text)
+         teatSize = int(sgirl.find('teatSize').text)
+         clitSize = int(sgirl.find('clitSize').text)
+         vagTotal = int(sgirl.find('vagTotal').text)
+         vagSize = int(sgirl.find('vagSize').text)
+         vagMoist = int(sgirl.find('vagMoist').text)
+         vulvaSize = int(sgirl.find('vulvaSize').text)
+         nipType = int(sgirl.find('nipType').text)
+         attireTop = int(sgear.find('attireTop').text)
+         attireBot = int(sgear.find('attireBot').text)
+         weapon = int(sgear.find('weapon').text)
+         pregRate = int(sstatus.find('pregRate').text)
+         pregnancyTime = int(sstatus.find('pregnancyTime').text)
+         pregStatus = int(sstatus.find('pregStatus').text)
+         eggLaying = int(sstatus.find('eggLaying').text)
+         eggMaxTime = int(sstatus.find('eggMaxTime').text)
+         eggTime = int(sstatus.find('eggTime').text)
+         eggRate = int(sstatus.find('eggRate').text)
+         exhaustion = int(sstatus.find('exhaustion').text)
+         exhaustionPenalty = int(sstatus.find('exhaustionPenalty').text)
+         milkEngorgement = int(sstatus.find('milkEngorgement').text)
+         milkEngorgementLevel = int(sstatus.find('milkEngorgementLevel').text)
+         udderEngorgement = int(sstatus.find('udderEngorgement').text)
+         udderEngorgementLevel = int(sstatus.find('udderEngorgementLevel').text)
+         heat = int(sstatus.find('heat').text)
+         heatTime = int(sstatus.find('heatTime').text)
+         heatMaxTime = int(sstatus.find('heatMaxTime').text)
+         lactation = int(sstatus.find('lactation').text)
+         udderLactation = int(sstatus.find('udderLactation').text)
+         nipplePlay = float(sstatus.find('nipplePlay').text)
+         udderPlay = float(sstatus.find('udderPlay').text)
+         blueBalls = int(sstatus.find('blueBalls').text)
+         teatPump = int(sstatus.find('teatPump').text)
+         nipPump = int(sstatus.find('nipPump').text)
+         cockPump = int(sstatus.find('cockPump').text)
+         clitPump = int(sstatus.find('clitPump').text)
+         vulvaPump = int(sstatus.find('vulvaPump').text)
+         masoPot = int(sstatus.find('masoPot').text)
+         sMasoPot = int(sstatus.find('sMasoPot').text)
+         babyFree = int(sstatus.find('babyFree').text)
+         charmTime = int(sstatus.find('charmTime').text)
+         pheromone = int(sstatus.find('pheromone').text)
+         eggceleratorTime = int(sstatus.find('eggceleratorTime').text)
+         eggceleratorDose = int(sstatus.find('eggceleratorDose').text)
+         bodyOil = int(sstatus.find('bodyOil').text)
+         lustPenalty = int(sstatus.find('lustPenalty').text)
+         fertileGel = int(sstatus.find('fertileGel').text)
+         snuggleBall = FE.convert.strtobool(sstatus.find('snuggleBall').text)
+         eggType = int(sstatus.find('eggType').text)
+         milkSuppressant = int(sstatus.find('milkSuppressant').text)
+         milkSuppressantLact = int(sstatus.find('milkSuppressantLact').text)
+         milkSuppressantUdder = int(sstatus.find('milkSuppressantUdder').text)
+         suppHarness = FE.convert.strtobool(sstatus.find('suppHarness').text)
+         fertilityStatueCurse = int(sstatus.find('fertilityStatueCurse').text)
+         plumpQuats = int(sstatus.find('plumpQuats').text)
+         lilaWetStatus = int(sstatus.find('lilaWetStatus').text)
+         cockSnakePreg = int(sstatus.find('cockSnakePreg').text)
+         milkCPoisonNip = int(sstatus.find('milkCPoisonNip').text)
+         milkCPoisonUdd = int(sstatus.find('milkCPoisonUdd').text)
+         cockSnakeVenom = int(sstatus.find('cockSnakeVenom').text)
+         humanAffinity = int(saffinity.find('humanAffinity').text)
+         horseAffinity = int(saffinity.find('horseAffinity').text)
+         wolfAffinity = int(saffinity.find('wolfAffinity').text)
+         catAffinity = int(saffinity.find('catAffinity').text)
+         cowAffinity = int(saffinity.find('cowAffinity').text)
+         lizardAffinity = int(saffinity.find('lizardAffinity').text)
+         rabbitAffinity = int(saffinity.find('rabbitAffinity').text)
+         fourBoobAffinity = int(saffinity.find('fourBoobAffinity').text)
+         mouseAffinity = int(saffinity.find('mouseAffinity').text)
+         birdAffinity = int(saffinity.find('birdAffinity').text)
+         pigAffinity = int(saffinity.find('pigAffinity').text)
+         twoBoobAffinity = int(saffinity.find('twoBoobAffinity').text)
+         sixBoobAffinity = int(saffinity.find('sixBoobAffinity').text)
+         eightBoobAffinity = int(saffinity.find('eightBoobAffinity').text)
+         tenBoobAffinity = int(saffinity.find('tenBoobAffinity').text)
+         cowTaurAffinity = int(saffinity.find('cowTaurAffinity').text)
+         humanTaurAffinity = int(saffinity.find('humanTaurAffinity').text)
+         skunkAffinity = int(saffinity.find('skunkAffinity').text)
+         bugAffinity = int(saffinity.find('bugAffinity').text)
+         lilaRep = int(srep.find('lilaRep').text)
+         lilaVulva = int(srep.find('lilaVulva').text)
+         lilaMilk = int(srep.find('lilaMilk').text)
+         lilaPreg = int(srep.find('lilaPreg').text)
+         malonRep = int(srep.find('malonRep').text)
+         malonPreg = int(srep.find('malonPreg').text)
+         malonChildren = int(srep.find('malonChildren').text)
+         mistressRep = int(srep.find('mistressRep').text)
+         jamieRep = int(srep.find('jamieRep').text)
+         jamieSize = int(srep.find('jamieSize').text)
+         jamieChildren = int(srep.find('jamieChildren').text)
+         silRep = int(srep.find('silRep').text)
+         silPreg = int(srep.find('silPreg').text)
+         silRate = int(srep.find('silRate').text)
+         silLay = int(srep.find('silLay').text)
+         silGrowthTime = int(srep.find('silGrowthTime').text)
+         silTied = FE.convert.strtobool(srep.find('silTied').text)
+         lilaUB = FE.convert.strtobool(srep.find('lilaUB').text)
+         dairyFarmBrand = FE.convert.strtobool(srep.find('dairyFarmBrand').text)
+         lilaWetness = int(srep.find('lilaWetness').text)
+         jamieButt = FE.convert.strtobool(srep.find('jamieButt').text)
+         jamieBreasts = FE.convert.strtobool(srep.find('jamieBreasts').text)
+         jamieHair = FE.convert.strtobool(srep.find('jamieHair').text)
+         foundSoftlik = FE.convert.strtobool(sknowledge.find('foundSoftlik').text)
+         foundFirmshaft = FE.convert.strtobool(sknowledge.find('foundFirmshaft').text)
+         foundTieden = FE.convert.strtobool(sknowledge.find('foundTieden').text)
+         foundSizCalit = FE.convert.strtobool(sknowledge.find('foundSizCalit').text)
+         foundOviasis = FE.convert.strtobool(sknowledge.find('foundOviasis').text)
+         foundValley = FE.convert.strtobool(sknowledge.find('foundValley').text)
+         foundSanctuary = FE.convert.strtobool(sknowledge.find('foundSanctuary').text)
+         defeatedMinotaur = FE.convert.strtobool(sboss.find('defeatedMinotaur').text)
+         defeatedFreakyGirl = FE.convert.strtobool(sboss.find('defeatedFreakyGirl').text)
+         defeatedSuccubus = FE.convert.strtobool(sboss.find('defeatedSuccubus').text)
+         knowLustDraft = FE.convert.strtobool(sknowSimpleAlchemy.find('knowLustDraft').text)
+         knowRejuvPot = FE.convert.strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text)
+         knowExpPreg = FE.convert.strtobool(sknowSimpleAlchemy.find('knowExpPreg').text)
+         knowBallSwell = FE.convert.strtobool(sknowSimpleAlchemy.find('knowBallSwell').text)
+         knowMaleEnhance = FE.convert.strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)
+         knowSLustDraft = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text)
+         knowSRejuvPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text)
+         knowSExpPreg = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text)
+         knowSBallSwell = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text)
+         knowGenSwap = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text)
+         knowMasoPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text)
+         knowBabyFree = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text)
+         knowPotPot = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowPotPot').text)
+         knowMilkSuppress = FE.convert.strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)
+         knowSGenSwap = FE.convert.strtobool(sknowComplexAlchemy.find('knowSGenSwap').text)
+         knowSMasoPot = FE.convert.strtobool(sknowComplexAlchemy.find('knowSMasoPot').text)
+         knowSBabyFree = FE.convert.strtobool(sknowComplexAlchemy.find('knowSBabyFree').text)
+         knowSPotPot = FE.convert.strtobool(sknowComplexAlchemy.find('knowSPotPot').text)
+         knowPussJuice = FE.convert.strtobool(sknowComplexAlchemy.find('knowPussJuice').text)
+         knowPheromone = FE.convert.strtobool(sknowComplexAlchemy.find('knowPheromone').text)
+         knowBazoomba = FE.convert.strtobool(sknowComplexAlchemy.find('knowBazoomba').text)
+         maleFetish = float(smajorFetish.find('maleFetish').text)
+         femaleFetish = float(smajorFetish.find('femaleFetish').text)
+         hermFetish = float(smajorFetish.find('hermFetish').text)
+         narcissistFetish = float(smajorFetish.find('narcissistFetish').text)
+         dependentFetish = float(smajorFetish.find('dependentFetish').text)
+         dominantFetish = float(smoderateFetish.find('dominantFetish').text)
+         submissiveFetish = float(smoderateFetish.find('submissiveFetish').text)
+         lboobFetish = float(smoderateFetish.find('lboobFetish').text)
+         sboobFetish = float(smoderateFetish.find('sboobFetish').text)
+         furryFetish = float(smoderateFetish.find('furryFetish').text)
+         scalyFetish = float(smoderateFetish.find('scalyFetish').text)
+         smoothyFetish = float(smoderateFetish.find('smoothyFetish').text)
+         pregnancyFetish = float(sminorFetish.find('pregnancyFetish').text)
+         bestialityFetish = float(sminorFetish.find('bestialityFetish').text)
+         milkFetish = float(sminorFetish.find('milkFetish').text)
+         sizeFetish = float(sminorFetish.find('sizeFetish').text)
+         unbirthingFetish = float(sminorFetish.find('unbirthingFetish').text)
+         ovipositionFetish = float(sminorFetish.find('ovipositionFetish').text)
+         toyFetish = float(sminorFetish.find('toyFetish').text)
+         hyperFetish = float(sminorFetish.find('hyperFetish').text)
+         humanChildren = int(skid.find('humanChildren').text)
+         equanChildren = int(skid.find('equanChildren').text)
+         lupanChildren = int(skid.find('lupanChildren').text)
+         felinChildren = int(skid.find('felinChildren').text)
+         cowChildren = int(skid.find('cowChildren').text)
+         lizanChildren = int(skid.find('lizanChildren').text)
+         lizanEggs = int(skid.find('lizanEggs').text)
+         bunnionChildren = int(skid.find('bunnionChildren').text)
+         wolfPupChildren = int(skid.find('wolfPupChildren').text)
+         miceChildren = int(skid.find('miceChildren').text)
+         birdEggs = int(skid.find('birdEggs').text)
+         birdChildren = int(skid.find('birdChildren').text)
+         pigChildren = int(skid.find('pigChildren').text)
+         calfChildren = int(skid.find('calfChildren').text)
+         bugEggs = int(skid.find('bugEggs').text)
+         bugChildren = int(skid.find('bugChildren').text)
+         skunkChildren = int(skid.find('skunkChildren').text)
+         minotaurChildren = int(skid.find('minotaurChildren').text)
+         freakyGirlChildren = int(skid.find('freakyGirlChildren').text)
+         #= .find('').text
+         trav = root.find('trav')
+         bag = root.find('bag')
+         bagStack = root.find('bagStack')
+         stash = root.find('stash')
+         stashStack = root.find('stashStack')
+         preg = root.find('preg')
+         bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         for i in range(0, 27):
+            tempstr = "slot" + str(i)
+            bagArray[i] = int(bag.find(tempstr).text)
+            bagStackArray[i] = int(bagStack.find(tempstr).text)
+            stashArray[i] = int(stash.find(tempstr).text)
+            stashStackArray[i] = int(stashStack.find(tempstr).text)
+            i += 1
+         pregArray = as3.Array()
+         i = 0
+         while (i < len(list(preg))):
+            pregArray.push("","","","","")
+            pregArray[i] = FE.convert.strtobool(preg.find(str("i" + str(i))).text)
+            pregArray[i+1] = int(preg.find(str("i" + str(i+1))).text)
+            pregArray[i+2] = int(preg.find(str("i" + str(i+2))).text)
+            pregArray[i+3] = int(preg.find(str("i" + str(i+3))).text)
+            pregArray[i+4] = int(preg.find(str("i" + str(i+4))).text)
+            i += 5
+      else:
+         currentState = strack.find('currentState').text
+         day = strack.find('day').text
+         hour = strack.find('hour').text
+         inDungeon = strack.find('inDungeon').text
+         bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+      UpDown.HideAll()
+      StatsPane.ShowAll()
+      #this.statPane.visible = true
+      #this.DayPane.visible = true
+      #this.levelPane.visible = true
+      #this.currentRegion.visible = true
+      #this.region.visible = true
+      checkUpdate()
+      regionChange(currentZone)
+      stats(0,0,0,0)
+      dayTime(0)
+      doSexP(0)
+      SidePanel.Option7Show()
+      toggleSide()
+      toggleSide()
+      outputMainText("Your file has been successfully loaded.",True)
+      doReturn()
 
 def checkUpdate():
    pass
@@ -4389,10 +4394,10 @@ def checkOpenSlot(ID:int):
    #Should work
    global bagArray
    slot = -1
-   for i in range(0, 26):
+   for i in range(0, 27):
       if (bagArray[i] == 0):
          slot = i
-   for i in range(0, 26):
+   for i in range(0, 27):
       if (bagStackArray[i] < itemStackMax(ID)) and (bagArray[i] == ID):
          slot = i
    return slot
@@ -4461,7 +4466,7 @@ def doDiscard(ID:int):
          doDiscard(tempID)
 
 def itemMove(slot:int):
-#!
+   #Should work
    global moveItemID, moveItemStack, choicePage, bagArray, bagStackArray
    tempInt = moveItemID
    tempInt2 = moveItemStack
@@ -4472,8 +4477,8 @@ def itemMove(slot:int):
       tempI -= 2
    elif (slot < 12):
       tempI -= 3
-   if (moveItemID == bagArray[tempI]) and (bagStackArray[tempI] < itemStackMax(bagArray[tempI])):
-      if ((moveItemStack + bagStackArray[tempI]) <= itemStackMax(bagArray[tempI])):
+   if ((moveItemID == bagArray[tempI]) and (bagStackArray[tempI] < itemStackMax(bagArray[tempI]))):
+      if ((moveItemStack + bagStackArray[tempI] <= itemStackMax(bagArray[tempI]))):
          bagStackArray[tempI] += moveItemStack
          moveItemID = 0
          moveItemStack = 0
@@ -4489,36 +4494,27 @@ def itemMove(slot:int):
       trace(bagArray)
       trace(bagStackArray)
    if (moveItemID == 0):
-      this.moveItem.visible = False
-      this.moveItemAmount.visible = False
-      this.MoveOutline.visible = False
-      this.MoveAmountOutline.visible = False
+      showMoveItem(False)
    else:
-      this.moveItem.visible = True
-      this.MoveOutline.visible = True
-      this.moveItem.htmlText = itemName(moveItemID)
+      MoveItem.Show()
+      MoveItem.ChangeItem(itemName(moveItemID))
       if (moveItemStack > 1):
-         this.moveItemAmount.visible = true
-         this.moveItemAmount.htmlText = "" + moveItemStack + ""
-         this.MoveAmountOutline.visible = true
+         MoveItem.ShowAmount()
+         MoveItem.ChangeAmount(moveItemStack)
    hideAmount()
    doBag()
 
 def showMoveItem(which:bool):
-#!
+   #Should work
    global moveItemID, moveItemStack
    if (which == True):
       if (moveItemID != 0):
-         this.moveItem.visible = true;
-         this.MoveOutline.visible = true;
+         MoveItem.Show()
          if (moveItemStack > 1):
-            this.moveItemAmount.visible = true;
-            this.MoveAmountOutline.visible = true;
+            MoveItem.ShowAmount()
    else:
-      this.moveItem.visible = false;
-      this.moveItemAmount.visible = false;
-      this.MoveOutline.visible = false;
-      this.MoveAmountOutline.visible = false;
+      MoveItem.Hide()
+      MoveItem.HideAmount()
 
 def itemName(ID:int):
    tempStr = "ITEM NAME ERROR " + str(ID)
@@ -5307,30 +5303,31 @@ def conItem(ID:int):
    return tempBool
 
 def passiveItemAdd(ID:int):
+   #Should work
    global rapeMod, runMod, vagMoistMod, cockMoistMod, milkHPMod, carryMod, pregRate, minLust, hips, sexPMod, changeMod, heatMaxTime, heatTimeMod, heatMod, milkCap
    if (ID == 101):
       rapeMod += 10
-   if (ID == 102):
+   elif (ID == 102):
       runMod += 20
-   if (ID == 200):
+   elif (ID == 200):
       vagMoistMod += 4
       cockMoistMod += 4
       statsMod(0,0,0,10)
-   if (ID == 215):
+   elif (ID == 215):
       rapeMod += 5
       runMod += 5
       milkHPMod += 5
-   if (ID == 233):
+   elif (ID == 233):
       carryMod += 75
-   if (ID == 234):
+   elif (ID == 234):
       pregRate += 0.5
       minLust += 10
       hips += 10
       doLust(0,0)
-   if (ID == 236):
+   elif (ID == 236):
       SexPMod += 0.5
       changeMod += 0.3
-   if (ID == 237):
+   elif (ID == 237):
       vagMoistMod += 8
       cockMoistMod += 8
       statsMod(0,0,0,10)
@@ -5341,7 +5338,7 @@ def passiveItemAdd(ID:int):
       elif (heat >= 1):
          heatMaxTime -= 12
          heat += 1
-   if (ID == 252):
+   elif (ID == 252):
       rapeMod += 5
       runMod += 5
       milkHPMod += 5
@@ -5349,52 +5346,53 @@ def passiveItemAdd(ID:int):
       milkCap += 3000
 
 def passiveItemRemove(ID:int):
-   global rapeMod, runMod, vagMoistMod, cockMoistMod, milkHPMod, carryMod, pregRate, minLust, hips, sexPMod, changeMod, heatMaxTime, heat, milkCap, weapon
+   #Should work
+   global rapeMod, runMod, vagMoistMod, cockMoistMod, milkHPMod, carryMod, pregRate, minLust, hips, SexPMod, changeMod, heat, heatMaxTime, milkCap, weapon
    if (ID == 101):
       rapeMod -= 10
-   if (ID == 102):
+   elif (ID == 102):
       runMod -= 20
-   if (ID == 200):
+   elif (ID == 200):
       vagMoistMod -= 4
       cockMoistMod -= 4
       statsMod(0,0,0,-10)
-   if (ID == 215):
+   elif (ID == 215):
       rapeMod -= 5
       runMod -= 5
       milkHPMod -= 5
-   if (ID == 233):
+   elif (ID == 233):
       carryMod -= 75
-   if (ID == 234):
+   elif (ID == 234):
       pregRate -= 0.5
       minLust -= 10
       hips -= 10
-   if (ID == 236):
+   elif (ID == 236):
       SexPMod -= 0.5
       changeMod -= 0.3
-   if (ID == 237):
+   elif (ID == 237):
       vagMoistMod -= 8
       cockMoistMod -= 8
       statsMod(0,0,0,-10)
       if (heat >= 2):
          heatMaxTime += 12
       heat -= 1
-   if (ID == 252):
+   elif (ID == 252):
       rapeMod -= 5
       runMod -= 5
       milkHPMod -= 5
       carryMod -= 10
       milkCap -= 3000
-   if (ID == 116) and (weapon == 116):
+   elif (ID == weapon == 116):
       weapon = 10
-   if (ID == 117) and (weapon == 117):
+   elif (ID == weapon == 117):
       weapon = 10
-   if (ID == 118) and (weapon == 118):
+   elif (ID == weapon == 118):
       weapon = 10
-   if (ID == 119) and (weapon == 119):
+   elif (ID == weapon == 119):
       weapon = 10
-   if (ID == 127) and (weapon == 127):
+   elif (ID == weapon == 127):
       weapon = 10
-   if (ID == 235) and (weapon == 235):
+   elif (ID == weapon == 235):
       weapon = 10
 
 def loseManyItem(ID:int, amount:int):
@@ -5414,7 +5412,7 @@ def loseManyItem(ID:int, amount:int):
             amount = 0
       i -= 1
 
-def addManyItems(ID:int, amount:int):
+def addManyItem(ID:int, amount:int):
    i = 0
    while (i < amount):
       itemAdd(ID)
@@ -6204,7 +6202,7 @@ def doItemUse(ID:int):
                if ((getMilk >= 3000) and (getMilk < 6000)):
                   itemAdd(501)
                if ((getMilk >= 6000) and (getMilk < 17000)):
-                  addManyItems(501, 2)
+                  addManyItem(501, 2)
                if ((getMilk >= 17000) and (getMilk < 25000)):
                   itemAdd(502)
                if (getMilk >= 25000):
@@ -7380,7 +7378,7 @@ def doItemUse(ID:int):
       doEnd()
    if (ID == 502):
       outputMainText("You pour the milk out of the barrel into 4 jugs...",True)
-      addManyItems(501, 4)
+      addManyItem(501, 4)
       doEnd()
    if (ID == 503):
       outputMainText("You take a swig of the draft, your loins warming within seconds.",True)
@@ -7673,7 +7671,7 @@ def doItemUse(ID:int):
       doEnd()
    if (ID == 525):
       outputMainText("You pour the jug of cum out into 3 bottles...",True)
-      addManyItems(524,3)
+      addManyItem(524,3)
       doEnd()
    if (ID == 526):
       if (currentState == 2):
@@ -7750,7 +7748,7 @@ def doItemUse(ID:int):
          doCoin(10)
       if ((percent() <= 10) and (vagTotal > 0)):
          outputMainText("\n\nYou grunt and squat, " + legVerb(1) + " your " + legDesc(2) + " and pulling " + pullUD(2) + " your " + clothesBottom() + " in time for more fresh eggs to come sliding out of your slit" + plural(2) + " from nowhere!",False)
-         addManyItems(219,3)
+         addManyItem(219,3)
       outputMainText("\n\nQuite strange indeed...",False)
       doEnd()
    if (ID == 530):
@@ -10139,10 +10137,10 @@ def doDayCare():
    if (currentDayCare != currentZone):
       outputMainText("\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in " + regionName(currentDayCare) + ".",False)
       outputMainText("\n\nIf you would like to send a party of well-experienced travelers to " + regionName(currentDayCare) + " to safely bring your children here, it will cost 500 coins.",False)
+      templist = [9, "Leave"]
       if (coin < 500):
          outputMainText(" Which you don't have enough of anyways.",False)
-      templist = [9, "Leave"]
-      if (coin >= 500):
+      elif (coin >= 500):
          templist.append(1)
          templist.append("Transfer")
       ButtonFunctions.Visible(1,0,0,0,0,0,0,0,1,0,0,0)
@@ -10219,11 +10217,11 @@ def doDayCare():
          outputMainText("\n\nYou have " + wolfPupChildren + " domesticated wolf pups. They growl and nip at each other playfully, jumping and crashing into each other again and again.",False)
       if (calfChildren == 1):
          outputMainText("\n\nYou have " + calfChildren + " baby calf. It stumbles around on all four hooves, rather large and clumsy, drinking milk whenever it can. Otherwise it's beginning to learn how to eat grass pretty quickly.",False)
-      if (calfChildren > 1):
+      elif (calfChildren > 1):
          outputMainText("\n\nYou have " + calfChildren + " baby calves. They stumble around on all four hooves, rather large and clumsy, drinking milk whenever they can. Otherwise they're beginning to learn how to eat grass pretty quickly.",False)
       if (minotaurChildren == 1):
          outputMainText("\n\nYou have " + minotaurChildren + " baby from the Minotaur. It is quite large and hulking compared to other babies, and powerful as well. It doesn't seem like the smartest child in the world, but it likes to help out by lifting and carrying things.",False)
-      if (minotaurChildren > 1):
+      elif (minotaurChildren > 1):
          outputMainText("\n\nYou have " + minotaurChildren + " babies from the Minotaur. They are quite large and hulking compared to other babies, and powerful as well. They don't seem like the smartest children in the world, but they like to help out by lifting and carrying things.",False)
       if (freakyGirlChildren > 0):
          outputMainText("\n\nYou have " + freakyGirlChildren + " cute little balls of fuzz babies with adorable human-like faces and long ears. They roll and bounce about, acting adorable, but if you're not careful and make them angry, you might lose a finger... You're not entirely sure if they'll grow legs and a full body like their 'father'; you don't know much about them at all, really.",False)
@@ -10728,8 +10726,8 @@ def doProstitute():
       doEnd()
 
 def doSleep():
-#!
-   global exhaustion, skipExhaustion, exhaustionPenalty, lust, heatTime, heat, cockTotal, vagTotal, milkEngorgementLevel, udderEngorgementLevel, pregnancyTime, body, _str_, carryMod, firstExplore, hrs
+   #Should work
+   global exhaustion, skipExhaustion, exhaustionPenalty, lust, cockTotal, vagTotal, heatTime, heat, milkEngorgementLevel, udderEngorgementLevel, pregnancyTime, body, _str_, carryMod, firstExplore, hrs
    bc()
    outputMainText("You head into town to sleep for the night...",True)
    exhaustion = 0
@@ -10743,72 +10741,72 @@ def doSleep():
    doHP(20)
    if (lust <= 30):
       outputMainText("\n\nDespite everything, your body is calm and sleeps rather soundly.",False)
-      if (((moistCalc(1) > 9) and (cockTotal > 0)) or ((moistCalc(2) > 9) and (vagTotal > 0))):
+      if ((moistCalc(1) > 9) and (cockTotal > 0) or (moistCalc(2) > 9) and (vagTotal > 0)):
          outputMainText(" Although your bed is slightly moist from your constant production of lubricant from your loins.",False)
-   if (lust > 30) and (lust <= 70):
+   if ((lust > 30) and (lust <= 70)):
       outputMainText("\n\nYour sleep is somewhat disrupted by tossing and turning throughout the night, your arousal making certain attributes swell with blood and desiring attention...",False)
       exhaustion += 3
-      if (((moistCalc(1) > 3) and (moistCalc(1) <= 9) and (cockTotal > 0)) or ((moistCalc(2) > 3) and (moistCalc(2) <= 9) and (vagTotal > 0))):
+      if ((moistCalc(1) > 3) and (moistCalc(1) <= 9) and (cockTotal > 0) or (moistCalc(2) > 3) and (moistCalc(2) <= 9) and (vagTotal > 0)):
          outputMainText(" Plus your bed is slightly moist from your constant production of lubricant from your loins.",False)
-      if (((moistCalc(1) > 9) and (cockTotal > 0)) or ((moistCalc(2) > 9) and (vagTotal > 0))):
+      if ((moistCalc(1) > 9) and (cockTotal > 0) or (moistCalc(2) > 9) and (vagTotal > 0)):
          outputMainText(" It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid...",False)
    if (lust > 70):
       outputMainText("\n\nYou spend most of the night tossing and turning, your mind having difficulty sleeping with the lust that envelops it. Although you do manage to eventually get some, it's not nearly as good.",False)
       exhaustion += 8
-      if (((moistCalc(1) > 0) and (moistCalc(1) <= 3) and (cockTotal > 0)) or ((moistCalc(2) > 0) and (moistCalc(2) <= 3) and (vagTotal > 0))):
+      if ((moistCalc(1) > 0) and (moistCalc(1) <= 3) and (cockTotal > 0) or (moistCalc(2) > 0) and (moistCalc(2) <= 3) and (vagTotal > 0)):
          outputMainText(" Plus your bed is slightly moist from your constant production of lubricant from your loins.",False)
-      if (((moistCalc(1) > 3) and (moistCalc(1) <= 9) and (cockTotal > 0)) or ((moistCalc(2) > 3) and (moistCalc(2) <= 9) and (vagTotal > 0))):
+      if ((moistCalc(1) > 3) and (moistCalc(1) <= 9) and (cockTotal > 0) or (moistCalc(2) > 3) and (moistCalc(2) <= 9) and (vagTotal > 0)):
          outputMainText(" It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid...",False)
-      if (((moistCalc(1) > 9) and (cockTotal > 0)) or ((moistCalc(2) > 9) and (vagTotal > 0))):
+      if ((moistCalc(1) > 9) and (cockTotal > 0) or (moistCalc(2) > 9) and (vagTotal > 0)):
          outputMainText(" You also wake up in a pool of your own sexual lubricant, the slick stuff sloshing off the sheets as you attempt to get out. You remain cautious as your " + legDesc(10) + " touch the floor, as you have to avoid slipping in the large puddle around the bed.",False)
    if ((heatTime < 0) and (heat > 0) and (vagTotal > 0)):
       outputMainText("\n\nDreams of being fucked by over a dozen cocks, each filling you to the brim with hot spunk, filled your sleep. When you eventually woke up in a hot sweat, your hand reflexively inspects your belly and you find yourself slightly disappointed to find it empty.",False)
    if (milkEngorgementLevel == 2):
       outputMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your breasts, having formed a small puddle throughout the night.",False)
-   if (milkEngorgementLevel > 2):
+   elif (milkEngorgementLevel > 2):
       outputMainText("\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your breasts, as you sit up, a pool of the stuff all around you.",False)
    if (udderEngorgementLevel == 2):
-      outputMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your udder, having formed a small puddle throughout the night.",False)
-   if (udderEngorgementLevel > 2):
+      this.outputMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your udder, having formed a small puddle throughout the night.",False)
+   elif (udderEngorgementLevel > 2):
       outputMainText("\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your udder, as you sit up, a pool of the stuff all around you.",False)
    if (pregCheck(0) == True):
-      if (pregnancyTime > 18) and (pregnancyTime <= 36):
+      if ((pregnancyTime > 18) and (pregnancyTime <= 36)):
          outputMainText("\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely.",False)
-      elif (pregnancyTime > 36) and (pregnancyTime <= 72):
+      elif ((pregnancyTime > 36) and (pregnancyTime <= 72)):
          outputMainText("\n\nYou seem to be getting a bit chubbier in your midsection, might be because you've been hungrier and eating more lately. Plus you've been feeling a bit more randy than usual...",False)
-      elif (pregnancyTime > 72) and (pregnancyTime <= 108):
+      elif ((pregnancyTime > 72) and (pregnancyTime <= 108)):
          outputMainText("\n\nYour belly is obviously bulging now, more than it would if it were just fat. You should probably accept the fact that you're pregnant...",False)
-      elif (pregnancyTime > 108) and (pregnancyTime <= 144):
+      elif ((pregnancyTime > 108) and (pregnancyTime <= 144)):
          outputMainText("\n\nYou can easily hug your belly as it protrudes from your torso, looking like you were trying to smuggle a melon in your womb. But it feels so good to rub and caress it, making you easily get horny.",False)
-      elif (pregnancyTime > 144) and (pregnancyTime <= 180):
+      elif ((pregnancyTime > 144) and (pregnancyTime <= 180)):
          outputMainText("\n\nYour belly is so large your belly button has turned into an outie. You play with it as you head to sleep, the baby inside kicking back in turn.",False)
-      elif (pregnancyTime > 180) and (pregnancyTime <= 216):
+      elif ((pregnancyTime > 180) and (pregnancyTime <= 216)):
          outputMainText("\n\nFor most races, you would be giving birth any time now. You actually have to be cautious about people bumping into you as you walk through the town, it protrudes so far.",False)
-      elif (pregnancyTime > 216) and (pregnancyTime <= 252):
+      elif ((pregnancyTime > 216) and (pregnancyTime <= 252)):
          outputMainText("\n\nThe " + skinDesc() + " around your giant belly is so taut that you can audibly drum it with your fingers. Which the baby inside does with its feet frequently from inside.",False)
-      elif (pregnancyTime > 252) and (pregnancyTime <= 288):
+      elif ((pregnancyTime > 252) and (pregnancyTime <= 288)):
          outputMainText("\n\nYou're beginning to draw the eyes of the crowd as you move through town, your belly is so enormous. People are wondering if you've actually got a baby in there and not a small child.",False)
-      elif (pregnancyTime > 288) and (pregnancyTime <= 324):
+      elif ((pregnancyTime > 288) and (pregnancyTime <= 324)):
          outputMainText("\n\nThis is getting ridiculous... People are starting to come up to you as you move through the street on your way to bed and actually ask if you've got a small person in your belly! Although, you aren't quite sure, but as your hands try to wrap around it, unable to fully embrace it, you begin to wonder yourself.",False)
-      elif (pregnancyTime > 324) and (pregnancyTime <= 360):
+      elif ((pregnancyTime > 324) and (pregnancyTime <= 360)):
          outputMainText("\n\nYour giant belly is becoming a bit of a nuisance... As you walk through buildings, people back up against a wall to let you pass by. You can feel your belly scrape against the frames of narrow doorways as you pass through, and it's been a while since you've last seen your belly-button...",False)
-      elif (pregnancyTime > 360) and (pregnancyTime <= 396):
+      elif ((pregnancyTime > 360) and (pregnancyTime <= 396)):
          outputMainText("\n\nNow you're actually starting to get a little worried... Your " + legDesc(6) + " are knocking against the underside of your belly when you try to walk. People are clearing the way when you move down the streets to make room for your belly and you have to skillfully wedge yourself through narrow doorways!",False)
-      elif (pregnancyTime > 396) and (pregnancyTime <= 432):
+      elif ((pregnancyTime > 396) and (pregnancyTime <= 432)):
          outputMainText("\n\nAs you lay down to go to sleep, you have to curl forward to fit your belly in your bed, leaving your backside hanging off the mattress. The sheets aren't even wide enough to cover you completely, making you feel a draft on some of your exposed belly. The chill makes you shiver, not from the cold, but from your nerves sparking from the super-taut, extra-sensitive " + skinDesc() + ".",False)
       elif (pregnancyTime > 432):
          outputMainText("\n\nYou don't even bother to head to your bed. Borrowing a bunch of blankets, you've made do with sleeping outside. Your belly is too big to go indoors, even having to handle shop business from the streets. Your hand reaches out as far as it can and hardly wraps around any of your girth. The warmth it emanates and sensations it echoes through your body help you sleep quite soundly and pleasantly, though, so you'll be fine until you give birth.",False)
-      if ((body + (_str_ / 2) + carryMod) < math.floor(pregnancyTime / 10)):
+      if (body + _str_ / 2 + carryMod < math.floor(pregnancyTime / 10)):
          outputMainText(" However, none of that really matters as you can no longer carry the weight of your hefty belly. You're stuck in this town, dragging your belly across the ground, with padding beneath to protect it. There's going to be no more exploring until you either get stronger or give birth to this massive nuisance...",False)
-      elif (((body + (_str_ / 2) + carryMod) * 2) < math.floor(pregnancyTime / 10)):
+      elif ((body + _str_ / 2 + carryMod) * 2 < math.floor(pregnancyTime / 10)):
          outputMainText(" Your " + skinDesc() + " is pulled so taut around your belly that you're afraid it might tear, though it never does. But it's so sensitive... Caressing it as you try to sleep is so nice~ Although, it does have the slight drawback of looking rather silly while you walk with a hunch and attempt to cradle it wherever you go; it's gotten so heavy.",False)
-      elif (((body + (_str_ / 2) + carryMod) * 3) < math.floor(pregnancyTime / 10)):
+      elif ((body + _str_ / 2 + carryMod) * 3 < math.floor(pregnancyTime / 10)):
          outputMainText(" The mound feels so heavy... When walking around town, you even had to keep a hand on your back for support.",False)
-      elif (((body + (_str_ / 2) + carryMod) * 4) < math.floor(pregnancyTime / 10)):
+      elif ((body + _str_ / 2 + carryMod) * 4 < math.floor(pregnancyTime / 10)):
          outputMainText(" The weight of your belly makes you feel more exhausted than you really are by the end of the day, making you glad for the night's rest.",False)
-      elif (((body + (_str_ / 2) + carryMod) * 5) < math.floor(pregnancyTime / 10)):
+      elif ((body + _str_ / 2 + carryMod) * 5 < math.floor(pregnancyTime / 10)):
          outputMainText(" You can noticeably feel the weight of your belly.",False)
-   if (firstExplore == False) and (percent() < 10):
+   if ((firstExplore == False) and (percent() < 10)):
       outputMainText("\n\n\"Please... Anybody?\" Despite everything, your mind focuses on that echoing dream for another night now...",False)
    hrs = 8
    doEnd()
@@ -13161,7 +13159,7 @@ def doSoftlik():
                outputMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                hrs = 1
                doCoin(-100)
-               addManyItems(534, 6)
+               addManyItem(534, 6)
                """
                itemAdd(534)
                itemAdd(534)
@@ -13812,7 +13810,7 @@ def doFirmshaft():
                doLust(-math.floor(sen / 3),2,1)
                doLust(-math.floor(sen / 3),2,1)
                doLust(-math.floor(sen / 3),2,1)
-               addManyItems(225, 2)
+               addManyItem(225, 2)
                hrs = 5
                exhaustion -= 3
                doEnd()
@@ -15034,7 +15032,7 @@ def doSizCalit():
             outputMainText("Everything is a blur as you're carried off without any sense of direction. All you can hear the whole way is collective purring and the smacking of lips, though exactly which kind of lips is hard to tell. Eventually, your arms are tied behind your back and the bag slips off, revealing your new surroundings.\n\nIt seems to just be some strange felin's hut, nothing special. However, the three felins before you are much more notable. Three females, barely clothed in torn tops and loincloths, gasping and panting as they rub their thighs desparately and fluff their fur to try and cool off. The holes in their simple shirts match their own claws, having been scratched at in attempts to get cooler. None of them seem terribly concious of their actions, mewling and purring and mrowling at each other, so drowned in their own heat that they probably are running on instinct. Though how that instinct involves you...\n\nBecomes quite clear quite quickly. Two of the felins begin to paw at your chest, pulling " + pullUD(1) + " your " + clothesTop() + " to expose your " + boobDesc() + " mounds, their fingers twirling about your " + nipDesc() + " nipples to stiffen them up. The third felin picks up a handful of vials filled with white liquid, stuff that can easily be brought from the store. She saunters over to you, her tail waving perversely, like she was about to climax from just thinking about what she's going to do. Then, her free hand reaches up to your mouth and pries it open, leaning back your head to make sure you swallow.",True)
             if (percent() < _str_ - 40):
                outputMainText(" However, the restraints they used on you aren't exactly tough and you manage to pull yourself free.\n\nSo entranced by their own heat, the felins hardly put up much of a fight, falling to the ground with the slightest push. They were so worked up over their plans with you that the falls send them over the edge. Their hands immediately slip under their loincloths and begins to ellicit plenty of wet and lewd sounds as they masturbate, neglecting you completely.\n\nNot really having been harmed, you take the vials that they were going to feed to you as reparations for their assault and go on your way, leaving them to their orgasmic fits.",False)
-               addManyItems(105, 3)
+               addManyItem(105, 3)
                hrs = 2
                doEnd()
             else:
@@ -15072,7 +15070,7 @@ def doSizCalit():
                doEnd()
             elif (getMilk > 4000):
                outputMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. However, you produce so much that they simply can't seem to drain you. Yet that doesn't keep them from trying... The more and more they suck from you, the more lazy their efforts become. Even the tail on your head slows in pace, until it comes to a stop...\n\nStill pinned by the many bodies, you can hear them purr as they have fallen asleep. You take the opportunity to wiggle yourself free, nearly yanking down the girl's panties in the process. Once out, they merely curl up on the bridge, cuddling against each other. Another girl seems to have her skimpy shirt pulled up to her second pair of breasts, while a male has a prickly penis pulled from his pants. Whatever they were planning to do, it obviously didn't get too far.\n\nAs payment for their feast, you grab a couple of their small pouches. It's the least you could do to make up for their rude ambush.",False)
-               addManyItems(204, 2)
+               addManyItem(204, 2)
                hrs = 3
                doEnd()
          else:
@@ -15661,13 +15659,13 @@ def doOviasis():
                   outputMainText("Thinking another dose might somehow help, you pull out an eggcelerator from your bag. ",True)
                   if (tempInt == 1):
                      outputMainText("Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the dose of eggcelerator down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. With her experience with the previous doses of eggcelerator, she manages to guide you correctly and lets out a squeak as she feels the suppository slip up into her passage.\n\nThe girl begins to quiver slightly as she feels her womb go into overdrive. A gasp escapes her lips as an egg immediately pushes through her folds, past your combined fingers. Suddenly, she seizes back into you, her back arching, as more eggs spill out of her womb. Her pussy lifts out of the water and into the air as her feet drag and kick through the sand below, tossing the pile about. Her exposed cunt spreads wide as another egg plops out into the water with another one right behind firing further out. She moans and whines as her body thrashes about, staring down at herself with fear as she's practically spreading her legs to anybody else in the lake and spreading her private area wide for them all to see as the eggs fly out of her. Jumping away from you with a sob, she stands up with a couple more eggs dropping between her thighs with thick strands of lubricant trailing. The girl hastily covers the exposed genitals with her one-piece suit, a tear shedding as she sees the crotch bulge with the next egg pushing through. Wholly embarrassed, she runs off into the brush, the eggs already slipping back into the rear of the suit as more collect before she disappears.\n\nLeft alone and feeling a little ashamed of how things progressed, you manage to fish out some eggs that survived and head off.",False)
-                     addManyItems(219, 3)
+                     addManyItem(219, 3)
                      stats(0,0,0,-1)
                      hrs = 3
                      doEnd()
                   if (tempInt == 2):
                      outputMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way...",False)
-                     addManyItems(230, 2)
+                     addManyItem(230, 2)
                      doCoin(15 + math.ceil(percent() / 10))
                      doLust(math.floor(lib / 2),0)
                      hrs = 3
@@ -16979,7 +16977,7 @@ def doDairyFarm():
                      teatSize += 5
                      teatPump += 40
                      udderPlay += 100
-                     addManyItems(501,3)
+                     addManyItem(501,3)
                      if (dairyFarmBrand == False):
                         dairyFarmBrand = True
                      hrs += 13
@@ -25042,6 +25040,7 @@ def frame1():
    for i in range(1, 13):
       Amount.viewAmount(i, False)
    showPage(False,"")
+   showMoveItem(False)
    loadPreferences()
    initinterface = False
    hideAmount()
@@ -26044,6 +26043,46 @@ class UpDown:
       if lustlabelvisible == True:
          lustimglabel["image"] = img
 
+class MoveItem:
+   def Show():
+      global moveitembutton, moveitembuttonvisible, themeColor, fontColor
+      if (moveitembuttonvisible == False):
+         moveitembutton = tkinter.Button(frame2, text="Move Item", background=themeColor, foreground=fontColor)
+         moveitembutton.place(anchor="center", height=46, width=140, x=167, y=90)
+         moveitembuttonvisible = True
+   def Hide():
+      global moveitembutton, moveitembuttonvisible
+      if (moveitembuttonvisible == True):
+         moveitembutton.destroy()
+         moveitembuttonvisible = False
+   def ChangeItem(item:str):
+      global moveitembutton, moveitembuttonvisible
+      if (moveitembuttonvisible == True):
+         moveitembutton["text"] = item
+   def ClearItem():
+      global moveitembutton, moveitembuttonvisible
+      if (moveitembuttonvisible == True):
+         moveitembutton["text"] = ""
+   def ShowAmount():
+      global moveitemamount, moveitemamountvisible, themeColor, fontColor
+      if (moveitemamountvisible == False):
+         moveitemamount = tkinter.Label(frame2, text="000", background=themeColor, foreground=fontColor)
+         moveitemamount.place(anchor="nw", height=15, width=30, x=207, y=100)
+         moveitemamountvisible = True
+   def HideAmount():
+      global moveitemamount, moveitemamountvisible
+      if (moveitemamountvisible == True):
+         moveitemamount.destroy()
+         moveitemamountvisible = False
+   def ChangeAmount(amount:int):
+      global moveitemamount, moveitemamountvisible
+      if (moveitemamountvisible == True):
+         moveitemamount["text"] = amount
+   def ClearAmount():
+      global moveitemamount, moveitemamountvisible
+      if (moveitemamountvisible == True):
+         moveitemamount["text"] = ""
+
 class Filexml():
    def getdh(file:str):
       tree = xmletree.parse(file)
@@ -26332,10 +26371,13 @@ bccolorlabel4.place(anchor="nw", height=179, width=334)
 pagelabel = tkinter.Label(frame2, text="BAG 1", background=themeColor, foreground=fontColor)
 pagelabel.place(anchor="nw", height=30, width=80, x=20, y=0)
 pageShow = True
-"""
-moveitembutton = tkinter.Button(frame2, text="Move Item")
+
+moveitembutton = tkinter.Button(frame2, text="Move Item", background=themeColor, foreground=fontColor)
 moveitembutton.place(anchor="center", height=46, width=140, x=167, y=90)
-"""
+moveitemamount = tkinter.Label(frame2, text="000", background=themeColor, foreground=fontColor)
+moveitemamount.place(anchor="nw", height=15, width=30, x=207, y=100)
+moveitembuttonvisible = True
+moveitemamountvisible = True
 
 #sidebar
 sidebar = ttk.Frame(mainframe)
@@ -26364,7 +26406,7 @@ creditsbutton.place(anchor="nw", width=80, x=249, y=30)
 textsidebox = tkinter.Frame(sidebar, background=themeColor)
 textsidebox.place(anchor="nw", height=300, width=330, x=0, y=80)
 textside = ScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
-textside.place(anchor="nw", height=300, width=330, x=0, y=80)
+textside.place(anchor="nw", height=300, width=330, x=0, y=0)
 textside.configure(state="disabled")
 textsidevisible = True
 
