@@ -17,6 +17,9 @@ Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
 Rearranged post-increment statements to work in python
 
+passiveItemRemove
+- Changed (ID == num and weapon == num) to (ID == weapon == num)
+
 doSleep
 - Replaced the Boolean() call with what is used everywhere else
 
