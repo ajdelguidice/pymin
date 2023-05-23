@@ -10,6 +10,7 @@ import pyminlib.as3types as as3
 import pathlib
 import xml.etree.ElementTree as xmletree
 import xml.dom.minidom as xmlminidom
+from miniamf import sol
 
 fontMain = ("Times New Roman", 12) #Array
 #Option3 #TextField
@@ -811,8 +812,8 @@ def ToggleTheme():
    savePreferences()
 
 def ChangeBackgroundColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount
-   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount"]:
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount, converttoxmlbutton, converttosolbutton
+   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton"]:
       try:
          if (eval(i).cget("background") != color):
             eval(i)["background"] = color
@@ -820,8 +821,8 @@ def ChangeBackgroundColor(color):
          continue
    
 def ChangeTextColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount
-   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount"]:
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount, converttoxmlbutton, converttosolbutton
+   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton"]:
       try:
          if (eval(i).cget("foreground") != color):
             eval(i)["foreground"] = color
@@ -2032,6 +2033,7 @@ def newGameGo():
    #Should work
    global currentState
    global doListen
+   ConvertButtons.Hide()
    ApButton.Hide()
    #this.appearanceText.visible = false;
    #this.appearanceBox.visible = false;
@@ -2561,6 +2563,7 @@ def appearanceGo():
    if (showSide == True):
       outputSideText(tempStr,True)
    else:
+      ConvertButtons.Hide()
       outputMainText(tempStr,True)
       ButtonFunctions.Visible(1,1,1,0,1,1,1,0,1,0,1,1)
       templist = [1, "More Stats", 2, "Titles", 3, "Statuses", 5, "Levels", 6, "Gear", 7, "Help", 11, "Credits", 12, "Return"]
@@ -3237,6 +3240,7 @@ def loadGo():
    #this.appearanceText.visible = false;
    #this.appearanceBox.visible = false;
    ButtonFunctions.Visible(1,1,1,1,1,1,1,0,1,1,1,1)
+   ConvertButtons.Show()
    templist = []
    if (pathlib.Path("./Nimin_Save1.xml").is_file() == True):
       dh = Filexml.getdh("./Nimin_Save1.xml")
@@ -3285,6 +3289,7 @@ def loadGo():
       global doListen
       slot = 0
       if ((buttonChoice != 12) and (buttonChoice != 4)):
+         ConvertButtons.Hide()
          slot = buttonChoice
          if ((buttonChoice == 1) and (pathlib.Path("./Nimin_Save1.xml").is_file() == True)):
             dh = Filexml.getdh("./Nimin_Save1.xml")
@@ -3328,6 +3333,7 @@ def loadGo():
       elif (buttonChoice == 4):
          doLoad(4)
       elif (buttonChoice == 12):
+         ConvertButtons.Hide()
          doReturn()
 
 def doSave(slot:int):
@@ -25053,6 +25059,7 @@ def frame1():
       Amount.viewAmount(i, False)
    showPage(False,"")
    showMoveItem(False)
+   ConvertButtons.Hide()
    loadPreferences()
    initinterface = False
    hideAmount()
@@ -26095,6 +26102,24 @@ class MoveItem:
       if (moveitemamountvisible == True):
          moveitemamount["text"] = ""
 
+class ConvertButtons:
+   def Show():
+      global converttoxmlbutton, converttosolbutton, convertbuttonsvisible
+      if (convertbuttonsvisible == False):
+         converttoxmlbutton = tkinter.Button(frame2, text="Convert to xml", background=themeColor, foreground=fontColor, command=soltoxml)
+         converttoxmlbutton.place(anchor="nw", height=46, width=140, x=97, y=20)
+         converttosolbutton = tkinter.Button(frame2, text="Convert to sol", background=themeColor, foreground=fontColor)
+         converttosolbutton.place(anchor="nw", height=46, width=140, x=97, y=112)
+         converttosolbutton["state"] = "disabled"
+         convertbuttonsvisible = True
+   def Hide():
+      global converttoxmlbutton, converttosolbutton, convertbuttonsvisible
+      if (convertbuttonsvisible == True):
+         converttosolbutton["state"] = "normal"
+         converttoxmlbutton.destroy()
+         converttosolbutton.destroy()
+         convertbuttonsvisible = False
+
 class Filexml():
    def getdh(file:str):
       tree = xmletree.parse(file)
@@ -26103,6 +26128,348 @@ class Filexml():
       d = track.find('day').text
       h = track.find('hour').text
       return [d, h]
+
+def soltoxml():
+   inputfilename = filedialog.askopenfilename()
+   outputfilename = filedialog.asksaveasfilename()
+   if (type(inputfilename) == tuple):
+      outputMainText("Please select an input file",True)
+   elif outputfilename == '':
+      outputMainText("Please select an output file location",True)
+   elif inputfilename == outputfilename:
+      outputMainText("Input file can not be the same as output file",True)
+   else:
+      if pathlib.Path(inputfilename).is_file() == True:
+         toxml(inputfilename, outputfilename)
+      elif pathlib.Path(inputfilename).is_dir() == True:
+         outputMainText("Error: Input file is not a file",True)
+      else:
+         outputMainText("Error: Input file does not exist",True)
+
+def toxml(inputfile, outputfile):
+   so = sol.load(inputfile)
+   strack = so["track"]
+   sstats = so["stats"]
+   slevel = so["level"]
+   smod = so["mod"]
+   squality = so["quality"]
+   scock = so["cock"]
+   sgirl = so["girl"]
+   sgear = so["gear"]
+   sstatus = so["status"]
+   saffinity = so["affinity"]
+   srep = so["rep"]
+   sknowledge = so["knowledge"]
+   sboss = so["boss"]
+   sknowSimpleAlchemy = so["knowSimpleAlchemy"]
+   sknowAdvancedAlchemy = so["knowAdvancedAlchemy"]
+   sknowComplexAlchemy = so["knowComplexAlchemy"]
+   smajorFetish = so["majorFetish"]
+   smoderateFetish = so["moderateFetish"]
+   sminorFetish = so["minorFetish"]
+   skid = so["kid"]
+   _currentState = strack[0]
+   _currentZone = strack[1]
+   _day = strack[2]
+   _hour = strack[3]
+   _currentDayCare = strack[4]
+   _inDungeon = strack[5]
+   _currentDungeon = strack[6]
+   _v7 = strack[7]
+   _strength = sstats[0]
+   _mentality = sstats[1]
+   _libido = sstats[2]
+   _sensitivity = sstats[3]
+   _HP = sstats[4]
+   _lust = sstats[5]
+   _coin = sstats[6]
+   _strMod = sstats[7]
+   _mentMod = sstats[8]
+   _libMod = sstats[9]
+   _senMod = sstats[10]
+   _hunger = sstats[11]
+   _SexP = slevel[0]
+   _levelUP = slevel[1]
+   _level = slevel[2]
+   _babyFactLevel = slevel[3]
+   _bodyBuildLevel = slevel[4]
+   _hyperHappyLevel = slevel[5]
+   _alchemistLevel = slevel[6]
+   _fetishMasterLevel = slevel[7]
+   _milkMaidLevel = slevel[8]
+   _shapeshiftyLevel = slevel[9]
+   _shapeshiftyFirst = slevel[10]
+   _shapeshiftySecond = slevel[11]
+   _runMod = smod[0]
+   _rapeMod = smod[1]
+   _cumMod = smod[2]
+   _cockSizeMod = smod[3]
+   _milkMod = smod[4]
+   _carryMod = smod[5]
+   _vagBellyMod = smod[6]
+   _pregChanceMod = smod[7]
+   _extraPregChance = smod[8]
+   _pregTimeMod = smod[9]
+   _enticeMod = smod[10]
+   _milkHPMod = smod[11]
+   _vagSizeMod = smod[12]
+   _vagElastic = smod[13]
+   _changeMod = smod[14]
+   _HPMod = smod[15]
+   _SexPMod = smod[16]
+   _minLust = smod[17]
+   _milkCap = smod[18]
+   _coinMod = smod[19]
+   _hipMod = smod[20]
+   _buttMod = smod[21]
+   _bellyMod = smod[22]
+   _cockMoistMod = smod[23]
+   _vagMoistMod = smod[24]
+   _lockTail = smod[25]
+   _lockFace = smod[26]
+   _lockSkin = smod[27]
+   _lockBreasts = smod[28]
+   _lockEars = smod[29]
+   _lockLegs = smod[30]
+   _lockNipples = smod[31]
+   _lockCock = smod[32]
+   _gender = squality[0]
+   _race = squality[1]
+   _body = squality[2]
+   _dominant = squality[3]
+   _hips = squality[4]
+   _butt = squality[5]
+   _tallness = squality[6]
+   _skinType = squality[7]
+   _tail = squality[8]
+   _ears = squality[9]
+   _hair = squality[10]
+   _hairColor = squality[11]
+   _hairLength = squality[12]
+   _legType = squality[13]
+   _wings = squality[14]
+   _faceType = squality[15]
+   _skinColor = squality[16]
+   _cockTotal = scock[0]
+   _humanCocks = scock[1]
+   _horseCocks = scock[2]
+   _wolfCocks = scock[3]
+   _catCocks = scock[4]
+   _rabbitCocks = scock[5]
+   _lizardCocks = scock[6]
+   _cockSize = scock[7]
+   _cockMoist = scock[8]
+   _balls = scock[9]
+   _ballSize = scock[10]
+   _showBalls = scock[11]
+   _knot = scock[12]
+   _bugCocks = scock[13]
+   _breastSize = sgirl[0]
+   _boobTotal = sgirl[1]
+   _nippleSize = sgirl[2]
+   _udders = sgirl[3]
+   _udderSize = sgirl[4]
+   _teatSize = sgirl[5]
+   _clitSize = sgirl[6]
+   _vagTotal = sgirl[7]
+   _vagSize = sgirl[8]
+   _vagMoist = sgirl[9]
+   _vulvaSize = sgirl[10]
+   _nipType = sgirl[11]
+   _attireTop = sgear[0]
+   _attireBot = sgear[1]
+   _weapon = sgear[2]
+   _pregRate = sstatus[0]
+   _pregnancyTime = sstatus[1]
+   _pregStatus = sstatus[2]
+   _eggLaying = sstatus[3]
+   _eggMaxTime = sstatus[4]
+   _eggTime = sstatus[5]
+   _eggRate = sstatus[6]
+   _exhaustion = sstatus[7]
+   _exhaustionPenalty = sstatus[8]
+   _milkEngorgement = sstatus[9]
+   _milkEngorgementLevel = sstatus[10]
+   _udderEngorgement = sstatus[11]
+   _udderEngorgementLevel = sstatus[12]
+   _heat = sstatus[13]
+   _heatTime = sstatus[14]
+   _heatMaxTime = sstatus[15]
+   _lactation = sstatus[16]
+   _udderLactation = sstatus[17]
+   _nipplePlay = sstatus[18]
+   _udderPlay = sstatus[19]
+   _blueBalls = sstatus[20]
+   _teatPump = sstatus[21]
+   _nipPump = sstatus[22]
+   _cockPump = sstatus[23]
+   _clitPump = sstatus[24]
+   _vulvaPump = sstatus[25]
+   _masoPot = sstatus[26]
+   _sMasoPot = sstatus[27]
+   _babyFree = sstatus[28]
+   _charmTime = sstatus[29]
+   _pheromone = sstatus[30]
+   _eggceleratorTime = sstatus[31]
+   _eggceleratorDose = sstatus[32]
+   _bodyOil = sstatus[33]
+   _lustPenalty = sstatus[34]
+   _fertileGel = sstatus[35]
+   _snuggleBall = sstatus[36]
+   _eggType = sstatus[37]
+   _milkSuppressant = sstatus[38]
+   _milkSuppressantLact = sstatus[39]
+   _milkSuppressantUdder = sstatus[40]
+   _suppHarness = sstatus[41]
+   _fertilityStatueCurse = sstatus[42]
+   _plumpQuats = sstatus[43]
+   _lilaWetStatus = sstatus[44]
+   _cockSnakePreg = sstatus[45]
+   _milkCPoisonNip = sstatus[46]
+   _milkCPoisonUdd = sstatus[47]
+   _cockSnakeVenom = sstatus[48]
+   _humanAffinity = saffinity[0]
+   _horseAffinity = saffinity[1]
+   _wolfAffinity = saffinity[2]
+   _catAffinity = saffinity[3]
+   _cowAffinity = saffinity[4]
+   _lizardAffinity = saffinity[5]
+   _rabbitAffinity = saffinity[6]
+   _fourBoobAffinity = saffinity[7]
+   _mouseAffinity = saffinity[8]
+   _birdAffinity = saffinity[9]
+   _pigAffinity = saffinity[10]
+   _twoBoobAffinity = saffinity[11]
+   _sixBoobAffinity = saffinity[12]
+   _eightBoobAffinity = saffinity[13]
+   _tenBoobAffinity = saffinity[14]
+   _cowTaurAffinity = saffinity[15]
+   _humanTaurAffinity = saffinity[16]
+   _skunkAffinity = saffinity[17]
+   _bugAffinity = saffinity[18]
+   _lilaRep = srep[0]
+   _lilaVulva = srep[1]
+   _lilaMilk = srep[2]
+   _lilaPreg = srep[3]
+   _malonRep = srep[4]
+   _malonPreg = srep[5]
+   _malonChildren = srep[6]
+   _mistressRep = srep[7]
+   _jamieRep = srep[8]
+   _jamieSize = srep[9]
+   _jamieChildren = srep[10]
+   _silRep = srep[11]
+   _silPreg = srep[12]
+   _silRate = srep[13]
+   _silLay = srep[14]
+   _silGrowthTime = srep[15]
+   _silTied = srep[16]
+   _lilaUB = srep[17]
+   _dairyFarmBrand = srep[18]
+   _lilaWetness = srep[19]
+   _jamieButt = srep[20]
+   _jamieBreasts = srep[21]
+   _jamieHair = srep[22]
+   _foundSoftlik = sknowledge[0]
+   _foundFirmshaft = sknowledge[1]
+   _foundTieden = sknowledge[2]
+   _foundSizCalit = sknowledge[3]
+   _foundOviasis = sknowledge[4]
+   _foundValley = sknowledge[5]
+   _foundSanctuary = sknowledge[6]
+   _defeatedMinotaur = sboss[0]
+   _defeatedFreakyGirl = sboss[1]
+   _defeatedSuccubus = sboss[2]
+   _knowLustDraft = sknowSimpleAlchemy[0]
+   _knowRejuvPot = sknowSimpleAlchemy[1]
+   _knowExpPreg = sknowSimpleAlchemy[2]
+   _knowBallSwell = sknowSimpleAlchemy[3]
+   _knowMaleEnhance = sknowSimpleAlchemy[4]
+   _knowSLustDraft = sknowAdvancedAlchemy[0]
+   _knowSRejuvPot = sknowAdvancedAlchemy[1]
+   _knowSExpPreg = sknowAdvancedAlchemy[2]
+   _knowSBallSwell = sknowAdvancedAlchemy[3]
+   _knowGenSwap = sknowAdvancedAlchemy[4]
+   _knowMasoPot = sknowAdvancedAlchemy[5]
+   _knowBabyFree = sknowAdvancedAlchemy[6]
+   _knowPotPot = sknowAdvancedAlchemy[7]
+   _knowMilkSuppress = sknowAdvancedAlchemy[8]
+   _knowSGenSwap = sknowComplexAlchemy[0]
+   _knowSMasoPot = sknowComplexAlchemy[1]
+   _knowSBabyFree = sknowComplexAlchemy[2]
+   _knowSPotPot = sknowComplexAlchemy[3]
+   _knowPussJuice = sknowComplexAlchemy[4]
+   _knowPheromone = sknowComplexAlchemy[5]
+   _knowBazoomba = sknowComplexAlchemy[6]
+   _maleFetish = smajorFetish[0]
+   _femaleFetish = smajorFetish[1]
+   _hermFetish = smajorFetish[2]
+   _narcissistFetish = smajorFetish[3]
+   _dependentFetish = smajorFetish[4]
+   _dominantFetish = smoderateFetish[0]
+   _submissiveFetish = smoderateFetish[1]
+   _lboobFetish = smoderateFetish[2]
+   _sboobFetish = smoderateFetish[3]
+   _furryFetish = smoderateFetish[4]
+   _scalyFetish = smoderateFetish[5]
+   _smoothyFetish = smoderateFetish[6]
+   _pregnancyFetish = sminorFetish[0]
+   _bestialityFetish = sminorFetish[1]
+   _milkFetish = sminorFetish[2]
+   _sizeFetish = sminorFetish[3]
+   _unbirthingFetish = sminorFetish[4]
+   _ovipositionFetish = sminorFetish[5]
+   _toyFetish = sminorFetish[6]
+   _hyperFetish = sminorFetish[7]
+   _humanChildren = skid[0]
+   _equanChildren = skid[1]
+   _lupanChildren = skid[2]
+   _felinChildren = skid[3]
+   _cowChildren = skid[4]
+   _lizanChildren = skid[5]
+   _lizanEggs = skid[6]
+   _bunnionChildren = skid[7]
+   _wolfPupChildren = skid[8]
+   _miceChildren = skid[9]
+   _birdEggs = skid[10]
+   _birdChildren = skid[11]
+   _pigChildren = skid[12]
+   _calfChildren = skid[13]
+   _bugEggs = skid[14]
+   _bugChildren = skid[15]
+   _skunkChildren = skid[16]
+   _minotaurChildren = skid[17]
+   _freakyGirlChildren = skid[18]
+   #= .find('').text
+   trav = so["trav"]
+   _bagArray = so["bagSave"]
+   _bagStackArray = so["bagStackSave"]
+   _stashArray = so["stashSave"]
+   _stashStackArray = so["stashStackSave"]
+   _pregArray = so["pregSave"]
+   string = "<data><track><currentState>" + str(_currentState) + "</currentState><currentZone>" + str(_currentZone) + "</currentZone><day>" + str(_day) + "</day><hour>" + str(_hour) + "</hour><currentDayCare>" + str(_currentDayCare) + "</currentDayCare><inDungeon>" + str(_inDungeon) + "</inDungeon><currentDungeon>" + str(_currentDungeon) + "</currentDungeon><v7>" + str(0.75) + "</v7></track><stats><strength>" + str(_strength) + "</strength><mentality>" + str(_mentality) + "</mentality><libido>" + str(_libido) + "</libido><sensitivity>" + str(_sensitivity) + "</sensitivity><HP>" + str(_HP) + "</HP><lust>" + str(_lust) + "</lust><coin>" + str(_coin) + "</coin><strMod>" + str(_strMod) + "</strMod><mentMod>" + str(_mentMod) + "</mentMod><libMod>" + str(_libMod) + "</libMod><senMod>" + str(_senMod) + "</senMod><hunger>" + str(_hunger) + "</hunger></stats><level><SexP>" + str(_SexP) + "</SexP><levelUP>" + str(_levelUP) + "</levelUP><level>" + str(_level) + "</level><babyFactLevel>" + str(_babyFactLevel) + "</babyFactLevel><bodyBuildLevel>" + str(_bodyBuildLevel) + "</bodyBuildLevel><hyperHappyLevel>" + str(_hyperHappyLevel) + "</hyperHappyLevel><alchemistLevel>" + str(_alchemistLevel) + "</alchemistLevel><fetishMasterLevel>" + str(_fetishMasterLevel) + "</fetishMasterLevel><milkMaidLevel>" + str(_milkMaidLevel) + "</milkMaidLevel><shapeshiftyLevel>" + str(_shapeshiftyLevel) + "</shapeshiftyLevel><shapeshiftyFirst>" + str(_shapeshiftyFirst) + "</shapeshiftyFirst><shapeshiftySecond>" + str(_shapeshiftySecond) + "</shapeshiftySecond></level><mod><runMod>" + str(_runMod) + "</runMod><rapeMod>" + str(_rapeMod) + "</rapeMod><cumMod>" + str(_cumMod) + "</cumMod><cockSizeMod>" + str(_cockSizeMod) + "</cockSizeMod><milkMod>" + str(_milkMod) + "</milkMod><carryMod>" + str(_carryMod) + "</carryMod><vagBellyMod>" + str(_vagBellyMod) + "</vagBellyMod><pregChanceMod>" + str(_pregChanceMod) + "</pregChanceMod><extraPregChance>" + str(_extraPregChance) + "</extraPregChance><pregTimeMod>" + str(_pregTimeMod) + "</pregTimeMod><enticeMod>" + str(_enticeMod) + "</enticeMod><milkHPMod>" + str(_milkHPMod) + "</milkHPMod><vagSizeMod>" + str(_vagSizeMod) + "</vagSizeMod><vagElastic>" + str(_vagElastic) + "</vagElastic><changeMod>" + str(_changeMod) + "</changeMod><HPMod>" + str(_HPMod) + "</HPMod><SexPMod>" + str(_SexPMod) + "</SexPMod><minLust>" + str(_minLust) + "</minLust><milkCap>" + str(_milkCap) + "</milkCap><coinMod>" + str(_coinMod) + "</coinMod><hipMod>" + str(_hipMod) + "</hipMod><buttMod>" + str(_buttMod) + "</buttMod><bellyMod>" + str(_bellyMod) + "</bellyMod><cockMoistMod>" + str(_cockMoistMod) + "</cockMoistMod><vagMoistMod>" + str(_vagMoistMod) + "</vagMoistMod><lockTail>" + str(_lockTail) + "</lockTail><lockFace>" + str(_lockFace) + "</lockFace><lockSkin>" + str(_lockSkin) + "</lockSkin><lockBreasts>" + str(_lockBreasts) + "</lockBreasts><lockEars>" + str(_lockEars) + "</lockEars><lockLegs>" + str(_lockLegs) + "</lockLegs><lockNipples>" + str(_lockNipples) + "</lockNipples><lockCock>" + str(_lockCock) + "</lockCock></mod><quality><gender>" + str(_gender) + "</gender><race>" + str(_race) + "</race><body>" + str(_body) + "</body><dominant>" + str(_dominant) + "</dominant><hips>" + str(_hips) + "</hips><butt>" + str(_butt) + "</butt><tallness>" + str(_tallness) + "</tallness><skinType>" + str(_skinType) + "</skinType><tail>" + str(_tail) + "</tail><ears>" + str(_ears) + "</ears><hair>" + str(_hair) + "</hair><hairColor>" + str(_hairColor) + "</hairColor><hairLength>" + str(_hairLength) + "</hairLength><legType>" + str(_legType) + "</legType><wings>" + str(_wings) + "</wings><faceType>" + str(_faceType) + "</faceType><skinColor>" + str(_skinColor) + "</skinColor></quality><cock><cockTotal>" + str(_cockTotal) + "</cockTotal><humanCocks>" + str(_humanCocks) + "</humanCocks><horseCocks>" + str(_horseCocks) + "</horseCocks><wolfCocks>" + str(_wolfCocks) + "</wolfCocks><catCocks>" + str(_catCocks) + "</catCocks><rabbitCocks>" + str(_rabbitCocks) + "</rabbitCocks><lizardCocks>" + str(_lizardCocks) + "</lizardCocks><cockSize>" + str(_cockSize) + "</cockSize><cockMoist>" + str(_cockMoist) + "</cockMoist><balls>" + str(_balls) + "</balls><ballSize>" + str(_ballSize) + "</ballSize><showBalls>" + str(_showBalls) + "</showBalls><knot>" + str(_knot) + "</knot><bugCocks>" + str(_bugCocks) + "</bugCocks></cock><girl><breastSize>" + str(_breastSize) + "</breastSize><boobTotal>" + str(_boobTotal) + "</boobTotal><nippleSize>" + str(_nippleSize) + "</nippleSize><udders>" + str(_udders) + "</udders><udderSize>" + str(_udderSize) + "</udderSize><teatSize>" + str(_teatSize) + "</teatSize><clitSize>" + str(_clitSize) + "</clitSize><vagTotal>" + str(_vagTotal) + "</vagTotal><vagSize>" + str(_vagSize) + "</vagSize><vagMoist>" + str(_vagMoist) + "</vagMoist><vulvaSize>" + str(_vulvaSize) + "</vulvaSize><nipType>" + str(_nipType) + "</nipType></girl><gear><attireTop>" + str(_attireTop) + "</attireTop><attireBot>" + str(_attireBot) + "</attireBot><weapon>" + str(_weapon) + "</weapon></gear><status><pregRate>" + str(_pregRate) + "</pregRate><pregnancyTime>" + str(_pregnancyTime) + "</pregnancyTime><pregStatus>" + str(_pregStatus) + "</pregStatus><eggLaying>" + str(_eggLaying) + "</eggLaying><eggMaxTime>" + str(_eggMaxTime) + "</eggMaxTime><eggTime>" + str(_eggTime) + "</eggTime><eggRate>" + str(_eggRate) + "</eggRate><exhaustion>" + str(_exhaustion) + "</exhaustion><exhaustionPenalty>" + str(_exhaustionPenalty) + "</exhaustionPenalty><milkEngorgement>" + str(_milkEngorgement) + "</milkEngorgement><milkEngorgementLevel>" + str(_milkEngorgementLevel) + "</milkEngorgementLevel><udderEngorgement>" + str(_udderEngorgement) + "</udderEngorgement><udderEngorgementLevel>" + str(_udderEngorgementLevel) + "</udderEngorgementLevel><heat>" + str(_heat) + "</heat><heatTime>" + str(_heatTime) + "</heatTime><heatMaxTime>" + str(_heatMaxTime) + "</heatMaxTime><lactation>" + str(_lactation) + "</lactation><udderLactation>" + str(_udderLactation) + "</udderLactation><nipplePlay>" + str(_nipplePlay) + "</nipplePlay><udderPlay>" + str(_udderPlay) + "</udderPlay><blueBalls>" + str(_blueBalls) + "</blueBalls><teatPump>" + str(_teatPump) + "</teatPump><nipPump>" + str(_nipPump) + "</nipPump><cockPump>" + str(_cockPump) + "</cockPump><clitPump>" + str(_clitPump) + "</clitPump><vulvaPump>" + str(_vulvaPump) + "</vulvaPump><masoPot>" + str(_masoPot) + "</masoPot><sMasoPot>" + str(_sMasoPot) + "</sMasoPot><babyFree>" + str(_babyFree) + "</babyFree><charmTime>" + str(_charmTime) + "</charmTime><pheromone>" + str(_pheromone) + "</pheromone><eggceleratorTime>" + str(_eggceleratorTime) + "</eggceleratorTime><eggceleratorDose>" + str(_eggceleratorDose) + "</eggceleratorDose><bodyOil>" + str(_bodyOil) + "</bodyOil><lustPenalty>" + str(_lustPenalty) + "</lustPenalty><fertileGel>" + str(_fertileGel) + "</fertileGel><snuggleBall>" + str(_snuggleBall) + "</snuggleBall><eggType>" + str(_eggType) + "</eggType><milkSuppressant>" + str(_milkSuppressant) + "</milkSuppressant><milkSuppressantLact>" + str(_milkSuppressantLact) + "</milkSuppressantLact><milkSuppressantUdder>" + str(_milkSuppressantUdder) + "</milkSuppressantUdder><suppHarness>" + str(_suppHarness) + "</suppHarness><fertilityStatueCurse>" + str(_fertilityStatueCurse) + "</fertilityStatueCurse><plumpQuats>" + str(_plumpQuats) + "</plumpQuats><lilaWetStatus>" + str(_lilaWetStatus) + "</lilaWetStatus><cockSnakePreg>" + str(_cockSnakePreg) + "</cockSnakePreg><milkCPoisonNip>" + str(_milkCPoisonNip) + "</milkCPoisonNip><milkCPoisonUdd>" + str(_milkCPoisonUdd) + "</milkCPoisonUdd><cockSnakeVenom>" + str(_cockSnakeVenom) + "</cockSnakeVenom></status><affinity><humanAffinity>" + str(_humanAffinity) + "</humanAffinity><horseAffinity>" + str(_horseAffinity) + "</horseAffinity><wolfAffinity>" + str(_wolfAffinity) + "</wolfAffinity><catAffinity>" + str(_catAffinity) + "</catAffinity><cowAffinity>" + str(_cowAffinity) + "</cowAffinity><lizardAffinity>" + str(_lizardAffinity) + "</lizardAffinity><rabbitAffinity>" + str(_rabbitAffinity) + "</rabbitAffinity><fourBoobAffinity>" + str(_fourBoobAffinity) + "</fourBoobAffinity><mouseAffinity>" + str(_mouseAffinity) + "</mouseAffinity><birdAffinity>" + str(_birdAffinity) + "</birdAffinity><pigAffinity>" + str(_pigAffinity) + "</pigAffinity><twoBoobAffinity>" + str(_twoBoobAffinity) + "</twoBoobAffinity><sixBoobAffinity>" + str(_sixBoobAffinity) + "</sixBoobAffinity><eightBoobAffinity>" + str(_eightBoobAffinity) + "</eightBoobAffinity><tenBoobAffinity>" + str(_tenBoobAffinity) + "</tenBoobAffinity><cowTaurAffinity>" + str(_cowTaurAffinity) + "</cowTaurAffinity><humanTaurAffinity>" + str(_humanTaurAffinity) + "</humanTaurAffinity><skunkAffinity>" + str(_skunkAffinity) + "</skunkAffinity><bugAffinity>" + str(_bugAffinity) + "</bugAffinity></affinity><rep><lilaRep>" + str(_lilaRep) + "</lilaRep><lilaVulva>" + str(_lilaVulva) + "</lilaVulva><lilaMilk>" + str(_lilaMilk) + "</lilaMilk><lilaPreg>" + str(_lilaPreg) + "</lilaPreg><malonRep>" + str(_malonRep) + "</malonRep><malonPreg>" + str(_malonPreg) + "</malonPreg><malonChildren>" + str(_malonChildren) + "</malonChildren><mistressRep>" + str(_mistressRep) + "</mistressRep><jamieRep>" + str(_jamieRep) + "</jamieRep><jamieSize>" + str(_jamieSize) + "</jamieSize><jamieChildren>" + str(_jamieChildren) + "</jamieChildren><silRep>" + str(_silRep) + "</silRep><silPreg>" + str(_silPreg) + "</silPreg><silRate>" + str(_silRate) + "</silRate><silLay>" + str(_silLay) + "</silLay><silGrowthTime>" + str(_silGrowthTime) + "</silGrowthTime><silTied>" + str(_silTied) + "</silTied><lilaUB>" + str(_lilaUB) + "</lilaUB><dairyFarmBrand>" + str(_dairyFarmBrand) + "</dairyFarmBrand><lilaWetness>" + str(_lilaWetness) + "</lilaWetness><jamieButt>" + str(_jamieButt) + "</jamieButt><jamieBreasts>" + str(_jamieBreasts) + "</jamieBreasts><jamieHair>" + str(_jamieHair) + "</jamieHair></rep><knowledge><foundSoftlik>" + str(_foundSoftlik) + "</foundSoftlik><foundFirmshaft>" + str(_foundFirmshaft) + "</foundFirmshaft><foundTieden>" + str(_foundTieden) + "</foundTieden><foundSizCalit>" + str(_foundSizCalit) + "</foundSizCalit><foundOviasis>" + str(_foundOviasis) + "</foundOviasis><foundValley>" + str(_foundValley) + "</foundValley><foundSanctuary>" + str(_foundSanctuary) + "</foundSanctuary></knowledge><boss><defeatedMinotaur>" + str(_defeatedMinotaur) + "</defeatedMinotaur><defeatedFreakyGirl>" + str(_defeatedFreakyGirl) + "</defeatedFreakyGirl><defeatedSuccubus>" + str(_defeatedSuccubus) + "</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>" + str(_knowLustDraft) + "</knowLustDraft><knowRejuvPot>" + str(_knowRejuvPot) + "</knowRejuvPot><knowExpPreg>" + str(_knowExpPreg) + "</knowExpPreg><knowBallSwell>" + str(_knowBallSwell) + "</knowBallSwell><knowMaleEnhance>" + str(_knowMaleEnhance) + "</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>" + str(_knowSLustDraft) + "</knowSLustDraft><knowSRejuvPot>" + str(_knowSRejuvPot) + "</knowSRejuvPot><knowSExpPreg>" + str(_knowSExpPreg) + "</knowSExpPreg><knowSBallSwell>" + str(_knowSBallSwell) + "</knowSBallSwell><knowGenSwap>" + str(_knowGenSwap) + "</knowGenSwap><knowMasoPot>" + str(_knowMasoPot) + "</knowMasoPot><knowBabyFree>" + str(_knowBabyFree) + "</knowBabyFree><knowPotPot>" + str(_knowPotPot) + "</knowPotPot><knowMilkSuppress>" + str(_knowMilkSuppress) + "</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>" + str(_knowSGenSwap) + "</knowSGenSwap><knowSMasoPot>" + str(_knowSMasoPot) + "</knowSMasoPot><knowSBabyFree>" + str(_knowSBabyFree) + "</knowSBabyFree><knowSPotPot>" + str(_knowSPotPot) + "</knowSPotPot><knowPussJuice>" + str(_knowPussJuice) + "</knowPussJuice><knowPheromone>" + str(_knowPheromone) + "</knowPheromone><knowBazoomba>" + str(_knowBazoomba) + "</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>" + str(_maleFetish) + "</maleFetish><femaleFetish>" + str(_femaleFetish) + "</femaleFetish><hermFetish>" + str(_hermFetish) + "</hermFetish><narcissistFetish>" + str(_narcissistFetish) + "</narcissistFetish><dependentFetish>" + str(_dependentFetish) + "</dependentFetish></majorFetish><moderateFetish><dominantFetish>" + str(_dominantFetish) + "</dominantFetish><submissiveFetish>" + str(_submissiveFetish) + "</submissiveFetish><lboobFetish>" + str(_lboobFetish) + "</lboobFetish><sboobFetish>" + str(_sboobFetish) + "</sboobFetish><furryFetish>" + str(_furryFetish) + "</furryFetish><scalyFetish>" + str(_scalyFetish) + "</scalyFetish><smoothyFetish>" + str(_smoothyFetish) + "</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>" + str(_pregnancyFetish) + "</pregnancyFetish><bestialityFetish>" + str(_bestialityFetish) + "</bestialityFetish><milkFetish>" + str(_milkFetish) + "</milkFetish><sizeFetish>" + str(_sizeFetish) + "</sizeFetish><unbirthingFetish>" + str(_unbirthingFetish) + "</unbirthingFetish><ovipositionFetish>" + str(_ovipositionFetish) + "</ovipositionFetish><toyFetish>" + str(_toyFetish) + "</toyFetish><hyperFetish>" + str(_hyperFetish) + "</hyperFetish></minorFetish><kid><humanChildren>" + str(_humanChildren) + "</humanChildren><equanChildren>" + str(_equanChildren) + "</equanChildren><lupanChildren>" + str(_lupanChildren) + "</lupanChildren><felinChildren>" + str(_felinChildren) + "</felinChildren><cowChildren>" + str(_cowChildren) + "</cowChildren><lizanChildren>" + str(_lizanChildren) + "</lizanChildren><lizanEggs>" + str(_lizanEggs) + "</lizanEggs><bunnionChildren>" + str(_bunnionChildren) + "</bunnionChildren><wolfPupChildren>" + str(_wolfPupChildren) + "</wolfPupChildren><miceChildren>" + str(_miceChildren) + "</miceChildren><birdEggs>" + str(_birdEggs) + "</birdEggs><birdChildren>" + str(_birdChildren) + "</birdChildren><pigChildren>" + str(_pigChildren) + "</pigChildren><calfChildren>" + str(_calfChildren) + "</calfChildren><bugEggs>" + str(_bugEggs) + "</bugEggs><bugChildren>" + str(_bugChildren) + "</bugChildren><skunkChildren>" + str(_skunkChildren) + "</skunkChildren><minotaurChildren>" + str(_minotaurChildren) + "</minotaurChildren><freakyGirlChildren>" + str(_freakyGirlChildren) + "</freakyGirlChildren></kid><trav></trav><bag>"
+   for i in range(0, 27):
+      string = string + "<slot" + str(i) + ">" + str(_bagArray[i]) + "</slot" + str(i) + ">"
+   string = string + "</bag><bagStack>"
+   for i in range(0, 27):
+      string = string + "<slot" + str(i) + ">" + str(_bagStackArray[i]) + "</slot" + str(i) + ">"
+   string = string + "</bagStack><stash>"
+   for i in range(0, 27):
+      string = string + "<slot" + str(i) + ">" + str(_stashArray[i]) + "</slot" + str(i) + ">"
+   string = string + "</stash><stashStack>"
+   for i in range(0, 27):
+      string = string + "<slot" + str(i) + ">" + str(_stashStackArray[i]) + "</slot" + str(i) + ">"
+   string = string + "</stashStack><preg>"
+   i = 0
+   while i < len(_pregArray):
+      string = string + "<i" + str(i) + ">" + str(_pregArray[i]) + "</i" + str(i) + ">"
+      i += 1
+   string = string + "</preg></data>"
+   data = xmlminidom.parseString(string)
+   spref = data.toprettyxml(indent ="\t")
+   with open(outputfile, "w") as xmldoc:
+      xmldoc.write(spref)
+   outputMainText("Success",True)
 
 themeColor = getThemeColor()
 initinterface = True
@@ -26390,6 +26757,12 @@ moveitemamount = tkinter.Label(frame2, text="000", background=themeColor, foregr
 moveitemamount.place(anchor="nw", height=15, width=30, x=207, y=100)
 moveitembuttonvisible = True
 moveitemamountvisible = True
+
+converttoxmlbutton = tkinter.Button(frame2, text="Convert to xml", background=themeColor, foreground=fontColor)
+converttoxmlbutton.place(anchor="nw", height=46, width=140, x=97, y=20)
+converttosolbutton = tkinter.Button(frame2, text="Convert to sol", background=themeColor, foreground=fontColor)
+converttosolbutton.place(anchor="nw", height=46, width=140, x=97, y=112)
+convertbuttonsvisible = True
 
 #sidebar
 sidebar = ttk.Frame(mainframe)
