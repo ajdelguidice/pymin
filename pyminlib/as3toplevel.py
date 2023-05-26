@@ -4,14 +4,16 @@ from numpy import nan
 from numpy import inf
 from numpy import NINF
 """
-This library implements types as close to how they were implemented in ActionScript 3 as I could get them.
-Currently only Array (lists in python) and Boolean methods.
+This library implements things as close to how they were implemented in ActionScript 3 as I could get them.
 These are full types so the you can define a variable as one of them and use the methods as you would in ActionScript3.
 The length method is just to return the length so it can't be assigned as it can in ActionScript3
 The inherited properties in ActionScript3 are too complex for me to implement or aren't documented very well so I won't be implementing most of them.
 Since it is hard to have a class and function with the same name, I put the conversion functions inside of their respective class (ex: instead of String(expression) to convert to string, use String.String(expression)).
 """
 def listtoarray(l:list):
+   """
+   A function to convert a python list to an Array.
+   """
    tempArray = Array()
    for i in range(0,len(l)):
       tempArray[i] = l[i]
