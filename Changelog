@@ -1,3 +1,8 @@
+v1.0.1
+Fixed bug where save converter buttons wouldn't go away
+Switched from using tkinter.ScrolledText to tkhtmlview.HTMLScrolledText (font styling should work now)
+
+v1.0.0
 Changed str variable to _str_ because it conflicts with a built in function
 Rearranged some statements to make more sense
 Converted variables before displaying them to the screen because "TypeError: can only concatenate str (not 'int') to str"
