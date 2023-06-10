@@ -13,6 +13,8 @@ from miniamf import sol
 from numpy import nan
 from numpy import inf
 from numpy import NINF
+from tkhtmlview import HTMLScrolledText
+import re
 
 class as3:
    class Array:
@@ -1229,6 +1231,7 @@ def UpdateTheme():
    global theme, themeColor
    themeColor = getThemeColor()
    ChangeBackgroundColor(themeColor)
+   UpdateText()
 
 def getThemeColor():
    global theme
@@ -1304,6 +1307,7 @@ def ToggleColor():
    else:
       fontColor = "#FFFFFF"     
    ChangeTextColor(fontColor)
+   UpdateText()
    savePreferences()
 
 def toggleSide():
@@ -1338,15 +1342,9 @@ def UpdateText():
    global fontColor, fontMain, fontSize, textMain, textSide, textsidevisible
    ChangeTextColor(fontColor)
    a = UTCheckBold()
-   #fontMain = "(" + "Times New Roman" + ", " + str(fontSize) + a + ")"
-   fontMain = ("Times New Roman", fontSize, a)
-   textmain.configure(state="normal")
-   textmain["font"] = fontMain
-   textmain.configure(state="disabled")
+   TextBoxes.doMainText()
    if (textsidevisible == True):
-      textside.configure(state="normal")
-      textside["font"] = fontMain
-      textside.configure(state="disabled")
+      TextBoxes.doSideText()
 
 #def SideHide():
    #SidePanel.Hide
@@ -3727,6 +3725,7 @@ def loadGo():
             else:
                loadGo()
       elif (buttonChoice == 4):
+         ConvertButtons.Hide()
          doLoad(4)
       elif (buttonChoice == 12):
          ConvertButtons.Hide()
@@ -26330,7 +26329,7 @@ class SidePanel:
       if textsidevisible == False:
          textsidebox = tkinter.Frame(sidebar, background=themeColor)
          textsidebox.place(anchor="nw", height=300, width=330, x=0, y=80)
-         textside = ScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
+         textside = HTMLScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
          textside.place(anchor="nw", height=300, width=330, x=0, y=0)
          textside.configure(state="disabled")
          textsidevisible = True
@@ -26386,10 +26385,13 @@ class ApButton:
          appearancebuttonvisible = False
 class TextBoxes:
    def doMainText():
-      global textmain, maintext
+      global textmain, maintext, themeColor, fontColor, fontSize, fontBold
       textmain.configure(state="normal")
-      textmain.delete(1.0,"end")
-      textmain.insert(1.0, maintext)
+      text = re.sub("(\t)", "    ", maintext)
+      if fontBold == True:
+         text = "<b>" + text + "</b>"
+      text = "<pre style=\"color: " + str(fontColor) + "; background-color: " + str(themeColor) + "; font-size: " + str(fontSize - 2) + "px; font-family: TkTextFont\">" + text + "</pre>"
+      textmain.set_html(text, False)
       textmain.configure(state="disabled")
    def ClearMain():
       global textmain, maintext
@@ -26407,25 +26409,30 @@ class TextBoxes:
       global textmain
       text = textmain.get(a, b)
       return text
+   def doSideText():
+      global textside, sidetext, themeColor, fontColor, fontSize, fontBold
+      textside.configure(state="normal")
+      text = re.sub("(\t)", "    ", sidetext)
+      if fontBold == True:
+         text = "<b>" + text + "</b>"
+      text = "<pre style=\"color: " + str(fontColor) + "; background-color: " + str(themeColor) + "; font-size: " + str(fontSize - 2) + "px; font-family: TkTextFont\">" + text + "</pre>"
+      textside.set_html(text, False)
+      textside.configure(state="disabled")
    def ClearSide():
-      global textside, textsidevisible
+      global textside, textsidevisible, sidetext
       if textsidevisible == True:
-         textside.configure(state="normal")
-         textside.delete(1.0,"end")
-         textside.configure(state="disabled")
+         sidetext = ""
+         TextBoxes.doSideText()
    def ClearAddSide(text):
-      global textside, textsidevisible
+      global textside, textsidevisible, sidetext
       if textsidevisible == True:
-         textside.configure(state="normal")
-         textside.delete(1.0,"end")
-         textside.insert(1.0, text)
-         textside.configure(state="disabled")
+         sidetext = text
+         TextBoxes.doSideText()
    def AddSide(text):
       global textside, textsidevisible
       if textsidevisible == True:
-         textside.configure(state="normal")
-         textside.insert("end", text)
-         textside.configure(state="disabled")
+         sidetext += text
+         TextBoxes.doSideText()
 
 class UpDown:
    def HideAll():
@@ -27172,7 +27179,7 @@ amountlabel11visible = True
 amountlabel12visible = True
 
 #textmain
-textmain = ScrolledText(mainframe, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
+textmain = HTMLScrolledText(mainframe, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
 textmain.place(anchor="nw", height=430, width=622, x=180, y=180)
 textmain.delete(1.0,"end")
 textmain.configure(state="disabled")
@@ -27228,7 +27235,7 @@ creditsbutton.place(anchor="nw", width=80, x=249, y=30)
 
 textsidebox = tkinter.Frame(sidebar, background=themeColor)
 textsidebox.place(anchor="nw", height=300, width=330, x=0, y=80)
-textside = ScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
+textside = HTMLScrolledText(textsidebox, cursor="arrow", wrap="word", background=themeColor, foreground=fontColor)
 textside.place(anchor="nw", height=300, width=330, x=0, y=0)
 textside.configure(state="disabled")
 textsidevisible = True
@@ -27269,5 +27276,6 @@ ChangeTKFColor("#000000")
 UpdateText()
 """
 maintext = ""
+sidetext = ""
 frame1()
 root.mainloop()
