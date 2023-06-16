@@ -1,3 +1,7 @@
+v1.0.2
+(Mostly) Fixed hotkeys
+Broke bag/stash navigation
+
 v1.0.1
 Fixed bug where save converter buttons wouldn't go away
 Switched from using tkinter.ScrolledText to tkhtmlview.HTMLScrolledText (font styling should work now)

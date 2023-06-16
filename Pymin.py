@@ -1002,31 +1002,31 @@ def ButtonEvent12():
 def doListen():
    pass
 
-def Side1Event():
-   SideEvent(1)
+def side1Event():
+   sideEvent(1)
 
-def Side2Event():
-   SideEvent(2)
+def side2Event():
+   sideEvent(2)
 
-def Side3Event():
-   SideEvent(3)
+def side3Event():
+   sideEvent(3)
 
-def Side4Event():
-   SideEvent(4)
+def side4Event():
+   sideEvent(4)
 
-def Side5Event():
-   SideEvent(5)
+def side5Event():
+   sideEvent(5)
 
-def Side6Event():
-   SideEvent(6)
+def side6Event():
+   sideEvent(6)
 
-def Side7Event():
-   SideEvent(7)
+def side7Event():
+   sideEvent(7)
 
-def Side8Event():
-   SideEvent(8)
+def side8Event():
+   sideEvent(8)
 
-def SideEvent(which:int):
+def sideEvent(which:int):
    global sideFocus
    sideFocus = which
    if (which == 1):
@@ -1067,126 +1067,123 @@ def Option6Event():
 def Option7Event():
    toggleSide()
 
-"""
-def keysUp():      {
-   if(!e.shiftKey)
-   {
-      this.shiftHeld = False
-   }
-}
-"""
-"""
-def hotKeys():
-   if (shiftHeld == False)
-      if((e.keyCode == 103 || e.keyCode == 81) && this.Choice1.visible == True)
-         this.buttonChoice = 1;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 104 || e.keyCode == 87) && this.Choice2.visible == True)
-         this.buttonChoice = 2;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 105 || e.keyCode == 69) && this.Choice3.visible == True)
-         this.buttonChoice = 3;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 109 || e.keyCode == 82) && this.Choice4.visible == True)
-         this.buttonChoice = 4;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 100 || e.keyCode == 65) && this.Choice5.visible == True)
-         this.buttonChoice = 5;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 101 || e.keyCode == 83) && this.Choice6.visible == True)
-         this.buttonChoice = 6;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 102 || e.keyCode == 68) && this.Choice7.visible == True)
-         this.buttonChoice = 7;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 107 || e.keyCode == 70) && this.Choice8.visible == True)
-         this.buttonChoice = 8;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 97 || e.keyCode == 90) && this.Choice9.visible == True)
-         this.buttonChoice = 9;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 98 || e.keyCode == 88) && this.Choice10.visible == True)
-         this.buttonChoice = 10;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 99 || e.keyCode == 67) && this.Choice11.visible == True)
-         this.buttonChoice = 11;
-         this.hideUpDown();
-         this.doListen();
-      if((e.keyCode == 13 || e.keyCode == 86) && this.Choice12.visible == True)
-         this.buttonChoice = 12;
-         this.hideUpDown();
-         this.doListen();
-   if(e.keyCode == 85 && this.showSide == True)
-      this.sideEvent(1);
-   else if(e.keyCode == 85 && this.showSide == False && this.appearanceText.visible == True)
-      this.appearanceGo();
-   if(e.keyCode == 73 && this.showSide == True)
-      this.sideEvent(2);
-   if(e.keyCode == 79 && this.showSide == True)
-      this.sideEvent(3);
-   if(e.keyCode == 80 && this.showSide == True)
-      this.sideEvent(4);
-   if(e.keyCode == 72 && this.showSide == True)
-      this.sideEvent(5);
-   if(e.keyCode == 74 && this.showSide == True)
-      this.sideEvent(6);
-   if(e.keyCode == 75 && this.showSide == True)
-      this.sideEvent(7);
-   if(e.keyCode == 76 && this.showSide == True)
-      this.sideEvent(8);
-   if(e.keyCode == 37)
-      this.toggleTheme();
-   if(e.keyCode == 38)
-      this.fontSizeUp();
-   if(e.keyCode == 39)
-      this.toggleColor();
-   if(e.keyCode == 40)
-      this.fontSizeDown();
-   if(e.keyCode == 17)
-      this.fontSizeReset();
-   if(e.keyCode == 190 && this.Option7.visible == True)
-      this.toggleSide();
-   if(e.keyCode == 191)
-      this.toggleBold();
-   if(e.keyCode == 113 && this.saveGame.visible == True)
-      this.saveGo();
-   if(e.keyCode == 115 && this.loadGame.visible == True)
-      this.loadGo();
-   if(e.keyCode == 8 && this.newGame.visible == True)
-      this.newGameGo();
-   if(e.shiftKey)
-      this.shiftHeld = True
-   if(this.inBag == True)
-      if(this.shiftHeld)
-         if((e.keyCode == 103 || e.keyCode == 81) && this.Choice1.visible == True)
-            this.itemMove(1);
-         if((e.keyCode == 104 || e.keyCode == 87) && this.Choice2.visible == True)
-            this.itemMove(2);
-         if((e.keyCode == 105 || e.keyCode == 69) && this.Choice3.visible == True)
-            this.itemMove(3);
-         if((e.keyCode == 100 || e.keyCode == 65) && this.Choice5.visible == True)
-            this.itemMove(5);
-         if((e.keyCode == 101 || e.keyCode == 83) && this.Choice6.visible == True)
-            this.itemMove(6);
-         if((e.keyCode == 102 || e.keyCode == 68) && this.Choice7.visible == True)
-            this.itemMove(7);
-         if((e.keyCode == 97 || e.keyCode == 90) && this.Choice9.visible == True)
-            this.itemMove(9);
-         if((e.keyCode == 98 || e.keyCode == 88) && this.Choice10.visible == True)
-            this.itemMove(10);
-         if((e.keyCode == 99 || e.keyCode == 67) && this.Choice11.visible == True)
-            this.itemMove(11);
-"""
+def keysUp(e):
+   global shiftHeld, keys
+   if (keys[e.keycode] == 13):
+      shiftHeld = False
+
+def hotKeys(keyCode):
+   global shiftHeld, buttonChoice, showSide, inBag, button1Visible, button2Visible, button3Visible, button4Visible, button5Visible, button6Visible, button7Visible, button8Visible, button9Visible, button10Visible, button11Visible, button12Visible, appearancebuttonvisible, option7Visible, showsavegame, showloadgame, shownewgame
+   if (shiftHeld == False):
+      #numpad7 or q
+      if ((keyCode == 103 or keyCode == 81) and button1Visible == True):
+         buttonChoice = 1
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 104 or keyCode == 87) and button2Visible == True):
+         buttonChoice = 2
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 105 or keyCode == 69) and button3Visible == True):
+         buttonChoice = 3
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 109 or keyCode == 82) and button4Visible == True):
+         buttonChoice = 4
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 100 or keyCode == 65) and button5Visible == True):
+         buttonChoice = 5
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 101 or keyCode == 83) and button6Visible == True):
+         buttonChoice = 6
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 102 or keyCode == 68) and button7Visible == True):
+         buttonChoice = 7
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 107 or keyCode == 70) and button8Visible == True):
+         buttonChoice = 8
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 97 or keyCode == 90) and button9Visible == True):
+         buttonChoice = 9
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 98 or keyCode == 88) and button10Visible == True):
+         buttonChoice = 10
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 99 or keyCode == 67) and button11Visible == True):
+         buttonChoice = 11
+         UpDown.HideAll()
+         doListen()
+      if ((keyCode == 13 or keyCode == 86) and button12Visible == True):
+         buttonChoice = 12
+         UpDown.HideAll()
+         doListen()
+   if (keyCode == 85 and showSide == True):
+      sideEvent(1)
+   elif (keyCode == 85 and showSide == False and appearancebuttonvisible == True):
+      appearanceGo()
+   if (keyCode == 73 and showSide == True):
+      sideEvent(2)
+   if (keyCode == 79 and showSide == True):
+      sideEvent(3)
+   if (keyCode == 80 and showSide == True):
+      sideEvent(4)
+   if (keyCode == 72 and showSide == True):
+      sideEvent(5)
+   if (keyCode == 74 and showSide == True):
+      sideEvent(6)
+   if (keyCode == 75 and showSide == True):
+      sideEvent(7)
+   if (keyCode == 76 and showSide == True):
+      sideEvent(8)
+   if (keyCode == 37):
+      toggleTheme()
+   if (keyCode == 38):
+      fontSizeUp()
+   if (keyCode == 39):
+      toggleColor()
+   if (keyCode == 40):
+      fontSizeDown()
+   if (keyCode == 17):
+      fontSizeReset()
+   if (keyCode == 190 and option7Visible == True):
+      toggleSide()
+   if (keyCode == 191):
+      toggleBold()
+   if (keyCode == 113 and showsavegame == True):
+      saveGo()
+   if (keyCode == 115 and showloadgame == True):
+      loadGo()
+   if (keyCode == 8 and shownewgame == True):
+      newGameGo()
+   if (keyCode == 16):
+      shiftHeld = True
+   if (inBag == True):
+      if (shiftHeld == True):
+         if ((keyCode == 103 or keyCode == 81) and button1Visible == True):
+            itemMove(1)
+         if ((keyCode == 104 or keyCode == 87) and button2Visible == True):
+            itemMove(2)
+         if ((keyCode == 105 or keyCode == 69) and button3Visible == True):
+            itemMove(3)
+         if ((keyCode == 100 or keyCode == 65) and button5Visible == True):
+            itemMove(5)
+         if ((keyCode == 101 or keyCode == 83) and button6Visible == True):
+            itemMove(6)
+         if ((keyCode == 102 or keyCode == 68) and button7Visible == True):
+            itemMove(7)
+         if ((keyCode == 97 or keyCode == 90) and button9Visible == True):
+            itemMove(9)
+         if ((keyCode == 98 or keyCode == 88) and button10Visible == True):
+            itemMove(10)
+         if ((keyCode == 99 or keyCode == 67) and button11Visible == True):
+            itemMove(11)
 
 def appearance():
    appearanceGo()
@@ -1206,7 +1203,7 @@ def ToggleTheme():
    if (theme >= 6):
       theme = 0
    themeColor = getThemeColor()
-   UpdateTheme()
+   updateTheme()
    savePreferences()
 
 def ChangeBackgroundColor(color):
@@ -1227,11 +1224,11 @@ def ChangeTextColor(color):
       except:
          continue
 
-def UpdateTheme():
+def updateTheme():
    global theme, themeColor
    themeColor = getThemeColor()
    ChangeBackgroundColor(themeColor)
-   UpdateText()
+   updateText()
 
 def getThemeColor():
    global theme
@@ -1255,20 +1252,20 @@ def FontSizeDown():
    global fontSize
    if (fontSize > 4):
       fontSize -= 2
-   UpdateText()
+   updateText()
    savePreferences()
 
 def FontSizeReset():
    global fontSize
    fontSize = 12
-   UpdateText()
+   updateText()
    savePreferences()
 
 def FontSizeUp():
    global fontSize
    if (fontSize < 26):
       fontSize += 2
-   UpdateText()
+   updateText()
    savePreferences()
 
 def ToggleBold():
@@ -1277,7 +1274,7 @@ def ToggleBold():
       fontBold = True
    else:
       fontBold = False
-   UpdateText()
+   updateText()
    savePreferences()
 
 def ToggleColor():
@@ -1307,7 +1304,7 @@ def ToggleColor():
    else:
       fontColor = "#FFFFFF"     
    ChangeTextColor(fontColor)
-   UpdateText()
+   updateText()
    savePreferences()
 
 def toggleSide():
@@ -1338,7 +1335,7 @@ def UTCheckBold():
    else:
       return ""
 
-def UpdateText():
+def updateText():
    global fontColor, fontMain, fontSize, textMain, textSide, textsidevisible
    ChangeTextColor(fontColor)
    a = UTCheckBold()
@@ -1378,8 +1375,8 @@ def loadPreferences():
       fontBold = False
       fontColor = "#000000"
       SidePanel.Show()
-   UpdateText()
-   UpdateTheme()
+   updateText()
+   updateTheme()
 
 def outputMainText(texts:str, reset:bool, *textCheck):
    #!
@@ -4714,6 +4711,7 @@ def doBag():
    showMoveItem(True)
    choiceListButtons("Bag")
    choiceListBlanks()
+   ButtonFunctions.EnableAll()
    def doListen():
       global buttonChoice, moveItemID, moveItemStack, inBag, choiceListResult
       global doListen
@@ -4912,9 +4910,9 @@ def itemMove(slot:int):
       moveItemStack = bagStackArray[tempI]
       bagArray[tempI] = tempInt
       bagStackArray[tempI] = tempInt2
-      trace(tempI)
-      trace(bagArray)
-      trace(bagStackArray)
+      #trace(tempI)
+      #trace(bagArray)
+      #trace(bagStackArray)
    if (moveItemID == 0):
       showMoveItem(False)
    else:
@@ -25473,7 +25471,7 @@ def frame1():
    ApButton.Hide()
    SidePanel.Option7Hide()
    SGButton.Hide()
-   UpdateText()
+   updateText()
    outputMainText("Nimin: Fetish Fantasy\n    v" + versionNumber + "\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n    www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n    fenoxo.com\n\nCurrently maintained by:    ajdelguidice\n    github.com/ajdelguidice\nFor tutorial/guide, questions, or bug reports, visit github.com/ajdelguidice/pymin/", True)
    
 class StatsPane:
@@ -26310,7 +26308,6 @@ class SidePanel:
       global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, textsidebox
       global themeColor, fontColor
       looksbutton = tkinter.Button(sidebar, text="Look", command=appearanceGo, background=themeColor, foreground=fontColor)
-      looksbutton.configure()
       looksbutton.place(anchor="nw", width=80, x=0, y=0)
       statsbutton = tkinter.Button(sidebar, text="Stats", command=detailedStats, background=themeColor, foreground=fontColor)
       statsbutton.place(anchor="nw", width=80, x=83, y=0)
@@ -26333,7 +26330,7 @@ class SidePanel:
          textside.place(anchor="nw", height=300, width=330, x=0, y=0)
          textside.configure(state="disabled")
          textsidevisible = True
-         UpdateText()
+         updateText()
       ApButton.Hide()
    def Hide():
       global looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, textside, textsidevisible, textsidebox
@@ -26933,13 +26930,32 @@ class lists:
          a.append(0)
       return a
 
+def endProcess():
+   global root #, shift
+   #shift.terminate()
+   root.destroy()
+
+#key functions
+keys = [None, None, None, None, None, None, None, None, None, 27, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 13, 17, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, None, 16, 220, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 16, 106, 18, 32, 20, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 144, None, 103, 104, 105, 109, 100, 101, 102, 107, 97, 98, 99, 96, 110, None, None, None, 122, 123, None, None, None, None, None, None, None, 13, 17, 111, None, 18, None, 36, 38, 33, 37, 39, 35, 40, 34, 45, 46]
+def key_press(e):
+   global keys
+   hotKeys(keys[e.keycode])
+
+def key_code_translator(keycode):
+   #keys =   
+   keylist = [None,None,None,None,None,None,None,None,None,None,]
 
 themeColor = getThemeColor()
 initinterface = True
+
 #window
 root = tkinter.Tk()
 root.title("Pymin")
 root.geometry("1176x662")
+
+#key bindings
+root.bind('<KeyPress>',key_press)
+root.bind('<KeyRelease>',keysUp)
 
 #images
 quitimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\x08\x04\x00\x00\x00\';\x076\x00\x00\x03\x19zTXtRaw profile type exif\x00\x00x\xda\xed\x97[r\x1c!\x0cE\xffYE\x96\x80\x04Bb9<\xab\xb2\x83,?\x17\x9a\x99\xcc\xd8y\xd8\xe5\xafTMS\r\xb4\xa0%\xa1#\xf5\xd8n\xfc\xf8>\xdd7\\\xec\x83wQ\xd4RN\xc9\xe3\x8a9f.\x98\x98\xbf\xae\xb2{\xf2q\xf7\x8f\xb2\xf5\xfc$w\xf7\x05\x86(`\x0c\xd7\xa3\xa5#\x1f\x903\xf6\xf3\x91\xb7\xa3\xa7@.\x0f\x8a\xf28\x0b\xf5y\xa1\x1cEl\xc7\xc0\xcd\xa3c(\xd0e\xc0\xf7\xa3\xa8\x1cE\x81\x8f\xe5x=\xd7c9e\xd3\xc7#\x9c\xf7\xd6\xf1\xe9\x8c\xfbv\xab\x8bA9I"\x8d\xe8#{\xd5\x9417\xf6Q\x11\xb7\xbe\x1c\x9d\x8d\xf3zO\xea\xa5\xe7\xed\xb3\xbbmE\xe4\x99G\xa0\xe0wo\x97\x97a\xdd\x1c\n\xc6\x8c\x9e\xb0\x07\x87\xda\xf3\x08Y\xc1Z\xdc\xf1\xf5\x0e\xc8\xe0\x02<\xcf\'\xb6\xc3\xdf\xa3\xf9\x14\x9b\xdb\xf8\x87\xcb}\xe4X\'\x1d\x9e\xd3\xe06;i\xe0\xde-\xbcI\x834\x8e<\xbc\xa1\x97\xee\xe3\x96\xbb\xb7\x0b$\xbf\xc7\xbd\x99>x\xa4\xf1n\x98\x9f<\xd2p\xb7\xe1\x1f\xb1\xae{\xcens\x8e\xebt%&\x1c9\x9dC\xddNBn\xa3\x9c\xbd\xae$\xd8\xaf%4\xc5-\x98\xebn\x19\xcdP\x01\r9\xd6}\xf3\x15\xadQ&\x06\xe2I\x91:\x15\x9a\x8e\xc6\x9e4j\xf01\xf2`\xc5\xc8\xdc8l\x99\x81E\xe6\x16\x16\xf4\xb8\x1aMV\xe0\xef\xc1\x80\xbe!U\x02\xa4<\xa7;\xbe\xd0\xb6\x9b\xb7\xbdF\x06\xcb\x9d\xb0\x95\t\xcah\xe7\xd2?\x9a\xfb\xc8\xa6\xbf\xb59W-\x11\xb9S3t\x01\xe6U\x86pc\x91[=\xb6\x81\x08\xcd\x13T\xd9\x01\xbe\xb5\xe7\x84<`\x03\x10\xca\x0e\xb3\xe1\x80\xc5\xd7KE\x15\xfa\x95[a\x83\x0e\xd8\'\x18\xaf\xe2&\xed\xd7\xfbKQ\x84m\x813\x14\x80\xc0\'\nB\x89\xbc2+\x11\x02i\x00T\xc8\x1b\xca\x8a+\x08\x90\x08w8\xc91\x84\x046(\x02\x98vxGi\xefe\xe1K\x8e\xaf$HHHA\xc1\x06\x05\nX1\n\xf2G\xa3!\x87\x8a\x04\x89"\x92D\xc5$KI!E\x87\nKI\xd3\xfa\xdc\x16\r\x1aU4\xa9\xaai\xd6b\xc1\xa2\x89%S3\xcbV2\xe7\x80\xaf\xb1d\x94c\xb6\x9cs)\xb0Y\xa0\xb9$W\xb0\xbf@R\xb9\x86\x1a\xab\xd4T\xb5Z\xcd\xb54\xa4O\x8bMZj\xda\xac\xe5V:\xf7\xd0Q\xc7=u\xed\xd6s/\x83\x06Ri\xc4!n\xa4\xa1\xc3F\x1ee"\xd7f\x98q\xcaLS\xa7\xcd<\xcb\x9d\xda\xa1\xfa\xae}\x82\x1a\x1dj\xbcI\xad}z\xa7\x06\xa9\xea5\xba\x9d/P\xb2\x98\x81\x18G\x02q]\x04\xd6\xe7p1\xf3F1\xf2"\xb7\x98\xf9\xcc\xa8\na8)\x8bM\'_(qt!\x0eb\x99tg\xf7\x8b\xdc\xa7\xb8\xb9\x14\xff\xca\x8d?J\xce-t_$\xb7\xb9\xb9!\x0f\xdc~C\xad\xaf_\xe2\xb6\x89]U\xb8b\xea\x03\xaa\x0f\xeb\xc3\n[Y\xbf\xa2\xc5\xdd&_\x1d_\x8a^\x8a^\x8a^\x8a^\x8a^\x8a^\x8a\xfecE\x13\x7f<\xe0?J\xf7\x13\xa7\xd0\xbc\x08=]s5\x00\x00\x01#iCCPICC profile\x00\x00x\x9c\x9d\x90\xbfJ\xc3P\x14\xc6\x7f\xa9\xe2?\xec\xa48\x14\x87\x0c\xe2Vp1\x93KU\x08B\x85\x18+X\x9d\xd2$\xc5b\x12C\x92R|\x03\xdfD\x1f\xa6\x83 \xf8\x08>\x80\x82\xb3\xdf\x8d\x0e\x0ef\xf1\xc2\xe1\xfbq8\xe7\xfb\xee\xbd\xd0\xb2\x930-\x17\xf7 \xcd\xaa\xc2\xf5{\xc3\xcb\xe1\x95\xbd\xfc\xc6*m\xa0\xc3n\x10\x96y\xcf\xf3\xfa4\x9e\xcfW,\xa3/]\xe3\xd5<\xf7\xe7Y\x8a\xe22\x94\xceUY\x98\x17\x15X\x07bgV\xe5\x86Ul\xde\x0e\xfc#\xf1\x83\xd8\x8e\xd2,\x12?\x89w\xa242lv\xfd4\x99\x86?\x9e\xe66\xebqvqn\xfa\xaam\\N8\xc5\xc3f\xc4\x94\t\t\x15]i\xa6\xce1\x0e\xfbR\x97\x82\x80{JBiB\xac\xdeL3\x157\xa2RN.\x87\xa2\x81H\xb7i\xc8\xeb\xd4y\x9eRF\xf2\x98\xc8\xcb$\xdc\x91\xca\xd3\xe4a\xfe\xf7{\xed\xe3\xac\xde\xb4\xb6\xe6yP\x04ukA\xd5\x1a\x8f\xe1\xfd\x11\xdaC\xd8x\x86\xb5\xeb\x86\xac\x95\xdfok\x98q\xea\x99\x7f\xbe\xf1\x0b\xd6\x9bP\\\x8a\xac\x86\x96\x00\x00\x00\x02bKGD\x00\xff\x87\x8f\xcc\xbf\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe6\t\r\x00(\x1aS\x8c\xbfC\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x00\xddIDAT\x08\x1d\x01\xd2\x00-\xff\x00\x00\x00\x00\x14\x00\xff\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\xff\x00\x00\x02\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x02\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x01\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00/\x16\x10\x1a\xbb\xa6VN\x00\x00\x00\x00IEND\xaeB`\x82""")
@@ -27093,7 +27109,7 @@ loadgamebutton.place(anchor="n", height=30, width=100, x=90, y=515)
 newgamebutton = tkinter.Button(statframe, text="New Game", command=NewGameStart, background=themeColor, foreground=fontColor)
 newgamebutton.place(anchor="n", height=30, width=100, x=90, y=550)
 
-quitbutton = tkinter.Button(statframe, image=quitimg,command=root.destroy, background="#ff0000")
+quitbutton = tkinter.Button(statframe, image=quitimg,command=endProcess, background="#ff0000")
 quitbutton.place(anchor="nw", height=20, width=20, x=0, y=591)
 
 buttonpanel = ttk.Frame(mainframe)
@@ -27262,19 +27278,7 @@ textcolorbutton.place(anchor="nw", height=30, width=30, x=245, y=385)
 themebutton7 = tkinter.Button(sidebar, text="O", command=Option7Event, background=themeColor, foreground=fontColor)
 themebutton7.place(anchor="nw", height=30, width=30, x=301, y=385)
 option7Visible = True
-"""
-def itemTest():
-   for i in range(0, 540):
-      doItemUse(i)
-testbutton = tkinter.Button(mainframe, text = "itemtest", command=itemTest)
-testbutton.place(anchor="nw", height=50, width=100, x=843, y=2)
-"""
-"""
-appearancebutton.destroy()
-ChangeTKBColor("#FFFFFF")
-ChangeTKFColor("#000000")
-UpdateText()
-"""
+
 maintext = ""
 sidetext = ""
 frame1()
