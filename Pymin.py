@@ -15,7 +15,7 @@ from numpy import inf
 from numpy import NINF
 from tkhtmlview import HTMLScrolledText
 import re
-import platform.system as ptfm
+import platform
 
 class as3:
    class Array:
@@ -26932,17 +26932,16 @@ class lists:
       return a
 
 def endProcess():
-   global root #, shift
-   #shift.terminate()
+   global root
    root.destroy()
 
 #key functions
-linuxkeys = [None, None, None, None, None, None, None, None, None, 27, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 13, 17, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, None, 16, 220, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 16, 106, 18, 32, 20, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 144, None, 103, 104, 105, 109, 100, 101, 102, 107, 97, 98, 99, 96, 110, None, None, None, 122, 123, None, None, None, None, None, None, None, 13, 17, 111, None, 18, None, 36, 38, 33, 37, 39, 35, 40, 34, 45, 46]
+linuxkeys = [None, None, None, None, None, None, None, None, None, 27, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 13, 17, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 192, 16, 220, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 16, 106, 18, 32, 20, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 144, 145, 103, 104, 105, 109, 100, 101, 102, 107, 97, 98, 99, 96, 110, None, None, None, 122, 123, None, None, None, None, None, None, None, 13, 17, 111, None, 18, None, 36, 38, 33, 37, 39, 35, 40, 34, 45, 46, None, None, None, None, None, None, None, 19]
 def key_press(e):
    global linuxkeys
-   pt = ptfm()
+   pt = platform.system()
    if pt == "Linux":
-      if linuxkeys[e.keycode] == "undefined":
+      if linuxkeys[e.keycode] == None:
          pass
       else:
          hotKeys(linuxkeys[e.keycode])
@@ -26951,9 +26950,6 @@ def key_press(e):
    elif pt == "Darwin":
       pass
 
-def key_code_translator(keycode):
-   #keys =   
-   keylist = [None,None,None,None,None,None,None,None,None,None,]
 
 themeColor = getThemeColor()
 initinterface = True
