@@ -1068,11 +1068,6 @@ def Option6Event():
 def Option7Event():
    toggleSide()
 
-def keysUp(e):
-   global shiftHeld, keys
-   if (keys[e.keycode] == 13):
-      shiftHeld = False
-
 def hotKeys(keyCode):
    global shiftHeld, buttonChoice, showSide, inBag, button1Visible, button2Visible, button3Visible, button4Visible, button5Visible, button6Visible, button7Visible, button8Visible, button9Visible, button10Visible, button11Visible, button12Visible, appearancebuttonvisible, option7Visible, showsavegame, showloadgame, shownewgame
    if (shiftHeld == False):
@@ -26950,6 +26945,16 @@ def key_press(e):
    elif pt == "Darwin":
       pass
 
+def keysUp(e):
+   global shiftHeld, linuxkeys
+   pt = platform.system()
+   if pt == "Linux":
+      if linuxkeys[e.keycode] == 16:
+         shiftHeld = False
+   elif pt == "Windows":
+      pass
+   elif pt == "Darwin":
+      pass
 
 themeColor = getThemeColor()
 initinterface = True
