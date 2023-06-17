@@ -8698,7 +8698,7 @@ def doSell():
             if (bagStackArray[choiceListResult[1]] >= 10):
                templist = lists.push(templist, [7,"10"])
                a2 = 1
-            viewButtonOutline(1,0,1,0,a1,0,a2,0,1,0,1,0)
+            ButtonFunctions.Visible(1,0,1,0,a1,0,a2,0,1,0,1,0)
             doButtonChoices(templist)
             def doListen():
                global buttonChoice, bagStackArray, choiceListResult
@@ -20133,8 +20133,7 @@ def doSpecialAbility(more:int):
    #Should work
    global choicePage, skunkAffinity, specialAbilityArray, fp1
    global doListen
-   viewButtonOutline(0,0,0,0,0,0,0,0,0,0,0,1)
-   viewButtonText(0,0,0,0,0,0,0,0,0,0,0,1)
+   ButtonFunctions.Visible(0,0,0,0,0,0,0,0,0,0,0,1)
    choicePage = more
    showPage(True,"Spc Abilities")
    fp1 = more
