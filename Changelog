@@ -1,6 +1,6 @@
 v1.0.2
 (Mostly) Fixed hotkeys
-Broke bag/stash navigation
+Fixed item moving, broke bag/stash navigation after moving items so don't move items for now
 
 v1.0.1
 Fixed bug where save converter buttons wouldn't go away
