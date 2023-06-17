@@ -1,5 +1,16 @@
+v1.0.3
+Fixed bag/stash navigation
+Fixed keysUp function
+
+v1.0.2rev2
+Fixed platform import
+
+v1.0.2rev1
+Made hotkeys only work on systems that I've tried and made a placeholder for the rest (keycodes are system dependent but I'm not sure if tkinter is picky about linux distributions (only tried on debian and fedora so far)). All keycodes that I can get are based off of US standard keyboards and [this table](http://gcctech.org/csc/javascript/javascript_keycodes.htm).
+
 v1.0.2
 (Mostly) Fixed hotkeys
+Broke bag/stash navigation
 Fixed item moving, broke bag/stash navigation after moving items so don't move items for now
 
 v1.0.1
