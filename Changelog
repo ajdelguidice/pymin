@@ -1,3 +1,30 @@
+v1.0.5
+Made shops always go back to themselves instead of going back to the another shop in some cases
+Fixed a bug with the apothecary
+Fixed a bug with the Tailor
+Optimized itemName, usableItem, itemValue, itemMaxStack, foodItem
+Fixed Milking Machine (Item)
+Added ,0 to the end of all max() functions with only one input because python can't handle only one input
+Added a missing global varible definition to affinityChange
+Fixed Arrat.concat()
+Made Save Game, Load Game, and New Game buttons appear and disappear when they are supposed to
+Fixed a couple of bugs with doProstitute
+Fixed a couple of bugs with doLevelUP
+Fixed checkOpenSlot to find first open slot not last open slot
+Fixed hotkeys being able to press disabled buttons
+Fix levels not saving
+Fix bug with amounts not showing sometimes
+Fixed a bug with checkMagicItem
+Remove a bunch of the this. statements that I missed
+Fixed a bug with doDairyFarm
+Fixed a bug with eventSelect
+Fixed the cancel button in itemUse for item 213
+(Should be fixed) Fixed lust sometimes becoming a random float value
+(Should be fixed) Fixed shapshifty so it only increases one affinity (very inconsistantly happened with equan and random others)
+Fixed a couple of spelling mistake in doProstitute
+Fixed a bug in enemyAttack for enemy 102
+Optimized item 108 so it wasn't unbearably slow to use
+
 v1.0.4
 Fixed bug with item buying/selling
 
