@@ -1,9 +1,16 @@
 import tkinter
 import tkinter.font
 from tkinter import ttk
+from tkinter import filedialog
 from tkinter.scrolledtext import ScrolledText
 import simple_colors as sc
+import tkhtmlview as tkhtml
+import re
+import time
+from tkhelper.widgets import ResizableLabel
 
+themeColor = "#FFFFFF"
+maintext = ""
 fontBold = False
 fontSize = 12
 fontMain = ("Times New Roman", 12)
@@ -367,21 +374,32 @@ class SidePanel:
         appearancebutton.place(anchor=CENTER, height=50, width=150, x=167, y=216)
 
 class TextBoxes:
-   def __init__():
-      global textmain, textside
+   def doMainText():
+      global textmain, maintext, themeColor, fontColor, fontSize, fontBold
+      text = re.sub("(\t)", "    ", maintext)
+      if fontBold == True:
+         text = "<b>" + text + "</b>"
+      #text = "<pre>" + text + "</pre>"
+      #text = "<font size = '" + str(fontSize) + "' color = '" + fontColor + "'>" + text + "</font>"
+      text = "<pre style=\"color: " + str(fontColor) + "; background-color: " + str(themeColor) + "; font-size: " + str(fontSize - 2) + "px; font-family: TkTextFont\">" + text + "</pre>"
+      textmain.set_html(text, False)
+      #textmain.configure(background=themeColor, foreground=fontColor)
    def ClearMain():
-      textmain.configure(state="normal")
-      textmain.delete(1.0,"end")
-      textmain.configure(state="disabled")
+      global textmain, maintext
+      maintext = ""
+      TextBoxes.doMainText()
    def ClearAddMain(text):
-      textmain.configure(state="normal")
-      textmain.delete(1.0,"end")
-      textmain.insert(1.0, text)
-      textmain.configure(state="disabled")
+      global textmain, maintext
+      maintext = text
+      TextBoxes.doMainText()
    def AddMain(text):
-      textmain.configure(state="normal")
-      textmain.insert("end", text)
-      textmain.configure(state="disabled")
+      global textmain, maintext
+      maintext += text
+      TextBoxes.doMainText()
+   def GetMain(a, b):
+      global textmain
+      text = textmain.get(a, b)
+      return text
    def ClearSide():
       textside.configure(state="normal")
       textside.delete(1.0,"end")
@@ -428,736 +446,45 @@ def ToggleTheme():
    #SavePreferences()
 
 def ChangeBackgroundColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlable, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, creditsbutton, appearancebutton, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7
-   try:
-      bccolorlabel1["background"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel2["background"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel3["background"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel4["background"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel5["background"] = color
-   except:
-      x = 0
-   try:
-      textmain["background"] = color
-   except:
-      x = 0
-   try:
-      textside["background"] = color
-   except:
-      x = 0
-   try:
-      label1["background"] = color
-   except:
-      x = 0
-   try:
-      strlabel["background"] = color
-   except:
-      x = 0
-   try:
-      strcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      strvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      strimglabel["background"] = color
-   except:
-      x = 0
-   try:
-      mentlabel["background"] = color
-   except:
-      x = 0
-   try:
-      mentcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      mentvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      mentimglabel["background"] = color
-   except:
-      x = 0
-   try:
-      liblabel["background"] = color
-   except:
-      x = 0
-   try:
-      libcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      libvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      libimglabel["background"] = color
-   except:
-      x = 0
-   try:
-      senlabel["background"] = color
-   except:
-      x = 0
-   try:
-      sencolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      senvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      senimglabel["background"] = color
-   except:
-      x = 0
-   try:
-      label6["background"] = color
-   except:
-      x = 0
-   try:
-      hplabel["background"] = color
-   except:
-      x = 0
-   try:
-      hpcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      hpvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      hpimglabel["background"] = color
-   except:
-      x = 0
-   try:
-      lustlabel["background"] = color
-   except:
-      x = 0
-   try:
-      lustcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      lustvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      lustimglabel["background"] = color
-   except:
-      x = 0
-   try:
-      hungerlabel["background"] = color
-   except:
-      x = 0
-   try:
-      hungercolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      hungervallabel["background"] = color
-   except:
-      x = 0
-   try:
-      label10["background"] = color
-   except:
-      x = 0
-   try:
-      currentregionlabel["background"] = color
-   except:
-      x = 0
-   try:
-      levellabel["background"] = color
-   except:
-      x = 0
-   try:
-      levelcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      levelvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      sexplabel["background"] = color
-   except:
-      x = 0
-   try:
-      sexpcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      sexpvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      coinlabel["background"] = color
-   except:
-      x = 0
-   try:
-      coincolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      coinvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      daylabel["background"] = color
-   except:
-      x = 0
-   try:
-      daycolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      dayvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      hourlabel["background"] = color
-   except:
-      x = 0
-   try:
-      hourcolonlabel["background"] = color
-   except:
-      x = 0
-   try:
-      hourvallabel["background"] = color
-   except:
-      x = 0
-   try:
-      bagstashlabel["background"] = color
-   except:
-      x = 0
-
-   try:
-      savegamebutton["background"] = color
-   except:
-      x = 0
-   try:
-      savegamebutton["background"] = color
-   except:
-      x = 0
-   try:
-      loadgamebutton["background"] = color
-   except:
-      x = 0
-   try:
-      newgamebutton["background"] = color
-   except:
-      x = 0
-   try:
-      quitbutton["background"] = color
-   except:
-      x = 0
-   try:
-      resetbutton["background"] = color
-   except:
-      x = 0
-   try:
-      refreshbutton["background"] = color
-   except:
-      x = 0
-   try:
-      button1["background"] = color
-   except:
-      x = 0
-   try:
-      button2["background"] = color
-   except:
-      x = 0
-   try:
-      button3["background"] = color
-   except:
-      x = 0
-   try:
-      button4["background"] = color
-   except:
-      x = 0
-   try:
-      button5["background"] = color
-   except:
-      x = 0
-   try:
-      button6["background"] = color
-   except:
-      x = 0
-   try:
-      button7["background"] = color
-   except:
-      x = 0
-   try:
-      button8["background"] = color
-   except:
-      x = 0
-   try:
-      button9["background"] = color
-   except:
-      x = 0
-   try:
-      button10["background"] = color
-   except:
-      x = 0
-   try:
-      button11["background"] = color
-   except:
-      x = 0
-   try:
-      button12["background"] = color
-   except:
-      x = 0
-   try:
-      looksbutton["background"] = color
-   except:
-      x = 0
-   try:
-      statsbutton["background"] = color
-   except:
-      x = 0
-   try:
-      effectsbutton["background"] = color
-   except:
-      x = 0
-   try:
-      helpbutton["background"] = color
-   except:
-      x = 0
-   try:
-      levelsbutton["background"] = color
-   except:
-      x = 0
-   try:
-      gearbutton["background"] = color
-   except:
-      x = 0
-   try:
-      titlesbutton["background"] = color
-   except:
-      x = 0
-   try:
-      creditsbutton["background"] = color
-   except:
-      x = 0
-   try:
-      appearancebutton["background"] = color
-   except:
-      x = 0
-   try:
-      themebutton["background"] = color
-   except:
-      x = 0
-   try:
-      textsizedownbutton["background"] = color
-   except:
-      x = 0
-   try:
-      textsizeresetbutton["background"] = color
-   except:
-      x = 0
-   try:
-      textsizeupbutton["background"] = color
-   except:
-      x = 0
-   try:
-      textboldbutton["background"] = color
-   except:
-      x = 0
-   try:
-      textcolorbutton["background"] = color
-   except:
-      x = 0
-   try:
-      themebutton7["background"] = color
-   except:
-      x = 0
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel
+   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel"]:
+      try:
+         if (eval(i).cget("background") != color):
+            eval(i)["background"] = color
+      except:
+         x = 0
 
 def ChangeTextColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlable, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, creditsbutton, appearancebutton, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7
-   try:
-      bccolorlabel1["foreground"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel2["foreground"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel3["foreground"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel4["foreground"] = color
-   except:
-      x = 0
-   try:
-      bccolorlabel5["foreground"] = color
-   except:
-      x = 0
-   try:
-      textmain["foreground"] = color
-   except:
-      x = 0
-   try:
-      textside["foreground"] = color
-   except:
-      x = 0
-   try:
-      label1["foreground"] = color
-   except:
-      x = 0
-   try:
-      strlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      strcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      strvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      strimglabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      mentlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      mentcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      mentvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      mentimglabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      liblabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      libcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      libvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      libimglabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      senlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      sencolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      senvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      senimglabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      label6["foreground"] = color
-   except:
-      x = 0
-   try:
-      hplabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hpcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hpvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hpimglabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      lustlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      lustcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      lustvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      lustimglabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hungerlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hungercolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hungervallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      label10["foreground"] = color
-   except:
-      x = 0
-   try:
-      currentregionlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      levellabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      levelcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      levelvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      sexplabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      sexpcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      sexpvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      coinlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      coincolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      coinvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      daylabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      daycolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      dayvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hourlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hourcolonlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      hourvallabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      bagstashlabel["foreground"] = color
-   except:
-      x = 0
-   try:
-      savegamebutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      loadgamebutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      newgamebutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      quitbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      resetbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      refreshbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      button1["foreground"] = color
-   except:
-      x = 0
-   try:
-      button2["foreground"] = color
-   except:
-      x = 0
-   try:
-      button3["foreground"] = color
-   except:
-      x = 0
-   try:
-      button4["foreground"] = color
-   except:
-      x = 0
-   try:
-      button5["foreground"] = color
-   except:
-      x = 0
-   try:
-      button6["foreground"] = color
-   except:
-      x = 0
-   try:
-      button7["foreground"] = color
-   except:
-      x = 0
-   try:
-      button8["foreground"] = color
-   except:
-      x = 0
-   try:
-      button9["foreground"] = color
-   except:
-      x = 0
-   try:
-      button10["foreground"] = color
-   except:
-      x = 0
-   try:
-      button11["foreground"] = color
-   except:
-      x = 0
-   try:
-      button12["foreground"] = color
-   except:
-      x = 0
-   try:
-      looksbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      statsbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      effectsbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      helpbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      levelsbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      gearbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      titlesbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      creditsbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      appearancebutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      themebutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      textsizedownbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      textsizeresetbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      textsizeupbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      textboldbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      textcolorbutton["foreground"] = color
-   except:
-      x = 0
-   try:
-      themebutton7["foreground"] = color
-   except:
-      x = 0
+   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, quitbutton, resetbutton, refreshbutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel
+   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "quitbutton", "resetbutton", "refreshbutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel"]:
+      try:
+         if (eval(i).cget("foreground") != color):
+            eval(i)["foreground"] = color
+      except:
+         x = 0
 
 def UpdateTheme():
+   global theme, themeColor
+   themeColor = getThemeColor()
+   ChangeBackgroundColor(themeColor)
+   UpdateText()
+
+def getThemeColor():
    global theme
    if theme == 0:
-      ChangeBackgroundColor("#FFFFFF")
+      return "#FFFFFF"
    elif theme == 1:
-      ChangeBackgroundColor("#000000")
+      return "#000000"
    elif theme == 2:
-      ChangeBackgroundColor("#EF7DB6")
+      return "#EF7DB6"
    elif theme == 3:
-      ChangeBackgroundColor("#29705C")
+      return "#29705C"
    elif theme == 4:
-      ChangeBackgroundColor("#4248A6")
+      return "#4248A6"
    elif theme == 5:
-      ChangeBackgroundColor("#721717")
+      return "#721717"
    else:
-      ChangeBackgroundColor("#FFFFFF")
+      return "#FFFFFF"
       theme = 0
 
 def FontSizeDown():
@@ -1168,7 +495,8 @@ def FontSizeDown():
    #SavePreferences()
 
 def FontSizeReset():
-   fontSize = 14
+   global fontSize
+   fontSize = 12
    UpdateText()
    #SavePreferences()
 
@@ -1215,6 +543,7 @@ def ToggleColor():
    else:
       fontColor = "#FFFFFF"     
    ChangeTextColor(fontColor)
+   UpdateText()
    #SavePreferences()
 
 def ToggleSide():
@@ -1247,20 +576,10 @@ def UTCheckBold():
       return "normal"
 
 def UpdateText():
-   global fontMain, textMain, textSide, normal_font, bold_font, italic_font
+   global fontMain, textMain, textSide
    a = UTCheckBold()
    #fontMain = "(" + "Times New Roman" + ", " + str(fontSize) + a + ")"
-   normal_font.configure(size=fontSize, weight=a)
-   bold_font.configure(size=fontSize)
-   italic_font.configure(size=fontSize)
-   textmain.tag_configure("bold", font=bold_font)
-   textmain.tag_configure("italic", font=italic_font)
-   textmain.configure(state="normal")
-   textside.configure(state="normal")
-   textmain["font"] = normal_font
-   textside["font"] = normal_font
-   textmain.configure(state="disabled")
-   textside.configure(state="disabled")
+   TextBoxes.doMainText()
 
 def Option1Event():
    ToggleTheme()
@@ -1283,27 +602,12 @@ def Option6Event():
 def Option7Event():
    ToggleSide()
 
-def OutputMainText(texts:str, reset:bool, italic:bool=False, bold:bool=False):
+def OutputMainText(texts:str, reset:bool):
+   global textmain
    if reset == False:
       TextBoxes.AddMain(texts)
    if reset == True:
       TextBoxes.ClearAddMain(texts)
-   if italic == True:
-      temp1 = "end - " + str(len(texts)) + " chars"
-      current_tags = textmain.tag_names(str(temp1))
-      textmain.tag_add("italic", str(temp1), "end")
-   """
-   else:
-      textmain.tag_remove("italic", (len(textmain["text"]) - len(text)), len(textmain["text"]))
-   """
-   if bold == True:
-      temp2 = "end - " + str(len(texts)) + " chars"
-      current_tags = textmain.tag_names(temp2)
-      textmain.tag_add("bold", str(temp2), "end")
-   """
-   else:
-      textmain.tag_remove("bold", (len(textmain["text"]) - len(text)), len(textmain["text"]))
-   """
 
 #window
 root = tkinter.Tk()
@@ -1323,18 +627,22 @@ cregionfont = "font=('TimesNewRoman', 24, 'bold')"
 #images
 #quitimg = tkinter.PhotoImage(file="./images/0.png")
 quitimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\x08\x04\x00\x00\x00\';\x076\x00\x00\x03\x19zTXtRaw profile type exif\x00\x00x\xda\xed\x97[r\x1c!\x0cE\xffYE\x96\x80\x04Bb9<\xab\xb2\x83,?\x17\x9a\x99\xcc\xd8y\xd8\xe5\xafTMS\r\xb4\xa0%\xa1#\xf5\xd8n\xfc\xf8>\xdd7\\\xec\x83wQ\xd4RN\xc9\xe3\x8a9f.\x98\x98\xbf\xae\xb2{\xf2q\xf7\x8f\xb2\xf5\xfc$w\xf7\x05\x86(`\x0c\xd7\xa3\xa5#\x1f\x903\xf6\xf3\x91\xb7\xa3\xa7@.\x0f\x8a\xf28\x0b\xf5y\xa1\x1cEl\xc7\xc0\xcd\xa3c(\xd0e\xc0\xf7\xa3\xa8\x1cE\x81\x8f\xe5x=\xd7c9e\xd3\xc7#\x9c\xf7\xd6\xf1\xe9\x8c\xfbv\xab\x8bA9I"\x8d\xe8#{\xd5\x9417\xf6Q\x11\xb7\xbe\x1c\x9d\x8d\xf3zO\xea\xa5\xe7\xed\xb3\xbbmE\xe4\x99G\xa0\xe0wo\x97\x97a\xdd\x1c\n\xc6\x8c\x9e\xb0\x07\x87\xda\xf3\x08Y\xc1Z\xdc\xf1\xf5\x0e\xc8\xe0\x02<\xcf\'\xb6\xc3\xdf\xa3\xf9\x14\x9b\xdb\xf8\x87\xcb}\xe4X\'\x1d\x9e\xd3\xe06;i\xe0\xde-\xbcI\x834\x8e<\xbc\xa1\x97\xee\xe3\x96\xbb\xb7\x0b$\xbf\xc7\xbd\x99>x\xa4\xf1n\x98\x9f<\xd2p\xb7\xe1\x1f\xb1\xae{\xcens\x8e\xebt%&\x1c9\x9dC\xddNBn\xa3\x9c\xbd\xae$\xd8\xaf%4\xc5-\x98\xebn\x19\xcdP\x01\r9\xd6}\xf3\x15\xadQ&\x06\xe2I\x91:\x15\x9a\x8e\xc6\x9e4j\xf01\xf2`\xc5\xc8\xdc8l\x99\x81E\xe6\x16\x16\xf4\xb8\x1aMV\xe0\xef\xc1\x80\xbe!U\x02\xa4<\xa7;\xbe\xd0\xb6\x9b\xb7\xbdF\x06\xcb\x9d\xb0\x95\t\xcah\xe7\xd2?\x9a\xfb\xc8\xa6\xbf\xb59W-\x11\xb9S3t\x01\xe6U\x86pc\x91[=\xb6\x81\x08\xcd\x13T\xd9\x01\xbe\xb5\xe7\x84<`\x03\x10\xca\x0e\xb3\xe1\x80\xc5\xd7KE\x15\xfa\x95[a\x83\x0e\xd8\'\x18\xaf\xe2&\xed\xd7\xfbKQ\x84m\x813\x14\x80\xc0\'\nB\x89\xbc2+\x11\x02i\x00T\xc8\x1b\xca\x8a+\x08\x90\x08w8\xc91\x84\x046(\x02\x98vxGi\xefe\xe1K\x8e\xaf$HHHA\xc1\x06\x05\nX1\n\xf2G\xa3!\x87\x8a\x04\x89"\x92D\xc5$KI!E\x87\nKI\xd3\xfa\xdc\x16\r\x1aU4\xa9\xaai\xd6b\xc1\xa2\x89%S3\xcbV2\xe7\x80\xaf\xb1d\x94c\xb6\x9cs)\xb0Y\xa0\xb9$W\xb0\xbf@R\xb9\x86\x1a\xab\xd4T\xb5Z\xcd\xb54\xa4O\x8bMZj\xda\xac\xe5V:\xf7\xd0Q\xc7=u\xed\xd6s/\x83\x06Ri\xc4!n\xa4\xa1\xc3F\x1ee"\xd7f\x98q\xcaLS\xa7\xcd<\xcb\x9d\xda\xa1\xfa\xae}\x82\x1a\x1dj\xbcI\xad}z\xa7\x06\xa9\xea5\xba\x9d/P\xb2\x98\x81\x18G\x02q]\x04\xd6\xe7p1\xf3F1\xf2"\xb7\x98\xf9\xcc\xa8\na8)\x8bM\'_(qt!\x0eb\x99tg\xf7\x8b\xdc\xa7\xb8\xb9\x14\xff\xca\x8d?J\xce-t_$\xb7\xb9\xb9!\x0f\xdc~C\xad\xaf_\xe2\xb6\x89]U\xb8b\xea\x03\xaa\x0f\xeb\xc3\n[Y\xbf\xa2\xc5\xdd&_\x1d_\x8a^\x8a^\x8a^\x8a^\x8a^\x8a^\x8a\xfecE\x13\x7f<\xe0?J\xf7\x13\xa7\xd0\xbc\x08=]s5\x00\x00\x01#iCCPICC profile\x00\x00x\x9c\x9d\x90\xbfJ\xc3P\x14\xc6\x7f\xa9\xe2?\xec\xa48\x14\x87\x0c\xe2Vp1\x93KU\x08B\x85\x18+X\x9d\xd2$\xc5b\x12C\x92R|\x03\xdfD\x1f\xa6\x83 \xf8\x08>\x80\x82\xb3\xdf\x8d\x0e\x0ef\xf1\xc2\xe1\xfbq8\xe7\xfb\xee\xbd\xd0\xb2\x930-\x17\xf7 \xcd\xaa\xc2\xf5{\xc3\xcb\xe1\x95\xbd\xfc\xc6*m\xa0\xc3n\x10\x96y\xcf\xf3\xfa4\x9e\xcfW,\xa3/]\xe3\xd5<\xf7\xe7Y\x8a\xe22\x94\xceUY\x98\x17\x15X\x07bgV\xe5\x86Ul\xde\x0e\xfc#\xf1\x83\xd8\x8e\xd2,\x12?\x89w\xa242lv\xfd4\x99\x86?\x9e\xe66\xebqvqn\xfa\xaam\\N8\xc5\xc3f\xc4\x94\t\t\x15]i\xa6\xce1\x0e\xfbR\x97\x82\x80{JBiB\xac\xdeL3\x157\xa2RN.\x87\xa2\x81H\xb7i\xc8\xeb\xd4y\x9eRF\xf2\x98\xc8\xcb$\xdc\x91\xca\xd3\xe4a\xfe\xf7{\xed\xe3\xac\xde\xb4\xb6\xe6yP\x04ukA\xd5\x1a\x8f\xe1\xfd\x11\xdaC\xd8x\x86\xb5\xeb\x86\xac\x95\xdfok\x98q\xea\x99\x7f\xbe\xf1\x0b\xd6\x9bP\\\x8a\xac\x86\x96\x00\x00\x00\x02bKGD\x00\xff\x87\x8f\xcc\xbf\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe6\t\r\x00(\x1aS\x8c\xbfC\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x00\xddIDAT\x08\x1d\x01\xd2\x00-\xff\x00\x00\x00\x00\x14\x00\xff\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\xff\x00\x00\x00\xff\x00\xff\x00\x00\x02\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x02\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x01\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00/\x16\x10\x1a\xbb\xa6VN\x00\x00\x00\x00IEND\xaeB`\x82')
-resetimg = tkinter.PhotoImage(file="./images/0.1.png")
-refreshimg = tkinter.PhotoImage(file="./images/0.2.png")
-valupimg = tkinter.PhotoImage(file="./images/1.png")
-valdownimg = tkinter.PhotoImage(file="./images/2.png")
+resetimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\x08\x06\x00\x00\x00\x8d2\xcf\xbd\x00\x00\x01\x84iCCPICC profile\x00\x00(\x91}\x91=H\xc3@\x1c\xc5_S\xa5*\x15\x053\x888D\xa8.Z\x10\x15q\xd4*\x14\xa1B\xa8\x15Zu0\x1f\xfd\x82&\rI\x8a\x8b\xa3\xe0Zp\xf0c\xb1\xea\xe0\xe2\xac\xab\x83\xab \x08~\x808:9)\xbaH\x89\xffK\n-b<8\xee\xc7\xbb{\x8f\xbbw\x00W+)\x9a\xd56\x0eh\xbam&\xe31!\x9dY\x15B\xaf\xe8D/x\x8cbHR,cN\x14\x13\xf0\x1d_\xf7\x08\xb0\xf5.\xca\xb2\xfc\xcf\xfd9\xba\xd5\xac\xa5\x00\x01\x81xV1L\x9bx\x83xz\xd36\x18\xef\x13\xf3JAR\x89\xcf\x89\xc7L\xba \xf1#\xd3e\x8f\xdf\x18\xe7]\xe6X&o\xa6\x92\xf3\xc4<\xb1\x90oa\xb9\x85\x95\x82\xa9\x11O\x11GTM\xa7|.\xed\xb1\xcax\x8b\xb1V\xaa(\x8d{\xb2\x17\x86\xb3\xfa\xca2\xd3i\x0e"\x8eE,A\x84\x00\x19\x15\x14Q\x82\x8d(\xad:)\x16\x92\xb4\x1f\xf3\xf1\x0f\xb8~\x91\\2\xb9\x8aP\xc8\xb1\x8024H\xae\x1f\xec\x0f~wk\xe5&\'\xbc\xa4p\x0ch\x7fq\x9c\x8fa \xb4\x0b\xd4\xab\x8e\xf3}\xec8\xf5\x13 \xf8\x0c\\\xe9M\x7f\xb9\x06\xcc|\x92^mj\x91#\xa0g\x1b\xb8\xb8nj\xf2\x1ep\xb9\x03\xf4?\x19\x92)\xb9R\x90&\x97\xcb\x01\xefg\xf4M\x19\xa0\xef\x16\xe8Z\xf3zk\xec\xe3\xf4\x01HQW\x89\x1b\xe0\xe0\x10\x18\xc9S\xf6\xba\xcf\xbb;Z{\xfb\xf7L\xa3\xbf\x1f\x9d\x90r\xb8\x12I\x12\x89\x00\x00\x00\x06bKGD\x00\xff\x00\xff\x00\xff\xa0\xbd\xa7\x93\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe6\t\x10\x15\x02#\xdb|\x15\xba\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x01\xa5IDAT\x18\x19\x01\x9a\x01e\xfe\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\xff\x00\x00\xff\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x02\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xb5\xaf\x13\xf9\xd40\x96{\x00\x00\x00\x00IEND\xaeB`\x82')
+refreshimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\x08\x04\x00\x00\x00\';\x076\x00\x00\x01%iCCPICC profile\x00\x00(\x91\x9d\x90\xcdJ\xc3P\x10\x85\xbfV\xf1\x0f\x05\xc1\xe2B\\d\xe1\xb6\xe2\xc6\xae\xdcT\x85PP\x88\xb5\x82\xd1Uz\xd3b0\x89!I)\xbe\x81o\xa2\x0f\xd3\x85 \xf8\x08>\x80\x82k\xcf\x8d.\\\x98\x8d\x17\x86\xf9\x18f\xce\x99\xb9\xd0tb\x93\x14\xf3{\x90\xa4e\xee\xf6\xbb\xfe\xa5\x7f\xe5,\xbe\xb1\xcc:-\xda\xec\x06\xa6\xc8\xba\x9ewB\xed\xfb|\xa5a\xf3K\xdbj\xd5\xf7\xfd\xf9\x16\xc2Qa\x94g\x8a\xd4dy\t\x8d\x03qgZf\x96\x15\xb4n\x07\xfd#\xf1\x83\xd8\t\x934\x14?\x89w\xc2$\xb4lg\xfbI<1?\x9av\x9b\xd5Qzqn\xeb\x8am\\z\x9c\xe2\xe10dBDL\xa9\xdb"RU\x8e\xe9\xb0\xaf\xec\x92\x13pO\x81Q\x8e\x19\xa96UO\xc9\x8d\xa8\x90\x92\xcb\xa1h \xd265~[\x95\x9f\'\x97\xa14"iY\x87;\x12iZ?\xec\xff~\x8f}\x9cU\x93\x8d\xcdY\x16\xe4AU\x9aS4\xc7cx\x7f\x845\x1f6\x9ea\xe5\xba\xc6k\xe9\xf7m5=\x9d\xaa\xe7\x9f7~\x01:\x9cP\x8ei!\xbbN\x00\x00\x00\x02bKGD\x00\xff\x87\x8f\xcc\xbf\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe6\t\x10\x14:#\xcd!\xc3v\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x00\xddIDAT\x08\x1d\x01\xd2\x00-\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\xff\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\x00\x00\x01\x00\x00\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\'2\n\x01*N\xdf\x02\x00\x00\x00\x00IEND\xaeB`\x82')
+valupimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x01\xedIDATx^\x95\x91\xcdO\xd2\x01\x18\xc7\xfd\x0f\xda:t\xaeu\xe8\x94\xd7\\\xb4U\xae\xa2\x01\xa5\xcd\x86\xb5h\xadt\xad\xb9\xca\xb5\xdaz\xb5\xda\xb2\x8bk\xe5Z\xcb\x03m\xe5fI"\x8b\x10,R\x98B5A\xad\\\x86\xa0\x84 "o?\xe45\n\xb0>a\x1c\xb4\xd1\xa5\xcf\xe5\xb9<\x9f=\xcf\xf3}**V\xd1a\xea\xe2k\xc6\x8b;\xe7\xc7\x9dw\x12#\xc0%e\x0b\xab{\xfe\xc2.L\xe0X\x18e:=\xcaT\xe4\x03\x9f\xe7\xdf\xe2\x08Y\xf0\xf8\xad\x8cEF\xcaE\xd5\x8c\x16\xa3O\xc3\xc8\xb4\x96\xf73:\n\x858\x85\xa5\x0c\x1f\xbdC|Y\xd0a\x13z\xb0x{W\xc4Gf\r\xcf\xdd]\xbc\x9c|\x80\xc1\xf1\x18gr\x02\x96 \xff\x1d\x12d\xb1z\x94\x8c\xcd\xb63\xe0\xee\xe0\x9e\xb9\xbd$*\x9d\xf7i\xb5\xb7\xf2\xd0v\x9d[\xfak\xa4\x84,\xd1\xd4\x0f\xb2\xa94\xb9D\x12\x9b\xdfN\xbf\xeb\x06/\x1c\xb7QO\xb5\x95\xa4&\xf3M\xee\x0c\x9d\xe5\xcax\x0bA\xc1\x890\xe7\'\x10\x08\x12\x88\x86\xf1\xc5\xc2\xcc\x05}\\\xedmB5\xae\xe0\xee\xa7\xd3%\xa9\xee\xd5Qj\xfa\x0e\xb0\x98\x16\x08D`6\xe2"&\x84\x88\xc4\xa3\x04\xe2I\xe2\xd1\x10\xa1p\x8cFc#m\xd6\x13%\xa9J]\xcb\x8e\xfe\xbd\x1c\x1fl\xa6\xae\xa7\x1aO1\xe6D:Bf1A.\x96\xe3\xfc\xbb\x06\xe4\xcf\x8eqyP\xca~\xd5\xe6\x92\xb4\xa7S\xc16C5\x07u\xbb8\xd2\'e\xfe\x97\xabx\xfe7\xb2\xf9\xc2\x9f4.\x0e\xc8h6\xed\xe6\xcc\xb0\x98\xfaa\xc5J\x82U\xda\xc3\x88\xf5R\xea\xf5;\x8b\x93B,\x93\xff\t\xa9b=i\x92q\xea\xf5v6\xa8E\xe5\xbf\xda\xa8\x96SY\x9cVc\x94 5\x88\x91\xbd\x91 7\xeeCb\xaceSq\xedsO.\x94K\xcbTv\x1fb\xbdF\xcc\xda\xce-\xac\xe9\xde\xca\xba\xa7"D\x96\x86\x7f7\xff/\xbf\x01\x7f(s\x97\x8cN\xac\xd0\x00\x00\x00\x00IEND\xaeB`\x82')
+valdownimg = tkinter.PhotoImage(data='\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x01\xe1IDATx^\x95\x91=h\x13a\x18\x80?%\xa9\x8a\x15l\'\x1d\xaa\xe2\xeab\x17\x05q\xc9R\x07A\xfc\xc9$U\x043\xa9(\x19D,6\xd4\x1f\x10\x04\xb1H;)\x14\xa9\xe2_ \x14"B\x1c,\x05\x83\xd86\xc6\xaa\xa7\x963M\x93\\r\xb9$w\x97\xc4\xe4rI\xf51\x92B+q\xf1\x81w\xf9x\x9e\xe1\xfd^!V\x91\x7ft\x89\x8f\x17\xb625\xd4\xcd\xcbA\xc1\x07\xdf\x16BC{X\xed\xfcE\xa4\xbf\x87\xf7\xde.\x14\x97\x03\xbdO\xa0\x1f\x16\xc4\xfa\xd7\x139\xdb\xc1\x9b\x01g{8\xd1\xb7\x96\xb4k\x1d\x8dm\x0e\x90\x1fC~\x16T\t\xb2\xd3\xe4\x8el y\xba\x93\xaf\x977\xad\x84\x85\xf1[\x98\xbb\xd7\xa0w\x0b\x96\x9c\x02t\x05\xbbl\x81\x015\xbbA\xc2%0\x0e\t\x92\xc7\x04\xa1\x8b\xcba\xa0\xb7\xf9\xd0\x94\xbf\xed\xdc\x8c\xed\xec\x02m\x9e\x1f5\x8b\xbaa\x91\xad\x95Im\x17\xcc\x1d\xdc\x88\xe1v\x10\xf7v\xb4"{_\x0f\xb9N\'\xb2*S\xacJ\x14J2\x95T\x1eSkM\xa3\xae\xa2\x185>\x9f\xd8\x85\xe6\xdd\xd1\x8aR\xee\xfd\xd0\xe7F\xf2\x1cGM\xd6Y\xc8-\x90O6E%I.\x91\xa1\xb8\x98\xa0\x1a}\x80yf/\xb1+\xbd\xadh\xd1s\x12\xd5\xe3\xc5\xf4\r2?s\x8f\xbaYD\xb1-\xf2U\x9db\xb9D\xf9\x97D\xc2{\x00\xe5\xfa)\xa4\xdb\xe7\x96w\x1a8Jud\x1csx\x84\xec\xfd\xbb4l\x8d\xb2\xd1\x0c\xea\x15lK#r\xc7G\xe6\xe6y\xe4\xb1k\xc4\xfd7V~0\xfel\x98T\xf0\t\x99\x17~\xe4WA*E\x9d\x9fK\x16\x9f\x02O\xc9\x05F\xd1\x02\xcfI\x87F\xdbo\x15\x9f\xf5\xa3\xbc\x9d\xa2\x14\r3\x1d\x9e\xa4\x90\x8e\xa1\xbe{\x8d\x1a\x0e\x91\x96\x82L<\xbc\xda\x1e\xfd!:9F!1C6\xfe\x05=\xf3\x1dM\x9bC)\x84\xff-\xff/\xbf\x01\xaa\xdfn\x93\xd1\x12\xd9\x91\x00\x00\x00\x00IEND\xaeB`\x82')
+
 
 
 #main
-mainframe = ttk.Frame(root)
-mainframe.place(anchor="nw", height=662, width=1176)
-mainframe['padding'] = (20,30,0,0)
+#mainframe = ttk.Frame(root)
+mainframe = tkinter.Frame(root,background="#000000")
+mainframe.place(anchor="nw", height=662, width=1176,x=0,y=0)
+mainframe.configure(padx=20, pady=30)
+#mainframe.configure()
+#mainframe['padding'] = (20,30,0,0)
 
-bccolorlabel1 = ttk.Label(mainframe)
+bccolorlabel1 = ResizableLabel(mainframe)
 bccolorlabel1.place(anchor="nw", height=662, width=1176, x=-20, y=-30)
 
 #statframe
@@ -1499,18 +807,10 @@ button12 = tkinter.Button(buttonpanel, text="Button 12")
 button12.place(anchor=NW, height=46, width=140, x=480, y=132)"""
 
 #textmain
-textmain = ScrolledText(mainframe, cursor="arrow", wrap="word")
+textmain = tkhtml.HTMLScrolledText(mainframe, cursor="arrow", wrap="word")
 textmain.place(anchor="nw", height=430, width=622, x=180, y=180)
-normal_font = tkinter.font.Font(textmain, textmain.cget("font"), size=fontSize)
-bold_font = tkinter.font.Font(textmain, textmain.cget("font"), size=fontSize, weight="bold")
-italic_font = tkinter.font.Font(textmain, textmain.cget("font"), size=fontSize, slant="italic")
-textmain.configure(font=normal_font)
-textmain.tag_configure("bold", font=bold_font)
-textmain.tag_configure("italic", font=italic_font)
 textmain.delete(1.0,"end")
 textmain.insert(1.0, "yeet")
-textmain.tag_configure("italic", font=italic_font)
-textmain.tag_configure("bold", font=bold_font)
 textmain.configure(state="disabled")
 
 
@@ -1553,7 +853,7 @@ creditsbutton = tkinter.Button(sidebar, text="Credits")
 creditsbutton.place(anchor=NW, width=80, x=249, y=30)
 
 """
-textside = ScrolledText(sidebar, cursor="arrow", wrap="word")
+textside = tkhtml.HTMLScrolledText(sidebar, cursor="arrow", wrap="word")
 textside.place(anchor="nw", height=300, width=330, x=0, y=80)
 textside.configure(state="disabled")
 """
@@ -1583,11 +883,41 @@ themebutton7.place(anchor="nw", height=30, width=30, x=301, y=385)
 ChangeBackgroundColor("#FFFFFF")
 ChangeTextColor("#000000")
 UpdateText()
-
-OutputMainText("Nimin: Fetish Fantasy" + "\n" + "    v" + versionNumber + "\n" + "\n" + "Click 'New Game' to begin a new game." + "\n" + "\n" + "Created by:    --Xadera" + "\n" + "    www.furaffinity.net/user/xadera/" + "\n" + "\n" + "Original concept by:     --Fenoxo" + "\n" + "    fenoxo.com" + "\n" + "\n" + "Currently maintained by:    ajdelguidice" + "\n" + "    github.com/ajdelguidice" + "\n" + "For tutorial/guide, questions, or bug reports, visit github.com/ajdelguidice/pymin/", True)
-OutputMainText("\n" + "\033[1;3m" + "Italics Test 1" + "\033[0m", False)
-OutputMainText("\n" + sc.green("Italics Test 2", "italic"),False)
-OutputMainText("\n" + "<i>" +"Italics Test 3" + "</i>", False)
-OutputMainText("\n" + "Italics Test 4", False, italic=True)
-OutputMainText("\n" + "Bold Test 1", False, bold=True)
+"""
+root_dim = [1176,662]
+sizedict = {"mainframe":[1176,662,20,30,0,0]}
+def resize_all():
+    global root, mainframe, sizedict, bccolorlabel1, statframe, bccolorlabel2
+    #width_prop 1176/root_dim[0] = 100/x
+    width_prop = (100*root_dim[0])/1176
+    #height_prop 662/root_dim[1] = 100/x
+    height_prop = (100*root_dim[1])/662
+    #sizedict["itemname"] = [width,height,x,y,padx,pady]
+    sizedict["mainframe"] = [1176*width_prop,662*height_prop,0,0,20*width_prop,30*height_prop]
+    sizedict["bccolorlabel1"] = [1176*width_prop,662*height_prop,-20*width_prop,-30*height_prop]
+    sizedict["statframe"] = [180*width_prop, 611*height_prop]
+    sizedict["bccolorlabel2"] = [180*width_prop, 611*height_prop]
+    #mainframe.configure(width=sizedict["mainframe"][0], height=sizedict["mainframe"][1])
+    #root.geometry(str(int(sizedict['mainframe'][0])) + "x" + str(int(sizedict['mainframe'][1])))
+    mainframe.place(width=int(sizedict['mainframe'][0]),height=int(sizedict['mainframe'][1]))
+    mainframe.configure(padx=int(sizedict['mainframe'][4]), pady=int(sizedict['mainframe'][5]))
+    mainframe.update()
+    bccolorlabel1.place(width=int(sizedict['bccolorlabel1'][0]),height=int(sizedict['bccolorlabel1'][1]),x=int(sizedict['bccolorlabel1'][2]),y=int(sizedict['bccolorlabel1'][3]))
+    bccolorlabel1.update()
+    #statframe.place(width=int(sizedict['statframe'][0]),height=int(sizedict['statframe'][1]))
+    #statframe.update()
+    #bccolorlabel2.place(width=int(sizedict['bccolorlabel2'][0]),height=int(sizedict['bccolorlabel2'][1]))
+    #statframe.update()
+    #mainframe['padding'] = (sizedict["mainframe"][2],sizedict["mainframe"][3],sizedict["mainframe"][4],sizedict["mainframe"][5])
+def resize(event):
+    global root, root_dim
+    if event.widget == root:
+        if (root_dim[0] != event.width) and (root_dim[1] != event.height):
+            root_dim[0], root_dim[1] = event.width,event.height
+            resize_all()
+root.bind("<Configure>", resize)
+"""
+#OutputMainText("Nimin: Fetish Fantasy\n\tv" + versionNumber + "\n\nClick 'New Game' to begin a new game.\n\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com\n\nCurrently maintained by:\tajdelguidice\n\tgithub.com/ajdelguidice\nFor tutorial/guide, questions, or bug reports, visit github.com/ajdelguidice/pymin/", True)
+OutputMainText("Nimin: Fetish Fantasy\n\tv" + versionNumber + "\n\nClick 'New Game' to begin a new game.\n\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above.", True)
+TextBoxes.doMainText()
 root.mainloop()
