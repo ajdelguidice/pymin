@@ -2,20 +2,17 @@
 import math
 import random
 import tkinter
-from tkinter import ttk
-from tkinter.scrolledtext import ScrolledText
 from tkinter import filedialog
-#import pyminlib.FunctionExtensions as FE
 import pathlib
 import xml.etree.ElementTree as xmletree
 import xml.dom.minidom as xmlminidom
+import re
+import platform
 from miniamf import sol
 from numpy import nan
 from numpy import inf
 from numpy import NINF
 from tkhtmlview import HTMLScrolledText
-import re
-import platform
 
 def listtoarray(l:list):
    """
@@ -1079,7 +1076,6 @@ def Option7Event():
 def hotKeys(keyCode):
    global shiftHeld, buttonChoice, showSide, inBag, button1Visible, button2Visible, button3Visible, button4Visible, button5Visible, button6Visible, button7Visible, button8Visible, button9Visible, button10Visible, button11Visible, button12Visible, appearancebuttonvisible, option7Visible, showsavegame, showloadgame, shownewgame, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12
    if (shiftHeld == False):
-      #numpad7 or q
       if ((keyCode == 103 or keyCode == 81) and button1Visible == True and button1["state"] == "normal"):
          buttonChoice = 1
          UpDown.HideAll()
@@ -1211,8 +1207,8 @@ def ToggleTheme():
    savePreferences()
 
 def ChangeBackgroundColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount, converttoxmlbutton, converttosolbutton
-   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton"]:
+   global mainframe, statframe, buttonpanel, frame2, sidebar, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount, converttoxmlbutton, converttosolbutton
+   for i in ["mainframe", "statframe", "buttonpanel", "frame2", "sidebar", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton"]:
       try:
          if (eval(i).cget("background") != color):
             eval(i)["background"] = color
@@ -1220,8 +1216,8 @@ def ChangeBackgroundColor(color):
          continue
    
 def ChangeTextColor(color):
-   global bccolorlabel1, bccolorlabel2, bccolorlabel3, bccolorlabel4, bccolorlabel5, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount, converttoxmlbutton, converttosolbutton
-   for i in ["bccolorlabel1", "bccolorlabel2", "bccolorlabel3", "bccolorlabel4", "bccolorlabel5", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton"]:
+   global mainframe, statframe, buttonpanel, frame2, sidebar, textmain, textside, label1, strlabel, strcolonlabel, strvallabel, strimglabel, mentlabel, mentcolonlabel, mentvallabel, mentimglabel, liblabel, libcolonlabel, libvallabel, libimglabel, senlabel, sencolonlabel, senvallabel, senimglabel, label6, hplabel, hpcolonlabel, hpvallabel, hpimglabel, lustlabel, lustcolonlabel, lustvallabel, lustimglabel, hungerlabel, hungercolonlabel, hungervallabel, label10, currentregionlabel, levellabel, levelcolonlabel, levelvallabel, sexplabel, sexpcolonlabel, sexpvallabel, coinlabel, coincolonlabel, coinvallabel, daylabel, daycolonlabel, dayvallabel, hourlabel, hourcolonlabel, hourvallabel, bagstashlabel, savegamebutton, loadgamebutton, newgamebutton, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, looksbutton, statsbutton, effectsbutton, helpbutton, levelsbutton, gearbutton, titlesbutton, creditsbutton, appearancebutton, textside, themebutton, textsizedownbutton, textsizeresetbutton, textsizeupbutton, textboldbutton, textcolorbutton, themebutton7, amountlabel1, amountlabel2, amountlabel3, amountlabel4, amountlabel5, amountlabel6, amountlabel7, amountlabel8, amountlabel9, amountlabel10, amountlabel11, amountlabel12, pagelabel, moveitembutton, moveitemamount, converttoxmlbutton, converttosolbutton
+   for i in ["mainframe", "statframe", "buttonpanel", "frame2", "sidebar", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton"]:
       try:
          if (eval(i).cget("foreground") != color):
             eval(i)["foreground"] = color
@@ -1322,27 +1318,12 @@ def toggleSide():
       SidePanel.Show()
       updateSide()
       SidePanel.Option7Text()
-   else:
-      showSide = True
-      SidePanel.Hide()
-      SidePanel.Show()
-      updateSide()
-      SidePanel.Option7Text()
    if (option7Visible == True):
       savePreferences()
-
-def UTCheckBold():
-   global fontBold
-   if (fontBold == True):
-      a = ", 'bold'"
-      return a
-   else:
-      return ""
 
 def updateText():
    global fontColor, fontMain, fontSize, textMain, textSide, textsidevisible
    ChangeTextColor(fontColor)
-   a = UTCheckBold()
    TextBoxes.doMainText()
    if (textsidevisible == True):
       TextBoxes.doSideText()
@@ -1434,63 +1415,28 @@ def updateSide():
       detailedTitles()
    elif (sideFocus == 8):
       detailedCredits()
-"""
-def HideUpDown():
-   this.strUp.visible = False
-   this.strDown.visible = False
-   this.mentaUp.visible = False
-   this.mentaDown.visible = False
-   this.libUp.visible = False
-   this.libDown.visible = False
-   this.senDown.visible = False
-   this.senUp.visible = False
-   this.lustUp.visible = False
-   this.lustDown.visible = False
-   this.hpUp.visible = False
-   this.hpDown.visible = False
-"""
-"""
-def ButtonWrite(buttonNumber:int, buttonText:str):
-   if buttonNumber == 1:
-      this.Choice1.htmlText = buttonText
-   if buttonNumber == 2:
-      this.Choice2.htmlText = buttonText
-   if buttonNumber == 3:
-      this.Choice3.htmlText = buttonText
-   if buttonNumber == 4:
-      this.Choice4.htmlText = buttonText
-   if buttonNumber == 5:
-      this.Choice5.htmlText = buttonText
-   if buttonNumber == 6:
-      this.Choice6.htmlText = buttonText
-   if buttonNumber == 7:
-      this.Choice7.htmlText = buttonText
-   if buttonNumber == 8:
-      this.Choice8.htmlText = buttonText
-   if buttonNumber == 9:
-      this.Choice9.htmlText = buttonText
-   if buttonNumber == 10:
-      this.Choice10.htmlText = buttonText
-   if buttonNumber == 11:
-      this.Choice11.htmlText = buttonText
-   if buttonNumber == 12:
-      this.Choice12.htmlText = buttonText
-"""
-#def ViewButtonText():
-   #DoButtonChoices
-#def ViewButtonOutline():
-   #ButtonFunctions.Visible
+
+def hideUpDown():
+   UpDown.HideAll()
+
+def buttonWrite(buttonNumber:int, buttonText:str):
+   ButtonFunctions.WriteText(buttonNumber, buttonText)
+
+#def viewButtonText():
+#   DoButtonChoices
+#def viewButtonOutline():
+#   ButtonFunctions.Visible
 
 def amountWrite(buttonNum:int, buttonText:str):
    Amount.WriteAmount(buttonNum, buttonText)
-  
+
 def viewAmount(buttonNum:int, tempBool:bool):
    Amount.viewAmount(buttonNum, tempBool)
 
 def hideAmount():
    #for(this.i = 1; this.i < 13; this.viewAmount(this.i,false),++this.i)
    for i in range(1, 13):
-      viewAmount(i, False)
+      Amount.viewAmount(i, False)
 
 def choiceListButtons(which:str):
    #Should work
@@ -1599,12 +1545,12 @@ def choiceListButtons(which:str):
       if (tempArray[i + ((choicePage * 9) - 9)]):
          if (which == "Bag"):
             if (bagStackArray[i + ((choicePage * 9) - 9)] > 1):
-               viewAmount(tempInt, True)
-               amountWrite(tempInt, "" + str(bagStackArray[i + ((choicePage * 9) - 9)]) + "")
+               Amount.viewAmount(tempInt, True)
+               Amount.WriteAmount(tempInt, "" + str(bagStackArray[i + ((choicePage * 9) - 9)]) + "")
          elif (which == "Stash"):
             if(stashStackArray[i + ((choicePage * 9) - 9)] > 1):
-               viewAmount(tempInt, True)
-               amountWrite(tempInt, "" + str(stashStackArray[i + ((choicePage * 9) - 9)]) + "")
+               Amount.viewAmount(tempInt, True)
+               Amount.WriteAmount(tempInt, "" + str(stashStackArray[i + ((choicePage * 9) - 9)]) + "")
 
 def choiceListBlanks():
    #Should work
@@ -1712,13 +1658,13 @@ def checkZero():
       cockTotal = 0
    if (balls < 0):
       balls = 0
-   if (balls == 0) and (blueBalls > 0):
+   elif (balls == 0) and (blueBalls > 0):
       blueBalls = 0
    if (ballSize < 1):
       ballSize = 1
    if (cockMoist < 0):
       cockMoist = 0
-   if (cockMoist > 12):
+   elif (cockMoist > 12):
       cockMoist = 12
    if (breastSize < 0):
       breastSize = 0
@@ -1738,7 +1684,7 @@ def checkZero():
       vagTotal = 0
    if (vagMoist < 0):
       vagMoist = 0
-   if (vagMoist > 12):
+   elif (vagMoist > 12):
       vagMoist = 12
    if (vulvaSize < 0):
       vulvaSize = 0
@@ -1781,7 +1727,7 @@ def checkZero():
          pregArray.push(False,0,0,0,0)
 
 def checkDecimal():
-   #!
+   #Should work
    global cumMod, cockSizeMod, vagSizeMod, vagElastic, changeMod, SexPMod, pregRate, maleFetish, femaleFetish, hermFetish, narcissistFetish, dependentFetish, dominantFetish, submissiveFetish, lboobFetish, sboobFetish, furryFetish, scalyFetish, smoothyFetish, pregnancyFetish, bestialityFetish, milkFetish, sizeFetish, unbirthingFetish, ovipositionFetish, toyFetish, hyperFetish
    cumMod = round(cumMod * 10) / 10
    cockSizeMod = round(cockSizeMod * 100) / 100
@@ -1863,12 +1809,10 @@ def doButtonChoices(buttonlist:list):
    global buttonChoice
    bc()
    dlist = [1,2,3,4,5,6,7,8,9,10,11,12]
-   #templist = []
    i = 0
    while (i < len(buttonlist)):
       dlist.remove(buttonlist[i])
       ButtonFunctions.WriteText(buttonlist[i], buttonlist[i + 1])
-      #templist.append(buttonlist[i])
       i += 2
    ButtonFunctions.DisableSelected(dlist)
 
@@ -1972,52 +1916,55 @@ def decGet(number, places:int):
 
 def doWeight():
    #!
-   global cockSize, cockSizeMod, body, _str_, carryMod, tallness, breastSize, boobTotal, ballSize, showBalls, udderSize, udders, pregnancyTime, bellyMod
+   global cockSize, cockSizeMod, body, _str_, carryMod, tallness, breastSize, boobTotal, ballSize, showBalls, udderSize, udders, pregnancyTime, bellyMod, cockTotal
    tempBool = False
-   if (cockSize * cockSizeMod) > ((body * 2 + _str_ + carryMod) * (tallness / 60)):
-      outputMainText("\n\nThe weight of your " + cockDesc() + " cock" + plural(1) + " is too much to carry, making it impossible to walk. You're stuck in this town until either you get stronger or the bulge in your " + clothesBottom() + " gets smaller...",False)
-      tempBool = True
-   elif (cockSize * cockSizeMod) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
-      outputMainText("\n\nThe weight of your " + cockDesc() + " cock" + plural(1) + " is almost constantly on your mind... Your walk has a noticeable sway in its step just trying to hold it off the ground while you move. You're cautious when moving, or else you will lose control and slam it into something or someone.",False)
-   elif (cockSize * cockSizeMod) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
-      outputMainText("\n\nThe weight of your " + cockDesc() + " cock" + plural(1) + " is becoming a bit of a nuisance. Whenever you move around, you're subconsciously afraid your bulge will accidentally gain more momentum than intended and potentially hurt someone or break something.",False)
-   elif (cockSize * cockSizeMod) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
-      outputMainText("\n\nYou are rather aware of the weight of your " + cockDesc() + " cock" + plural(1) + ". You often find yourself slipping a hand into your " + clothesBottom() + " to readjust your bulge in an attempt to be a little less mindful about it.",False)
-   if (breastSize > ((body * 2 + _str_ + carryMod) * (tallness / 60))) or ((boobTotal == 4) and (breastSize > (0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60)))) or ((boobTotal == 6) and (breastSize > (0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60)))) or ((boobTotal == 8) and (breastSize > (0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60)))) or ((boobTotal == 10) and (breastSize > (0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60)))):
+   if (cockTotal > 0):
+      if (cockSize * cockSizeMod > (body * 2 + _str_ + carryMod) * (tallness / 60)):
+         outputMainText("\n\nThe weight of your " + cockDesc() + " cock" + plural(1) + " is too much to carry, making it impossible to walk. You're stuck in this town until either you get stronger or the bulge in your " + clothesBottom() + " gets smaller...",false)
+         tempBool = True
+      elif (cockSize * cockSizeMod > (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
+         outputMainText("\n\nThe weight of your " + cockDesc() + " cock" + plural(1) + " is almost constantly on your mind... Your walk has a noticeable sway in its step just trying to hold it off the ground while you move. You're cautious when moving, or else you will lose control and slam it into something or someone.",False)
+      elif (cockSize * cockSizeMod > (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
+         outputMainText("\n\nThe weight of your " + cockDesc() + " cock" + plural(1) + " is becoming a bit of a nuisance. Whenever you move around, you're subconsciously afraid your bulge will accidentally gain more momentum than intended and potentially hurt someone or break something.",False)
+      elif (cockSize * cockSizeMod > (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
+         outputMainText("\n\nYou are rather aware of the weight of your " + cockDesc() + " cock" + plural(1) + ". You often find yourself slipping a hand into your " + clothesBottom() + " to readjust your bulge in an attempt to be a little less mindful about it.",False)
+   if (breastSize > (body * 2 + _str_ + carryMod) * (tallness / 60) or boobTotal == 4 and breastSize > 0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) or boobTotal == 6 and breastSize > 0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) or boobTotal == 8 and breastSize > 0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) or boobTotal == 10 and breastSize > 0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60)):
       outputMainText("\n\nThe weight of your " + boobDesc() + " tits is too much to really carry, making even standing a chore. You're stuck in this town until either you get stronger or they get smaller...",False)
       tempBool = True
-   elif (breastSize > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6)) or ((boobTotal == 4) and (breastSize > (0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6))) or ((boobTotal == 6) and (breastSize > (0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6))) or ((boobTotal == 8) and (breastSize > (0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6))) or ((boobTotal == 10) and (breastSize > (0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6))):
+   elif (breastSize > (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6 or boobTotal == 4 and breastSize > 0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6 or boobTotal == 6 and breastSize > 0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6 or boobTotal == 8 and breastSize > 0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6 or boobTotal == 10 and breastSize > 0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
       outputMainText("\n\nThe weight of your " + boobDesc() + " tits is rather troubling. Not only does your back ache from trying to keep them aloft, but you're also afraid you won't be able to get back up when you lay down.",False)
-   elif (breastSize > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3)) or ((boobTotal == 4) and (breastSize > (0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3))) or ((boobTotal == 6) and (breastSize > (0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3))) or ((boobTotal == 8) and (breastSize > (0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3))) or ((boobTotal == 10) and (breastSize > (0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3))):
+   elif (breastSize > (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3 or boobTotal == 4 and this.breastSize > 0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3 or boobTotal == 6 and breastSize > 0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3 or boobTotal == 8 and breastSize > 0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3 or boobTotal == 10 and breastSize > 0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
       outputMainText("\n\nThe weight of your " + boobDesc() + " tits is becoming worrisome. Your back aches a little from holding them up and you often find yourself resting them on tables whenever you sit down, to keep the load off yourself.",False)
-   elif (breastSize > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2)) or ((boobTotal == 4) and (breastSize > (0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2))) or ((boobTotal == 6) and (breastSize > (0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2))) or ((boobTotal == 8) and (breastSize > (0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2))) or ((boobTotal == 10) and (breastSize > (0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2))):
+   elif (breastSize > (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2 or boobTotal == 4 and breastSize > 0.5 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2 or boobTotal == 6 and breastSize > 0.66 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2 or boobTotal == 8 and breastSize > 0.33 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2 or boobTotal == 10 and breastSize > 0.25 * (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
       outputMainText("\n\nYou are rather aware of the weight of your " + boobDesc() + " tits. Your hands are frequently beneath your " + clothesTop() + ", trying to readjust the things. They're so heavy, you're subconsciouly drawing more attention to them with the way you keep swinging them around and absent-mindedly handling them.",False)
-   if (ballSize * balls / 2) > ((body * 2 + _str_ + carryMod) * (tallness / 60)) and (showBalls == True):
-      outputMainText("\n\nThe weight of your " + ballDesc() + " nuts is too much to carry, anchoring you to the ground. You're stuck here until you get strong or your balls get smaller...",False)
-      tempBool = True
-   elif (ballSize * balls / 2) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6) and (showBalls == True):
-      outputMainText("\n\nThe weight of your " + ballDesc() + " nuts is troublesome. Your " + legDesc(6) + " bend" + legPlural(1) + " with the heaviness and you have difficulty standing up whenever you sit down. And you're afraid of running because once those things start swaying, they're quite difficult to stop.",False)
-   elif (ballSize * balls / 2) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3) and (showBalls == True):
-      outputMainText("\n\nThe weight of your " + ballDesc() + " nuts is becoming annoying. You're walking with your crotch sagging quite often and frequently consider buying a bra for them...",False)
-   elif (ballSize * balls / 2) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2) and (showBalls == True):
-      outputMainText("\n\nYou are rather aware of the weight of your " + ballDesc() + " nuts. Even in public, a hand is dipping into your " + clothesBottom() + " to readjust them and massaging your stretched scrotum is quickly becoming a hobby of yours.",False)
-   if (udderSize > ((body * 2 + _str_ + carryMod) * (tallness / 60))) and (udders == True):
-      outputMainText("\n\nThe weight of your " + udderDesc() + " udder is too much to carry, sitting heavily in front of you. You're stuck in this town until either you get stronger or it gets smaller...",False)
-      tempBool = True
-   elif (udderSize > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6)) and (udders == True):
-      outputMainText("\n\nThe weight of your " + udderDesc() + " udder makes you uneasy. The momentum it gains when you walk makes you fear falling on your face and every now and then your " + legDesc(2) + " go numb while you're sitting or laying down.",False)
-   elif (udderSize > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3)) and (udders == True):
-      outputMainText("\n\nThe weight of your " + udderDesc() + " udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop.",False)
-   elif (udderSize > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2)) and (udders == True):
-      outputMainText("\n\nYou are rather aware of the weight of your " + udderDesc() + " udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing...",False)
-   if ((pregnancyTime + bellyMod * 2) / 5) > ((body * 2 + _str_ + carryMod) * (tallness / 60)):
+   if (showBalls == True):
+      if (ballSize * balls / 2 > (body * 2 + _str_ + carryMod) * (tallness / 60)):
+         outputMainText("\n\nThe weight of your " + ballDesc() + " nuts is too much to carry, anchoring you to the ground. You're stuck here until you get strong or your balls get smaller...",False)
+         tempBool = True
+      elif (ballSize * balls / 2 > (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
+         outputMainText("\n\nThe weight of your " + ballDesc() + " nuts is troublesome. Your " + legDesc(6) + " bend" + legPlural(1) + " with the heaviness and you have difficulty standing up whenever you sit down. And you're afraid of running because once those things start swaying, they're quite difficult to stop.",False)
+      elif (ballSize * balls / 2 > (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
+         outputMainText("\n\nThe weight of your " + ballDesc() + " nuts is becoming annoying. You're walking with your crotch sagging quite often and frequently consider buying a bra for them...",False)
+      elif (ballSize * balls / 2 > (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
+         outputMainText("\n\nYou are rather aware of the weight of your " + ballDesc() + " nuts. Even in public, a hand is dipping into your " + clothesBottom() + " to readjust them and massaging your stretched scrotum is quickly becoming a hobby of yours.",False)
+   if (udders == True):
+      if (udderSize > (body * 2 + _str_ + carryMod) * (tallness / 60)):
+         outputMainText("\n\nThe weight of your " + udderDesc() + " udder is too much to carry, sitting heavily in front of you. You're stuck in this town until either you get stronger or it gets smaller...",False)
+         tempBool = True
+      elif (udderSize > (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
+         outputMainText("\n\nThe weight of your " + udderDesc() + " udder makes you uneasy. The momentum it gains when you walk makes you fear falling on your face and every now and then your " + legDesc(2) + " go numb while you're sitting or laying down.",False)
+      elif (udderSize > (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
+         outputMainText("\n\nThe weight of your " + udderDesc() + " udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop.",False)
+      elif (udderSize > (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
+         outputMainText("\n\nYou are rather aware of the weight of your " + udderDesc() + " udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing...",False)
+   if ((pregnancyTime + bellyMod * 2) / 5 > (body * 2 + _str_ + carryMod) * (tallness / 60)):
       outputMainText("\n\nThe weight of your " + bellyDesc() + " belly is too much carry, putting your weight more on it than you can yourself. You're stuck in this town until either you get stronger or you lose some of the girth...",False)
       tempBool = True
-   elif ((pregnancyTime + bellyMod * 2) / 5) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
+   elif ((pregnancyTime + bellyMod * 2) / 5 > (body * 2 + _str_ + carryMod) * (tallness / 60) * 5 / 6):
       outputMainText("\n\nThe weight of your " + bellyDesc() + " belly is rather alarming... You're almost constantly trying to cradle it, subconsciously fearing it will drag you down to the ground if you don't. Whenever you sit down, you always prop it up against a table simply so you don't roll forward.",False)
-   elif ((pregnancyTime + bellyMod * 2) / 5) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
+   elif ((pregnancyTime + bellyMod * 2) / 5 > (body * 2 + _str_ + carryMod) * (tallness / 60) * 2 / 3):
       outputMainText("\n\nThe weight of your " + bellyDesc() + " belly is becoming irksome. You take a bit more time to come to a halt whenever you move as it retains much of your momentum. And whenever you bend over, it's difficult to rise back up.",False)
-   elif ((pregnancyTime + bellyMod * 2) / 5) > ((body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
+   elif ((pregnancyTime + bellyMod * 2) / 5 > (body * 2 + _str_ + carryMod) * (tallness / 60) * 1 / 2):
       outputMainText("\n\nYou are rather aware of the weight of your " + bellyDesc() + " belly. You often subconsciously center your weight more by resting your hands on top of it rather than let them hang at your sides.",False)
    return tempBool
 
@@ -2055,7 +2002,7 @@ def checkMagicItem():
       tempBool = True
    return tempBool
 
-def checkStash():
+def checkStash(ID:int):
    #Should work
    global stashArray
    tempBool = False
@@ -2215,7 +2162,7 @@ def regionChange(changes:int):
          currentregionlabel["text"] = "Sanctuary"
 
 def dayTime(Time):
-   #!
+   #Should work
    global hour, day
    addTime = int(Time)
    while (hour + addTime >= 24):
@@ -2238,19 +2185,21 @@ def doCoin(changes:int):
    doSexP(0)
 
 def doHP(changes:int):
-   #!
+   #Should work
    global masoPot, sMasoPot, lust, HP, _str_, HPMod
-   if ((masoPot > 0) and (sMasoPot <= 0) and (changes < 0)):
-      doLust(math.floor(-changes / 2),0)
-      changes -= math.ceil(changes / 2)
-   if ((sMasoPot > 0) and (lust < 100) and (changes < 0)):
-      doLust(-changes,0)
-      changes = 0
-   if ((sMasoPot > 0) and (lust >= 100) and (changes < 0)):
-      outputMainText("\n\nIt seems that no matter how much fun you had getting beaten like that, there's just some things your body wasn't meant to withstand.",False)
+   if (changes < 0):
+      if ((masoPot > 0) and (sMasoPot <= 0)):
+         doLust(math.floor(-changes / 2),0)
+         changes -= math.ceil(changes / 2)
+      if (sMasoPot > 0):
+         if (lust < 100):
+            doLust(-changes,0)
+            changes = 0
+         else:
+            outputMainText("\n\nIt seems that no matter how much fun you had getting beaten like that, there's just some things your body wasn't meant to withstand.",False)
    if (changes < 0):
       UpDown.hpImg(valdownimg)
-   if (changes > 0):
+   elif (changes > 0):
       UpDown.hpImg(valupimg)
    if (HP + changes <= 0):
       HP = 1
@@ -2263,7 +2212,7 @@ def doHP(changes:int):
    statDisplay()
 
 def doPassOut():
-   #!
+   #Should work
    global level, coin, currentState, inDungeon, exhaustion, skipExhaustion, hrs
    tempNum = math.floor(percent() / 10 * level + level * percent() / 10)
    if (coin - tempNum < 0):
@@ -2281,7 +2230,7 @@ def doPassOut():
    doEnd()
 
 def doLust(changes:int, source:int, *triggers):
-   #!
+   #Should work
    global ment, fertilityStatueCurse, cockSnakeVenom, cockTotal, vagTotal, clitSize, milkCPoisonNip, nipplePlay, milkCPoisonUdd, level, lust, _str_, nipType, inBag, minLust, heat, heatTime, lustPenalty
    if (source == 1):
       if (changes > 0):
@@ -2296,7 +2245,7 @@ def doLust(changes:int, source:int, *triggers):
       if (fertilityStatueCurse > 0):
          outputMainText("\n\nWith your orgasm, you feel strange as wispy fumes escape from your crotch, just like those that descended from the statue you encountered...",False)
          vagChange(0,1)
-      #if (cockSnakeVenom > 0) and (triggers.index(1) != -1) and (cockTotal > 0):
+      #if (cockSnakeVenom > 0) and (triggers.indexOf(1) != -1) and (cockTotal > 0):
       if ((cockSnakeVenom > 0) and (lists.indexOf(triggers, 1)!= -1) and (cockTotal > 0)):
          outputMainText("\n\nHowever, after you have finished, you realize there's a bit more meat to your meat... The venom from the cock-snake fed off of your orgasm, causing your appendage" + plural(1) + " to flop a bit lower down your " + legDesc(3) + " as " + plural(11) + " shrink" + plural(3) + " back down...",False)
          cockChange(2,0)
@@ -2325,7 +2274,7 @@ def doLust(changes:int, source:int, *triggers):
          doSexP(math.floor(lust - 50 + 6 + _str_ / 3))
    if (changes < 0):
       UpDown.LustImg(valdownimg)
-   if (changes > 0):
+   elif (changes > 0):
       UpDown.LustImg(valupimg)
    if ((lust + changes >= 75) and (lust < 75)):
       if (cockTotal > 0):
@@ -2387,11 +2336,11 @@ def doLust(changes:int, source:int, *triggers):
       outputMainText("\n\nThe distraction weighs on your mind constantly, making it hard to focus on normal tasks.",False)
       statsMod(0,-4,0,0)
       lustPenalty = 1
-   if ((lust + changes >= 60) and (lustPenalty == 1)):
+   elif ((lust + changes >= 60) and (lustPenalty == 1)):
       outputMainText("\n\nYour muscles are twitchy and feeling weak from the strong tingle of arousal.",False)
       statsMod(-5,0,0,0)
       lustPenalty = 2
-   if ((lust + changes >= 90) and (lustPenalty == 2)):
+   elif ((lust + changes >= 90) and (lustPenalty == 2)):
       outputMainText("\n\nThe intense lust has overwhelmed your body, leaving your " + skinDesc() + " hypersensitive.",False)
       statsMod(0,0,0,10)
       lustPenalty = 3
@@ -2823,7 +2772,7 @@ def appearanceGo():
          tempStr += "\n\nUpon your chest and down to just above your crotch heaves " + str(boobTotal) + " " + boobDesc() + " breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures " + str(repintorfloat(decGet(breastSize * 0.4,1))) + " inches in circumference beyond that of your chest, the lower pairs just as large; each with " + nipDesc()
       if (dominant == 5):
          tempStr += "teats"
-      if (dominant != 5):
+      elif (dominant != 5):
          tempStr += "nipples"
       if (nipType == 2):
          tempStr += " hidden within slits in your areola."
@@ -2880,7 +2829,7 @@ def appearanceGo():
             if ((horseCocks > 0) or (wolfCocks > 0) or (catCocks > 0) or (rabbitCocks > 0)):
                tempStr += " pooling within your sheath" + plural(1) + ","
             tempStr += " running down your thighs as it continually blotches your " + clothesBottom() + ", even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
-      if ((lust > 30) and (lust <= 70)):
+      elif ((lust > 30) and (lust <= 70)):
          if (humanCocks > 0):
             tempStr += " " + str(humanCocks) + " stand" + plural(3) + " erect, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches up, with smooth skin and a mushroom-like glans, just like a human's."
          if (horseCocks > 0):
@@ -2902,7 +2851,7 @@ def appearanceGo():
             tempStr += " running down your thighs as it blotches your " + clothesBottom() + ". The slime is enough to slip yourself into a pussy smaller than you are long, at least."
          if (moistCalc(1) > 5):
             tempStr += " Pre steadily drips from your groin, making a large wet spot on your " + clothesBottom() + ", looking more like you had peed yourself from all the seminal fluid.  Fortunately, you could probably slip " + oneYour(1) + " cock" + plural(1) + " into a pussy smaller than you are, thanks to all the lubrication."
-      if (lust > 70):
+      elif (lust > 70):
          if (humanCocks > 0):
             tempStr += " " + str(humanCocks) + " stand" + plural(3) + " erect, reaching " + str(repintorfloat(decGet(cockSize * cockSizeMod * 0.5,1))) + " inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
          if (horseCocks > 0):
@@ -2930,7 +2879,7 @@ def appearanceGo():
       tempStr += "\n\nBeneath your cock" + plural(1) + " swing" + plural(3) + " a scrotum filled with " + str(balls) + " " + ballDesc() + " testicles."
       if ((blueBalls > 36) and (blueBalls <= 84)):
          tempStr += " They groan and squirm, full of hot cum just waiting to blow."
-      if (blueBalls > 84):
+      elif (blueBalls > 84):
          tempStr += " They groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
    if (vagTotal > 0):
       tempStr += "\n\nAlso, " + legWhere(1) + " your " + legDesc(2) + " nestles " + str(vagTotal) + " " + vulvaDesc() + " pair" + plural(2) + " of feminine nether-lips, about " + str(repintorfloat(decGet(vagSize * vagSizeMod * 0.5,1))) + " inches deep, when aroused."
@@ -2941,13 +2890,13 @@ def appearanceGo():
             tempStr += " Although you're hardly aroused, your " + clitDesc() + " clit" + plural(2) + " dangle" + plural(4) + " softly from the front of your slit" + plural(2) + ", measuring nearly " + str(repintorfloat(decGet(clitSize * 0.1,1))) + " inches in length."
          if (moistCalc(2) > 2):
             tempStr += " Lubrication makes your cunt" + plural(2) + " slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your " + clothesBottom() + ", whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
-      if ((lust > 30) and (lust <= 70)):
+      elif ((lust > 30) and (lust <= 70)):
          tempStr += " Your " + clitDesc() + " clit" + plural(2) + " swell" + plural(4) + " from the hood" + plural(2) + " at the front of your slit" + plural(2) + ", reaching " + str(repintorfloat(decGet(clitSize * 0.2,1))) + " inches in length and making you walk awkwardly as the sensitive button" + plural(2) + " rub" + plural(4) + " between your thighs."
          if ((moistCalc(2) > 2) and (moistCalc(2) <= 5)):
             tempStr += " Lubrication makes your cunt" + plural(2) + " slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your " + clothesBottom() + ", whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
          if (moistCalc(2) > 5):
             tempStr += " So much feminine honey drips from your cunt" + plural(2) + " that it looks like you have peed in your " + clothesBottom() + " and webs of slime form sheets " + legWhere(2) + " your " + legDesc(2) + ". But, with all that lubrication you could take a cock around one and a half times long as you are deep."
-      if (lust > 70):
+      elif (lust > 70):
          tempStr += " Your " + clitDesc() + " clit" + plural(2) + " swell" + plural(4) + " tremendously from the hood" + plural(2) + " at the front of your slit" + plural(2) + ", reaching " + str(repintorfloat(decGet(clitSize * 0.25,2))) + " inches in length. You walk awkwardly half the time as squeezing the clit" + plural(2) + " and swollen lips between your thighs is often too much, making you hunger to hump something."
          if ((moistCalc(2) > 2) and (moistCalc(2) <= 5)):
             tempStr += " Lubrication makes your cunt" + plural(2) + " slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your " + clothesBottom() + ", whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
@@ -3200,7 +3149,7 @@ def detailedStatuses():
    tempStr += "\n"
    if (exhaustionPenalty == 2):
       tempStr += "\nExhausted"
-   if (exhaustionPenalty == 1):
+   elif (exhaustionPenalty == 1):
       tempStr += "\nTired"
    if (lustPenalty > 0):
       tempStr += "\nHorny"
@@ -3396,7 +3345,7 @@ def detailedFetishes():
             doProcess()
 
 def detailedHelp():
-   #!Needs bold, underline, and italics
+   #Should work
    global showSide
    global doListen
    tempStr = ""
@@ -4581,6 +4530,7 @@ def doGeneral():
    #Should work
    global currentState, currentZone, hour, levelUP, milkEngorgement, breastSize, tallness, milkCap, lactation, udderEngorgement, udderSize, udderLactation, blueBalls, ment, lib, lust, exhaustion, showSide, buttonChoice
    global doListen
+   djp = False
    bc()
    currentState = 1
    a8 = 1
@@ -4621,58 +4571,61 @@ def doGeneral():
       udderEngorgement -= ((udderSize * (udderSize + 1) + tallness / 4) * 4 + milkCap) * 1.5
       lactChange(2,-50)
    if ((blueBalls >= 120) and (percent() * ment < percent() * (lib + blueBalls - 120)) and (lib > ment - 70)):
-      doJizzPants()
+      #doJizzPants()
+      djp = True
    if (lust == 100):
       templist = [5, "Masturbate"]
       outputMainText("\n\nYour body quivers and your " + legDesc(2) + " give" + legPlural(1) + " out from under you as your arousal soaks through your clothes. Your mind seems focused only on one thing: SEX!\n\nYou must masturbate if you wish to continue.",False)
    elif (exhaustion > 44):
       templist = [6, "Sleep"]
       outputMainText("\n\nThere's only one thing on your mind right now...",False)
-   if (showSide == False):
-      ApButton.Show()
-      #this.appearanceText.visible = true;
-      #this.appearanceBox.visible = true;
-   LGButton.Show()
-   #this.loadGame.visible = true;
-   #this.loadGameOutline.visible = true;
-   SGButton.Show()
-   #this.saveGame.visible = true;
-   #this.saveGameOutline.visible = true;
-   NGButton.Show()
-   #this.newGame.visible = true;
-   #this.newGameOutline.visible = true;
-   ButtonFunctions.Visible(1,1,1,1,1,1,1,a8,1,1,0,1)
-   doButtonChoices(templist)
-   def doListen():
-      global buttonChoice, hrs
-      if (buttonChoice == 1):
-         doBag()
-      elif(buttonChoice == 2):
-         doStash()
-      elif (buttonChoice == 3):
-         doShops()
-      elif (buttonChoice == 4):
-         doDayCare()
-      elif (buttonChoice == 5):
-         doMasturbate()
-      elif (buttonChoice == 6):
-         doSleep()
-      elif (buttonChoice == 7):
-         doAlchemy()
-      elif (buttonChoice == 8):
-         doLevelUP()
-      elif (buttonChoice == 9):
-         hrs += 1
-         doProcess()
-      elif (buttonChoice == 10):
-         doProstitute()
-      elif (buttonChoice == 12):
-         doExplore()
+   if djp == True:
+      doJizzPants()
+   else:
+      if (showSide == False):
+         ApButton.Show()
+         #this.appearanceText.visible = true;
+         #this.appearanceBox.visible = true;
+      LGButton.Show()
+      #this.loadGame.visible = true;
+      #this.loadGameOutline.visible = true;
+      SGButton.Show()
+      #this.saveGame.visible = true;
+      #this.saveGameOutline.visible = true;
+      NGButton.Show()
+      #this.newGame.visible = true;
+      #this.newGameOutline.visible = true;
+      ButtonFunctions.Visible(1,1,1,1,1,1,1,a8,1,1,0,1)
+      doButtonChoices(templist)
+      def doListen():
+         global buttonChoice, hrs
+         if (buttonChoice == 1):
+            doBag()
+         elif(buttonChoice == 2):
+            doStash()
+         elif (buttonChoice == 3):
+            doShops()
+         elif (buttonChoice == 4):
+            doDayCare()
+         elif (buttonChoice == 5):
+            doMasturbate()
+         elif (buttonChoice == 6):
+            doSleep()
+         elif (buttonChoice == 7):
+            doAlchemy()
+         elif (buttonChoice == 8):
+            doLevelUP()
+         elif (buttonChoice == 9):
+            hrs += 1
+            doProcess()
+         elif (buttonChoice == 10):
+            doProstitute()
+         elif (buttonChoice == 12):
+            doExplore()
 
 def doJizzPants():
    #Should work
    global hrs, currentZone, exhaustion, lib
-   global doListen
    getCum = cumAmount()
    outputMainText("\n\nYour " + ballDesc() + " balls feel so absolutely swollen and sensitive, that you can't stop thinking about it. They just feel like they've gotta... gotta... gotta...",True)
    hrs += 1
@@ -4705,9 +4658,9 @@ def doJizzPants():
       stats(0,-5,2,0)
       exhaustion += 20
    doLust(-math.floor(lib / 4),2,1)
-   doNext()
-   def doListen():
-      doEnd()
+   #doNext()
+   #def doListen():
+   doEnd()
 
 def doBag():
    #Should work
@@ -25823,24 +25776,6 @@ def toxml(inputfile, outputfile):
    outputMainText("Success",True)
 
 class lists:
-   def splice(a:list, b:int, c:int="", d:list=[]):
-      """
-      ActionScript Array.splice()
-      a is a list. (required)
-      b is the element to start at (refers to the first element as 1 instead of 0). (required)
-      c is the number of elements to remove (including b). If c is not provided, all elements from b on will be removed. (optional)
-      d is a list of elements to be added at b after b to b+c is deleted. (optional)
-      """
-      templist = a
-      if (c == ""):
-         del templist[b:]
-      elif (c != 0):
-         for i in range(c, 0, -1):
-            templist.pop(b+i-1)
-      if (d != []):
-         for i in range(0, len(d)):
-            templist.insert(b+i, d[i])
-      return templist
    def indexOf(a:list, b):
       try:
          x = a.index(b)
@@ -25852,24 +25787,6 @@ class lists:
       while (i < len(b)):
          a.append(b[i])
          i += 1
-      return a
-   def createtosizestr(a:int):
-      templist = []
-      while (len(templist) < a):
-         templist.append("")
-      return templist
-   def createtosizeint(a:int):
-      templist
-      while (len(templist) < b):
-         templist.append(0)
-      return templist
-   def filltosizestr(a:list, b:int):
-      while (len(a) < b):
-         a.append("")
-      return a
-   def filltosizeint(a:list, b:int):
-      while (len(a) < b):
-         a.append(0)
       return a
 
 def endProcess():
@@ -25905,10 +25822,52 @@ def keysUp(e):
 themeColor = getThemeColor()
 initinterface = True
 
+#window resizing
+#Adobe flash minimum is 262x147 (tecnically 262x0) (scale: 22.2789, 22.2054)
+#resize window
+##get new size of window
+###root.winfo_screenwidth()
+###root.winfo_screenheight()
+##set size and position of all elements to proportion of origional based on new size and base size
+###item.configure(height=sizedict["mainframe"][0], width=item["mainframe"][1])
+##store new sizes in dictionary/list so they can be found by elements when needed
+###sizedict = {"itemname":[width,height,x,y,padx,pady]}
+
+oldmult = 100
+class resize:
+   def calculate(arg):
+      global root, sizedict, oldmult
+      newwidth = root.winfo_width()
+      newheight = root.winfo_height()
+      xmult = (100*newwidth)/1176
+      ymult = (100*newheight)/662
+      if xmult > ymult:
+         mult = ymult
+      elif xmult < ymult:
+         mult = xmult
+      elif xmult == ymult:
+         mult = xmult
+      if mult < 22.2789:
+         mult = 22.2789
+      if oldmult == mult:
+         return None
+      else:
+         oldmult = mult
+         print(mult)
+         #return mult
+   def set_size():
+      pass
+   def doResize():
+      mult = self.calculate()
+      if mult != None:
+         set_size(mult)
+
 #window
 root = tkinter.Tk()
 root.title("Pymin")
 root.geometry("1176x662")
+root.aspect(1176,662,1176,662)
+root.resizable(False,False)
 
 #key bindings
 root.bind('<KeyPress>',key_press)
@@ -25920,19 +25879,13 @@ valupimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x0
 valdownimg = tkinter.PhotoImage(data="""\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\r\x00\x00\x00\r\x08\x06\x00\x00\x00r\xeb\xe4|\x00\x00\x1e\x8bzTXtRaw profile type exif\x00\x00x\xda\xad\x9bYrd\xb9rD\xff\xb1\n-\x01\xf3\xb0\x1c\x8cf\xda\x81\x96\xaf\xe3@\x92\xc5\xaaz-=\x99\xa9\xd9\x95\xcc\xe1&.\x10\x83\x87{\x004\xfb\xbf\xfe\xf3\x98\xff\xe0\xbf\x12k41\x95\x9a[\xce\x96\xffb\x8b\xcdw\x9eT\xfb\xfek\xf7\xd1\xd9x\x1f\xdf\x7f\xeb\xf3\xdb\xfd\xfe\xbe\xf9\xfe\xc0\xf3V\xe0wx/K\xff\\\xdfy?\xfd\xfa\xc2\xd7=\xdc\xf8\xfd}S?\x9f\xf8\xfa\x19\xc8}\x0f|\xff\x0b\xba\xb3\xff5\x93\xf6\xf98\xf8\xf7\xbe\x8b\x9f\x81\xda~Or\xab\xe5\xe7T\xc7g\xa0\xf9\xb9\xf0N\xe5\xf3/~O\xeb\xfd\xd2k\xf3\xdb\x1b\x05+\xad\xc4\x8d\x82\xf7;\xb8`\xefc}3\x08\xfa\x17B\xe7w\xbc\x8f\x85\xeb\x1c\xefu\x1e\x9b\xb9o}\xad\x15\x83\xfc\xb6\xbc\xaf\xdf\xd6\xfe4\xd0\xef\xc6\xff<3\x7fZ\xff\xfb\xd9\x1f\xc6\xf7\xfd\xf3~\xf8\xc3\x96\xf9\xcbk\xf9_\x7f\xe0\xd2\x1f\xef\x87\xef\xdb\xf8\x9f7\x0e\xdf3\xf2\xbf\x7f`\xb3\x9b\x7f-\xe7\xf3\xef\x9cU\xcf\xd9ou=f,\x9a?\x11u\x8d\xed\xbe\x86\xe1\xc2\x81\xc9\xc3\xfdZ\xe6\xa7\xf0/\xf1\xbc\xdc\x9f\xc6O\xb5\xddN\\\xbe\xec\xb4\x83\x9f\xe9\x9a\xf3x\xe5\x18\x17\xddr\xdd\x1d\xb7\xef\xef\xe9&S\x8c~{|\xe2\xbd\x9f>\xdc\xf7*>j~\x06\xf9)\xea\xc7\x1d_B\x0b+T\xfc6\xfd684\x06\xff=\x17w\xef\xdb\xee\xfd\xa6\xab\xdcy9.\xf5\x8e\xc1\xe4\xea\x7f\xfc1\xff\xd3\x87\xff\x97\x1fs\x8el\xeb\x9c\xad\xdf\xb6b^^q\xcd4\xe49=r\x15\x0eq\xe7\xe3\xb7t\r\xfc\xf5\xf3q\xbf\xfd\x11?\x84*\x1eL\xd7\xcc\x95\x05v;\xde\x10#\xb9_\xb1\x15\xae\x9f\x03\xd7%~\xbf\x14r\xa6\xac\xcf\x00\x98\x88{\'&\xe3\x02\x1e \x0cBr\xd9\xd9\xe2}q\x0e;V\x1c\xd4\x99\xb9\x0f\xd1\x0f<\xe0R\xf2\x8bI\xfa\x18B\xf6\xa6\xf8\xeauo\xbeS\xdc\xbd\xd6\'\x9f\xbd\xde\x06\x9bpD\n9\x14|\xd3B\xc7Y1&\xe2GH\xd6bO!\xc5\x94RN%U\x93Z\xea9\xe4\x98S\xce\xb9d\x81\\/\xa1\xc4\x92J.\xa5\xd4\xd2J\xaf\xa1\xc6\x9aj\xae\xa5\xd6\xdajo\xbe\x0500\xb5\xdcJ\xab\xad\xb5\xde\xbd\xe9\xdc\xa83V\xe7\xfa\xce;\xc3\x8f0\xe2H#\x8f2\xeah\xa3O\xc2g\xc6\x99f\x9ee\xd6\xd9f_~\x85\x05L\xac\xbc\xca\xaa\xab\xad\xbe\x9d\xd9 \xc5\x8e;\xed\xbc\xcb\xae\xbb\xed~\x88\xb5\x13N<\xe9\xe4SN=\xed\xf4o\xaf}\xbc\xfa\xd7\xcf\xff\xc1k\xee\xe35\x7f=\xa5\xeb\xca\xb7\xd7x\xd7\x94\xf25\x84\x13\x9c$\xf9\x0c\x8f\xf9\xe8\xf0x\x91\x07\x08h/\x9f\xd9\xeab\xf4\xf2\x9c|f\x9bP.y&\x99\xe4\x1b\xb3\x9c<\x86\x0b\xe3v>\x1d\xf7\xed\xbb_\x9e\xfb\xb7\xfcfR\xfd\xb7\xfc\xe6\xff7\xcf\x19\xb9\xee\xff\xc3s\x06\xd7\xfd\xed\xb7\x7f\xe1\xb5\xa5:7\xaf\xc7^\x16\xca\xa66\x90}{\xedJ\x1cU\xdc=O\xab\xbe\xaf]\x8e-;\xb0\xe4\xbe\xd2\xaf\x17c\x9d\xe9x\xe5\x03\xc3\xcfy\xfa\x9a#\x9c\xb5\xb2\xd3\xebU\x93\x8b\xc9%\xb3K\xce\x83\xb1\xc8\xb9\x13\xb3\x07\xaa\xe7:\x85\x97\x9e\xa5\xd6\x9c\xcf`\xbe-\xed\x04n\xd5\xbce\xe5s\x8a\x1b\xbb\xc5\xa1\xa7\xd4\xe4\xfb\xc2\xb46\xbc\xefo\xd4\xea\x06^*k9]\xd4N\x89\xa4e\tq\x94\x1c\\\x0b\xe5t\x06\xef-\xe5\x9d\xcfI\x18(\xf9\xd1\xfa(D\x9a3\x04A\xd0\xb8\xfc\xeec\xa5\xcaMx\xec\x95\xbb\xdbY\x92\xaf{\xc8\xcf\xa1\xaf<\x1c\xb7\xf0\'\xbb\x15u\xe3\x92\xf0Vnao\x7f\x967<u\x9f\xe7-\x8f\x9ep\x8b\x0fk\xb6lYTaQ\xf8\x86\xc8\\2\x7fo\x8cZ\xf7\x04\x92\xfbZ\xa3h\x02\xf5\xe4:\xce\x9a\xc6\x9d\xd9\x87e~yQi\xc2\xea\xfe\xae\xdb\x96\xe3\xfbn\x93{\xcc\x13\x06e\xa2\x12\xb5-\xd5\xd1\xf5\xf9\x99c\xe87\xd0~\xb8\xf9J\xd9\xf8\xcd;\xbc\xe5\xf7\xbd\xc0\xfa\xc3,\xb8\x9e\xf2\xc5\xbf\xd1[\xdb)\x9d}\x8a%\x0cv\x9c3u\x8f\xb7\xc7,\x81\xa9\xed:\x1c.j\xb9\x9a\x8e;1br{\x9d\xd6N\x8bi\xce\xba\xf2fa3\xe1\xa4\xcd\x18\x1bg\x9f\x99\xea\xc4\xe6\xcc:5\xbc?\x9an\x1c\xf9\xd6\xb9\xbe3\xd7\xd0\x9d\xc1jg\x06i\x05\xa6\xc2\xe2\x87\xdc\x85\xd7\xc9\x93I2uRx\x85\x9e\xf7$_\xdc)\xa5\x81\xb25\x0e\x02\x94\xc8.\x84\x93i\xbc`\x12\x8d\xc8\xb9\xf7\x00\x8d\xf4\xb8G\xc2\x99#\x17VZy\xb8\x9e=+\xf7\x99\x18\xa7\x16\x9e%\xe0\xac\x9f\x8a\xff\xb9Q1\xa1\x94\xb0r\xaa\xa5+e\xb0\x86\xc6\xeb\xd9=\x8f\xdc\xaf\xa7\xde\xec\xee\xa4PQ*\x85Q\xd6\xb5\'\xf7\xcai\xc5\xe6\xee\xc2M\x1e${\x82\x84\xd6\xb5\xb0\xc0p\xd5\xaf\xe4o\xe9\xc5\x8b\xed\xce\x12g\xc6Jn\xb6Du\x1e\xbb\x873\x14\x8cu\xaf4\xf7\x1e+\xeemMo\x934 \xce\x16\x9fC6V\xaeg\xc4\xc2[x!\x12w9\xed\xc5l\'a\x90\x83\xc5S\x1a:\x13F\x13|\xe1>\xd5\x81nk\\csc\x99a\xe99\x8b\xef\x84T\xa9\xcb\xa7x\xc2\xac#\x01\x8b\'\xfb5\x16\x1e\xa4\xa4\x81\x13\x01\x97\xac\x14\xc3\x96[\x82\xee\x98\xe0\xd9\x11\xe4)\x9d\x1c$k\xef\xdc\xder\xa6\x0cN\x16\x92\xe5\xb0\x18\xa0d\xc9\xa6\xdc4\x125\x0e|Z\x04R\xeag\xa4\xa3\xe9\x1b\x10\x8ap\x97\xb5\xe7\xd7\xc5\x9e\x84p\xac\x9b\xc9\xe5\xe2;O\'3\xd9\xe5\x9f\x16\x1fN\x1e\xc1\xec\r\xac\x0e_K\xf6\x1bH\xda\xdc\x1e\\#\x8f\x98d\xd9\xeb.7\xce\x17\x18\xbbc,@\x94\xdb\xf1)f\x03T(\x0fx\xdb\rS\xc6"\x94\xf9^\xc1M8#\x87\x1b\x00\xfan\xeas*3\x99-i\x03l\x91|\xf87\xe0\xdf\xe1\xdd\xf25\xc9t|\x0f\x8b\x81\xd92E\x1f\x0eT\x1cX#\x1dx3\xb5\x07\x8c\xd5,\xb89^)\x8e5a\x8e\x05\xd8\x1c\x12<\x80\x00s\xbb\x99\x93%\xd8Inr\xca`\xfe\x9b+7\x06\xef\xb3O\xd2\xb0\xce\xd8\x08\x8a\xc4\xf7X\xec\x1c\x13\xe0\xc4\x0eD\x17\x1f\x12\xf8\xb0\xbf\x99N\xa5\xd6d\xc7\xd2\xa6"%\xf6\xbe\x07\xb8\xcc\xa2I}\x82\x11\x94\x1aX\x12%\xe0WS\x027B\xb2\xec\xc9\xcd\xe2\xba8\xe4\xd6\x8bn\x88\r\xd0u:\x91}\x93\xe1\x81H\xda}\x03\xb9\x9bk\xa9r,\x88<\xd7\xf8\xb9\xb4E\xd0\r\xa5\xdd\xd4\x0f\xa8\xbac\xaa\x07j\xca]\xc6i\xcb\xb8MI=\x85\xaf\x86\xde\x05\xa0m(\xc8\x81%\xb0\x91\xcb\xa7\xed|\x19\x9bLBb\x10\x9a\xc3gj\xf1\xe1\xaak\x841\x12!\x1f\x0bq\x94\xe7\xa9J\xf0\xb4\x84f\t\xcc\x1dLy.\x16]\x00\xedN\xa9\x8e\x14\x95\x0cdl\x82\xb6*\xe8\xe3&v\x98)\xf6\xb51ow\x92\xb9\x95\x15\x87\xe8\x850\x992B-k\r\x9c\xafk*<g\xad\x08\x9f\xb9;(\xdez\x06\x9d\x1e\xa8\xa5\xaa:Ea\xe0V~\x18\x87\xb9\xba\xed=\x8e\x96\xc6\xc5\xeb\xb6DbO$;\xc7\xae\x88.2\xbfn\x1b(\xf7\xa5JAMJR\xd6\xf4\xc3\xee\x17nd\x18\xd3V\xce-\x1d\x14\x18\xe0\x8c\x19:\xc54\x03\xb9T\xae\x05.\xcc\x8e\xefq\xd0\xa8 1\x0e\x05\xad\xf3\x81\x1c\xdc\x84\x80\xb4\xe2\xc9R\xb8\x7f0>\r\x10\x1d\xfa\x00\xff\x89\xaca\xcf p\x08\x9bx=\x8b\xdcN\xba\x13C\xa11\x1c5\x9c\xfb\x10\x9b\xc4x\xd5})k\xa3\xcd\xe4g1\xd4>\xe8\xef\xa0\x9c\xe1\xc9\xec\x08;\xb2\x9fH\xa4p\xac\xa6q]\xb9\x16\xc1\x1e\x17n\xdf\xd8Cus\xc4\x85\x87(\x07\x99\xe5\x9a\t\xbbbB\xd7\x95\xd9\x8e\x9b\x9eo$\xc2Mc\x15;\x18~\x12\x03\xa5_P\xa3\xaa\xccE\x19d \xb2\x13\x05\xca$QG\xc1Rt\xeb\xaf\xe9h\x98\xf4k\x18\x9b\xf0\x1f\x19J\xac\xac\xe0{\xdd0)\x88\xe2\x18\xe0\x1f@\xa0\xe1\xa1K\xc4\x84!8!Y\x8d\xa2\xe33\xec&r{\xb8\xd8\x86dm\x80\x89\xdf\x97{Pv\x83\x90`\xef\xc0{\xe9Fn(\x80;\xd5}\xed\t\xd13\xd1niy\xcc\x8c\xf1q\x11\xf1\x12\x14\xdc\xa4\x19f\xc2\x00%\xce\xbe3u\x88\xeb\t\xc8\xe0\x8a\x08R\xcb{w\x98g\x83R\x04U)\xc3,\xc8q\xd8\xd9\xc4OY\xf5\x81\x84\xa6\xc8\'\xd7\xa9\r\xc4}\xa0r\x82\x1f\xac\x18\xc6\x94\xf6\x8f\xf4J\x93Z\xc4D\x13\xcfI\x11lA\xa9\xff\x1dsb\'A\x07a\xe8\xfb\x89\xaaU\xb0E\xfbc\x88\xb84\xa1\x02{\x06Y\xf9~+\xc9d\x8c\xf8p\xc8\xf6MZ\x93_\x0c\xe3\x1b8TNs\x10:_XO\x87%M\xb2`BB\xe7\xb8\x19E\x06\x0c\xaa\xcf\x98A\xf9n\xa8$E\x94\xb0\x0b0\x93\xf0\x08\x80\xa7\x10q]%\x8eI\xb0\xb0\xb44\x86\x1c\x85\\:\xe8\\xd\xde`o\xfa\x91\xed\xe6;\xddsIP\x15_\x9a\x83\x07\xb81z\xd9.57\xb8\x11+k\x12_P\x1crO\x11\x1c\x17\xa2\xcd\x7f\xa7:\x96 \xd7j\x9d\x9b\xb9U\xf8\xf3\x12\x15ZV\x13\xee\xe4\x1b\x19I\xcc\x12\x04\x87\xc0\xcf\x0b\xe1\xb0\x12\x11\x9aC\x14\x12\x13t\x1d\xc8\xe4\xf9\xa55\xab\xbb\xc7\xd1(O\xc2\xbd\x80PY\xd4\xa7\x10\xaaO)(\t;\xd3 R\xb6\x1b\x16\x84A\x7fl\xf814u(\x1cW\xe4K\x10q\x02\xb2\xc3\x87G\x8eL{(\xc1\x1b<h;\x16\x0e\x89\xf2!\xa3\x90\x02\xf5\xaa\x17\x07\t\xa4`\xa0Y\x88\xc5\x015\xb3\rE\x98\x89;\xf8\xfa\xad"sT\x85\x0f+ \x8c\xa6\xaf\x7f\xbd\x83\xad\xe1\x0f\x9ep\xa7t\x91\x1f\xf3_\xa0\xc12\xe0Z\xa1\x8e\x83\x07\xfco\xe3\x85Q\xb0M\x00\t\x94S\x9cUUT\x1e"\xe1\x8bwJ\x9f\xe7\x81\x99\xf2\x9c0\xf3.\xfa2\xbb\xa9\xd8\x139\x02\x96\x11)\x85 P\xd0g1e\x82\xeb~[\x89?\xd2\x05\x16\x00\x91\x9a~S\x9a\xc2\xa3\xf7\xe6\x07r\xba\xd1G\xdc\x94\xea\xd1\xc0\x8b\x14\xe7\xce\x97pg\r\x03`_\x1c\xf8\x06\x90W9\xac`\xc7.*\x1e\x01\x98\xe3\x9d\xa1\xf9L\x11\xf8=\xc1\x96\xdaE@\x0e\xf8\x9e\xec#\x7fH\x87\x03\xa5\xcc \x87\xfb,\x11rr\xde\xd8\xbf\x96\xc8\x8cH\xeb\xea2!\xd9\x82h\x95\x8f\x13CIL\xc8D\x05\x9a\x15\x19\x08C\xc3\x17=\x04\x17\xa4\xa6\x8c\x925Th\x16\x95\x0b\xee\x97\xae22\x01J\t\x10{\xd3\xfe\x00\xeb]1\x9f\x93u\x8e<\x1d\xa5:\xaa\xff\x12\x85g&8\x81\xb0\xc9\xc9\x93\x1d\x80\xb7\x863\xae\xa2\x0e\xeb$\xe2\xb6\x96\xd3\xc0\xa9*^\xdf\xb4\x82\xe2\x11\xca\xdb7\xf8\xea\x0f\x80\xc1\x88\xe0\x85\x83\x8f\xa3N@a\x88Pj\x06\xdcC\xf7\xba\x80\x94\x05\xbaK\xe4\xca\x9f\x88\x02\x02@\xaa;\xb5\x0c`#p*\xbc\x08\x1a\x84\x8ev I\xb1\x8b\xd8\x89\xdc*\x19E\xfbO(\x99\xfb\x93\xeeI`\xa2ys\xe7\xdca\xb6\x9a\xca\xceu3\x8d\x08rCS\x84\xb8\x11\xfe\x1d\x80\x05\x03\x16S\x07Q\xf9\xaba\xf5-x\x80\xcd\xf0\xf9\x81\xd9\\\x02\x03\xad\x81\x91,\xd8\x99\xb8\xe3z\xaa\x083\x11\x9dG\x01\x83\x16\x87\xea\x9a\x99`\xc4\x82\xa2\xfaC6Q\x14+\x14.L\x0f\xdb\x82\n&8{\x11_\x945\xc6\x0f\xfe\xa2Bz\xd9\x923\xf0\x86\xed2\xd0\x02\x9e\xc2\x98G\xbd\x92\xb3I\x00\xf1\x1a-\x87\xb0$O\x05\xce\xa0\x0b\xe0\xbc\xd1\xe1\x02\xd7_\xe8H\x85\x86\x8d\x1c\x8b,\xa9\x03y\x9f\x14\xfc\xd2+\xbe\xc7_p\x8a\xacu6\x910[^\x00\xc5\x16l|{\x07\xca\x87\x97,\r9]\x81\x11\xec\x1e\xaf-(|\xd0_\x85\x8d\xe0\xbf\x01N#\x03h\xef\xe2R\x1f\xbf$G!\xbb\x08z\xa4$R&\x90\x9e!P\xdf\x10~q21\xa7v\x07\x0cZ\xb4\x18?#\xe7\xa2}w\xf3*\x912\x9d\xf8\xb6\x0f\t\xe75\n\xb0#\x84\x91\xc6\x87/o\xff\x10\xd2V%\xfbg\x18\x00v*\xc1\xfc\x85O\xa2es\xfb\x80n\x1ex\xbc\xa2\xbaY\xfe\x9ds\x07B\xedS\x14K3\xe9\x06d\xcd\xd8\xabC\xef\x99\xf3\x02e\xa1\x99v\x14e(\xff\xb8OR\xec\xe8>LT+D\x81\x0c\xbds\xee\x9cw\x8d\x9ebS\x0cDba\x1b\x1c\x84\xed\xf9M\xfe?\xf1\xdbPK\xc4\xfb\x93\xce\x8dy\xe3\xef\x852=\xaa\xdfh4\x91\x92\xcb[K:\xea\xd5\x1eH)\xd4\x17\xbc\xcck\x7f\xb9\xaa`)\xe6v\x1b!=S\x16\x137&\xa9\xbf\xd4\x7f\x1f$\xe8\x80\xbc\x90h\x94\x07F\xa5\x1cQ\x07\n\x1a\x98\t\xcc\xda\xf6\xa6\x861^\x11\x8f\xedc\x03\xd3\xe9\x06\x01tF\xf5\x88  \xb30\r2Sl\x87\x9a7U"Y\x1a3\x80L|\xac\r\xc9\x80{\x904\xb39\xf89\x9f\x0c\x16z&\xc2*\xf8\xe1\xd5:\x1a\x08z\x08\x90Z\x01\x16\x07\xd7\xafeP K\xa1\xf2\xe5\xacz\xaa\x96G\x06\xcd\xc8\x12(\xf3\xe6\xca|\x1b&?^\xe82\xa4\xf5M\x08\x90\x0c\xd2\xd6!BI\x01\t[X\x96\x98\x12\xddF\xb0,81S\x84N\x07\xe8\xc8\xac\xea\xdf]\xc2\x88\x10g\xee\x94\x99@\x1e\xfd\x8ck\xa5\xe92\xbf\xc7\xf5\xe7\xf3\xcf\xa7\xd6~\xc2\xfe~X\xa1k}|Gs\xccU\xfe\x15\x1f\xaf!\x0c\x93\x97\x95@\xb1"\xd6\xaf7r^\x8c\x82R\x80\xf99\xde\xc6O_F\xf2\x06\xec\'6\xc1+\xa4+\xd6S\x1f\r\xb1\xc5\xd0f\xd8\xdb\xa8\x93\x10\x08\x12\xa8\xfc\xcft\xfc\xaaj\xd8\xa5\xa5\xd9\x85\xa4\xd2\xa6F\xc7\xcd\xb4\x90\xd4S\xbd\xa0S\xa1u\xea\x81@\x9c\xcd[\x14\x15\xbcL;\x7f\x06\xe6\xfa\x04&B\xa1\x8a$\x11%\xcc\xdc\xb7"q\xfai\x7f(\xf9\xa8\xd7\xe2\x9dW\xf7Su\xd5\x0e\xea\xfb\x89\xe0\xee(\xbe+QSI\xc8\x0cb/\x7f*\xa5\xbf\x028\x9f\xde\x00\x02\x9b\xe4\xe5\xaa\xfc\xe4\x1f\x91M\xdcM \x12B\x07[\xc0\xb4.}w\xbb4\x1a\xc5\x07\xa8"\x9c%\xa9E%+X\x1eH\x9c[\xc5\x80\x93\xaf\x17\x86W\xa8\x00\x047\xcc\x1bB\xec\x02U\xf0v\xee\x96J\x12\xf5\xb8I\xd9\xae\xab\xf6!\xe0\x87\xa9\x83\xc10\x991\x06\xc9\x00[\xa4$@\xca\x81\x11aYR \x0f`\xfcB6\xf9\xd1)\x8e\xaf\'\x83\xd5\x133\xc5\x9e~\xdf\x85\xbd\xa6W%W&)\x05\xb3\xac\x01\x801\x8b\x07l\x01\'o\xbbY\x80\xa2H\xa2#\x99v\xa1d\xe1\xb0\x08\xa1\x14\xe0\x91F\x84\x00\xd8\x93\xfbI\x97\xa9\xf80\xc3\x03<{\xbd\x06\xca\xc1\xa9.\x90\xa5\xb4#\xa1\x7fM\x0e)\rQ.\xe0\xf3wy\xa0\x88\xc3/\x00\xa5RcR5\x05%\x0e\x88N"D\x93;\xf6E\xb6\x92\xd7\xcb\x91\x13\x8c\xb8\x91n\xc7\xde\x85)Z\xaf_?\t\x01\x8b\xf0\x0e\x19\xcbX\x8aNi\xf6\xe6\xc4\x06\xb6Q\x8a\xf1\x14\r\x86h@R\xa1\x08\xe7\t\x90X"F]\x03`\x06\x0c\xffk\xf8\xf1\xc7\xf0\x81J{\xacr\xc1\x02X\xa2*h@i\xd8\x800W\x1f\x9c\xf8i\xea8\xa4\xa1\xa6\x168\xa5\xb0\x18T\xe5\xa0\x06\x11K\x00\xd7\xc8@\x7f\xe0\x907\x87[\xd4\\^\xbe\x055X$\xd1\xab\xdc\xb4)H\xfb\xf6\xba\xa9wL\xed\x86\xd9$J\xe1e\rK\x91\t\x8d\xb43\x13\x8e@\xfc\xf6\x05\xcb\xa1\x18\xe0\x1b\xd1t\xe2\xe1|\x18k\xbb\x84S\xa4\xaef\x98h\x1b9\x0c\xa9\x89\xe5\xdf7`I+\xd9j\x98\x85^\x86\xfbY\x00\x1a\xe2M\xd9\xcf\xdb\xbd\xf5FU\xda\xd2X\x10z\xd86\x0b\xadD#9\xb6\xcfk\xe4M\x8c=\x83\xf4Z\xa7\xd2M\x91\t\x14>\x01\xc6\x12\xc9\xf4\x12\xbe\x96\x07\x83\xdc\xe5\xb38\n~#x\x17\\\xbe\x90T\xa4\x06\x9a\xaa\x8e\x10+\xb96[\x06P\x8aO\r|!j(\x03e,\xa8\x04\x8c\xdc-ul\x0b_@\x15\x8d\xd7\xd7\xc2\xf0\x113\x81\x11I\xb0\x0b\x0eI^\x9b!\xdcsp%\x07\xedR\xc3J\xee\x9e\xe4\x18\xbc\x885\x14T\x95\xe8l^\xe9:Z\x04\xf4\xb2\xec\x91\xebz2\xbe(\x96\x92y\x1f\x0f\xb0\x8b\xb2\xde\x95\x84\x0c(&*\x02I\xaa\x12\xb9\x87\x02C\xe2eh\x14\x82\xc2\xab&B\xd4\x9f\x12G\x84\xdd\x9c\xe8\x94\xa3\x92\x90u\x19N\x84\x8e\t\xce\xae\x01\x10\x04\xf5\xc7\xf6\xa8\x97F\x10BT\xc4!\x92r\xd1\xfc\x94Ka\xd4\x8a\x05\xb9N\x08A%[\x0c\x1c\xc3\xc3b\x10\xbb\x92a\n\xcc\xe6\x1b~F&!mI\xfd)\x07\x8e\x85\xcf\xbc\n6\xb6wU\xad\xb9\xc6\xdb\x0e\x86/\x89a\xf0\x1c\x00S\x9a \x80\xc1@\xa3\x9e\xa0\t\x82\xd38\xd6\xa0n&w\x1f\xfd\x02\xa3\xdcmHU>G\xb6\x0b\xa2\xee/\x14\xaa7\x03\xb5\xd3\xdd\x8eQ\\\xb2\xbb\xe6\xf1\x11\x10\x86F\xceKj\x03\x9d\xd6ts\xa8 |\x8e\x1b\xa0\xcf\xafU\xf6\xed\x91/;\x99*Y"\x05i#T3h\xbb7\xa5\x89\xbeV\xbd\xda\x84d\x01o(\xb1m\x10!Rg~w\x8f\xc5\x9b\xf6\xa8\x05U{IT_%\x01\xd1\nj\xe29u\xd3@\x9bT\xe4\x19\xf7\xfa\xc3\xb7k\x05MP\xc8\x12\x80\x83\xc8#\xe8\xa1t\x16\x05\x99\xd4\x80\x8d\xc8\x8aA\xa8)\x01MR/\x0eNp\x04\x94*\x83T\x07\xd2\t9\\\xa1\x12\xb6\xa8%\xa68\xee\x84zU\xe5\xc7v\xa5\xe2\xbf\x1d\x9d\xf0pI\x0c\xcf\x9aLQ\x87\xfb\xa0\x9b\xb1bS\x83.\xa4\xb8\xb1\xa9*\x01\xaa\xe0\xe5\x8a\x8b5\xaf\x9c=h\xda\x8e\x9a\xb5\x904`ly\x88\x10$\x99\xa2\x1c!\x11\xf5V\xcb\xf2\xe9\xa5\xab\x10\xc3\xe7U[\x8f\x02\xb0@\xfd\x86\xb6\x83\x0e\x19\x85\xf2\x81\xc1S\xbb\xacS\xeb\x17FZ\xb3kS\xc4\xc7tRbl]\x8aw\x83[\xda4\x1c\xd0\xaa\x01\x83\xc1\xbf\xdf\x1fF8\xda\xdfo\xa2\xb4\x91Zz\t\x19]\xd0\xed\x90\xd1k\x0e=Ke\x11\x11j\xc2\x13\xbe\xe2\xef\x8d\x01]\x9c\xf5D\xa9P\xeeNz\xfe\x02A\x08\xc10\xa0\xabZ]\xf8\x8d\xbc\xa8"\xb6U[\xf9\\\xdd\xca\x0f#\x81XT\xcdY\xab\xc2F{~w\xff#\xd9\x80\x18\xf4\xe4B5\xb6\x90-Rt\x0e$\x1b\xca\xa6\xdd^\xf7\xb6\xf5A&\xdd\xa4F\xeb^\xff8\x95.9\x7fJ\xc5{D\x1cT\x8c\x84\xdb\xa5\x1a\x88\xc5H\x9f1$\xa9\xb4\xaf\xc0\x180c\n=\xe5\x05\xb6K\x98\xc5\xac\x1e~\xc1mT\xe7p7\x1eI\x8e\xa4\x98S3p!E3\x0eC\xbba\x03\x029\xa9\x81\x0bQM\xa0[\x93\x93J\x0b\x92T\xe5\x93\xb4\x14B\x92\xbd\x80;E\x10\xd3\xb4i\xf6\x12F\xacV\x12PV\x1d=\x90\xefT\xf8\xdc\xd5\xe1\x83~`f\x17\x97x}S\xd6\x15$x\xb6\xe4.\xe4F\x15@f\x90$S\xb7\xb20\xa3\x8bs\xd7\x07\xe9*q\x88J\x81+\x82\xbc%\x13\x84\x9f\xa4\\H\x19*\x8e\x1bw\x82]\xd2l+\xf2\x1f\xb8\xa7e\x90\xb6hB\x04e\\\xda\x89\rp\xc7:\xc9\xc4\x7f\xce9\xc6 ,\xc9k\xbe\x94\xf8\x86\x1f\xd6\xdbm"\xcb\x87 \x8d\x1c_\x03\xf5jk\xa6O:RN\xb9Z\xb1\x8c\xafA\xb0\xf6\x95f\x82\xd8\xdf\x12\x8d\xb2c\xc8\xce\xebn\xf1\x0eJ\x0b\x953\x80EA]\xa4\xf8\xc1\xe5\x84\xc6\x9f\xe1\xd3\x0e\xccHl\xbc\x8d>\x9a\x00kP\x83\xe3v\x90\x8c\xbaP)\xc2\xc8\xee\\\xc2f\xea\x14bT\xb6?\xe8\x81K\x98\x87\xb6U@\xd4J\\\x00\x1b\x85\xaf\x91s\x00\x9e\xe4\t\x8f\x88\xec\xd0L\x9eW\x9d\xb7\x1f\xa0\xcaZ\xeb\xdd\xaa\xd5\x16\t\x91\x847}\xbd\x8f\xd8\x9f\xb7\xfe|\xb7\xdaM\xf6\x13\x9b\x95\x10\x07~c\x7f\x8f\xd6\x05(6\x16\xffc\x90TW`f\x0eU\x93\x04\xc9\x1e\xe4R\xe1)@Au\x08\xbf\x9e\x01\xcc\x9cE\x19E\x18\t\xd8d\t\x19*\x075\xac|\xc0\x05\xa3n\xf5\xa66\xcc\x1f\xbe>\x06\xe3@\x9eV\x80\xe7\x92)\xad\x1a*\xa5\xbd\xa6\x14\xfa1\xe2\r\xfc\xf0\xb5\x89r\x9b6\x98\x1fUS\x1a@:l\xb9M\x14\xa6\xe2\xa8T0\x86\xa5\xd6\xdf\x8e\xe7\xed\x8a\xf2\xae\x9a\xb8CMHi\xa4\xb6?\xdb.R6=\xbb\xda|\x0c\x08IH\xc2h\x9eB\xb1\xd5b/0J\x9f\x1c\xf9\xc0\xadL\xc0\xd4\x83\nO\x8e\x92\xbao7(\xaa\xc1\x04\x03\x15\xa7nb\xb3\xf06\xc7j\xd2!\x91IE\xa4\r\xfaO\\\x9b\xc0\x05S\xe03\x90\x08\xe6\x05\xae~Qr\xb5I\xb6\xaah-\xd0~\xe5&l\xe1~\xa9d5c\xba\xceG\xf4$\xe9\x86Y)\x96\x9b\xd8\xd4f\x80\xc1\xec\xc2\xee\nK\x9fY\xbb\x9c\xcc\xbb5\x18CcF\x17\xe9\x01\x15\xd1\xa0\xd0e\x1c\x82p\xe0\x84_{\xb56\xa9\x83S\x91\xeb\xf7b\xa1\xe1\xfaFC\xd2\x8e\xe2\xbf%\x97\xc1\x84~\xac,Z\x83\xb2\x08\xe1C\xd2\x91\x02y\xfc\xfc\xc6\xb2f\xd7$2\xdc2\x1cun\xa8\x08K\x8e\xd5U_\x84\xde\xb1{D\x0f\xe9\x8dH\xa4\xc6-\xc52vZ\x90\x8e\x9b\xd2I\x99\xad\x9eM3K\xb4\x13\xaf\xa5\x1f\xbeR\x8aiWgk\x1f\x99\x9b+\xf4\x82\x8f\xb0\x9c\xb0\xc9\xa2\x91t\x12\x81\x84\x83[\xea\xdep \xf8\x11\x8a\xa7h\x87\xdd\xddJ\xc3Bp9@\xa5\xdd\xf8\x06\xe7\xa2l\x91\xe7\xad\\\x13\'\xe0\x81\xb7\x99\xf6P\xbcS\x96Z\xac\x11\xd3\xba\x88:\xba/\x9fG\xac\xfbq!\x86@\x85R\xab\x13\xf9\xa2\xddR\xe4\xfe\x96\xde~\x8f\x98%\xb5\xd6\x82\xdaV\xc2m\xb3D\xa7\xf1\x13t\x17\xf0\x8e\xda\xa8\x84\xc1F\x9c\x862\xdd\x13\x9d\x0cT\xdf3\rh\xe3<\xb4a9Oy\xb5\x850F-\xaa\xcbX\x97\xc1\xec\x8c\r\xa5\xa7D\x82\x08\xda\x85\x97\xca@\xf8>\x91\x89\xca\xdc\x94\x12\xd2\n\x0cE`\x116\x08B\x7f;\x15\xfb\xc0\xe1l\xf6\x01\x95c\\U\xbf-u\xc9\xb3\xfa\xa5\x10\x8bK\x18L:\x8a\xc8\xf4\x07\xa7\x8a\xa9B\x96\x7fI\xd3\xfa\xe3rP\xa0\x9aL\xfa\x8e\xe3/\xcf\x9fj\x82"\r\x12\xf1\x1a\xa8%\x95\xca\xa9C\x11\xf1z\xf3\x16%&S\x17\x95\xab\xe9\xa8\x97P\xc6\xf5\xbb\xfd\x1a\x88\xec"\x10\x1b\xf1\\\\\x93\x12-\x13\xb4\xc1\x02\'\xf8\xad\x8d\xa2+\xdb\x99\x07\xb4ji\x9f\x15\x01~\xe2\xee\xeam8\x16<\xb6\x8d\x88\x9a-\xfc\xea\xb7\xebE*3\xffYy\xa3\xde\x8c\x0b\xa8\x85\xaf\x13\x06Y:#\xab_R\xd4uq\x9f\xf6\x94\xb6a(\x01\xe9\x98\xfd9\xc1\xf2\xf7G\xeaa\x874Z\x85\xef\xba\\\xf2\xf8\x9c_q\xdb\xb6\xac\xcd\xc7{\x10 j#\x1cy$~\x84x\xcfT\xf2\xf19\xb7C\x8c\xb9\xa8#8-*\xdc<d\x14\x01C\xfd\xeb*8\xc5\xaeh=Y\xe8o\x8f\x85p\xa6\xb82\xbay\xf3\xe8\xea\x82,\x88\xeck\xb1\xdc\xc6@\x7fM\xd7\x9at6\x858\xd0.\xb66\x01P\xef\r\xd6\r[\x8e:\xe0\x82V\x13\x0b7\xc97\x1d*\x88\xe0\xb3\xc2\xe9\xab+FX\xab\x9b*\t\x14\xe0\xc4~\x05mo\xc7\x9dn\xfb\'\xa3\xa7\xe1\xcb\xaf\xf1\xb3\xac\xccc\xb6\xce\xf4\xea$+\xe3\x88\xdc+N\x89h\xed\xdb\x03f\x85\xba\xec\xe4\xa9\x04\x89\xf4\xe2\x9a[\x9b\xd3\xa8\x170\xea\x02\xba\x8e\x01`\xaai\xa8\x166\x1f\xb2\x8d\xf2\x07l\xa2\x98t<\xa7\x959\xea\xb9\xb1\xd7\xa4\xff\xaeK\xd5W\xa5@\x02\xb9\x82\xd4)\x95\xd6\xb8c\xcf\xea\xa5\x18\xed\x85%5\xa9\xa4\xe8\x03\xe5ri\x07\xf0]\x05\xd1\xea\x90\xb2>\xbb\x92\xa6\xf2\xbf\x181W\n\x82H\\\x1d \x82\x140\xef\x15\x8c(\xb0\x94\xb36I$=%v@\xa6K\x11\x0e\xa6U\xdb\x139:\xa8\xaf\xd8\x8e|$\x16k\xd3\x11&\xaa\x89\xf8\x18\x16\xeb,\xd6x}\x85Ll\xf6\xab1~\xdbK\x84MNRn\xfe\xe8\xd4\x1a\xfc(\x0c\xabz{\x9f"\x9a\xdd=\x89\xaa*\x1eK\x88:8\xa0SN\xdc\xc0"Ca\x98\xd4\x01\xb46\x8f8b\x06\x10\xd7"\x8e\xb1P\xc1@{|\x90a\xb4\xf1\xfaaj\x86]e=\xaa!\xb7\x91;:\x14\xf2\x04\xc0\x90\x8a*w\xf7\x19r\xe5Tu\xb7\x8e\x98\x00\xf51hw\x16\xf6\n\xf3\x03\xe6\xd4a\xc4\x109\xe3\xc3:\x0cL\x9f\x81`\x9e\xf3\xa8W\xff\xfc\xa4se[\xfe\xa1\x04A\xf1\xd56E\x14\x90?,\x96Z\xf2\xe5\x0bq\xb6G\x1c16F\x86q\x92n\x99hi=F4(T\xe46\x0c0\xba\xc4X\xd1>]\x85\x8b\x80\xfdQC\xe8\xa5\xa2\x98\xd1\xa5\xa4\x08\x15j\xffW\x84\xc1\xbb\xe0\x18\xc5v\x0b[\x06\x00&\x91\xc8\xca\xa6\xc4\x156\xd4\xf0:\x9a\xaa\xc4\x85~\xec\xa0\xfd\xf0Ka\x98\x94\x0e\x17\xe9`\xa5\xb6s~{\xd3\xde\x93\'\xf2<eq\xa9\xb5\xbeu\xd6h\xaf\x13\x86\x96\xa4\x93JQ\\\xa8\xbfCD\xba\xdb-\xd9\xdc~\xa9\x9f\x04R4oc\xf4R{Y\xdd)\xed\xde\xe6\xd8\x82H-YL\x15=\xc0\xb7:\xc7\xf7p\x0f>\xddI\xbf}3\xda\x10\x81\xd9j/\xbbM\xf4!z\xe1\x1e\x1aT6:\xab\xd6\x90\x0e\xed1O\xde\x86\xab\x81\xab\xd9B\x1a\x97\xaeq\xda3\x93p\xf6\xfeP \x87\xda\xcfT\xd0w\x18\xb2\xf6\xec\xd5\x13\x1c[g\xfd\x9aU3\xcf\rJ\x05\x82\x82\x11\xc1\xd9v\x06\xc5\xe6\xacK\x08\n&\xcc)R\xd76 \r\xd6.@\x14\x8a\xd7\x14)\x08\xe8\x0c\x1d\xaa\xb8\x0c\xb6\x08\xe8\x00lQ=\xad\x9e\x99\xdf\xd4f\xee\xd1v\xa9\xf6\xbaQ\x04\x1d\x9b\x08\x8fz]2[\x9b\xb7C\xaeS\xd6yB\xd1\x9c\\wR\xf6\xeb\x1d\xc9\x83\xae\xe8\xa0\xc1\xf1\xa0\'\xb9\x07}ej\x10<\xf11q<c\xb5\xcd,^\xa6VhH:\x82\x80Q\xd5\n\x00!\xa9o\xa0\x1d\x93D6RV\xad\x94\x94\xf6l3h\\\xeea}\xa4\xe1\xa6\x10\xb5l\x94\x1b\x90\x97a)-C\xb1\x86\x9c&\x9b+\xa4\n!\xa9\xfd[\xa6\x02\x03\xe8\x1a\xa4\x08\xa5E\xd9\x17\xd4\x0ct\xca\xcd\xe7\xf7Q\xbc\x98M\xe0k\x8bB|\xb4\x83\xb6\xb7\xb8\xa1y)\xa0\xc8\x1b\xc9\xd9\x8f\xfb\xb3\x8b*U\xd0\x83 \x84\xedo\xd3\xf5\xe5\x92\xc9b\x0cE\xe7]|\x90\xad\xb4\xe1\xcb4\xc8\xfb\xa0\x9d\x1c\xb9\x91z\xdd\xee\x11\x9a!\xa8\x9e\x93u\xc2\x96?!\xd1u\x9e\x93\xf44Hh\x98J\\w\xb7\xb4=\n\x81\xe2O\xef0L\x0fO\xa0\xe6\x9b\xca\xc5K\xfe\x1d\xbc\x0cEC\xcf\xad\xfb\xa9\xbd[\xf2\x8a\xec\r\xc1/\xe3\x9e\'k\x1e\xc1\xbdu\xa2\x91\x8a\xea\x88\x18\xc2\tZ~\xd6\xf0j\'\xab\xd1\xf8 Eg\xb5<\n`\xe9d\x1a:+\x19&\xd2u\x00B\xfb<\xda=W\x7f\x87\xe2\xd0\xd5\xb8A\x8f/\xf1~\x18\x7f\xbdM8\x8bF\xb6r\x18\xf4oUu\x18u"d\xea\x00\x8b\x81\xfc\x80\x05\xd0\x0b\xb5\x80\x13\x84\x96\xe9\x88|a\xf8=\xbc\xdaD>\xc1\x9d\xf7\xde\xaf\x05\x13\x94\xfb\xb3\xc0y%\x83q!\x19/?Q k\xd4^]K*CK\x074\x93t\xd4\xb5M\xfe*(\xf5\x07\xea\xa9\x19\xa9\xc6\xbd\x8ex\xc9\x0f\x1e\xfa\xeb\xa6A#\xb9-S\x8b\x00\xb0F~!8\xac\x8e\xa2\x89\xe6\xb9\xab\x87\xa8\x82\x84\xf5\xa20UJ0\xea_\xfbL\x8e\xe8\x19\x82\xe2\xdbX4\xaaB\xe8>u}K\x80\x7f\xb8\xd7\xf8U:\xa9s*r\x8e\xfa_\xfey\xf35\x0b\xc7\x86\x1e\x14\xedCGe\x02\xe8\xd1\x9b\xa1\xfe#\xfbQ\xd6\xf9\xcf\\\xa0P95\xe7\xf5\x00_Hv\xed\x9a%\xc0\x91\xbc2\x10\x83+<\x1e\xc4FS>\xb1Sn\xa9\xd6I\x1c\xb1tx\xf5\xdf\xd7\xbeK\xdf\x85X\xd9}\xae[\xaat\xdbt\x1d\xef\xa5lT\'>N9"\xf2\xa1\xcfj\xf2\x92p+%m~\xf6w\x1a\xaaO\xf5=\xb1\xce\xfd\x1c\x97!\xa4a&\xcc\xd0:\xe3\x11\x06\xa4k%\xf7\xaf\xda\x19|\x1b7\x92\xca$2\x99}5\x94\xfdU\xd5)\xbf\xdd\xa9zHg\x93\xb4\xf8\x80/\xafi\x80\x8bE\t\x82\xcb@\xf2tp\xa3\xbf\xbfZ`\x9c(4\xb8\xc6\xbdnw\xb7\x8c\xbdp\x18\xd0`u\xfcx\xc1\x94u\x9a\xd1\x00\xbc\xea L\xaf\xfdO\x1d\x84\xb8,M\xfc\xad\xea<\x9bm7\xa2t^\xe5m\x17\xe0\xb6\x8c\xc6U\x93\x8b\x84\x01$\xe1I\xe2\x9b\xa6h\xe3u\xa3Xg.\xef\x0crR\xd3\xf9.(\xc3\xe3SFc\xea\xdc0\xac\nb\xad\xf4\xd3yS\x9e\x00\xb6\xa8`\x9d?R\xa3\xda\xc0\x0e\xc8Wm\xbc\xa3qu\x96\xb5\xbd\x9d>\x1d\xe3]\xadf\xc7\xa4\xd0\xbdH\x0e|\x98\xc8\x86P\x86\x0e/&\xe2\x17\xd3\x80dp4\x18\x96\xb9\xe7\xd2\xd5\x19\xff\xe7\xee\x0c\xb2v\xe9d.\xba?\xe9\x0c\xe3VoE\x7f\x02Q\xac\x0eR,\xa7\xe3\xb3\x04\xa4\x9d\xea\n\xa7\xa2\xb2\xb4\x96\x0e\x8dPnqz\'\x14\x96\x84\xdc;\xb3i\x97\x0eW\xeb\xacB\x0c\xf9\x0c\xd8\xa9\x7f\xc7f\xab\xda\xc0^*\xbb\xec<\xb7\xb4*U)\xbb\xae}\xca,e\x87(\x80b\x7fN2\xafklw>\xa7\x8e\xc9kr\xac\xe0V\xa4\x8a\xfe0\x81\xa4m\xeb\xeb\xa4\xf3\xd2\xb9\x18w\xcfw\xe9\xcc\x88\x1c\xaff\xb7\xfb\xf1\x9c\xb0\xa3|\xf8\xa8c=\xd07\xd4\xb6\x95\x14*\xc5 \xa4\xb2N\x17\x11\xae\xc0\x9d\x8a\xe9\x16\x83\x05\xe5A.\xa7\x9e\x08\x00\x99\xb5\x99\xe1\xbc\x83v\xab\x87{\x9a\x12\x19\xa2\x89\x0c\xa52\xa8;\x1aL\xad\xdeI\r\xc0\xfd\xa6\x85\x95\xc10\xa3\xa4\x10\x8e(\xea\xe7:\xed\xa0\x83\x94\x96\x89\x88\xa1\xf7\x0c\x9f\xc3\xc2"\xd0sS\x9c\xd5\xd7\xc0\xedF\x92$<\x90(\xeajQ\xbb\x0b\xd4\x80\xe9\'\x1d\xfdK^\xd0\xdbE\x9e#$\x11\x06\x8bD\xbf\xca^\x1bz\xd4(\x9d\xeb\x05\xdd\xf0\xda[\xb3N\xe1m\x1d\xba<\x82w\x1d\xb9\xd5Q\xbb\xee\xbf\xae\x9c\xc0b\x84\x1f\xe5\\\x1aLofd\xc3\xd2a\x9ep\x99\xd8h\xc6KZ\x10\x17\x0e\xc9\xdd\x08\xbb\x05\xfd\x18:\x12f\xcf\xdd_{\xa4\xb9\xdc\xf3\xcd\xe4@\x7f\x87yu\x04\xfe\xed\x1dA\xefH\xff\xb3\x0crs\xca-PK\xe8\n\xe6\x9c\xda\x9c\xb7\x92\xc1mBE\xd1\xcc\xc0\xfdPo\xb1\x1f\xc0\x8f\xeb^}u \xca\xba\xea\xe5z]\x07+?\x07\xed\xd5\x8bpo\x83\\\xbb\xc4\xef\x83\xfb6e@\x1f\xbc\xbf\xd9X\x19\xcd\xc4\xc7\x90k\x92NU\x84\'\xb5\xdf\xda\x1f\xf4W.W\xb9\x1eU\xf6\xc9\xe2\xb5\xf7\x94>\xfb\xd4\xccP`N%\xe4V\xe5\x02K\xfd\x9cP\xa6\x1e\x1cxjm\xc3\xa8J\xa8\x14\xdd\xa3\xd8\xa4\xa5\xd3)<2\xbd\xbb\x8b"\x9a\x9d\x0e.\x11lR\xcd\xe5\x9d\xdb\xbf%\xd4\x89f`=\xabM\xb3b\xb2\x94J\x05lE\x97\x92\xce\x84S\x88\xb5\xa3\xa0#\nY\x7f\x1b\xa2\xbf<\x81\xc3E\xc5\xa9\x0e\xa3\x94\xa9\x92L\xb9\xa2@H<\xbfn\xafq\xda\xb5\xd1_\x97`n\x1b\x11\x19W\x02\'\xd7\xfe\xfe\xcb\x11"\xfbI\x9a\xf6\xf5\x8b"\xcc\xe8|\x02\xf5k,\x15\xdc\x83:\xeb+\xda\xf7\\>\xda\xdb\x9dTM\xf6v\xea\x94\xcf\xd2\xb9l\xb0\x8f\xf2w\xbe^\x92}z#51"\x9d\xab\x05\x0e\x1b\x95$d\x9dg\x0e_\n\x9b{A\x81\xc0\xf7\x9d\xd3\x11\xf7\x86\xa8\xcd\xa8\x13\t/~\xde\x8e\xf6\xd0\x1frl\xff\xb6\xa0\xefQ\x00\x9dS P\x82\xaa\xd6\xd4\xb6C"#\x87\xafW\x89\x94\x1b\x96\xd2\xc8O\xd0o\xef\xc8c\x1dN_\xcd\xfc7V~y6n\x9c\x12E\x00\x00\x01\x84iCCPICC profile\x00\x00x\x9c}\x91=H\xc3@\x1c\xc5_\xd3JE**v\x10q\xc8P\x9d,\x88\x8a8j\x15\x8aP!\xd4\n\xad:\x98\\\xfa!4iHR\\\x1c\x05\xd7\x82\x83\x1f\x8bU\x07\x17g]\x1d\\\x05A\xf0\x03\xc4\xd5\xc5I\xd1EJ\xfc_Rh\x11\xe3\xc1q?\xde\xdd{\xdc\xbd\x03\x84z\x99iVh\x0c\xd0t\xdbL\'\x13b6\xb7"\x86_\x11B\x18}\x88\xa0Wf\x961+I)\xf8\x8e\xaf{\x04\xf8z\x17\xe7Y\xfe\xe7\xfe\x1c\xddj\xdeb@@$\x9ea\x86i\x13\xaf\x13Om\xda\x06\xe7}\xe2(+\xc9*\xf19\xf1\xa8I\x17$~\xe4\xba\xe2\xf1\x1b\xe7\xa2\xcb\x02\xcf\x8c\x9a\x99\xf4\x1cq\x94X,\xb6\xb1\xd2\xc6\xacdj\xc4\x93\xc41U\xd3)_\xc8z\xacr\xde\xe2\xac\x95\xab\xacyO\xfe\xc2H^_^\xe2:\xcd!$\xb1\x80EH\x10\xa1\xa0\x8a\r\x94a#N\xabN\x8a\x854\xed\'|\xfc\x83\xae_"\x97B\xae\r0r\xcc\xa3\x02\r\xb2\xeb\x07\xff\x83\xdf\xddZ\x85\x89q/)\x92\x00:^\x1c\xe7c\x18\x08\xef\x02\x8d\x9a\xe3|\x1f;N\xe3\x04\x08>\x03Wz\xcb_\xa9\x03\xd3\x9f\xa4\xd7ZZ\xec\x08\xe8\xd9\x06.\xae[\x9a\xb2\x07\\\xee\x00\x03O\x86l\xca\xae\x14\xa4)\x14\n\xc0\xfb\x19}S\x0e\xe8\xbf\x05\xbaV\xbd\xde\x9a\xfb8}\x002\xd4U\xea\x0688\x04F\x8a\x94\xbd\xe6\xf3\xee\xce\xf6\xde\xfe=\xd3\xec\xef\x07\xfd\xa3rx%\xd0\xf3K\x00\x00\x00\x06bKGD\x00\xff\x00\xff\x00\xff\xa0\xbd\xa7\x93\x00\x00\x00\tpHYs\x00\x00\x0b\x13\x00\x00\x0b\x13\x01\x00\x9a\x9c\x18\x00\x00\x00\x07tIME\x07\xe7\x04\x07\x11\x13\x06:\xaa2\x03\x00\x00\x02iIDAT(\xcf\x05\xc1\xedK\x13q\x00\x07\xf0\xef\xef~w\xbb\xdb\xa6\xde&\xb3\xd397\xa6\xa6\x13\xa2\x9c\x06\x91D I\xd8\x038\xc1\xf7\xbdrA\xfd\x03Y\xef-\xa2\x7f \xa5\x17E\xf4\xa2\x08\x14bo\x02\xa37M\xd2\x81X\xa8\xa0\xe6&\xe6l\xcf\xf3\xb6\xdd\xf3]\x9f\x0fY\xc8>\xc7\xfdO7\xe1\xf2\xbd\x03\xa9\x9d\xdf%\xf5\xd3$\xef\x96gde\x0f\xbc\xbb\xab\xae\xd2\xe07\xcd\x1fY\x16\xda\xa4\xd4\xe9\xf5)\x8c\xbf\x7f\t\x16\xad)\xb4\xb6\x93 \x9c\xb1@\xc4\xf2b\xa0)\x83*\x16D[\x87\xc9\xff\x13\x1b\x9d\xa5\x84\xdd<Hp\xde\xf8[\x8e+\xcc\xbf\x9a~m\xd0\xe58\x8b\xf3\xa3\xed\x05\x91--\x0elU@\x07&An=\x06\x17\x9b\x067t\x1b\x9e\xa2\x8d\xd0\xe1>\n\xde\xec\xa8\xa0\x8a\xe11\xf9d\x855+\xe6\xbd\xfe\x96\xbc\x18HW\xe1)3\xd0\x1eN"8\xf3\x08\x8eM`\xb3\x04\xb5V\x034\xf3\x05\xb1,E\xaew\xe7\x81\xea\xed\xfa\xc8j\xeb\x99\xb9\x9e\x03\x19JC\x80\xed\xb0`\x14\n\xd52@l@#&L\x8b\x80\x14\x08t7\xd0U\xab#\xdfQH\xb2\xbd\x825\xeb\xec\x18\x10\xd2\x9f\xa1\x117T\xa3\x02\xa1\xa5\x80\x01\x81\xc5\x99\xd0G.C^Z\x03\xcf(\xc0\x8b;`\x87\xe5\x19\x86\xa9\xa9\xa2\'>\x81Fz\x0f\xae\xdeQ\xd0\xd8UX\x9a\x06]Sa\xb5\x0ct\x07\xaf\x80F.\xa2\xb6\xbb\x05G\x8cAlU\xc1\xea\x97\xc6\xa0\xfc\x15\xe1\xf9\xfd\x07\xcaD\x06\xae\xc1qXn\x02\x93q\xc0Y\x04\xb2@a\xe5\xd2`6\xd6\xe0\\\x18\x87\x12\xb0\xc1T|\xd2*\x89v\xc3\x88\xf4\xc3^\xcf\x80S\xcap\xb9Yx\\n\x10/\x01\xa7W\xd0\xfc\xba\x02K\x1a\xc0y\x8f\x84\x06\x1f[ed\xbf\xb2\xa4FE\x90>\x11\\g\x08\xc5_\xbb\xe0m\x07<C\xe0\xb5\x1c\x946\xbf\xa3\xbdc\x04\xae\xd0\x10\x10\x0cB\xe1\xb5%\xc6\x17\x1bN\x9du\xea)#\x12\x80\xde\x17\x80\x9f\x13P<\xce\x81c\t\xeaG9t\xd0v\xe8Q\t$\x1c\x82\xec%)F\n\xa6\x98\xcd\x89(~lV\x13gf>\xc5\xfb}`{\xdaA`!\x7f\x92\x83AMX\xe1nXa\ty\xb6\x99\xda9,%N\xe3\x06\xa8W\x98\xc7\xb5\xd9\xa4-)s\x1f\xb2\'\xfb\x1b\xd4\xefi\xa3T\x899D\x85Me\xc8\x8e\x91>.\xe7\x9ej:\xf3\xe4\xe7\x8d\xaa=\xf8\xe6\x19\xfe\x03\xee\xf9\x0f8\x925tH\x00\x00\x00\x00IEND\xaeB`\x82""")
 
 #main
-mainframe = ttk.Frame(root)
-mainframe.place(anchor="nw", height=662, width=1176)
-mainframe['padding'] = (20,30,0,0)
-
-bccolorlabel1 = tkinter.Label(mainframe, background=themeColor, foreground=fontColor)
-bccolorlabel1.place(anchor="nw", height=662, width=1176, x=-20, y=-30)
+mainframe = tkinter.Frame(root)
+mainframe.place(anchor="nw", height=662, width=1176, x=0, y=0)
+mainframe.configure(padx=20, pady=30)
 
 #statframe
-statframe = ttk.Frame(mainframe)
+statframe = tkinter.Frame(mainframe)
 statframe.place(anchor="nw", height=611, width=180, x=0, y=0)
-
-bccolorlabel2 = tkinter.Label(statframe, background=themeColor, foreground=fontColor)
-bccolorlabel2.place(anchor="nw", height=611, width=180)
 
 label1 = tkinter.Label(statframe, text="Base Stats", background=themeColor, foreground=fontColor)
 label1.place(x=0, y=0)
@@ -26047,33 +26000,34 @@ daycolonlabel = tkinter.Label(statframe, text=":", background=themeColor, foregr
 daycolonlabel.place(anchor="n", x=90, y=419)
 dayvallabel = tkinter.Label(statframe, text="", background=themeColor, foreground=fontColor)
 dayvallabel.place(anchor="nw", x=110, y=420)
+daylabelvisible = True
+
 hourlabel = tkinter.Label(statframe, text="Hour", background=themeColor, foreground=fontColor)
 hourlabel.place(anchor="nw", x=0, y=440)
 hourcolonlabel = tkinter.Label(statframe, text=":", background=themeColor, foreground=fontColor)
 hourcolonlabel.place(anchor="n", x=90, y=439)
 hourvallabel = tkinter.Label(statframe, text="", background=themeColor, foreground=fontColor)
 hourvallabel.place(anchor="nw", x=110, y=440)
-daylabelvisible = True
 hourlabelvisible = True
 
-showsavegame = True
-showloadgame = True
-shownewgame = True
 savegamebutton = tkinter.Button(statframe, text="Save Game", command=SaveG, background=themeColor, foreground=fontColor)
 savegamebutton.place(anchor="n", height=30, width=100, x=90, y=480)
+showsavegame = True
+
 loadgamebutton = tkinter.Button(statframe, text="Load Game", command=LoadG, background=themeColor, foreground=fontColor)
 loadgamebutton.place(anchor="n", height=30, width=100, x=90, y=515)
+showloadgame = True
+
 newgamebutton = tkinter.Button(statframe, text="New Game", command=NewGameStart, background=themeColor, foreground=fontColor)
 newgamebutton.place(anchor="n", height=30, width=100, x=90, y=550)
+shownewgame = True
 
 quitbutton = tkinter.Button(statframe, image=quitimg,command=endProcess, background="#ff0000")
 quitbutton.place(anchor="nw", height=20, width=20, x=0, y=591)
 
-buttonpanel = ttk.Frame(mainframe)
-buttonpanel.place(anchor="nw", height=179, width=662, x=180, y=0)
-
-bccolorlabel3 = tkinter.Label(buttonpanel, background=themeColor, foreground=fontColor)
-bccolorlabel3.place(anchor="nw", height=179, width=662)
+#buttonpanel
+buttonpanel = tkinter.Frame(mainframe)
+buttonpanel.place(anchor="nw", height=179, width=622, x=180, y=0)
 
 button1 = tkinter.Button(buttonpanel, text="Button 1", command=ButtonEvent1, background=themeColor, foreground=fontColor)
 button1.place(anchor="nw", height=46, width=140, x=0, y=0)
@@ -26157,13 +26111,9 @@ textmain.place(anchor="nw", height=430, width=622, x=180, y=180)
 textmain.delete(1.0,"end")
 textmain.configure(state="disabled")
 
-
-#frame
-frame2 = ttk.Frame(mainframe)
+#frame (top right area)
+frame2 = tkinter.Frame(mainframe)
 frame2.place(anchor="nw", height=179, width=334, x=802, y=0)
-
-bccolorlabel4 = tkinter.Label(frame2, background=themeColor, foreground=fontColor)
-bccolorlabel4.place(anchor="nw", height=179, width=334)
 
 pagelabel = tkinter.Label(frame2, text="BAG 1", background=themeColor, foreground=fontColor)
 pagelabel.place(anchor="nw", height=30, width=80, x=20, y=0)
@@ -26183,11 +26133,8 @@ converttosolbutton.place(anchor="nw", height=46, width=140, x=97, y=112)
 convertbuttonsvisible = True
 
 #sidebar
-sidebar = ttk.Frame(mainframe)
+sidebar = tkinter.Frame(mainframe)
 sidebar.place(anchor="nw", height=432, width=334, x=803, y=180)
-
-bccolorlabel5 = tkinter.Label(sidebar, background=themeColor, foreground=fontColor)
-bccolorlabel5.place(anchor="nw", height=432, width=334)
 
 looksbutton = tkinter.Button(sidebar, text="Look", background=themeColor, foreground=fontColor)
 looksbutton.place(anchor="nw", width=80, x=0, y=0)
@@ -26238,5 +26185,12 @@ option7Visible = True
 
 maintext = ""
 sidetext = ""
+
+#startup function
 frame1()
+
+#window resize
+#root.bind("<Configure>",resize.calculate)
+
+#mainloop
 root.mainloop()
