@@ -1,3 +1,19 @@
+v1.0.6
+Fixed buttonpanel width
+Switched frames to tkinter.Frame instead of tkinter.ttk.Frame so that I could change the background colour directly
+Removed the background colour labels and the ttk import as they aren't needed anymore
+Temporarily disabled window resizing as it doesn't work anyways
+Temporarily locked the aspect ratio just in case the previous fix fails
+Remove unnecessary functions in my lists extension class
+Removed functions I added at the beggining of the project but are no longer needed
+Removed code that I commented out but forgot to remove
+Optimized doWeight
+Optimized doHP
+Optimized doLust
+Fixed dojizzpants not triggering correctly when going back to dogeneral from areas
+Fixed dojizzpants next button having to be pressed twice
+Fixed checkStash
+
 v1.0.5
 Made shops always go back to themselves instead of going back to the another shop in some cases
 Fixed a bug with the apothecary
