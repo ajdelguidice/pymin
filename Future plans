@@ -1,2 +1,2 @@
 - Fix detailedStats alignment
-- (possibly rework the program to have no global functions by putting the entire thing inside of a class and putting the this. statements back but replace them with self.)
+- Possibly rework the program to have no global functions by putting the entire thing inside of a class. (might be impossible due to how doListen works)
