@@ -13,6 +13,7 @@ Optimized doLust
 Fixed dojizzpants not triggering correctly when going back to dogeneral from areas
 Fixed dojizzpants next button having to be pressed twice
 Fixed checkStash
+Removed the "this." statement that I missed
 
 v1.0.5
 Made shops always go back to themselves instead of going back to the another shop in some cases
