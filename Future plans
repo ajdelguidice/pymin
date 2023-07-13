@@ -1,2 +1,4 @@
+- Put all funcitons back into a main class and remove all of the global statements (I'm already working on this and the game runs much faster without global statements)
 - Fix detailedStats alignment
-- Possibly rework the program to have no global functions by putting the entire thing inside of a class. (might be impossible due to how doListen works)
+- Optimize _Desc, _Hair, _ID, _Name, _Value, _Description, enemy_, apoth_ functions
+- Make shops return to doShops instead of doGeneral
