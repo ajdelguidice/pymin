@@ -1,4 +1,10 @@
-- Put all funcitons back into a main class and remove all of the global statements (I'm already working on this and the game runs much faster without global statements)
-- Fix detailedStats alignment
+- Remove warning message when I no longer need it
+- Optimize doProstitute as it heavily uses outputMainText and is noticably slow
 - Optimize _Desc, _Hair, _ID, _Name, _Value, _Description, enemy_, apoth_ functions
-- Make shops return to doShops instead of doGeneral
+- Optimize things to use outputMainText less (due to the way that I had to implement it, it is very expensive)
+- Optimize initial load time (probably not possible because tkinter is what is taking a long time)
+- Fix detailedStats alignment
+- Work on wiki
+    - Finish menus and wiki pages
+    - Add support for enter navigation
+    - Fix menu loading times (might not be possible)
