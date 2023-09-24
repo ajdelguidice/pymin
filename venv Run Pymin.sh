@@ -1,6 +1,6 @@
 backdir= pwd
 source ./Pymin-venv/bin/activate
 cd ./Pymin-venv/Pymin/
-./Pymin.py
+python3 ./Pymin.py
 cd $backdir
 deactivate
