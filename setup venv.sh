@@ -19,6 +19,6 @@ mkdir ./Pymin-venv/Pymin/
 cp ./Pymin.py ./Pymin-venv/Pymin/Pymin.py
 chmod +x ./Pymin-venv/Pymin/Pymin.py
 source ./Pymin-venv/bin/activate
-pip install Mini-AMF tkhtmlview numpy Pillow as3lib mss
-pip install -U Mini-AMF tkhtmlview numpy Pillow as3lib mss
+pip install Mini-AMF tkhtmlview numpy Pillow as3lib
+pip install -U Mini-AMF tkhtmlview numpy Pillow as3lib
 deactivate
