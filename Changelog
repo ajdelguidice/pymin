@@ -1,3 +1,47 @@
+v1.0.7
+PYTHON VERSION DEPENDENCY HAS BEEN CHANGED TO 3.10 (I wanted to use match-case)
+Put the program back into a main class, removed all of the global statements
+Fixed bug with doRace
+Optimized doRace, doGender, bodyType, itemDescription, doDayCare, doSleep, doItemUse (itemID 208, 218, 507, 512, 517, 522), doLevelUP, doDen, doSizCalit, doStartingDescription, domName, goodsID, apothName, apothValue, hairstyleName, hairC, hairstyleValue, clothesID, clothesValue, makeAlchemy, plural slightly
+Changed some of the strings to format strings to remove some complexity
+Fixed checkOpenSlot
+Fixed stashStore and stashRemove
+Fixed doDayCare
+Optimized if else statements in doCockMasturbate
+Replaced some if else statements with the plural() function because that's its purpose
+Optimized lilaDesc
+Fixed double spacing in enemyAttack
+Fixed a spelling mistake in enemyAttack for enemyID 309
+Fixed a variable spelling mistake in enemyAttack
+Actually fixed the lust stat this time (the game now checks it every time it is displayed instead of just when stats is called)
+Reduced the number of outputMainText calls and fixed the order of the "_Desc()" functions so they display correctly in doItemUse (itemID 110 and 533)
+Fixed itemID 517 and 522 to use showBalls correctly
+Fixed spelling mistake in doItemUse itemID 534
+Removed a useless line in doGeneral which was causing an error
+Added a detailed debug window. Enable it by passing the argument "-debug" when executing the game
+Added a way to escape from zone 1 senario 6 in doProstitute
+Added a menu bar similar to the one in adobe flash player projector
+Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
+Made lilaDesc work like the other _Desc functions and fixed it where it appears
+Fixed doApothecary (I forgot a line so it didn't work)
+Made all shops return to doShops if you hold shift when you press the return button.
+Optimized doLust to use outputMainText less
+Changed doLust slightly so it can now return the output text instead of displaying it (must set function parameter "ret" to "True" to use)
+Updated the fist line of code so that it properly executes on most instances of linux (if you don't have your bin directory in root, symlink or actual directory, it won't run)
+Added missing "self." in doLoad
+Moved quit button to menu
+About window now changes colour with the rest of the stuff
+Changed interface to use the custom library that I made (it is slightly slower now but it's resizable).
+Added option to doHP to suppress image change for things like new game
+Rearranged the hideUpDown command in newGameGo to make it work better
+Fixed the venv setup script
+Changed itemDescription, passiveItemAdd, passiveItemRemove, doItemUse, goodsID, dyeID, apothID, apothLearn, apothDescription, hairDesc, hairL, hairstyleID, hairstyleLength, hairstyleDescription, clothesName, clothesDescription, clothesTop, clothesBottom, pullUD, clothesChange, enemyName, enemyBaseStats, enemyBaby, earDesc, faceDesc, skinDesc, skinC, legDesc, legVerb, regionName, raceName, domName, genName, tailDesc, humanTaurTailDesc to use match-case (it is way faster, especially with huge statements)
+Changed the save file location to be in a subfolder instead of in the same directory (reduces clutter)
+
+Fixed doJizzPants triggering sometimes after closing bag (should be fixed)
+Fixed appearance button not working when detailedCredits is shown without the sidebar
+Fixed humanTaurTailDesc
+
 v1.0.6
 Fixed buttonpanel width
 Switched frames to tkinter.Frame instead of tkinter.ttk.Frame so that I could change the background colour directly
@@ -5,7 +49,7 @@ Removed the background colour labels and the ttk import as they aren't needed an
 Temporarily disabled window resizing as it doesn't work anyways
 Temporarily locked the aspect ratio just in case the previous fix fails
 Remove unnecessary functions in my lists extension class
-Removed functions I added at the beggining of the project but are no longer needed
+Removed functions I added at the beggining of the project that are no longer needed
 Removed code that I commented out but forgot to remove
 Optimized doWeight
 Optimized doHP
@@ -17,7 +61,7 @@ Removed the "this." statement that I missed
 
 v1.0.5
 Made shops always go back to themselves instead of going back to the another shop in some cases
-Fixed a bug with the apothecary
+Fixed a bug with the Apothecary
 Fixed a bug with the Tailor
 Optimized itemName, usableItem, itemValue, itemMaxStack, foodItem
 Fixed Milking Machine (Item)
@@ -66,15 +110,14 @@ Switched from using tkinter.ScrolledText to tkhtmlview.HTMLScrolledText (font st
 
 v1.0.0
 Changed str variable to _str_ because it conflicts with a built in function
+Removed "this." statements
 Rearranged some statements to make more sense
 Converted variables before displaying them to the screen because "TypeError: can only concatenate str (not 'int') to str"
-Changed "\r" to "\n" becuase python uses universal backslash expressions instead of adobe's bullshit
-Replaced "||" with or and "&&" with "and"
-Removed "this." becuase it isn't needed
-Commented out unused parts of the origional code instead of removing them
-Interface rewritten in tkinter becuase it looked the most similar to the origional
+Changed "\r" to "\n"
+Replaced "||" with "or" and "&&" with "and"
+Commented out unused parts of the original code instead of removing them
+Interface rewritten in tkinter becuase it looked the most similar to the original
 Removed backslashes before single quotes where they weren't necessary because python knows how to handle single quotes within double quotes and can tell the difference between the two
-Global statements everywhere because python is a local default language
 Pointed functions to the correct place in python (ex: in flash it's Math.random() but in python it's random.random())
 Save data and preferences are now stored in xml format instead of shared objects because I couldn't find any libraries for action messaging format that still worked. If I get arround to it, I might make my own library or at least make a way to convert old save files to new ones but that is a lot of work and amf is very confusing
 Remade images 1 and 2 to be centered
@@ -83,7 +126,6 @@ Merged some redundant if statements
 Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
 Rearranged post-increment statements to work in python
-Added function to mimic how numbers were displayed in actionscript (numbers were displayed as floats unless there was nothing after the decimal point)
 Added savefile converter into load game screen
 
 detailedStats
@@ -103,9 +145,6 @@ advancedAlchemy
 
 enemyAttack
 - Fixed enemy 102 not subtracting the correct thing
-
-doStatus
-- Continued optimizing the if else statements from where Xadera left off
 
 aff
 - Removed redundant line
