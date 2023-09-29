@@ -1,10 +1,11 @@
-- Remove warning message when I no longer need it
-- Optimize doProstitute as it heavily uses outputMainText and is noticably slow
-- Optimize _Desc, _Hair, _ID, _Name, _Value, _Description, enemy_, apoth_ functions
-- Optimize things to use outputMainText less (due to the way that I had to implement it, it is very expensive)
-- Optimize initial load time (probably not possible because tkinter is what is taking a long time)
-- Fix detailedStats alignment
+- Port interface to my custom one
+    - Fix about window border
+    - Port wiki over
 - Work on wiki
     - Finish menus and wiki pages
-    - Add support for enter navigation
     - Fix menu loading times (might not be possible)
+- Fix doDetailedStats display (it looks terrible)
+- Fix lust sometimes going up after masturbating (possibly doCockMasturbate, or dolust)
+- Fix affinity change triggering at the start of the game with starting race even though you already are that race
+- Optimize doProstitute to use outputMainText less
+- Optimize things to use outputMainText less (due to the way that I had to implement it, it is very expensive)
