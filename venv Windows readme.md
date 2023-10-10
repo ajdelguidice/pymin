@@ -1,0 +1,1 @@
+For those who are using windows, I'm sorry to say but I could not figure out how to get a script working to setup and use a virtual environment. It kept halting after activating the venv. I will try my best to get something working in the future, but you are on your own for now.
