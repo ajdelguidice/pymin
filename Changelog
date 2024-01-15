@@ -1,3 +1,47 @@
+v1.0.8 
+Requires as3lib version 0.0.8
+Changed sideEvent, hotkeys, getThemeColor, toggleColor, updateSide, choiceListButtons, choiceListSelect, regionChange, appearanceGo, saveGo, doSave, doBag, doItemUse, doProstitute, doVagMasturbate, makeAlchemy, doLevelUP, doSoftlik, doForest, doJungle, doPlains, doSavanna, doDesert, doBeach, doLake, doValley, doOldCaveDescent, knotholeUpstairs, weaponAttack, specialAbilityName, specialAbilityDescription, specialAbilityUse, doEntice, specialRapeWin, specialKOWin, specialKOLose, doeLust, enemyAttack, doStatus, aff, doBirth, legWhere, legPlural, milkAmount, buttonWrite, disableOneButton, writeAmount, viewAmount to use match-case (it is way faster, especially with huge statements, it also looks nicer. Note: I avoid saying it looks "cleaner" because I think the concept of clean code is dumb, I'll code however the fuck I want)
+Changed some of the checks for buttonChoice to use match-case
+Optimized doGeneral, doBag, doDiscard, doItemUse, doDayCare, doProstitute, doSleep, simpleAlchemy, complexAlchemy, advancedAlchemy, doLevelUP, doSoftlik, doPlains, doSavanna, doDesert, doValley, knotholeMain, knotholeUpstairs, doBattle, doEntice, doRape, doeLust, doStatus cockChange, cockLoss, vagChange, vagBellyChange, legChange, doBirth to use outputMainText less
+Changed some of the save and load dialogue
+Moved wiki over to my custom interface framework (it is now scalable)
+Added option for doWeight to return text instead
+Optimized toxml, checkMagicItem
+Fixed toxml (I forgot the "self" parameter)
+Added missing "self." to item 203 in itemDescription, item 110, 518, and 533 in doItemUse, dyeThing, doCockMasturbate, doSizCalit, doOviasis, doDairyFarm, doOldCave, doBirth, doLake, and a couple others (I went through every function individually and check every instance of them to make sure I didn't miss any). Variables will take me a long time so I won't be doing them yet.
+Gave doHP, doPassOut, doJizzPants, specialKOLose, doeLust, cockChange, cockLoss, vagChange, vagBellyChange, legChange, lactChange, doBirth the ability to return their text output
+Fixed item 232 in doItemUse
+General code cleanup
+Added hotkey support for windows
+Added a missing doButtonChoices to dyeThing
+Moved the return (leave) button in doDayCare to position 12 to match the rest of the actions in doGeneral (except doSleep)
+Replaced everything that used my hack lists.push() with Array.push() from as3lib.toplevel
+Optimized repintorfloat, strtobool, and Filexml.getdh to make loading save files faster
+Changed the game font back to what it was originally
+Consolidated the button#visible and amountlabel#visible variables into dictionaries (one for the buttons and one for the amount labels) and optimized all of the functions using them to utilize the features of dictionaries
+Removed the remaining eval statements in the color change functions
+Optimized the functions for the button panel
+Replaced the height calculations in appearanceGo and doOldCave with floor division (//) for feet and modulo (%) for inches becuase they work faster than doing it manually.
+Fixed updown images in battle (They sometimes didn't show or were overriden by others).
+Replaced the save converter buttons with a single one and added it to the save game menu as well.
+Replaced previous save converter with a nicer one.
+Added a way to change the save file folder's name and its location.
+Fixed view source button in context menu (I forgot to import webbrowser)
+Replaced lambda with functools.partial
+Added saveFolder and saveFolderLocation to Nimin_Prefs (Do not change these to anything that isn't valid on your os, I haven't implemented checks for that yet)
+Converting saves to sol is now supported (Normal sol files will not work as .nim files, they are slightly different. I am currently working on conversion to nim files). Normal sol files MUST be inside the games shared object folder (/home/*username*/.macromedia/Flash_Player/#SharedObject/*gameid*/localhost on linux) folder and must be named Nimin_Save#.sol (# in the file name is any number between 1 and 11 excluding 4 and 8). This is due to the way the original game saves and loads save files.
+Slightly optimized load times and added the command line option "-nostart" for debug. Prevents the game from initializing and displays all elements on the screen.
+Added a way to discard items without closing the bag (while moving an item, hold shift and press button 12). I'm going to refer to this as "discard on shift".
+Added a shift override to fix things in the bag.
+    - Confirmation dialog for discarding an item (before this, if you hold shift it moved the item instead of selecting a choice).
+    - (possibly) doItemUse
+Finished the menus in the wiki
+Removed unnessesary space in doCockMasturbate
+Debug window now respects colour choice
+Fixed the xml definition tag in the save files and preferences
+Made hotkeys work with discard on shift (this refers to something earlier in the changelog) in bag.
+Added a give item menu to the debug window
+
 v1.0.7
 PYTHON VERSION DEPENDENCY HAS BEEN CHANGED TO 3.10 (I wanted to use match-case)
 Put the program back into a main class, removed all of the global statements
@@ -18,10 +62,10 @@ Reduced the number of outputMainText calls and fixed the order of the "_Desc()" 
 Fixed itemID 517 and 522 to use showBalls correctly
 Fixed spelling mistake in doItemUse itemID 534
 Removed a useless line in doGeneral which was causing an error
-Added a detailed debug window. Enable it by passing the argument "-debug" when executing the game
+Added a detailed debug window. Enable it by passing the argument "-debug" when running the game
 Added a way to escape from zone 1 senario 6 in doProstitute
 Added a menu bar similar to the one in adobe flash player projector
-Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
+(Original problem) Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
 Made lilaDesc work like the other _Desc functions and fixed it where it appears
 Fixed doApothecary (I forgot a line so it didn't work)
 Made all shops return to doShops if you hold shift when you press the return button.
@@ -37,7 +81,6 @@ Rearranged the hideUpDown command in newGameGo to make it work better
 Fixed the venv setup script
 Changed itemDescription, passiveItemAdd, passiveItemRemove, doItemUse, goodsID, dyeID, apothID, apothLearn, apothDescription, hairDesc, hairL, hairstyleID, hairstyleLength, hairstyleDescription, clothesName, clothesDescription, clothesTop, clothesBottom, pullUD, clothesChange, enemyName, enemyBaseStats, enemyBaby, earDesc, faceDesc, skinDesc, skinC, legDesc, legVerb, regionName, raceName, domName, genName, tailDesc, humanTaurTailDesc to use match-case (it is way faster, especially with huge statements)
 Changed the save file location to be in a subfolder instead of in the same directory (reduces clutter)
-
 Fixed doJizzPants triggering sometimes after closing bag (should be fixed)
 Fixed appearance button not working when detailedCredits is shown without the sidebar
 Fixed humanTaurTailDesc
@@ -60,14 +103,14 @@ Fixed checkStash
 Removed the "this." statement that I missed
 
 v1.0.5
-Made shops always go back to themselves instead of going back to the another shop in some cases
+Made shops always go back to themselves instead of going back to another shop in some cases
 Fixed a bug with the Apothecary
 Fixed a bug with the Tailor
 Optimized itemName, usableItem, itemValue, itemMaxStack, foodItem
 Fixed Milking Machine (Item)
 Added ,0 to the end of all max() functions with only one input because python can't handle only one input
 Added a missing global varible definition to affinityChange
-Fixed Arrat.concat()
+Fixed Array.concat()
 Made Save Game, Load Game, and New Game buttons appear and disappear when they are supposed to
 Fixed a couple of bugs with doProstitute
 Fixed a couple of bugs with doLevelUP
@@ -84,7 +127,7 @@ Fixed the cancel button in itemUse for item 213
 (Should be fixed) Fixed shapshifty so it only increases one affinity (very inconsistantly happened with equan and random others)
 Fixed a couple of spelling mistake in doProstitute
 Fixed a bug in enemyAttack for enemy 102
-Optimized item 108 so it wasn't unbearably slow to use
+Optimized item 108 so it isn't unbearably slow to use
 
 v1.0.4
 Fixed bug with item buying/selling
