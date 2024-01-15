@@ -1,357 +1,238 @@
 import tkinter
 from tkinter import filedialog
-from miniamf import sol
+from miniamf import sol, AMF3
 import pathlib
 import xml.dom.minidom as xmlminidom
+from platform import system
+import xml.etree.ElementTree as xmletree
 
-def soltoxml():
+platform = system()
+
+def repintorfloat(number):
+   if type(number) == str:
+      number = float(number)
+   if type(number) == int:
+      return number
+   match number.is_integer():
+      case True:
+         return int(number)
+      case False:
+         return number
+def strtobool(a:str):
+   match a.lower():
+      case "true":
+         return True
+      case "false":
+         return False
+def checkExtension(file,extension):
+   match platform:
+      case "Windows":
+         ext = file.split("\\")[-1].split(".")[-1].lower()
+      case "Linux" | "Darwin":
+         ext = file.split("/")[-1].split(".")[-1].lower()
+   if ext == extension.lower():
+      return True
+   else:
+      return False
+def solString(string):
+   if string in [None,"None","undefined"]:
+      return ""
+   else:
+      return str(string)
+def solGetFileName(string):
+   match platform:
+      case "Windows":
+         templist = string.split("\\")[-1].split(".")
+         templist.pop(-1)
+      case "Linux" | "Darwin":
+         templist = string.split("/")[-1].split(".")
+         templist.pop(-1)
+   tempstr = ""
+   for i in templist:
+      if i == templist[-1]:
+         tempstr += i
+      else:
+         tempstr += f"{i}."
+   return tempstr
+def soltoxml(*args):
    global messagebox
-   messagebox["text"] = ""
    inputfilename = filedialog.askopenfilename()
-   outputfilename = filedialog.asksaveasfilename()
    if (type(inputfilename) == tuple):
       messagebox["text"] = "Please select an input file"
-   elif outputfilename == '':
-      messagebox["text"] = "Please select an output file location"
-   elif inputfilename == outputfilename:
-      messagebox["text"] = "Input file can not be the same as output file"
    else:
-      if pathlib.Path(inputfilename).is_file() == True:
-         toxml(inputfilename, outputfilename)
-      elif pathlib.Path(inputfilename).is_dir() == True:
-         messagebox["text"] = "Error: Input file is not a file"
+      outputfilename = filedialog.asksaveasfilename()
+      if outputfilename == "":
+         messagebox["text"] = "Please select an output file location"
+      elif inputfilename == outputfilename:
+         messagebox["text"] = "Input file can not be the same as output file"
       else:
-         messagebox["text"] = "Error: Input file does not exist"
-
-def toxml(inputfile, outputfile):
+         if pathlib.Path(inputfilename).is_file() == True:
+            if checkExtension(outputfilename,"xml") == True:
+               toxml(inputfilename, outputfilename)
+            else:
+               toxml(inputfilename, f"{outputfilename}.xml")
+         elif pathlib.Path(inputfilename).is_dir() == True:
+            messagebox["text"] = "Error: Input file is not a file"
+         else:
+            messagebox["text"] = "Error: Input file does not exist"
+def toxml(inputfile,outputfile):
    global messagebox
-   so = sol.load(inputfile)
-   strack = so["track"]
-   sstats = so["stats"]
-   slevel = so["level"]
-   smod = so["mod"]
-   squality = so["quality"]
-   scock = so["cock"]
-   sgirl = so["girl"]
-   sgear = so["gear"]
-   sstatus = so["status"]
-   saffinity = so["affinity"]
-   srep = so["rep"]
-   sknowledge = so["knowledge"]
-   sboss = so["boss"]
-   sknowSimpleAlchemy = so["knowSimpleAlchemy"]
-   sknowAdvancedAlchemy = so["knowAdvancedAlchemy"]
-   sknowComplexAlchemy = so["knowComplexAlchemy"]
-   smajorFetish = so["majorFetish"]
-   smoderateFetish = so["moderateFetish"]
-   sminorFetish = so["minorFetish"]
-   skid = so["kid"]
-   currentState = strack[0]
-   currentZone = strack[1]
-   day = strack[2]
-   hour = strack[3]
-   currentDayCare = strack[4]
-   inDungeon = strack[5]
-   currentDungeon = strack[6]
-   v7 = strack[7]
-   strength = sstats[0]
-   mentality = sstats[1]
-   libido = sstats[2]
-   sensitivity = sstats[3]
-   HP = sstats[4]
-   lust = sstats[5]
-   coin = sstats[6]
-   strMod = sstats[7]
-   mentMod = sstats[8]
-   libMod = sstats[9]
-   senMod = sstats[10]
-   hunger = sstats[11]
-   SexP = slevel[0]
-   levelUP = slevel[1]
-   level = slevel[2]
-   babyFactLevel = slevel[3]
-   bodyBuildLevel = slevel[4]
-   hyperHappyLevel = slevel[5]
-   alchemistLevel = slevel[6]
-   fetishMasterLevel = slevel[7]
-   milkMaidLevel = slevel[8]
-   shapeshiftyLevel = slevel[9]
-   shapeshiftyFirst = slevel[10]
-   shapeshiftySecond = slevel[11]
-   runMod = smod[0]
-   rapeMod = smod[1]
-   cumMod = smod[2]
-   cockSizeMod = smod[3]
-   milkMod = smod[4]
-   carryMod = smod[5]
-   vagBellyMod = smod[6]
-   pregChanceMod = smod[7]
-   extraPregChance = smod[8]
-   pregTimeMod = smod[9]
-   enticeMod = smod[10]
-   milkHPMod = smod[11]
-   vagSizeMod = smod[12]
-   vagElastic = smod[13]
-   changeMod = smod[14]
-   HPMod = smod[15]
-   SexPMod = smod[16]
-   minLust = smod[17]
-   milkCap = smod[18]
-   coinMod = smod[19]
-   hipMod = smod[20]
-   buttMod = smod[21]
-   bellyMod = smod[22]
-   cockMoistMod = smod[23]
-   vagMoistMod = smod[24]
-   lockTail = smod[25]
-   lockFace = smod[26]
-   lockSkin = smod[27]
-   lockBreasts = smod[28]
-   lockEars = smod[29]
-   lockLegs = smod[30]
-   lockNipples = smod[31]
-   lockCock = smod[32]
-   gender = squality[0]
-   race = squality[1]
-   body = squality[2]
-   dominant = squality[3]
-   hips = squality[4]
-   butt = squality[5]
-   tallness = squality[6]
-   skinType = squality[7]
-   tail = squality[8]
-   ears = squality[9]
-   hair = squality[10]
-   hairColor = squality[11]
-   hairLength = squality[12]
-   legType = squality[13]
-   wings = squality[14]
-   faceType = squality[15]
-   skinColor = squality[16]
-   cockTotal = scock[0]
-   humanCocks = scock[1]
-   horseCocks = scock[2]
-   wolfCocks = scock[3]
-   catCocks = scock[4]
-   rabbitCocks = scock[5]
-   lizardCocks = scock[6]
-   cockSize = scock[7]
-   cockMoist = scock[8]
-   balls = scock[9]
-   ballSize = scock[10]
-   showBalls = scock[11]
-   knot = scock[12]
-   bugCocks = scock[13]
-   breastSize = sgirl[0]
-   boobTotal = sgirl[1]
-   nippleSize = sgirl[2]
-   udders = sgirl[3]
-   udderSize = sgirl[4]
-   teatSize = sgirl[5]
-   clitSize = sgirl[6]
-   vagTotal = sgirl[7]
-   vagSize = sgirl[8]
-   vagMoist = sgirl[9]
-   vulvaSize = sgirl[10]
-   nipType = sgirl[11]
-   attireTop = sgear[0]
-   attireBot = sgear[1]
-   weapon = sgear[2]
-   pregRate = sstatus[0]
-   pregnancyTime = sstatus[1]
-   pregStatus = sstatus[2]
-   eggLaying = sstatus[3]
-   eggMaxTime = sstatus[4]
-   eggTime = sstatus[5]
-   eggRate = sstatus[6]
-   exhaustion = sstatus[7]
-   exhaustionPenalty = sstatus[8]
-   milkEngorgement = sstatus[9]
-   milkEngorgementLevel = sstatus[10]
-   udderEngorgement = sstatus[11]
-   udderEngorgementLevel = sstatus[12]
-   heat = sstatus[13]
-   heatTime = sstatus[14]
-   heatMaxTime = sstatus[15]
-   lactation = sstatus[16]
-   udderLactation = sstatus[17]
-   nipplePlay = sstatus[18]
-   udderPlay = sstatus[19]
-   blueBalls = sstatus[20]
-   teatPump = sstatus[21]
-   nipPump = sstatus[22]
-   cockPump = sstatus[23]
-   clitPump = sstatus[24]
-   vulvaPump = sstatus[25]
-   masoPot = sstatus[26]
-   sMasoPot = sstatus[27]
-   babyFree = sstatus[28]
-   charmTime = sstatus[29]
-   pheromone = sstatus[30]
-   eggceleratorTime = sstatus[31]
-   eggceleratorDose = sstatus[32]
-   bodyOil = sstatus[33]
-   lustPenalty = sstatus[34]
-   fertileGel = sstatus[35]
-   snuggleBall = sstatus[36]
-   eggType = sstatus[37]
-   milkSuppressant = sstatus[38]
-   milkSuppressantLact = sstatus[39]
-   milkSuppressantUdder = sstatus[40]
-   suppHarness = sstatus[41]
-   fertilityStatueCurse = sstatus[42]
-   plumpQuats = sstatus[43]
-   lilaWetStatus = sstatus[44]
-   cockSnakePreg = sstatus[45]
-   milkCPoisonNip = sstatus[46]
-   milkCPoisonUdd = sstatus[47]
-   cockSnakeVenom = sstatus[48]
-   humanAffinity = saffinity[0]
-   horseAffinity = saffinity[1]
-   wolfAffinity = saffinity[2]
-   catAffinity = saffinity[3]
-   cowAffinity = saffinity[4]
-   lizardAffinity = saffinity[5]
-   rabbitAffinity = saffinity[6]
-   fourBoobAffinity = saffinity[7]
-   mouseAffinity = saffinity[8]
-   birdAffinity = saffinity[9]
-   pigAffinity = saffinity[10]
-   twoBoobAffinity = saffinity[11]
-   sixBoobAffinity = saffinity[12]
-   eightBoobAffinity = saffinity[13]
-   tenBoobAffinity = saffinity[14]
-   cowTaurAffinity = saffinity[15]
-   humanTaurAffinity = saffinity[16]
-   skunkAffinity = saffinity[17]
-   bugAffinity = saffinity[18]
-   lilaRep = srep[0]
-   lilaVulva = srep[1]
-   lilaMilk = srep[2]
-   lilaPreg = srep[3]
-   malonRep = srep[4]
-   malonPreg = srep[5]
-   malonChildren = srep[6]
-   mistressRep = srep[7]
-   jamieRep = srep[8]
-   jamieSize = srep[9]
-   jamieChildren = srep[10]
-   silRep = srep[11]
-   silPreg = srep[12]
-   silRate = srep[13]
-   silLay = srep[14]
-   silGrowthTime = srep[15]
-   silTied = srep[16]
-   lilaUB = srep[17]
-   dairyFarmBrand = srep[18]
-   lilaWetness = srep[19]
-   jamieButt = srep[20]
-   jamieBreasts = srep[21]
-   jamieHair = srep[22]
-   foundSoftlik = sknowledge[0]
-   foundFirmshaft = sknowledge[1]
-   foundTieden = sknowledge[2]
-   foundSizCalit = sknowledge[3]
-   foundOviasis = sknowledge[4]
-   foundValley = sknowledge[5]
-   foundSanctuary = sknowledge[6]
-   defeatedMinotaur = sboss[0]
-   defeatedFreakyGirl = sboss[1]
-   defeatedSuccubus = sboss[2]
-   knowLustDraft = sknowSimpleAlchemy[0]
-   knowRejuvPot = sknowSimpleAlchemy[1]
-   knowExpPreg = sknowSimpleAlchemy[2]
-   knowBallSwell = sknowSimpleAlchemy[3]
-   knowMaleEnhance = sknowSimpleAlchemy[4]
-   knowSLustDraft = sknowAdvancedAlchemy[0]
-   knowSRejuvPot = sknowAdvancedAlchemy[1]
-   knowSExpPreg = sknowAdvancedAlchemy[2]
-   knowSBallSwell = sknowAdvancedAlchemy[3]
-   knowGenSwap = sknowAdvancedAlchemy[4]
-   knowMasoPot = sknowAdvancedAlchemy[5]
-   knowBabyFree = sknowAdvancedAlchemy[6]
-   knowPotPot = sknowAdvancedAlchemy[7]
-   knowMilkSuppress = sknowAdvancedAlchemy[8]
-   knowSGenSwap = sknowComplexAlchemy[0]
-   knowSMasoPot = sknowComplexAlchemy[1]
-   knowSBabyFree = sknowComplexAlchemy[2]
-   knowSPotPot = sknowComplexAlchemy[3]
-   knowPussJuice = sknowComplexAlchemy[4]
-   knowPheromone = sknowComplexAlchemy[5]
-   knowBazoomba = sknowComplexAlchemy[6]
-   maleFetish = smajorFetish[0]
-   femaleFetish = smajorFetish[1]
-   hermFetish = smajorFetish[2]
-   narcissistFetish = smajorFetish[3]
-   dependentFetish = smajorFetish[4]
-   dominantFetish = smoderateFetish[0]
-   submissiveFetish = smoderateFetish[1]
-   lboobFetish = smoderateFetish[2]
-   sboobFetish = smoderateFetish[3]
-   furryFetish = smoderateFetish[4]
-   scalyFetish = smoderateFetish[5]
-   smoothyFetish = smoderateFetish[6]
-   pregnancyFetish = sminorFetish[0]
-   bestialityFetish = sminorFetish[1]
-   milkFetish = sminorFetish[2]
-   sizeFetish = sminorFetish[3]
-   unbirthingFetish = sminorFetish[4]
-   ovipositionFetish = sminorFetish[5]
-   toyFetish = sminorFetish[6]
-   hyperFetish = sminorFetish[7]
-   humanChildren = skid[0]
-   equanChildren = skid[1]
-   lupanChildren = skid[2]
-   felinChildren = skid[3]
-   cowChildren = skid[4]
-   lizanChildren = skid[5]
-   lizanEggs = skid[6]
-   bunnionChildren = skid[7]
-   wolfPupChildren = skid[8]
-   miceChildren = skid[9]
-   birdEggs = skid[10]
-   birdChildren = skid[11]
-   pigChildren = skid[12]
-   calfChildren = skid[13]
-   bugEggs = skid[14]
-   bugChildren = skid[15]
-   skunkChildren = skid[16]
-   minotaurChildren = skid[17]
-   freakyGirlChildren = skid[18]
-   #= .find('').text
-   trav = so["trav"]
-   bagArray = so["bagSave"]
-   bagStackArray = so["bagStackSave"]
-   stashArray = so["stashSave"]
-   stashStackArray = so["stashStackSave"]
-   pregArray = so["pregSave"]
-   string = "<data><track><currentState>" + str(currentState) + "</currentState><currentZone>" + str(currentZone) + "</currentZone><day>" + str(day) + "</day><hour>" + str(hour) + "</hour><currentDayCare>" + str(currentDayCare) + "</currentDayCare><inDungeon>" + str(inDungeon) + "</inDungeon><currentDungeon>" + str(currentDungeon) + "</currentDungeon><v7>" + str(0.75) + "</v7></track><stats><strength>" + str(strength) + "</strength><mentality>" + str(mentality) + "</mentality><libido>" + str(libido) + "</libido><sensitivity>" + str(sensitivity) + "</sensitivity><HP>" + str(HP) + "</HP><lust>" + str(lust) + "</lust><coin>" + str(coin) + "</coin><strMod>" + str(strMod) + "</strMod><mentMod>" + str(mentMod) + "</mentMod><libMod>" + str(libMod) + "</libMod><senMod>" + str(senMod) + "</senMod><hunger>" + str(hunger) + "</hunger></stats><level><SexP>" + str(SexP) + "</SexP><levelUP>" + str(levelUP) + "</levelUP><level>" + str(level) + "</level><babyFactLevel>" + str(babyFactLevel) + "</babyFactLevel><bodyBuildLevel>" + str(bodyBuildLevel) + "</bodyBuildLevel><hyperHappyLevel>" + str(hyperHappyLevel) + "</hyperHappyLevel><alchemistLevel>" + str(alchemistLevel) + "</alchemistLevel><fetishMasterLevel>" + str(fetishMasterLevel) + "</fetishMasterLevel><milkMaidLevel>" + str(milkMaidLevel) + "</milkMaidLevel><shapeshiftyLevel>" + str(shapeshiftyLevel) + "</shapeshiftyLevel><shapeshiftyFirst>" + str(shapeshiftyFirst) + "</shapeshiftyFirst><shapeshiftySecond>" + str(shapeshiftySecond) + "</shapeshiftySecond></level><mod><runMod>" + str(runMod) + "</runMod><rapeMod>" + str(rapeMod) + "</rapeMod><cumMod>" + str(cumMod) + "</cumMod><cockSizeMod>" + str(cockSizeMod) + "</cockSizeMod><milkMod>" + str(milkMod) + "</milkMod><carryMod>" + str(carryMod) + "</carryMod><vagBellyMod>" + str(vagBellyMod) + "</vagBellyMod><pregChanceMod>" + str(pregChanceMod) + "</pregChanceMod><extraPregChance>" + str(extraPregChance) + "</extraPregChance><pregTimeMod>" + str(pregTimeMod) + "</pregTimeMod><enticeMod>" + str(enticeMod) + "</enticeMod><milkHPMod>" + str(milkHPMod) + "</milkHPMod><vagSizeMod>" + str(vagSizeMod) + "</vagSizeMod><vagElastic>" + str(vagElastic) + "</vagElastic><changeMod>" + str(changeMod) + "</changeMod><HPMod>" + str(HPMod) + "</HPMod><SexPMod>" + str(SexPMod) + "</SexPMod><minLust>" + str(minLust) + "</minLust><milkCap>" + str(milkCap) + "</milkCap><coinMod>" + str(coinMod) + "</coinMod><hipMod>" + str(hipMod) + "</hipMod><buttMod>" + str(buttMod) + "</buttMod><bellyMod>" + str(bellyMod) + "</bellyMod><cockMoistMod>" + str(cockMoistMod) + "</cockMoistMod><vagMoistMod>" + str(vagMoistMod) + "</vagMoistMod><lockTail>" + str(lockTail) + "</lockTail><lockFace>" + str(lockFace) + "</lockFace><lockSkin>" + str(lockSkin) + "</lockSkin><lockBreasts>" + str(lockBreasts) + "</lockBreasts><lockEars>" + str(lockEars) + "</lockEars><lockLegs>" + str(lockLegs) + "</lockLegs><lockNipples>" + str(lockNipples) + "</lockNipples><lockCock>" + str(lockCock) + "</lockCock></mod><quality><gender>" + str(gender) + "</gender><race>" + str(race) + "</race><body>" + str(body) + "</body><dominant>" + str(dominant) + "</dominant><hips>" + str(hips) + "</hips><butt>" + str(butt) + "</butt><tallness>" + str(tallness) + "</tallness><skinType>" + str(skinType) + "</skinType><tail>" + str(tail) + "</tail><ears>" + str(ears) + "</ears><hair>" + str(hair) + "</hair><hairColor>" + str(hairColor) + "</hairColor><hairLength>" + str(hairLength) + "</hairLength><legType>" + str(legType) + "</legType><wings>" + str(wings) + "</wings><faceType>" + str(faceType) + "</faceType><skinColor>" + str(skinColor) + "</skinColor></quality><cock><cockTotal>" + str(cockTotal) + "</cockTotal><humanCocks>" + str(humanCocks) + "</humanCocks><horseCocks>" + str(horseCocks) + "</horseCocks><wolfCocks>" + str(wolfCocks) + "</wolfCocks><catCocks>" + str(catCocks) + "</catCocks><rabbitCocks>" + str(rabbitCocks) + "</rabbitCocks><lizardCocks>" + str(lizardCocks) + "</lizardCocks><cockSize>" + str(cockSize) + "</cockSize><cockMoist>" + str(cockMoist) + "</cockMoist><balls>" + str(balls) + "</balls><ballSize>" + str(ballSize) + "</ballSize><showBalls>" + str(showBalls) + "</showBalls><knot>" + str(knot) + "</knot><bugCocks>" + str(bugCocks) + "</bugCocks></cock><girl><breastSize>" + str(breastSize) + "</breastSize><boobTotal>" + str(boobTotal) + "</boobTotal><nippleSize>" + str(nippleSize) + "</nippleSize><udders>" + str(udders) + "</udders><udderSize>" + str(udderSize) + "</udderSize><teatSize>" + str(teatSize) + "</teatSize><clitSize>" + str(clitSize) + "</clitSize><vagTotal>" + str(vagTotal) + "</vagTotal><vagSize>" + str(vagSize) + "</vagSize><vagMoist>" + str(vagMoist) + "</vagMoist><vulvaSize>" + str(vulvaSize) + "</vulvaSize><nipType>" + str(nipType) + "</nipType></girl><gear><attireTop>" + str(attireTop) + "</attireTop><attireBot>" + str(attireBot) + "</attireBot><weapon>" + str(weapon) + "</weapon></gear><status><pregRate>" + str(pregRate) + "</pregRate><pregnancyTime>" + str(pregnancyTime) + "</pregnancyTime><pregStatus>" + str(pregStatus) + "</pregStatus><eggLaying>" + str(eggLaying) + "</eggLaying><eggMaxTime>" + str(eggMaxTime) + "</eggMaxTime><eggTime>" + str(eggTime) + "</eggTime><eggRate>" + str(eggRate) + "</eggRate><exhaustion>" + str(exhaustion) + "</exhaustion><exhaustionPenalty>" + str(exhaustionPenalty) + "</exhaustionPenalty><milkEngorgement>" + str(milkEngorgement) + "</milkEngorgement><milkEngorgementLevel>" + str(milkEngorgementLevel) + "</milkEngorgementLevel><udderEngorgement>" + str(udderEngorgement) + "</udderEngorgement><udderEngorgementLevel>" + str(udderEngorgementLevel) + "</udderEngorgementLevel><heat>" + str(heat) + "</heat><heatTime>" + str(heatTime) + "</heatTime><heatMaxTime>" + str(heatMaxTime) + "</heatMaxTime><lactation>" + str(lactation) + "</lactation><udderLactation>" + str(udderLactation) + "</udderLactation><nipplePlay>" + str(nipplePlay) + "</nipplePlay><udderPlay>" + str(udderPlay) + "</udderPlay><blueBalls>" + str(blueBalls) + "</blueBalls><teatPump>" + str(teatPump) + "</teatPump><nipPump>" + str(nipPump) + "</nipPump><cockPump>" + str(cockPump) + "</cockPump><clitPump>" + str(clitPump) + "</clitPump><vulvaPump>" + str(vulvaPump) + "</vulvaPump><masoPot>" + str(masoPot) + "</masoPot><sMasoPot>" + str(sMasoPot) + "</sMasoPot><babyFree>" + str(babyFree) + "</babyFree><charmTime>" + str(charmTime) + "</charmTime><pheromone>" + str(pheromone) + "</pheromone><eggceleratorTime>" + str(eggceleratorTime) + "</eggceleratorTime><eggceleratorDose>" + str(eggceleratorDose) + "</eggceleratorDose><bodyOil>" + str(bodyOil) + "</bodyOil><lustPenalty>" + str(lustPenalty) + "</lustPenalty><fertileGel>" + str(fertileGel) + "</fertileGel><snuggleBall>" + str(snuggleBall) + "</snuggleBall><eggType>" + str(eggType) + "</eggType><milkSuppressant>" + str(milkSuppressant) + "</milkSuppressant><milkSuppressantLact>" + str(milkSuppressantLact) + "</milkSuppressantLact><milkSuppressantUdder>" + str(milkSuppressantUdder) + "</milkSuppressantUdder><suppHarness>" + str(suppHarness) + "</suppHarness><fertilityStatueCurse>" + str(fertilityStatueCurse) + "</fertilityStatueCurse><plumpQuats>" + str(plumpQuats) + "</plumpQuats><lilaWetStatus>" + str(lilaWetStatus) + "</lilaWetStatus><cockSnakePreg>" + str(cockSnakePreg) + "</cockSnakePreg><milkCPoisonNip>" + str(milkCPoisonNip) + "</milkCPoisonNip><milkCPoisonUdd>" + str(milkCPoisonUdd) + "</milkCPoisonUdd><cockSnakeVenom>" + str(cockSnakeVenom) + "</cockSnakeVenom></status><affinity><humanAffinity>" + str(humanAffinity) + "</humanAffinity><horseAffinity>" + str(horseAffinity) + "</horseAffinity><wolfAffinity>" + str(wolfAffinity) + "</wolfAffinity><catAffinity>" + str(catAffinity) + "</catAffinity><cowAffinity>" + str(cowAffinity) + "</cowAffinity><lizardAffinity>" + str(lizardAffinity) + "</lizardAffinity><rabbitAffinity>" + str(rabbitAffinity) + "</rabbitAffinity><fourBoobAffinity>" + str(fourBoobAffinity) + "</fourBoobAffinity><mouseAffinity>" + str(mouseAffinity) + "</mouseAffinity><birdAffinity>" + str(birdAffinity) + "</birdAffinity><pigAffinity>" + str(pigAffinity) + "</pigAffinity><twoBoobAffinity>" + str(twoBoobAffinity) + "</twoBoobAffinity><sixBoobAffinity>" + str(sixBoobAffinity) + "</sixBoobAffinity><eightBoobAffinity>" + str(eightBoobAffinity) + "</eightBoobAffinity><tenBoobAffinity>" + str(tenBoobAffinity) + "</tenBoobAffinity><cowTaurAffinity>" + str(cowTaurAffinity) + "</cowTaurAffinity><humanTaurAffinity>" + str(humanTaurAffinity) + "</humanTaurAffinity><skunkAffinity>" + str(skunkAffinity) + "</skunkAffinity><bugAffinity>" + str(bugAffinity) + "</bugAffinity></affinity><rep><lilaRep>" + str(lilaRep) + "</lilaRep><lilaVulva>" + str(lilaVulva) + "</lilaVulva><lilaMilk>" + str(lilaMilk) + "</lilaMilk><lilaPreg>" + str(lilaPreg) + "</lilaPreg><malonRep>" + str(malonRep) + "</malonRep><malonPreg>" + str(malonPreg) + "</malonPreg><malonChildren>" + str(malonChildren) + "</malonChildren><mistressRep>" + str(mistressRep) + "</mistressRep><jamieRep>" + str(jamieRep) + "</jamieRep><jamieSize>" + str(jamieSize) + "</jamieSize><jamieChildren>" + str(jamieChildren) + "</jamieChildren><silRep>" + str(silRep) + "</silRep><silPreg>" + str(silPreg) + "</silPreg><silRate>" + str(silRate) + "</silRate><silLay>" + str(silLay) + "</silLay><silGrowthTime>" + str(silGrowthTime) + "</silGrowthTime><silTied>" + str(silTied) + "</silTied><lilaUB>" + str(lilaUB) + "</lilaUB><dairyFarmBrand>" + str(dairyFarmBrand) + "</dairyFarmBrand><lilaWetness>" + str(lilaWetness) + "</lilaWetness><jamieButt>" + str(jamieButt) + "</jamieButt><jamieBreasts>" + str(jamieBreasts) + "</jamieBreasts><jamieHair>" + str(jamieHair) + "</jamieHair></rep><knowledge><foundSoftlik>" + str(foundSoftlik) + "</foundSoftlik><foundFirmshaft>" + str(foundFirmshaft) + "</foundFirmshaft><foundTieden>" + str(foundTieden) + "</foundTieden><foundSizCalit>" + str(foundSizCalit) + "</foundSizCalit><foundOviasis>" + str(foundOviasis) + "</foundOviasis><foundValley>" + str(foundValley) + "</foundValley><foundSanctuary>" + str(foundSanctuary) + "</foundSanctuary></knowledge><boss><defeatedMinotaur>" + str(defeatedMinotaur) + "</defeatedMinotaur><defeatedFreakyGirl>" + str(defeatedFreakyGirl) + "</defeatedFreakyGirl><defeatedSuccubus>" + str(defeatedSuccubus) + "</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>" + str(knowLustDraft) + "</knowLustDraft><knowRejuvPot>" + str(knowRejuvPot) + "</knowRejuvPot><knowExpPreg>" + str(knowExpPreg) + "</knowExpPreg><knowBallSwell>" + str(knowBallSwell) + "</knowBallSwell><knowMaleEnhance>" + str(knowMaleEnhance) + "</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>" + str(knowSLustDraft) + "</knowSLustDraft><knowSRejuvPot>" + str(knowSRejuvPot) + "</knowSRejuvPot><knowSExpPreg>" + str(knowSExpPreg) + "</knowSExpPreg><knowSBallSwell>" + str(knowSBallSwell) + "</knowSBallSwell><knowGenSwap>" + str(knowGenSwap) + "</knowGenSwap><knowMasoPot>" + str(knowMasoPot) + "</knowMasoPot><knowBabyFree>" + str(knowBabyFree) + "</knowBabyFree><knowPotPot>" + str(knowPotPot) + "</knowPotPot><knowMilkSuppress>" + str(knowMilkSuppress) + "</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>" + str(knowSGenSwap) + "</knowSGenSwap><knowSMasoPot>" + str(knowSMasoPot) + "</knowSMasoPot><knowSBabyFree>" + str(knowSBabyFree) + "</knowSBabyFree><knowSPotPot>" + str(knowSPotPot) + "</knowSPotPot><knowPussJuice>" + str(knowPussJuice) + "</knowPussJuice><knowPheromone>" + str(knowPheromone) + "</knowPheromone><knowBazoomba>" + str(knowBazoomba) + "</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>" + str(maleFetish) + "</maleFetish><femaleFetish>" + str(femaleFetish) + "</femaleFetish><hermFetish>" + str(hermFetish) + "</hermFetish><narcissistFetish>" + str(narcissistFetish) + "</narcissistFetish><dependentFetish>" + str(dependentFetish) + "</dependentFetish></majorFetish><moderateFetish><dominantFetish>" + str(dominantFetish) + "</dominantFetish><submissiveFetish>" + str(submissiveFetish) + "</submissiveFetish><lboobFetish>" + str(lboobFetish) + "</lboobFetish><sboobFetish>" + str(sboobFetish) + "</sboobFetish><furryFetish>" + str(furryFetish) + "</furryFetish><scalyFetish>" + str(scalyFetish) + "</scalyFetish><smoothyFetish>" + str(smoothyFetish) + "</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>" + str(pregnancyFetish) + "</pregnancyFetish><bestialityFetish>" + str(bestialityFetish) + "</bestialityFetish><milkFetish>" + str(milkFetish) + "</milkFetish><sizeFetish>" + str(sizeFetish) + "</sizeFetish><unbirthingFetish>" + str(unbirthingFetish) + "</unbirthingFetish><ovipositionFetish>" + str(ovipositionFetish) + "</ovipositionFetish><toyFetish>" + str(toyFetish) + "</toyFetish><hyperFetish>" + str(hyperFetish) + "</hyperFetish></minorFetish><kid><humanChildren>" + str(humanChildren) + "</humanChildren><equanChildren>" + str(equanChildren) + "</equanChildren><lupanChildren>" + str(lupanChildren) + "</lupanChildren><felinChildren>" + str(felinChildren) + "</felinChildren><cowChildren>" + str(cowChildren) + "</cowChildren><lizanChildren>" + str(lizanChildren) + "</lizanChildren><lizanEggs>" + str(lizanEggs) + "</lizanEggs><bunnionChildren>" + str(bunnionChildren) + "</bunnionChildren><wolfPupChildren>" + str(wolfPupChildren) + "</wolfPupChildren><miceChildren>" + str(miceChildren) + "</miceChildren><birdEggs>" + str(birdEggs) + "</birdEggs><birdChildren>" + str(birdChildren) + "</birdChildren><pigChildren>" + str(pigChildren) + "</pigChildren><calfChildren>" + str(calfChildren) + "</calfChildren><bugEggs>" + str(bugEggs) + "</bugEggs><bugChildren>" + str(bugChildren) + "</bugChildren><skunkChildren>" + str(skunkChildren) + "</skunkChildren><minotaurChildren>" + str(minotaurChildren) + "</minotaurChildren><freakyGirlChildren>" + str(freakyGirlChildren) + "</freakyGirlChildren></kid><trav></trav><bag>"
-   for i in range(0, 26):
-      string = string + "<slot" + str(i) + ">" + str(bagArray[i]) + "</slot" + str(i) + ">"
-   string = string + "</bag><bagStack>"
-   for i in range(0, 26):
-      string = string + "<slot" + str(i) + ">" + str(bagStackArray[i]) + "</slot" + str(i) + ">"
-   string = string + "</bagStack><stash>"
-   for i in range(0, 26):
-      string = string + "<slot" + str(i) + ">" + str(stashArray[i]) + "</slot" + str(i) + ">"
-   string = string + "</stash><stashStack>"
-   for i in range(0, 26):
-      string = string + "<slot" + str(i) + ">" + str(stashStackArray[i]) + "</slot" + str(i) + ">"
-   string = string + "</stashStack><preg>"
-   i = 0
-   while i < len(pregArray):
-      string = string + "<i" + str(i) + ">" + str(pregArray[i]) + "</i" + str(i) + ">"
-      i += 1
-   string = string + "</preg></data>"
-   data = xmlminidom.parseString(string)
-   spref = data.toprettyxml(indent ="\t")
-   with open(outputfile, "w") as xmldoc:
-      xmldoc.write(spref)
-   messagebox["text"] = "Success"
-
-def xmltosol():
+   try:
+      __version__ = "1.0.8"
+      so = sol.load(inputfile)
+      strack = so["track"]
+      sstats = so["stats"]
+      slevel = so["level"]
+      smod = so["mod"]
+      squality = so["quality"]
+      scock = so["cock"]
+      sgirl = so["girl"]
+      sgear = so["gear"]
+      sstatus = so["status"]
+      saffinity = so["affinity"]
+      srep = so["rep"]
+      sknowledge = so["knowledge"]
+      sboss = so["boss"]
+      sknowSimpleAlchemy = so["knowSimpleAlchemy"]
+      sknowAdvancedAlchemy = so["knowAdvancedAlchemy"]
+      sknowComplexAlchemy = so["knowComplexAlchemy"]
+      smajorFetish = so["majorFetish"]
+      smoderateFetish = so["moderateFetish"]
+      sminorFetish = so["minorFetish"]
+      skid = so["kid"]
+      trav = so["trav"]
+      string = f"<data><track><currentState>{strack[0]}</currentState><currentZone>{strack[1]}</currentZone><day>{strack[2]}</day><hour>{strack[3]}</hour><currentDayCare>{strack[4]}</currentDayCare><inDungeon>{strack[5]}</inDungeon><currentDungeon>{strack[6]}</currentDungeon><v7>{strack[7]}</v7></track><version><original>{so['versionNumber']}</original><port>{__version__}</port></version><stats><strength>{sstats[0]}</strength><mentality>{sstats[1]}</mentality><libido>{sstats[2]}</libido><sensitivity>{sstats[3]}</sensitivity><HP>{sstats[4]}</HP><lust>{sstats[5]}</lust><coin>{sstats[6]}</coin><strMod>{sstats[7]}</strMod><mentMod>{sstats[8]}</mentMod><libMod>{sstats[9]}</libMod><senMod>{sstats[10]}</senMod><hunger>{sstats[11]}</hunger></stats><level><SexP>{slevel[0]}</SexP><levelUP>{slevel[1]}</levelUP><level>{slevel[2]}</level><babyFactLevel>{slevel[3]}</babyFactLevel><bodyBuildLevel>{slevel[4]}</bodyBuildLevel><hyperHappyLevel>{slevel[5]}</hyperHappyLevel><alchemistLevel>{slevel[6]}</alchemistLevel><fetishMasterLevel>{slevel[7]}</fetishMasterLevel><milkMaidLevel>{slevel[8]}</milkMaidLevel><shapeshiftyLevel>{slevel[9]}</shapeshiftyLevel><shapeshiftyFirst>{slevel[10]}</shapeshiftyFirst><shapeshiftySecond>{slevel[11]}</shapeshiftySecond></level><mod><runMod>{smod[0]}</runMod><rapeMod>{smod[1]}</rapeMod><cumMod>{smod[2]}</cumMod><cockSizeMod>{smod[3]}</cockSizeMod><milkMod>{smod[4]}</milkMod><carryMod>{smod[5]}</carryMod><vagBellyMod>{smod[6]}</vagBellyMod><pregChanceMod>{smod[7]}</pregChanceMod><extraPregChance>{smod[8]}</extraPregChance><pregTimeMod>{smod[9]}</pregTimeMod><enticeMod>{smod[10]}</enticeMod><milkHPMod>{smod[11]}</milkHPMod><vagSizeMod>{smod[12]}</vagSizeMod><vagElastic>{smod[13]}</vagElastic><changeMod>{smod[14]}</changeMod><HPMod>{smod[15]}</HPMod><SexPMod>{smod[16]}</SexPMod><minLust>{smod[17]}</minLust><milkCap>{smod[18]}</milkCap><coinMod>{smod[19]}</coinMod><hipMod>{smod[20]}</hipMod><buttMod>{smod[21]}</buttMod><bellyMod>{smod[22]}</bellyMod><cockMoistMod>{smod[23]}</cockMoistMod><vagMoistMod>{smod[24]}</vagMoistMod><lockTail>{smod[25]}</lockTail><lockFace>{smod[26]}</lockFace><lockSkin>{smod[27]}</lockSkin><lockBreasts>{smod[28]}</lockBreasts><lockEars>{smod[29]}</lockEars><lockLegs>{smod[30]}</lockLegs><lockNipples>{smod[31]}</lockNipples><lockCock>{smod[32]}</lockCock></mod><quality><gender>{squality[0]}</gender><race>{squality[1]}</race><body>{squality[2]}</body><dominant>{squality[3]}</dominant><hips>{squality[4]}</hips><butt>{squality[5]}</butt><tallness>{squality[6]}</tallness><skinType>{squality[7]}</skinType><tail>{squality[8]}</tail><ears>{squality[9]}</ears><hair>{squality[10]}</hair><hairColor>{squality[11]}</hairColor><hairLength>{squality[12]}</hairLength><legType>{squality[13]}</legType><wings>{squality[14]}</wings><faceType>{squality[15]}</faceType><skinColor>{squality[16]}</skinColor></quality><cock><cockTotal>{scock[0]}</cockTotal><humanCocks>{scock[1]}</humanCocks><horseCocks>{scock[2]}</horseCocks><wolfCocks>{scock[3]}</wolfCocks><catCocks>{scock[4]}</catCocks><rabbitCocks>{scock[5]}</rabbitCocks><lizardCocks>{scock[6]}</lizardCocks><cockSize>{scock[7]}</cockSize><cockMoist>{scock[8]}</cockMoist><balls>{scock[9]}</balls><ballSize>{scock[10]}</ballSize><showBalls>{scock[11]}</showBalls><knot>{scock[12]}</knot><bugCocks>{scock[13]}</bugCocks></cock><girl><breastSize>{sgirl[0]}</breastSize><boobTotal>{sgirl[1]}</boobTotal><nippleSize>{sgirl[2]}</nippleSize><udders>{sgirl[3]}</udders><udderSize>{sgirl[4]}</udderSize><teatSize>{sgirl[5]}</teatSize><clitSize>{sgirl[6]}</clitSize><vagTotal>{sgirl[7]}</vagTotal><vagSize>{sgirl[8]}</vagSize><vagMoist>{sgirl[9]}</vagMoist><vulvaSize>{sgirl[10]}</vulvaSize><nipType>{sgirl[11]}</nipType></girl><gear><attireTop>{sgear[0]}</attireTop><attireBot>{sgear[1]}</attireBot><weapon>{sgear[2]}</weapon></gear><status><pregRate>{sstatus[0]}</pregRate><pregnancyTime>{sstatus[1]}</pregnancyTime><pregStatus>{sstatus[2]}</pregStatus><eggLaying>{sstatus[3]}</eggLaying><eggMaxTime>{sstatus[4]}</eggMaxTime><eggTime>{sstatus[5]}</eggTime><eggRate>{sstatus[6]}</eggRate><exhaustion>{sstatus[7]}</exhaustion><exhaustionPenalty>{sstatus[8]}</exhaustionPenalty><milkEngorgement>{sstatus[9]}</milkEngorgement><milkEngorgementLevel>{sstatus[10]}</milkEngorgementLevel><udderEngorgement>{sstatus[11]}</udderEngorgement><udderEngorgementLevel>{sstatus[12]}</udderEngorgementLevel><heat>{sstatus[13]}</heat><heatTime>{sstatus[14]}</heatTime><heatMaxTime>{sstatus[15]}</heatMaxTime><lactation>{sstatus[16]}</lactation><udderLactation>{sstatus[17]}</udderLactation><nipplePlay>{sstatus[18]}</nipplePlay><udderPlay>{sstatus[19]}</udderPlay><blueBalls>{sstatus[20]}</blueBalls><teatPump>{sstatus[21]}</teatPump><nipPump>{sstatus[22]}</nipPump><cockPump>{sstatus[23]}</cockPump><clitPump>{sstatus[24]}</clitPump><vulvaPump>{sstatus[25]}</vulvaPump><masoPot>{sstatus[26]}</masoPot><sMasoPot>{sstatus[27]}</sMasoPot><babyFree>{sstatus[28]}</babyFree><charmTime>{sstatus[29]}</charmTime><pheromone>{sstatus[30]}</pheromone><eggceleratorTime>{sstatus[31]}</eggceleratorTime><eggceleratorDose>{sstatus[32]}</eggceleratorDose><bodyOil>{sstatus[33]}</bodyOil><lustPenalty>{sstatus[34]}</lustPenalty><fertileGel>{sstatus[35]}</fertileGel><snuggleBall>{sstatus[36]}</snuggleBall><eggType>{sstatus[37]}</eggType><milkSuppressant>{sstatus[38]}</milkSuppressant><milkSuppressantLact>{sstatus[39]}</milkSuppressantLact><milkSuppressantUdder>{sstatus[40]}</milkSuppressantUdder><suppHarness>{sstatus[41]}</suppHarness><fertilityStatueCurse>{sstatus[42]}</fertilityStatueCurse><plumpQuats>{sstatus[43]}</plumpQuats><lilaWetStatus>{sstatus[44]}</lilaWetStatus><cockSnakePreg>{sstatus[45]}</cockSnakePreg><milkCPoisonNip>{sstatus[46]}</milkCPoisonNip><milkCPoisonUdd>{sstatus[47]}</milkCPoisonUdd><cockSnakeVenom>{sstatus[48]}</cockSnakeVenom></status><affinity><humanAffinity>{saffinity[0]}</humanAffinity><horseAffinity>{saffinity[1]}</horseAffinity><wolfAffinity>{saffinity[2]}</wolfAffinity><catAffinity>{saffinity[3]}</catAffinity><cowAffinity>{saffinity[4]}</cowAffinity><lizardAffinity>{saffinity[5]}</lizardAffinity><rabbitAffinity>{saffinity[6]}</rabbitAffinity><fourBoobAffinity>{saffinity[7]}</fourBoobAffinity><mouseAffinity>{saffinity[8]}</mouseAffinity><birdAffinity>{saffinity[9]}</birdAffinity><pigAffinity>{saffinity[10]}</pigAffinity><twoBoobAffinity>{saffinity[11]}</twoBoobAffinity><sixBoobAffinity>{saffinity[12]}</sixBoobAffinity><eightBoobAffinity>{saffinity[13]}</eightBoobAffinity><tenBoobAffinity>{saffinity[14]}</tenBoobAffinity><cowTaurAffinity>{saffinity[15]}</cowTaurAffinity><humanTaurAffinity>{saffinity[16]}</humanTaurAffinity><skunkAffinity>{saffinity[17]}</skunkAffinity><bugAffinity>{saffinity[18]}</bugAffinity></affinity><rep><lilaRep>{srep[0]}</lilaRep><lilaVulva>{srep[1]}</lilaVulva><lilaMilk>{srep[2]}</lilaMilk><lilaPreg>{srep[3]}</lilaPreg><malonRep>{srep[4]}</malonRep><malonPreg>{srep[5]}</malonPreg><malonChildren>{srep[6]}</malonChildren><mistressRep>{srep[7]}</mistressRep><jamieRep>{srep[8]}</jamieRep><jamieSize>{srep[9]}</jamieSize><jamieChildren>{srep[10]}</jamieChildren><silRep>{srep[11]}</silRep><silPreg>{srep[12]}</silPreg><silRate>{srep[13]}</silRate><silLay>{srep[14]}</silLay><silGrowthTime>{srep[15]}</silGrowthTime><silTied>{srep[16]}</silTied><lilaUB>{srep[17]}</lilaUB><dairyFarmBrand>{srep[18]}</dairyFarmBrand><lilaWetness>{srep[19]}</lilaWetness><jamieButt>{srep[20]}</jamieButt><jamieBreasts>{srep[21]}</jamieBreasts><jamieHair>{srep[22]}</jamieHair></rep><knowledge><foundSoftlik>{sknowledge[0]}</foundSoftlik><foundFirmshaft>{sknowledge[1]}</foundFirmshaft><foundTieden>{sknowledge[2]}</foundTieden><foundSizCalit>{sknowledge[3]}</foundSizCalit><foundOviasis>{sknowledge[4]}</foundOviasis><foundValley>{sknowledge[5]}</foundValley><foundSanctuary>{sknowledge[6]}</foundSanctuary></knowledge><boss><defeatedMinotaur>{sboss[0]}</defeatedMinotaur><defeatedFreakyGirl>{sboss[1]}</defeatedFreakyGirl><defeatedSuccubus>{sboss[2]}</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>{sknowSimpleAlchemy[0]}</knowLustDraft><knowRejuvPot>{sknowSimpleAlchemy[1]}</knowRejuvPot><knowExpPreg>{sknowSimpleAlchemy[2]}</knowExpPreg><knowBallSwell>{sknowSimpleAlchemy[3]}</knowBallSwell><knowMaleEnhance>{sknowSimpleAlchemy[4]}</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>{sknowAdvancedAlchemy[0]}</knowSLustDraft><knowSRejuvPot>{sknowAdvancedAlchemy[1]}</knowSRejuvPot><knowSExpPreg>{sknowAdvancedAlchemy[2]}</knowSExpPreg><knowSBallSwell>{sknowAdvancedAlchemy[3]}</knowSBallSwell><knowGenSwap>{sknowAdvancedAlchemy[4]}</knowGenSwap><knowMasoPot>{sknowAdvancedAlchemy[5]}</knowMasoPot><knowBabyFree>{sknowAdvancedAlchemy[6]}</knowBabyFree><knowPotPot>{sknowAdvancedAlchemy[7]}</knowPotPot><knowMilkSuppress>{sknowAdvancedAlchemy[8]}</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>{sknowComplexAlchemy[0]}</knowSGenSwap><knowSMasoPot>{sknowComplexAlchemy[1]}</knowSMasoPot><knowSBabyFree>{sknowComplexAlchemy[2]}</knowSBabyFree><knowSPotPot>{sknowComplexAlchemy[3]}</knowSPotPot><knowPussJuice>{sknowComplexAlchemy[4]}</knowPussJuice><knowPheromone>{sknowComplexAlchemy[5]}</knowPheromone><knowBazoomba>{sknowComplexAlchemy[6]}</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>{smajorFetish[0]}</maleFetish><femaleFetish>{smajorFetish[1]}</femaleFetish><hermFetish>{smajorFetish[2]}</hermFetish><narcissistFetish>{smajorFetish[3]}</narcissistFetish><dependentFetish>{smajorFetish[4]}</dependentFetish></majorFetish><moderateFetish><dominantFetish>{smoderateFetish[0]}</dominantFetish><submissiveFetish>{smoderateFetish[1]}</submissiveFetish><lboobFetish>{smoderateFetish[2]}</lboobFetish><sboobFetish>{smoderateFetish[3]}</sboobFetish><furryFetish>{smoderateFetish[4]}</furryFetish><scalyFetish>{smoderateFetish[5]}</scalyFetish><smoothyFetish>{smoderateFetish[6]}</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>{sminorFetish[0]}</pregnancyFetish><bestialityFetish>{sminorFetish[1]}</bestialityFetish><milkFetish>{sminorFetish[2]}</milkFetish><sizeFetish>{sminorFetish[3]}</sizeFetish><unbirthingFetish>{sminorFetish[4]}</unbirthingFetish><ovipositionFetish>{sminorFetish[5]}</ovipositionFetish><toyFetish>{sminorFetish[6]}</toyFetish><hyperFetish>{sminorFetish[7]}</hyperFetish></minorFetish><kid><humanChildren>{skid[0]}</humanChildren><equanChildren>{skid[1]}</equanChildren><lupanChildren>{skid[2]}</lupanChildren><felinChildren>{skid[3]}</felinChildren><cowChildren>{skid[4]}</cowChildren><lizanChildren>{skid[5]}</lizanChildren><lizanEggs>{skid[6]}</lizanEggs><bunnionChildren>{skid[7]}</bunnionChildren><wolfPupChildren>{skid[8]}</wolfPupChildren><miceChildren>{skid[9]}</miceChildren><birdEggs>{skid[10]}</birdEggs><birdChildren>{skid[11]}</birdChildren><pigChildren>{skid[12]}</pigChildren><calfChildren>{skid[13]}</calfChildren><bugEggs>{skid[14]}</bugEggs><bugChildren>{skid[15]}</bugChildren><skunkChildren>{skid[16]}</skunkChildren><minotaurChildren>{skid[17]}</minotaurChildren><freakyGirlChildren>{skid[18]}</freakyGirlChildren></kid><trav></trav><bag>"
+      _bagArray = so["bagSave"]
+      _bagStackArray = so["bagStackSave"]
+      _stashArray = so["stashSave"]
+      _stashStackArray = so["stashStackSave"]
+      _pregArray = so["pregSave"]
+      for i in range(0, 27):
+         string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
+      string += "</bag><bagStack>"
+      for i in range(0, 27):
+         string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
+      string += "</bagStack><stash>"
+      for i in range(0, 27):
+         string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
+      string += "</stash><stashStack>"
+      for i in range(0, 27):
+         string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
+      string += "</stashStack><preg>"
+      i = 0
+      while i < len(_pregArray):
+         string += f"<i{i}>{_pregArray[i]}</i{i}>"
+         i += 1
+      string += "</preg></data>"
+      spref = xmlminidom.parseString(string).toprettyxml()
+      spref = '<?xml version="1.0" encoding="UTF-8" ?>' + spref[spref.find("\n"):]
+      with open(outputfile, "w") as xmldoc:
+         xmldoc.write(spref)
+      messagebox["text"] = "Success"
+   except Exception as e:
+      messagebox["text"] = "Error"
+      print(e)
+def xmltosol(*args):
    global messagebox
-   messagebox["text"] = "Not yet implemented"
+   inputfilename = filedialog.askopenfilename()
+   if (type(inputfilename) == tuple):
+      messagebox["text"] = "Please select an input file"
+   else:
+      outputfilename = filedialog.asksaveasfilename()
+      if outputfilename == "":
+         messagebox["text"] = "Please select an output file location"
+      elif inputfilename == outputfilename:
+         messagebox["text"] = "Input file can not be the same as output file"
+      else:
+         if pathlib.Path(inputfilename).is_file() == True:
+            if checkExtension(outputfilename,"sol") == True:
+               tosol(inputfilename, outputfilename)
+            else:
+               tosol(inputfilename, f"{outputfilename}.sol")
+         elif pathlib.Path(inputfilename).is_dir() == True:
+            messagebox["text"] = "Error: Input file is not a file"
+         else:
+            messagebox["text"] = "Error: Input file does not exist"
+def tosol(inputfile,outputfile):
+   global messagebox
+   try:
+      xmlfile = xmletree.parse(inputfile).getroot()
+      data = sol.SOL(solGetFileName(outputfile))
+      data["versionNumber"] = xmlfile.find("version").find("original").text
+      ltrack = xmlfile.find("track")
+      data["track"] = [int(ltrack.find("currentState").text),int(ltrack.find("currentZone").text),int(ltrack.find("day").text),int(ltrack.find("hour").text),int(ltrack.find("currentDayCare").text),strtobool(ltrack.find("inDungeon").text),int(ltrack.find("currentDungeon").text),0.75]
+      lstats = xmlfile.find("stats")
+      data["stats"] = [int(lstats.find("strength").text),int(lstats.find("mentality").text),int(lstats.find("libido").text),int(lstats.find("sensitivity").text),int(lstats.find("HP").text),int(lstats.find("lust").text),int(lstats.find("coin").text),int(lstats.find("strMod").text),int(lstats.find("mentMod").text),int(lstats.find("libMod").text),int(lstats.find("senMod").text),int(lstats.find("hunger").text)]
+      llevel = xmlfile.find("level")
+      data["level"] = [int(llevel.find("SexP").text),int(llevel.find("levelUP").text),int(llevel.find("level").text),int(llevel.find("babyFactLevel").text),int(llevel.find("bodyBuildLevel").text),int(llevel.find("hyperHappyLevel").text),int(llevel.find("alchemistLevel").text),int(llevel.find("fetishMasterLevel").text),int(llevel.find("milkMaidLevel").text),int(llevel.find("shapeshiftyLevel").text),solString(llevel.find("shapeshiftyFirst").text),solString(llevel.find("shapeshiftySecond").text)]
+      lmod = xmlfile.find("mod")
+      data["mod"] = [int(lmod.find("runMod").text),int(lmod.find("rapeMod").text),repintorfloat(lmod.find("cumMod").text),repintorfloat(lmod.find("cockSizeMod").text),int(lmod.find("milkMod").text),int(lmod.find("carryMod").text),int(lmod.find("vagBellyMod").text),int(lmod.find("pregChanceMod").text),int(lmod.find("extraPregChance").text),int(lmod.find("pregTimeMod").text),int(lmod.find("enticeMod").text),int(lmod.find("milkHPMod").text),repintorfloat(lmod.find("vagSizeMod").text),repintorfloat(lmod.find("vagElastic").text),repintorfloat(lmod.find("changeMod").text),int(lmod.find("HPMod").text),repintorfloat(lmod.find("SexPMod").text),int(lmod.find("minLust").text),int(lmod.find("milkCap").text),int(lmod.find("coinMod").text),int(lmod.find("hipMod").text),int(lmod.find("buttMod").text),int(lmod.find("bellyMod").text),int(lmod.find("cockMoistMod").text),int(lmod.find("vagMoistMod").text),int(lmod.find("lockTail").text),int(lmod.find("lockFace").text),int(lmod.find("lockSkin").text),int(lmod.find("lockBreasts").text),int(lmod.find("lockEars").text),int(lmod.find("lockLegs").text),int(lmod.find("lockNipples").text),int(lmod.find("lockCock").text)]
+      lquality = xmlfile.find("quality")
+      data["quality"] = [int(lquality.find("gender").text),int(lquality.find("race").text),int(lquality.find("body").text),int(lquality.find("dominant").text),int(lquality.find("hips").text),int(lquality.find("butt").text),int(lquality.find("tallness").text),int(lquality.find("skinType").text),int(lquality.find("tail").text),int(lquality.find("ears").text),int(lquality.find("hair").text),int(lquality.find("hairColor").text),int(lquality.find("hairLength").text),int(lquality.find("legType").text),int(lquality.find("wings").text),int(lquality.find("faceType").text),int(lquality.find("skinColor").text)]
+      lcock = xmlfile.find("cock")
+      data["cock"] = [int(lcock.find("cockTotal").text),int(lcock.find("humanCocks").text),int(lcock.find("horseCocks").text),int(lcock.find("wolfCocks").text),int(lcock.find("catCocks").text),int(lcock.find("rabbitCocks").text),int(lcock.find("lizardCocks").text),int(lcock.find("cockSize").text),int(lcock.find("cockMoist").text),int(lcock.find("balls").text),int(lcock.find("ballSize").text),strtobool(lcock.find("showBalls").text),strtobool(lcock.find("knot").text),int(lcock.find("bugCocks").text)]
+      lgirl = xmlfile.find("girl")
+      data["girl"] = [int(lgirl.find("breastSize").text),int(lgirl.find("boobTotal").text),int(lgirl.find("nippleSize").text),strtobool(lgirl.find("udders").text),int(lgirl.find("udderSize").text),int(lgirl.find("teatSize").text),int(lgirl.find("clitSize").text),int(lgirl.find("vagTotal").text),int(lgirl.find("vagSize").text),int(lgirl.find("vagMoist").text),int(lgirl.find("vulvaSize").text),int(lgirl.find("nipType").text)]
+      lgear = xmlfile.find("gear")
+      data["gear"] = [int(lgear.find("attireTop").text),int(lgear.find("attireBot").text),int(lgear.find("weapon").text),]
+      lstatus = xmlfile.find("status")
+      data["status"] = [repintorfloat(lstatus.find("pregRate").text),int(lstatus.find("pregnancyTime").text),int(lstatus.find("pregStatus").text),int(lstatus.find("eggLaying").text),int(lstatus.find("eggMaxTime").text),int(lstatus.find("eggTime").text),int(lstatus.find("eggRate").text),int(lstatus.find("exhaustion").text),int(lstatus.find("exhaustionPenalty").text),int(lstatus.find("milkEngorgement").text),int(lstatus.find("milkEngorgementLevel").text),int(lstatus.find("udderEngorgement").text),int(lstatus.find("udderEngorgementLevel").text),int(lstatus.find("heat").text),int(lstatus.find("heatTime").text),int(lstatus.find("heatMaxTime").text),int(lstatus.find("lactation").text),int(lstatus.find("udderLactation").text),repintorfloat(lstatus.find("nipplePlay").text),repintorfloat(lstatus.find("udderPlay").text),int(lstatus.find("blueBalls").text),int(lstatus.find("teatPump").text),int(lstatus.find("nipPump").text),int(lstatus.find("cockPump").text),int(lstatus.find("clitPump").text),int(lstatus.find("vulvaPump").text),int(lstatus.find("masoPot").text),int(lstatus.find("sMasoPot").text),int(lstatus.find("babyFree").text),int(lstatus.find("charmTime").text),int(lstatus.find("pheromone").text),int(lstatus.find("eggceleratorTime").text),int(lstatus.find("eggceleratorDose").text),int(lstatus.find("bodyOil").text),int(lstatus.find("lustPenalty").text),int(lstatus.find("fertileGel").text),strtobool(lstatus.find("snuggleBall").text),int(lstatus.find("eggType").text),int(lstatus.find("milkSuppressant").text),int(lstatus.find("milkSuppressantLact").text),int(lstatus.find("milkSuppressantUdder").text),strtobool(lstatus.find("suppHarness").text),int(lstatus.find("fertilityStatueCurse").text),int(lstatus.find("plumpQuats").text),int(lstatus.find("lilaWetStatus").text),int(lstatus.find("cockSnakePreg").text),int(lstatus.find("milkCPoisonNip").text),int(lstatus.find("milkCPoisonUdd").text),int(lstatus.find("cockSnakeVenom").text)]
+      laffinity = xmlfile.find("affinity")
+      data["affinity"] = [int(laffinity.find("humanAffinity").text),int(laffinity.find("horseAffinity").text),int(laffinity.find("wolfAffinity").text),int(laffinity.find("catAffinity").text),int(laffinity.find("cowAffinity").text),int(laffinity.find("lizardAffinity").text),int(laffinity.find("rabbitAffinity").text),int(laffinity.find("fourBoobAffinity").text),int(laffinity.find("mouseAffinity").text),int(laffinity.find("birdAffinity").text),int(laffinity.find("pigAffinity").text),int(laffinity.find("twoBoobAffinity").text),int(laffinity.find("sixBoobAffinity").text),int(laffinity.find("eightBoobAffinity").text),int(laffinity.find("tenBoobAffinity").text),int(laffinity.find("cowTaurAffinity").text),int(laffinity.find("humanTaurAffinity").text),int(laffinity.find("skunkAffinity").text),int(laffinity.find("bugAffinity").text)]
+      lrep = xmlfile.find("rep")
+      data["rep"] = [int(lrep.find("lilaRep").text),int(lrep.find("lilaVulva").text),int(lrep.find("lilaMilk").text),int(lrep.find("lilaPreg").text),int(lrep.find("malonRep").text),int(lrep.find("malonPreg").text),int(lrep.find("malonChildren").text),int(lrep.find("mistressRep").text),int(lrep.find("jamieRep").text),int(lrep.find("jamieSize").text),int(lrep.find("jamieChildren").text),int(lrep.find("silRep").text),int(lrep.find("silPreg").text),int(lrep.find("silRate").text),int(lrep.find("silLay").text),int(lrep.find("silGrowthTime").text),strtobool(lrep.find("silTied").text),strtobool(lrep.find("lilaUB").text),strtobool(lrep.find("dairyFarmBrand").text),int(lrep.find("lilaWetness").text),strtobool(lrep.find("jamieButt").text),strtobool(lrep.find("jamieBreasts").text),strtobool(lrep.find("jamieHair").text)]
+      lknowledge = xmlfile.find("knowledge")
+      data["knowledge"] = [strtobool(lknowledge.find("foundSoftlik").text),strtobool(lknowledge.find("foundFirmshaft").text),strtobool(lknowledge.find("foundTieden").text),strtobool(lknowledge.find("foundSizCalit").text),strtobool(lknowledge.find("foundOviasis").text),strtobool(lknowledge.find("foundValley").text),strtobool(lknowledge.find("foundSanctuary").text)]
+      lboss = xmlfile.find("boss")
+      data["boss"] = [strtobool(lboss.find("defeatedMinotaur").text),strtobool(lboss.find("defeatedFreakyGirl").text),strtobool(lboss.find("defeatedSuccubus").text)]
+      lknowsimplealchemy = xmlfile.find("knowSimpleAlchemy")
+      data["knowSimpleAlchemy"] = [strtobool(lknowsimplealchemy.find("knowLustDraft").text),strtobool(lknowsimplealchemy.find("knowRejuvPot").text),strtobool(lknowsimplealchemy.find("knowExpPreg").text),strtobool(lknowsimplealchemy.find("knowBallSwell").text),strtobool(lknowsimplealchemy.find("knowMaleEnhance").text)]
+      lknowadvancedalchemy = xmlfile.find("knowAdvancedAlchemy")
+      data["knowAdvancedAlchemy"] = [strtobool(lknowadvancedalchemy.find("knowSLustDraft").text),strtobool(lknowadvancedalchemy.find("knowSRejuvPot").text),strtobool(lknowadvancedalchemy.find("knowSExpPreg").text),strtobool(lknowadvancedalchemy.find("knowSBallSwell").text),strtobool(lknowadvancedalchemy.find("knowGenSwap").text),strtobool(lknowadvancedalchemy.find("knowMasoPot").text),strtobool(lknowadvancedalchemy.find("knowBabyFree").text),strtobool(lknowadvancedalchemy.find("knowPotPot").text),strtobool(lknowadvancedalchemy.find("knowMilkSuppress").text)]
+      lknowcomplexalchemy = xmlfile.find("knowComplexAlchemy")
+      data["knowComplexAlchemy"] = [strtobool(lknowcomplexalchemy.find("knowSGenSwap").text),strtobool(lknowcomplexalchemy.find("knowSMasoPot").text),strtobool(lknowcomplexalchemy.find("knowSBabyFree").text),strtobool(lknowcomplexalchemy.find("knowSPotPot").text),strtobool(lknowcomplexalchemy.find("knowPussJuice").text),strtobool(lknowcomplexalchemy.find("knowPheromone").text),strtobool(lknowcomplexalchemy.find("knowBazoomba").text)]
+      lmajorfetish = xmlfile.find("majorFetish")
+      data["majorFetish"] = [repintorfloat(lmajorfetish.find("maleFetish").text),repintorfloat(lmajorfetish.find("femaleFetish").text),repintorfloat(lmajorfetish.find("hermFetish").text),repintorfloat(lmajorfetish.find("narcissistFetish").text),repintorfloat(lmajorfetish.find("dependentFetish").text)]
+      lmoderatefetish = xmlfile.find("moderateFetish")
+      data["moderateFetish"] = [repintorfloat(lmoderatefetish.find("dominantFetish").text),repintorfloat(lmoderatefetish.find("submissiveFetish").text),repintorfloat(lmoderatefetish.find("lboobFetish").text),repintorfloat(lmoderatefetish.find("sboobFetish").text),repintorfloat(lmoderatefetish.find("furryFetish").text),repintorfloat(lmoderatefetish.find("scalyFetish").text),repintorfloat(lmoderatefetish.find("smoothyFetish").text)]
+      lminorfetish = xmlfile.find("minorFetish")
+      data["minorFetish"] = [repintorfloat(lminorfetish.find("pregnancyFetish").text),repintorfloat(lminorfetish.find("bestialityFetish").text),repintorfloat(lminorfetish.find("milkFetish").text),repintorfloat(lminorfetish.find("sizeFetish").text),repintorfloat(lminorfetish.find("unbirthingFetish").text),repintorfloat(lminorfetish.find("ovipositionFetish").text),repintorfloat(lminorfetish.find("toyFetish").text),repintorfloat(lminorfetish.find("hyperFetish").text)]
+      lkid = xmlfile.find("kid")
+      data["kid"] = [int(lkid.find("humanChildren").text),int(lkid.find("equanChildren").text),int(lkid.find("lupanChildren").text),int(lkid.find("felinChildren").text),int(lkid.find("cowChildren").text),int(lkid.find("lizanChildren").text),int(lkid.find("lizanEggs").text),int(lkid.find("bunnionChildren").text),int(lkid.find("wolfPupChildren").text),int(lkid.find("miceChildren").text),int(lkid.find("birdEggs").text),int(lkid.find("birdChildren").text),int(lkid.find("pigChildren").text),int(lkid.find("calfChildren").text),int(lkid.find("bugEggs").text),int(lkid.find("bugChildren").text),int(lkid.find("skunkChildren").text),int(lkid.find("minotaurChildren").text),int(lkid.find("freakyGirlChildren").text)]
+      data["trav"] = []
+      tba = []
+      tbsa = []
+      tsa = []
+      tssa = []
+      lb = xmlfile.find("bag")
+      lbs = xmlfile.find("bagStack")
+      ls = xmlfile.find("stash")
+      lss = xmlfile.find("stashStack")
+      for i in range(0,27):
+         tba.append(int(lb.find(f"slot{i}").text))
+         tbsa.append(int(lbs.find(f"slot{i}").text))
+         tsa.append(int(ls.find(f"slot{i}").text))
+         tssa.append(int(lss.find(f"slot{i}").text))
+      data["bagSave"] = tba
+      data["bagStackSave"] = tbsa
+      data["stashSave"] = tsa
+      data["stashStackSave"] = tssa
+      tpa = []
+      lp = xmlfile.find("preg")
+      i = 0
+      while i < len(lp):
+         tpa.append(strtobool(lp.find(f"i{i}").text))
+         tpa.append(int(lp.find(f"i{i+1}").text))
+         tpa.append(int(lp.find(f"i{i+2}").text))
+         tpa.append(int(lp.find(f"i{i+3}").text))
+         tpa.append(int(lp.find(f"i{i+4}").text))
+         i += 5
+      data["pregSave"] = tpa
+      sol.save(data,outputfile,AMF3)
+      messagebox["text"] = "Success"
+   except Exception as e:
+      messagebox["text"] = "Error"
+      print(e)
 
 #Tkinter window
 root = tkinter.Tk()
@@ -368,6 +249,5 @@ toxmlbutton = tkinter.Button(root, text="Convert .sol to .xml", command=soltoxml
 toxmlbutton.place(anchor="nw", height=50, width=200, x=50, y=200)
 tosolbutton = tkinter.Button(root, text="Convert .xml to .sol", command=xmltosol)
 tosolbutton.place(anchor="nw", height=50, width=200, x=250, y=200)
-tosolbutton["state"] = "disabled"
 
 root.mainloop()
