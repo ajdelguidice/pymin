@@ -65,7 +65,7 @@ Removed a useless line in doGeneral which was causing an error
 Added a detailed debug window. Enable it by passing the argument "-debug" when running the game
 Added a way to escape from zone 1 senario 6 in doProstitute
 Added a menu bar similar to the one in adobe flash player projector
-(Origional problem) Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
+(Original problem) Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
 Made lilaDesc work like the other _Desc functions and fixed it where it appears
 Fixed doApothecary (I forgot a line so it didn't work)
 Made all shops return to doShops if you hold shift when you press the return button.
