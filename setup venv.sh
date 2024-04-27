@@ -54,6 +54,6 @@ cp ./Pymin.py $dir/Pymin-venv/Pymin/Pymin.py
 chmod +x $dir/Pymin-venv/Pymin/Pymin.py
 source $dir/Pymin-venv/bin/activate
 pip install --upgrade pip
-pip install Mini-AMF tkhtmlview numpy Pillow as3lib
-pip install -U Mini-AMF tkhtmlview numpy Pillow as3lib
+pip install Mini-AMF tkhtmlview numpy Pillow as3lib setuptools
+pip install -U Mini-AMF tkhtmlview numpy Pillow as3lib setuptools
 deactivate
