@@ -114,17 +114,3 @@ else:
             run([pythonvenvloc, f"{venvpath}{sep}Pymin{sep}Pymin.py", *args[2:]])
         case "cmd":
             pass
-"""
-venvscript {install|update|run|cmd} [args]
-\nCommands:
-\n\tinstall\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.
-\n\tupdate\t\tUpdates the game and all of it's dependencies.
-\n\trun\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.
-\n\tcmd\t\tEnters the virtual environment (not implemented yet)
-
-Arguements:
-\n\t--version\t\tSpecifies the version of the game to download [default:latest]
-\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]
-\n\t--unverified\t\tBypasses ssl certification and uses the insecure context even when using https
-\n\t--help\t\tDisplays this message
-"""
