@@ -1,3 +1,86 @@
+v1.0.9
+Requires as3lib version 0.0.9
+Deobfuscated the rest of code and variables that were originally obfuscated
+[original game] Fixed item amounts not going away if gainItem is called in the bag
+Fixed the debug give item menu (the specified amount was given twice)
+Added a couple of debug items to help with debug things. These items can only be obtained with the give item function of the debug window.
+Replaced math.floor(a/b) with floor division. I have some parts of the original expressions alone where either things were affected by the change or where I wasn't sure if it would. Examples provided bellow
+    Example 1:
+        -math.floor(a/b) is the same as -(a//b) but not -a//b
+    Example 2:
+        math.floor(a/b)+c is the same as a//b+c
+    Example 3:
+        I'm not sure if math.floor(a/b+c) is the same as a//b+c
+Made the save/load logic only use one xml library
+Fixed a grammar mistake in doLust
+Rewrote the logic for theme to work like fontColor. Theme should automatically switch to the new format on next launch.
+Combined the save location variables. This will be automatically fixed the next time savePreferences is called
+self.buttonsVisible and self.amountLabelsVisible are now lists instead of dictionaries which greatly speeds things up
+Fixed save converter window not closing correctly. You should now be able to open it more than once per session.
+Fixed a typo in item 218
+Refactored hotKeys, showButtons, hideSidePanel, showSidePanel, initSidePanel, choiceListButtons, dayTime, saveGo, loadGo
+Removed unnecessary imports (re, xml.minidom)
+Fixed checkExistsMakeDir. It now doesn't try to create the directory every time and can use non-local paths
+Used a variable to store a repetitive calculation in doWeight
+Added .sol loading/saving capabilities (SOL Mode must be on to save using .sol files). Due to how I implemented this, you technically have 18 save slots now.
+[original game] Fixed an issue with boobDesc where some values weren't accounted for.
+Removed unnecessary comments
+Added a new class called ButtonList to fix some issues with the buttonlists
+Removed redundant variable definitions when game starts
+Reworked stash to work like bag
+Organized the variables in the init function and commented out ones that where also defined later (if one of them causes a problem I will uncomment it)
+[original game] Fixed decGet when places is set to zero (ex: before it would output "50." instead of "50")
+Removed a step from moistCalc making it one operation faster (directly return the final value instead of waiting till the end)
+Replaced discard on shift with button to move items between bag/stash and gave discard its own button.
+Fixed a bug in doEntice
+Finished optimizing the rest of the functions to use outputMainText less
+[original game] Fixed grammar mistakes in doOviasis senario 1 and 2
+Fixed a bug in doImpregnate
+Fixed bag/stash page number flashing when clicking on a button
+[original game] Made bag return to the same page after selling an item
+Directly used calculation in chooseFrom instead of storing it in a temperary variable (it was only used once)
+Rearranged some if/else statements in appearanceGo to reduce the number of checks needed
+Removed redundant checks from each shop's button layout placer
+Removed the unnecessary button in doDyeShop and doApothecary
+Changed "if i != 4 and i != 8 and i != 12" to "if i not in (4,8,12)" in the shops
+Changed around the way amount is shown in bag so each one loads at the same time as its button instead of loading all at once after the buttons
+[original game] Fixed the next/previous page buttons in the bag/stash when shift is held
+[original game] Fixed the next/previous and return buttons when using hotkeys and holding shift in the bag/stash
+MoveItemAmount now refreshes when swapping an item with an amount greater than 1 and an item with an amount of 1
+Made the notation of all functions match
+Removed unnecessary parts of the if/else statements in cumAmount
+Implemented a check to see if saveLocation in the preferences file is valid
+Added a missing "self." in legChange
+[original game] Made bagPage reset after loading a game
+Completely decoupled the page numbers of the different instances of the bag (bag, bag when selling, and stash)
+Removed the massive forehead on the text area in the side box (I accidentally added it when converting the interface and didn't notice it until now)
+Changed the variable "_str_" to "str_" because "_" before an object means something.
+Added a popup to inform the user when loadPreferences fails and savelocation is invalid. I only included savelocation here because it is the only one that can really fuck up the game and possibly even your system. You should not see this unless loadPreferences fails to correct it.
+Added doMultiImpregnate for times when doImpregnate is called multiple times in a row
+Added a way to suppress the messages in doImpregnate and made doMultiImpregnate only able to show them once. (You should now only see the cock snake message once per event)
+Changed the key to open the wiki to Tilde/Grave (`/~). This is to stay consistent with the rest of the game's hotkeys (It was designed to be used one handed, which makes a lot of sense considering the type of game this is)
+[original game] Fixed a typo in doFirmshaft making the text not clear properly
+[original game] Fixed a couple of things in doDairyFarm causing some text to never show
+Made sure every instance of lactChange displayed properly.
+In order to get enemyAttack to function properly, I had to make some modifications to doPassOut and doHP. If something doesn't look right, please let me know, I might have to revert the changes because it doesn't work.
+[original game] Fixed a typo in enemyAttack where the clothesID should be -1 but was instead -2
+Created a function called isBottomOpen which returns true if the clothes you are wearing on your bottom are open enough.
+Made showButtons clear button text by default and added a parameter called bc to disable it. This gets rid of the couple of frames of text showing from the previous thing that was on screen.
+[original game] Fixed an issue with vulvaDesc that could cause an error
+Added game tweaks in the options window to tweak how certain aspects of the game function. These are things that change the game enough from the original that a toggle is justified. Tooltips to explain the options will be comming later, I need to refactor my custom widgets for that so it will take a while.
+Fixed a grammar mistake in appearanceGo
+loadGo is now able to display error messages from the loading process
+Added proper error messaegs to the SOL/XML conversion functions and to doLoad
+Added function hints to functions from checkItem to doShop
+Fixed an issue where the "save/load from file" dialog broke in some versions of python
+Removed double button presses after leaving doCaveDescent
+Added a variable called self.goToInDoProcess which will change location in doProcess instead of when it was originally called. This is used instead of self.regionChange right before calling self.doEnd. This sometimes leads to a better looking result and will be used in places that make sense (like in doOldCaveDescent where each boss has a line which they say when you leave)
+Rewrote the readme.
+Implemented the ability to load .nim files
+Fixed path resolution on Windows.
+Made the status pane work like the original when pressing new game from the start screen
+Made a new, cross platform virtual environment script that sets up the environment, downloads the game for you, and runs the game
+
 v1.0.8 
 Requires as3lib version 0.0.8
 Changed sideEvent, hotkeys, getThemeColor, toggleColor, updateSide, choiceListButtons, choiceListSelect, regionChange, appearanceGo, saveGo, doSave, doBag, doItemUse, doProstitute, doVagMasturbate, makeAlchemy, doLevelUP, doSoftlik, doForest, doJungle, doPlains, doSavanna, doDesert, doBeach, doLake, doValley, doOldCaveDescent, knotholeUpstairs, weaponAttack, specialAbilityName, specialAbilityDescription, specialAbilityUse, doEntice, specialRapeWin, specialKOWin, specialKOLose, doeLust, enemyAttack, doStatus, aff, doBirth, legWhere, legPlural, milkAmount, buttonWrite, disableOneButton, writeAmount, viewAmount to use match-case (it is way faster, especially with huge statements, it also looks nicer. Note: I avoid saying it looks "cleaner" because I think the concept of clean code is dumb, I'll code however the fuck I want)
@@ -21,7 +104,7 @@ Changed the game font back to what it was originally
 Consolidated the button#visible and amountlabel#visible variables into dictionaries (one for the buttons and one for the amount labels) and optimized all of the functions using them to utilize the features of dictionaries
 Removed the remaining eval statements in the color change functions
 Optimized the functions for the button panel
-Replaced the height calculations in appearanceGo and doOldCave with floor division (//) for feet and modulo (%) for inches becuase they work faster than doing it manually.
+Replaced the height calculations in appearanceGo and doOldCave with floor division (//) for feet and modulo (%) for inches because they work faster than doing it manually.
 Fixed updown images in battle (They sometimes didn't show or were overriden by others).
 Replaced the save converter buttons with a single one and added it to the save game menu as well.
 Replaced previous save converter with a nicer one.
@@ -41,6 +124,7 @@ Debug window now respects colour choice
 Fixed the xml definition tag in the save files and preferences
 Made hotkeys work with discard on shift (this refers to something earlier in the changelog) in bag.
 Added a give item menu to the debug window
+Removed the borders from the scrolled text areas to be more consistant with the original game. This can be changed back by changing the variable originaltextboxstyle in __init__ to False however, due to the nature of this and how it is implemented currently in interface_tk, this must be changed before opening the game.
 
 v1.0.7
 PYTHON VERSION DEPENDENCY HAS BEEN CHANGED TO 3.10 (I wanted to use match-case)
@@ -55,33 +139,33 @@ Optimized if else statements in doCockMasturbate
 Replaced some if else statements with the plural() function because that's its purpose
 Optimized lilaDesc
 Fixed double spacing in enemyAttack
-Fixed a spelling mistake in enemyAttack for enemyID 309
-Fixed a variable spelling mistake in enemyAttack
+[original game] Fixed a spelling mistake in enemyAttack for enemyID 309
+[original game] Fixed a variable spelling mistake in enemyAttack
 Actually fixed the lust stat this time (the game now checks it every time it is displayed instead of just when stats is called)
 Reduced the number of outputMainText calls and fixed the order of the "_Desc()" functions so they display correctly in doItemUse (itemID 110 and 533)
-Fixed itemID 517 and 522 to use showBalls correctly
-Fixed spelling mistake in doItemUse itemID 534
+[original game] Fixed itemID 517 and 522 to use showBalls correctly
+[original game]Fixed spelling mistake in doItemUse itemID 534
 Removed a useless line in doGeneral which was causing an error
 Added a detailed debug window. Enable it by passing the argument "-debug" when running the game
-Added a way to escape from zone 1 senario 6 in doProstitute
+[original game]Added a way to escape from zone 1 senario 6 in doProstitute
 Added a menu bar similar to the one in adobe flash player projector
-(Original problem) Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
+[original game] Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
 Made lilaDesc work like the other _Desc functions and fixed it where it appears
 Fixed doApothecary (I forgot a line so it didn't work)
 Made all shops return to doShops if you hold shift when you press the return button.
 Optimized doLust to use outputMainText less
 Changed doLust slightly so it can now return the output text instead of displaying it (must set function parameter "ret" to "True" to use)
-Updated the fist line of code so that it properly executes on most instances of linux (if you don't have your bin directory in root, symlink or actual directory, it won't run)
+Updated the frist line of code so that it properly executes on most instances of linux (if you don't have your bin directory in root, symlink or actual directory, it won't run)
 Added missing "self." in doLoad
 Moved quit button to menu
 About window now changes colour with the rest of the stuff
 Changed interface to use the custom library that I made (it is slightly slower now but it's resizable).
 Added option to doHP to suppress image change for things like new game
-Rearranged the hideUpDown command in newGameGo to make it work better
+[original game] Rearranged the hideUpDown command in newGameGo to make it work better
 Fixed the venv setup script
 Changed itemDescription, passiveItemAdd, passiveItemRemove, doItemUse, goodsID, dyeID, apothID, apothLearn, apothDescription, hairDesc, hairL, hairstyleID, hairstyleLength, hairstyleDescription, clothesName, clothesDescription, clothesTop, clothesBottom, pullUD, clothesChange, enemyName, enemyBaseStats, enemyBaby, earDesc, faceDesc, skinDesc, skinC, legDesc, legVerb, regionName, raceName, domName, genName, tailDesc, humanTaurTailDesc to use match-case (it is way faster, especially with huge statements)
 Changed the save file location to be in a subfolder instead of in the same directory (reduces clutter)
-Fixed doJizzPants triggering sometimes after closing bag (should be fixed)
+[original game] Fixed doJizzPants triggering sometimes after closing bag (should be fixed)
 Fixed appearance button not working when detailedCredits is shown without the sidebar
 Fixed humanTaurTailDesc
 
@@ -98,12 +182,12 @@ Optimized doWeight
 Optimized doHP
 Optimized doLust
 Fixed dojizzpants not triggering correctly when going back to dogeneral from areas
-Fixed dojizzpants next button having to be pressed twice
+[original game] Fixed dojizzpants next button having to be pressed twice
 Fixed checkStash
 Removed the "this." statement that I missed
 
 v1.0.5
-Made shops always go back to themselves instead of going back to another shop in some cases
+[original game] Made shops always go back to themselves instead of going back to another shop in some cases
 Fixed a bug with the Apothecary
 Fixed a bug with the Tailor
 Optimized itemName, usableItem, itemValue, itemMaxStack, foodItem
@@ -125,8 +209,8 @@ Fixed a bug with eventSelect
 Fixed the cancel button in itemUse for item 213
 (Should be fixed) Fixed lust sometimes becoming a random float value
 (Should be fixed) Fixed shapshifty so it only increases one affinity (very inconsistantly happened with equan and random others)
-Fixed a couple of spelling mistake in doProstitute
-Fixed a bug in enemyAttack for enemy 102
+[original game] Fixed a couple of spelling mistake in doProstitute
+[original game] Fixed a bug in enemyAttack for enemy 102
 Optimized item 108 so it isn't unbearably slow to use
 
 v1.0.4
@@ -162,7 +246,7 @@ Commented out unused parts of the original code instead of removing them
 Interface rewritten in tkinter becuase it looked the most similar to the original
 Removed backslashes before single quotes where they weren't necessary because python knows how to handle single quotes within double quotes and can tell the difference between the two
 Pointed functions to the correct place in python (ex: in flash it's Math.random() but in python it's random.random())
-Save data and preferences are now stored in xml format instead of shared objects because I couldn't find any libraries for action messaging format that still worked. If I get arround to it, I might make my own library or at least make a way to convert old save files to new ones but that is a lot of work and amf is very confusing
+Save data and preferences are now stored in xml format instead of shared objects because I couldn't find any libraries for action messaging format that still worked. If I get around to it, I might make my own library or at least make a way to convert old save files to new ones but that is a lot of work and amf is very confusing
 Remade images 1 and 2 to be centered
 Added addManyItems command to replace multiple itemAdd functions with the same item next to each other
 Merged some redundant if statements
