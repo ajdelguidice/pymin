@@ -80,6 +80,8 @@ Implemented the ability to load .nim files
 Fixed path resolution on Windows.
 Made the status pane work like the original when pressing new game from the start screen
 Made a new, cross platform virtual environment script that sets up the environment, downloads the game for you, and runs the game
+Fixed something that I messed up in the description of hair. It is now able to be displayed.
+Made files save in the right place on Windows.
 
 v1.0.8 
 Requires as3lib version 0.0.8
