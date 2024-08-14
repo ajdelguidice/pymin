@@ -24,11 +24,11 @@ def checkExistsMakeDir(dir_, silent=False):
         path = dir_
     if pathlib.Path(path).exists():
         if pathlib.Path(path).is_dir():
-        return 1
+            return 1
         else:
-        if silent == False:
-            print("Path exists but is not a directory.")
-        return -1
+            if silent == False:
+                print("Path exists but is not a directory.")
+            return -1
     else:
         os.mkdir(path)
 
