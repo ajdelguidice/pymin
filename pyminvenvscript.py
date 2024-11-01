@@ -157,7 +157,7 @@ if pathlib.Path(f"{venvpath}/.DEFAULTRUN").exists():
 if len(args) < 2 and defrun:
     run([pythonvenvloc, f"{venvpath}{sep}Pymin{sep}Pymin.py"])
 elif len(args) < 2 or args.indexOf("--help") != -1 or args.indexOf("-h") != -1 or args[1] == "help":
-    print("venvscript {install|update|run|cmd} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--unverified\t\tBypasses ssl certification and uses the insecure context even when using https\n\t--help\t\t\tDisplays this message\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview.\n\t--use-uv\t\tUses uv instead of pip. Needs uv installed outside of venv. (persistent)\n\t--use-uvi\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--default-run\t\tSets run as the default command instead of help. (persistent)")
+    print("venvscript {install|update|run|cmd} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--unverified\t\tBypasses ssl certification and uses the insecure context even when using https\n\t--help\t\t\tDisplays this message\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview.\n\t--use-uv\t\tUses uv instead of pip. Needs uv installed outside of venv. (persistent)\n\t--use-uvi\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--default-run\t\tSets run as the default command instead of help. (persistent)\n\t--no-uv\t\tOpposite of --use-uv(i)\n\t--default-help\t\tOpposite of --default-run")
 else:
     if args.indexOf("--unverified") != -1:
         import ssl
@@ -176,6 +176,11 @@ else:
             use_uvi()
         useuvi = True
         runlist.insert(runlist.index("-m")+1,"uv")
+    if args.indexOf("--no-uv") != -1:
+        pathlib.Path(f"{venvpath}/.USEUV").unlink(missing_ok=True)
+        pathlib.Path(f"{venvpath}/.USEUVI").unlink(missing_ok=True)
+    if args.indexOf("--default-help") != -1:
+        pathlib.Path(f"{venvpath}/.DEFAULTRUN").unlink(missing_ok=True)
     if args.indexOf("--default-run") != -1:
         pathlib.Path(f"{venvpath}/.DEFAULTRUN").touch()
     match args[1]:
