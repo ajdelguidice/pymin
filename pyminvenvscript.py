@@ -1,4 +1,4 @@
-import pathlib, requests, platform
+import requests, platform
 from shutil import rmtree
 from pathlib import Path
 from sys import argv, version_info
@@ -136,10 +136,10 @@ def replaceTkhtmlviewParserWithUnsafeOne():
         print("Done")
 
 def use_uv():
-    pathlib.Path(f"{venvpath}/.USEUV").touch()
+    Path(f"{venvpath}/.USEUV").touch()
 
 def use_uvi():
-    pathlib.Path(f"{venvpath}/.USEUVI").touch()
+    Path(f"{venvpath}/.USEUVI").touch()
 
 useuv = False
 useuvi = False
@@ -147,7 +147,7 @@ defrun = False
 pythonm = [pythonvenvloc, "-m"]
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools"]
 args = list(argv)
-if pathlib.Path(f"{venvpath}/.DEFAULTRUN").exists():
+if Path(f"{venvpath}/.DEFAULTRUN").exists():
     defrun = True
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
@@ -158,9 +158,9 @@ else:
         import ssl
         ssl._create_unverified_context()
         ssl._create_default_https_context = ssl._create_unverified_context()
-    if pathlib.Path(f"{venvpath}/.USEUV").exists():
+    if Path(f"{venvpath}/.USEUV").exists():
         useuv = True
-    elif pathlib.Path(f"{venvpath}/.USEUVI").exists():
+    elif Path(f"{venvpath}/.USEUVI").exists():
         useuvi = True
     elif args.indexOf("--use-uv") != -1:
         if venvpath.exists():
@@ -171,12 +171,12 @@ else:
             use_uvi()
         useuvi = True
     if args.indexOf("--no-uv") != -1:
-        pathlib.Path(f"{venvpath}/.USEUV").unlink(missing_ok=True)
-        pathlib.Path(f"{venvpath}/.USEUVI").unlink(missing_ok=True)
+        Path(f"{venvpath}/.USEUV").unlink(missing_ok=True)
+        Path(f"{venvpath}/.USEUVI").unlink(missing_ok=True)
     if args.indexOf("--default-help") != -1:
-        pathlib.Path(f"{venvpath}/.DEFAULTRUN").unlink(missing_ok=True)
+        Path(f"{venvpath}/.DEFAULTRUN").unlink(missing_ok=True)
     if args.indexOf("--default-run") != -1:
-        pathlib.Path(f"{venvpath}/.DEFAULTRUN").touch()
+        Path(f"{venvpath}/.DEFAULTRUN").touch()
     match args[1]:
         case "install":
             if venvpath.exists() and args.indexOf("--overwrite") == -1:
