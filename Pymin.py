@@ -1,11 +1,11 @@
 #!/bin/python3
-import math, random, tkinter, pathlib, os, webbrowser
+import math, random, tkinter, webbrowser
+from pathlib import Path
 from tkinter import filedialog
 from tkinter import ttk
 import xml.etree.ElementTree as xmletree
 from miniamf import sol, AMF3, DecodeError, amf3
 from sys import argv as sysargs
-from os.path import dirname, abspath, isfile, join
 from functools import partial, cache
 import as3lib.toplevel as as3
 import as3lib.interface_tk as itk
@@ -19,11 +19,8 @@ except:
    from as3lib.py_backports import deprecated
 
 __version__ = "1.0.10"
-scriptdirectory = dirname(abspath(__file__))
-#workaround for when python puts /. at the end of file paths
-if scriptdirectory[-2:] in ("/.","\\."):
-   scriptdirectory = scriptdirectory[:-2]
-as3.setDataDirectory(pathlib.Path(scriptdirectory).resolve())
+scriptdirectory = Path(__file__).resolve().parent
+as3.setDataDirectory(scriptdirectory)
 
 def separator():
    """
@@ -153,7 +150,7 @@ class NiminFetishFantasyv0975o_fla:
 
       #Options window variables
       self.dir = scriptdirectory
-      self.savelocation = f"{self.dir}/nimin_saves" #Location where save files are stored
+      self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
       self.gametweaks = [False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9)]
       self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
@@ -1024,8 +1021,8 @@ class NiminFetishFantasyv0975o_fla:
          ##Save Location
          self.optionswindow.addFileEntryBox("options","SaveLocation",10,98,400,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
          self.optionswindow.configureChild("SaveLocation",background=self.theme,foreground=self.fontColor)
-         self.optionswindow.children["SaveLocation"].uevar.set(self.savelocation)
-         self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = self.resolveDir(self.savelocation)
+         self.optionswindow.children["SaveLocation"].uevar.set(str(self.savelocation.resolve()))
+         self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = str(self.savelocation.resolve())
 
          #Game Tweaks
          ##Grammar Tweaks
@@ -1189,7 +1186,7 @@ class NiminFetishFantasyv0975o_fla:
             self.fontColor = self.ofontcolor
             self.mo.configureChild("textcolorbutton",state="normal")
          if self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),sep) == True and self.optionswindow.children["SaveLocation"].uevar.get() != "":
-            self.savelocation = self.optionswindow.children["SaveLocation"].uevar.get()
+            self.savelocation = Path(self.optionswindow.children["SaveLocation"].uevar.get()).resolve()
             if self.saveInvalid == True:
                self.mo.destroyChild("GameHider")
                self.mo.children["root"].bind('<KeyPress>',self.keypress)
@@ -1297,6 +1294,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Checks if a given directory is valid on the current platform
       """
+      directory = str(directory)
       match confmod.platform:
          case "Windows":
             blacklistedChars = '<>:"\\/|?*' #!add ASCII characters from 0-31
@@ -1352,11 +1350,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Checks if a directory exists, creates it if not
       """
-      #resolves local paths
-      if dir_[:2] == "./":
-         dir_ = scriptdirectory + dir_[2:]
-      path = pathlib.Path(dir_)
-      pass
+      path = Path(dir_)
       if path.exists():
          if path.is_dir():
             return 1
@@ -1365,7 +1359,7 @@ class NiminFetishFantasyv0975o_fla:
                as3.Error("Path exists but is not a directory.")
             return -1
       else:
-         path.mkdir()
+         path.mkdir(parents=True)
    @staticmethod
    def checkExtension(file,extension):
       """
@@ -1388,7 +1382,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def resolveDir(dir_):
       #Alias for pathlib.Path(directory).resolve() + convert to string
-      return str(pathlib.Path(dir_).resolve())
+      return str(Path(dir_).resolve())
    @staticmethod
    def listFilesInDir(dir_, ext:list=None, sort=None):
       """
@@ -1396,7 +1390,8 @@ class NiminFetishFantasyv0975o_fla:
       If ext is None, all files are shown
       If sort is None, no sorting will be done. sort must be a valid sorted() key
       """
-      files = [f for f in os.listdir(dir_) if isfile(join(dir_,f))]
+      dir_ = Path(dir_)
+      files = [str(f.name) for f in dir_.iterdir() if (dir_ / f).is_file()]
       #if extension is specified, remove extension that aren't included
       if ext != None:
          tempext = ext
@@ -1967,7 +1962,7 @@ class NiminFetishFantasyv0975o_fla:
       xmletree.indent(xml,space="\t")
       xml.write(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml"),encoding="UTF-8",xml_declaration=True)
    def loadPreferences(self):
-      if (pathlib.Path(f"{self.dir}/Nimin_Prefs.xml").is_file() == True):
+      if (Path(f"{self.dir}/Nimin_Prefs.xml").is_file() == True):
          sp = False
          prefs = xmletree.parse(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml")).getroot()
          temptheme = f'{prefs.find("theme").text}'
@@ -1989,10 +1984,10 @@ class NiminFetishFantasyv0975o_fla:
             sp = True
          else:
             if self.isValidDirectory(prefs.find("saveLocation").text,sep) == True:
-               self.savelocation = f"{prefs.find('saveLocation').text}"
+               self.savelocation = Path(f"{prefs.find('saveLocation').text}").resolve()
             else:
                as3.trace("Preference Loader: Error: saveLocation is not a valid path. Default value will be used instead.")
-               self.savelocation = f"{self.dir}/nimin_saves"
+               self.savelocation = self.dir / "nimin_saves"
                sp = True
             self.solonlymode = strtobool(prefs.find("solMode").text)
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
@@ -4019,12 +4014,12 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def getdhSOL(file:str):
       #Gets day and hour from SOL save files to display on the save and load screens
-      so = sol.load(file)["track"]
+      so = sol.load(str(file))["track"]
       return (so[2],so[3])
    @staticmethod
    def getdhNIM(file:str):
       #Gets day and hour from NIM save files to display on the save and load screens
-      with open(file, "rb") as f:
+      with open(str(file), "rb") as f:
          so = amf3.ByteArray(f).readObject()["data"]["track"]
       return (so[2],so[3])
    def saveGo(self,ret=False):
@@ -4036,11 +4031,11 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(4,"Save as",8,"Convert",12,"Return")
          for i in range(0,9):
             tempInt = i+1+i//3
-            if (pathlib.Path(f"{self.savelocation}/Nimin_Save{tempInt}.xml").is_file() == True and self.solonlymode == False):
-               dh = self.getdh(self.resolveDir(f"{self.savelocation}/Nimin_Save{tempInt}.xml"))
+            if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True and self.solonlymode == False):
+               dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
                tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
-            elif (pathlib.Path(f"{self.savelocation}/Nimin_Save{tempInt}.sol").is_file() == True):
-               dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/Nimin_Save{tempInt}.sol"))
+            elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
+               dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
             else:
                tempArray.push(tempInt,"Empty")
@@ -4058,11 +4053,11 @@ class NiminFetishFantasyv0975o_fla:
                   self.openSFC()
                case _:
                   self.slot = self.buttonChoice
-                  if (pathlib.Path(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.xml").is_file() == True and self.solonlymode == False):
-                     dh = self.getdh(self.resolveDir(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.xml"))
+                  if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() == True and self.solonlymode == False):
+                     dh = self.getdh(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
                      tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
-                  elif (pathlib.Path(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.sol").is_file() == True):
-                     dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.sol"))
+                  elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
+                     dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                      tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
                   else:
                      tempStr = "The chosen slot is empty"
@@ -4087,15 +4082,15 @@ class NiminFetishFantasyv0975o_fla:
                   temp = self.mo.getChildAttribute("savefileentry","text")
                   if temp[-4:] not in (".xml",".sol",".nim"):
                      temp += ".xml"
-                  temp2 = self.resolveDir(f"{self.savelocation}/{temp}")
-                  if pathlib.Path(temp2).exists():
-                     temp1 = temp.split(".")
+                  temp2 = self.savelocation / temp
+                  if temp2.exists():
+                     temp1 = str(temp).split(".")[-1]
                      if len(temp1) > 1:
-                        if temp1[-1] == "xml":
+                        if temp1 == "xml":
                            dh = self.getdh(temp2)
-                        elif temp1[-1] == "sol":
+                        elif temp1 == "sol":
                            dh = self.getdhSOL(temp2)
-                        elif temp1[-1] == "nim":
+                        elif temp1 == "nim":
                            dh = self.getdhNIM(temp2)
                      self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.",True)
                   else:
@@ -4107,7 +4102,7 @@ class NiminFetishFantasyv0975o_fla:
                      if temp[-4:] not in (".xml",".sol",".nim"):
                         temp += ".xml"
                      if (self.buttonChoice == 6):
-                        self.doSave(0,f"{self.savelocation}/{temp}")
+                        self.doSave(0,(self.savelocation / temp).resolve())
                         self.hideNewSaveLoadDialog()
                         self.showNSLDBlinder(False)
                         self.hideDiscard()
@@ -4135,17 +4130,17 @@ class NiminFetishFantasyv0975o_fla:
          if self.solonlymode == True:
             for i in range(0,9):
                tempInt = i+1+i//3
-               if (pathlib.Path(f"{self.savelocation}/Nimin_Save{tempInt}.sol").is_file() == True):
-                  dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/Nimin_Save{tempInt}.sol"))
+               if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
+                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
          else:
             for i in range(0,9):
                tempInt = i+1+i//3
-               if (pathlib.Path(f"{self.savelocation}/Nimin_Save{tempInt}.xml").is_file() == True):
-                  dh = self.getdh(self.resolveDir(f"{self.savelocation}/Nimin_Save{tempInt}.xml"))
+               if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True):
+                  dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
-               elif (pathlib.Path(f"{self.savelocation}/Nimin_Save{tempInt}.sol").is_file() == True):
-                  dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/Nimin_Save{tempInt}.sol"))
+               elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
+                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
          if message == None:
             self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
@@ -4165,15 +4160,15 @@ class NiminFetishFantasyv0975o_fla:
                case _:
                   self.slot = self.buttonChoice
                   if self.solonlymode == True:
-                     if (pathlib.Path(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.sol").is_file() == True):
-                        dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.sol"))
+                     if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
+                        dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                         tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
                   else:
-                     if (pathlib.Path(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.xml").is_file() == True):
-                        dh = self.getdh(self.resolveDir(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.xml"))
+                     if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() == True):
+                        dh = self.getdh(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
                         tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
-                     elif (pathlib.Path(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.sol").is_file() == True):
-                        dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/Nimin_Save{self.buttonChoice}.sol"))
+                     elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
+                        dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                         tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
                   self.outputMainText(tempStr + f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.",True)
                   self.buttonConfirm()
@@ -4204,7 +4199,7 @@ class NiminFetishFantasyv0975o_fla:
                   def doListen():
                      temp = self.mo.getChildAttribute("savefileentry","text")
                      if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,("xml","sol","nim"))):
-                        self.doLoad(0,f"{self.savelocation}/{temp}")
+                        self.doLoad(0,self.savelocation / temp)
                      else:
                         self.loadGo(ret=True)
                   self.doListen = doListen
@@ -4247,11 +4242,11 @@ class NiminFetishFantasyv0975o_fla:
          temp[-1] = temp[-1].lower()
          if len(temp) > 1:
             if temp[-1] == "xml":
-               dh = self.getdh(self.resolveDir(f"{self.savelocation}/{i}"))
+               dh = self.getdh(self.savelocation / i)
             elif temp[-1] == "sol":
-               dh = self.getdhSOL(self.resolveDir(f"{self.savelocation}/{i}"))
+               dh = self.getdhSOL(self.savelocation / i)
             elif temp[-1] == "nim":
-               dh = self.getdhNIM(self.resolveDir(f"{self.savelocation}/{i}"))
+               dh = self.getdhNIM(self.savelocation / i)
             self.mo.slb_Insert("savefileselect","end",f"D: {dh[0]}, H: {dh[1]} | {i}")
       self.mo.children["savefileselect"].activate(0)
       self.mo.children["savefileselect"].select_set(0)
@@ -4338,13 +4333,13 @@ class NiminFetishFantasyv0975o_fla:
          else:
             savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("Xml File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
       elif (slot == 0):
-         savefilename = self.resolveDir(file)
+         savefilename = file
       else:
          if self.solonlymode == True:
-            savefilename = self.resolveDir(f"{self.savelocation}/Nimin_Save{slot}.sol")
+            savefilename = self.savelocation / f"Nimin_Save{slot}.sol"
          else:
-            savefilename = self.resolveDir(f"{self.savelocation}/Nimin_Save{slot}.xml")
-      if (type(savefilename) == tuple or len(savefilename) == 0):
+            savefilename = self.savelocation / f"Nimin_Save{slot}.xml"
+      if (type(savefilename) == tuple or len(str(savefilename)) == 0):
          self.saveGo()
          return
       else:
@@ -4377,7 +4372,7 @@ class NiminFetishFantasyv0975o_fla:
          string += "</preg></data>"
          data = xmletree.fromstring(string)
          xml = xmletree.ElementTree(element=data)
-         sfext = savefilename.split(confmod.separator)[-1].split(".")[-1].lower() 
+         sfext = str(savefilename).split(confmod.separator)[-1].split(".")[-1].lower() 
          if sfext == "sol":
             self.toSOL(None,savefilename,xml)
          elif sfext == "nim":
@@ -4401,11 +4396,11 @@ class NiminFetishFantasyv0975o_fla:
       elif (slot == 0):
          loadfilename = self.resolveDir(file)
       else:
-         if (pathlib.Path(f"{self.savelocation}/Nimin_Save{slot}.xml").is_file() == True):
-            loadfilename = self.resolveDir(f"{self.savelocation}/Nimin_Save{slot}.xml")
+         if (self.savelocation / f"Nimin_Save{slot}.xml").is_file() == True:
+            loadfilename = self.savelocation / f"Nimin_Save{slot}.xml"
          else:
-            loadfilename = self.resolveDir(f"{self.savelocation}/Nimin_Save{slot}.sol")
-      lfextension = loadfilename.split(".")[-1].lower()
+            loadfilename = self.savelocation / f"Nimin_Save{slot}.sol"
+      lfextension = str(loadfilename).split(".")[-1].lower()
       if lfextension == "sol":
          root = self.toXmlReturn(loadfilename)
       elif lfextension == "nim":
@@ -24569,7 +24564,7 @@ class NiminFetishFantasyv0975o_fla:
    def saveInvalidIgnore(self):
       self.closeSaveInvalidDialog()
    def saveInvalidDefault(self):
-      self.savelocation = f"{self.dir}/nimin_saves"
+      self.savelocation = self.dir / "nimin_saves"
       self.closeSaveInvalidDialog()
    def saveInvalidOOW(self):
       self.saveinvalid = True
@@ -25328,10 +25323,10 @@ class NiminFetishFantasyv0975o_fla:
    def solGetFileName(string):
       match confmod.platform:
          case "Windows":
-            templist = string.split("\\")[-1].split(".")
+            templist = str(string).split("\\")[-1].split(".")
             templist.pop(-1)
          case "Linux" | "Darwin":
-            templist = string.split("/")[-1].split(".")
+            templist = str(string).split("/")[-1].split(".")
             templist.pop(-1)
       tempstr = ""
       for i in templist:
@@ -25522,7 +25517,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def toXmlReturn(inputfile):
       try:
-         so = sol.load(inputfile)
+         so = sol.load(str(inputfile))
          strack = so["track"]
          sstats = so["stats"]
          slevel = so["level"]
@@ -25644,7 +25639,7 @@ class NiminFetishFantasyv0975o_fla:
    def toXml(self,inputfile,outputfile):
       #Not used
       try:
-         so = sol.load(inputfile)
+         so = sol.load(str(inputfile))
          strack = so["track"]
          sstats = so["stats"]
          slevel = so["level"]
