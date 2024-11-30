@@ -168,7 +168,6 @@ class NiminFetishFantasyv0975o_fla:
       self.sfcopen = False #save file converter window
       self.wikiOpen = False #wiki window
       self.optionsWinOpen = False #options window
-      #self.GTMenuOpen = False #game tweaks menu in the options window
 
       #other added variables
       self.bagDiscard = False #variable for the discard button in the bag
@@ -4263,6 +4262,7 @@ class NiminFetishFantasyv0975o_fla:
    def showNewSaveLoadDialog(self):
       #Displays nsld
       if self.newSLDialogVisible == False:
+         self.clearTextAllButtons()
          self.mo.addScrolledListbox("display","savefileselect",200,30,460,162-8,self.font,"nw",True,12)
          self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
          self.mo.children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
@@ -4296,6 +4296,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("savefilelabel")
          self.mo.destroyChild("savefileentry")
          self.mo.destroyChild("savefilesort")
+         self.clearTextAllButtons()
          self.newSLDialogVisible = False
          self.keyboardTypingDisable = False
    def showNSLDBlinder(self,which=False):
