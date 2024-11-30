@@ -1,3 +1,126 @@
+v1.0.10
+Set the initial directory of the load/save file dialogs to the save folder
+Fixed a bug on Windows introduced in 1.0.9 that made a folder named Pyminnimin_saves get created in ../ relative to the game or venv_root (it would switch between the two) when nimin_saves was not found
+[original game] Fixed double button press after using items 204 and 205
+Refactored skinDesc
+Fixed the text display in one of the sandwich sinarios in doDesert
+Overhauled the save file converter. It can now convert from any supported format to any supported format. Supported formats include xml, sol, and nim.
+Added "recreate" function to the venv script. THIS DELETES ALL DATA IN THE VIRUAL ENVIRONMENT and then creates an new one,
+Removed the redundant "plush and snuggly" from appearance when grammar tweaks is active.
+Added special game tweaks that only show up and work when in debug mode.
+Added alwaysChooseSenario to debug tweaks
+Corrected the grammar of error messages and made their formatting consistent.
+Save location changes in the options window actually change the save location now.
+Added the ability to save to and load from any supported save format when using the "Save as"/"Load File" buttons.
+Changed the save dialog to reflect current conditions.
+Fixed a bug I introduced in relation to eggTime (When changing operators over to python, I accidentally made "--" into "+= 1" instead of "-= 1"). You should now be able to lay eggs.
+Added a check to doLoad that puts eggTime back down to a normal value if any version of this port before this one was used. This is so you don't have to wait for it to count down from the absurd value it was at due to the what is mentioned in the previous change.
+Added a message to Jamie's senario in doFirmshaft explaining that there is no more content. This only appears if his rep value is above 10.
+Hotkeys are now ignored when the saveInvalidDialog is open
+Removed all calls to as3lib.toplevel.listtoarray because it isn't needed.
+Places where max was used are now changed to as3lib.toplevel.Math.max. The add 0 hack has also been removed from the max functions.
+Sped up doWeight slightly by reducing the number of division done (addition, subtraction, and multiplication are almost free on modern cpus, division is not).
+Added more comments to functions
+Added the option "noclear" to the status update functions to allow the up/down images to stay from the previous call
+Simplified calculations in doRace (instead of doing "+= -#" it now does "-= #")
+Bag/Stash buttons no longer flicker when pressing on an empty slot, when selling items, or when clicking on an item that can not be used
+Added lizanDontShowBalls to the game tweaks menu. While lizanDontShowBalls is active, changing cock type now changes the value of self.showBalls depending on what type of cocks you have
+Neuterizer now has a variable to tell the game when it was used to make showBalls False. This is ignored when lizanDontShowBalls is False.
+Fixed a mistake in the shops that caused the game to crash when you don't have enough coins to buy something
+Fixed a save file version check that would fail and cause the game to not load
+[original game] Fixed an issue that caused the return button to not work while holding shift in the general shop's sell dialog
+Created listFilesInDir function
+Created bsRefresh function to refresh the bag/stash instead of redrawing the entire thing. This heavily reduces the flickering of the amount values.
+Added an expanded save/load file screen that shows all files inside of the save directory. It can be toggled in the game tweaks menu. This is not enabled by default.
+Replaced self.doSexP(0) and self.dayTime(0) with the display command as that is what it looks like they were intended to do. self.dayTime(0) causes goGeneral to be called even though it shouldn't which was one of the reasons why loading the game was so slow.
+Debug items "Teleport Scroll: Any" and "Debug Stick" are now fully functional
+Debug window now saves it's scroll position after refreshing. It does some weird stuff near the bottom but that is because the scrollable region is very large.
+Added a way to change the sort order of the new save/load dialog
+Made discard button change color with the rest of the scene.
+Added numpad keybindings for most of the features I added to the main window.
+Fixed a grammar mistake in the gametweaks menu
+Wiki window now starts with the first item selected. You shouldn't need to move the cursor to prevent errors anymore
+Wiki keybindings have been changed to make more sense
+Added both wasd and numpad navigation to the wiki
+Made the enter key always work in the wiki
+Wiki menu options are now added all at once instead of one at a time
+Page links in the wiki now work properly. This does require a custom html parser for tkhtmlview which is included in this repo.
+Updated the venv setup script to automatically install my custom html parser for tkhtmlview
+Fixed a bug in the normal save dialog that caused sol files to not show up unless solonlymode was enabled
+Remove typing.Union import and replace Unions with "x | y" syntax. This project requires python 3.10 anyways so why not use it.
+Gave the game window and the about window a proper title.
+Added some stuff to the intro screen.
+Added the option to use uv instead of pip in the venv script.
+venvscript now prints the help message when there aren't enough arguements.
+Made succubusLeavesOne always work when enabled.
+Started adding links into the wiki.
+Fixed quit from menu bar
+Added takeNoDamage to debug tweaks
+Made use of isBottomOpen in places that need it but only if it is toggled on in the game tweaks menu.
+Removed unnecessary imports from nim file testing
+Made imports look better
+Added a new save item to the SOL save files called versionNumberPymin. Anything not explicitly defined is ignored by the original game so this should be fine
+Fixed item 522 and 531.
+Made most of the rest of the _Desc functions return the result directly
+Fixed the error handling in the _Desc functions
+Used self.percent directly in the _Desc functions. It is only used once so it should not be assigned to a variable.
+Changed the window icon (taskbar icon on some linux window managers) to one closely resembling flash player's icon (I created it based off of the images that I have of the icon)
+(Implementation incomplete) Added a game tweak to make herms able to experience both male and female gendered senarios where it makes sense to.
+Explore senarios in Oviasis are now affected by lizanDontShowBalls
+Compressed a check in cockChange, it was a long chain of if statements, now it's "if self.dominant in (...)"
+Directly return value in itemName, usableItem, conItem
+Fixed unused function clearEmptySlots
+Rearranged checkEmptySlots to do less work and directly return the output.
+Used the warnings.deprecated decorator for functions that were replaced instead of commenting them out.
+Rearranged hairstyleID, pullUD, tailDesc to only need one "else" case
+Made hairstyleLength use "if ID in (...)" instead of match-case
+Fixed error cases in many functions
+Implemented textCheck in outputMainText
+Added a variable to disable hotkeys when keyboard is used for typing
+Added comments to the hotkeys function to tell what each keycode is
+Added a variable for when alt is held. This is used to override the keyboard being disabled
+All hotkeys are now disabled when using the new save/load dialog. To override this, press alt while hitting the key
+Added comments to cockChange, vagChange
+Added missing self. in affinityChange
+Made affinityChange and doProcess use the Array.sort function from as3lib because sort(16) is now implemented
+Fixed OWLoadVars
+Made item 108 display a bar when affinity is 1 and made it display the same number of bars as the original game. Both issues were caused by python's range function not including the second number (range(0,2)->[0,1])
+Made checkValidHex, isValidDirectory, checkExistsMakeDir checkExtension, resolveDir, listFilesInDir, inv, boolToState, percent, getdh, getdhSOL, getdhNIM, itemName, usableItem, conItem, itemValue, itemStackMax, foodItem, dyeID, hairstyleLength, hairstyleVale, hairstyleDescription, clothesName, clothesValue, clothesDescription, specialAbilityName, specialAbilityDescription, solString, solGetFileName, toXMLReturn, and toXMLReturnNIM staticmethods because they don't need the self parameter
+Added "if __name__ == '__main__'" check
+Moved a check for python path stupidity out of the checkExistsMakeDir function to where it should be
+Refactored checkExistsMakeDir
+Fixed a problem in cockChange that I introduced while porting that only seemed to affect the stuff that I added on in this release so I didn't catch it until now
+Put the calculations for showButtons, showButtonsBag, viewAmount, and showSidePanel into separate functions so @cache could be used to speed things up. This has nothing to do with "clean" code.
+Removed some of the unnecessary calculations done for the interface. These were there because I was lazy during development but aren't needed.
+Fixed a bug in moveToBag that made it possible to move items into the arrow and return buttons.
+Added gametweak DirectPathToSanctuary
+Used any() instead of the "!= 0" check in doProcess because it effectively does the same thing.
+Added the missing race affinities to the "!= 0" check in doProcess
+Fixed apothID returning None when you already have a recipe
+Fixed a couple of function returns when no condition is met
+Fixed an issue with doSubmit enemy 202, 304
+Fixed an issue with doRape enemy 301, 302, 303
+Combined the options window and gametweaks window into one and used ttk.notebook to organise things
+Fixed options window variable checking and added error messages
+Made checkValidHex faster
+Added None check to gametweaksCheckIfAllIsValue because "not None" == True for some reason
+Made checkExistsMakeDir use one pathlib.Path object for everything
+Condensed multiple if statements into one and removed the redundant sort in listFilesInDir
+Changed check in choiceListBlanks, choiceListSelect from "value == False" to "not value". I was hesitant to use this because not None == True but it should be fine
+Replaced some "value == True" with just "value" in places where value can only be a boolean because it does the same thing.
+Added self.inStash to the check for discarding items in doProcess (I don't even know if this is used since doBag and doStash have their own)
+Fixed item discard (when exiting the bag/stash) not making amount go away
+Directly return result in checkMagicItem
+Made the status of your balls show when self.showBalls == False and the grammar game tweak is active
+[original game] Fixed region not changing back after submit and passOut in dungeon
+[original game] Fixed region not changing to Cave Descent when entering the doOldCaveDecent from Firmshaft
+Created a temporary fix to the formatting of the stats page using python's string formatting (it gets a little bit messy towards the bottom). Unfortuantely, this can't not be a perminant fix because tkhtmlview does not render fixed width fonts properly so I have to use normal fonts. This means that this only works when at default font size and is affected by outside factors.
+Added persistant uv settings in the venvscript
+Refactored the venvscript to use pathlib everywhere it can
+Made venvscript not eat the help option. It can now pass it to other things
+Removed redundant portions of the if/else statements in boobDesc, udderDesc, teatDesc, buttDesc, vulvaDesc, cockDesc, ballDesc, nipDesc, clitDesc, and hipDesc
+[original game] Senarios that reference your balls now use self.showBalls to determine whether some things should be displayed. Before, this would not happen and some senarios would describe your balls even though they were not supposed to. I might have missed a few, but this is most of them.
+
 v1.0.9
 Requires as3lib version 0.0.9
 Deobfuscated the rest of code and variables that were originally obfuscated
@@ -149,7 +272,7 @@ Reduced the number of outputMainText calls and fixed the order of the "_Desc()" 
 [original game]Fixed spelling mistake in doItemUse itemID 534
 Removed a useless line in doGeneral which was causing an error
 Added a detailed debug window. Enable it by passing the argument "-debug" when running the game
-[original game]Added a way to escape from zone 1 senario 6 in doProstitute
+[original game] Added a way to escape from zone 1 senario 6 in doProstitute
 Added a menu bar similar to the one in adobe flash player projector
 [original game] Fixed issue in doDairyFarm where some text didn't show when it was supposed to (it was a mistype)
 Made lilaDesc work like the other _Desc functions and fixed it where it appears
@@ -256,58 +379,20 @@ Created a disable button function to disable buttons when not used but on screen
 Changed shops to use disable button functions for empty slots
 Rearranged post-increment statements to work in python
 Added savefile converter into load game screen
-
-detailedStats
-- Changed hip size multiplier variable to be what it says instead of something else
-
-passiveItemRemove
-- Changed (ID == num and weapon == num) to (ID == weapon == num)
-
-doSleep
-- Replaced the Boolean() call with what is used everywhere else
-
-simpleAlchemy
-- Removed newline charater in the second to last recipy description to be consistant with the rest
-
-advancedAlchemy
-- Added newline character to the final 3 recipy descriptions to be consistant with the rest
-
-enemyAttack
-- Fixed enemy 102 not subtracting the correct thing
-
-aff
-- Removed redundant line
-
-affinityChange
-- Fixed a spelling mistake
-
-doItemUse
-- Added "Do Nothing" option to bug egg
-- Removed a redundant if statement in item 528
-
-doLevelUP
-- Fixed some spelling errors
-
-plural
-- Removed redundant if statements
-
-udderDesc
-- Replaced the repeated multiplication in each statement with a variable used to calculate it once
-
-buttDesc
-- Replaced the repeated multiplication in each statement with a variable used to calculate it once
-
-hipDesc
-- Replaced the repeated multiplication in each statement with a variable used to calculate it once
-
-bellyDesc
-- Removed redundant if statements
-
-legDesc
-- Combined redundant if statements
-
-genName
-- Rearranged if statements to look nicer and do less checks
-
-eventSelect
-- Added placeholders at the end of arrays that didn't have enough values to prevent errors
+Changed hip size multiplier variable in detailedStats to be what it says instead of something else
+Changed (ID == num and weapon == num) to (ID == weapon == num) in passiveItemRemove
+Replaced the Boolean() call in doSleep with what is used everywhere else
+Removed newline charater in the second in simpleAlchemy to last recipy description to be consistant with the rest
+Added newline character to the final 3 recipy descriptions in advancedAlchemy to be consistant with the rest
+Fixed enemy 102 not subtracting the correct thing in enemyAttack
+Removed a redundant line in aff
+Fixed a spelling mistake in affinityChange
+Added "Do Nothing" option to bug egg in doItemUse
+Removed a redundant if statement in item 528 in doItemUse
+Fixed some spelling errors in doLevelUP
+Removed redundant if statements in plural
+Replaced the repeated multiplication in each statement with a variable used to calculate it once in udderDesc, buttDesc, and hipDesc
+Removed redundant if statements in bellyDesc
+Combined redundant if statements in legDesc
+Rearranged if statements to look nicer and do less checks in genName
+Added placeholders at the end of arrays that didn't have enough values to prevent errors (python does not like when the max/min functions only have one value)
