@@ -1461,7 +1461,7 @@ class NiminFetishFantasyv0975o_fla:
       kc = ckeys.tkeventToJavascriptKeycode(e)
       if kc == 16: #Shift
          self.shiftHeld = False
-         if self.inBag == True and self.bagDiscard == True and self.buttonsVisible[12] == True:
+         if (self.inBag == True or self.inStash) and self.bagDiscard == True and self.buttonsVisible[12] == True:
             self.buttonWrite(12,"Return")
             self.bagDiscard = False
       if kc == 18: #Alt
