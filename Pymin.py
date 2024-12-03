@@ -611,7 +611,6 @@ class NiminFetishFantasyv0975o_fla:
       self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", type_="frame", defaultmenu=False)
       self.mo.setAboutWindowText(f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/\n\nPython {confmod.pythonversion}")
 
-      #self.TNR = Font(file=f"{scriptdirectory}/1_TimesFont_Times New Roman.ttf",family="Times New Roman")
       self.font = ("TimesNewRoman", 12)
       self.crfont = ("TimesNewRoman", 20, "bold")
       
@@ -628,10 +627,6 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.children["root"].option_add("*tearOff", False)
       self.mo.menubar["filemenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
       self.mo.menubar["filemenu"].add_command(label="Options", font=("Terminal",8), command=self.optionsWindow)
-      #self.mo.menubar["gametweaks"] = tkinter.Menu(self.mo.menubar["filemenu"],tearoff=0)
-      #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5)]
-      #self.mo.menubar["gametweaks"].add_checkbutton(label="Grammar Tweaks", font=("Terminal",8),command=partial(print,self.mo.menubar["gametweaks"].index(0)))
-      #self.mo.menubar["filemenu"].add_cascade(label="Game Tweaks", font=("Terminal",8), menu=self.mo.menubar["gametweaks"])
       self.mo.menubar["filemenu"].add_separator()
       self.mo.menubar["filemenu"].add_command(label="Quit", font=("Terminal",8), command=self.mo.endProcess)
       self.mo.menubar["root"].add_cascade(label="File", font=("Terminal",8), menu=self.mo.menubar["filemenu"])
