@@ -25827,8 +25827,9 @@ class NiminFetishFantasyv0975o_fla:
             self.customhtmlparser = False
             as3.trace("Wiki: Error: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
          self.wikiwindow.configureChild("text",background=self.theme,foreground=self.fontColor)
-         self.wikimenuroot = ("Basics","Menu Bar","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close")
-         self.basmenu = ("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Back")
+         self.wikimenuroot = ("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close")
+         self.basmenu = ("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back")
+         self.basbarmenu = ("File->Options","File->Quit","View->Full Screen","View->Reset Size","Help->Wiki","Help->About Game","Debug Window","Back")
          self.itemmenu = ["All Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"]
          if confmod.as3DebugEnable == True:
             self.itemmenu.insert(1,"Debug Items")
@@ -25962,8 +25963,6 @@ class NiminFetishFantasyv0975o_fla:
                case "Basics": #menunum 1
                   self.clearAddMenuOptions(self.basmenu)
                   self.menunum = 1
-               case "Menu Bar":
-                  self.doWikiPage("Basic",7)
                case "Items": #menunum 2
                   self.clearAddMenuOptions(self.itemmenu)
                   self.menunum = 2
@@ -26004,6 +26003,9 @@ class NiminFetishFantasyv0975o_fla:
                   self.doWikiPage("Basic",4)
                case "Changes":
                   self.doWikiPage("Basic",6)
+               case "Menu Bar":
+                  self.clearAddMenuOptions(self.basbarmenu)
+                  self.menunum = 27
                case "Back":
                   self.clearAddMenuOptions(self.wikimenuroot)
                   self.menunum = 0
@@ -26877,6 +26879,25 @@ class NiminFetishFantasyv0975o_fla:
                case "Back":
                   self.clearAddMenuOptions(self.itemmenu)
                   self.menunum = 2
+         case 27: #Menubar menu
+            match selection:
+               case "File->Options":
+                  self.doWikiPage("MenuBar",1)
+               case "File->Quit":
+                  self.doWikiPage("MenuBar",2)
+               case "View->Full Screen":
+                  self.doWikiPage("MenuBar",3)
+               case "View->Reset Size":
+                  self.doWikiPage("MenuBar",4)
+               case "Help->Wiki":
+                  self.doWikiPage("MenuBar",5)
+               case "Help->About Game":
+                  self.doWikiPage("MenuBar",6)
+               case "Debug Window":
+                  self.doWikiPage("MenuBar",7)
+               case "Back":
+                  self.clearAddMenuOptions(self.basmenu)
+                  self.menunum = 1
    def doWikiPage(self, topic:str, Num, returning=False):
       if type(Num) != int:
          try:
@@ -26912,6 +26933,8 @@ class NiminFetishFantasyv0975o_fla:
             text = self.wikiShopDescription(Num)
          case "NPC":
             text = self.wikiNPCDescription(Num)
+         case "MenuBar":
+            text = self.wikiMenuBarDescription(Num)
       self.clearAddWikiText(text)
    """
    Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
@@ -26935,73 +26958,22 @@ class NiminFetishFantasyv0975o_fla:
             return "<h4><u>Wiki Key</u></h4>\nThis page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<u>General Notations</u>\n<b><u>Bold and Underlined</u></b>: page title or warning\n<u>Underlined</u>: section title\n<i>Italic</i>: a page exists somewhere in the wiki for that topic (links don't work so this will have to do)\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
          case 6:
             return "<h4><u>Changes</u></h4>\nThis page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nAdded a preferences window to change a couple of things in the game. Go to File->Options to access it.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nThe \"Next\" button in doJizzPants now only needs to be pressed once.\ndoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nChanged the save file format to .xml and added a save file converter to the save/load screens. You can still load the .sol files from the original game but you can not load the custom save format it used to save to custom locations.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nSave files are now in a subdirectory instead of in the same folder as the game.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nBag page number now resets after loading a game.\n\n<b><u>Interface Changes</u></b>\nFixed many spelling and formatting mistakes.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nAdded debug stuff that can be activated by passing the arguement \"--debug\" when launching the game.\nSave/Load dialog has been change to acurately reflect how the game works now.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\nThe stash now works ilke the bag does. Moving items between them is now done by holding shift and pressing the return button while moving an item.\n\n"
-         case 7:
-            return """
-            <h4><u>Menu Bar</u></h4>\n
-            This page includes all of the information about the menubar and its contents.\n\n
-            
-            <b><u>File->Options</b></u>\n
-            This option opens up a separate window that holds the configuration options for the game. Listed below are their functions.\n\n
-            <b>Sol Mode</b>\n
-            Forces the game to use the original save file formats instead of xml. This does not do anything if "Options->Game Tweaks->Use Expanded Save Dialog" is active.\n\n
-
-            <b>Game Tweaks</b>\n
-            Opens another window containing toggles for tweaks that I created that modify the game too much. Most of these are personal tweaks that I wanted in my playthrough.\n\n
-
-            <b>Game Tweaks->Grammar Tweaks</b>\n
-            Changes specific words in the game to be less dirogetory or more correct. Also toggles specific changes I made to make the game more consistent or make more sense (sometimes the game wouldn't check if you actually had something before giving a description of it). Some examples are:\n
-            Femmie -> Feminine\n
-            Femme-boy -> Femboy\n
-            Shemale -> Futanari\n\n
-
-            <b>Game Tweaks->Status Tweaks</b>\n
-            Currently does two things, 1) Changes the maximum strength stat to 200 and 2) Makes the Femboy starting option slighly more feminine.\n\n
-
-            <b>Game Tweaks->Succubus Leaves One</b>\n
-            Makes the succubus leave one cock instead of taking all of them.\n\n
-
-            <b>Game Tweaks->Use isBottomOpen</b>\n
-            Replaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the "open" bottom clothes (I'm assuming that was by accident).\n\n
-
-            <b>Game Tweaks->Lizan Don't Show Balls</b>\n
-            (Most) Lizards don't come with nuts, why should Lizan. This option removes the balls from those who only have lizardCocks.\n\n
-
-            <b>Game Tweaks->Use Expanded Save Dialog</b>\n
-            Replaces the save/load dialog with one that can load any file from inside of the game's save directory.\n\n
-
-            <b>Game Tweaks->alwaysChooseSenario(debug mode only)</b>\n
-            When enabled, allows you to choose whatever senario from your current area that you want when exploring. Requires user input in the terminal every time.\n\n
-            
-            <b>Fixed Resolution</b>\n
-            (Not implemented yet) Forces the game's main window to be at a specific resolution and prevents its subwindows from resizing.\n\n
-
-            <b>Custom Theme Color</b>\n
-            Allows you to set a custom theme color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n
-
-            <b>Custom Font Color</b>\n
-            Allows you to set a custom font color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n
-
-            <b>Save Location</b>\n
-            Allows you to set a custom save file location. If the chosen location does not exist, it will be created for you.\n\n
-            
-            <b><u>File->Quit</b></u>\n
-            This option will close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed as long as you have a mouse.\n\n
-            
-            <b><u>View->Full Screen</b></u>\n
-            This option maximizes the window.\n\n
-            
-            <b><u>View->Reset Size</b></u>\n
-            This option resets the window to its default size.\n\n
-            
-            <b><u>Help->Wiki</b></u>\n
-            This option opens the wiki.\n\n
-            
-            <b><u>Help->About Game</b></u>\n
-            This option opens a popup window with the version information of the game.\n\n
-            
-            <b><u>Debug Window</b></u>\n
-            #!Add description
-            """
+   def wikiMenuBarDescription(self, Num:int):
+      match Num:
+         case 1: #File->Options
+            return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to list them. Their functions are described below:\n\n<u>Options Tab</u>\nThis tab contains the basic configuration that the average person might want to touch.\n\n<b>Sol Mode</b>\nForces the game to use the original save file formats instead of xml. The game can still load sol file without this options, xml files are just the priority. This does not do anything if \"Use Expanded Save Dialog\" is active.\n\n<b>Fixed Resolution</b>\n(Not implemented yet) Forces the game's main window to be at a specific resolution and prevents its subwindows from resizing.\n\n<b>Custom Theme Color</b>\nAllows you to set a custom theme color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n<b>Custom Font Color</b>\nAllows you to set a custom font color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n<b>Save Location</b>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n<u>Game Tweaks Tab</u>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<b>Grammar Tweaks</b>\nChanges specific words in the game to be less derogetory or more correct. Also toggles specific changes I made to make the game more consistent or make more sense (sometimes the game wouldn't check if you actually had something before giving a description of it). Some examples are:\nFemmie -> Feminine\nFemme-boy -> Femboy\nShemale -> Futanari\n\n<b>Status Tweaks</b>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<b>Succubus Leaves One</b>\nMakes the succubus leave one cock instead of taking all of them.\n\n<b>Use isBottomOpen</b>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming that was by accident).\n\n<b>Lizan Don't Show Balls</b>\n(Most) Lizards don't come with (external) nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<b>Use Expanded Save Dialog</b>\nReplaces the save/load dialog with one that can load any file from inside of the game's save directory.\n\n<b>Herm Can Has Both</b>\n(Not implemented yet) Makes herms able to experience both male and female senarios where it makes sense.\n\n<b>Internal Balls Affect Belly Size</b>\n(Not implemented yet) When self.showBalls is False, makes self.ballSize affect belly size in the calculation the game does for weight and size.\n\n<b>Direct Path to Sanctuary</b>\nAdds an explore option that appears once you defeat the final boss in doOldCaveDescent that allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<b>Some races get digitgrade feet</b>\n(Implementation incomplete) Gives some races (feline, lupine, equine, bovine) digitgrade feet. Feline and lupine get digipaws, equine and bovine get hooves. The logic for digipaws was already implemented in the game but was only used for the skunk race.\n\n<u>Debug Tweaks Tab</u>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<b>alwaysChooseSenario(debug mode only)</b>\nAllows you to choose whatever senario from your current area that you want when exploring. Requires user input in the terminal every time.\n\n<b>takeNoDamage</b>\nMakes enemies deal no damage. (currently only does anything in eDmg)"
+         case 2: #File->Quit
+            return "<h4><u>File->Quit</u></h4>Close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed as long as you have a mouse."
+         case 3: #View->Full Screen
+            return "<h4><u>File->Full Screen</u></h4>Maximizes the window."
+         case 4: #View->Reset Size
+            return "<h4><u>View->Reset Size</u></h4>Resets the main window to its default size."
+         case 5: #Help->Wiki
+            return "<h4><u>Help->Wiki</u></h4>If you are reading this, you know what this button does, it opens the wiki."
+         case 6: #Help->About Game
+            return "<h4><u>Help->About Game</u></h4>Opens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window."
+         case 7: #Debug Window
+            return "<h4><u>Debug Window</u></h4>This option only shows up when debug mode is active. Opens a separate window which displays all of the relavant variables in the game and their state. This also gives you other debug options:\n\n<b>Give Item</b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the user an item of the specified ID and specified amount.\n\n<b>Use Item</b>\n(Not implemented yet) Does the specified item's useItem event without consuming the item or checking if the user has it."
    def wikiItemDescription(self, ID:int):
       match ID:
          case -10:
