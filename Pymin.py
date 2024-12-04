@@ -616,7 +616,9 @@ class NiminFetishFantasyv0975o_fla:
       
       self.style = ttk.Style(self.mo.children["root"])
 
+      #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/pymin.tcl')
       self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
+      #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/gll.tcl')
       self.style.theme_use("nimin")
 
       #key bindings
@@ -1012,8 +1014,15 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["FontColor"].setUEBehavior("Restore")
          self.optionswindow.children["FontColor"].uevar.set(self.fontColor)
          
+         ##Theme selection
+         self.optionswindow.addLabelWithRadioButtons("options","ThemeType",10,76,100,95,("TimesNewRoman",11),"nw",3)
+         self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
+         self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
+         self.optionswindow.configureChild("ThemeType",text=(2,"\"Lineage\""))
+
          ##Save Location
-         self.optionswindow.addFileEntryBox("options","SaveLocation",10,98,400,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
+         self.optionswindow.addFileEntryBox("options","SaveLocation",110,98,300,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
          self.optionswindow.configureChild("SaveLocation",background=self.theme,foreground=self.fontColor)
          self.optionswindow.children["SaveLocation"].uevar.set(str(self.savelocation.resolve()))
          self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = str(self.savelocation.resolve())
@@ -1831,7 +1840,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen == True:
-         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","ApplyButton"):
+         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","ApplyButton"):
             self.optionswindow.configureChild(i,background=color)
          if confmod.as3DebugEnable == True:
             for i in ("dt","ChooseSenario","NoDamage"):
@@ -1865,7 +1874,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("display","SOLMode","FixedRes","Theme","FontColor","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","ApplyButton"):
+         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","ApplyButton"):
             self.optionswindow.configureChild(i,foreground=color)
          if confmod.as3DebugEnable == True:
             for i in ("ChooseSenario","NoDamage"):
