@@ -12543,11 +12543,10 @@ class NiminFetishFantasyv0975o_fla:
       match self.currentZone:
          case 1:
             buttonlist = ButtonList(1,0,0,0,0,1,1,0,0,1,0,0)
-            templist = [6, "Softlik", 1, "Forest", 7, "Dairy Farm", 10, "Plains"]
+            templist = as3.Array(6, "Softlik", 1, "Forest", 7, "Dairy Farm", 10, "Plains")
             if (self.foundValley == True):
                buttonlist[9] = 1
-               templist.append(9)
-               templist.append("Valley")
+               templist.push(9,"Valley")
             self.showButtons(buttonlist)
             self.doButtonChoices(templist)
             def doListen():
@@ -12596,11 +12595,10 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          case 3:
             buttonlist = ButtonList(0,0,0,0,1,1,1,0,0,1,0,0)
-            templist = [6, "Tieden", 5, "Lake", 7, "Forest", 10, "Jungle"]
+            templist = as3.Array(6, "Tieden", 5, "Lake", 7, "Forest", 10, "Jungle")
             if (self.foundValley == True):
                buttonlist[11] = 1
-               templist.append(11)
-               templist.append("Valley")
+               templist.push(11,"Valley")
             self.showButtons(buttonlist)
             self.doButtonChoices(templist)
             def doListen():
@@ -12618,11 +12616,10 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          case 4:
             buttonlist = ButtonList(0,1,0,0,0,1,1,0,1,0,1,0)
-            templist = [6, "Siz'Calit", 2, "Jungle", 7, "Savanna", 9, "Beach", 11, "Desert"]
+            templist = as3.Array(6, "Siz'Calit", 2, "Jungle", 7, "Savanna", 9, "Beach", 11, "Desert")
             if (self.foundValley == True):
                buttonlist[3] = 1
-               templist.append(3)
-               templist.append("Valley")
+               templist.push(3,"Valley")
             self.showButtons(buttonlist)
             self.doButtonChoices(templist)
             def doListen():
@@ -12642,11 +12639,10 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          case 6:
             buttonlist = ButtonList(0,1,0,0,0,1,0,0,0,0,0,0)
-            templist = [6, "Oviasis", 2, "Desert"]
+            templist = as3.Array(6, "Oviasis", 2, "Desert")
             if (self.silRep > 0):
                buttonlist[3] = 1
-               templist.append(3)
-               templist.append("Den")
+               templist.push(3,"Den")
             self.showButtons(buttonlist)
             self.doButtonChoices(templist)
             def doListen():
