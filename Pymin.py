@@ -21721,8 +21721,8 @@ class NiminFetishFantasyv0975o_fla:
 
       affinityCheckArray = as3.Array(self.humanAffinity + self.human,self.horseAffinity + self.horse,self.wolfAffinity + self.wolf,self.catAffinity + self.cat,self.cowAffinity + self.cow,self.lizardAffinity + self.lizard,self.rabbitAffinity + self.rabbit,self.mouseAffinity + self.mouse,self.birdAffinity + self.bird,self.pigAffinity + self.pig,self.skunkAffinity + self.skunk,self.bugAffinity + self.bug)
       affinityCheckArray.sort(16)
-      domCheck = affinityCheckArray.pop()
-      second = affinityCheckArray.pop()
+      domCheck = affinityCheckArray[-1]
+      second = affinityCheckArray[-2]
       if ((domCheck == self.humanAffinity + self.human) and (self.human >= 0)):
          self.dominant = 1
       elif ((domCheck == self.horseAffinity + self.horse) and (self.horse >= 0)):
@@ -22271,8 +22271,8 @@ class NiminFetishFantasyv0975o_fla:
       #as3.trace(f"Face :{self.faceType}")
       tempTailArray = as3.Array(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity,self.skunkAffinity,self.bugAffinity,self.humanTaurAffinity)
       tempTailArray.sort(16)
-      maxTail = tempTailArray.pop()
-      secondTail = tempTailArray.pop()
+      maxTail = tempTailArray[-1]
+      secondTail = tempTailArray[-2]
       maxNonTail = as3.Math.max(self.humanAffinity)
       if (self.lockTail == 0):
          if (self.tail < 1):
@@ -22516,8 +22516,8 @@ class NiminFetishFantasyv0975o_fla:
       legArray = as3.Array(bipedal,bipedalDigiPaw,0)
       legArray = legArray.concat(otherLegs)
       legArray.sort(16)
-      legArray.pop()
-      secondLegs = legArray.pop()
+      legArray[-1]
+      secondLegs = legArray[-2]
       if (self.lockLegs == 0):
          #if ((bipedalHooves > secondLegs + 50) and (self.legType != 2)):
          #   tempStr += self.legChange(2,ret=True)
