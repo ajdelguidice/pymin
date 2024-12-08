@@ -19062,7 +19062,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.outputMainText("With the Minotaur laying on the ground, continuing to pleasure himself, you're free to either go up to the surface or venture further down the stairs.",True)
                self.showButtons(ButtonList(1,1,0,1,0,0,0,0,0,0,0,0))
                templist = as3.Array(2,"Down",4,"Firmshaft")
-               if (self.currentDungeon != 1001):
+               if (self.currentDungeon == 1001):
                   templist.push(1,"Fight")
                self.doButtonChoices(templist)
                def doListen():
