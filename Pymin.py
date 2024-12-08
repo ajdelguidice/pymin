@@ -3465,7 +3465,9 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" Your {self.clothesBottom()} feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff {self.oneYour(1)} cock{self.plural(1)} into a pussy half your size without any difficulty, you're so slimy!"
       if self.balls > 0:
          if self.showBalls:
-            tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles. They"
+            tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
+            if self.blueBalls > 36:
+               tempStr += " They"
          elif not self.showBalls and self.gametweaks[0] == True and self.blueBalls > 36:
             tempStr += "\n\nYour internal balls"
          if ((self.blueBalls > 36) and (self.blueBalls <= 84)):
