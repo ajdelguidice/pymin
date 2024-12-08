@@ -22516,7 +22516,6 @@ class NiminFetishFantasyv0975o_fla:
       legArray = as3.Array(bipedal,bipedalDigiPaw,0)
       legArray = legArray.concat(otherLegs)
       legArray.sort(16)
-      legArray[-1]
       secondLegs = legArray[-2]
       if (self.lockLegs == 0):
          #if ((bipedalHooves > secondLegs + 50) and (self.legType != 2)):
