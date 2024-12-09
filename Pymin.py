@@ -5386,7 +5386,8 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText("This slot is empty.",True)
          self.doBag(noclear=True)
       else:
-         self.showPage(False,"")
+         if self.useItemHidePage(ID):
+            self.showPage(False,"")
          self.choicePage = 1
          self.outputMainText(self.itemDescription(ID),True)
          if ((self.usableItem(ID) == True) or (self.conItem(ID) == True)):
@@ -6061,6 +6062,33 @@ class NiminFetishFantasyv0975o_fla:
       if as3.typeName(IDArray[ID]) != "undefined" and IDArray[ID] not in (None,"undefined"):
          tempNum = IDArray[ID]
       self.hunger += 2 * tempNum
+   def canUseItemNow(self,ID:int):
+      if self.currentState == 0: #Title
+         return False
+      else:
+         if self.currentState == 3: #Masturbate
+            #Only includes relavant things, ex: milker
+            templist = as3.Array(104,106)
+            if templist.indexOf(ID) != -1:
+               return True
+            return False
+         else:
+            templist = as3.Array(200,206,215,229,233,234,236,237,252,254,404)
+            if self.currentState == 1: #Normal
+               templist.push(231,250,505,510)
+            elif self.currentState == 2: #Battle
+               templist.push(232,526,528)
+               if False: #Remove teleport scrolls in battle
+                  templist.push(3,121,122,123,124,125,128)
+            if IDArray.indexOf(ID) != -1:
+               return False
+            return True
+   @staticmethod
+   def useItemHidePage(ID:int):
+      if ID in (101,102,200,206,215,229,233,234,236,237,252,254,404):
+         return False
+      else:
+         return True
    def doItemUse(self, ID:int): #!optimize
       #Function which does the defined behavior of item ID
       self.tempNum = 0
