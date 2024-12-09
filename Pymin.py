@@ -22,6 +22,9 @@ __version__ = "1.0.10"
 scriptdirectory = Path(__file__).resolve().parent
 as3.setDataDirectory(scriptdirectory)
 
+class NullData(Exception):
+   ...
+
 def separator():
    """
    Returns platform's path separator
@@ -25267,6 +25270,9 @@ class NiminFetishFantasyv0975o_fla:
                   as3.trace(f"SaveConverter: Error: Detected input file type {ext} is not a supported file type")
                   self.sfcwindow.configureChild("message",text=f"Error: Detected input file type {ext} is not a supported file type")
                   return
+      if xml == None:
+         as3.trace("SaveConverter: Error: Input save data is null. Try again")
+         return
       match outputfiletype:
          case "xml":
             xmletree.indent(xml,space="\t")
@@ -25303,12 +25309,18 @@ class NiminFetishFantasyv0975o_fla:
       try:
          tempsol = sol.SOL("NimSave")
          tempsol = {"data":self.toSOLReturn(inputfile,outputfile,xmlobject,xmlroot)}
+         if tempsol["data"] == None:
+            raise NullData()
          tempba = amf3.ByteArray()
          tempba.writeObject(tempsol)
          with open(outputfile,"wb") as f:
             f.write(tempba.getvalue())
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Success")
+      except NullData:
+         as3.trace("File Loader: Error: Nim save file data is null. Try again")
+         if self.sfcopen == True:
+            self.sfcwindow.configureChild("message",text="Error")
       except:
          as3.trace("File Loader: Error: Failed to convert file to type \"nim\"")
          if self.sfcopen == True:
