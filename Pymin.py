@@ -8215,6 +8215,8 @@ class NiminFetishFantasyv0975o_fla:
    def doStash(self,noclear=False,refresh=False):
       #Stash dialog
       if self.gametweaks[10]:
+         self.inStash = False
+         self.showPage(False,"")
          self.hideAmount()
          self.hideSGButton()
          self.hideLGButton()
@@ -8225,8 +8227,10 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             match self.buttonChoice:
                case 4:
+                  self.inStash = True
                   self.doStoreStash()
                case 8:
+                  self.inStash = True
                   self.doRemoveStash()
                case 12:
                   self.doReturn()
