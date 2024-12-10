@@ -155,7 +155,7 @@ class NiminFetishFantasyv0975o_fla:
       self.dir = scriptdirectory
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
-      self.gametweaks = [False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9)]
+      self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseOldStash(10)]
       self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode (This is a thing because Tcl/tk only supports integer values for font sizes)
       self.fixedresolution = "" #Resolution for fixed resolution mode
@@ -1081,6 +1081,11 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the digitgrade. Before they had human feet, now they have paws and hooves. Paws were already implemented before (internally called \"digipaws\") but were only used for the skunk race. (Incomplete)")
 
+         ##Use old stash
+         self.optionswindow.addCheckboxWithLabel("gt","UseOldStash",200,98,210,20,("TimesNewRoman",11),"nw","Use original stash")
+         self.optionswindow.configureChild("UseOldStash",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["UseOldStash"].frame,text="Use the stash from the original game instead of the new one that works like the bag.")
+
          #Apply button
          self.optionswindow.addButton("root","ApplyButton",360,172,50,25,("TimesNewRoman",12),"nw")
          self.optionswindow.configureChild("ApplyButton",background=self.theme,foreground=self.fontColor)
@@ -1123,6 +1128,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["DirectPathToSanc"].select()
       if self.gametweaks[9] == True:
          self.optionswindow.children["CorrectBeastRaceFeet"].select()
+      if self.gametweaks[10] == True:
+         self.optionswindow.children["UseOldStash"].select()
       if confmod.as3DebugEnable == True:
          if self.debugtweaks[0] == True:
             self.optionswindow.children["ChooseSenario"].select()
@@ -1238,6 +1245,10 @@ class NiminFetishFantasyv0975o_fla:
             self.gametweaks[9] = True
          else:
             self.gametweaks[9] = False
+         if self.optionswindow.children["UseOldStash"].getcb() == 1:
+            self.gametweaks[10] = True
+         else:
+            self.gametweaks[10] = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
                self.debugtweaks[0] = True
@@ -1776,7 +1787,7 @@ class NiminFetishFantasyv0975o_fla:
                self.newGameGo()
          case (16,True): #Shift
             self.shiftHeld = True
-            if self.moveItemID != 0 and self.buttonsVisible[12] == True:
+            if self.moveItemID != 0 and self.buttonsVisible[12] == True and self.gametweaks[10] == False:
                if self.inBag == True and self.mts == False:
                   self.buttonWrite(12,"Move To Stash")
                   self.bagDiscard = True
@@ -5573,7 +5584,7 @@ class NiminFetishFantasyv0975o_fla:
             self.moveItemAmountShow()
             self.moveItemAmountChange(self.moveItemStack)
          """
-      if self.inBag == True or self.inStash == True:
+      if (self.inBag or self.inStash) and self.gametweaks[10] == False:
          if self.moveItemID != 0 and self.buttonsVisible[12] == True:
             if self.inBag == True:
                self.buttonWrite(12,"Move To Stash")
@@ -8203,83 +8214,101 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
    def doStash(self,noclear=False,refresh=False):
       #Stash dialog
-      self.mtb = False
-      self.inStash = True
-      self.tempBagPage = 1
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
-      self.showMoveItem(True)
-      if noclear == False and refresh == False:
-         self.choiceListButtons("Stash")
-         self.choiceListBlanks()
-         self.enableAllButtons()
+      if self.gametweaks[10]:
+         self.hideAmount()
+         self.hideSGButton()
+         self.hideLGButton()
+         self.hideNGButton()
+         self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
+         self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.",True)
+         self.doButtonChoices((4,"Store",8,"Remove",12,"Return"))
+         def doListen():
+            match self.buttonChoice:
+               case 4:
+                  self.doStoreStash()
+               case 8:
+                  self.doRemoveStash()
+               case 12:
+                  self.doReturn()
+         self.doListen = doListen
       else:
-         self.choicePage = self.stashPage
-         if noclear == True:
-            x = 0 #placeholder
-         else: #when refresh is True.
-            self.bsRefresh("Stash")
-      if self.bagDiscard == True:
-         self.buttonWrite(12,"Move To Bag")
-      if self.moveItemID == 0:
-         self.mo.configureChild("discardbutton",state="disabled")
-      else:
-         self.mo.configureChild("discardbutton",state="normal")
-      def doListen():
-         self.choiceListSelect("Stash")
-         match self.buttonChoice:
-            case 13:
-               tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
-               if (self.moveItemStack > 1):
-                  tempStr += f" x{self.moveItemStack}"
-               tempStr += "?"
-               self.outputMainText(tempStr,True)
-               self.buttonConfirm()
-               self.buttonShiftOverride = True
-               def doListen():
-                  self.buttonShiftOverride = False
-                  if self.bagDiscard == True and self.shiftHeld == False:
-                     self.bagDiscard = False
-                  if (self.buttonChoice == 6):
-                     self.moveItemID = 0
-                     self.moveItemStack = 0
-                     self.showMoveItem(False)
-                  self.doStash()
-               self.doListen = doListen
-            case 12:
-               if self.bagDiscard == True:
-                  self.moveToBag()
-               else:
-                  if (self.moveItemID != 0):
-                     self.hideAmount()
-                     tempStr = f"Closing your stash while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}"
-                     if (self.moveItemStack > 1):
-                        tempStr += f" x{self.moveItemStack}"
-                     tempStr += "?"
-                     self.outputMainText(tempStr,True)
-                     self.buttonConfirm()
-                     self.buttonShiftOverride = True
-                     def doListen():
-                        self.buttonShiftOverride = False
-                        if (self.buttonChoice == 6):
-                           self.moveItemID = 0
-                           self.moveItemStack = 0
-                           self.showMoveItem(False)
-                           self.inStash = False
-                           self.doReturn()
-                        else:
-                           self.doStash()
-                     self.doListen = doListen
+         self.mtb = False
+         self.inStash = True
+         self.tempBagPage = 1
+         self.hideSGButton()
+         self.hideLGButton()
+         self.hideNGButton()
+         self.showMoveItem(True)
+         if noclear == False and refresh == False:
+            self.choiceListButtons("Stash")
+            self.choiceListBlanks()
+            self.enableAllButtons()
+         else:
+            self.choicePage = self.stashPage
+            if noclear == True:
+               x = 0 #placeholder
+            else: #when refresh is True.
+               self.bsRefresh("Stash")
+         if self.bagDiscard == True:
+            self.buttonWrite(12,"Move To Bag")
+         if self.moveItemID == 0:
+            self.mo.configureChild("discardbutton",state="disabled")
+         else:
+            self.mo.configureChild("discardbutton",state="normal")
+         def doListen():
+            self.choiceListSelect("Stash")
+            match self.buttonChoice:
+               case 13:
+                  tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
+                  if (self.moveItemStack > 1):
+                     tempStr += f" x{self.moveItemStack}"
+                  tempStr += "?"
+                  self.outputMainText(tempStr,True)
+                  self.buttonConfirm()
+                  self.buttonShiftOverride = True
+                  def doListen():
+                     self.buttonShiftOverride = False
+                     if self.bagDiscard == True and self.shiftHeld == False:
+                        self.bagDiscard = False
+                     if (self.buttonChoice == 6):
+                        self.moveItemID = 0
+                        self.moveItemStack = 0
+                        self.showMoveItem(False)
+                     self.doStash()
+                  self.doListen = doListen
+               case 12:
+                  if self.bagDiscard == True:
+                     self.moveToBag()
                   else:
-                     self.inStash = False
-                     self.doReturn(nodjp=True)
-            case 4 | 8:
-               self.doStash()
-            case _:
-               self.choicePage = self.stashPage
-               self.itemMove(self.buttonChoice)
-      self.doListen = doListen
+                     if (self.moveItemID != 0):
+                        self.hideAmount()
+                        tempStr = f"Closing your stash while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}"
+                        if (self.moveItemStack > 1):
+                           tempStr += f" x{self.moveItemStack}"
+                        tempStr += "?"
+                        self.outputMainText(tempStr,True)
+                        self.buttonConfirm()
+                        self.buttonShiftOverride = True
+                        def doListen():
+                           self.buttonShiftOverride = False
+                           if (self.buttonChoice == 6):
+                              self.moveItemID = 0
+                              self.moveItemStack = 0
+                              self.showMoveItem(False)
+                              self.inStash = False
+                              self.doReturn()
+                           else:
+                              self.doStash()
+                        self.doListen = doListen
+                     else:
+                        self.inStash = False
+                        self.doReturn(nodjp=True)
+               case 4 | 8:
+                  self.doStash()
+               case _:
+                  self.choicePage = self.stashPage
+                  self.itemMove(self.buttonChoice)
+         self.doListen = doListen
    def moveToStash(self):
       self.mts = True
       self.choiceListButtons("Stash")
@@ -8370,6 +8399,107 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.moveItemHide()
          self.moveItemAmountHide()
+   def doStoreStash(self):
+      self.choiceListButtons("Bag")
+      self.outputMainText("Click on an item you would like to stash.\n\nClick 'Return' to return to the main stash options.",True)
+      def doListen():
+         self.choiceListSelect("Bag")
+         match self.buttonChoice:
+            case 12:
+               self.doStash()
+            case 4 | 8:
+               self.choiceListButtons("Bag")
+            case _:
+               as3.trace(self.bagArray[self.choiceListResult[1]])
+               if (self.canLose(self.bagArray[self.choiceListResult[1]]) == True):
+                  self.stashStore(self.choiceListResult[1])
+               else:
+                  self.doStoreStash()
+                  self.outputMainText("You cannot remove the selected item from your bag for some reason. It may be cursed or need to be unequipped first.\n\nPlease select another item.",True)
+      self.doListen = doListen
+   def doRemoveStash(self):
+      self.choiceListButtons("Stash")
+      self.outputMainText("Click on an item you would like to remove from stash.\n\nClick 'Return' to return to the main stash options.",True)
+      def doListen():
+         self.choiceListSelect("Stash")
+         match self.buttonChoice:
+            case 12:
+               self.doStash()
+            case 4 | 8:
+               self.choiceListButtons("Stash")
+            case _:
+               self.stashRemove(self.choiceListResult[1])
+      self.doListen = doListen
+   def stashStore(self, storeItem:int):
+      self.tempStoreItem = storeItem
+      self.choiceListButtons("Stash")
+      self.choiceListBlanks()
+      self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
+      self.enableAllButtons()
+      def doListen():
+         tempNum = 0
+         tempNum2 = 0
+         self.choiceListSelect("Stash")
+         if (self.buttonChoice == 12):
+            self.doStash()
+         elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+            self.choiceListButtons("Stash")
+            self.choiceListBlanks()
+         else:
+            tempNum = self.bagArray[self.tempStoreItem]
+            tempNum2 = self.bagStackArray[self.tempStoreItem]
+            if ((tempNum == self.stashArray[self.choiceListResult[1]]) and (self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum))):
+               if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
+                  self.bagStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
+                  self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+               else:
+                  self.stashStackArray[self.choiceListResult[1]] += tempNum2
+                  self.bagSlotClear(self.tempStoreItem)
+            else:
+               self.bagSlotClear(self.tempStoreItem)
+               self.bagArray[self.tempStoreItem] = self.choiceListResult[0]
+               self.bagStackArray[self.tempStoreItem] = self.stashStackArray[self.choiceListResult[1]]
+               self.stashArray[self.choiceListResult[1]] = tempNum
+               self.stashStackArray[self.choiceListResult[1]] = tempNum2
+            self.doStoreStash()
+      self.doListen = doListen
+   def stashRemove(self, storeItem:int):
+      self.tempStoreItem = storeItem
+      self.choiceListButtons("Bag")
+      self.choiceListBlanks()
+      self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
+      self.enableAllButtons()
+      def doListen():
+         tempNum = 0
+         tempNum2 = 0
+         self.choiceListSelect("Bag")
+         if (self.buttonChoice == 12):
+            self.doStash()
+         elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+            self.choiceListButtons("Bag")
+            self.choiceListBlanks()
+         elif (self.canLose(self.choiceListResult[0]) == True):
+            tempNum = self.stashArray[self.tempStoreItem]
+            tempNum2 = self.stashStackArray[self.tempStoreItem]
+            if ((tempNum == self.bagArray[self.choiceListResult[1]]) and (self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum))):
+               if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
+                  self.stashStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
+                  self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+               else:
+                  self.bagStackArray[self.choiceListResult[1]] += tempNum2
+                  self.stashArray[self.tempStoreItem] = 0
+                  self.stashStackArray[self.tempStoreItem] = 0
+            else:
+               self.stashArray[self.tempStoreItem] = self.choiceListResult[0]
+               self.stashStackArray[self.tempStoreItem] = self.bagStackArray[self.choiceListResult[1]]
+               self.bagSlotClear(self.choiceListResult[1])
+               self.bagArray[self.choiceListResult[1]] = tempNum
+               self.bagStackArray[self.choiceListResult[1]] = tempNum2
+            self.doRemoveStash()
+         else:
+            self.stashRemove(self.tempStoreItem)
+            self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another slot to move your stashed item into.",True)
+      self.doListen = doListen
    def stashSlotAdd(self, amount:int):
       for i in range(1, amount):
          if (self.stashArray.length < 27):
