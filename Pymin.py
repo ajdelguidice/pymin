@@ -25496,21 +25496,28 @@ class NiminFetishFantasyv0975o_fla:
       else:
          return str(string)
    @staticmethod
-   def solGetFileName(string):
-      match confmod.platform:
-         case "Windows":
-            templist = str(string).split("\\")[-1].split(".")
-            templist.pop(-1)
-         case "Linux" | "Darwin":
-            templist = str(string).split("/")[-1].split(".")
-            templist.pop(-1)
-      tempstr = ""
-      for i in templist:
-         if i == templist[-1]:
-            tempstr += i
-         else:
-            tempstr += f"{i}."
-      return tempstr
+   def solGetFileName(path:str|Path):
+      if type(path) == str:
+         match confmod.platform:
+            case "Windows":
+               templist = path.split("\\")[-1].split(".")
+            case "Linux" | "Darwin":
+               templist = path.split("/")[-1].split(".")
+         templist.pop(-1)
+         tempstr = ""
+         for i in templist:
+            if i == templist[-1]:
+               tempstr += i
+            else:
+               tempstr += f"{i}."
+         return tempstr
+      else: #Is path object
+         filename = path.resolve().name.split(".")
+         if len(filename) == 1:
+            return filename[0]
+         elif len(filename) > 1:
+            filename.pop()
+            return ".".join(filename)
    def toSOLReturn(self,inputfile,outputfile,xmlobject=None,xmlroot=None):
       #!reraise error if error occurs for this and toxml
       try:
@@ -25681,7 +25688,7 @@ class NiminFetishFantasyv0975o_fla:
             tpa.append(int(lp.find(f"i{i+4}").text))
             i += 5
          data["pregSave"] = tpa
-         sol.save(data,outputfile,AMF3)
+         sol.save(data,str(outputfile),AMF3)
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Success")
       except:
