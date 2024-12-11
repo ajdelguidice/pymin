@@ -13123,17 +13123,16 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 2:
             tempArray = as3.Array(1,"Buy one",3,"Buy six",11,"Leave")
-            if (self.knowMaleEnhance == False):
-               tempArray.push(6,"Buy recipe")
-            self.showButtons(ButtonList(1,0,1,0,0,1,0,0,0,0,1,0))
             tempStr = "Walking through the streets, a cloaked man notices your browsing and interjects your path.\n\n\"Hello there, stranger. You look like you might be interested in some products. I have a very special deal I'm trying to get around. Have you ever wished you were 'bigger' in the downstairs department?"
             if (self.gender == 2):
                tempStr += " Or in your case, your husband or boyfriend?"
             tempStr += " Well, I've got the thing for you.\" He lifts open one side of his cloak, revealing many pockets filled with little pills. \"These babies will make any man bigger in no time. Male Enhancement, is what I call them. And if you're interested, I can sell you one for 20 coins, or six for 100."
             if (self.knowMaleEnhance == False):
                tempStr += " Or, for the low low price of 200 coins, I can give you the recipe to making them."
+               tempArray.push(6,"Buy recipe")
             tempStr += "\"\n\n\"Would you be interested in any?\""
             self.outputMainText(tempStr,True)
+            self.showButtons(ButtonList(1,0,1,0,0,1,0,0,0,0,1,0))
             self.doButtonChoices(tempArray)
             def doListen():
                match self.buttonChoice:
