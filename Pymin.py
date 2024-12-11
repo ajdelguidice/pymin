@@ -6808,7 +6808,7 @@ class NiminFetishFantasyv0975o_fla:
                self.cockSnakeVenom += 5
                self.outputMainText(tempStr,True)
                self.doEnd()
-            elif ((self.cockTotal < 1) and (self.vagTotal > 0)):
+            elif (self.vagTotal > 0):
                tempStr = f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. Within seconds, you begin to shudder..."
                if ((self.clitSize > 20) and (self.percent() <= 5)):
                   tempStr += f" You feel {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)} swell and shift within your {self.clothesBottom()}, your lips starting to grow quite oddly as well..."
