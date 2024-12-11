@@ -2626,8 +2626,7 @@ class NiminFetishFantasyv0975o_fla:
          self.rndResult = self.rndArray[round(random.random() * (self.rndArray.length - 1))]
          self.rndArray = as3.Array()
          return self.rndResult
-   @staticmethod
-   def randChooseFromArray(array:as3.Array)
+   def randChooseFromArray(self,array:as3.Array):
       if (array.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.rndArray[0]} at {self.hour} hour), or else you'll get the hose.",False)
       else:
@@ -15763,6 +15762,56 @@ class NiminFetishFantasyv0975o_fla:
             def doListen():
                if (self.buttonChoice == 6):
                   tempStr = "It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that "
+                  tempArr = as3.Array(1,2)
+                  if ((self.hairstyleLength(self.hair) == True) and (self.hairLength < 10)):
+                     tempArr.push(3)
+                  if (self.cockTotal > 0):
+                     tempArr.push(4)
+                  if ((self.balls > 0) and (self.showBalls == True)):
+                     tempArr.push(5)
+                  if (self.cockTotal > 0):
+                     tempArr.push(6)
+                  if (self.breastSize > 2):
+                     tempArr.push(7)
+                  if (self.lactation > 0):
+                     tempArr.push(8)
+                  if (self.vagTotal > 0):
+                     tempArr.push(9)
+                  if (self.gender != 0):
+                     tempArr.push(10)
+                  match self.randChooseFromArray(tempArr):
+                     case 1:
+                        tempStr += "your hips stretch outward, becoming wider."
+                        self.hips += math.floor(self.percent() / 20 + 1)
+                     case 2:
+                        tempStr += f"your butt balloons outward behind you, straining your {self.clothesBottom()}."
+                        self.butt += math.floor(self.percent() / 20 + 1)
+                     case 3:
+                        tempStr += "your hair suddenly grows faster than you can blink, much longer than before."
+                        self.hairLength += 2
+                     case 4:
+                        tempStr += f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric."
+                        self.cockSize += math.floor(self.percent() / 20 + 1)
+                     case 5:
+                        tempStr += "your testicles swell between your thighs, making you hunch over your crotch for an instant."
+                        self.ballSize += math.floor(self.percent() / 20 + 1)
+                     case 6:
+                        tempStr += f"you blast your semen into your {self.clothesBottom()}, a sudden spontaneous ejaculation."
+                        self.cumAmount()
+                        tempStr += self.doLust(-20,0,ret=True)
+                     case 7:
+                        tempStr += f"your breasts inflate, nearly tearing through your {self.clothesTop()}."
+                        self.breastSize += math.floor(self.percent() / 20 + 1)
+                     case 8:
+                        tempStr += f"all the milk in your breasts sprays out of your nipples, completely soaking your {self.clothesTop()}."
+                        self.milkAmount(1)
+                     case 9:
+                        tempStr += f"your vulva expands {self.legWhere(1)} your {self.legDesc(2)}, squished between your thighs and making you walk awkwardly."
+                        self.vulvaSize += math.floor(self.percent() / 20 + 1)
+                     case 10:
+                        tempStr += "your blood floods to your genitals, suddenly arousing you."
+                        tempStr += self.doLust(self.percent() // 5,0,ret=True)
+                  """
                   while True:
                      chance = math.floor(random.random() * (1 + 10 - 1)) + 1
                      match chance:
@@ -15815,6 +15864,7 @@ class NiminFetishFantasyv0975o_fla:
                               tempStr += "your blood floods to your genitals, suddenly arousing you."
                               tempStr += self.doLust(self.percent() // 5,0,ret=True)
                               break
+                  """
                   self.outputMainText(tempStr + " You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.",True)
                   self.hrs += 2
                   self.doEnd()
