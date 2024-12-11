@@ -962,7 +962,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.optionsWinOpen == False:
          #window
          self.optionswindow = itk.window(width=420,height=207,title="Options",type_="frame",color=self.theme,mainwindow=False,nomenu=True)
-         self.mo.group(self.optionswindow.children["root"])
+         #self.mo.group(self.optionswindow.children["root"])
          #self.optionswindow.disableResizing()
 
          self.optionswindow.addNotebook("root","nb")
@@ -1093,6 +1093,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("ApplyButton",text="Apply",command=self.OWSaveOptions)
 
          self.optionswindow.bindChild("root","<Destroy>",self.closeOptionsWindow)
+         self.optionswindow.children["root"].transient(self.mo.children["root"])
          self.OWLoadVars()
          self.optionsWinOpen = True
       else:
@@ -24704,14 +24705,7 @@ class NiminFetishFantasyv0975o_fla:
          self.openSaveInvalidDialog()
       else:
          self.checkExistsMakeDir(self.savelocation,True)
-   def nullfunction(self):
-      pass
    def openSaveInvalidDialog(self):
-      self.mo.addLabel("root","GameHider",0,0,1176,662,("TkTextFont",8),anchor="nw")
-      self.mo.configureChild("GameHider",background=self.theme)
-      #!Make keybind stuff only happen when entry box is selected
-      self.mo.children["root"].bind('<KeyPress>',self.nullfunction)
-      self.mo.children["root"].bind('<KeyRelease>',self.nullfunction)
       self.saveinvaliddialog = tkinter.Toplevel()
       self.saveinvaliddialog.geometry("370x160")
       self.saveinvaliddialog.resizable(False,False)
@@ -24730,6 +24724,8 @@ class NiminFetishFantasyv0975o_fla:
       self.sidoow = tkinter.Button(self.saveinvaliddialog, text="Options Window", command=self.saveInvalidOOW)
       self.sidoow.place(x=250,y=110,width=110,height=40,anchor="nw")
       CreateToolTip(self.sidoow, text="Open the options window to change it in game.")
+      self.saveinvaliddialog.transient(self.mo.children["root"])
+      self.saveinvaliddialog.grab_set()
    def saveInvalidIgnore(self):
       self.closeSaveInvalidDialog()
    def saveInvalidDefault(self):
@@ -24741,9 +24737,6 @@ class NiminFetishFantasyv0975o_fla:
       self.closeSaveInvalidDialog(False)
    def closeSaveInvalidDialog(self,rgh=True):
       if rgh == True:
-         self.mo.destroyChild("GameHider")
-         self.mo.children["root"].bind('<KeyPress>',self.keypress)
-         self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
          self.saveInvalid = False
       self.saveinvaliddialog.destroy()
    def showStatsPane(self):
