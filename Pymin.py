@@ -4243,8 +4243,11 @@ class NiminFetishFantasyv0975o_fla:
          self.showNewSaveLoadDialog()
       else:
          self.showNSLDBlinder(False)
+      templist = as3.Array(4,"Other File",8,f"{which}")
+      if self.currentState != 0:
+         templist.push(12,"Return")
       self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
-      self.doButtonChoices(as3.Array(4,"Other File",8,f"{which}",12,"Return"))
+      self.doButtonChoices(templist)
       self.showDiscard()
       self.mo.configureChild("discardbutton",text="Convert")
    def nsldGetSorted(self):
