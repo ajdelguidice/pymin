@@ -17,6 +17,7 @@ try:
    from warnings import deprecated
 except:
    from as3lib.py_backports import deprecated
+from secrets import choice
 
 __version__ = "1.0.10"
 scriptdirectory = Path(__file__).resolve().parent
@@ -2630,7 +2631,7 @@ class NiminFetishFantasyv0975o_fla:
       if (array.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.rndArray[0]} at {self.hour} hour), or else you'll get the hose.",False)
       else:
-         return array[round(random.random() * (array.length - 1))]
+         return choice(array)
    def stats(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
       #Updates stats and displays the up/down images
       if self.currentState != 2 and noclear == False:
