@@ -2625,7 +2625,13 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.rndResult = self.rndArray[round(random.random() * (self.rndArray.length - 1))]
          self.rndArray = as3.Array()
-      return self.rndResult
+         return self.rndResult
+   @staticmethod
+   def randChooseFromArray(array:as3.Array)
+      if (array.length < 1):
+         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.rndArray[0]} at {self.hour} hour), or else you'll get the hose.",False)
+      else:
+         return array[round(random.random() * (array.length - 1))]
    def stats(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
       #Updates stats and displays the up/down images
       if self.currentState != 2 and noclear == False:
