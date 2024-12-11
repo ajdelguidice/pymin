@@ -25284,78 +25284,10 @@ class NiminFetishFantasyv0975o_fla:
       if (self.moveitemamountvisible):
          self.mo.configureChild("moveitemamount",text="")
    def openSFC(self):
-      """
-      Original Savefile output code
-      --------------------------------
-      if(slot == 4)
-      {
-         so = new Object();
-         so.data = new Object();
-      }
-      else
-      {
-         so = SharedObject.getLocal("Nimin_Save" + slot + "","/");
-      }
-      so.data.versionNumber = this.versionNumber;
-      so.data.track = trackSave;
-      so.data.stats = statsSave;
-      so.data.level = levelSave;
-      so.data.mod = modSave;
-      so.data.quality = qualitySave;
-      so.data.cock = cockSave;
-      so.data.girl = girlSave;
-      so.data.gear = gearSave;
-      so.data.status = statusSave;
-      so.data.affinity = affinitySave;
-      so.data.rep = repSave;
-      so.data.knowledge = knowledgeSave;
-      so.data.boss = bossSave;
-      so.data.knowSimpleAlchemy = knowSimpleAlchemySave;
-      so.data.knowAdvancedAlchemy = knowAdvancedAlchemySave;
-      so.data.knowComplexAlchemy = knowComplexAlchemySave;
-      so.data.majorFetish = majorFetishSave;
-      so.data.moderateFetish = moderateFetishSave;
-      so.data.minorFetish = minorFetishSave;
-      so.data.kid = kidSave;
-      so.data.trav = travSave;
-      so.data.bagSave = bagSaveArray;
-      so.data.bagStackSave = bagStackSaveArray;
-      so.data.stashSave = stashSaveArray;
-      so.data.stashStackSave = stashStackSaveArray;
-      so.data.pregSave = pregSaveArray;
-      if(slot == 4)
-      {
-         saveToFile = new FileReference();
-         byteData = new ByteArray();
-         byteData.writeObject(so);
-         saveToFile.save(byteData,"NiminSave1.nim");
-      }
-      else
-      {
-         so.flush();
-      }
-      --------------------------------
-      basic rundown
-      creates an object called so;
-         if the save slot is 4 (load from/save to file button);
-            makes so and so.data blank Objects
-         else;
-            makes so the SharedObect at "<appspecificdatadirectory>/Nimin_Save#.sol"
-      puts data to be saved into so.data
-      saves file;
-         if the save slot is 4 (load from/save to file button);
-            creates a FileReference object called saveToFile
-            creates a ByteArray object called byteData
-            writes the object so to byteData
-            saves saveToFile to specified location with byteData in it
-         else;
-            saves so to disk
-      """
       if self.sfcopen == False:
          self.sfcwindow = itk.window(500,294+40,"Pymin: Save File Converter","frame",self.theme,False,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
-         self.sfcwindow.group(self.mo.children["root"])
          self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman', 20, 'bold'),"n")
          self.sfcwindow.configureChild("title",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
          
@@ -25384,6 +25316,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim")
          self.sfcoutputfilecombobox.place(x=390,y=224+10,width=60,height=24,anchor="nw")
 
+         self.sfcwindow.children["root"].transient(self.mo.children["root"])
          self.sfcwindow.addButton("display","convertbutton",500-50-64,250+20,64,24,("TimesNewRoman",12),"nw")
          self.sfcwindow.configureChild("convertbutton",text="Convert",foreground=self.fontColor,background=self.theme,command=self.convertButton)
          self.sfcopen = True
