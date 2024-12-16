@@ -1,7 +1,7 @@
 import requests, platform
 from shutil import rmtree
-from pathlib import Path, PureWindowsPath, PurePosixPath
-from sys import argv, version_info #!version_info is not needed
+from pathlib import Path
+from sys import argv
 from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlretrieve
