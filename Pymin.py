@@ -12624,12 +12624,18 @@ class NiminFetishFantasyv0975o_fla:
                               tempInt = 0
                               if (self.buttonChoice == 6):
                                  self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.",True)
-                                 tempInt = math.ceil((self.str_ + self.ment + self.lib + self.sen) / 4)
+                                 combinedStats = self.str_ + self.ment + self.lib + self.sen
+                                 if self.gametweaks[1] and combinedStats > 400:
+                                    tempInt = 100
+                                    addStr = combinedStats - 400
+                                 else:
+                                    tempInt = math.ceil(combinedStats / 4)
+                                    addStr = 0
                                  self.str_ = 0
                                  self.ment = 0
                                  self.lib = 0
                                  self.sen = 0
-                                 self.stats(tempInt,tempInt,tempInt,tempInt)
+                                 self.stats(tempInt + addStr,tempInt,tempInt,tempInt)
                                  self.levelUP -= 3
                                  self.doEnd()
                               else:
