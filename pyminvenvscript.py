@@ -1,7 +1,7 @@
 import requests, platform
 from shutil import rmtree
-from pathlib import Path
-from sys import argv, version_info
+from pathlib import Path, PureWindowsPath, PurePosixPath
+from sys import argv, version_info #!version_info is not needed
 from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlretrieve
@@ -41,7 +41,7 @@ else:
 
 def create(script_url="",as3libversion=""):
     #Sets up the virtual environment
-    if (platform.system() == "Windows" and len(str(venvpath)) in (2,3) and venvpath[0] in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" and venvpath[1] == ":") or venvpath == "/":
+    if (platform.system() == "Windows" and len(str(venvpath)) in (2,3) and venvpath[0] in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" and venvpath[1] == ":") or str(venvpath) == "/":
         print("Error: venvpath is set to the root directory. Can not create a virtual environment here.")
         exit()
     print("Creating the environment...")
