@@ -2825,7 +2825,8 @@ class NiminFetishFantasyv0975o_fla:
       if (self.currentState == 2):
          self.currentState = 1
       if (self.inDungeon == True):
-         self.regionChange(self.currentZone)
+         #self.regionChange(self.currentZone)
+         self.goToInDoProcess = self.currentZone
          self.inDungeon = False
       self.doCoin(-tempNum)
       self.exhaustion -= self.percent() // 20
@@ -19664,7 +19665,10 @@ class NiminFetishFantasyv0975o_fla:
                         self.doLust(-math.floor(self.percent() / 20 + self.sen / 10),2,1,2)
                   else:
                      self.doRape()
-                     self.eLustChange = math.floor(self.percent() / 10 + self.eSen / 5)
+                     if confmod.as3DebugEnable:
+                        self.eLustChange = 1000
+                     else:
+                        self.eLustChange = math.floor(self.percent() / 10 + self.eSen / 5)
                      if (self.eLust - self.eLustChange <= 0):
                         self.eLust = 0
                      if (self.eMenta - self.eLustChange < 0):
