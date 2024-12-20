@@ -25397,23 +25397,23 @@ class NiminFetishFantasyv0975o_fla:
    def toNimReturn(self,inputfile,xmlobject=None,xmlroot=None):
       #Not used
       try:
-         tempsol = sol.SOL("NimSave")
-         tempsol = {"data":self.toSOLReturn(inputfile,outputfile,xmlobject,xmlroot)}
-         tempba = amf3.ByteArray()
-         tempba.writeObject(tempsol)
+         so = {"data":self.toSOLReturn(inputfile,outputfile,xmlobject,xmlroot)}
+         if so["data"] == None:
+            raise NullData()
+         byteData = amf3.ByteArray()
+         byteData.writeObject(so)
          return tempba
       except:
          as3.trace("File Loader: Error: Failed to convert file to type \"nim\"")
    def toNim(self,inputfile,outputfile,xmlobject=None,xmlroot=None):
       try:
-         tempsol = sol.SOL("NimSave")
-         tempsol = {"data":self.toSOLReturn(inputfile,outputfile,xmlobject,xmlroot)}
-         if tempsol["data"] == None:
+         so = {"data":self.toSOLReturn(inputfile,outputfile,xmlobject,xmlroot)}
+         if so["data"] == None:
             raise NullData()
-         tempba = amf3.ByteArray()
-         tempba.writeObject(tempsol)
+         byteData = amf3.ByteArray()
+         byteData.writeObject(so)
          with open(outputfile,"wb") as f:
-            f.write(tempba.getvalue())
+            f.write(byteData.getvalue())
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Success")
       except NullData:
