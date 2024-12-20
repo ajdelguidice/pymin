@@ -19753,11 +19753,11 @@ class NiminFetishFantasyv0975o_fla:
             self.doeHP(-self.dmg)
             self.doHP(self.dmg)
    def doSpecialAbility(self, more:int):
-      self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,1))
+      buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
       self.choicePage = more
       self.showPage(True,"Spc Abilities")
       self.fp1 = more
-      templist = [12, "Return"]
+      templist = as3.Array(12, "Return")
       self.specialAbilityArray = as3.Array()
       if (self.skunkAffinity >= 40):
          self.specialAbilityArray.push(1)
@@ -19766,46 +19766,44 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.outputMainText("Which special ability would you like to use?",True)
       if (self.specialAbilityArray.length > 9):
-         templist.append(4)
-         templist.append("<<")
-         templist.append(8)
-         templist.append(">>")
+         templist.push(4,"<<",8,">>")
       if (self.specialAbilityArray[0 + (more * 9 - 9)]):
-         templist.append(1)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[0 + (more * 9 - 9)]))
+         buttonlist[1] = 1
+         templist.push(1,self.specialAbilityName(self.specialAbilityArray[0 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[0 + (more * 9 - 9)])
       if (self.specialAbilityArray[1 + (more * 9 - 9)]):
-         templist.append(2)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[1 + (more * 9 - 9)]))
+         buttonlist[2] = 1
+         templist.push(2,self.specialAbilityName(self.specialAbilityArray[1 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[1 + (more * 9 - 9)])
       if (self.specialAbilityArray[2 + (more * 9 - 9)]):
-         templist.append(3)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[2 + (more * 9 - 9)]))
+         buttonlist[3] = 1
+         templist.push(3,self.specialAbilityName(self.specialAbilityArray[2 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[2 + (more * 9 - 9)])
       if (self.specialAbilityArray[3 + (more * 9 - 9)]):
-         templist.append(5)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[3 + (more * 9 - 9)]))
+         buttonlist[5] = 1
+         templist.push(5,self.specialAbilityName(self.specialAbilityArray[3 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[3 + (more * 9 - 9)])
       if (self.specialAbilityArray[4 + (more * 9 - 9)]):
-         templist.append(6)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[4 + (more * 9 - 9)]))
+         buttonlist[6] = 1
+         templist.push(6,self.specialAbilityName(self.specialAbilityArray[4 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[4 + (more * 9 - 9)])
       if (self.specialAbilityArray[5 + (more * 9 - 9)]):
-         templist.append(7)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[5 + (more * 9 - 9)]))
+         buttonlist[7] = 1
+         templist.push(7,self.specialAbilityName(self.specialAbilityArray[5 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[5 + (more * 9 - 9)])
       if (self.specialAbilityArray[6 + (more * 9 - 9)]):
-         templist.append(9)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[6 + (more * 9 - 9)]))
+         buttonlist[9] = 1
+         templist.push(9,self.specialAbilityName(self.specialAbilityArray[6 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[6 + (more * 9 - 9)])
       if (self.specialAbilityArray[7 + (more * 9 - 9)]):
-         templist.append(10)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[7 + (more * 9 - 9)]))
+         buttonlist[10] = 1
+         templist.push(10,self.specialAbilityName(self.specialAbilityArray[7 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[7 + (more * 9 - 9)])
       if (self.specialAbilityArray[8 + (more * 9 - 9)]):
-         templist.append(11)
-         templist.append(self.specialAbilityName(self.specialAbilityArray[8 + (more * 9 - 9)]))
+         buttonlist[11] = 1
+         templist.push(11,self.specialAbilityName(self.specialAbilityArray[8 + (more * 9 - 9)]))
          self.specialAbilityDescription(self.specialAbilityArray[8 + (more * 9 - 9)])
+      self.showButtons(buttonlist)
       self.doButtonChoices(templist)
       def doListen():
          match self.buttonChoice:
