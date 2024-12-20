@@ -25122,7 +25122,7 @@ class NiminFetishFantasyv0975o_fla:
          self.disableOneButton(i)
    def PageShow(self):
       if (self.pageShow == False):
-         self.mo.addLabel("display","pagelabel",843,30,80,30,self.font)
+         self.mo.addLabel("display","pagelabel",843,30,100,30,self.font)
          self.mo.configureChild("pagelabel",text="BAG 1",background=self.theme,foreground=self.fontColor)
          self.pageShow = True
    def PageHide(self):
