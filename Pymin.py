@@ -18,6 +18,7 @@ try:
 except:
    from as3lib.py_backports import deprecated
 from secrets import choice
+from re import sub
 
 __version__ = "1.0.10"
 scriptdirectory = Path(__file__).resolve().parent
@@ -99,6 +100,12 @@ class ButtonList(list):
       if len(args) == 12:
          for i in range(0,12):
             self[i] = args[i]
+
+def applyBackspace(string):
+   #From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
+   while '\x08' in string:
+      string = sub('[^\x08]\x08', '', string)
+   return string
 
 #====================================================================================
 #Create tooltip. Example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
@@ -3299,7 +3306,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f" Y"
       tempStr += f"ou look much like a{self.genName()} {self.domName()}{self.faceDesc()}"
       if (self.tail > 1):
-         tempStr += f", and a {self.tailDesc()} tail swishing upon your backside"
+         tempStr += applyBackspace(f", and a {self.tailDesc(True)} tail swishing upon your backside")
       if (self.skunkAffinity >= 40):
          tempStr += ". A rather alluring scent constant lingers from your rump, sweet and pleasant, but with the potential for something far worse"
          if (self.skinType == 2):
@@ -23688,11 +23695,13 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.body > 23):
             return "musclebound"
       return f"BODY ERROR {self.gender} {self.body}"
-   def tailDesc(self):
+   def tailDesc(self,ngrammar=False):
       chance = self.percent()
       if (chance <= 50):
          match self.tail:
             case 2:
+               if ngrammar and self.gametweaks[0]:
+                  return "\bn equine"
                return "equine"
             case 3:
                return "wolfish"
