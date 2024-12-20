@@ -95,7 +95,7 @@ class ButtonList(list):
       elif item == 0:
          as3.RangeError("Index of class 'ButtonList' can not be 0")
       elif item < 0:
-         super().__setitem__(item-1,value)
+         super().__setitem__(item,value)
    def set(self,*args):
       if len(args) == 12:
          for i in range(0,12):
