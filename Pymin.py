@@ -19665,10 +19665,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doLust(-math.floor(self.percent() / 20 + self.sen / 10),2,1,2)
                   else:
                      self.doRape()
-                     if confmod.as3DebugEnable:
-                        self.eLustChange = 1000
-                     else:
-                        self.eLustChange = math.floor(self.percent() / 10 + self.eSen / 5)
+                     self.eLustChange = math.floor(self.percent() / 10 + self.eSen / 5)
                      if (self.eLust - self.eLustChange <= 0):
                         self.eLust = 0
                      if (self.eMenta - self.eLustChange < 0):
@@ -23128,9 +23125,19 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
       if ((self.legType != 1) and (which == 1)):
          if (self.legType == 0):
-            tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. Eventually, you quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
+            tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
+            if self.gametweaks[0]:
+               tempStr += "Y"
+            else:
+               tempStr += "Eventually, y"
+            tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
          if (self.legType >= 1000):
-            tempStr += "\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. Eventually, you quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
+            tempStr += "\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
+            if self.gametweaks[0]:
+               tempStr += "Y"
+            else:
+               tempStr += "Eventually, y"
+            tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
          self.carryMod -= 10
          self.runMod += 10
       if ((self.legType == 1) and (which != 1)):
