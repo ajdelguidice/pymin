@@ -163,7 +163,7 @@ class NiminFetishFantasyv0975o_fla:
       self.dir = scriptdirectory
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
-      self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseOldStash(10)]
+      self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseOldStash(10), MiscChanges(11)]
       self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode (This is a thing because Tcl/tk only supports integer values for font sizes)
       self.fixedresolution = "" #Resolution for fixed resolution mode
@@ -1087,12 +1087,17 @@ class NiminFetishFantasyv0975o_fla:
          ##Digi beast feet
          self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,76,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the digitgrade. Before they had human feet, now they have paws and hooves. Paws were already implemented before (internally called \"digipaws\") but were only used for the skunk race. (Incomplete)")
+         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the digitgrade. Before\nthey had human feet, now they have paws and hooves. Paws were already\nimplemented before (internally called \"digipaws\") but were only used for the\nskunk race. (Incomplete)")
 
          ##Use old stash
          self.optionswindow.addCheckboxWithLabel("gt","UseOldStash",200,98,210,20,("TimesNewRoman",11),"nw","Use original stash")
          self.optionswindow.configureChild("UseOldStash",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseOldStash"].frame,text="Use the stash from the original game instead of the new one that works like the bag.")
+         CreateToolTip(self.optionswindow.children["UseOldStash"].frame,text="Use the stash from the original game instead of the new one that works like the\nbag.")
+
+         #Misc Changes
+         self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
+         self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
 
          #Apply button
          self.optionswindow.addButton("root","ApplyButton",360,172,50,25,("TimesNewRoman",12),"nw")
@@ -1139,6 +1144,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["CorrectBeastRaceFeet"].select()
       if self.gametweaks[10] == True:
          self.optionswindow.children["UseOldStash"].select()
+      if self.gametweaks[11] == True:
+         self.optionswindow.children["MiscChanges"].select()
       if confmod.as3DebugEnable == True:
          if self.debugtweaks[0] == True:
             self.optionswindow.children["ChooseSenario"].select()
@@ -1258,6 +1265,10 @@ class NiminFetishFantasyv0975o_fla:
             self.gametweaks[10] = True
          else:
             self.gametweaks[10] = False
+         if self.optionswindow.children["MiscChanges"].getcb() == 1:
+            self.gametweaks[11] = True
+         else:
+            self.gametweaks[11] = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
                self.debugtweaks[0] = True
