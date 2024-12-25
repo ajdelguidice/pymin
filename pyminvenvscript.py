@@ -139,7 +139,7 @@ def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands instead from href tags. Only use this inside of this project's virtual environment.
     if htmlparser == True:
         print("Replacing tkhtmlview html_parser.py with my custom one...")
-        if confmod.platform == "Windows":
+        if platform.system() == "Windows":
             urlretrieve("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py", str(check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True))[2:][:-1].replace("\\n","").replace("__init__.py","html_parser.py").replace("\\\\","/").replace("\\r",""))
         else:
             urlretrieve("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py", str(check_output(f"{pythonvenvloc} -c 'import importlib.util;print(importlib.util.find_spec(\"tkhtmlview\").origin)'",shell=True))[2:][:-1].replace("\\n","").replace("__init__.py","html_parser.py"))
