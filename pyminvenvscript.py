@@ -77,7 +77,7 @@ def installmodules(as3libversion="latest"):
     else:
         runlist = pythonm + runlist
     print("Installing dependencies...")
-    if as3libversion == "latest":
+    if as3libversion in ("latest",""):
         run(runlist)
     else:
         temp = runlist.copy()
@@ -141,12 +141,65 @@ def use_uv():
 def use_uvi():
     Path(f"{venvpath}/.USEUVI").touch()
 
+def updatePythonVersion(pyver):
+    answer = input("(Not Implemented) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)")
+    #if answer.lower() in ("y",""):
+    if False:
+        """
+        tempsettings = []
+        for i in (".DEFAULTRUN",".USEUV",".USEUVI"):
+            if Path(venvpath / i).exists():
+                tempsettings.append(True)
+            else:
+                tempsettings.append(False)
+        if Path(venvpath / "Pymin").exists():
+            #copy pymin folder to safe location
+            ...
+        ...
+        rmtree(venvpath) #delete the venv folder
+        a = input("Which as3lib version? (default latest)")
+        create(as3libversion=a,nogame=True) #reinstall venv
+        #move saved files back to venv
+        #save persistent variables
+        """
+        if platform.system() == "Windows":
+            ...
+        else:
+            Path(venvpath / f"bin/python{".".join(pyver.split(".")[:2])}").unlink()
+            Path(venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
+            Path(venvpath / "bin/python").unlink()
+            rmtree(venvpath / f"lib/python{".".join(pyver.split(".")[:2])}")
+            run([*pythonm,"venv","--upgrade",venvpath])
+            installmodules()
+
+
+
+def repairInstall():
+    answer = input("Python failed to launch. Would you like to try automated repair? (y/N)")
+    if answer.lower() == "y":
+        ...
+
 useuv = False
 useuvi = False
 defrun = False
 pythonm = [pythonvenvloc, "-m"]
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools"]
 args = list(argv)
+try:
+    if venvpath.exists():
+        check_output (f"{pythonvenvloc} -V",shell=True) #!See if this can be hidden
+except:
+    conf = ""
+    with open(venvpath / "pyvenv.cfg") as f:
+        conf = f"[Default]\n{f.read()}"
+    import configparser
+    c = configparser.ConfigParser()
+    c.read_string(conf)
+    if ".".join(platform.python_version().split(".")[:2]) != ".".join(c["Default"]["version_info"].split(".")[:2]):
+        updatePythonVersion(c["Default"]["version_info"])
+    else:
+        repairInstall()
+    exit() #!for some reason, this does not exit
 if Path(f"{venvpath}/.DEFAULTRUN").exists():
     defrun = True
 if len(args) < 2 and defrun:
