@@ -79,6 +79,10 @@ def installmodules(as3libversion="latest"):
     print("Installing dependencies...")
     if as3libversion in ("latest",""):
         run(runlist)
+    elif as3libversion.lower() == "none":
+        temp = runlist.copy()
+        temp.remove("as3lib")
+        run(temp) 
     else:
         temp = runlist.copy()
         temp.remove("as3lib")
@@ -110,6 +114,9 @@ def updatemodules(as3libversion="latest"):
     temp.insert(temp.index("install")+1,"-U")
     if as3libversion == "latest":
         run(temp)
+    elif as3libversion.lower() == "none":
+        temp.remove("as3lib")
+        run(temp) 
     else:
         temp.remove("as3lib")
         temp.append(f"as3lib={as3libversion}")
