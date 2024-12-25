@@ -139,7 +139,10 @@ def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands instead from href tags. Only use this inside of this project's virtual environment.
     if htmlparser == True:
         print("Replacing tkhtmlview html_parser.py with my custom one...")
-        urlretrieve("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py", str(check_output(f"{pythonvenvloc} -c 'import importlib.util;print(importlib.util.find_spec(\"tkhtmlview\").origin)'",shell=True))[2:][:-1].replace("\\n","").replace("__init__.py","html_parser.py"))
+        if confmod.platform == "Windows":
+            urlretrieve("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py", str(check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True))[2:][:-1].replace("\\n","").replace("__init__.py","html_parser.py").replace("\\\\","/").replace("\\r",""))
+        else:
+            urlretrieve("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py", str(check_output(f"{pythonvenvloc} -c 'import importlib.util;print(importlib.util.find_spec(\"tkhtmlview\").origin)'",shell=True))[2:][:-1].replace("\\n","").replace("__init__.py","html_parser.py"))
         print("Done")
 
 def use_uv():
@@ -194,7 +197,7 @@ runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3li
 args = list(argv)
 try:
     if venvpath.exists():
-        check_output (f"{pythonvenvloc} -V",shell=True) #!See if this can be hidden
+        check_output(f"{pythonvenvloc} -V",shell=True) #!See if this can be hidden
 except:
     conf = ""
     with open(venvpath / "pyvenv.cfg") as f:
