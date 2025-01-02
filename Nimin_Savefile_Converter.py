@@ -9,6 +9,7 @@ from pathlib import Path
 import xml.etree.ElementTree as xmletree
 from platform import system
 from functools import partial
+from sys import argv
 
 platform = system()
 
@@ -488,81 +489,201 @@ def entryBorderUnset(entry,*args):
    entry["highlightcolor"]="#000000"
    entry["highlightbackground"]="#000000"
 
-if __name__ == "__main__":
-   dir_ = Path(__file__).parent
-   root = tkinter.Tk()
-   root.geometry("500x334")
-   root.resizable(False,False)
-   root.title("Pymin Savefile Converter")
-   root["background"]="#FFFFFF"
+def cliDoMultipleFiles(files,outputformat):
+   i = 0
+   while i < len(files):
+      message["text"] = ""
+      inputfile = Path(files[i])
+      if inputfile.exists() == False:
+         message["text"] = f"{files[i]}: Error: Input file does not exist"
+      if inputfile.is_dir() == True:
+         message["text"] = f"{files[i]}: Error: Input must be a file"
+      tempin = str(inputfile.name).split(".")
+      if len(tempin) == 1:
+         message["text"] = f"{files[i]}: Error: Input file must have an extension"
+      if tempin[-1] not in ("xml","sol","nim"):
+         message["text"] = f"{files[i]}: Error: Input file type is not supported"
+      if tempin[-1] == outputformat:
+         message["text"] = f"{files[i]}: Error: Output file type can not be the same as input file type"
+      outputfile = inputfile.parent / (".".join(tempin[:-1]) + f".{outputformat}")
+      if outputfile.is_dir() == True:
+         message["text"] = f"{files[i]}: Error: Output must be a file"
+      if outputfile.exists():
+         ans = input(f"{files[i]}: Output file exists, would you like to overwrite it? (y/N) ")
+         if ans.lower() in ("","n"):
+            message["text"] = f"{files[i]}: Aborted"
+      if message["text"] == "":
+         convertSave(str(inputfile),"detect",str(outputfile),outputformat)
+      if message["text"] != "Success":
+         print(f"{files[i]}:" + message["text"])
+      i += 1
 
-   style = ttk.Style()
-   style.theme_settings(
-      "default", {
-         "TCombobox": {
-            "map": {
-               "background": [
-                  ("active","#FFFFFF")
-               ],
-               "fieldbackground": [
-                  ("!disabled","#FFFFFF")
-               ]
+def help():
+   print("""Nimin_Savefile_Converter.py [mode] [...files]\nModes:\n-s --single\tTakes two arguesments, inputfile and outputfile/format. If a format is used instead of an output file, the file will be of the same name as the original with the new format.\n-m --many\tTakes many arguements, the first of which must be the output format, all of the rest are input files.\n-d --dir\tConverts all files in a directory (non-recursive). The first arguement is the output format, the second is the directory.""")
+
+if __name__ == "__main__":
+   if len(argv) == 1:
+      dir_ = Path(__file__).parent
+      root = tkinter.Tk()
+      root.geometry("500x334")
+      root.resizable(False,False)
+      root.title("Pymin Savefile Converter")
+      root["background"]="#FFFFFF"
+
+      style = ttk.Style()
+      style.theme_settings(
+         "default", {
+            "TCombobox": {
+               "map": {
+                  "background": [
+                     ("active","#FFFFFF")
+                  ],
+                  "fieldbackground": [
+                     ("!disabled","#FFFFFF")
+                  ]
+               }
             }
          }
-      }
-   )
-   fileimage = tkinter.PhotoImage(data=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x0c\x08\x06\x00\x00\x00k\xe7=\x81\x00\x00\x01\x84iCCPICC profile\x00\x00(\x91}\x91=H\xc3P\x14\x85OSE\x91\x8a\x88\x1dD\x1c2T\x17\xdbEE\x1ck\x15\x8aP!\xd4\n\xad:\x98\xbc\xf4\x0f\x9a4$).\x8e\x82k\xc1\xc1\x9f\xc5\xaa\x83\x8b\xb3\xae\x0e\xae\x82 \xf8\x03\xe2.8)\xbaH\x89\xf7%\x85\x161\xde\xf0\xc8\xc7y\xf7\x1c\xde\xbb\x0f\x10\x1a\x15\xa6Y]q@\xd3m3\x9dL\x88\xd9\xdc\xaa\xd8\xf3\x8a\x00}\x83\x88bBf\x961\'I)\xf8\xd6\xd7=\xf5R\xdd\xc5x\x96\x7f\xdf\x9f\xd5\xaf\xe6-\x06\x04D\xe283L\x9bx\x83xf\xd368\xef\x13\x87YIV\x89\xcf\x89\xa3&\x1d\x90\xf8\x91\xeb\x8a\xc7o\x9c\x8b.\x0b<3lf\xd2\xf3\xc4ab\xb1\xd8\xc1J\x07\xb3\x92\xa9\x11O\x13GTM\xa7|!\xeb\xb1\xcay\x8b\xb3V\xa9\xb1\xd69\xf9\rCy}e\x99\xeb\xb4F\x91\xc4"\x96 A\x84\x82\x1a\xca\xa8\xc0F\x8c\xfe:)\x16\xd2\xb4\x9f\xf0\xf1\x8f\xb8~\x89\\\n\xb9\xca`\xe4X@\x15\x1ad\xd7\x0f\xfe\x06\xbfgk\x15\xa6&\xbd\xa4P\x02\xe8~q\x9c\x8f1\xa0g\x17h\xd6\x1d\xe7\xfb\xd8q\x9a\'@\xf0\x19\xb8\xd2\xdb\xfej\x03\x98\xfd$\xbd\xde\xd6"G\xc0\xc06pq\xdd\xd6\x94=\xe0r\x07\x18~2dSv\xa5 -\xa1P\x00\xde\xcf\xe8\x99r\xc0\xd0-\xd0\xb7\xe6\xcd\xad\xb5\x8f\xd3\x07 C\xb3J\xdd\x00\x07\x87\xc0x\x91\xb2\xd7}\xee\xdd\xdb9\xb7\x7f{Z\xf3\xfb\x01\xa8\x9er\xbc\xeb \xb8\x8a\x00\x00\x00\x06bKGD\x00\xd3\x00\x9d\x00JT\xd4=\xdb\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe9\x01\x01\x11-.\x99[0X\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x00JIDAT(\xcfc` \x00^l\xcf\xe1{\xb1=\x87\t\x97<\x0bT\xd1\x7f<fp3000300\xfc\xc3&\xc9H\x84\x018\x81\x84\xe7\x14F\x16B\x8a^?\xbb\x87W\x9e\x85\x18E\xf8\x00\x13\x03\x85`\xd4\x00*\x18@1\x00\x00l\t\x11\xb4\x84N\xcd\xaf\x00\x00\x00\x00IEND\xaeB`\x82')
-   titlelabel = tkinter.Label(root,justify="center",text="Pymin Savefile Converter",font=('TimesNewRoman',20,'bold'))
-   titlelabel.place(x=250,y=50,width=300,height=32,anchor="n")
-   titlelabel["background"]="#FFFFFF"
+      )
+      fileimage = tkinter.PhotoImage(data=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x0c\x08\x06\x00\x00\x00k\xe7=\x81\x00\x00\x01\x84iCCPICC profile\x00\x00(\x91}\x91=H\xc3P\x14\x85OSE\x91\x8a\x88\x1dD\x1c2T\x17\xdbEE\x1ck\x15\x8aP!\xd4\n\xad:\x98\xbc\xf4\x0f\x9a4$).\x8e\x82k\xc1\xc1\x9f\xc5\xaa\x83\x8b\xb3\xae\x0e\xae\x82 \xf8\x03\xe2.8)\xbaH\x89\xf7%\x85\x161\xde\xf0\xc8\xc7y\xf7\x1c\xde\xbb\x0f\x10\x1a\x15\xa6Y]q@\xd3m3\x9dL\x88\xd9\xdc\xaa\xd8\xf3\x8a\x00}\x83\x88bBf\x961\'I)\xf8\xd6\xd7=\xf5R\xdd\xc5x\x96\x7f\xdf\x9f\xd5\xaf\xe6-\x06\x04D\xe283L\x9bx\x83xf\xd368\xef\x13\x87YIV\x89\xcf\x89\xa3&\x1d\x90\xf8\x91\xeb\x8a\xc7o\x9c\x8b.\x0b<3lf\xd2\xf3\xc4ab\xb1\xd8\xc1J\x07\xb3\x92\xa9\x11O\x13GTM\xa7|!\xeb\xb1\xcay\x8b\xb3V\xa9\xb1\xd69\xf9\rCy}e\x99\xeb\xb4F\x91\xc4"\x96 A\x84\x82\x1a\xca\xa8\xc0F\x8c\xfe:)\x16\xd2\xb4\x9f\xf0\xf1\x8f\xb8~\x89\\\n\xb9\xca`\xe4X@\x15\x1ad\xd7\x0f\xfe\x06\xbfgk\x15\xa6&\xbd\xa4P\x02\xe8~q\x9c\x8f1\xa0g\x17h\xd6\x1d\xe7\xfb\xd8q\x9a\'@\xf0\x19\xb8\xd2\xdb\xfej\x03\x98\xfd$\xbd\xde\xd6"G\xc0\xc06pq\xdd\xd6\x94=\xe0r\x07\x18~2dSv\xa5 -\xa1P\x00\xde\xcf\xe8\x99r\xc0\xd0-\xd0\xb7\xe6\xcd\xad\xb5\x8f\xd3\x07 C\xb3J\xdd\x00\x07\x87\xc0x\x91\xb2\xd7}\xee\xdd\xdb9\xb7\x7f{Z\xf3\xfb\x01\xa8\x9er\xbc\xeb \xb8\x8a\x00\x00\x00\x06bKGD\x00\xd3\x00\x9d\x00JT\xd4=\xdb\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00\x07tIME\x07\xe9\x01\x01\x11-.\x99[0X\x00\x00\x00\x19tEXtComment\x00Created with GIMPW\x81\x0e\x17\x00\x00\x00JIDAT(\xcfc` \x00^l\xcf\xe1{\xb1=\x87\t\x97<\x0bT\xd1\x7f<fp3000300\xfc\xc3&\xc9H\x84\x018\x81\x84\xe7\x14F\x16B\x8a^?\xbb\x87W\x9e\x85\x18E\xf8\x00\x13\x03\x85`\xd4\x00*\x18@1\x00\x00l\t\x11\xb4\x84N\xcd\xaf\x00\x00\x00\x00IEND\xaeB`\x82')
+      titlelabel = tkinter.Label(root,justify="center",text="Pymin Savefile Converter",font=('TimesNewRoman',20,'bold'))
+      titlelabel.place(x=250,y=50,width=300,height=32,anchor="n")
+      titlelabel["background"]="#FFFFFF"
 
-   message = tkinter.Label(root,justify="center",text="",font=('TimesNewRoman',12),wraplength=300)
-   message.place(x=250,y=100,width=300,height=50,anchor="n")
-   message["foreground"]="#FF1111"
-   message["background"]="#FFFFFF"
+      message = tkinter.Label(root,justify="center",text="",font=('TimesNewRoman',12),wraplength=300)
+      message.place(x=250,y=100,width=300,height=50,anchor="n")
+      message["foreground"]="#FF1111"
+      message["background"]="#FFFFFF"
 
-   inputfilelabel = tkinter.Label(root,text="Input File",font=('TimesNewRoman',12))
-   inputfilelabel.place(x=50,y=150,height=24)
-   inputfilelabel["background"]="#FFFFFF"
-   inputfilepath = tkinter.StringVar()
-   inputfileentry = tkinter.Entry(root,textvariable=inputfilepath)
-   inputfileentry.place(x=50,y=174,width=296,height=24,anchor="nw")
-   entrySetThemeDefault(inputfileentry)
-   inputfilepicker = tkinter.Button(root,command=IFileChoose,image=fileimage)
-   inputfilepicker.place(x=346,y=174,width=24,height=24,anchor="nw")
-   buttonSetThemeDefault(inputfilepicker)
+      inputfilelabel = tkinter.Label(root,text="Input File",font=('TimesNewRoman',12))
+      inputfilelabel.place(x=50,y=150,height=24)
+      inputfilelabel["background"]="#FFFFFF"
+      inputfilepath = tkinter.StringVar()
+      inputfileentry = tkinter.Entry(root,textvariable=inputfilepath)
+      inputfileentry.place(x=50,y=174,width=296,height=24,anchor="nw")
+      entrySetThemeDefault(inputfileentry)
+      inputfilepicker = tkinter.Button(root,command=IFileChoose,image=fileimage)
+      inputfilepicker.place(x=346,y=174,width=24,height=24,anchor="nw")
+      buttonSetThemeDefault(inputfilepicker)
 
-   inputfiletypelabel = tkinter.Label(root,text="Type",font=("TimesNewRoman",12))
-   inputfiletypelabel.place(x=390,y=150,width=40,height=24,anchor="nw")
-   inputfiletypelabel["background"]="#FFFFFF"
-   inputfiletypevar = tkinter.StringVar()
-   inputfiletypecombo = ttk.Combobox(root,font=("TimesNewRoman",12),textvariable=inputfiletypevar,state="readonly")
-   inputfiletypecombo["values"] = ("detect","xml","sol","nim")
-   inputfiletypevar.set("detect")
-   inputfiletypecombo.place(x=390,y=174,width=60,height=24,anchor="nw")
+      inputfiletypelabel = tkinter.Label(root,text="Type",font=("TimesNewRoman",12))
+      inputfiletypelabel.place(x=390,y=150,width=40,height=24,anchor="nw")
+      inputfiletypelabel["background"]="#FFFFFF"
+      inputfiletypevar = tkinter.StringVar()
+      inputfiletypecombo = ttk.Combobox(root,font=("TimesNewRoman",12),textvariable=inputfiletypevar,state="readonly")
+      inputfiletypecombo["values"] = ("detect","xml","sol","nim")
+      inputfiletypevar.set("detect")
+      inputfiletypecombo.place(x=390,y=174,width=60,height=24,anchor="nw")
 
-   outputfilelabel = tkinter.Label(root,text="Output File",font=('TimesNewRoman',12))
-   outputfilelabel.place(x=50,y=210,height=24)
-   outputfilelabel["background"]="#FFFFFF"
-   outputfilepath = tkinter.StringVar()
-   outputfileentry = tkinter.Entry(root,textvariable=outputfilepath)
-   outputfileentry.place(x=50,y=234,width=296,height=24,anchor="nw")
-   entrySetThemeDefault(outputfileentry)
-   outputfilepicker = tkinter.Button(root,command=OFileChoose,image=fileimage)
-   outputfilepicker.place(x=346,y=234,width=24,height=24,anchor="nw")
-   buttonSetThemeDefault(outputfilepicker)
+      outputfilelabel = tkinter.Label(root,text="Output File",font=('TimesNewRoman',12))
+      outputfilelabel.place(x=50,y=210,height=24)
+      outputfilelabel["background"]="#FFFFFF"
+      outputfilepath = tkinter.StringVar()
+      outputfileentry = tkinter.Entry(root,textvariable=outputfilepath)
+      outputfileentry.place(x=50,y=234,width=296,height=24,anchor="nw")
+      entrySetThemeDefault(outputfileentry)
+      outputfilepicker = tkinter.Button(root,command=OFileChoose,image=fileimage)
+      outputfilepicker.place(x=346,y=234,width=24,height=24,anchor="nw")
+      buttonSetThemeDefault(outputfilepicker)
 
-   outputfiletypetext = tkinter.Label(root,text="Type",font=("TimesNewRoman",12))
-   outputfiletypetext.place(x=390,y=210,width=40,height=24,anchor="nw")
-   outputfiletypetext["background"]="#FFFFFF"
-   outputfiletypevar = tkinter.StringVar()
-   outputfiletypecombo = ttk.Combobox(root,font=("TimesNewRoman",12),textvariable=outputfiletypevar,state="readonly")
-   outputfiletypecombo["values"] = ("detect","xml","sol","nim")
-   outputfiletypevar.set("detect")
-   outputfiletypecombo.place(x=390,y=234,width=60,height=24,anchor="nw")
+      outputfiletypetext = tkinter.Label(root,text="Type",font=("TimesNewRoman",12))
+      outputfiletypetext.place(x=390,y=210,width=40,height=24,anchor="nw")
+      outputfiletypetext["background"]="#FFFFFF"
+      outputfiletypevar = tkinter.StringVar()
+      outputfiletypecombo = ttk.Combobox(root,font=("TimesNewRoman",12),textvariable=outputfiletypevar,state="readonly")
+      outputfiletypecombo["values"] = ("detect","xml","sol","nim")
+      outputfiletypevar.set("detect")
+      outputfiletypecombo.place(x=390,y=234,width=60,height=24,anchor="nw")
 
-   convertbutton = tkinter.Button(root,font=("TimesNewRoman",12),text="Convert",command=convertButton)
-   convertbutton.place(x=386,y=270,width=64,height=24,anchor="nw")
-   buttonSetThemeDefault(convertbutton)
+      convertbutton = tkinter.Button(root,font=("TimesNewRoman",12),text="Convert",command=convertButton)
+      convertbutton.place(x=386,y=270,width=64,height=24,anchor="nw")
+      buttonSetThemeDefault(convertbutton)
 
-   root.mainloop()
+      root.mainloop()
+   else: #comandline args
+      message = {"text":""}
+      if argv[1] == "help" or "--help" in argv or "-h" in argv or "/?" in argv:
+         help()
+      elif argv[1] in ("-s","--single","/s","/S"): #one file then output file or output type
+         inputfile = Path(argv[2]).resolve()
+         if inputfile.exists() == False:
+            print("Error: Input file does not exist")
+            exit()
+         if inputfile.is_dir() == False:
+            print("Error: Input must be a file")
+            exit()
+         tempin = str(inputfile.name).split(".")
+         if len(tempin) == 1:
+            print("Error: Input file must have an extension")
+            exit()
+         if tempin[-1] not in ("xml","sol","nim"):
+            print("Error: Input file type is not supported")
+            exit()
+         if argv[3] in ("xml","sol","nim"):
+            if tempin[-1] == argv[3]:
+               print("Error: Output file type can not be the same as input file type")
+               exit()
+            outputfile = inputfile.parent / (".".join(tempin[:-1]) + f".{argv[3]}")
+            if outputfile.is_dir() == True:
+               print("Error: Output must be a file")
+               exit()
+            if outputfile.exists():
+               ans = input("Output file exists, would you like to overwrite it? (y/N) ")
+               if ans.lower() in ("","n"):
+                  print("Aborted")
+                  exit()
+            convertSave(str(inputfile),"detect",str(outputfile),argv[3])
+            print(message["text"])
+         else:
+            outputfile = Path(argv[3]).resolve()
+            if outputfile.is_dir() == True:
+               print("Error: Output must be a file")
+               exit()
+            tempout = str(outputfile.name).split(".")
+            if tempout[-1] == tempin[-1]:
+               print("Error: Output file type can not be the same as input file type")
+               exit()
+            if len(tempout) == 1:
+               print("Error: Output file must have an extension")
+               exit()
+            if tempout[-1] not in ("xml","sol","nim"):
+               print("Error: Output file type is not supported")
+               exit()
+            if outputfile.exists():
+               ans = input("Output file exists, would you like to overwrite it? (y/N) ")
+               if ans.lower() in ("","n"):
+                  print("Aborted")
+                  exit()
+            convertSave(str(inputfile),"detect",str(outputfile),"detect")
+            print(message["text"])
+      elif argv[1] in ("-m","--many","/m","/M"): #convert all after this
+         if len(argv) < 4:
+            print("Error: Not enough arguements")
+            exit()
+         outputformat = argv[2]
+         if outputformat not in ("xml","sol","nim"):
+            print("Error: Output file type is not supported")
+            exit()
+         files = argv[3:]
+         cliDoMultipleFiles(files,outputformat)
+         print("Done")
+      elif argv[1] in ("-d","--dir","/d","/D"):
+         if len(argv) < 4:
+            print("Error: Incorrect number of arguements")
+            exit()
+         outputformat = argv[2]
+         if outputformat not in ("xml","sol","nim"):
+            print("Error: Output file type is not supported")
+            exit()
+         dir_ = Path(argv[3]).resolve()
+         if dir_.exists() == False:
+            print("Error: Provided path does not exist")
+            exit()
+         if dir_.is_dir() == False:
+            print("Error: Provided path must be a directory")
+            exit()
+         files = [str(f) for f in dir_.iterdir() if (dir_ / f).is_file() and str(f.name).split(".")[-1] in ("xml","sol","nim") and str(f.name).split(".")[-1] != outputformat]
+         cliDoMultipleFiles(files,outputformat)
+         print("Done")
+      else:
+         help()
