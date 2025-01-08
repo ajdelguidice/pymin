@@ -1288,8 +1288,7 @@ class NiminFetishFantasyv0975o_fla:
       Checks if a given string is a valid (6 digit) hexadecimal colour code
       """
       if len(hexstr) == 7 and hexstr[0] == "#":
-         hexstr = hexstr[1:]
-         for i in hexstr:
+         for i in hexstr[1:]:
             if i not in "0123456789ABCDEFabcdef":
                return False
          return True
@@ -1325,7 +1324,7 @@ class NiminFetishFantasyv0975o_fla:
       Checks if all gametweaks are set to the arguement "value"
       """
       if value != None:
-         return (not value) in self.gametweaks
+         return not ((not value) in self.gametweaks)
    @staticmethod
    def isValidDirectory(directory,separator):
       """
@@ -1433,7 +1432,7 @@ class NiminFetishFantasyv0975o_fla:
       if ext != None:
          tempext = ext
          ext = []
-         #remove "." from the from of the extensions
+         #remove "." from the front of the extensions
          for i in tempext:
             if i[:1] == ".":
                ext.append(i[1:])
@@ -1490,9 +1489,7 @@ class NiminFetishFantasyv0975o_fla:
       return "disabled"
    def key_press(self, e):
       #When key is pressed
-      if ckeys.tkeventToJavascriptKeycode(e) == None:
-         pass
-      else:
+      if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.hotKeys(ckeys.tkeventToJavascriptKeycode(e))
    def keysUp(self, e):
       #When key is released
@@ -1983,12 +1980,10 @@ class NiminFetishFantasyv0975o_fla:
       self.detailedDebug()
       self.changeTextColor(self.fontColor)
       self.doMainText()
-      if (self.textsidevisible == True):
+      if self.textsidevisible:
          self.doSideText()
-      try:
+      if self.wikiOpen:
          self.doWikiText()
-      except:
-         x=0
    #def sideHide():
       #hideSidePanel
    #def sideShow():
@@ -2602,8 +2597,7 @@ class NiminFetishFantasyv0975o_fla:
       #Checks if player has item ID in their bag
       if (self.bagArray.indexOf(ID) != -1):
          return True
-      else:
-         return False
+      return False
    def checkMagicItem(self):
       #Checks if player has a magic item in their bag
       for i in (101,102,200,215,232,233,234,235,236,237,252):
@@ -2615,8 +2609,7 @@ class NiminFetishFantasyv0975o_fla:
       #Checks if player has item ID in their stash
       if (self.stashArray.indexOf(ID) != -1):
          return True
-      else:
-         return False
+      return False
    def countItem(self, ID:int):
       #Counts how many of item ID player has in their bag
       tempInt = 0
@@ -4369,7 +4362,7 @@ class NiminFetishFantasyv0975o_fla:
    def nsldSelectionDown(self):
       #Moves pointer down the list in nsld
       temp = self.mo.children["savefileselect"].curselection()[0]
-      if not (temp + 1) >= len(self.mo.children["savefileselect"].get(0,"end")):
+      if (temp + 1) < len(self.mo.children["savefileselect"].get(0,"end")):
          self.mo.children["savefileselect"].selection_clear(temp)
          self.mo.children["savefileselect"].select_set(temp + 1)
          self.mo.children["savefileselect"].activate(temp + 1)
@@ -5525,7 +5518,7 @@ class NiminFetishFantasyv0975o_fla:
       self.bagArray[slot] = 0
       self.bagStackArray[slot] = 0
    def clearEmptySlots(self): #not currently used
-      for i in range(0,26):
+      for i in range(0,27):
          if self.bagArray[i] == 0 or self.bagStackArray[i] == 0:
             self.bagStackArray[i] = 0
             self.bagArray[i] = 0
@@ -5643,8 +5636,7 @@ class NiminFetishFantasyv0975o_fla:
       NameArray = as3.Array(' ', 'Test', 'Debug Stick', 'TS Any', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'Anc Claws', 'Imb Shoes', 'Dry Sand', 'Milker', "Cat's Meow", 'Penis Pump', None, 'Blood Gge', 'Edu Egg', 'Reduction', 'Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Poultice', 'Dagger', 'Hammer', 'Saber', 'Whip', 'Neuter', 'TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'Oas Water', 'Tail Spike', 'TS Sanct', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, "Lila's Gift", 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch', 'Sm Pouch', 'Trinket', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'DairE Pill', 'Red Mush', 'Wet Cloth', 'Lon Milk', 'Lon Pendant', 'Pink Ink', 'Egg Jelly', 'Bul Berry', 'Fresh Egg', 'Blondie', 'Puss Juice', 'Kinky Carr', 'Eq Snack', "Lila's Milk", 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Leath Strap', 'Eggcelerator', 'Desi Sand', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Dewy Gift', 'Squ Cheese', 'Shiny Rock', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Snuggle Ball', 'Facial Mud', 'Fertile Gel', 'Supp Harness', 'Breeder Pot', "Treant's Tear", 'Foomp Bomb', 'Plump Quat', 'Milky Pend', 'Bug Egg', 'Lantern', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Sweet&Sour', 'Succ Draft', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'Item Not Found', None, None, None, None, None, None, None, None, None, None, None, None, None, 'Teapot', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Lust Draft', 'Rejuv Pot', 'Bad Exper', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Bad Exper', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Black Dye', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'Red Dye', 'S Baby Free', 'S Pot Pot', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg')
       if as3.typeName(NameArray[ID]) != "undefined" and NameArray[ID] not in (None,"undefined"):
          return NameArray[ID]
-      else:
-         return f"ITEM NAME ERROR {ID}"
+      return f"ITEM NAME ERROR {ID}"
    def itemDescription(self, ID:int):
       #Function which returns the description of the item ID
       match ID:
@@ -5936,20 +5928,17 @@ class NiminFetishFantasyv0975o_fla:
       IDArray = as3.Array(2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418)
       if IDArray.indexOf(ID) != -1:
          return True
-      else:
-         return False
+      return False
    def canLose(self, ID:int):
       #Returns True if item ID can be lost
       if (((ID == 244) and (self.countItem(244) == 1) and (self.snuggleBall == True)) or ((ID == 247) and (self.countItem(247) == 1) and (self.suppHarness == True))):
          return False
-      else:
-         return True
+      return True
    def canLoseMoveLocation(self, ID:int):
       #This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
       if (((ID == 244) and (self.countItem(244) == 0) and (self.snuggleBall == True)) or ((ID == 247) and (self.countItem(247) == 0) and (self.suppHarness == True))):
          return False
-      else:
-         return True
+      return True
    @staticmethod
    def conItem(ID:int):
       #Returns True if item IO is consumable
@@ -5957,8 +5946,7 @@ class NiminFetishFantasyv0975o_fla:
       IDArray = as3.Array(103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540)
       if IDArray.indexOf(ID) != -1:
          return True
-      else:
-         return False
+      return False
    def passiveItemAdd(self, ID:int):
       #Applies the passive effect for item ID
       match ID:
@@ -6127,8 +6115,7 @@ class NiminFetishFantasyv0975o_fla:
    def useItemHidePage(ID:int):
       if ID in (101,102,200,206,215,229,233,234,236,237,252,254,404):
          return False
-      else:
-         return True
+      return True
    def doItemUse(self, ID:int): #!optimize
       #Function which does the defined behavior of item ID
       self.tempNum = 0
@@ -9166,10 +9153,8 @@ class NiminFetishFantasyv0975o_fla:
                self.doReturn()
       self.doListen = doListen
    def hairstyleName(self, ID:int):
-      #!Use as3.Array
       try:
-         templist = ('None','Wavy','Pigtail','Ponytail','Straight','Buzzcut','Mohawk','Bun','Curly','B Pigtail','B Ponytail','Braided','Spiky','Emo','Afro')
-         return templist[ID]
+         return ('None','Wavy','Pigtail','Ponytail','Straight','Buzzcut','Mohawk','Bun','Curly','B Pigtail','B Ponytail','Braided','Spiky','Emo','Afro')[ID]
       except:
          return f"HAIRSTYLE NAME ERROR {self.hair}"
    def hairDesc(self):
@@ -9205,10 +9190,8 @@ class NiminFetishFantasyv0975o_fla:
          case _:
             return f"HAIR DESC ERROR {self.hair}"
    def hairC(self):
-      #Use as3.Array
-      tempList = ("","black ","blonde ","red ","blue ","coral pink ","auburn ","brown ","grey ","white ")
       try:
-         return tempList[self.hairColor]
+         return ("","black ","blonde ","red ","blue ","coral pink ","auburn ","brown ","grey ","white ")[self.hairColor]
       except:
          return f"HAIR COLOR ERROR {self.hairColor}"
    def hairL(self):
@@ -9676,12 +9659,11 @@ class NiminFetishFantasyv0975o_fla:
             return "training suit"
       return f"CLOTHES BOTTOM ERROR {self.attireBot}"
    def currentClothes(self):
-      tempStr = "CURRENT CLOTHES ERROR"
       if (self.attireTop == self.attireBot):
-         tempStr = self.clothesTop()
+         return self.clothesTop()
       else:
-         tempStr = f"{self.clothesTop()} and {self.clothesBottom()}"
-      return tempStr
+         return f"{self.clothesTop()} and {self.clothesBottom()}"
+      return "CURRENT CLOTHES ERROR"
    def pullUD(self, source:int):
       match source:
          case 1:
@@ -19286,13 +19268,9 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText("The beast-man gives you a grunt. \"Fine.\"\n\nBefore you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head back out to Firmshaft.",True)
                         else:
                            self.outputMainText("You leave the beast-man to himself and head towards the stairs.",True)
-                        #self.doNext()
-                        #def doListen():
                         self.inDungeon = False
-                        #self.regionChange(2)
                         self.goToInDoProcess = 2
                         self.doEnd()
-                        #self.doListen = doListen
                self.doListen = doListen
          case 1004 | 1005 | 1006:
             if (self.defeatedFreakyGirl == False):
@@ -19333,13 +19311,9 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up the stairs and out of the cave to Firmshaft.",True)
                         else:
                            self.outputMainText("She continues on with her doll and you take to the stairs.",True)
-                        #self.doNext()
-                        #def doListen():
                         self.inDungeon = False
-                        #self.regionChange(2)
                         self.goToInDoProcess = 2
                         self.doEnd()
-                        #self.doListen = doListen
                      case 6:
                         self.outputMainText("\"Ooo, really?! Yay~!\" The girl hops up to her feet, her skirt flipping up a little to flash you her panties. With Mr. Snuggles in hand, the excitement gets the best of her and she bellows out with her fiercer side. \"I'LL TRY NOT TO TEAR YOU TO SHREDS~\"",True)
                         self.doNext()
@@ -19393,13 +19367,9 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials while you head up out to Firmshaft.",True)
                         else:
                            self.outputMainText("\"Take care~\" She seems relieved as you leave.",True)
-                        #self.doNext()
-                        #def doListen():
                         self.inDungeon = False
-                        #self.regionChange(2)
                         self.goToInDoProcess = 2
                         self.doEnd()
-                        #self.doListen = doListen
                      case 7:
                         if (self.currentDungeon == 1007):
                            self.outputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials.",True)
@@ -19425,13 +19395,9 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText("\"Alright, try not to do anything I'd want to do~\" She returns her focus to her vials.",True)
                         else:
                            self.outputMainText("\"Take care~\" She seems relieved as you leave.",True)
-                        #self.doNext()
-                        #def doListen():
                         self.inDungeon = False
-                        #self.regionChange(12)
                         self.goToInDoProcess = 12
                         self.doEnd()
-                        #self.doListen = doListen
                self.doListen = doListen
          case 1010:
             tempStr = "The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open.\n\nGazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting.\n\nA massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground.\n\n\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle.\n\n\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"\n\n\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"\n\n\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"\n\nThe succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own."
@@ -19480,31 +19446,27 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "Yet, despite all of that, her focus mostly remains on her large belly. Nearly as large as herself if she were to curl up, the thing hangs forward to the point where she can't see her messy arousal below. Her hands often roam over the taut fur, taking her naked opportunity to caress it and pleasure in it, cradling it gently."
       return tempStr
    def Gibberish(self): #not used
-      #!Could be staticmethod
-      tempStr = "GIBBERISH ERROR"
       chance = self.percent()
       if (chance <= 33):
-         tempStr = "¤çÑ-| ÇôG+¦æ| EÆáÜaß pOƒ§· +îdvwqe 5dfÑ¯» º¤äÜ¦) ¼ÿæ¤h ·ƒ."
-      elif ((chance > 33) and (chance <= 66)):
-         tempStr = "Gs¿ fdfƒæ d§ew ¤-ÿö fs¤£· ÖÅ¢¥¬ ¼«¦ds?"
-      elif (chance > 66):
-         tempStr = "Tas ªÜhf¤ ÄäÑse çåÅû¿ ÑÜñ?Äsd Ü¥¦»¦ƒ ¦ÜÆ+¿æ£ we¤ rgdA-d»¦± Ü+#A¤$¤-ò. Fi?¤çÑK)^¤2 ges nec ¤?+ÿ• ºñ¡as frtr."
-      return tempStr
+         return "¤çÑ-| ÇôG+¦æ| EÆáÜaß pOƒ§· +îdvwqe 5dfÑ¯» º¤äÜ¦) ¼ÿæ¤h ·ƒ."
+      elif (chance <= 66):
+         return "Gs¿ fdfƒæ d§ew ¤-ÿö fs¤£· ÖÅ¢¥¬ ¼«¦ds?"
+      else:
+         return "Tas ªÜhf¤ ÄäÑse çåÅû¿ ÑÜñ?Äsd Ü¥¦»¦ƒ ¦ÜÆ+¿æ£ we¤ rgdA-d»¦± Ü+#A¤$¤-ò. Fi?¤çÑK)^¤2 ges nec ¤?+ÿ• ºñ¡as frtr."
+      return "GIBBERISH ERROR"
    def GibButt(self): #not used
-      #!Could be staticmethod
-      tempStr = "GIB BUTTON ERROR"
       chance = self.percent()
       if (chance <= 20):
-         tempStr = "Pk¿ºs"
-      elif ((chance > 20) and (chance <= 40)):
-         tempStr = "Ju£¥)"
-      elif ((chance > 40) and (chance <= 60)):
-         tempStr = "§hdsa"
-      elif ((chance > 60) and (chance <= 80)):
-         tempStr = "Ö¦¤ÄT¦+"
-      elif (chance > 80):
-         tempStr = "Pancakes"
-      return tempStr
+         return "Pk¿ºs"
+      elif (chance <= 40):
+         return "Ju£¥)"
+      elif (chance <= 60):
+         return "§hdsa"
+      elif (chance <= 80):
+         return "Ö¦¤ÄT¦+"
+      else:
+         return "Pancakes"
+      return "GIB BUTTON ERROR"
    def knotholeMain(self, entering:bool):
       self.hrs += 1
       if (entering == True):
@@ -22090,7 +22052,6 @@ class NiminFetishFantasyv0975o_fla:
       if ((self.rabbitAffinity + self.rabbit < 40) and (self.rabbitAffinity >= 40)):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} calmer. Now you can take your fertility nice and easy... relatively."
-         #self.pregRate = self.pregRate - 1
          self.pregRate -= 1
       if ((self.mouseAffinity + self.mouse >= 40) and (self.mouseAffinity < 40)):
          tempStr += "\n\nA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle."
@@ -23212,12 +23173,9 @@ class NiminFetishFantasyv0975o_fla:
       self.udderSize += sizeChange
       self.teatSize += sizeChange
    def udderCheck(self, which:int):
-      tempBool = False
-      if ((which != 1) and (self.cowAffinity >= 55)):
-         tempBool = True
-      elif ((which != 2) and (self.legType == 1001)):
-         tempBool = True
-      return tempBool
+      if ((which != 1) and (self.cowAffinity >= 55) or (which != 2) and (self.legType == 1001)):
+         return True
+      return False
    def lactChange(self, which:int, amount:int, ret=False):
       tempStr = ""
       if ((which == 1) and (self.lactation + amount >= 1) and (self.lactation < 1)):
@@ -23272,26 +23230,25 @@ class NiminFetishFantasyv0975o_fla:
       else:
          return tempStr
    def pregCheck(self, amount:int):
-      tempBool = False
       if (amount == 0):
          i = 0
          while (i < self.pregArray.length):
             if (self.pregArray[i] == True):
-               tempBool = True
+               return True
             i += 5
       elif (amount == 1):
          i = 0
          while (i < self.pregArray.length):
             if (self.pregArray[i] == False):
-               tempBool = True
+               return True
             i += 5
       elif (amount > 1):
          i = 0
          while (i < self.pregArray.length):
             if (self.pregArray[i + 1] == amount):
-               tempBool = True
+               return True
             i += 5
-      return tempBool
+      return False
    def doMultiImpregnate(self, erace:int, amount:int, ret=False):
       tempStr = ""
       for i in range(amount):
@@ -23538,18 +23495,10 @@ class NiminFetishFantasyv0975o_fla:
          case 501:
             tempStr += f" Thick bull-cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go..."
             tempStr += self.doMultiImpregnate(101,5,ret=True)
-            #tempStr += self.doImpregnate(101,ret=True)
-            #tempStr += self.doImpregnate(101,ret=True)
-            #tempStr += self.doImpregnate(101,ret=True)
-            #tempStr += self.doImpregnate(101,ret=True)
-            #tempStr += self.doImpregnate(101,ret=True)
             tempStr += self.doLust(-(self.sen // 4),2,2,ret=True)
          case 502:
             tempStr += f" Your own thick cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go..."
             tempStr += self.doMultiImpregnate(self.dominant,3,ret=True)
-            #tempStr += self.doImpregnate(self.dominant,ret=True)
-            #tempStr += self.doImpregnate(self.dominant,ret=True)
-            #tempStr += self.doImpregnate(self.dominant,ret=True)
             tempStr += self.doLust(-(self.sen // 4),2,2,ret=True)
          case 504:
             tempStr += f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you."
@@ -24361,7 +24310,6 @@ class NiminFetishFantasyv0975o_fla:
             return "gigantic"
       return f"HIP ERROR {self.hips}"
    def bellyDesc(self):
-      #!Add direct return
       chance = self.percent()
       #!Add InternalBallsAffectBelly (self.gametweaks[7])
       if False and self.gametweaks[7] and self.showBalls == False:
@@ -24534,8 +24482,7 @@ class NiminFetishFantasyv0975o_fla:
          case 1:
             if (self.legType == 1001):
                return "behind"
-            else:
-               return "between"
+            return "between"
          case 2:
             return "between"
       return f"LEG WHERE ERROR {part} TYPE {self.legType}"
@@ -24614,13 +24561,11 @@ class NiminFetishFantasyv0975o_fla:
          case 1:
             if ((self.hips > 3) and (self.breastSize > 4)):
                return " female"
-            else:
-               return " male"
+            return " male"
          case 2:
             if ((self.body > 17) and (self.breastSize <= 2)):
                return " male"
-            else:
-               return " female"
+            return " female"
          case 3:
             return " herm"
       return f"GENDER ERROR {self.gender}"
@@ -25465,8 +25410,7 @@ class NiminFetishFantasyv0975o_fla:
    def solString(string):
       if string in [None,"None","undefined"]:
          return ""
-      else:
-         return str(string)
+      return str(string)
    @staticmethod
    def solGetFileName(path:str|Path):
       if type(path) == str:
@@ -25942,7 +25886,6 @@ class NiminFetishFantasyv0975o_fla:
          else:
             try:
                QUAN = int(EN[1],10)
-               print(QUAN)
             except:
                if temperr == "":
                   temperr = "Quantity must be a number"
@@ -25951,12 +25894,10 @@ class NiminFetishFantasyv0975o_fla:
                self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
             else:
                if QUAN > 0:
-                  print(self.itemGainArray)
                   i = 0
                   while i < QUAN:
                      self.itemGainArray.append(ID)
                      i += 1
-                  print(self.itemGainArray)
                   self.gainItem(self.itemGainArray.pop())
                else:
                   self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
@@ -26048,9 +25989,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.wikiwindow.toTop()
    def wikiKeyPress(self,e):
-      if ckeys.tkeventToJavascriptKeycode(e) == None:
-         pass
-      else:
+      if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e),e)
    def wikiHotkeys(self,keyCode,e):
       match keyCode:
@@ -26086,7 +26025,7 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.children["menu"].see(temp - 1)
    def wikiMenuSelectionDown(self,*useless):
       temp = self.wikiwindow.children["menu"].curselection()[0]
-      if not (temp + 1) >= len(self.wikiwindow.children["menu"].get(0,"end")):
+      if (temp + 1) < len(self.wikiwindow.children["menu"].get(0,"end")):
          self.wikiwindow.children["menu"].selection_clear(temp)
          self.wikiwindow.children["menu"].select_set(temp + 1)
          self.wikiwindow.children["menu"].activate(temp + 1)
@@ -26103,9 +26042,7 @@ class NiminFetishFantasyv0975o_fla:
             self.wikiwindow.forceFocus("menu")
             self.wikifocus = 0
    def doWikiPrevious(self, *e):
-      if len(self.wikipreviouspage) <= 1:
-         pass
-      else:
+      if len(self.wikipreviouspage) > 1:
          self.wikipreviouspage.pop()
          self.doWikiPage(self.wikipreviouspage[-1][0],self.wikipreviouspage[-1][1], returning=True)
    def doWikiText(self):
@@ -27087,9 +27024,7 @@ class NiminFetishFantasyv0975o_fla:
             return
       if returning == False:
          temp = len(self.wikipreviouspage) - 1
-         if temp > -1 and self.wikipreviouspage[temp] != [topic,Num]:
-            self.wikipreviouspage.append([topic,Num])
-         elif temp == -1:
+         if temp == -1 or temp > -1 and self.wikipreviouspage[temp] != [topic,Num]:
             self.wikipreviouspage.append([topic,Num])
       match topic:
          case "Basic":
@@ -27629,11 +27564,11 @@ class NiminFetishFantasyv0975o_fla:
 if __name__ == "__main__":
    mainobject = NiminFetishFantasyv0975o_fla()
    args = as3.Array(*sysargs)
-   if args.indexOf("-h") != -1 or args.indexOf("--help") != -1 or args.indexOf("-?") != -1:
+   if "-h" in args or "--help" in args or "-?" in args:
       print("usage: python Pymin.py [options]\nOptions:\n-d\t: runs the program in debug mode (also --debug)\n-n\t: Prevents the game from initializing and displays all elements on the screen (also --nostart or --noStart)\n-h\t: Prints this message and exits (also --help or -?)")
       exit()
-   if args.indexOf("--debug") != -1 or args.indexOf("-d") != -1:
+   if "--debug"in args or "-d" in args:
       as3.EnableDebug()
-   if args.indexOf("-n") != -1 or args.indexOf("--nostart") != -1 or args.indexOf("--noStart") != -1:
+   if "-n"in args or "--nostart"in args or "--noStart" in args:
       mainobject.debugNoStart = True
    mainobject.MainTimeline()
