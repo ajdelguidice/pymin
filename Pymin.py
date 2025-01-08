@@ -2814,10 +2814,9 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.HP += changes
       self.statDisplay()
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def doPassOut(self, ret=False):
       #Function for when player reaches 0 HP
       tempStr = ""
@@ -2836,12 +2835,11 @@ class NiminFetishFantasyv0975o_fla:
       self.exhaustion -= self.percent() // 20
       self.skipExhaustion = True
       self.hrs = 2 + self.percent() // 20
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-         self.doEnd()
-      else:
+      if (ret):
          self.passOut = True
          return tempStr
+      self.outputMainText(tempStr,False)
+      self.doEnd()
    def doLust(self, changes:int, source:int, *triggers, ret=False):
       #Changes player lust and provides lust event descriptions
       triggers = as3.Array(*triggers)
@@ -2968,10 +2966,9 @@ class NiminFetishFantasyv0975o_fla:
          changes = 0
       self.lust += changes
       self.statDisplay()
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def doLustForcedMasturbate(self):
       #For when player's lust gets too high
       if (self.currentState == 2):
@@ -5323,11 +5320,10 @@ class NiminFetishFantasyv0975o_fla:
          self.stats(0,-5,2,0)
          self.exhaustion += 20
       tempStr += self.doLust(-(self.lib // 4),2,1,ret=True)
-      if (ret == False):
-         self.outputMainText(tempStr,True)
-         self.doEnd()
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,True)
+      self.doEnd()
    def doBag(self, noclear=False, refresh=False):
       #Bag dialog
       self.mts = False
@@ -20068,10 +20064,9 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nJust as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way..."
             case 309:
                tempStr += "\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\""
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def doRape(self):
       chance = 0
       match self.enemyID:
@@ -20647,10 +20642,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       self.eHP += changes
       if (self.eHP > 0):
-         if ret == False:
-            self.outputMainText(f"\n\nYour enemy now seems to be under {math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.",False)
-         else:
+         if ret:
             return f"\n\nYour enemy now seems to be under {math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP."
+         self.outputMainText(f"\n\nYour enemy now seems to be under {math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.",False)
    def doeLust(self, changes:int, ret=False):
       tempStr = ""
       match self.eGen:
@@ -20676,10 +20670,9 @@ class NiminFetishFantasyv0975o_fla:
             elif ((self.eLust + changes > 20) and (self.eLust <= 20)):
                tempStr += f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can while its erection clearly grows."
       self.eLust += changes
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def eDmg(self, eweapon):
       if self.debugtweaks[1] == True and confmod.as3DebugEnable == True:
          return 0
@@ -22889,10 +22882,9 @@ class NiminFetishFantasyv0975o_fla:
             self.showBalls = False
          else:
             self.showBalls = True
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def cockLoss(self, ret=False):
       tempStr = ""
       hasHumanCock = 101
@@ -22943,10 +22935,9 @@ class NiminFetishFantasyv0975o_fla:
             self.showBalls = False
          else:
             self.showBalls = True
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def vagChange(self, sizeChange:int, totalChange:int, ret=False):
       tempStr = ""
       self.birthCount = 0
@@ -23047,10 +23038,9 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.vagTotal > 0): #Size change
          tempStr += self.vagBellyChange(sizeChange,totalChange,ret=True)
          self.vagSize += sizeChange
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def vagBellyChange(self, sizeChange:int, totalChange:int, ret=False):
       tempStr = ""
       newBelly = (self.vagSize + sizeChange) * (self.vagTotal + totalChange) * self.vagSizeMod - self.tallness / 2
@@ -23063,10 +23053,9 @@ class NiminFetishFantasyv0975o_fla:
       self.vagBellyMod = newBelly
       if (self.vagBellyMod < 0):
          self.vagBellyMod = 0
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def legChange(self, which:int, ret=False):
       tempStr = ""
       if ((self.legType > 1000) and (which < 1000)):
@@ -23162,10 +23151,9 @@ class NiminFetishFantasyv0975o_fla:
          self.runMod += 10
          self.carryMod -= 15
       self.legType = which
-      if ret == False:
-         self.outputMainText(tempStr,False)
-      else:
+      if ret:
          return tempStr
+      self.outputMainText(tempStr,False)
    def boobChange(self, sizeChange:int):
       self.breastSize += sizeChange
       self.nippleSize += sizeChange
@@ -23225,10 +23213,9 @@ class NiminFetishFantasyv0975o_fla:
          self.lactation = 0
       if (self.udderLactation < 0):
          self.udderLactation = 0
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def pregCheck(self, amount:int):
       if (amount == 0):
          i = 0
@@ -23502,10 +23489,9 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 4),2,2,ret=True)
          case 504:
             tempStr += f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you."
-      if (ret == False):
-         self.outputMainText(tempStr,False)
-      else:
+      if (ret):
          return tempStr
+      self.outputMainText(tempStr,False)
    def ptweaksGrammar(self,topic:int,capital:bool=False):
       match topic:
          case 1: #femme-boy/femboy
