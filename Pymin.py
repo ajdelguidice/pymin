@@ -2091,35 +2091,34 @@ class NiminFetishFantasyv0975o_fla:
       tempInt = 0
       tempArray2 = as3.Array(12,"Return")
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
-      match which:
-         case "Bag":
-            tempArray = as3.Array(numElements=27)
-            for i in range(0, 27):
-               if (self.bagArray[i] == 0):
-                  tempArray[i] = " "
-               else:
-                  tempArray[i] = self.itemName(self.bagArray[i])
-            if (self.inBag == True):
-               self.choicePage = self.bagPage
-            elif self.mtb == True:
-               self.choicePage = self.tempBagPage
-            elif page != None:
-               self.choicePage = page
-         case "Stash":
-            tempArray = as3.Array(numElements=27)
-            for i in range(0, 27):
-               if (self.stashArray[i] == 0):
-                  tempArray[i] = " "
-               else:
-                  tempArray[i] = self.itemName(self.stashArray[i])
-            if (self.inStash == True):
-               self.choicePage = self.stashPage
-            elif self.mts == True:
-               self.choicePage = self.tempBagPage
-         case _:
-            tempArray = as3.Array(numElements=self.choiceListArray.length)
-            for i in range(0, self.choiceListArray.length):
-               tempArray[i] = self.choiceListArray[i]
+      if which == "Bag":
+         tempArray = as3.Array(numElements=27)
+         for i in range(0, 27):
+            if (self.bagArray[i] == 0):
+               tempArray[i] = " "
+            else:
+               tempArray[i] = self.itemName(self.bagArray[i])
+         if (self.inBag == True):
+            self.choicePage = self.bagPage
+         elif self.mtb == True:
+            self.choicePage = self.tempBagPage
+         elif page != None:
+            self.choicePage = page
+      elif which == "Stash":
+         tempArray = as3.Array(numElements=27)
+         for i in range(0, 27):
+            if (self.stashArray[i] == 0):
+               tempArray[i] = " "
+            else:
+               tempArray[i] = self.itemName(self.stashArray[i])
+         if (self.inStash == True):
+            self.choicePage = self.stashPage
+         elif self.mts == True:
+            self.choicePage = self.tempBagPage
+      else:
+         tempArray = as3.Array(numElements=self.choiceListArray.length)
+         for i in range(0, self.choiceListArray.length):
+            tempArray[i] = self.choiceListArray[i]
       if (tempArray.length > 9):
          buttonlist[4] = 1
          buttonlist[8] = 1
@@ -2151,32 +2150,28 @@ class NiminFetishFantasyv0975o_fla:
          self.showDiscard()
       self.enableAllButtons()
       for i in range(1,13):
-         match buttons[i]:
-            case 0:
-               if self.buttonsVisible[i] == True:
-                  self.mo.destroyChild(f"button{i}")
-                  self.buttonsVisible[i] = False
-            case 1:
-               if self.buttonsVisible[i] == False:
-                  self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-                  self.mo.configureChild(f"button{i}",text="",background=self.theme,foreground=self.fontColor,command=partial(self.buttonExecProxy,i))
-                  self.buttonsVisible[i] = True
+         if buttons[i] == 0 and self.buttonsVisible[i] == True:
+            self.mo.destroyChild(f"button{i}")
+            self.buttonsVisible[i] = False
+         elif buttons[i] == 1 and self.buttonsVisible[i] == False:
+            self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
+            self.mo.configureChild(f"button{i}",text="",background=self.theme,foreground=self.fontColor,command=partial(self.buttonExecProxy,i))
+            self.buttonsVisible[i] = True
          if i not in (4,8,12):
             tempI = self._showButtonsBagCalc(i,self.choicePage)
             if (buttonText[tempI]):
-               match which:
-                  case "Bag":
-                     if (self.bagStackArray[tempI] > 1):
-                        self.viewAmount(i, True)
-                        self.writeAmount(i, f"{self.bagStackArray[tempI]}")
-                     else:
-                        self.viewAmount(i,False)
-                  case "Stash":
-                     if (self.stashStackArray[tempI] > 1):
-                        self.viewAmount(i, True)
-                        self.writeAmount(i, f"{self.stashStackArray[tempI]}")
-                     else:
-                        self.viewAmount(i,False)
+               if which == "Bag":
+                  if (self.bagStackArray[tempI] > 1):
+                     self.viewAmount(i, True)
+                     self.writeAmount(i, f"{self.bagStackArray[tempI]}")
+                  else:
+                     self.viewAmount(i,False)
+               elif which == "Stash":
+                  if (self.stashStackArray[tempI] > 1):
+                     self.viewAmount(i, True)
+                     self.writeAmount(i, f"{self.stashStackArray[tempI]}")
+                  else:
+                     self.viewAmount(i,False)
    def choiceListBlanks(self):
       #if self.inBag == False and self.inStash == False:
       if not self.inBag and not self.inStash:
@@ -3404,11 +3399,10 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += f"\n\nJust below your belly hangs a {self.udderDesc()} udder "
          tempStr += f"with 4 {self.teatDesc()} teats, each {repintorfloat(self.decGet(self.teatSize * 0.2,1))} inches long"
          if (self.udderLactation > 0):
-            match self.udderEngorgementLevel:
-               case 2:
-                  tempStr += " and dribbling milk from your engorgement"
-               case 3:
-                  tempStr += " and practically spraying milk onto the ground before you from your excessive engorgment"
+            if self.udderEngorgementLevel == 2:
+               tempStr += " and dribbling milk from your engorgement"
+            elif self.udderEngorgementLevel == 3:
+               tempStr += " and practically spraying milk onto the ground before you from your excessive engorgment"
          if (self.milkSuppressantUdder > 0):
             #!Shouldn't this be udderEngorgementLevel?
             if self.milkEngorgementLevel == 2:
@@ -7225,7 +7219,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doButtonChoices(tempArray)
                def doListen():
                   self.inDungeon = False
-                  #!Combine checks into one match statement
                   if self.currentZone == 1:
                      if self.buttonChoice == 1:
                         self.regionChange(3)
@@ -7606,73 +7599,72 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
                self.doEnd()
          case 513:
-            match self.gender:
-               case 1:
-                  tempStr = f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside."
-                  if (self.showBalls == True):
-                     tempStr += f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, leaving behind 1 tiny pair of feminine lips."
-                  else:
-                     tempStr += f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming two tiny mounds, 1 pair of new feminine lips."
-                  tempStr += " The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your clitoris, making you shiver slightly, before you dip your finger into your new cunny, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl."
-                  self.balls = 0
-                  self.ballSize = 0
-                  self.cockSize = 0
-                  self.stats(0,0,-(2 * (self.cockTotal - 1)),0)
-                  self.cockTotal = 0
-                  self.humanCocks = 0
-                  self.horseCocks = 0
-                  self.wolfCocks = 0
-                  self.catCocks = 0
-                  self.lizardCocks = 0
-                  self.rabbitCocks = 0
-                  self.bugCocks = 0
-                  tempStr += self.vagBellyChange(1,1,ret=True)
-                  self.vagTotal = 1
-                  self.pregArray = as3.Array(False,0,0,0,0)
-                  self.vagSize = 1
-                  self.vulvaSize = 1
-                  self.clitSize = 1
-                  self.gender = 2
-               case 2:
-                  tempStr = "You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within."
+            if self.gender == 1:
+               tempStr = f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside."
+               if (self.showBalls == True):
+                  tempStr += f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, leaving behind 1 tiny pair of feminine lips."
+               else:
+                  tempStr += f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming two tiny mounds, 1 pair of new feminine lips."
+               tempStr += " The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your clitoris, making you shiver slightly, before you dip your finger into your new cunny, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl."
+               self.balls = 0
+               self.ballSize = 0
+               self.cockSize = 0
+               self.stats(0,0,-(2 * (self.cockTotal - 1)),0)
+               self.cockTotal = 0
+               self.humanCocks = 0
+               self.horseCocks = 0
+               self.wolfCocks = 0
+               self.catCocks = 0
+               self.lizardCocks = 0
+               self.rabbitCocks = 0
+               self.bugCocks = 0
+               tempStr += self.vagBellyChange(1,1,ret=True)
+               self.vagTotal = 1
+               self.pregArray = as3.Array(False,0,0,0,0)
+               self.vagSize = 1
+               self.vulvaSize = 1
+               self.clitSize = 1
+               self.gender = 2
+            elif self.gender == 2:
+               tempStr = "You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within."
+               tempStr += self.cockChange(1,1,ret=True)
+               tempStr += f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating back against your groin before finally vanishing, making you a boy for all intents and purposes."
+               tempStr += self.vagChange(-1,0,ret=True)
+               tempStr += self.vagBellyChange(-self.vagSize,-self.vagTotal,ret=True)
+               self.stats(0,0,-(2 * (self.vagTotal - 1)),0)
+               self.vagSize = 0
+               self.vagTotal = 0
+               i = 0
+               while (i < self.pregArray.length):
+                  if (self.pregArray[i] == False):
+                     self.pregArray.splice(i,5)
+                     i = -5
+                  i += 5
+               self.vulvaSize = 0
+               self.clitSize = 0
+               self.gender = 1
+            elif self.gender == 3:
+               tempStr = f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within. Your {self.clothesBottom()} feels loser as your {self.cockDesc()} bulges dwindle as well."
+               if (self.showBalls == True):
+                  tempStr += " Even your testicles shrivel up, growing smaller and smaller."
+               tempStr += f"\n\nBy the time you finally pull {self.pullUD(2)} your {self.clothesBottom()}, all your attributes are like that of a childs..."
+               tempStr += self.vagChange(-1,0,ret=True)
+               tempStr += self.vagBellyChange(-(self.vagSize - 1),0,ret=True)
+               self.ballSize = 1
+               self.cockSize = 1
+               self.vagSize = 1
+               self.vulvaSize = 1
+               self.clitSize = 1
+            elif self.gender == 0:
+               chance = self.percent()
+               tempStr = "You ingest the potion and quickly begin to feel its effects."
+               if (chance <= 40):
                   tempStr += self.cockChange(1,1,ret=True)
-                  tempStr += f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating back against your groin before finally vanishing, making you a boy for all intents and purposes."
-                  tempStr += self.vagChange(-1,0,ret=True)
-                  tempStr += self.vagBellyChange(-self.vagSize,-self.vagTotal,ret=True)
-                  self.stats(0,0,-(2 * (self.vagTotal - 1)),0)
-                  self.vagSize = 0
-                  self.vagTotal = 0
-                  i = 0
-                  while (i < self.pregArray.length):
-                     if (self.pregArray[i] == False):
-                        self.pregArray.splice(i,5)
-                        i = -5
-                     i += 5
-                  self.vulvaSize = 0
-                  self.clitSize = 0
-                  self.gender = 1
-               case 3:
-                  tempStr = f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within. Your {self.clothesBottom()} feels loser as your {self.cockDesc()} bulges dwindle as well."
-                  if (self.showBalls == True):
-                     tempStr += " Even your testicles shrivel up, growing smaller and smaller."
-                  tempStr += f"\n\nBy the time you finally pull {self.pullUD(2)} your {self.clothesBottom()}, all your attributes are like that of a childs..."
-                  tempStr += self.vagChange(-1,0,ret=True)
-                  tempStr += self.vagBellyChange(-(self.vagSize - 1),0,ret=True)
-                  self.ballSize = 1
-                  self.cockSize = 1
-                  self.vagSize = 1
-                  self.vulvaSize = 1
-                  self.clitSize = 1
-               case 0:
-                  chance = self.percent()
-                  tempStr = "You ingest the potion and quickly begin to feel its effects."
-                  if (chance <= 40):
-                     tempStr += self.cockChange(1,1,ret=True)
-                  if ((chance > 40) and (chance <= 80)):
-                     tempStr += self.vagChange(1,1,ret=True)
-                  if (chance > 80):
-                     tempStr += self.cockChange(1,1,ret=True)
-                     tempStr += self.vagChange(1,1,ret=True)
+               if ((chance > 40) and (chance <= 80)):
+                  tempStr += self.vagChange(1,1,ret=True)
+               if (chance > 80):
+                  tempStr += self.cockChange(1,1,ret=True)
+                  tempStr += self.vagChange(1,1,ret=True)
             self.outputMainText(tempStr,True)
             self.doEnd()
          case 514:
@@ -8654,21 +8646,20 @@ class NiminFetishFantasyv0975o_fla:
                self.doListen = doListen
       self.doListen = doListen
    def goodsID(self, goodsSlot:int):
-      match self.currentZone:
-         case 1:
-            templist = (0, 104, 111, 116, 0, 500, 501, 108, 0, 110, 115, 121, 0)
-         case 2:
-            templist = (0, 102, 112, 117, 0, 106, 0, 0, 0, 110, 115, 122, 0)
-         case 3:
-            templist = (0, 101, 113, 118, 0, 120, 0, 0, 0, 110, 115, 123, 0)
-         case 4:
-            templist = (0, 0, 114, 119, 0, 103, 110, 0, 0, 110, 115, 124, 0)
-         case 6:
-            templist = (0, 109, 126, 127, 0, 103, 230, 0, 0, 110, 115, 125, 0)
-         case 12:
-            templist = (0, 247, 250, 256, 0, 120, 0, 0, 0, 110, 115, 128, 0)
-         case _:
-            return f"ZONE ERROR: {self.currentZone}"
+      if self.currentZone == 1:
+         templist = (0, 104, 111, 116, 0, 500, 501, 108, 0, 110, 115, 121, 0)
+      elif self.currentZone == 2:
+         templist = (0, 102, 112, 117, 0, 106, 0, 0, 0, 110, 115, 122, 0)
+      elif self.currentZone == 3:
+         templist = (0, 101, 113, 118, 0, 120, 0, 0, 0, 110, 115, 123, 0)
+      elif self.currentZone == 4:
+         templist = (0, 0, 114, 119, 0, 103, 110, 0, 0, 110, 115, 124, 0)
+      elif self.currentZone == 6:
+         templist = (0, 109, 126, 127, 0, 103, 230, 0, 0, 110, 115, 125, 0)
+      elif self.currentZone == 12:
+         templist = (0, 247, 250, 256, 0, 120, 0, 0, 0, 110, 115, 128, 0)
+      else:
+         return f"ZONE ERROR: {self.currentZone}"
       try:
          return templist[goodsSlot]
       except:
@@ -11182,15 +11173,14 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText("Choose which list of alchemy you would like to choose from.",True)
       self.doButtonChoices((1,"Simple",6,"Complex",11,"Advanced",12,"Return"))
       def doListen():
-         match self.buttonChoice:
-            case 1:
-               self.simpleAlchemy()
-            case 6:
-               self.complexAlchemy()
-            case 11:
-               self.advancedAlchemy()
-            case 12:
-               self.doReturn()
+         if self.buttonChoice == 1:
+            self.simpleAlchemy()
+         elif self.buttonChoice == 6:
+            self.complexAlchemy()
+         elif self.buttonChoice == 11:
+            self.advancedAlchemy()
+         elif self.buttonChoice == 12:
+            self.doReturn()
       self.doListen = doListen
    def simpleAlchemy(self):
       self.comefromalch = 1
@@ -15362,92 +15352,91 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText(tempStr,True)
                self.doButtonChoices(templist)
                def doListen():
-                  match self.buttonChoice:
-                     case 1:
-                        tempStr = "Using some ingenuinity, you fashion a sort of 'pussy-plug' from one of the surrounding cattails. Soft enough to protect her and her eggs, yet stiff and phallic enough to slip in and stay until she can get to her home in the rock formations, it should suit the situation well.\n\n"
-                        if self.tempInt == 1:
-                           tempStr += "Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the modified cattail down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. However, her inexperience with her own body proves most troublesome...\n\nFrantic and unwary of how she's directing you to insert the makeshift plug, she accidentally pushes into the wrong hole. She lets out a shriek of surprise and pain, her tail whipping up behind her. Whipping up right into your own groin.\n\nYou double over in pain and splash into the water. The girl hops up, rubbing herself and kicking the pile of eggs about as she dances about. Her bathing suit slips back over her slit and she holds it tenderly while she bends over you, trying to prevent another egg from popping out.\n\n\"I-I'm so sorry!\" Apologizing for your pain, she turns and runs to find another place to hide as she can already feel the next egg pressing against her bathing suit from within, leaving you to groan and writhe for a while alone.\n\nAfter some time passes, you gather yourself and limp away..."
-                           tempStr += self.doHP(-5,ret=True)
-                           self.stats(0,0,-2,0)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 3
-                           self.doEnd()
-                        elif self.tempInt == 2:
-                           tempStr += "Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the makeshift plug into her pussy. Pulling away, she pauses as she feels an egg settle onto the soft fluff but is unable to push further, effectively halting her laying for now. Slipping her bikini back over her exposed nethers, she slowly stands, getting used to the sensation.\n\nThough her belly looks a bit bloated and gradually growing with the buildup, she seems grateful. \"Umm... thanks for that.\" She squirms slightly as her stiff clit presses visibly against the bikini's crotch, becoming more aroused from the swelling sensation. Absent-mindendly, she leans down and gives you a quick kiss, dropping one of her pre-laid eggs into your lap as a gift, before blushing ferociously and running off to find her fiancee."
-                           self.stats(0,0,1,0)
+                  if self.buttonChoice == 1:
+                     tempStr = "Using some ingenuinity, you fashion a sort of 'pussy-plug' from one of the surrounding cattails. Soft enough to protect her and her eggs, yet stiff and phallic enough to slip in and stay until she can get to her home in the rock formations, it should suit the situation well.\n\n"
+                     if self.tempInt == 1:
+                        tempStr += "Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the modified cattail down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. However, her inexperience with her own body proves most troublesome...\n\nFrantic and unwary of how she's directing you to insert the makeshift plug, she accidentally pushes into the wrong hole. She lets out a shriek of surprise and pain, her tail whipping up behind her. Whipping up right into your own groin.\n\nYou double over in pain and splash into the water. The girl hops up, rubbing herself and kicking the pile of eggs about as she dances about. Her bathing suit slips back over her slit and she holds it tenderly while she bends over you, trying to prevent another egg from popping out.\n\n\"I-I'm so sorry!\" Apologizing for your pain, she turns and runs to find another place to hide as she can already feel the next egg pressing against her bathing suit from within, leaving you to groan and writhe for a while alone.\n\nAfter some time passes, you gather yourself and limp away..."
+                        tempStr += self.doHP(-5,ret=True)
+                        self.stats(0,0,-2,0)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 3
+                        self.doEnd()
+                     elif self.tempInt == 2:
+                        tempStr += "Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the makeshift plug into her pussy. Pulling away, she pauses as she feels an egg settle onto the soft fluff but is unable to push further, effectively halting her laying for now. Slipping her bikini back over her exposed nethers, she slowly stands, getting used to the sensation.\n\nThough her belly looks a bit bloated and gradually growing with the buildup, she seems grateful. \"Umm... thanks for that.\" She squirms slightly as her stiff clit presses visibly against the bikini's crotch, becoming more aroused from the swelling sensation. Absent-mindendly, she leans down and gives you a quick kiss, dropping one of her pre-laid eggs into your lap as a gift, before blushing ferociously and running off to find her fiancee."
+                        self.stats(0,0,1,0)
+                        self.itemAdd(219)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 2
+                        self.doEnd()
+                     elif self.tempInt == 3:
+                        tempStr += "Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the makeshift plug in between. Her breathing quickens in pace for a few seconds as you soft touch pleases her sensitive loin. As the next egg slowly comes to a stop upon the soft fluff within, she grins at how effective the treatment was.\n\n\"Wow, that is quite a neat trick! You really deserve some compensation for helping me like that.\" She slowly stands, a hand on her belly as she feels it swell slightly from the buildup before turning away towards her shed suit. Bending down before you, her tail flipping up to balance herself and giving you a generous view of her plump rear, she grabs some coins and an egg from the pile before turning to hand them to you. \"Thanks again!\" She smiles and winks. She then squeezes into her bathing suit, letting her curves fill it in dramatically, and picks up the rest of the eggs to get started on that cake."
+                        self.doCoin(30 + math.ceil(self.percent() / 3))
+                        self.itemAdd(219)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 2
+                        self.doEnd()
+                  elif self.buttonChoice == 6:
+                     tempStr = "Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. "
+                     if self.tempInt == 1:
+                        tempStr += "Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs."
+                        #i = 0
+                        #while (i < (6 + math.ceil(self.percent() / 20))):
+                        #!use addManyItems
+                        for i in range((6 + math.ceil(self.percent() / 20))):
                            self.itemAdd(219)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 2
-                           self.doEnd()
-                        elif self.tempInt == 3:
-                           tempStr += "Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the makeshift plug in between. Her breathing quickens in pace for a few seconds as you soft touch pleases her sensitive loin. As the next egg slowly comes to a stop upon the soft fluff within, she grins at how effective the treatment was.\n\n\"Wow, that is quite a neat trick! You really deserve some compensation for helping me like that.\" She slowly stands, a hand on her belly as she feels it swell slightly from the buildup before turning away towards her shed suit. Bending down before you, her tail flipping up to balance herself and giving you a generous view of her plump rear, she grabs some coins and an egg from the pile before turning to hand them to you. \"Thanks again!\" She smiles and winks. She then squeezes into her bathing suit, letting her curves fill it in dramatically, and picks up the rest of the eggs to get started on that cake."
-                           self.doCoin(30 + math.ceil(self.percent() / 3))
+                           #i += 1
+                        tempStr += self.doLust(self.lib // 2,0,ret=True)
+                        self.stats(0,1,1,0)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 3
+                        self.doEnd()
+                     elif self.tempInt == 2:
+                        self.outputMainText(tempStr + "Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You crawl forward through the shallow water, ducking in between her thighs. She squirms a bit as you reach in towards her exposed slit, making her shiver as you press the sensitive lips with your fingers, spreading and massaging them. Already you can feel her quiver within as a fresh egg begins its voyage out, easily slipping through the widened gap and plopping into the pile below, causing her to let out a low moan the whole way through. Her clitoris stands stiffly amidst her folds, large enough to protrude lewdly, especially with her arousal. Staring at it only makes her blush more and when your mouth comes in to suckle it, she jerks back, wrapping her tail around your abdomen to hold on as she nearly collapses into the water.\n\nThe oasis waters flooding over your tongue as you sip her genitals, the taste of sweet feminine lubrication is nearly overwhelming as she huffs and pants above you. Her hips gyrate around your face, scraping her thighs across your ears. Your efforts to 'soothe' her drive her wild, making her let out an erotic scream as the next egg begins to drop into her passage. The agonizingly slow progress of the ovoid thing through your pleasuring makes her writhe and twist, her tail hugging tighter and tighter and tighter. And, just as the egg begins to breach and make her squeal with ecstasy-\n\nYou pass out from lack of breath, her tail gripping you so strongly.",True)
+                        self.doNext()
+                        def doListen():
+                           tempStr = "You wake up some time later having been dragged onto the shore amidst the brush. Your waist aches and there's no sign of the engaged girl. Upon your chest you find a note, hinting as to where she may have gone.\n\n\"So, so sorry for making you pass out! I had to... With my fiancee and... Here, at least have an egg for forgiveness!\"\n\nRight beside you, you find the lone egg she had laid earlier, still slightly slimy and warm from her womb. Considering it's not wet from the oasis waters, it might just be the egg she laid when you were crushed..."
                            self.itemAdd(219)
+                           self.hrs = 4
+                           self.stats(-1,0,0,0)
+                           tempStr += self.doHP(-15,ret=True)
+                           self.aff(6,math.floor(self.percent() / 20 + 2),-1)
+                           tempStr += self.doLust(self.lib // 4,0,ret=True)
                            self.outputMainText(tempStr,True)
-                           self.hrs = 2
                            self.doEnd()
-                     case 6:
-                        tempStr = "Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. "
-                        if self.tempInt == 1:
-                           tempStr += "Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs."
-                           #i = 0
-                           #while (i < (6 + math.ceil(self.percent() / 20))):
-                           #!use addManyItems
-                           for i in range((6 + math.ceil(self.percent() / 20))):
-                              self.itemAdd(219)
-                              #i += 1
-                           tempStr += self.doLust(self.lib // 2,0,ret=True)
-                           self.stats(0,1,1,0)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 3
-                           self.doEnd()
-                        elif self.tempInt == 2:
-                           self.outputMainText(tempStr + "Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You crawl forward through the shallow water, ducking in between her thighs. She squirms a bit as you reach in towards her exposed slit, making her shiver as you press the sensitive lips with your fingers, spreading and massaging them. Already you can feel her quiver within as a fresh egg begins its voyage out, easily slipping through the widened gap and plopping into the pile below, causing her to let out a low moan the whole way through. Her clitoris stands stiffly amidst her folds, large enough to protrude lewdly, especially with her arousal. Staring at it only makes her blush more and when your mouth comes in to suckle it, she jerks back, wrapping her tail around your abdomen to hold on as she nearly collapses into the water.\n\nThe oasis waters flooding over your tongue as you sip her genitals, the taste of sweet feminine lubrication is nearly overwhelming as she huffs and pants above you. Her hips gyrate around your face, scraping her thighs across your ears. Your efforts to 'soothe' her drive her wild, making her let out an erotic scream as the next egg begins to drop into her passage. The agonizingly slow progress of the ovoid thing through your pleasuring makes her writhe and twist, her tail hugging tighter and tighter and tighter. And, just as the egg begins to breach and make her squeal with ecstasy-\n\nYou pass out from lack of breath, her tail gripping you so strongly.",True)
-                           self.doNext()
-                           def doListen():
-                              tempStr = "You wake up some time later having been dragged onto the shore amidst the brush. Your waist aches and there's no sign of the engaged girl. Upon your chest you find a note, hinting as to where she may have gone.\n\n\"So, so sorry for making you pass out! I had to... With my fiancee and... Here, at least have an egg for forgiveness!\"\n\nRight beside you, you find the lone egg she had laid earlier, still slightly slimy and warm from her womb. Considering it's not wet from the oasis waters, it might just be the egg she laid when you were crushed..."
-                              self.itemAdd(219)
-                              self.hrs = 4
-                              self.stats(-1,0,0,0)
-                              tempStr += self.doHP(-15,ret=True)
-                              self.aff(6,math.floor(self.percent() / 20 + 2),-1)
-                              tempStr += self.doLust(self.lib // 4,0,ret=True)
-                              self.outputMainText(tempStr,True)
-                              self.doEnd()
-                           self.doListen = doListen
-                        elif self.tempInt == 3:
-                           tempStr += "Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You crawl forward through the shallow water, ducking in between her thighs. She squirms a bit as you reach in towards her exposed slit, making her shiver as you press the sensitive lips with your fingers, spreading and massaging them. Already you can feel her quiver within as a fresh egg begins its voyage out, easily slipping through the widened gap and plopping into the pile below, causing her to let out a low moan the whole way through. Her clitoris stands stiffly amidst her dangling folds, all the meaty labia engorged with her arousal. She lets out a squeak as your mouth comes in to nibble on the tasty flesh, surprised at the efforts you are taking to 'comfort' her.\n\nThe oasis waters flooding over your tongue as you sip her genitals, the taste of sweet feminine lubrication is nearly overwhelming as she breathes more heavily above you. As you dip further into the water to nom on more of her labia, her hand briskly sweeps down to grind against her clitoris. The next egg begins to drop into her passage, pouring slime over your lips as it passes through while her ample rump twitches and splashes over the water's surface above you. You come up every now and then for a breath, only to dive back in to continue munching away, making the eggs speed through quicker and quicker as she takes a fondness to your efforts.\n\nAfter about a half hour and a great deal of pussy flavor filling your mouth, the woman seems to have finally finished laying all that the eggcelerator had caused. Coming up to look at her, her face is thoroughly dazed from the experience, her nipples stiff from all her own fondling while you were underwater and even leaking a few drops of milk.\n\n\"Well... that worked out much better than I thought it would. Though I suppose now I should really be getting back to my husband and children.\" She smiles as she teasingly disapproves of the minor infidelity. \"Thank you for your efforts though, it was a pleasant experience.\"\n\nStanding to gather the eggs together, she also bends forward before you, giving you a generous view of her rear, tail up and all, while she grabs some coins to give you in return. Then she gathers up the eggs for the cake she needs in the suit before slowly walking away, her tail swaying from side to side with the rest of her hips, making her way through a nude beach to get home."
-                           self.doCoin(10 + math.ceil(self.percent() / 10))
-                           self.aff(6,math.floor(self.percent() / 20 + 6),-5)
-                           tempStr += self.doLust(math.floor(5 + self.lib / 4),0,ret=True)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 3
-                           self.doEnd()
-                     case 11:
-                        self.loseManyItem(230,1)
-                        tempStr = "Thinking another dose might somehow help, you pull out an eggcelerator from your bag. "
-                        if self.tempInt == 1:
-                           tempStr += "Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the dose of eggcelerator down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. With her experience with the previous doses of eggcelerator, she manages to guide you correctly and lets out a squeak as she feels the suppository slip up into her passage.\n\nThe girl begins to quiver slightly as she feels her womb go into overdrive. A gasp escapes her lips as an egg immediately pushes through her folds, past your combined fingers. Suddenly, she seizes back into you, her back arching, as more eggs spill out of her womb. Her pussy lifts out of the water and into the air as her feet drag and kick through the sand below, tossing the pile about. Her exposed cunt spreads wide as another egg plops out into the water with another one right behind firing further out. She moans and whines as her body thrashes about, staring down at herself with fear as she's practically spreading her legs to anybody else in the lake and spreading her private area wide for them all to see as the eggs fly out of her. Jumping away from you with a sob, she stands up with a couple more eggs dropping between her thighs with thick strands of lubricant trailing. The girl hastily covers the exposed genitals with her one-piece suit, a tear shedding as she sees the crotch bulge with the next egg pushing through. Wholly embarrassed, she runs off into the brush, the eggs already slipping back into the rear of the suit as more collect before she disappears.\n\nLeft alone and feeling a little ashamed of how things progressed, you manage to fish out some eggs that survived and head off."
-                           self.addManyItem(219, 3)
-                           self.stats(0,0,0,-1)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 3
-                           self.doEnd()
-                        elif self.tempInt == 2:
-                           tempStr += "Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way..."
-                           self.addManyItem(230, 2)
-                           self.doCoin(15 + math.ceil(self.percent() / 10))
-                           tempStr += self.doLust(self.lib // 2,0,ret=True)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 3
-                           self.doEnd()
-                        elif self.tempInt == 3:
-                           tempStr += "Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the eggcelerator into her supple hole, letting it slip up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly progress, then her eyes grow wide as an egg immediately pushes out through her folds. Suddenly, she leans backwards even more, pointing her pussy right at your face as more eggs coming flying out. Her strong motherly hips propel an onslaught of eggs at you, smacking and cracking over your head and body. She eventually crashes back into the water, crushing the pile of eggs she had already laid and firing a couple more past you.\n\nThe splash of water across her face snaps her out of the egg-laying haze and she jumps up, just in time for another egg to shoot down between her thighs. \"Oh no, all the eggs for the cake!\" She cries out in dismay and attempts to block the next with her hand, only to result in a yolky mess. With that failing, she turns away from you and bends down, giving you a perfect view of her round rear as well as another egg that propels straight into your face, while she picks up her bathing suit. Rapidly folding the elastic garment a bit and tucking it between her legs, she manages to improvise a basket. Then she takes off through a nude beach, carrying the suit-basket between her legs as it slowly stretches with the depositing eggs, her hips and tail twitching sporadically with each lay.\n\nLeft covered in yolk and slightly pained from the firing squad, there's not much left to do but wash off in the oasis waters and head off..."
-                           tempStr += self.doHP(-10,ret=True)
-                           self.aff(6,math.floor(self.percent() / 20 + 4),-3)
-                           self.outputMainText(tempStr,True)
-                           self.hrs = 3
-                           self.doEnd()
+                        self.doListen = doListen
+                     elif self.tempInt == 3:
+                        tempStr += "Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You crawl forward through the shallow water, ducking in between her thighs. She squirms a bit as you reach in towards her exposed slit, making her shiver as you press the sensitive lips with your fingers, spreading and massaging them. Already you can feel her quiver within as a fresh egg begins its voyage out, easily slipping through the widened gap and plopping into the pile below, causing her to let out a low moan the whole way through. Her clitoris stands stiffly amidst her dangling folds, all the meaty labia engorged with her arousal. She lets out a squeak as your mouth comes in to nibble on the tasty flesh, surprised at the efforts you are taking to 'comfort' her.\n\nThe oasis waters flooding over your tongue as you sip her genitals, the taste of sweet feminine lubrication is nearly overwhelming as she breathes more heavily above you. As you dip further into the water to nom on more of her labia, her hand briskly sweeps down to grind against her clitoris. The next egg begins to drop into her passage, pouring slime over your lips as it passes through while her ample rump twitches and splashes over the water's surface above you. You come up every now and then for a breath, only to dive back in to continue munching away, making the eggs speed through quicker and quicker as she takes a fondness to your efforts.\n\nAfter about a half hour and a great deal of pussy flavor filling your mouth, the woman seems to have finally finished laying all that the eggcelerator had caused. Coming up to look at her, her face is thoroughly dazed from the experience, her nipples stiff from all her own fondling while you were underwater and even leaking a few drops of milk.\n\n\"Well... that worked out much better than I thought it would. Though I suppose now I should really be getting back to my husband and children.\" She smiles as she teasingly disapproves of the minor infidelity. \"Thank you for your efforts though, it was a pleasant experience.\"\n\nStanding to gather the eggs together, she also bends forward before you, giving you a generous view of her rear, tail up and all, while she grabs some coins to give you in return. Then she gathers up the eggs for the cake she needs in the suit before slowly walking away, her tail swaying from side to side with the rest of her hips, making her way through a nude beach to get home."
+                        self.doCoin(10 + math.ceil(self.percent() / 10))
+                        self.aff(6,math.floor(self.percent() / 20 + 6),-5)
+                        tempStr += self.doLust(math.floor(5 + self.lib / 4),0,ret=True)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 3
+                        self.doEnd()
+                  elif self.buttonChoice == 11:
+                     self.loseManyItem(230,1)
+                     tempStr = "Thinking another dose might somehow help, you pull out an eggcelerator from your bag. "
+                     if self.tempInt == 1:
+                        tempStr += "Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the dose of eggcelerator down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. With her experience with the previous doses of eggcelerator, she manages to guide you correctly and lets out a squeak as she feels the suppository slip up into her passage.\n\nThe girl begins to quiver slightly as she feels her womb go into overdrive. A gasp escapes her lips as an egg immediately pushes through her folds, past your combined fingers. Suddenly, she seizes back into you, her back arching, as more eggs spill out of her womb. Her pussy lifts out of the water and into the air as her feet drag and kick through the sand below, tossing the pile about. Her exposed cunt spreads wide as another egg plops out into the water with another one right behind firing further out. She moans and whines as her body thrashes about, staring down at herself with fear as she's practically spreading her legs to anybody else in the lake and spreading her private area wide for them all to see as the eggs fly out of her. Jumping away from you with a sob, she stands up with a couple more eggs dropping between her thighs with thick strands of lubricant trailing. The girl hastily covers the exposed genitals with her one-piece suit, a tear shedding as she sees the crotch bulge with the next egg pushing through. Wholly embarrassed, she runs off into the brush, the eggs already slipping back into the rear of the suit as more collect before she disappears.\n\nLeft alone and feeling a little ashamed of how things progressed, you manage to fish out some eggs that survived and head off."
+                        self.addManyItem(219, 3)
+                        self.stats(0,0,0,-1)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 3
+                        self.doEnd()
+                     elif self.tempInt == 2:
+                        tempStr += "Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way..."
+                        self.addManyItem(230, 2)
+                        self.doCoin(15 + math.ceil(self.percent() / 10))
+                        tempStr += self.doLust(self.lib // 2,0,ret=True)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 3
+                        self.doEnd()
+                     elif self.tempInt == 3:
+                        tempStr += "Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the eggcelerator into her supple hole, letting it slip up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly progress, then her eyes grow wide as an egg immediately pushes out through her folds. Suddenly, she leans backwards even more, pointing her pussy right at your face as more eggs coming flying out. Her strong motherly hips propel an onslaught of eggs at you, smacking and cracking over your head and body. She eventually crashes back into the water, crushing the pile of eggs she had already laid and firing a couple more past you.\n\nThe splash of water across her face snaps her out of the egg-laying haze and she jumps up, just in time for another egg to shoot down between her thighs. \"Oh no, all the eggs for the cake!\" She cries out in dismay and attempts to block the next with her hand, only to result in a yolky mess. With that failing, she turns away from you and bends down, giving you a perfect view of her round rear as well as another egg that propels straight into your face, while she picks up her bathing suit. Rapidly folding the elastic garment a bit and tucking it between her legs, she manages to improvise a basket. Then she takes off through a nude beach, carrying the suit-basket between her legs as it slowly stretches with the depositing eggs, her hips and tail twitching sporadically with each lay.\n\nLeft covered in yolk and slightly pained from the firing squad, there's not much left to do but wash off in the oasis waters and head off..."
+                        tempStr += self.doHP(-10,ret=True)
+                        self.aff(6,math.floor(self.percent() / 20 + 4),-3)
+                        self.outputMainText(tempStr,True)
+                        self.hrs = 3
+                        self.doEnd()
                self.doListen = doListen
             else:
                tempStr = "Deciding not to interrupt her, you leave whoever it is to their privacy and continue on your relaxing stroll."
@@ -17877,22 +17866,21 @@ class NiminFetishFantasyv0975o_fla:
                            self.loseManyItem(236,1)
                         tempStr += " you borrowed before, you thank her graciously again for letting you try it out. "
                      tempStr += "Deciding you would like to test the "
-                     match self.buttonChoice:
-                        case 2:
-                           tempStr += "Flying Carpet"
-                           self.itemAdd(232)
-                        case 5:
-                           tempStr += "Anti-Gravity Rock"
-                           self.itemAdd(233)
-                        case 6:
-                           tempStr += "Reindeer Charm"
-                           self.itemAdd(234)
-                        case 7:
-                           tempStr += "Fellatio Rod"
-                           self.itemAdd(235)
-                        case 10:
-                           tempStr += "Reception Bell"
-                           self.itemAdd(236)
+                     if self.buttonChoice == 2:
+                        tempStr += "Flying Carpet"
+                        self.itemAdd(232)
+                     elif self.buttonChoice == 5:
+                        tempStr += "Anti-Gravity Rock"
+                        self.itemAdd(233)
+                     elif self.buttonChoice == 6:
+                        tempStr += "Reindeer Charm"
+                        self.itemAdd(234)
+                     elif self.buttonChoice == 7:
+                        tempStr += "Fellatio Rod"
+                        self.itemAdd(235)
+                     elif self.buttonChoice == 10:
+                        tempStr += "Reception Bell"
+                        self.itemAdd(236)
                      self.outputMainText(tempStr + ", Silandrias hands it to you with a smile.\n\n\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It's quite alright dear, I want to share everything with you~\"\n\nYou soon finish saying your goodbyes to both her and the pups and make your way out.",True)
                      self.doEnd()
                self.doListen = doListen
@@ -24661,31 +24649,30 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("discardbutton")
          self.discardbuttonvisible = False
    def buttonExecProxy(self,buttonNum:int):
-      match buttonNum:
-         case 1:
-            self.buttonEvent1()
-         case 2:
-            self.buttonEvent2()
-         case 3:
-            self.buttonEvent3()
-         case 4:
-            self.buttonEvent4()
-         case 5:
-            self.buttonEvent5()
-         case 6:
-            self.buttonEvent6()
-         case 7:
-            self.buttonEvent7()
-         case 8:
-            self.buttonEvent8()
-         case 9:
-            self.buttonEvent9()
-         case 10:
-            self.buttonEvent10()
-         case 11:
-            self.buttonEvent11()
-         case 12:
-            self.buttonEvent12()
+      if buttonNum == 1:
+         self.buttonEvent1()
+      elif buttonNum == 2:
+         self.buttonEvent2()
+      elif buttonNum == 3:
+         self.buttonEvent3()
+      elif buttonNum == 4:
+         self.buttonEvent4()
+      elif buttonNum == 5:
+         self.buttonEvent5()
+      elif buttonNum == 6:
+         self.buttonEvent6()
+      elif buttonNum == 7:
+         self.buttonEvent7()
+      elif buttonNum == 8:
+         self.buttonEvent8()
+      elif buttonNum == 9:
+         self.buttonEvent9()
+      elif buttonNum == 10:
+         self.buttonEvent10()
+      elif buttonNum == 11:
+         self.buttonEvent11()
+      elif buttonNum == 12:
+         self.buttonEvent12()
    @staticmethod
    @cache
    def _showButtonsCalc(buttonNum:int):
@@ -24980,57 +24967,53 @@ class NiminFetishFantasyv0975o_fla:
          as3.trace("SaveConverter: Error: Input and Output files can not be the same.")
          self.sfcwindow.configureChild("message",text="Error: Input and Output files can not be the same.")
          return
-      match inputfiletype:
-         case "xml":
+      if inputfiletype == "xml":
+         xml = xmletree.parse(inputfile).getroot() #Loads file directly as xml
+      elif inputfiletype == "sol":
+         xml = self.toXmlReturn(inputfile) #Converts SOL file to xml
+      elif inputfiletype == "nim":
+         xml = self.toXmlReturnNIM(inputfile) #Converts NIM file to xml
+      elif inputfiletype == "detect":
+         ext = inputfile.split(confmod.separator)[-1].split(".")[-1].lower()
+         if ext == "xml":
             xml = xmletree.parse(inputfile).getroot() #Loads file directly as xml
-         case "sol":
+         elif ext == "sol":
             xml = self.toXmlReturn(inputfile) #Converts SOL file to xml
-         case "nim":
-            xml = self.toXmlReturnNIM(inputfile) #Converts NIM file to xml
-         case "detect":
-            ext = inputfile.split(confmod.separator)[-1].split(".")[-1].lower()
-            match ext:
-               case "xml":
-                  xml = xmletree.parse(inputfile).getroot() #Loads file directly as xml
-               case "sol":
-                  xml = self.toXmlReturn(inputfile) #Converts SOL file to xml
-               case "nim":
-                  xml = self.toXmlReturnNIM(inputfile) # Converts NIM to xml
-               case _:
-                  as3.trace(f"SaveConverter: Error: Detected input file type {ext} is not a supported file type")
-                  self.sfcwindow.configureChild("message",text=f"Error: Detected input file type {ext} is not a supported file type")
-                  return
+         elif ext == "nim":
+            xml = self.toXmlReturnNIM(inputfile) # Converts NIM to xml
+         else:
+            as3.trace(f"SaveConverter: Error: Detected input file type {ext} is not a supported file type")
+            self.sfcwindow.configureChild("message",text=f"Error: Detected input file type {ext} is not a supported file type")
+            return
       if xml == None:
          as3.trace("SaveConverter: Error: Input save data is null. Try again")
          return
-      match outputfiletype:
-         case "xml":
-            xmletree.indent(xml,space="\t")
-            xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
-         case "sol":
+      if outputfiletype == "xml":
+         xmletree.indent(xml,space="\t")
+         xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
+      elif outputfiletype == "sol":
+         self.toSOL(None,outputfile,None,xml)
+      elif outputfiletype == "nim":
+         self.toNim(None,outputfile,None,xml)
+      elif outputfiletype == "detect":
+         ext = outputfile.split(confmod.separator)[-1].split(".")[-1].lower()
+         if ext == "xml":
+            try:
+               xmletree.indent(xml,space="\t")
+               xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
+            except:
+               as3.trace("File Saver: Error: Failed to save file")
+               self.sfcwindow.configureChild("message",text="Error: Failed to save file")
+            else:
+               self.sfcwindow.configureChild("message",text="Success")
+         elif ext == "sol":
             self.toSOL(None,outputfile,None,xml)
-         case "nim":
+         elif ext == "nim":
             self.toNim(None,outputfile,None,xml)
-         case "detect":
-            ext = outputfile.split(confmod.separator)[-1].split(".")[-1].lower()
-            match ext:
-               case "xml":
-                  try:
-                     xmletree.indent(xml,space="\t")
-                     xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
-                  except:
-                     as3.trace("File Saver: Error: Failed to save file")
-                     self.sfcwindow.configureChild("message",text="Error: Failed to save file")
-                  else:
-                     self.sfcwindow.configureChild("message",text="Success")
-               case "sol":
-                  self.toSOL(None,outputfile,None,xml)
-               case "nim":
-                  self.toNim(None,outputfile,None,xml)
-               case _:
-                  as3.trace(f"SaveConverter: Error: Detected output file type {ext} is not a supported file type")
-                  self.sfcwindow.configureChild("message",text=f"Error: Detected output file type {ext} is not a supported file type")
-                  return
+         else:
+            as3.trace(f"SaveConverter: Error: Detected output file type {ext} is not a supported file type")
+            self.sfcwindow.configureChild("message",text=f"Error: Detected output file type {ext} is not a supported file type")
+            return
    def toNimReturn(self,inputfile,xmlobject=None,xmlroot=None):
       #Not used
       try:
