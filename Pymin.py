@@ -2582,7 +2582,7 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr
    def checkItem(self, ID:int):
       #Checks if player has item ID in their bag
-      if (self.bagArray.indexOf(ID) != -1):
+      if ID in self.bagArray:
          return True
       return False
    def checkMagicItem(self):
@@ -2594,7 +2594,7 @@ class NiminFetishFantasyv0975o_fla:
       return False
    def checkStash(self, ID:int):
       #Checks if player has item ID in their stash
-      if (self.stashArray.indexOf(ID) != -1):
+      if ID in self.stashArray:
          return True
       return False
    def countItem(self, ID:int):
@@ -2842,17 +2842,17 @@ class NiminFetishFantasyv0975o_fla:
          if (self.fertilityStatueCurse > 0):
             tempStr += "\n\nWith your orgasm, you feel strange as wispy fumes escape from your crotch, just like those that descended from the statue you encountered..."
             tempStr += self.vagChange(0,1,ret=True)
-         if ((self.cockSnakeVenom > 0) and (triggers.indexOf(1) != -1) and (self.cockTotal > 0)):
+         if ((self.cockSnakeVenom > 0) and (1 in triggers) and (self.cockTotal > 0)):
             tempStr += f"\n\nHowever, after you have finished, you realize there's a bit more meat to your meat... The venom from the cock-snake fed off of your orgasm, causing your appendage{self.plural(1)} to flop a bit lower down your {self.legDesc(3)} as {self.plural(11)} shrink{self.plural(3)} back down..."
             tempStr += self.cockChange(2,0,ret=True)
-         if ((self.cockSnakeVenom > 0) and (triggers.indexOf(2) != -1) and (self.vagTotal > 0)):
+         if ((self.cockSnakeVenom > 0) and (2 in triggers) and (self.vagTotal > 0)):
             tempStr += f"\n\nHowever, after you have finished, you realize your clit{self.plural(2)} {self.plural(14)} a bit more prominent... The venom from the cock-snake fed off of your orgasm, causing the button{self.plural(2)} to swell larger than before, and aren't shrinking all the way back down..."
             self.clitSize += 3
-         if ((self.milkCPoisonNip > 0) and (triggers.indexOf(3) != -1)):
+         if ((self.milkCPoisonNip > 0) and (3 in triggers)):
             tempStr += "\n\nHowever, now that you've calmed down, you notice a bit more weight at your chest... The warmth from the milk creeper poison in your bosom intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder."
             self.boobChange(1)
             self.nipplePlay += 15
-         if ((self.milkCPoisonUdd > 0) and (triggers.indexOf(4) != -1)):
+         if ((self.milkCPoisonUdd > 0) and (4 in triggers)):
             tempStr += "\n\nHowever, now that you've calmed down, you notice a bit more weight at your belly... The warmth from the milk creeper poison in your udder intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder."
             self.boobChange(1)
             self.nipplePlay += 15
@@ -5417,14 +5417,14 @@ class NiminFetishFantasyv0975o_fla:
             self.bagStackArray[openSlot] = 1
             self.passiveItemAdd(ID)
             tempNum += 1
-            while (self.bagStackArray[openSlot] < self.itemStackMax(ID)) and (self.itemGainArray.indexOf(ID) != -1):
+            while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
                self.itemGainArray.pop()
                self.bagStackArray[openSlot] += 1
                tempNum += 1
          else:
             tempNum += 1
             self.bagStackArray[openSlot] += 1
-            while (self.bagStackArray[openSlot] < self.itemStackMax(ID)) and (self.itemGainArray.indexOf(ID) != -1):
+            while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
                self.itemGainArray.pop()
                self.bagStackArray[openSlot] += 1
                tempNum += 1
@@ -5489,7 +5489,7 @@ class NiminFetishFantasyv0975o_fla:
       def doListen():
          self.choiceListSelect("Bag")
          if (self.buttonChoice == 12):
-            while (self.itemGainArray.indexOf(self.tempID) != -1):
+            while self.tempID in self.itemGainArray:
                self.itemGainArray.pop()
             self.doProcess()
          elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
@@ -5882,8 +5882,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def usableItem(ID:int):
       #Returns True if item ID can be used
-      IDArray = as3.Array(2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418)
-      if IDArray.indexOf(ID) != -1:
+      if ID in (2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418):
          return True
       return False
    def canLose(self, ID:int):
@@ -5900,8 +5899,7 @@ class NiminFetishFantasyv0975o_fla:
    def conItem(ID:int):
       #Returns True if item IO is consumable
       #alternate title: isConsumable
-      IDArray = as3.Array(103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540)
-      if IDArray.indexOf(ID) != -1:
+      if ID in (103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540):
          return True
       return False
    def passiveItemAdd(self, ID:int):
@@ -6052,7 +6050,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.currentState == 3: #Masturbate
             #Only includes relavant things, ex: milker
             templist = as3.Array(104,106)
-            if templist.indexOf(ID) != -1:
+            if ID in templist:
                return True
             return False
          else:
@@ -6063,7 +6061,7 @@ class NiminFetishFantasyv0975o_fla:
                templist.push(232,526,528)
                if False: #Remove teleport scrolls in battle
                   templist.push(3,121,122,123,124,125,128)
-            if IDArray.indexOf(ID) != -1:
+            if ID in templist:
                return False
             return True
    @staticmethod
