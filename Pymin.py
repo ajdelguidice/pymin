@@ -6020,11 +6020,8 @@ class NiminFetishFantasyv0975o_fla:
          i -= 1
    def addManyItem(self, ID:int, amount:int):
       #Function for gaining many items
-      #i = 0
-      #while (i < amount):
       for i in range(amount):
          self.itemAdd(ID)
-         #i += 1
    @staticmethod
    def itemValue(ID:int):
       #Function which returns the value of the item ID
@@ -8452,23 +8449,20 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another slot to move your stashed item into.",True)
       self.doListen = doListen
    def stashSlotAdd(self, amount:int):
-      for i in range(1, amount):
+      for i in range(amount):
          if (self.stashArray.length < 27):
             self.stashArray.push(0)
          if (self.stashStackArray.length < 27):
             self.stashStackArray.push(0)
    def stashSlotRemove(self, amount:int):
-      #!obfuscated
       tempInt = 0
       tempInt2 = 0
-      tempInt3 = 0
-      for i in range(1, amount):
-         tempInt = self.stashArray.pop()
-         tempInt3 = self.stashStackArray.pop()
-         if ((tempInt != 0) and (tempInt2 != 0)):
-            for tempInt3 in range(1, tempInt2):
+      for i in range(amount):
+         tempInt = int(self.stashArray.pop())
+         tempInt2 = int(self.stashStackArray.pop())
+         if (tempInt != 0 and tempInt2 != 0):
+            for j in range(tempInt2):
                self.itemAdd(tempInt)
-               tempInt3 += 1
    def doShops(self):
       self.hideSGButton()
       self.hideLGButton()
@@ -8506,31 +8500,31 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if ((self.buttonChoice != 4) and (self.buttonChoice != 8) and (self.buttonChoice != 12) and (self.goodsID(self.buttonChoice) != 0)):
+         if (self.buttonChoice not in (4,8,12) and self.goodsID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.goodsID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
-         if ((self.buttonChoice == 4) and (self.buy != 0)):
+         elif (self.buttonChoice == 4 and self.buy != 0):
             self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.goodsID(self.buy))}?",False)
             if (self.itemStackMax(self.goodsID(self.buy)) > 1):
                buttonlist = ButtonList(1,1,1,0,0,0,0,0,0,0,0,1)
                tempArray = as3.Array(1, "Buy 1", 2, "Buy 2", 3, "Buy 5", 12, "Nevermind")
-               self.outputMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins",False)
+               tempStr = f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins"
                if (self.itemStackMax(self.goodsID(self.buy)) >= 10):
                   buttonlist[9] = 1
                   tempArray.push(9,"Buy 10")
-                  self.outputMainText(f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins",False)
+                  tempStr += f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins"
                if (self.itemStackMax(self.goodsID(self.buy)) >= 15):
                   buttonlist[10] = 1
                   tempArray.push(10,"Buy 15")
-                  self.outputMainText(f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins",False)
-               self.outputMainText(".",False)
+                  tempStr += f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins"
+               self.outputMainText(tempStr + ".",False)
                self.showButtons(buttonlist)
                self.doButtonChoices(tempArray)
             else:
                self.buttonConfirm()
             def doListen():
                tempInt = 0
-               if ((self.buttonChoice != 7) and (self.buttonChoice != 12)):
+               if (self.buttonChoice not in (7,12)):
                   if (self.buttonChoice == 1):
                      tempInt = 1
                   elif (self.buttonChoice == 6):
@@ -8544,11 +8538,12 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.buttonChoice == 10):
                      tempInt = 15
                   if (self.coin < 3 * tempInt * self.itemValue(self.goodsID(self.buy))):
-                     self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase ",True)
+                     tempStr = f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase "
                      if (tempInt > 1):
-                        self.outputMainText(f"{tempInt}x {self.itemName(self.goodsID(self.buy))}.",False)
+                        tempStr += f"{tempInt}x {self.itemName(self.goodsID(self.buy))}."
                      else:
-                        self.outputMainText(f"{self.itemName(self.goodsID(self.buy))}.",False)
+                        tempStr += f"{self.itemName(self.goodsID(self.buy))}."
+                     self.outputMainText(tempStr,True)
                      self.doNext()
                      def doListen():
                         self.doShop()
@@ -8560,20 +8555,16 @@ class NiminFetishFantasyv0975o_fla:
                         self.doShop()
                      self.doListen = doListen
                   else:
-                     #i = 1
-                     #while (i <= tempInt):
-                     #!use addManyItems
-                     for i in range(1,tempInt+1):
+                     for i in range(tempInt):
                         self.itemAdd(self.goodsID(self.buy))
-                        #i += 1
                      self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
                      self.doProcess()
                else:
                   self.doShop()
             self.doListen = doListen
-         if (self.buttonChoice == 8):
+         elif (self.buttonChoice == 8):
             self.doSell()
-         if (self.buttonChoice == 12):
+         elif (self.buttonChoice == 12):
             self.inShop = False
             if (self.shiftHeld == True):
                self.doShops()
@@ -8591,11 +8582,11 @@ class NiminFetishFantasyv0975o_fla:
          if (self.buttonChoice == 12):
             self.hideAmount()
             self.doShop()
-         elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         elif (self.buttonChoice in (4,8)):
             self.choiceListButtons("Bag")
          elif (self.choiceListResult[0] != 0):
             if (self.bagStackArray[self.choiceListResult[1]] < 2):
-               if ((self.itemValue(self.choiceListResult[0]) == 0) or (self.canLose(self.choiceListResult[0]) == False)):
+               if (self.itemValue(self.choiceListResult[0]) == 0 or self.canLose(self.choiceListResult[0]) == False):
                   self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.",True)
                   self.doSell(True)
                else:
@@ -8607,9 +8598,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doCoin(self.itemValue(self.choiceListResult[0]))
                         self.bagArray[self.choiceListResult[1]] = 0
                         self.passiveItemRemove(self.choiceListResult[0])
-                        self.doSell()
-                     else:
-                        self.doSell()
+                     self.doSell()
                   self.doListen = doListen
             else:
                self.hideAmount()
@@ -8647,23 +8636,104 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def goodsID(self, goodsSlot:int):
       if self.currentZone == 1:
-         templist = (0, 104, 111, 116, 0, 500, 501, 108, 0, 110, 115, 121, 0)
+         if goodsSlot == 1:
+            return 104
+         elif goodsSlot == 2:
+            return 111
+         elif goodsSlot == 3:
+            return 116
+         elif goodsSlot == 5:
+            return 500
+         elif goodsSlot == 6:
+            return 501
+         elif goodsSlot == 7:
+            return 108
+         elif goodsSlot == 9:
+            return 110
+         elif goodsSlot == 10:
+            return 115
+         elif goodsSlot == 11:
+            return 121
       elif self.currentZone == 2:
-         templist = (0, 102, 112, 117, 0, 106, 0, 0, 0, 110, 115, 122, 0)
+         if goodsSlot == 1:
+            return 102
+         elif goodsSlot == 2:
+            return 112
+         elif goodsSlot == 3:
+            return 117
+         elif goodsSlot == 5:
+            return 106
+         elif goodsSlot == 9:
+            return 110
+         elif goodsSlot == 10:
+            return 115
+         elif goodsSlot == 11:
+            return 122
       elif self.currentZone == 3:
-         templist = (0, 101, 113, 118, 0, 120, 0, 0, 0, 110, 115, 123, 0)
+         if goodsSlot == 1:
+            return 101
+         elif goodsSlot == 2:
+            return 113
+         elif goodsSlot == 3:
+            return 118
+         elif goodsSlot == 5:
+            return 120
+         elif goodsSlot == 9:
+            return 110
+         elif goodsSlot == 10:
+            return 115
+         elif goodsSlot == 11:
+            return 123
       elif self.currentZone == 4:
-         templist = (0, 0, 114, 119, 0, 103, 110, 0, 0, 110, 115, 124, 0)
+         if goodsSlot == 2:
+            return 114
+         elif goodsSlot == 3:
+            return 119
+         elif goodsSlot == 5:
+            return 103
+         elif goodsSlot == 6:
+            return 110
+         elif goodsSlot == 9:
+            return 110
+         elif goodsSlot == 10:
+            return 115
+         elif goodsSlot == 11:
+            return 124
       elif self.currentZone == 6:
-         templist = (0, 109, 126, 127, 0, 103, 230, 0, 0, 110, 115, 125, 0)
+         if goodsSlot == 1:
+            return 109
+         elif goodsSlot == 2:
+            return 126
+         elif goodsSlot == 3:
+            return 127
+         elif goodsSlot == 5:
+            return 103
+         elif goodsSlot == 6:
+            return 230
+         elif goodsSlot == 9:
+            return 110
+         elif goodsSlot == 10:
+            return 115
+         elif goodsSlot == 11:
+            return 125
       elif self.currentZone == 12:
-         templist = (0, 247, 250, 256, 0, 120, 0, 0, 0, 110, 115, 128, 0)
+         if goodsSlot == 1:
+            return 247
+         elif goodsSlot == 2:
+            return 250
+         elif goodsSlot == 3:
+            return 256
+         elif goodsSlot == 5:
+            return 120
+         elif goodsSlot == 9:
+            return 110
+         elif goodsSlot == 10:
+            return 115
+         elif goodsSlot == 11:
+            return 128
       else:
          return f"ZONE ERROR: {self.currentZone}"
-      try:
-         return templist[goodsSlot]
-      except:
-         return 0
+      return 0
    def doDyeShop(self):
       self.buy = 0
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
@@ -8678,10 +8748,10 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if ((self.buttonChoice != 4) and (self.buttonChoice != 8) and (self.buttonChoice != 12) and (self.dyeID(self.buttonChoice) != 0)):
+         if (self.buttonChoice not in (4,8,12) and self.dyeID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.itemDescription(self.dyeID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.dyeID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
-         if ((self.buttonChoice == 4) and (self.buy != 0)):
+         elif (self.buttonChoice == 4 and self.buy != 0):
             self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.dyeID(self.buy))}?",False)
             self.buttonConfirm()
             def doListen():
@@ -8699,7 +8769,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doDyeShop()
             self.doListen = doListen
-         if (self.buttonChoice == 12):
+         elif (self.buttonChoice == 12):
             if (self.shiftHeld == True):
                self.doShops()
             else:
@@ -8751,31 +8821,31 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if ((self.buttonChoice != 4) and (self.buttonChoice != 8) and (self.buttonChoice != 12) and (self.apothID(self.buttonChoice) != 0)):
+         if (self.buttonChoice not in (4,8,12) and self.apothID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
-         if ((self.buttonChoice == 4) and (self.buy != 0)):
+         elif (self.buttonChoice == 4 and self.buy != 0):
             self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?",False)
-            if ((self.apothID(self.buy) > 200) and (self.itemStackMax(self.apothID(self.buy)) > 1)):
+            if (self.apothID(self.buy) > 200 and self.itemStackMax(self.apothID(self.buy)) > 1):
                buttonlist = ButtonList(1,1,1,0,0,0,0,0,0,0,0,1)
                tempArray = as3.Array(1, "Buy 1", 2, "Buy 2", 3, "Buy 5", 12, "Nevermind")
-               self.outputMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins",False)
+               tempStr = f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins"
                if (self.itemStackMax(self.apothID(self.buy)) >= 10):
                   tempArray.push(9,"Buy 10")
                   buttonlist[9] = 1
-                  self.outputMainText(f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins",False)
+                  tempStr += f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins"
                if (self.itemStackMax(self.apothID(self.buy)) >= 15):
                   tempArray.push(10,"Buy 15")
                   buttonlist[10] = 1
-                  self.outputMainText(f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins",False)
-               self.outputMainText(".",False)
+                  tempStr += f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins"
+               self.outputMainText(tempStr + ".",False)
                self.showButtons(buttonlist)
                self.doButtonChoices(tempArray)
             else:
                self.buttonConfirm()
             def doListen():
                tempInt = 0
-               if ((self.buttonChoice != 7) and (self.buttonChoice != 12)):
+               if (self.buttonChoice not in (7,12)):
                   if self.buttonChoice == 1:
                      tempInt = 1
                   elif self.buttonChoice == 2:
@@ -8789,11 +8859,12 @@ class NiminFetishFantasyv0975o_fla:
                   elif self.buttonChoice == 10:
                      tempInt = 15
                   if (self.coin < 3 * tempInt * self.apothValue(self.apothID(self.buy))):
-                     self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ",True)
+                     tempStr = f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase "
                      if (tempInt > 1):
-                        self.outputMainText(f"{tempInt}x {self.apothName(self.apothID(self.buy))}.",False)
+                        tempStr += f"{tempInt}x {self.apothName(self.apothID(self.buy))}."
                      else:
-                        self.outputMainText(f"{self.apothName(self.apothID(self.buy))}.",False)
+                        tempStr += f"{self.apothName(self.apothID(self.buy))}."
+                     self.outputMainText(tempStr,True)
                      self.doNext()
                      def doListen():
                         self.doApothecary()
@@ -8807,19 +8878,15 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
                      if (self.apothID(self.buy) > 200):
-                        #i = 1
-                        #while (i <= tempInt):
-                        #!use addManyItems
-                        for i in range(1,tempInt+1):
+                        for i in range(tempInt):
                            self.itemAdd(self.apothID(self.buy))
-                           #i += 1
                      else:
                         self.apothLearn(self.apothID(self.buy))
                      self.doProcess()
                else:
                   self.doApothecary()
             self.doListen = doListen
-         if (self.buttonChoice == 12):
+         elif (self.buttonChoice == 12):
             if (self.shiftHeld == True):
                self.doShops()
             else:
@@ -8865,7 +8932,7 @@ class NiminFetishFantasyv0975o_fla:
             return 202
          elif goodsSlot == 3:
             return 213
-         elif goodsSlot == 3:
+         elif goodsSlot == 5:
             return 203
          elif goodsSlot == 9 and self.knowBallSwell == False:
             return 4
@@ -8904,6 +8971,8 @@ class NiminFetishFantasyv0975o_fla:
       elif self.currentZone == 12:
          if goodsSlot == 9 and self.knowMilkSuppress == False:
             return 17
+      else:
+         return f"ZONE ERROR: {self.currentZone}"
       return 0
    def apothLearn(self, ID:int):
       match ID:
@@ -8942,17 +9011,45 @@ class NiminFetishFantasyv0975o_fla:
          case 17:
             self.knowMilkSuppress = True
    def apothName(self, ID:int):
-      if (ID >= 200):
+      if ID >= 200:
          return self.itemName(ID)
-      else:
-         try:
-            return ('R: LustDraft','R: RejuvPot','R: RejuvPot','R: BallSwell','R: SLustDraft','R: SRejuvPot','R: SExpPreg','R: SBallSwell','R: GenSwap','R: MasoPot','R: BabyFree','R: PotPot','R: SGenSwap','R: SMasoPot','R: SBabyFree','R: SPotPot','R: MilkSuppress')[ID-1]
-         except:
-            return ""
+      elif ID == 1:
+         return 'R: LustDraft'
+      elif ID == 2:
+         return 'R: RejuvPot'
+      elif ID == 3:
+         return 'R: RejuvPot'
+      elif ID == 4:
+         return 'R: BallSwell'
+      elif ID == 5:
+         return 'R: SLustDraft'
+      elif ID == 6:
+         return 'R: SRejuvPot'
+      elif ID == 7:
+         return 'R: SExpPreg'
+      elif ID == 8:
+         return 'R: SBallSwell'
+      elif ID == 9:
+         return 'R: GenSwap'
+      elif ID == 10:
+         return 'R: MasoPot'
+      elif ID == 11:
+         return 'R: BabyFree'
+      elif ID == 12:
+         return 'R: PotPot'
+      elif ID == 13:
+         return 'R: SGenSwap'
+      elif ID == 14:
+         return 'R: SMasoPot'
+      elif ID == 15:
+         return 'R: SBabyFree'
+      elif ID == 16:
+         return 'R: SPotPot'
+      elif ID == 17:
+         return 'R: MilkSuppress'
+      return ""
    def apothDescription(self, ID:int):
-      if (ID == None):
-         return ""
-      elif (ID >= 200):
+      if ID >= 200:
          return self.itemDescription(ID)
       else:
          match ID:
@@ -8994,11 +9091,41 @@ class NiminFetishFantasyv0975o_fla:
    def apothValue(self, ID:int):
       if (ID >= 200):
          return self.itemValue(ID)
-      else:
-         try:
-            return (0,20,25,25,20,35,40,35,30,45,45,40,45,60,70,55,65,35)[ID]
-         except:
-            return 0
+      elif ID == 1:
+         return 20
+      elif ID == 2:
+         return 25
+      elif ID == 3:
+         return 25
+      elif ID == 4:
+         return 20
+      elif ID == 5:
+         return 35
+      elif ID == 6:
+         return 40
+      elif ID == 7:
+         return 35
+      elif ID == 8:
+         return 30
+      elif ID == 9:
+         return 45
+      elif ID == 10:
+         return 45
+      elif ID == 11:
+         return 40
+      elif ID == 12:
+         return 45
+      elif ID == 13:
+         return 60
+      elif ID == 14:
+         return 70
+      elif ID == 15:
+         return 55
+      elif ID == 16:
+         return 65
+      elif ID == 17:
+         return 35
+      return 0
    def doSalon(self):
       self.buy = 0
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
@@ -9013,10 +9140,10 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if ((self.buttonChoice != 4) and (self.buttonChoice != 8) and (self.buttonChoice != 12) and (self.clothesID(self.buttonChoice) != 0)):
+         if (self.buttonChoice not in (4,8,12) and self.clothesID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.hairstyleDescription(self.hairstyleID(self.buttonChoice))}\n\nCost: {self.hairstyleValue(self.hairstyleID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
-         if ((self.buttonChoice == 4) and (self.buy != 0)):
+         elif (self.buttonChoice == 4 and self.buy != 0):
             self.outputMainText(f"\n\nAre you sure you would like to buy {self.hairstyleName(self.hairstyleID(self.buy))}?",False)
             self.buttonConfirm()
             def doListen():
@@ -9053,17 +9180,44 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doSalon()
             self.doListen = doListen
-         if (self.buttonChoice == 12):
+         elif (self.buttonChoice == 12):
             if (self.shiftHeld == True):
                self.doShops()
             else:
                self.doReturn()
       self.doListen = doListen
    def hairstyleName(self, ID:int):
-      try:
-         return ('None','Wavy','Pigtail','Ponytail','Straight','Buzzcut','Mohawk','Bun','Curly','B Pigtail','B Ponytail','Braided','Spiky','Emo','Afro')[ID]
-      except:
-         return f"HAIRSTYLE NAME ERROR {self.hair}"
+      if ID == 0:
+         return 'None'
+      elif ID == 1:
+         return 'Wavy'
+      elif ID == 2:
+         return 'Pigtail'
+      elif ID == 3:
+         return 'Ponytail'
+      elif ID == 4:
+         return 'Straight'
+      elif ID == 5:
+         return 'Buzzcut'
+      elif ID == 6:
+         return 'Mohawk'
+      elif ID == 7:
+         return 'Bun'
+      elif ID == 8:
+         return 'Curly'
+      elif ID == 9:
+         return 'B Pigtail'
+      elif ID == 10:
+         return 'B Ponytail'
+      elif ID == 11:
+         return 'Braided'
+      elif ID == 12:
+         return 'Spiky'
+      elif ID == 13:
+         return 'Emo'
+      elif ID == 14:
+         return 'Afro'
+      return f"HAIRSTYLE NAME ERROR {self.hair}"
    def hairDesc(self):
       match self.hair:
          case 1:
@@ -9094,13 +9248,29 @@ class NiminFetishFantasyv0975o_fla:
             return "straight, stiff hair covering an eye"
          case 14:
             return "giant poofball of hair"
-         case _:
-            return f"HAIR DESC ERROR {self.hair}"
+      return f"HAIR DESC ERROR {self.hair}"
    def hairC(self):
-      try:
-         return ("","black ","blonde ","red ","blue ","coral pink ","auburn ","brown ","grey ","white ")[self.hairColor]
-      except:
-         return f"HAIR COLOR ERROR {self.hairColor}"
+      if self.hairColor == 0:
+         return ""
+      elif self.hairColor == 1:
+         return "black "
+      elif self.hairColor == 2:
+         return "blonde "
+      elif self.hairColor == 3:
+         return "red "
+      elif self.hairColor == 4:
+         return "blue "
+      elif self.hairColor == 5:
+         return "coral pink "
+      elif self.hairColor == 6:
+         return "auburn "
+      elif self.hairColor == 7:
+         return "brown "
+      elif self.hairColor == 8:
+         return "grey "
+      elif self.hairColor == 9:
+         return "white "
+      return f"HAIR COLOR ERROR {self.hairColor}"
    def hairL(self):
       if self.hairLength == 2:
          return "that is short enough to not dangle past your head"
@@ -9116,20 +9286,133 @@ class NiminFetishFantasyv0975o_fla:
    def hairstyleID(self, choice:int):
       if choice == 10:
          self.disableOneButton(10)
+      elif self.currentZone == 1:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 4
+         elif choice == 3:
+            return 8
+         elif choice == 5:
+            return 2
+         elif choice == 6:
+            return 3
+         elif choice == 7:
+            return 12
+         elif choice == 9:
+            return 14
+      elif self.currentZone == 2:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 4
+         elif choice == 3:
+            return 8
+         elif choice == 5:
+            return 3
+         elif choice == 6:
+            return 10
+         elif choice == 7:
+            return 5
+         elif choice == 9:
+            return 6
+      elif self.currentZone == 3:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 4
+         elif choice == 3:
+            return 8
+         elif choice == 5:
+            return 6
+         elif choice == 6:
+            return 11
+         elif choice == 7:
+            return 12
+         elif choice == 9:
+            return 13
+      elif self.currentZone == 4:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 4
+         elif choice == 3:
+            return 8
+         elif choice == 5:
+            return 2
+         elif choice == 6:
+            return 9
+         elif choice == 7:
+            return 7
+         elif choice == 9:
+            return 13
+      elif self.currentZone == 6:
+         if choice == 1:
+            return 2
+         elif choice == 2:
+            return 3
+         elif choice == 3:
+            return 4
+         elif choice == 5:
+            return 9
+         elif choice == 6:
+            return 10
+         elif choice == 7:
+            return 11
+         elif choice == 9:
+            return 12
+      elif self.currentZone == 12:
+         if choice == 1:
+            return 2
+         elif choice == 2:
+            return 9
+         elif choice == 3:
+            return 6
+         elif choice == 5:
+            return 12
+         elif choice == 6:
+            return 13
+         elif choice == 7:
+            return 1
+         elif choice == 9:
+            return 4
       else:
-         try:
-            return (None,(0,1,4,8,0,2,3,12,0,14,0,0,0),(0,1,4,8,0,3,10,5,0,6,0,0,0),(0,1,4,8,0,6,11,12,0,13,0,0,0),(0,1,4,8,0,2,9,7,0,13,0,0,0),None,(0,2,3,4,0,9,10,11,0,12,0,0,0),None,None,None,None,None,(0,2,9,6,0,12,13,1,0,4,0,0,0))[self.currentZone][choice]
-         except:
-            return 0
+         return f"ZONE ERROR: {self.currentZone}"
+      return 0
    @staticmethod
    def hairstyleValue(ID:int):
-      tempNum = 0
-      tempArray = as3.Array(0,5,8,8,5,7,20,10,5,15,15,23,18,18,20)
-      if as3.typeName(tempArray[ID]) != "undefined" and tempArray[ID] not in [None,"undefined"]:
-         return tempArray[ID]
+      if ID == 1:
+         return 5
+      elif ID == 2:
+         return 8
+      elif ID == 3:
+         return 8
+      elif ID == 4:
+         return 5
+      elif ID == 5:
+         return 7
+      elif ID == 6:
+         return 20
+      elif ID == 7:
+         return 10
+      elif ID == 8:
+         return 5
+      elif ID == 9:
+         return 15
+      elif ID == 10:
+         return 15
+      elif ID == 11:
+         return 23
+      elif ID == 12:
+         return 18
+      elif ID == 13:
+         return 18
+      elif ID == 14:
+         return 20
       return 0
    @staticmethod
    def hairstyleLength(ID:int):
+      #Returns whether a specific hairstyle has length options
       if ID in (1,2,3,4,8,9,10,11,13):
          return True
       return False
@@ -9177,10 +9460,10 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.",True)
       self.doButtonChoices(tempArray)
       def doListen():
-         if ((self.buttonChoice != 4) and (self.buttonChoice != 8) and (self.buttonChoice != 12) and (self.clothesID(self.buttonChoice) != 0)):
+         if (self.buttonChoice not in (4,8,12) and self.clothesID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.clothesDescription(self.clothesID(self.buttonChoice))}\n\nCost: {self.clothesValue(self.clothesID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
-         if ((self.buttonChoice == 4) and (self.buy != 0)):
+         elif (self.buttonChoice == 4 and self.buy != 0):
             self.outputMainText(f"\n\nAre you sure you would like to buy {self.clothesName(self.clothesID(self.buy))}?",False)
             if (self.attireTop == self.attireBot):
                self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.",False)
@@ -9200,7 +9483,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doTailor()
             self.doListen = doListen
-         if (self.buttonChoice == 12):
+         elif (self.buttonChoice == 12):
             if (self.shiftHeld == True):
                self.doShops()
             else:
@@ -9275,15 +9558,186 @@ class NiminFetishFantasyv0975o_fla:
             return "Bouncy Bra"
       return "CLOTHES NAME ERROR"
    def clothesID(self, choice:int):
-      try:
-         return (None,(0,1,2,29,0,6,9,10,0,13,22,27),(0,1,2,29,0,8,9,15,0,18,24,26),(0,1,2,29,0,5,13,19,0,22,23,25),(0,1,2,29,0,3,4,11,0,12,20,28),None,(0,1,2,29,0,7,14,16,0,17,19,21),None,None,None,None,None,(0,1,2,29,0,28,30,25,0,23,22,19))[self.currentZone][choice]
-      except:
-         return 0
+      if self.currentZone == 1:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 2
+         elif choice == 3:
+            return 29
+         elif choice == 5:
+            return 6
+         elif choice == 6:
+            return 9
+         elif choice == 7:
+            return 10
+         elif choice == 9:
+            return 13
+         elif choice == 10:
+            return 22
+         elif choice == 11:
+            return 27
+      elif self.currentZone == 2:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 2
+         elif choice == 3:
+            return 29
+         elif choice == 5:
+            return 8
+         elif choice == 6:
+            return 9
+         elif choice == 7:
+            return 15
+         elif choice == 9:
+            return 18
+         elif choice == 10:
+            return 24
+         elif choice == 11:
+            return 26
+      elif self.currentZone == 3:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 2
+         elif choice == 3:
+            return 29
+         elif choice == 5:
+            return 5
+         elif choice == 6:
+            return 13
+         elif choice == 7:
+            return 19
+         elif choice == 9:
+            return 22
+         elif choice == 10:
+            return 23
+         elif choice == 11:
+            return 25
+      elif self.currentZone == 4:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 2
+         elif choice == 3:
+            return 29
+         elif choice == 5:
+            return 3
+         elif choice == 6:
+            return 4
+         elif choice == 7:
+            return 11
+         elif choice == 9:
+            return 12
+         elif choice == 10:
+            return 20
+         elif choice == 11:
+            return 28
+      elif self.currentZone == 6:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 2
+         elif choice == 3:
+            return 29
+         elif choice == 5:
+            return 7
+         elif choice == 6:
+            return 14
+         elif choice == 7:
+            return 16
+         elif choice == 9:
+            return 17
+         elif choice == 10:
+            return 19
+         elif choice == 11:
+            return 21
+      elif self.currentZone == 12:
+         if choice == 1:
+            return 1
+         elif choice == 2:
+            return 2
+         elif choice == 3:
+            return 29
+         elif choice == 5:
+            return 28
+         elif choice == 6:
+            return 30
+         elif choice == 7:
+            return 25
+         elif choice == 9:
+            return 23
+         elif choice == 10:
+            return 22
+         elif choice == 1:
+            return 19
+      else:
+         return f"ZONE ERROR: {self.currentZone}"
+      return 0
    @staticmethod
    def clothesValue(ID:int):
-      tempArray = as3.Array(None,5,5,25,25,45,60,25,25,25,30,40,40,50,35,35,40,55,15,50,35,65,40,30,35,60,20,45,40,35,45)
-      if as3.typeName(tempArray[ID]) != "undefined" and tempArray[ID] not in [None,"undefined"]:
-         return tempArray[ID]
+      match ID:
+         case 1:
+            return 5
+         case 2:
+            return 5
+         case 3:
+            return 25
+         case 4:
+            return 25
+         case 5:
+            return 45
+         case 6:
+            return 60
+         case 7:
+            return 25
+         case 8:
+            return 25
+         case 9:
+            return 25
+         case 10:
+            return 30
+         case 11:
+            return 40
+         case 12:
+            return 40
+         case 13:
+            return 50
+         case 14:
+            return 35
+         case 15:
+            return 35
+         case 16:
+            return 40
+         case 17:
+            return 55
+         case 18:
+            return 15
+         case 19:
+            return 50
+         case 20:
+            return 35
+         case 21:
+            return 65
+         case 22:
+            return 40
+         case 23:
+            return 30
+         case 24:
+            return 35
+         case 25:
+            return 60
+         case 26:
+            return 20
+         case 27:
+            return 45
+         case 28:
+            return 40
+         case 29:
+            return 35
+         case 30:
+            return 45
       return 0
    @staticmethod
    def clothesDescription(ID:int):
