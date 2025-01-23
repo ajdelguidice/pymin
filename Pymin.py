@@ -1328,59 +1328,89 @@ class NiminFetishFantasyv0975o_fla:
       if value != None:
          return not ((not value) in self.gametweaks)
    @staticmethod
-   def isValidDirectory(directory,separator):
+   def isValidDirectory(directory,separator=None):
       """
       Checks if a given directory is valid on the current platform
       """
-      directory = str(directory)
-      if confmod.platform == "Windows":
-         blacklistedChars = '<>:"\\/|?*' #!add ASCII characters from 0-31
-         blacklistedNames = ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³")
-         #convert path to uppercase since windows is not cas sensitive
-         directory = directory.upper()
-         #remove trailing path separator
-         if directory[-1:] == separator:
-            directory = directory[:-1]
-         #remove drive letter or server path designator
-         if directory[0].isalpha() and directory[1] == ":" and directory[2] == separator:
-            directory = directory[3:]
-         elif directory[:2] == "\\\\":
-            directory = directory[2:]
-         elif directory[:2] == f".{separator}":
-            directory = directory[-(len(directory)-2):]
-         #split path into each component
-         dirlist = directory.split(separator)
-         for i in dirlist:
-            #invalid if blacklisted characters are used
-            for j in i:
-               if j in blacklistedChars:
+      if type(directory) == type(Path()):
+         #While this is ten times slower than using a string, it is much simpler and more robust so should give less incorrect answers
+         temp = directory.resolve()
+         if confmod.platform == "Windows":
+            while temp != temp.parent:
+               #get directory name and convert it to uppercase since windows is not case sensitive
+               tempname = temp.name.upper()
+               #invalid if blacklisted characters are used
+               for i in tempname:
+                  if i in '<>:"\\/|?*':
+                     return False
+               #invalid if last character is " " or "."
+               if tempname[-1] in " .":
                   return False
-            #invalid if last character is " " or "."
-            if i[-1:] in " .":
-               return False
-            #invalid if name is blacklisted and if name before a period is blacklisted
-            if i.split(".")[0] in blacklistedNames:
-               return False
-         return True
-      elif confmod.platform in ("Linux","Darwin"):
-         blacklistedChars = "/<>|:&"
-         #remove trailing path separator
-         if directory[-1:] == separator:
-            directory = directory[:-1]
-         elif directory[-2:] == f"{separator}.":
-            directory = directory[:-2]
-         #remove starting path separator
-         if directory[:1] == separator:
-            directory = directory[-(len(directory)-1):]
-         elif directory[:2] in (f".{separator}",f"~{separator}"):
-            directory = directory[-(len(directory)-2):]
-         dirlist = directory.split(separator)
-         for i in dirlist:
-            #invalid if blacklisted characters are used
-            for j in i:
-               if j in blacklistedChars:
+               #invalid if name is blacklisted and if name before a period is blacklisted
+               if i.split(".")[0] in ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"):
                   return False
-         return True
+               temp = temp.parent
+            #Check drive letter
+            if not (str(temp)[0].isalpha() and str(temp)[1:] in (":",":\\",":/")):
+               return False
+         else:
+            #invalid if blacklisted characters are used
+            while temp != temp.parent:
+               #get directory name
+               tempname = temp.name
+               #invalid if blacklisted characters are used
+               for i in tempname:
+                  if i in "/<>|:&":
+                     return False
+               temp = temp.parent
+      elif separator != None:
+         directory = str(directory)
+         if confmod.platform == "Windows":
+            blacklistedChars = '<>:"\\/|?*' #!add ASCII characters from 0-31
+            blacklistedNames = ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³")
+            #convert path to uppercase since windows is not cas sensitive
+            directory = directory.upper()
+            #remove trailing path separator
+            if directory[-1:] == separator:
+               directory = directory[:-1]
+            #remove drive letter or server path designator
+            if directory[0].isalpha() and directory[1] == ":" and directory[2] == separator:
+               directory = directory[3:]
+            elif directory[:2] == "\\\\":
+               directory = directory[2:]
+            elif directory[:2] == f".{separator}":
+               directory = directory[-(len(directory)-2):]
+            #split path into each component
+            dirlist = directory.split(separator)
+            for i in dirlist:
+               #invalid if blacklisted characters are used
+               for j in i:
+                  if j in blacklistedChars:
+                     return False
+               #invalid if last character is " " or "."
+               if i[-1:] in " .":
+                  return False
+               #invalid if name is blacklisted and if name before a period is blacklisted
+               if i.split(".")[0] in blacklistedNames:
+                  return False
+         elif confmod.platform in ("Linux","Darwin"):
+            blacklistedChars = "/<>|:&"
+            #remove trailing path separator
+            if directory[-1:] == separator:
+               directory = directory[:-1]
+            elif directory[-2:] == f"{separator}.":
+               directory = directory[:-2]
+            #remove starting path separator
+            if directory[:1] == separator:
+               directory = directory[-(len(directory)-1):]
+            elif directory[:2] in (f".{separator}",f"~{separator}"):
+               directory = directory[-(len(directory)-2):]
+            dirlist = directory.split(separator)
+            for i in dirlist:
+               #invalid if blacklisted characters are used
+               for j in i:
+                  if j in blacklistedChars:
+                     return False
       return True
    @staticmethod
    def checkExistsMakeDir(dir_, silent=False):
@@ -1957,7 +1987,7 @@ class NiminFetishFantasyv0975o_fla:
          case "#29705C":
             self.fontColor = "#000000"
          case _:
-            self.theme =  "#000000"
+            self.theme = "#000000"
       self.ofontcolor = self.fontColor
       self.updateText()
       self.savePreferences()
@@ -1991,15 +2021,15 @@ class NiminFetishFantasyv0975o_fla:
       xmletree.indent(xml,space="\t")
       xml.write(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml"),encoding="UTF-8",xml_declaration=True)
    def loadPreferences(self):
-      if (Path(f"{self.dir}/Nimin_Prefs.xml").is_file() == True):
+      if Path(f"{self.dir}/Nimin_Prefs.xml").is_file():
          sp = False
          prefs = xmletree.parse(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml")).getroot()
          temptheme = f'{prefs.find("theme").text}'
          self.fontSize = int(prefs.find("fontSize").text)
          self.fontBold = strtobool(prefs.find("fontBold").text)
          tempfontColor = f'{prefs.find("fontColor").text}'
-         if (self.checkValidHex(temptheme) == True or (temptheme.isdecimal() == True and len(temptheme) == 1)) and self.checkValidHex(tempfontColor) == True:
-            if (temptheme.isdecimal() == True and len(temptheme) == 1):
+         if (self.checkValidHex(temptheme) or (temptheme.isdecimal() and len(temptheme) == 1) and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
+            if (temptheme.isdecimal() and len(temptheme) == 1):
                self.theme = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[int(temptheme)]
                sp = True
             else:
@@ -2009,10 +2039,10 @@ class NiminFetishFantasyv0975o_fla:
             self.theme = "#FFFFFF"
             self.fontColor = "#000000"
             sp = True
-         if prefs.find("saveLocation") == None or prefs.find("solMode") == None or prefs.find("gameTweaks") == None or prefs.find("fixedResMode") == None or prefs.find("res") == None or prefs.find("customFontColor") == None or prefs.find("customThemeColor") == None or prefs.find('oFontColor') == None or prefs.find('oThemeColor') == None:
+         if None in (prefs.find("saveLocation"),prefs.find("solMode"),prefs.find("gameTweaks"),prefs.find("fixedResMode"),prefs.find("res"),prefs.find("customFontColor"),prefs.find("customThemeColor"),prefs.find('oFontColor'),prefs.find('oThemeColor')):
             sp = True
          else:
-            if self.isValidDirectory(prefs.find("saveLocation").text,sep) == True:
+            if self.isValidDirectory(prefs.find("saveLocation").text,sep):
                self.savelocation = Path(f"{prefs.find('saveLocation').text}").resolve()
             else:
                as3.trace("Preference Loader: Error: saveLocation is not a valid path. Default value will be used instead.")
@@ -2043,7 +2073,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
          if (self.initinterface == False):
-            if (strtobool(prefs.find("showSide").text) == True):
+            if (strtobool(prefs.find("showSide").text)):
                self.showSidePanel()
             else:
                self.hideSidePanel()
