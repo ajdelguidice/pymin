@@ -164,8 +164,7 @@ class NiminFetishFantasyv0975o_fla:
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
       self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseOldStash(10), MiscChanges(11)]
       self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
-      self.fixedresolutionmode = False #Toggle for fixed resolution mode (This is a thing because Tcl/tk only supports integer values for font sizes)
-      self.fixedresolution = "" #Resolution for fixed resolution mode
+      self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
       self.ofontcolor = "#000000" #original font color from before custom font color was applied
       self.customthemecolor = False #Toggle for custom theme color
@@ -963,13 +962,12 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function for the option window
       """
-      #self.fixedresolutionmode = False #Toggle for fixed resolution mode (This is a thing because Tcl/tk only supports integer values for font sizes)
-      #self.fixedresolution = "" #Resolution for fixed resolution mode
       if self.optionsWinOpen == False:
          #window
          self.optionswindow = itk.window(width=420,height=207,title="Options",type_="frame",color=self.theme,mainwindow=False,nomenu=True)
          #self.mo.group(self.optionswindow.children["root"])
-         #self.optionswindow.disableResizing()
+         if self.fixedresolutionmode:
+            self.optionswindow.disableResizing()
 
          self.optionswindow.addNotebook("root","nb")
 
@@ -999,9 +997,12 @@ class NiminFetishFantasyv0975o_fla:
          CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="Toggles usage of save files compatable with the original game. This also affects\nthe \"save as\" and \"load file\" buttons.")
          
          ##Fixed Resolution
-         self.optionswindow.addCheckboxlabelWithCombobox("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution",[0,""],110,22)
+         #self.optionswindow.addCheckboxlabelWithCombobox("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution",[0,""],110,22)
+         #self.optionswindow.configureChild("FixedRes",background=self.theme,foreground=self.fontColor)
+         #self.populateOWCombo()
+         self.optionswindow.addCheckboxWithLabel("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution")
          self.optionswindow.configureChild("FixedRes",background=self.theme,foreground=self.fontColor)
-         self.populateOWCombo()
+         CreateToolTip(self.optionswindow.children["FixedRes"].frame,text="Locks the resolution of all windows to their default value.")
          #self.owcb3 = tkinter.Checkbutton(self.optionswindow.children["root"],variable=self.owcb3cvar,onvalue=1,offvalue=0,command=self.checkFRBox)
          #self.owcb3.place(x=30,y=87,width=14,height=14,anchor="nw") #if this is unchecked, disable the combobox
          #self.owcb3t = tkinter.Label(self.optionswindow.children["root"],font=("TimesNewRoman",11),text="Fixed Resloution",anchor="w")
@@ -1153,10 +1154,6 @@ class NiminFetishFantasyv0975o_fla:
             self.optionswindow.children["ChooseSenario"].select()
          if self.debugtweaks[1] == True:
             self.optionswindow.children["NoDamage"].select()
-   def populateOWCombo(self):
-      #!Add checking for monitor resolution to limit window size
-      #!Add more options
-      self.optionswindow.children["FixedRes"].configure(values=("","980x552","1176x662"))
    def OWSaveOptions(self, *args):
       """
       Saves all of the options when the "Apply" button is pressed
@@ -1185,17 +1182,14 @@ class NiminFetishFantasyv0975o_fla:
             #show error and pass
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
             pass
-         #!also check if fixed resolution is a valid value
          if self.optionswindow.children["SOLMode"].getcb() == 1:
             self.solonlymode = True
          else:
             self.solonlymode = False
          if self.optionswindow.children["FixedRes"].getcb() == 1:
             self.fixedresolutionmode = True
-            self.fixedresolution = self.optionswindow.children["FixedRes"].get() #!check if this actually works
          else:
             self.fixedresolutionmode = False
-            self.fixedresolution = ""
          if self.optionswindow.children["Theme"].getcb() == 1:
             if self.customthemecolor == False:
                self.othemecolor = self.theme
@@ -1296,18 +1290,36 @@ class NiminFetishFantasyv0975o_fla:
          return True
       return False
    def applyFixedResolution(self):
-      #!Apply self.fixedresolutionmode and self.fixedresolution
-      if self.fixedresolutionmode == True:
-         #!apply resolution to main main window and lock resizing
-         #!lock resizing of child windows
-         if self.wikiOpen == True:
+      if self.fixedresolutionmode:
+         #locks resizing of child windows
+         self.mo.children["root"].geometry("1176x662")
+         self.mo.disableResizing()
+         if self.wikiOpen:
+            self.wikiwindow.children["root"].geometry("700x500")
             self.wikiwindow.disableResizing()
+         if self.optionsWinOpen:
+            self.optionswindow.children["root"].geometry("420x207")
             self.optionswindow.disableResizing()
+         if self.optionsWinOpen:
+            self.optionswindow.children["root"].geometry("420x207")
+            self.optionswindow.disableResizing()
+         if self.debugWinOpen:
+            self.dw.children["root"].geometry("400x400")
+            self.dw.disableResizing()
+         if self.debugGIWinOpen:
+            self.dgiw.geometry("150x100")
+            self.dgiw.resizable(False,False)
       else:
-         #!unlock resizing for all windows
-         if self.wikiOpen == True:
+         #unlocks resizing for all windows
+         self.mo.enableResizing()
+         if self.wikiOpen:
             self.wikiwindow.enableResizing()
+         if self.optionsWinOpen:
             self.optionswindow.enableResizing()
+         if self.debugWinOpen:
+            self.dw.enableResizing()
+         if self.debugGIWinOpen:
+            self.dgiw.resizable(True,True)
    def closeOptionsWindow(self, *args):
       """
       Closes the option window
@@ -2016,7 +2028,7 @@ class NiminFetishFantasyv0975o_fla:
    #def sideShow():
       #showSidePanel
    def savePreferences(self):
-      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><fixedResMode>{self.fixedresolutionmode}</fixedResMode><res>{self.fixedresolution}</res><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder></prefs>")
+      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder></prefs>")
       xml = xmletree.ElementTree(element=data)
       xmletree.indent(xml,space="\t")
       xml.write(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml"),encoding="UTF-8",xml_declaration=True)
@@ -2039,7 +2051,7 @@ class NiminFetishFantasyv0975o_fla:
             self.theme = "#FFFFFF"
             self.fontColor = "#000000"
             sp = True
-         if None in (prefs.find("saveLocation"),prefs.find("solMode"),prefs.find("gameTweaks"),prefs.find("fixedResMode"),prefs.find("res"),prefs.find("customFontColor"),prefs.find("customThemeColor"),prefs.find('oFontColor'),prefs.find('oThemeColor')):
+         if None in (prefs.find("saveLocation"),prefs.find("solMode"),prefs.find("gameTweaks"),prefs.find("fixedResMode"),prefs.find("customFontColor"),prefs.find("customThemeColor"),prefs.find('oFontColor'),prefs.find('oThemeColor')):
             sp = True
          else:
             if self.isValidDirectory(prefs.find("saveLocation").text,sep):
@@ -2054,7 +2066,6 @@ class NiminFetishFantasyv0975o_fla:
                tempgametweaks.append(False)
             self.gametweaks = tempgametweaks
             self.fixedresolutionmode = strtobool(prefs.find("fixedResMode").text)
-            self.fixedresolution = f'{prefs.find("res").text}'
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
             self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
             self.ofontcolor = f"{prefs.find('oFontColor').text}"
@@ -2083,7 +2094,7 @@ class NiminFetishFantasyv0975o_fla:
             self.showSidePanel()
       if sp == True:
          self.savePreferences()
-      #self.applyFixedResolution() #!uncomment when this is implemented
+      self.applyFixedResolution()
       self.updateText()
       self.updateTheme()
    def outputMainText(self, texts:str, reset:bool, *textCheck):
@@ -25955,6 +25966,8 @@ class NiminFetishFantasyv0975o_fla:
       #!add refresh button to window
       if (self.debugWinOpen != True):
          self.dw = itk.window(400,400,"Pymin: Debug Window","frame",self.theme,False,False,False)
+         if self.fixedresolutionmode:
+            self.dw.disableResizing()
          self.dw.menubar["root"].add_command(label="Give Item",font=("Terminal",8),command=self.openDebugGiveItemWindow)
          self.dw.menubar["root"].add_command(label="Use Item",font=("Terminal",8),command=self.openDebugUseItemWindow)
          self.dw.addHTMLScrolledText("root","text",0,0,400,400,("Terminal",8),"nw",True,10)
@@ -25976,7 +25989,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.currentState != 0:
             tempStr = f"buttonShiftOverride = {self.buttonShiftOverride}\ntheme = {self.theme}\nfont-size = {self.fontSize}\nfont-bold = {self.fontBold}\nfont-color = {self.fontColor}\nbuttonChoice = {self.buttonChoice}\nrndResult = {self.rndResult}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\nchoicePage = {self.choicePage}\nmoveItemID = {self.moveItemID}\nmoveItemStack = {self.moveItemStack}\nshiftHeld = {self.shiftHeld}\ncurrentState = {self.currentState}\ninBag = {self.inBag}\ninShop = {self.inShop}\nday = {self.day}\nhour = {self.hour}\ninDungeon = {self.inDungeon}\ncurrentDungeon = {self.currentDungeon}\nstr = {self.str_}\nment = {self.ment}\nlib = {self.lib}\nsen = {self.sen}\nHP = {self.HP}\nlust = {self.lust}\ncoin = {self.coin}\nstrMod = {self.strMod}\nmentMod = {self.mentMod}\nlibMod = {self.libMod}\nsenMod = {self.senMod}\nstrength = {self.strength}\nmentality = {self.mentality}\nlibido = {self.libido}\nsensitivity = {self.sensitivity}\nhunger = {self.hunger}\nhrs = {self.hrs}\nitemGainArray = {self.itemGainArray}\nhuman = {self.human}\nhorse = {self.horse}\nwolf = {self.wolf}\ncat = {self.cat}\ncow = {self.cow}\nlizard = {self.lizard}\nrabbit = {self.rabbit}\nmouse = {self.mouse}\nbird = {self.bird}\npig = {self.pig}\nskunk = {self.skunk}\nbug = {self.bug}\nSexP = {self.SexP}\nlevelUP = {self.levelUP}\nlevel = {self.level}\nrunMod = {self.runMod}\nrapeMod = {self.rapeMod}\ncumMod = {self.cumMod}\ncockSizeMod = {self.cockSizeMod}\nvagSizeMod = {self.vagSizeMod}\nvagElastic = {self.vagElastic}\nmilkMod = {self.milkMod}\ncarryMod = {self.carryMod}\nvagBellyMod = {self.vagBellyMod}\npregChanceMod = {self.pregChanceMod}\nextraPregChance = {self.extraPregChance}\npregTimeMod = {self.pregTimeMod}\nenticeMod = {self.enticeMod}\nmilkHPMod = {self.milkHPMod}\nchangeMod = {self.changeMod}\nHPMod = {self.HPMod}\nSexPMod = {self.SexPMod}\nminLust = {self.minLust}\nmilkCap = {self.milkCap}\ncoinMod = {self.coinMod}\nhipMod = {self.hipMod}\nbuttMod = {self.buttMod}\nbellyMod = {self.bellyMod}\ncockMoistMod = {self.cockMoistMod}\nvagMoistMod = {self.vagMoistMod}\nlockTail = {self.lockTail}\nlockFace = {self.lockFace}\nlockSkin = {self.lockSkin}\nlockBreasts = {self.lockBreasts}\nlockEars = {self.lockEars}\nlockLegs = {self.lockLegs}\nlockNipples = {self.lockNipples}\nlockCock = {self.lockCock}\nenemyID = {self.enemyID}\neHP = {self.eHP}\neMaxHP = {self.eMaxHP}\neStr = {self.eStr}\neMenta = {self.eMenta}\neSen = {self.eSen}\neLib = {self.eLib}\neLust = {self.eLust}\neGen = {self.eGen}\nePref = {self.ePref}\neCoin = {self.eCoin}\neSexP = {self.eSexP}\neItem = {self.eItem}\ngender = {self.gender}\nrace = {self.race}\nbody = {self.body}\ndominant = {self.dominant}\nhips = {self.hips}\nbutt = {self.butt}\ntallness = {self.tallness}\nskinType = {self.skinType}\ntail = {self.tail}\nears = {self.ears}\nhair = {self.hair}\nhairLength = {self.hairLength}\nhairColor = {self.hairColor}\nlegType = {self.legType}\nwings = {self.wings}\nfaceType = {self.faceType}\nskinColor = {self.skinColor}\ncockTotal = {self.cockTotal}\nhumanCocks = {self.humanCocks}\nhorseCocks = {self.horseCocks}\nwolfCocks = {self.wolfCocks}\ncatCocks = {self.catCocks}\nlizardCocks = {self.lizardCocks}\nrabbitCocks = {self.rabbitCocks}\ncockSize = {self.cockSize}\ncockMoist = {self.cockMoist}\nballs = {self.balls}\nballSize = {self.ballSize}\nshowBalls = {self.showBalls}\nknot = {self.knot}\nbugCocks = {self.bugCocks}\nbreastSize = {self.breastSize}\nboobTotal = {self.boobTotal}\nnippleSize = {self.nippleSize}\nudders = {self.udders}\nudderSize = {self.udderSize}\nteatSize = {self.teatSize}\nclitSize = {self.clitSize}\nvagTotal = {self.vagTotal}\nvagSize = {self.vagSize}\nvagMoist = {self.vagMoist}\nvulvaSize = {self.vulvaSize}\nnipType = {self.nipType}\nattireTop = {self.attireTop}\nattireBot = {self.attireBot}\nweapon = {self.weapon}\npregArray = {self.pregArray}\npregStatus = {self.pregStatus}\n =pregnancyTime {self.pregnancyTime}\npregRate = {self.pregRate}\neggLaying = {self.eggLaying}\neggMaxTime = {self.eggMaxTime}\neggTime = {self.eggTime}\neggRate = {self.eggRate}\nexhaustion = {self.exhaustion}\nexhaustionPenalty = {self.exhaustionPenalty}\nmilkEngorgement = {self.milkEngorgement}\nmilkEngorgementLevel = {self.milkEngorgementLevel}\nudderEngorgement = {self.udderEngorgement}\nudderEngorgementLevel = {self.udderEngorgementLevel}\nheat = {self.heat}\nheatTime = {self.heatTime}\nheatMaxTime = {self.heatMaxTime}\nlactation = {self.lactation}\nudderLactation = {self.udderLactation}\nnipplePlay = {self.nipplePlay}\nudderPlay = {self.udderPlay}\nblueBalls = {self.blueBalls}\nteatPump = {self.teatPump}\nnipPump = {self.nipPump}\ncockPump = {self.cockPump}\nclitPump = {self.clitPump}\nvulvaPump = {self.vulvaPump}\nmasoPot = {self.masoPot}\nsMasoPot = {self.sMasoPot}\nbabyFree = {self.babyFree}\ncharmTime = {self.charmTime}\npheromone = {self.pheromone}\neggceleratorTime = {self.eggceleratorTime}\neggceleratorDose = {self.eggceleratorDose}\nbodyOil = {self.bodyOil}\nlustPenalty = {self.lustPenalty}\nsnuggleBall = {self.snuggleBall}\nfertileGel = {self.fertileGel}\neggType = {self.eggType}\nmilkSuppressant = {self.milkSuppressant}\nmilkSuppressantLact = {self.milkSuppressantLact}\nmilkSuppressantUdder = {self.milkSuppressantUdder}\nsuppHarness = {self.suppHarness}\nfertilityStatueCurse = {self.fertilityStatueCurse}\nplumpQuats = {self.plumpQuats}\nlilaWetStatus = {self.lilaWetStatus}\ncockSnakePreg = {self.cockSnakePreg}\nmilkCPoisonNip = {self.milkCPoisonNip}\nmilkCPoisonUdd = {self.milkCPoisonUdd}\ncockSnakeVenom = {self.cockSnakeVenom}\nhumanAffinity = {self.humanAffinity}\nhorseAffinity = {self.horseAffinity}\nwolfAffinity = {self.wolfAffinity}\ncatAffinity = {self.catAffinity}\ncowAffinity = {self.cowAffinity}\nlizardAffinity = {self.lizardAffinity}\nrabbitAffinity = {self.rabbitAffinity}\nfourBoobAffinity = {self.fourBoobAffinity}\nmouseAffinity = {self.mouseAffinity}\nbirdAffinity = {self.birdAffinity}\npigAffinity = {self.pigAffinity}\ntwoBoobAffinity = {self.twoBoobAffinity}\nsixBoobAffinity = {self.sixBoobAffinity}\neightBoobAffinity = {self.eightBoobAffinity}\ntenBoobAffinity = {self.tenBoobAffinity}\ncowTaurAffinity = {self.cowTaurAffinity}\nhumanTaurAffinity = {self.humanTaurAffinity}\nskunkAffinity = {self.skunkAffinity}\nbugAffinity = {self.bugAffinity}\nlilaRep = {self.lilaRep}\nlilaVulva = {self.lilaVulva}\nlilaMilk = {self.lilaMilk}\nlilaPreg = {self.lilaPreg}\nmalonRep = {self.malonRep}\nmalonPreg = {self.malonPreg}\nmalonChildren = {self.malonChildren}\nmistressRep = {self.mistressRep}\njamieRep = {self.jamieRep}\njamieSize = {self.jamieSize}\njamieChildren = {self.jamieChildren}\nsilRep = {self.silRep}\nsilPreg = {self.silPreg}\nsilRate = {self.silRate}\nsilLay = {self.silLay}\nsilTied = {self.silTied}\nsilGrowthTime = {self.silGrowthTime}\nlilaUB = {self.lilaUB}\ndairyFarmBrand = {self.dairyFarmBrand}\njamieRep1 = {self.jamieRep1}\njamieRep2 = {self.jamieRep2}\njamieRep3 = {self.jamieRep3}\nlilaWetness = {self.lilaWetness}\njamieButt = {self.jamieButt}\njamieBreasts = {self.jamieBreasts}\njamieHair = {self.jamieHair}\ntravArray = {self.travArray}\nfoundSoftlik = {self.foundSoftlik}\nfoundFirmshaft = {self.foundFirmshaft}\nfoundTieden = {self.foundTieden}\nfoundSizCalit = {self.foundSizCalit}\nfoundOviasis = {self.foundOviasis}\nfoundValley = {self.foundValley}\nfoundSanctuary = {self.foundSanctuary}\ndefeatedMinotaur = {self.defeatedMinotaur}\ndefeatedFreakyGirl = {self.defeatedFreakyGirl}\ndefeatedSuccubus = {self.defeatedSuccubus}\nfirstExplore = {self.firstExplore}\nknowLustDraft = {self.knowLustDraft}\nknowRejuvPot = {self.knowRejuvPot}\nknowExpPreg = {self.knowExpPreg}\nknowBallSwell = {self.knowBallSwell}\nknowMaleEnhance = {self.knowMaleEnhance}\nknowSLustDraft = {self.knowSLustDraft}\nknowSRejuvPot = {self.knowSRejuvPot}\nknowSExpPreg = {self.knowSExpPreg}\nknowSBallSwell = {self.knowSBallSwell}\nknowBabyFree = {self.knowBabyFree}\nknowPotPot = {self.knowPotPot}\nknowGenSwap = {self.knowGenSwap}\nknowMasoPot = {self.knowMasoPot}\nknowMilkSuppress = {self.knowMilkSuppress}\nknowSGenSwap = {self.knowSGenSwap}\nknowSMasoPot = {self.knowSMasoPot}\nknowSBabyFree = {self.knowSBabyFree}\nknowSPotPot = {self.knowSPotPot}\nknowPussJuice = {self.knowPussJuice}\nknowPheromone = {self.knowPheromone}\nknowBazoomba = {self.knowBazoomba}\nbabyFactLevel = {self.babyFactLevel}\nbodyBuildLevel = {self.bodyBuildLevel}\nhyperHappyLevel = {self.hyperHappyLevel}\nalchemistLevel = {self.alchemistLevel}\nfetishMasterLevel = {self.fetishMasterLevel}\nmilkMaidLevel = {self.milkMaidLevel}\nshapeshiftyLevel = {self.shapeshiftyLevel}\nshapeshiftyFirst = {self.shapeshiftyFirst}\nshapeshiftySecond = {self.shapeshiftySecond}\nmaleFetish = {self.maleFetish}\nfemaleFetish = {self.femaleFetish}\nhermFetish = {self.hermFetish}\nnarcissistFetish = {self.narcissistFetish}\ndependentFetish = {self.dependentFetish}\ndominantFetish = {self.dominantFetish}\nsubmissiveFetish = {self.submissiveFetish}\nlboobFetish = {self.lboobFetish}\nsboobFetish = {self.sboobFetish}\nfurryFetish = {self.furryFetish}\nscalyFetish = {self.scalyFetish}\nsmoothyFetish = {self.smoothyFetish}\npregnancyFetish = {self.pregnancyFetish}\nbestialityFetish = {self.bestialityFetish}\nmilkFetish = {self.milkFetish}\nsizeFetish = {self.sizeFetish}\nunbirthingFetish = {self.unbirthingFetish}\novipositionFetish = {self.ovipositionFetish}\ntoyFetish = {self.toyFetish}\nhyperFetish = {self.hyperFetish}\ncurrentDayCare = {self.currentDayCare}\nhumanChildren = {self.humanChildren}\nequanChildren = {self.equanChildren}\nlupanChildren = {self.lupanChildren}\nfelinChildren = {self.felinChildren}\ncowChildren = {self.cowChildren}\nlizanEggs = {self.lizanEggs}\nlizanChildren = {self.lizanChildren}\nbunnionChildren = {self.bunnionChildren}\nwolfPupChildren = {self.wolfPupChildren}\nmiceChildren = {self.miceChildren}\nbirdEggs = {self.birdEggs}\nbirdChildren = {self.birdChildren}\npigChildren = {self.pigChildren}\ncalfChildren = {self.calfChildren}\nbugEggs = {self.bugEggs}\nbugChildren = {self.bugChildren}\nskunkChildren = {self.skunkChildren}\nminotaurChildren = {self.minotaurChildren}\nfreakyGirlChildren = {self.freakyGirlChildren}\nbagPage = {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nbuy = {self.buy}\ngetCum = {self.getCum}\ndmg = {self.dmg}\neLustChange = {self.eLustChange}\ntempID = {self.tempID}\ntempColor = {self.tempColor}\nspecialAbilityArray = {self.specialAbilityArray}"
          else:
-            tempStr = f"<b>Command Line Variables</b>\ndebugNoStart = {self.debugNoStart}\n\n<b>Window Variables</b>/noptionsWinOpen{self.optionsWinOpen}\ndebugWinOpen = {self.debugWinOpen}\ndebugGIWinOpen = {self.debugGIWinOpen}\nsfcopen = {self.sfcopen}\nwikiOpen = {self.wikiOpen}\n\n<b>Option Variables</b>\nsavelocation = {self.savelocation}\nsolonlymode = {self.solonlymode}\ngametweaks = {self.gametweaks}\nfixedresolutionmode = {self.fixedresolutionmode}\nfixedresolution = {self.fixedresolution}\ncustomfontcolor = {self.customfontcolor}\nofontcolor = {self.ofontcolor}\ncustomthemecolor = {self.customthemecolor}\nothemecolor = {self.othemecolor}\n\n<b>Interface Variables</b>\nshiftHeld = {self.shiftHeld}\ncurrentState = {self.currentState}\ntheme = {self.theme}\nfontSize = {self.fontSize}\nfontBold = {self.fontBold}\nfontColor = {self.fontColor}\nshowSide = {self.showSide}\nbuttonChoice = {self.buttonChoice}\nsideFocus = {self.sideFocus}\nbagDiscard = {self.bagDiscard}\nbuttonShiftOverride = {self.buttonShiftOverride}\n\n<b>Temporary Variables</b>\nbuy = {self.buy}\ngetCum = {self.getCum}\ndmg = {self.dmg}\neLustChange = {self.eLustChange}\ntempID = {self.tempID}\ntempColor = {self.tempColor}"
+            tempStr = f"<b>Command Line Variables</b>\ndebugNoStart = {self.debugNoStart}\n\n<b>Window Variables</b>/noptionsWinOpen{self.optionsWinOpen}\ndebugWinOpen = {self.debugWinOpen}\ndebugGIWinOpen = {self.debugGIWinOpen}\nsfcopen = {self.sfcopen}\nwikiOpen = {self.wikiOpen}\n\n<b>Option Variables</b>\nsavelocation = {self.savelocation}\nsolonlymode = {self.solonlymode}\ngametweaks = {self.gametweaks}\nfixedresolutionmode = {self.fixedresolutionmode}\ncustomfontcolor = {self.customfontcolor}\nofontcolor = {self.ofontcolor}\ncustomthemecolor = {self.customthemecolor}\nothemecolor = {self.othemecolor}\n\n<b>Interface Variables</b>\nshiftHeld = {self.shiftHeld}\ncurrentState = {self.currentState}\ntheme = {self.theme}\nfontSize = {self.fontSize}\nfontBold = {self.fontBold}\nfontColor = {self.fontColor}\nshowSide = {self.showSide}\nbuttonChoice = {self.buttonChoice}\nsideFocus = {self.sideFocus}\nbagDiscard = {self.bagDiscard}\nbuttonShiftOverride = {self.buttonShiftOverride}\n\n<b>Temporary Variables</b>\nbuy = {self.buy}\ngetCum = {self.getCum}\ndmg = {self.dmg}\neLustChange = {self.eLustChange}\ntempID = {self.tempID}\ntempColor = {self.tempColor}"
          self.dw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
          self.dw.children["text"].yview_moveto(temp)
    def closeDebugWindow(self,*useless):
@@ -25987,6 +26000,8 @@ class NiminFetishFantasyv0975o_fla:
          self.dgiw = tkinter.Toplevel()
          self.dgiw.title("Give Item")
          self.dgiw.geometry("150x100")
+         if self.fixedresolutionmode:
+            self.dgiw.resizable(False,False)
          self.dgiwlabel = tkinter.Label(self.dgiw,text="Give Item",font=("TkTextFont",9))
          self.dgiwlabel.place(x=75,y=7,anchor="n")
          self.dgiwcombo = itk.ComboEntryBox(self.dgiw,5,30,140,23,"nw",("TkTextFont",9),55,30,("ID:","Quantity:"),"Ok",2,"w")
