@@ -9702,7 +9702,7 @@ class NiminFetishFantasyv0975o_fla:
             return 23
          elif choice == 10:
             return 22
-         elif choice == 1:
+         elif choice == 11:
             return 19
       else:
          return f"ZONE ERROR: {self.currentZone}"
@@ -21379,7 +21379,10 @@ class NiminFetishFantasyv0975o_fla:
                      if self.gametweaks[2] == False:
                         tempStr += self.cockChange(-1,0,ret=True)
                      elif self.gametweaks[2] == True:
-                        tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-1),ret=True)
+                        if self.dominant != 6 or self.lizardCocks < 2:
+                           tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-1),ret=True)
+                        else:
+                           tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-2),ret=True)
                      if self.gametweaks[2] == False or (self.gametweaks[2] == True and self.vagTotal == 0):
                         tempStr += self.vagChange(0,1,ret=True)
                      tempStr += "\n\n\"Now that's my girl~ Who needs all those manly features when you can be a slut~?\" She seems quite pleased with the change."
