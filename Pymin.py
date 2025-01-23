@@ -1150,30 +1150,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Saves all of the options when the "Apply" button is pressed
       """
-      if self.optionsWinOpen == True:
-         #!combine checks with saving the variables to increase speed
-         if self.optionswindow.children["Theme"].getcb() == 1:
-            if self.optionswindow.children["Theme"].get() == "":
-               #show error and pass
-               as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
-               pass
-            elif self.checkValidHex(self.optionswindow.children["Theme"].get()) == False:
-               #show error and pass
-               as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is not a valid hexadecimal color code")
-               pass
-         if self.optionswindow.children["FontColor"].getcb() == 1:
-            if self.optionswindow.children["FontColor"].get() == "":
-               #show error and pass
-               as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is empty")
-               pass
-            elif self.checkValidHex(self.optionswindow.children["FontColor"].get()) == False:
-               #show error and pass
-               as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is not a valid hexadecimal color code")
-               pass
-         if self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),sep) == False:
-            #show error and pass
-            as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
-            pass
+      if self.optionsWinOpen:
          if self.optionswindow.children["SOLMode"].getcb() == 1:
             self.solonlymode = True
          else:
@@ -1183,26 +1160,41 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.fixedresolutionmode = False
          if self.optionswindow.children["Theme"].getcb() == 1:
-            if self.customthemecolor == False:
-               self.othemecolor = self.theme
-            self.customthemecolor = True
-            self.theme = self.optionswindow.children["Theme"].get()
-            self.mo.configureChild("themebutton",state="disabled")
+            if self.optionswindow.children["Theme"].get() == "":
+               as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
+            elif self.checkValidHex(self.optionswindow.children["Theme"].get()) == False:
+               as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is not a valid hexadecimal color code")
+            else:
+               if self.customthemecolor == False:
+                  self.othemecolor = self.theme
+               self.customthemecolor = True
+               self.theme = self.optionswindow.children["Theme"].get()
+               self.mo.configureChild("themebutton",state="disabled")
          else:
             self.customthemecolor = False
             self.theme = self.othemecolor
             self.mo.configureChild("themebutton",state="normal")
          if self.optionswindow.children["FontColor"].getcb() == 1:
-            if self.customfontcolor == False:
-               self.ofontcolor = self.fontColor
-            self.customfontcolor = True
-            self.fontColor = self.optionswindow.children["FontColor"].get()
-            self.mo.configureChild("textcolorbutton",state="disabled")
+            if self.optionswindow.children["FontColor"].get() == "":
+               as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is empty")
+            elif self.checkValidHex(self.optionswindow.children["FontColor"].get()) == False:
+               as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is not a valid hexadecimal color code")
+            else:
+               if self.customfontcolor == False:
+                  self.ofontcolor = self.fontColor
+               self.customfontcolor = True
+               self.fontColor = self.optionswindow.children["FontColor"].get()
+               self.mo.configureChild("textcolorbutton",state="disabled")
          else:
             self.customfontcolor = False
             self.fontColor = self.ofontcolor
             self.mo.configureChild("textcolorbutton",state="normal")
-         if self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),sep) == True and self.optionswindow.children["SaveLocation"].uevar.get() != "":
+         #!Add theme type here
+         if self.optionswindow.children["SaveLocation"].uevar.get() == "":
+            as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
+         elif self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),sep) == False:
+            as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
+         else:
             self.savelocation = Path(self.optionswindow.children["SaveLocation"].uevar.get()).resolve()
             if self.saveInvalid == True:
                self.mo.destroyChild("GameHider")
