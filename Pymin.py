@@ -7463,7 +7463,8 @@ class NiminFetishFantasyv0975o_fla:
          case 256:
             tempStr = "You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly."
             if (self.eggLaying > 0):
-               tempStr += " And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something."
+               if (self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0)):
+                  tempStr += " And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something."
                self.eggTime -= 4
             self.stats(1,0,0,0)
             self.aff(12,math.floor(self.percent() / 15 + 2),-2)
@@ -22773,7 +22774,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they're all slightly smaller than your original pair."
                if (self.breastSize > 4):
-                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             if (self.boobTotal == 4):
                tempStr += f"\n\nYour chest and belly tickle. Four new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly."
                if (self.breastSize > 4):
@@ -22792,7 +22793,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they're all slightly smaller than your original pair."
                if (self.breastSize > 4):
-                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             if (self.boobTotal == 4):
                tempStr += f"\n\nYour chest and belly tickle. Six new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crotch."
                if (self.breastSize > 4):
@@ -22863,12 +22864,14 @@ class NiminFetishFantasyv0975o_fla:
          nonEgg0 = as3.Math.max(egg1)
          nonEgg1 = as3.Math.max(egg0)
          if ((egg0 > nonEgg0 + 20) and (self.eggType != 0)):
-            tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
+            if self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0):
+               tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 1):
                self.eggMaxTime += 22
             self.eggType = 0
          if ((egg1 > nonEgg1 + 20) and (self.eggType != 1)):
-            tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
+            if self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0):
+               tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 0):
                self.eggMaxTime -= 22
             self.eggType = 1
