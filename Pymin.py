@@ -1162,14 +1162,17 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow.children["Theme"].getcb() == 1:
             if self.optionswindow.children["Theme"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
+               self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
             elif self.checkValidHex(self.optionswindow.children["Theme"].get()) == False:
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is not a valid hexadecimal color code")
+               self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
             else:
                if self.customthemecolor == False:
                   self.othemecolor = self.theme
                self.customthemecolor = True
                self.theme = self.optionswindow.children["Theme"].get()
                self.mo.configureChild("themebutton",state="disabled")
+               self.optionswindow.children["Theme"].ue["background"] = "#FFFFFF"
          else:
             self.customthemecolor = False
             self.theme = self.othemecolor
@@ -1177,14 +1180,17 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow.children["FontColor"].getcb() == 1:
             if self.optionswindow.children["FontColor"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is empty")
+               self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
             elif self.checkValidHex(self.optionswindow.children["FontColor"].get()) == False:
                as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is not a valid hexadecimal color code")
+               self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
             else:
                if self.customfontcolor == False:
                   self.ofontcolor = self.fontColor
                self.customfontcolor = True
                self.fontColor = self.optionswindow.children["FontColor"].get()
                self.mo.configureChild("textcolorbutton",state="disabled")
+               self.optionswindow.children["FontColor"].ue["background"] = "#FFFFFF"
          else:
             self.customfontcolor = False
             self.fontColor = self.ofontcolor
@@ -1192,14 +1198,17 @@ class NiminFetishFantasyv0975o_fla:
          #!Add theme type here
          if self.optionswindow.children["SaveLocation"].uevar.get() == "":
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
+            self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          elif self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),sep) == False:
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
+            self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          else:
             self.savelocation = Path(self.optionswindow.children["SaveLocation"].uevar.get()).resolve()
             if self.saveInvalid == True:
                self.mo.destroyChild("GameHider")
                self.mo.children["root"].bind('<KeyPress>',self.keypress)
                self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
+               self.optionswindow.children["SaveLocation"].ue["background"] = "#FFFFFF"
                self.saveInvalid = False
          if self.optionswindow.children["GrammarTweaks"].getcb() == 1:
             self.gametweaks[0] = True
