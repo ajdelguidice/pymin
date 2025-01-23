@@ -963,53 +963,26 @@ class NiminFetishFantasyv0975o_fla:
       Function for the option window
       """
       if self.optionsWinOpen == False:
-         #window
+         #Window
          self.optionswindow = itk.window(width=420,height=207,title="Options",type_="frame",color=self.theme,mainwindow=False,nomenu=True)
          #self.mo.group(self.optionswindow.children["root"])
          if self.fixedresolutionmode:
             self.optionswindow.disableResizing()
-
          self.optionswindow.addNotebook("root","nb")
 
+         #Options page
          self.optionswindow.addNBFrame("nb","options",420,207,"Options")
          self.optionswindow.configureChild("options",background=self.theme)
-         self.optionswindow.addNBFrame("nb","gt",420,207,"Game Tweaks")
-         self.optionswindow.configureChild("gt",background=self.theme)
-
-         if confmod.as3DebugEnable:
-            self.optionswindow.addNBFrame("nb","dt",420,207,"Debug Tweaks")
-            self.optionswindow.configureChild("dt",background=self.theme)
-
-            #Always Choose Senario
-            self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",10,10,154,20,("TimesNewRoman",11),"nw","alwaysChooseSenario")
-            self.optionswindow.configureChild("ChooseSenario",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow.children["ChooseSenario"].frame,text="Adds a way to choose the senario that happens every time you explore. When this is enabled, you must enter a senario number in the terminal every time.")
-
-            #Always Choose Senario
-            self.optionswindow.addCheckboxWithLabel("dt","NoDamage",10,32,154,20,("TimesNewRoman",11),"nw","takeNoDamage")
-            self.optionswindow.configureChild("NoDamage",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow.children["NoDamage"].frame,text="Take no damage from enemies. Currently only works when eDmg is called.")
-
-         #Options
+         
          ##Sol Mode
          self.optionswindow.addCheckboxWithLabel("options","SOLMode",10,10,80,20,("TimesNewRoman",11),"nw","Sol Mode")
          self.optionswindow.configureChild("SOLMode",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="Toggles usage of save files compatable with the original game. This also affects\nthe \"save as\" and \"load file\" buttons.")
          
          ##Fixed Resolution
-         #self.optionswindow.addCheckboxlabelWithCombobox("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution",[0,""],110,22)
-         #self.optionswindow.configureChild("FixedRes",background=self.theme,foreground=self.fontColor)
-         #self.populateOWCombo()
          self.optionswindow.addCheckboxWithLabel("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution")
          self.optionswindow.configureChild("FixedRes",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["FixedRes"].frame,text="Locks the resolution of all windows to their default value.")
-         #self.owcb3 = tkinter.Checkbutton(self.optionswindow.children["root"],variable=self.owcb3cvar,onvalue=1,offvalue=0,command=self.checkFRBox)
-         #self.owcb3.place(x=30,y=87,width=14,height=14,anchor="nw") #if this is unchecked, disable the combobox
-         #self.owcb3t = tkinter.Label(self.optionswindow.children["root"],font=("TimesNewRoman",11),text="Fixed Resloution",anchor="w")
-         #self.owcb3t.place(x=49,y=84,width=110,height=20,anchor="nw") # y = 87+7-(height/2)
-         #self.owcb3c = ttk.Combobox(self.optionswindow.children["root"],font=("TimesNewRoman",11))
-         #self.owcb3c["values"] = ("","test1","test2","test3")
-         #self.owcb3c.place(x=68,y=106,width=110,height=20,anchor="nw")
 
          #x+180,y-97
          ##Custom Theme color
@@ -1041,7 +1014,11 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["SaveLocation"].uevar.set(str(self.savelocation.resolve()))
          self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = str(self.savelocation.resolve())
 
-         #Game Tweaks
+
+         #Game Tweaks page
+         self.optionswindow.addNBFrame("nb","gt",420,207,"Game Tweaks")
+         self.optionswindow.configureChild("gt",background=self.theme)
+         
          ##Grammar Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","GrammarTweaks",10,10,144,20,("TimesNewRoman",11),"nw","Grammar Tweaks")
          self.optionswindow.configureChild("GrammarTweaks",background=self.theme,foreground=self.fontColor)
@@ -1101,6 +1078,21 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
          self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
+
+         if confmod.as3DebugEnable:
+            #Debug Tweaks page
+            self.optionswindow.addNBFrame("nb","dt",420,207,"Debug Tweaks")
+            self.optionswindow.configureChild("dt",background=self.theme)
+
+            #Always Choose Senario
+            self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",10,10,154,20,("TimesNewRoman",11),"nw","alwaysChooseSenario")
+            self.optionswindow.configureChild("ChooseSenario",background=self.theme,foreground=self.fontColor)
+            CreateToolTip(self.optionswindow.children["ChooseSenario"].frame,text="Adds a way to choose the senario that happens every time you explore. When this is enabled, you must enter a senario number in the terminal every time.")
+
+            #Always Choose Senario
+            self.optionswindow.addCheckboxWithLabel("dt","NoDamage",10,32,154,20,("TimesNewRoman",11),"nw","takeNoDamage")
+            self.optionswindow.configureChild("NoDamage",background=self.theme,foreground=self.fontColor)
+            CreateToolTip(self.optionswindow.children["NoDamage"].frame,text="Take no damage from enemies. Currently only works when eDmg is called.")
 
          #Apply button
          self.optionswindow.addButton("root","ApplyButton",360,172,50,25,("TimesNewRoman",12),"nw")
