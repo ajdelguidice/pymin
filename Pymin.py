@@ -2218,17 +2218,11 @@ class NiminFetishFantasyv0975o_fla:
          self.enableAllButtons()
    def choiceListSelect(self, which:str, hideAmountOverride=False):
       if which == "Bag":
-         tempArray = as3.Array(numElements=27)
-         for i in range(27):
-            tempArray[i] = self.bagArray[i]
+         tempArray = as3.Array(*[self.bagArray[i] for i in range(27)])
       elif which == "Stash":
-         tempArray = as3.Array(numElements=27)
-         for i in range(27):
-            tempArray[i] = self.stashArray[i]
+         tempArray = as3.Array(*[self.stashArray[i] for i in range(27)])
       else:
-         tempArray = as3.Array(numElements=self.choiceListArray.length)
-         for i in range(self.choiceListArray.length):
-            tempArray[i] = self.choiceListArray[i]
+         tempArray = as3.Array(*[self.choiceListArray[i] for i in range(self.choiceListArray.length)])
       if self.buttonChoice != 12:
          tempInt = self.buttonChoice - (1+self.buttonChoice//4)
       else:
@@ -8145,19 +8139,9 @@ class NiminFetishFantasyv0975o_fla:
       tempArray2 = as3.Array(12,"Return")
       #buttonlist = ButtonList(1,1,1,1,1,1,1,1,1,1,1,1)
       if which == "Bag":
-         tempArray = as3.Array(numElements=27)
-         for i in range(27):
-            if (self.bagArray[i] == 0):
-               tempArray[i] = " "
-            else:
-               tempArray[i] = self.itemName(self.bagArray[i])
+         tempArray = as3.Array(*[self.itemName(self.bagArray[i]) for i in range(27)])
       elif which == "Stash":
-         tempArray = as3.Array(numElements=27)
-         for i in range(27):
-            if (self.stashArray[i] == 0):
-               tempArray[i] = " "
-            else:
-               tempArray[i] = self.itemName(self.stashArray[i])
+         tempArray = as3.Array(*[self.itemName(self.stashArray[i]) for i in range(27)])
       tempArray2.push(4,"<<",8,">>")
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
