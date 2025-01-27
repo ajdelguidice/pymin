@@ -97,7 +97,7 @@ class ButtonList(list):
          super().__setitem__(item,value)
    def set(self,*args):
       if len(args) == 12:
-         for i in range(0,12):
+         for i in range(12):
             self[i] = args[i]
 
 def applyBackspace(string):
@@ -1352,7 +1352,7 @@ class NiminFetishFantasyv0975o_fla:
                if tempname[-1] in " .":
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
-               if i.split(".")[0] in ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"):
+               if tempname.split(".")[0] in ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"):
                   return False
                temp = temp.parent
             #Check drive letter
@@ -1361,10 +1361,8 @@ class NiminFetishFantasyv0975o_fla:
          else:
             #invalid if blacklisted characters are used
             while temp != temp.parent:
-               #get directory name
-               tempname = temp.name
                #invalid if blacklisted characters are used
-               for i in tempname:
+               for i in temp.name:
                   if i in "/<>|:&":
                      return False
                temp = temp.parent
@@ -2093,8 +2091,10 @@ class NiminFetishFantasyv0975o_fla:
    def outputMainText(self, texts:str, reset:bool, *textCheck):
       if (reset == True):
          self.clearAddMain(texts)
+         self.textCheckArray.clear()
       else:
-         if len(textCheck) == 0 or self.textCheckArray.indexOf(textCheck[0]) == -1:
+         #if len(textCheck) == 0 or self.textCheckArray.indexOf(textCheck[0]) == -1:
+         if len(textCheck) == 0 or textCheck[0] not in self.textCheckArray:
             self.addMain(texts)
             self.textCheckArray.push(*textCheck)
    def outputSideText(self, texts:str, reset:bool):
@@ -2127,7 +2127,7 @@ class NiminFetishFantasyv0975o_fla:
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
       if which == "Bag":
          tempArray = as3.Array(numElements=27)
-         for i in range(0, 27):
+         for i in range(27):
             if (self.bagArray[i] == 0):
                tempArray[i] = " "
             else:
@@ -2140,7 +2140,7 @@ class NiminFetishFantasyv0975o_fla:
             self.choicePage = page
       elif which == "Stash":
          tempArray = as3.Array(numElements=27)
-         for i in range(0, 27):
+         for i in range(27):
             if (self.stashArray[i] == 0):
                tempArray[i] = " "
             else:
@@ -2151,14 +2151,14 @@ class NiminFetishFantasyv0975o_fla:
             self.choicePage = self.tempBagPage
       else:
          tempArray = as3.Array(numElements=self.choiceListArray.length)
-         for i in range(0, self.choiceListArray.length):
+         for i in range(self.choiceListArray.length):
             tempArray[i] = self.choiceListArray[i]
       if (tempArray.length > 9):
          buttonlist[4] = 1
          buttonlist[8] = 1
          tempArray2.push(4,"<<",8,">>")
          self.showPage(True,which)
-      for i in range(0,9):
+      for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
             tempInt = i+1+i//3
@@ -2211,9 +2211,7 @@ class NiminFetishFantasyv0975o_fla:
       if not self.inBag and not self.inStash:
          dlist = [1,2,3,5,6,7,9,10,11]
          for i in range(1,12):
-            if i in (4,8):
-               continue
-            if self.buttonsVisible[i]:
+            if self.buttonsVisible[i] and i not in (4,8):
                dlist.remove(i)
          self.disableSelectedButtons(dlist)
       elif self.mts or self.mtb:
@@ -2221,15 +2219,15 @@ class NiminFetishFantasyv0975o_fla:
    def choiceListSelect(self, which:str, hideAmountOverride=False):
       if which == "Bag":
          tempArray = as3.Array(numElements=27)
-         for i in range(0,27):
+         for i in range(27):
             tempArray[i] = self.bagArray[i]
       elif which == "Stash":
          tempArray = as3.Array(numElements=27)
-         for i in range(0,27):
+         for i in range(27):
             tempArray[i] = self.stashArray[i]
       else:
          tempArray = as3.Array(numElements=self.choiceListArray.length)
-         for i in range(0,self.choiceListArray.length):
+         for i in range(self.choiceListArray.length):
             tempArray[i] = self.choiceListArray[i]
       if self.buttonChoice != 12:
          tempInt = self.buttonChoice - (1+self.buttonChoice//4)
@@ -2281,9 +2279,9 @@ class NiminFetishFantasyv0975o_fla:
          self.PageShow()
          self.pageTextChange(text)
       else:
-         self.PageHide() 
+         self.PageHide()
    def checkZero(self):
-      for i in range(0, 27):
+      for i in range(27):
          try:
             if (self.bagStackArray[i] == 0):
                self.bagArray[i] = 0
@@ -2472,7 +2470,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                #i = 1
                #while (i <= self.moveItemStack):
-               for i in range(1,self.moveItemStack+1):
+               for i in range(self.moveItemStack):
                   self.itemAdd(self.moveItemID)
                   #i += 1
                self.moveItemID = 0
@@ -2624,7 +2622,6 @@ class NiminFetishFantasyv0975o_fla:
       for i in (101,102,200,215,232,233,234,235,236,237,252):
          if (self.checkItem(i)):
             return True
-            break
       return False
    def checkStash(self, ID:int):
       #Checks if player has item ID in their stash
@@ -2634,14 +2631,14 @@ class NiminFetishFantasyv0975o_fla:
    def countItem(self, ID:int):
       #Counts how many of item ID player has in their bag
       tempInt = 0
-      for i in range(0,27):
+      for i in range(27):
          if (self.bagArray[i] == ID):
             tempInt += self.bagStackArray[i]
       return tempInt
    def countStash(self, ID:int): #not currently used
       #Counts how many of item ID player has in their stash
       tempInt = 0
-      for i in range(0,27):
+      for i in range(27):
          if (self.stashArray[i] == ID):
             tempInt += self.stashStackArray[i]
       return tempInt
@@ -2773,7 +2770,6 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.configureChild("currentregionlabel",text="Cave Descent")
       else:
          self.currentZone = changes
-         #!Make this use a list/tuple
          if changes == 1:
             self.mo.configureChild("currentregionlabel",text="Softlik")
          elif changes == 2:
@@ -2794,7 +2790,7 @@ class NiminFetishFantasyv0975o_fla:
       self.setDHStats()
       self.doStatus(Time)
    def doCoin(self, changes:int):
-      #Adds "changes" to your coins and then calls doSexP
+      #Adds "changes" to your coins and then calls setSCStats
       if (self.coin + changes < 0):
          self.coin = 0
          changes = 0
@@ -2802,7 +2798,6 @@ class NiminFetishFantasyv0975o_fla:
          changes += self.coinMod
       self.coin += changes
       self.coin = int(self.coin)
-      #self.doSexP(0)
       self.setSCStats()
    def doHP(self, changes:int, suppressImgChange:bool=False, ret=False, retPO=False):
       #Changes player's HP
@@ -2863,6 +2858,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doEnd()
    def doLust(self, changes:int, source:int, *triggers, ret=False):
       #Changes player lust and provides lust event descriptions
+      #!optimize
       triggers = as3.Array(*triggers)
       tempStr = ""
       if source == 1 and changes > 0:
@@ -3315,6 +3311,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function that generates appearance text
       """
+      #!optimize
       # math.floor(self.tallness / 12), self.tallness - math.floor(self.tallness / 12) * 12
       tempStr = f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc()} butt on an overall {self.bodyDesc()} figure."
       if (self.hair > 0):
@@ -3872,7 +3869,7 @@ class NiminFetishFantasyv0975o_fla:
    def detailedGear(self):
       #Gear button in the side bar
       tempStr = "You have the following items in your Bag:\n"
-      for i in range(0, 27):
+      for i in range(27):
          if (self.bagArray[i] != 0):
             tempStr += f"\n{self.itemName(self.bagArray[i])}"
          if (self.bagStackArray[i] > 1):
@@ -4076,7 +4073,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.gametweaks[5] == False:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
          tempArray = as3.Array(4,"Save as",8,"Convert",12,"Return")
-         for i in range(0,9):
+         for i in range(9):
             tempInt = i+1+i//3
             if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True and self.solonlymode == False):
                dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
@@ -4172,13 +4169,13 @@ class NiminFetishFantasyv0975o_fla:
          if self.currentState != 0:
             tempArray.push(12,"Return")
          if self.solonlymode == True:
-            for i in range(0,9):
+            for i in range(9):
                tempInt = i+1+i//3
                if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
          else:
-            for i in range(0,9):
+            for i in range(9):
                tempInt = i+1+i//3
                if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True):
                   dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
@@ -4397,19 +4394,19 @@ class NiminFetishFantasyv0975o_fla:
          else:
             string += f"<shapeshiftySecond>{self.shapeshiftySecond}</shapeshiftySecond>"
          string += f"</level><mod><runMod>{self.runMod}</runMod><rapeMod>{self.rapeMod}</rapeMod><cumMod>{repintorfloat(self.cumMod)}</cumMod><cockSizeMod>{repintorfloat(self.cockSizeMod)}</cockSizeMod><milkMod>{self.milkMod}</milkMod><carryMod>{self.carryMod}</carryMod><vagBellyMod>{self.vagBellyMod}</vagBellyMod><pregChanceMod>{self.pregChanceMod}</pregChanceMod><extraPregChance>{self.extraPregChance}</extraPregChance><pregTimeMod>{self.pregTimeMod}</pregTimeMod><enticeMod>{self.enticeMod}</enticeMod><milkHPMod>{self.milkHPMod}</milkHPMod><vagSizeMod>{repintorfloat(self.vagSizeMod)}</vagSizeMod><vagElastic>{repintorfloat(self.vagElastic)}</vagElastic><changeMod>{repintorfloat(self.changeMod)}</changeMod><HPMod>{self.HPMod}</HPMod><SexPMod>{repintorfloat(self.SexPMod)}</SexPMod><minLust>{self.minLust}</minLust><milkCap>{self.milkCap}</milkCap><coinMod>{self.coinMod}</coinMod><hipMod>{self.hipMod}</hipMod><buttMod>{self.buttMod}</buttMod><bellyMod>{self.bellyMod}</bellyMod><cockMoistMod>{self.cockMoistMod}</cockMoistMod><vagMoistMod>{self.vagMoistMod}</vagMoistMod><lockTail>{self.lockTail}</lockTail><lockFace>{self.lockFace}</lockFace><lockSkin>{self.lockSkin}</lockSkin><lockBreasts>{self.lockBreasts}</lockBreasts><lockEars>{self.lockEars}</lockEars><lockLegs>{self.lockLegs}</lockLegs><lockNipples>{self.lockNipples}</lockNipples><lockCock>{self.lockCock}</lockCock></mod><quality><gender>{self.gender}</gender><race>{self.race}</race><body>{self.body}</body><dominant>{self.dominant}</dominant><hips>{self.hips}</hips><butt>{self.butt}</butt><tallness>{self.tallness}</tallness><skinType>{self.skinType}</skinType><tail>{self.tail}</tail><ears>{self.ears}</ears><hair>{self.hair}</hair><hairColor>{self.hairColor}</hairColor><hairLength>{self.hairLength}</hairLength><legType>{self.legType}</legType><wings>{self.wings}</wings><faceType>{self.faceType}</faceType><skinColor>{self.skinColor}</skinColor></quality><cock><cockTotal>{self.cockTotal}</cockTotal><humanCocks>{self.humanCocks}</humanCocks><horseCocks>{self.horseCocks}</horseCocks><wolfCocks>{self.wolfCocks}</wolfCocks><catCocks>{self.catCocks}</catCocks><rabbitCocks>{self.rabbitCocks}</rabbitCocks><lizardCocks>{self.lizardCocks}</lizardCocks><cockSize>{self.cockSize}</cockSize><cockMoist>{self.cockMoist}</cockMoist><balls>{self.balls}</balls><ballSize>{self.ballSize}</ballSize><showBalls>{self.showBalls}</showBalls><knot>{self.knot}</knot><bugCocks>{self.bugCocks}</bugCocks><neuterizerHideBalls>{self.neuterizerHideBalls}</neuterizerHideBalls></cock><girl><breastSize>{self.breastSize}</breastSize><boobTotal>{self.boobTotal}</boobTotal><nippleSize>{self.nippleSize}</nippleSize><udders>{self.udders}</udders><udderSize>{self.udderSize}</udderSize><teatSize>{self.teatSize}</teatSize><clitSize>{self.clitSize}</clitSize><vagTotal>{self.vagTotal}</vagTotal><vagSize>{self.vagSize}</vagSize><vagMoist>{self.vagMoist}</vagMoist><vulvaSize>{self.vulvaSize}</vulvaSize><nipType>{self.nipType}</nipType></girl><gear><attireTop>{self.attireTop}</attireTop><attireBot>{self.attireBot}</attireBot><weapon>{self.weapon}</weapon></gear><status><pregRate>{self.pregRate}</pregRate><pregnancyTime>{self.pregnancyTime}</pregnancyTime><pregStatus>{self.pregStatus}</pregStatus><eggLaying>{self.eggLaying}</eggLaying><eggMaxTime>{self.eggMaxTime}</eggMaxTime><eggTime>{self.eggTime}</eggTime><eggRate>{self.eggRate}</eggRate><exhaustion>{self.exhaustion}</exhaustion><exhaustionPenalty>{self.exhaustionPenalty}</exhaustionPenalty><milkEngorgement>{self.milkEngorgement}</milkEngorgement><milkEngorgementLevel>{self.milkEngorgementLevel}</milkEngorgementLevel><udderEngorgement>{self.udderEngorgement}</udderEngorgement><udderEngorgementLevel>{self.udderEngorgementLevel}</udderEngorgementLevel><heat>{self.heat}</heat><heatTime>{self.heatTime}</heatTime><heatMaxTime>{self.heatMaxTime}</heatMaxTime><lactation>{self.lactation}</lactation><udderLactation>{self.udderLactation}</udderLactation><nipplePlay>{repintorfloat(self.nipplePlay)}</nipplePlay><udderPlay>{repintorfloat(self.udderPlay)}</udderPlay><blueBalls>{self.blueBalls}</blueBalls><teatPump>{self.teatPump}</teatPump><nipPump>{self.nipPump}</nipPump><cockPump>{self.cockPump}</cockPump><clitPump>{self.clitPump}</clitPump><vulvaPump>{self.vulvaPump}</vulvaPump><masoPot>{self.masoPot}</masoPot><sMasoPot>{self.sMasoPot}</sMasoPot><babyFree>{self.babyFree}</babyFree><charmTime>{self.charmTime}</charmTime><pheromone>{self.pheromone}</pheromone><eggceleratorTime>{self.eggceleratorTime}</eggceleratorTime><eggceleratorDose>{self.eggceleratorDose}</eggceleratorDose><bodyOil>{self.bodyOil}</bodyOil><lustPenalty>{self.lustPenalty}</lustPenalty><fertileGel>{self.fertileGel}</fertileGel><snuggleBall>{self.snuggleBall}</snuggleBall><eggType>{self.eggType}</eggType><milkSuppressant>{self.milkSuppressant}</milkSuppressant><milkSuppressantLact>{self.milkSuppressantLact}</milkSuppressantLact><milkSuppressantUdder>{self.milkSuppressantUdder}</milkSuppressantUdder><suppHarness>{self.suppHarness}</suppHarness><fertilityStatueCurse>{self.fertilityStatueCurse}</fertilityStatueCurse><plumpQuats>{self.plumpQuats}</plumpQuats><lilaWetStatus>{self.lilaWetStatus}</lilaWetStatus><cockSnakePreg>{self.cockSnakePreg}</cockSnakePreg><milkCPoisonNip>{self.milkCPoisonNip}</milkCPoisonNip><milkCPoisonUdd>{self.milkCPoisonUdd}</milkCPoisonUdd><cockSnakeVenom>{self.cockSnakeVenom}</cockSnakeVenom></status><affinity><humanAffinity>{self.humanAffinity}</humanAffinity><horseAffinity>{self.horseAffinity}</horseAffinity><wolfAffinity>{self.wolfAffinity}</wolfAffinity><catAffinity>{self.catAffinity}</catAffinity><cowAffinity>{self.cowAffinity}</cowAffinity><lizardAffinity>{self.lizardAffinity}</lizardAffinity><rabbitAffinity>{self.rabbitAffinity}</rabbitAffinity><fourBoobAffinity>{self.fourBoobAffinity}</fourBoobAffinity><mouseAffinity>{self.mouseAffinity}</mouseAffinity><birdAffinity>{self.birdAffinity}</birdAffinity><pigAffinity>{self.pigAffinity}</pigAffinity><twoBoobAffinity>{self.twoBoobAffinity}</twoBoobAffinity><sixBoobAffinity>{self.sixBoobAffinity}</sixBoobAffinity><eightBoobAffinity>{self.eightBoobAffinity}</eightBoobAffinity><tenBoobAffinity>{self.tenBoobAffinity}</tenBoobAffinity><cowTaurAffinity>{self.cowTaurAffinity}</cowTaurAffinity><humanTaurAffinity>{self.humanTaurAffinity}</humanTaurAffinity><skunkAffinity>{self.skunkAffinity}</skunkAffinity><bugAffinity>{self.bugAffinity}</bugAffinity></affinity><rep><lilaRep>{self.lilaRep}</lilaRep><lilaVulva>{self.lilaVulva}</lilaVulva><lilaMilk>{self.lilaMilk}</lilaMilk><lilaPreg>{self.lilaPreg}</lilaPreg><malonRep>{self.malonRep}</malonRep><malonPreg>{self.malonPreg}</malonPreg><malonChildren>{self.malonChildren}</malonChildren><mistressRep>{self.mistressRep}</mistressRep><jamieRep>{self.jamieRep}</jamieRep><jamieSize>{self.jamieSize}</jamieSize><jamieChildren>{self.jamieChildren}</jamieChildren><silRep>{self.silRep}</silRep><silPreg>{self.silPreg}</silPreg><silRate>{self.silRate}</silRate><silLay>{self.silLay}</silLay><silGrowthTime>{self.silGrowthTime}</silGrowthTime><silTied>{self.silTied}</silTied><lilaUB>{self.lilaUB}</lilaUB><dairyFarmBrand>{self.dairyFarmBrand}</dairyFarmBrand><lilaWetness>{self.lilaWetness}</lilaWetness><jamieButt>{self.jamieButt}</jamieButt><jamieBreasts>{self.jamieBreasts}</jamieBreasts><jamieHair>{self.jamieHair}</jamieHair></rep><knowledge><foundSoftlik>{self.foundSoftlik}</foundSoftlik><foundFirmshaft>{self.foundFirmshaft}</foundFirmshaft><foundTieden>{self.foundTieden}</foundTieden><foundSizCalit>{self.foundSizCalit}</foundSizCalit><foundOviasis>{self.foundOviasis}</foundOviasis><foundValley>{self.foundValley}</foundValley><foundSanctuary>{self.foundSanctuary}</foundSanctuary><usedSecretStairs>{self.usedSecretStairs}</usedSecretStairs></knowledge><boss><defeatedMinotaur>{self.defeatedMinotaur}</defeatedMinotaur><defeatedFreakyGirl>{self.defeatedFreakyGirl}</defeatedFreakyGirl><defeatedSuccubus>{self.defeatedSuccubus}</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>{self.knowLustDraft}</knowLustDraft><knowRejuvPot>{self.knowRejuvPot}</knowRejuvPot><knowExpPreg>{self.knowExpPreg}</knowExpPreg><knowBallSwell>{self.knowBallSwell}</knowBallSwell><knowMaleEnhance>{self.knowMaleEnhance}</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>{self.knowSLustDraft}</knowSLustDraft><knowSRejuvPot>{self.knowSRejuvPot}</knowSRejuvPot><knowSExpPreg>{self.knowSExpPreg}</knowSExpPreg><knowSBallSwell>{self.knowSBallSwell}</knowSBallSwell><knowGenSwap>{self.knowGenSwap}</knowGenSwap><knowMasoPot>{self.knowMasoPot}</knowMasoPot><knowBabyFree>{self.knowBabyFree}</knowBabyFree><knowPotPot>{self.knowPotPot}</knowPotPot><knowMilkSuppress>{self.knowMilkSuppress}</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>{self.knowSGenSwap}</knowSGenSwap><knowSMasoPot>{self.knowSMasoPot}</knowSMasoPot><knowSBabyFree>{self.knowSBabyFree}</knowSBabyFree><knowSPotPot>{self.knowSPotPot}</knowSPotPot><knowPussJuice>{self.knowPussJuice}</knowPussJuice><knowPheromone>{self.knowPheromone}</knowPheromone><knowBazoomba>{self.knowBazoomba}</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>{repintorfloat(self.maleFetish)}</maleFetish><femaleFetish>{repintorfloat(self.femaleFetish)}</femaleFetish><hermFetish>{repintorfloat(self.hermFetish)}</hermFetish><narcissistFetish>{repintorfloat(self.narcissistFetish)}</narcissistFetish><dependentFetish>{repintorfloat(self.dependentFetish)}</dependentFetish></majorFetish><moderateFetish><dominantFetish>{repintorfloat(self.dominantFetish)}</dominantFetish><submissiveFetish>{repintorfloat(self.submissiveFetish)}</submissiveFetish><lboobFetish>{repintorfloat(self.lboobFetish)}</lboobFetish><sboobFetish>{repintorfloat(self.sboobFetish)}</sboobFetish><furryFetish>{repintorfloat(self.furryFetish)}</furryFetish><scalyFetish>{repintorfloat(self.scalyFetish)}</scalyFetish><smoothyFetish>{repintorfloat(self.smoothyFetish)}</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>{repintorfloat(self.pregnancyFetish)}</pregnancyFetish><bestialityFetish>{repintorfloat(self.bestialityFetish)}</bestialityFetish><milkFetish>{repintorfloat(self.milkFetish)}</milkFetish><sizeFetish>{repintorfloat(self.sizeFetish)}</sizeFetish><unbirthingFetish>{repintorfloat(self.unbirthingFetish)}</unbirthingFetish><ovipositionFetish>{repintorfloat(self.ovipositionFetish)}</ovipositionFetish><toyFetish>{repintorfloat(self.toyFetish)}</toyFetish><hyperFetish>{repintorfloat(self.hyperFetish)}</hyperFetish></minorFetish><kid><humanChildren>{self.humanChildren}</humanChildren><equanChildren>{self.equanChildren}</equanChildren><lupanChildren>{self.lupanChildren}</lupanChildren><felinChildren>{self.felinChildren}</felinChildren><cowChildren>{self.cowChildren}</cowChildren><lizanChildren>{self.lizanChildren}</lizanChildren><lizanEggs>{self.lizanEggs}</lizanEggs><bunnionChildren>{self.bunnionChildren}</bunnionChildren><wolfPupChildren>{self.wolfPupChildren}</wolfPupChildren><miceChildren>{self.miceChildren}</miceChildren><birdEggs>{self.birdEggs}</birdEggs><birdChildren>{self.birdChildren}</birdChildren><pigChildren>{self.pigChildren}</pigChildren><calfChildren>{self.calfChildren}</calfChildren><bugEggs>{self.bugEggs}</bugEggs><bugChildren>{self.bugChildren}</bugChildren><skunkChildren>{self.skunkChildren}</skunkChildren><minotaurChildren>{self.minotaurChildren}</minotaurChildren><freakyGirlChildren>{self.freakyGirlChildren}</freakyGirlChildren></kid><trav></trav><bag>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{self.bagArray[i]}</slot{i}>"
          string += "</bag><bagStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{self.bagStackArray[i]}</slot{i}>"
          string += "</bagStack><stash>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{self.stashArray[i]}</slot{i}>"
          string += "</stash><stashStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{self.stashStackArray[i]}</slot{i}>"
          string += "</stashStack><preg>"
-         for i in range(0, self.pregArray.length):
+         for i in range(self.pregArray.length):
             string += f"<i{i}>{self.pregArray[i]}</i{i}>"
          string += "</preg></data>"
          data = xmletree.fromstring(string)
@@ -4774,7 +4771,7 @@ class NiminFetishFantasyv0975o_fla:
             self.bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             self.stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             self.stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            for i in range(0, 27):
+            for i in range(27):
                tempstr = f"slot{i}"
                self.bagArray[i] = int(bag.find(tempstr).text)
                self.bagStackArray[i] = int(bagStack.find(tempstr).text)
@@ -4803,9 +4800,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showStatsPane()
          self.regionChange(self.currentZone)
          self.stats(0,0,0,0)
-         #self.dayTime(0) #Causes an extra doReturn
          self.setDHStats()
-         #self.doSexP(0)
          self.setSCStats()
          self.showOption7()
          self.toggleSide()
@@ -4844,7 +4839,7 @@ class NiminFetishFantasyv0975o_fla:
             self.tallness += 4
             if self.gametweaks[9]:
                self.legType = 2
-               #self.runMod += 10
+               #self.runMod += 20
                #self.carryMod -= 10
          elif self.buttonChoice == 3:
             self.race = 3
@@ -5153,10 +5148,8 @@ class NiminFetishFantasyv0975o_fla:
    def doStartingDescription(self):
       #New game dialog after character selection
       self.showRegionPane()
-      #self.dayTime(0)
       self.setDHStats()
       self.doHP(10000, True)
-      #self.doSexP(0)
       self.setSCStats()
       self.outputMainText("\n\"...Hello?\"",True)
       self.doNext()
@@ -5921,18 +5914,19 @@ class NiminFetishFantasyv0975o_fla:
       return False
    def canLose(self, ID:int):
       #Returns True if item ID can be lost
-      if (((ID == 244) and (self.countItem(244) == 1) and (self.snuggleBall == True)) or ((ID == 247) and (self.countItem(247) == 1) and (self.suppHarness == True))):
+      if ((ID == 244 and self.countItem(244) == 1 and self.snuggleBall) or (ID == 247 and self.countItem(247) == 1 and self.suppHarness)):
          return False
       return True
    def canLoseMoveLocation(self, ID:int):
       #This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
-      if (((ID == 244) and (self.countItem(244) == 0) and (self.snuggleBall == True)) or ((ID == 247) and (self.countItem(247) == 0) and (self.suppHarness == True))):
+      if ((ID == 244 and self.countItem(244) == 0 and self.snuggleBall) or (ID == 247 and self.countItem(247) == 0 and self.suppHarness)):
          return False
       return True
    @staticmethod
    def conItem(ID:int):
       #Returns True if item IO is consumable
       #alternate title: isConsumable
+      #!Wouldn't it be faster to list all non consumable items?
       if ID in (103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540):
          return True
       return False
@@ -6473,51 +6467,51 @@ class NiminFetishFantasyv0975o_fla:
             tempStr = "You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side."
             if (self.humanAffinity > 0):
                tempStr += "\n\nHuman:\n"
-               for i in range(0, self.humanAffinity):
+               for i in range(self.humanAffinity):
                   tempStr += "|"
             if (self.horseAffinity > 0):
                tempStr += "\n\nHorse:\n"
-               for i in range(0, self.horseAffinity):
+               for i in range(self.horseAffinity):
                   tempStr += "|"
             if (self.wolfAffinity > 0):
                tempStr += "\n\nWolf:\n"
-               for i in range(0, self.wolfAffinity):
+               for i in range(self.wolfAffinity):
                   tempStr += "|"
             if (self.catAffinity > 0):
                tempStr += "\n\nCat:\n"
-               for i in range(0, self.catAffinity):
+               for i in range(self.catAffinity):
                   tempStr += "|"
             if (self.cowAffinity > 0):
                tempStr += "\n\nCow:\n"
-               for i in range(0, self.cowAffinity):
+               for i in range(self.cowAffinity):
                   tempStr += "|"
             if (self.lizardAffinity > 0):
                tempStr += "\n\nLizard:\n"
-               for i in range(0, self.lizardAffinity):
+               for i in range(self.lizardAffinity):
                   tempStr += "|"
             if (self.rabbitAffinity > 0):
                tempStr += "\n\nRabbit:\n"
-               for i in range(0, self.rabbitAffinity):
+               for i in range(self.rabbitAffinity):
                   tempStr += "|"
             if (self.mouseAffinity > 0):
                tempStr += "\n\nMouse:\n"
-               for i in range(0, self.mouseAffinity):
+               for i in range(self.mouseAffinity):
                   tempStr += "|"
             if (self.birdAffinity > 0):
                tempStr += "\n\nBird:\n"
-               for i in range(0, self.birdAffinity):
+               for i in range(self.birdAffinity):
                   tempStr += "|"
             if (self.pigAffinity > 0):
                tempStr += "\n\nPig:\n"
-               for i in range(0, self.pigAffinity):
+               for i in range(self.pigAffinity):
                   tempStr += "|"
             if (self.skunkAffinity > 0):
                tempStr += "\n\nSkunk:\n"
-               for i in range(0, self.skunkAffinity):
+               for i in range(self.skunkAffinity):
                   tempStr += "|"
             if (self.bugAffinity > 0):
                tempStr += "\n\nBug:\n"
-               for i in range(0, self.bugAffinity):
+               for i in range(self.bugAffinity):
                   tempStr += "|"
             self.outputMainText(tempStr,True)
             self.doEnd()
@@ -8146,25 +8140,26 @@ class NiminFetishFantasyv0975o_fla:
             self.exhaustion -= 6
             self.doEnd()
    def bsRefresh(self,which):
+      #!Here
       tempInt = 0
       tempArray2 = as3.Array(12,"Return")
       #buttonlist = ButtonList(1,1,1,1,1,1,1,1,1,1,1,1)
       if which == "Bag":
          tempArray = as3.Array(numElements=27)
-         for i in range(0, 27):
+         for i in range(27):
             if (self.bagArray[i] == 0):
                tempArray[i] = " "
             else:
                tempArray[i] = self.itemName(self.bagArray[i])
       elif which == "Stash":
          tempArray = as3.Array(numElements=27)
-         for i in range(0, 27):
+         for i in range(27):
             if (self.stashArray[i] == 0):
                tempArray[i] = " "
             else:
                tempArray[i] = self.itemName(self.stashArray[i])
       tempArray2.push(4,"<<",8,">>")
-      for i in range(0,9):
+      for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
             tempInt = i+1+i//3
@@ -8299,8 +8294,6 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       self.enableAllButtons()
       def doListen():
-         #! clear passive item effects on success
-         #does game already do this?
          self.choiceListSelect("Stash")
          if (self.buttonChoice == 12):
             self.doBag()
@@ -8332,8 +8325,6 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another item to move to your stash.",True)
       self.doListen = doListen
    def moveToBag(self):
-      #! add passive item check and application on success
-      #does game already do this?
       self.mtb = True
       self.choiceListButtons("Bag")
       self.choiceListBlanks()
@@ -10889,7 +10880,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   break
             elif self.currentZone == 6:
-               #!lizanDontShowBalls
                chance = math.floor(random.random() * (1 + 3 - 1)) + 1
                if chance == 1 and self.cockTotal == 1:
                   #!showballs
@@ -17015,7 +17005,7 @@ class NiminFetishFantasyv0975o_fla:
                                        #tempInt = 1
                                        #for(tempInt = 1; tempInt <= vagTotal; tempInt++)
                                        #while (tempInt <= self.vagTotal):
-                                       for i in range(1,self.vagTotal+1):
+                                       for i in range(self.vagTotal):
                                           if (self.getCum > 500):
                                              self.doImpregnate(self.dominant,ret=True)
                                              self.getCum -= 500
@@ -25250,10 +25240,10 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild(f"amountlabel{buttonNum}")
          self.amountLabelsVisible[buttonNum] = False
    def hideAmount(self):
-      for i in range(1, 13):
+      for i in range(1,13):
          self.viewAmount(i, False)
    def initSidePanel(self):
-      for i in range(0,8):
+      for i in range(8):
          self.mo.destroyChild(self.sidepanelbuttonnames[i])
          self.sidepanelbuttonsvisible[i] = False
       if self.textsidevisible:
@@ -25266,7 +25256,7 @@ class NiminFetishFantasyv0975o_fla:
    def _showSidePanelCalc(buttonNum:int):
       return (823+(83*(buttonNum%4)),210+(30*(buttonNum//4)))
    def showSidePanel(self):
-      for i in range(0,8):
+      for i in range(8):
          if self.sidepanelbuttonsvisible[i] == False:
             self.mo.addButton("display",self.sidepanelbuttonnames[i],*self._showSidePanelCalc(i),80,30,self.font)
             self.mo.configureChild(self.sidepanelbuttonnames[i],text=self.sidepanelbuttontext[i],background=self.theme,foreground=self.fontColor,command=partial(self.sideEvent,i+1))
@@ -25279,7 +25269,7 @@ class NiminFetishFantasyv0975o_fla:
          self.updateText()
       self.hideAPButton()
    def hideSidePanel(self):
-      for i in range(0,8):
+      for i in range(8):
          if self.sidepanelbuttonsvisible[i]:
             self.mo.destroyChild(self.sidepanelbuttonnames[i])
             self.sidepanelbuttonsvisible[i] = False
@@ -25632,7 +25622,7 @@ class NiminFetishFantasyv0975o_fla:
          lbs = xmlfile.find("bagStack")
          ls = xmlfile.find("stash")
          lss = xmlfile.find("stashStack")
-         for i in range(0,27):
+         for i in range(27):
             tba.append(int(lb.find(f"slot{i}").text))
             tbsa.append(int(lbs.find(f"slot{i}").text))
             tsa.append(int(ls.find(f"slot{i}").text))
@@ -25723,7 +25713,7 @@ class NiminFetishFantasyv0975o_fla:
          lbs = xmlfile.find("bagStack")
          ls = xmlfile.find("stash")
          lss = xmlfile.find("stashStack")
-         for i in range(0,27):
+         for i in range(27):
             tba.append(int(lb.find(f"slot{i}").text))
             tbsa.append(int(lbs.find(f"slot{i}").text))
             tsa.append(int(ls.find(f"slot{i}").text))
@@ -25796,16 +25786,16 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
          string += "</bag><bagStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
          string += "</bagStack><stash>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
          string += "</stash><stashStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
          string += "</stashStack><preg>"
          #i = 0
@@ -25864,16 +25854,16 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
          string += "</bag><bagStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
          string += "</bagStack><stash>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
          string += "</stash><stashStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
          string += "</stashStack><preg>"
          #i = 0
@@ -25930,16 +25920,16 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
          string += "</bag><bagStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
          string += "</bagStack><stash>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
          string += "</stash><stashStack>"
-         for i in range(0, 27):
+         for i in range(27):
             string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
          string += "</stashStack><preg>"
          #i = 0
