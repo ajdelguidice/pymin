@@ -3293,10 +3293,8 @@ class NiminFetishFantasyv0975o_fla:
             self.neuterizerHideBalls = False
             self.bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             self.bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            self.bagSlotAdd(27)
             self.stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             self.stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            self.stashSlotAdd(27)
             self.doRace()
          else:
             self.doReturn()
