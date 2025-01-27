@@ -8134,10 +8134,8 @@ class NiminFetishFantasyv0975o_fla:
             self.exhaustion -= 6
             self.doEnd()
    def bsRefresh(self,which):
-      #!Here
       tempInt = 0
       tempArray2 = as3.Array(12,"Return")
-      #buttonlist = ButtonList(1,1,1,1,1,1,1,1,1,1,1,1)
       if which == "Bag":
          tempArray = as3.Array(*[self.itemName(self.bagArray[i]) for i in range(27)])
       elif which == "Stash":
@@ -8149,11 +8147,6 @@ class NiminFetishFantasyv0975o_fla:
             tempInt = i+1+i//3
             if (tempArray[tempI] != " "):
                tempArray2.push(tempInt,tempArray[tempI])
-      #db = False
-      #if which in ("Bag","Stash") and self.inShop == False:
-      #   db = True
-      #self.showButtonsBag(buttonlist,tempArray,which,db)
-      #def showButtonsBag(buttons:ButtonList,buttonText,which:str,discardButton:bool):
       self.doButtonChoices(tempArray2)
       for i in range(1,13):
          if i not in (4,8,12):
@@ -10004,150 +9997,150 @@ class NiminFetishFantasyv0975o_fla:
       if (ID != self.attireTop):
          if (self.attireTop == -1):
             self.statsMod(2,2,0,0)
-         if (self.attireTop == 0):
+         elif (self.attireTop == 0):
             self.statsMod(0,4,0,0)
-         #if (self.attireTop == 1):
+         #elif (self.attireTop == 1):
             #{}
-         if (self.attireTop == 3):
+         elif (self.attireTop == 3):
             self.enticeMod -= 6
             self.statsMod(0,2,0,-2)
             self.milkMod += 15
-         if (self.attireTop == 5):
+         elif (self.attireTop == 5):
             self.statsMod(2,-4,0,0)
             self.pregRate -= 0.2
-         if (self.attireTop == 6):
+         elif (self.attireTop == 6):
             self.enticeMod -= 8
             self.statsMod(0,2,0,-8)
             self.cumMod += 0.2
             self.milkMod += 10
             self.runMod += 5
-         if (self.attireTop == 9):
+         elif (self.attireTop == 9):
             self.statsMod(2,-2,0,1)
             self.milkMod -= 20
-         if (self.attireTop == 12):
+         elif (self.attireTop == 12):
             self.statsMod(2,0,-2,-2)
             self.cumMod -= 0.2
             self.runMod += 5
             self.pregChanceMod -= 5
-         if (self.attireTop == 13):
+         elif (self.attireTop == 13):
             self.statsMod(2,3,-2,-3)
             self.enticeMod -= 14
             self.pregChanceMod -= 5
-         if (self.attireTop == 17):
+         elif (self.attireTop == 17):
             self.statsMod(-2,2,0,-2)
             self.vagMoistMod -= 2
             self.cockMoistMod -= 2
             self.pregChanceMod += 5
-         if (self.attireTop == 18):
+         elif (self.attireTop == 18):
             self.statsMod(-2,2,0,0)
             self.breastSize = self.breastSize - 1
-         if (self.attireTop == 19):
+         elif (self.attireTop == 19):
             self.statsMod(2,-2,-2,0)
             self.breastSize -= 4
             self.hips -= 2
             self.HPMod += 5
-         if (self.attireTop == 21):
+         elif (self.attireTop == 21):
             self.enticeMod -= 18
             self.statsMod(2,6,-4,-4)
             self.runMod += 10
             self.minLust -= 5
-         if (self.attireTop == 25):
+         elif (self.attireTop == 25):
             self.statsMod(0,-4,0,0)
             self.rapeMod -= 3
             self.vagElastic -= 0.2
-         if (self.attireTop == 26):
+         elif (self.attireTop == 26):
             self.enticeMod -= 2
             self.statsMod(0,2,0,0)
             self.milkMod -= 5
             self.nippleSize -= 2
-         if (self.attireTop == 27):
+         elif (self.attireTop == 27):
             self.statsMod(0,6,-2,-4)
             self.milkCap -= 250
             self.enticeMod -= 6
-         if (self.attireTop == 28):
+         elif (self.attireTop == 28):
             self.statsMod(0,-2,0,-4)
             self.enticeMod -= 4
-         if (self.attireTop == 29):
+         elif (self.attireTop == 29):
             self.statsMod(-10,2,2,2)
             self.enticeMod += 10
             self.HPMod -= 10
-         if (self.attireTop == 30):
+         elif (self.attireTop == 30):
             self.carryMod -= 15
          if (ID == -1):
-            if ((self.attireTop == self.attireBot) and (self.attireBot != -1)):
+            if (self.attireTop == self.attireBot and self.attireBot != -1):
                self.attireTop = ID
                self.changeBot(-1)
             self.statsMod(-2,-2,0,0)
-         if (ID == 0):
+         elif (ID == 0):
             self.statsMod(0,-4,0,0)
-         #if (ID == 1):
+         #elif (ID == 1):
             #{}
-         if (ID == 3):
+         elif (ID == 3):
             self.enticeMod += 6
             self.statsMod(0,-2,0,2)
             self.milkMod -= 15
-         if (ID == 5):
+         elif (ID == 5):
             self.statsMod(-2,4,0,0)
             self.pregRate += 0.2
-         if (ID == 6):
+         elif (ID == 6):
             self.enticeMod += 8
             self.statsMod(0,-2,0,8)
             self.cumMod -= 0.2
             self.milkMod -= 10
             self.runMod -= 5
-         if (ID == 9):
+         elif (ID == 9):
             self.statsMod(-2,2,0,-1)
             self.milkMod += 20
-         if (ID == 12):
+         elif (ID == 12):
             self.statsMod(-2,0,2,2)
             self.cumMod += 0.2
             self.runMod -= 5
             self.pregChanceMod += 5
-         if (ID == 13):
+         elif (ID == 13):
             self.statsMod(-2,-3,2,3)
             self.enticeMod += 14
             self.pregChanceMod += 5
-         if (ID == 17):
+         elif (ID == 17):
             self.statsMod(2,-2,0,2)
             self.vagMoistMod += 2
             self.cockMoistMod += 2
             self.pregChanceMod -= 5
-         if (ID == 18):
+         elif (ID == 18):
             self.statsMod(2,-2,0,0)
             self.breastSize += 1
-         if (ID == 19):
+         elif (ID == 19):
             self.statsMod(-2,2,2,0)
             self.breastSize += 4
             self.hips += 2
             self.HPMod -= 5
-         if (ID == 21):
+         elif (ID == 21):
             self.enticeMod += 18
             self.statsMod(-2,-6,4,4)
             self.runMod -= 10
             self.minLust += 5
-         if (ID == 25):
+         elif (ID == 25):
             self.statsMod(0,4,0,0)
             self.rapeMod += 3
             self.vagElastic += 0.2
-         if (ID == 26):
+         elif (ID == 26):
             self.enticeMod += 2
             self.statsMod(0,-2,0,0)
             self.milkMod += 5
             self.nippleSize += 2
-         if (ID == 27):
+         elif (ID == 27):
             self.statsMod(0,-6,2,4)
             self.milkCap += 250
             self.enticeMod += 6
-         if (ID == 28):
+         elif (ID == 28):
             self.statsMod(0,2,0,4)
             self.enticeMod += 4
-         if (ID == 29):
+         elif (ID == 29):
             self.statsMod(10,-2,-2,-2)
             self.enticeMod -= 10
             self.HPMod += 10
-         if (ID == 30):
+         elif (ID == 30):
             self.carryMod += 15
-         if ((self.attireTop == self.attireBot) and (ID != 0) and (ID != -1)):
+         if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
             self.attireTop = ID
             self.changeBot(2)
          else:
@@ -10156,134 +10149,134 @@ class NiminFetishFantasyv0975o_fla:
       if (ID != self.attireBot):
          if (self.attireBot == -1):
             self.statsMod(2,2,0,0)
-         if (self.attireBot == 0):
+         elif (self.attireBot == 0):
             self.statsMod(0,4,0,0)
-         #if (self.attireBot == 2):
+         #elif (self.attireBot == 2):
             #{}
-         if (self.attireBot == 4):
+         elif (self.attireBot == 4):
             self.enticeMod -= 6
             self.statsMod(0,2,0,-2)
             self.cumMod += 0.2
-         if (self.attireBot == 7):
+         elif (self.attireBot == 7):
             self.runMod -= 3
             self.cumMod -= 0.2
             self.statsMod(-2,2,0,0)
             self.pregChanceMod -= 4
-         if (self.attireBot == 8):
+         elif (self.attireBot == 8):
             self.runMod -= 3
             self.statsMod(-2,0,3,0)
-         if (self.attireBot == 10):
+         elif (self.attireBot == 10):
             self.vagMoistMod += 2
             self.cockMoistMod += 2
             self.hips = self.hips - 1
             self.statsMod(0,4,0,0)
-         if (self.attireBot == 11):
+         elif (self.attireBot == 11):
             self.vagMoistMod += 5
             self.cockMoistMod += 5
             self.hips = self.hips - 1
             self.butt -= 2
             self.statsMod(0,4,4,0)
-         if (self.attireBot == 14):
+         elif (self.attireBot == 14):
             self.cumMod -= 0.2
             self.enticeMod -= 7
             self.statsMod(0,4,0,-2)
             self.pregChanceMod -= 6
-         if (self.attireBot == 15):
+         elif (self.attireBot == 15):
             self.cumMod += 0.2
             self.runMod -= 5
             self.enticeMod -= 4
             self.statsMod(2,3,0,-2)
-         if (self.attireBot == 16):
+         elif (self.attireBot == 16):
             self.cumMod -= 0.2
             self.runMod -= 4
             self.pregChanceMod -= 5
             self.statsMod(-2,4,0,-2)
-         if (self.attireBot == 20):
+         elif (self.attireBot == 20):
             self.cumMod += 0.3
             self.runMod += 3
             self.vulvaSize = self.vulvaSize - 1
             self.enticeMod -= 7
             self.statsMod(0,2,-2,-2)
-         if (self.attireBot == 22):
+         elif (self.attireBot == 22):
             self.runMod += 5
             self.enticeMod -= 9
             self.statsMod(2,2,-4,2)
-         if (self.attireBot == 23):
+         elif (self.attireBot == 23):
             self.runMod -= 6
             self.rapeMod += 4
             self.statsMod(-2,2,-2,0)
-         if (self.attireBot == 24):
+         elif (self.attireBot == 24):
             self.runMod -= 4
             self.cumMod += 0.2
             self.pregChanceMod += 3
             self.statsMod(0,0,0,-2)
          if (ID == -1):
-            if ((self.attireTop == self.attireBot) and (self.attireTop != -1)):
+            if (self.attireTop == self.attireBot and self.attireTop != -1):
                self.attireBot = ID
                self.changeTop(-1)
             self.statsMod(-2,-2,0,0)
-         if (ID == 0):
+         elif (ID == 0):
             self.statsMod(0,-4,0,0)
-         #if(ID == 2):
+         #elif(ID == 2):
             #{}
-         if (ID == 4):
+         elif (ID == 4):
             self.enticeMod += 6
             self.statsMod(0,-2,0,2)
             self.cumMod -= 0.2
-         if (ID == 7):
+         elif (ID == 7):
             self.runMod += 3
             self.cumMod += 0.2
             self.statsMod(2,-2,0,0)
             self.pregChanceMod += 4
-         if(ID == 8):
+         elif (ID == 8):
             self.runMod += 3
             self.statsMod(2,0,-3,0)
-         if (ID == 10):
+         elif (ID == 10):
             self.vagMoistMod -= 2
             self.cockMoistMod -= 2
             self.hips += 1
             self.statsMod(0,-4,0,0)
-         if (ID == 11):
+         elif (ID == 11):
             self.vagMoistMod -= 5
             self.cockMoistMod -= 5
             self.hips += 1
             self.butt += 2
             self.statsMod(0,-4,-4,0)
-         if (ID == 14):
+         elif (ID == 14):
             self.cumMod += 0.2
             self.enticeMod += 7
             self.statsMod(0,-4,0,2)
             self.pregChanceMod += 6
-         if (ID == 15):
+         elif (ID == 15):
             self.cumMod -= 0.2
             self.runMod += 5
             self.enticeMod += 4
             self.statsMod(-2,-3,0,2)
-         if (ID == 16):
+         elif (ID == 16):
             self.cumMod += 0.2
             self.runMod += 4
             self.pregChanceMod += 5
             self.statsMod(2,-4,0,2)
-         if (ID == 20):
+         elif (ID == 20):
             self.cumMod -= 0.3
             self.runMod -= 3
             self.vulvaSize += 1
             self.enticeMod += 7
             self.statsMod(0,-2,2,2)
-         if (ID == 22):
+         elif (ID == 22):
             self.runMod -= 5
             self.enticeMod += 9
             self.statsMod(-2,-2,4,-2)
-         if (ID == 23):
+         elif (ID == 23):
             self.runMod += 6
             self.rapeMod -= 4
             self.statsMod(2,-2,2,0)
-         if (ID == 24):
+         elif (ID == 24):
             self.runMod += 4
             self.cumMod -= 0.2
             self.pregChanceMod -= 3
             self.statsMod(0,0,0,2)
-         if ((self.attireTop == self.attireBot) and (ID != 0) and (ID != -1)):
+         if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
             self.attireBot = ID
             self.changeTop(1)
          else:
