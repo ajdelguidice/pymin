@@ -2645,7 +2645,8 @@ class NiminFetishFantasyv0975o_fla:
       #tempInt = 0
       self.rndResult = 0
       if (self.rndArray.length < 1):
-         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.rndArray[0]} at {self.hour} hour), or else you'll get the hose.",False)
+         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
+         as3.trace(f"chooseFrom: Error: self.rndArray does not contain any items. hour = {self.hour}")
          self.rndArray = as3.Array()
       else:
          self.rndResult = self.rndArray[round(random.random() * (self.rndArray.length - 1))]
@@ -2653,7 +2654,8 @@ class NiminFetishFantasyv0975o_fla:
          return self.rndResult
    def randChooseFromArray(self,array:as3.Array):
       if (array.length < 1):
-         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.rndArray[0]} at {self.hour} hour), or else you'll get the hose.",False)
+         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
+         as3.trace(f"randChooseFromArray: Error: array does not contain any items. hour = {self.hour}")
       else:
          return choice(array)
    def stats(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
