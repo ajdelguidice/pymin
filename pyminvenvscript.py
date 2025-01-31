@@ -217,7 +217,7 @@ if len(args) < 2 and defrun:
 elif len(args) < 2 or 1 in (args.indexOf("--help"),args.indexOf("-h")) or 1 in (args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("run")) and 2 in (args.indexOf("--help"),args.indexOf("-h")):
     print("venvscript {install|update|run|cmd|recreate|uv} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--unverified\t\tBypasses ssl certification and uses the insecure context even when using https\n\t--help\t\t\tDisplays this message\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview.\n\t--use-uv\t\tUses uv instead of pip. Needs uv installed outside of venv. (persistent)\n\t--use-uvi\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--default-run\t\tSets run as the default command instead of help. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i)\n\t--default-help\t\tOpposite of --default-run\n\t--overwrite\t\tBypasses the no overwriting restriction on the \"install\" command")
 else:
-    if args.indexOf("--unverified") != -1:
+    if "--unverified"in args:
         import ssl
         ssl._create_unverified_context()
         ssl._create_default_https_context = ssl._create_unverified_context()
@@ -225,51 +225,51 @@ else:
         useuv = True
     elif Path(f"{venvpath}/.USEUVI").exists():
         useuvi = True
-    elif args.indexOf("--use-uv") != -1:
+    elif "--use-uv" in args:
         if venvpath.exists():
             use_uv()
         useuv = True
-    elif args.indexOf("--use-uv-int") != -1:
+    elif "--use-uv-int" in args:
         if venvpath.exists():
             use_uvi()
         useuvi = True
-    if args.indexOf("--no-uv") != -1:
+    if "--no-uv" in args:
         Path(f"{venvpath}/.USEUV").unlink(missing_ok=True)
         Path(f"{venvpath}/.USEUVI").unlink(missing_ok=True)
-    if args.indexOf("--default-help") != -1:
+    if "--default-help" in args:
         Path(f"{venvpath}/.DEFAULTRUN").unlink(missing_ok=True)
-    if args.indexOf("--default-run") != -1:
+    if "--default-run" in args:
         Path(f"{venvpath}/.DEFAULTRUN").touch()
     match args[1]:
         case "install":
-            if venvpath.exists() and args.indexOf("--overwrite") == -1:
+            if venvpath.exists() and "--overwrite" in args:
                 print("You can not use install in an existing directory. Did you mean \"update\"?")
                 exit()
-            if args.indexOf("--version") != -1:
+            if "--version" in args:
                 versiontag = args[args.indexOf("--version") + 1]
             else:
                 versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
             url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-            if args.indexOf("--as3libversion") != -1:
+            if "--as3libversion" in args:
                 as3libversiontag = args[args.indexOf("--as3libversion") + 1]
             else:
                 as3libversiontag = "latest"
-            if args.indexOf("--nohtmlparser") != -1:
+            if "--nohtmlparser" in args:
                 htmlparser = False
             else:
                 htmlparser = True
             create(url,as3libversiontag)
         case "update":
-            if args.indexOf("--version") != -1:
+            if "--version" in args:
                 versiontag = args[args.indexOf("--version") + 1]
             else:
                 versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
             url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-            if args.indexOf("--as3libversion") != -1:
+            if "--as3libversion" in args:
                 as3libversiontag = args[args.indexOf("--as3libversion") + 1]
             else:
                 as3libversiontag = "latest"
-            if args.indexOf("--nohtmlparser") != -1:
+            if "--nohtmlparser" in args:
                 htmlparser = False
             else:
                 htmlparser = True
@@ -280,16 +280,16 @@ else:
         case "cmd":
             pass
         case "recreate" | "rezero":
-            if args.indexOf("--version") != -1:
+            if "--version" in args:
                 versiontag = args[args.indexOf("--version") + 1]
             else:
                 versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
             url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-            if args.indexOf("--as3libversion") != -1:
+            if "--as3libversion" in args:
                 as3libversiontag = args[args.indexOf("--as3libversion") + 1]
             else:
                 as3libversiontag = "latest"
-            if args.indexOf("--nohtmlparser") != -1:
+            if "--nohtmlparser" in args:
                 htmlparser = False
             else:
                 htmlparser = True
