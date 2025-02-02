@@ -64,11 +64,6 @@ if type(curdir) != type(Path()) or type(venvpath) != type(Path()):
     print("Error: Path is somehow not a pathlib.Path object. Something is wrong because this shouldn't happen.")
     exit()
 
-if platform.system() == "Windows": #Windows check
-    pythonvenvloc = venvpath / "Scripts/python.exe"
-else:
-    pythonvenvloc = venvpath / "bin/python"
-
 def create(script_url="",as3libversion=""):
     #Sets up the virtual environment
     if (platform.system() == "Windows" and len(str(venvpath)) in (2,3) and venvpath[0] in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" and venvpath[1] == ":") or str(venvpath) == "/":
@@ -273,8 +268,6 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
 
 ssl_context = None
 noConfigExists = False
-pythonm = [pythonvenvloc, "-m"]
-runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools"]
 args = list(argv)
 if venvpath.exists() and (Path(venvpath / ".USEUV").exists() or Path(venvpath / ".USEUVI").exists() or Path(venvpath / ".DEFAULTRUN").exists()):
     print("Old config detected. Automatically migrating to new one.")
@@ -329,6 +322,14 @@ else:
     c1 = {"Options":{}}
     c2 = {"Options":{"cfgVersion":1,"path":"./","pyInstalledVersion":pyinstalversion,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}}
     noConfigExists = True
+
+if platform.system() == "Windows": #Windows check
+    pythonvenvloc = venvpath / "Scripts/python.exe"
+else:
+    pythonvenvloc = venvpath / "bin/python"
+pythonm = [pythonvenvloc, "-m"]
+runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools"]
+
 if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2]:
     updatePythonVersion(pyinstalversion)
 try:
