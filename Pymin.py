@@ -2855,7 +2855,6 @@ class NiminFetishFantasyv0975o_fla:
    def doLust(self, changes:int, source:int, *triggers, ret=False):
       #Changes player lust and provides lust event descriptions
       #!optimize
-      triggers = as3.Array(*triggers)
       tempStr = ""
       if source == 1 and changes > 0:
          changes -= math.floor(changes * self.ment / 125)
