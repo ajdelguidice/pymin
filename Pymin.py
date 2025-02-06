@@ -4388,18 +4388,16 @@ class NiminFetishFantasyv0975o_fla:
          else:
             string += f"<shapeshiftySecond>{self.shapeshiftySecond}</shapeshiftySecond>"
          string += f"</level><mod><runMod>{self.runMod}</runMod><rapeMod>{self.rapeMod}</rapeMod><cumMod>{repintorfloat(self.cumMod)}</cumMod><cockSizeMod>{repintorfloat(self.cockSizeMod)}</cockSizeMod><milkMod>{self.milkMod}</milkMod><carryMod>{self.carryMod}</carryMod><vagBellyMod>{self.vagBellyMod}</vagBellyMod><pregChanceMod>{self.pregChanceMod}</pregChanceMod><extraPregChance>{self.extraPregChance}</extraPregChance><pregTimeMod>{self.pregTimeMod}</pregTimeMod><enticeMod>{self.enticeMod}</enticeMod><milkHPMod>{self.milkHPMod}</milkHPMod><vagSizeMod>{repintorfloat(self.vagSizeMod)}</vagSizeMod><vagElastic>{repintorfloat(self.vagElastic)}</vagElastic><changeMod>{repintorfloat(self.changeMod)}</changeMod><HPMod>{self.HPMod}</HPMod><SexPMod>{repintorfloat(self.SexPMod)}</SexPMod><minLust>{self.minLust}</minLust><milkCap>{self.milkCap}</milkCap><coinMod>{self.coinMod}</coinMod><hipMod>{self.hipMod}</hipMod><buttMod>{self.buttMod}</buttMod><bellyMod>{self.bellyMod}</bellyMod><cockMoistMod>{self.cockMoistMod}</cockMoistMod><vagMoistMod>{self.vagMoistMod}</vagMoistMod><lockTail>{self.lockTail}</lockTail><lockFace>{self.lockFace}</lockFace><lockSkin>{self.lockSkin}</lockSkin><lockBreasts>{self.lockBreasts}</lockBreasts><lockEars>{self.lockEars}</lockEars><lockLegs>{self.lockLegs}</lockLegs><lockNipples>{self.lockNipples}</lockNipples><lockCock>{self.lockCock}</lockCock></mod><quality><gender>{self.gender}</gender><race>{self.race}</race><body>{self.body}</body><dominant>{self.dominant}</dominant><hips>{self.hips}</hips><butt>{self.butt}</butt><tallness>{self.tallness}</tallness><skinType>{self.skinType}</skinType><tail>{self.tail}</tail><ears>{self.ears}</ears><hair>{self.hair}</hair><hairColor>{self.hairColor}</hairColor><hairLength>{self.hairLength}</hairLength><legType>{self.legType}</legType><wings>{self.wings}</wings><faceType>{self.faceType}</faceType><skinColor>{self.skinColor}</skinColor></quality><cock><cockTotal>{self.cockTotal}</cockTotal><humanCocks>{self.humanCocks}</humanCocks><horseCocks>{self.horseCocks}</horseCocks><wolfCocks>{self.wolfCocks}</wolfCocks><catCocks>{self.catCocks}</catCocks><rabbitCocks>{self.rabbitCocks}</rabbitCocks><lizardCocks>{self.lizardCocks}</lizardCocks><cockSize>{self.cockSize}</cockSize><cockMoist>{self.cockMoist}</cockMoist><balls>{self.balls}</balls><ballSize>{self.ballSize}</ballSize><showBalls>{self.showBalls}</showBalls><knot>{self.knot}</knot><bugCocks>{self.bugCocks}</bugCocks><neuterizerHideBalls>{self.neuterizerHideBalls}</neuterizerHideBalls></cock><girl><breastSize>{self.breastSize}</breastSize><boobTotal>{self.boobTotal}</boobTotal><nippleSize>{self.nippleSize}</nippleSize><udders>{self.udders}</udders><udderSize>{self.udderSize}</udderSize><teatSize>{self.teatSize}</teatSize><clitSize>{self.clitSize}</clitSize><vagTotal>{self.vagTotal}</vagTotal><vagSize>{self.vagSize}</vagSize><vagMoist>{self.vagMoist}</vagMoist><vulvaSize>{self.vulvaSize}</vulvaSize><nipType>{self.nipType}</nipType></girl><gear><attireTop>{self.attireTop}</attireTop><attireBot>{self.attireBot}</attireBot><weapon>{self.weapon}</weapon></gear><status><pregRate>{self.pregRate}</pregRate><pregnancyTime>{self.pregnancyTime}</pregnancyTime><pregStatus>{self.pregStatus}</pregStatus><eggLaying>{self.eggLaying}</eggLaying><eggMaxTime>{self.eggMaxTime}</eggMaxTime><eggTime>{self.eggTime}</eggTime><eggRate>{self.eggRate}</eggRate><exhaustion>{self.exhaustion}</exhaustion><exhaustionPenalty>{self.exhaustionPenalty}</exhaustionPenalty><milkEngorgement>{self.milkEngorgement}</milkEngorgement><milkEngorgementLevel>{self.milkEngorgementLevel}</milkEngorgementLevel><udderEngorgement>{self.udderEngorgement}</udderEngorgement><udderEngorgementLevel>{self.udderEngorgementLevel}</udderEngorgementLevel><heat>{self.heat}</heat><heatTime>{self.heatTime}</heatTime><heatMaxTime>{self.heatMaxTime}</heatMaxTime><lactation>{self.lactation}</lactation><udderLactation>{self.udderLactation}</udderLactation><nipplePlay>{repintorfloat(self.nipplePlay)}</nipplePlay><udderPlay>{repintorfloat(self.udderPlay)}</udderPlay><blueBalls>{self.blueBalls}</blueBalls><teatPump>{self.teatPump}</teatPump><nipPump>{self.nipPump}</nipPump><cockPump>{self.cockPump}</cockPump><clitPump>{self.clitPump}</clitPump><vulvaPump>{self.vulvaPump}</vulvaPump><masoPot>{self.masoPot}</masoPot><sMasoPot>{self.sMasoPot}</sMasoPot><babyFree>{self.babyFree}</babyFree><charmTime>{self.charmTime}</charmTime><pheromone>{self.pheromone}</pheromone><eggceleratorTime>{self.eggceleratorTime}</eggceleratorTime><eggceleratorDose>{self.eggceleratorDose}</eggceleratorDose><bodyOil>{self.bodyOil}</bodyOil><lustPenalty>{self.lustPenalty}</lustPenalty><fertileGel>{self.fertileGel}</fertileGel><snuggleBall>{self.snuggleBall}</snuggleBall><eggType>{self.eggType}</eggType><milkSuppressant>{self.milkSuppressant}</milkSuppressant><milkSuppressantLact>{self.milkSuppressantLact}</milkSuppressantLact><milkSuppressantUdder>{self.milkSuppressantUdder}</milkSuppressantUdder><suppHarness>{self.suppHarness}</suppHarness><fertilityStatueCurse>{self.fertilityStatueCurse}</fertilityStatueCurse><plumpQuats>{self.plumpQuats}</plumpQuats><lilaWetStatus>{self.lilaWetStatus}</lilaWetStatus><cockSnakePreg>{self.cockSnakePreg}</cockSnakePreg><milkCPoisonNip>{self.milkCPoisonNip}</milkCPoisonNip><milkCPoisonUdd>{self.milkCPoisonUdd}</milkCPoisonUdd><cockSnakeVenom>{self.cockSnakeVenom}</cockSnakeVenom></status><affinity><humanAffinity>{self.humanAffinity}</humanAffinity><horseAffinity>{self.horseAffinity}</horseAffinity><wolfAffinity>{self.wolfAffinity}</wolfAffinity><catAffinity>{self.catAffinity}</catAffinity><cowAffinity>{self.cowAffinity}</cowAffinity><lizardAffinity>{self.lizardAffinity}</lizardAffinity><rabbitAffinity>{self.rabbitAffinity}</rabbitAffinity><fourBoobAffinity>{self.fourBoobAffinity}</fourBoobAffinity><mouseAffinity>{self.mouseAffinity}</mouseAffinity><birdAffinity>{self.birdAffinity}</birdAffinity><pigAffinity>{self.pigAffinity}</pigAffinity><twoBoobAffinity>{self.twoBoobAffinity}</twoBoobAffinity><sixBoobAffinity>{self.sixBoobAffinity}</sixBoobAffinity><eightBoobAffinity>{self.eightBoobAffinity}</eightBoobAffinity><tenBoobAffinity>{self.tenBoobAffinity}</tenBoobAffinity><cowTaurAffinity>{self.cowTaurAffinity}</cowTaurAffinity><humanTaurAffinity>{self.humanTaurAffinity}</humanTaurAffinity><skunkAffinity>{self.skunkAffinity}</skunkAffinity><bugAffinity>{self.bugAffinity}</bugAffinity></affinity><rep><lilaRep>{self.lilaRep}</lilaRep><lilaVulva>{self.lilaVulva}</lilaVulva><lilaMilk>{self.lilaMilk}</lilaMilk><lilaPreg>{self.lilaPreg}</lilaPreg><malonRep>{self.malonRep}</malonRep><malonPreg>{self.malonPreg}</malonPreg><malonChildren>{self.malonChildren}</malonChildren><mistressRep>{self.mistressRep}</mistressRep><jamieRep>{self.jamieRep}</jamieRep><jamieSize>{self.jamieSize}</jamieSize><jamieChildren>{self.jamieChildren}</jamieChildren><silRep>{self.silRep}</silRep><silPreg>{self.silPreg}</silPreg><silRate>{self.silRate}</silRate><silLay>{self.silLay}</silLay><silGrowthTime>{self.silGrowthTime}</silGrowthTime><silTied>{self.silTied}</silTied><lilaUB>{self.lilaUB}</lilaUB><dairyFarmBrand>{self.dairyFarmBrand}</dairyFarmBrand><lilaWetness>{self.lilaWetness}</lilaWetness><jamieButt>{self.jamieButt}</jamieButt><jamieBreasts>{self.jamieBreasts}</jamieBreasts><jamieHair>{self.jamieHair}</jamieHair></rep><knowledge><foundSoftlik>{self.foundSoftlik}</foundSoftlik><foundFirmshaft>{self.foundFirmshaft}</foundFirmshaft><foundTieden>{self.foundTieden}</foundTieden><foundSizCalit>{self.foundSizCalit}</foundSizCalit><foundOviasis>{self.foundOviasis}</foundOviasis><foundValley>{self.foundValley}</foundValley><foundSanctuary>{self.foundSanctuary}</foundSanctuary><usedSecretStairs>{self.usedSecretStairs}</usedSecretStairs></knowledge><boss><defeatedMinotaur>{self.defeatedMinotaur}</defeatedMinotaur><defeatedFreakyGirl>{self.defeatedFreakyGirl}</defeatedFreakyGirl><defeatedSuccubus>{self.defeatedSuccubus}</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>{self.knowLustDraft}</knowLustDraft><knowRejuvPot>{self.knowRejuvPot}</knowRejuvPot><knowExpPreg>{self.knowExpPreg}</knowExpPreg><knowBallSwell>{self.knowBallSwell}</knowBallSwell><knowMaleEnhance>{self.knowMaleEnhance}</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>{self.knowSLustDraft}</knowSLustDraft><knowSRejuvPot>{self.knowSRejuvPot}</knowSRejuvPot><knowSExpPreg>{self.knowSExpPreg}</knowSExpPreg><knowSBallSwell>{self.knowSBallSwell}</knowSBallSwell><knowGenSwap>{self.knowGenSwap}</knowGenSwap><knowMasoPot>{self.knowMasoPot}</knowMasoPot><knowBabyFree>{self.knowBabyFree}</knowBabyFree><knowPotPot>{self.knowPotPot}</knowPotPot><knowMilkSuppress>{self.knowMilkSuppress}</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>{self.knowSGenSwap}</knowSGenSwap><knowSMasoPot>{self.knowSMasoPot}</knowSMasoPot><knowSBabyFree>{self.knowSBabyFree}</knowSBabyFree><knowSPotPot>{self.knowSPotPot}</knowSPotPot><knowPussJuice>{self.knowPussJuice}</knowPussJuice><knowPheromone>{self.knowPheromone}</knowPheromone><knowBazoomba>{self.knowBazoomba}</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>{repintorfloat(self.maleFetish)}</maleFetish><femaleFetish>{repintorfloat(self.femaleFetish)}</femaleFetish><hermFetish>{repintorfloat(self.hermFetish)}</hermFetish><narcissistFetish>{repintorfloat(self.narcissistFetish)}</narcissistFetish><dependentFetish>{repintorfloat(self.dependentFetish)}</dependentFetish></majorFetish><moderateFetish><dominantFetish>{repintorfloat(self.dominantFetish)}</dominantFetish><submissiveFetish>{repintorfloat(self.submissiveFetish)}</submissiveFetish><lboobFetish>{repintorfloat(self.lboobFetish)}</lboobFetish><sboobFetish>{repintorfloat(self.sboobFetish)}</sboobFetish><furryFetish>{repintorfloat(self.furryFetish)}</furryFetish><scalyFetish>{repintorfloat(self.scalyFetish)}</scalyFetish><smoothyFetish>{repintorfloat(self.smoothyFetish)}</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>{repintorfloat(self.pregnancyFetish)}</pregnancyFetish><bestialityFetish>{repintorfloat(self.bestialityFetish)}</bestialityFetish><milkFetish>{repintorfloat(self.milkFetish)}</milkFetish><sizeFetish>{repintorfloat(self.sizeFetish)}</sizeFetish><unbirthingFetish>{repintorfloat(self.unbirthingFetish)}</unbirthingFetish><ovipositionFetish>{repintorfloat(self.ovipositionFetish)}</ovipositionFetish><toyFetish>{repintorfloat(self.toyFetish)}</toyFetish><hyperFetish>{repintorfloat(self.hyperFetish)}</hyperFetish></minorFetish><kid><humanChildren>{self.humanChildren}</humanChildren><equanChildren>{self.equanChildren}</equanChildren><lupanChildren>{self.lupanChildren}</lupanChildren><felinChildren>{self.felinChildren}</felinChildren><cowChildren>{self.cowChildren}</cowChildren><lizanChildren>{self.lizanChildren}</lizanChildren><lizanEggs>{self.lizanEggs}</lizanEggs><bunnionChildren>{self.bunnionChildren}</bunnionChildren><wolfPupChildren>{self.wolfPupChildren}</wolfPupChildren><miceChildren>{self.miceChildren}</miceChildren><birdEggs>{self.birdEggs}</birdEggs><birdChildren>{self.birdChildren}</birdChildren><pigChildren>{self.pigChildren}</pigChildren><calfChildren>{self.calfChildren}</calfChildren><bugEggs>{self.bugEggs}</bugEggs><bugChildren>{self.bugChildren}</bugChildren><skunkChildren>{self.skunkChildren}</skunkChildren><minotaurChildren>{self.minotaurChildren}</minotaurChildren><freakyGirlChildren>{self.freakyGirlChildren}</freakyGirlChildren></kid><trav></trav><bag>"
+         _bag = ""
+         _bagStack = ""
+         _stash = ""
+         _stashStack = ""
          for i in range(27):
-            string += f"<slot{i}>{self.bagArray[i]}</slot{i}>"
-         string += "</bag><bagStack>"
-         for i in range(27):
-            string += f"<slot{i}>{self.bagStackArray[i]}</slot{i}>"
-         string += "</bagStack><stash>"
-         for i in range(27):
-            string += f"<slot{i}>{self.stashArray[i]}</slot{i}>"
-         string += "</stash><stashStack>"
-         for i in range(27):
-            string += f"<slot{i}>{self.stashStackArray[i]}</slot{i}>"
-         string += "</stashStack><preg>"
+            _bag += f"<slot{i}>{self.bagArray[i]}</slot{i}>"
+            _bagStack += f"<slot{i}>{self.bagStackArray[i]}</slot{i}>"
+            _stash += f"<slot{i}>{self.stashArray[i]}</slot{i}>"
+            _stashStack += f"<slot{i}>{self.stashStackArray[i]}</slot{i}>"
+         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
          for i in range(self.pregArray.length):
             string += f"<i{i}>{self.pregArray[i]}</i{i}>"
          string += "</preg></data>"
@@ -4589,11 +4587,8 @@ class NiminFetishFantasyv0975o_fla:
             self.pregStatus = int(sstatus.find('pregStatus').text)
             self.eggLaying = int(sstatus.find('eggLaying').text)
             self.eggMaxTime = int(sstatus.find('eggMaxTime').text)
-            if root.find("version") != None:
-               if int(root.find("version").find("port").text.replace("\"","").split(".")[-1]) < 10 and int(sstatus.find('eggTime').text) > self.eggMaxTime:
-                  self.eggTime = 36
-               else:
-                  self.eggTime = int(sstatus.find('eggTime').text)   
+            if root.find("version") != None and int(root.find("version").find("port").text.replace("\"","").split(".")[-1]) < 10 and int(sstatus.find('eggTime').text) > self.eggMaxTime:
+               self.eggTime = 36
             else:
                self.eggTime = int(sstatus.find('eggTime').text)
             self.eggRate = int(sstatus.find('eggRate').text)
@@ -25617,23 +25612,14 @@ class NiminFetishFantasyv0975o_fla:
          lkid = xmlfile.find("kid")
          data["kid"] = [int(lkid.find("humanChildren").text),int(lkid.find("equanChildren").text),int(lkid.find("lupanChildren").text),int(lkid.find("felinChildren").text),int(lkid.find("cowChildren").text),int(lkid.find("lizanChildren").text),int(lkid.find("lizanEggs").text),int(lkid.find("bunnionChildren").text),int(lkid.find("wolfPupChildren").text),int(lkid.find("miceChildren").text),int(lkid.find("birdEggs").text),int(lkid.find("birdChildren").text),int(lkid.find("pigChildren").text),int(lkid.find("calfChildren").text),int(lkid.find("bugEggs").text),int(lkid.find("bugChildren").text),int(lkid.find("skunkChildren").text),int(lkid.find("minotaurChildren").text),int(lkid.find("freakyGirlChildren").text)]
          data["trav"] = []
-         tba = []
-         tbsa = []
-         tsa = []
-         tssa = []
          lb = xmlfile.find("bag")
          lbs = xmlfile.find("bagStack")
          ls = xmlfile.find("stash")
          lss = xmlfile.find("stashStack")
-         for i in range(27):
-            tba.append(int(lb.find(f"slot{i}").text))
-            tbsa.append(int(lbs.find(f"slot{i}").text))
-            tsa.append(int(ls.find(f"slot{i}").text))
-            tssa.append(int(lss.find(f"slot{i}").text))
-         data["bagSave"] = tba
-         data["bagStackSave"] = tbsa
-         data["stashSave"] = tsa
-         data["stashStackSave"] = tssa
+         data["bagSave"] = [int(lb.find(f"slot{i}").text) for i in range(27)]
+         data["bagStackSave"] = [int(lbs.find(f"slot{i}").text) for i in range(27)]
+         data["stashSave"] = [int(ls.find(f"slot{i}").text) for i in range(27)]
+         data["stashStackSave"] = [int(lss.find(f"slot{i}").text) for i in range(27)]
          tpa = []
          lp = xmlfile.find("preg")
          i = 0
@@ -25708,23 +25694,14 @@ class NiminFetishFantasyv0975o_fla:
          lkid = xmlfile.find("kid")
          data["kid"] = [int(lkid.find("humanChildren").text),int(lkid.find("equanChildren").text),int(lkid.find("lupanChildren").text),int(lkid.find("felinChildren").text),int(lkid.find("cowChildren").text),int(lkid.find("lizanChildren").text),int(lkid.find("lizanEggs").text),int(lkid.find("bunnionChildren").text),int(lkid.find("wolfPupChildren").text),int(lkid.find("miceChildren").text),int(lkid.find("birdEggs").text),int(lkid.find("birdChildren").text),int(lkid.find("pigChildren").text),int(lkid.find("calfChildren").text),int(lkid.find("bugEggs").text),int(lkid.find("bugChildren").text),int(lkid.find("skunkChildren").text),int(lkid.find("minotaurChildren").text),int(lkid.find("freakyGirlChildren").text)]
          data["trav"] = []
-         tba = []
-         tbsa = []
-         tsa = []
-         tssa = []
          lb = xmlfile.find("bag")
          lbs = xmlfile.find("bagStack")
          ls = xmlfile.find("stash")
          lss = xmlfile.find("stashStack")
-         for i in range(27):
-            tba.append(int(lb.find(f"slot{i}").text))
-            tbsa.append(int(lbs.find(f"slot{i}").text))
-            tsa.append(int(ls.find(f"slot{i}").text))
-            tssa.append(int(lss.find(f"slot{i}").text))
-         data["bagSave"] = tba
-         data["bagStackSave"] = tbsa
-         data["stashSave"] = tsa
-         data["stashStackSave"] = tssa
+         data["bagSave"] = [int(lb.find(f"slot{i}").text) for i in range(27)]
+         data["bagStackSave"] = [int(lbs.find(f"slot{i}").text) for i in range(27)]
+         data["stashSave"] = [int(ls.find(f"slot{i}").text) for i in range(27)]
+         data["stashStackSave"] = [int(lss.find(f"slot{i}").text) for i in range(27)]
          tpa = []
          lp = xmlfile.find("preg")
          i = 0
@@ -25789,18 +25766,16 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
+         _bag = ""
+         _bagStack = ""
+         _stash = ""
+         _stashStack = ""
          for i in range(27):
-            string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
-         string += "</bag><bagStack>"
-         for i in range(27):
-            string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
-         string += "</bagStack><stash>"
-         for i in range(27):
-            string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
-         string += "</stash><stashStack>"
-         for i in range(27):
-            string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
-         string += "</stashStack><preg>"
+            _bag += f"<slot{i}>{_bagArray[i]}</slot{i}>"
+            _bagStack += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
+            _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
+            _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
+         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
          #i = 0
          #while i < len(_pregArray):
          for i in range(len(_pregArray)):
@@ -25857,18 +25832,16 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
+         _bag = ""
+         _bagStack = ""
+         _stash = ""
+         _stashStack = ""
          for i in range(27):
-            string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
-         string += "</bag><bagStack>"
-         for i in range(27):
-            string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
-         string += "</bagStack><stash>"
-         for i in range(27):
-            string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
-         string += "</stash><stashStack>"
-         for i in range(27):
-            string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
-         string += "</stashStack><preg>"
+            _bag += f"<slot{i}>{_bagArray[i]}</slot{i}>"
+            _bagStack += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
+            _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
+            _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
+         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
          #i = 0
          #while i < len(_pregArray):
          for i in range(len(_pregArray)):
@@ -25923,18 +25896,16 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
+         _bag = ""
+         _bagStack = ""
+         _stash = ""
+         _stashStack = ""
          for i in range(27):
-            string += f"<slot{i}>{_bagArray[i]}</slot{i}>"
-         string += "</bag><bagStack>"
-         for i in range(27):
-            string += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
-         string += "</bagStack><stash>"
-         for i in range(27):
-            string += f"<slot{i}>{_stashArray[i]}</slot{i}>"
-         string += "</stash><stashStack>"
-         for i in range(27):
-            string += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
-         string += "</stashStack><preg>"
+            _bag += f"<slot{i}>{_bagArray[i]}</slot{i}>"
+            _bagStack += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
+            _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
+            _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
+         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
          #i = 0
          #while i < len(_pregArray):
          for i in range(len(_pregArray)):
