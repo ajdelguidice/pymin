@@ -13098,242 +13098,242 @@ class NiminFetishFantasyv0975o_fla:
       tempArray = as3.Array()
       match which:
          case "Softlik":
-            tempArray = as3.Array(0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
+            tempArray = (0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x","x","x","x","x",0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x")
+            tempArray = ("x","x","x","x","x","x",0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
          case "Firmshaft":
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
+            tempArray = (0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
+            tempArray = ("x","x","x","x","x","x","x","x","x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
          case "Tieden":
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0)
-            if ((tempArray[self.hour] == "x") and (self.pregnancyTime >= 180) and (self.vagTotal > 0)):
+            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0,0)
+            if (tempArray[self.hour] == "x" and self.pregnancyTime >= 180 and self.vagTotal > 0):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
          case "Siz'Calit":
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,"x","x","x",0)
-            if ((tempArray[self.hour] == "x") and (self.lilaRep > 3)):
+            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,"x","x","x",0,0)
+            if (tempArray[self.hour] == "x" and self.lilaRep > 3):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
+            tempArray = ("x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
          case "Oviasis":
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0)
-            if ((tempArray[self.hour] == "x") and (self.silRep < 6)):
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0)
+            if (tempArray[self.hour] == "x" and self.silRep < 6):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x",0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x",0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array("x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
+            tempArray = ("x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array(0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x",0,0,0,0,"x","x","x",0)
+            tempArray = (0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x",0,0,0,0,"x","x","x",0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array("x","x","x","x","x","x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,"x",0,"x","x")
+            tempArray = ("x","x","x","x","x","x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,"x",0,"x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
          case "Sanctuary":
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
          case "Forest":
-            tempArray = as3.Array(0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0,"x","x")
+            tempArray = (0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0,"x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0)
+            tempArray = ("x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array("x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0,0,0,"x","x",0,0,0,0,"x")
+            tempArray = ("x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0,0,0,"x","x",0,0,0,0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array(0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(6)
          case "Jungle":
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0)
-            if ((tempArray[self.hour] == "x") and (self.foundValley == False) and (self.firstExplore == True)):
+            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour] == "x" and self.foundValley == False and self.firstExplore == True):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
+            tempArray = (0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array("x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
+            tempArray = ("x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(6)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(7)
          case "Plains":
-            tempArray = as3.Array("x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x")
-            if ((tempArray[self.hour] == "x") and (self.checkOpenSlot(244) > 0)):
+            tempArray = ("x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0)
+            if (tempArray[self.hour] == "x" and self.checkOpenSlot(244) > 0):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,"x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
+            tempArray = (0,"x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array(0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,"x",0,0,"x",0,0,0,0,0,0,"x","x","x","x")
+            tempArray = ("x","x","x","x",0,0,0,0,0,0,"x",0,0,"x",0,0,0,0,0,0,"x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
          case "Savanna":
-            tempArray = as3.Array(0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x")
+            tempArray = ("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,"x","x","x","x",0)
+            tempArray = (0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,"x","x","x","x",0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
          case "Desert":
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            if ((tempArray[self.hour] == "x") and (self.currentZone == 6) and (self.silRep == 0)):
+            tempArray = (0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour] == "x" and self.currentZone == 6 and self.silRep == 0):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,"x","x","x","x",0,0)
+            tempArray = (0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,"x","x","x","x",0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x",0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x",0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array("x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
+            tempArray = ("x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
          case "Beach":
-            tempArray = as3.Array(0,0,0,0,0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x","x",0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x","x",0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,"x",0,0,0,"x",0,0,0,0,"x","x",0,"x",0,0,0,"x","x",0,0,0,"x")
+            tempArray = (0,0,"x",0,0,0,"x",0,0,0,0,"x","x",0,"x",0,0,0,"x","x",0,0,0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array("x",0,0,0,0,"x",0,0,0,0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x")
+            tempArray = ("x",0,0,0,0,"x",0,0,0,0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array(0,"x",0,"x",0,"x",0,0,0,"x",0,0,0,"x",0,"x",0,"x",0,0,0,"x",0)
+            tempArray = (0,"x",0,"x",0,"x",0,0,0,"x",0,0,0,"x",0,"x",0,"x",0,0,0,"x",0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
-            tempArray = as3.Array(0,"x",0,"x","x",0,0,"x",0,"x","x",0,0,"x",0,0,"x","x",0,"x",0,0,"x")
+            tempArray = (0,"x",0,"x","x",0,0,"x",0,"x","x",0,0,"x",0,0,"x","x",0,"x",0,0,"x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(6)
          case "Lake":
-            tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array(0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and (self.knowPheromone != True)):
+            tempArray = (0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour] == "x" and self.knowPheromone == False):
                self.rndArray.push(2)
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
          case "Dairy Farm":
-            tempArray = as3.Array(0,0,0,0,"x","x","x",0,0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0)
+            tempArray = (0,0,0,0,"x","x","x",0,0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
-            if ((tempArray[self.hour] == "x") and (self.udders == True) and (self.udderLactation > 0) and (self.udderEngorgementLevel > 0)):
+            tempArray = ("x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
+            if (tempArray[self.hour] == "x" and self.udders == True and self.udderLactation > 0 and self.udderEngorgementLevel > 0):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x")
+            tempArray = (0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0)
+            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array(0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,0,0,0)
-            if ((tempArray[self.hour] == "x") and (self.malonRep > 0)):
+            tempArray = (0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0)
+            if (tempArray[self.hour] == "x" and self.malonRep > 0):
                self.rndArray.push(4)
-            tempArray = as3.Array("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x",0,0)
+            tempArray = ("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x",0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
          case "Old Cave":
-            tempArray = as3.Array(0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x")
+            tempArray = (0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0)
+            tempArray = ("x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array("x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0)
+            tempArray = ("x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
          case "Den":
-            tempArray = as3.Array(0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0)
-            if ((tempArray[self.hour] == "x") and (self.silTied == False) and (self.checkItem(229) == False) and (self.checkStash(229) == False)):
+            tempArray = (0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0,0)
+            if (tempArray[self.hour] == "x" and self.silTied == False and self.checkItem(229) == False and self.checkStash(229) == False):
                self.rndArray.push(1)
-            tempArray = as3.Array("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
+            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
          case "Valley":
-            tempArray = as3.Array(0,"x","x",0,0,"x","x",0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,"x","x")
+            tempArray = (0,"x","x",0,0,"x","x",0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,"x","x",0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(1)
-            tempArray = as3.Array("x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0)
+            tempArray = ("x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(2)
-            tempArray = as3.Array(0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
+            tempArray = (0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(3)
-            tempArray = as3.Array("x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0)
+            tempArray = ("x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0)
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(4)
-            tempArray = as3.Array(0,0,0,"x","x",0,"x","x",0,0,0,"x","x","x","x","x",0,0,0,"x","x",0,"x","x")
+            tempArray = (0,0,0,"x","x",0,"x","x",0,0,0,"x","x","x","x","x",0,0,0,"x","x",0,"x","x")
             if (tempArray[self.hour] == "x"):
                self.rndArray.push(5)
       as3.trace(self.rndArray)
