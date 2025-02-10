@@ -4976,13 +4976,13 @@ class NiminFetishFantasyv0975o_fla:
       self.statDisplay(nolsc=True)
       if self.gender == 1:
          self.showButtons(ButtonList(1,0,1,0,1,0,1,0,0,1,0,0))
-         templist = as3.Array(1, "Bodybuilder", 3, "Average", 5, "Cunt Boy", 7, self.ptweaksGrammar(3,True), 10, "Childlike")
+         templist = (1, "Bodybuilder", 3, "Average", 5, "Cunt Boy", 7, self.ptweaksGrammar(3,True), 10, "Childlike")
       elif self.gender == 2:
          self.showButtons(ButtonList(0,1,1,0,1,0,0,0,0,1,0,0))
-         templist = as3.Array(2, "Bodybuilder", 5, "Average", 3, "Voluptuous", 10, "Childlike")
+         templist = (2, "Bodybuilder", 5, "Average", 3, "Voluptuous", 10, "Childlike")
       elif self.gender == 3:
          self.showButtons(ButtonList(0,1,0,0,1,1,0,0,0,1,0,0))
-         templist = as3.Array(2, "Bodybuilder", 5, "Masculine", 6, "Feminine", 10, "Childlike")
+         templist = (2, "Bodybuilder", 5, "Masculine", 6, "Feminine", 10, "Childlike")
       self.outputMainText("Choose your body type. Types determine height and a few beginning characteristics. Their names describe what they look like and may potentially alter your true gender.",True)
       self.doButtonChoices(templist)
       def doListen():
@@ -6105,6 +6105,7 @@ class NiminFetishFantasyv0975o_fla:
             if self.currentState != 2:
                self.outputMainText("Where would you like to go?",True)
                self.showButtons(ButtonList(1,0,1,0,1,0,1,1,0,1,0,0))
+               #!Do something about this jank
                temp = [1,"Tieden",3,"Softlik",5,"Siz'Calit",7,"Firmshaft",8,"Sanctuary",10,"Oviasis"]
                temp.remove((0,3,7,1,5,0,10,0,0,0,0,0,8)[self.currentZone])
                temp.remove(("","Softlik","Firmshaft","Tieden","Siz'Calit","","Oviasis","","","","","","Sanctuary")[self.currentZone])
@@ -7400,9 +7401,8 @@ class NiminFetishFantasyv0975o_fla:
          case 253:
             if (self.tail == 12):
                self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-               templist = [5, "Eat", 7, "Ovipositor", 10, "Do Nothing"]
                self.outputMainText("Considering the egg is just about the right size for the hole in your large ovipositor tail, what would you like to do with it?",True)
-               self.doButtonChoices(templist)
+               self.doButtonChoices((5, "Eat", 7, "Ovipositor", 10, "Do Nothing"))
                def doListen():
                   chance = 0
                   if self.buttonChoice == 5:
@@ -9154,9 +9154,8 @@ class NiminFetishFantasyv0975o_fla:
                      self.doCoin(-self.hairstyleValue(self.hairstyleID(self.buy)))
                      if (self.hairstyleLength(self.hairstyleID(self.buy)) == True):
                         self.showButtons(ButtonList(1,1,0,0,1,1,1,0,0,0,0,0))
-                        templist = [1, "Short", 2, "Medium", 5, "Long", 6, "X-Long", 7, "XX-Long"]
                         self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.",False)
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((1, "Short", 2, "Medium", 5, "Long", 6, "X-Long", 7, "XX-Long"))
                         def doListen():
                            if (self.buttonChoice == 1):
                               self.hairLength = 2
@@ -12274,8 +12273,7 @@ class NiminFetishFantasyv0975o_fla:
                      if ((self.fetishMasterLevel + 1) // 4 > self.fetishMasterLevel // 4):
                         self.outputMainText("Major fetishes affect most sexual situations. Selecting one will increase your lust gained or lost by an additional 30%. However, since they are so profound, they will also make opposing kinks even less interesting.\n\nMale - Applies to sexual situations with males. Selecting it will reduce your Female kink by 20% and your Herm kink by 10%.\n\nFemale - Applies to sexual situations with females. Selecting it will reduce your Male kink by 20% and your Herm kink by 10%.\n\nHerm - Applies to sexual situation with hermaphrodites, people with both male and female genetalia. Selecting this kink will reduce your Male and Female kinks by 20%.\n\nNarcissist - Applies to sexual situations that only involve yourself. Selecting it will reduce your Dependent kink by 20%.\n\nDependent - Applies to sexual situations that involve others with you. Selecting it will reduce your Narcissist kink by 20%.",True)
                         self.showButtons(ButtonList(1,1,1,0,1,1,0,0,0,0,0,1))
-                        templist = [1, "Male", 2, "Female", 3, "Herm", 5, "Narcissist", 6, "Dependent", 12, "Cancel"]
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((1, "Male", 2, "Female", 3, "Herm", 5, "Narcissist", 6, "Dependent", 12, "Cancel"))
                         def doListen():
                            if self.buttonChoice == 1:
                               self.outputMainText("You now find pee-pees more attractive and vagoos more icky.",True)
@@ -12310,8 +12308,7 @@ class NiminFetishFantasyv0975o_fla:
                      elif ((self.fetishMasterLevel + 1) // 3 > self.fetishMasterLevel // 3):
                         self.outputMainText("Moderate fetishes affect many sexual situations. Selecting one will increase your lust gained or lost by an additional 20%. However, since they are somewhat important, they will also make opposing kinks even less interesting.\n\nDominant - Applies to sexual situations where you are in charge. Selecting it will reduce your Submissive kink by 10%.\n\nSubmissive - Applies to sexual situations where you are being dominated. Selecting it will reduce your Dominant kink by 10%.\n\nLarge Breasts - Applies to sexual situations that involve relatively big titties. Selecting it will reduce your Small Breasts kink by 10%.\n\nSmall Breasts- Applies to sexual situations that involve relatively small boobies (mostly does not apply to males). Selecting it will reduce your Large Breasts kink by 10%.\n\nFurry - Applies to sexual situations with fur-covered people. Selecting it will reduce your Scaley and Smoothy kinks by 10%.\n\nScaly - Applies to sexual situations with scale-covered people. Selecting it will reduce your Furry and Smoothy kinks by 10%.\n\nSmoothy - Applies to sexual situations with smooth skin-covered people. Selecting it will reduce your Furry and Scaly kinks by 10%.",True)
                         self.showButtons(ButtonList(1,1,0,0,1,1,0,0,1,1,1,1))
-                        templist = [1, "Dominant", 2, "Submissive", 5, "Large Boobs", 6, "Small Boobs", 9, "Furry", 10, "Scaly", 11, "Smoothy", 12, "Cancel"]
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((1, "Dominant", 2, "Submissive", 5, "Large Boobs", 6, "Small Boobs", 9, "Furry", 10, "Scaly", 11, "Smoothy", 12, "Cancel"))
                         def doListen():
                            if self.buttonChoice == 1:
                               self.outputMainText("You now enjoy stomping on people more and dislike being stepped on.",True)
@@ -12354,8 +12351,7 @@ class NiminFetishFantasyv0975o_fla:
                      else:
                         self.outputMainText("Minor fetishes affect some sexual situations. Selecting one will increase your lust gained or lost by an additional 10%. They easily allow room for other fetishes, so they don't reduce others.\n\nPregnancy - Applies to sexual situations where someone is pregnant.\n\nBestiality - Applies to sexual situations with feral animals.\n\nMilk - Applies to sexual situations that involve lactation.\n\nSize - Applies to sexual situations where one person is significantly larger than the other.\n\nUnbirthing - Applies to sexual situations that involve reverse-birthing.\n\nOviposition - Applies to sexual situations where eggs are popping out.\n\nToy - Applies to sexual situations with inanimate objects.\n\nHyper - Applies to sexual situations where something is significantly bigger than usual.",True)
                         self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,1,0,1))
-                        templist = [1, "Pregnancy", 2, "Bestiality", 3, "Milk", 5, "Size", 6, "Unbirthing", 7, "Oviposition", 9, "Toy", 10, "Hyper", 12, "Cancel"]
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((1, "Pregnancy", 2, "Bestiality", 3, "Milk", 5, "Size", 6, "Unbirthing", 7, "Oviposition", 9, "Toy", 10, "Hyper", 12, "Cancel"))
                         def doListen():
                            if self.buttonChoice == 1:
                               self.outputMainText("You now enjoy big swollen baby-filled bellies more.",True)
@@ -12725,8 +12721,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.levelUP < 3):
                   self.outputMainText("\n\nHowever, you do not have enough levels to achieve any of the perks.",False)
                   self.showButtons(ButtonList(0,0,0,0,0,1,0,0,0,0,0,0))
-                  templist = [6,"Back"]
-                  self.doButtonChoices(templist)
+                  self.doButtonChoices((6,"Back"))
                   def doListen():
                      if (self.buttonChoice == 6):
                         self.doLevelUP()
@@ -12873,8 +12868,7 @@ class NiminFetishFantasyv0975o_fla:
                            def doListen():
                               if (self.buttonChoice == 6):
                                  self.showButtons(ButtonList(0,0,0,0,1,1,1,0,0,0,0,1))
-                                 templist = [5, "Male", 6, "Female", 7, "Herm", 12, "Cancel"]
-                                 self.doButtonChoices(templist)
+                                 self.doButtonChoices((5, "Male", 6, "Female", 7, "Herm", 12, "Cancel"))
                                  self.outputMainText("Which gender would you like to reset to? (The one you select is the one you will remain as, if you have the appropriate genitals)",True)
                                  def doListen():
                                     self.outputMainText("You take a moment to focus, channeling the experience you have gained to adjust your sex...",True)
@@ -13437,8 +13431,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.jamieRep == 0):
             self.outputMainText("Passing by one of the many tents, you think you hear a grunt from behind a large outer fold of a canvas wall. Curiously, you move closer, peeking around to check the source. You can't help but giggle a little.\n\nA young equan lad lets out another grunt as he tries to adjust his rather feminine tube-top, his tail swishing up the backside of his skirt. A pair of tight panties hugs his bum, outlining the round forms of his cheeks. You also notice a pair of shorts around his ankles and a shirt tossed onto the ground beside him. And when he turns to face you, you both let out a gasp.\n\nHe blushes tremendously as he sees you looking at him. A large erection pushes out from his skirt, the long shaft nakedly stretching over his belly and disappearing into the tube top, where the thick bulge is easily outlined, especially where the flaring head threatens to pop over the upper edge. Two large testicles squirm in the air as the skirt rests upon them, splayed to either side by the crotch of his panties.\n\n\"Eh?! Th-This isn't what you think!!\" He blushes heavily and attempts to cover himself. \"I-I have trouble hiding my, umm...\" he glances down at his endowment, \"and I th-thought these clothes would help hide it better! P-Please don't tell anybody you caught me wearing girls' clothes!\"",True)
             self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,0,0))
-            templist = [1, "Handjob", 3, "Blowjob", 9, "Leave"]
-            self.doButtonChoices(templist)
+            self.doButtonChoices((1, "Handjob", 3, "Blowjob", 9, "Leave"))
             def doListen():
                if (self.buttonChoice == 1):
                   self.outputMainText("With a smile, you step towards him. Confused, the poor boy recoils in turn, only to crash into the tent and land on his rump, his own cock-head punching him in the chin through the clothes. In the moment he's stunned, you swoop in and kneel down beside him. He blinks at you in fear, but then gasps as you rub your hand over his tube top, stroking his length against his chest.\n\nHardly resisting, the boy merely snorts in surprise as you pull his tube top up and pull out the naughty monster. It takes both of your hands to give his length even the slightest amount of coverage, but as a gob of pre oozes from the tip and dribbles down his horse-like shaft, it doesn't take much effort. Slick sounds echo against the tent canvas, the lubrication helping you polish his arousal. You occasionally slip your hand beneath his skirt, squeezing his sheath around his erection before sliding into the panties and kneading his large orbs. He stares at you intently, wondering why you're doing this, though his expression is rather pleasant. Then, his eyes clench shut as his muzzle yawns wide with a whinny.\n\nThick gouts of long pearly ribbons leap from his cock. His hips jerk within the skirt, his butt drumming against the canvas behind him. You aim the cannon away, but fail to avoid being decorated a bit yourself, and even he gets iced with his own spunk as the stuff just keeps coming and coming. Your hands are soon coated with hot goo, his girly outfit becoming completely soiled. Though it takes a while, the erupion eventually comes to a halt...",True)
@@ -13469,8 +13462,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          elif (self.jamieRep == 1):
             self.showButtons(ButtonList(0,1,0,0,1,0,1,0,0,1,0,0))
-            templist = [2, "Can I see it?", 5, "Ha-Ha!", 7, "Let's play", 10, "I can help"]
-            self.doButtonChoices(templist)
+            self.doButtonChoices((2, "Can I see it?", 5, "Ha-Ha!", 7, "Let's play", 10, "I can help"))
             self.outputMainText("\"U-Umm...\" A meek voice speaks up from behind you as you explore the city.\n\nYou turn around to spot a familiar equan lad, the one you had 'helped' before. This time, however, he doesn't seem to be wearing women's clothing under his t-shirt and shorts, nor is he futily attempting to hide a massive sausage in his shirt at the moment either. Though he does seem a bit awkward and embarassed about the large bulge of his package in his shorts compared to his small and skinny frame.\n\n\"Hi... I just wanted to say I'm sorry about last time and wanted to explain some things before you get the wrong idea... I'm... A bit big.\" He motions down to his bulge in a poorly cryptic fashion. \"I mean, there's other guys around here that are big, maybe even a bit bigger, but they're all tall and buff and stuff, so it doesn't look so... silly, like mine does. I don't even have an excuse, like being bitten by one of those snakes or whatever, I was just naturally this freaky. I kinda get teased about it and whenever I'm around a girl for long it can get out of control and scares her away. I'm afraid of using a reduction on it, it's kinda the only thing manly about me... I thought those clothes before might help hide it some, since girl's clothes tend to be a bit tighter and, umm,... sexier, but you kinda caught me and I don't want you to think I'm trying to be a girl or anything or, or...\" As his speech hastens, the words begin to degrade and he's just left stammering for a few moments until he comes to a full stop, takes a deep breath, and exhales, \"So yeah, I'm sorry you saw that and for running out on you. Please don't tell anybody what you saw, I get made fun of enough as it is.\"\n\nFinally finished with what he was aiming to say, he stands there with eyes darting about, waiting for some kind of reply.",True)
             def doListen():
                if (self.buttonChoice == 2):
@@ -13601,9 +13593,8 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          elif (self.jamieRep == 2):
             self.showButtons(ButtonList(1,0,1,0,0,0,0,0,0,1,0,0))
-            templist = [1, "Handjob", 3, "Blowjob", 10, "Leave"]
             self.outputMainText("\"H-Hey!\" The familiar meek voice of a certain equan lad speaks up from behind you as you explore the city.\n\nYou turn around to be greeted by a pulse of the thick monster that currently resides within the shirt, poorly hidden by the embarassed arms, while swollen testicles squirm up and down the thighs of his shorts. Jamie continues to speak with a deepening blush and growing erection, \"Umm... I'm glad to see you around again. As you can see... I could use a little 'help' again, if you were interested...\"",True)
-            self.doButtonChoices(templist)
+            self.doButtonChoices((1, "Handjob", 3, "Blowjob", 10, "Leave"))
             def doListen():
                if (self.buttonChoice == 1):
                   tempStr = f"With a smirk, you pull Jamie in between some tents, like when you first met him. Pre already dampening his shirt in anticipation, you're quick to lift his shirt and snatch the growing drop from the tip. Slick and smooth and slimy, you smear the stuff about as it forms webs between your fingers. Pushing him back, the boy concedes to your efforts and slumps to the ground, allowing your hand to ride down the shaft and lubricate it well. Getting down on your {self.legDesc(6)}, you wrap your other hand around the girth just above the first, and slowly begin to pump up and down the rippling flesh like you were churning butter. And gosh does that butter churn, the enormous testicles groaning as they flop from his shorts, the boy rapidly trying to release them before they split a seam.\n\nQuiet gasps fill the space between the tents, along with the slurping of a slick shlong. Over two feet in length, it's quite the effort to get from the base to the tip and back again, the veins along the skin acting like speedbumps and the wide head filling your grip whenever you palm and rub it. The glans begins to flare and pulse, the hole gaping slightly in preparation for launch, almost large enough to fit a finger inside. To aid in the impending ejaculation, one hand slips down to the swollen scrotum below, your fingers spreading wide to grasp and gently squeeze the warm and firm testicles. An uncharacteristically loud whinny escapes the horse-boy's lips, his hips bucking back at your squeezing as the pressure proves to be too much.\n\nWhite gobs shower down upon you as they erupt from the flaring hose over your shoulder. The hand on the shaft can feel the fluid being pumped through the inner pipe, the blood pulsing the girth stronger and harder. Much of the cum sprinkles over the canvas behind you, forming a splotched painting of drooling white, while the boy shudders on the ground from intense orgasm. It takes a few moments before the spooge-rain slows to a gentle yet thick stream down his length, signalling the end of your efforts.\n\nJamie huffs and pants on the ground, his legs so numb that they bend slightly awkwardly. \"I... I think I'm just going to lay here for a while... Umm... Here, please take this as thanks. I really appreciate you helping me.\n\nHe hands you a small pouch of coins. Once he hands them off, his arm collapses by his side. \"I'll look forward to seeing you again!\"\n\nYou can't help but chuckle as he rests beneath his mess, rubbing himself to try to fit back into his clothes. Not wanting to draw attention to his prone state, you exit the alley and go find something else to do."
@@ -14017,8 +14008,7 @@ class NiminFetishFantasyv0975o_fla:
       if chance == 1:
          self.outputMainText("Wandering through the Tieden night, you see only a few small buildings are lit with lanterns – some night-time taverns entertaining their patrons, while other buildings and shops unoccupied and darkened. Beyond the few nocturnal venues, you assume the residents are home sleeping or potentially outside the city’s walls.\n\nHowever, stepping into a rather active, lantern and torch speckled area; you do believe you've come across the staple of Tieden. What struck you as such is a rather large structure, easily three times as wide as those flanking it, four times as long, and two stories high. Above the entrance, a large sign is carved into the broad wall depicting a large tree trunk with a sizable knothole flanked by a pair of Lupans, one with a whip and the other bound with a collar. The sign bears the name “The Knothole” below the detailed motif.\n\nGreeting your ears from the grand building are the sounds of drums. The deep base echoing out of the building makes your muscles tense in anticipation. The closer you get, the more your nose picks up the scent of the gathered Lupans, both male and female. The beat thumping from within the Knothole starts to get your heart going faster.",True)
          self.showButtons(ButtonList(0,0,0,0,0,1,0,0,0,1,0,0))
-         templist = [6, "Enter", 10, "Leave"]
-         self.doButtonChoices(templist)
+         self.doButtonChoices((6, "Enter", 10, "Leave"))
          def doListen():
             if (self.buttonChoice == 6):
                self.knotholeMain(True)
@@ -14666,8 +14656,7 @@ class NiminFetishFantasyv0975o_fla:
                      else:
                         self.outputMainText(tempStr + "\"Is that so?\" She chuckles and shrugs. \"Alright, come on in and strip down.\"",True)
                         self.showButtons(ButtonList(1,0,1,0,0,1,0,0,0,0,0,0))
-                        templist = [1, "Strip", 3, "Don't Strip", 6, "Leave"]
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((1, "Strip", 3, "Don't Strip", 6, "Leave"))
                         def doListen():
                            if (self.buttonChoice == 1):
                               self.outputMainText(f"Stepping inside, you already begin to remove your {self.currentClothes()}. Lila has trouble focusing as her eyes keep staring at your body, curious to its differences from her own as she removes her sundress and exposes her nipples and dainty little slit. However, her mother urges her along into the bathroom, making sure the girl doesn't dawdle.\n\nThe bathroom is fiarly sparse and actually lacks any sort of tub or main faucet to get water from. It even has a rather plush carpet. Though it's quickly apparent as to why when the two of them sit down upon it. Lila's mother holds a cup she has been carrying up to her mouth and takes a swig, swishing it around before swallowing with a gasp. Lila then does the same and proceeds to begin licking at the fur of her arm. Her mother's tongue, being much larger, assists her daughter and starts licking at the girls back.\n\nWith each lick, Lila's coat seems to shine cleanly and softly, thanks to whatever was in that concoction. The two female felins quickly cover the girl's entire body, finishing off near the groin. Lila stretched her leg high over her head, curling around to lick further and further up her inner thigh. Yet, once she gets too close, her leg and tail begin to twitch about, her tender lips swelling and reddening slightly with her heat kicking in once again.\n\nHer mother rolls her eyes and chuckles, taking care of the girl's nether regions for her. Lila whimpers and mewls as her mother licks and laps at her sensitive sex, making sure to clean every crevice. The woman continues her efforts, even as some honey oozes out and dabs upon her nose. By the time she's done, Lila rolls backwards with a quiver, blushing as she climaxes softly...\n\nSmacking her lips, the girl's mother looks up to you. \"Your turn. Just sit down over there.\"",True)
@@ -14809,9 +14798,8 @@ class NiminFetishFantasyv0975o_fla:
                   self.doNext()
                   def doListen():
                      self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                     self.templist = [5, "Drink it", 7, "No thanks"]
                      self.outputMainText("\"Ohh, so that's what happened?\" Lila's mother blushes as you explain the situation to her. \"I guess she saw me down a Cat's Meow every now and then when she wanted some motherly milk and thought that it helped me be more of an adult, a parent... Well-\" She bends down to her daughter's height, rubbing the girl between the ears and trying to cheer her up. \"It's okay sweetie, as long as you didn't hurt yourself. Milk isn't bad for you, you know that. Though it might be a little...\" She giggles. \"silly for someone your age. Do you want to stop it, honey?\"\n\nLila looks around, trying to think of what to say. \"Ummm... What would I do with it?\"\n\nHer mother smirks again. \"Silly...\"\n\nShe takes her daughter's hand and leads her inside, motioning for you to wait a few minutes. You hear odd gasping and mewling coming from within, and not the pained or frightened kind either. It doesn't take long before they both come back, Lila rubbing her front with a blush on her face and her mother carrying a teacup in her hand.\n\nLila's mother offers you the teacup, wiping some white from her upper lip. \"Would you like some? It's fresh~\"\n\nLila looks up at you, curious as to what you will do.",True)
-                     self.doButtonChoices(templist)
+                     self.doButtonChoices((5, "Drink it", 7, "No thanks"))
                      def doListen():
                         if (self.buttonChoice == 5):
                            self.outputMainText("You accept the cup, noticing it's warm in your hand. Halfway filled with milk, it does indeed seem quite fresh. Lifting it to your lips, the taste is sweet and light on your tongue. You sip it all the way down, going faster and faster until it's completely empty. With a smile, you lick your white mustache and thank them for the drink.\n\nLila's eyes light up as you seem quite pleased with something she made, her tail flicking happily behind her. \"No Mommy, I don't wanna stop it. I wanna keep making milk.\"\n\nHer mother lets out another chuckle. \"Alright honey. But just remember, it's up to you to take care of it. I don't want to hear you moan and groan about how your boobs hurt when you haven't milked them or anything.\"\n\n\"I won't!\" The girl is quite excited, nearly hopping up and down as her eyes dart bashfully up at you and the cup you hold. However, her legs quickly cross as she feels some moisture between her thighs, the blotch at her groin growing.\n\n\"Umm... Excuse me...\" She dashes off into the hut.\n\nOnce more, her mother laughs. \"I'm sorry she ran off on you like that, I'm sure she'll be a while. She seems to have learned a new trick to deal with her heat and tends to use it often, it seems. I wonder who could have possibly taught her how...\" Her eyes roll towards you.\n\nAfter a few moments of making you squirm beneath her glare, she sighs with a smile. \"Ahh well. She's becoming her own woman. At least she's not as young as I was.\" She averts her eyes with embarrassment. Then she places a hand on your arm and strokes it. \"You're welcome here whenever Lila wants you and as long as you take good care of her.\" She winks and then says her goodbyes, trying to make you leave before some loud mewls echo from deeper inside...",True)
@@ -15152,8 +15140,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.buttonChoice == 6):
                   self.outputMainText("You offer to help lick the mess from her, if she's alright with going to the private hut where you're staying. As licking is quite common among Felin's, she nods her head in agreement and takes your hand in hers. The two of you head up to your hut in the trees.\n\nYou help her up onto the bed, her legs dangling off to the side. You kneel down before her, gently petting her knees as you wait for her to be comfortable enough. She closes her eyes and nods, pulling up her wet dress. Her cheeks flush with an instense blush as you inspect her tiny lap, completely filled with slick webs, her tender nether-lips pink and puffing out from her fur. You pull her legs open so your head can fit in between, a soft mewl escaping her lips. You lean forward, licking the stuff up from her thighs...\n\n\nJust clean up the stuff or lick her virgin sex more intimately?",True)
                   self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                  templist = [5, "Clean", 7, "Intimate"]
-                  self.doButtonChoices(templist)
+                  self.doButtonChoices((5, "Clean", 7, "Intimate"))
                   def doListen():
                      if (self.buttonChoice == 5):
                         tempStr = "Carefully, you slurp the stuff up from her fur. Slowly going up her thighs, her hips twitch, her tail flailing wildly behind her. Her eyes clench as you come closer to her naughty bits, her hands clenching the bedsheets with anxiety.\n\nNot wanting to go too far, you gently lap at her swollen nether-lips, the soft, delicate folds like flower petals. Flower petals completely drenched in dew. Quickly and cautiously, you take care of what you can before she lets out a soft moan.\n\nEyes still clenched shut, you nudge her and tell her you're finished. Her eyes blink open and she looks down at herself. She looks a bit happier, noticing she's relatively dry, but a shiver shoots through her small body and she clenches her thighs.\n\nIn an instant, she flips her dress down and hops from the bed, running out of the hut, calling back, \"Th-Thank you!\"\n\nAs she darts through the doorway, you hear a splash. A large gob of feminine honey marks the floor, just before the exit, trailing along her path. You wipe the massive amount of slick fluids from your own face, feeling a bit tingly yourself, and go on your way."
@@ -16885,9 +16872,8 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(-(self.sen // 2),2,1,2,4,ret=True)
                      if (self.percent() < 50):
                         self.outputMainText(tempStr + "\n\nYou come so hard that you don't even notice as you accidentally mash the buttons of the control board...\n\nWhich side of the control board did you 'accidentally' mash?",True)
-                        templist = [5, "Left Side", 7, "Right Side"]
                         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((5, "Left Side", 7, "Right Side"))
                         def doListen():
                            self.getCum = 0
                            tempInt = 0
@@ -17240,9 +17226,8 @@ class NiminFetishFantasyv0975o_fla:
       elif (chance == 4):
          if ((self.percent() <= 25) or (self.malonRep > 3) and (self.percent() <= 50)):
             self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-            templist = [5, "Inspect", 7, "Leave"]
             self.outputMainText("Having avoided any farmers, you approach one of the barns. Your ears perk up as you hear something inside. A machine sounds like its pumping, yet you can see no signs of cows nearby or the farmers that take care of them.\n\n\nWhat do you do?",True)
-            self.doButtonChoices(templist)
+            self.doButtonChoices((5, "Inspect", 7, "Leave"))
             def doListen():
                if (self.buttonChoice == 5):
                   if (self.malonRep < 1):
@@ -17293,8 +17278,7 @@ class NiminFetishFantasyv0975o_fla:
                               tempStr += "\n\n\"Oh, whew...\" She puts a hand to her chest. \"It's just you. I-I'm not exactly supposed to be here, but, well, I'm sure you can see the benefits...\" She stands there awkwardly, the machine still sucking milk from her long nipples. \"You... You won't tell anyone, will you?\""
                            self.outputMainText(tempStr,True)
                            self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                           templist = [5, "Tell", 7, "Don't Tell"]
-                           self.doButtonChoices(templist)
+                           self.doButtonChoices((5, "Tell", 7, "Don't Tell"))
                            def doListen():
                               if (self.buttonChoice == 5):
                                  self.outputMainText("With tears welling up in her eyes, she rips away from the cups, letting them pop from her nipples with a milky flood. She turns and runs the other way, her tits bouncing from side to side and milk splashing across the walls as she goes, until she disappears out another door, leaving you with nothing.",True)
@@ -17353,8 +17337,7 @@ class NiminFetishFantasyv0975o_fla:
                               def doListen():
                                  self.outputMainText(f"You don't get far, however, as you feel a tug at your {self.clothesTop()} from behind.\n\nYou turn to see Malon huffing a little, her shirt covered with milk, as she had ran to catch up with you.\n\n\"Umm... I... I just wanted to thank you for being so kind to me... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I'll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can't help but think that they're right. I'm nothing but a big fat cow...\"\n\nHer head hangs low, her bovine ears drooping in shame.\n\n\nDo you want to tell her that she shouldn't act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",True)
                                  self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                                 templist = [5, "Don't Moo", 7, "Moo"]
-                                 self.doButtonChoices(templist)
+                                 self.doButtonChoices((5, "Don't Moo", 7, "Moo"))
                                  def doListen():
                                     if (self.buttonChoice == 5):
                                        self.outputMainText("You nod and tell her that it'd probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, althouth the effort merely shows off her large rump even more...",True)
@@ -17578,8 +17561,7 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += f"{self.teatDesc()} teats"
                         self.outputMainText(tempStr + " and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you're already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\n\nThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you'd think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\n\nHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it's that time... Y-You don't mind, do you?\" She plucks at her shirt to indicate what she means.",True)
                         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                        templist = [5, "Help her", 7, "Let her"]
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((5, "Help her", 7, "Let her"))
                         def doListen():
                            getMilk = 0
                            if (self.buttonChoice == 5):
@@ -17600,8 +17582,7 @@ class NiminFetishFantasyv0975o_fla:
                                  def doListen():
                                     self.outputMainText(f"You don't get far, however, as you feel a tug at your {self.clothesTop()} from behind.\n\nYou turn to see Malon huffing a little, her shirt covered with milk after having been hastily put on having ran to catch up with you. She wipes her eyes with a sniffle.\n\n\"Umm... I... I'm so sorry for running out on you like that. I just wanted to thank you for being so kind to me, though... Most of the people that work on the farm or visit regard me as being a nuisance or a joke. I mean, I still love the animals so much that I'll never want to leave, but they often regard me like one of them. And, well... When I let out a moo like that, just like a cow, I... I can't help but think that they're right. I'm nothing but a big fat cow...\"\n\nHer head hangs low, another tear dripping from her cheek, her bovine ears drooping in shame.\n\n\nDo you want to tell her that she shouldn't act like a cow and try to avoid mooing, or that she should accept her cow-like qualities?",True)
                                     self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                                    templist = [5, "Don't Moo", 7, "Moo"]
-                                    self.doButtonChoices(templist)
+                                    self.doButtonChoices((5, "Don't Moo", 7, "Moo"))
                                     def doListen():
                                        if (self.buttonChoice == 5):
                                           self.outputMainText("You nod and tell her that it'd probably be best if she tried to not act like a cow to the best of her abilities. Her head still hangs, but she nods in return, accepting her condition as a problem. She reaches out, giving you a small hug, then turns to walk back to the farm. Her tail hangs between her legs, trying to tuck itself between her legs to prevent anybody from noticing, altouth the effort merely shows off her large rump even more...",True)
@@ -17680,8 +17661,7 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += f"{self.teatDesc()} teats"
                         self.outputMainText(tempStr + " and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you're already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\n\nThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you'd think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\n\nHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it's that time... Y-You don't mind, do you?\" She plucks at her shirt to indicate what she means.",True)
                         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                        templist = [5, "Help her", 7, "Let her"]
-                        self.doButtonChoices(templist)
+                        self.doButtonChoices((5, "Help her", 7, "Let her"))
                         def doListen():
                            getMilk = 0
                            if (self.buttonChoice == 5):
@@ -17699,8 +17679,7 @@ class NiminFetishFantasyv0975o_fla:
                               def doListen():
                                  self.outputMainText(f"She collapses forward onto your {self.boobDesc()} chest, huffing and heaving. After a few moments, her eyelashes flutter as she turns her head towards you with a glimmer in her eye.",True)
                                  self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-                                 templist = [5, "Kiss Her", 7, "Help Up"]
-                                 self.doButtonChoices(templist)
+                                 self.doButtonChoices((5, "Kiss Her", 7, "Help Up"))
                                  def doListen():
                                     if (self.buttonChoice == 5):
                                        tempStr = "Your hand slips behind her head, pulling her face to your own. You press your lips to hers.\n\nWithout any resistance, she returns the favor, hugging your head and kissing you deeply. She pushes you forward, back onto her bed. With fervor, you lift her long purple skirt, revealing her wide, cow-like hips and large, dripping, animalistic nether-region."
@@ -19083,9 +19062,8 @@ class NiminFetishFantasyv0975o_fla:
       chance = self.eventSelect("Valley")
       if chance == 1:
          self.showButtons(ButtonList(1,0,1,0,0,1,0,0,0,1,0,1))
-         templist = [1, "Mouth", 3, "Ear", 6, "Breasts", 10, "Pussy", 12, "Leave"]
          self.outputMainText("Amidst the lush overgrowth in the middle of the valley, something particularly unique catches your eye. A statue nearly hidden by the large leaves of vines around it, it stands out as being the only thing not of natural origin. It is relatively large, about eight feet in height, and is of a woman presenting herself to the observer. Her arms out, her legs spread slightly, and her face pleasantly aroused. Plus she's completely nude, showing off her four ample breasts upon her chest and three slits between her legs.\n\nInspecting more closely, you can see that her middle vagina is gaping, with a hole that reaches inside. Her mouth is likewise, open lustfully, and there's even holes in her ears. Searching the base of the statue, you notice some intricate lettering that you couldn't possibly understand and, most oddly, there seems to be some mechanical components that have been exposed over the years...\n\nYou think this statue might be more than just a statue. Will you try to do anything with it?",True)
-         self.doButtonChoices(templist)
+         self.doButtonChoices((1, "Mouth", 3, "Ear", 6, "Breasts", 10, "Pussy", 12, "Leave"))
          def doListen():
             if self.buttonChoice == 1:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
@@ -19464,8 +19442,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.currentDungeon == 1006:
                self.outputMainText("The girl cuddles up with Mr. Snuggles, her hips still twitching and thrusting her enlarged clit into the doll, allowing you to go as you please.",True)
             self.showButtons(ButtonList(0,1,0,1,0,1,1,0,0,0,0,0))
-            templist = as3.Array(2,"Up",4,"Firmshaft",6,"'Play'",7,"Down")
-            self.doButtonChoices(templist)
+            self.doButtonChoices((2,"Up",4,"Firmshaft",6,"'Play'",7,"Down"))
             def doListen():
                if self.buttonChoice == 2:
                   if (self.currentDungeon == 1004):
@@ -19652,8 +19629,7 @@ class NiminFetishFantasyv0975o_fla:
       tempStr += "On the left, you spot a wide staircase leading up, and another leading down. A good portion of Lupans are going to the other floors, some holding others on leashes linked to collars wrapped and locked around the necks of the ones being walked. Those on leashes heading up seemed to be more high-spirited than those heading down, which half seemed to be 'zoned out' or in a trance, following their Masters and Mistresses."
       self.outputMainText(tempStr,True)
       self.showButtons(ButtonList(1,0,0,0,0,1,1,0,0,0,0,1))
-      templist = [1, "Upstairs", 6, "Drum", 7, "Dance", 12, "Leave"]
-      self.doButtonChoices(templist)
+      self.doButtonChoices((1, "Upstairs", 6, "Drum", 7, "Dance", 12, "Leave"))
       def doListen():
          if self.buttonChoice == 1:
             self.knotholeUpstairs()
@@ -19684,8 +19660,7 @@ class NiminFetishFantasyv0975o_fla:
    def knotholeUpstairs(self):
       self.outputMainText(f"The staircase going up is wide, accommodating as many as five people side by side. With enough space, you make it up without bumping into anyone, though you're sure you felt some eyes on your rear as you climbed the stairs. Looking back, you don’t see anyone staring at you but you still sense eyes admiring your {self.bodyDesc()} figure.\n\nDismissing the odd paranoia, you look around the area, deciding to get accustomed to the environment. The room looks like it covers the whole area above the first floor. Pillars here and there support the roof, standing above pillars and supporting walls you saw below, though these ones have four iron rings midway up their height. Many of these rings sport Lupans, both male and female, chained to the pillars, mostly nude or wearing exotic clothing, and exposing themselves in erotic displays, looking like they are enjoying themselves in front of their audience.\n\nA large area of the room is taken up by rigs. X-crosses, suspension rigs, stockades, padded sawhorses, and cushioning on the walls with more iron rings and padded metal restraints. Aside the pillars and walls with the rings, there are several wooden posts standing in various spots around the room, half of those also linked to what looks to be more personal 'displays' of Lupans acting as pets.\n\nIn the area filled with rigs, there stands a small gathering as submissive Lupans toy, tease, get teased, beg, seduce, and outright presenting themselves for their audience. The apparent Dominants either stand or seat themselves on lavish sofas and chairs; a group of voyeurs enjoying the exhibitions.",True)
       self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,0,1))
-      templist = [1, "Relax", 3, "Exhibition", 9, "Downstairs", 12, "Leave"]
-      self.doButtonChoices(templist)
+      self.doButtonChoices((1, "Relax", 3, "Exhibition", 9, "Downstairs", 12, "Leave"))
       def doListen():
          if self.buttonChoice == 1:
             if ((self.breastSize > 2) and (self.hips > 2) and (self.body < 20)):
