@@ -213,7 +213,7 @@ def updatePythonVersion(pyver):
             Path(venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
             Path(venvpath / "bin/python").unlink()
             rmtree(venvpath / f"lib/python{".".join(pyver.split(".")[:2])}")
-            run([*pythonm,"venv","--upgrade",venvpath])
+            run([*pythonm,"venv","--upgrade",venvpath]) #!Will not work because python was unlinked
             installmodules()
             c2["Options"]["pyInstalledVersion"] = platform.python_version()
 
@@ -239,6 +239,7 @@ def migrateConfig():
         if Path(venvpath / ".DEFAULTRUN").exists():
             tempDR = True
             Path(venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
+    pyversion = platform.python_version()
     with open(venvpath / "pyvenv.cfg","r") as f:
         c = configparser.ConfigParser(allow_unnamed_section=True)
         c.read_file(f)
@@ -250,7 +251,6 @@ def migrateConfig():
         ...
     else:
         createConfigInVenv(path="./",pyInstalledVersion=pyversion,uvGlobal=tempUV,uvLocal=tempUVI,defaultToRun=tempDR,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False)
-    print("Done")
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
     global noConfigExists
@@ -262,7 +262,7 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
     else:
         with open(Path(venvpath / "pymin.cfg"), 'w') as f:
             c = configparser.ConfigParser()
-            c["Options"] = {"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":False,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}
+            c.read_dict({"Options":{"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}})
             c.write(f)
     noConfigExists = False
 
@@ -272,6 +272,7 @@ args = list(argv)
 if venvpath.exists() and (Path(venvpath / ".USEUV").exists() or Path(venvpath / ".USEUVI").exists() or Path(venvpath / ".DEFAULTRUN").exists()):
     print("Old config detected. Automatically migrating to new one.")
     migrateConfig()
+    print("Done")
 if Path(curdir / "pymin.cfg").exists():
     #load config and set venvpath
     cfgloc = curdir / "pymin.cfg"
@@ -343,105 +344,92 @@ if len(args) < 2 and defrun:
 elif len(args) < 2 or 1 in (args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")) or 1 in (args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("run")) and 2 in (args.indexOf("--help"),args.indexOf("-h")):
     print("venvscript {install|update|run|cmd|recreate|uv} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--help\t\t\tDisplays this message\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--overwrite\t\tBypasses the overwrite restriction in the \"install\" command\n\t--migrate-config\tMigrates the config from a previous version to the current one. This should run automatically if an old version is detected.")
 else:
-    if "--no-ssl" in args:
-        nossl = True
-        c2["Options"]["noSSLVerify"] = "True"
-    elif "--use-ssl" in args:
-        nossl = False
-        c2["Options"]["noSSLVerify"] = "False"
-    if "--uv-global" in args:
-        useuv = True
-        c2["Options"]["uvGlobal"] = "True"
-        useuvi = False
-        c2["Options"]["uvLocal"] = "False"
-    elif "--uv-local" in args:
-        useuv = False
-        c2["Options"]["uvGlobal"] = "False"
-        useuvi = True
-        c2["Options"]["uvLocal"] = "True"
-    elif "--no-uv" in args:
-        useuv = False
-        c2["Options"]["uvGlobal"] = "False"
-        useuvi = False
-        c2["Options"]["uvLocal"] = "False"
-    if "--default-help" in args:
-        defrun = False
-        c2["Options"]["defaultToRun"] = "False"
-    elif "--default-run" in args:
-        defrun =True
-        c2["Options"]["defaultToRun"] = "True"
-    if "--nohtmlparser" in args:
-        nohtmlparser = True
-        c2["Options"]["nocustomHTMLParser"] = "True"
-    elif "--withhtmlparser" in args:
-        nohtmlparser = False
-        c2["Options"]["nocustomHTMLParser"] = "False"
-    if "--supersecretdevmode" in args:
-        #This arguement is meant to be undocumented in the help section
-        #Does not have an option to disable because I would never need to disable this
-        #All this does is make the script not update anything that I might be working on
-        devenv = True
-        c2["Options"]["isDevEnv"] = "True"
-    if "--migrate-config" in args:
-        migrateConfig()
-    if nossl or "--unverified" in args:
-        import ssl
-        ssl_context = ssl._create_unverified_context()
-    match args[1]:
-        case "install":
-            if venvpath.exists() and "--overwrite" in args:
-                print("You can not use install in an existing directory. Did you mean \"update\"?")
-                exit()
-            if "--version" in args:
-                versiontag = args[args.indexOf("--version") + 1]
+    if args[1] in ("install","recreate","update","rezero") or args[1][:2] == "--":
+        if "--no-ssl" in args:
+            nossl = True
+            c2["Options"]["noSSLVerify"] = "True"
+        elif "--use-ssl" in args:
+            nossl = False
+            c2["Options"]["noSSLVerify"] = "False"
+        if "--uv-global" in args:
+            useuv = True
+            c2["Options"]["uvGlobal"] = "True"
+            useuvi = False
+            c2["Options"]["uvLocal"] = "False"
+        elif "--uv-local" in args:
+            useuv = False
+            c2["Options"]["uvGlobal"] = "False"
+            useuvi = True
+            c2["Options"]["uvLocal"] = "True"
+        elif "--no-uv" in args:
+            useuv = False
+            c2["Options"]["uvGlobal"] = "False"
+            useuvi = False
+            c2["Options"]["uvLocal"] = "False"
+        if "--default-help" in args:
+            defrun = False
+            c2["Options"]["defaultToRun"] = "False"
+        elif "--default-run" in args:
+            defrun =True
+            c2["Options"]["defaultToRun"] = "True"
+        if "--nohtmlparser" in args:
+            nohtmlparser = True
+            c2["Options"]["nocustomHTMLParser"] = "True"
+        elif "--withhtmlparser" in args:
+            nohtmlparser = False
+            c2["Options"]["nocustomHTMLParser"] = "False"
+        if "--supersecretdevmode" in args:
+            #This arguement is meant to be undocumented in the help section
+            #Does not have an option to disable because I would never need to disable this
+            #All this does is make the script not update anything that I might be working on
+            devenv = True
+            c2["Options"]["isDevEnv"] = "True"
+        if "--migrate-config" in args:
+            migrateConfig()
+        if nossl or "--unverified" in args:
+            import ssl
+            ssl_context = ssl._create_unverified_context()
+        if "--version" in args:
+            versiontag = args[args.indexOf("--version") + 1]
+        else:
+            versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
+        url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
+        if "--as3libversion" in args:
+            as3libversiontag = args[args.indexOf("--as3libversion") + 1]
+        else:
+            as3libversiontag = "latest"
+    if args[1] == "install":
+        if venvpath.exists() and "--overwrite" in args:
+            print("You can not use install in an existing directory. Did you mean \"update\"?")
+            exit()
+        create(url,as3libversiontag)
+    elif args[1] == "update":
+        if devenv:
+            print("Skipped game download.")
+        else:
+            downloadgame(url)
+        updatemodules(as3libversiontag)
+    elif args[1] == "run":
+        run([pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[2:]])
+    elif args[1] == "cmd":
+        ...
+    elif args[1] in ("recreate","rezero"):
+        rezero(url,as3libversiontag)
+    elif args[1] == "uv":
+        if venvpath.exists():
+            if len(args) == 2:
+                run(["uv","--help"])
             else:
-                versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
-            url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-            if "--as3libversion" in args:
-                as3libversiontag = args[args.indexOf("--as3libversion") + 1]
-            else:
-                as3libversiontag = "latest"
-            create(url,as3libversiontag)
-        case "update":
-            if "--version" in args:
-                versiontag = args[args.indexOf("--version") + 1]
-            else:
-                versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
-            url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-            if "--as3libversion" in args:
-                as3libversiontag = args[args.indexOf("--as3libversion") + 1]
-            else:
-                as3libversiontag = "latest"
-            if devenv:
-                print("Skipped game download.")
-            else:
-                downloadgame(url)
-            updatemodules(as3libversiontag)
-        case "run":
-            run([pythonvenvloc, venvpath/ "Pymin/Pymin.py", *args[2:]])
-        case "cmd":
+                rl = ["uv",*args[2:],"--python",pythonvenvloc]
+                if useuv:
+                    run(rl)
+                elif useuvi:
+                    run([pythonvenvloc,"-m"]+rl)
+    else:
+        if defrun:
+            run([pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]])
+        else:
             ...
-        case "recreate" | "rezero":
-            if "--version" in args:
-                versiontag = args[args.indexOf("--version") + 1]
-            else:
-                versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
-            url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-            if "--as3libversion" in args:
-                as3libversiontag = args[args.indexOf("--as3libversion") + 1]
-            else:
-                as3libversiontag = "latest"
-            rezero(url,as3libversiontag)
-        case "uv":
-            if venvpath.exists():
-                if len(args) == 2:
-                    run({"uv","--help"})
-                else:
-                    rl = ["uv",*args[2:],"--python",pythonvenvloc]
-                    if useuv:
-                        run(rl)
-                    elif useuvi:
-                        run([pythonvenvloc,"-m"]+rl)
 if noConfigExists:
     if venvpath.exists():
         createConfigInVenv(configDict=c2)
