@@ -22937,13 +22937,12 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "insectile "
             self.bugCocks += 1
          tempStr += "penis stands erect"
-         if self.gametweaks[4] == True:
-            if self.lizardCocks == self.cockTotal:
-               tempStr += ""
-            else:
-               tempStr += " and balls to match settle within your crotch beneath"
+         if self.gametweaks[4] == False or self.gametweaks[4] == True and self.lizardCocks != self.cockTotal:
+            tempStr += " and balls to match settle within your crotch beneath"
          if (self.vagTotal > 0):
-            tempStr += f", slipping into your {self.vulvaDesc()} lips. You now are considered a cross between genders, a herm."
+            if self.gametweaks[4] == False or self.gametweaks[4] == True and self.lizardCocks != self.cockTotal:
+               tempStr += f", slipping into your {self.vulvaDesc()} lips"
+            tempStr += ". You now are considered a cross between genders, a herm."
             self.gender = 3
          else:
             tempStr += ". You have now graduated from androgynous to male, congratulations!"
