@@ -8059,7 +8059,7 @@ class NiminFetishFantasyv0975o_fla:
             if self.boobTotal == 2:
                tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                if (self.breastSize > 4):
-                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                self.boobTotal = 4
                self.fourBoobAffinity = 100
                self.twoBoobAffinity = 0
@@ -14450,7 +14450,7 @@ class NiminFetishFantasyv0975o_fla:
                         else:
                            tempStr += f" As she melts into your embrace, you press your {self.vulvaDesc()} slit{self.plural(2)} against hers, kissing again with the lower sets of lips. Her feet curl up around your {self.hipDesc()} hips to press back, trying to grind her little clit into you the best she can in her lustful state."
                         if (self.lilaPreg == -2):
-                           tempStr += f" Although, with her inexperience, her movements are awkward and wry, leaving her drooling from between her thighs even more in desparation. You take up most effort, humping and thrusting your sexes together until the bed is drenched in your combined feminine fluids. Eventually, one of her legs bends high, stretching her virgin pussy wide as she gives you plenty of room to push against her. She lets out a gentle cry as she shudders, hooking the leg around your back and jerking against you, a volley of slime splattering across your {self.legDesc(2)} with an intense orgasm, forcing you to your own.\n\nShe pants loudly for several minutes afterwards, her fur flush and sweaty. She nuzzles into your body, a few tears welling up. Yet, as she sniffles, it's obvious she's not crying from sadness.\n\n\"That felt... so gewd. I... I love yew!\"\n\nShe begins to lick you\ttrying to clean you up a bit, but the strokes of her tongue quickly slow. Within a few moments, she nods off beneath you, fast asleep. You shrug and chuckle, hugging her tight before cuddling up and joining her in the dream world."
+                           tempStr += f" Although, with her inexperience, her movements are awkward and wry, leaving her drooling from between her thighs even more in desparation. You take up most effort, humping and thrusting your sexes together until the bed is drenched in your combined feminine fluids. Eventually, one of her legs bends high, stretching her virgin pussy wide as she gives you plenty of room to push against her. She lets out a gentle cry as she shudders, hooking the leg around your back and jerking against you, a volley of slime splattering across your {self.legDesc(2)} with an intense orgasm, forcing you to your own.\n\nShe pants loudly for several minutes afterwards, her fur flush and sweaty. She nuzzles into your body, a few tears welling up. Yet, as she sniffles, it's obvious she's not crying from sadness.\n\n\"That felt... so gewd. I... I love yew!\"\n\nShe begins to lick you, trying to clean you up a bit, but the strokes of her tongue quickly slow. Within a few moments, she nods off beneath you, fast asleep. You shrug and chuckle, hugging her tight before cuddling up and joining her in the dream world."
                         else:
                            tempStr += f" The two of you quickly find a rhythm, her small body writhing about beneath yours and matching your movements. Her legs move higher and higher up your back, stretching her hot pussy wider until it's practically nipping at your own as you press deeper into it. A flood of slick fluids gush out about your cunt{self.plural(2)} as Lila lets out a gentle cry, her tongue lolling out of her mouth with orgasm."
                            if (self.lilaVulva > 10):
@@ -16437,7 +16437,7 @@ class NiminFetishFantasyv0975o_fla:
                   if self.boobTotal == 2:
                      tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                      if (self.breastSize > 4):
-                        tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                        tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                   elif self.boobTotal == 6:
                      tempStr += "\n\nYour belly tickles"
                      if (self.breastSize > 4):
@@ -17693,7 +17693,7 @@ class NiminFetishFantasyv0975o_fla:
                                              else:
                                                 self.malonRep = 5
                                           elif (self.cockSize * self.cockSizeMod > self.eVagLimit(56)):
-                                             tempStr += f"\n\nHowever, she can easily tell that you're far too large for her. So, instead, she crawls back up your body, licking your\tmilk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your {self.cockDesc()} erection{self.plural(1)}, humping her clit along your length{self.plural(1)}."
+                                             tempStr += f"\n\nHowever, she can easily tell that you're far too large for her. So, instead, she crawls back up your body, licking your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your {self.cockDesc()} erection{self.plural(1)}, humping her clit along your length{self.plural(1)}."
                                           tempStr += "\n\nOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\n\nQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you begin to gush with cum, she can no longer resist, allowing her mouth stretch wide.\n\n\"MOOOOOOO!\""
                                           self.cumAmount()
                                        elif ((self.cockTotal < 1) and (self.vagTotal > 0)):
@@ -18000,7 +18000,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f", and switch the machine on to make the cups latch on with their suction. You let out a moan as the machine begins to chug away, sucking your nipples in deeper, pulling the milk from your {self.nipDesc()} handles, and drinking the milk in long gluttonous slurps through the clear tubes. It feels so delightful, perfectly timed for large amounts of milk and completely hands-free, allowing your fingers to provide you with more sensual attention elsewhere, letting you moan even more loudly.\n\nBetween the noises of the machine and your moaning, you don't even notice somebody sneaking up on you until you feel thir arms wrap around you and grabs into your swollen chest.\n\n\"Gotcha!\"\n\nA pleasantly familiar voice, you turn around to see the tell-tale tail swishing upon her backside with her own shirt slightly soaked in front"
                   if (self.malonPreg > 100):
                      tempStr += ", her large pregnant belly swollen with your child"
-                  tempStr += f".\n\n\"Hehe, I guess I wasn't the only one who thought to use this, hmm? Well then, I suppose it's only fair to do to you what you usually do to me~\" Malon gives you a devious smirk. Her hands massage your {self.boobDesc()} mammaries while she grinds against your {self.buttDesc()} backside. Even though she has no phallic thing to penetrate you with, she still manages to arouse you further with the effort alone, making the machine chug harder as it tries to gulp down the increasing flow of your dairy goodness. She leans forward to kiss you from the side, her large chest mushing up against your back\tuntil her own bovine leakage seeps out through her shirt into small rivers "
+                  tempStr += f".\n\n\"Hehe, I guess I wasn't the only one who thought to use this, hmm? Well then, I suppose it's only fair to do to you what you usually do to me~\" Malon gives you a devious smirk. Her hands massage your {self.boobDesc()} mammaries while she grinds against your {self.buttDesc()} backside. Even though she has no phallic thing to penetrate you with, she still manages to arouse you further with the effort alone, making the machine chug harder as it tries to gulp down the increasing flow of your dairy goodness. She leans forward to kiss you from the side, her large chest mushing up against your back until her own bovine leakage seeps out through her shirt into small rivers "
                   if (self.malonPreg > 100):
                      tempStr += "around her fertile girth and "
                   tempStr += f"down to your rump, quickly making both your crotches warm and wet with her milk, making yours flow even more and more and...\n\nSploosh! The milking cups fly off from your {self.nipDesc()} nipples. Geysers of white spray from your tits with enough volume and pressure to have defeated the suction of a machine meant for cows. This doesn't seem to phase Malon, however. Instead, as she watches you erupt with so much arousal, it seems to only entice her further as she pulls you back to the wall and slides down to the floor with you between her legs. She continues to kiss and grope at your chest, grabbing a tit and milking by hand while another hand sneaks down into your {self.clothesBottom()}, fondling your crotch and making you gyrate against her own in rhythm."
@@ -18585,7 +18585,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.cockSize * self.cockSizeMod >= 66):
                   tempStr += " Your own length, meanwhile, stretches her belly out further, forcing her belly-scales to protrude from within, yet seems to have no sign of hurting her or her womb. In fact, she seems to enjoy it even more as she blissfully hugs your head whenever it presses out far enough, tenderly rubbing it until it disappears back inside."
                elif (self.cockSize * self.cockSizeMod >= 36):
-                  tempStr += "\tYour own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again."
+                  tempStr += " Your own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again."
                tempStr += " She bounces upon you so roughly that her four pairs of breasts jiggle obscenely, the nipples stiff and tossing milk about everywhere.\n\nAt this rate, it doesn't take long before Silandrias is letting out a loud, lustful howl as you erupt within her."
                if (getCum < 1000):
                   tempStr += " Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in."
@@ -18860,7 +18860,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.cockSize * self.cockSizeMod >= 66):
                      tempStr += " Your own length, meanwhile, stretches her belly out further, forcing her belly-scales to protrude from within, yet seems to have no sign of hurting her or her womb. In fact, she seems to enjoy it even more as she blissfully hugs your head whenever it presses out far enough, tenderly rubbing it until it disappears back inside."
                   elif (self.cockSize * self.cockSizeMod >= 36):
-                     tempStr += "\tYour own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again."
+                     tempStr += " Your own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again."
                   tempStr += " She bounces upon you so roughly that her "
                   if ((self.silRep > 3) and (self.silPreg > 60)):
                      tempStr += "four pairs of"
@@ -19082,7 +19082,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.boobTotal == 2):
                         tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                         if (self.breastSize > 4):
-                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                         self.boobTotal = 4
                         self.fourBoobAffinity = 100
                      tempStr += "\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging."
@@ -19165,7 +19165,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.boobTotal == 2):
                         tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                         if (breastSize > 4):
-                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                         self.boobTotal = 4
                         self.fourBoobAffinity = 100
                      tempStr += "\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging."
@@ -19187,7 +19187,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.boobTotal == 2):
                         tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                         if (self.breastSize > 4):
-                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                         self.boobTotal = 4
                         self.fourBoobAffinity = 100
                      tempStr += "\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging."
@@ -19206,7 +19206,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.boobTotal == 2):
                         tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                         if (self.breastSize > 4):
-                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                         self.boobTotal = 4
                         self.fourBoobAffinity = 100
                      tempStr += "\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging."
@@ -19246,7 +19246,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.boobTotal == 2):
                         tempStr += f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                         if (self.breastSize > 4):
-                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                           tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
                         self.boobTotal = 4
                         self.fourBoobAffinity = 100
                      tempStr += "\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging."
@@ -22695,7 +22695,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                if (self.breastSize > 4):
-                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth.\tWhen you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
+                  tempStr += f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             if (self.boobTotal == 6):
                tempStr += "\n\nYour belly tickles"
                if (self.breastSize > 4):
