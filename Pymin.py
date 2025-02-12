@@ -10860,7 +10860,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " get you to moan for them, one of the Lizans going even so far to stroke across your "
                   if self.showBalls:
                      tempStr += "balls"
-                  elif self.lizardCocks == self.cockTotal:
+                  elif self.gametweaks[4] == True and self.lizardCocks == self.cockTotal:
                      tempStr += "slit"
                   else:
                      tempStr += "butt"
@@ -15084,6 +15084,7 @@ class NiminFetishFantasyv0975o_fla:
                   def doListen():
                      if (self.buttonChoice == 5):
                         tempStr = f"Pulling {self.pullUD(2)} your {self.clothesBottom()}, you give her a good view of your "
+                        #!Add option here for slit cock when gametweaks 4 is active
                         if (self.cockTotal > 0):
                            tempStr += f"{self.cockDesc()} appendage{self.plural(1)}. She shrieks at the sight of such an odd thing, closing her eyes and running out the door, her wet dress sticking to her belly while her nethers are clear for all to see.\n\nFortunately, little girls showing off their nethers is somewhat common in Siz'Calit and nobody seems to pay any mind."
                            tempStr += self.doLust(3,0,ret=True)
