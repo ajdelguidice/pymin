@@ -977,12 +977,12 @@ class NiminFetishFantasyv0975o_fla:
          ##Sol Mode
          self.optionswindow.addCheckboxWithLabel("options","SOLMode",10,10,80,20,("TimesNewRoman",11),"nw","Sol Mode")
          self.optionswindow.configureChild("SOLMode",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="Toggles usage of save files compatable with the original game. This also affects\nthe \"save as\" and \"load file\" buttons.")
+         CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="Forces the game to only use save files compatible with the original game. Does\nnot effect the expanded save dialog (gametweak).")
          
          ##Fixed Resolution
          self.optionswindow.addCheckboxWithLabel("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution")
          self.optionswindow.configureChild("FixedRes",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["FixedRes"].frame,text="Locks the resolution of all windows to their default value.")
+         CreateToolTip(self.optionswindow.children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
 
          #x+180,y-97
          ##Custom Theme color
@@ -1007,6 +1007,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["ThemeType"].radiobuttons[1]["state"] = "disabled"
          self.optionswindow.children["ThemeType"].radiobuttons[2]["state"] = "disabled"
          self.optionswindow.children["ThemeType"].selected = 0
+         CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nThe theme of the game that this one originally got its engine from (Lineage)")
 
          ##Save Location
          self.optionswindow.addFileEntryBox("options","SaveLocation",110,98,300,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
@@ -1022,7 +1023,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Grammar Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","GrammarTweaks",10,10,144,20,("TimesNewRoman",11),"nw","Grammar Tweaks")
          self.optionswindow.configureChild("GrammarTweaks",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["GrammarTweaks"].frame,text="Tweaks specific grammar things. Ex:\n\"Femme boy\" becomes \"Femboy\",\n\"Shemale\" becomes \"Futanari\"")
+         CreateToolTip(self.optionswindow.children["GrammarTweaks"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described and tweaks some other grammar stuff.Ex:\n\"Femme boy\" becomes \"Femboy\",\n\"Shemale\" becomes \"Futanari\"")
 
          ##Status Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",10,32,124,20,("TimesNewRoman",11),"nw","Status Tweaks")
@@ -1032,7 +1033,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Succubus Leaves One
          self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",10,54,164,20,("TimesNewRoman",11),"nw","Succubus Leaves One")
          self.optionswindow.configureChild("SuccubusLeavesOne",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock instead of taking all of them")
+         CreateToolTip(self.optionswindow.children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and at least 2 lizardCocks)\ninstead of taking all of them.")
 
          ##Use isBottomOpen
          self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",10,76,144,20,("TimesNewRoman",11),"nw","Use isBottomOpen")
@@ -1042,32 +1043,32 @@ class NiminFetishFantasyv0975o_fla:
          ##Lizan Don't Show Balls
          self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",10,98,184,20,("TimesNewRoman",11),"nw","Lizan Don't Show Balls")
          self.optionswindow.configureChild("LizanDontShowBalls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs and those don't have external balls. This changes the\ngame to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (IncompleteS)")
+         CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs and those don't have external balls. This changes the\ngame to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
          ##Use expanded save file selection dialog
          self.optionswindow.addCheckboxWithLabel("gt","UseExpandedSaveDialog",10,120,190,20,("TimesNewRoman",11),"nw","Use expanded save dialog")
          self.optionswindow.configureChild("UseExpandedSaveDialog",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="I created an expanded save file dialog that allows you to select any file\ninside of the save folder. This option enables that dialog for both the save\nand load dialogs.")
+         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="Enables the expanded save dialog that I created to enable saving and loading\nfrom any file inside of the save folder without much extra work.")
 
          ##Herm Can Has Both
          self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",200,10,190,20,("TimesNewRoman",11),"nw","Herm Can Has Both")
          self.optionswindow.configureChild("HermGetsBoth",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["HermGetsBoth"].frame,text="Herms have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where there wasn't anything and it makes sense. (Incomplete)")
+         CreateToolTip(self.optionswindow.children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
 
          ##Internal ball size affects belly size
-         self.optionswindow.addCheckboxWithLabel("gt","IntBallsAffectBelly",200,32,190,20,("TimesNewRoman",11),"nw","IntBallsAffectBellySize")
-         self.optionswindow.configureChild("IntBallsAffectBelly",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["IntBallsAffectBelly"].frame,text="When showBalls is False and balls >= 1, ballSize affects belly size. (Incomplete)")
+         self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",200,32,190,20,("TimesNewRoman",11),"nw","IntBallsEffectBellySize")
+         self.optionswindow.configureChild("IntBallsEffectBelly",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
 
          ##Add direct path to sanctuary
          self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",200,54,190,20,("TimesNewRoman",11),"nw","Direct Path to Sanctuary")
          self.optionswindow.configureChild("DirectPathToSanc",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["DirectPathToSanc"].frame,text="Adds a button to go to sanctuary in firmshaft's explore option.")
+         CreateToolTip(self.optionswindow.children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
 
          ##Digi beast feet
          self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,76,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the digitgrade. Before\nthey had human feet, now they have paws and hooves. Paws were already\nimplemented before (internally called \"digipaws\") but were only used for the\nskunk race. (Incomplete)")
+         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)")
 
          ##Use old stash
          self.optionswindow.addCheckboxWithLabel("gt","UseOldStash",200,98,210,20,("TimesNewRoman",11),"nw","Use original stash")
@@ -1087,12 +1088,12 @@ class NiminFetishFantasyv0975o_fla:
             #Always Choose Senario
             self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",10,10,154,20,("TimesNewRoman",11),"nw","alwaysChooseSenario")
             self.optionswindow.configureChild("ChooseSenario",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow.children["ChooseSenario"].frame,text="Adds a way to choose the senario that happens every time you explore. When this is enabled, you must enter a senario number in the terminal every time.")
+            CreateToolTip(self.optionswindow.children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
 
             #Always Choose Senario
             self.optionswindow.addCheckboxWithLabel("dt","NoDamage",10,32,154,20,("TimesNewRoman",11),"nw","takeNoDamage")
             self.optionswindow.configureChild("NoDamage",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow.children["NoDamage"].frame,text="Take no damage from enemies. Currently only works when eDmg is called.")
+            CreateToolTip(self.optionswindow.children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
 
          #Apply button
          self.optionswindow.addButton("root","ApplyButton",360,172,50,25,("TimesNewRoman",12),"nw")
@@ -1132,7 +1133,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.gametweaks[6] == True:
          self.optionswindow.children["HermGetsBoth"].select()
       if self.gametweaks[7] == True:
-         self.optionswindow.children["IntBallsAffectBelly"].select()
+         self.optionswindow.children["IntBallsEffectBelly"].select()
       if self.gametweaks[8] == True:
          self.optionswindow.children["DirectPathToSanc"].select()
       if self.gametweaks[9] == True:
@@ -1238,7 +1239,7 @@ class NiminFetishFantasyv0975o_fla:
             self.gametweaks[6] = True
          else:
             self.gametweaks[6] = False
-         if self.optionswindow.children["IntBallsAffectBelly"].getcb() == 1:
+         if self.optionswindow.children["IntBallsEffectBelly"].getcb() == 1:
             self.gametweaks[7] = True
          else:
             self.gametweaks[7] = False
@@ -1901,7 +1902,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen == True:
-         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsAffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseOldStash","MiscChanges","ApplyButton"):
+         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseOldStash","MiscChanges","ApplyButton"):
             self.optionswindow.configureChild(i,background=color)
          if confmod.as3DebugEnable == True:
             for i in ("dt","ChooseSenario","NoDamage"):
@@ -1935,7 +1936,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsAffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseOldStash","MiscChanges","ApplyButton"):
+         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseOldStash","MiscChanges","ApplyButton"):
             self.optionswindow.configureChild(i,foreground=color)
          if confmod.as3DebugEnable == True:
             for i in ("ChooseSenario","NoDamage"):
