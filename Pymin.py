@@ -3871,8 +3871,8 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(27):
          if (self.bagArray[i] != 0):
             tempStr += f"\n{self.itemName(self.bagArray[i])}"
-         if (self.bagStackArray[i] > 1): #!This should probably be indented
-            tempStr += f" x{self.bagStackArray[i]}"
+            if (self.bagStackArray[i] > 1):
+               tempStr += f" x{self.bagStackArray[i]}"
       if (self.showSide == True):
          self.outputSideText(tempStr,True)
       else:
