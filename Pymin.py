@@ -4681,6 +4681,10 @@ class NiminFetishFantasyv0975o_fla:
             self.jamieButt = strtobool(srep.find('jamieButt').text)
             self.jamieBreasts = strtobool(srep.find('jamieBreasts').text)
             self.jamieHair = strtobool(srep.find('jamieHair').text)
+            if (self.jamieSize == 0 and self.jamieRep > 5):
+               self.jamieRep = 3
+            if (self.jamieSize == 0):
+               self.jamieSize = 4
             self.foundSoftlik = strtobool(sknowledge.find('foundSoftlik').text)
             self.foundFirmshaft = strtobool(sknowledge.find('foundFirmshaft').text)
             self.foundTieden = strtobool(sknowledge.find('foundTieden').text)
