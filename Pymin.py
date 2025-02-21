@@ -2439,11 +2439,9 @@ class NiminFetishFantasyv0975o_fla:
       self.detailedDebug()
       self.bc()
       dlist = [1,2,3,4,5,6,7,8,9,10,11,12]
-      i = 0
-      while i < len(buttonlist):
+      for i in range(0,len(buttonlist),2):
          dlist.remove(buttonlist[i])
          self.buttonWrite(buttonlist[i],buttonlist[i+1])
-         i += 2
       self.disableSelectedButtons(dlist)
    def doProcess(self):
       if self.goToInDoProcess != -1:
@@ -2464,6 +2462,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                #i = 1
                #while (i <= self.moveItemStack):
+               #!addmanyitems
                for i in range(self.moveItemStack):
                   self.itemAdd(self.moveItemID)
                   #i += 1
@@ -3474,7 +3473,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.moistCalc(1) > 2 and self.moistCalc(1) <= 5):
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
             elif (self.moistCalc(1) > 5):
-               tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid.  Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
+               tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
          else:
             if (self.humanCocks > 0):
                tempStr += f" {self.humanCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
@@ -4776,10 +4775,8 @@ class NiminFetishFantasyv0975o_fla:
                self.stashArray[i] = int(stash.find(tempstr).text)
                self.stashStackArray[i] = int(stashStack.find(tempstr).text)
             self.pregArray = as3.Array()
-            i = 0
-            while (i < len(preg)):
+            for i in range(0,len(preg),5):
                self.pregArray.push(strtobool(preg.find(f"i{i}").text),int(preg.find(f"i{i+1}").text),int(preg.find(f"i{i+2}").text),int(preg.find(f"i{i+3}").text),int(preg.find(f"i{i+4}").text))
-               i += 5
          else:
             self.currentState = strack.find('currentState').text
             self.day = strack.find('day').text
@@ -6011,8 +6008,7 @@ class NiminFetishFantasyv0975o_fla:
                self.weapon = 10
    def loseManyItem(self, ID:int, amount:int):
       #Function for losing multiple items
-      i = 26
-      while (i >= 0):
+      for i in range(26,-1,-1):
          if (self.bagArray[i] == ID and amount > 0):
             if (amount >= self.bagStackArray[i]):
                self.passiveItemRemove(self.bagArray[i])
@@ -6022,7 +6018,6 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.bagStackArray[i] -= amount
                amount = 0
-         i -= 1
    def addManyItem(self, ID:int, amount:int):
       #Function for gaining many items
       for i in range(amount):
@@ -7532,11 +7527,9 @@ class NiminFetishFantasyv0975o_fla:
          case 506:
             if (self.pregCheck(0) == True):
                tempStr = f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!"
-               i = 0
-               while (i < self.pregArray.length):
+               for i in range(0,self.pregArray.length,5):
                   if (self.pregArray[i] == True):
                      self.pregArray[i + 3] += 50
-                  i += 5
                tempStr += f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size."
                self.outputMainText(tempStr,True)
                self.doEnd()
@@ -7580,11 +7573,9 @@ class NiminFetishFantasyv0975o_fla:
          case 511:
             if (self.pregCheck(0) == True):
                tempStr = f"Drinking this potion, you can feel your {self.bellyDesc()} belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the {self.skinDesc()} creak, growing taut, to the point where you fear it will tear!"
-               i = 0
-               while (i < self.pregArray.length):
+               for i in range(0,self.pregArray.length,5):
                   if (self.pregArray[i] == True):
                      self.pregArray[i + 3] += 120
-                  i += 5
                tempStr += f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size..."
                self.outputMainText(tempStr,True)
                self.doEnd()
@@ -7704,16 +7695,11 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText(f" The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your new clit{self.plural(1)}, making you shiver slightly, before you dip your finger into {self.oneYour(1)} new cunt{self.plural(1)}, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl.",False)
                self.vagBellyChange(self.cockSize,self.cockTotal)
                self.vagTotal = self.cockTotal
-               i = 1
-               while (i <= self.vagTotal): #Can be for loop
+               for i in range(self.vagTotal):
                   if (self.pregArray.length / 5 < 1):
                      self.pregArray = as3.Array(False,0,0,0,0)
-                     i += 1
                   elif (self.pregArray.length / 5 < self.vagTotal):
                      self.pregArray.push(False,0,0,0,0)
-                     i += 1
-                  else:
-                     i += 1
                self.vagSize = self.cockSize
                self.vulvaSize = self.ballSize
                self.clitSize = self.ballSize
@@ -11118,9 +11104,8 @@ class NiminFetishFantasyv0975o_fla:
             whichCock = "bumpy-ridged spiked bug wang"
          tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          getCum = self.cumAmount()
-         i = 0
          #!Remove while loop if possible
-         while (i == 0):
+         while True:
             #!optimize if/else
             chance = math.floor(random.random() * 7) + 1
             if (chance == 1):
@@ -11185,7 +11170,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText(tempStr,True)
                   self.hrs = 5
                   self.exhaustion -= 2
-                  i += 1
+                  break
                else:
                   if (self.ment >= self.lib - 10):
                      tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
@@ -11202,7 +11187,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                   self.outputMainText(tempStr,True)
                   self.hrs = 1
-                  i += 1
+                  break
             #if (chance == 2 and self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3):
             #   {}
             #if (chance == 3 and getCum > 2000):
@@ -11227,7 +11212,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f", you have no choice but to pull the clothing up, letting your wang{self.plural(1)} bounce out. Grabbing {self.plural(9)} the best you can in your impetuous state, you stroke strongly and swiftly. You lean back against the structure, with people openly walking and talking just on the other side, as you masturbate fervently.\n\nThe fear of being caught only makes your heart beat faster, quickly producing results in your loins. You hardly hold back for a second to let the pressure build, before you release it in a spurting torrent of white fluid. You continue to pet yourself, squeezing out the leftover cum, while your mind savors the dwindling orgasm.\n\nHalf-aware of what you had just done, your mind still in a fuzz, you simply catch your cock{self.plural(1)} within your {self.clothesBottom()} once more, staining it slightly with the gobs of seed at your tip{self.plural(1)}, and leave your secluded area to head back into the public, leaving behind your puddle of lewd mess for someone else to stumble across..."
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
-               i += 1
+               break
             elif (chance == 7 and self.attireBot in (4,15,20)):
                tempStr = f"With the thought of masturbating on your mind, you can feel your cock{self.plural(1)} begin to swell in anticipation. The tight confines of your {self.clothesBottom()} rapidly growing tighter, you hurry on home.\n\nJust as you step through the doorway to your private abode, the waistband of your {self.clothesBottom()} can no longer contain the {self.cockDesc()} bulge. Your length{self.plural(1)} leap{self.plural(3)} out, flinging "
                if (self.moistCalc(1) > 8):
@@ -11246,7 +11231,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f" Your softening member{self.plural(1)} slowly recede back into the {self.clothesBottom()}, leaving a slight slimy trail in the process, but at least allows you to tuck {self.plural(9)} away for now as you proceed to clean up the mess you made."
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
-               i += 1
+               break
             #if (chance == 8 and self.attireBot in (10,11) and lust > 60):
             #   {}
          self.doEnd()
@@ -11258,8 +11243,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
       else:
          tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
-         i = 0
-         while (i == 0):
+         while True:
             #!optimize if/else
             chance = math.floor(random.random() * 6) + 1
             if chance == 1:
@@ -11311,7 +11295,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
                self.hrs = 1
-               i += 1
+               break
             #elif chance == 2 and self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
             #   {}
             #elif chance == 3:
@@ -11342,7 +11326,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += -self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
                self.hrs = 1
-               i += 1
+               break
             #elif chance == 7 and (self.attireBot == 4 or self.attireBot == 15):
             #   {}
             #elif chance == 8 and (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
@@ -11370,9 +11354,8 @@ class NiminFetishFantasyv0975o_fla:
          self.lustArray.push(23)
       elif (self.breastSize < 5):
          self.lustArray.push(24)
-      i = 0
       #!remove while loop if possible
-      while (i == 0):
+      while True:
          chance = math.floor(random.random() * 6) + 1
          #!optimize if/else
          if (chance == 1):
@@ -11470,7 +11453,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
             self.outputMainText(tempStr,True)
             self.nipplePlay += 8
-            i += 1
+            break
          if (chance == 2 and self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0):
             self.lustArray.push(53)
             tempStr = f"Relaxing in your room, you sneak your breasts out of your {self.clothesTop()}, palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your {self.clothesBottom()}. It looks so delicious that you can't help but...\n\nYou reach under a boob and hoist it up, craning your neck down to meet "
@@ -11509,16 +11492,15 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,3,ret=True)
             self.outputMainText(tempStr,True)
             self.hrs += 2
-            i += 1
+            break
       self.hrs += 1
       self.doEnd()
    def doUdderMasturbate(self):
       chance = 0
       getMilk = 0
       self.lustArray = as3.Array(4)
-      i = 0
       #!remove while loop if possible
-      while (i == 0):
+      while True:
          #!optimize if/else
          chance = math.floor(random.random() * 2) + 1
          if (chance == 1):
@@ -11609,7 +11591,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
             self.outputMainText(tempStr,True)
             self.udderPlay += 8
-            i += 1
+            break
          if (chance == 2 and self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0):
             self.lustArray.push(53)
             tempStr = f"Relaxing in your room, you pull your udder out of your {self.clothesBottom()}, lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your {self.legDesc(2)} and the floor. It looks so delicious that you can't help but...\n\nYou hug around the udder and hoist it up, craning your neck down to meet a {self.teatDesc()} teat with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight."
@@ -11639,7 +11621,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,4,ret=True)
             self.outputMainText(tempStr,True)
             self.hrs += 2
-            i += 1
+            break
       self.hrs += 1
       self.doEnd()
    def doAlchemy(self):
@@ -14051,11 +14033,9 @@ class NiminFetishFantasyv0975o_fla:
                      def doListen():
                         self.outputMainText("The strange woman lies in bed with you for another hour, cuddling up and resting your bellies side-to-side. But eventually she realizes how much time she has spent indulging herself at your 'expense'. \"I'm sorry to have taken so long to get that out of my system, but... it was very enjoyable indeed. Here, sweetie, a gift from my business. I'm actually a breeder of pets for people and this helps with the process. I do love the big swollen bellies so~ You could probably sell it for a nice chunk of change, or maybe you can find some use for it too.\" She gives you a wink as she slips a potion into your hand.\n\nThen she cradles her belly as she slinks off the bed and stands, her nipples blotching her shirt as she dons it. When she reaches for her shorts, however, she realizes they're a bit... unwearable now. Her fluffy tail curls down between her legs, snugging up against the underside of her belly on the other side like a pair of panties. She gives you another wink. \"Don't worry, I'll be alright. Wouldn't be the first time~\" and she skips out the door, so absolutely giddy from her time with you.",True)
                         if (self.pregCheck(0)):
-                           i = 0
-                           while (i < self.pregArray.length): #!Could possibly be for loop using range with the step arguement
+                           for i in range(0,self.pregArray.length,5):
                               if (self.pregArray[i] == True):
                                  self.pregArray[i + 3] += 20
-                              i += 5
                         self.itemAdd(248)
                         self.hrs = 3
                         self.doEnd()
@@ -16891,14 +16871,13 @@ class NiminFetishFantasyv0975o_fla:
                                     tempStr += ", while your cum-inflated womb sloshes with each step"
                                  tempStr += "..."
                                  if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
-                                    while (i < self.pregArray.length):
+                                    for i in range(0,self.pregArray.length,5):
                                        if (self.pregArray[i] == False):
                                           self.pregArray[i] = True
                                           self.pregArray[i + 1] = 501
                                           self.pregArray[i + 2] = 230
                                           self.pregArray[i + 3] = 220
-                                          i = self.pregArray.length
-                                       i += 5
+                                          break
                                  elif (self.vagTotal > 0):
                                     #!Can just be replace with doMultiImpregnate.
                                     tempInt = 1
@@ -16949,15 +16928,13 @@ class NiminFetishFantasyv0975o_fla:
                                  tempStr += "The stuff feels rather familiar, actually. Well, as far as you can tell. Then after a few seconds it dawns on you. The machine is pumping your semen back into you! It fills your hole, attempting to make you pregnant with your own cum."
                                  if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and self.getCum > 5000):
                                     tempStr += " With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish.\n\nHaving spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period."
-                                    i = 0
-                                    while (i < self.pregArray.length):
+                                    for i in range(0,self.pregArray.length,5):
                                        if (self.pregArray[i] == False):
                                           self.pregArray[i] = True
                                           self.pregArray[i + 1] = 502
                                           self.pregArray[i + 2] = 230
                                           self.pregArray[i + 3] = 220
-                                          i = self.pregArray.length
-                                       i += 5
+                                          break
                                  else:
                                     if (self.vagTotal > 1):
                                        tempStr += " Then, once it has given your pussy a nice load, it pulls back out, making you shudder. It swerves from side to side, scanning for any more. Of course, you have more than one, so it doesn't take long before it finds another hole and plunges back in."
@@ -18106,8 +18083,7 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += " Yet, you don't have much time to enjoy your quivering state before you find yourself beginning to shrink, sliding down one side of the hill as you're caught off balance. You become slick with your own lubrication as you roll through the messy grass and splash down in your own puddle. Picking yourself up, the slime sticking to your body in webs and strands, you take a moment to flick off some of the goop before heading back to the cave."
                            if (self.pregCheck(1) and self.percent() <= 60 and self.vagSize * self.vagSizeMod > 56):
                               tempStr += " And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?"
-                              i = 0
-                              while (i < self.pregArray.length):
+                              for i in range(0,self.pregArray.length,5):
                                  if (self.pregArray[i] == False):
                                     self.pregArray[i] = True
                                     if (self.percent() <= 50):
@@ -18116,8 +18092,7 @@ class NiminFetishFantasyv0975o_fla:
                                        self.pregArray[i + 1] = 202
                                     self.pregArray[i + 2] = 230
                                     self.pregArray[i + 3] = 220
-                                    i = self.pregArray.length
-                                 i += 5
+                                    break
                               tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
                            else:
                               tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
@@ -20439,15 +20414,13 @@ class NiminFetishFantasyv0975o_fla:
                tempStr = f"Feeling the warmth emanating from beneath your {self.clothesBottom()}, the cock-snake slithers in {self.legWhere(1)} your {self.legDesc(2)}. The phallic head nuzzles up against your {self.vulvaDesc()} lips, smearing around some of your lubricant. Its nose bumps against your {self.clitDesc()} clit{self.plural(2)}, testing your arousal until you quiver beneath."
                if (self.pregCheck(1)):
                   tempStr += f"\n\nSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your {self.legDesc(1)}, holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\n\nAnd it's quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can't help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\n\nIn that moment of peak pleasure, the snake lets go of your {self.legDesc(1)} and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\n\nIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you..."
-                  i = 0
-                  while (i < self.pregArray.length):
+                  for i in range(0,self.pregArray.length,5):
                      if (self.pregArray[i] == False):
                         self.pregArray[i] = True
                         self.pregArray[i + 1] = 503
                         self.pregArray[i + 2] = 240
                         self.pregArray[i + 3] = 150
-                        i = self.pregArray.length
-                     i += 5
+                        break
                   self.cockSnakePreg += 50
                   tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
                else:
@@ -20564,15 +20537,13 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" The object is so big that it stretches your poor cunt{self.plural(2)} even larger, making sure there's enough room."
                      self.vagSize += 2
                   tempStr += f"\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your {self.clitDesc()} clit{self.plural(2)}, you can do nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, the things inside shivering slightly at the warmth of their new home...\n\nHappy with her spawning season, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate..."
-                  i = 0
-                  while (i < self.pregArray.length):
+                  for i in range(0,self.pregArray.length,5):
                      if (self.pregArray[i] == False):
                         self.pregArray[i] = True
                         self.pregArray[i + 1] = 200
                         self.pregArray[i + 2] = 216
                         self.pregArray[i + 3] = 180
-                        i = self.pregArray.length
-                     i += 5
+                        break
             elif (self.gender == 3):
                tempStr += f"With a giggle at your vulnerable state, her tentacles wrap about your {self.buttDesc()} butt, weaving into you {self.clothesBottom()} and pulling out your {self.cockDesc()} erection{self.plural(1)}. She takes {self.oneYour(1)} cock{self.plural(1)} and fondles it with the slimy appendages, making sure it's nice and hard."
                if (self.cockSize * self.cockSizeMod > 50):
@@ -20592,15 +20563,13 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" The object is so big that it stretches your poor cunt{self.plural(2)} even larger, making sure there's enough room."
                      self.vagSize += 3
                   tempStr += f"\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your {self.clitDesc()} clit{self.plural(2)}, you can nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, even the extra bit she gained from after you filled her with your cum, the things inside shivering slightly at the warmth of their new home...\n\nEspecially happy with how well her spawning season went this week, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate..."
-                  i = 0
-                  while (i < self.pregArray.length):
+                  for i in range(0,self.pregArray.length,5):
                      if (self.pregArray[i] == False):
                         self.pregArray[i] = True
                         self.pregArray[i + 1] = 200
                         self.pregArray[i + 2] = 252
                         self.pregArray[i + 3] = 216
-                        i = self.pregArray.length
-                     i += 5
+                        break
             if ((self.gender == 2 or self.gender == 3) and self.pregCheck(1)):
                tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
             else:
@@ -21250,11 +21219,9 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs += 1
                elif (self.pregCheck(0)):
                   tempStr += "\n\nYour womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust."
-                  i = 0
-                  while (i < self.pregArray.length):
+                  for i in range(0,self.pregArray.length,5):
                      if (self.pregArray[i] == True):
                         self.pregArray[i + 3] += 10
-                     i += 5
                elif (self.gender != 0):
                   tempStr += "\n\nYour loins feel suddenly more fertile. If you can consider the desire to fuck as being more 'fertile'..."
                   tempStr += self.doLust(20,1,ret=True)
@@ -21405,8 +21372,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hrs = 0
       self.pregnancyTime = 0
       birthCount = 0
-      i = 0
-      while (i < self.pregArray.length):
+      for i in range(0,self.pregArray.length,5):
          if (self.pregArray[i] == True):
             if (self.pregArray[i + 3] + math.ceil(time * self.pregRate) > self.pregArray[i + 2] + self.pregTimeMod):
                self.pregArray[i] = False
@@ -21417,7 +21383,6 @@ class NiminFetishFantasyv0975o_fla:
                if (self.pregArray[i + 1] != 503):
                   self.pregArray[i + 3] += math.ceil(time * self.pregRate)
                self.pregnancyTime += self.pregArray[i + 3]
-         i += 5
       if (self.pregnancyTime >= 80 and self.pregnancyTime < 140 and self.pregStatus < 1):
          self.pregStatus = 1
          tempStr += self.lactChange(1,10,ret=True)
@@ -21490,8 +21455,7 @@ class NiminFetishFantasyv0975o_fla:
             birthCount = 0
             tempStr += f"\n\nYou feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been too hungry too survive inside you any longer..."
             self.cockSnakePreg = 0
-            i = 0
-            while (i < self.pregArray.length):
+            for i in range(0,self.pregArray.length,5):
                if (self.pregArray[i + 1] == 503):
                   self.pregArray[i] = False
                   self.pregArray[i + 3] = 0
@@ -21503,7 +21467,6 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nAnd another..."
                   tempStr += self.doLust(-(self.sen // 4),2,2,ret=True)
                   birthCount += 1
-               i += 5
          elif (self.cockSnakePreg - time <= 10):
             tempStr += f"\n\nYour {self.bellyDesc()} belly twists and jiggles about as the snake inside boinks about your womb. It seems to know all the best places to touch, greatly arousing you over time with its squirming, teasing you much more vigorously to make you thirst for cum down below..."
             self.cockSnakePreg -= time
@@ -23059,8 +23022,7 @@ class NiminFetishFantasyv0975o_fla:
          if (sizeChange < 0 or totalChange < 0):
             tempStr += f"\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed..."
             self.cockSnakePreg = 0
-            i = 0
-            while (i < self.pregArray.length):
+            for i in range(0,self.pregArray.length,5):
                if (self.pregArray[i + 1] == 503):
                   self.pregArray[i] = False
                   self.pregArray[i + 3] = 0
@@ -23072,7 +23034,6 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nAnd another..."
                   self.birthCount += 1
                   tempStr += self.doLust(-(self.sen // 4),2,2,ret=True)
-               i += 5
             self.cockSnakePreg = 0
       if ((self.vagSize + sizeChange <= 0 or self.vagTotal + totalChange < 1) and self.vagSize > 0 and self.vagTotal > 0): #Loose all vag
          tempStr += f"\n\nSudden intense cramping makes you double over. A slight moistness in your {self.clothesBottom()} causes your hand to inspect the situation. It reaches your once {self.vulvaDesc()} vulva just in time to feel it shrink to nothing, sealing over with {self.skinDesc()}. It seems you have lost your vagina{self.plural(2)}, "
@@ -23135,13 +23096,11 @@ class NiminFetishFantasyv0975o_fla:
          self.vagSize += sizeChange
          while (totalChange < 0):
             if (self.pregCheck(1)):
-               i = 0
-               while (i < self.pregArray.length):
+               for i in range(0,self.pregArray.length,5):
                   if (self.pregArray[i] == False):
                      self.pregArray.splice(i,5)
                      totalChange += 1
-                     i += self.pregArray.length
-                  i += 5
+                     break
             else:
                totalChange = 0
       elif (self.vagTotal > 0): #Size change
@@ -23329,23 +23288,17 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(tempStr,False)
    def pregCheck(self, amount:int):
       if (amount == 0):
-         i = 0
-         while (i < self.pregArray.length):
+         for i in range(0,self.pregArray.length,5):
             if (self.pregArray[i] == True):
                return True
-            i += 5
       elif (amount == 1):
-         i = 0
-         while (i < self.pregArray.length):
+         for i in range(0,self.pregArray.length,5):
             if (self.pregArray[i] == False):
                return True
-            i += 5
       elif (amount > 1):
-         i = 0
-         while (i < self.pregArray.length):
+         for i in range(0,self.pregArray.length,5):
             if (self.pregArray[i + 1] == amount):
                return True
-            i += 5
       return False
    def doMultiImpregnate(self, erace:int, amount:int, ret=False):
       tempStr = ""
@@ -23380,8 +23333,7 @@ class NiminFetishFantasyv0975o_fla:
          while (self.percent() < self.extraPregChance + 10 - 4 * (i + 1) * i):
             extra += 1
             i += 1
-         i = 0
-         while (i < self.pregArray.length):
+         for i in range(0,self.pregArray.length,5):
             if (self.pregArray[i] == False):
                match erace:
                   case 1:
@@ -23434,8 +23386,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.pregArray[i + 4] = extra * 2
                self.pregArray[i + 1] = erace
                self.pregArray[i] = True
-               i = self.pregArray.length
-            i += 5
+               break
       if ret == True:
          return tempStr
    def doBirth(self, pregnancyType:int, extra:int, birthCount:int, ret=False):
@@ -25576,15 +25527,8 @@ class NiminFetishFantasyv0975o_fla:
          data["stashStackSave"] = [int(lss.find(f"slot{i}").text) for i in range(27)]
          tpa = []
          lp = xmlfile.find("preg")
-         i = 0
-         while i < len(lp):
-            #tpa.append(strtobool(lp.find(f"i{i}").text))
-            #tpa.append(int(lp.find(f"i{i+1}").text))
-            #tpa.append(int(lp.find(f"i{i+2}").text))
-            #tpa.append(int(lp.find(f"i{i+3}").text))
-            #tpa.append(int(lp.find(f"i{i+4}").text))
+         for i in range(0,len(lp),5):
             tpa.extend((strtobool(lp.find(f"i{i}").text),int(lp.find(f"i{i+1}").text),int(lp.find(f"i{i+2}").text),int(lp.find(f"i{i+3}").text),int(lp.find(f"i{i+4}").text)))
-            i += 5
          data["pregSave"] = tpa
          return data
       except:
@@ -25659,15 +25603,8 @@ class NiminFetishFantasyv0975o_fla:
          data["stashStackSave"] = [int(lss.find(f"slot{i}").text) for i in range(27)]
          tpa = []
          lp = xmlfile.find("preg")
-         i = 0
-         while i < len(lp):
-            #tpa.append(strtobool(lp.find(f"i{i}").text))
-            #tpa.append(int(lp.find(f"i{i+1}").text))
-            #tpa.append(int(lp.find(f"i{i+2}").text))
-            #tpa.append(int(lp.find(f"i{i+3}").text))
-            #tpa.append(int(lp.find(f"i{i+4}").text))
+         for i in range(0,len(lp),5):
             tpa.extend((strtobool(lp.find(f"i{i}").text),int(lp.find(f"i{i+1}").text),int(lp.find(f"i{i+2}").text),int(lp.find(f"i{i+3}").text),int(lp.find(f"i{i+4}").text)))
-            i += 5
          data["pregSave"] = tpa
          sol.save(data,str(outputfile),AMF3)
          if self.sfcopen == True:
@@ -25732,11 +25669,8 @@ class NiminFetishFantasyv0975o_fla:
             _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
             _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
          string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
-         #i = 0
-         #while i < len(_pregArray):
          for i in range(len(_pregArray)):
             string += f"<i{i}>{_pregArray[i]}</i{i}>"
-            #i += 1
          string += "</preg></data>"
          data = xmletree.fromstring(string)
          return xmletree.ElementTree(element=data)
@@ -25798,11 +25732,8 @@ class NiminFetishFantasyv0975o_fla:
             _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
             _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
          string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
-         #i = 0
-         #while i < len(_pregArray):
          for i in range(len(_pregArray)):
             string += f"<i{i}>{_pregArray[i]}</i{i}>"
-            #i += 1
          string += "</preg></data>"
          data = xmletree.fromstring(string)
          return xmletree.ElementTree(element=data)
@@ -25862,11 +25793,8 @@ class NiminFetishFantasyv0975o_fla:
             _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
             _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
          string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
-         #i = 0
-         #while i < len(_pregArray):
          for i in range(len(_pregArray)):
             string += f"<i{i}>{_pregArray[i]}</i{i}>"
-            #i += 1
          string += "</preg></data>"
          data = xmletree.fromstring(string)
          xml = xmletree.ElementTree(element=data)
@@ -25950,11 +25878,8 @@ class NiminFetishFantasyv0975o_fla:
                self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
             else:
                if QUAN > 0:
-                  #i = 0
-                  #while i < QUAN:
                   for i in range(QUAN):
                      self.itemGainArray.append(ID)
-                     #i += 1
                   self.gainItem(self.itemGainArray.pop())
                else:
                   self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
