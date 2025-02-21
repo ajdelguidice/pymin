@@ -3506,11 +3506,11 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " They"
          elif self.showBalls == False and self.gametweaks[0] == True and self.blueBalls > 36:
             tempStr += "\n\nYour internal balls"
-         #!Fix this, these currently show up if gametweaks[0] is false and showballs is false
-         if (self.blueBalls > 36 and self.blueBalls <= 84):
-            tempStr += " groan and squirm, full of hot cum just waiting to blow."
-         elif (self.blueBalls > 84):
-            tempStr += " groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
+         if (self.showBalls == True or self.gametweaks[0] == True) and self.blueBalls > 36:
+            if (self.blueBalls <= 84):
+               tempStr += " groan and squirm, full of hot cum just waiting to blow."
+            elif (self.blueBalls > 84):
+               tempStr += " groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
       if (self.vagTotal > 0):
          tempStr += f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {repintorfloat(self.decGet(self.vagSize * self.vagSizeMod * 0.5,1))} inches deep, when aroused."
          if (self.vagSize * self.vagSizeMod * self.vagTotal > self.tallness / 2):
