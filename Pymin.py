@@ -7647,7 +7647,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagSize = 0
                self.vagTotal = 0
                i = 0
-               while (i < self.pregArray.length): #!Can just be self.pregArray.clear()
+               while (i < self.pregArray.length):
                   if (self.pregArray[i] == False):
                      self.pregArray.splice(i,5)
                      i = -5
@@ -7739,7 +7739,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagSize = 0
                self.vagTotal = 0
                i = 0
-               while (i < self.pregArray.length): #!Can just be self.pregArray.clear()
+               while (i < self.pregArray.length):
                   if (self.pregArray[i] == False):
                      self.pregArray.splice(i,5)
                      i = -5
@@ -19004,10 +19004,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles."
                tempStr += "\n\nThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I'm sure this will make the process move along faster...\"\n\nYou stay with her another couple of hours to make sure she's alright and to spend some time together, then you head back out to continue on."
                self.silRate += 1
-               if (self.silTied == False): #!This if statement can be removed
-                  tempStr += self.doLust(self.lib // 5,0,ret=True)
-               else:
-                  tempStr += self.doLust(self.lib // 5,0,ret=True)
+               tempStr += self.doLust(self.lib // 5,0,ret=True)
                self.loseManyItem(230,1)
                self.outputMainText(tempStr,True)
                self.hrs = 3
@@ -23065,7 +23062,7 @@ class NiminFetishFantasyv0975o_fla:
          self.vulvaSize = 0
          self.clitSize = 0
          i = 0
-         while (i < self.pregArray.length): #!Use Array.clear()
+         while (i < self.pregArray.length):
             if (self.pregArray[i] == False):
                self.pregArray.splice(i,5)
                i = -5
