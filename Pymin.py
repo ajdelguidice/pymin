@@ -10290,8 +10290,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.coin < 500):
             tempStr += " Which you don't have enough of anyways."
          elif (self.coin >= 500):
-            templist.append(1)
-            templist.append("Transfer")
+            templist.extend((1,"Transfer"))
          self.outputMainText(tempStr, True)
          self.showButtons(ButtonList(1,0,0,0,0,0,0,0,0,0,0,1))
          self.doButtonChoices(templist)
@@ -14191,17 +14190,13 @@ class NiminFetishFantasyv0975o_fla:
             if (self.lilaUB == True):
                buttonlist[6] = 1
                if (self.tallness < 6 + 4 * self.lilaVulva):
-                  templist.append(6)
-                  templist.append("Unbirth")
+                  templist.extend((6,"Unbirth"))
             if (self.gender != 0 and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
-               templist.append(7)
-               templist.append("Sex")
+               templist.extend((7,"Sex"))
             if (self.checkItem(105)):
-               templist.append(9)
-               templist.append("Cat's Meow")
+               templist.extend((9,"Cat's Meow"))
             if (self.checkItem(221)):
-               templist.append(10)
-               templist.append("Puss Juice")
+               templist.extend((10,"Puss Juice"))
             self.showButtons(buttonlist)
             def doListen():
                getCum = 0
@@ -14763,8 +14758,7 @@ class NiminFetishFantasyv0975o_fla:
             self.showButtons(ButtonList(1,0,0,0,1,0,0,0,0,1,0,0))
             templist = [5, "Lick", 10, "Get Help"]
             if (self.checkItem(103) == True):
-               templist.append(1)
-               templist.append("Dry Sand")
+               templist.extend((1,"Dry Sand"))
             self.doButtonChoices(templist)
             def doListen():
                if (self.buttonChoice == 1):
@@ -14834,8 +14828,7 @@ class NiminFetishFantasyv0975o_fla:
             self.showButtons(ButtonList(1,0,0,0,1,0,0,0,0,1,0,0))
             templist = [5, "Fondle Her", 10, "Get Help"]
             if (self.checkItem(103) == True):
-               templist.append(1)
-               templist.append("Dry Sand")
+               templist.extend((1,"Dry Sand"))
             self.doButtonChoices(templist)
             def doListen():
                if (self.buttonChoice == 1):
@@ -14893,11 +14886,9 @@ class NiminFetishFantasyv0975o_fla:
             self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,0,1))
             templist = [9, "Lick", 12, "Not Now"]
             if (self.checkItem(103) == True):
-               templist.append(1)
-               templist.append("Dry Sand")
+               templist.extend((1,"Dry Sand"))
             if (self.checkItem(213) == True):
-               templist.append(3)
-               templist.append("Wet Cloth")
+               templist.extend((3,"Wet Cloth"))
             self.doButtonChoices(templist)
             def doListen():
                tempStr = "You lead her back to your place and plop her onto your bed. She lays back so you can have easy access"
@@ -15033,8 +15024,7 @@ class NiminFetishFantasyv0975o_fla:
             self.showButtons(ButtonList(1,0,1,0,1,1,1,0,0,1,0,0))
             templist = [3, "Diaper", 5, "Masturbate", 6, "Lick", 7, "Sex", 10, "Get Help"]
             if (self.checkItem(103) == True):
-               templist.append(1)
-               templist.append("Dry Sand")
+               templist.extend((1,"Dry Sand"))
             self.doButtonChoices(templist)
             def doListen():
                if (self.buttonChoice == 1):
@@ -15089,8 +15079,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,1,0,0))
                   templist = [7, "On her", 10, "Don't"]
                   if (self.gender != 0):
-                     templist.append(5)
-                     templist.append("On yourself")
+                     templist.extend((5,"On yourself"))
                   self.doButtonChoices(templist)
                   def doListen():
                      if (self.buttonChoice == 5):
@@ -15279,16 +15268,14 @@ class NiminFetishFantasyv0975o_fla:
                   templist = [11, "Nothing"]
                   buttonlist = ButtonList(1,0,0,0,0,0,0,0,0,0,1,0)
                   if (self.checkItem(210)):
-                     templist.append(1)
-                     templist.append("Puss Fruit")
+                     templist.extend((1,"Puss Fruit"))
                   if (self.mistressRep > 10):
                      tempStr += " Then her hands grope across her belly, squishing the aroused passage within. \"Mmm... You've been so good to me, though, so I'll let you in on another deal. If you can bring me three of the fruits at a time, I'll have Fidoris cook up my special concoction. Just between you and I, of course, for all the fun we've had~,\" she gives you a naughty wink. \"I'll also let you in on the recipe, but without dear Fidoris I'm afraid it might be less efficient for you.\""
                      buttonlist[3] = 1
                      if (self.knowPussJuice == False):
                         self.knowPussJuice = True
                   if (self.countItem(210) >= 3 and self.mistressRep > 10):
-                     templist.append(3)
-                     templist.append("3x")
+                     templist.extend((3,"3x"))
                   self.outputMainText(tempStr,True)
                   self.showButtons(buttonlist)
                   self.doButtonChoices(templist)
@@ -15298,14 +15285,11 @@ class NiminFetishFantasyv0975o_fla:
                         self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,1,0))
                         templist = [1, "Fidoris"]
                         if (self.tallness / 12 < self.mistressRep + 4):
-                           templist.append(3)
-                           templist.append("You")
+                           templist.extend((3,"You"))
                         if (self.tallness / 12 < self.mistressRep / 3):
-                           templist.append(9)
-                           templist.append("Both")
+                           templist.extend((9,"Both"))
                         if (self.cockSize * self.cockSizeMod > 60 + self.mistressRep * 4 and self.cockSize * self.cockSizeMod < self.eVagLimit(120 + self.mistressRep * 8) and self.cockTotal > 0):
-                           templist.append(11)
-                           templist.append("Cock")
+                           templist.extend((11,"Cock"))
                         tempStr = "\"Great! Fidoris, bring our guest over here!\" She grins with excitement."
                         if (self.mistressRep == 0):
                            tempStr += f"\n\nThe {self.ptweaksGrammar(1)} takes you by the hands and leads you towards the bed. As he takes you around the curtain to get closer to his mistress, your eyes grow wide as you see what had been hidden. First of all, the woman obviously had no underwear; her spread legs giving you a great view beneath her gown. However, it doesn't seem like she could have done otherwise, as the gown simply wasn't long enough to reach around her enormous nether region. The large round object whose shadow you had seen from the other side was actually her vulva!\n\nHer legs are spread simply due to the fact that the fat labia wouldn't allow for otherwise. It's more than half as tall as she is, with the slit gaping before you like a giant maw. If she were to stand, it'd be dreadfully close to dragging upon the floor with each step. The large inner-lips dangle from the outer in thick folds and her giant clitoris is nearly as big as her head, protruding from its huge flap of a hood. Feminine slime drools and drips down through the crevice, pooling around onto the bed and draining off into a bucket. You can see into her deep pussy, the emanating heat reaching you from several feet away. And it's quite easy to tell that she's not pregnant, but rather her belly is huge from all the vaginal flesh within."
@@ -15799,11 +15783,9 @@ class NiminFetishFantasyv0975o_fla:
                self.showButtons(ButtonList(1,0,0,0,0,1,0,0,0,0,1,0))
                templist = [6, "Help Lay"]
                if (self.ment >= 30):
-                  templist.append(1)
-                  templist.append("Plug")
+                  templist.extend((1,"Plug"))
                if (self.checkItem(230)):
-                  templist.append(11)
-                  templist.append("Eggcelerator")
+                  templist.extend((11,"Eggcelerator"))
                tempStr = "You slowly push through the cattails and approach the troubled female."
                self.tempInt = math.ceil(self.percent() / 33)
                if (self.tempInt == 4):
@@ -19080,11 +19062,9 @@ class NiminFetishFantasyv0975o_fla:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
                if (self.checkItem(207)):
-                  templist.append(9)
-                  templist.append("Cock Carv")
+                  templist.extend((9,"Cock Carv"))
                if (self.checkItem(500) or self.checkItem(501)):
-                  templist.append(11)
-                  templist.append("Milk Bottle")
+                  templist.extend((11,"Milk Bottle"))
                self.outputMainText("What would you like to do with the statue's open mouth?",True)
                self.doButtonChoices(templist)
                def doListen():
@@ -19153,11 +19133,9 @@ class NiminFetishFantasyv0975o_fla:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
                if (self.checkItem(207)):
-                  templist.append(9)
-                  templist.append("Cock Carv")
+                  templist.extend((9,"Cock Carv"))
                if (self.checkItem(500) or self.checkItem(501)):
-                  templist.append(11)
-                  templist.append("Milk Bottle")
+                  templist.extend((11,"Milk Bottle"))
                self.outputMainText("What would you like to do with the statue's ear?",True)
                self.doButtonChoices(templist)
                def doListen():
@@ -19239,11 +19217,9 @@ class NiminFetishFantasyv0975o_fla:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
                if (self.checkItem(207)):
-                  templist.append(9)
-                  templist.append("Cock Carv")
+                  templist.extend((9,"Cock Carv"))
                if (self.checkItem(500) or self.checkItem(501)):
-                  templist.append(11)
-                  templist.append("Milk Bottle")
+                  templist.extend((11,"Milk Bottle"))
                self.outputMainText("What would you like to do with the statue's four breasts?",True)
                self.doButtonChoices(templist)
                def doListen():
@@ -19300,11 +19276,9 @@ class NiminFetishFantasyv0975o_fla:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
                if (self.checkItem(207)):
-                  templist.append(9)
-                  templist.append("Cock Carv")
+                  templist.extend((9,"Cock Carv"))
                if (self.checkItem(500) or self.checkItem(501)):
-                  templist.append(11)
-                  templist.append("Milk Bottle")
+                  templist.extend((11,"Milk Bottle"))
                self.outputMainText("What would you like to do with the statue's gaping pussy?",True)
                self.doButtonChoices(templist)
                def doListen():
@@ -19515,8 +19489,7 @@ class NiminFetishFantasyv0975o_fla:
             self.showButtons(ButtonList(0,0,0,1,0,0,1,0,0,0,1,1))
             templist = [4, "Firmshaft", 7, "Up", 12, "Sanctuary"]
             if (self.defeatedSuccubus == True):
-               templist.append(11)
-               templist.append("Fight")
+               templist.extend((11,"Fight"))
             self.doButtonChoices(templist)
             def doListen():
                if self.buttonChoice == 4:
@@ -25605,11 +25578,12 @@ class NiminFetishFantasyv0975o_fla:
          lp = xmlfile.find("preg")
          i = 0
          while i < len(lp):
-            tpa.append(strtobool(lp.find(f"i{i}").text))
-            tpa.append(int(lp.find(f"i{i+1}").text))
-            tpa.append(int(lp.find(f"i{i+2}").text))
-            tpa.append(int(lp.find(f"i{i+3}").text))
-            tpa.append(int(lp.find(f"i{i+4}").text))
+            #tpa.append(strtobool(lp.find(f"i{i}").text))
+            #tpa.append(int(lp.find(f"i{i+1}").text))
+            #tpa.append(int(lp.find(f"i{i+2}").text))
+            #tpa.append(int(lp.find(f"i{i+3}").text))
+            #tpa.append(int(lp.find(f"i{i+4}").text))
+            tpa.extend((strtobool(lp.find(f"i{i}").text),int(lp.find(f"i{i+1}").text),int(lp.find(f"i{i+2}").text),int(lp.find(f"i{i+3}").text),int(lp.find(f"i{i+4}").text)))
             i += 5
          data["pregSave"] = tpa
          return data
@@ -25687,11 +25661,12 @@ class NiminFetishFantasyv0975o_fla:
          lp = xmlfile.find("preg")
          i = 0
          while i < len(lp):
-            tpa.append(strtobool(lp.find(f"i{i}").text))
-            tpa.append(int(lp.find(f"i{i+1}").text))
-            tpa.append(int(lp.find(f"i{i+2}").text))
-            tpa.append(int(lp.find(f"i{i+3}").text))
-            tpa.append(int(lp.find(f"i{i+4}").text))
+            #tpa.append(strtobool(lp.find(f"i{i}").text))
+            #tpa.append(int(lp.find(f"i{i+1}").text))
+            #tpa.append(int(lp.find(f"i{i+2}").text))
+            #tpa.append(int(lp.find(f"i{i+3}").text))
+            #tpa.append(int(lp.find(f"i{i+4}").text))
+            tpa.extend((strtobool(lp.find(f"i{i}").text),int(lp.find(f"i{i+1}").text),int(lp.find(f"i{i+2}").text),int(lp.find(f"i{i+3}").text),int(lp.find(f"i{i+4}").text)))
             i += 5
          data["pregSave"] = tpa
          sol.save(data,str(outputfile),AMF3)
