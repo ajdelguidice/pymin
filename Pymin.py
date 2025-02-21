@@ -6885,22 +6885,24 @@ class NiminFetishFantasyv0975o_fla:
             chance = self.percent()
             tempStr = "You bite into the fold-like cleft of the pussy fruit, sweet juices spilling out around your face and drooling from your chin in long, slimy strands. You devour it shortly and feel great!"
             tempStr += self.doHP(15,ret=True)
-            if (self.hunger >= 70 and self.vagTotal > 0 and chance <= 50):
-               tempStr += f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again..."
-               self.vulvaSize += self.percent() // 20
-               tempStr += self.doLust(self.percent() / 10,0,ret=True)
-               self.hunger -= 20
-            elif (self.hunger >= 70 and self.vagTotal > 0):
-               tempStr += f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again..."
-               tempStr += self.vagChange(self.percent() // 20,0,ret=True)
-               tempStr += self.doLust(self.percent() / 10,0,ret=True)
-               self.hunger -= 20
-            elif (self.hunger >= 90 and self.vagTotal > 0):
-               tempStr += f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nThe cramping shortly passes, but you walk awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again..."
-               self.vulvaSize += self.percent() // 20
-               tempStr += self.vagChange(self.percent() // 20,0,ret=True)
-               tempStr += self.doLust(self.percent() / 5,0,ret=True)
-               self.hunger -= 30
+            if (self.vagTotal > 0):
+               if (self.hunger >= 90):
+                  tempStr += f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nThe cramping shortly passes, but you walk awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again..."
+                  self.vulvaSize += self.percent() // 20
+                  tempStr += self.vagChange(self.percent() // 20,0,ret=True)
+                  tempStr += self.doLust(self.percent() / 5,0,ret=True)
+                  self.hunger -= 30
+               elif (self.hunger >= 70):
+                  if (chance <= 50):
+                     tempStr += f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again..."
+                     self.vulvaSize += self.percent() // 20
+                     tempStr += self.doLust(self.percent() / 10,0,ret=True)
+                     self.hunger -= 20
+                  else:
+                     tempStr += f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again..."
+                     tempStr += self.vagChange(self.percent() // 20,0,ret=True)
+                     tempStr += self.doLust(self.percent() / 10,0,ret=True)
+                     self.hunger -= 20
             tempStr += self.doLust(self.percent() / 10,0,ret=True)
             self.outputMainText(tempStr,True)
             self.doEnd()
