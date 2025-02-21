@@ -6444,53 +6444,65 @@ class NiminFetishFantasyv0975o_fla:
          case 108:
             tempStr = "You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side."
             if (self.humanAffinity > 0):
-               tempStr += "\n\nHuman:\n"
-               for i in range(self.humanAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nHuman:\n"
+               #for i in range(self.humanAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nHuman:{''.join(['|' for i in range(self.humanAffinity)])}"
             if (self.horseAffinity > 0):
-               tempStr += "\n\nHorse:\n"
-               for i in range(self.horseAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nHorse:\n"
+               #for i in range(self.horseAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nHorse:{''.join(['|' for i in range(self.horseAffinity)])}"
             if (self.wolfAffinity > 0):
-               tempStr += "\n\nWolf:\n"
-               for i in range(self.wolfAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nWolf:\n"
+               #for i in range(self.wolfAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nWolf:{''.join(['|' for i in range(self.wolfAffinity)])}"
             if (self.catAffinity > 0):
-               tempStr += "\n\nCat:\n"
-               for i in range(self.catAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nCat:\n"
+               #for i in range(self.catAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nCat:{''.join(['|' for i in range(self.carAffinity)])}"
             if (self.cowAffinity > 0):
-               tempStr += "\n\nCow:\n"
-               for i in range(self.cowAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nCow:\n"
+               #for i in range(self.cowAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nCow:{''.join(['|' for i in range(self.cowAffinity)])}"
             if (self.lizardAffinity > 0):
-               tempStr += "\n\nLizard:\n"
-               for i in range(self.lizardAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nLizard:\n"
+               #for i in range(self.lizardAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nLizard:{''.join(['|' for i in range(self.lizardAffinity)])}"
             if (self.rabbitAffinity > 0):
-               tempStr += "\n\nRabbit:\n"
-               for i in range(self.rabbitAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nRabbit:\n"
+               #for i in range(self.rabbitAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nRabbit:{''.join(['|' for i in range(self.rabbitAffinity)])}"
             if (self.mouseAffinity > 0):
-               tempStr += "\n\nMouse:\n"
-               for i in range(self.mouseAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nMouse:\n"
+               #for i in range(self.mouseAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nMouse:{''.join(['|' for i in range(self.mouseAffinity)])}"
             if (self.birdAffinity > 0):
-               tempStr += "\n\nBird:\n"
-               for i in range(self.birdAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nBird:\n"
+               #for i in range(self.birdAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nBird:{''.join(['|' for i in range(self.birdAffinity)])}"
             if (self.pigAffinity > 0):
-               tempStr += "\n\nPig:\n"
-               for i in range(self.pigAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nPig:\n"
+               #for i in range(self.pigAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nPig:{''.join(['|' for i in range(self.pigAffinity)])}"
             if (self.skunkAffinity > 0):
-               tempStr += "\n\nSkunk:\n"
-               for i in range(self.skunkAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nSkunk:\n"
+               #for i in range(self.skunkAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nSkunk:{''.join(['|' for i in range(self.skunkAffinity)])}"
             if (self.bugAffinity > 0):
-               tempStr += "\n\nBug:\n"
-               for i in range(self.bugAffinity):
-                  tempStr += "|"
+               #tempStr += "\n\nBug:\n"
+               #for i in range(self.bugAffinity):
+                  #tempStr += "|"
+               tempStr += f"\n\nBug:{''.join(['|' for i in range(self.bugAffinity)])}"
             self.outputMainText(tempStr,True)
             self.doEnd()
          case 109:
