@@ -22471,7 +22471,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look."
                self.faceType = 100
                self.hasMuzzle = False
-            elif (faceType != 101 and self.faceType != 102 and self.pigAffinity > 60):
+            elif (self.faceType != 101 and self.faceType != 102 and self.pigAffinity > 60):
                tempStr += "\n\nYour nose flattens and turns upward, your nostrils growing larger and pointing straight out, making you look much like a pig."
                self.faceType = 101
             elif (self.faceType != 102 and self.pigAffinity > 85):
@@ -22485,7 +22485,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "Your face stretches out along your nose a bit, the tip growing smaller and more narrow and becoming softer. Your eyes become soft and gentle, but with the potential to become defensive and vicious at any moment."
                self.faceType = 110
                self.hasMuzzle = False
-            elif ((self.faceType != 111) and (self.skunkAffinity > 60)):
+            elif (self.faceType != 111 and self.skunkAffinity > 60):
                tempStr += "\n\nLong stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather skunk-like appearance."
                self.faceType = 111
          if (self.dominant == 12 and (self.faceType != 120 or self.faceType != 121)):
