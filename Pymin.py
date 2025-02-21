@@ -1535,7 +1535,7 @@ class NiminFetishFantasyv0975o_fla:
          self.altHeld = False
    def buttonEvent1(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(1)
       else:
          self.buttonChoice = 1
@@ -1543,7 +1543,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent2(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(2)
       else:
          self.buttonChoice = 2
@@ -1551,7 +1551,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent3(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(3)
       else:
          self.buttonChoice = 3
@@ -1559,7 +1559,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent4(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.buttonChoice = 4
          self.hideUpDown()
          self.doListen()
@@ -1569,7 +1569,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent5(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(5)
       else:
          self.buttonChoice = 5
@@ -1577,7 +1577,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent6(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(6)
       else:
          self.buttonChoice = 6
@@ -1585,7 +1585,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent7(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(7)
       else:
          self.buttonChoice = 7
@@ -1593,7 +1593,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent8(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.buttonChoice = 8
          self.hideUpDown()
          self.doListen()
@@ -1603,7 +1603,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent9(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(9)
       else:
          self.buttonChoice = 9
@@ -1611,7 +1611,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent10(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(10)
       else:
          self.buttonChoice = 10
@@ -1619,7 +1619,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent11(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.itemMove(11)
       else:
          self.buttonChoice = 11
@@ -1627,7 +1627,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent12(self,*args):
       self.detailedDebug()
-      if ((self.shiftHeld == True) and (self.inBag == True) and (self.buttonShiftOverride == False) and self.mts == False):
+      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
          self.buttonChoice = 12
          self.hideUpDown()
          self.doListen()
@@ -1945,16 +1945,16 @@ class NiminFetishFantasyv0975o_fla:
       self.changeBackgroundColor(self.theme)
       self.updateText()
    def fontSizeDown(self):
-      if (self.fontSize > 3):
+      if (self.fontSize > 3): #originally 4
          self.fontSize -= 2
       self.updateText()
       self.savePreferences()
    def fontSizeReset(self):
-      self.fontSize = 11
+      self.fontSize = 11 #originally 14
       self.updateText()
       self.savePreferences()
    def fontSizeUp(self):
-      if (self.fontSize < 25):
+      if (self.fontSize < 25): #originally 26
          self.fontSize += 2
       self.updateText()
       self.savePreferences()
@@ -1999,7 +1999,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showSide = False
          self.hideSidePanel()
          self.option7Text()
-      elif (self.showSide == False):
+      else:
          self.showSide = True
          self.showSidePanel()
          self.updateSide()
@@ -2031,6 +2031,7 @@ class NiminFetishFantasyv0975o_fla:
          self.fontSize = int(prefs.find("fontSize").text)
          self.fontBold = strtobool(prefs.find("fontBold").text)
          tempfontColor = f'{prefs.find("fontColor").text}'
+         #!Check if ordering is correct in this one
          if (self.checkValidHex(temptheme) or (temptheme.isdecimal() and len(temptheme) == 1) and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
             if (temptheme.isdecimal() and len(temptheme) == 1):
                self.theme = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[int(temptheme)]
@@ -2256,14 +2257,13 @@ class NiminFetishFantasyv0975o_fla:
             self.tempBagPage = self.choicePage
          else:
             self.stashPage = self.choicePage
-      #if ((self.buttonChoice != 4) and (self.buttonChoice != 8)):
-      if self.buttonChoice not in (4,8):
+      if (self.buttonChoice != 4 and self.buttonChoice != 8):
          if not self.inBag and not self.inStash:
             self.showPage(False,"")
             self.tempBagPage = self.choicePage
          self.choicePage = 1
    def choiceListCheck(self, *which):
-      if ((self.choiceListArray.indexOf(which[0]) >= self.choicePage * 9 - 9) and (self.choiceListArray.indexOf(which[0]) < self.choicePage * 9)):
+      if (self.choiceListArray.indexOf(which[0]) >= self.choicePage * 9 - 9 and self.choiceListArray.indexOf(which[0]) < self.choicePage * 9):
          return True
       return False
    def showPage(self, changes:bool, which:str):
@@ -2639,7 +2639,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def percent():
       #Returns a number between 1 and 100
-      return math.floor(random.random() * (1 + 100 - 1)) + 1
+      return math.floor(random.random() * 100) + 1
    def chooseFrom(self):
       #Returns a random option from self.rndArray. self.rndArray must have atleast one item in it "or else you'll get the hose".
       #tempInt = 0
@@ -2760,9 +2760,9 @@ class NiminFetishFantasyv0975o_fla:
       self.setSCStats()
    def regionChange(self, changes:int):
       #Changes the displayed region name
-      if self.inDungeon:
+      if self.inDungeon == True:
          self.currentDungeon = changes
-         if ((changes > 1000) and (changes < 1010)):
+         if (changes > 1000 and changes < 1010):
             self.mo.configureChild("currentregionlabel",text="Cave Descent")
       else:
          self.currentZone = changes
@@ -2799,7 +2799,7 @@ class NiminFetishFantasyv0975o_fla:
       #Changes player's HP
       tempStr = ""
       if (changes < 0):
-         if ((self.masoPot > 0) and (self.sMasoPot <= 0)):
+         if (self.masoPot > 0 and self.sMasoPot <= 0):
             tempStr += self.doLust(-changes // 2,0,ret=True)
             changes -= math.ceil(changes / 2)
          if (self.sMasoPot > 0):
@@ -2821,7 +2821,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doPassOut()
          else:
             tempStr += self.doPassOut(ret=True)
-      if (self.HP + changes) > (30 + self.str_ // 2 + self.HPMod):
+      if self.HP + changes > 30 + self.str_ // 2 + self.HPMod:
          self.HP = 30 + self.str_ // 2 + self.HPMod
       else:
          self.HP += changes
@@ -2862,74 +2862,75 @@ class NiminFetishFantasyv0975o_fla:
             changes = 0
       elif source == 2 and changes <= 0:
          changes += math.floor(changes * self.ment / 125)
-      if ((changes <= 0) and (source == 2)):
+      if (changes <= 0 and source == 2):
          changes -= 6
          if (self.fertilityStatueCurse > 0):
             tempStr += "\n\nWith your orgasm, you feel strange as wispy fumes escape from your crotch, just like those that descended from the statue you encountered..."
             tempStr += self.vagChange(0,1,ret=True)
-         if ((self.cockSnakeVenom > 0) and (1 in triggers) and (self.cockTotal > 0)):
+         if (self.cockSnakeVenom > 0 and 1 in triggers and self.cockTotal > 0):
             tempStr += f"\n\nHowever, after you have finished, you realize there's a bit more meat to your meat... The venom from the cock-snake fed off of your orgasm, causing your appendage{self.plural(1)} to flop a bit lower down your {self.legDesc(3)} as {self.plural(11)} shrink{self.plural(3)} back down..."
             tempStr += self.cockChange(2,0,ret=True)
-         if ((self.cockSnakeVenom > 0) and (2 in triggers) and (self.vagTotal > 0)):
+         if (self.cockSnakeVenom > 0 and 2 in triggers and self.vagTotal > 0):
             tempStr += f"\n\nHowever, after you have finished, you realize your clit{self.plural(2)} {self.plural(14)} a bit more prominent... The venom from the cock-snake fed off of your orgasm, causing the button{self.plural(2)} to swell larger than before, and aren't shrinking all the way back down..."
             self.clitSize += 3
-         if ((self.milkCPoisonNip > 0) and (3 in triggers)):
+         if (self.milkCPoisonNip > 0 and 3 in triggers):
             tempStr += "\n\nHowever, now that you've calmed down, you notice a bit more weight at your chest... The warmth from the milk creeper poison in your bosom intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder."
             self.boobChange(1)
             self.nipplePlay += 15
-         if ((self.milkCPoisonUdd > 0) and (4 in triggers)):
+         if (self.milkCPoisonUdd > 0 and 4 in triggers):
             tempStr += "\n\nHowever, now that you've calmed down, you notice a bit more weight at your belly... The warmth from the milk creeper poison in your udder intensified with your pleasure, causing your flesh to grow larger while you were distracted by the climax. A hefty reminder."
             self.boobChange(1)
             self.nipplePlay += 15
          if (self.level < 50):
-            if ((self.lust + changes >= 0) and (-changes > self.level + 6 + self.str_ / 3)):
+            if (self.lust + changes >= 0 and -changes > self.level + 6 + self.str_ / 3):
                self.doSexP(math.floor(-changes - self.level + 6 + self.str_ / 3))
-            elif ((self.lust + changes < 0) and (self.lust > self.level + 6 + self.str_ / 3)):
+            elif (self.lust + changes < 0 and self.lust > self.level + 6 + self.str_ / 3):
                self.doSexP(math.floor(self.lust - self.level + 6 + self.str_ / 3))
-         elif ((self.lust + changes >= 0) and (-changes > 50 + 6 + self.str_ / 3)):
+         elif (self.lust + changes >= 0 and -changes > 50 + 6 + self.str_ / 3):
             self.doSexP(math.floor(-changes - 50 + 6 + self.str_ / 3))
-         elif ((self.lust + changes < 0) and (self.lust > 50 + 6 + self.str_ / 3)):
+         elif (self.lust + changes < 0 and self.lust > 50 + 6 + self.str_ / 3):
             self.doSexP(math.floor(self.lust - 50 + 6 + self.str_ / 3))
       if (changes < 0):
          self.UpDownLustImg("valdownimg")
       elif (changes > 0):
          self.UpDownLustImg("valupimg")
-      if ((self.lust + changes >= 75) and (self.lust < 75)):
+      if (self.lust + changes >= 75 and self.lust < 75):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.cockDesc()} cock{self.plural(1)} squirm{self.plural(3)} in your {self.clothesBottom()}, throbbing and wanting desperately to come."
-            if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3)):
+            #!if/else-ify
+            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
                tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
-            if ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 7)):
+            if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
                tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
-            if ((self.moistCalc(1) > 7) and (self.moistCalc(1) <= 11)):
+            if (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11):
                tempStr += f" You feel your cock{self.plural(1)} slimed from tip to belly with {self.plural(5)} own pre, a steady dribble down your thigh and your {self.clothesBottom()} looking more like you peed yourself."
             if (self.moistCalc(1) > 11):
                tempStr += f" You feel your cock{self.plural(1)} swimming in {self.plural(5)} own pre, as long strands of slime seep through your {self.clothesBottom()} and stretch down to the ground. With each step, you fling the stuff around you like a whip, smacking across whatever is nearby"
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.vulvaDesc()} lips feel swollen and hot in your {self.clothesBottom()}, making your {self.legDesc(2)} feel weak. Your {self.clitDesc()} clit{self.plural(2)} seem{self.plural(4)} on the verge of exploding without any attention soon, stiffly rubbing against your {self.clothesBottom()} with each move."
-            if ((self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+            if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
-            if ((self.moistCalc(2) > 3) and (self.moistCalc(2) <= 7)):
+            if (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
                tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
-            if ((self.moistCalc(2) > 7) and (self.moistCalc(2) <= 11)):
+            if (self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
                tempStr += f" You swear you can hear yourself squish with each step as your {self.clothesBottom()} is completely soaked through with your honey. Your thighs feel like they've been completely oiled down by the warm, sensuous fluid."
             if (self.moistCalc(2) > 11):
                tempStr += f" There must be a waterfall in your {self.clothesBottom()} as a steady flow of clear honey drools from {self.legWhere(1)} your {self.legDesc(2)}. You have to be extra careful of slipping in your own slime..."
          tempStr += f"\n\nYour {self.nipDesc()}nipples threaten to pierce through your {self.clothesTop()}. They feel as hard as diamonds with all your arousal, making you shiver whenever something brushes them."
-      elif ((self.lust + changes >= 50) and (self.lust < 50)):
+      elif (self.lust + changes >= 50 and self.lust < 50):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} stiff and engorged with blood. Oh how nice it would be to take care of that problem... "
-            if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3)):
+            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
                tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
-            if ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 7)):
+            if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
                tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
             if (self.moistCalc(1) > 7):
                tempStr += f" You feel your cock{self.plural(1)} slimed from tip to belly with its own pre, a steady dribble down your thigh and your {self.clothesBottom()} looking more like you peed yourself."
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.vulvaDesc()} vulva feels puffy with engorgement, making you walk a little awkwardly so as to not squeeze them so much. Your {self.clitDesc()} clit{self.plural(2)} stir{self.plural(4)} in your {self.clothesBottom()}, throbbing gently in anticipation."
-            if ((self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+            if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
-            if ((self.moistCalc(2) > 3) and (self.moistCalc(2) <= 7)):
+            if (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
                tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
             if (self.moistCalc(2) > 7):
                tempStr += f" You swear you can hear yourself squish with each step as your {self.clothesBottom()} is completely soaked through with your honey. Your thighs feel like they've been completely oiled down by the warm, sensuous fluid."
@@ -2937,28 +2938,28 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += f"\n\nYour sunken nipples rise out of your {self.boobDesc()} mounds, standing to attention in your {self.clothesTop()}. They tingle slightly with your arousal."
          else:
             tempStr += f"\n\nYour {self.nipDesc()}nipples stand at attention in your {self.clothesTop()}. They tingle slightly with your arousal."
-      elif ((self.lust + changes >= 25) and (self.lust < 25)):
+      elif (self.lust + changes >= 25 and self.lust < 25):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.cockDesc()} cock{self.plural(1)} wiggle{self.plural(3)} in your {self.clothesBottom()}, stirring awake and growing erect. Bulging against the fabric, you silently wonder if anybody else will notice..."
-            if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3)):
+            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
                tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
             if (self.moistCalc(1) > 3):
                tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.vulvaDesc()} slit tingles and sparks. You feel a little giggly and warm with the sensation, delighting in the pleasantness of it all. Your {self.clitDesc()} clit{self.plural(2)} tug{self.plural(4)} at the hood{self.plural(4)}, pulsing awake in your {self.clothesBottom()}."
-            if ((self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+            if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
             if (self.moistCalc(2) > 3):
                tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
-      if ((self.lust + changes >= 30) and (self.lustPenalty == 0)):
+      if (self.lust + changes >= 30 and self.lustPenalty == 0):
          tempStr += "\n\nThe distraction weighs on your mind constantly, making it hard to focus on normal tasks."
          self.statsMod(0,-4,0,0)
          self.lustPenalty = 1
-      elif ((self.lust + changes >= 60) and (self.lustPenalty == 1)):
+      elif (self.lust + changes >= 60 and self.lustPenalty == 1):
          tempStr += "\n\nYour muscles are twitchy and feeling weak from the strong tingle of arousal."
          self.statsMod(-5,0,0,0)
          self.lustPenalty = 2
-      elif ((self.lust + changes >= 90) and (self.lustPenalty == 2)):
+      elif (self.lust + changes >= 90 and self.lustPenalty == 2):
          tempStr += f"\n\nThe intense lust has overwhelmed your body, leaving your {self.skinDesc()} hypersensitive."
          self.statsMod(0,0,0,10)
          self.lustPenalty = 3
@@ -2967,7 +2968,7 @@ class NiminFetishFantasyv0975o_fla:
          changes = 0
          if (self.inBag == False):
             self.doLustForcedMasturbate()
-      if ((self.lust + changes < self.minLust + 20) and (self.heat > 0) and (self.heatTime < 0) and (self.pregCheck(0) != True)):
+      if (self.lust + changes < self.minLust + 20 and self.heat > 0 and self.heatTime < 0 and self.pregCheck(0) != True):
          self.lust = self.minLust + 20
          changes = 0
       elif (self.lust + changes < self.minLust):
@@ -2986,7 +2987,7 @@ class NiminFetishFantasyv0975o_fla:
             self.currentState = 1
          self.doNext()
          def doListen():
-            if ((self.ePref == 0) or (self.ePref == 1) and (self.gender == 2) or (self.ePref == 2) and (self.gender == 1) or (self.gender == 0)):
+            if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
                self.outputMainText(f"Unfortunately, the {self.enemyName()} has no interest in taking advantage of your state and lands a heavy blow, knocking you out.",True)
                self.doHP(-100000)
             else:
@@ -3337,11 +3338,11 @@ class NiminFetishFantasyv0975o_fla:
          elif self.legType == 1002:
             tempStr += f" This second body matches the {self.skinDesc()} of your upper half, with a thin and lithe torso, looking somewhat like a humans and not exactly made for riding but makes up for the frailness with plantigrade feet that easily support yourself, even though they aren't the speediest."
       #!Add other foot types here
-      if ((self.checkItem(102)) or (self.legType in (2,1001))):
+      if (self.checkItem(102) or self.legType in (2,1001)):
          tempStr += " Keratin extends from your combined toes like hooves, your ankle angled upward and high up like a second backwards knee, making you walk on the tips of your hooved toes with a clap against the ground every step."
       elif (self.legType == 1):
          tempStr += " Your ankles elongated and lithe, the front of your feet are large wide paws that help balance you as you walk digitigrade, your steps nothing but a soft and gentle patter against the ground."
-      elif ((self.skinType == 5) and (self.legDesc(10) == "feet")):
+      elif (self.skinType == 5 and self.legDesc(10) == "feet"):
          tempStr += " Chitin extends further past your heels, making you stand higher and balancing more on your toes."
       if (self.checkItem(234)):
          tempStr += f" Your {self.buttDesc()} butt also looks a bit tighter for its size with the {self.skinDesc()} around it a lighter color than the rest, acting like a bullseye to your nethers. Below, the bone structure of your {self.legDesc(2)} is also fairly lithe, causing you to step with a graceful swagger and wave your {self.hipDesc()} hips erotically with every footfall."
@@ -3350,14 +3351,14 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"{self.clothesTop()} and {self.clothesBottom()} that cover"
       else:
          tempStr += f"{self.clothesTop()} that covers"
-      if (self.snuggleBall):
+      if (self.snuggleBall == True):
          tempStr += " the thick and soft layer of plushy snuggliness which coats"
       tempStr += f" your {self.skinDesc(True)} "
       if (self.weapon == 10):
          tempStr += "while you defend yourself unarmed."
       else:
          tempStr += f"while you defend yourself with a {self.itemName(self.weapon)} as your weapon."
-      if ((self.lilaWetStatus > 0) and (self.attireBot in (10,11))):
+      if (self.lilaWetStatus > 0 and self.attireBot in (10,11)):
          tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
       #!Add InternalBallsAffectBelly (self.gametweaks[7])
       if (self.legType >= 1000):
@@ -3379,7 +3380,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.wings == 9):
             tempStr += "feathery"
          tempStr += " wings stretch freely, even though they're not of much use beyond hopping around and flying out of battle."
-      if (self.dairyFarmBrand):
+      if (self.dairyFarmBrand == True):
          tempStr += f" Beneath your {self.clothesBottom()}, the shape of a bucket with milk splashing out over the edges is forever imprinted upon your {self.buttDesc()} hind, marking you as property of the Softlik Dairy Farm."
       if (self.breastSize > 0):
          if self.boobTotal == 2:
@@ -3416,7 +3417,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " The mounds beneath your nipples feel a bit swollen and sensitive, holding back all their milk."
             elif self.milkEngorgementLevel == 3:
                tempStr += " The mounds beneath your nipples stand more perk than ever, despite feeling so heavy; so stuffed with milk that they're fairly hard."
-      if (self.udders):
+      if (self.udders == True):
          if (self.legType == 1001):
             tempStr += f"\n\nJust behind your tauric belly, squishing between your rear legs, hangs a {self.udderDesc()} udder "
          elif (self.cowAffinity >= 55):
@@ -3441,7 +3442,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" {self.humanCocks} dangle{self.plural(3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, with smooth skin and a mushroom-like glans, just like a human's."
             if (self.horseCocks > 0):
                tempStr += f" {self.horseCocks} hide{self.plural(3)} within a fuzzy sheath that protrudes from your groin, around {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))} inches in thickness."
-            if ((self.wolfCocks > 0) or (self.catCocks > 0) or (self.rabbitCocks > 0)):
+            if (self.wolfCocks > 0 or self.catCocks > 0 or self.rabbitCocks > 0):
                tempStr += f" {self.wolfCocks + self.catCocks + self.rabbitCocks} hide{self.plural(3)} within a fuzzy sheath that protrudes from your groin, around {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))} inches in thickness."
             if (self.lizardCocks > 0):
                tempStr += f" {self.lizardCocks} hide{self.plural(3)} in a slit, flush against your body."
@@ -3449,7 +3450,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" {self.bugCocks} dangle{self.plural(3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
             if (self.moistCalc(1) > 2):
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, "
-               if ((self.horseCocks > 0) or (self.wolfCocks > 0) or (self.catCocks > 0) or (self.rabbitCocks > 0)):
+               if (self.horseCocks > 0 or self.wolfCocks > 0 or self.catCocks > 0 or self.rabbitCocks > 0):
                   tempStr += f" pooling within your sheath{self.plural(1)},"
                tempStr += f" running down your thighs as it continually blotches your {self.clothesBottom()}, even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
          elif (self.lust <= 70):
@@ -3469,7 +3470,8 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
             if (self.knot == True):
                tempStr += f" Your cock{self.plural(1)} swell{self.plural(3)} a little near the base, preparing for a chance for the knot{self.plural(1)} to expand."
-            if ((self.moistCalc(1) > 2) and (self.moistCalc(1) <= 5)):
+            #!These can be optimized
+            if (self.moistCalc(1) > 2 and self.moistCalc(1) <= 5):
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
             elif (self.moistCalc(1) > 5):
                tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid.  Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
@@ -3490,20 +3492,22 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
             if (self.knot == True):
                tempStr += f" Your cock{self.plural(1)} bulge{self.plural(3)} tremendously at {self.plural(5)} base{self.plural(1)}, the knot{self.plural(1)} completely expecting to come at any moment and nearly {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 4,1))} inches thick."
-            if ((self.moistCalc(1) > 2) and (self.moistCalc(1) <= 5)):
+            #!These can be optimized
+            if (self.moistCalc(1) > 2 and self.moistCalc(1) <= 5):
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
-            elif ((self.moistCalc(1) > 5) and (self.moistCalc(1) <= 10)):
+            elif (self.moistCalc(1) > 5 and self.moistCalc(1) <= 10):
                tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
             elif (self.moistCalc(1) > 10):
                tempStr += f" Your {self.clothesBottom()} feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff {self.oneYour(1)} cock{self.plural(1)} into a pussy half your size without any difficulty, you're so slimy!"
       if self.balls > 0:
-         if self.showBalls:
+         if self.showBalls == True:
             tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
             if self.blueBalls > 36:
                tempStr += " They"
-         elif not self.showBalls and self.gametweaks[0] == True and self.blueBalls > 36:
+         elif self.showBalls == False and self.gametweaks[0] == True and self.blueBalls > 36:
             tempStr += "\n\nYour internal balls"
-         if ((self.blueBalls > 36) and (self.blueBalls <= 84)):
+         #!Fix this, these currently show up if gametweaks[0] is false and showballs is false
+         if (self.blueBalls > 36 and self.blueBalls <= 84):
             tempStr += " groan and squirm, full of hot cum just waiting to blow."
          elif (self.blueBalls > 84):
             tempStr += " groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
@@ -3518,19 +3522,19 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
          elif (self.lust <= 70):
             tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.2,1))} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs."
-            if ((self.moistCalc(2) > 2) and (self.moistCalc(2) <= 5)):
+            if (self.moistCalc(2) > 2 and self.moistCalc(2) <= 5):
                tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
             elif (self.moistCalc(2) > 5):
                tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
          else:
             tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.25,2))} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
-            if ((self.moistCalc(2) > 2) and (self.moistCalc(2) <= 5)):
+            if (self.moistCalc(2) > 2 and self.moistCalc(2) <= 5):
                tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
-            elif ((self.moistCalc(2) > 5) and (self.moistCalc(2) <= 10)):
+            elif (self.moistCalc(2) > 5 and self.moistCalc(2) <= 10):
                tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
             elif (self.moistCalc(2) > 10):
                tempStr += f" A slow waterfall of feminine honey drips from your crotch, your {self.clothesBottom()} completely soaked. If you stand for too long, you worry your {self.legDesc(10)} will slip in the puddle you quickly make beneath you. It's so much that you could probably take a cock twice as large as you are deep!"
-         if ((self.heat > 0) and (self.heatTime < 0)):
+         if (self.heat > 0 and self.heatTime < 0):
             tempStr += " Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something..."
       if (self.showSide):
          self.outputSideText(tempStr,True)
@@ -3585,7 +3589,7 @@ class NiminFetishFantasyv0975o_fla:
       tempStr += f"\n{'Pregnancy Time Mod:':<32}{self.pregTimeMod}hrs"
       tempStr += f"\n{'Pregnancy Time Rate:':<32}{repintorfloat(self.pregRate)}x"
       tempStr += f"\n{'Boob Lactation Rate:':<32}{self.lactation}ml/hr"
-      if (self.udders):
+      if (self.udders == True):
          tempStr += f"\n{'Udder Lactation Rate:':<32}{self.udderLactation}ml/hr"
       tempStr += f"\n{'Milk Modifier:':<32}+{self.milkMod}ml/hr"
       tempStr += f"\n{'Bonus Milk Capacity:':<32}{self.milkCap}ml"
@@ -3593,7 +3597,7 @@ class NiminFetishFantasyv0975o_fla:
       tempStr += f"\n{'Rape Modifier:':<32}+{self.rapeMod}"
       tempStr += f"\n{'Enticement Modifier:':<32}+{self.enticeMod}"
       tempStr += f"\n{'Run Chance:':<32}{20 + self.runMod}%"
-      if (self.showSide):
+      if (self.showSide == True):
          self.outputSideText(tempStr,True)
       else:
          self.outputMainText(tempStr,True)
@@ -3619,25 +3623,26 @@ class NiminFetishFantasyv0975o_fla:
                   self.doProcess()
          self.doListen = doListen
    def detailedTitles(self):
+      #!Optimize
       #Titles button on the side bar
       tempStr = "Around town, you are thought of as being:\n"
-      if ((self.enticeMod >= 10) and (self.ment + 40 < self.lib) and (self.lib > 75)):
+      if (self.enticeMod >= 10 and self.ment + 40 < self.lib and self.lib > 75):
          tempStr += "\nA Sex Monster"
-      elif ((self.ment + 40 < self.lib) and (self.lib > 60)):
+      elif (self.ment + 40 < self.lib and self.lib > 60):
          tempStr += "\nA Sex Fiend"
-      elif ((self.enticeMod >= 10) and (self.lib > 60)):
+      elif (self.enticeMod >= 10 and self.lib > 60):
          tempStr += "\nA Slut"
       elif (self.enticeMod >= 10):
          tempStr += "\nA Whore"
-      if ((self.cockSize * self.cockSizeMod > self.tallness) and ((self.breastSize > self.tallness * 3) and (self.cockTotal > 0)) and ((self.vulvaSize > 50) or (self.clitSize * 3 > self.tallness)) and (self.vagTotal > 0)):
+      if (self.cockSize * self.cockSizeMod > self.tallness and self.breastSize > self.tallness * 3 and self.cockTotal > 0 and (self.vulvaSize > 50 or self.clitSize * 3 > self.tallness) and self.vagTotal > 0):
          tempStr += "\nA Mobile Pile of Naughtiness"
-      elif ((self.cockSize * self.cockSizeMod > self.tallness) and (self.cockSize * self.cockSizeMod > 300) and (self.cockTotal > 0)):
+      elif (self.cockSize * self.cockSizeMod > self.tallness and self.cockSize * self.cockSizeMod > 300 and self.cockTotal > 0):
          tempStr += "\nCock Mountain"
-      elif ((self.vulvaSize * self.tallness > 300) and (self.vulvaSize > 50) and (self.vagTotal > 0)):
+      elif (self.vulvaSize * self.tallness > 300 and self.vulvaSize > 50 and self.vagTotal > 0):
          tempStr += "\nThe Mobile Fuckable Hill"
-      elif ((self.cockSize * self.cockSizeMod * 2 > self.tallness) and (self.cockSize * self.cockSizeMod > 100) and (self.cockTotal > 0)):
+      elif (self.cockSize * self.cockSizeMod * 2 > self.tallness and self.cockSize * self.cockSizeMod > 100 and self.cockTotal > 0):
          tempStr += "\nA Massive Dick"
-      elif ((self.vulvaSize * self.tallness > 100) and (self.vulvaSize > 50) and (self.vagTotal > 0)):
+      elif (self.vulvaSize * self.tallness > 100 and self.vulvaSize > 50 and self.vagTotal > 0):
          tempStr += "\nA Giant Pussy"
       if (self.cockTotal > 10):
          tempStr += "\nA Cock-Forest"
@@ -3663,15 +3668,15 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\nSurprisingly Stacked"
       elif (self.breastSize * 4 > self.tallness):
          tempStr += "\nThe Beautiful Bouncy Boobs that Everyone Stares At"
-      if ((self.lactation + self.milkMod > 15000) and (self.lactation > 0) or (self.udderLactation + self.milkMod > 30000) and (self.udderLactation > 0)):
+      if (self.lactation + self.milkMod > 15000 and self.lactation > 0 or self.udderLactation + self.milkMod > 30000 and self.udderLactation > 0):
          tempStr += "\nThe Milk Cannon"
-      elif ((self.lactation + self.milkMod > 5000) and (self.lactation > 0) or (self.udderLactation + self.milkMod > 10000) and (self.udderLactation > 0)):
+      elif (self.lactation + self.milkMod > 5000 and self.lactation > 0 or self.udderLactation + self.milkMod > 10000 and self.udderLactation > 0):
          tempStr += "\nA Walking Milk Tank"
-      elif ((self.lactation + self.milkMod > 500) and (self.lactation > 0) or (self.udderLactation + self.milkMod > 1000) and (self.udderLactation > 0)):
+      elif (self.lactation + self.milkMod > 500 and self.lactation > 0 or self.udderLactation + self.milkMod > 1000 and self.udderLactation > 0):
          tempStr += "\nA Dairy Cow"
-      if ((self.pregnancyTime + self.vagBellyMod > 500) and (self.vagTotal > 0)):
+      if (self.pregnancyTime + self.vagBellyMod > 500 and self.vagTotal > 0):
          tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
-      elif ((self.pregnancyTime + self.vagBellyMod > 300) and (self.vagTotal > 0)):
+      elif (self.pregnancyTime + self.vagBellyMod > 300 and self.vagTotal > 0):
          tempStr += "\nA Fertility Goddess"
       tempStr += f"\n\nWithin {self.regionName(self.currentZone)} specifically, you are considered to be:\n"
       if (self.dominant == self.currentZone):
@@ -3694,6 +3699,7 @@ class NiminFetishFantasyv0975o_fla:
       #elif self.currentZone == 3:
          #{}
       elif self.currentZone == 4:
+         #!Add condition for higher rep
          if (self.lilaRep == 2):
             tempStr += "\nLila's Friend"
          elif (self.lilaRep == 3):
@@ -3705,13 +3711,13 @@ class NiminFetishFantasyv0975o_fla:
       elif self.currentZone == 6:
          if (self.silRep == 1):
             tempStr += "\nA Friend of the Strange Woman"
-         elif ((self.silRep > 1) and (self.silRep < 4)):
+         elif (self.silRep > 1 and self.silRep < 4):
             tempStr += "\nSilandrias' Virile Companion"
-         elif ((self.silRep > 3) and (self.silRep < 6)):
+         elif (self.silRep > 3 and self.silRep < 6):
             tempStr += "\nSilandrias' Excessively Fertile Companion"
-         elif ((self.silRep == 6)):
+         elif (self.silRep == 6):
             tempStr += "\nSilandrias' Trusted Lover and Mate"
-         elif ((self.silRep == 6) and (self.silPreg > 5000)):
+         elif (self.silRep == 6 and self.silPreg > 5000):
             tempStr += "\nThe Progenitor of an Extinct Race"
       if (self.showSide == True):
          self.outputSideText(tempStr,True)
@@ -3865,7 +3871,7 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(27):
          if (self.bagArray[i] != 0):
             tempStr += f"\n{self.itemName(self.bagArray[i])}"
-         if (self.bagStackArray[i] > 1):
+         if (self.bagStackArray[i] > 1): #!This should probably be indented
             tempStr += f" x{self.bagStackArray[i]}"
       if (self.showSide == True):
          self.outputSideText(tempStr,True)
@@ -5200,7 +5206,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += self.doWeight(True)
          templist.remove(12)
          templist.remove("Explore")
-      if ((self.hour > 20) or (self.hour < 7)):
+      if (self.hour > 20 or self.hour < 7):
          tempStr += "\n\nAll of the shops are closed at this hour of night."
          templist.remove(3)
          templist.remove("Shops")
@@ -5208,17 +5214,17 @@ class NiminFetishFantasyv0975o_fla:
          buttonlist[8] = 0
          templist.remove(8)
          templist.remove("Level Up")
-      if ((self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4) and (self.lactation > 0)):
+      if (self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.lactation > 0):
          templist = [5, "Masturbate", 9, "Wait"]
          tempStr += f"\n\nMilk sprays from your chest, shooting through your {self.clothesTop()} and obscuring your view with a white mist. Pushing your breasts around as you may, you can't seem to get them to settle down as they're so overly engorged that they can't store as much as they're still producing, making it impossible to do anything without drenching not only yourself but all those around you! The production is so excessive that your body will definitely reduce the rate after this.\n\nYou must either milk your breasts or wait for the gushing to subside if you wish to continue. Either way, you have already wasted a large amount of milk."
          self.milkEngorgement -= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5
          tempStr += self.lactChange(1,-30,ret=True)
-      if ((self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4) and (self.udderLactation > 0)):
+      if (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.udderLactation > 0):
          templist = [5, "Masturbate", 9, "Wait"]
          tempStr += f"\n\nMilk sprays from your belly, shooting through your {self.clothesBottom()} and obscuring your view with a white mist. Adjusting your udder as you may, the teats continue to flail about, gushing with milk, as the fleshy bag is so overly engorged that it can't store as much as it's still producing, making it impossible to do anything without drenching not only yourself but all those around you! The production is so excessive that your body will definitely reduce the rate after this.\n\nYou must milk your udder or wait for the gushing to subside if you wish to continue. Either way, you have already wasted a large amount of milk."
          self.udderEngorgement -= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5
          tempStr += self.lactChange(2,-50,ret=True)
-      if (((self.blueBalls >= 120) and (self.percent() * self.ment < self.percent() * (self.lib + self.blueBalls - 120)) and (self.lib > self.ment - 70)) and (nodjp == False)):
+      if (self.blueBalls >= 120 and self.percent() * self.ment < self.percent() * (self.lib + self.blueBalls - 120) and self.lib > self.ment - 70 and nodjp == False):
          djp = True
       if (self.lust == 100):
          templist = [5, "Masturbate"]
@@ -5395,15 +5401,15 @@ class NiminFetishFantasyv0975o_fla:
             self.showPage(False,"")
          self.choicePage = 1
          self.outputMainText(self.itemDescription(ID),True)
-         if ((self.usableItem(ID) == True) or (self.conItem(ID) == True)):
+         if (self.usableItem(ID) or self.conItem(ID)):
             self.hideAmount()
             self.outputMainText("\n\nAre you sure you want to use this item?",False)
-            if (self.conItem(ID) == True):
+            if (self.conItem(ID)):
                self.outputMainText("\n\nWarning: Using this item will consume it.",False)
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
-                  if (self.conItem(ID) == True):
+                  if (self.conItem(ID)):
                      if (self.bagStackArray[self.choiceListResult[1]] <= 1):
                         self.bagSlotClear(self.choiceListResult[1])
                      else:
@@ -5453,24 +5459,12 @@ class NiminFetishFantasyv0975o_fla:
          self.doDiscard(ID)
    def checkOpenSlot(self, ID:int):
       for i in range(27):
-         if (self.bagStackArray[i] < self.itemStackMax(ID)) and (self.bagArray[i] == ID):
+         if (self.bagStackArray[i] < self.itemStackMax(ID) and self.bagArray[i] == ID):
             return i
       for i in range(27):
          if (self.bagArray[i] == 0):
             return i
       return -1
-      """
-      slot = -1
-      for i in range(0, 27):
-         if (self.bagArray[i] == 0):
-            slot = i
-            break
-      for i in range(0, 27):
-         if (self.bagStackArray[i] < self.itemStackMax(ID)) and (self.bagArray[i] == ID):
-            slot = i
-            break
-      return slot
-      """
    def bagSlotAdd(self, amount:int):
       for i in range(amount):
          if (self.bagArray.length < 27):
@@ -5507,9 +5501,9 @@ class NiminFetishFantasyv0975o_fla:
             while self.tempID in self.itemGainArray:
                self.itemGainArray.pop()
             self.doProcess()
-         elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         elif (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.choiceListButtons("Bag")
-         elif (self.canLose(self.choiceListResult[0]) == True):
+         elif (self.canLose(self.choiceListResult[0])):
             tempStr = f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {self.itemName(self.choiceListResult[0])} with {self.itemName(self.tempID)}?"
             if (self.bagStackArray[self.choiceListResult[1]] > 1):
                tempStr += f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {self.itemName(self.choiceListResult[0])} if you do."
@@ -5534,8 +5528,8 @@ class NiminFetishFantasyv0975o_fla:
       if slot < 12:
          tempI -= slot//4+1
       if self.inBag == True:
-         if ((self.moveItemID == self.bagArray[tempI]) and (self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI]))):
-            if ((self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI]))):
+         if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI])):
+            if (self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI])):
                self.bagStackArray[tempI] += self.moveItemStack
                self.moveItemID = 0
                self.moveItemStack = 0
@@ -5551,8 +5545,8 @@ class NiminFetishFantasyv0975o_fla:
             as3.trace(self.bagArray)
             as3.trace(self.bagStackArray)
       elif self.inStash == True:
-         if ((self.moveItemID == self.stashArray[tempI]) and (self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI]))):
-            if ((self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI]))):
+         if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI])):
+            if (self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI])):
                self.stashStackArray[tempI] += self.moveItemStack
                self.moveItemID = 0
                self.moveItemStack = 0
@@ -5571,13 +5565,6 @@ class NiminFetishFantasyv0975o_fla:
          self.showMoveItem(False)
       else:
          self.refreshMoveItem(self.moveItemID,self.moveItemStack)
-         """
-         self.moveItemShow()
-         self.moveItemChangeItem(self.itemName(self.moveItemID))
-         if (self.moveItemStack > 1):
-            self.moveItemAmountShow()
-            self.moveItemAmountChange(self.moveItemStack)
-         """
       if (self.inBag or self.inStash) and self.gametweaks[10] == False:
          if self.moveItemID != 0 and self.buttonsVisible[12] == True:
             if self.inBag == True:
@@ -5902,12 +5889,12 @@ class NiminFetishFantasyv0975o_fla:
       return False
    def canLose(self, ID:int):
       #Returns True if item ID can be lost
-      if ((ID == 244 and self.countItem(244) == 1 and self.snuggleBall) or (ID == 247 and self.countItem(247) == 1 and self.suppHarness)):
+      if (ID == 244 and self.countItem(244) == 1 and self.snuggleBall == True or ID == 247 and self.countItem(247) == 1 and self.suppHarness == True):
          return False
       return True
    def canLoseMoveLocation(self, ID:int):
       #This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
-      if ((ID == 244 and self.countItem(244) == 0 and self.snuggleBall) or (ID == 247 and self.countItem(247) == 0 and self.suppHarness)):
+      if (ID == 244 and self.countItem(244) == 0 and self.snuggleBall == True or ID == 247 and self.countItem(247) == 0 and self.suppHarness == True):
          return False
       return True
    @staticmethod
@@ -6022,7 +6009,7 @@ class NiminFetishFantasyv0975o_fla:
       #Function for losing multiple items
       i = 26
       while (i >= 0):
-         if (self.bagArray[i] == ID) and (amount > 0):
+         if (self.bagArray[i] == ID and amount > 0):
             if (amount >= self.bagStackArray[i]):
                self.passiveItemRemove(self.bagArray[i])
                self.bagArray[i] = 0
@@ -6204,7 +6191,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.tempNum == 2):
                      tempStr += "belly"
                   tempStr += " feeling all tingly."
-                  if ((self.tempNum == 1) and (self.lactation > 0) or (self.tempNum == 2) and (self.udderLactation > 0)):
+                  if (self.tempNum == 1 and self.lactation > 0 or self.tempNum == 2 and self.udderLactation > 0):
                      self.hrs += 1
                      self.getMilk = self.milkAmount(self.tempNum)
                      tempStr += " Droplets of milk begin to trickle around your "
@@ -6240,7 +6227,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.tempNum == 2):
                      tempStr += f"{self.teatDesc()} teats"
                   tempStr += ", shivering from their shortly increased sensitivity, slightly engorged and inflated."
-                  if ((self.boobTotal > 2) or (self.tempNum == 2)):
+                  if (self.boobTotal > 2 or self.tempNum == 2):
                      tempStr += " Then you move onto the next pair..."
                   tempStr += " Eventually you clean yourself up and put the machine away."
                   if (self.tempNum == 1):
@@ -6351,11 +6338,12 @@ class NiminFetishFantasyv0975o_fla:
                         self.doEnd()
                      else:
                         getCum = self.cumAmount()
+                        #!optimize if/else
                         if (self.moistCalc(1) <= 3):
                            self.outputMainText(" The bottle within the machine fills a little with your pre as it seeps out, but it's hardly much.\n\n",False)
-                        elif ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 7)):
+                        elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
                            self.outputMainText(" The bottle within the machine fills nearly halfway with your pre as it dribbles out, so you quickly spill it out before you climax.\n\n",False)
-                        elif ((self.moistCalc(1) > 7) and (self.moistCalc(1) <= 11)):
+                        elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11):
                            self.outputMainText(" The bottle within the machine fills to the brim with your pre as it spurts from your cock, forcing you to quickly replace it with a fresh bottle before you climax.\n\n",False)
                         elif (self.moistCalc(1) > 11):
                            self.outputMainText(" The bottle within the machine fills to the brim with your pre as it gushes from your cock, spilling over the rim. You pull the bottle out and let your slime spew across the floor until you're about to climax and replace it with a fresh one.\n\n",False)
@@ -6366,24 +6354,25 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText(f"\n\nYou have produced {getCum} ml of spooge!",False)
                         elif (getCum >= 1000):
                            self.outputMainText(f"\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!",False)
+                        #!optimize if/else
                         if (getCum <= 400):
                            self.outputMainText(" Although, the resulting amount is so small that you can't really do anything with it...",False)
-                        elif ((getCum > 400) and (getCum <= 600)):
+                        elif (getCum > 400 and getCum <= 600):
                            self.outputMainText(" The resulting amount of spunk is just enough to fill a vial!",False)
                            self.itemAdd(523)
-                        elif ((getCum > 600) and (getCum <= 1200)):
+                        elif (getCum > 600 and getCum <= 1200):
                            self.outputMainText(" The resulting amount of spunk is more than enough to fill a vial, with a quite a bit left to spill over the edge.",False)
                            self.itemAdd(523)
-                        elif ((getCum > 1200) and (getCum <= 2000)):
+                        elif (getCum > 1200 and getCum <= 2000):
                            self.outputMainText(" You come so much that you fill the whole bottle, great for resale!",False)
                            self.itemAdd(524)
-                        elif ((getCum > 2000) and (getCum <= 4500)):
+                        elif (getCum > 2000 and getCum <= 4500):
                            self.outputMainText(" You come so much that you fill the whole bottle, and more continues to gush out over the edge, making quite the mess.",False)
                            self.itemAdd(524)
-                        elif ((getCum > 4500) and (getCum <= 5500)):
+                        elif (getCum > 4500 and getCum <= 5500):
                            self.outputMainText(" Well prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim!",False)
                            self.itemAdd(525)
-                        elif ((getCum > 5500) and (getCum <= 21000)):
+                        elif (getCum > 5500 and getCum <= 21000):
                            self.outputMainText(" Prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim. However, you continue to gush, overfilling it until cum spills over the edge and floods around you, making quite the mess...",False)
                            self.itemAdd(525)
                         elif (getCum > 21000):
@@ -6395,7 +6384,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.cockPump = 0
                            self.cockSize += 1
                            self.outputMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your cock{self.plural(1)} permanently slightly larger...",False)
-                        if ((self.cockSize * self.cockSizeMod * 4 > self.tallness) and (self.gender == 3)):
+                        if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == 3):
                            self.doLust(-(self.sen // 4),2,58,3,57,4)
                         elif (self.cockSize * self.cockSizeMod * 4 > self.tallness):
                            self.doLust(-(self.sen // 4),2,58,1,57,4)
@@ -6414,11 +6403,12 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText(f"Feeling a little kinky, you take the smallest available cylinder and push it over {self.oneYour(2)} clit{self.plural(2)}. Turning on the machine, you quickly notice you're still too small, having to manually seal the cylinder against your skin with your fingers. However, that isn't a problem, as you soon begin to enjoy the sucking on your clit, the button swelling from the vacuum while your fingers sliding through your {self.vulvaDesc()} lips and dipping into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
                         elif (self.clitSize > 20):
                            self.outputMainText(f"Feeling a little kinky, you take some cylinders to slide over {self.oneYour(2)} clit{self.plural(2)}. Its so big that it easily fits into one of them, just like it were a cock. Turning on the machine, your {self.hipDesc()} hips squirm as the suction forces your button to swell, becoming even larger. Your fingers slide through your {self.vulvaDesc()} lips and dip into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
-                        if ((self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+                        #!optimize if/else
+                        if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                            self.outputMainText(" The pump manages to suck up a few drops of your feminine honey as you masturbate, misting the tubes slightly.",False)
-                        elif ((self.moistCalc(2) > 3) and (self.moistCalc(2) <= 7)):
+                        elif (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
                            self.outputMainText(" The pump manages to suck up some of your dribbling feminine honey, letting it drip lazily from into a bottle that was meant for spunk.",False)
-                        elif ((self.moistCalc(2) > 7) and (self.moistCalc(2) <= 11)):
+                        elif (self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
                            self.outputMainText(" The pump manages to suck up a bit of your flowing feminine honey, spurting it into a bottle meant for spunk instead.",False)
                         elif (self.moistCalc(2) > 11):
                            self.outputMainText(" The pump manages to suck up a good deal of your gushing feminine honey, filling a bottle in the machine that was meant for spunk instead. It's not something you can sell, but it amuses you nonetheless.",False)
@@ -6428,7 +6418,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.clitPump = 0
                            self.clitSize += 1
                            self.outputMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your clit{self.plural(1)} permanently slightly larger...",False)
-                        if ((self.clitSize * 24 > self.tallness) and (self.gender == 3)):
+                        if (self.clitSize * 24 > self.tallness and self.gender == 3):
                            self.doLust(-(self.sen // 4),2,1)
                         elif (self.clitSize * 24 > self.tallness):
                            self.doLust(-(self.sen // 4),2,1)
@@ -6505,8 +6495,8 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(tempStr,True)
             self.doEnd()
          case 109:
-            if (self.checkItem(219) == True):
-               if ((self.knowPheromone == True) and (self.silRep < 1) and (self.checkItem(530) == False) and (self.checkStash(530) == False) and (self.checkItem(532) == False) and (self.checkStash(532) == False) and (self.pheromone < 1)):
+            if (self.checkItem(219)):
+               if (self.knowPheromone == True and self.silRep < 1 and self.checkItem(530) == False and self.checkStash(530) == False and self.checkItem(532) == False and self.checkStash(532) == False and self.pheromone < 1):
                   self.loseManyItem(219,1)
                   self.outputMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.",True)
                   self.itemAdd(530)
@@ -6553,7 +6543,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.choiceListArray.push("Clit")
             if (self.cockTotal > 0):
                self.choiceListArray.push("Cock")
-               if ((self.showBalls == True) and (self.ballSize > 1)):
+               if (self.showBalls == True and self.ballSize > 1):
                   self.choiceListArray.push("Balls")
             if (self.udders == True):
                if (self.udderSize > 1):
@@ -6667,7 +6657,7 @@ class NiminFetishFantasyv0975o_fla:
             tempArray = as3.Array(2, "None", 12, "Cancel")
             if (self.cockTotal > 0):
                tempArray.push(5,"Cock")
-               if ((self.showBalls == True) and (self.balls > 0)):
+               if (self.showBalls == True and self.balls > 0):
                   tempArray.push(10,"Balls")
             if (self.vagTotal > 0):
                tempArray.push(7,"Cunt")
@@ -6788,7 +6778,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
             elif (self.vagTotal > 0):
                tempStr = f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. Within seconds, you begin to shudder..."
-               if ((self.clitSize > 20) and (self.percent() <= 5)):
+               if (self.clitSize > 20 and self.percent() <= 5):
                   tempStr += f" You feel {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)} swell and shift within your {self.clothesBottom()}, your lips starting to grow quite oddly as well..."
                   tempStr += self.vagChange(0,-1,ret=True)
                   tempStr += self.cockChange(math.ceil(self.clitSize * 5 / 2),1,ret=True)
@@ -6857,7 +6847,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 208:
             tempStr = "You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible."
-            if ((self.balls > 0) and (self.ballSize > 0) and (self.hunger >= 60)):
+            if (self.balls > 0 and self.ballSize > 0 and self.hunger >= 60):
                if (self.showBalls == True):
                   tempStr += " Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your testicles swell within their scrotum, growing hot with seed... Seems as though this berry has increased the size of your balls, somehow, and now you feel a little hungry again."
                   self.ballSize += self.percent() // 33
@@ -6884,17 +6874,17 @@ class NiminFetishFantasyv0975o_fla:
             chance = self.percent()
             tempStr = "You bite into the fold-like cleft of the pussy fruit, sweet juices spilling out around your face and drooling from your chin in long, slimy strands. You devour it shortly and feel great!"
             tempStr += self.doHP(15,ret=True)
-            if ((self.hunger >= 70) and (self.vagTotal > 0) and (chance <= 50)):
+            if (self.hunger >= 70 and self.vagTotal > 0 and chance <= 50):
                tempStr += f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again..."
                self.vulvaSize += self.percent() // 20
                tempStr += self.doLust(self.percent() / 10,0,ret=True)
                self.hunger -= 20
-            elif ((self.hunger >= 70) and (self.vagTotal > 0)):
+            elif (self.hunger >= 70 and self.vagTotal > 0):
                tempStr += f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again..."
                tempStr += self.vagChange(self.percent() // 20,0,ret=True)
                tempStr += self.doLust(self.percent() / 10,0,ret=True)
                self.hunger -= 20
-            elif ((self.hunger >= 90) and (self.vagTotal > 0)):
+            elif (self.hunger >= 90 and self.vagTotal > 0):
                tempStr += f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nThe cramping shortly passes, but you walk awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again..."
                self.vulvaSize += self.percent() // 20
                tempStr += self.vagChange(self.percent() // 20,0,ret=True)
@@ -6983,7 +6973,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 218:
             tempStr = "You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible."
-            if ((self.balls > 0) and (self.ballSize > 0)):
+            if (self.balls > 0 and self.ballSize > 0):
                if (self.showBalls == True):
                   tempStr += " Moments later, you feel a warmth in your groin. You squirm as your testicles feel crowded, your scrotum growing tight. You look to see and find an extra testicle in your sack!"
                   self.balls += 1
@@ -7009,13 +6999,13 @@ class NiminFetishFantasyv0975o_fla:
             self.dyeThing(ID,2)
          case 221:
             tempStr = "You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat."
-            if (self.vagTotal < 1):
+            if (self.vagTotal < 1): #!can just be else case
                tempStr += "\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth."
             if (self.vagTotal > 0):
                tempStr += f"\n\nYour loins begin to grow hot. Your hand jerks down to your crotch, rubbing yourself feverishly through your {self.clothesBottom()}. The garment quickly grows moist, your arousal spreading {self.legWhere(1)} your {self.legDesc(2)}. You can feel your labia swell beneath your grip, your lips bulging out of your grasp, while your belly aches slightly with a bloating sensation. Your clit{self.plural(2)} squeeze{self.plural(4)} between your fingers.\n\nThe change soon passes, but the changing in the size of your nethers is easily noticeable, making you walk awkwardly at first as you become accustomed."
-               tempStr += self.vagChange((self.percent() // 20) + 2,0,ret=True)
-               self.vulvaSize += (self.percent() // 20) + 2
-               self.clitSize += (self.percent() // 20) + 2
+               tempStr += self.vagChange(self.percent() // 20 + 2,0,ret=True)
+               self.vulvaSize += self.percent() // 20 + 2
+               self.clitSize += self.percent() // 20 + 2
                self.vagMoist += 1
             self.outputMainText(tempStr,True)
             self.doEnd()
@@ -7028,7 +7018,7 @@ class NiminFetishFantasyv0975o_fla:
          case 223:
             tempStr = "The tasty morsel crumbles delightfully in your mouth."
             self.doHP(5)
-            if ((self.vagTotal > 0) and (self.hunger >= 90)):
+            if (self.vagTotal > 0 and self.hunger >= 90):
                tempStr += " Though it settles in your stomach rather oddly, as you feel some squirming slightly below that, the snack quickly digesting into something else..."
                tempStr += self.vagChange(1,0,ret=True)
                self.hunger -= 25
@@ -7039,7 +7029,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 224:
             tempStr = "Lila's breastmilk tastes quite sweet, with a slight aftertaste of her other fluids. It makes you feel a bit... tender, so to speak."
-            if ((self.percent() <= 25) and (self.vagMoist < 12) and (self.vagTotal > 0)):
+            if (self.percent() <= 25 and self.vagMoist < 12 and self.vagTotal > 0):
                tempStr += " You feel some extra moistness in your loins as well, the liquid seeming to imprint some of the girl's wetness upon you."
                self.vagMoist += 1
             if (self.heat > 0):
@@ -7047,7 +7037,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " There's also a slight sensation of coming closer to your fertile period..."
                   if (self.heatTime > 5):
                      self.heatTime -= 5
-                  elif (self.heatTime < 6):
+                  elif (self.heatTime < 6): #!can just be else case
                      self.heatTime = 1
                elif (self.heatTime < 0):
                   tempStr += " There's also a slight tinge of heat that flows through your body, strengthening your estrus for a little longer..."
@@ -7071,7 +7061,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.heatTime < 0):
                   if (self.heatTime < -3):
                      self.heatTime += 3
-                  elif (self.heatTime > -4):
+                  elif (self.heatTime > -4): #!can just be else case
                      self.heatTime = -1
             self.outputMainText(tempStr,True)
             self.doEnd()
@@ -7091,7 +7081,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.enticeMod += 5
                self.bodyOil = 5
-            if ((self.skinType == 1) or (self.skinType == 3)):
+            if (self.skinType == 1 or self.skinType == 3):
                tempStr += f" It also makes your {self.skinDesc()} feel so good to the touch~"
                self.stats(0,0,0,1)
             self.outputMainText(tempStr,True)
@@ -7132,17 +7122,17 @@ class NiminFetishFantasyv0975o_fla:
                self.itemAdd(231)
                self.doEnd()
             else:
-               self.dmg = math.floor(random.random() * (1 + 40 - 20)) + 20
+               self.dmg = math.floor(random.random() * 21) + 20
                self.outputMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {self.dmg} damage!",True)
                self.doeHP(-self.dmg)
                if (self.percent() <= 25):
                   self.outputMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ",False)
                   self.rndArray = as3.Array("Desi Sand")
-                  if ((self.cockSizeMod > 0.5) and (self.cockTotal > 0)):
+                  if (self.cockSizeMod > 0.5 and self.cockTotal > 0):
                      self.rndArray.push(1)
-                  if ((self.vagSizeMod > 0.5) and (self.vagTotal > 0)):
+                  if (self.vagSizeMod > 0.5 and self.vagTotal > 0):
                      self.rndArray.push(2)
-                  if ((self.cumMod > 0.5) and (self.showBalls == True) and (self.cockTotal > 0)):
+                  if (self.cumMod > 0.5 and self.showBalls == True and self.cockTotal > 0):
                      self.rndArray.push(3)
                   if (self.milkMod > 0):
                      self.rndArray.push(4)
@@ -7165,8 +7155,8 @@ class NiminFetishFantasyv0975o_fla:
                   elif self.rndResult == 5:
                      self.outputMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.",False)
                      self.pregRate -= 0.05
-                     self.pregChanceMod = self.pregChanceMod - 1
-                     self.extraPregChance = self.extraPregChance - 1
+                     self.pregChanceMod -= 1
+                     self.extraPregChance -= 1
                   else:
                      self.outputMainText("Thankfully, it barely touches you and you're left unaffected.",False)
                if (self.currentState == 2):
@@ -7278,7 +7268,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 238:
             self.outputMainText("Nibbling the cheese, the delicious flavor melts in your mouth and feels so good going down. It feels good just eating it, like you could go hunting for lots more. Though... Hey, did your clothes get looser, or is it just your imagination?",True)
-            self.tallness = self.tallness - 1
+            self.tallness -= 1
             self.aff(8,math.floor(self.percent() / 15 + 2),-2)
             self.doEnd()
          case 239:
@@ -7357,7 +7347,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 249:
             tempStr = "You drop the small tear into your mouth, swallowing it easily with a quick gulp. You don't even feel it in your stomach; it doesn't seem to do anything at first.\n\nHowever, a sensation of wilting envelopes your appendages, like they're growing weaker."
-            if ((self.cockTotal > 0) or (self.vagTotal > 0)):
+            if (self.cockTotal > 0 or self.vagTotal > 0):
                tempStr += " The sensation coalesces into your crotch, focusing within your extra genitalia."
                if (self.cockTotal > 0):
                   self.tallness += math.ceil(self.cockTotal / 4) * 2
@@ -7382,9 +7372,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
             else:
                tempStr = f"Needing a quick escape, you throw the foomp bomb at the enemy. It explodes on contact with a cloud of magical dust and, just as its name implies, there's a sort of \"foomp!\" sound. As the dust clears, you can't help but giggle at the results. The {self.enemyName()}'s whole body has ballooned to amusing proportions; inflated by the bomb."
-               if ((self.eGen == 1) or (self.eGen == 3)):
+               if (self.eGen == 1 or self.eGen == 3):
                   tempStr += f" The {self.enemyName()}'s cock propels forward with the growth, flopping down onto the ground many times larger than it was, anchoring itself do the ground and preventing its owner from moving."
-               if ((self.eGen == 2) or (self.eGen == 3)):
+               if (self.eGen == 2 or self.eGen == 3):
                   tempStr += f" The {self.enemyName()}'s breasts swell to obscene sizes, making her fall forward and be cushioned by the pillowy masses, unable to stand."
                if (self.eGen == 4):
                   tempStr += f" The {self.enemyName()}'s midsection grows so large and round that it is unable to move at all."
@@ -7445,7 +7435,7 @@ class NiminFetishFantasyv0975o_fla:
          case 256:
             tempStr = "You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly."
             if (self.eggLaying > 0):
-               if (self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0)):
+               if (self.gametweaks[0] == False or self.gametweaks[0] == True and self.vagTotal > 0):
                   tempStr += " And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something."
                self.eggTime -= 4
             self.stats(1,0,0,0)
@@ -7531,7 +7521,7 @@ class NiminFetishFantasyv0975o_fla:
                self.itemAdd(505)
                self.doEnd()
             else:
-               self.dmg = math.floor(random.random() * (1 + 20 - 10)) + 10
+               self.dmg = math.floor(random.random() * 11) + 10
                self.outputMainText(f"You pull the bad experiment from your bag and toss it at the {self.enemyName()}. The crude stuff explodes, far enough away to not harm you, dealing {self.dmg} damage!",True)
                self.doeHP(-self.dmg)
                self.doBattle()
@@ -7579,7 +7569,7 @@ class NiminFetishFantasyv0975o_fla:
                self.itemAdd(510)
                self.doEnd()
             else:
-               self.dmg = math.floor(random.random() * (1 + 40 - 20)) + 20
+               self.dmg = math.floor(random.random() * 21) + 20
                self.outputMainText(f"You pull the super bad experiment from your bag and toss it at the {self.enemyName()}. The super crude stuff explodes superbly, far enough away to not harm you, dealing a super {self.dmg} damage!",True)
                self.doeHP(-self.dmg)
                self.doBattle()
@@ -7647,7 +7637,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagSize = 0
                self.vagTotal = 0
                i = 0
-               while (i < self.pregArray.length):
+               while (i < self.pregArray.length): #!Can just be self.pregArray.clear()
                   if (self.pregArray[i] == False):
                      self.pregArray.splice(i,5)
                      i = -5
@@ -7670,9 +7660,10 @@ class NiminFetishFantasyv0975o_fla:
             elif self.gender == 0:
                chance = self.percent()
                tempStr = "You ingest the potion and quickly begin to feel its effects."
+               #!if/else-ify
                if (chance <= 40):
                   tempStr += self.cockChange(1,1,ret=True)
-               if ((chance > 40) and (chance <= 80)):
+               if (chance > 40 and chance <= 80):
                   tempStr += self.vagChange(1,1,ret=True)
                if (chance > 80):
                   tempStr += self.cockChange(1,1,ret=True)
@@ -7710,7 +7701,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagBellyChange(self.cockSize,self.cockTotal)
                self.vagTotal = self.cockTotal
                i = 1
-               while (i <= self.vagTotal):
+               while (i <= self.vagTotal): #Can be for loop
                   if (self.pregArray.length / 5 < 1):
                      self.pregArray = as3.Array(False,0,0,0,0)
                      i += 1
@@ -7743,7 +7734,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagSize = 0
                self.vagTotal = 0
                i = 0
-               while (i < self.pregArray.length):
+               while (i < self.pregArray.length): #!Can just be self.pregArray.clear()
                   if (self.pregArray[i] == False):
                      self.pregArray.splice(i,5)
                      i = -5
@@ -7770,10 +7761,11 @@ class NiminFetishFantasyv0975o_fla:
             elif self.gender == 0:
                chance = self.percent()
                self.outputMainText("You ingest the potion and quickly begin to feel its effects.",True)
+               #!if/else-ify
                if (chance <= 40):
                   self.cockChange(math.ceil(self.percent() / 5),1)
                   self.ballSize = math.ceil(self.percent() / 5)
-               if ((chance > 40) and (chance <= 80)):
+               if (chance > 40 and chance <= 80):
                   self.vagChange(math.ceil(self.percent() / 5),1)
                   self.vulvaSize = math.ceil(self.percent() / 5)
                   self.clitSize = math.ceil(self.percent() / 5)
@@ -7842,12 +7834,14 @@ class NiminFetishFantasyv0975o_fla:
                self.itemAdd(528)
                self.doEnd()
             else:
-               self.dmg = math.floor(random.random() * (1 + 20 - 10)) + 10
+               self.dmg = math.floor(random.random() * 11) + 10
                self.outputMainText(f"You pull the bad egg from your bag and toss it at the {self.enemyName()}. It explodes in a burst of fire, somehow, dealing {self.dmg} damage!",True)
                self.doeHP(-self.dmg)
-               self.doEnd()
+               if (self.currentState == 2):
+                  self.doEnd()
          case 529:
             tempStr = "You crack open the strange egg and down its contents, feeling odd..."
+            #!Some of these should probably be mutually exclusive (gametweak)
             if (self.percent() <= 10):
                tempStr += "\n\nYou grow an inch taller."
                self.tallness += 1
@@ -7857,7 +7851,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.percent() <= 10):
                tempStr += "\n\nYour chest springs out, swelling in size."
                self.breastSize += math.ceil(self.percent() / 10)
-            if ((self.percent() <= 10) and (self.breastSize > 1)):
+            if (self.percent() <= 10 and self.breastSize > 1):
                tempStr += "\n\nYour breasts recoil back, deflating."
                self.breastSize -= math.ceil(self.percent() / 10)
             if (self.percent() <= 10):
@@ -7866,18 +7860,19 @@ class NiminFetishFantasyv0975o_fla:
             if (self.percent() <= 10):
                tempStr += "\n\nYour crotch feels strange as some masculine bits begin to appear..."
                tempStr += self.cockChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
-            if ((self.percent() <= 10) and (self.cockTotal > 0)):
+            #!optimize if/else
+            if (self.percent() <= 10 and self.cockTotal > 0):
                tempStr += f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically."
                tempStr += self.cockChange(math.ceil(self.percent() / 10),0,ret=True)
-            if ((self.percent() <= 10) and (self.cockTotal > 0)):
+            if (self.percent() <= 10 and self.cockTotal > 0):
                tempStr += f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically."
                tempStr += self.cockChange(-math.ceil(self.percent() / 10),0,ret=True)
-            if ((self.percent() <= 10) and (self.vagTotal > 0)):
+            if (self.percent() <= 10 and self.vagTotal > 0):
                tempStr += f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically."
                tempStr += self.vagChange(math.ceil(self.percent() / 10),0,ret=True)
                self.vulvaSize += math.ceil(self.percent() / 10)
                self.clitSize += math.ceil(self.percent() / 10)
-            if ((self.percent() <= 10) and (self.vagTotal > 0)):
+            if (self.percent() <= 10 and self.vagTotal > 0):
                tempStr += f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically."
                tempStr += self.vagChange(-math.ceil(self.percent() / 10),0,ret=True)
                self.vulvaSize -= math.ceil(self.percent() / 10)
@@ -7894,7 +7889,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.percent() <= 10):
                tempStr += "\n\n10 coins pop out of your ears."
                self.doCoin(10)
-            if ((self.percent() <= 10) and (self.vagTotal > 0)):
+            if (self.percent() <= 10 and self.vagTotal > 0):
                tempStr += f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!"
                self.addManyItem(219,3)
             tempStr += "\n\nQuite strange indeed..."
@@ -7956,7 +7951,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.choiceListArray.push("Clit")
             if (self.cockTotal > 0):
                self.choiceListArray.push("Cock")
-               if ((self.showBalls == True) and (self.ballSize > 1)):
+               if (self.showBalls == True and self.ballSize > 1):
                   self.choiceListArray.push("Balls")
             if (self.udders == True):
                if (self.udderSize > 1):
@@ -8015,7 +8010,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.bellyMod -= 4
                      tempStr += f"{self.bellyDesc()}."
                self.outputMainText(tempStr,True)
-               if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+               if (self.buttonChoice == 4 or self.buttonChoice == 8):
                   self.choiceListButtons("Reduc Reduc")
                elif (self.buttonChoice == 12):
                   self.itemAdd(533)
@@ -8029,8 +8024,8 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer"
                if (self.showBalls == True):
                   tempStr += " and the testicles beneath swell within your scrotum"
-               else:
-                  tempStr += ". You can also feel your abdomen grow tighter, as if your internal testicles were swelling."
+               elif self.gametweaks[0] == True:
+                  tempStr += ". You can also feel your abdomen grow tighter, as if your internal testicles were swelling"
                tempStr += ".\n\nIt really does work!"
                self.cockSize += 4
                self.ballSize += 2
@@ -8274,7 +8269,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.canLoseMoveLocation(self.moveItemID) == True:
             tempNum = self.moveItemID
             tempNum2 = self.moveItemStack
-            if ((tempNum == self.stashArray[self.choiceListResult[1]]) and (self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum))):
+            if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
                if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
                   self.moveItemStack -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
                   self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
@@ -8311,7 +8306,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             tempNum = self.moveItemID
             tempNum2 = self.moveItemStack
-            if ((tempNum == self.bagArray[self.choiceListResult[1]]) and (self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum))):
+            if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
                if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
                   self.moveItemStack -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
                   self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
@@ -8333,7 +8328,7 @@ class NiminFetishFantasyv0975o_fla:
       #Function to refresh the item being moved
       self.moveItemID = item
       self.moveItemStack = stack
-      if (self.moveItemID != 0) and self.moveItemStack != 0:
+      if self.moveItemID != 0 and self.moveItemStack != 0:
          self.moveItemShow()
          self.moveItemChangeItem(self.itemName(self.moveItemID))
          if (self.moveItemStack > 1):
@@ -8385,13 +8380,13 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Stash")
          if (self.buttonChoice == 12):
             self.doStash()
-         elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         elif (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.choiceListButtons("Stash")
             self.choiceListBlanks()
          else:
             tempNum = self.bagArray[self.tempStoreItem]
             tempNum2 = self.bagStackArray[self.tempStoreItem]
-            if ((tempNum == self.stashArray[self.choiceListResult[1]]) and (self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum))):
+            if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
                if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
                   self.bagStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
                   self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
@@ -8418,13 +8413,13 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Bag")
          if (self.buttonChoice == 12):
             self.doStash()
-         elif ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         elif (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.choiceListButtons("Bag")
             self.choiceListBlanks()
          elif (self.canLose(self.choiceListResult[0]) == True):
             tempNum = self.stashArray[self.tempStoreItem]
             tempNum2 = self.stashStackArray[self.tempStoreItem]
-            if ((tempNum == self.bagArray[self.choiceListResult[1]]) and (self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum))):
+            if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
                if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
                   self.stashStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
                   self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
@@ -8543,13 +8538,14 @@ class NiminFetishFantasyv0975o_fla:
                      def doListen():
                         self.doShop()
                      self.doListen = doListen
-                  elif ((self.checkItem(self.goodsID(self.buy)) == True) and (self.conItem(self.goodsID(self.buy)) == False)):
+                  elif (self.checkItem(self.goodsID(self.buy)) == True and self.conItem(self.goodsID(self.buy)) == False):
                      self.outputMainText(f"Sorry, but you cannot buy {self.itemName(self.goodsID(self.buy))} if you already have one. Please choose something else.",True)
                      self.doNext()
                      def doListen():
                         self.doShop()
                      self.doListen = doListen
                   else:
+                     #!addmanyitems
                      for i in range(tempInt):
                         self.itemAdd(self.goodsID(self.buy))
                      self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
@@ -8687,7 +8683,7 @@ class NiminFetishFantasyv0975o_fla:
          elif goodsSlot == 5:
             return 103
          elif goodsSlot == 6:
-            return 110
+            return 110 #!supposed to be 105
          elif goodsSlot == 9:
             return 110
          elif goodsSlot == 10:
@@ -8864,7 +8860,7 @@ class NiminFetishFantasyv0975o_fla:
                      def doListen():
                         self.doApothecary()
                      self.doListen = doListen
-                  elif ((self.checkItem(self.apothID(self.buy)) == True) and (self.conItem(self.apothID(self.buy)) == False)):
+                  elif (self.checkItem(self.apothID(self.buy)) == True and self.conItem(self.apothID(self.buy)) == False):
                      self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.",True)
                      self.doNext()
                      def doListen():
@@ -8873,6 +8869,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
                      if (self.apothID(self.buy) > 200):
+                        #!addmanyitems
                         for i in range(tempInt):
                            self.itemAdd(self.apothID(self.buy))
                      else:
@@ -9013,7 +9010,7 @@ class NiminFetishFantasyv0975o_fla:
       elif ID == 2:
          return 'R: RejuvPot'
       elif ID == 3:
-         return 'R: RejuvPot'
+         return 'R: RejuvPot' #!Should be "R: ExpPreg"
       elif ID == 4:
          return 'R: BallSwell'
       elif ID == 5:
@@ -9735,6 +9732,7 @@ class NiminFetishFantasyv0975o_fla:
       return 0
    @staticmethod
    def clothesDescription(ID:int):
+      #!Here
       match ID:
          case 1:
             return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
@@ -9806,6 +9804,7 @@ class NiminFetishFantasyv0975o_fla:
          case 1:
             return "shirt"
          case 3:
+            #!optimize
             if (self.boobTotal == 2):
                return "bikini top"
             elif (self.boobTotal >= 4):
@@ -9987,6 +9986,7 @@ class NiminFetishFantasyv0975o_fla:
          case 30:
             self.changeTop(30)
    def changeTop(self, ID:int):
+      #!Here
       if (ID != self.attireTop):
          if (self.attireTop == -1):
             self.statsMod(2,2,0,0)
@@ -10026,7 +10026,7 @@ class NiminFetishFantasyv0975o_fla:
             self.pregChanceMod += 5
          elif (self.attireTop == 18):
             self.statsMod(-2,2,0,0)
-            self.breastSize = self.breastSize - 1
+            self.breastSize -= 1
          elif (self.attireTop == 19):
             self.statsMod(2,-2,-2,0)
             self.breastSize -= 4
@@ -10161,12 +10161,12 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.attireBot == 10):
             self.vagMoistMod += 2
             self.cockMoistMod += 2
-            self.hips = self.hips - 1
+            self.hips -= 1
             self.statsMod(0,4,0,0)
          elif (self.attireBot == 11):
             self.vagMoistMod += 5
             self.cockMoistMod += 5
-            self.hips = self.hips - 1
+            self.hips -= 1
             self.butt -= 2
             self.statsMod(0,4,4,0)
          elif (self.attireBot == 14):
@@ -10187,7 +10187,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.attireBot == 20):
             self.cumMod += 0.3
             self.runMod += 3
-            self.vulvaSize = self.vulvaSize - 1
+            self.vulvaSize -= 1
             self.enticeMod -= 7
             self.statsMod(0,2,-2,-2)
          elif (self.attireBot == 22):
@@ -10384,16 +10384,16 @@ class NiminFetishFantasyv0975o_fla:
       self.hideSGButton()
       self.hideLGButton()
       self.hideNGButton()
-      if (self.percent() < (33 - self.enticeMod)):
+      if (self.percent() < 33 - self.enticeMod):
          self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.",True)
          self.hrs = 2
          self.doEnd()
       else:
-         tempInt = math.floor((self.percent() / 20) + (self.ment / 5) + (self.lib / 5))
+         tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5) #!Floor div?
          tempStr = ""
          while True:
             if self.currentZone == 1:
-               chance = math.floor(random.random() * (1 + 6 - 1)) + 1
+               chance = math.floor(random.random() * 6) + 1
                if chance == 1:
                   tempStr = f"Checking yourself in a window, you make sure your {self.currentClothes()} are in order. You make sure your {self.boobDesc()} breasts are exposed just enough to entice anyone that sees the lovely flesh of your {self.boobDesc()} bust. You walk with your hips swaying back and forth, trying to bring any watcher to you like a moth to the flame. It's not long before a small group of three human males approach you. Each of them looks like they’ve had a bit to drink and they even try to haggle with you. You manage to agree upon a price for the three of them and they take you back to a seedy bar. The place is bustling, but they have a back room for their dirty exploits."
                   if (self.lactation > 0):
@@ -10413,27 +10413,27 @@ class NiminFetishFantasyv0975o_fla:
                   break
                elif chance == 2 and self.cockTotal > 0:
                   tempStr = f"You wander around the city of Softlik, putting yourself on display, hoping to earn some coin with the only asset you have to peddle. The crowds seem to largely ignore you. Some of the more prudish citizen even actively avoid you. As time passes, you worry that your efforts may be in vain. Just as you are about to give up, a very nervous young man hesitantly approaches you.\n\n\"Hey, I know, this might sound stupid, but you look like a...\" he blushes and stammers a bit \"well,..\" He looks around and lowers his voice, hoping no one can hear him, \"I always wanted to try to suck off a {self.domName()} like you. I'll pay you, if you let me...\" He blushes deeply as he looks at you with downcast eyes, his face turning almost as red as his hair. You find it rather endearing as you watch his nervousness warring with his desire.\n\nNeeding the money, you nod your head in acceptance. The young man grabs your arm as his enthusiasm overcomes his nervousness. He practically drags you into an empty alley before looking around, ensuring no one can see you two. Now that he has you in private, however, his nervousness reasserts itself, looking a bit unsure. You decide to take the lead for this moment and pull out {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}."
-                  if ((self.cockSize * self.cockSizeMod) <= 20):
+                  if (self.cockSize * self.cockSizeMod <= 20):
                      tempStr += "\n\nThe young man promptly falls down to his knees in front of you and touches it with a trace of wonder. Finally he begins stroking it in earnest and you realize that despite his uncertainty, he certainly has some talent. As he gains courage from your gasp of pleasure, he starts applying his tongue, teasing along the underside of your shaft. Despite his initial shyness, he is really quite good at this. He takes the tip of your cock into his mouth, licking around the tip and moaning softly. His expression is one of sheer bliss as he tastes the drop of pre that emerges. His head starts bobbing on your cock, going down on you in earnest, eliciting a low growl from you. If this guy is really new to this, he is a natural. He picks up speed and moves your up and down on your cock sucking harder and faster."
                      if (self.knot == False):
                         tempStr += "\n\nYou enjoy his attentions, absently caressing his hair as he gives you one of the best blowjobs you've ever had. You pant heavily as as this young man moves his head, taking almost your whole cock in his mouth. You grab his head as you feel you are close to your climax and pull his head while thrusting with your hips, forcing him to take your entire length in his mouth as you release your pent-up climax, giving him all your seed to swallow."
                      elif (self.knot == True):
                         tempStr += "\n\nYou enjoy his attentions, absently caressing his hair as he gives you one of the best blowjobs you've ever had. You pant heavily as as this young man moves his head, taking almost your whole cock in his mouth, nearly down to your knot. You grab his hair and pull him closer, impaling his willing mouth on your cock, until he can reach your knot with his tongue. He gets the idea and begins teasing the swelling knot with his tongue."
-                        if ((self.cockSize * self.cockSizeMod) <= 10):
+                        if (self.cockSize * self.cockSizeMod <= 10):
                            tempStr += " You are surprised when he manages to not only take in your shaft, but your knot as well. You groan as his lips clench behind your knot, much like a woman's nether lips would, before squeezing it and massaging the swelling bulb. Then he looks up at you, his lips wrapped around your knot and the worshipful, needy expression on his face is too much for you. Unable to hold back any longer, you give him the reward he so eagerly seeks and he struggles to swallow every last drop as you spray your seed down his throat."
                         else:
                            tempStr += " He then pulls off your shaft and begins sucking on the knot itself, allowing it to swell to full size. Then he goes back to deep-throating your cock while squeezing your knot with his hand. The sensation is too much for you and he struggles to swallow down every last drop as you spray your seed into his mouth."
                   else:
                      tempStr += f"\n\nThe young man falls on his knees and admires your {self.cockDesc()} cock. He feels over your large member, surely too big for him to take it all. He slowly licks around the shaft before starting to suck on the tip. He takes in as much of your cock as he can, sucking and licking on it, eyes half-lidded in bliss and moaning softly. He starts to stroke the rest of your cock, much too large to fit in his mouth"
-                     if self.showBalls:
+                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                         tempStr += f" and with his other hand he massages your {self.ballDesc()} balls"
                      tempStr += f". You enjoy his enthusiasm and his skill as he carefully makes sure that every last inch of your thick shaft is given the attention it deserves. It's not long before you're feeling a familiar pressure building up in your "
-                     if self.showBalls:
+                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                         tempStr += "nuts"
                      else:
                         tempStr += "abdomen"
                      tempStr += ". Suddenly the boy "
-                     if self.showBalls:
+                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                         "stops playing with your balls and "
                      tempStr += "moves his finger over your ass. Pushing one in your asshole, he sends you over the edge and you flood his mouth with cum in return."
                   tempStr += "\n\n\nAs you pull your cock out of his mouth, the last spurt of cum hits his face, marking him. He blushes again, licking his lips and savoring the flavor. He looks around again, still finding no one who could have seen you. He sighs in relief and hands you some coins. He then gets up quickly, and moves away..."
@@ -10443,8 +10443,8 @@ class NiminFetishFantasyv0975o_fla:
                   break
                elif chance == 3 and self.cockTotal > 0:
                   tempStr = f"You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your {self.cockDesc()} cock{self.plural(1)} throb{self.plural(3)} with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub {self.oneYour(1)} hard cock{self.plural(1)} along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your "
-                  if self.showBalls == False:
-                     tempStr += "internal"
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == False:
+                     tempStr += "internal "
                   tempStr += f"balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load."
                   tempStr += "\n\nWhen your orgasm settles down, you ease your member out of her slit with a thick trickle of your seed dribbling out of her hole and coating your cock.\n\nYou go into the bathroom and bathe and, when you return, you find that your client has left some coins on the table."
                   self.hrs = 2
@@ -10472,16 +10472,14 @@ class NiminFetishFantasyv0975o_fla:
                   break
                elif chance == 6 and self.gender != 0:
                   tempStr = "Standing on the corner, attempting to look your sexiest, you manage to attract the attention of two young women who almost look identical. They smell strongly of alcohol, leading you to assume that they have recently left a tavern to seek other pleasures. Walking up to you, one shoves a small bag of coins into your hands, too intoxicated to negotiate or really care about your racial makeup, while the other stumblingly starts to frog-march you to an alleyway a few meters distant.\n\nPocketing the coins, you size up the two young women. Both are rather skinny with ample breasts and the beginnings of womanly hips and thighs visible through the form-fitting trousers they wear. You begin to think it's a bit odd for women in Softlik to be wearing pants when you notice two rather large bulges beginning to tent the length of the women's pant-legs. The two undress and it is soon evident the two women have been the unfortunate (or fortunate) victims of cock-snakes. The two sport identical foot-long erections, hardened and bobbing while dribbling pre-cum over a slightly gaping pair of feminine nether-lips.\n\nYou hurriedly undress, becoming quite aroused at the sight of the two's audacious display of unrestrained sexuality.\n\nThe two gaze over your body, hungrily drinking in your attributes."
-                  if ((self.cockTotal > 1) and (self.cockTotal >= self.vagTotal)):
+                  if (self.cockTotal > 1 and self.cockTotal >= self.vagTotal):
                      tempStr += f"Despite being incredibly drunk the two women move rather quickly, pushing you over to lay on the somewhat clean cobblestones of the alleyway. Wasting no time, they begin vying for your cocks, sloppily arguing over who will get what member. Having decided, the two intertwine their arms and begin to lower themselves on top of you in unison, guiding the heads of your selected members to momentarily rest softly in the gape of their identical vulvas. Almost letting themselves fall onto your shafts, the two are already dripping wet and your twin dicks are swallowed almost instantly to the hilt because of it.\n\nThe two begin to expertly bounce on top of you and soon have you screaming at the dual sensations of your {self.cockDesc()} cocks being squeezed and milked by the tight cunts surrounding them. As the two horny women gyrate on top of you, one of the sisters reaches down and guides her shaft toward your face. Taking the hint, you immediately slide the member into your mouth and begin to suck and stroke it with your tongue as best as you can, striving to match the incredible rhythm of the two women mercilessly grinding on top of you. It's only a matter of time before the dual sensations of your cocks being milked causes you to erupt in orgasm. Stifling a scream you tense and begin to forcefully ejaculate deep into the two women.\n\nThe sister in your mouth erupts down your throat like a volcano and soon leaves you gulping, fruitlessly trying to keep up with the torrent she is releasing. The other sister grabs her own cock and directs it toward her mouth as she orgasms, spraying thick ropes of semen into her gaping mouth and somehow managing to gulp it down as quickly as it appears.\n\nAlmost falling off of you, the two women stagger to their feet and begin to gather their clothes, leaving you panting and oozing cum. The two sisters throw another small bag of coins at your {self.legDesc(10)}, thanking you for the best fuck they have had in a while. Not even bothering to get dressed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your cum as they leave and can't help but wonder if they will get pregnant from the deluge you have just released."
                   elif (self.vagTotal > 1):
                      tempStr += f"Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and an argument erupts behind you as to who gets dibs on what orifice. The two quickly come to an agreement and waste no time in guiding the tips of their rigid tumescences to rest lightly on the lips of two of your vaginas. With only a moments hesitation spent arranging their body parts so as to not collide with each other, the two begin to urgently slide their lengths into you. The two women's cocks are some of the biggest you have taken and soon bottom out inside you.\n\nThe two thrust in unison, the combined sensation of being filled by two cocks at the same time soon leaves you panting and drooling, barely conscious of anything but the motion of the two cocks inside you. Their thrusts come faster and faster as they push you closer and closer to the edge, their lengths sliding in and out of your slick cunts with ease. As they near orgasm their thrusts become more and more shallow. You can feel the heads of their cocks hitting the walls of your cervices with every movement, and without warning the two tense and shudder in unison as they begin to spasm jets of torrid jizz deep into your wombs. They continue to ejaculate for what seems like forever. If you could muster the energy you wouldn't be surprised to look and see your belly has begun to swell from the sheer amount of liquid which has been pumped into you. Exhausted and still rather tipsy the two fall off you, their quickly softening cocks make a wet slap against the insides of your thighs as they slide from you.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you below still panting and oozing cum. The two sisters throw another small bag of coins at your {self.legDesc(10)}, thanking you for the best fuck they have had in a while. Not even bothering to get clothed, the two stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of cum, their cocks still oozing the white sticky substance onto the ground below them. You cant help but wonder if you will get pregnant from the deluge they just released."
                      tempStr += self.doMultiImpregnate(1,2,ret=True)
-                     #tempStr += self.doImpregnate(1,ret=True)
-                     #tempStr += self.doImpregnate(1,ret=True)
-                  elif ((self.cockTotal == 1) and (self.vagTotal == 1)):
+                  elif (self.cockTotal == 1 and self.vagTotal == 1):
                      tempStr += f"Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and while doing so an argument erupts behind you as to who gets dibs on your pussy and who gets your cock. The two quickly reach an agreement and one of the sisters wastes no time in guiding the tip of her rigid tumescence to rest lightly on the swollen lips of your vagina. The other sister vying for your cock eases underneath you and raises her ass up to the level of your crotch. Reaching behind her she takes your now absolutely rigid member and begins to guide it to rest against her vulva. With only a moments hesitation spent arranging their body parts so as to not collide with one another, the two begin to urgently grind against you.\n\nThe sister behind you begins by sliding her rigid length into you and following her thrust you plunge deep into the sister below you. Your movement is reciprocated by the sister below you as she grinds her hips against your groin"
-                     if self.showBalls:
+                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                         tempStr += ", your balls wetly slapping the inside of her thighs"
                      tempStr += f". The cock inside of you is one of the biggest you have taken and it soon bottoms out, rubbing the wall of your cervix pleasurably. The two move in near perfect unison, the combined sensation of being filled and filling another at the same time soon leaves you panting and drooling, barely conscious of the outside world.\n\nThe two women's thrusts come faster and faster as they surge closer and closer towards the edge. As they near orgasm, their movements get shorter and faster and you can feel the head of your cock hitting the wall of the bottom sister's cervix with your every movement. Without warning you feel the sister in your pussy tense and shudder as she begins to spasm jets of torrid jizz deep into your womb. The immense warmth filling you sends you flying over the edge and you erupt into the depths of the beauty below you as she lets loose onto the ground below her, her jism quickly forming a small pool. You all continue to ejaculate for what seems forever; if you could muster the energy you wouldn't be surprised to look and see that your belly and the belly of the sister below you have swelled from the sheer amount of liquid which has been expelled. Exhausted and still rather tipsy, the two help each other up.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you on the ground still panting and oozing cum. The two sisters throw another small bag of coins at your {self.legDesc(10)}, thanking you for the best fuck they have had in a long while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your combined cum, their cocks still oozing the white sticky substance onto the ground below them and the excessive amount you pumped into the womb of the sister dripping slowly out. You can't help but wonder if you will get pregnant from the deluge they just released or if they will get pregnant from the seed you just planted deep in one of the sister's bellies."
                      tempStr += self.doImpregnate(1,ret=True)
@@ -10492,13 +10490,13 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doImpregnate(1,ret=True)
                   self.hrs = 2
                   self.cumAmount()
-                  if ((self.cockTotal > 1) and (self.cockTotal >= self.vagTotal)):
+                  if (self.cockTotal > 1 and self.cockTotal >= self.vagTotal):
                      tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                   else:
                      tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
                   break
             elif self.currentZone == 2:
-               chance = math.floor(random.random() * (1 + 5 - 1)) + 1
+               chance = math.floor(random.random() * 5) + 1
                if chance == 1:
                   tempStr = "Enticing one of the big local males into a nearby tent,"
                   if (self.ment > 20):
@@ -10506,12 +10504,12 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      tempStr += " you don’t even bother to make sure you’re alone as you ravenously turn your attention upon him."
                   tempStr += f" Sinking to your {self.legDesc(6)} and unfastening his trousers, you emit a gasp of lustful delight as you find it isn’t only his stature that is large. Your"
-                  if (self.checkItem(101) == True):
+                  if (self.checkItem(101)):
                      tempStr += " paws"
                   else:
                      tempStr += " hands"
                   tempStr += " greedily grip his bulging masculinity. You coax his massive, horse-like cock from his plump sheath with slow, enticing strokes. His huge equan testicles are simply too big to cup in one hand, so you take turns squeezing and kneading each of his fat colt-makers as you stroke his huge, pulsing organ to life.\n\nThe equan groans as you lean in to tongue at his flaring, blunt cock-head while lapping at his pre-seed as it oozes copiously from his enormous fuck rod. You continue to stroke his throbbing shaft as you open your mouth wide and force the first few inches of his immense tool into your maw. Your tongue works furiously at the sensitive underside of his swollen, flat glans and it isn’t long before you feel his bloated orbs heave closer to his body in that telltale sign of his imminent release.\n\nSuddenly the equan surges forward, gripping "
-                  if ((self.ears == 2) or (self.ears == 5) or (self.ears == 7)):
+                  if (self.ears == 2 or self.ears == 5 or self.ears == 7):
                      tempStr += "your long ears"
                   else:
                      tempStr += "the back of your head"
@@ -10548,7 +10546,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.showBalls == True):
                      tempStr += f" and letting your {self.ballDesc()} balls hang free"
                   tempStr += f" followed by her tearing off her own clothes. She grabs {self.oneYour(1)} wang{self.plural(1)}, gets down onto all fours and presses the head of you penis against her quivering lips. She does not hesitate to force your {self.cockDesc()} cock inside of her sex, letting out a loud orgasmic moan as you sink deep into her folds. You don't even have time to think about being inside her hot, wet depths as the sexy mare begins bucking against the length of your {self.cockDesc()} tool inside her. Your penis and "
-                  if self.showBalls:
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                      tempStr += "balls"
                   else:
                      tempStr += "abdomen"
@@ -10576,10 +10574,10 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.vagTotal > 0):
                      tempStr += f"Moving his tongue deep inside of {self.oneYour(2)} cunt{self.plural(2)} the Equan tastes the thoroughly used tunnel of your female sex and nods in approval as he begins to slowly eat you out. His lips, breath, and tongue are so warm you push back into his face hard enough to make your hurting ass ache as your tender rump lets its sensitivity be known. Rolling his tongue up, down, and all around the Equan spreads you open farther than his finger ever could and pushes forward into your belly so much you think he may have touched your womb."
                   tempStr += "Groaning and writhing"
-                  if self.showBalls:
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                      tempStr += " as a hand takes up your balls and massages them"
                   tempStr += f", you try to bite out a few words of praise. Every attempt is lost as the Equan continues to use you for his own personal pleasure. Your body is like an instrument being strummed by a professional minstrel, and as the Equan keeps tuning you in just the right way you begin to feel the signs of impending orgasm about to overtake you. Against your will you clench up and cry out towards the ceiling as an orgasm tears through you when the Equan nips at your ass. Cum spews "
-                  if self.showBalls:
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                      tempStr += "from your balls"
                   else:
                      tempStr += "out"
@@ -10592,10 +10590,10 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   break
             elif self.currentZone == 3:
-               chance = math.floor(random.random() * (1 + 6 - 1)) + 1
+               chance = math.floor(random.random() * 6) + 1
                if chance == 1 and self.cockTotal > 0:
                   tempStr = f"A young female rushes down the street, moving with a much more feline quality than the other females of Tieden. She looks to be in a mild panic, scanning the crowds until her eyes lock onto your body. She undresses you with her eyes, lingering on the bulge in your {self.clothesBottom()} until she’s satisfied that you're the one she wants. By the time you notice she’s been teasing her nipples though her blouse, she is already half-way across the street, headed right for you!\n\nBefore you can react she’s already pressing her plush bosom to your body, grinding possessively against you as she coos in a decidedly un-Lupan manner. Preempting anything you might say, she pushes you against the wall, betraying a strength her body wouldn’t show otherwise, and pulls up her skirt just high enough to reveal her sopping slit. She presses it into your {self.clothesBottom()} leaving a warm stain against your cock. She claws hungrily at your chest, revealing ever more of her feline nature as she nips at your neck hoping to entice you while she humps up and down the bulge of your {self.cockDesc()} erection.\n\nDespite the suddenness of it all, you find yourself responding. Her scent makes your head swim as you begin fumbling with your {self.clothesBottom()} until your schlong{self.plural(1)} slap{self.plural(3)} against her drooling pussy with a sloppy slurping noise. She rubs herself against your {self.cockDesc()} member, making you shiver in time with her slow, deep thrusts. She starts to pant heavily and your skin tingles as it rubs against hers. Before either of you can angle {self.oneYour(1)} {self.cockDesc()} erection{self.plural(1)} to penetrate her, her whole body quakes and sprays your loins with hot, slick female cum. It rushes down your {self.legDesc(2)} and down to her feet. The smell reeks of the particular scent which makes it obvious that she is deep in her heat, if her desperation wasn't a big enough hint."
-                  if ((self.cockSize * self.cockSizeMod) < self.eVagLimit(24)):
+                  if (self.cockSize * self.cockSizeMod < self.eVagLimit(24)):
                      tempStr += f"\n\nYou, of course, are too happy to oblige. Shifting your hips and lifting her by her plump ass, you plunge {self.oneYour(1)} {self.domName()} cock{self.plural(1)} deep into her folds and don’t stop until you feel her deep, fleshy walls fight against you. She bites down on her lip to suppress a wild squeal while shoving your face into her breasts. There is a ripping sound as she tears open her blouse so she can feed you her firm teat. Sweet milk leaks into your mouth while you hump again and again into her hungry body.\n\nWith her taste and smell surrounding you, you don’t think you'll last terribly long. Each hard thrust brings her closer to a second climax and before you reach yours, she floods your {self.cockDesc()} rod with her slick juices again, washing your hips in cum and quivering around your shaft tightly. That sends you over the edge, pumping your load into her womb and dousing the lustful flames of her heat."
                   else:
                      tempStr += f"\n\nUnfortunately you are simply too big for her to handle. Luckily though, she seems to be the resourceful type. With a nimble spring she wraps her arms around your shoulders and her legs around your waist so she can rock her sopping wet pussy along your {self.cockDesc()} cock{self.plural(1)}. She shivers and moans deeply, leaking her wet juices down your length while you hump back in time with her. All the while you are savoring the feeling of her folds against you.\n\nWith her scent so strong around you and her heat seeping right into your skin, you don’t last very long. She senses it and quickly pulls back. Without wasting any time, she takes the tip of {self.oneYour(1)} {self.cockDesc()} shaft{self.plural(1)} and presses it just far enough into her cunt that the eruptions of your seed course deep into her."
@@ -10609,9 +10607,9 @@ class NiminFetishFantasyv0975o_fla:
                   break
                elif chance == 2:
                   tempStr = "You wander around Tieden, putting yourself on display and making sure your "
-                  if ((self.gender == 1) or (self.gender == 3) and (self.percent() <= 50)):
+                  if (self.gender == 1 or self.gender == 3 and self.percent() <= 50):
                      tempStr += f"{self.cockDesc()} bulge is noticeable under your {self.clothesBottom()}."
-                  elif ((self.gender == 2) or (self.gender == 3)):
+                  elif (self.gender == 2 or self.gender == 3):
                      tempStr += f"{self.boobDesc()} breasts are clearly visible under your {self.clothesTop()}."
                   elif (self.gender == 0):
                      tempStr += "figure looks nice beneath your clothes."
@@ -10625,7 +10623,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f", and you are desperate enough to comply. The two other priests secure your {self.legDesc(8)} with padded cuffs to rings at the two lower corners of the altar, then do the same with another pair of cuffs for your wrists, pulling your arms taut over your head, to attach them to the other end of the long altar. You instinctively struggle slightly, testing the strength of your restraints and find that you are now completely at their mercy.\n\nThe young priest nods to the older one, who starts to read from the book, chanting words in a sing-song foreign tongue. The other priests disrobe and take up positions around the altar and your bound form upon it. The young priest enters your view carrying a chalice, filled with what looks to be wine, although a faint scent suggested otherwise. Each of the priests take a sip out of the chalice, gulping in harmony with the chants of the old priest. Then after each of the clergy has had their turn with the chalice, he moves towards you. He stands to one side, the other priests closing rank around you, the old priest still chanting in the background."
                   tempStr += "\n\nThe three priests stand around you, as the young one carrying the chalice lifts it over your body reverently, then carefully begins dribbling the liquid on your nude form. A drop of the blood-red liquid lands in the middle of your forehead, and begins moving the chalice down your body, allowing a drop to land on your nose, then your neck, as he continues guiding the drops down your body."
                   if (self.lactation < 1):
-                     if ((self.gender != 1) or (self.gender == 3) and (self.breastSize <= 3)):
+                     if (self.gender != 1 or self.gender == 3 and self.breastSize <= 3):
                         tempStr += f"\n\nHe lets some drops fall over your {self.boobDesc()} chest, a single drop hitting each of your {self.nipDesc()}nipples in rhythm with the chants, which causes a warmth and a tingling sensation, making them very erect. He then pours some more of the ruby liquid, coating your cleavage with the stuff. The other priests move closer and start to lick the liquid from your breasts, making you squirm at the stimulation of the now very sensitive flesh being teased by their tongues. The young priest holding the chalice watches the spectacle, looking in your eyes, grinning lustfully. Then he raises a hand in a halting gesture, and the other priests stand back and watch him."
                         self.nippleSize += 1
                      else:
@@ -10675,7 +10673,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr = "You spend some time trying to look sexy out by the road when a paint-splattered carriage comes by.\n\nThe driver stops and looks down at you before asking, \"Are you really in need of coin?\". You swear the man looks like a hearse driver, but, you nervously give a little nod.\n\nThe driver gets down and slightly opens the doors before he says, \"Remember to get the subject in the wagon before...\" Before he can finish, some crazed looking Lupan girl bursts from the carriage and removes your clothes with unexpected precision and speed. You don't know what she was planning before the driver breaks in, \"Not out where the town is watching!\"\n\nThe girl slows to a stop and turns with the face of a scolded child saying, \"Okay...\"\n\nThey help you into the carriage and the driver makes some kind of note before setting out to some unknown destination. Upon arriving, you notice that there are paint marks on the house similar to those on the carriage. You are led inside and the girl slams a large canvas onto an easel in front of you and asks, \"Would you mind slowly turning around while I work?\"\n\nYou comply with the request and make one rotation before she declares that she's done. She rushes up and hugs you before presenting the completed painting. You're amazed she could paint you so accurately in such a short time... as well as the other stuff that appears to be violating you in several ways at once. You give the little painter a nervous smile before she rushes you out the door with a loud, \"THANK YOU!!!\"\n\nThe driver greets you at the door and gives a small jangling pouch, your payment for being a model. \"Let me drive you back where you were,\" He says calmly."
                   self.hrs = 2
                   break
-               elif chance == 5 and (self.vagTotal > 0 and self.vagTotal < 3):
+               elif chance == 5 and self.vagTotal > 0 and self.vagTotal < 3:
                   tempStr = f"You wander around the area, putting on as lewd a display as possible until a male wolf notices you. He looks at you with intrigue and walks up to you. “Hello there. I take it you’re looking for some extra coins? Well, if you’ll follow me, I could use your ‘services.’ I might even make it enjoyable for you.” He tells you. You hesitantly nod, following the wolf to his home which happens to be a small den on the borders of town. He lets you come in first and shuts the door behind you.\n\nWithout warning, he pushes you to the floor. As you roll around to face him, he is already {self.legVerb(2)} your {self.legDesc(2)} open forcefully. “I’ve always wondered what a pussy tastes like.” He licks his lips as he gently removes your undergarments. You do nothing to oppose, remembering that you chose to give your dignity away for money, so you simply lay on your back, ready and willing for whatever he has in mind. He pauses to look at your pink slit, reaching out to lightly touch it. You coo softly at the feel, enticing him to go further. He takes his cue and presses his snout against your vulva. You moan softly as you feel his tongue stroke across your slit, yelping occasionally as his cold, wet nose flicks across your clit."
                   if (self.vagTotal == 2):
                      tempStr += "He notices your other slit, perturbed by the unusual addition, but not appalled. He pushes his fingers against it, stroking the additional entrance."
@@ -10700,7 +10698,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 1
                   break
             elif self.currentZone == 4:
-               chance = math.floor(random.random() * (1 + 8 - 1)) + 1
+               chance = math.floor(random.random() * 8) + 1
                if chance == 1:
                   tempStr = "Hanging out at your usual spot, a male Felin saunters up to you. He gives you a silent, appraising look, lingering on your larger curves. \"Not the normal playmate here, are you? Well, you're good enough.\" You give a list of the services you offer but are quickly cut off. \"Whoa! I don't know where you've been or what you've done. I just want you to give me a simple handjob. If you do well, I might pay even pay extra.\" Accepting the offer, he leads you to an open-air lounge located on a sturdy tree. A quick look down says you're about 35 feet up with a nice view. He makes sure the entrance is blocked before approaching you again.\n\nThe Felin man whips out a larger-than-average dick, the tip covered with soft barbs. \"Let's play,\" he commands. Your hands tease at his small thorns which start swelling with arousal. Your fingers play up and down his shaft and a moan escapes both of your mouths. Lust begins to permeate the atmosphere as copious streams of his precum soak into your hands. You pump faster and faster, hands flying on his pulsing member. His thrusts jerk through your palms, sometimes coming close to your face or chest. After a minute of grasping at his large wang, you feel confident enough to take a hand from his cock to massage his churning balls."
                   if self.dominant in (2,5):
@@ -10715,7 +10713,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.lib > self.ment + 15):
                      tempStr += " You can't help but attach your hands to that magnificent cock. The throbbing member beats wildly in your hand, warming it like a bonfire. You begin to pump that softly spiked cock without thinking, wishing nothing more than to keep that cum-hose spraying forever."
                   tempStr += "\n\nThe stream of jizz dies down but the Felin is just standing there, caught in the aftershocks of an ultra-intense orgasm. Both of you back off to the center of the lounge when he comes to his senses once again. Luckily, no one noticed or came to scold you for the exhibition. That brazen display of primal lust has aroused you quite a bit!"
-                  if (((self.enticeMod + self.lib + self.ment) / 5) > self.percent()):
+                  if ((self.enticeMod + self.lib + self.ment) / 5 > self.percent()):
                      tempStr += "\n\n\"Damn, you DID do good. Amazing, in fact. Payment is in those drawers. Like I said there's some extra underneath the cushions over there.\" He replaces his loincloth and walks out like a man on top of the world. He calls back, \"I'll try to remember you for next time, but no promises.\""
                      tempInt += self.percent() // 5
                   else:
@@ -10756,9 +10754,9 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nShe grabs your two hard, dripping shafts and puts them in the entrance of both her cunt and her ass."
                   else:
                      tempStr += "\n\nShe grabs two of your hard, dripping shafts and puts them in the entrance of both her cunt and her ass."
-                  if ((self.cockSize * self.cockSizeMod) <= 12):
+                  if (self.cockSize * self.cockSizeMod <= 12):
                      tempStr += "She easily slides down your manhoods and meowls in ecstasy as she starts going up and down on them. Her youthful tightness pulls a number on you as you feel her insides sucking both of your members with desperation. Your climax is soon to come."
-                  elif ((self.cockSize * self.cockSizeMod) <= 24):
+                  elif (self.cockSize * self.cockSizeMod <= 24):
                      tempStr += f"She forcefully shoves your manhoods in both her cunt and heine-hole. Her moans are a mixture of pain and pleasure as you stretch her further than she's used to. Her long tail swishes from side to side. Slowly, she begins to bobble up and down on your shafts, purring as she orgasms from having both of her holes pleasured by your {self.cockDesc()} cocks. Her youthful tightness pulls a number on you too, as you feel her sucking both of your members with desperation. Your climax is soon to come."
                   else:
                      tempStr += "She desperately tries to take you in, but your incredible size makes it impossible. She growls in frustration as she climbs off of you. \"Hmm... I can't say I didn't see this coming. After all, I NEED someone as endowed as you are.\" From her pocket, she pulls a small vial of a strange liquid, some of which she applies on her folds and butthole. She gets back on top of you and, this time, she slides your manhoods in with ease. Her anatomy is somehow now more elastic than before. The vial must have contained octopus jelly in it. After slowly inserting half of your lengths in her, she forces herself the rest of the way down and screams in pain as you see a bulge in the shape of your rod come out of the front of her belly. She puts her hands over the bulge and starts moving up and down in a hypnotizing rhythm. She screams in ecstasy as she has orgasm after orgasm. Her orgasmic contractions pull a number on you too. Your climax is soon to come."
@@ -10778,7 +10776,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doImpregnate(4,ret=True)
                   self.hrs = 2
                   break
-               elif chance == 6 and (self.cockTotal > 0 and self.showBalls == True):
+               elif chance == 6 and self.cockTotal > 0 and self.showBalls == True:
                   tempStr = f"Leaning against the side of a tall tree, you watch several Felin amble around, going about their daily routines within the sweltering jungle city. Standing with your arms up above your head, your arms flexing and showing off your midriff, you watch as several eyes turn in your direction with lustful glances coloring their faces. You smirk playfully at several males, teasing them with a saucy sway of your hips in the direction of the onlooking females to entice them. Sadly, no one takes the bait leaving you somewhat disappointed.\n\nSeveral more minutes of teasing nets you nothing but passing winks and stares. It looks like the hour is going to be a bust until you feel someone come up behind you. Your ears perk and you tilt your head to the side only to see a muscular Felin male looking you up and down.\n\nYour eyes gaze wantonly at his handsome face, big pectoral muscles, and long fluffy tail before they find their way down to the swelling mound between his legs. You lick your tongue across your lips and a chuckle pierces the space between the two of you as the Felin lifts his lips up in to a cocksure smile.\n\n\"How much for the hour,\" he asks with a deep voice, making your {self.legDesc(6)} feel a weak. You try to quote a price but before you can do so he grabs you around the waist, groping your plump ass and wrapping a hand around the base of your tail."
                   if (self.vagTotal > 0):
                      tempStr += "\n\nA hand sneaks its way up to your bosom where the Felin caresses each of your breasts. His fingers are just the right texture to make you croon as he rolls your nipples through your shirt."
@@ -10801,9 +10799,9 @@ class NiminFetishFantasyv0975o_fla:
                elif chance == 7 and self.gender == 1:
                   getCum = self.cumAmount()
                   tempStr = f"While roaming across the wooden bridges, wiggling your {self.buttDesc()} rear in hopes of attracting some sort of attention, you pause as you think you see someone approaching you. It's difficult to tell at first, since the slim felin steps off to the side multiple times along the way, nearly changing his path hesitantly before coming back on course, but sure enough he makes his way to you. Dark hair hanging just past his head, with bangs hanging over his eyes as if to hide behind them, the purple-furred felin takes his time speaking up. \"H-Hello? Umm... I... I think you look kinda cute and might be interested in, well... you know.\" Not once does he look up.\n\nYou smile and nod, gently taking his hand in yours and letting him silently lead the way back to his place. When you arrive, he quietly mumbles, \"W-We're here.\"\n\nYou give him another smile to assure him there's nothing to be nervous about, but you're caught off guard as he begins to strip even before you do. His slender figure has hardly any tone, quite small and lithe overall, covered in an oddly purple fur. You're not sure if the color is natural or if he's just been rolling around in a pile of berries, but the color does seem suitable for his shy demeanor. Even the rings of black fur around his neck and tip of his tail are reminiscent of some sort of collar. And upon his chest is another patch of dark fur in the shape of an ankh that also seems rather odd. But, your curiousity over his markings is quickly dismissed as he pulls down his pants to reveal a half-hardened prick that seems more excited about the upcoming venture than he is. Until he turns towards away and bends forward, his tight butt spreading and tail lifting for your access as he steadies himself against the wall.\n\nStill surrounded by silence, you take his body language as an obvious hint and slide {self.pullUD(2)} your {self.clothesBottom()} as well and begin to rub some life into your {self.cockDesc()} rod{self.plural(1)}. You close the distance and lean up against his back, softly running a hand up his spine to soothe his tensions. His tail flicks about in response, you tenderness actually elliciting a soft mewl from the quiet boy. Then you prepare to do what you came for.\n\n"
-                  if ((self.cockSize * self.cockSizeMod) < 14):
+                  if (self.cockSize * self.cockSizeMod < 14):
                      tempStr += f"Taking {self.oneYour(1)} {self.cockDesc()} cock in hand{self.plural(1)}, you guide it under his tail. You can feel him quiver beneath your body as you press yourself in, the warm hole tightening down on you."
-                  elif ((self.cockSize * self.cockSizeMod) < 28):
+                  elif (self.cockSize * self.cockSizeMod < 28):
                      tempStr += f"Grabbing up {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}, you angle it under his tail. He noticeably shivers as you drive yourself into his smaller hole, stretching him out. There is no sign of pain as his ass clenches down upon you, though his breathing has definitely increased in pace."
                   else:
                      tempStr += f"Hefting up {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}, you point it in a general direction under his tail. A much louder mewl escapes his lips as you ram yourself deep into his hole, stretching him tremendously. His legs give out for a moment as his own thorny cock bounces below his belly from the pulsing beat of his heart, nearly climaxing right then and there. After a few moments to gather his wits, though, he doesn't seem to be in much, if any, pain, and adjusts his feet to regain his stance the best he can with your girth stuck in his backside."
@@ -10850,15 +10848,15 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   break
             elif self.currentZone == 6:
-               chance = math.floor(random.random() * (1 + 3 - 1)) + 1
+               chance = math.floor(random.random() * 3) + 1
                if chance == 1 and self.cockTotal == 1:
                   tempStr = f"You look around the desert town and smirk as several male and female Lizans eye you wantonly. Scales of various colors gleam as you walk down the middle of the street, wagging your plump ass at potential clientele. Many of the males watch you with lust clearly shining on their faces. Your eyes catch glimpses of more than a few of them talking to others around them while nodding in your direction; the generous bulge {self.legWhere(1)} your {self.legDesc(2)} puffs up some as you see two Lizan males walk up to you and ask you if you’re selling what they think you are. You nod to them and soon find yourself being pulled away from the growing crowd you have amassed.\n\nThe two males take you to a quiet spot inside of what you assume to be a recreational cave area, the scent of sex drifting strongly along the walls making your nose itch, before asking you to strip for them. You smile amorously at them both, reaching down to rub the lumps of their tenting loincloths before you do as you have been asked. Slowly you strip out of your clothes and present yourself to them.\n\nThe two males circle around you, flicking their tongues out across your body as they survey the goods they have just brought. Hands reach out together for your cock and the two males stroke you gently, "
-                  if self.gametweaks[0]:
+                  if self.gametweaks[0] == True:
                      tempStr += "trying to"
                   else:
                      tempStr += "urging"
                   tempStr += " get you to moan for them, one of the Lizans going even so far to stroke across your "
-                  if self.showBalls:
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                      tempStr += "balls"
                   elif self.gametweaks[4] == True and self.lizardCocks == self.cockTotal:
                      tempStr += "slit"
@@ -10868,7 +10866,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.vagTotal > 0):
                      tempStr += f"\n\nOne of them palms your breasts while the other reaches down to finger your behind before chuckling as throaty moans escape you. A slim hand reaches behind your cock only to find your female slit weeping {self.legWhere(1)} your {self.legDesc(2)}. The male who did so wiggles two fingers deep inside of you and hisses in pure Lizan passion as he watches you writhe around his fingers."
                   tempStr += f"\n\nYour {self.legDesc(6)} feel like jelly as they begin quiver. A hand pushes you down onto your {self.legDesc(6)} and without having to be told, you reach up to relieve the Lizan in front of you of his loincloth. A pair of plump, tapered shafts rise up before your eyes, making you almost giddy as the scent of aroused male floods your nose. Behind you the Lizan shuffles himself out of his loincloth and presses himself up against your tailhole, and it is then you feel another pressing against your hole. The presence of four cocks split between your ends makes you groan from the heat as the pair of cocks continue hot-dogging your rump while the others dangle in front of your very eyes. There are no words needed as the two males pull back to line themselves up with your holes; your mouth eagerly opens to receive its due and then you find yourself suddenly filled from both ends with twice the number of throbbing appendages you have been hoping to receive for the last hour.\n\nThe Lizan in front of you fills your mouth quickly as he sinks himself into the warmth of your throat, the twin heads sliding against ahead other as they breach your throat. You gag from his size before catching yourself, your throat stretching to accommodate his girth. "
-                  if self.gametweaks[4]:
+                  if self.gametweaks[4] == True:
                      tempStr += "T"
                   else:
                      tempStr += "His balls under your chin feel like heaven as t"
@@ -10897,20 +10895,20 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.horseCocks > 0):
                      tempStr += "flaring"
                   tempStr += f" cock against his cute little asshole. As you rub against him, precum begins to leak out of your {self.cockDesc()} wang{self.plural(1)}, lubricating his sweet round ass.\n\nHe nods to you and you push your {self.cockDesc()} rod into his eager ass, causing him to moan in pleasure as he takes your full length. You begin to pound into his squeezable butt, proceeding slowly at first and only giving him the head. Once you begin to develop a rhythm your pace increases, your thrusts penetrating deeper and deeper. With each grunting thrust he moans and quakes under you, his ass swallowing up your cock.\n\nYou pound all the way into his boyish ass"
-                  if self.showBalls == True:
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                      tempStr += f", your {self.ballDesc()} {self.balls} balls slapping against his"
-                     if self.gametweaks[4]:
+                     if self.gametweaks[4] == True:
                         tempStr += "thighs."
                      else:
                         tempStr += "own massive nuts."
                      tempStr += " A"
                   else:
-                     if self.gametweaks[4]:
+                     if self.gametweaks[4] == True:
                         tempStr += ", a"
                      else:
                         tempStr += ", his massive nuts slapping against your thighs. A"
                   tempStr += "s you do, you feel your "
-                  if self.showBalls == True:
+                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                      tempStr += "own sack"
                   else:
                      tempStr += "insides"
@@ -10964,27 +10962,29 @@ class NiminFetishFantasyv0975o_fla:
          self.exhaustionPenalty = 0
          self.statsMod(11,11,0,0)
       self.doHP(20)
+      #!if/else-ify
+      #!optimize if/else
       if (self.lust <= 30):
          tempStr += "\n\nDespite everything, your body is calm and sleeps rather soundly."
-         if ((self.moistCalc(1) > 9) and (self.cockTotal > 0) or (self.moistCalc(2) > 9) and (self.vagTotal > 0)):
+         if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
             tempStr += " Although your bed is slightly moist from your constant production of lubricant from your loins."
-      if ((self.lust > 30) and (self.lust <= 70)):
+      if (self.lust > 30 and self.lust <= 70):
          tempStr += "\n\nYour sleep is somewhat disrupted by tossing and turning throughout the night, your arousal making certain attributes swell with blood and desiring attention..."
          self.exhaustion += 3
-         if ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 9) and (self.cockTotal > 0) or (self.moistCalc(2) > 3) and (self.moistCalc(2) <= 9) and (self.vagTotal > 0)):
+         if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
             tempStr += " Plus your bed is slightly moist from your constant production of lubricant from your loins."
-         if ((self.moistCalc(1) > 9) and (self.cockTotal > 0) or (self.moistCalc(2) > 9) and (self.vagTotal > 0)):
+         if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
             tempStr += " It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid..."
       if (self.lust > 70):
          tempStr += "\n\nYou spend most of the night tossing and turning, your mind having difficulty sleeping with the lust that envelops it. Although you do manage to eventually get some, it's not nearly as good."
          self.exhaustion += 8
-         if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3) and (self.cockTotal > 0) or (self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3) and (self.vagTotal > 0)):
+         if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 and self.cockTotal > 0 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3 and self.vagTotal > 0):
             tempStr += " Plus your bed is slightly moist from your constant production of lubricant from your loins."
-         if ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 9) and (self.cockTotal > 0) or (self.moistCalc(2) > 3) and (self.moistCalc(2) <= 9) and (self.vagTotal > 0)):
+         if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
             tempStr += " It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid..."
-         if ((self.moistCalc(1) > 9) and (self.cockTotal > 0) or (self.moistCalc(2) > 9) and (self.vagTotal > 0)):
+         if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
             tempStr += f" You also wake up in a pool of your own sexual lubricant, the slick stuff sloshing off the sheets as you attempt to get out. You remain cautious as your {self.legDesc(10)} touch the floor, as you have to avoid slipping in the large puddle around the bed."
-      if ((self.heatTime < 0) and (self.heat > 0) and (self.vagTotal > 0)):
+      if (self.heatTime < 0 and self.heat > 0 and self.vagTotal > 0):
          tempStr += "\n\nDreams of being fucked by over a dozen cocks, each filling you to the brim with hot spunk, filled your sleep. When you eventually woke up in a hot sweat, your hand reflexively inspects your belly and you find yourself slightly disappointed to find it empty."
       if (self.milkEngorgementLevel == 2):
          tempStr += "\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your breasts, having formed a small puddle throughout the night."
@@ -10994,30 +10994,30 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your udder, having formed a small puddle throughout the night."
       elif (self.udderEngorgementLevel > 2):
          tempStr += "\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your udder, as you sit up, a pool of the stuff all around you."
-      if (self.pregCheck(0) == True):
-         if ((self.pregnancyTime > 18) and (self.pregnancyTime <= 36)):
+      if (self.pregCheck(0)):
+         if (self.pregnancyTime > 18 and self.pregnancyTime <= 36):
             tempStr += "\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely."
-         elif ((self.pregnancyTime > 36) and (self.pregnancyTime <= 72)):
+         elif (self.pregnancyTime > 36 and self.pregnancyTime <= 72):
             tempStr += "\n\nYou seem to be getting a bit chubbier in your midsection, might be because you've been hungrier and eating more lately. Plus you've been feeling a bit more randy than usual..."
-         elif ((self.pregnancyTime > 72) and (self.pregnancyTime <= 108)):
+         elif (self.pregnancyTime > 72 and self.pregnancyTime <= 108):
             tempStr += "\n\nYour belly is obviously bulging now, more than it would if it were just fat. You should probably accept the fact that you're pregnant..."
-         elif ((self.pregnancyTime > 108) and (self.pregnancyTime <= 144)):
+         elif (self.pregnancyTime > 108 and self.pregnancyTime <= 144):
             tempStr += "\n\nYou can easily hug your belly as it protrudes from your torso, looking like you were trying to smuggle a melon in your womb. But it feels so good to rub and caress it, making you easily get horny."
-         elif ((self.pregnancyTime > 144) and (self.pregnancyTime <= 180)):
+         elif (self.pregnancyTime > 144 and self.pregnancyTime <= 180):
             tempStr += "\n\nYour belly is so large your belly button has turned into an outie. You play with it as you head to sleep, the baby inside kicking back in turn."
-         elif ((self.pregnancyTime > 180) and (self.pregnancyTime <= 216)):
+         elif (self.pregnancyTime > 180 and self.pregnancyTime <= 216):
             tempStr += "\n\nFor most races, you would be giving birth any time now. You actually have to be cautious about people bumping into you as you walk through the town, it protrudes so far."
-         elif ((self.pregnancyTime > 216) and (self.pregnancyTime <= 252)):
+         elif (self.pregnancyTime > 216 and self.pregnancyTime <= 252):
             tempStr += f"\n\nThe {self.skinDesc()} around your giant belly is so taut that you can audibly drum it with your fingers. Which the baby inside does with its feet frequently from inside."
-         elif ((self.pregnancyTime > 252) and (self.pregnancyTime <= 288)):
+         elif (self.pregnancyTime > 252 and self.pregnancyTime <= 288):
             tempStr += "\n\nYou're beginning to draw the eyes of the crowd as you move through town, your belly is so enormous. People are wondering if you've actually got a baby in there and not a small child."
-         elif ((self.pregnancyTime > 288) and (self.pregnancyTime <= 324)):
+         elif (self.pregnancyTime > 288 and self.pregnancyTime <= 324):
             tempStr += "\n\nThis is getting ridiculous... People are starting to come up to you as you move through the street on your way to bed and actually ask if you've got a small person in your belly! Although, you aren't quite sure, but as your hands try to wrap around it, unable to fully embrace it, you begin to wonder yourself."
-         elif ((self.pregnancyTime > 324) and (self.pregnancyTime <= 360)):
+         elif (self.pregnancyTime > 324 and self.pregnancyTime <= 360):
             tempStr += "\n\nYour giant belly is becoming a bit of a nuisance... As you walk through buildings, people back up against a wall to let you pass by. You can feel your belly scrape against the frames of narrow doorways as you pass through, and it's been a while since you've last seen your belly-button..."
-         elif ((self.pregnancyTime > 360) and (self.pregnancyTime <= 396)):
+         elif (self.pregnancyTime > 360 and self.pregnancyTime <= 396):
             tempStr += f"\n\nNow you're actually starting to get a little worried... Your {self.legDesc(6)} are knocking against the underside of your belly when you try to walk. People are clearing the way when you move down the streets to make room for your belly and you have to skillfully wedge yourself through narrow doorways!"
-         elif ((self.pregnancyTime > 396) and (self.pregnancyTime <= 432)):
+         elif (self.pregnancyTime > 396 and self.pregnancyTime <= 432):
             tempStr += f"\n\nAs you lay down to go to sleep, you have to curl forward to fit your belly in your bed, leaving your backside hanging off the mattress. The sheets aren't even wide enough to cover you completely, making you feel a draft on some of your exposed belly. The chill makes you shiver, not from the cold, but from your nerves sparking from the super-taut, extra-sensitive {self.skinDesc()}."
          elif (self.pregnancyTime > 432):
             tempStr += "\n\nYou don't even bother to head to your bed. Borrowing a bunch of blankets, you've made do with sleeping outside. Your belly is too big to go indoors, even having to handle shop business from the streets. Your hand reaches out as far as it can and hardly wraps around any of your girth. The warmth it emanates and sensations it echoes through your body help you sleep quite soundly and pleasantly, though, so you'll be fine until you give birth."
@@ -11033,7 +11033,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += " The weight of your belly makes you feel more exhausted than you really are by the end of the day, making you glad for the night's rest."
          elif (temp1 * 5 < temp2):
             tempStr += " You can noticeably feel the weight of your belly."
-      if ((self.firstExplore == False) and (self.percent() < 10)):
+      if (self.firstExplore == False and self.percent() < 10):
          tempStr += "\n\n\"Please... Anybody?\" Despite everything, your mind focuses on that echoing dream for another night now..."
       self.outputMainText(tempStr,True)
       self.hrs = 8
@@ -11043,11 +11043,11 @@ class NiminFetishFantasyv0975o_fla:
       self.hideSGButton()
       self.hideLGButton()
       self.hideNGButton()
-      tempArray = as3.Array(4, "Bag", 7, "Breasts", 12, "Return")
+      tempArray = as3.Array(4,"Bag",7,"Breasts",12,"Return")
       if (self.cockTotal > 0):
          tempArray.push(1,"Penis")
       """
-      if (self.cockTotal > 0) and (self.vagTotal > 0):
+      if (self.cockTotal > 0 and self.vagTotal > 0):
          tempArray.push(2,"Both")
       """
       if (self.vagTotal > 0):
@@ -11118,19 +11118,20 @@ class NiminFetishFantasyv0975o_fla:
          i = 0
          #!Remove while loop if possible
          while (i == 0):
-            chance = math.floor(random.random() * (1 + 7 - 1)) + 1
+            #!optimize if/else
+            chance = math.floor(random.random() * 7) + 1
             if (chance == 1):
                if (self.ment >= self.lib - 10):
                   tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your "
-               elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+               elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                   tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your "
-               elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+               elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                   tempStr = f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your "
                elif (self.ment < self.lib - 50):
                   tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your "
                if (self.cockSize * self.cockSizeMod <= self.tallness / 3.75):
                   tempStr += f"hand around your {whichCock} and slowly pump it, building stronger and stronger."
-               elif ((self.cockSize * self.cockSizeMod > self.tallness / 3.75) and (self.cockSize * self.cockSizeMod <= self.tallness * 1.2)):
+               elif (self.cockSize * self.cockSizeMod > self.tallness / 3.75 and self.cockSize * self.cockSizeMod <= self.tallness * 1.2):
                   tempStr += f"hands around your {whichCock}, "
                   if (self.cockSize * self.cockSizeMod > self.tallness / 1.5):
                      if (self.breastSize > 4):
@@ -11140,11 +11141,11 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += "pounding your fists up and down its length."
                elif (self.cockSize * self.cockSizeMod > self.tallness * 1.2):
                   tempStr += f"arms around your {whichCock}, hugging it close and trying to jerk yourself the best you can."
-               if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3)):
+               if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
                   tempStr += " Drops of pre help aid your efforts, though it's still a little rough."
-               elif ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 7)):
+               elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
                   tempStr += f" A dribble of pre leaks out, sufficiently coating your {self.cockDesc()} cock and making your efforts so much easier."
-               elif ((self.moistCalc(1) > 7) and (self.moistCalc(1) <= 11)):
+               elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11):
                   tempStr += f" Pre squeezes out of your cock and more than coat your {self.cockDesc()} cock, with plenty extra drooling down across your {self.skinDesc()}."
                elif (self.moistCalc(1) > 11):
                   tempStr += f" A flood of pre gushes out from the tip, sufficiently coating yourself, your {self.cockDesc()} cock and then some in slick lubrication."
@@ -11152,7 +11153,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f" One of your hands reaches down to knead your {self.ballDesc()} scrotum, letting your {self.balls} cum-factories know it's time."
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
-               elif ((self.lust > 30) and (self.lust <= 70)):
+               elif (self.lust > 30 and self.lust <= 70):
                   tempStr += "\n\nQuickly,"
                elif (self.lust > 70):
                   tempStr += "\n\nAlmost instantly,"
@@ -11165,15 +11166,15 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"Your {self.hipDesc()} hips soon jerk as thick strands of hot spunk launch from your cock-tip{self.plural(1)},"
                if (getCum <= 24):
                   tempStr += " with a bit more drooling down to the floor."
-               elif ((getCum > 24) and (getCum <= 72)):
+               elif (getCum > 24 and getCum <= 72):
                   tempStr += " spitting small wads again and again until it's done."
-               elif ((getCum > 72) and (getCum <= 1000)):
+               elif (getCum > 72 and getCum <= 1000):
                   tempStr += " spewing large gobs again and again until you've made a heck of a mess."
-               elif ((getCum > 1000) and (getCum <= 2200)):
+               elif (getCum > 1000 and getCum <= 2200):
                   tempStr += " coming more and more, like it can't stop, until you've made so much cum that you could feed a person with it for a day..."
-               elif ((getCum > 2200) and (getCum <= 4500)):
+               elif (getCum > 2200 and getCum <= 4500):
                   tempStr += " the stuff gushing like a fire-hose. Somewhere between half and a full gallon, you're not sure what to do with it all!"
-               elif ((getCum > 4500) and (getCum <= 20000)):
+               elif (getCum > 4500 and getCum <= 20000):
                   tempStr += " gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!"
                if (getCum > 20000):
                   tempStr += " so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can't take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away."
@@ -11185,9 +11186,9 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   if (self.ment >= self.lib - 10):
                      tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-                  elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+                  elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                      tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some cum was left behind. At least, it smells like some was. And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Or maybe you have a wad of cum in your hair?"
-                  elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+                  elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                      tempStr += f"\n\nYou realize your hiding place is a mess as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though your cock is still drooling and leaving quite the blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. You then dash off before anybody tries to check out what you left behind."
                   elif (self.ment < self.lib - 50):
                      tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some women, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, cum dripping down the front and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
@@ -11199,15 +11200,15 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText(tempStr,True)
                   self.hrs = 1
                   i += 1
-            #if ((chance == 2) and (cockSize * cockSizeMod * 6 > tallness) and (cockSize * cockSizeMod * 8 < tallness * 3)):
+            #if (chance == 2 and self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3):
             #   {}
-            #if ((chance == 3) and (getCum > 2000)):
+            #if (chance == 3 and getCum > 2000):
             #   {}
-            #if ((chance == 4) and (ment < lib - 50)):
+            #if (chance == 4 and self.ment < self.lib - 50):
             #   {}
-            #if ((chance == 5) and (attireBot in (6,17)) and (lust > 80)):
+            #if (chance == 5 and self.attireBot in (6,17) and self.lust > 80):
             #   {}
-            elif ((chance == 6) and ((self.gametweaks[3] == False and self.attireBot in (5,7,12,13,14,16)) or (self.gametweaks[3] == True and self.isBottomOpen() == True)) and (self.lust > 45)):
+            elif (chance == 6 and (self.gametweaks[3] == False and self.attireBot in (5,7,12,13,14,16) or self.gametweaks[3] == True and self.isBottomOpen() == True) and self.lust > 45):
                tempStr = f"Already half hard from your lingering lust, just the thought of masturbating makes your {self.cockDesc()} erection{self.plural(1)} stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your {self.clothesBottom()} as your rod{self.plural(1)} lift{self.plural(3)} the fabric forward. You do your best to press it back down in an attempt to hide {self.plural(9)}, but "
                if (self.cockSize * self.cockSizeMod > 10):
                   tempStr += f"{self.plural(11)} wind up popping out beneath, accidentally flashing a random passerby who quickly pick up their pace to get away before you can try to catch your long thing{self.plural(1)} back within the cloth."
@@ -11224,7 +11225,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
                i += 1
-            elif ((chance == 7) and (self.attireBot in (4,15,20))):
+            elif (chance == 7 and self.attireBot in (4,15,20)):
                tempStr = f"With the thought of masturbating on your mind, you can feel your cock{self.plural(1)} begin to swell in anticipation. The tight confines of your {self.clothesBottom()} rapidly growing tighter, you hurry on home.\n\nJust as you step through the doorway to your private abode, the waistband of your {self.clothesBottom()} can no longer contain the {self.cockDesc()} bulge. Your length{self.plural(1)} leap{self.plural(3)} out, flinging "
                if (self.moistCalc(1) > 8):
                   tempStr += "ropes"
@@ -11243,7 +11244,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
                i += 1
-            #if ((chance == 8) and (attireBot in (10,11)) or (lust > 60)):
+            #if (chance == 8 and self.attireBot in (10,11) and lust > 60):
             #   {}
          self.doEnd()
    def doVagMasturbate(self):
@@ -11256,49 +11257,51 @@ class NiminFetishFantasyv0975o_fla:
          tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          i = 0
          while (i == 0):
-            chance = math.floor(random.random() * (1 + 6 - 1)) + 1
+            #!optimize if/else
+            chance = math.floor(random.random() * 6) + 1
             if chance == 1:
                if (self.ment >= self.lib - 10):
                   tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub "
-               elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+               elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                   tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading "
-               elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+               elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                   tempStr = f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding "
                elif (self.ment < self.lib - 50):
-                  tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind {self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood."
-               if ((self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+                  tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind "
+               tempStr += f"{self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood."
+               if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                   tempStr += f" A bit of sweet feminine honey slips out from {self.legWhere(1)} your {self.legDesc(2)}, your hand taking as much as possible to meagerly lubricate your sex."
-               elif ((self.moistCalc(2) > 3) and (self.moistCalc(2) <= 7)):
+               elif (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
                   tempStr += f" Some sweet feminine honey dribbles from {self.legWhere(1)} your {self.legDesc(2)}, slipping back across your {self.buttDesc()} tush and smearing across your thighs, plenty to take care of business."
-               elif ((self.moistCalc(2) > 7) and (self.moistCalc(2) <= 11)):
+               elif (self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
                   tempStr += f" Lubricant spills from your slit{self.plural(2)}, running down your {self.legDesc(2)} and smearing across your {self.buttDesc()} backside, dribbling off your body, more than enough to frig yourself silly."
                elif (self.moistCalc(2) > 11):
                   tempStr += f" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your {self.buttDesc()} ass is practically sopping with it and more flings across your {self.legDesc(2)} and down below you as you go."
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
-               elif ((self.lust > 30) and (self.lust <= 70)):
+               elif (self.lust > 30 and self.lust <= 70):
                   tempStr += "\n\nQuickly,"
                elif (self.lust > 70):
                   tempStr += "\n\nAlmost instantly,"
                tempStr += f" your cunt{self.plural(2)} begin{self.plural(4)} to quake and shiver, your whole body tingling. So eager, you ram "
                if (self.vagLimit() <= self.tallness / 5):
                   tempStr += "a finger"
-               elif ((self.vagLimit() > self.tallness / 5) and (self.vagLimit() <= self.tallness / 2.2)):
+               elif (self.vagLimit() > self.tallness / 5 and self.vagLimit() <= self.tallness / 2.2):
                   tempStr += "your fingers"
-               elif ((self.vagLimit() > self.tallness / 2.2) and (self.vagLimit() <= self.tallness / 1.25)):
+               elif (self.vagLimit() > self.tallness / 2.2 and self.vagLimit() <= self.tallness / 1.25):
                   tempStr += "your hand"
-               elif ((self.vagLimit() > self.tallness / 1.25) and (self.vagLimit() <= self.tallness * 1.2)):
+               elif (self.vagLimit() > self.tallness / 1.25 and self.vagLimit() <= self.tallness * 1.2):
                   tempStr += "both hands"
-               elif ((self.vagLimit() > self.tallness * 1.2) and (self.vagLimit() <= self.tallness * 1.7)):
+               elif (self.vagLimit() > self.tallness * 1.2 and self.vagLimit() <= self.tallness * 1.7):
                   tempStr += "your forearm"
                elif (self.vagLimit() > self.tallness * 1.7):
                   tempStr += "as much of one arm as possible"
                tempStr += f" into {self.oneYour(2)} hungry hole{self.plural(2)}, pounding away at yourself. Your body twitches and jerks as you come again and again."
                if (self.ment >= self.lib - 10):
                   tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area and the bit of slurping that echoed, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-               elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+               elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                   tempStr += f"\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your slick lubricant has seeped in somewhere. At least, you're cautious of your step, in case of slipping and falling back on your {self.buttDesc()} ass... And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Well... you were definitely loud, actually."
-               elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+               elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                   tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though fem-cum is still slathered about and making your {self.clothesBottom()} blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. With an awkward flutter in your step, you dash off, your body still slightly in mid-orgasm."
                elif (self.ment < self.lib - 50):
                   tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, slick slime dripping down your {self.legDesc(2)} and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
@@ -11306,17 +11309,14 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText(tempStr,True)
                self.hrs = 1
                i += 1
-            #elif chance == 2:
-            #   if (cockSize * cockSizeMod * 6 > tallness) and (cockSize * cockSizeMod * 8 < tallness * 3):
-            #      {}
+            #elif chance == 2 and self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
+            #   {}
             #elif chance == 3:
             #   {}
-            #elif chance == 4:
-            #   if(ment < lib - 50):
-            #      {}
-            #elif chance == 5:
-            #   if (((attireBot == 6) or (attireBot == 17) or (attireBot == 20)) and (lust > 60)):
-            #      {}
+            #elif chance == 4 and self.ment < self.lib - 50:
+            #   {}
+            #elif chance == 5 and (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
+            #   {}
             elif chance == 6 and self.attireBot in (13,14) and self.lust > 80:
                tempStr = f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {self.regionName(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n"
                if (self.vulvaSize < 30):
@@ -11340,12 +11340,10 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText(tempStr,True)
                self.hrs = 1
                i += 1
-            #elif chance == 7:
-            #   if ((attireBot == 4) or (attireBot == 15)):
-            #      {}
-            #elif chance == 8:
-            #   if (((attireBot == 10) or (attireBot == 11)) and (lust > 60)):
-            #      {}
+            #elif chance == 7 and (self.attireBot == 4 or self.attireBot == 15):
+            #   {}
+            #elif chance == 8 and (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
+            #   {}
          self.doEnd()
    def doBothMasturbate(self):
       self.outputMainText("Not Implemented", True)
@@ -11353,9 +11351,9 @@ class NiminFetishFantasyv0975o_fla:
       pass
       if (self.ment >= self.lib - 10):
          self.outputMainText("",True)
-      if ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+      if (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
          self.outputMainText("",True)
-      if ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+      if (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
          self.outputMainText("",True)
       if (self.ment < self.lib - 50):
          self.outputMainText("",True)
@@ -11372,27 +11370,29 @@ class NiminFetishFantasyv0975o_fla:
       i = 0
       #!remove while loop if possible
       while (i == 0):
-         chance = math.floor(random.random() * (1 + 6 - 1)) + 1
+         chance = math.floor(random.random() * 6) + 1
+         #!optimize if/else
          if (chance == 1):
             if (self.lactation > 0):
                self.lustArray.push(53)
             if (self.ment >= self.lib - 10):
                tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with"
-            elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with"
-            elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                tempStr = f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with"
             elif (self.ment < self.lib - 50):
                tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with"
             if (self.nippleSize <= 25):
                tempStr += " your fingers"
-            elif ((self.nippleSize > 25) and (self.nippleSize <= 60)):
+            elif (self.nippleSize > 25 and self.nippleSize <= 60):
                tempStr += " your hands"
-            elif ((self.nippleSize > 60) and (self.nippleSize <= 180)):
+            elif (self.nippleSize > 60 and self.nippleSize <= 180):
                tempStr += " both hands"
             elif (self.nippleSize > 180):
                tempStr += " the nearby wall"
             tempStr += " until they begin to feel warm and tingly."
+            #!Add case for bootTotal == 10
             if (self.boobTotal == 4):
                tempStr += " Your hands even double their work as they fondle your second set of breasts as well, molding and massaging them just as much as the first pair, feeling twice as much pleasure."
             elif (self.boobTotal == 6):
@@ -11405,18 +11405,18 @@ class NiminFetishFantasyv0975o_fla:
             else:
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
-               elif ((self.lust > 30) and (self.lust <= 70)):
+               elif (self.lust > 30 and self.lust <= 70):
                   tempStr += "\n\nQuickly,"
                elif (self.lust > 70):
                   tempStr += "\n\nAlmost instantly,"
                tempStr += " your whole body begins to quiver,"
-               if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3) or (self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+               if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                   tempStr += f" your {self.clothesBottom()} growing a tad moist,"
-               elif ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 7) or (self.moistCalc(2) > 3) and (self.moistCalc(2) <= 7)):
+               elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
                   tempStr += f" your {self.clothesBottom()} growing wet,"
-               elif ((self.moistCalc(1) > 7) and (self.moistCalc(1) <= 11) or (self.moistCalc(2) > 7) and (self.moistCalc(2) <= 11)):
+               elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11 or self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
                   tempStr += f" your {self.clothesBottom()} becoming soaked through,"
-               elif ((self.moistCalc(1) > 11) or (self.moistCalc(2) > 11)):
+               elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
                   tempStr += f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,"
                tempStr += " being wracked by a boobgasm."
                tempStr += self.doLust(-(self.sen // 2),2,3,ret=True)
@@ -11426,26 +11426,26 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nMilk "
                if (getMilk <= 500):
                   tempStr += "spits"
-               elif ((getMilk > 500) and (getMilk <= 1000)):
+               elif (getMilk > 500 and getMilk <= 1000):
                   tempStr += "squirts"
-               elif ((getMilk > 1000) and (getMilk <= 2000)):
+               elif (getMilk > 1000 and getMilk <= 2000):
                   tempStr += "spews"
-               elif ((getMilk > 2000) and (getMilk <= 8000)):
+               elif (getMilk > 2000 and getMilk <= 8000):
                   tempStr += "gushes"
-               elif ((getMilk > 8000) and (getMilk <= 19000)):
+               elif (getMilk > 8000 and getMilk <= 19000):
                   tempStr += "erupts"
                elif (getMilk > 19000):
                   tempStr += "explodes"
                tempStr += " from your nipples and dribbles down your front as you begin to lactate. You continue to pump it out in "
                if (getMilk <= 500):
                   tempStr += "small dribbles"
-               elif ((getMilk > 500) and (getMilk <= 1000)):
+               elif (getMilk > 500 and getMilk <= 1000):
                   tempStr += "spurts"
-               elif ((getMilk > 1000) and (getMilk <= 2000)):
+               elif (getMilk > 1000 and getMilk <= 2000):
                   tempStr += "sprays"
-               elif ((getMilk > 2000) and (getMilk <= 8000)):
+               elif (getMilk > 2000 and getMilk <= 8000):
                   tempStr += "jets"
-               elif ((getMilk > 8000) and (getMilk <= 19000)):
+               elif (getMilk > 8000 and getMilk <= 19000):
                   tempStr += "steady streams"
                elif (getMilk > 19000):
                   tempStr += "small floods"
@@ -11455,20 +11455,20 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "."
             if (self.ment >= self.lib - 10):
                tempStr += "\n\nYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-            elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere..."
-            elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
             elif (self.ment < self.lib - 50):
                tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull back your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-            if ((getMilk > 0) and (getMilk < 1000)):
+            if (getMilk > 0 and getMilk < 1000):
                tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
             elif ((getMilk > 0) and (getMilk >= 1000)):
                tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
             self.outputMainText(tempStr,True)
             self.nipplePlay += 8
             i += 1
-         if ((chance == 2) and (self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5) and (self.lactation > 0)):
+         if (chance == 2 and self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0):
             self.lustArray.push(53)
             tempStr = f"Relaxing in your room, you sneak your breasts out of your {self.clothesTop()}, palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your {self.clothesBottom()}. It looks so delicious that you can't help but...\n\nYou reach under a boob and hoist it up, craning your neck down to meet "
             if (self.nipType == 0):
@@ -11485,7 +11485,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other "
             else:
                tempStr += "\n\nCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other "
-            if ((self.nipType != 1) and (self.boobTotal == 2)):
+            if (self.nipType != 1 and self.boobTotal == 2):
                tempStr += " breast "
             else:
                tempStr += " tits "
@@ -11516,23 +11516,24 @@ class NiminFetishFantasyv0975o_fla:
       i = 0
       #!remove while loop if possible
       while (i == 0):
-         chance = math.floor(random.random() * (1 + 2 - 1)) + 1
+         #!optimize if/else
+         chance = math.floor(random.random() * 2) + 1
          if (chance == 1):
             if (self.udderLactation > 0):
                self.lustArray.push(53)
             if (self.ment >= self.lib - 10):
                tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with"
-            elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with"
-            elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                tempStr = f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with"
             elif (self.ment < self.lib - 50):
                tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with"
             if (self.teatSize <= 25):
                tempStr += " your fingers"
-            elif ((self.teatSize > 25) and (self.teatSize <= 60)):
+            elif (self.teatSize > 25 and self.teatSize <= 60):
                tempStr += " your hands"
-            elif ((self.teatSize > 60) and (self.teatSize <= 180)):
+            elif (self.teatSize > 60 and self.teatSize <= 180):
                tempStr += " both hands"
             elif (self.teatSize > 180):
                tempStr += " the nearby wall"
@@ -11543,18 +11544,18 @@ class NiminFetishFantasyv0975o_fla:
             else:
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
-               if ((self.lust > 30) and (self.lust <= 70)):
+               if (self.lust > 30 and self.lust <= 70):
                   tempStr += "\n\nQuickly,"
                if (self.lust > 70):
                   tempStr += "\n\nAlmost instantly,"
                tempStr += " your whole body begins to quiver,"
-               if ((self.moistCalc(1) > 0) and (self.moistCalc(1) <= 3) or (self.moistCalc(2) > 0) and (self.moistCalc(2) <= 3)):
+               if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
                   tempStr += f" your {self.clothesBottom()} growing a tad moist,"
-               elif ((self.moistCalc(1) > 3) and (self.moistCalc(1) <= 7) or (self.moistCalc(2) > 3) and (self.moistCalc(2) <= 7)):
+               elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
                   tempStr += f" your {self.clothesBottom()} growing wet,"
-               elif ((self.moistCalc(1) > 7) and (self.moistCalc(1) <= 11) or (self.moistCalc(2) > 7) and (self.moistCalc(2) <= 11)):
+               elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11 or self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
                   tempStr += f" your {self.clothesBottom()} becoming soaked through,"
-               elif ((self.moistCalc(1) > 11) or (self.moistCalc(2) > 11)):
+               elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
                   tempStr += f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,"
                tempStr += " being wracked by an udder orgasm."
                tempStr += self.doLust(-(self.sen // 2),2,4,ret=True)
@@ -11564,26 +11565,26 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nMilk "
                if (getMilk <= 500):
                   tempStr += "spits"
-               elif ((getMilk > 500) and (getMilk <= 1000)):
+               elif (getMilk > 500 and getMilk <= 1000):
                   tempStr += "squirts"
-               elif ((getMilk > 1000) and (getMilk <= 2000)):
+               elif (getMilk > 1000 and getMilk <= 2000):
                   tempStr += "spews"
-               elif ((getMilk > 2000) and (getMilk <= 8000)):
+               elif (getMilk > 2000 and getMilk <= 8000):
                   tempStr += "gushes"
-               elif ((getMilk > 8000) and (getMilk <= 19000)):
+               elif (getMilk > 8000 and getMilk <= 19000):
                   tempStr += "erupts"
                elif (getMilk > 19000):
                   tempStr += "explodes"
                tempStr += " from your teats and dribbles down your front as you begin to lactate. You continue to pump it out in "
                if (getMilk <= 500):
                   tempStr += "small dribbles"
-               elif ((getMilk > 500) and (getMilk <= 1000)):
+               elif (getMilk > 500 and getMilk <= 1000):
                   tempStr += "spurts"
-               elif ((getMilk > 1000) and (getMilk <= 2000)):
+               elif (getMilk > 1000 and getMilk <= 2000):
                   tempStr += "sprays"
-               elif ((getMilk > 2000) and (getMilk <= 8000)):
+               elif (getMilk > 2000 and getMilk <= 8000):
                   tempStr += "jets"
-               elif ((getMilk > 8000) and (getMilk <= 19000)):
+               elif (getMilk > 8000 and getMilk <= 19000):
                   tempStr += "steady streams"
                elif (getMilk > 19000):
                   tempStr += "small floods"
@@ -11593,20 +11594,20 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "."
             if (self.ment >= self.lib - 10):
                tempStr += "\n\nYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-            elif ((self.ment < self.lib - 10) and (self.ment >= self.lib - 25)):
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
                tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere..."
-            elif ((self.ment < self.lib - 25) and (self.ment >= self.lib - 50)):
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
                tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
             elif (self.ment < self.lib - 50):
                tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(1)} your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-            if ((getMilk > 0) and (getMilk < 1000)):
+            if (getMilk > 0 and getMilk < 1000):
                tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
-            elif ((getMilk > 0) and (getMilk >= 1000)):
+            elif (getMilk > 0 and getMilk >= 1000):
                tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
             self.outputMainText(tempStr,True)
             self.udderPlay += 8
             i += 1
-         if ((chance == 2) and (self.udderSize + self.teatSize * 5 > self.tallness / 2) and (self.udderLactation > 0)):
+         if (chance == 2 and self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0):
             self.lustArray.push(53)
             tempStr = f"Relaxing in your room, you pull your udder out of your {self.clothesBottom()}, lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your {self.legDesc(2)} and the floor. It looks so delicious that you can't help but...\n\nYou hug around the udder and hoist it up, craning your neck down to meet a {self.teatDesc()} teat with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight."
             getMilk = self.milkAmount(2)
@@ -11660,36 +11661,36 @@ class NiminFetishFantasyv0975o_fla:
       self.choiceListArray = as3.Array()
       tempStr = "Click on an item you would like to create."
       self.choiceListArray.push("Blondie")
-      if (self.choiceListCheck("Blondie") == True):
+      if (self.choiceListCheck("Blondie")):
          tempStr += "\n\nBlondie - Dye that will turn your hair blonde.\nRequires 7 Grain."
       self.choiceListArray.push("Reduc Reduc")
-      if (self.choiceListCheck("Reduc Reduc") == True):
+      if (self.choiceListCheck("Reduc Reduc")):
          tempStr += "\n\nReduced Reduction - For when you don't want the more powerful shrinkage from a Reduction, this Reduced version shrinks things at a static rate.\nRequires 2 Reductions."
       if (self.knowLustDraft == True):
          self.choiceListArray.push("Lust Draft")
-         if (self.choiceListCheck("Lust Draft") == True):
+         if (self.choiceListCheck("Lust Draft")):
             tempStr += "\n\nLust Draft - When you're having difficulty performing, a quick sip of this will get you up and ready in no time.\nRequires 1 Grain, plus either 1 Sweet Sap, 1 Cum Vial, or moderately moist genitals at the time of creation."
       if (self.knowRejuvPot == True):
          self.choiceListArray.push("Rejuv Pot")
-         if (self.choiceListCheck("Rejuv Pot") == True):
+         if (self.choiceListCheck("Rejuv Pot")):
             tempStr += "\n\nRejuvenating Potion - Both heals and soothes the body.\nRequires 1 Poultice and 1 Wolf Fur."
       if (self.knowExpPreg == True):
          self.choiceListArray.push("Exp Preg")
-         if (self.choiceListCheck("Exp Preg") == True):
+         if (self.choiceListCheck("Exp Preg")):
             tempStr += "\n\nExpress Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these to get a jump on the gestation period!\nRequires 1 Sweet Sap and 1 Fresh Egg."
       if (self.knowBallSwell == True):
          self.choiceListArray.push("Ball Swell")
-         if (self.choiceListCheck("Ball Swell") == True):
+         if (self.choiceListCheck("Ball Swell")):
             tempStr += "\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\nRequires 1 Blo Berry."
       if (self.knowMaleEnhance == True):
          self.choiceListArray.push("Male Enhance")
-         if (self.choiceListCheck("Male Enhance") == True):
+         if (self.choiceListCheck("Male Enhance")):
             tempStr += "\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry."
       self.outputMainText(tempStr,True)
       self.choiceListButtons("Simple")
       def doListen():
          self.choiceListSelect("Simple")
-         if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.simpleAlchemy()
          else:
             self.choicePage = 1
@@ -11707,7 +11708,7 @@ class NiminFetishFantasyv0975o_fla:
             self.makeAlchemy(507,1)
          elif (self.choiceListResult[0] == "Male Enhance"):
             self.makeAlchemy(534,1)
-         if (self.buttonChoice == 12):
+         if (self.buttonChoice == 12): #!Rearrange this
             self.doAlchemy()
       self.doListen = doListen
    def complexAlchemy(self):
@@ -11757,7 +11758,7 @@ class NiminFetishFantasyv0975o_fla:
       self.choiceListButtons("Complex")
       def doListen():
          self.choiceListSelect("Complex")
-         if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.complexAlchemy()
          else:
             self.choicePage = 1
@@ -11781,7 +11782,7 @@ class NiminFetishFantasyv0975o_fla:
             self.makeAlchemy(514,1)
          elif (self.choiceListResult[0] == "Milk Suppress"):
             self.makeAlchemy(535,1)
-         if (self.buttonChoice == 12):
+         if (self.buttonChoice == 12): #!Rearrange this
             self.doAlchemy()
       self.doListen = doListen
    def advancedAlchemy(self):
@@ -11843,7 +11844,7 @@ class NiminFetishFantasyv0975o_fla:
             self.makeAlchemy(532,1)
          elif (self.choiceListResult[0] == "Bazoomba!"):
             self.makeAlchemy(536,1)
-         if (self.buttonChoice == 12):
+         if (self.buttonChoice == 12): #!Rearrange this
             self.doAlchemy()
       self.doListen = doListen
    def makeAlchemy(self, ID:int, level:int):
@@ -11862,76 +11863,76 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.countItem(209) >= 7):
                      tempBool = True
                case 221:
-                  if ((self.countItem(210) >= 6) and (self.checkItem(114) == True)):
+                  if (self.countItem(210) >= 6 and self.checkItem(114)):
                      tempBool = True
                case 503:
-                  if ((self.checkItem(209) == True) and ((self.checkItem(114) == True) or (self.checkItem(523) == True) or (self.moistCalc(2) * 10 * self.lust > 3000) or (self.moistCalc(1) * 10 * self.lust > 3000))):
+                  if (self.checkItem(209) and (self.checkItem(114) or self.checkItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
                      tempBool = True
                case 504:
-                  if ((self.checkItem(115) == True) and (self.checkItem(203) == True)):
+                  if (self.checkItem(115) and self.checkItem(203)):
                      tempBool = True
                case 506:
-                  if ((self.checkItem(114) == True) and (self.checkItem(219) == True)):
+                  if (self.checkItem(114) and self.checkItem(219)):
                      tempBool = True
                case 507:
-                  if (self.checkItem(208) == True):
+                  if (self.checkItem(208)):
                      tempBool = True
                case 508:
-                  if ((self.countItem(209) >= 3) and ((self.countItem(112) >= 2) or (self.checkItem(524) == True) or (self.moistCalc(2) * 10 * self.lust > 6000) or (self.moistCalc(1) * 10 * self.lust > 6000))):
+                  if (self.countItem(209) >= 3 and (self.countItem(112) >= 2 or self.checkItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
                      tempBool = True
                case 509:
-                  if ((self.checkItem(503) == True) and ((self.checkItem(501) == True) or (self.countItem(500) >= 3))):
+                  if (self.checkItem(503) and (self.checkItem(501) or self.countItem(500) >= 3)):
                      tempBool = True
                case 511:
-                  if ((self.checkItem(213) == True) and (self.countItem(219) >= 3)):
+                  if (self.checkItem(213) and self.countItem(219) >= 3):
                      tempBool = True
                case 512:
-                  if ((self.checkItem(208) == True) and (self.checkItem(218) == True)):
+                  if (self.checkItem(208) and self.checkItem(218)):
                      tempBool = True
                case 513:
-                  if ((self.checkItem(110) == True) and (self.checkItem(120) == True)):
+                  if (self.checkItem(110) and self.checkItem(120)):
                      tempBool = True
                case 514:
-                  if ((self.countItem(203) >= 2) and (self.checkItem(503) == True)):
+                  if (self.countItem(203) >= 2 and self.checkItem(503)):
                      tempBool = True
                case 515:
                   if (self.countItem(203) >= 5):
                      tempBool = True
                case 516:
-                  if ((self.checkItem(110) == True) and (self.checkItem(203) == True)):
+                  if (self.checkItem(110) and self.checkItem(203)):
                      tempBool = True
                case 517:
-                  if ((self.countItem(507) >= 3) and (self.checkItem(523) == True)):
+                  if (self.countItem(507) >= 3 and self.checkItem(523)):
                      tempBool = True
                case 518:
-                  if ((self.checkItem(201) == True) and (self.checkItem(202) == True) and (self.checkItem(207) == True) and (self.checkItem(210) == True)):
+                  if (self.checkItem(201) and self.checkItem(202) and self.checkItem(207) and self.checkItem(210)):
                      tempBool = True
                case 519:
-                  if ((self.checkItem(222) == True) and (self.checkItem(206) == True) and (self.checkItem(504) == True)):
+                  if (self.checkItem(222) and self.checkItem(206) and self.checkItem(504)):
                      tempBool = True
                case 520:
-                  if ((self.checkItem(216) == True) and (self.countItem(212) >= 3)):
+                  if (self.checkItem(216) and self.countItem(212) >= 3):
                      tempBool = True
                case 521:
-                  if ((self.checkItem(120) == True) and (self.checkItem(210) == True)):
+                  if (self.checkItem(120) and self.checkItem(210)):
                      tempBool = True
                case 522:
-                  if ((self.countItem(512) >= 3) and (self.checkItem(524) == True)):
+                  if (self.countItem(512) >= 3 and self.checkItem(524)):
                      tempBool = True
                case 532:
-                  if ((self.checkItem(530) == True) and (self.checkItem(212) == True) and (self.checkItem(206) == True)):
+                  if (self.checkItem(530) and self.checkItem(212) and self.checkItem(206)):
                      tempBool = True
                case 533:
                   if (self.countItem(110) >= 2):
                      tempBool = True
                case 534:
-                  if ((self.countItem(202) >= 2) and ((self.checkItem(208) == True) or (self.checkItem(218) == True))):
+                  if (self.countItem(202) >= 2 and (self.checkItem(208) or self.checkItem(218))):
                      tempBool = True
                case 535:
-                  if ((self.checkItem(201) == True) and (self.checkItem(533) == True)):
+                  if (self.checkItem(201) and self.checkItem(533)):
                      tempBool = True
                case 536:
-                  if ((self.countItem(207) >= 2) and (self.countItem(212) >= 3) and (self.checkItem(501) == True) and (self.checkItem(529) == True)):
+                  if (self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529)):
                      tempBool = True
             if (tempBool == True):
                match ID:
@@ -11942,8 +11943,8 @@ class NiminFetishFantasyv0975o_fla:
                      self.loseManyItem(114,1)
                   case 503:
                      self.loseManyItem(209,1)
-                     if not ((self.moistCalc(2) * 10 * self.lust > 3000) or (self.moistCalc(1) * 10 * self.lust > 3000)):
-                        if (self.checkItem(523) == True):
+                     if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
+                        if (self.checkItem(523)):
                            self.loseManyItem(523,1)
                         else:
                            self.loseManyItem(114,1)
@@ -11957,8 +11958,8 @@ class NiminFetishFantasyv0975o_fla:
                      self.loseManyItem(208,1)
                   case 508:
                      self.loseManyItem(209,3)
-                     if not ((self.moistCalc(2) * 10 * self.lust > 6000) or (self.moistCalc(1) * 10 * self.lust > 6000)):
-                        if (self.checkItem(524) == True):
+                     if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
+                        if (self.checkItem(524)):
                            self.loseManyItem(524,1)
                         else:
                            self.loseManyItem(112,2)
@@ -12014,7 +12015,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.loseManyItem(110,2)
                   case 534:
                      self.loseManyItem(202,2)
-                     if (self.checkItem(208) == True):
+                     if (self.checkItem(208)):
                         self.loseManyItem(208,1)
                      else:
                         self.loseManyItem(218,1)
@@ -12073,19 +12074,20 @@ class NiminFetishFantasyv0975o_fla:
                self.advancedAlchemy()
       self.doListen = doListen
    def doLevelUP(self):
+      #!if/else-ify
       self.choiceListArray = as3.Array()
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
       self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy")
       if (self.vagTotal > 0):
          self.choiceListArray.push("Baby Fact")
       self.choiceListArray.push("Alchemist")
-      if ((self.lactation > 0) or (self.udderLactation > 0)):
+      if (self.lactation > 0 or self.udderLactation > 0):
          self.choiceListArray.push("Milk Maid")
       self.choiceListArray.push("Shapeshifty")
       self.choiceListButtons("Level Up")
       def doListen():
          self.choiceListSelect("Level Up")
-         if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.doLevelUP()
          else:
             self.choicePage = 1
@@ -12166,7 +12168,7 @@ class NiminFetishFantasyv0975o_fla:
                               case "Hips":
                                  self.hips += 2
                                  self.outputMainText("Your hips widen a bit.",True)
-                           if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+                           if (self.buttonChoice == 4 or self.buttonChoice == 8):
                               self.choiceListButtons("Hyper Happy")
                            elif (self.buttonChoice == 12):
                               self.choicePage = 1
@@ -12192,7 +12194,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.choiceListButtons("Hyper Happy")
                         def doListen():
                            self.choiceListSelect("Hyper Happy")
-                           if ((self.buttonChoice != 4) and (self.buttonChoice != 8) and (self.buttonChoice != 12)):
+                           if (self.buttonChoice != 4 and self.buttonChoice != 8 and self.buttonChoice != 12):
                               self.outputMainText("With some focus and a sudden surge of growth, your ",True)
                            match self.choiceListResult[0]:
                               case "Cock":
@@ -12266,6 +12268,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doLevelUP()
                self.doListen = doListen
             case "Fetish Master":
+               #!Here
                self.outputMainText(f"For those who want to be the very best, like no one ever was, Fetish Master allows you to collect all the kinks. Kinks affect how much you gain or lose lust in situations that involve the appropriate factors.\n\nEvery 4th level, you can increase a Major kink by 30%, but also reduces opposing kinks by a smaller amount.\n\nEvery 3rd level, you can increase a Moderate kink by 20%, also reducing opposing kinks by a smaller amount.\n\nOtherwise, levels in Fetish Master will allow you to increase Minor kinks by 10%.\n\nYou have {self.fetishMasterLevel} levels in Fetish Master.",True)
                self.buttonConfirm()
                def doListen():
@@ -12485,7 +12488,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.choiceListArray = as3.Array()
                         self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?",True)
                         if (self.tempBool == False):
-                           if  (self.shapeshiftySecond != "Face"):
+                           if (self.shapeshiftySecond != "Face"):
                               self.choiceListArray.push("Face")
                            if (self.shapeshiftySecond != "Skin"):
                               self.choiceListArray.push("Skin")
@@ -12524,39 +12527,39 @@ class NiminFetishFantasyv0975o_fla:
                            if (self.tempBool == False):
                               match self.shapeshiftyFirst:
                                  case "Face":
-                                    self.lockFace = self.lockFace - 1
+                                    self.lockFace -= 1
                                  case "Skin":
-                                    self.lockSkin = self.lockSkin - 1
+                                    self.lockSkin -= 1
                                  case "Ears":
-                                    self.lockEars = self.lockEars - 1
+                                    self.lockEars -= 1
                                  case "Legs":
-                                    self.lockLegs = self.lockLegs - 1
+                                    self.lockLegs -= 1
                                  case "Breasts":
-                                    self.lockBreasts = self.lockBreasts - 1
+                                    self.lockBreasts -= 1
                                  case "Nipples":
-                                    self.lockNipples = self.lockNipples - 1
+                                    self.lockNipples -= 1
                                  case "Tail":
-                                    self.lockTail = self.lockTail - 1
+                                    self.lockTail -= 1
                                  case "Cock":
-                                    self.lockCock = self.lockCock - 1
+                                    self.lockCock -= 1
                            else:
                               match self.shapeshiftySecond:
                                  case "Face":
-                                    self.lockFace = self.lockFace - 1
+                                    self.lockFace -= 1
                                  case "Skin":
-                                    self.lockSkin = self.lockSkin - 1
+                                    self.lockSkin -= 1
                                  case "Ears":
-                                    self.lockEars = self.lockEars - 1
+                                    self.lockEars -= 1
                                  case "Legs":
-                                    self.lockLegs = self.lockLegs - 1
+                                    self.lockLegs -= 1
                                  case "Breasts":
-                                    self.lockBreasts = self.lockBreasts - 1
+                                    self.lockBreasts -= 1
                                  case "Nipples":
-                                    self.lockNipples = self.lockNipples - 1
+                                    self.lockNipples -= 1
                                  case "Tail":
-                                    self.lockTail = self.lockTail - 1
+                                    self.lockTail -= 1
                                  case "Cock":
-                                    self.lockCock = self.lockCock - 1
+                                    self.lockCock -= 1
                            match self.choiceListResult[0]:
                               case "Face":
                                  if (self.tempBool == False):
@@ -12606,7 +12609,7 @@ class NiminFetishFantasyv0975o_fla:
                                  else:
                                     self.shapeshiftySecond = "Cock"
                                  self.lockCock += 1
-                           if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+                           if (self.buttonChoice == 4 or self.buttonChoice == 8):
                               self.choiceListButtons("Shapeshifty")
                            elif (self.buttonChoice == 12):
                               self.choicePage = 1
@@ -12701,7 +12704,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.aff(11,20,0)
                               case "Bug":
                                  self.aff(12,20,0)
-                           if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+                           if (self.buttonChoice == 4 or self.buttonChoice == 8):
                               self.choiceListButtons("Shapeshifty")
                            elif (self.buttonChoice == 12):
                               self.choicePage = 1
@@ -12738,29 +12741,29 @@ class NiminFetishFantasyv0975o_fla:
                            def doListen():
                               if (self.buttonChoice == 6):
                                  self.choiceListArray = as3.Array()
-                                 if ((self.humanAffinity > 50) or (self.dominant == 1)):
+                                 if (self.humanAffinity > 50 or self.dominant == 1):
                                     self.choiceListArray.push("Human")
-                                 if ((self.horseAffinity > 50) or (self.dominant == 2)):
+                                 if (self.horseAffinity > 50 or self.dominant == 2):
                                     self.choiceListArray.push("Equan")
-                                 if ((self.wolfAffinity > 50) or (self.dominant == 3)):
+                                 if (self.wolfAffinity > 50 or self.dominant == 3):
                                     self.choiceListArray.push("Lupan")
-                                 if ((self.catAffinity > 50) or (self.dominant == 4)):
+                                 if (self.catAffinity > 50 or self.dominant == 4):
                                     self.choiceListArray.push("Felin")
-                                 if ((self.cowAffinity > 50) or (self.dominant == 5)):
+                                 if (self.cowAffinity > 50 or self.dominant == 5):
                                     self.choiceListArray.push("Cow")
-                                 if ((self.lizardAffinity > 50) or (self.dominant == 6)):
+                                 if (self.lizardAffinity > 50 or self.dominant == 6):
                                     self.choiceListArray.push("Lizan")
-                                 if ((self.rabbitAffinity > 50) or (self.dominant == 7)):
+                                 if (self.rabbitAffinity > 50 or self.dominant == 7):
                                     self.choiceListArray.push("Rabbit")
-                                 if ((self.mouseAffinity > 50) or (self.dominant == 8)):
+                                 if (self.mouseAffinity > 50 or self.dominant == 8):
                                     self.choiceListArray.push("Mouse")
-                                 if ((self.birdAffinity > 50) or (self.dominant == 9)):
+                                 if (self.birdAffinity > 50 or self.dominant == 9):
                                     self.choiceListArray.push("Bird")
-                                 if ((self.pigAffinity > 50) or (self.dominant == 10)):
+                                 if (self.pigAffinity > 50 or self.dominant == 10):
                                     self.choiceListArray.push("Pig")
-                                 if ((self.skunkAffinity > 50) or (self.dominant == 11)):
+                                 if (self.skunkAffinity > 50 or self.dominant == 11):
                                     self.choiceListArray.push("Skunk")
-                                 if ((self.bugAffinity > 50) or (self.dominant == 12)):
+                                 if (self.bugAffinity > 50 or self.dominant == 12):
                                     self.choiceListArray.push("Bug")
                                  self.choiceListButtons("Pure Blood")
                                  self.outputMainText("Select the racial blood type you would like to purify. Only those that are significant in your body are noticeable enough to select.",True)
@@ -12792,7 +12795,7 @@ class NiminFetishFantasyv0975o_fla:
                                           self.aff(11,10,-1000)
                                        case "Bug":
                                           self.aff(12,10,-1000)
-                                    if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+                                    if (self.buttonChoice == 4 or self.buttonChoice == 8):
                                        self.choiceListButtons("Pure Blood")
                                     elif (self.buttonChoice == 12):
                                        self.choicePage = 1
@@ -12831,7 +12834,7 @@ class NiminFetishFantasyv0975o_fla:
                               if (self.buttonChoice == 6):
                                  self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.",True)
                                  combinedStats = self.str_ + self.ment + self.lib + self.sen
-                                 if self.gametweaks[1] and combinedStats > 400:
+                                 if self.gametweaks[1] == True and combinedStats > 400:
                                     tempInt = 100
                                     addStr = combinedStats - 400
                                  else:
@@ -12878,7 +12881,7 @@ class NiminFetishFantasyv0975o_fla:
                                           self.cockChange(0,-(self.cockTotal - 1))
                                        if (self.balls > 2):
                                           tempStr = "\n\nWithin your "
-                                          if self.showBalls:
+                                          if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                                              tempStr += "scrotum"
                                           else:
                                              tempStr += "abdomen"
@@ -12895,7 +12898,7 @@ class NiminFetishFantasyv0975o_fla:
                                           self.cockChange(0,-(self.cockTotal - 1))
                                        if (self.balls > 2):
                                           tempStr = "\n\nWithin your "
-                                          if self.showBalls:
+                                          if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
                                              tempStr += "scrotum"
                                           else:
                                              tempStr += "abdomen"
@@ -12911,7 +12914,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.choicePage = 1
                                  self.doLevelUP()
                            self.doListen = doListen
-                     if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+                     if (self.buttonChoice == 4 or self.buttonChoice == 8):
                         self.choiceListButtons("Super Perks")
                      elif (self.buttonChoice == 12):
                         self.choicePage = 1
@@ -12951,7 +12954,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.foundValley == True):
             buttonlist[1] = 1
             templist.push(1,"Valley")
-         if (self.foundSanctuary and self.usedSecretStairs and self.gametweaks[8]):
+         if (self.foundSanctuary == True and self.usedSecretStairs == True and self.gametweaks[8] == True):
             buttonlist[12] = 1
             templist.push(12,"Sanctuary")
          self.showButtons(buttonlist)
@@ -13036,8 +13039,8 @@ class NiminFetishFantasyv0975o_fla:
       elif self.currentZone == 12:
          tempButtons = ButtonList(0,0,0,0,1,1,0,0,0,0,0,0)
          templist = as3.Array(6,"Sanctuary",5,"Cave Descent")
-         if (self.gametweaks[8]):
-            if (self.usedSecretStairs):
+         if (self.gametweaks[8] == True):
+            if (self.usedSecretStairs == True):
                templist.push(1,"Firmshaft")
             else:
                templist.push(1,"Secret Stairs")
@@ -13046,7 +13049,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doButtonChoices(templist)
          def doListen():
             if self.buttonChoice == 1:
-               if (self.usedSecretStairs):
+               if (self.usedSecretStairs == True):
                   self.outputMainText("You take the stairs that opened up when you defeated the succubus. You are now in Firmshaft.",True)
                else:
                   self.outputMainText("You walk up to the opening that you discovered when defeated the succubus and went inside. It is supprisingly well lit despite not having any torches and the stairs are in much better shape than the ones you went down before. Once you start climbing, it doesn't take long to reach the top. Weird, you thought it would take longer considering you were going down the stairs to get here long enough for you to feel like they would never end. Anyways, you find yourself in the open next to the enterance to the Old Cave, ready to head back to Firmshaft.",True)
@@ -13078,6 +13081,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          return numbers[0]
    def eventSelect(self, which:str):
+      #!Here
       if confmod.as3DebugEnable == True and self.debugtweaks[0] == True:
          temp = self.debugSenarioChooser({"Softlik":[1,4],"Firmshaft":[1,3],"Tieden":[1,3],"Siz'Calit":[1,4],"Oviasis":[1,5],"Sanctuary":[3,3],"Forest":[1,6],"Jungle":[1,7],"Plains":[1,5],"Savanna":[1,5],"Desert":[1,5],"Beach":[1,6],"Lake":[1,3],"Dairy Farm":[1,5],"Old Cave":[1,3],"Den":[1,2],"Valley":[1,5]}[which])
          if temp != None:
@@ -13387,7 +13391,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       elif chance == 3:
          tempStr = "In the process of passing by a building, you hear some ruckus and an elderly man with wild white hair comes bursting out of the door before you.\n\n\"Dagnabbit! Another failed batch!\" He shouts as he carries out a small crate filled with half a dozen vials of swirling liquid."
-         if (self.checkItem(211) == True):
+         if (self.checkItem(211)):
             tempStr += "\n\nHe bursts out in such a tirade that he catches you off guard and sends you stumbling into him. You mostly catch yourself, merely bumping into him slightly without causing a catastrophe with what he is carrying. However, a loose DairE pill in your bag pops out from the sudden stop and flies through the air until it lands in one of the vials with a plop. The solution inside the vial turns white with small black clouds puffing throughout it.\n\nThe man doesn't mind the bump you gave him, but he stares down at the vial you've just tainted and then turns his attention to you. \"Now look at what you've gone and done! This solution was already a failure as it was, but it was at least sellable! Now I don't have any idea what it's become; I can't sell that! Give me 50 coins for your damned accident and take your mistake with you!\""
             if (self.coin < 50):
                tempStr += "\n\n\"What? You don't have that many?!\" He grumbles under his breath. \"Fine, give me all you've got and let that be a lesson to you...\""
@@ -13427,7 +13431,8 @@ class NiminFetishFantasyv0975o_fla:
    def doFirmshaft(self):
       chance = 0
       chance = self.eventSelect("Firmshaft")
-      if ((chance == 1) and (self.jamieRep >= 0)):
+      #!if/else-ify
+      if (chance == 1 and self.jamieRep >= 0 and self.jamieRep < 10):
          if (self.jamieRep == 0):
             self.outputMainText("Passing by one of the many tents, you think you hear a grunt from behind a large outer fold of a canvas wall. Curiously, you move closer, peeking around to check the source. You can't help but giggle a little.\n\nA young equan lad lets out another grunt as he tries to adjust his rather feminine tube-top, his tail swishing up the backside of his skirt. A pair of tight panties hugs his bum, outlining the round forms of his cheeks. You also notice a pair of shorts around his ankles and a shirt tossed onto the ground beside him. And when he turns to face you, you both let out a gasp.\n\nHe blushes tremendously as he sees you looking at him. A large erection pushes out from his skirt, the long shaft nakedly stretching over his belly and disappearing into the tube top, where the thick bulge is easily outlined, especially where the flaring head threatens to pop over the upper edge. Two large testicles squirm in the air as the skirt rests upon them, splayed to either side by the crotch of his panties.\n\n\"Eh?! Th-This isn't what you think!!\" He blushes heavily and attempts to cover himself. \"I-I have trouble hiding my, umm...\" he glances down at his endowment, \"and I th-thought these clothes would help hide it better! P-Please don't tell anybody you caught me wearing girls' clothes!\"",True)
             self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,0,0))
@@ -13472,9 +13477,9 @@ class NiminFetishFantasyv0975o_fla:
                      self.outputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously.\n\nIt doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boy's best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it.\n\nThe long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy...\n\nWith his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.",True)
                      self.showButtons(ButtonList(1,0,1,0,1,0,0,0,0,0,1,0))
                      tempArray = as3.Array(3, "Crossdress", 11, "Maybe Later")
-                     if (self.checkItem(533) == True):
+                     if (self.checkItem(533)):
                         tempArray.push(1,"Reduc Reduc")
-                     if (self.checkItem(534) == True):
+                     if (self.checkItem(534)):
                         tempArray.push(5,"Male Enhance")
                      self.doButtonChoices(tempArray)
                      def doListen():
@@ -13540,9 +13545,9 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"R-Really? I mean, after last time, I don't really have much reason to not trust you. But... H-How do you think you can help me?\"",True)
                   self.showButtons(ButtonList(1,0,1,0,1,0,0,0,0,0,1,0))
                   tempArray = as3.Array(3, "Crossdress", 11, "Maybe Later")
-                  if (self.checkItem(533) == True):
+                  if (self.checkItem(533)):
                      tempArray.push(1,"Reduc Reduc")
-                  if (self.checkItem(534) == True):
+                  if (self.checkItem(534)):
                      tempArray.push(5,"Male Enhance")
                   self.doButtonChoices(tempArray)
                   def doListen():
@@ -13620,7 +13625,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 1
                   self.doEnd()
             self.doListen = doListen
-         elif ((self.jamieRep == 3) or (self.jamieRep == 4)):
+         elif (self.jamieRep == 3 or self.jamieRep == 4):
             self.showButtons(ButtonList(1,0,0,0,0,0,0,0,0,1,0,0))
             tempArray = as3.Array(1, "I can help", 10, "Leave")
             if (self.jamieRep == 4):
@@ -13632,9 +13637,9 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"You think you can now? I still have no idea what you were thinking of doing, but... H-How do you think you can help me?\"",True)
                   self.showButtons(ButtonList(1,0,1,0,1,0,0,0,0,0,1,0))
                   tempArray = as3.Array(3, "Crossdress", 11, "Maybe Later")
-                  if (self.checkItem(533) == True):
+                  if (self.checkItem(533)):
                      tempArray.push(1,"Reduc Reduc")
-                  if (self.checkItem(534) == True):
+                  if (self.checkItem(534)):
                      tempArray.push(5,"Male Enhance")
                   self.doButtonChoices(tempArray)
                   def doListen():
@@ -13689,9 +13694,9 @@ class NiminFetishFantasyv0975o_fla:
                      self.outputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously.\n\nIt doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boys best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it.\n\nThe long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy...\n\nWith his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.",True)
                      self.showButtons(ButtonList(1,0,1,0,1,0,0,0,0,0,1,0))
                      tempArray = as3.Array(3, "Crossdress", 11, "Maybe Later")
-                     if (self.checkItem(533) == True):
+                     if (self.checkItem(533)):
                         tempArray.push(1,"Reduc Reduc")
-                     if (self.checkItem(534) == True):
+                     if (self.checkItem(534)):
                         tempArray.push(5,"Male Enhance")
                      self.doButtonChoices(tempArray)
                      def doListen():
@@ -13749,7 +13754,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("You have reached the end of Jamie's senario as it was implemented in the original game. There is technically more in the code but it is unfinished and was made inaccessible by the origin author.",True)
             self.doEnd()
          """
-         elif ((self.jamieRep >= 101) and (self.jamieRep < 201)):
+         elif (self.jamieRep >= 101 and self.jamieRep < 201):
             tempStr = "\"H-Hello again, it's good to see you!\" Jamie approaches you with a bashful smile upon his reddened face."
             if (self.jamieSize < 2):
                tempStr += " He stands there rather comfortably, not needing to adjust his arousal at all as it leans gently up against his shorts, barely more noticeable than most bulges around town."
@@ -13772,13 +13777,13 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(tempStr + "\"I was wondering if you would be interested in... 'helping' me again at all?\"",True)
             self.showButtons(ButtonList(1,0,1,0,0,1,1,0,1,0,1,1))
             tempArray = as3.Array(12,"Not Now")
-            if (self.checkItem(533) == True):
+            if (self.checkItem(533)):
                tempArray.push(1,"Reduc Reduc")
-            if (self.checkItem(534) == True):
+            if (self.checkItem(534)):
                tempArray.push(3,"Male Enhance")
-            if ((self.vagLimit() >= (self.jamieSize + 1) * 4) and (self.vagTotal > 0)):
+            if (self.vagLimit() >= (self.jamieSize + 1) * 4 and self.vagTotal > 0):
                tempArray.push(6,"Sex")
-            if ((self.cockSize * self.cockSizeMod > (self.jamieSize + 1) * 4 * 5) or ((self.jamieSize + 1) * 4 > self.cockSize * self.cockSizeMod * 5) and (self.cockTotal > 0)):
+            if (self.cockSize * self.cockSizeMod > (self.jamieSize + 1) * 4 * 5 or (self.jamieSize + 1) * 4 > self.cockSize * self.cockSizeMod * 5 and self.cockTotal > 0):
                tempArray.push(7,"Cock Fuck")
             if (self.tallness > (self.jamieSize + 1) * 4 * 3):
                tempArray.push(9,"Your Ass")
@@ -13812,7 +13817,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.showButtons(ButtonList(1,0,0,1,1,1,1,0,1,1,1,0))
             templist = [1,"Show Off",2,"More Clothes",4,"Not Now"]
-            if ((self.jamieButt == True) and (self.jamieRep1 >= 3)):
+            if (self.jamieButt == True and self.jamieRep1 >= 3):
                this.buttonWrite(5,"Sexy Butt")
                if(this.cockTotal > 0 && this.cockSize * this.cockSizeMod < this.eVagLimit(96))
                {
@@ -14042,9 +14047,9 @@ class NiminFetishFantasyv0975o_fla:
                      self.doNext()
                      def doListen():
                         self.outputMainText("The strange woman lies in bed with you for another hour, cuddling up and resting your bellies side-to-side. But eventually she realizes how much time she has spent indulging herself at your 'expense'. \"I'm sorry to have taken so long to get that out of my system, but... it was very enjoyable indeed. Here, sweetie, a gift from my business. I'm actually a breeder of pets for people and this helps with the process. I do love the big swollen bellies so~ You could probably sell it for a nice chunk of change, or maybe you can find some use for it too.\" She gives you a wink as she slips a potion into your hand.\n\nThen she cradles her belly as she slinks off the bed and stands, her nipples blotching her shirt as she dons it. When she reaches for her shorts, however, she realizes they're a bit... unwearable now. Her fluffy tail curls down between her legs, snugging up against the underside of her belly on the other side like a pair of panties. She gives you another wink. \"Don't worry, I'll be alright. Wouldn't be the first time~\" and she skips out the door, so absolutely giddy from her time with you.",True)
-                        if (self.pregCheck(0) == True):
+                        if (self.pregCheck(0)):
                            i = 0
-                           while (i < self.pregArray.length):
+                           while (i < self.pregArray.length): #!Could possibly be for loop using range with the step arguement
                               if (self.pregArray[i] == True):
                                  self.pregArray[i + 3] += 20
                               i += 5
@@ -14170,27 +14175,27 @@ class NiminFetishFantasyv0975o_fla:
             if (self.tallness <= 42):
                tempStr += " Smaller than her, she winds up lifting you into the air."
             tempStr += f" She looks up at you with bright smile. \"Would yew like to do anything today?\""
-            if ((self.lilaPreg <= 35) and (self.lilaVulva >= 11)):
+            if (self.lilaPreg <= 35 and self.lilaVulva >= 11):
                tempStr += " You can feel her belly squish against you, bulging from being laden with vaginal flesh."
-            elif ((self.lilaPreg <= 70) and (self.lilaPreg > 35)):
+            elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
                tempStr += f" She also seems a bit wobbly as she stands there, unused to her growing gravid belly that presses into your {self.legDesc(2)} and pushes her dainty breasts until they're flat against you, with milk squirting about. \"Eehee, Mommy said I'm going to be a Mommy too! I can't wait!\""
-            elif ((self.lilaPreg <= 100) and (self.lilaPreg > 70)):
+            elif (self.lilaPreg <= 100 and self.lilaPreg > 70):
                tempStr += f" Her face practically glows as stands there, her belly swollen with offspring and pushing her milky nipples out even further. It pushes {self.legWhere(2)} your own {self.legDesc(2)} as she tries to hold you close, making her squeak as a baby kicks your {self.legDesc(1)} from inside. If you weren't there to stop her, she would have probably fallen forward from the round thing, since it's almost larger than she is. \"Mmm... Awe yew looking fowawd to being a daddy?,\" she sighs pleasantly."
             self.outputMainText(tempStr,True)
             buttonlist = ButtonList(1,0,1,0,1,0,1,0,1,1,0,1)
             templist = [1, "Milk", 3, "Suckle", 5, "Lick", 12, "Mommy"]
             if (self.lilaUB == True):
                buttonlist[6] = 1
-               if (self.tallness < (6 + 4 * self.lilaVulva)):
+               if (self.tallness < 6 + 4 * self.lilaVulva):
                   templist.append(6)
                   templist.append("Unbirth")
-            if ((self.gender != 0) and (((self.cockSize * self.cockSizeMod) <= self.eVagLimit(8 + 5 * self.lilaVulva)) and (self.cockTotal > 0)) or (self.vagTotal > 0)):
+            if (self.gender != 0 and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
                templist.append(7)
                templist.append("Sex")
-            if (self.checkItem(105) == True):
+            if (self.checkItem(105)):
                templist.append(9)
                templist.append("Cat's Meow")
-            if (self.checkItem(221) == True):
+            if (self.checkItem(221)):
                templist.append(10)
                templist.append("Puss Juice")
             self.showButtons(buttonlist)
@@ -14216,7 +14221,8 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.lilaMilk <= 19):
                      tempStr += " The girl lets out a meek cry every time your knead one of her breasts, the milk gushing out as her nipples stretch out further as you lightly tug on them. You can hear some of the stuff splatter across the floor, it has so much pressure behind it. And once you start a nipple, it's hard to stop it from flooding down her body as the drops refuse to stop forming and pouring down until you've milked out quite a large amount. When you do, you can feel her breast become much softer, her nipples easily malleable in your grip as they continue to dribble no matter what you do."
                   tempStr += f"\n\nAs you take your time to release her, she quickly relaxes against your {self.boobDesc()} chest, closing her eyes and purring comfortably. Her hands slip between her legs. While you play with her breasts, milk flowing down into your combined laps, you can easily hear the sloshing of her fluids as her hands slip up and down through the cleft of her labia, rubbing her clitoris to heighten the pleasure. Just as you finish off her lowest pair, your hands so close to her loins, she whimpers and seizes as she quietly orgasms in your lap, the bed growing moist beneath you.\n\nIt takes a few moments for her breathing to calm down again and her eyes to open. A slimy hand comes up and touches your cheek, pushing your other cheek towards her mouth as she kisses you. \"Hehe, it felt good... Thank yew~\", she kisses you again.\n\nNow empty, she slides off your lap and onto the floor, strands of her feminine fluid stretching from her bottom to your lap, her tail catching and flicking them as it idly waves. As you stand, more of the stuff is stuck to your own {self.buttDesc()} rump, leaving your {self.clothesBottom()} thoroughly soaked. You help her put on her sundress, making sure it doesn't get stuck on a stray nipple or her tail, and she begins to head out.\n\n\"I'll always hope to see you again,\" she grins. Then she heads out, her friends waiting for her elsewhere in the city."
-                  if ((self.lilaMilk > 5) and (self.lilaMilk <= 12)):
+                  #!optimize if/else
+                  if (self.lilaMilk > 5 and self.lilaMilk <= 12):
                      tempStr += "\n\nHowever, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well."
                      self.itemAdd(224)
                   if (self.lilaMilk > 12):
@@ -14334,7 +14340,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doNext()
                      def doListen():
                         tempStr = "After a few minutes of continuous orgasm, Lila spends several more simply panting and gasping for air. You crawl up between her legs and hug around her belly, easing her nerves and helping bring her back to this world. She eventually regains enough of her wits to hug you back, kissing your forehead.\n\n\"Thank yew... That was... That was...\" She can't really finish the statement, merely pressing her plush vulva up against you and kissing your waist in another sense.\n\nAt a loss for words, the two of you lay there for a while until the feeling returns to her legs. Lila stands, swaying slightly while she catches her balance, and lowers her soaked dress the best she can. \"I need to go home nao and take a nice long nap... I weally enjoyed this, though, and won't mind if it happens again...\" She blushes with embarassment over her naughty desire for more and is quick to escape the hut, her tail writhing about as she recounts what happened in her mind, her knees twitching as she nearly climaxes from the memory alone...\n\nTaking your time with wiping yourself down from the deluge, you also think about what happened. Overall, it's rather arousing and feels quite pleasant..."
-                        if (self.checkItem(200) == True):
+                        if (self.checkItem(200)):
                            tempStr += "\n\nHowever, once you're dry, you notice a blotch still forming. You quickly open up your bag and take out the culprit. The gift Lila had given to you when you first met her now seems much... 'wetter'. The leaves and flowers of the little charm sweat with drops of 'dew', producing a small amount of familiar honey from nothing. There's also a general warmth to the object that wasn't there before and seems to be having an effect on yourself. It seems Lila's gift has become more imbued with the girl's nature with the rather intimate 'connection' you two shared..."
                            self.loseManyItem(200,1)
                            self.itemAdd(237)
@@ -14365,11 +14371,11 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nLike little rivers, milk continually flows down her front, her small swollen breasts shuddering as the air licks across her stiff nipples, sending thin white squirts flying about. She can't help but squish them idly with her arms, causing more milk to spray about as she does and small gasps to escape from her lips."
                   elif (self.lilaMilk <= 19):
                      tempStr += "\n\nWhile standing there, her hands rove about her front, squeezing her small engorged breasts as they ache from her puffy nipples growing stiff with the air licking across their moist sensitive skin. She squeaks ever now and then as she does, with more white stuff flooding from the breasts that she cannot immediately attend to with only two hands."
-                  if ((self.lilaPreg <= 35) and (self.lilaVulva >= 11)):
+                  if (self.lilaPreg <= 35 and self.lilaVulva >= 11):
                      tempStr += " The belly bulging with vaginal flesh, much of the milk diverts to either side for an easier path."
-                  elif ((self.lilaPreg <= 70) and (self.lilaPreg > 35)):
+                  elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
                      tempStr += " Wobbling a little with her greater girth, her pregnant belly diverts most of the milk flow to the sides. Though it doesn't prevent her from rubbing the milk in over the whole thing anyways, while she absently rubs it with its taut fur being more sensitive."
-                  elif ((self.lilaPreg <= 100) and (self.lilaPreg > 70)):
+                  elif (self.lilaPreg <= 100 and self.lilaPreg > 70):
                      tempStr += " The large belly, gravid with your children, blocks most of the milk from immediately reaching the ground, making most of it flow down to her protruding belly button. Her hands occasionally paint the white stuff around as she rubs the taut fur it in awe of herself, unable to even reach its underside as its size is larger than herself."
                   if (self.lilaVulva == 0):
                      tempStr += " Her petite folds are swollen and bright, shimmering with the surrounding fur from the slickness she's already made."
@@ -14400,7 +14406,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += " She blinks up at you, a hand cutely curling about her mouth like she's about to lick her paw, wondering how this will possibly continue. Just to reassure her, you kiss her on the forehead. Her eyes close and a smile grows upon her face, accepting your comforting gesture. Though they then open as she realizes your mouth reaches down to touch against her own lips, kissing her lovingly. This time her eyes close from the sudden surge of warmth throughout her body, whimpering slightly into your mouth as she experiences such intimacy for the first time."
                   else:
                      tempStr += f" She smiles up at you, her hands pawing at your {self.boobDesc()} chest, roving to your sides and holding onto you as you lean down to give her a deep kiss. Her mouth is ready to take your tongue, her rougher one dancing around it and licking your teeth and lips."
-                  if ((self.tallness < (6 + 4 * self.lilaVulva)) and (self.lilaPreg != -2) and (self.lilaUB == False)):
+                  if (self.tallness < 6 + 4 * self.lilaVulva and self.lilaPreg != -2 and self.lilaUB == False):
                      tempStr += " You slowly inch your way down her body to the hungry entrance, kissing her nipples and belly along the way. The plush labia dribble with arousal, gaping and awaiting your tender treatment to help cool the growing fever of her loins."
                      if (self.lilaVulva <= 5):
                         tempStr += " Even as dainty as she may be, compared to your own size she is still relatively large. You can't help but bury your face between the slender lips, licking up and down the slippery pink flesh."
@@ -14444,7 +14450,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doListen = doListen
                      self.doListen = doListen
                   else:
-                     if ((self.cockTotal < 1) and (self.clitSize <= 10)):
+                     if (self.cockTotal < 1 and self.clitSize <= 10):
                         if (self.lilaVulva > 10):
                            tempStr += f" While she's prone and melting in your embrace, you wrap your {self.legDesc(2)} around her bulbous vulva, pushing your own {self.vulvaDesc()} cunt{self.plural(2)} into it. You bounce up and down gently, humping her heavy pussy, your {self.clitDesc()} clit{self.plural(2)} grinding alongside her especially large female erection. Her feet hold onto your thighs the best she can, bucking her hips to get press her sensitive mass into you more."
                         else:
@@ -14456,13 +14462,13 @@ class NiminFetishFantasyv0975o_fla:
                            if (self.lilaVulva > 10):
                               tempStr += " Yet, she continues to hump against your body, her huge sensitive cunt slapping against you wildly until she comes again and again with even more mess."
                            tempStr += " You can't help but shortly come after her, your combined messes drenching the bed beneath you.\n\nOnce you have both calmed down, her panting returning to a soft purr, she takes some time to cuddle with you, licking your body to clean up some of the mess. But, it doesn't take long before the two of you pass out with the delightful stress, snuggling upon the moist bed."
-                     elif ((self.cockTotal > 0) and ((self.cockSize * self.cockSizeMod) <= self.eVagLimit(8 + 5 * self.lilaVulva))):
+                     elif (self.cockTotal > 0 and self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva)):
                         tempStr += f" As she melts within your embrace, she gasps as she feels the tip of {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)} slide across her belly, sandwiched between your two bodies. She shivers beneath you as you pull it back, slipping it through her supple lips and into her hungry hole."
                         if (self.lilaPreg == -2):
                            tempStr += " Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation."
                         else:
                            tempStr += " She grins stupidly as she pushes herself against your own efforts, slowly ramming your erection deep into her horny folds, forcing her to wince a little thanks to her own eager efforts. Her toes curl behind you, a soft moan escaping her lips as your whole length squeezes through the resistant walls, until she eventually calms and huffs beneath your body, her tail flicking about excitedly."
-                        if (((self.cockSize * self.cockSizeMod) > (8 + 2.5 * self.lilaVulva)) and (self.lilaPreg < 35)):
+                        if (self.cockSize * self.cockSizeMod > 8 + 2.5 * self.lilaVulva and self.lilaPreg < 35):
                            tempStr += " She gasps, out of breath, as she looks down to see the tip of your member bulging her belly outwards. She absentmindedly strokes her fur, kneading the monster inside, amazed that it could possibly do such a thing."
                         elif (self.lilaPreg >= 35):
                            tempStr += " Her hands quickly cradle her swollen belly, just to make sure that her lewd efforts and your girth didn't harm what is growing inside."
@@ -14484,16 +14490,16 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += " Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent."
                         if (self.lilaPreg <= 35):
                            tempStr += "\n\nYou lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck."
-                        elif ((self.lilaPreg <= 70) and (self.lilaPreg > 35)):
+                        elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
                            tempStr += "\n\nYou lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck."
                         elif (self.lilaPreg > 70):
                            tempStr += "\n\nYou manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room."
                         getCum = self.cumAmount()
-                        if (getCum > (100 * (self.lilaVulva + 1))):
+                        if (getCum > 100 * (self.lilaVulva + 1)):
                            tempStr += " Your own pressure erupts within her, raising her volume to near deafening levels as the stuff fills her passage and gushes out with tremendous force, more than her heat could have ever asked for."
                         else:
                            tempStr += " Your own pressure erupts within her, making her louder as she feels your warm spunk splashing against her hot walls, just what her heat truly needed."
-                        if ((self.lilaPreg <= 35) and (self.lilaVulva >= 11) and (getCum > (150 * (self.lilaVulva + 1)))):
+                        if (self.lilaPreg <= 35 and self.lilaVulva >= 11 and getCum > 150 * (self.lilaVulva + 1)):
                            tempStr += " So much of your hot spunk swirls around within her that even her belly trembles beneath you, inflating and churning about."
                         tempStr += " She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and "
                         if (self.knot == True):
@@ -14506,7 +14512,7 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += " Her mouth goes wide, stretching as you penetrate her, her eyes wincing as the odd sensation fills her. You can feel her toes curl behind you, her legs tensing like they were preparing for something far more extreme, and she is completely silent for the whole duration. Once your length has completely burrowed into her, she finally erupts with a long mewl. Her virgin pussy squeezes about the intruder, chewing on it and slowly relenting as her body settles around it, becoming used to this brand new, yet absolutely wonderful, sensation."
                         else:
                            tempStr += " She grins stupidly as she pushes herself against your own efforts, slowly ramming your erection deep into her horny folds, forcing her to wince a little thanks to her own eager efforts. Her toes curl behind you, a soft moan escaping her lips as your whole length squeezes through the resistant walls, until she eventually calms and huffs beneath your body, her tail flicking about excitedly."
-                        if ((self.clitSize > (8 + 6 * self.lilaVulva)) and (self.lilaPreg < 35)):
+                        if (self.clitSize > 8 + 6 * self.lilaVulva and self.lilaPreg < 35):
                            tempStr += " She gasps, out of breath, as she looks down to see the tip of your clitoris bulging her belly outwards. She absentmindedly strokes her fur, kneading the monster inside, amazed that it could possibly do such a thing."
                         elif (self.lilaPreg >= 35):
                            tempStr += " Her hands quickly cradle her swollen belly, just to make sure that her lewd efforts and your girth didn't harm what is growing inside."
@@ -14523,14 +14529,15 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += " Milk spurts up over her chest and belly as her body shakes with your movement, spilling down her sides and onto your sheets."
                         elif (self.lilaMilk <= 19):
                            tempStr += " Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent."
+                        #!optimize if/else
                         if (self.lilaPreg <= 35):
                            tempStr += "\n\nYou lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck."
-                        elif ((self.lilaPreg <= 70) and (self.lilaPreg > 35)):
+                        elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
                            tempStr += "\n\nYou lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck."
                         elif (self.lilaPreg > 70):
                            tempStr += "\n\nYou manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room."
                         tempStr += f" You shiver against her as well, your {self.legDesc(2)} growing numb from the lightning storm that envelops your whole self, centered on your gargantuan feminine member. She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and she passes out within your arms, napping with a soft purr. You giggle a little and shrug, curling up around her and falling asleep with her, letting your anatomy remove itself naturally."
-                     if ((self.cockTotal > 0) and ((self.cockSize * self.cockSizeMod) <= self.eVagLimit(8 + 5 * self.lilaVulva))):
+                     if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva)):
                         tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                      else:
                         tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
@@ -14543,7 +14550,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.lilaPreg = 0
                         else:
                            tempStr += "\n\n\"Mmm... It's always so... amazing with yew. I like it vewy much. I love yew.\" She kisses you again, so full of joy."
-                        if ((self.lilaPreg == 0) and (self.percent() >= 55) and (self.cockTotal > 0) and ((self.cockSize * self.cockSizeMod) <= self.eVagLimit(8 + 5 * self.lilaVulva))):
+                        if (self.lilaPreg == 0 and self.percent() >= 55 and self.cockTotal > 0 and self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva)):
                            tempStr += " However, for a moment, her attention turns down to her loins. A hand smears about the leftover cum that still drools from her, focusing on her lips and clit. \"It... It's not as warm as before,\" a hint of surprise in her voice. Then she begins to blush as her fingers keep smearing around, her clit beginning to stand stiffly and her honey increasing in flow. \"N-Nevermind...\""
                            self.lilaPreg = 1
                         self.outputMainText(tempStr + "\n\nThe two of you continue to cuddle for a bit longer, enjoying your company, before she realizes how much time has passed. Needing to get back home, she quickly tosses on her sundress, letting it mat against her wet fur and stick to all sorts of naughty places. With another quick peck on your lips, she dashes out of the hut, giving you a short goodbye as her cheeks redden, already thinking about doing it again...",True)
@@ -14629,11 +14636,11 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nLoud cries and wet slapping echo around the hut. Mommy squirms in her chair, looking a bit uncomfortable. \"I must admit, I'm a bit envious of her. She has such powerful orgasm... Even though she leaves trails of slime everywhere and large puddles whenever she comes, it kinda makes me aroused just thinking about how intense it must be. Every night, together in our bed, she winds up grinding against my leg in her sleep. I wake up and... I can't help but masturbate along with her. And its not just me, either. When she walks around with that thing between her knees, if I'm not paying close attention she curl up and start masturbating right in the middle of public. And when she's not walking, she'll be humping whatever she sits or lies down on, whether she's conscious of it or not. I guess that's what happens when you sit on that part of your body instead of your own butt...\" You catch her hand stealthily disappear beneath the table as she thinks about the prospect, though you don't say anything."
                   elif (self.lilaVulva <= 19):
                      tempStr += "\n\nShouts of ecstacy and wet spurting and moist slurping and thick splattering fill the hut. A hand obviously pushes down beneath the table into Mommy's lap as she shivers a tad. \"My little slug~\" She chuckles as she pants a little. \"She always scowls at me when I call her that. But with the way she almost drags across the ground, leaving a trail of slime behind her, what would be a better nickname? Although, I really hope she doesn't actually start having to move like a slug... As it is, she shivers and shakes whenever she plops down or accidentally drags it across something, having an instant orgasm. Even at night, while we sleep together in the bed, the big thing makes the bed all slick and wet, rubbing and pushing against everything, until she finally wraps her legs around one of mine and devours my knee as she humps with that thing. Completely asleep, too, totally unconscious. And that huge clit... Sometimes in the middle of the night, I can't help but-\" She catches herself, her flicking tail halting in embarrassment as she bites her tongue to keep from saying more as her face is as red as can be."
-                  if ((self.lilaPreg <= 35) and (self.lilaVulva >= 11)):
+                  if (self.lilaPreg <= 35 and self.lilaVulva >= 11):
                      tempStr += " \"I also like to poke fun at her swollen tummy. I know she's not fat, but squishing it and making her squirm like that is just so much fun~\""
-                  elif ((self.lilaPreg <= 70) and (self.lilaPreg > 35)):
+                  elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
                      tempStr += " \"I also can hardly believe I'm going to be a grandmother already... But, it was bound to happen sometime or other, I'm just glad it wasn't with one of her brothers.\""
-                  elif ((self.lilaPreg <= 100) and (self.lilaPreg > 70)):
+                  elif (self.lilaPreg <= 100 and self.lilaPreg > 70):
                      tempStr += " \"I also hope she gives birth soon... I'm not sure if it's the hormones or what, but she's as randy as ever, it seems. And when she starts having her... 'fun' like this, I'm always afraid she'll topple over with that great big belly of hers. I mean, it's a normal pregnant belly for my size, but on her small frame it's a tad silly.\""
                   if (self.lilaPreg == -1):
                      tempStr += " \"But, her kittens are doing well. They spend most of the day napping or playing with each other in the bedroom, in a pen until they're big enough to not hurt themselves. Lila and I both take very good care of them, although it is odd seeing my daughter with children already... Thankfully the local alchemist gives us a good supply of anti-pregnancy potions so I don't have to worry about any more. Lila's just one of those cases of her first heat not going away, no matter how satisfied she gets. It happens every now and then for felins, but she'll grow out of it eventually, whether it be weeks or months or years. Though I guess her brothers and father will have to stay in our auxilliary hut next door. It's customary to keep the males outside when felin girls go into their first heat, to prevent any 'accidents'.\""
@@ -14649,7 +14656,7 @@ class NiminFetishFantasyv0975o_fla:
                def doListen():
                   if (self.buttonChoice == 6):
                      tempStr = "You nod, saying it would be nice. She grins and grabs your hand, pulling you along with her back to the hut.\n\nHer mother spots the two of you coming and looks at you curiously, wondering why you came along.\n\n\"My fwiend would like a bath too, Mommy.\"\n\n"
-                     if (((self.cockSize * self.cockSizeMod) > 96) or ((self.ballSize * self.balls) > 120) or (self.breastSize > 120) or (self.tallness > 84) or (self.udderSize > 60)):
+                     if (self.cockSize * self.cockSizeMod > 96 or self.ballSize * self.balls > 120 or self.breastSize > 120 or self.tallness > 84 or self.udderSize > 60):
                         self.outputMainText(tempStr + "Her mother eyes your rather large proportions. \"Umm... I'm sorry, but I don't think I could possibly take care of you myself. Maybe if I had a few friends over, we could, but... I simply don't have the ability.\"\n\nLila looks a bit disappointed that you couldn't join, but you shrug it off and say it's quite alright. You leave the two to take care of themselves and you head back to your own thing.",True)
                         self.hrs = 2
                         self.doEnd()
@@ -15014,7 +15021,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 1
                   self.doEnd()
             self.doListen = doListen
-         elif (((self.moistCalc(1) > 7) and (self.cockTotal > 0)) or ((self.moistCalc(2) > 7) and (self.vagTotal > 0))):
+         elif (self.moistCalc(1) > 7 and self.cockTotal > 0 or self.moistCalc(2) > 7 and self.vagTotal > 0):
             tempStr = f"A little felin girl slowly approaches you, an awkward kink in her step. The cat-like ears atop her head flick about anxiously as she coils her tail over and over in her nervous hands. She seems to be looking side to side for others, but her eyes keep glancing across you. Eventually, she comes right up to you and with a squeak in her voice and a slight lisp, she asks,\n\n\"Umm... E-Excuse me. B-But can yew help me?\"\n\nShe stares at the wet blotch in your {self.clothesBottom()} and then moves her tail aside to reveal her own dress. From her groin all the way down to the ground runs a clear path of moistness, rather obvious now that she's revealed it. She speaks again, meekly and cutely,\n\n\"Th-The others make fun of me because I'm so wet... They say I wee'd myself, but-but...\" The fur on her cheeks blush red. \"It is my first heat and I-I was too embarrassed to tell Mommy... C-Can yew help me?\"\n\nShe looks once more to your own wetness issue, hoping you know better how to handle it."
             if (self.lilaRep == 1):
                tempStr += "\n\nYou've seen this girl before, yet she doesn't seem to recall your face nor what you might have done in the past. You probably didn't leave a strong enough impression or the memory got lost in her stress from last time."
@@ -15193,7 +15200,7 @@ class NiminFetishFantasyv0975o_fla:
             self.hrs = 1
             self.doEnd()
       elif chance == 2:
-         if ((self.percent() < 25) and (self.breastSize > 14)):
+         if (self.percent() < 25 and self.breastSize > 14):
             self.outputMainText(f"As you walk across the wooden bridges, you have a feeling like you're... being stalked? A strange sensation of focus upon you {self.boobDesc()} breasts... Whatever. You shake off the feeling and-\n\nEverything goes dark as you're pounced by something hot and your face covered by a bag.",True)
             self.doNext()
             def doListen():
@@ -15214,7 +15221,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += " The third girl then ducks beneath the other two, bumping through their own breasts to get to one of your freely-flowing ones. She suckles just like the rest, mewling and purring so loudly that it feels like almost the whole room is vibrating."
                   tempStr += f"\n\nTheir thirst isn't the only thing that needs satiating though. The more they drink, the more their hands dive into their loincloths, until their purrs become moans and are nearly drowned by the pervese wet schlicking sounds. But that isn't enough. With the milk soothing their stomach cravings, the pleasant tasty warmth is only making their lower cravings more severe.\n\nEventually, one pops off a nipple with one last big suck. The milk sprays freely, showering the front of the felin. The other two catch on, doing the same and letting the liquid splash over their many tits. They rub it in, mrowling in pleasure and digging deeper beneath their loincloths. Their legs soon give in, making them fall to the floor and lift their loincloths in your direction, exposing their swollen reddened pussies to you and your rain of milk. With each splash over their lower lips, the catty girls twitch and shudder, coming to small orgasms from the feeling and thought alone. Then as the white fluids beads into drops that runs down through their labia, slipping into their nooks and crevices and holes, their hands help the stuff along by rubbing it all over their cunts.\n\nThey climax again and again, delighting in the milky goodness, even after your squirting dies down to steady trickles. When that happens, the girls simply curl around each other, licking the milk from each others slits, jerking and rubbing and groping and coming more and more. The room grows so hot that even your bindings begin to sweat and... you slip free.\n\nHolding back the milk with an arm, you put back on your {self.clothesTop()}, where it then begins to blotch. With the felins still having an orgy on your floor, you grab one of the leftover vials and make your escape, though a little milkier than before..."
                   self.lactation += 50
-                  if (self.submissiveFetish > 1):
+                  if (self.submissiveFetish > 1): #!Probably should be remove since fetish is depricated
                      tempStr += self.doLust(10,0,ret=True)
                   self.outputMainText(tempStr,True)
                   self.itemAdd(105)
@@ -15223,7 +15230,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          else:
             tempStr = "A group of felins pass by on one of the wide wooden bridges, some males with some females. They sway a little with each step, their tails oddly swinging the wrong way. Within their hands they have some bottles of milk, though they seem a bit disappointed with how little is left."
-            if (((self.milkEngorgement > 300) and (self.milkEngorgementLevel > 0)) or ((self.udderEngorgement > 300) and (self.udderEngorgementLevel > 0) and (self.udders == True))):
+            if (self.milkEngorgement > 300 and self.milkEngorgementLevel > 0 or self.udderEngorgement > 300 and self.udderEngorgementLevel > 0 and self.udders == True):
                tempStr += f" However, just a few steps behind you, they come to a stop. Their button noses sniff at the air, their whiskers twitching curiously. Slowly, they turn towards you, their eyes focusing on your milky breasts...\n\nCatty grins grow upon their faces. Although they may be out of their tasty beverages that makes them a little woozy with joy, they seemed to have found another nice source of their favorite drink~\n\nBefore you know it, you're laying on the ground, your {self.clothesTop()} pulled {self.pullUD(1)}, your front exposed and leaking. Your sight is quickly covered as one of the females in a skirt sits on your face, her slightly moist panties squishing your nose between her nether-lips. Her tail swishes across your head again and again as you feel your body ravaged, your {self.nipDesc()}nipples"
                if (self.udders == True):
                   tempStr += f" and {self.teatDesc()} teats"
@@ -15267,7 +15274,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr = "Fidoris speaks out \"Mistress, I have brought the traveler once again!\"\n\nThe woman rolls over, her belly and massive vulva rolling with her. \"Good boy! I hope you have brought along something nice for me?\" Her eyes light up."
                   templist = [11, "Nothing"]
                   buttonlist = ButtonList(1,0,0,0,0,0,0,0,0,0,1,0)
-                  if (self.checkItem(210) == True):
+                  if (self.checkItem(210)):
                      templist.append(1)
                      templist.append("Puss Fruit")
                   if (self.mistressRep > 10):
@@ -15275,7 +15282,7 @@ class NiminFetishFantasyv0975o_fla:
                      buttonlist[3] = 1
                      if (self.knowPussJuice == False):
                         self.knowPussJuice = True
-                  if ((self.countItem(210) >= 3) and (self.mistressRep > 10)):
+                  if (self.countItem(210) >= 3 and self.mistressRep > 10):
                      templist.append(3)
                      templist.append("3x")
                   self.outputMainText(tempStr,True)
@@ -15286,13 +15293,13 @@ class NiminFetishFantasyv0975o_fla:
                         self.loseManyItem(210,1)
                         self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,1,0))
                         templist = [1, "Fidoris"]
-                        if ((self.tallness / 12) < (self.mistressRep + 4)):
+                        if (self.tallness / 12 < self.mistressRep + 4):
                            templist.append(3)
                            templist.append("You")
-                        if ((self.tallness / 12) < (self.mistressRep / 3)):
+                        if (self.tallness / 12 < self.mistressRep / 3):
                            templist.append(9)
                            templist.append("Both")
-                        if (((self.cockSize * self.cockSizeMod) > (60 + (self.mistressRep * 4))) and ((self.cockSize * self.cockSizeMod) < self.eVagLimit(120 + self.mistressRep * 8)) and (self.cockTotal > 0)):
+                        if (self.cockSize * self.cockSizeMod > 60 + self.mistressRep * 4 and self.cockSize * self.cockSizeMod < self.eVagLimit(120 + self.mistressRep * 8) and self.cockTotal > 0):
                            templist.append(11)
                            templist.append("Cock")
                         tempStr = "\"Great! Fidoris, bring our guest over here!\" She grins with excitement."
@@ -15302,9 +15309,9 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += f"\n\nThe {self.ptweaksGrammar(1)} leads you back behind the curtain. Even though you've seen it before, the sight of her massive feminine genitalia is still awe-inspiring. Swelling and pulsing with her heartbeat, the heat warming the room. Fidoris is glad to be back in its presence, sighing in comfort. The slime continues to pool around the massive folds, perpetually keeping them well lubricated. And each time you come, she just seems even bigger and bigger than before..."
                         tempStr += "\n\n\"Come on, over here now!\" She eagerly waves for the fruit.\n\nHanding it to Fidoris, he quickly presents it to his mistress. Like a child, she giggles with giddyness. She begins by licking up through the lewd crack in the fruit, squeezing it gently until its juices start to seep out. Once her tongue touches the sweet nectar, her mouth opens wide and bites into it, letting the juices spill out onto her face with ecstasy. She proceeds to devour it rapidly, cherishing every bite thoroughly.\n\nShe heaves a few loud sighs once the fruit is gone. Her hands dig into her gown, pushing into her gravid belly as she feels the fruit's effects begin to settle in. With a shiver and a moan, you watch as her cunt begins to shudder. Before your eyes, it swells even larger, her belly becoming more prominent."
                         if (self.cockTotal > 0):
-                           if ((self.cockSize * self.cockSizeMod) >= self.eVagLimit(120 + self.mistressRep * 8)):
+                           if (self.cockSize * self.cockSizeMod >= self.eVagLimit(120 + self.mistressRep * 8)):
                               tempStr += f" Yet, despite her tremendous size, your own {self.cockDesc()} appendage{self.plural(1)} still have no chance of fitting into that chasm of flesh."
-                           elif ((self.cockSize * self.cockSizeMod) <= (60 + (self.mistressRep * 4))):
+                           elif (self.cockSize * self.cockSizeMod <= 60 + self.mistressRep * 4):
                               tempStr += f" She has gotten so large that there's no way your {self.cockDesc()} thing{self.plural(1)} could hope to pleasure her."
                         self.outputMainText(tempStr + " The fruit seems to be more potent than usual with this woman...\n\n\"Mmm!\" She mewls. \"Somebody fill me! Now!\"",True)
                         self.doButtonChoices(templist)
@@ -15335,7 +15342,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doListen = doListen
                            elif (self.buttonChoice == 9):
                               tempStr = f"Realizing she's big enough to fit both you and Fidoris, you take Fidoris' hand and pull him over to the massive maw with you. Realizing it as well, Fidoris nods. The two of you grope about her velvety folds, rubbing her massive button as she bucks upon the bed from the concerted effort. It doesn't take much before spurts of feminine honey drench the both of you, coating the both of you in her slick lubricant.\n\n\"Don't forget to remove your clothes\" Fidoris mentions quickly, eager to get inside.\n\nYou strip down to nothing, letting the fluids smear about your naked {self.skinDesc()}, until you're as slippery and shiny as the prospect before you. Fidoris motions for you to go first and you duck down to the gaping pussy. It's amazing how easily you can fit a hand, and then two, and then both your arms. You can feel her hungry womb begin to suck you in, the slick mess that covers the walls making it difficult to resist. Not that you would want to. Your head easily slips in next, spreading her wider and wider with your anatomy. It's an odd sensation at first. Very stuffy with all of the moisture and heat. However, it's also surprisingly relaxing and inviting, pulling you in further and further. Before you know it, your {self.legDesc(10)} snap{self.legPlural(1)} into her entrance and you crawl into her womb.\n\nIn complete darkness, you can't seem to tell where you are. Her belly seems to adjust for you, sucking you in and settling you within her womb."
-                              if ((self.vagLimit() > 100) and (self.percent() < 50) and (self.vagTotal > 0)):
+                              if (self.vagLimit() > 100 and self.percent() < 50 and self.vagTotal > 0):
                                  tempStr += f" Moments later, you feel the walls around you shiver as Fidoris climbs through the entrance. However, you gasp as you feel his small hands blindly grope {self.legWhere(1)} your {self.legDesc(2)}, eventually grabbing upon your own {self.vulvaDesc()} labia. Thinking you're just another set of folds within the Mistress' passage, he pulls you open, making you moan as he stretches you further and further. You can feel his head push itself into your pussy, followed by the exploring arms. Your belly expands as he pushes you out from within, making your {self.legDesc(2)} kick at the Mistress' interior and causing her to giggle from outside. The felin boy pulls himself into your womb, his legs brushing over the walls as they curl up to his chest. His hands rove about within, making you shudder from the sensation, as he tries to determine if he has reached the end of the journey. And he realizes you're not there...\n\n\"Ummm...\" You hear him muffled within yourself. He feels the walls more thoroughly, noticing how they aren't quite the same as he is used to. \"Oh dear... I do believe I've gone off course... Maybe I should have taken a left turn back there?\"\n\nShuffling about within, movement around your womb triggers a rather pleasant feeling. The warmth of the relatively large body inside of you, rubbing and grinding the sensitive walls, makes the walls begin to weep an aroused fluid. The slickness only makes Fidoris' efforts more slippery, preventing him from being able to leave.\n\nYet, the growing warmth within his confines and increased lubrication alert him to the fact that he is more than welcome there. Without much other choice, he settles in and gets comfortable. Quite comfortable... To the point where you feel something hard and pointy and slightly abrasive poke at your walls. The barbs of his cat-cock scrape along as he slowly begins to hump your womb, soft enough to not pain your womb, but hard enough to not make you burst out in laughter from an internal tickling. Instead, it falls right in the middle, causing your to writhe within the Mistress and buck at her walls"
                                  if (self.cockTotal > 0):
                                     tempStr += f", gliding your own erection{self.plural(1)} across her supple flesh"
@@ -15368,13 +15375,13 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doListen = doListen
                               else:
                                  tempStr += " Moments later, you feel the walls around you shiver and shudder as the space grows larger. Another body slips in beside you, as wet and slippery and hot as you are, and squeezes against you in a rather intimate fashion.\n\n\"Are you comfortable?\" He whispers. You can feel the vibrations of his voice throughout the stretched walls around you.\n\nYou nod, blushing within the darkness, squeezed so tightly against him. The two of you squirm again and again, trying to find a better position that won't leave you so close, but all the warm, slippery rubbing does is arouse you. And him as well, it seems, as you can feel his small prick poke at you through his loincloth. Slowly, the slipping progresses until "
-                                 if ((self.gender == 1) or ((self.gender == 3) and (self.percent() <= 50)) or (self.gender == 0)):
+                                 if (self.gender == 1 or self.gender == 3 and self.percent() <= 50 or self.gender == 0):
                                     tempStr += f"you find yourself turned away from Fidoris, your {self.buttDesc()} rump grinding his small prick between your cheeks. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your butt first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into your moist ass."
-                                 elif ((self.gender == 2) or (self.gender == 3)):
+                                 elif (self.gender == 2 or self.gender == 3):
                                     tempStr += f"you find your {self.legDesc(2)} {self.legVerb(2)}, straddling Fidoris' lap, your {self.vulvaDesc()} slit{self.plural(2)} wedging around his small prick. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your folds first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into {self.oneYour(2)} wet cunt{self.plural(2)}."
                                     tempStr += self.doImpregnate(4,ret=True)
                                  tempStr += "\n\nThe two of you quickly begin writhing against each other within the mistress' belly, Fidoris plunging his cat-cock into you again and again. The barbs around the tip of his tiny prick scrape against the walls of your flesh insides, but not nearly large enough to cause any pain. The scraping merely arouses you further, bringing you to orgasm much faster, despite his small size. His little cock begins to squirt a smoldering batch of cum into you, making your own hips buck back in turn with climax."
-                                 if ((self.gender == 1) or (self.gender == 3)):
+                                 if (self.gender == 1 or self.gender == 3):
                                     tempStr += f" Your cock{self.plural(1)} begin{self.plural(3)} to launch your cum within the confined space, smearing about the mistress' womb and making you both sticky."
                                     self.cumAmount()
                                  self.outputMainText(tempStr + " Even the walls themselves begin to shake and quiver as you hear ecstatic moans from outside...\n\nHowever, you quickly find yourself setting back down as the constant warmth and comfort of your room calms you. With Fidoris still inside of you, the two of you drift off to sleep...",True)
@@ -15452,7 +15459,7 @@ class NiminFetishFantasyv0975o_fla:
       if chance == 1:
          if self.silRep == 0:
             tempStr = "Walking through Oviasis' bazaar, you spot an odd figure amongst all the lizan folk. A humanoid shape wrapped in a white hooded cloak, the most you can manage to make out are some long fuzzy ears, a lizard-like tail, some slight curvature to the apparently feminine figure, and nearly seven feet tall, towering over most others. The person walks around, going from stall to stall trading food and trinkets, especially taking interest in whatever magical wares are available. Feathery wings peek out from her cloak whenever she reaches out for something, with finger-like talons at the tips acting like hands."
-            if ((self.pheromone > 0) and (self.checkMagicItem() == True)):
+            if (self.pheromone > 0 and self.checkMagicItem()):
                self.outputMainText(tempStr + f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. Her wings fold inward, the three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, fondling herself sporadically. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheeks that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid desert weather - which seems to be... tenting as her other hand works at herself beneath.\n\nShe bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nHowever, as her nuzzling brings her muzzle closer to your pack, she begins to sniff again. Her voice wavers much less as she speaks; not undone by the lust this time, \"M-Magic?\"\n\nShe firmly presses into you as her muzzle dives into your pack for an even bigger whiff. \"Y-Yes, something neat in there...\" The sudden distraction seems to have helped her mind gain focus, able to make her think more clearly despite the thing that throbs against you. She leans back to look you directly in the eyes. Fear fills her own eyes, her normally shy and meek demeanor commanding her to flee, but even deeper beyond that you can see a lonely longing inside. Her cheeks more flushed with embarrassment than arousal now, the situation already quite shameful and far out of her usual comfort zone, especially in such a public place, she takes a deep breath and ventures a chance.\n\n\"Would... Would you like to come to my home?\"",True)
                self.buttonConfirm()
                def doListen():
@@ -15471,9 +15478,9 @@ class NiminFetishFantasyv0975o_fla:
                            else:
                               tempStr += "pre-flooding"
                            tempStr += " appendage and slowly squats down onto it. The tips of her wings hold her testicles up to allow for a smooth landing upon your manhood and is prompt to let them knock against you as 'slow' just isn't going to cut it. In her pheromone induced state, the arousal having been overhwelming this whole time, she falls down onto the rod, "
-                           if ((self.cockSize * self.cockSizeMod) < 36):
+                           if (self.cockSize * self.cockSizeMod < 36):
                               tempStr += "easily engulfing your whole length"
-                           elif ((self.cockSize * self.cockSizeMod) < 66):
+                           elif (self.cockSize * self.cockSizeMod < 66):
                               tempStr += "her pussy squeezing around your thick girth as it seems to barely manage to swallow your entire length"
                            else:
                               tempStr += "her pussy seemingly having trouble taking in your massive girth, your size much greater than her hole, yet her slit stretches more and more, her hips somehow widening to take you in, and even her belly bulges with scales easily spreading to take in all your cock-flesh"
@@ -15491,9 +15498,9 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += ". She continues to spurt a bit of cum between the two of you, the smell of sex rapidly intensifying within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones..."
                            tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                            self.silPreg = 1
-                        elif ((self.vagTotal > 0) and (self.vagLimit() > 28)):
+                        elif (self.vagTotal > 0 and self.vagLimit() > 28):
                            tempStr += f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(2)} own {self.vulvaDesc()} slit{self.plural(2)}, making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, "
-                           if ((self.tallness / 2) < (self.vagSize * self.vagSizeMod)):
+                           if (self.tallness / 2 < self.vagSize * self.vagSizeMod):
                               tempStr += "pushing your belly out from within, "
                            tempStr += f"until her balls slam against your {self.buttDesc()} rear beneath. Straddling her own scrotum to grind her hidden slit against as she moves, she begins to thrust through your tender flesh, making her moan and whine from the fantastic sensations your pussy provides. Her wings curl around to embrace you and steady herself, trapping you both within a dome made by her feathers. The heat rapidly begins to build as she pounds into you vigorously, panting and moaning as she begins to drool from the overwhelming lust.\n\nIt doesn't take long before she let's out a loud erotic vulpine howl. Hot spunk floods through your womb, gushing and churning as she presses her breasts against your {self.boobDesc()} chest. Her eyes clench as you climax as well, your walls chewing upon her erection and making her twitch sporadically. The hot heavy feeling of your pussy around her cock proves to be too much, forcing her to pull out to let the cooler air kiss her wet shlong as it finishes its explosion between the two of you, spitting across her scales and fur and your {self.skinDesc()}. The smell of sex rapidly intensifies within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones..."
                            tempStr += self.doImpregnate(self.dominant,ret=True)
@@ -15536,7 +15543,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   self.doEnd()
                self.doListen = doListen
-            elif (self.checkMagicItem() == True):
+            elif (self.checkMagicItem()):
                self.outputMainText(tempStr + f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up a scent and slowly moving towards you as she uses her nose to follow it, not yet noticing your actual presence just yet.\n\nAs she moves closer, you can see more under her robe. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and long auburn hair. Soft fur nearly covers her body, parted down her front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. Her wings and arms are one in the same, each tipped with three finger-like talons that make up her hands. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, while her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather.\n\nAnd as she finally closes in on you, she ducks down as her short muzzle continues to sniff about. She sniffs right up your {self.legDesc(2)} and at your pack, quietly speaking to herself in a feminine voice.\n\n\"Ooo, definitely some magic emanating from here. I wonder what it could be? Crafted? Naturally imbued? A weapon? Or maybe a charm? It's been a few weeks since I've found anything neat around here to add to my collection, I can't wait to see it!\" Her fingers dig into your pack and start to shuffle around for the magical goody, but slowly comes to a stop as she looks up. It wasn't until now that she realizes that it has been attached to a person this whole time - you. She hops back with a blush, her head ducking between her shoulders with embarrassment. \"Oh dear, I'm so sorry! I-I was just hunting for magical treasures!...\" Her toes curl awkwardly over her sandals. \"Umm... Bye!\"\n\nShe disappears into the crowd and heads out of the bazaar in embarrassment before dashing off upon her wings, her shyness getting the best off her.\n\nNot quite sure what just happened, you ask around about this strange woman and find that she's a frequent visitor to Oviasis. Although nobody really knows who she is, she has been coming by for years to trade for supplies or to pick up magical goods, which she is quite fond of. It seems she is quite a shy person, hence her little stint with you, so they don't know much more beyond her market habits and friendly demeanor.",True)
                self.hrs = 2
                self.doEnd()
@@ -15545,7 +15552,7 @@ class NiminFetishFantasyv0975o_fla:
                self.hrs = 1
                self.doEnd()
          elif self.silRep < 6 and self.silRep > 0:
-            if ((self.silPreg > 360) or ((self.silRep > 2) and (self.silPreg > 300)) or ((self.silRep > 3) and (self.silPreg > 200))):
+            if (self.silPreg > 360 or self.silRep > 2 and self.silPreg > 300 or self.silRep > 3 and self.silPreg > 200):
                self.outputMainText("Walking through the Oviasis bazaar, you notice that it's about the time Silandrias usualy does her shopping, but you see no sign of her. There must be some reason she hasn't flown out here...",True)
                self.hrs = 1
                self.doEnd()
@@ -15727,22 +15734,17 @@ class NiminFetishFantasyv0975o_fla:
             self.buttonConfirm()
             def doListen():
                tempInt = 0
+               #!optimize if/else
                if (self.buttonChoice == 6):
                   tempInt = 0
                   tempStr = "They welcome you into the group, eager to have some more feminine attributes around. Within moments of joining, "
                   if (self.vagTotal > 2):
                      tempStr += f" multiple males approach you, noticing your rather generous amount of available pussies and beginning to stroke their stiffening appendages. They crowd around you, pulling {self.pullUD(2)} your {self.clothesBottom()} for easier access as they lift you up amongst them, {self.legVerb(2)} your {self.legDesc(2)} wide while their many cocks swarm about beneath you. Each of your holes soon finds a guest burrowing inside, stretching your {self.vulvaDesc()} lips all the way to accomodate the many invaders. The men all grunt and groan as they toss you about, jiggling you up and down in the air and thrusting in different rhythms. The whole situation is difficult to track, yet soon enough you can feel a flood of fluid spray about beneath you as they go off one after the other, each feeling the churning of cum through the walls of your separate cunts. Your own orgasm forces the semen to squirt about your thighs and drench their legs, with even more leaking out in collective gobs as the guys slowly bring you back down to the ground, your {self.legDesc(2)} a bit bowed from the experience."
-                     #i = 0
-                     #while (i < self.vagTotal):
-                     #   self.doImpregnate(6)
-                     #   i += 1
                      tempStr += self.doMultiImpregnate(6,self.vagTotal,ret=True)
-                     #for i in range(0,self.vagTotal):
-                     #   tempStr += self.doImpregnate(6,ret=True)
                      tempStr += self.doLust(-self.sen // 1.5,2,2,ret=True)
                      tempInt += 1
                      self.hrs += 1
-                  if ((tempInt > 0) and (self.vagTotal > 1)):
+                  if (tempInt > 0 and self.vagTotal > 1):
                      tempStr += "\n\nThen "
                   if (self.vagTotal > 1):
                      tempStr += f"a lizan man seems surprised to see your exra attributes. Already hard from thinking about it, he happily kisses you and presses his two pricks against your {self.bellyDesc()} belly before each slips them {self.legWhere(1)} your {self.legDesc(2)} to dive into seperate passages. He hugs you tight as he plunges both in at the same time, quivering slightly as he can feel himself through the fleshy wall that separates the rods. In and out, pre and lubrication spitting into the cleft between the bases of the two cocks and dribbling down his"
@@ -15752,14 +15754,12 @@ class NiminFetishFantasyv0975o_fla:
                         tempStr += "thighs"
                      tempStr += ". He nuzzles into your neck, grunting loudly as both things jerk inside of you, pounding both holes in unison until painting them with spunk. You can feel both wombs filling at almost the same time, bringing you to quite a high. The experience was so powerful that when he eventually pulls out, he's as limp as a noodle and can hardly participate in the orgy anymore..."
                      tempStr += self.doMultiImpregnate(6,2,ret=True)
-                     #tempStr += self.doImpregnate(6,ret=True)
-                     #tempStr += self.doImpregnate(6,ret=True)
                      tempStr += self.doLust(-self.sen // 2,2,2,ret=True)
                      tempInt += 1
                      self.hrs += 1
-                  if ((tempInt > 0) and ((self.vagSize * self.vagSizeMod) > 30)):
+                  if (tempInt > 0 and self.vagSize * self.vagSizeMod > 30):
                      tempStr += "\n\nSoon after, "
-                  if ((self.vagSize * self.vagSizeMod) > 30):
+                  if (self.vagSize * self.vagSizeMod > 30):
                      tempStr += f"one of the males approaches you, stroking his double dongs as they point towards you. He nudges you towards a wall until you lean back up against it and he lifts your {self.legDesc(2)} for easier access to your slit{self.plural(2)}. Smiling at how large {self.oneYour(2)} hole{self.plural(2)} is, just from glancing at it, he grabs his two cocks together and inserts them both slowly into your entrance, letting you stretch and easily gobble them both up. Delighted with how well he was able to get both into your passageway, he immediately begins to thrust, bouncing you up and down the side of the wall, letting your body toss about with it. You brace yourself, biting your lip as he thoroughly fucks you, his cocks slipping past each other and twisting about inside of you. The feel of your walls with the thumping of his wangs together quickly makes his tail curl around behind him, flexing as he pumps two large loads into you at the same time. You climax soon after, squeezing his cocks back out as they soften, spunk spilling from your {self.vulvaDesc()} pussy, the hole still gaping after he releases your {self.legDesc(2)}."
                      tempStr += self.doImpregnate(6,ret=True)
                      tempStr += self.doLust(-self.sen // 2,2,2,ret=True)
@@ -15797,7 +15797,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.ment >= 30):
                   templist.append(1)
                   templist.append("Plug")
-               if (self.checkItem(230) == True):
+               if (self.checkItem(230)):
                   templist.append(11)
                   templist.append("Eggcelerator")
                tempStr = "You slowly push through the cattails and approach the troubled female."
@@ -15841,12 +15841,9 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr = "Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. "
                      if self.tempInt == 1:
                         tempStr += "Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs."
-                        #i = 0
-                        #while (i < (6 + math.ceil(self.percent() / 20))):
                         #!use addManyItems
-                        for i in range((6 + math.ceil(self.percent() / 20))):
+                        for i in range(6 + math.ceil(self.percent() / 20)):
                            self.itemAdd(219)
-                           #i += 1
                         tempStr += self.doLust(self.lib // 2,0,ret=True)
                         self.stats(0,1,1,0)
                         self.outputMainText(tempStr,True)
@@ -15956,11 +15953,11 @@ class NiminFetishFantasyv0975o_fla:
             if (self.buttonChoice == 6):
                tempStr = "It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that "
                tempArr = as3.Array(1,2)
-               if ((self.hairstyleLength(self.hair) == True) and (self.hairLength < 10)):
+               if (self.hairstyleLength(self.hair) and self.hairLength < 10):
                   tempArr.push(3)
                if (self.cockTotal > 0):
                   tempArr.push(4)
-               if ((self.balls > 0) and (self.showBalls == True)):
+               if (self.balls > 0 and self.showBalls == True):
                   tempArr.push(5)
                if (self.cockTotal > 0):
                   tempArr.push(6)
@@ -16014,7 +16011,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       elif chance == 5:
          tempStr = "You hear ominous swishing through the trees around you..."
-         if (self.percent() < (10 + self.runMod)):
+         if (self.percent() < 10 + self.runMod):
             self.outputMainText(tempStr + "\n\nYet you manage to run off before anything can catch you.",True)
             self.hrs = 1
             self.doEnd()
@@ -16024,7 +16021,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(tempStr,True)
             self.hrs = 1
             self.doEnd()
-         elif ((self.milkEngorgement >= 400) and (self.milkEngorgementLevel > 0)):
+         elif (self.milkEngorgement >= 400 and self.milkEngorgementLevel > 0):
             self.outputMainText(tempStr + f"\n\nA mass of peach-colored tentacles falls from the tree-branches above. Some of the tentacles waver out towards you, mostly aiming at your {self.boobDesc()} chest. They seem rather non-threatening, however, as the mass rolls back and forth on the forest floor, almost as though it were a stumbling drunk.\n\nDo you allow the tentacles to come closer?",True)
             self.buttonConfirm()
             def doListen():
@@ -16156,7 +16153,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       elif chance == 2:
          self.outputMainText("You hear ominous swishing through the trees around you...",True)
-         if (self.percent() < (10 + self.runMod)):
+         if (self.percent() < 10 + self.runMod):
             self.outputMainText("\n\nYet you manage to run off before anything can catch you.",False)
             self.hrs = 1
             self.doEnd()
@@ -16165,7 +16162,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doHP(-math.floor(self.percent() / 10 + 2))
             self.hrs = 1
             self.doEnd()
-         elif ((self.milkEngorgement >= 400) and (self.milkEngorgementLevel > 0)):
+         elif (self.milkEngorgement >= 400 and self.milkEngorgementLevel > 0):
             self.outputMainText(f"\n\nA mass of peach-colored tentacles falls from the tree-branches above. Some of the tentacles waver out towards you, mostly aiming at your {self.boobDesc()} chest. They seem rather non-threatening, however, as the mass rolls back and forth on the forest floor, almost as though it were a stumbling drunk.\n\nDo you allow the tentacles to come closer?",True)
             self.buttonConfirm()
             def doListen():
@@ -16455,7 +16452,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   self.doEnd()
                elif (chance <= 35):
-                  if ((self.cockTotal > 0) and (self.vagTotal < (self.cockTotal + 1))):
+                  if (self.cockTotal > 0 and self.vagTotal < self.cockTotal + 1):
                      tempStr = "You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry..."
                      tempStr += self.vagChange(0,self.cockTotal - self.vagTotal + 1,ret=True)
                      tempStr += f"\n\nOne more vagina than you have cock{self.plural(1)}. Why that is will forever be a mystery...\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended."
@@ -16497,7 +16494,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       elif chance == 2:
          tempStr = "Out of the corner of your eye, you spot a fluttering flash in the distance. Turning to view it more clearly, you can see it's literally flying over the sand, just a couple feet in the air. It seems to be scanning the ground for something, muzzle moving from side to side as it goes, sniffing away at the sandy dunes. A humanoid shape wrapped in a white hooded cloak, the most you can manage to make out are some long fuzzy ears, a lizard-like tail, some slight curvature to the apparently feminine figure, and large feathery wings that flutter gracefully to keep her aloft."
-         if ((self.pheromone > 0) and (self.checkMagicItem() == True)):
+         if (self.pheromone > 0 and self.checkMagicItem()):
             self.outputMainText(tempStr + f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. She has to land on her sandle-protected paws as her wings fold inward, three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, functioning as hands. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheeks that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather - which seems to be... tenting as her other hand works at herself beneath.\n\nJust over 7 feet in height, she bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nHowever, as her nuzzling brings her muzzle closer to your pack, she begins to sniff again. Her voice wavers much less as she speaks; not undone by the lust this time, \"M-Magic?\"\n\nShe firmly presses into you as her muzzle dives into your pack for an even bigger whiff. \"Y-Yes, something neat in there...\" The sudden distraction seems to have helped her mind gain focus, able to make her think more clearly despite the thing that throbs against you. She leans back to look you directly in the eyes. Fear fills her own eyes, her normally shy and meek demeanor commanding her to flee, but even deeper beyond that you can see a lonely longing inside. Her cheeks more flushed with embarrassment than arousal now, the situation already quite shameful and far out of her usual comfort zone, she takes a deep breath and ventures a chance.\n\n\"Would... Would you like to come to my home?\"",True)
             self.buttonConfirm()
             def doListen():
@@ -16516,9 +16513,9 @@ class NiminFetishFantasyv0975o_fla:
                         else:
                            tempStr += "pre-flooding"
                         tempStr += " appendage and slowly squats down onto it. The tips of her wings hold her testicles up to allow for a smooth landing upon your manhood and is prompt to let them knock against you as 'slow' just isn't going to cut it. In her pheromone induced state, the arousal having been overhwelming this whole time, she falls down onto the rod, "
-                        if ((self.cockSize * self.cockSizeMod) < 36):
+                        if (self.cockSize * self.cockSizeMod < 36):
                            tempStr += "easily engulfing your whole length"
-                        elif ((self.cockSize * self.cockSizeMod) < 66):
+                        elif (self.cockSize * self.cockSizeMod < 66):
                            tempStr += "her pussy squeezing around your thick girth as it seems to barely manage to swallow your entire length"
                         else:
                            tempStr += "her pussy seemingly having trouble taking in your massive girth, your size much greater than her hole, yet her slit stretches more and more, her hips somehow widening to take you in, and even her belly bulges with scales easily spreading to take in all your cock-flesh"
@@ -16536,9 +16533,9 @@ class NiminFetishFantasyv0975o_fla:
                         tempStr += ". She continues to spurt a bit of cum between the two of you, the smell of sex rapidly intensifying within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones..."
                         tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                         self.silPreg = 1
-                     elif ((self.vagTotal > 0) and (self.vagLimit() > 28)):
+                     elif (self.vagTotal > 0 and self.vagLimit() > 28):
                         tempStr += f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(2)} own {self.vulvaDesc()} slit{self.plural(2)}, making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, "
-                        if ((self.tallness / 2) < (self.vagSize * self.vagSizeMod)):
+                        if (self.tallness / 2 < self.vagSize * self.vagSizeMod):
                            tempStr += "pushing your belly out from within, "
                         tempStr += f"until her balls slam against your {self.buttDesc()} rear beneath. Straddling her own scrotum to grind her hidden slit against as she moves, she begins to thrust through your tender flesh, making her moan and whine from the fantastic sensations your pussy provides. Her wings curl around to embrace you and steady herself, trapping you both within a dome made by her feathers. The heat rapidly begins to build as she pounds into you vigorously, panting and moaning as she begins to drool from the overwhelming lust.\n\nIt doesn't take long before she let's out a loud erotic vulpine howl. Hot spunk floods through your womb, gushing and churning as she presses her breasts against your {self.boobDesc()} chest. Her eyes clench as you climax as well, your walls chewing upon her erection and making her twitch sporadically. The hot heavy feeling of your pussy around her cock proves to be too much, forcing her to pull out to let the cooler air kiss her wet shlong as it finishes its explosion between the two of you, spitting across her scales and fur and your {self.skinDesc()}. The smell of sex rapidly intensifies within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones..."
                         tempStr += self.doImpregnate(self.dominant,ret=True)
@@ -16582,7 +16579,7 @@ class NiminFetishFantasyv0975o_fla:
                self.hrs = 2
                self.doEnd()
             self.doListen = doListen
-         elif (self.checkMagicItem() == True):
+         elif (self.checkMagicItem()):
             self.outputMainText(tempStr + f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up a scent and slowly moving towards you as she uses her nose to follow it, not yet noticing your actual presence just yet.\n\nAs she moves closer, you can see more under her robe. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and long auburn hair. Soft fur nearly covers her body, parted down her front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. Her wings and arms are one in the same, each tipped with three finger-like talons that make up her hands. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, while her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather.\n\nAnd as she finally closes in on you, her paw-like feet touch down on the sand, little sandles protecting them from being burned. Just over 7 feet in height, she ducks down as her short muzzle continues to sniff about. She sniffs right up your {self.legDesc(2)} and at your pack, quietly speaking to herself in a feminine voice.\n\n\"Ooo, definitely some magic emanating from here. I wonder what it could be? Crafted? Naturally imbued? A weapon? Or maybe a charm? It's been a few weeks since I've found anything neat around here to add to my collection, I can't wait to see it!\" Her fingers dig into your pack and start to shuffle around for the magical goody, but slowly comes to a stop as she looks up. It wasn't until now that she realizes that it has been attached to a person this whole time - you. She hops back with a blush, her head ducking between her shoulders with embarrassment. \"Oh dear, I'm so sorry! I-I was just hunting for magical treasures!...\" Her toes burrow awkwardly in the sand as she stands there. \"Umm... Bye!\"\n\nAs quickly as she appeared, she turns and dashes off upon her wings, her shyness getting the best off her.\n\nNot quite sure what just happened, you turn and head back for now.",True)
             self.hrs = 2
             self.doEnd()
@@ -16651,25 +16648,25 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
          self.doListen = doListen
       elif chance == 6:
-         if ((self.hour > 8) and (self.hour <= 20)):
+         if (self.hour > 8 and self.hour <= 20):
             tempStr = "The hot sun beating down upon the arid sand is nearly stifling."
             if (self.skinType == 3):
                tempStr += " However, your scaley exterior was made to protect you from such circumstances, conserving your moisture and reflecting much of the rays to prevent you from getting too hot."
             elif (self.bodyOil > 0):
                tempStr += " However, the oil that covers your body reflects most of the bad rays and helps retain some of your moisture, preventing you from becoming too hot."
-            elif ((self.milkEngorgement > 400) and (self.milkEngorgementLevel > 2)):
+            elif (self.milkEngorgement > 400 and self.milkEngorgementLevel > 2):
                tempStr += " However, the leaking of your breasts provides you with a steady supply of excess milk to sip as you explore, preventing you from becoming dehydrated."
-            elif ((self.udderEngorgement > 400) and (self.udderEngorgementLevel > 2) and (self.udders == True)):
+            elif (self.udderEngorgement > 400 and self.udderEngorgementLevel > 2 and self.udders == True):
                tempStr += " However, the leaking of your udder provides you with a steady supply of excess milk to sip as you explore, preventing you from becoming dehydrated."
-            elif ((self.moistCalc(1) > 7) and (self.cockTotal > 0)):
+            elif (self.moistCalc(1) > 7 and self.cockTotal > 0):
                tempStr += f" However, you cup your hands over the tip{self.plural(1)} of your slime-dripping cock{self.plural(1)} so you can gulp down some of the thick liquid, replenishing some of your water to prevent dehydration."
-            elif ((self.moistCalc(2) > 7) and (self.vagTotal > 0)):
+            elif (self.moistCalc(2) > 7 and self.vagTotal > 0):
                tempStr += f" However, you cup your hands over your slime-dripping {self.vulvaDesc()} vulva so you can gulp down some of the thick liquid, replenishing some of your water to prevent dehydration."
             else:
                tempStr += " So much so that you wind up with a touch of heat exhaustion, making you tired and aching."
                self.exhaustion += 5
                self.stats(0,0,-1,0)
-               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 6),ret=True)
+               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 6),ret=True) #!Replace math.floor with floor division
             self.outputMainText(tempStr,True)
             self.hrs = 2
             self.doEnd()
@@ -16679,16 +16676,16 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " However, your coat of fur helps insulate you, keeping you plenty warm."
             elif (self.attireTop == 6):
                tempStr += " However, the latex suit you wear helps insulate you, keeping you plenty warm."
-            elif ((self.breastSize > 25) or ((self.boobTotal > 2) and (self.breastSize > 17))):
+            elif (self.breastSize > 25 or self.boobTotal > 2 and self.breastSize > 17):
                tempStr += " However, your masses of plentiful breast-flesh provides enough warmth to not freeze."
             elif (self.pregnancyTime > 200):
                tempStr += f" However, the {self.bellyDesc()} belly you wield and the life within emanates so much heat to stave off freezing."
-            elif ((((self.cockSize * self.cockSizeMod) > 60) and (self.cockTotal > 0)) or (((self.cockSize * self.cockSizeMod) > 45) and (self.cockTotal > 2))):
+            elif (self.cockSize * self.cockSizeMod > 60 and self.cockTotal > 0 or self.cockSize * self.cockSizeMod > 45 and self.cockTotal > 2):
                tempStr += f" However, you hold close your {self.cockDesc()} appendage{self.plural(1)}, providing you with enough warmth to not freeze"
             else:
                tempStr += " So cold that you nearly freeze, causing some damage and weakening you."
                self.stats(-1,0,0,0)
-               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 3.5),ret=True)
+               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 3.5),ret=True) #!Replace math.floor with floor division
             self.outputMainText(tempStr,True)
             self.hrs = 2
             self.doEnd()
@@ -16809,9 +16806,10 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs = 1
          self.doEnd()
    def doDairyFarm(self):
+      #!optimize if/else
       chance = 0
       chance = self.eventSelect("Dairy Farm")
-      if ((self.malonRep == 4) and (self.malonPreg > 216)):
+      if (self.malonRep == 4 and self.malonPreg > 216):
          tempStr = "As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly.\n\n\"Hurry! Malon's gone into labor!!\"\n\nThe farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction.\n\n\"Here it comes!\", one of the farmhands announces as the baby begins to crown.\n\nAn eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl"
          if (self.malonChildren > 1):
             tempStr += ", just like the rest"
@@ -16838,11 +16836,12 @@ class NiminFetishFantasyv0975o_fla:
          if (self.malonRep > 2):
             tempStr += " Although, she spots you out of the corner of her eye before she enters and turns to give you a bright smile. It looks like she'd wave at you, but her hands are a bit busy at the moment."
          elif (self.malonRep == 4):
-            if ((self.malonPreg > 36) and (self.malonPreg <= 72)):
+            #if/else-ify
+            if (self.malonPreg > 36 and self.malonPreg <= 72):
                tempStr += " Especially as one wraps around her protruding belly, obviously pregnant..."
-            if ((self.malonPreg > 72) and (self.malonPreg <= 144)):
+            if (self.malonPreg > 72 and self.malonPreg <= 144):
                tempStr += " Yet, despite the massive belly she is sporting, it seems she's managing work just fine."
-            if ((self.malonPreg > 144) and (self.malonPreg <= 216)):
+            if (self.malonPreg > 144 and self.malonPreg <= 216):
                tempStr += " You're actually quite surprised that she's even working at all. Though her breasts seem even larger than usual, they're actually supported by her enormously pregnant belly, looking to be even larger than she is."
          elif (self.malonRep > 3):
             tempStr += "\n\n\"Although, I'm sure you're already aware of the consequences.\"\n\nHe gives you a perverse wink and hands you a complimentary DairE Pill, nodding you along."
@@ -16853,7 +16852,7 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs = 2
          self.doEnd()
       elif (chance == 2):
-         if ((self.dairyFarmBrand == True) and (self.percent() < 50)):
+         if (self.dairyFarmBrand == True and self.percent() < 50):
             self.outputMainText("You approach the farm just as you see the farmer that developed the experimental milk machine leaving the farm with a several others to deliver a large supply of milk to Softlik, so there's nobody to stop and greet you. Though you're on the side of the farm where there isn't much to do anyways. Well, except the barn where the experimental milker is... You could probably go use it yourself without anybody knowing, since they would be gone for at least a day with the shipment, so if you're feeling kinky you could...\n\nDo you?",True)
             self.buttonConfirm()
             def doListen():
@@ -16885,12 +16884,12 @@ class NiminFetishFantasyv0975o_fla:
                               else:
                                  tempStr += " the hole in your ass"
                               tempStr += ". You clench as it rams its way into you, stretching you open and driving far into your depths. It slides in and out, thrusting in rhythm with the pumping. It grows warmer and warmer as lube exudes from small pores, making your tunnel slick. So powerful, your nerves scream out in sensitive pleasure, taking you to your peak once more.\n\n\"MOOOOOO!\" You shout out subconsciously as bull spunk spews into your belly. So thick and plentiful, some of it even oozes back out across your thighs as the 'dildo' continues to plow you."
-                              if ((self.vagLimit() > 72) and (self.vagTotal > 0) and (self.pregCheck(1) == True)):
+                              if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
                                  tempStr += "\n\nMore of the stuff enters than leaves, your tunnel so deep that the spunk pools within your womb. Your belly distends as it fills, the inseminator pumping away... Eventually, the timer runs out and the phallic thing pulls out."
                               else:
                                  tempStr += "\n\nAfter sufficiently filling you with seed, it pulls out."
                               tempStr += " You gasp in erotic desparation, but the clamp around your hips doesn't release, just like the milker. Forced to stay with your rump up high and your udder tugging towards the floor, you awkwardly try to get comfortable on the rail. And after an hour, when you think you've survived the worst of it, the inseminator comes back out...\n\nOn the hour, every hour, for the full 12 hours, you're stuffed with bull cum again and again"
-                              if ((self.vagLimit() > 72) and (self.vagTotal > 0) and (self.pregCheck(1) == True)):
+                              if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
                                  tempStr += ", your belly swelling more with each injection, "
                               self.outputMainText(tempStr + "while the machine churns to drain you of all your milk. After about 6 hours, you pass out where you 'stand', exhausted...",True)
                               self.doNext()
@@ -16902,10 +16901,10 @@ class NiminFetishFantasyv0975o_fla:
                                  else:
                                     tempStr += "ass"
                                  tempStr += f" and pools below you with all the other fluids you released. Dazed, you try to wipe it off haphazardly, but don't really care. As soon as you've concealed your presence here for the mostpart, you head out of the farm, your {self.legDesc(2)} bent and your back hunching over your still dripping udder"
-                                 if ((self.vagLimit() > 72) and (self.vagTotal > 0) and (self.pregCheck(1) == True)):
+                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
                                     tempStr += ", while your cum-inflated womb sloshes with each step"
                                  tempStr += "..."
-                                 if ((self.vagLimit() > 72) and (self.vagTotal > 0) and (self.pregCheck(1) == True)):
+                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
                                     while (i < self.pregArray.length):
                                        if (self.pregArray[i] == False):
                                           self.pregArray[i] = True
@@ -16915,7 +16914,7 @@ class NiminFetishFantasyv0975o_fla:
                                           i = self.pregArray.length
                                        i += 5
                                  elif (self.vagTotal > 0):
-                                    #!probably an artifact of obfuscation
+                                    #!Can just be replace with doMultiImpregnate.
                                     tempInt = 1
                                     tempInt2 = 0
                                     while (tempInt < 13):
@@ -16945,7 +16944,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.getCum = self.cumAmount()
                                  tempStr += self.doLust(-(self.sen // 1.5),2,1,ret=True)
                                  tempStr += f" After a few seconds of scanning, however, it seems to have found a target.\n\nYou let out a loud gasp as the thing engulfs {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}, gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your shlong. The new cylindar slowly starts up, a subtle suction gripping your penis and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You quickly learn what its purpose is...\n\nYour hips held hostage by the rest of the machine, you can do nothing but moan and pant as the cock-milker sucks you off, even while the other milkers suckle from your teats. The machine obviously wasn't built to account for one over the other. The intense sensations quickly build heat within your body and soon you're blasting your hot spunk into the guzzling machine. Your hips twitch within its grip, your cock bucking against the padding within, and all of your seed drains down into some tanks below. Even after the main spurts have finished, the machine continues to suck out your cum, draining you dry and leaving you feeling numb from the waist down...\n\nOnce you've been fully 'milked' from that appendage, the machine relinquishes its grip on your cock and descends back into the floor, leaving your with a limp dick and some time to catch your breath. "
-                              elif ((self.clitSize > 15) and (self.vagTotal > 0)):
+                              elif (self.clitSize > 15 and self.vagTotal > 0):
                                  tempStr += f" After a few seconds of scanning, however, it seems to have found a target.\n\nYou let out a loud moan as the thing engulfs {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)}, gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your long button. The new cylindar slowly starts up, a subtle suction gripping your clit and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You have a pretty good idea of what it is trying to do. It's trying to pump out something you don't have... That doesn't hinder its attempts though, as it vigorously masturbates your clit, tugging and sucking away at its tender meat. Your hips try to buck in turn, but they're still held hostage by the rest of the machine, leaving you to be sucked off at the mercy of the 'milker' below, even while the other milkers suck away at your udders. The machine obviously wasn't built to account for one over the other!\n\nYou come again and again, melting across the bar, unable to do a thing about it... It takes nearly twenty minutes before the machine finally seems to give up, beeping in error as it releases your clit and sinks back into the ground. Taking the chance to breath, your clit feels rather plumped up after that ordeal, even bigger than before..."
                                  self.clitSize += 5
                                  self.clitPump += 20
@@ -16962,7 +16961,7 @@ class NiminFetishFantasyv0975o_fla:
                               tempStr += ". You clench as it rams its way into you, stretching you open and driving far into your depths. It slides in and out, thrusting in rhythm with the pumping. It grows warmer and warmer as lube exudes from small pores, making your tunnel slick. So powerful, your nerves scream out in sensitive pleasure, taking you to your peak once more.\n\n\"MOOOOOO!\" You shout out subconsciously as spunk spews into your belly. "
                               if (self.getCum > 0):
                                  tempStr += "The stuff feels rather familiar, actually. Well, as far as you can tell. Then after a few seconds it dawns on you. The machine is pumping your semen back into you! It fills your hole, attempting to make you pregnant with your own cum."
-                                 if ((self.vagLimit() > 72) and (self.vagTotal > 0) and (self.pregCheck(1) == True) and (self.getCum > 5000)):
+                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and self.getCum > 5000):
                                     tempStr += " With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish.\n\nHaving spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period."
                                     i = 0
                                     while (i < self.pregArray.length):
@@ -16980,22 +16979,18 @@ class NiminFetishFantasyv0975o_fla:
                                           tempStr += " Yet, you hear a beep from the machine, indicating an error. You can also hear some swishing around as tanks are moved and shifted below. You must not have had enough seed. And as the next batch of thick stuff pumps into you, it's definitely not your own, though you could probably venture a guess as to what it belonged to!"
                                        if (self.vagTotal > 2):
                                           tempStr += " Again and again you're injected with spunk, the dildo checking for each one of your holes."
-                                          if ((self.getCum >= 500) and (self.getCum < self.vagTotal * 500)):
+                                          if (self.getCum >= 500 and self.getCum < self.vagTotal * 500):
                                              tempStr += " Until eventually you hear the tank with your semen finally sputter out below. But, the machine doesn't cease there. With more holes to fill, you hear it churn and shift as another tank is put in its place, filling you with another kind of seed that it had in storage."
-                                          elif ((self.getCum >= self.vagTotal * 500)):
+                                          elif (self.getCum >= self.vagTotal * 500):
                                              tempStr += " Eventually it fills them all with your own cum, prepped and ready for breeding. Yet, you had fed it so much spunk that the machine continues to pump more out, the dildo jerking against the sides of your rump and moving further and further away, spurting your cum across the floor until it eventually runs dry..."
                                     if (self.vagTotal > 0):
                                        tempStr += self.doImpregnate(self.dominant,ret=True)
-                                       #tempInt = 1
-                                       #for(tempInt = 1; tempInt <= vagTotal; tempInt++)
-                                       #while (tempInt <= self.vagTotal):
                                        for i in range(self.vagTotal):
                                           if (self.getCum > 500):
                                              self.doImpregnate(self.dominant,ret=True)
                                              self.getCum -= 500
                                           else:
                                              self.doImpregnate(101,ret=True)
-                                          #tempInt += 1
                               else:
                                  tempStr += "The stuff is thick and heavy, probably perfect for a cow. It doesn't take much of a guess as to what the machine is trying to make you pregnant with."
                                  if (self.vagTotal > 1):
@@ -17003,11 +16998,7 @@ class NiminFetishFantasyv0975o_fla:
                                     if (self.vagTotal > 2):
                                        tempStr += " Again and again you're injected with spunk, the dildo checking for each one of your holes."
                                  if (self.vagTotal > 0):
-                                    #tempInt = 1
                                     tempStr += self.doMultiImpregnate(self.vagTotal,ret=True)
-                                    #while (tempInt <= self.vagTotal):
-                                       #self.doImpregnate(101)
-                                       #tempInt += 1
                               self.outputMainText(tempStr,True)
                               self.doNext()
                               def doListen():
@@ -17017,7 +17008,7 @@ class NiminFetishFantasyv0975o_fla:
                                  else:
                                     tempStr += "ass"
                                  tempStr += ", pooling below you with all the other fluids you released. That final cycle seemed to have shut down the machine as a whole, releasing you within just a couple hours. Though you're a bit stuffed, you're rather pleased with the results, your udder being milked quite well. It takes you a few minutes to regain feeling in your legs, but once you do you're quick to escape"
-                                 if ((self.vagLimit() > 72) and (self.vagTotal > 0) and (self.pregCheck(1) == True) and (self.getCum > 5000)):
+                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and self.getCum > 5000):
                                     tempStr += ", your hands wrapping around your cum-inflated belly as it sloshes with each step,"
                                  self.outputMainText(tempStr + " before anybody catches you with the mess you've made.",True)
                                  self.milkAmount(2)
@@ -17134,7 +17125,7 @@ class NiminFetishFantasyv0975o_fla:
                            elif (self.malonChildren > 1):
                               tempStr += " your daughters and"
                            tempStr += " I will keep you company for a while, at least until I need to get back to work.\" She smiles warmly."
-                           if ((self.lactation > 0) and (self.milkEngorgementLevel > 0)):
+                           if (self.lactation > 0 and self.milkEngorgementLevel > 0):
                               tempStr += f" And seeing your {self.boobTotal} {self.boobDesc()} hanging tits drip through your {self.clothesTop()} the floor, she takes the liberty of assisting you with the other milking and chuckles. \"And help take care of what the machine doesn't cover, I suppose.\""
                            tempStr += "\n\nShe pulls the chair in closer, stroking you hair for a bit before you begin to settle into a relaxed conversation. You occassional moans as you produce more milk make her giggle, but her giggling in turn makes her own top wet. Thankfully there's plenty of buckets around, and with the privacy available to you, she's spends some time milking herself as well, slipping into the same beat as your own gasps."
                            if (self.malonChildren == 1):
@@ -17156,7 +17147,7 @@ class NiminFetishFantasyv0975o_fla:
                            elif (self.malonChildren > 1):
                               tempStr += " with your daughters following closely behind"
                            tempStr += " and covers you head with her breasts as she hugs you. \"Hehe, I heard you got caught in this thing again and thought I would take a shift to keep you company. Though gosh, with how much this thing is milking you, I'm starting to get a little jealous.\" She giggles at the thought. But then her shirt begins to blotch from the jiggling and she pulls the chair in closer. With plenty of buckets down here and all the privacy, she's able to start milking right in front of you"
-                           if ((self.lactation > 0) and (self.milkEngorgementLevel > 0)):
+                           if (self.lactation > 0 and self.milkEngorgementLevel > 0):
                               tempStr += " and takes the liberty to relieve your own chest of milk, since the machine is focused elsewhere"
                            tempStr += ". A nice conversation picks up as milk flies everywhere and helps the time pass quickly."
                            if (self.malonChildren == 1):
@@ -17169,7 +17160,7 @@ class NiminFetishFantasyv0975o_fla:
                            elif (self.malonChildren > 1):
                               tempStr += " with your girls"
                            tempStr += " and allows the next farmer to take the shift."
-                        if ((self.lactation > 0) and (self.milkEngorgementLevel > 0)):
+                        if (self.lactation > 0 and self.milkEngorgementLevel > 0):
                            self.milkAmount(1)
                      self.outputMainText(tempStr,True)
                      self.doNext()
@@ -17225,7 +17216,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
          self.doListen = doListen
       elif (chance == 4):
-         if ((self.percent() <= 25) or (self.malonRep > 3) and (self.percent() <= 50)):
+         if (self.percent() <= 25 or self.malonRep > 3 and self.percent() <= 50):
             self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
             self.outputMainText("Having avoided any farmers, you approach one of the barns. Your ears perk up as you hear something inside. A machine sounds like its pumping, yet you can see no signs of cows nearby or the farmers that take care of them.\n\n\nWhat do you do?",True)
             self.doButtonChoices((5, "Inspect", 7, "Leave"))
@@ -17236,13 +17227,14 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      tempStr = "You quietly open the door and look inside, a smirk crossing your face. There are no cows, yet the automatic milker is churning away. In the stalls where the cows should be, stands Malon, the young farm-hand, bent forward and hanging onto the guardrail to hold herself up, her large rump rocking lazily back and forth as her bovine tail swings above in tune. Her white shirt is scrunched down around her belly, her enormous naked breasts hanging down towards the floor. Her nipples are several inches long and encompassed by the milking cups, gushes of milk flow through the milker's hoses with each pump, her giant breasts being drained. In between gasps, she lets out soft moos..."
                      if (self.malonRep == 4):
-                        if ((self.malonPreg > 36) and (self.malonPreg <= 72)):
+                        #!if/else-ify
+                        if (self.malonPreg > 36 and self.malonPreg <= 72):
                            tempStr += "\n\nShe rubs her slightly protruding belly, pregnant with one of your children..."
-                        if ((self.malonPreg > 72) and (self.malonPreg <= 144)):
+                        if (self.malonPreg > 72 and self.malonPreg <= 144):
                            tempStr += "\n\nBoth of her hands rub around her giant belly which hangs nearly as low as her tits, pregnant with one of your children. You don't know how she managed to even pull her shirt down like that..."
-                        if ((self.malonPreg > 144) and (self.malonPreg <= 216)):
+                        if (self.malonPreg > 144 and self.malonPreg <= 216):
                            tempStr += "\n\nHer flow of milk through the tubes seems even more powerful than before. You're surprised at how large her tits have grown, her nipples nearly scraping along the ground as she bends over. However, her giant belly that she hugs and caresses as she's milked reaches even further, the hay on the floor tickling her protruding belly button. She has propped it up against the guardrail to help maintain her balance, though she doesn't seem terribly uncomfortable."
-                     if ((self.malonRep == 5) and (self.malonChildren > 0)):
+                     if (self.malonRep == 5 and self.malonChildren > 0):
                         tempStr += "\n\nIt seems as though she has finally found a moment to get away from your offspring and have some time to herself."
                      tempStr += "\n\n\nWhat now?"
                   self.outputMainText(tempStr,True)
@@ -17272,7 +17264,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText(tempStr + "\"O-Oh, umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it.\n\n\"I-I just got so full that I, umm...\" Her eyes glance from side to side. \"I-I know it's very much like a cow, but with all the work around here and how long it takes to do it manually...\" Sadness fills her face at having been caught, despite what you said before. \"D-Don't worry, I'll clean up now...\"\n\nHer ears drooping, her tail pushing against her dress trying to hide between her legs, she pulls the cups from her long nipples and lets the excess milk dribble off onto the floor. Turning away and trying to avoid any eyecontact, she wipes herself down with the yellow shawl and pulls up her shirt. She looks over her shoulder, her eyes to the ground, and says meekly, \"Sorry...\", before heading out the other end of the building, leaving you to head back to Softlik.",True)
                            self.hrs = 2
                            self.doEnd()
-                        elif ((self.malonRep == 0) or (self.malonRep == 1)):
+                        elif (self.malonRep == 0 or self.malonRep == 1):
                            if (self.malonRep == 0):
                               tempStr += "\n\n\"Uhh... umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it. \"Who-Who're you? Please, please don't tell anyone I've been in here!\""
                            elif (self.malonRep == 1):
@@ -17398,7 +17390,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.hrs = 2
                                  self.doEnd()
                               self.doListen = doListen
-                        elif ((self.malonRep == 1) or (self.malonRep == 2)):
+                        elif (self.malonRep == 1 or self.malonRep == 2):
                            tempStr = "You sneak up behind her, careful to not let her notice your movement as she hums pleasantly to herself. Before she can react, you flip up her long skirt and expose her naked loins. Her ass is large and her hips protrude from her sides, looking much like an actual cow. Her feminine sex is large and plump, almost animalistic in its size and absolute lewdness, with her inner labia bulging past her thick outer ones, gaping slightly with arousal. Tiny drops of dew speckle the lips, already engorged and aroused from the milking.\n\nShe lets out a cry of surprise as you inspect her naked rear. However, her heavy chest weighs her down and you grab her tail playfully to keep her down."
                            if (self.cockTotal > 0):
                               if (self.cockSize * self.cockSizeMod <= self.eVagLimit(56)):
@@ -17478,24 +17470,25 @@ class NiminFetishFantasyv0975o_fla:
                            if (self.cockTotal > 0):
                               if (self.cockSize * self.cockSizeMod <= self.eVagLimit(56)):
                                  tempStr += f" She shrieks as you plunge your {self.cockDesc()} cock into her hungry sex. She immediately turns to spot her assailent and her face calms as she begins to smile.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe quickly begins to push back against your hips, sucking in the length of your cock as her plump ass presses against you. She shivers in ecstasy as you fill her, the machine pleasuring her tits."
-                                 if ((self.malonRep == 5) and (self.percent() <= 20)):
+                                 if (self.malonRep == 5 and self.percent() <= 20):
                                     self.malonRep = 4
                                     self.malonPreg = 0
                               elif (self.cockSize * self.cockSizeMod > self.eVagLimit(56)):
                                  tempStr += f" She shrieks as you ram your {self.cockDesc()} cock against her fat lips. Yet, despite her rather pronounced size, you're still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt,"
                                  if (self.malonRep == 4):
+                                    #!if/else-ify
                                     if (self.malonPreg < 54):
                                        tempStr += " wedging it between her hanging breasts until you're literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
-                                    if ((self.malonPreg >= 54) and (self.malonPreg < 72)):
+                                    if (self.malonPreg >= 54 and self.malonPreg < 72):
                                        tempStr += " curving around her pregnant belly until it wedges between her hanging breasts, literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
-                                    if ((self.malonPreg >= 72) and (self.malonPreg < 108)):
+                                    if (self.malonPreg >= 72 and self.malonPreg < 108):
                                        tempStr += " diverting down towards the ground from her massive belly until your ramming into the hay. She turns to spot who could possibly hump her belly likse that and isn't terribly surprised.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
                                     if (self.malonPreg >= 108):
                                        tempStr += " diverting down towards the ground from her massive belly until you're lifting her slightly as your cock wedges between the belly and the hay on the floor. She turns to spot who could possibly hump her belly likse that and isn't terribly surprised.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
                                  else:
                                     tempStr += " wedging it between her hanging breasts until you're literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
                               tempStr += "\n\nYou thrust against her wide hips again and again, in tune to the machine. Her breasts sway back and forth as you pound her, milk spitting through the tubes as she comes closer and closer to climax. You lean forward,"
-                              if ((self.malonRep == 3) and (self.malonPreg >= 54)):
+                              if (self.malonRep == 3 and self.malonPreg >= 54):
                                  tempStr += " hugging her and her pregnant belly "
                               else:
                                  tempStr += " hugging her "
@@ -17534,7 +17527,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
             self.doListen = doListen
          elif (self.malonRep > 0):
-            if ((self.malonRep == 1) and ((self.milkEngorgementLevel > 0) or (self.udderEngorgementLevel > 0))):
+            if (self.malonRep == 1 and (self.milkEngorgementLevel > 0 or self.udderEngorgementLevel > 0)):
                self.outputMainText(f"Malon is working outside as you approach the farm once again. She spots the blotches in your {self.clothesTop()} and shouts to the other workers that she's got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her 'condition'. Nevertheless, she smiles as she heads towards you.\n\n\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",True)
                self.buttonConfirm()
                def doListen():
@@ -17549,16 +17542,16 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += f"\n\nWith a slight blush in your cheeks, you nod back, pulling your {self.clothesTop()} {self.pullUD(1)}, exposing your "
                         else:
                            tempStr += f"\n\nWith a quick nod and no hesitation, you pull {self.pullUD(1)} your {self.clothesTop()}, exposing your "
-                        if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.boobDesc()} leaky breasts and letting your {self.udderDesc()} udder spill into your lap."
                         elif (self.milkEngorgementLevel > 0):
                            tempStr += f"{self.boobDesc()} leaky breasts."
-                        elif ((self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        elif (self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.udderDesc()} udder, your teats dripping into your lap."
                         tempStr += " Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your "
                         if (self.milkEngorgementLevel > 0):
                            tempStr += f"{self.nipDesc()} nipples"
-                        elif ((self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        elif (self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.teatDesc()} teats"
                         self.outputMainText(tempStr + " and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you're already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\n\nThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you'd think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\n\nHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it's that time... Y-You don't mind, do you?\" She plucks at her shirt to indicate what she means.",True)
                         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
@@ -17566,7 +17559,7 @@ class NiminFetishFantasyv0975o_fla:
                         def doListen():
                            getMilk = 0
                            if (self.buttonChoice == 5):
-                              if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0)):
+                              if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1) + self.milkAmount(2)
                               elif (self.milkEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1)
@@ -17603,7 +17596,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doListen = doListen
                            elif (self.buttonChoice == 7):
                               tempStr = "Nodding your head to say it's alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\n\n"
-                              if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0)):
+                              if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1) + self.milkAmount(2)
                               elif (self.milkEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1)
@@ -17634,7 +17627,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs = 1
                      self.doEnd()
                self.doListen = doListen
-            elif ((self.malonRep == 3) and ((self.milkEngorgementLevel > 0) or (self.udderEngorgementLevel > 0))):
+            elif (self.malonRep == 3 and (self.milkEngorgementLevel > 0 or self.udderEngorgementLevel > 0)):
                self.outputMainText(f"Malon is working outside as you approach the farm once again. She spots the blotches in your {self.clothesTop()} and shouts to the other workers that she's got some business she needs to take care of. The others roll their eyes, well used to the excuse thanks to her 'condition'. Nevertheless, she smiles as she heads towards you.\n\n\"Need some help?\" She winks and sticks out her tongue as she looks down at your moistness.",True)
                self.buttonConfirm()
                def doListen():
@@ -17649,16 +17642,16 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += f"\n\nWith a slight blush in your cheeks, you nod back, pulling your {self.clothesTop()} {self.pullUD(1)}, exposing your "
                         else:
                            tempStr += f"\n\nWith a quick nod and no hesitation, you pull {self.pullUD(1)} your {self.clothesTop()}, exposing your "
-                        if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.boobDesc()} leaky breasts and letting your {self.udderDesc()} udder spill into your lap."
                         elif (self.milkEngorgementLevel > 0):
                            tempStr += f"{self.boobDesc()} leaky breasts."
-                        elif ((self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        elif (self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.udderDesc()} udder, your teats dripping into your lap."
                         tempStr += " Malon then slips her hands into her cleavage, quickly warming her hands, before reaching out to your "
                         if (self.milkEngorgementLevel > 0):
                            tempStr += f"{self.nipDesc()} nipples"
-                        elif ((self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        elif (self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.teatDesc()} teats"
                         self.outputMainText(tempStr + " and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you're already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\n\nThe room quickly fills with the sound of your squirts hitting the metallic bucket, in a gentle rhythm. She begins to hum a tune (that, for some reason, you'd think horses would love), when redness tinges her cheeks. \"Oh-Oh my...\"\n\nHer shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it's that time... Y-You don't mind, do you?\" She plucks at her shirt to indicate what she means.",True)
                         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
@@ -17666,7 +17659,7 @@ class NiminFetishFantasyv0975o_fla:
                         def doListen():
                            getMilk = 0
                            if (self.buttonChoice == 5):
-                              if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0)):
+                              if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1) + self.milkAmount(2)
                               elif (self.milkEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1)
@@ -17697,7 +17690,7 @@ class NiminFetishFantasyv0975o_fla:
                                              tempStr += f"\n\nHowever, she can easily tell that you're far too large for her. So, instead, she crawls back up your body, licking your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your {self.cockDesc()} erection{self.plural(1)}, humping her clit along your length{self.plural(1)}."
                                           tempStr += "\n\nOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\n\nQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you begin to gush with cum, she can no longer resist, allowing her mouth stretch wide.\n\n\"MOOOOOOO!\""
                                           self.cumAmount()
-                                       elif ((self.cockTotal < 1) and (self.vagTotal > 0)):
+                                       elif (self.cockTotal < 1 and self.vagTotal > 0):
                                           tempStr += f"\n\nFlipping back her long red hair, she grinds down your {self.legDesc(2)} and across the bed to pull {self.pullUD(2)} your {self.clothesBottom()}. Seeing your {self.vulvaDesc()} slit{self.plural(2)}, she dives in and begins devouring your clit{self.plural(2)}.\n\nIt doesn't take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where presses her supple folds to your own, letting them kiss erotically.\n\nOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\n\nQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit{self.plural(2)} against hers as you come, she can no longer resist, allowing her mouth stretch wide.\n\n\"MOOOOOOO!\""
                                           self.malonRep = 5
                                        else:
@@ -17725,7 +17718,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doListen = doListen
                            elif (self.buttonChoice == 7):
                               tempStr = "Nodding your head to say it's alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.\n\n"
-                              if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0)):
+                              if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1) + self.milkAmount(2)
                               elif (self.milkEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1)
@@ -17756,20 +17749,23 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs = 1
                      self.doEnd()
                self.doListen = doListen
-            elif ((self.malonRep == 4) or (self.malonRep == 5)):
+            elif (self.malonRep == 4 or self.malonRep == 5):
                tempStr = "Malon is working outside as you approach the farm once again"
                if (self.malonRep == 4):
-                  if ((self.malonPreg > 36) and (self.malonPreg <= 72)):
+                  #!if/else-ify
+                  if (self.malonPreg > 36 and self.malonPreg <= 72):
                      tempStr += ", an arm slung under her slightly protruding yet obviously pregnant belly"
-                  if ((self.malonPreg > 72) and (self.malonPreg <= 144)):
+                  if (self.malonPreg > 72 and self.malonPreg <= 144):
                      tempStr += ", her arms hugging her giant belly that nearly pushes past her breasts, easily working despite it"
-                  if ((self.malonPreg > 144) and (self.malonPreg <= 216)):
+                  if (self.malonPreg > 144 and self.malonPreg <= 216):
                      tempStr += ", her breasts swollen with pregnancy and supported by her enormously pregnant belly, looking to be even larger than she is. You actually wonder how she manages to work with it"
+               #!if/else-ify
                if (self.malonChildren == 1):
                   tempStr += ", your large-eared and wide-hipped child running around playing, her tail swishing happily through a little white dress just like her mother used to wear, except with a little bulge at the front where her udder jiggles with each step"
                if (self.malonChildren > 1):
                   tempStr += f", your {self.malonChildren} large-eared and wide-hipped children running around playing, their tails swishing happily through little white dresses just like their mother used to wear, except with little bulges at the front where their udders jiggles with each step"
                tempStr += ". The half-bovine woman spots you and her face shines up, turning to come and greet you.\n\n\"Hello hun!\" Her arms wrap around you with a big hug."
+               #!if/else-ify
                if (self.malonChildren == 1):
                   tempStr += "\n\nYour child also spots you and runs up with her own hug, shouting \"Daddy!\""
                if (self.malonChildren > 1):
@@ -17778,7 +17774,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doCoin(self.percent() // 20)
                self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
                tempArray = as3.Array(7, "Sex")
-               if ((self.lactation < 1) and (self.udderLactation < 1)):
+               if (self.lactation < 1 and self.udderLactation < 1):
                   tempArray.push(5,"Milk")
                self.doButtonChoices(tempArray)
                def doListen():
@@ -17809,17 +17805,18 @@ class NiminFetishFantasyv0975o_fla:
                         tempStr += f"\n\nFlipping back her long red hair, she grinds down your {self.legDesc(2)} and across the bed to pull {self.pullUD(2)} your {self.clothesBottom()}, letting {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)} flop out. She licks and kisses it ravenously, as though something had come over her. She sucks at the tip, slipping her tongue across and through your urethra and savoring the salty taste of your pre."
                         if (self.cockSize * self.cockSizeMod <= self.eVagLimit(56)):
                            tempStr += f"\n\nIt doesn't take long before she grows too hungry and crawls back up your body, dragging across your erection{self.plural(1)}. Her breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she slides your cock into her supple folds, devouring its entire length."
-                           if ((self.percent() <= 20) and (self.malonRep == 5)):
+                           if (self.percent() <= 20 and self.malonRep == 5):
                               self.malonRep = 4
                               self.malonPreg = 0
                         elif (self.cockSize * self.cockSizeMod > self.eVagLimit(56)):
                            tempStr += f"\n\nHowever, she can easily tell that you're far too large for her. So, instead, she crawls back up your body, licking you as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your {self.cockDesc()} erection{self.plural(1)}, humping her clit along your length{self.plural(1)}."
                         if (self.malonRep == 4):
-                           if ((self.malonPreg > 36) and (self.malonPreg <= 72)):
+                           #!if/else-ify
+                           if (self.malonPreg > 36 and self.malonPreg <= 72):
                               tempStr += "\n\nYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn't prevent the room from getting hot..."
-                           if ((self.malonPreg > 72) and (self.malonPreg <= 144)):
+                           if (self.malonPreg > 72 and self.malonPreg <= 144):
                               tempStr += "\n\nYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it."
-                           if ((self.malonPreg > 144) and (self.malonPreg <= 216)):
+                           if (self.malonPreg > 144 and self.malonPreg <= 216):
                               tempStr += "\n\nHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She rolls back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well."
                         if (self.malonChildren == 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm."
@@ -17834,18 +17831,19 @@ class NiminFetishFantasyv0975o_fla:
                         elif (self.malonChildren > 1):
                            tempStr += "\n\nYour children do the same, coming to the small peaks of their own pleasuring with weaker, cute encores of \"Moooo~!\""
                         self.cumAmount()
-                     elif ((self.cockTotal < 1) and (self.vagTotal > 0)):
+                     elif (self.cockTotal < 1 and self.vagTotal > 0):
                         tempStr += f"\n\nFlipping back her long red hair, she grinds down your {self.legDesc(2)} and across the bed to pull {self.pullUD(2)} your {self.clothesBottom()}. Seeing your {self.vulvaDesc()} slit{self.plural(2)}, she dives in and begins devouring your clit{self.plural(2)}.\n\nIt doesn't take long before she grows too hungry, crawling back up your body, licking your milk up as she goes. Her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she presses her supple folds to your own, letting them kiss erotically."
                         if (self.malonChildren == 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm."
                         elif (self.malonChildren > 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don't. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success."
                         if (self.malonRep == 4):
-                           if ((self.malonPreg > 36) and (self.malonPreg <= 72)):
+                           #!if/else-ify
+                           if (self.malonPreg > 36 and self.malonPreg <= 72):
                               tempStr += "\n\nYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn't prevent the room from getting hot..."
-                           if ((self.malonPreg > 72) and (self.malonPreg <= 144)):
+                           if (self.malonPreg > 72 and self.malonPreg <= 144):
                               tempStr += "\n\nYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it."
-                           if ((self.malonPreg > 144) and (self.malonPreg <= 216)):
+                           if (self.malonPreg > 144 and self.malonPreg <= 216):
                               tempStr += "\n\nHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She roll back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well."
                         tempStr += f"\n\nOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\n\nQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit{self.plural(2)} against hers as you come, she can no longer resist, allowing her mouth stretch wide.\n\n\"MOOOOOOO!\""
                         if (self.malonChildren == 1):
@@ -17859,11 +17857,12 @@ class NiminFetishFantasyv0975o_fla:
                         elif (self.malonChildren > 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don't. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success."
                         if (self.malonRep == 4):
-                           if ((self.malonPreg > 36) and (self.malonPreg <= 72)):
+                           #!if/else-ify
+                           if (self.malonPreg > 36 and self.malonPreg <= 72):
                               tempStr += "\n\nYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn't prevent the room from getting hot..."
-                           if ((self.malonPreg > 72) and (self.malonPreg <= 144)):
+                           if (self.malonPreg > 72 and self.malonPreg <= 144):
                               tempStr += "\n\nYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it."
-                           if ((self.malonPreg > 144) and (self.malonPreg <= 216)):
+                           if (self.malonPreg > 144 and self.malonPreg <= 216):
                               tempStr += "\n\nHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She roll back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well."
                         tempStr += "\n\nOver and over, she grinds her wide hips"
                         if (self.knot == True):
@@ -17903,7 +17902,7 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText("You spot Malon out of the corner of your eye. She spots you and waves with a slight smile. However, she quickly stops as her shirt begins to blotch, white liquid spilling out and dribbling onto her apron and ground. She blushes intently and pulls her shawl down to cover her huge chest, turning away and running off, her tail pushing her skirt between her legs and outlining her ample bum.\n\nA bit distracted with her 'issues', you leave her be and head back to Softlik.",True)
                self.hrs = 1
                self.doEnd()
-         elif ((self.malonRep == 0) and ((self.milkEngorgement > 300) and (self.milkEngorgementLevel > 0) or (self.udderEngorgement > 300) and (self.udderEngorgementLevel > 0))):
+         elif (self.malonRep == 0 and (self.milkEngorgement > 300 and self.milkEngorgementLevel > 0 or self.udderEngorgement > 300 and self.udderEngorgementLevel > 0)):
             self.outputMainText(f"Heading towards the farm, you spot a strange farm-hand. A young woman, with an exceptionally well-endowed figure... Beautiful, with long, flowing red hair, she wears a yellow shirt and long purple skirt with a brown apron around her waist and yellow shawl around her shoulders. However, the shawl seems fairly wet and she's careful to drape its ends over breasts larger than watermelons, trying to hide the large blotches on her shirt with it and keeping it at the ready to use at any moment. Her ears are also quite long, hanging perpendicular from her head, nearly 5 inches, and droop a little. Behind her you see a long, narrow tail, tipped with a tuft of long hairs, swish about her calves with each step.\n\nAs you watch her, she seems to avoid most of the other workers. It doesn't take long before she spots you eyeing her. At first redness tinges her cheeks, but then her eyes spot the large blotches on your {self.clothesTop()} with a curious look. Checking to make sure nobody else is around, she heads towards you...",True)
             self.doNext()
             def doListen():
@@ -17921,16 +17920,16 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += f"\n\nWith a slight blush in your cheeks, you nod back, pulling your {self.clothesTop()} {self.pullUD(1)}, exposing your "
                         else:
                            tempStr += f"\n\nWith a quick nod and no hesitation, you pull {self.pullUD(1)} your {self.clothesTop()}, exposing your "
-                        if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.boobDesc()} leaky breasts and letting your {self.udderDesc()} udder spill into your lap."
                         elif (self.milkEngorgementLevel > 0):
                            tempStr += f"{self.boobDesc()} leaky breasts."
-                        elif ((self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        elif (self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.udderDesc()} udder, your teats dripping into your lap."
                         tempStr += " The woman then slips her hands into her cleavage, quickly warming her hands, before reaching out to your "
                         if (self.milkEngorgementLevel > 0):
                            tempStr += f"{self.nipDesc()} nipples"
-                        elif ((self.udderEngorgementLevel > 0) and (self.udders == True)):
+                        elif (self.udderEngorgementLevel > 0 and self.udders == True):
                            tempStr += f"{self.teatDesc()} teats"
                         self.outputMainText(tempStr + " and gently pinches them within her grasp. Expertly, she bends you forward slightly and aims towards the bucket. Within just a few tugs, you're already squirting milk into the bucket, the pleasant feeling of warmth overcoming you and intensified by her caring massage.\n\nAs the room fills with the sound of your squirts hitting the metallic bucket, the strange woman finally introduces herself. \"I'm Malon, it's nice to meet you.\" She giggles as she shakes your milky flesh with a hand in greeting. \"Usually I'm the one with the milky problem around here.\" She motions down to her shirt. The redness tinges her cheeks. \"Oh-Oh my...\" Her shirt blotches quickly, her own milk beginning to drip into the bucket with yours. \"Uh-umm... I think doing this made my breasts think it's that time... Y-You don't mind, do you?\" She plucks at her shirt to indicate what she means.\n\nAs you nod your head to say it's alright, she pulls her shirt up, exposing her enormous breasts. They rest more comfortably on her knees, with 6-inch long nipples dangling like teats. While one hand works your body, her other reaches around a fleshy mass to grab her own nipple. In a couple seconds, her rhythm quickly matches yours, filling the bucket rapidly.",True)
                         self.doNext()
@@ -17939,7 +17938,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.doNext()
                            def doListen():
                               getMilk = 0
-                              if ((self.milkEngorgementLevel > 0) and (self.udderEngorgementLevel > 0)):
+                              if (self.milkEngorgementLevel > 0 and self.udderEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1) + self.milkAmount(2)
                               elif (self.milkEngorgementLevel > 0):
                                  getMilk = self.milkAmount(1)
@@ -17982,7 +17981,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
       elif (chance == 5):
          tempStr = "You manage to approach the farm without being seen or stopped by a farmer. You find a bottle of milk that has yet to be shipped out with the rest. "
-         if ((self.milkEngorgement > 15000) and (self.lactation > 0) and (self.malonRep > 3)):
+         if (self.milkEngorgement > 15000 and self.lactation > 0 and self.malonRep > 3):
             self.outputMainText(tempStr + f"However, as you feel your {self.boobDesc()} tits slosh about with the massive amount of milk within, you realize you could take this opportunity to do what Malon does and sneak some time with the larger and much more efficient milkers of the farm... Would save you quite a bit of time and effort.\n\nWill you?",True)
             self.buttonConfirm()
             def doListen():
@@ -18019,7 +18018,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doNext()
                   def doListen():
                      tempStr = "You both sigh as you try to stand up. The milk everywhere doesn't exactly help, flowing down from your bodies and making the ground even more slippery. Yet, you manage to lean against each other and eventually stand, giving each other one last kiss before parting.\n\n\"I'm surprised...\" Malon can't help but comment. \"You... You actually made a lot more milk than me... And it felt fantastic~\" She blushes at the thought, her long erect nipples pratically bare through the soaking wet white shirt. Then she looks around. \"Though... I guess we're worse than the cows... Not that I'm embarassed about that anymore but... We made quite a mess!\"\n\nWith a giggle, she steps over and grabs some empty milk jugs. She strategically places them on the floor, laying them down sideways. \"Howabout we just say some cows kicked over some 'filled' jugs,\" She says with a wink.\n\nYou aren't one to object and quickly depart in the opposite direction as Malon to ensure nobody notices what has transpired..."
-                     if (self.checkItem(215) == True):
+                     if (self.checkItem(215)):
                         tempStr += " However, you notice a warmth from the pendant Malon had given you. Inspecting it, you notice it has been turned almost completely white, but somewhat pearlescant. A sort of milky complexion that looks like it's slowly flowing around the pendant, though nothing actually moves. Whatever the case may be, things seem lighter now, like you're able to, well, support your milky habits more easily..."
                         self.loseManyItem(215,1)
                         self.itemAdd(252)
@@ -18072,9 +18071,9 @@ class NiminFetishFantasyv0975o_fla:
                      self.doEnd()
                   else:
                      tempStr += " By the time you finish growing, you tower over the hill that the cave resides in. You can see far into the distance and you can feel a great draft in your loins."
-                     if ((self.gender == 1) or ((self.gender == 3) and (self.percent() <= 50))):
+                     if (self.gender == 1 or self.gender == 3 and self.percent() <= 50):
                         self.getCum = self.cumAmount()
-                        if ((self.cockSize * self.cockSizeMod) > 400):
+                        if (self.cockSize * self.cockSizeMod > 400):
                            self.outputMainText(tempStr + f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Quite soon you find yourself barely able to see the {self.plural(5)} tip{self.plural(1)} as {self.plural(11)} grow{self.plural(3)} off into the distance. Quickly, you find yourself falling over your relatively {self.cockDesc()} girth{self.plural(1)}, the ground rumbling around you as you connect, while you feel {self.plural(9)} drag across the open fields, plowing through forests, and who knows what else you manage to destroy.",True)
                            self.doNext()
                            def doListen():
@@ -18110,7 +18109,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.hrs = 3
                               self.doEnd()
                            self.doListen = doListen
-                     elif ((self.gender == 2) or (self.gender == 3)):
+                     elif (self.gender == 2 or self.gender == 3):
                         self.outputMainText(tempStr + f" The wind through your {self.vulvaDesc()} slit{self.plural(2)} feel{self.plural(4)} a bit... nice, to say the least. And considering {self.plural(6)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Looking down at your swelling attributes your eyes focus on the cave below. From this new perspective, the hill looks rather like a rather... lewdly shaped saddle.",True)
                         self.doNext()
                         def doListen():
@@ -18119,7 +18118,7 @@ class NiminFetishFantasyv0975o_fla:
                               tempStr += f" Your proportionately {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} up and down as spunk gushes from the tip, flinging about the landscape and forming large puddles."
                               self.cumAmount()
                            tempStr += " Yet, you don't have much time to enjoy your quivering state before you find yourself beginning to shrink, sliding down one side of the hill as you're caught off balance. You become slick with your own lubrication as you roll through the messy grass and splash down in your own puddle. Picking yourself up, the slime sticking to your body in webs and strands, you take a moment to flick off some of the goop before heading back to the cave."
-                           if ((self.pregCheck(1) == True) and (self.percent() <= 60) and ((self.vagSize * self.vagSizeMod) > 56)):
+                           if (self.pregCheck(1) and self.percent() <= 60 and self.vagSize * self.vagSizeMod > 56):
                               tempStr += " And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?"
                               i = 0
                               while (i < self.pregArray.length):
@@ -18177,6 +18176,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doNext()
                   def doListen():
                      chance = self.percent()
+                     #!if/else-ify
                      if (chance <= 40):
                         tempStr = "Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The fuzzy swinging testicles makes it quite obvious what gender he is...\n\nHe spots you quickly, as though he had known you were there. With a grin, his nose and long whiskers twitch, and a rather mishievous twinkle lights in his eyes. Probably two feet high "
                         if (self.tallness <= 216):
@@ -18192,7 +18192,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.eMaxHP = self.eHP
                            self.doBattle()
                         self.doListen = doListen
-                     if ((chance > 40) and (chance <= 80)):
+                     if (chance > 40 and chance <= 80):
                         tempStr = "Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The wobbling tits and thick labia makes it quite obvious what gender she is...\n\nShe spots you quickly, as though she had known you were there. With a grin, her nose and long whiskers twitch, and a rather mishievous twinkle lights in her eyes. Probably two feet high "
                         if (self.tallness <= 216):
                            tempStr += " she towers over you, pleased with the result."
@@ -18218,7 +18218,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
             self.doListen = doListen
       elif chance == 3:
-         if (self.checkItem(254) == True):
+         if (self.checkItem(254)):
             self.outputMainText("Normally this cave is too dark to go inside. However, you have a lantern that can provide enough light to venture within. Would you like to go inside?",True)
             self.buttonConfirm()
             def doListen():
@@ -18261,26 +18261,27 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs = 4
          self.doNext()
          def doListen():
-            if ((self.checkStash(232) == True) or (self.checkStash(233) == True) or (self.checkStash(234) == True) or (self.checkStash(235) == True) or (self.checkStash(236) == True)):
+            if (self.checkStash(232) or self.checkStash(233) or self.checkStash(234) or self.checkStash(235) or self.checkStash(236)):
                self.outputMainText("While you may potentially want another one of Silandrias' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn't want to take advantage of a waiting mother (you wouldn't, RIGHT?!), so you decline and thank her kindly before heading out.",True)
                self.doEnd()
             else:
                self.showButtons(ButtonList(0,1,0,0,1,1,1,0,0,1,0,1))
                templist = [2, "Flying Carp", 5, "A-Grav Rock", 6, "Rein Charm", 7, "Fell Rod", 10, "Recept Bell", 12, "No Thanks"]
                tempStr = "\"Anything you might be interested in?\""
-               if (self.checkItem(232) == True):
+               #!Make these pushes instead if removes. This would also allow for the checks to be combined
+               if (self.checkItem(232)):
                   templist.remove(2)
                   templist.remove("Flying Carp")
-               if (self.checkItem(233) == True):
+               if (self.checkItem(233)):
                   templist.remove(5)
                   templist.remove("A-Grav Rock")
-               if (self.checkItem(234) == True):
+               if (self.checkItem(234)):
                   templist.remove(6)
                   templist.remove("Rein Charm")
-               if (self.checkItem(235) == True):
+               if (self.checkItem(235)):
                   templist.remove(7)
                   templist.remove("Fell Rod")
-               if (self.checkItem(236) == True):
+               if (self.checkItem(236)):
                   templist.remove(10)
                   templist.remove("Recept Bell")
                if (self.checkItem(232) == False):
@@ -18301,21 +18302,22 @@ class NiminFetishFantasyv0975o_fla:
                      self.doEnd()
                   else:
                      tempStr = "You are, in fact, interested in something. "
-                     if ((self.checkItem(232) == True) or (self.checkItem(233) == True) or (self.checkItem(234) == True) or (self.checkItem(235) == True) or (self.checkItem(236) == True)):
+                     if (self.checkItem(232) or self.checkItem(233) or self.checkItem(234) or self.checkItem(235) or self.checkItem(236)):
                         tempStr = "Handing back the "
-                        if (self.checkItem(232) == True):
+                        #!if/else-ify
+                        if (self.checkItem(232)):
                            tempStr += "Flying Carpet"
                            self.loseManyItem(232,1)
-                        if (self.checkItem(233) == True):
+                        if (self.checkItem(233)):
                            tempStr += "Anti-Gravity Rock"
                            self.loseManyItem(233,1)
-                        if (self.checkItem(234) == True):
+                        if (self.checkItem(234)):
                            tempStr += "Reindeer Charm"
                            self.loseManyItem(234,1)
-                        if (self.checkItem(235) == True):
+                        if (self.checkItem(235)):
                            tempStr += "Fellatio Rod"
                            self.loseManyItem(235,1)
-                        if (self.checkItem(236) == True):
+                        if (self.checkItem(236)):
                            tempStr += "Reception Bell"
                            self.loseManyItem(236,1)
                         tempStr += " you borrowed before, you thank her graciously again for letting you try it out. "
@@ -18339,7 +18341,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doEnd()
                self.doListen = doListen
          self.doListen = doListen
-      elif ((self.silRep == 5) and ((self.silGrowthTime > 360) or (self.silPreg >= 10000))):
+      elif (self.silRep == 5 and (self.silGrowthTime > 360 or self.silPreg >= 10000)):
          tempStr = "You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\n\nAfter waiting for several minutes, there's no sign of Silandrias. Instead, a four-legged fox-like animal with a scaled belly and lizard-like tail runs full throttle up to you an urgent look on its face. "
          if (self.percent() <= 50):
             tempStr += "Naeru (or Daeru?)"
@@ -18411,7 +18413,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doListen = doListen
             self.doListen = doListen
          self.doListen = doListen
-      elif ((self.silRep == 5) and (self.silPreg > 30)):
+      elif (self.silRep == 5 and self.silPreg > 30):
          tempStr = "You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\n\nAfter waiting for several minutes, there's no sign of Silandrias. Instead, a four-legged fox-like animal with a scaled belly and lizard-like tail comes trotting up to you with a happy smile and lolling tongue. "
          if (self.percent() <= 50):
             tempStr += "Naeru (or Daeru?)"
@@ -18441,13 +18443,13 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(9, "Cuddle")
          if (self.cockTotal > 0):
             tempArray.push(1,"Fuck")
-         if ((self.vagTotal > 0) and (self.vagLimit() > 22 + self.silPreg / 24)):
+         if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempArray.push(3,"Be Fucked")
-         if ((self.checkItem(229) == True) and (self.silTied == False)):
+         if (self.checkItem(229) and self.silTied == False):
             tempArray.push(5,"Tie Tail")
          if (self.silTied == True):
             tempArray.push(5,"Untie")
-         if ((self.checkItem(230) == True) and (self.silPreg > 30)):
+         if (self.checkItem(230) and self.silPreg > 30):
             tempArray.push(7,"Eggcelerator")
          self.doButtonChoices(tempArray)
          def doListen():
@@ -18473,7 +18475,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f", the slapping of your {self.ballDesc()} against her scrotum not helping any"
                tempStr += ".\n\nIt isn't until you explode within, your seed churning about her velvety walls, that the downward-pointing member erupts with hot spunk all over the belly-scales and floor. You plunge and pump all of your spunk inside of her, letting her soak it all in without a drop going to waste. The cum-hungry womb immediately grows larger, sucking in every milliliter for its fertile production. The poor girl is weighted down even more by your efforts, yet the erotic cries echoing around the room would hardly suggest that she objects..."
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
-               if ((math.ceil(getCum / 50) > 100) and (self.silPreg > 0)):
+               if (math.ceil(getCum / 50) > 100 and self.silPreg > 0):
                   self.silPreg += 100
                elif (self.silPreg > 0):
                   self.silPreg += math.ceil(getCum / 50)
@@ -18570,7 +18572,7 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(9, "Cuddle")
          if (self.cockTotal > 0):
             tempArray.push(1,"Fuck")
-         if ((self.vagTotal > 0) and (self.vagLimit() > 22 + self.silPreg / 24)):
+         if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempArray.push(3,"Be Fucked")
          self.doButtonChoices(tempArray)
          def doListen():
@@ -18595,7 +18597,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   tempStr += " Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed."
                tempStr += " With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she's sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh."
-               if ((math.ceil(getCum / 50) > 100) and (self.silPreg > 0)):
+               if (math.ceil(getCum / 50) > 100 and self.silPreg > 0):
                   self.silPreg += 100
                elif (self.silPreg > 0):
                   self.silPreg += math.ceil(getCum / 50)
@@ -18643,7 +18645,7 @@ class NiminFetishFantasyv0975o_fla:
                self.hrs = 4
                self.doEnd()
          self.doListen = doListen
-      elif ((self.silRep == 1) and (self.silPreg > 150) or (self.silRep == 2) and (self.silPreg > 240) or (self.silRep == 3) and (self.silPreg > 360) or (self.silPreg > 550)):
+      elif (self.silRep == 1 and self.silPreg > 150 or self.silRep == 2 and self.silPreg > 240 or self.silRep == 3 and self.silPreg > 360 or self.silPreg > 550):
          tempStr = "You approach the entrance to the den, peeking inside with no idea how to navigate the tunnels. So, instead, you grab one of the chimes that decorate the entryway and give it a jingle, like ringing a doorbell.\n\nAfter waiting for several minutes, the large ears of the foxy lizard-like woman come into view."
          if (self.silPreg > 36):
             if (self.silPreg <= 72):
@@ -18656,6 +18658,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks."
             elif (self.silPreg <= 550):
                tempStr += " She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she 'accidentally' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant..."
+         #!if/else-ify
          if (self.silRep == 1):
             tempStr += " And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh..."
          if (self.silRep == 2):
@@ -18673,6 +18676,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doNext()
          def doListen():
             tempStr = ""
+            #!if/else-ify
             if (self.silRep == 1):
                tempStr += "You run up and grab her, rushing her to her bedroom so she can be more comfortable. Laying her onto her back, you make sure her back is supported appropriately to help with the lay."
                if (self.silTied == True):
@@ -18763,6 +18767,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks."
             elif (self.silPreg <= 550):
                tempStr += " She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she 'accidentally' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant..."
+         #!if/else-ify
          if (self.silRep == 1):
             if (self.silPreg > 120):
                tempStr += " And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh..."
@@ -18803,7 +18808,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " And just as before, her breasts have begun to swell already. In anticipation... she didn't even bother latching the clasps. Depending on her large perk nipples and the occasional tug to keep it shut, the cloak manages to cover some of herself. Suffice it to say, there's a lot of exposed belly-scales as the breast flesh stretches them in curvy manners. What's most troublesome, though, is that there is yet another pair beginning to blossom below the third, accentuating the size of her relatively small belly even more."
             else:
                tempStr += " With her curves back to a relatively normal state, she seems to be trying to wear her cloak again. However, her top breasts are already pressing tightly against the upper clasp, despite her reduced sizes from the laying. The lower clasp looks like how the top one used to be when you first met her, which isn't too bad. The bottom pair of decent sized breasts seem to peek out with even the slightest breeze, on the other hand, as she hasn't made a third clasp yet..."
-         if ((self.vagLimit() < 22 + self.silPreg / 24) and (self.vagTotal > 0)):
+         if (self.vagLimit() < 22 + self.silPreg / 24 and self.vagTotal > 0):
             tempStr += " Just looking at the bulge in her loincloth, "
             if (self.silPreg > 36):
                tempStr += "yet another thing having swollen with her pregnancy, "
@@ -18822,13 +18827,13 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(9, "Cuddle")
          if (self.cockTotal > 0):
             tempArray.push(1,"Fuck")
-         if ((self.vagTotal > 0) and (self.vagLimit() > 22 + self.silPreg / 24)):
+         if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempArray.push(3,"Be Fucked")
-         if ((self.checkItem(229) == True) and (self.silTied == False)):
+         if (self.checkItem(229) and self.silTied == False):
             tempArray.push(5,"Tie Tail")
          if (self.silTied == True):
             tempArray.push(5,"Untie")
-         if ((self.checkItem(230) == True) and (self.silPreg > 30)):
+         if (self.checkItem(230) and self.silPreg > 30):
             tempArray.push(7,"Eggcelerator")
          self.doButtonChoices(tempArray)
          def doListen():
@@ -18850,7 +18855,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.silPreg > 36):
                      tempStr += ", her bulging belly slightly touching yours"
                   tempStr += ", she steadies herself while her hips begin to grind and twist hungrily on top of you. Her tongue lols from her muzzle and she pants happily while her ears bob up and down, her tail flicking about sporadically from the joy of having you inside of her."
-                  if ((self.silRate > 2) and (self.silTied == False)):
+                  if (self.silRate > 2 and self.silTied == False):
                      tempStr += " She pauses only for a moment as she feels an egg drop into her tail, the eggcelerator causing some rather unexpected layings, making her moan a little as she deposits it on the bed beside you, only to make her even more aroused."
                   if (self.silPreg > 150):
                      tempStr += f"\n\nHaving swollen quite a bit with her pregnancy with her belly, her cock slaps loudly against you with each hop and flings pre all over your front. The large testicles rest around your groin, hugging your cock{self.plural(1)} whenever she lifts high enough to allow them to roll beneath her."
@@ -18863,11 +18868,12 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.cockSize * self.cockSizeMod >= 36):
                      tempStr += " Your own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again."
                   tempStr += " She bounces upon you so roughly that her "
-                  if ((self.silRep > 3) and (self.silPreg > 60)):
+                  #!Optimize if/else
+                  if (self.silRep > 3 and self.silPreg > 60):
                      tempStr += "four pairs of"
-                  elif ((self.silRep > 2) and (self.silPreg > 60)):
+                  elif (self.silRep > 2 and self.silPreg > 60):
                      tempStr += "three pairs of"
-                  elif ((self.silRep > 1) and (self.silPreg > 60)):
+                  elif (self.silRep > 1 and self.silPreg > 60):
                      tempStr += "two pairs of"
                   tempStr += " breasts jiggle obscenely, the nipples stiff as though already preparing for a suckling child.\n\nAt this rate, it doesn't take long before Silandrias is letting out a loud, lustful howl as you erupt within her."
                   if (getCum < 1000):
@@ -18879,7 +18885,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.silPreg > 36):
                      tempStr += " Her belly swells above you as her fertile nature quickly processes your stuff, pushing forward her eggy pregnancy with blossoming fecundity."
                   tempStr += " With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she's sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh."
-                  if ((self.silRate > 4) and (self.silTied == False)):
+                  if (self.silRate > 4 and self.silTied == False):
                      tempStr += " And though she may be spent, she clenches your body as her cock kicks up a bit more spunk, yet another egg making its way through her tail..."
                else:
                   tempStr += f" Her belly too large to wield on top of you, she opts to lie back onto her bed, spreading her legs wide with welcoming access. Prepping {self.oneYour(1)} member{self.plural(1)} for action with a gentle rubbing about the tip, you move in on your prey."
@@ -18892,7 +18898,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" Lifting them up, you droop her large shaft over your shoulder, pinning the lower portion between your {self.boobDesc()} chest and her belly while drooping the scrotum over your own length."
                   else:
                      tempStr += f" Lifting them up, you trap her appendage between your {self.boobDesc()} chest and her belly and droop her scrotum over your own length."
-                  if ((self.silRate > 2) and (self.silTied == False)):
+                  if (self.silRate > 2 and self.silTied == False):
                      tempStr += " Thanks to this odd position and the doses of eggcelerator, she lets out an early moan as an egg pushes its way through her tail and down onto the floor."
                   tempStr += f"\n\nNow with clear access, you slip into her thirsty hole. She is already drenched in lubricant, with plenty spilling and drooling down her tail, the heavy belly and hormones having made her especially aroused. You squeeze her testicles with your {self.hipDesc()} hips while you press in for the first thrust, eliciting a guttural moan of joy from the girl behind the fertile mound. She tries to hump back a little but merely wiggles her rod between your bodies. To help, you lean up against her, moving your whole body with each pump of your cock, slathering the pre that spills from her own over your body to reduce the friction. Quite soon, the lower hemisphere of her belly is shining in slick juices, allowing you to easily rub across her belly-scales. Maybe a little too easily as you have to "
                   if (self.silRep > 3):
@@ -18908,9 +18914,9 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      tempStr += "\n\nHot spunk gushes between you, splattering all over her body and painting your face white."
                   tempStr += " Her knees crush you like a vice as she comes, forcing you to give into your own pressure and explode inside. It's all a blur as you feel your cum churn about within her, and no matter how much you gush, she seems to take in the majority of it as little squirts out from her extra-slick hole. Having so much contact with her gravid shape, you definitely feel it shift and grow from your blast, devouring your seed and feeding her fertile womb. It takes so long for her cries of ecstasy to eventually die down, so lost in bliss..."
-                  if ((self.silRate > 4) and (self.silTied == False)):
+                  if (self.silRate > 4 and self.silTied == False):
                      tempStr += "\n\nAnd interjecting into the pleasant relaxing, she lets out a gasp as yet another egg forces its way through to be laid on the bed with you."
-               if ((math.ceil(getCum / 50) > 100) and (self.silPreg > 0)):
+               if (math.ceil(getCum / 50 > 100) and self.silPreg > 0):
                   self.silPreg += 100
                elif (self.silPreg > 0):
                   self.silPreg += math.ceil(getCum / 50)
@@ -18936,7 +18942,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.cockTotal < 1):
                      tempStr += "belly"
                   tempStr += " with a splatter of slimy pre."
-                  if ((self.silRate > 3) and (self.silTied == False)):
+                  if (self.silRate > 3 and self.silTied == False):
                      tempStr += " She pauses as her rear pulls back a bit, her talons clenching as a bulge travels down her tail. The eggcelerator doses obviously working, she lays the egg on the floor and quickly returns her attention to you."
                   if (self.silPreg > 36):
                      tempStr += " Slightly swollen from her growing pregnancy, she takes a moment to caress her longer member, getting a feel for how large it has become."
@@ -18951,7 +18957,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " with each thrust. Her breasts wobble with her fervor, in tune to her panting as her long tongue lolls from her vulpine muzzle."
                   if (self.breastSize > 3):
                      tempStr += " Your own chest jiggles as well, your body dragging across the bed from her strength."
-                  if ((self.silPreg > 100) and (self.cockTotal > 0)):
+                  if (self.silPreg > 100 and self.cockTotal > 0):
                      tempStr += f" More pre slops across her pregnant belly as your {self.cockDesc()} cock{self.plural(1)} gently slap it, making her even more aroused from the taut sensitive scales."
                   elif (self.cockTotal > 0):
                      tempStr += f" More pre slops across yourself as your {self.cockDesc()} cock{self.plural(1)} bounce around, leaving you rather slick."
@@ -19004,7 +19010,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
             elif (self.buttonChoice == 7):
                tempStr = "To help her along with her current eggy pregnancy, you consider giving her a dose of eggcelerator. Even though she isn't of lizan descent, the egg-aid may help her somehow.\n\nSilandrias agrees to take it, as long as you help her administer it. Leading you back to her room, "
-               if ((self.silRate > 2) and (self.silTied == False)):
+               if (self.silRate > 2 and self.silTied == False):
                   tempStr += "her tail already laying another egg along the way thanks to previous doses,"
                tempStr += "she readily sits down on her bed and leans back while spreading her legs wide for your convenience.\n\nTaking a moment to stare at the wonderful view, you lean in and pull her veiling loin cloth aside."
                if (self.silPreg <= 200):
@@ -19014,7 +19020,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.silPreg <= 600):
                   tempStr += " It then takes quite a bit of effort to both hold aloft the engorged penis and testicles, a bit of pre drooling over your arm from her pregnant arousal, and do your best to feel under her huge belly until you can find her soft slit beneath all the swollen bits."
                tempStr += " From there, slipping the small suppository inside is simple, as it sucks itself in thanks to its torpedo-like shape.\n\nWithin moments you can feel her shiver as the stuff dissolves and makes her giggle a little."
-               if ((self.silRate > 5) and (self.silTied == False)):
+               if (self.silRate > 5 and self.silTied == False):
                   tempStr += " However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more."
                elif (self.silTied == False):
                   tempStr += " She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she's breathing normally again."
@@ -19022,7 +19028,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles."
                tempStr += "\n\nThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I'm sure this will make the process move along faster...\"\n\nYou stay with her another couple of hours to make sure she's alright and to spend some time together, then you head back out to continue on."
                self.silRate += 1
-               if (self.silTied == False):
+               if (self.silTied == False): #!This if statement can be removed
                   tempStr += self.doLust(self.lib // 5,0,ret=True)
                else:
                   tempStr += self.doLust(self.lib // 5,0,ret=True)
@@ -19045,12 +19051,12 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " petting her large belly,"
                elif (self.silPreg > 36):
                   tempStr += " palming her growing belly,"
-               if ((self.silRep > 3) and (self.silPreg > 150)):
+               if (self.silRep > 3 and self.silPreg > 150):
                   tempStr += " causing milk to spit across the floor and soak into everything from her multitude of breasts,"
                tempStr += " gently kissing her shoulders as you talk. The two of you alternate between stories of your travels and the findings of her treasures. There's even a bit of small talk mixed in as well as periods of silence where you simply enjoy each others company.\n\nEventually, however, you must be on your way so that something can get done. As much as the two of you would like to continue, you can't ignore the need to get some food or other preparations or ignore the rest of your lives."
                if (self.silPreg > 36):
                   tempStr += " However, you could swear her form grew bigger than when you started. It seems your company has really made her feel comfortable and... motherly."
-               if ((self.silRate > 3) and (self.silTied == False)):
+               if (self.silRate > 3 and self.silTied == False):
                   tempStr += " Despite her having laid a few eggs during your time together as well."
                self.outputMainText(tempStr + "\n\nYou soon give each other a kiss and exchange farewells, hopefully to not spend too much time apart.",True)
                self.hrs = 4
@@ -19069,10 +19075,10 @@ class NiminFetishFantasyv0975o_fla:
             if self.buttonChoice == 1:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
-               if (self.checkItem(207) == True):
+               if (self.checkItem(207)):
                   templist.append(9)
                   templist.append("Cock Carv")
-               if ((self.checkItem(500) == True) or (self.checkItem(501) == True)):
+               if (self.checkItem(500) or self.checkItem(501)):
                   templist.append(11)
                   templist.append("Milk Bottle")
                self.outputMainText("What would you like to do with the statue's open mouth?",True)
@@ -19126,12 +19132,12 @@ class NiminFetishFantasyv0975o_fla:
                      self.doEnd()
                   elif self.buttonChoice == 11:
                      tempStr = "You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game."
-                     if ((self.checkItem(254) == True) or (self.checkStash(254) == True)):
+                     if (self.checkItem(254) or self.checkStash(254)):
                         tempStr += "\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town."
                      else:
                         tempStr += "\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and you're left having to head back to town."
                         self.itemAdd(254)
-                     if (self.checkItem(500) == True):
+                     if (self.checkItem(500)):
                         self.loseManyItem(500,1)
                      else:
                         self.loseManyItem(501,1)
@@ -19142,10 +19148,10 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 3:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
-               if (self.checkItem(207) == True):
+               if (self.checkItem(207)):
                   templist.append(9)
                   templist.append("Cock Carv")
-               if ((self.checkItem(500) == True) or (self.checkItem(501) == True)):
+               if (self.checkItem(500) or self.checkItem(501)):
                   templist.append(11)
                   templist.append("Milk Bottle")
                self.outputMainText("What would you like to do with the statue's ear?",True)
@@ -19153,7 +19159,7 @@ class NiminFetishFantasyv0975o_fla:
                def doListen():
                   if self.buttonChoice == 1:
                      tempStr = "You lick the statue's ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game."
-                     if ((self.checkItem(254) == True) or (self.checkStash(254) == True)):
+                     if (self.checkItem(254) or self.checkStash(254)):
                         tempStr += "\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town."
                      else:
                         tempStr += "\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town."
@@ -19214,7 +19220,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.ment > 60):
                         tempStr += " You have a feeling that the statue is trying to teach you how to really pleasure a woman..."
                      self.fertilityStatueCurse = 48
-                     if (self.checkItem(500) == True):
+                     if (self.checkItem(500)):
                         self.loseManyItem(500,1)
                      else:
                         self.loseManyItem(501,1)
@@ -19228,10 +19234,10 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 6:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
-               if (self.checkItem(207) == True):
+               if (self.checkItem(207)):
                   templist.append(9)
                   templist.append("Cock Carv")
-               if ((self.checkItem(500) == True) or (self.checkItem(501) == True)):
+               if (self.checkItem(500) or self.checkItem(501)):
                   templist.append(11)
                   templist.append("Milk Bottle")
                self.outputMainText("What would you like to do with the statue's four breasts?",True)
@@ -19279,7 +19285,7 @@ class NiminFetishFantasyv0975o_fla:
                         tempStr += " However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within."
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.hrs = 2
-                     if (self.checkItem(500) == True):
+                     if (self.checkItem(500)):
                         self.loseManyItem(500,1)
                      else:
                         self.loseManyItem(501,1)
@@ -19289,10 +19295,10 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 10:
                self.showButtons(ButtonList(1,0,1,0,0,0,0,1,1,0,1,0))
                templist = [1, "Lick", 3, "Poke", 8, "Leave"]
-               if (self.checkItem(207) == True):
+               if (self.checkItem(207)):
                   templist.append(9)
                   templist.append("Cock Carv")
-               if ((self.checkItem(500) == True) or (self.checkItem(501) == True)):
+               if (self.checkItem(500) or self.checkItem(501)):
                   templist.append(11)
                   templist.append("Milk Bottle")
                self.outputMainText("What would you like to do with the statue's gaping pussy?",True)
@@ -19314,7 +19320,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doEnd()
                   elif self.buttonChoice == 9:
                      tempStr = "You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game."
-                     if ((self.checkItem(254) == True) or (self.checkStash(254) == True)):
+                     if (self.checkItem(254) or self.checkStash(254)):
                         tempStr += "\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town."
                      else:
                         tempStr += "\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town."
@@ -19326,7 +19332,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif self.buttonChoice == 11:
                      self.outputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...",True)
                      self.pregArray.push(True,504,208,200,0)
-                     if (self.checkItem(500) == True):
+                     if (self.checkItem(500)):
                         self.loseManyItem(500,1)
                      else:
                         self.loseManyItem(501,1)
@@ -19367,7 +19373,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          self.doListen = doListen
    def doDungeon(self):
-      if ((self.currentDungeon > 1000) and (self.currentDungeon <= 1010)):
+      if (self.currentDungeon > 1000 and self.currentDungeon <= 1010):
          self.doOldCaveDescent()
    def doOldCaveDescent(self):
       if self.currentDungeon in (1001,1002,1003):
@@ -19548,7 +19554,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
       elif self.currentDungeon == 1010:
          tempStr = "The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open.\n\nGazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting.\n\nA massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground.\n\n\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle.\n\n\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"\n\n\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"\n\n\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"\n\nThe succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own."
-         if (not self.foundSanctuary and self.gametweaks[8]):
+         if (self.foundSanctuary == False and self.gametweaks[8] == True):
             tempStr += "\n\nYou look to your side and see an engraving on the wall. It is somewhat faded but you manage make out the phrase \"Only the worthy may use this path.\", strange. You feel an urge to touch it. Once you do, you hear a congradulatory melody, like you've just uncovered a secret. The section of wall next to where the engraving was magically disappears, revealing another set of stairs. You have a feeling that these stairs lead to the surface."
          self.outputMainText(tempStr,True)
          self.inDungeon = False
@@ -19585,11 +19591,11 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += " And between her knees hangs her overgrown lips, making her stand slightly bow-legged. Her legs almost constantly twist about, using her knees to squish the flesh again and again since her hands can hardly hold it all if she tried. Her clitoris can hardly be called a button, stroked like a small penis as it pushes out from the massive folds. Her inner lips are so pink with arousal that they seem to be growing longer, due to the the amount of slickness flowing down them that creates the illusion and forms a puddle around her feet."
       elif (self.lilaVulva <= 19):
          tempStr += " And she hardly seems like's she's standing at all. With how much her legs bend around and squeeze the large squishy labia that fills the space between them, it seems like she's nearly sitting on her own pussy. However, it barely hovers over the floor, the inner labia dangling down and brushing across it when she presses down slightly to push her clit against the floor to please it a bit. If she curled up and actually wrapped her whole hand around the sensitive thing, there would have still been some more length to cover. Which only makes her original 'wetness' problem worse, the overall size of her genitals causing a flood about her feet and leaving them almost constantly slick and wet with a trail of more following her wherever she goes. However, thanks to her size, when she slips from her moisture she simply lets out an erotic mewl as she falls down onto her soft flesh."
-      if ((self.lilaPreg <= 35) and (self.lilaVulva >= 11)):
+      if (self.lilaPreg <= 35 and self.lilaVulva >= 11):
          tempStr += " Her belly seems to be sporting some extra cushioning as well. Not exactly chubby, her excess vaginal flesh from all the growth causes it to protrude, her lower breasts pushing out even more."
-      elif ((self.lilaPreg <= 70) and (self.lilaPreg > 35)):
+      elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
          tempStr += " Her hands have a tendancy to cup her growing belly as well, imagining how big she will get. Already protruding quite a bit, her belly button just beginning to stick out, she giggles a little to herself at the thoughts of what's to come."
-      elif ((self.lilaPreg <= 100) and (self.lilaPreg > 70)):
+      elif (self.lilaPreg <= 100 and self.lilaPreg > 70):
          tempStr += "Yet, despite all of that, her focus mostly remains on her large belly. Nearly as large as herself if she were to curl up, the thing hangs forward to the point where she can't see her messy arousal below. Her hands often roam over the taut fur, taking her naked opportunity to caress it and pleasure in it, cradling it gently."
       return tempStr
    def Gibberish(self): #not used
@@ -19621,10 +19627,10 @@ class NiminFetishFantasyv0975o_fla:
       else:
          tempStr = "You return to the main floor of the Knothole, looking around to see what else you would like to do.\n\n"
       tempStr += "Many Lupans are gathered in the drum-house, beating on sturdy, yet beautifully crafted drums built into the very foundation, the source of the deep, hard thumps that got your heart racing in the first place now pounding at your ears."
-      if ((self.ment <= 20) and (entering == True)):
+      if (self.ment <= 20 and entering == True):
          tempStr += "The few who look like they are done for the night that you can see look like they've either just ran a marathon, or have just released after being pent up for a month or five. And to you right now, those vacant drums are looking very inviting."
       tempStr += "To the right, you see more Lupans dancing to the beating rhythm. Pheromones and mixed scents fill the Knothole, making your heart race harder. As you start feeling the blood pump through your veins, almost in sync with the beat of the drums, you find your body bouncing slightly with the rhythm."
-      if ((self.lust >= 50) and (entering == True)):
+      if (self.lust >= 50 and entering == True):
          tempStr += "As if there was a subtle draft, the scents coming from the dancers start to entice you to join them, the movement of bodies a welcome sight right now. Watching the movement of bodies and tails dancing to the beat, you find your body starting to sway with the flow of the dances, as if the very essence of the drum-house was moving it for you."
          self.doLust(10,0)
       tempStr += "On the left, you spot a wide staircase leading up, and another leading down. A good portion of Lupans are going to the other floors, some holding others on leashes linked to collars wrapped and locked around the necks of the ones being walked. Those on leashes heading up seemed to be more high-spirited than those heading down, which half seemed to be 'zoned out' or in a trance, following their Masters and Mistresses."
@@ -19664,14 +19670,14 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices((1, "Relax", 3, "Exhibition", 9, "Downstairs", 12, "Leave"))
       def doListen():
          if self.buttonChoice == 1:
-            if ((self.breastSize > 2) and (self.hips > 2) and (self.body < 20)):
+            if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
                self.outputMainText(f"Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft comfortable cushions, a dark gray collared Lupan takes notice of you and makes their way over to you. Slowly approaching you (and crawling on all fours), you notice that they are male, and he is avoiding eye contact with you, focusing more on your {self.legDesc(10)} and {self.legDesc(2)}.\n\nReaching your corner of the room, the collared male kneels at your {self.legDesc(10)}, keeping his eyes low and bows his head. “Would you like me to dance for you?” he asks almost indirectly, his voice sounding timid.\n\nYou consider for a moment, looking over the dark fur of the male's slender, nude frame before you.",True)
             else:
                self.outputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft, comfortable cushions, a collared Lupan takes notice of you and makes their way over to you. Getting closer to you (and crawling on all fours), you notice that they are female, and she avoids eye contact despite you almost getting lost in her beautiful deep emerald green eyes.\n\nReaching your corner of the room, she kneels before you, pressing her bare chest out to display her ample breasts, showing her Lupan qualities to you. Her legs spread to expose her snatch between her legs, her hands on her legs with palms up. “Would you like me to dance for you?” she asks, still avoiding eye contact and keeping her head down, her tone of voice very timid.\n\nYou consider for a moment, looking over the dark fur of the female's slender, nude frame before you.",True)
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
-                  if ((self.breastSize > 2) and (self.hips > 2) and (self.body < 20)):
+                  if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
                      self.outputMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.",True)
                      self.doLust(self.lib // 4,0)
                   else:
@@ -19755,7 +19761,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.buttonChoice == 7:
             self.doSpecialAbility(1)
          elif self.buttonChoice == 9:
-            if ((self.gender == 0) or (self.eGen == 0)):
+            if (self.gender == 0 or self.eGen == 0):
                self.outputMainText("What are you going to rape it with? Good intentions?\n\nChoose another option.",True)
                if (self.currentState == 2):
                   self.doBattle()
@@ -19769,7 +19775,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText(tempStr + f"\n\nHowever, the {self.enemyName()} overpowers you and tosses you off!",True)
                   if (self.currentState == 2):
                      self.enemyAttack()
-               elif ((self.ePref != self.gender) and (self.ePref != 4) and (self.gender != 3) or (self.ePref == 0)):
+               elif (self.ePref != self.gender and self.ePref != 4 and self.gender != 3 or self.ePref == 0):
                   self.dmg = math.floor(self.percent() / 10 + self.lust / 10)
                   self.outputMainText(tempStr + f"\n\nHowever, the {self.enemyName()} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {self.dmg} damage and satisfy yourself a bit.",True)
                   self.doeHP(-self.dmg)
@@ -19804,7 +19810,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doBattle()
          elif self.buttonChoice == 12:
             tempStr = f"No longer wishing to fight, you attempt to submit yourself to the {self.enemyName()}'s whims in hopes of leaving the battle with a little fun."
-            if ((self.ePref == 0) or (self.ePref == 1) and (self.gender == 2) or (self.ePref == 2) and (self.gender == 1) or (self.gender == 0)):
+            if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
                self.outputMainText(f"{tempStr}\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.",True)
                if (self.currentState == 2):
                   self.enemyAttack()
@@ -19830,31 +19836,31 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"You hit the {self.enemyName()} with your debug stick, dealing {self.dmg} damage!",True)
             self.doeHP(-99999)
          case 10:
-            self.dmg = math.floor(random.random() * (1 + 10 - 1)) + 1 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+            self.dmg = math.floor(random.random() * 10) + 1 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
             self.outputMainText(f"You punch the {self.enemyName()} with your fists, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
          case 116:
-            self.dmg = math.floor(random.random() * (1 + 12 - 5)) + 5 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+            self.dmg = math.floor(random.random() * 8) + 5 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
             self.outputMainText(f"You lunge at the {self.enemyName()} and stab it with your dagger, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
          case 117:
-            self.dmg = math.floor(random.random() * (1 + 20 - 2)) + 2 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+            self.dmg = math.floor(random.random() * 19) + 2 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
             self.outputMainText(f"You swing your hammer at the {self.enemyName()}, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
          case 118:
-            self.dmg = math.floor(random.random() * (1 + 25 - 10)) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+            self.dmg = math.floor(random.random() * 16) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
             self.outputMainText(f"You slash at the {self.enemyName()} with your saber, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
          case 119:
-            self.dmg = math.floor(random.random() * (1 + 18 - 12)) + 12 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+            self.dmg = math.floor(random.random() * 7) + 12 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
             self.outputMainText(f"You lash at the {self.enemyName()} with your whip, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
          case 127:
-            self.dmg = math.floor(random.random() * (1 + 20 - 10)) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+            self.dmg = math.floor(random.random() * 11) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
             self.outputMainText(f"You whip around your tail and smack the {self.enemyName()} with the spike at the end, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
          case 235:
-            self.dmg = math.floor(random.random() * (1 + 5 - 1)) + 1 + math.ceil(self.ment / 10)
+            self.dmg = math.floor(random.random() * 5) + 1 + math.ceil(self.ment / 10)
             if (self.ment < 30):
                self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {self.dmg} HP from the {self.enemyName()}.",True)
             elif (self.ment < 70):
@@ -19962,22 +19968,22 @@ class NiminFetishFantasyv0975o_fla:
       return f"SPECIAL ABILITY DESC ERROR {ID}"
    def specialAbilityUse(self, ID:int):
       self.dmg = 0
-      match ID:
-         case 1:
-            self.dmg = math.floor(10 + self.percent() / 10)
-            self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {self.dmg} damage.",False)
-            self.doeHP(-self.dmg)
-            if (self.currentState == 2):
-               if (self.percent() < 35):
-                  self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.",False)
-               else:
-                  self.enemyAttack()
+      if ID == 1:
+         self.dmg = math.floor(10 + self.percent() / 10)
+         self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {self.dmg} damage.",False)
+         self.doeHP(-self.dmg)
+         if (self.currentState == 2):
+            if (self.percent() < 35):
+               self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.",False)
+            else:
+               self.enemyAttack()
       if (self.currentState == 2):
          self.doBattle()
    def doEntice(self):
+      #!optimize if/else
       chance = 0
       chance = self.percent()
-      if ((self.eGen == 1) and (self.gender == 1) and (self.ePref != 2) and (self.ePref != 0)):
+      if (self.eGen == 1 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
          if (chance <= 50):
             tempStr = f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips"
             if (self.tail != 0):
@@ -19989,10 +19995,10 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
-      elif ((self.eGen == 1) and (self.gender == 2) and (self.ePref != 1) and (self.ePref != 0)):
+      elif (self.eGen == 1 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
          if (chance <= 50):
             tempStr = f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}"
-            if ((self.lust > 20) and (self.moistCalc(2) > 3)):
+            if (self.lust > 20 and self.moistCalc(2) > 3):
                tempStr += " until your feminine arousal seeps through"
             tempStr += f". Your {self.hipDesc()} hips wiggle erotically"
             if (self.tail != 0):
@@ -20004,7 +20010,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
-      elif ((self.eGen == 2) and (self.gender == 1) and (self.ePref != 2) and (self.ePref != 0)):
+      elif (self.eGen == 2 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
          if (chance <= 50):
             tempStr = f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh"
             if (self.lust > 20):
@@ -20019,32 +20025,32 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
-      elif ((self.eGen == 2) and (self.gender == 2) and (self.ePref != 1) and (self.ePref != 0)):
+      elif (self.eGen == 2 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
          if (chance <= 50):
             tempStr = f"You spread your {self.legDesc(6)}, crouching down as both hands grind into your {self.vulvaDesc()} pussy"
-            if ((self.lust > 20) and (self.moistCalc(2) > 3)):
+            if (self.lust > 20 and self.moistCalc(2) > 3):
                tempStr += f", your honey spreading from the crotch of your {self.clothesBottom()},"
             if (self.tail != 0):
                tempStr += f", your {self.tailDesc()} tail swishing across the ground,"
             tempStr += f" luring the {self.enemyName()} to come grind instead."
          else:
             tempStr = f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger"
-            if ((self.lust > 20) and (self.nippleSize > 1) or (self.nippleSize > 6)):
+            if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
                tempStr += f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}"
             tempStr += "."
          if self.ePref in (2,4):
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
-      elif ((self.eGen == 3) and (self.gender == 1) and (self.ePref != 2) and (self.ePref != 0)):
+      elif (self.eGen == 3 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
          if (chance <= 25):
             tempStr = f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips"
             if (self.tail != 0):
                tempStr += f", your {self.tailDesc()} tail dancing above"
             tempStr += " tantalizingly."
-         elif ((chance > 25) and (chance <= 50)):
+         elif (chance > 25 and chance <= 50):
             tempStr = f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge."
-         elif ((chance > 50) and (chance <= 75)):
+         elif (chance > 50 and chance <= 75):
             tempStr = f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh"
             if (self.lust > 20):
                tempStr += f", the {self.cockDesc()} erection pulsing strongly beneath your {self.clothesBottom()}"
@@ -20058,22 +20064,22 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
-      elif ((self.eGen == 3) and (self.gender == 2) and (self.ePref != 1) and (self.ePref != 0)):
+      elif (self.eGen == 3 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
          if (chance <= 25):
             tempStr = f"You spread your {self.legDesc(6)}, crouching down as both hands grinding into your {self.vulvaDesc()} pussy"
-            if ((self.lust > 20) and (self.moistCalc(2) > 3)):
+            if (self.lust > 20 and self.moistCalc(2) > 3):
                tempStr += f", your honey spreading from the crotch of your {self.clothesBottom()},"
             if (self.tail != 0):
                tempStr += f", your {self.tailDesc()} tail swishing across the ground,"
             tempStr += f" luring the {self.enemyName()} to come grind instead."
-         elif ((chance > 25) and (chance <= 50)):
+         elif (chance > 25 and chance <= 50):
             tempStr = f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger"
-            if ((self.lust > 20) and (self.nippleSize > 1) or (self.nippleSize > 6)):
+            if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
                tempStr += f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}."
             tempStr += "."
-         elif ((chance > 50) and (chance <= 75)):
+         elif (chance > 50 and chance <= 75):
             tempStr = f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}"
-            if ((self.lust > 20) and (self.moistCalc(2) > 3)):
+            if (self.lust > 20 and self.moistCalc(2) > 3):
                tempStr += " until your feminine arousal seeps through"
             tempStr += f". Your {self.hipDesc()} hips waggle erotically"
             if (self.tail != 0):
@@ -20085,17 +20091,17 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10),ret=True)
-      elif ((self.gender == 3) and (self.ePref != 0) and (self.eGen != 0)):
+      elif (self.gender == 3 and self.ePref != 0 and self.eGen != 0):
          if (chance <= 25):
             tempStr = f"You turn around and bend over before the {self.enemyName()}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying"
             if (self.tail != 0):
                tempStr += f", your {self.tailDesc()} tail dancing above"
             tempStr += " deliciously."
-         elif ((chance > 25) and (chance <= 50)):
+         elif (chance > 25 and chance <= 50):
             tempStr = f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger while you flex, thrusting at the air with your {self.cockDesc()} package bobbing."
-         elif ((chance > 50) and (chance <= 75)):
+         elif (chance > 50 and chance <= 75):
             tempStr = f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your male anatomy while you spread your {self.legDesc(6)}, crouching down as both hands grind across the bulge and into your female portions"
-            if ((self.lust > 20) and ((self.moistCalc(2) > 3) or (self.moistCalc(1) > 3))):
+            if (self.lust > 20 and (self.moistCalc(2) > 3 or self.moistCalc(1) > 3)):
                tempStr += ", the fabric quickly growing damp"
             tempStr += "."
             if (self.tail != 0):
@@ -20106,7 +20112,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5),ret=True)
          elif self.ePref in (1,2):
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10),ret=True)
-      elif ((self.gender == 0) and (self.ePref != 0) and (self.eGen != 0)):
+      elif (self.gender == 0 and self.ePref != 0 and self.eGen != 0):
          tempStr = f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got."
          tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10),ret=True)
       else:
@@ -20129,69 +20135,67 @@ class NiminFetishFantasyv0975o_fla:
       self.hrs = 2
       self.doEnd()
    def specialRapeWin(self):
-      match self.enemyID:
-         case 303:
-            self.outputMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.",False)
-         case 304 | 305:
-            self.outputMainText(f"\n\nAs the {self.enemyName()} collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.",False)
-         case 306:
-            self.outputMainText("\n\nThe naga collapses to the ground, tail still squirming in delighted orgasm and no longer wishing to battle. You take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.",False)
-         case 307:
-            self.outputMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.",False)
-            if (self.defeatedMinotaur == False):
-               self.defeatedMinotaur = True
-               self.currentDungeon = 1003
-            else:
-               self.currentDungeon = 1003
-         case 308:
-            self.outputMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"",False)
-            if (self.defeatedFreakyGirl == False):
-               self.defeatedFreakyGirl = True
-               self.currentDungeon = 1006
-            else:
-               self.currentDungeon = 1006
-         case 309:
-            self.outputMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.",False)
-            if (self.defeatedSuccubus == False):
-               self.defeatedSuccubus = True
-               self.currentDungeon = 1010
-            else:
-               self.currentDungeon = 1009
-         case _:
-            self.outputMainText(f"\n\nThe {self.enemyName()} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.",False)
+      if self.enemyID == 303:
+         self.outputMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.",False)
+      elif self.enemyID == 304 or self.enemyID == 305:
+         self.outputMainText(f"\n\nAs the {self.enemyName()} collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.",False)
+      elif self.enemyID == 306:
+         self.outputMainText("\n\nThe naga collapses to the ground, tail still squirming in delighted orgasm and no longer wishing to battle. You take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.",False)
+      elif self.enemyID == 307:
+         self.outputMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.",False)
+         if (self.defeatedMinotaur == False):
+            self.defeatedMinotaur = True
+            self.currentDungeon = 1003
+         else:
+            self.currentDungeon = 1003
+      elif self.enemyID == 308:
+         self.outputMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"",False)
+         if (self.defeatedFreakyGirl == False):
+            self.defeatedFreakyGirl = True
+            self.currentDungeon = 1006
+         else:
+            self.currentDungeon = 1006
+      elif self.enemyID == 309:
+         self.outputMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.",False)
+         if (self.defeatedSuccubus == False):
+            self.defeatedSuccubus = True
+            self.currentDungeon = 1010
+         else:
+            self.currentDungeon = 1009
+      else:
+         self.outputMainText(f"\n\nThe {self.enemyName()} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.",False)
    def specialKOWin(self):
-      match self.enemyID:
-         case 303:
-            self.outputMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.",False)
-         case 304 | 305:
-            self.outputMainText(f"\n\nAs the {self.enemyName()} passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.",False)
-         case 102:
-            self.outputMainText("\n\nFeeling itself about to dissipate from your attacks, the desiccating dust devil feebly spins away, leaving behind some of the sand it can no longer support.",False)
-         case 306:
-            self.outputMainText("\n\nThe naga passes out from your attacks, allowing you take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.",False)
-         case 307:
-            self.outputMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.",False)
-            if (self.defeatedMinotaur == False):
-               self.defeatedMinotaur = True
-               self.currentDungeon = 1002
-            else:
-               self.currentDungeon = 1002
-         case 308:
-            self.outputMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.",False)
-            if (self.defeatedFreakyGirl == False):
-               self.defeatedFreakyGirl = True
-               self.currentDungeon = 1004
-            else:
-               self.currentDungeon = 1004
-         case 309:
-            self.outputMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.",False)
-            if (self.defeatedSuccubus == False):
-               self.defeatedSuccubus = True
-               self.currentDungeon = 1010
-            else:
-               self.currentDungeon = 1008
-         case _:
-            self.outputMainText(f"\n\nYou have made the {self.enemyName()} pass out from all the pain.",False)
+      if self.enemyID == 303:
+         self.outputMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.",False)
+      elif self.enemyID == 304 or self.enemyID == 305:
+         self.outputMainText(f"\n\nAs the {self.enemyName()} passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.",False)
+      elif self.enemyID == 102:
+         self.outputMainText("\n\nFeeling itself about to dissipate from your attacks, the desiccating dust devil feebly spins away, leaving behind some of the sand it can no longer support.",False)
+      elif self.enemyID == 306:
+         self.outputMainText("\n\nThe naga passes out from your attacks, allowing you take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.",False)
+      elif self.enemyID == 307:
+         self.outputMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.",False)
+         if (self.defeatedMinotaur == False):
+            self.defeatedMinotaur = True
+            self.currentDungeon = 1002
+         else:
+            self.currentDungeon = 1002
+      elif self.enemyID == 308:
+         self.outputMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.",False)
+         if (self.defeatedFreakyGirl == False):
+            self.defeatedFreakyGirl = True
+            self.currentDungeon = 1004
+         else:
+            self.currentDungeon = 1004
+      elif self.enemyID == 309:
+         self.outputMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.",False)
+         if (self.defeatedSuccubus == False):
+            self.defeatedSuccubus = True
+            self.currentDungeon = 1010
+         else:
+            self.currentDungeon = 1008
+      else:
+         self.outputMainText(f"\n\nYou have made the {self.enemyName()} pass out from all the pain.",False)
    def specialKOLose(self, ret=False):
       tempStr = ""
       if (self.currentState == 2):
@@ -20238,12 +20242,13 @@ class NiminFetishFantasyv0975o_fla:
          case 301:
             chance = self.percent()
             tempStr = ""
-            if ((self.gender == 1) or (self.percent() <= 50) and (self.gender == 3)):
+            if (self.gender == 1 or self.percent() <= 50 and self.gender == 3):
                if (chance <= 100):
                   tempStr += f"The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you slide {self.oneYour(1)} {self.cockDesc()} prick{self.plural(1)} out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within."
+                  #!if/else-ify
                   if (self.cockSize * self.cockSizeMod > self.eVagLimit(40)):
                      tempStr += f"\n\nHowever, she cries out in pain and disappointment, your {self.cockDesc()} cock far to big to fit inside without tearing her apart. So, instead, you slip it between her legs, rubbing it across her stiff clit and through her loincloth and over her belly as you "
-                  if ((self.cockSize * self.cockSizeMod <= self.eVagLimit(40)) and (self.cockSize * self.cockSizeMod > self.eVagLimit(24))):
+                  if (self.cockSize * self.cockSizeMod <= self.eVagLimit(40) and self.cockSize * self.cockSizeMod > self.eVagLimit(24)):
                      tempStr += f"\n\nShe cries out in pain and pleasure as your {self.cockDesc()} cock stretches her thirsting cunt wide, pushing her bikini in until it tears from your path. She pushes her rump back towards you, trying her best to devour the hot rod all the way to its hilt as you "
                   if (self.cockSize * self.cockSizeMod <= self.eVagLimit(24)):
                      tempStr += f"\n\nShe cries out in ecstacy as her hungry cunt devours your {self.cockDesc()} cock, along with her own bikini until it tears from your path. She takes it all the way in to your hilt as you "
@@ -20253,16 +20258,16 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
                      tempStr += "into her womb, making her let out a long and joyful mewl. Before she can become too content, you pull out of her with a slurp, your cum still dribbling from her used sex."
                   self.cumAmount()
-            elif ((self.gender == 2) or (self.gender == 3)):
+            elif (self.gender == 2 or self.gender == 3):
                tempStr += "You knock the felin woman backwards onto her ample ass, her legs spreading wide. She cries out as you duck beneath her loincloth and lick her stiff clit through her bikini. Juices flood within your mouth as she instantly reacts, her swollen cunt-lips gnawing at the crotch of the messy bottom. You pull it aside, diving in and getting a good mouthful of her supple flavor. You devour her folds until she twitches uncontrollably, so desparate to come. But, before she does, you consider your own needs and draw your head out before repaclacing it with your own crotch."
                tempStr += f"\n\nYou grind against her stiff clit as it pokes through her loin cloth, your own {self.clitDesc()} button{self.plural(2)} throbbing through your {self.clothesBottom()}."
-               if ((self.cockTotal > 0) and (self.cumAmount() > 0)):
+               if (self.cockTotal > 0 and self.cumAmount() > 0):
                   tempStr += f" You pull your {self.cockDesc()} cock{self.plural(1)}, letting the engorged length{self.plural(1)} bounce against her belly and hump through her many breasts."
                tempStr += f" You grind, cunt to cunt{self.plural(2)}, until you both let out a yowl as you climax together.\n\nYou're quick to gather your wits and clean yourself up, standing before her pussy even stops gushing with honey."
             tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
          case 302:
             tempStr = ""
-            if ((self.gender == 2) or (self.percent() <= 50) and (self.gender == 3)):
+            if (self.gender == 2 or self.percent() <= 50 and self.gender == 3):
                tempStr += f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and showing him your own hungry flesh. You {self.legVerb(1)} your {self.legDesc(2)} over his twitchy rod, kissing the flat head of the horsy member with your {self.vulvaDesc()} lips."
                if (self.vagLimit() < 32):
                   tempStr += f"\n\nHis man-meat is far too large for your cunt{self.plural(2)} however, so you do the next best thing and sit down in his lap. Grinding your hips forward, your {self.clitDesc()} clit{self.plural(2)} hump{self.plural(4)} into his length. The long prick squeezes between your {self.boobDesc()} tits as you press against him, making him tense even more."
@@ -20271,16 +20276,16 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" Your hips jerk up and down again and again as you rub along his length. Tingling sparks between the two of you as you feel his softball-sized testicles tighten up beneath your {self.buttDesc()} butt. Within seconds, the two of you echo in ecstacy, his whinnying quickly over-taking your moans,"
                if (self.vagLimit() < 32):
                   tempStr += " his cock erupting like a volcano between the two of you"
-                  if ((self.cockTotal > 0) and (self.cumAmount() > 0)):
+                  if (self.cockTotal > 0 and self.cumAmount() > 0):
                      tempStr += ", with yours joining in the volley,"
                   tempStr += " and the hot spunk spills back down all over your bodies.\n\nYou don't give him much time to recover as you pull away, leaving a bit of after-cum to gush out over his belly."
                else:
                   tempStr += " his cock erupting within you like a powerful volcano, the molten spunk making your belly swell slightly before spilling back out onto the ground"
-                  if ((self.cockTotal > 0) and (self.cumAmount() > 0)):
+                  if (self.cockTotal > 0 and self.cumAmount() > 0):
                      tempStr += ", while yours sprays across his chest and face"
                   tempStr += f".\n\nYou don't give him much time to recover as you pull him out, a bit of after-cum gushing across your clit{self.plural(2)}."
                   tempStr += self.doImpregnate(self.enemyBaby(),ret=True)
-            elif ((self.gender == 1) or (self.gender == 3)):
+            elif (self.gender == 1 or self.gender == 3):
                tempStr += f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and brandishing {self.oneYour(1)} own {self.cockDesc()} cock{self.plural(1)}. You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap."
                tempStr += f"\n\nHe whinnies loudly as you plunge your {self.cockDesc()} erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,"
                if (self.cumAmount() > 0):
@@ -20289,7 +20294,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,1,5,ret=True)
          case 303:
             tempStr = ""
-            if self.gender in (1,3):
+            if self.gender in (1,3): #!Add a percent chance to 3
                tempStr += f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} erection{self.plural(2)} wobble out. Aligning yourself, you thrust "
                if (self.cockTotal == 1):
                   tempStr += "it"
@@ -20306,7 +20311,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " until you're fully spent.\n\nJust as you're about to pull out, you see her squirm, her belly jiggling and growing slightly larger, deforming slightly as the offspring inside her shifts."
             elif self.gender == 2:
                tempStr += f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, pinning her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and begin to grind your {self.vulvaDesc()} cunt{self.plural(2)} against it.\n\nShe lets out a warbling moan. Her hands leave her face, showing the blush and lustful expression she now wears. The beak nips at your {self.clitDesc()} clit{self.plural(2)} whenever the stiff thing{self.plural(2)} rub against it, making you buck in turn. Her tentacles quickly begin to grope around your body, making you slick as the move towards your crotch."
-               if ((self.vagTotal > 1) and (self.vagTotal < 9)):
+               if (self.vagTotal > 1 and self.vagTotal < 9):
                   tempStr += "\n\nOne tentacle for each of your pussies, they softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax."
                elif (self.vagTotal == 1):
                   tempStr += "\n\nA tentacle softly slips into your pussy, diving in as far as it can go before it feels you begin to stretch. It slips in and out as you hump the girl, quickly driving you towards climax."
@@ -20315,7 +20320,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" You can soon feel her shudder {self.legWhere(1)} your {self.legDesc(2)}, her large belly jiggling as milk drizzles past the feeding starfish and down her large breasts. The tentacles leave your slit{self.plural(2)} as you finish with your own orgasm..."
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
          case 304:
-            if ((self.vagTotal > 0) and (self.vagLimit() > 80)):
+            if (self.vagTotal > 0 and self.vagLimit() > 80):
                tempStr = f"Somehow managing to push the little big bunny-man onto his tail, you pull {self.pullUD(2)} your {self.clothesBottom()}, climb up through his thighs, and plant your {self.legDesc(10)} on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, {self.legVerb(5)} it at the top with your {self.legDesc(2)}. The narrow tip easily fits between your thighs and slips into {self.oneYour(2)} {self.vulvaDesc()} vagina{self.plural(4)} as you descend upon it.\n\nHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in."
                if (self.tallness < 180):
                   tempStr += f" Your belly begins to stretch as the tip burrows through your inner flesh, the giant cock filling you tremendously. By the time your {self.buttDesc()} rump lands upon his balls, your {self.legDesc(2)} wedge{self.legPlural(1)} into his sheath, the {self.skinDesc()} of your belly reaches past your head. You stand again to fuck his massive prick, though... you quickly find it's difficult to manage such a thing with his body so much larger that yours.\n\nTo your surprise, you find a white hand wrapping around your body, hugging you against the cock. Before you know it, you're being lifted into the air, slipping up the shaft, only to come back down once more. Difficult to tell who's raping who at the point, but he overtaken bunny-man masturbates with you as his toy. Fast and faster he pumps you up and down his length, quickly bringing you both to orgasm. His seed gushes into your belly, causing it to visibly ripple and distend from outside. It splashes back down the cock and spills around his sheath, quickly soaking through the fur of his balls. The warmth sends you to climax as well, slowly slipping off his shlong as it receeds into his sheath..."
@@ -20333,7 +20338,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your {self.legDesc(10)} as well.\n\nYou both soon back away from each other, spent from the connection."
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
          case 305:
-            if ((self.cockSize * self.cockSizeMod > 140) or (self.cockTotal * self.cockSize * self.cockSizeMod > 280)):
+            if (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280):
                tempStr = f"Somehow managing to push the little big bunny-girl onto her tail, you pull {self.pullUD(2)} your {self.clothesBottom()} and step in between her thighs. Her pussy is already aroused and gaping, drooling with her feminine lubrication and forming webs from her large clit down through her inner labia. Hefting up your {self.cockDesc()} erection{self.plural(1)}, you aim for the sweet spot, spreading her even wider as you push yourself in, feeling her folds hug around you."
                if (self.tallness < 180):
                   tempStr += f"\n\nHowever, you quickly realize it's going to be quite... difficult to plow through someone so much larger than you... And much to your surprise, you find a white hand beginning to hug around you, lifting you up and pulling you back from her cunt. Then you find yourself being rammed back in, the clear fluids splashing about your {self.skinDesc()}. Slightly confused as to who is raping who at this point, the bunny-girl proceeds to use you like a living dildo, ramming your cock{self.plural(1)} in and out of her folds again and again."
@@ -20394,14 +20399,14 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,2,5,ret=True)
          case 308:
             tempStr = "The freaky little girl melts into your embrace rather readily, suddenly becoming more frail and acting more like she appears, holding Mr. Snuggles tight across her chest. \"Be gentle, please?\"\n\nCatching you slightly off guard, you comply and proceed a little less roughly. You take her from behind, sitting down to the ground and pulling her into your lap with you. You kiss her cheek and nibble on her long elven ears, making her squirm in your arms as your hand reaches down beneath her skirt. Her panties are rather moist, slick with her honey, and the tender region twitches as you start to massage it. However, you soon feel something bumping against your palm.\n\nPulling her undergarments down further, you can see her pink flesh protruding out past her crotch slightly. A clitoris as big as her thumb pokes out from her folds, stiff and twitching with arousal. Not quite as little as the rest of her...\n\nSeeing as though she's rather aroused, you take the liberty of pushing things a step further. "
-            if ((self.cockTotal > 0) and (self.cockSize * self.cockSizeMod < self.eVagLimit(24)) or (self.vagTotal > 0) and (self.clitSize < 60)):
+            if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(24) or self.vagTotal > 0 and self.clitSize < 60):
                tempStr += f"Pulling {self.pullUD(2)} your {self.clothesBottom()}, you angle "
-               if ((self.cockTotal > 0) and (self.cockSize * self.cockSizeMod < self.eVagLimit(24))):
+               if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(24)):
                   tempStr += f"{self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}"
                else:
                   tempStr += f"{self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)}"
                tempStr += " towards her tight dainty folds, sinking it in as you push her down upon it as she lets out a slightly pained yet quite erotic squeal. By the time you're completely hilted inside of her, the protruding clit in front bucks up and down, jerking just from being penetrated. Such sensitivity only makes you want to thrill her more, making up for the pain she's given to you. You lift her slightly and slam her back down, thrusting with your hips in rhythm.\n\n\"Eeek!\" She cries out from the rough treatment, but the immediate cooing thereafter and the warmth you feel coming from her only shows that she enjoys it more. So the more you give to her...\n\nPounding again and again, you plow the small body in your lap, making her bounce up and down with your thrusting alone. The pigtails flail about, her mouth yawning wide and Mr. Snuggles riding on top of her tiny erection. She practically burns in your embrace, wildly reaching moaning and gasping orgasms while your own climax goes off"
-               if ((self.cockTotal > 0) and (self.cockSize * self.cockSizeMod < self.eVagLimit(24))):
+               if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(24)):
                   tempStr += ", your spunk spraying into her womb"
                   self.cumAmount()
                tempStr += ".\n\nAfter a few minutes of tight connection, the girl crawls out of your lap, her naked ass shaking as she pulls you out before pulling her panties back up..."
@@ -20414,16 +20419,16 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
          case 309:
             tempStr = "\"Mmm, so you want to take the lead, huh?\" The succubus concedes to your advances, bending over and putting her hands up against the wall, even going so far as to unzip her panties down the middle, exposing her engorged plump lips. The meaty things are plush and look like they're made for being fucked hard, luring you in more as you press in behind her."
-            if ((self.cockTotal > 0) or (self.vagTotal > 0) and (self.clitSize > 20)):
+            if (self.cockTotal > 0 or self.vagTotal > 0 and self.clitSize > 20):
                tempStr += "\n\nYou plunge "
                if (self.cockTotal > 0):
                   tempStr += f"{self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}"
                else:
                   tempStr += f"{self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)}"
                tempStr += " into her awaiting entrance, pushing in deep."
-               if ((self.cockTotal > 0) and (self.cockSize * self.cockSizeMod > 48)):
+               if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod > 48):
                   tempStr += " Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your cock pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth."
-               elif ((self.cockTotal < 1) and (self.clitSize > 120)):
+               elif (self.cockTotal < 1 and self.clitSize > 120):
                   tempStr += " Amazingly, her sensual lips stretch wider and wider, taking in your whole length until your clitoris pushes back out against her belly below, her body easily taking you in and hugging you tightly with her warmth."
                tempStr += f" The swollen labia presses against your crotch as you sink your hilt inside. The whole tunnel slurps around your shaft, kneading and squeezing you gently with her well-trained muscles. She was definitely made for this sort of thing... You begin to thrust again and again, the divine pussy sucking you in and out with such fantastic intensity.\n\nAnd while your attention is diverted, you fail to notice the serpentine tail creeping around to your {self.buttDesc()} tush. The spaded tip foldsin on itself, narrowing for a quick entrance into your ass. You buck harder into the she-devil as you feel yourself fill with the tail while it sensually slips in and out, pinning you from behind and urging you on further. Which you oblige.\n\nThe succubus' wings spread as she lets out an ecstatic shrill, climaxing from your stimulated efforts. The grinding around your rod from her clenching passage also sends you along as well"
                if (self.cockTotal > 0):
@@ -20434,7 +20439,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\nYou fall to your knees and push your face into her nethers. You bite into the swollen labia and lick up through the crevice, devouring her sex until you can feel her quiver. The plush flesh around your face feels pleasant, encouraging you to dive in more, slipping your tongue in and out of her hole while her ass shakes in delight.\n\nAnd while you're busy eating out the oversexual pussy, the serpentine tail creeps down to {self.oneYour(2)} own. The spade at the tip of the tail folds in on itself, narrowing for a quick entrance into your tunnel. You buck as you're caught off guard, but with your face planted in her round ass you quickly sit back down, driving her tail deeper into you.\n\nThe succubus seems pleased with the way things are, content with bringing you to orgasm as you do so for her. She lets out an ecstatic shrill, her wings spreading wide as she climaxes, a flood of honey pouring down around your mouth. The tail inside of you unfurls and drags across your inner walls, making your hips twitch with a writhing high in turn."
             tempStr += " Yet, the climax feels a bit more draining than you might have expected. You feel slightly weaker, your body seemingly slimming down a bit, as the vials around the woman's belt glow slightly.\n\n\"Mmmm~\" She moans in concert with the glow. \"Tastes sooo good~\"\n\nJust as you thought you had been the one in charge the whole time, the succubus pulls away from you and comes to a stand while zipping herself up. \"That was a nice snack~\""
             self.stats(-1,0,0,0)
-            self.body = self.body - 1
+            self.body -= 1
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
       self.outputMainText(tempStr,True)
    def doGetRaped(self):
@@ -20455,7 +20460,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
             elif (self.vagTotal > 0):
                tempStr = f"Feeling the warmth emanating from beneath your {self.clothesBottom()}, the cock-snake slithers in {self.legWhere(1)} your {self.legDesc(2)}. The phallic head nuzzles up against your {self.vulvaDesc()} lips, smearing around some of your lubricant. Its nose bumps against your {self.clitDesc()} clit{self.plural(2)}, testing your arousal until you quiver beneath."
-               if (self.pregCheck(1) == True):
+               if (self.pregCheck(1)):
                   tempStr += f"\n\nSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your {self.legDesc(1)}, holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\n\nAnd it's quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can't help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\n\nIn that moment of peak pleasure, the snake lets go of your {self.legDesc(1)} and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\n\nIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you..."
                   i = 0
                   while (i < self.pregArray.length):
@@ -20498,7 +20503,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.lactation > 0):
                tempStr += ", delighting in the taste of your milk"
             tempStr += f". However, it doesn't take long until she reaches beneath her loin cloth and pulls her bikini bottom to the side before she goes diving into your {self.clothesBottom()},"
-            if ((self.gender == 1) or (self.gender == 3)):
+            if (self.gender == 1 or self.gender == 3):
                tempStr += f" digging out {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}."
                if (self.cockSize * self.cockSizeMod > self.eVagLimit(40)):
                   tempStr += f" She attempts to stand and squat down upon it, but, to her dismay, she can't seem to push it into her hungry pussy, even though she tried until tears welled up in her eyes from the painful stretching. Instead, she settles for hugging and humping the {self.cockDesc()} thing, grinding her own stiff little erection into it, her feminine juices spilling down its length and over your body."
@@ -20507,14 +20512,14 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   tempStr += " She rises up, only to squat back down on your erection, your cock slipping into her supple folds. So absolutely overjoyed to finally have a cock in her, she scratches at your chest with her claws and bites down upon your neck."
                tempStr += " Her hips speed up faster and faster, wildly working her pussy so much that the slick liquids spilling from her gurgle and churn into a bubbly mess. You too find her efforts to be extremely effective, your body quaking along with her."
-               if ((self.cumAmount() > 550) and (self.cockSize * self.cockSizeMod <= self.eVagLimit(40))):
+               if (self.cumAmount() > 550 and self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
                   tempStr += " She purrs loudly as she feels your cum explode within her, utterly pleased as it fills her so much that it squirts back out of her pussy with a loud lewd noise."
                elif (self.cockSize * self.cockSizeMod > self.eVagLimit(40)):
                   tempStr += " She purrs hungrily as she laps at you cum as it sprays about the both of you, her face absolutely delighted in having her fur matted with the stuff."
                else:
                   tempStr += " She purrs pleasantly as she feels your cum spurt within her, gyrating her hips around your rod to drink in every drop."
                tempStr += "\n\n"
-               if ((self.knot == True) and (self.cockSize * self.cockSizeMod <= self.eVagLimit(40))):
+               if (self.knot == True and self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
                   tempStr += "With a high-pitched squeak, she pulls off of your knot without thinking. She rubs her poor cunny from the pain, only to roll her eyes up into her head with the pleasant masturbation. "
             elif (self.gender == 2):
                tempStr += f" lapping at your {self.vulvaDesc()} crotch and rouchly licking your {self.clitDesc()} clit{self.plural(2)}."
@@ -20530,14 +20535,14 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " She glides back up your chest and presses her sloppy cunt to yours, grinding the two together."
                tempStr += " Her hips speed up faster and faster, wildly working her pussy so much that the slick liquids spilling from her gurgle and churn into a bubbly mess. You too find her efforts to be extremely effective, your body quaking along with her."
             tempStr += "Dazed and high with her climax, having finally overcome her heat a little, she stumbles away, her loin cloth pushed so far to the side that her lips shine between her legs for all to see."
-            if ((self.percent() < 40) and (self.ballSize > 1) and (self.cockSize * self.cockSizeMod <= self.eVagLimit(40))):
+            if (self.percent() < 40 and self.ballSize > 1 and self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
                tempStr += " And she seems oddly content, as though her heat had passed with that romp for some reason..."
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
          case 302:
             tempStr = "Seeing you laying defenseless and utterly aroused before him, the drunken equan falls to the ground. With a grunt and a grope, he pulls his huge cock from his pants, his erection barely 2/3 its full potential. Considering how drunk he is, it probably won't get much larger."
-            if ((self.gender == 1) or ((self.gender == 3) and (self.percent() <= 50))):
+            if (self.gender == 1 or self.gender == 3 and self.percent() <= 50):
                tempStr += f" Nevertheless, not caring whether you're male or female, he turns you over to find the hole everybody has. Giving your {self.buttDesc()} ass a slap with his mug, he leans forward and plunges his erection deep inside."
-            elif ((self.gender == 2) or (self.gender == 3)):
+            elif (self.gender == 2 or self.gender == 3):
                tempStr += f" Nevertheless, he slips his arms behind your {self.legDesc(6)}, pushing them up and foward as his cock plows into {self.oneYour(2)} cunt{self.plural(2)}."
                if (self.vagLimit() < 12):
                   tempStr += f" You cry out in pain as the cock slams against your entrance, completely unable to fit. So, instead, the the horny equan turns you over, plunging his erection deep into your {self.buttDesc()} ass until you can see it bulge through your belly."
@@ -20572,7 +20577,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing. With a grin, she slides off of you and back into the ocean, her tentacles twitching excitedly as she disappears..."
             elif (self.gender == 2):
                tempStr += f"She grins at you, particularly happy to see you submit before her. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your {self.buttDesc()} butt. They weave into your {self.clothesBottom()} and pull it {self.pullUD(2)}, exposing your swollen and hungry {self.vulvaDesc()} cunt{self.plural(2)}. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your {self.skinDesc()}, giving her a good grip, while some in particular latch onto your clit{self.plural(2)} and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button{self.plural(2)} and vulva swelling larger as fluids from the cups seep into them."
-               if (self.pregCheck(1) == False):
+               if (self.pregCheck(1) == False): #!Flip this and get rid of the ==
                   tempStr += "\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals..."
                   self.clitSize += 4
                   self.vulvaSize += 2
@@ -20600,7 +20605,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.cumAmount() > 2300):
                   tempStr += " You come so much that her belly begins to swell larger, stretching to engulf as much of your seed as she can, before gushing back out and down your cock."
                tempStr += f"\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing. With a grin, she seems particularly happy to have found such a suitable partner. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your {self.buttDesc()} butt once more. They squirm around your exposed swollen and hungry {self.vulvaDesc()} cunt{self.plural(2)}, making sure you're still aroused. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Its the thing you had noticed before... Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your {self.skinDesc()}, giving her a good grip, while some in particular latch onto your clit{self.plural(2)} and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button{self.plural(2)} and vulva swelling larger as fluids from the cups seep into them."
-               if (self.pregCheck(1) == False):
+               if (self.pregCheck(1) == False): #!Flip this and get rid of the ==
                   tempStr += "\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals..."
                   self.clitSize += 4
                   self.vulvaSize += 2
@@ -20619,12 +20624,12 @@ class NiminFetishFantasyv0975o_fla:
                         self.pregArray[i + 3] = 216
                         i = self.pregArray.length
                      i += 5
-            if (((self.gender == 2) or (self.gender == 3)) and (self.pregCheck(1) == True)):
+            if ((self.gender == 2 or self.gender == 3) and self.pregCheck(1)):
                tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
             else:
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
          case 304:
-            if ((self.vagTotal > 0) and (self.vagLimit() > 80)):
+            if (self.vagTotal > 0 and self.vagLimit() > 80):
                tempStr = f"A smirk crosses the bunny-man's face as you fall before him, your cunt{self.plural(2)} dripping with arousal. His own conical prick twitches in his sheath at the size of you gaping maw, even in your reduced state, eager to hop in and make you his new bunny-hole. He falls to his knees and wraps his arms around your body, his hips quickly closing the gap between your heights. You can hardly tell at first that {self.oneYour(2)} slit{self.plural(2)} is being penetrated, the narrow tip relatively small. But as he quickly plows the rest of his length in, your eyes nearly cross from the rapid change in girth."
                if (self.tallness < 160):
                   tempStr += " You can feel your belly distend, your vaginal flesh stretching out within to match the shape of his cock."
@@ -20639,7 +20644,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr = f"A smirk crosses the bunny-man's face as you fall to your {self.legDesc(6)}. He lunges forward to hold you up, his conical prick bobbing before your face. So lost in lust, your mouth subconsciously opens as you feel a supple tip press against it, sucking it in until you quickly find your jaw wedged open by the increasing girth. Just the tip of his penis is all that manages to fit inside, but he doesn't seem to care. He twirls what little there is around the inside of your mouth, pressing it down against your tongue. Your tongue lashes back, your throat sucking it in as it tries to gulp down the pre that leaks.\n\nThough he can't face-fuck you too well, he seems perfectly happy pleasuring the rest of his shaft with a hand. With each stroke of his length, your whole body bobs to keep up with the stiffness that holds your mouth agape. Until he comes to an abrupt halt...\n\nYour throat goes numb as hot seed gushes down it. You don't even have time to swallow, it's so forceful and so plentiful. Some sprays back out from your nose and even your eyes feel wet and slightly sticky from something that isn't tears. Your stomach quickly fills and you feel oh so full... For a moment, your hands can wrap around your belly as it distends to obscene sizes.\n\nHowever, oddly, you soon find yourself sucking in more and more of his length. Your extended belly shrinks as it's able to contain more of the stuff, your throat regaining composure. As your body grows out from his hands, he suddenly pulls out from you, spraying the last bit from your face. He quickly hops away as you begin to nearly grow to your normal size, though your head is still oversexed."
             tempStr += self.doLust(-(self.sen // 2),2,1,5,ret=True)
          case 305:
-            if (((self.gender == 1) or (self.gender == 3) and (self.percent() > 50)) and ((self.cockSize * self.cockSizeMod > 140) or (self.cockTotal * self.cockSize * self.cockSizeMod > 280))):
+            if ((self.gender == 1 or self.gender == 3 and self.percent() > 50) and (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280)):
                tempStr = f"A smile crosses the bunny-girl's face as you fall before her, your cock{self.plural(1)} pushing at your {self.clothesBottom()}. She ducks down and releases your member{self.plural(1)} with one hand while her other disappears between her legs. It quickly reappears as she stands up and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your cock{self.plural(1)} with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your length{self.plural(1)}. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your cock{self.plural(1)} can't tell if {self.plural(7)} inside or not, only feeling a constant rubbing against {self.plural(5)} sensitive skin. And despite the fervent efforts on your manhood, the bunny-girl still manages to climax first, as she lets out a succulent shout of ecstasy. Her walls clamp around your appendage{self.plural(1)}, sucking {self.plural(9)} in and tugging {self.plural(9)} along with her as her bouncing only grows more enthused.\n\nIt doesn't take long until your own arousal begins to build pressure, though you find that pressure to grow much greater than you would have expected. The bunny-girl's pussy seems to only be growing tighter and tighter, lifting her from your body as your cock{self.plural(1)} push her away. When you finally reach orgasm, she groans loudly as her belly fills and swells. Opening your eyes, you realize you're growing larger, almost your full size! She flies off your erection{self.plural(1)} with a slick pop before she is really harmed and hops away, leaving you to finish gushing outside of the cave..."
             elif (self.udderSize / 2 > 300):
                tempStr = f"A smile crosses the bunny-girl's face as you fall before her. Eyeing your {self.udderDesc()} udder through your {self.clothesTop()}, an idea seems to dawn upon her and she ducks down to releas your relatively massive mammaries. Then she stands and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your udder with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your {self.udderDesc()} bag, letting the fleshy balloon fill her. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your whole body is lifted by your stretching udder before being slammed back into the ground with the giant little bunny bum crashing back down upon you."
@@ -20677,7 +20682,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
          case 307:
             tempStr = f"The Minotaur grunts. \"Good. Could use a fuck!\"\n\nNot exactly a romantic, he lifts you by your {self.legDesc(8)} and pulls off your {self.clothesBottom()} so it's out of the way. He continues to {self.legVerb(3)} your {self.legDesc(2)}, inspecting what you have before he goes further. Shrugging at what he finds, he waggles his hips so that his big fat bulky cock flops out from behind his loin cloth. Already stiff and willing to go, pre dribbles down from the tip and lubes up your entire crotch, running into all your cracks and crevices."
-            if ((self.vagTotal > 0) and (self.vagLimit() > 72)):
+            if (self.vagTotal > 0 and self.vagLimit() > 72):
                tempStr += f" He proceeds to stuff his massive schlong into {self.oneYour(2)} cunt{self.plural(2)} with a loud slurp, pushing in until he can see his own cock bulge out from your belly."
             elif (self.vagTotal > 0):
                tempStr += f" With your cunt{self.plural(2)} obviously too small, he proceeds to stuff his massive schlong into your ass with a loud slurping squish."
@@ -20688,7 +20693,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f", your cock{self.plural(1)} launching ribbons over yourself while {self.plural(11)} bounce{self.plural(3)} against you"
                self.cumAmount()
             tempStr += ".\n\nWith all the flurry of the abrupt orgasm, the Minotaur then lets go of you, making you shiver as you slide down his shaft and plop onto the floor, seed pooling out of your orifice..."
-            if ((self.vagTotal > 0) and (self.vagLimit() > 72)):
+            if (self.vagTotal > 0 and self.vagLimit() > 72):
                tempStr += self.doImpregnate(self.enemyBaby(),ret=True)
             tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
          case 308:
@@ -20717,16 +20722,16 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
          case 309:
             tempStr = f"The succubus grins as you give yourself to her. \"That's right, you know what's best for you~\"\n\nHigh-heels click on either side of you as the she-devil positions herself over you. She zips her red panties right down the center, making them part to expose her engorged large feminine lips. The things look plump and practically made for intense fucking, which only leads you to be even more anxious for her to take you. However, before you can attempt to lunge at her, she squats down and sits upon your {self.bellyDesc()} belly and leans forward to grab your arms up above your head. Pinning you to the floor, her ample bosom engulfs your face, burrowing you inside her cleavage while her hips grind against you, her plush pussy slickening up your {self.skinDesc()}."
-            if ((self.cockTotal > 0) or (self.vagTotal > 0) and (self.clitSize > 20)):
+            if (self.cockTotal > 0 or self.vagTotal > 0 and self.clitSize > 20):
                tempStr += "\n\nHer tail wraps around "
                if (self.cockTotal > 0):
                   tempStr += f"{self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}"
                else:
                   tempStr += f"{self.oneYour(2)} {self.clitDesc()} clit{self.plural(1)}"
                tempStr += " and pulls it up to her awaiting hole. She teases you for a bit, sliding your tip through her thick folds, letting the supple flesh tempt you until your hips are eager to thrust all the way in. Once you're groaning and begging for her cunt, she lets your erection slip, plunging her rump back onto your shaft and impaling herself upon you."
-               if ((self.cockTotal > 0) and (self.cockSize * self.cockSizeMod > 48)):
+               if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod > 48):
                   tempStr += " Amazingly, her sensual lips stretch wider and wider, taking in your whole length until you can see your own cock pushing back out against her belly, her body easily taking you in and hugging you tightly with her warmth."
-               elif ((self.cockTotal < 1) and (self.clitSize > 120)):
+               elif (self.cockTotal < 1 and self.clitSize > 120):
                   tempStr += " Amazingly, her sensual lips stretch wider and wider, taking in your whole length until you can see your own clitoris pushing back out against her belly, her body easily taking you in and hugging you tightly with her warmth."
                tempStr += f" Her insides feel divine, slurping around you and gently squeezing you in soft perfection. She was definitely made for this...\n\nThe succubus' round rump begins to bounce upon you, sucking you in and out, nearly lifting you off each time as her tunnel squeezes strongly around you. Totally in control, she proceeds to further show her dominance over you by dancing her tail beneath your {self.buttDesc()} tush. The spade at the end folds in upon itself, growing narrow just before driving itself in. You wince at first, her tail burrowing deep into your ass, and you relax as more pleasure overwhelms you from behind. The tail fucks your rear 'pussy' while the succubus takes care of your rod. Completely restrained and dominated by her, you're rapidly growing tingly and eventually going numb as you climax."
                if (self.cockTotal > 0):
@@ -20780,25 +20785,25 @@ class NiminFetishFantasyv0975o_fla:
    def doeLust(self, changes:int, ret=False):
       tempStr = ""
       if self.eGen == 1:
-         if ((self.eLust + changes > 65) and (self.eLust <= 65)):
+         if (self.eLust + changes > 65 and self.eLust <= 65):
             tempStr += f"\n\nThe {self.enemyName()} smears the pre across its rod, stroking it gently while fighting, majorly distracted."
-         elif ((self.eLust + changes > 40) and (self.eLust <= 40)):
+         elif (self.eLust + changes > 40 and self.eLust <= 40):
             tempStr += f"\n\nThe {self.enemyName()} squirms, pre dripping from the tip of its stiffness."
-         elif ((self.eLust + changes > 20) and (self.eLust <= 20)):
+         elif (self.eLust + changes > 20 and self.eLust <= 20):
             tempStr += f"\n\nThe {self.enemyName()} shifts a little, an erection clearly beginning to grow."
       elif self.eGen == 2:
-         if ((self.eLust + changes > 65) and (self.eLust <= 65)):
+         if (self.eLust + changes > 65 and self.eLust <= 65):
             tempStr += f"\n\nThe {self.enemyName()} smears the honey all over as it rubs itself constantly while fighting, majorly distracted."
-         elif ((self.eLust + changes > 40) and (self.eLust <= 40)):
+         elif (self.eLust + changes > 40 and self.eLust <= 40):
             tempStr += f"\n\nThe {self.enemyName()} squirms, honey dribbling from its naughty hole."
-         elif ((self.eLust + changes > 20) and (self.eLust <= 20)):
+         elif (self.eLust + changes > 20 and self.eLust <= 20):
             tempStr += f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can."
       elif self.eGen == 3:
-         if ((self.eLust + changes > 65) and (self.eLust <= 65)):
+         if (self.eLust + changes > 65 and self.eLust <= 65):
             tempStr += f"\n\nThe {self.enemyName()} smears the lubricant all over as it rubs and strokes itself constantly while fighting, majorly distracted."
-         elif ((self.eLust + changes > 40) and (self.eLust <= 40)):
+         elif (self.eLust + changes > 40 and self.eLust <= 40):
             tempStr += f"\n\nThe {self.enemyName()} squirms, honey dribbling and pre dripping from its aroused genitals."
-         elif ((self.eLust + changes > 20) and (self.eLust <= 20)):
+         elif (self.eLust + changes > 20 and self.eLust <= 20):
             tempStr += f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can while its erection clearly grows."
       self.eLust += changes
       if (ret):
@@ -20876,19 +20881,19 @@ class NiminFetishFantasyv0975o_fla:
          case 309:
             self.setEnemystats(150,35,80,40,40,0,2,4,math.floor(self.percent() / 4 + 5),60,260)
    def enemyBaby(self):
-      match self.enemyID:
-         case 201:
-            return 100
-         case 302:
-            return 2
-         case 304:
-            return 7
-         case 307:
-            return 307
-         case 308:
-            return 308
+      if self.enemyID == 201:
+         return 100
+      elif self.enemyID == 302:
+         return 2
+      elif self.enemyID == 304:
+         return 7
+      elif self.enemyID == 307:
+         return 307
+      elif self.enemyID == 308:
+         return 308
       return 0
    def enemyAttack(self):
+      #!Optimize if/else
       attack = 0
       chance = 0
       attack = self.percent()
@@ -20906,8 +20911,8 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(math.floor(self.cockSize * self.cockSizeMod / 5 + self.percent() / 10),1,ret=True)
                   tempStr += self.cockChange(1,0,ret=True)
                   self.cockSnakeVenom += 5
-               elif ((self.cockTotal < 1) and (self.vagTotal > 0)):
-                  if ((self.clitSize > 20) and (self.percent() <= 5)):
+               elif (self.cockTotal < 1 and self.vagTotal > 0):
+                  if (self.clitSize > 20 and self.percent() <= 5):
                      tempStr += f" {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)}. You feel it swell and shift within your {self.clothesBottom()}, your lips started to grow quite oddly as well..."
                      tempStr += self.vagChange(0,-1,ret=True)
                      tempStr += self.cockChange(math.ceil(self.clitSize * 5 / 2),1,ret=True)
@@ -20929,26 +20934,26 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\nThe sentient dust devil overcomes you and whooshes about your body, getting sand all over your {self.skinDesc()} and into some crevices you'd rather not think of, making you very uncomfortable and wearing away some of your sensitivity."
                self.stats(0,0,0,-1)
                tempStr += self.doLust(-5,0,ret=True)
-            elif ((attack <= 60) and ((self.moistCalc(1) > 11) and (self.cockTotal > 0) or (self.moistCalc(2) > 11) and (self.vagTotal > 0) or (self.milkEngorgement > 200) and (self.milkEngorgementLevel > 1) or (self.udderEngorgement > 200) and (self.udderEngorgementLevel > 1) and (self.udders == True))):
-               if ((self.milkEngorgement > 200) and (self.milkEngorgementLevel > 1)):
+            elif (attack <= 60 and (self.moistCalc(1) > 11 and self.cockTotal > 0 or self.moistCalc(2) > 11 and self.vagTotal > 0 or self.milkEngorgement > 200 and self.milkEngorgementLevel > 1 or self.udderEngorgement > 200 and self.udderEngorgementLevel > 1 and self.udders == True)):
+               if (self.milkEngorgement > 200 and self.milkEngorgementLevel > 1):
                   tempStr += f"\n\nThe whirling sand leaps out at your {self.boobDesc()} chest and laps up some of the milk that spills from it, sucking it back in and strengthening the devil's endurance."
                   tempStr += self.doeHP(5 + self.percent() // 20,ret=True)
-               elif ((self.udderEngorgement > 200) and (self.udderEngorgementLevel > 1) and (self.udders == True)):
+               elif (self.udderEngorgement > 200 and self.udderEngorgementLevel > 1 and self.udders == True):
                   tempStr += f"\n\nThe whirling sand leaps out at your {self.udderDesc()} udder and laps up some of the milk that spills from it, sucking it back in and strengthening the devil's endurance."
                   tempStr += self.doeHP(5 + self.percent() // 20,ret=True)
-               elif ((self.moistCalc(1) > 11) and (self.cockTotal > 0)):
+               elif (self.moistCalc(1) > 11 and self.cockTotal > 0):
                   tempStr += f"\n\nThe whirling sand across the {self.cockDesc()} bulge in your {self.clothesBottom()} and laps up some of the slick lubrication that spills from it, sucking the stuff back in and strengthening the devil's endurance."
                   tempStr += self.doeHP(5 + self.percent() // 20,ret=True)
-               elif ((self.moistCalc(2) > 11) and (self.vagTotal > 0)):
+               elif (self.moistCalc(2) > 11 and self.vagTotal > 0):
                   tempStr += f"\n\nThe whirling sand licks up {self.legWhere(1)} your {self.legDesc(2)}, across your {self.vulvaDesc()} groin, and laps up some of the slick lubrication that spills from it, sucking the stuff back in and strengthening the devil's endurance."
                   tempStr += self.doeHP(5 + self.percent() // 20,ret=True)
             elif (attack <= 90):
                chance = self.percent()
-               if ((chance < 12) and (self.cockTotal > 0)):
+               if (chance < 12 and self.cockTotal > 0):
                   tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.cockDesc()} masculine length{self.plural(1)}, soaking up some of the moisture from within and causing {self.plural(9)} to shrink a little. The sand then returns to the devil, renewing some of windy essence."
                   self.cockSize -= 1
                   tempStr += self.doeHP(2,ret=True)
-               elif ((chance < 23) and (self.balls > 0) and (self.showBalls == True)):
+               elif (chance < 23 and self.balls > 0 and self.showBalls == True):
                   if (self.ballSize < 2):
                      tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.ballDesc()} scrotum. However, your balls are so puny that there is hardly any moisture for the sand to take, doing nothing for the devil."
                   else:
@@ -20962,14 +20967,14 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and whisks across your {self.buttDesc()} rump, soaking up some of the moisture from within and causing it to shrink a little. The sand then returns to the devil, renewing some of windy essence."
                      self.butt -= 1
                      tempStr += self.doeHP(2,ret=True)
-               elif ((chance < 45) and (self.vagTotal > 0)):
-                  if ((self.vulvaSize < 2)):
+               elif (chance < 45 and self.vagTotal > 0):
+                  if (self.vulvaSize < 2):
                      tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and slips through your {self.vulvaDesc()} lips. However, your vulva is so tiny that there is hardly any moisture for the sand to take, doing nothing for the devil."
                   else:
                      tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and slips through your {self.vulvaDesc()} lips, soaking up some of the moisture from within and causing them to shrink a little. The sand then returns to the devil, renewing some of windy essence."
                      self.vulvaSize -= 1
                      tempStr += self.doeHP(2,ret=True)
-               elif ((chance < 56) and (self.vagTotal > 0)):
+               elif (chance < 56 and self.vagTotal > 0):
                   if (self.clitSize < 2):
                      tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and whirls about your {self.clitDesc()} clit{self.plural(2)}. However, your button{self.plural(2)} {self.plural(14)} so tiny that there is hardly any moisture for the sand to take, doing nothing for the devil."
                   else:
@@ -20983,14 +20988,14 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f"\n\nSome of the devil's sand creeps into your {self.clothesTop()} and gropes about your {self.boobDesc()} breasts, soaking up some of the moisture from within and causing them to shrink a little. The sand then returns to the devil, renewing some of windy essence."
                      self.breastSize -= 1
                      tempStr += self.doeHP(2,ret=True)
-               elif ((chance < 78) and (self.udders == True)):
+               elif (chance < 78 and self.udders == True):
                   if (self.udderSize < 2):
                      tempStr += f"\n\nSome of the devil's sand blow across your {self.udderDesc()} udder. However, your milk-bag is so small that there is hardly any moisture for the sand to take, doing nothing for the devil."
                   else:
                      tempStr += f"\n\nSome of the devil's sand blow across your {self.udderDesc()} udder, soaking up some of the moisture from within and causing it to shrink a little. The sand then returns to the devil, renewing some of windy essence."
                      self.udderSize -= 1
                      tempStr += self.doeHP(2,ret=True)
-               elif ((chance < 89) and (self.udders == True)):
+               elif (chance < 89 and self.udders == True):
                   if (self.teatSize < 3):
                      tempStr += f"\n\nSome of the devil's sand licks across your {self.teatDesc()} teats. However, your bovine-nipples are so little that there is hardly any moisture for the sand to take, doing nothing for the devil."
                   else:
@@ -21006,11 +21011,12 @@ class NiminFetishFantasyv0975o_fla:
             elif (attack <= 100):
                chance = self.percent()
                tempStr += "\n\nA funnal of sand shoots out from the devil's form, whipping out and latching onto your "
-               if ((chance < 12) and (self.cockTotal > 0)):
+               #!Add more checks here to make sure things don't get weird
+               if (chance < 12 and self.cockTotal > 0):
                   tempStr += f"{self.cockDesc()} cock{self.plural(1)}, siphoning out a lot of moisture and causing {self.plural(9)} to shrink dramatically, restoring a good deal of power to the devil's winds."
                   self.cockSize -= 5
                   tempStr += self.doeHP(10,ret=True)
-               elif ((chance < 23) and (self.balls > 0) and (self.showBalls == True)):
+               elif (chance < 23 and self.balls > 0 and self.showBalls == True):
                   if (self.ballSize < 1):
                      tempStr += "balls. However, they're already so puny that the devil can't siphon any more moisture from them, proving a fruitless attack."
                   else:
@@ -21028,7 +21034,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.butt < 0):
                         self.butt = 0
                      tempStr += self.doeHP(10,ret=True)
-               elif ((chance < 45) and (self.vagTotal > 0)):
+               elif (chance < 45 and self.vagTotal > 0):
                   if (self.vulvaSize < 2):
                      tempStr += "vulva. However, your lips are so thin and tiny that the devil can't siphon any more moisture from them, proving a fruitless attack."
                   else:
@@ -21037,7 +21043,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.vulvaSize < 1):
                         self.vulvaSize = 1
                      tempStr += self.doeHP(10,ret=True)
-               elif ((chance < 56) and (self.vagTotal > 0)):
+               elif (chance < 56 and self.vagTotal > 0):
                   if (self.clitSize < 2):
                      tempStr += f"clit{self.plural(2)}. However, your button{self.plural(14)} so tiny that the devil can't siphon any more moisture from {self.plural(10)}, proving a fruitless attack."
                   else:
@@ -21055,7 +21061,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.breastSize < 0):
                         self.breastSize = 0
                      tempStr += self.doeHP(10,ret=True)
-               elif ((chance < 78) and (self.udders == True)):
+               elif (chance < 78 and self.udders == True):
                   if (self.udderSize < 2):
                      tempStr += "udder. However, it's so small that the devil can't siphon any more moisture from it, proving a fruitless attack."
                   else:
@@ -21064,7 +21070,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.udderSize < 1):
                         self.udderSize = 1
                      tempStr += self.doeHP(10,ret=True)
-               elif ((chance < 89) and (self.udders == True)):
+               elif (chance < 89 and self.udders == True):
                   if (self.teatSize < 3):
                      tempStr += "teats. However, they're so tiny that the devil can't siphon any more moisture from them, proving a fruitless attack."
                   else:
@@ -21082,39 +21088,39 @@ class NiminFetishFantasyv0975o_fla:
                      self.nippleSize = 1
                   tempStr += self.doeHP(10,ret=True)
          case 201:
-            if ((attack > 35) and (attack <= 50)):
+            if (attack > 35 and attack <= 50):
                tempStr += "\n\nThe lone wolf leaps at you, taking a large bite with its sharp teeth."
                tempStr += self.doHP(-self.eDmg(6),ret=True,retPO=True)
-            elif ((attack > 50) and (attack <= 70) and (self.lust > 15)):
+            elif (attack > 50 and attack <= 70 and self.lust > 15):
                tempStr += f"\n\nHis cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your {self.legDesc(1)} and humps wildly, smearing his canine pre up and down your {self.legDesc(1)}. A small spurt of cum shoots out, the large drop oozing down to your {self.legDesc(10)}. Not exactly a full climax, but enough for now, the wolf backs off."
                tempStr += self.doLust(self.lib / 3,1,ret=True)
                tempStr += self.doeLust(-math.floor(self.percent() / 10 + self.eSen / 2),ret=True)
-            elif ((attack > 70) and (self.gender != 0) and (self.gender != 1)):
+            elif (attack > 70 and self.gender != 0 and self.gender != 1):
                tempStr += f"\n\nThe lone wolf lifts his leg after running up beside you, a bit of urine splashing out onto your {self.legDesc(10)}. However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal."
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 4),1,ret=True)
             else:
                tempStr += "\n\nThe lone wolf rushes at you, scratching you with its claws."
                tempStr += self.doHP(-self.eDmg(8),ret=True,retPO=True)
          case 202:
-            if ((attack > 35) and (attack <= 50)):
+            if (attack > 35 and attack <= 50):
                tempStr += "\n\nThe gay wolf leaps at you, taking a large bite with its sharp teeth."
                tempStr += self.doHP(-self.eDmg(6),ret=True,retPO=True)
-            elif ((attack > 50) and (attack <= 70) and (self.lust > 15)):
+            elif (attack > 50 and attack <= 70 and self.lust > 15):
                tempStr += f"\n\nHis cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your {self.legDesc(1)} and humps wildly, smearing his canine pre up and down your {self.legDesc(1)}. A small spurt of cum shoots out, the large drop oozing down to your {self.legDesc(10)}. Not exactly a full climax, but enough for now, the wolf backs off."
                tempStr += self.doLust(self.lib / 3,1,ret=True)
                tempStr += self.doeLust(-math.floor(self.percent() / 10 + self.eSen / 2),ret=True)
-            elif ((attack > 70) and (self.gender != 0) and (self.gender != 1)):
+            elif (attack > 70 and self.gender != 0 and self.gender != 1):
                tempStr += f"\n\nThe gay wolf lifts his leg after running up beside you, a bit of urine splashing out onto your {self.legDesc(10)}. However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal."
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 4),1,ret=True)
             else:
                tempStr += "\n\nThe gay wolf rushes at you, scratching you with its claws."
                tempStr += self.doHP(-self.eDmg(8),ret=True,retPO=True)
          case 301:
-            if ((attack > 30) and (attack <= 60) and (self.eLust > 20)):
+            if (attack > 30 and attack <= 60 and self.eLust > 20):
                tempStr += f"\n\nThe horny felin woman comes in close, embracing you as she grinds her slick cunt up and down your {self.legDesc(1)}. She licks your {self.boobDesc()} chest while her feminine fluids spill down your thigh. She mewls a little as she has a small climax, alleviating some of her own frustrations while increasing yours in the process."
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 3),1,ret=True)
                tempStr += self.doeLust(-math.floor(self.percent() / 10 + self.eSen / 2),ret=True)
-            elif ((attack > 60) and (attack <= 85) and (self.eLust > 10)):
+            elif (attack > 60 and attack <= 85 and self.eLust > 10):
                tempStr += "\n\nUtterly thirsting for sex, she turns away from you and gets on all fours. She bends down further while raising her butt high into the air, showing off her lithe body while also showing off the swollen lips that bulge out of either side of her bikini bottom beneath the loin cloth, her tail waving enticingly above. Her sex-driven display makes you a little hot as well."
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 4),1,ret=True)
             elif (attack > 85):
@@ -21125,10 +21131,10 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nIn her frustration, she claws at you."
                tempStr += self.doHP(-self.eDmg(10),ret=True,retPO=True)
          case 302:
-            if ((attack > 30) and (attack <= 60) and (self.eLust >= 20)):
+            if (attack > 30 and attack <= 60 and self.eLust >= 20):
                tempStr += "\n\nThe drunken equan adjusts the giant bulge in his pants, grunting as a large gob of pre smears across his knee and blotches his pants. While not the most erotic display, whatever he's drinking makes the stuff smell extremely enticing..."
                tempStr += self.doLust(self.lib // 5,1,ret=True)
-            elif ((attack > 60) and (attack <= 80)):
+            elif (attack > 60 and attack <= 80):
                tempStr += "\n\nHe lifts his large mug up to his lips, taking a big swig. He burps after downing it, his wounds seemingly less severe than before."
                tempStr += self.doeHP(math.floor(self.percent() / 10 + 5),ret=True)
             elif (attack > 80):
@@ -21138,10 +21144,10 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nWith a hearty laugh, he bonks you on the head with his mug."
                tempStr += self.doHP(-self.eDmg(9),ret=True,retPO=True)
          case 303:
-            if ((attack > 30) and (attack <= 55)):
+            if (attack > 30 and attack <= 55):
                tempStr += f"\n\nWith a giggle that makes her breasts quiver, her hands move up to one of the starfish on her chest. She pries it away, her plump nipple popping out with a squirt of slightly pink milk. Giving you a quick wink, her other hand squeezes her breast, shooting a spurt of the stuff onto your body. The sweet-smelling liquid quickly absorbs into your {self.skinDesc()}, making you grow warm and aroused."
                tempStr += self.doLust(math.floor(20 + self.percent() / 10),1,ret=True)
-            elif ((attack > 55) and (attack <= 80)):
+            elif (attack > 55 and attack <= 80):
                tempStr += f"\n\nOne of her tentacles lashes out at you and whips up {self.legWhere(1)} your {self.legDesc(2)}. It smarts a bit, but it seems as though she intentionally hit you with the softer underside. The suction cups tear through your {self.clothesBottom()} and stick to "
                self.changeBot(-1)
                if (self.vagTotal > 0):
@@ -21149,13 +21155,13 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(math.floor(20 + self.percent() / 5),1,ret=True)
                   tempStr += self.doHP(-5,ret=True,retPO=True)
                   self.clitSize += 1
-               elif ((self.vagTotal < 1) and (self.cockTotal > 0)):
+               elif (self.vagTotal < 1 and self.cockTotal > 0):
                   tempStr += f"{self.oneYour(1)} cock{self.plural(1)}. You can feel fluid seep from the cups and into your cock{self.plural(2)}, arousing you further. The tentacle wraps around, tugging again and again at your erection, as through she were masturbating you. Although, from the focused expression on her first, she seems to simply be trying to wrench herself free after the attack. Not that it arouses you any less..."
                   tempStr += self.doLust(math.floor(10 + self.percent() / 10 + self.lib / 5),1,ret=True)
-               elif ((self.vagTotal < 1) and (self.cockTotal < 1)):
+               elif (self.vagTotal < 1 and self.cockTotal < 1):
                   tempStr += f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you."
                   tempStr += self.doLust(math.floor(10 + self.percent() / 10),1,ret=True)
-            elif ((attack > 80) and ((self.gametweaks[3] == True and self.isBottomOpen() == True) or (self.gametweaks[3] == False and self.attireBot == -1))):
+            elif (attack > 80 and (self.gametweaks[3] == True and self.isBottomOpen() == True or self.gametweaks[3] == False and self.attireBot == -1)):
                tempStr += "\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you."
                if (self.vagTotal > 0):
                   tempStr += f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size."
@@ -21173,11 +21179,11 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nOne of her eight tentacles whips out and lashs you, leaving a welt. She still smiles, however, as she seems to find the act a little kinky."
                tempStr += self.doHP(-self.eDmg(4),ret=True,retPO=True)
          case 304:
-            if ((attack > 30) and (attack <= 55)):
+            if (attack > 30 and attack <= 55):
                tempStr += f"\n\nWith a chuckle, he bounces past you and gives you a quickswat to your {self.buttDesc()} tush with his large foot in a rather playful manner."
                tempStr += self.doHP(-self.eDmg(15),ret=True,retPO=True)
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 10),1,ret=True)
-            elif ((attack > 55) and (attack <= 85)):
+            elif (attack > 55 and attack <= 85):
                tempStr += "\n\nGrabbing his own fuzzy scrotum, his eyes roll up into his head for a moment, biting his lip as he massages the testicles. A bit of pre drips down his fur and lathers around his balls until they're nice and shiny. Enjoying it a little too much, he decides to include you in the fun."
                if (self.tallness <= 144):
                   tempStr += " He skips right up to you, towering over you. His legs bend down, lowering his testicles before your face, his knees straddling either side of your head. He presses his relatively enormous balls into your face, practically smothering you with the scent of his nuts while he grinds his hips into your head.\n\nHappy with the quick massage, he bounds back, letting you breath again."
@@ -21185,7 +21191,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " His feet spring him forward at you, his legs wrapping around your neck. Sitting on your shoulders, he presses his relatively giant balls into your face, making sure you get a nice whiff while he grinds his hips into your head.\n\nHappy with the quick massage, he bounds back, letting you breath again."
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 5),1,ret=True)
                tempStr += self.doeLust(10,ret=True)
-            elif ((attack > 85) and (self.eLust >= 70)):
+            elif (attack > 85 and self.eLust >= 70):
                tempStr += "\n\nHis pointy, carrot-like prick standing from his fuzzy sheath and dripping with pre, he decides to lunge at you."
                if (self.breastSize >= 100):
                   tempStr += f" He hops up to your {self.boobDesc()} chest and abruptly turns around. Bending forward, his fluffy tail brushes over your face as his rump slips by. His balls rest upon your head, his sheath pressing into your face. You can feel his slick prick slip into your cleavage, the pointy tip easily drilling a path between your breasts. Within seconds the rabbity fellow begins hopping up and down upon your chest with fervor, squeezing the sides of your tits to crush his cock. You can feel his pulse beat strongly through his sheath and very soon you feel his muscles tense again and again. He lets out a groan as your {self.clothesTop()} floods with hot spunk, spurting between your flesh with a naughty sound and leaving your front completly swamped in a warm, sticky mess.\n\nThe whole thing taking less than a minute, he hops off of you, slapping a strand of cum across your face before returning to the battle, his lust somewhat sated."
@@ -21202,7 +21208,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nHe bounces closer and kicks you with one of his big feet, trying to soften you up a little."
                tempStr += self.doHP(-self.eDmg(8),ret=True,retPO=True)
          case 305:
-            if ((attack > 30) and (attack <= 55)):
+            if (attack > 30 and attack <= 55):
                tempStr += "\n\nWith a giggle, she leans down and tickles you, amused by how cute you look. And as she stands back up, her relatively giant breasts thwap you upside the head."
                tempStr += self.doHP(-self.eDmg(15),ret=True,retPO=True)
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 10),1,ret=True)
@@ -21211,7 +21217,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText(tempStr,False)
                   output = False
                   self.enemyAttack()
-            elif ((attack > 55) and (attack <= 85)):
+            elif (attack > 55 and attack <= 85):
                tempStr += "\n\nHer thighs press together as her hands reaches down to her naked groin. Biting her lip, she massages her pussy, her eyes closing with muffled whines. A bit of honey drips down her fur and lathers between her thighs until they're nice and shiny. Enjoying it a little too much, she decides to include you in the fun."
                if (self.tallness <= 144):
                   tempStr += " She skips right up to you, towering over you. Her legs bend down, lowering her nether-lips to your face, her knees straddling either side of your head. She presses her relatively enormous pussy into your face, her clit rubbing across your cheek, practically smothering you with the scent of her arousal as she grinds her hips into your head.\n\nHappy with the quick massage, she bounds back, letting you breath again."
@@ -21222,7 +21228,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hair = 6
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.lib / 4),1,ret=True)
                tempStr += self.doeLust(10,ret=True)
-            elif ((attack > 85) and (self.eLust >= 70)):
+            elif (attack > 85 and self.eLust >= 70):
                tempStr += "\n\nThe bunny-girl's vulva looks rather swollen and red, and her clitoris peeks through the clothes like a very small yet erect penis. Her arousal gets the best of her and she lunges at you."
                if (self.tallness > 80):
                   tempStr += f" Her legs spread wide and her clit rams into your side, grinding up your ribs. She does her best to clamp her thighs around your body.\n\nOne hand hugs your head while the other reaches down her backside and past her tail, nearly disappearing into her hungry cunny hole. She rapidly fists herself with loud schlicking sounds, her fem-juice squirting out across your {self.legDesc(2)} with each pump, while her hips pound again and against against your, powerfully dragging her relatively large clit up and down your {self.clothesTop()}.\n\nNot surprisingly, it doesn't take long before she quivers, one last splash messing your {self.clothesBottom()}, as she comes to a small orgasm."
@@ -21235,26 +21241,26 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nShe bounces closer and kicks you with one of her big feet, trying to soften you up a little."
                tempStr += self.doHP(-self.eDmg(8),ret=True,retPO=True)
          case 306:
-            if ((attack > 25) and (attack <= 45)):
+            if (attack > 25 and attack <= 45):
                tempStr += "\n\nShe lunges forward with open maw and bites you! Though her bite isn't exactly the strongest..."
                tempStr += self.doHP(-self.eDmg(10),ret=True,retPO=True)
-            elif ((attack > 45) and (attack <= 55)):
+            elif (attack > 45 and attack <= 55):
                tempStr += "\n\nThe naga whips around and slams into you with her powerfule tail!"
                tempStr += self.doHP(-self.eDmg(4),ret=True,retPO=True)
-            elif ((attack > 55) and (attack <= 75)):
+            elif (attack > 55 and attack <= 75):
                tempStr += "\n\nHer tail coils and springs her into the air, leaping at you with wings outspread and closes them around you, battering your head about and knocking you slightly senseless."
                tempStr += self.doHP(-self.eDmg(7),ret=True,retPO=True)
                self.stats(0,-1,0,0)
             elif (attack > 75):
                tempStr += "\n\nThe fierce naga twirls about, flourishing her prismatic wings and sending a cloud of sparkly colored dust in your direction. You sneeze a bit as you're forced to breath it in, feeling tingly as its magical effects settle in."
-               if ((self.eggLaying > 0) and (self.vagTotal > 0)):
+               if (self.eggLaying > 0 and self.vagTotal > 0):
                   tempStr += "\n\nYour womb feels more active, like your next egg is ready to come out faster..."
                   self.eggRate += 1
                   self.eggceleratorTime += 10
                   self.eggceleratorDose += 1
                   if (self.eggceleratorDose > 8 + math.ceil(self.percent() / 20)):
                      tempStr += f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying."
-                     if (self.isBottomOpen() == True):
+                     if (self.gametweaks[3] == True and self.isBottomOpen() == True or self.gametweaks[3] == False and (self.attireBot == -2 or self.attireBot == 5 or self.attireBot == 7 or self.attireBot == 12 or self.attireBot == 13 or self.attireBot == 14 or self.attireBot == 16 or self.attireBot == 25)):
                         tempStr += f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out."
                      else:
                         tempStr += f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out."
@@ -21265,7 +21271,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.eggRate -= self.eggceleratorDose
                      self.eggceleratorDose = 0
                      self.hrs += 1
-               elif (self.pregCheck(0) == True):
+               elif (self.pregCheck(0)):
                   tempStr += "\n\nYour womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust."
                   i = 0
                   while (i < self.pregArray.length):
@@ -21290,7 +21296,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.enemyAttack()
             elif (attack <= 45):
                tempStr += "\n\n\"Err...\" He stops for a moment, forgetting what he was going to do next... He's not a smart one, that's for sure."
-            elif ((attack <= 65) and (self.eLust > 40)):
+            elif (attack <= 65 and self.eLust > 40):
                tempStr += "\n\nWith his cock growing erect out the side of his loin cloth, he pauses his assault for a moment to take care of himself... right in front of you. His large hand wraps around his thick cock and furiously begins to masturbate, the skin from his shaft dragging over the wide head again and again so quickly that it looks like it's winking. Then, with a grunt, a geyser of spunk sprays in your direction like a firehose."
                if (self.percent() > self.str_):
                   tempStr += " It hits you with such force that you're blasted back against the wall and lose your breath for a moment, giving the Minotaur a chance for a followup attack while you catch your breath and wipe off some of the heady thick spooge."
@@ -21315,10 +21321,10 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\nShe coos... or snarls? Either way, you find her sinking her teeth into your {self.skinDesc()}, making you yelp a little in turn. And as soon as she lets go, she is suddenly much more timid, saying \"Aww, I'm sorry... I'll kiss your boo-boo and make it better...\". She proceeds to lick the wound she just cause, kissing it rather... sensually."
                tempStr += self.doHP(-self.eDmg(4),ret=True,retPO=True)
                tempStr += self.doLust(math.floor(self.percent() / 10 + self.sen / 5),1,ret=True)
-            elif ((attack > 46) and (attack <= 61) and (self.eHP < 85)):
+            elif (attack > 46 and attack <= 61 and self.eHP < 85):
                tempStr += "\n\n\"YOU THINK YOU CAN HURT ME?! ATTACK, MR. SNUGGLES!\"\n\nMr. Snuggles comes flying at you as she swing him around by his leg. The doll hits you with a surprising amount of force - extremely hard and heavy - and you lose your breath for a moment. You could swear the thing must be full of heavy metal and it's almost amazing a girl her size could even lift such a thing..."
                tempStr += self.doHP(-self.eDmg(2),ret=True,retPO=True)
-            elif ((attack > 61) and (attack <= 76) and (self.eLust > 50)):
+            elif (attack > 61 and attack <= 76 and self.eLust > 50):
                tempStr += "\n\n\"Mmm...\" The little girl actually seems like a little girl again as she holds her dolly close. Then a hand sinks down beneath her skirt. She lifts the frilly thing as she grabs at her crotch, exposing her panties and pulling them up through her slit, giving you a good view of her crevices. \"It's so tingly down there...\""
                tempStr += self.doLust(self.percent() / 10 + self.lib / 4,1,ret=True)
             else:
@@ -21335,9 +21341,9 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.butt * self.buttMod < 15):
                   tempStr += f"\n\n\"Mmm... Your backside needs some more attention, doesn't it?\" She rushes around behind you, the spade of her tail giving your {self.buttDesc()} rear a quick spank. One of her vials glows and she smiles as your rump presses against your {self.clothesBottom()}, jiggling slightly as you stand."
                   self.butt += 1
-               elif (self.cockTotal > 0 and ((self.gametweaks[2] == False) or (self.gametweaks[2] == True and self.cockSize > 1))):
+               elif (self.cockTotal > 0 and (self.gametweaks[2] == False or self.gametweaks[2] == True and self.cockSize > 1)):
                   tempStr += f"\n\n\"And this thing you've got here just totally ruins your womanly figure now. We should take care of that~\" The woman steps behind you but her tail reaches around to your {self.cockDesc()} bulge, cradling it with the spade and giving it a shake. You can feel your cock{self.plural(1)} shrink slightly within your {self.clothesBottom()} while one of her vials glow."
-                  if ((self.gametweaks[2] == False and self.cockSize > 1) or (self.gametweaks[2] == True and self.cockSize > 2)):
+                  if (self.gametweaks[2] == False and self.cockSize > 1 or self.gametweaks[2] == True and self.cockSize > 2):
                      tempStr += self.cockChange(-1,0,ret=True)
                   else:
                      if self.gametweaks[2] == False:
@@ -21359,7 +21365,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.stats(0,0,1,0)
             elif (attack <= 45):
                chance = self.percent()
-               if ((chance <= 20) and (self.hair > 0) and (self.hairstyleLength(self.hair) == True) and (self.hairLength < 10)):
+               if (chance <= 20 and self.hair > 0 and self.hairstyleLength(self.hair) and self.hairLength < 10):
                   tempStr += f"\n\n\"You know what helps make a slut look good?\" She steps up behind you and runs her fingers through your {self.hairDesc()} hair. A tingly sensation envelops your skull"
                   if (self.percent() < self.ment):
                      tempStr += ", but you manage to resist and interrupt her efforts."
@@ -21375,7 +21381,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" and your breasts swell within your {self.clothesTop()}, a sort of kinky sensation overcoming you as you absentmindedly bounce their greater size. The succubus steps back, a vial on her belt glowing from her success."
                      self.boobChange(2)
                      tempStr += self.doLust(15,1,ret=True)
-               elif (chance <= 60 and self.cockTotal > 0 and ((self.gametweaks[2] == False and self.cockSize > 2) or (self.gametweaks[2] == True and self.cockSize > 3))):
+               elif (chance <= 60 and self.cockTotal > 0 and (self.gametweaks[2] == False and self.cockSize > 2 or self.gametweaks[2] == True and self.cockSize > 3)):
                   tempStr += f"\n\n\"A good girl doesn't need such garish things.\" She steps up to you and blatantly grabs the {self.cockDesc()} bulge in your {self.clothesBottom()}. You feel it tingly in a rather pleasant way"
                   if (self.percent() < self.ment):
                      tempStr += ", but you manage to resist and interrupt her efforts."
@@ -21402,7 +21408,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (attack <= 65):
                tempStr += "\n\nShe stops for a moment and one hand dips into her cleavage while the other slinks between her thighs. Her tail curls like a finger hithering you closer as she rocks her hips and jounces her bosom. \"This is so much fun, don't you think~?\" She tries to tempt you with a rather sensual tone."
                tempStr += self.doLust(self.lib // 3,1,ret=True)
-            elif ((attack <= 85) and (self.eHP < 80)):
+            elif (attack <= 85 and self.eHP < 80):
                tempStr += "\n\nFeeling a bit winded from your attacks, she plucks a vial from her belt and brings it to her lips. As she drinks from it, she seems to be reinvigorated."
                tempStr += self.doeHP(math.floor(self.percent() / 5 + 10),ret=True)
             else:
@@ -21414,6 +21420,7 @@ class NiminFetishFantasyv0975o_fla:
          self.passOut = False
          self.doEnd()
    def doStatus(self, time:int):
+      #!Optimize if/else
       birthCount = 0
       tempInt = 0
       tempInt2 = 0
@@ -21434,7 +21441,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.pregArray[i + 3] += math.ceil(time * self.pregRate)
                self.pregnancyTime += self.pregArray[i + 3]
          i += 5
-      if ((self.pregnancyTime >= 80) and (self.pregnancyTime < 140) and (self.pregStatus < 1)):
+      if (self.pregnancyTime >= 80 and self.pregnancyTime < 140 and self.pregStatus < 1):
          self.pregStatus = 1
          tempStr += self.lactChange(1,10,ret=True)
          tempStr += self.lactChange(2,10,ret=True)
@@ -21444,23 +21451,23 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += " Your body must be getting ready for the baby that's growing inside of you. Even your breasts feel fuller..."
          else:
             tempStr += "\n\nYour breasts are producing even more milk than normal. They're even a little fuller... Your body must be getting ready for the baby that's growing inside of you."
-      elif ((self.pregnancyTime >= 140) and (self.pregnancyTime < 210) and (self.pregStatus < 2)):
+      elif (self.pregnancyTime >= 140 and self.pregnancyTime < 210 and self.pregStatus < 2):
          self.pregStatus = 2
          tempStr += self.lactChange(1,20,ret=True)
          tempStr += self.lactChange(2,20,ret=True)
          self.boobChange(2)
          self.udderChange(2)
          tempStr += "\n\nYour breasts feel sore from the all the milky swelling. They've grown three cup sizes since you've gotten pregnant and dribble more and more!"
-      elif ((self.pregnancyTime >= 210) and (self.pregStatus < 3)):
+      elif (self.pregnancyTime >= 210 and self.pregStatus < 3):
          self.pregStatus = 3
          tempStr += self.lactChange(1,50,ret=True)
          tempStr += self.lactChange(2,50,ret=True)
          self.boobChange(1)
          self.udderChange(1)
          tempStr += "\n\nYour breasts have slowed in their pregnant swelling. They should definitely be prepared for whatever you might give birth to... you hope."
-      if ((self.pregnancyTime < 80) and (self.pregStatus > 0)):
+      if (self.pregnancyTime < 80 and self.pregStatus > 0):
          self.pregStatus = 0
-      if ((self.eggLaying > 0) and (self.vagTotal > 0) and (self.pregCheck(1) == True) and (time > 0)):
+      if (self.eggLaying > 0 and self.vagTotal > 0 and self.pregCheck(1) and time > 0):
          tempInt = time + 2 * self.eggRate
          tempInt2 = 0
          while (tempInt > 0):
@@ -21491,11 +21498,13 @@ class NiminFetishFantasyv0975o_fla:
             else:
                if self.eggType == 0:
                   tempStr += f"\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying them all off, you have some snacks for later."
+                  #!addmanyitems
                   while (tempInt2 > 0):
                      self.itemAdd(219)
                      tempInt2 -= 1
                elif self.eggType == 1:
                   tempStr += f"\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying them all off, you have some snacks for later."
+                  #!addmanyitems
                   while (tempInt2 > 0):
                      self.itemAdd(253)
                      tempInt2 -= 1
@@ -21534,66 +21543,66 @@ class NiminFetishFantasyv0975o_fla:
             self.cockSnakePreg -= time
       if (self.malonRep == 4):
          self.malonPreg += time
-      if ((self.lilaPreg + time > 40) and (self.lilaPreg <= 40) and (self.lilaPreg > 0)):
+      if (self.lilaPreg + time > 40 and self.lilaPreg <= 40 and self.lilaPreg > 0):
          self.lilaMilk += 1
          if (self.lilaMilk > 19):
             self.lilaMilk = 19
-      if ((self.lilaPreg + time > 80) and (self.lilaPreg <= 80) and (self.lilaPreg > 0)):
+      if (self.lilaPreg + time > 80 and self.lilaPreg <= 80 and self.lilaPreg > 0):
          self.lilaMilk += 2
          if (self.lilaMilk > 19):
             self.lilaMilk = 19
       if (self.lilaPreg > 0):
          self.lilaPreg += time
-      if ((self.silPreg > 0) and (self.silRep < 5) and (time > 0)):
+      if (self.silPreg > 0 and self.silRep < 5 and time > 0):
          self.silPreg += time + 2 * self.silRate
          tempInt = time + self.silRate
-         if ((self.silPreg > 30) and (self.silTied == False)):
+         if (self.silPreg > 30 and self.silTied == False):
             while (tempInt > 0):
                self.silLay -= 1
                if (self.silLay <= 0):
                   self.silPreg -= 10
                   self.silLay = 10
                tempInt -= 1
-      elif ((self.silPreg > 0) and (self.silRep == 5) and (time > 0) and (self.silGrowthTime <= 360) and (self.silPreg < 10000)):
+      elif (self.silPreg > 0 and self.silRep == 5 and time > 0 and self.silGrowthTime <= 360 and self.silPreg < 10000):
          self.silPreg += time + 2 * self.silRate
          self.silGrowthTime += time
-      if ((self.heat > 0) and (self.vagTotal > 0) and (self.pregCheck(0) == False)):
-         if ((self.heatTime >= 0) and (self.heatTime - time < 0)):
+      if (self.heat > 0 and self.vagTotal > 0 and self.pregCheck(0) == False):
+         if (self.heatTime >= 0 and self.heatTime - time < 0):
             tempStr += "\n\nYour crotch feels hot and tingly, your face becoming flush. Thoughts of sex, being pounded and filled with seed until your womb has been sufficiently impregnated, permeate your mind and makes you greatly aroused. You're feeling especially fertile and extremely lustful as you go into heat..."
             self.pregChanceMod += 15
             self.statsMod(0,-5,10,0)
             tempStr += self.doLust(15,0,ret=True)
             self.vagMoistMod += 3
             self.heatTime = -24
-         elif ((self.heatTime < 0) and (self.heatTime + time >= 0)):
+         elif (self.heatTime < 0 and self.heatTime + time >= 0):
             tempStr += "\n\nYou breath a sigh of relief as the heat finally passes, your body calming and no longer needing to reproduce as much."
             self.pregChanceMod -= 15
             self.statsMod(0,5,-10,0)
             self.vagMoistMod -= 3
             self.heatTime = self.heatMaxTime
-         elif ((self.heatTime > 0) and (self.heatTime - time > 0)):
+         elif (self.heatTime > 0 and self.heatTime - time > 0):
             self.heatTime -= time
-         elif ((self.heatTime < 0) and (self.heatTime + time < 0)):
+         elif (self.heatTime < 0 and self.heatTime + time < 0):
             self.heatTime += time
-      elif ((self.heat > 0) and (self.heatTime < 0) and (self.pregCheck(0) == True)):
+      elif (self.heat > 0 and self.heatTime < 0 and self.pregCheck(0)):
          tempStr += "\n\nYou breath a sigh of relief as the heat passes, your body calming and no longer needing to reproduce as much. However, it seems to have ended a bit early..."
          self.pregChanceMod -= 15
          self.statsMod(0,5,-10,0)
          self.vagMoistMod -= 3
          self.heatTime = self.heatMaxTime
-      elif ((self.heat > 0) and (self.heatTime != self.heatMaxTime) and (self.pregCheck(0) == True)):
+      elif (self.heat > 0 and self.heatTime != self.heatMaxTime and self.pregCheck(0)):
          self.heatTime = self.heatMaxTime
-      elif ((self.heat < 1) and (self.heatTime > 0)):
+      elif (self.heat < 1 and self.heatTime > 0):
          self.heatMaxTime = 0
          self.heatTime = 0
-      elif (((self.heat < 1) or (self.vagTotal < 1)) and (self.heatTime < 0)):
+      elif ((self.heat < 1 or self.vagTotal < 1) and self.heatTime < 0):
          self.pregChanceMod -= 15
          self.statsMod(0,5,-10,0)
          self.vagMoistMod -= 3
          self.heatMaxTime = 0
          self.heatTime = 0
       if (self.lactation > 0):
-         if ((self.milkEngorgementLevel < 3) and (self.milkEngorgement + (self.lactation + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2) and (self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2)):
+         if (self.milkEngorgementLevel < 3 and self.milkEngorgement + (self.lactation + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2 and self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2):
             tempStr += f"\n\nPulling {self.pullUD(1)} your {self.clothesTop()}, streams of milk shoot from your aching tits. Your nipples dribble uncontrollably, occasionally spitting the milk quite far. Your mammaries are producing far more milk than your breasts can hold and will continue to waste breastmilk until you drain them or they dry up from lack of demand."
             if (self.milkEngorgementLevel < 1):
                self.boobChange(3)
@@ -21602,20 +21611,20 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.boobChange(1)
             self.milkEngorgementLevel += 1
-         elif ((self.milkEngorgementLevel < 2) and (self.milkEngorgement + (self.lactation + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5) and (self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5)):
+         elif (self.milkEngorgementLevel < 2 and self.milkEngorgement + (self.lactation + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5 and self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5):
             tempStr += f"\n\nYour {self.clothesTop()} is soaked in front. Milk dribbles from your nipples almost constantly, your breasts slightly overfull and engorged. The abundant supply is getting to be a little more than the plush mounds can handle."
             if (self.milkEngorgementLevel < 1):
                self.boobChange(2)
             else:
                self.boobChange(1)
             self.milkEngorgementLevel += 1
-         elif ((self.milkEngorgementLevel < 1) and (self.milkEngorgement + (self.lactation + self.milkMod) * time > (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) and (self.milkEngorgement <= (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap)):
+         elif (self.milkEngorgementLevel < 1 and self.milkEngorgement + (self.lactation + self.milkMod) * time > (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap and self.milkEngorgement <= (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap):
             tempStr += f"\n\nYour {self.clothesTop()} feels moist around your nipples. Your breasts feel slightly swollen as the wet blotches spread, milk leaking from your laden mammaries. It's a sign that they are nice and full for a good breastfeeding, or whatever your kinky mind has for them."
             self.milkEngorgementLevel += 1
             self.boobChange(1)
          self.milkEngorgement += (self.lactation + self.milkMod) * time
-      if ((self.udderLactation > 0) and (self.udders == True)):
-         if ((self.udderEngorgementLevel < 3) and (self.udderEngorgement + (self.udderLactation + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2) and (self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2)):
+      if (self.udderLactation > 0 and self.udders == True):
+         if (self.udderEngorgementLevel < 3 and self.udderEngorgement + (self.udderLactation + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2 and self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2):
             tempStr += "\n\nJets of milk shoot from the teats of your udder with each step. When standing still, it dribbles constantly, your udder so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds its capacities, wasting milk until you drain it or it dries up."
             if (self.udderEngorgementLevel < 1):
                self.udderChange(5)
@@ -21623,48 +21632,48 @@ class NiminFetishFantasyv0975o_fla:
                self.udderChange(3)
             self.udderEngorgementLevel += 1
             self.udderChange(3)
-         elif ((self.udderEngorgementLevel < 2) and (self.udderEngorgement + (self.udderLactation + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5) and (self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5)):
+         elif (self.udderEngorgementLevel < 2 and self.udderEngorgement + (self.udderLactation + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5 and self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5):
             tempStr += f"\n\nYour {self.clothesBottom()} is soaked in front. Milk dribbles from your teats almost constantly, too much to retain. The abundant supply seems to be overwhelming the lack of demand..."
             if (self.udderEngorgementLevel < 1):
                self.udderChange(2)
             self.udderEngorgementLevel += 1
             self.udderChange(3)
-         elif ((self.udderEngorgementLevel < 1) and (self.udderEngorgement + (self.udderLactation + self.milkMod) * time > (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) and (self.udderEngorgement <= (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap)):
+         elif (self.udderEngorgementLevel < 1 and self.udderEngorgement + (self.udderLactation + self.milkMod) * time > (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap and self.udderEngorgement <= (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap):
             tempStr += f"\n\nYour {self.clothesBottom()} feels moist beneath your teats. Your udder feels slightly swollen as milk leaks out. It is nice and full enough for a good milking."
             self.udderEngorgementLevel += 1
             self.udderChange(2)
          self.udderEngorgement += (self.udderLactation + self.milkMod) * time
-      if ((self.nipplePlay > 100) and (self.lactation > 0)):
+      if (self.nipplePlay > 100 and self.lactation > 0):
          tempStr += self.lactChange(1,15,ret=True)
          tempStr += "\n\nYour breasts feel even more active, the high demand on their motherly supply increase your production rate."
          self.nipplePlay = 0
-      if ((self.udderPlay > 100) and (self.udderLactation > 0)):
+      if (self.udderPlay > 100 and self.udderLactation > 0):
          tempStr += self.lactChange(2,25,ret=True)
          tempStr += "\n\nYour breasts feel even more active, the high demand on their motherly supply increase your production rate."
          self.udderPlay = 0
-      if ((self.lactation > 0) and not ((self.attireTop == 28) and (self.percent() < 50))):
+      if (self.lactation > 0 and not (self.attireTop == 28 and self.percent() < 50)):
          self.nipplePlay -= time
-      if ((self.nipplePlay > 100) and (self.lactation <= 0)):
+      if (self.nipplePlay > 100 and self.lactation <= 0):
          tempStr += self.lactChange(1,15,ret=True)
          tempStr += " All of the attention to your nipples has induced your milky state."
          self.nipplePlay = 0
-      if ((self.udderLactation > 0) and (self.udders == True)):
+      if (self.udderLactation > 0 and self.udders == True):
          self.udderPlay -= time
       elif (self.udderPlay > 100):
          tempStr += self.lactChange(2,25,ret=True)
          tempStr += " All of the attention to your teats has induced your milky state."
          self.udderPlay = 0
-      if ((self.lactation > 0) and (self.nipplePlay < -20)):
+      if (self.lactation > 0 and self.nipplePlay < -20):
          tempStr += self.lactChange(1,-10,ret=True)
          if (self.lactation == 0):
             tempStr += " It seems as though the mammary glands in your breasts have adapted to the lack of demand."
          self.nipplePlay = 0
-      if ((self.udderLactation > 0) and (self.udderPlay < -20) and (self.udders == True)):
+      if (self.udderLactation > 0 and self.udderPlay < -20 and self.udders == True):
          tempStr += self.lactChange(2,-15,ret=True)
          if (self.udderLactation == 0):
             tempStr += " It seems as though the mammary glands in your udder have adapted to the lack of demand."
          self.udderPlay = 0
-      if (((self.lactation > 0) or (self.udderLactation > 0)) and (self.milkSuppressant > 0)):
+      if ((self.lactation > 0 or self.udderLactation > 0) and self.milkSuppressant > 0):
          tempStr += "\n\nThe flow of milk quickly seizes up and stops as the milk suppressant takes over and prevents any more from escaping."
          self.milkSuppressantLact += self.lactation
          self.milkSuppressantUdder += self.udderLactation
@@ -21672,7 +21681,7 @@ class NiminFetishFantasyv0975o_fla:
          self.udderLactation = 0
       if (self.milkSuppressant > 0):
          if (self.milkSuppressantLact > 0):
-            if ((self.milkEngorgementLevel < 3) and (self.milkEngorgement + (self.milkSuppressantLact + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2) and (self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2)):
+            if (self.milkEngorgementLevel < 3 and self.milkEngorgement + (self.milkSuppressantLact + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2 and self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2):
                tempStr += "\n\nYour breasts are so swollen that they feel like balloons on your chest. When standing still, it takes a while for the fluid inside to stop swishing, they're so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds their capacities, but the excess just gets absorbed back into your body since the milk suppressant prevents any other escape..."
                if (self.milkEngorgementLevel < 1):
                   self.boobChange(3)
@@ -21681,22 +21690,22 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.boobChange(1)
                self.milkEngorgementLevel += 1
-            elif ((self.milkEngorgementLevel < 2) and (self.milkEngorgement + (self.milkSuppressantLact + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5) and (self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5)):
+            elif (self.milkEngorgementLevel < 2 and self.milkEngorgement + (self.milkSuppressantLact + self.milkMod) * time > ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5 and self.milkEngorgement <= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5):
                tempStr += "\n\nYour breasts feel stretched and heavy, so full of milk and almost aching because none of the white fluid will escape with the milk suppressant active..."
                if (self.milkEngorgementLevel < 1):
                   self.boobChange(2)
                else:
                   self.boobChange(1)
                self.milkEngorgementLevel += 1
-            elif ((self.milkEngorgementLevel < 1) and (self.milkEngorgement + (self.milkSuppressantLact + self.milkMod) * time > (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) and (self.milkEngorgement <= (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap)):
+            elif (self.milkEngorgementLevel < 1 and self.milkEngorgement + (self.milkSuppressantLact + self.milkMod) * time > (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap and self.milkEngorgement <= (self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap):
                tempStr += "\nYour breasts feel slightly swollen and heavy, your mammaries laden with milk. It's a sign that they are nice and full for a good breastfeeding, or whatever your kinky mind has for them, if you could only leak..."
                self.milkEngorgementLevel += 1
                self.boobChange(1)
             self.milkEngorgement += (self.milkSuppressantLact + self.milkMod) * time
             if (self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 7):
                self.milkEngorgement = ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 7
-         if ((self.milkSuppressantUdder > 0) and (self.udders == True)):
-            if ((self.udderEngorgementLevel < 3) and (self.udderEngorgement + (self.milkSuppressantUdder + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2) and (self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2)):
+         if (self.milkSuppressantUdder > 0 and self.udders == True):
+            if (self.udderEngorgementLevel < 3 and self.udderEngorgement + (self.milkSuppressantUdder + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2 and self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2):
                tempStr += "\n\nYour udder is so swollen that it feels like a balloon. When standing still, it takes a while for the fluid inside to stop swishing, it's so big and sore and especially sensitive from being stretched and heavy with engorgement. The production of milk far exceeds its capacities, but the excess just gets absorbed back into your body since the milk suppressant prevents any other escape..."
                if (self.udderEngorgementLevel < 1):
                   self.udderChange(5)
@@ -21704,13 +21713,13 @@ class NiminFetishFantasyv0975o_fla:
                   self.udderChange(3)
                self.udderEngorgementLevel += 1
                self.udderChange(3)
-            elif ((self.udderEngorgementLevel < 2) and (self.udderEngorgement + (self.milkSuppressantUdder + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5) and (self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5)):
+            elif (self.udderEngorgementLevel < 2 and self.udderEngorgement + (self.milkSuppressantUdder + self.milkMod) * time > ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5 and self.udderEngorgement <= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5):
                tempStr += "\n\nYour udder feels so stretch and heavy, so full of milk and almost aching because none of the white fluid will escape with the milk suppressant active..."
                if (self.udderEngorgementLevel < 1):
                   self.udderChange(2)
                self.udderEngorgementLevel += 1
                self.udderChange(3)
-            elif ((self.udderEngorgementLevel < 1) and (self.udderEngorgement + (self.milkSuppressantUdder + self.milkMod) * time > (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) and (self.udderEngorgement <= (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap)):
+            elif (self.udderEngorgementLevel < 1 and self.udderEngorgement + (self.milkSuppressantUdder + self.milkMod) * time > (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap and self.udderEngorgement <= (self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap):
                tempStr += "\n\nYour udder feels slightly swollen, even though there is no milk flowing. It is nice and full enough for a good milking, if the milk suppressant wasn't stopping it."
                self.udderEngorgementLevel += 1
                self.udderChange(2)
@@ -21736,20 +21745,20 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nMilk spurts up and begins dribbling down your chest as the milk suppressant wears off, your nipples calming down and leaking again."
             else:
                tempStr += "\n\nYour nipples soften up as the milk suppressant wears off, allowing you to leak once more."
-            if ((self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 6) and (self.udders == True)):
+            if (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 6 and self.udders == True):
                tempStr += f"\n\nYou feel a rumbling in your udder as the milk suppressant begins to wear off. Your legs shake as you try to take care of your {self.clothesBottom()}, but to no avail.\n\nYou only see white as a roaring sound echoes around your belly. Milk explodes from your teats, spraying around and around, tearing apart your {self.clothesBottom()} from the sheer pressure and drenching everything in the area. You can't hear or see anything and milk end up in nearly every hole. It takes a few minutes before the eruption dies down, leaving your teats feeling limp and de-sensitized, your udder still huge from the engorgement though feeling much more lighter. There's not much that can be said about your {self.clothesBottom()} anymore though..."
                self.udderEngorgement = ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 0.5
                self.udderEngorgementLevel = 0
                self.stats(0,0,0,-5)
                self.changeBot(-1)
-            elif ((self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4) and (self.udders == True)):
+            elif (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.udders == True):
                tempStr += f"\n\nYou suddenly feel sick as your belly tenses up. For an instant, you feel your {self.teatDesc()} teats soften.\n\nMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your {self.clothesBottom()} from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments..."
                self.milkAmount(1)
                tempStr += self.doLust(-(self.sen // 2),2,4,ret=True)
-            elif ((self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2) and (self.udders == True)):
+            elif (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2 and self.udders == True):
                tempStr += f"\n\nJets of milk spray from beneath your {self.clothesBottom()} as the milk suppressant wears off. It quickly dies down without losing much milk, but you're now leaking again."
                self.udderEngorgement = ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2
-            elif ((self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1) and (self.udders == True)):
+            elif (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1 and self.udders == True):
                tempStr += f"\n\nMilk spurts up and begins dribbling down your {self.legDesc(2)} as the milk suppressant wears off, your teats calming down and leaking again."
             else:
                tempStr += "\n\nYour teats soften up as the milk suppressant wears off, allowing you to leak once more."
@@ -21769,19 +21778,20 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.hunger - time >= 100):
          tempStr += "\n\nYou notice a bit more chub around your belly thanks to all you've been eating lately. You may want to watch your diet more closely."
          self.bellyMod += 5
-         self.hunger = self.hunger - time - 30
+         #self.hunger = self.hunger - time - 30
+         self.hunger -= (time + 30)
       else:
          self.hunger -= time
       if (self.skipExhaustion == True):
          self.skipExhaustion = False
       else:
          self.exhaustion += time
-      if ((self.exhaustion > 20) and (self.exhaustion <= 32)):
+      if (self.exhaustion > 20 and self.exhaustion <= 32):
          tempStr += "\n\nYour body is getting tired, affecting your ability to do things. Sleep is sounding like a nice idea..."
          if (self.exhaustionPenalty == 0):
             self.exhaustionPenalty = 1
             self.statsMod(-3,-3,0,0)
-      elif ((self.exhaustion > 32) and (self.exhaustion <= 44)):
+      elif (self.exhaustion > 32 and self.exhaustion <= 44):
          tempStr += "\n\nExhaustion is creeping over you, making any task seem tedious. Your wits are a lot less witty and your muscles are fatigued."
          if self.exhaustionPenalty == 1:
             self.exhaustionPenalty = 2
@@ -21804,7 +21814,7 @@ class NiminFetishFantasyv0975o_fla:
                self.exhaustionPenalty = 1
                self.statsMod(8,8,0,0)
       if (time > 0):
-         if ((self.percent() <= self.lib) and (self.lust < 90)):
+         if (self.percent() <= self.lib and self.lust < 90):
             tempStr += self.doLust(math.floor(self.lib / 25 + 1),0,ret=True)
       if self.lustPenalty == 1 and self.lust < 30:
          tempStr += "\n\nWith the distracting 'itch' lifted from your mind, you're now able to focus better than before."
@@ -21819,7 +21829,7 @@ class NiminFetishFantasyv0975o_fla:
          self.statsMod(0,0,0,-10)
          self.lustPenalty = 2
       tempStr += self.vagBellyChange(0,0,ret=True)
-      if ((self.blueBalls + time > 84) and (self.blueBalls <= 84) and (self.showBalls == True) and (self.balls > 0)):
+      if (self.blueBalls + time > 84 and self.blueBalls <= 84 and self.showBalls == True and self.balls > 0):
          tempStr += f"\n\nYour {self.ballDesc()} balls feel swollen and heavy within your {self.clothesBottom()}. The need to spill your seed makes you a little aroused."
          tempStr += self.doLust(math.ceil(self.ballSize / 4),0,ret=True)
       if (self.balls > 0):
@@ -21984,45 +21994,45 @@ class NiminFetishFantasyv0975o_fla:
             self.skunk += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
          case 12:
             self.bug += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-   def affinityChange(self): #!refactor if/else
+   def affinityChange(self):
+      #!optimize if/else
       tempStr = "Something feels odd..."
       chance = self.percent()
-
       affinityCheckArray = as3.Array(self.humanAffinity + self.human,self.horseAffinity + self.horse,self.wolfAffinity + self.wolf,self.catAffinity + self.cat,self.cowAffinity + self.cow,self.lizardAffinity + self.lizard,self.rabbitAffinity + self.rabbit,self.mouseAffinity + self.mouse,self.birdAffinity + self.bird,self.pigAffinity + self.pig,self.skunkAffinity + self.skunk,self.bugAffinity + self.bug)
       affinityCheckArray.sort(16)
       domCheck = affinityCheckArray[-1]
       second = affinityCheckArray[-2]
-      if ((domCheck == self.humanAffinity + self.human) and (self.human >= 0)):
+      if (domCheck == self.humanAffinity + self.human and self.human >= 0):
          self.dominant = 1
-      elif ((domCheck == self.horseAffinity + self.horse) and (self.horse >= 0)):
+      elif (domCheck == self.horseAffinity + self.horse and self.horse >= 0):
          self.dominant = 2
-      elif ((domCheck == self.wolfAffinity + self.wolf) and (self.wolf >= 0)):
+      elif (domCheck == self.wolfAffinity + self.wolf and self.wolf >= 0):
          self.dominant = 3
-      elif ((domCheck == self.catAffinity + self.cat) and (self.cat >= 0)):
+      elif (domCheck == self.catAffinity + self.cat and self.cat >= 0):
          self.dominant = 4
-      elif ((domCheck == self.cowAffinity + self.cow) and (self.cow >= 0)):
+      elif (domCheck == self.cowAffinity + self.cow and self.cow >= 0):
          self.dominant = 5
-      elif ((domCheck == self.lizardAffinity + self.lizard) and (self.lizard >= 0)):
+      elif (domCheck == self.lizardAffinity + self.lizard and self.lizard >= 0):
          self.dominant = 6
-      elif ((domCheck == self.rabbitAffinity + self.rabbit) and (self.rabbit >= 0)):
+      elif (domCheck == self.rabbitAffinity + self.rabbit and self.rabbit >= 0):
          self.dominant = 7
-      elif ((domCheck == self.mouseAffinity + self.mouse) and (self.mouse >= 0)):
+      elif (domCheck == self.mouseAffinity + self.mouse and self.mouse >= 0):
          self.dominant = 8
-      elif ((domCheck == self.birdAffinity + self.bird) and (self.bird >= 0)):
+      elif (domCheck == self.birdAffinity + self.bird and self.bird >= 0):
          self.dominant = 9
-      elif ((domCheck == self.pigAffinity + self.pig) and (self.pig >= 0)):
+      elif (domCheck == self.pigAffinity + self.pig and self.pig >= 0):
          self.dominant = 10
-      elif ((domCheck == self.skunkAffinity + self.skunk) and (self.skunk >= 0)):
+      elif (domCheck == self.skunkAffinity + self.skunk and self.skunk >= 0):
          self.dominant = 11
-      elif ((domCheck == self.bugAffinity + self.bug) and (self.bug >= 0)):
+      elif (domCheck == self.bugAffinity + self.bug and self.bug >= 0):
          self.dominant = 12
-      if ((self.humanAffinity + self.human >= 40) and (self.humanAffinity < 40)):
+      if (self.humanAffinity + self.human >= 40 and self.humanAffinity < 40):
          tempStr += "\n\nYour body feels quite... adaptive? There's a strange sense of being more susceptible to change"
          self.changeMod += 0.5
-      if ((self.humanAffinity + self.human < 40) and (self.humanAffinity >= 40)):
+      if (self.humanAffinity + self.human < 40 and self.humanAffinity >= 40):
          tempStr += "\n\nYour body feels less ready to bend to your surroundings as much as it had anymore."
          self.changeMod -= 0.5
-      if ((self.horseAffinity + self.horse >= 40) and (self.horseAffinity < 40)):
+      if (self.horseAffinity + self.horse >= 40 and self.horseAffinity < 40):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.clothesBottom()} grows tight, filling with extra cockflesh. Opening the {self.clothesBottom()}, your cock{self.plural(1)} spill{self.plural(3)} out, dangling while swelling larger and larger. The growth slows to a halt, much, much longer than before. 'Hung like a horse' seems like the appropriate phrase. And you're also going to have to sneak back into town while you hide your perverse excess flesh, rushing to a tailor to refit you."
          if (self.vagTotal > 0):
@@ -22030,25 +22040,25 @@ class NiminFetishFantasyv0975o_fla:
          self.cockSizeMod += 1
          self.vagSizeMod += 1
          tempStr += self.vagBellyChange(0,0,ret=True)
-      if ((self.horseAffinity + self.horse < 40) and (self.horseAffinity >= 40)):
+      if (self.horseAffinity + self.horse < 40 and self.horseAffinity >= 40):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.clothesBottom()} feel baggier. Opening the {self.clothesBottom()}, your cock{self.plural(1)} shrinking towards your groin, losing a great deal of length. It seems like you have lost your equine engorgement."
          if (self.vagTotal > 0):
             tempStr += "\n\nYour belly feels rather empty all of a sudden. Placing your hand over it, you can feel the vaginal flesh recede, no longer built like mare."
-         self.cockSizeMod = self.cockSizeMod - 1
-         self.vagSizeMod = self.vagSizeMod - 1
+         self.cockSizeMod -= 1
+         self.vagSizeMod -= 1
          tempStr += self.vagBellyChange(0,0,ret=True)
-      if ((self.wolfAffinity + self.wolf >= 40) and (self.wolfAffinity < 40)):
+      if (self.wolfAffinity + self.wolf >= 40 and self.wolfAffinity < 40):
          if (self.cockTotal > 0):
             tempStr += f"\n\nA sudden wave of lust washes over you, your cock{self.plural(1)} growing stiff in your {self.clothesBottom()}. You quickly open open your {self.clothesBottom()} to see what's going on. Within, the base{self.plural(1)} of your shaft{self.plural(1)} swell{self.plural(3)}. In an instant, you're surprised by spurts of cum that shower you, a small volley from a quick unexpected orgasm. Wiping your eyes so you can see, the swelling persists as you continue to come for a while. It would be very difficult to remove your cock from a hot hole with a large 'knot' like that, until finished draining your seed."
          self.knot = True
          self.cumMod += 0.5
-      if ((self.wolfAffinity + self.wolf < 40) and (self.wolfAffinity >= 40)):
+      if (self.wolfAffinity + self.wolf < 40 and self.wolfAffinity >= 40):
          if (self.cockTotal > 0):
             tempStr += f"\n\nAn odd draining fills your {self.clothesBottom()}. Looking within, you see your cock{self.plural(1)} grow slightly stiff, your knot{self.plural(1)} swelling. Pre lazily seeps from your urethra{self.plural(1)} as the knot{self.plural(1)} deflate{self.plural(1)} immediately while your cock{self.plural(1)} remain{self.plural(3)} stiff. It seems as though you have lost your knot{self.plural(1)}."
          self.knot = False
          self.cumMod -= 0.5
-      if ((self.catAffinity + self.cat >= 40) and (self.catAffinity < 40)):
+      if (self.catAffinity + self.cat >= 40 and self.catAffinity < 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.clothesBottom()} grows slightly moist, your cunt{self.plural(2)} burning with arousal. The feeling quickly fades, but something tells you your reproductive instincts might occasionally take over..."
          if (self.heat < 1):
@@ -22058,30 +22068,30 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.heat >= 1):
             self.heatMaxTime -= 12
             self.heat += 1
-      if ((self.catAffinity + self.cat < 40) and (self.catAffinity >= 40)):
+      if (self.catAffinity + self.cat < 40 and self.catAffinity >= 40):
          if (self.vagTotal > 0):
             tempStr += f" You also feel your vagina{self.plural(2)} cool a little, no longer as eager to be impregnated on certain days."
          if (self.heat >= 2):
             self.heatMaxTime += 12
          self.heat -= 1
       #as3.trace(self.cowAffinity + self.cow)
-      if ((self.cowAffinity + self.cow >= 10) and (self.cowAffinity < 10)):
+      if (self.cowAffinity + self.cow >= 10 and self.cowAffinity < 10):
          tempStr += f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude nearly half an inch further than before!"
          self.nippleSize += 2
          self.milkMod += 50
-      if ((self.cowAffinity + self.cow >= 25) and (self.cowAffinity < 25)):
+      if (self.cowAffinity + self.cow >= 25 and self.cowAffinity < 25):
          tempStr += f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude an inch further than before! And your hips seem slightly broader..."
          tempStr += self.lactChange(1,75,ret=True)
          self.nippleSize += 5
          self.hips += 4
          self.milkMod += 50
-      if ((self.cowAffinity + self.cow >= 40) and (self.cowAffinity < 40)):
+      if (self.cowAffinity + self.cow >= 40 and self.cowAffinity < 40):
          tempStr += f"\n\nYour nipples squirm within your {self.clothesTop()}. They've grown over an inch and a half in length! And your hips feel like they're more 'square' than before..."
          tempStr += self.lactChange(1,75,ret=True)
          self.nippleSize += 8
          self.hips += 6
          self.milkMod += 50
-      if ((self.cowAffinity + self.cow >= 55) and (self.cowAffinity < 55)):
+      if (self.cowAffinity + self.cow >= 55 and self.cowAffinity < 55):
          tempStr += f"\n\nJust above your groin, your belly begins to feel bloated. You wince as it pushes against your {self.clothesBottom()}, especially noticing the increased sensitivity of four spots in particular. Before you can act, your {self.clothesBottom()} tears at the waist, as a mound crashes through. Hanging naked and free, with four teats twice as long as your nipples, an udder about twice as large as your chest dribbles milk. You'll definitely be getting a special bra or perhaps adjust your {self.clothesBottom()} when you get back to town, at least to account for your surprisingly wider hips... "
          tempStr += self.lactChange(1,150,ret=True)
          tempStr += self.lactChange(2,self.lactation,ret=True)
@@ -22089,11 +22099,11 @@ class NiminFetishFantasyv0975o_fla:
          self.udders = True
          self.udderSize = 2 * self.breastSize
          self.teatSize = 2 * self.nippleSize
-      if ((self.cowAffinity + self.cow < 10) and (self.cowAffinity >= 10)):
+      if (self.cowAffinity + self.cow < 10 and self.cowAffinity >= 10):
          tempStr += "\n\nYour nipples are less noticeable, shrinking by nearly half an inch."
          self.nippleSize -= 2
          self.milkMod -= 50
-      if ((self.cowAffinity + self.cow < 25) and (self.cowAffinity >= 25)):
+      if (self.cowAffinity + self.cow < 25 and self.cowAffinity >= 25):
          tempStr += "\n\nYour nipples seem less noticeable as they shrink by an inch and your hips are less wide."
          tempStr += self.lactChange(1,-50,ret=True)
          if (self.udders == True):
@@ -22101,7 +22111,7 @@ class NiminFetishFantasyv0975o_fla:
          self.nippleSize -= 5
          self.hips -= 4
          self.milkMod -= 50
-      if ((self.cowAffinity + self.cow < 40) and (self.cowAffinity >= 40)):
+      if (self.cowAffinity + self.cow < 40 and self.cowAffinity >= 40):
          tempStr += f"\n\nYour {self.clothesTop()} feels slightly looser, as your nipples shrink by over an inch and a half. You hips also narrow a little, protruding less than before."
          tempStr += self.lactChange(1,-50,ret=True)
          if (self.udders == True):
@@ -22109,7 +22119,8 @@ class NiminFetishFantasyv0975o_fla:
          self.hips -= 6
          self.nippleSize -= 8
          self.milkMod -= 50
-      if ((self.cowAffinity + self.cow < 55) and (self.cowAffinity >= 55)):
+      if (self.cowAffinity + self.cow < 55 and self.cowAffinity >= 55):
+         #!Move self.hips -= 8 and self.lactChange out of if statement since both cases are the same
          if (self.udderCheck(1) == False):
             tempStr += "\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches."
             tempStr += self.lactChange(1,-100,ret=True)
@@ -22125,7 +22136,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "\n\nYour waistbands seem quite loose after your hips shrink by a few inches."
             tempStr += self.lactChange(1,-100,ret=True)
             self.hips -= 8
-      if ((self.lizardAffinity + self.lizard >= 40) and (self.lizardAffinity < 40)):
+      if (self.lizardAffinity + self.lizard >= 40 and self.lizardAffinity < 40):
          if (self.cockTotal == 1):
             tempStr += self.cockChange(0,1,ret=True)
          if (self.vagTotal > 0):
@@ -22138,7 +22149,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.eggMaxTime -= 6
             self.eggLaying += 1
-      if ((self.lizardAffinity + self.lizard < 40) and (self.lizardAffinity >= 40)):
+      if (self.lizardAffinity + self.lizard < 40 and self.lizardAffinity >= 40):
          if (self.cockTotal == 2):
             tempStr += self.cockChange(0,-1,ret=True)
          if (self.vagTotal > 0):
@@ -22150,39 +22161,39 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.eggLaying > 1):
             self.eggMaxTime += 6
             self.eggLaying -= 1
-      if ((self.rabbitAffinity + self.rabbit >= 10) and (self.rabbitAffinity < 10)):
+      if (self.rabbitAffinity + self.rabbit >= 10 and self.rabbitAffinity < 10):
          self.stats(0,0,2,0)
-      if ((self.rabbitAffinity + self.rabbit >= 30) and (self.rabbitAffinity < 30)):
+      if (self.rabbitAffinity + self.rabbit >= 30 and self.rabbitAffinity < 30):
          self.stats(0,0,5,0)
-      if ((self.rabbitAffinity + self.rabbit >= 50) and (self.rabbitAffinity < 50)):
+      if (self.rabbitAffinity + self.rabbit >= 50 and self.rabbitAffinity < 50):
          self.stats(0,0,7,0)
-      if ((self.rabbitAffinity + self.rabbit >= 40) and (self.rabbitAffinity < 40)):
+      if (self.rabbitAffinity + self.rabbit >= 40 and self.rabbitAffinity < 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal."
          self.pregRate += 1
-      if ((self.rabbitAffinity + self.rabbit < 10) and (self.rabbitAffinity >= 10)):
+      if (self.rabbitAffinity + self.rabbit < 10 and self.rabbitAffinity >= 10):
          self.stats(0,0,-2,0)
-      if ((self.rabbitAffinity + self.rabbit < 30) and (self.rabbitAffinity >= 30)):
+      if (self.rabbitAffinity + self.rabbit < 30 and self.rabbitAffinity >= 30):
          self.stats(0,0,-5,0)
-      if ((self.rabbitAffinity + self.rabbit < 50) and (self.rabbitAffinity >= 50)):
+      if (self.rabbitAffinity + self.rabbit < 50 and self.rabbitAffinity >= 50):
          self.stats(0,0,-7,0)
-      if ((self.rabbitAffinity + self.rabbit < 40) and (self.rabbitAffinity >= 40)):
+      if (self.rabbitAffinity + self.rabbit < 40 and self.rabbitAffinity >= 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} calmer. Now you can take your fertility nice and easy... relatively."
          self.pregRate -= 1
-      if ((self.mouseAffinity + self.mouse >= 40) and (self.mouseAffinity < 40)):
+      if (self.mouseAffinity + self.mouse >= 40 and self.mouseAffinity < 40):
          tempStr += "\n\nA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle."
-         if ((self.balls > 0) and (self.showBalls == True)):
+         if (self.balls > 0 and self.showBalls == True):
             tempStr += f" Your {self.ballDesc()} nuts also feel slightly 'skittish', like they're making far more than they just were..."
          self.runMod += 25
          self.cumMod += 3
-      if ((self.mouseAffinity + self.mouse < 40) and (self.mouseAffinity >= 40)):
+      if (self.mouseAffinity + self.mouse < 40 and self.mouseAffinity >= 40):
          tempStr += "\n\nThe paranoia dissipates from your mind, your body languishing and no longer as flighty."
-         if ((self.balls > 0) and (self.showBalls == True)):
+         if (self.balls > 0 and self.showBalls == True):
             tempStr += f" Your {self.ballDesc()} nuts also calm down, their production diminishing."
          self.runMod -= 25
          self.cumMod -= 3
-      if ((self.birdAffinity + self.bird >= 40) and (self.birdAffinity < 40)):
+      if (self.birdAffinity + self.bird >= 40 and self.birdAffinity < 40):
          tempStr += "\n\nYours eyes dart about for a moment as shiny things become suddenly more noticeable. After a few moments, you calm down, but your definitely able to spot shiny things more accurately, able to find an extra couple coins whenever you come across any."
          self.coinMod += 2
          if (self.vagTotal > 0):
@@ -22195,7 +22206,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.eggMaxTime -= 6
             self.eggLaying += 1
-      if ((self.birdAffinity + self.bird < 40) and (self.birdAffinity >= 40)):
+      if (self.birdAffinity + self.bird < 40 and self.birdAffinity >= 40):
          tempStr += "\n\nYour affinity for shinies dissipates. Not quite as focused on them, you aren't able to find an extra couple coins anymore."
          self.coinMod -= 2
          if (self.vagTotal > 0):
@@ -22207,45 +22218,45 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.eggLaying > 1):
             self.eggLaying -= 1
             self.eggMaxTime += 6
-      if ((self.pigAffinity + self.pig >= 10) and (self.pigAffinity < 10)):
+      if (self.pigAffinity + self.pig >= 10 and self.pigAffinity < 10):
          tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
          self.bellyMod += 20
-      if ((self.pigAffinity + self.pig >= 30) and (self.pigAffinity < 30)):
+      if (self.pigAffinity + self.pig >= 30 and self.pigAffinity < 30):
          tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
          self.bellyMod += 20
-      if ((self.pigAffinity + self.pig >= 50) and (self.pigAffinity < 50)):
+      if (self.pigAffinity + self.pig >= 50 and self.pigAffinity < 50):
          tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
          self.bellyMod += 20
-      if ((self.pigAffinity + self.pig >= 70) and (self.pigAffinity < 70)):
+      if (self.pigAffinity + self.pig >= 70 and self.pigAffinity < 70):
          tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
          self.bellyMod += 20
-      if ((self.pigAffinity + self.pig >= 40) and (self.pigAffinity < 40)):
+      if (self.pigAffinity + self.pig >= 40 and self.pigAffinity < 40):
          tempStr += "\n\nYou groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness."
-         if ((self.balls > 0) and (self.showBalls == True)):
+         if (self.balls > 0 and self.showBalls == True):
             tempStr += f" Your {self.ballDesc()} balls also feel rather 'fat', growing heavy with seed..."
          self.cumMod += 5
          self.hipMod += 0.5
          self.buttMod += 0.5
-      if ((self.pigAffinity + self.pig < 10) and (self.pigAffinity >= 10)):
+      if (self.pigAffinity + self.pig < 10 and self.pigAffinity >= 10):
          tempStr += "\n\nYour belly feels lighter, your extra porkiness dissipating."
          self.bellyMod -= 20
-      if ((self.pigAffinity + self.pig < 30) and (self.pigAffinity >= 30)):
+      if (self.pigAffinity + self.pig < 30 and self.pigAffinity >= 30):
          tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
          self.bellyMod -= 20
-      if ((self.pigAffinity + self.pig < 50) and (self.pigAffinity >= 50)):
+      if (self.pigAffinity + self.pig < 50 and self.pigAffinity >= 50):
          tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
          self.bellyMod -= 20
-      if ((self.pigAffinity + self.pig < 70) and (self.pigAffinity >= 70)):
+      if (self.pigAffinity + self.pig < 70 and self.pigAffinity >= 70):
          tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
          self.bellyMod -= 20
-      if ((self.pigAffinity + self.pig < 40) and (self.pigAffinity >= 40)):
+      if (self.pigAffinity + self.pig < 40 and self.pigAffinity >= 40):
          tempStr += "\n\nYou moan as you feel some of your extra weight lift from you. Your hips and rump shrink, no longer nearly as chubby."
-         if ((self.balls > 0) and (self.showBalls == True)):
+         if (self.balls > 0 and self.showBalls == True):
             tempStr += f" Your {self.ballDesc()} balls also feel lighter, no longer producing as much seed."
          self.cumMod -= 5
          self.hipMod -= 0.5
          self.buttMod -= 0.5
-      if ((self.skunkAffinity + self.skunk >= 40) and (self.skunkAffinity < 40)):
+      if (self.skunkAffinity + self.skunk >= 40 and self.skunkAffinity < 40):
          tempStr += f"\n\nYou feel your {self.buttDesc()} rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn't stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma.\n\nYou try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions."
          if (self.skinType == 2):
             tempStr += "\n\nAnd to accentuate the change further, two parallel stripes emerge in your fur, connecting together at your brow and rung over your head all the way down to your rump"
@@ -22254,7 +22265,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "."
          self.enticeMod += 10
          self.butt += 2
-      if ((self.skunkAffinity + self.skunk < 40) and (self.skunkAffinity >= 40)):
+      if (self.skunkAffinity + self.skunk < 40 and self.skunkAffinity >= 40):
          tempStr += f"\n\nYou feel your {self.buttDesc()} rump shrink slightly. The pleasant scent that exudes from it disappears, as well as the other scent you could produce."
          if (self.skinType == 2):
             tempStr += "\n\nThe twin stripes in your fur from your head to your rump also fade"
@@ -22263,7 +22274,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "."
          self.enticeMod -= 10
          self.butt -= 2
-      if ((self.bugAffinity + self.bug >= 40) and (self.bugAffinity < 40)):
+      if (self.bugAffinity + self.bug >= 40 and self.bugAffinity < 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing soft shells to protect them, whenever you're not pregnant."
          if (self.eggLaying == 0):
@@ -22274,7 +22285,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.eggMaxTime -= 6
             self.eggLaying += 1
-      if ((self.bugAffinity + self.bug < 40) and (self.bugAffinity >= 40)):
+      if (self.bugAffinity + self.bug < 40 and self.bugAffinity >= 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more insect-like eggs."
          if (self.eggLaying == 1):
@@ -22367,10 +22378,10 @@ class NiminFetishFantasyv0975o_fla:
       maxNonFeather = as3.Math.max(maxFur,maxScale,maxSkin,maxChitin)
       maxNonChitin = as3.Math.max(maxFur,maxScale,maxSkin,maxFeather)
       if (self.lockSkin == 0):
-         if ((maxSkin > maxNonSkin + 35) and (self.skinType != 1)):
+         if (maxSkin > maxNonSkin + 35 and self.skinType != 1):
             tempStr += f"\n\nYour {self.skinDesc()} feels oddly cool. Looking at it, your {self.skinDesc()} shrinks into your skin, leaving you 'bald' all over. You feel a little naked as you get used to your bare skin."
             self.skinType = 1
-         if ((maxFur > maxNonFur + 35) and (self.skinType != 2)):
+         if (maxFur > maxNonFur + 35 and self.skinType != 2):
             tempStr += f"\n\nYour {self.skinDesc()} begins to itch all over as soft hairs begin to sprout in patches. Before you know it, your whole body is soon covered in a coat of fur."
             self.skinType = 2
             if (self.skunkAffinity >= 40):
@@ -22378,144 +22389,144 @@ class NiminFetishFantasyv0975o_fla:
                if (self.tail == 11):
                   tempStr += " where it connects to the stripes on your tail"
                tempStr += "."
-         if ((maxScale > maxNonScale + 35) and (self.skinType != 3)):
+         if (maxScale > maxNonScale + 35 and self.skinType != 3):
             tempStr += f"\n\nYour {self.skinDesc()} begins to feel oddly dry, feeling somewhat flaky. Before you know it, your whole body feels soft and extremely smooth, covered in a thin layer of scales."
             self.skinType = 3
-         if ((maxFeather > maxNonFeather + 35) and (self.skinType != 4)):
+         if (maxFeather > maxNonFeather + 35 and self.skinType != 4):
             tempStr += f"\n\nYour {self.skinDesc()} begins to tickle all over, tiny hair sprouting up all over and collecting into groups. Before you know it, you're rustling and fluffing up, sleeking back a layer of feathers."
             self.skinType = 4
-         if ((maxChitin > maxNonChitin + 35) and (self.skinType != 5)):
+         if (maxChitin > maxNonChitin + 35 and self.skinType != 5):
             tempStr += f"\n\nYour {self.skinDesc()} begins to feel stiff, as though it were getting harder. Before you know it, your whole body is covered with a layer of chitin, almost like full suit of segmented armor. However, unlike armor, this doesn't really afford you any protection, since you seem to have all the usual sensations through it like any other kind of skin."
             if (self.legDesc(10) == "feet"):
                tempStr += " And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes."
             self.skinType = 5
       self.hasMuzzle = False
       if (self.lockFace == 0):
-         if ((self.faceType == 21) or (self.faceType == 31) or (self.faceType == 61)):
+         if (self.faceType == 21 or self.faceType == 31 or self.faceType == 61):
             self.hasMuzzle = True
-         if ((self.dominant == 1) and (self.faceType != 10)):
+         if (self.dominant == 1 and self.faceType != 10):
             tempStr += "\n\n"
             if (self.hasMuzzle == True):
                tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
             tempStr += "Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human's."
             self.faceType = 10
             self.hasMuzzle = False
-         if ((self.dominant == 2) and ((self.faceType != 20) or (self.faceType != 21))):
-            if ((self.faceType != 20) and (self.faceType != 21)):
+         if (self.dominant == 2 and (self.faceType != 20 or self.faceType != 21)):
+            if (self.faceType != 20 and self.faceType != 21):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance."
                else:
                   tempStr += "\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also appears wider to make up for the slightly stretched appearance."
                self.faceType = 20
-            elif ((self.faceType != 21) and (self.horseAffinity > 70)):
+            elif (self.faceType != 21 and self.horseAffinity > 70):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large eyes peering down the strong jaw, you seem to have a more equine appearance."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse."
                self.faceType = 21
                self.hasMuzzle = True
-         if ((self.dominant == 3) and ((self.faceType != 30) or (self.faceType != 31))):
-            if ((faceType != 30) and (faceType != 31)):
+         if (self.dominant == 3 and (self.faceType != 30 or self.faceType != 31)):
+            if (faceType != 30 and faceType != 31):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance."
                else:
                   tempStr += "\n\nYour teeth grow sharper and your eyes focus more. The tip of your nose also moistens and becomes softer, giving you a more feral appearance."
                self.faceType = 30
-            elif ((self.faceType != 31) and (self.wolfAffinity > 70)):
+            elif (self.faceType != 31 and self.wolfAffinity > 70):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour muzzle narrows and your teeth grow long and sharp, your canines especially visible. With your narrow eyes peering down the vicious jaw, you seem to have a more lupin appearance."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf."
                self.faceType = 31
                self.hasMuzzle = True
-         if ((self.dominant == 4) and ((self.faceType != 40) or (self.faceType != 41))):
-            if ((self.faceType != 40) and (self.faceType != 41)):
+         if (self.dominant == 4 and (self.faceType != 40 or self.faceType != 41)):
+            if (self.faceType != 40 and self.faceType != 41):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face flattens and your nose shrinks a bit, the tip changing color slightly and becoming softer. Your eyes grow narrow as well, making you seem like a hunter."
                self.faceType = 40
                self.hasMuzzle = False
-            elif ((self.faceType != 41) and (self.catAffinity > 60)):
+            elif (self.faceType != 41 and self.catAffinity > 60):
                tempStr += "\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather cat-like appearance."
                self.faceType = 41
-         if ((self.dominant == 5) and ((self.faceType != 50) or (self.faceType != 51))):
-            if ((self.faceType != 50) and (self.faceType != 51)):
+         if (self.dominant == 5 and (self.faceType != 50 or self.faceType != 51)):
+            if (self.faceType != 50 and self.faceType != 51):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance."
                else:
                   tempStr += "\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also seems noticeably broader."
                self.faceType = 50
-            elif ((self.faceType != 51) and (self.cowAffinity > 70)):
+            elif (self.faceType != 51 and self.cowAffinity > 70):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large droopy eyes peering down the broad muzzle, you seem to have a more bovine appearance."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow."
                self.faceType = 51
                self.hasMuzzle = True
-         if ((self.dominant == 6) and ((self.faceType != 60) or (self.faceType != 61))):
-            if ((self.faceType != 60) and (self.faceType != 61)):
+         if (self.dominant == 6 and (self.faceType != 60 or self.faceType != 61)):
+            if (self.faceType != 60 and self.faceType != 61):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour nostrils flatten into slits against your muzzle, giving you a more reptillian appearance."
                else:
                   tempStr += "\n\nYour nose flattens until your nostrils are almost merely slits. Your lips also thin slightly, giving you a more reptillian appearance."
                self.faceType = 60
-            elif ((self.faceType != 61) and (self.lizardAffinity > 70)):
+            elif (self.faceType != 61 and self.lizardAffinity > 70):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour muzzle narrows and flattens out a bit more, making you look more like some kind of lizard."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard."
                self.faceType = 61
                self.hasMuzzle = True
-         if ((self.dominant == 7) and ((self.faceType != 70) or (self.faceType != 71))):
-            if ((self.faceType != 70) and (self.faceType != 71)):
+         if (self.dominant == 7 and (self.faceType != 70 or self.faceType != 71)):
+            if (self.faceType != 70 and self.faceType != 71):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face flattens while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become round and soft, making you seem relatively meek."
                self.faceType = 70
                self.hasMuzzle = False
-            elif ((self.faceType != 71) and (self.rabbitAffinity > 60)):
+            elif (self.faceType != 71 and self.rabbitAffinity > 60):
                tempStr += "\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a bunny."
                self.faceType = 71
-         if ((self.dominant == 8) and ((self.faceType != 80) or (self.faceType != 81))):
-            if ((self.faceType != 80) and (self.faceType != 81)):
+         if (self.dominant == 8 and (self.faceType != 80 or self.faceType != 81)):
+            if (self.faceType != 80 and self.faceType != 81):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your lower face protrudes outward while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become slightly smaller yet more open, making you seem more cautious of your surroundings."
                self.faceType = 80
                self.hasMuzzle = False
-            elif ((self.faceType != 81) and (self.mouseAffinity > 60)):
+            elif (self.faceType != 81 and self.mouseAffinity > 60):
                tempStr += "\n\nThin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a mouse."
                self.faceType = 81
-         if ((self.dominant == 9) and ((self.faceType != 90) or (self.faceType != 91))):
-            if ((self.faceType != 90) and (self.faceType != 91)):
+         if (self.dominant == 9 and (self.faceType != 90 or self.faceType != 91)):
+            if (self.faceType != 90 and self.faceType != 91):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your jaw becomes sharper while your nose grows larger from the rest of your face, almost have a hooked shape. Your eyes become wide and aware, making you seem more focused."
                self.faceType = 90
                self.hasMuzzle = False
-            elif ((self.faceType != 91) and (self.birdAffinity > 70)):
+            elif (self.faceType != 91 and self.birdAffinity > 70):
                tempStr += "\n\nYour upper lip molds up against your large nose, becoming stiff and hard while the bottom lip protrudes and matches the hooked shape. Your nose and mouth morph into a sturdy powerful beak, making you look much like a bird."
                self.faceType = 91
-         if ((self.dominant == 10) and ((self.faceType != 100) or (self.faceType != 101) or (self.faceType != 102))):
-            if ((self.faceType != 100) and (self.faceType != 101) and (self.faceType != 102)):
+         if (self.dominant == 10 and (self.faceType != 100 or self.faceType != 101 or self.faceType != 102)):
+            if (self.faceType != 100 and self.faceType != 101 and self.faceType != 102):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look."
                self.faceType = 100
                self.hasMuzzle = False
-            elif ((faceType != 101) and (self.faceType != 102) and (self.pigAffinity > 60)):
+            elif (faceType != 101 and self.faceType != 102 and self.pigAffinity > 60):
                tempStr += "\n\nYour nose flattens and turns upward, your nostrils growing larger and pointing straight out, making you look much like a pig."
                self.faceType = 101
-            elif ((self.faceType != 102) and (self.pigAffinity > 85)):
+            elif (self.faceType != 102 and self.pigAffinity > 85):
                tempStr += "\n\nTwo of your lower teeth suddenly begin to surge outward, growing rapidly into two large tusks that stick out from your lips and curl upward."
                self.faceType = 102
-         if ((self.dominant == 11) and ((self.faceType != 110) or (self.faceType != 111))):
-            if ((self.faceType != 110) and (self.faceType != 111)):
+         if (self.dominant == 11 and (self.faceType != 110 or self.faceType != 111)):
+            if (self.faceType != 110 and self.faceType != 111):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
@@ -22525,15 +22536,15 @@ class NiminFetishFantasyv0975o_fla:
             elif ((self.faceType != 111) and (self.skunkAffinity > 60)):
                tempStr += "\n\nLong stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather skunk-like appearance."
                self.faceType = 111
-         if ((self.dominant == 12) and ((self.faceType != 120) or (self.faceType != 121))):
-            if ((self.faceType != 120) and (self.faceType != 121)):
+         if (self.dominant == 12 and (self.faceType != 120 or self.faceType != 121)):
+            if (self.faceType != 120 and self.faceType != 121):
                tempStr += "\n\n"
                if (self.hasMuzzle == True):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face flattens and your nose shrinks a bit, a chitinous 'bandage' forming over the bridge of your nose to protect it. Your eyes grow much larger compared to the rest of your face, almost alien but still able to show plenty of emotion."
                self.faceType = 120
                self.hasMuzzle = False
-            elif ((self.faceType != 121) and (self.bugAffinity > 60)):
+            elif (self.faceType != 121 and self.bugAffinity > 60):
                tempStr += "\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance."
                self.faceType = 121
       #as3.trace(f"Face :{self.faceType}")
@@ -22544,119 +22555,119 @@ class NiminFetishFantasyv0975o_fla:
       maxNonTail = as3.Math.max(self.humanAffinity)
       if (self.lockTail == 0):
          if (self.tail < 1):
-            if ((self.dominant == 2) and (self.horseAffinity > maxNonTail + 15)):
+            if (self.dominant == 2 and self.horseAffinity > maxNonTail + 15):
                self.tail = 2
-            if ((self.dominant == 3) and (self.wolfAffinity > maxNonTail + 15)):
+            if (self.dominant == 3 and self.wolfAffinity > maxNonTail + 15):
                self.tail = 3
-            if ((self.dominant == 4) and (self.catAffinity > maxNonTail + 15)):
+            if (self.dominant == 4 and self.catAffinity > maxNonTail + 15):
                self.tail = 4
-            if ((self.dominant == 5) and (self.cowAffinity > maxNonTail + 15)):
+            if (self.dominant == 5 and self.cowAffinity > maxNonTail + 15):
                self.tail = 5
-            if ((self.dominant == 6) and (self.lizardAffinity > maxNonTail + 15)):
+            if (self.dominant == 6 and self.lizardAffinity > maxNonTail + 15):
                self.tail = 6
-            if ((self.dominant == 7) and (self.rabbitAffinity > maxNonTail + 15)):
+            if (self.dominant == 7 and self.rabbitAffinity > maxNonTail + 15):
                self.tail = 7
-            if ((self.dominant == 8) and (self.mouseAffinity > maxNonTail + 15)):
+            if (self.dominant == 8 and self.mouseAffinity > maxNonTail + 15):
                self.tail = 8
-            if ((self.dominant == 9) and (self.birdAffinity > maxNonTail + 15)):
+            if (self.dominant == 9 and self.birdAffinity > maxNonTail + 15):
                self.tail = 9
-            if ((self.dominant == 10) and (self.pigAffinity > maxNonTail + 15)):
+            if (self.dominant == 10 and self.pigAffinity > maxNonTail + 15):
                self.tail = 10
-            if ((self.dominant == 11) and (self.skunkAffinity > maxNonTail + 15)):
+            if (self.dominant == 11 and self.skunkAffinity > maxNonTail + 15):
                self.tail = 11
-            if ((self.dominant == 12) and (self.bugAffinity > maxNonTail + 15)):
+            if (self.dominant == 12 and self.bugAffinity > maxNonTail + 15):
                self.tail = 12
             if (self.tail > 1):
                tempStr += f"\n\nYou feel a tickle upon your backside as your {self.clothesBottom()} feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new {self.tailDesc()} tail bobbing above your {self.buttDesc()} bum. Next time you go to town, you'll be visiting a tailor to fix your clothes to account for your new appendage..."
-         if ((self.dominant == 1) and (self.humanAffinity > maxTail + 10) and (self.tail > 1)):
+         if (self.dominant == 1 and self.humanAffinity > maxTail + 10 and self.tail > 1):
             self.tail = 0
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail."
-         if ((self.dominant == 2) and (self.horseAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 2)):
+         if (self.dominant == 2 and self.horseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 2):
             self.tail = 2
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse's."
-         if ((self.dominant == 3) and (self.wolfAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 3)):
+         if (self.dominant == 3 and self.wolfAffinity > secondTail + 10 and self.tail > 1 and self.tail != 3):
             self.tail = 3
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's."
-         if ((self.dominant == 4) and (self.catAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 4)):
+         if (self.dominant == 4 and self.catAffinity > secondTail + 10 and self.tail > 1 and self.tail != 4):
             self.tail = 4
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it's oh so soft. Just like a cat's."
-         if ((self.dominant == 5) and (self.cowAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 5)):
+         if (self.dominant == 5 and self.cowAffinity > secondTail + 10 and self.tail > 1 and self.tail != 5):
             self.tail = 5
             tempStr += f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your {self.buttDesc()} backside and you can swat yourself with the tip like a soft whip. Just like a cow's."
-         if ((self.dominant == 6) and (self.lizardAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 6)):
+         if (self.dominant == 6 and self.lizardAffinity > secondTail + 10 and self.tail > 1 and self.tail != 6):
             self.tail = 6
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It's quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard's."
-         if ((self.dominant == 7) and (self.rabbitAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 7)):
+         if (self.dominant == 7 and self.rabbitAffinity > secondTail + 10 and self.tail > 1 and self.tail != 7):
             self.tail = 7
             tempStr += f"\n\nYour tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your {self.buttDesc()} bum cutely and quite fluffy. Much like a rabbit's."
-         if ((self.dominant == 8) and (self.mouseAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 8)):
+         if (self.dominant == 8 and self.mouseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 8):
             self.tail = 8
             tempStr += f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn't really hide the pink skin underneath. It whips above your {self.buttDesc()} bum and you can curl it around with limited control. Just like a mouse's."
-         if ((self.dominant == 9) and (self.birdAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 9)):
+         if (self.dominant == 9 and self.birdAffinity > secondTail + 10 and self.tail > 1 and self.tail != 9):
             self.tail = 9
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird's."
-         if ((self.dominant == 10) and (self.pigAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 10)):
+         if (self.dominant == 10 and self.pigAffinity > secondTail + 10 and self.tail > 1 and self.tail != 10):
             self.tail = 10
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig's."
-         if ((self.dominant == 11) and (self.skunkAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 11)):
+         if (self.dominant == 11 and self.skunkAffinity > secondTail + 10 and self.tail > 1 and self.tail != 11):
             self.tail = 11
             tempStr += "\n\nYour tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base"
-            if ((self.skinType == 2) and (self.skunkAffinity >= 40)):
+            if (self.skinType == 2 and self.skunkAffinity >= 40):
                tempStr += " where it meets up with the stripes of your fur"
             tempStr += ". Just like a skunk's."
-         if ((self.dominant == 12) and (self.bugAffinity > secondTail + 10) and (self.tail > 1) and (self.tail != 12)):
+         if (self.dominant == 12 and self.bugAffinity > secondTail + 10 and self.tail > 1 and self.tail != 12):
             self.tail = 12
             tempStr += f"\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your {self.buttDesc()} butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?"
-         if ((self.weapon == 127) and (self.tail != 4) and (self.tail != 5) and (self.tail != 6) and (self.tail != 8)):
+         if (self.weapon == 127 and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
             self.weapon = 10
       maxNonWings = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity)
       maxWings = as3.Math.max(self.birdAffinity)
-      if ((self.wings < 1) and (maxWings > maxNonWings + 60)):
-         if ((self.dominant == 9) and (self.birdAffinity > maxNonWings + 60)):
+      if (self.wings < 1 and maxWings > maxNonWings + 60):
+         if (self.dominant == 9 and self.birdAffinity > maxNonWings + 60):
             tempStr += f"\n\nA sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and {self.legDesc(6)} as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your {self.clothesTop()}, stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself.\n\nStanding, you flap your new feathery wings. While not strong enough to carry you long distances, they'll definitely help you flee from unwanted threats."
             self.wings = 9
          self.runMod += 20
-      if ((self.wings > 0) and (maxNonWings > maxWings + 60)):
+      if (self.wings > 0 and maxNonWings > maxWings + 60):
          tempStr += f"\n\nYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the {self.skinDesc()} left smooth as though there were never anything there. You have lost your wings, it seems."
          self.runMod -= 20
          self.wings = 0
       #if ((wings > 0) and (dominant != wings)):
       # {}
       if (self.lockEars == 0):
-         if ((self.dominant == 1) and (self.humanAffinity > second + 15) and (self.ears != 1)):
+         if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
             self.ears = 1
             tempStr += "\n\nYour ears twitch as they become rounded and hug the sides of you head, looking more like a human's."
-         if ((self.dominant == 2) and (self.horseAffinity > second + 15) and (self.ears != 2)):
+         if (self.dominant == 2 and self.horseAffinity > second + 15 and self.ears != 2):
             self.ears = 2
             tempStr += "\n\nYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse's."
-         if ((self.dominant == 3) and (self.wolfAffinity > second + 15) and (self.ears != 3)):
+         if (self.dominant == 3 and self.wolfAffinity > second + 15 and self.ears != 3):
             self.ears = 3
             tempStr += "\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf's."
-         if ((self.dominant == 4) and (self.catAffinity > second + 15) and (self.ears != 4)):
+         if (self.dominant == 4 and self.catAffinity > second + 15 and self.ears != 4):
             self.ears = 4
             tempStr += "\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat's."
-         if ((self.dominant == 5) and (self.cowAffinity > second + 15) and (self.ears != 5)):
+         if (self.dominant == 5 and self.cowAffinity > second + 15 and self.ears != 5):
             self.ears = 5
             tempStr += "\n\nYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow's."
-         if ((self.dominant == 6) and (self.lizardAffinity > second + 15) and (self.ears != 6)):
+         if (self.dominant == 6 and self.lizardAffinity > second + 15 and self.ears != 6):
             self.ears = 6
             tempStr += "\n\nYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes."
-         if ((self.dominant == 7) and (self.rabbitAffinity > second + 15) and (self.ears != 7)):
+         if (self.dominant == 7 and self.rabbitAffinity > second + 15 and self.ears != 7):
             self.ears = 7
             tempStr += "\n\nYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit's."
-         if ((self.dominant == 8) and (self.mouseAffinity > second + 15) and (self.ears != 8)):
+         if (self.dominant == 8 and self.mouseAffinity > second + 15 and self.ears != 8):
             self.ears = 8
             tempStr += "\n\nYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse's."
-         if ((self.dominant == 9) and (self.birdAffinity > second + 15) and (self.ears != 9)):
+         if (self.dominant == 9 and self.birdAffinity > second + 15 and self.ears != 9):
             self.ears = 9
             tempStr += "\n\nYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird's."
-         if ((self.dominant == 10) and (self.pigAffinity > second + 15) and (self.ears != 10)):
+         if (self.dominant == 10 and self.pigAffinity > second + 15 and self.ears != 10):
             self.ears = 10
             tempStr += "\n\nYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig's."
-         if ((self.dominant == 11) and (self.skunkAffinity > second + 15) and (self.ears != 11)):
+         if (self.dominant == 11 and self.skunkAffinity > second + 15 and self.ears != 11):
             self.ears = 11
             tempStr += "\n\nYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk's."
-         if ((self.dominant == 12) and (self.bugAffinity > second + 15) and (self.ears != 12)):
+         if (self.dominant == 12 and self.bugAffinity > second + 15 and self.ears != 12):
             self.ears = 12
             tempStr += "\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings."
       twoBoob = as3.Math.max(self.twoBoobAffinity,self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity)
@@ -22670,7 +22681,8 @@ class NiminFetishFantasyv0975o_fla:
       nonEightBoob = as3.Math.max(twoBoob,sixBoob,fourBoob,tenBoob)
       nonTenBoob = as3.Math.max(twoBoob,fourBoob,eightBoob,sixBoob)
       if (self.lockBreasts == 0):
-         if ((twoBoob > nonTwoBoob + 20) and (self.boobTotal != 2)):
+         #!if/else-ify
+         if (twoBoob > nonTwoBoob + 20 and self.boobTotal != 2):
             if (self.boobTotal == 4):
                tempStr += "\n\nYour lower chest tickles"
                if (self.breastSize > 4):
@@ -22692,7 +22704,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += ", both growing much lighter"
                tempStr += f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest, which seems to have grown larger."
             self.boobTotal = 2
-         if ((fourBoob > nonFourBoob + 20) and (self.boobTotal != 4)):
+         if (fourBoob > nonFourBoob + 20 and self.boobTotal != 4):
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals."
                if (self.breastSize > 4):
@@ -22713,7 +22725,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += ", growing much lighter"
                tempStr += f". Checking, you catch your three lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before."
             self.boobTotal = 4
-         if ((sixBoob > nonSixBoob + 20) and (self.boobTotal != 6)):
+         if (sixBoob > nonSixBoob + 20 and self.boobTotal != 6):
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest and belly tickle. Four new nipples form amongst your {self.skinDesc()}, a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly."
                if (self.breastSize > 4):
@@ -22733,7 +22745,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += ", growing much lighter"
                tempStr += f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts."
             self.boobTotal = 6
-         if ((eightBoob > nonEightBoob + 20) and (self.boobTotal != 8)):
+         if (eightBoob > nonEightBoob + 20 and self.boobTotal != 8):
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they're all slightly smaller than your original pair."
                if (self.breastSize > 4):
@@ -22752,7 +22764,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += ", growing much lighter"
                tempStr += f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the rest grow slightly larger."
             self.boobTotal = 8
-         if ((tenBoob > nonTenBoob + 20) and (self.boobTotal != 10)):
+         if (tenBoob > nonTenBoob + 20 and self.boobTotal != 10):
             if (self.boobTotal == 2):
                tempStr += f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they're all slightly smaller than your original pair."
                if (self.breastSize > 4):
@@ -22770,7 +22782,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.breastSize > 4):
                   tempStr += f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             self.boobTotal = 10
-      if self.gametweaks[9]:
+      if self.gametweaks[9] == True:
          bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
          #bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
@@ -22786,15 +22798,15 @@ class NiminFetishFantasyv0975o_fla:
       legArray.sort(16)
       secondLegs = legArray[-2]
       if (self.lockLegs == 0):
-         #if ((bipedalHooves > secondLegs + 50) and (self.legType != 2)):
+         #if (bipedalHooves > secondLegs + 50 and self.legType != 2):
          #   tempStr += self.legChange(2,ret=True)
-         if ((bipedalDigiPaw > secondLegs + 50) and (self.legType != 1)):
+         if (bipedalDigiPaw > secondLegs + 50 and self.legType != 1):
             tempStr += self.legChange(1,ret=True)
-         if ((bipedal > secondLegs + 50) and (self.legType != 0)):
+         if (bipedal > secondLegs + 50 and self.legType != 0):
             tempStr += self.legChange(0,ret=True)
-         if ((self.cowTaurAffinity > secondLegs + 50) and (self.legType != 1001)):
+         if (self.cowTaurAffinity > secondLegs + 50 and self.legType != 1001):
             tempStr += self.legChange(1001,ret=True)
-         if ((self.humanTaurAffinity > secondLegs + 50) and (self.legType != 1002)):
+         if (self.humanTaurAffinity > secondLegs + 50 and self.legType != 1002):
             tempStr += self.legChange(1002,ret=True)
       nip0 = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
       nip1 = as3.Math.max(self.cowAffinity)
@@ -22803,22 +22815,22 @@ class NiminFetishFantasyv0975o_fla:
       nonNip1 = as3.Math.max(nip0,nip2)
       nonNip2 = as3.Math.max(nip0,nip1)
       if (self.lockNipples == 0):
-         if ((nip0 > nonNip0 + 60) and (self.nipType != 0)):
+         if (nip0 > nonNip0 + 60 and self.nipType != 0):
             if (self.nipType == 1):
                tempStr += f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each."
             if (self.nipType == 2):
                tempStr += "\n\nYour nipples pop out from your breast, no longer sunken or hidden within."
             self.nipType = 0
-         if ((nip1 > nonNip1 + 60) and (self.nipType != 1)):
+         if (nip1 > nonNip1 + 60 and self.nipType != 1):
             if (self.nipType == 2):
                tempStr += "\n\nYour nipples pop out from your breast, no longer sunken or hidden within."
-            if ((self.nipType == 0) or (self.nipType == 2)):
+            if (self.nipType == 0 or self.nipType == 2):
                tempStr += f"\n\nSpots begin to tingle around your nipples. Your hand roves under your {self.clothesTop()} to inspect the areas, noticeably more sensitive than before. The patches grow softer and puff up beneath your fingertips, feeling rather... familiar? Pulling your {self.clothesTop()} {self.pullUD(1)}, you can see extra nipples form around the ones you already have, complete with darkened areoles and matching size.\n\nYour breasts now each have four nipples equidistant from each other, just as functional as the originals, and just as sensitive, each looking almost like a cow's udder..."
             self.nipType = 1
-         if ((nip2 > nonNip2 + 60) and (self.nipType != 2)):
+         if (nip2 > nonNip2 + 60 and self.nipType != 2):
             if (self.nipType == 1):
                tempStr += f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each."
-            if ((self.nipType == 0) or (self.nipType == 1)):
+            if (self.nipType == 0 or self.nipType == 1):
                tempStr += "\n\nYour nipples sink into your breasts, becoming inverted slits within your areola, only coming out when aroused."
             self.nipType = 2
       if (self.eggLaying > 0):
@@ -22826,44 +22838,44 @@ class NiminFetishFantasyv0975o_fla:
          egg1 = as3.Math.max(self.bugAffinity)
          nonEgg0 = as3.Math.max(egg1)
          nonEgg1 = as3.Math.max(egg0)
-         if ((egg0 > nonEgg0 + 20) and (self.eggType != 0)):
+         if (egg0 > nonEgg0 + 20 and self.eggType != 0):
             if self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0):
                tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 1):
                self.eggMaxTime += 22
             self.eggType = 0
-         if ((egg1 > nonEgg1 + 20) and (self.eggType != 1)):
+         if (egg1 > nonEgg1 + 20 and self.eggType != 1):
             if self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0):
                tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 0):
                self.eggMaxTime -= 22
             self.eggType = 1
       if (self.lockCock == 0):
-         if ((self.dominant == 1) and (self.humanAffinity > second + 25) and (self.human > 0) and (self.cockTotal > 0) and (self.humanCocks < self.cockTotal)):
+         if (self.dominant == 1 and self.humanAffinity > second + 25 and self.human > 0 and self.cockTotal > 0 and self.humanCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's."
             self.humanCocks += 1
             tempStr += self.cockLoss(ret=True)
-         if ((self.dominant == 2) and (self.horseAffinity > second + 25) and (self.horse > 0) and (self.cockTotal > 0) and (self.horseCocks < self.cockTotal)):
+         if (self.dominant == 2 and self.horseAffinity > second + 25 and self.horse > 0 and self.cockTotal > 0 and self.horseCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thick sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Relaxing your muscles, the cock slowly droops out over your {self.clothesBottom()}. It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's."
             self.horseCocks += 1
             tempStr += self.cockLoss(ret=True)
-         if ((self.dominant == 3) and (self.wolfAffinity > second + 25) and (self.wolf > 0) and (self.cockTotal > 0) and (self.wolfCocks < self.cockTotal)):
+         if (self.dominant == 3 and self.wolfAffinity > second + 25 and self.wolf > 0 and self.cockTotal > 0 and self.wolfCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's."
             self.wolfCocks += 1
             tempStr += self.cockLoss(ret=True)
-         if ((self.dominant == 4) and (self.catAffinity > second + 25) and (self.cat > 0) and (self.cockTotal > 0) and (self.catCocks < self.cockTotal)):
+         if (self.dominant == 4 and self.catAffinity > second + 25 and self.cat > 0 and self.cockTotal > 0 and self.catCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's."
             self.catCocks += 1
             tempStr += self.cockLoss(ret=True)
-         if ((self.dominant == 6) and (self.lizardAffinity > second + 25) and (self.lizard > 0) and (self.cockTotal > 0) and (self.lizardCocks < self.cockTotal)):
+         if (self.dominant == 6 and self.lizardAffinity > second + 25 and self.lizard > 0 and self.cockTotal > 0 and self.lizardCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as your cock{self.plural(1)} sink{self.plural(3)} into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?"
             self.lizardCocks += 1
             tempStr += self.cockLoss(ret=True)
-         if ((self.dominant == 7) and (self.rabbitAffinity > second + 25) and (self.rabbit > 0) and (self.cockTotal > 0) and (self.rabbitCocks < self.cockTotal)):
+         if (self.dominant == 7 and self.rabbitAffinity > second + 25 and self.rabbit > 0 and self.cockTotal > 0 and self.rabbitCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's."
             self.rabbitCocks += 1
             tempStr += self.cockLoss(ret=True)
-         if ((self.dominant == 12) and (self.bugAffinity > second + 25) and (self.bug > 0) and (self.cockTotal > 0) and (self.bugCocks < self.cockTotal)):
+         if (self.dominant == 12 and self.bugAffinity > second + 25 and self.bug > 0 and self.cockTotal > 0 and self.bugCocks < self.cockTotal):
             tempStr += f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close."
             self.bugCocks += 1
             tempStr += self.cockLoss(ret=True)
@@ -22913,28 +22925,27 @@ class NiminFetishFantasyv0975o_fla:
          self.rabbitCocks = 0
          self.bugCocks = 0
          self.neuterizerHideBalls = False
-      #elif ((self.cockTotal + totalChange > 0) and self.cockTotal == 1): #Don't know why I did this, supposed to be self.cockTotal < 1
-      elif ((self.cockTotal + totalChange > 0) and self.cockTotal < 1): #Gain cock when no cock
+      elif (self.cockTotal + totalChange > 0 and self.cockTotal < 1): #Gain cock when no cock
          tempStr += f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to pull {self.pullUD(2)} your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, a fresh, new "
-         if ((self.dominant == 1) or (nonCock == True) and (maxCock == self.humanAffinity)):
+         if (self.dominant == 1 or nonCock == True and maxCock == self.humanAffinity):
             tempStr += "human "
             self.humanCocks += 1
-         elif ((self.dominant == 2) or (nonCock == True) and (maxCock == self.horseAffinity)):
+         elif (self.dominant == 2 or nonCock == True and maxCock == self.horseAffinity):
             tempStr += "equine "
             self.horseCocks += 1
-         elif ((self.dominant == 3) or (nonCock == True) and (maxCock == self.wolfAffinity)):
+         elif (self.dominant == 3 or nonCock == True and maxCock == self.wolfAffinity):
             tempStr += "canine "
             self.wolfCocks += 1
-         elif ((self.dominant == 4) or (nonCock == True) and (maxCock == self.catAffinity)):
+         elif (self.dominant == 4 or nonCock == True and maxCock == self.catAffinity):
             tempStr += "feline "
             self.catCocks += 1
-         elif ((self.dominant == 6) or (nonCock == True) and (maxCock == self.lizardAffinity)):
+         elif (self.dominant == 6 or nonCock == True and maxCock == self.lizardAffinity):
             tempStr += "reptillian "
             self.lizardCocks += 1
-         elif ((self.dominant == 7) or (nonCock == True) and (maxCock == self.rabbitAffinity)):
+         elif (self.dominant == 7 or nonCock == True and maxCock == self.rabbitAffinity):
             tempStr += "lapin "
             self.rabbitCocks += 1
-         elif ((self.dominant == 12) or (nonCock == True) and (maxCock == self.bugAffinity)):
+         elif (self.dominant == 12 or nonCock == True and maxCock == self.bugAffinity):
             tempStr += "insectile "
             self.bugCocks += 1
          tempStr += "penis stands erect"
@@ -22963,25 +22974,25 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to open your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,"
          if (totalChange > 1):
             tempStr += f" {totalChange}"
-         if ((self.dominant == 1) or (nonCock == True) and (maxCock == self.humanAffinity)):
+         if (self.dominant == 1 or nonCock == True and maxCock == self.humanAffinity):
             tempStr += " human "
             self.humanCocks += totalChange
-         elif ((self.dominant == 2) or (nonCock == True) and (maxCock == self.horseAffinity)):
+         elif (self.dominant == 2 or nonCock == True and maxCock == self.horseAffinity):
             tempStr += " equine "
             self.horseCocks += totalChange
-         elif ((self.dominant == 3) or (nonCock == True) and (maxCock == self.wolfAffinity)):
+         elif (self.dominant == 3 or nonCock == True and maxCock == self.wolfAffinity):
             tempStr += " canine "
             self.wolfCocks += totalChange
-         elif ((self.dominant == 4) or (nonCock == True) and (maxCock == self.catAffinity)):
+         elif (self.dominant == 4 or nonCock == True and maxCock == self.catAffinity):
             tempStr += " feline "
             self.catCocks += totalChange
-         elif ((self.dominant == 6) or (nonCock == True) and (maxCock == self.lizardAffinity)):
+         elif (self.dominant == 6 or nonCock == True and maxCock == self.lizardAffinity):
             tempStr += " reptillian "
             self.lizardCocks += totalChange
-         elif ((self.dominant == 7) or (nonCock == True) and (maxCock == self.rabbitAffinity)):
+         elif (self.dominant == 7 or nonCock == True and maxCock == self.rabbitAffinity):
             tempStr += " lapin "
             self.rabbitCocks += totalChange
-         elif ((self.dominant == 12) or (nonCock == True) and (maxCock == self.bugAffinity)):
+         elif (self.dominant == 12 or nonCock == True and maxCock == self.bugAffinity):
             tempStr += " insectile "
             self.bugCocks += totalChange
          tempStr += "penis"
@@ -22998,7 +23009,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.cockLoss(ret=True)
             totalChange += 1
          self.stats(0,0,2 * totalChange,0)
-         if self.gametweaks[1] and sizeChange > 0:
+         if self.gametweaks[1] == True and sizeChange > 0:
             tempStr += self.cockChange(sizeChange,0,ret=True)
       elif (self.cockTotal > 0): #Size change
          self.cockSize += sizeChange
@@ -23034,25 +23045,25 @@ class NiminFetishFantasyv0975o_fla:
       if (self.bugCocks > 0):
          hasBugCock = self.bugAffinity
       minCock = as3.Math.min(hasHumanCock,hasHorseCock,hasWolfCock,hasCatCock,hasLizardCock,hasRabbitCock,hasBugCock)
-      if ((minCock == self.humanAffinity) and (self.humanCocks > 0)):
+      if (minCock == self.humanAffinity and self.humanCocks > 0):
          tempStr += "\n\nYou have lost one human cock."
          self.humanCocks -= 1
-      elif ((minCock == self.horseAffinity) and (self.horseCocks > 0)):
+      elif (minCock == self.horseAffinity and self.horseCocks > 0):
          tempStr += "\n\nYou have lost one horse cock."
          self.horseCocks -= 1
-      elif ((minCock == self.wolfAffinity) and (self.wolfCocks > 0)):
+      elif (minCock == self.wolfAffinity and self.wolfCocks > 0):
          tempStr += "\n\nYou have lost one wolf cock."
          self.wolfCocks -= 1
-      elif ((minCock == self.catAffinity) and (self.catCocks > 0)):
+      elif (minCock == self.catAffinity and self.catCocks > 0):
          tempStr += "\n\nYou have lost one cat cock."
          self.catCocks -= 1
-      elif ((minCock == self.lizardAffinity) and (self.lizardCocks > 0)):
+      elif (minCock == self.lizardAffinity and self.lizardCocks > 0):
          tempStr += "\n\nYou have lost one lizard cock."
          self.lizardCocks -= 1
-      elif ((minCock == self.rabbitAffinity) and (self.rabbitCocks > 0)):
+      elif (minCock == self.rabbitAffinity and self.rabbitCocks > 0):
          tempStr += "\n\nYou have lost one rabbit cock."
          self.rabbitCocks -= 1
-      elif ((minCock == self.bugAffinity) and (self.bugCocks > 0)):
+      elif (minCock == self.bugAffinity and self.bugCocks > 0):
          tempStr += "\n\nYou have lost one bug cock."
          self.bugCocks -= 1
       if self.gametweaks[4] == True and self.cockTotal > 0 and self.neuterizerHideBalls == False:
@@ -23068,7 +23079,7 @@ class NiminFetishFantasyv0975o_fla:
       self.birthCount = 0
       if (self.cockSnakePreg > 0):
          self.birthCount = 0
-         if ((sizeChange < 0) or (totalChange < 0)):
+         if (sizeChange < 0 or totalChange < 0):
             tempStr += f"\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed..."
             self.cockSnakePreg = 0
             i = 0
@@ -23086,7 +23097,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(-(self.sen // 4),2,2,ret=True)
                i += 5
             self.cockSnakePreg = 0
-      if (((self.vagSize + sizeChange <= 0) or (self.vagTotal + totalChange < 1)) and (self.vagSize > 0) and (self.vagTotal > 0)): #Loose all vag
+      if ((self.vagSize + sizeChange <= 0 or self.vagTotal + totalChange < 1) and self.vagSize > 0 and self.vagTotal > 0): #Loose all vag
          tempStr += f"\n\nSudden intense cramping makes you double over. A slight moistness in your {self.clothesBottom()} causes your hand to inspect the situation. It reaches your once {self.vulvaDesc()} vulva just in time to feel it shrink to nothing, sealing over with {self.skinDesc()}. It seems you have lost your vagina{self.plural(2)}, "
          if (self.cockTotal > 0):
             tempStr += f"leaving only your cock{self.plural(1)} remaining. You are now considered only male."
@@ -23101,12 +23112,12 @@ class NiminFetishFantasyv0975o_fla:
          self.vulvaSize = 0
          self.clitSize = 0
          i = 0
-         while (i < self.pregArray.length):
+         while (i < self.pregArray.length): #!Use Array.clear()
             if (self.pregArray[i] == False):
                self.pregArray.splice(i,5)
                i = -5
             i += 5
-      elif ((self.vagTotal + totalChange > 0) and (self.vagTotal < 1)): #Gain vag when have none
+      elif (self.vagTotal + totalChange > 0 and self.vagTotal < 1): #Gain vag when have none
          tempStr += f"\n\nYour tummy feels weird as your thighs rub against each other. Your {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across the sensitive bump at the front of the crevice, your finger sinking into a hole. The tip brushes against an even more sensitive ring that sinks further into your body - a fresh womb."
          if (totalChange > 1):
             tempStr += f" Yet, that's simply the first. More moistness slimes your hand as {totalChange} more gashes fill your {self.vulvaDesc()} groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills."
@@ -23123,17 +23134,11 @@ class NiminFetishFantasyv0975o_fla:
          else:
             tempStr += "\n\nYou have now graduated from androgynous to female, congratulations!"
             self.gender = 2
-         #while (totalChange > 0):
          for i in range(totalChange):
-            #if (self.pregArray.length / 5 < self.vagTotal):
-               #self.pregArray.push(False,0,0,0,0)
-               #totalChange -= 1
-            #else:
-               #totalChange = 0
             if (self.pregArray.length / 5 >= self.vagTotal):
                break
             self.pregArray.push(False,0,0,0,0)
-      elif ((totalChange > 0) and (self.vagTotal > 0)): #Gain vag
+      elif (totalChange > 0 and self.vagTotal > 0): #Gain vag
          tempStr += f"\n\nYour {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across another slit of sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across another bump at the front of the crevice, your finger sinking into a hole. A brand new vagina to go with the rest."
          if (totalChange > 1):
             tempStr += f" Yet, that's simply the first. More moistness slimes your hand as {totalChange} more gashes fill your {self.vulvaDesc()} groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills."
@@ -23141,24 +23146,18 @@ class NiminFetishFantasyv0975o_fla:
          self.stats(0,0,2 * totalChange,0)
          self.vagTotal += totalChange
          self.vagSize += sizeChange
-         #while (totalChange > 0):
          for i in range(totalChange):
-            #if (self.pregArray.length / 5 < self.vagTotal):
-            #   self.pregArray.push(False,0,0,0,0)
-            #   totalChange -= 1
-            #else:
-            #   totalChange = 0
             if (self.pregArray.length / 5 >= self.vagTotal):
                break
             self.pregArray.push(False,0,0,0,0)
-      elif ((totalChange < 0) and (self.vagTotal + totalChange > 0)): #Loose vag
+      elif (totalChange < 0 and self.vagTotal + totalChange > 0): #Loose vag
          tempStr += f"\n\nYou notice an odd sensation of numbness within your groin. Slipping a hand into your {self.clothesBottom()}, you notice you're missing {-totalChange} of your vaginas."
          tempStr += self.vagBellyChange(sizeChange,totalChange,ret=True)
          self.stats(0,0,2 * totalChange,0)
          self.vagTotal += totalChange
          self.vagSize += sizeChange
          while (totalChange < 0):
-            if (self.pregCheck(1) == True):
+            if (self.pregCheck(1)):
                i = 0
                while (i < self.pregArray.length):
                   if (self.pregArray[i] == False):
@@ -23190,12 +23189,13 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr
       self.outputMainText(tempStr,False)
    def legChange(self, which:int, ret=False):
+      #!Optimize if/else
       tempStr = ""
-      if ((self.legType > 1000) and (which < 1000)):
+      if (self.legType > 1000 and which < 1000):
          tempStr += f"\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your {self.buttDesc()} ass while your crotch shifts forward to nestle between your front legs."
          if (self.legType == 1001):
             tempStr += f" Your keratin hooves soften and elongate into bipedal feet, the black and white fur disappearing to match your {self.skinDesc()}."
-            if ((self.udderCheck(2) == False) and (self.udders == True)):
+            if (self.udderCheck(2) == False and self.udders == True):
                tempStr += " Your udder also shrinks away into nothing..."
                self.udders = False
                self.udderLactation = 0
@@ -23214,38 +23214,38 @@ class NiminFetishFantasyv0975o_fla:
             self.carryMod -= 15
          tempStr += "\n\nIt takes several minutes before you can manage to stand without the extra legs to square you off... It feels so strange, like a great weight has been lifted yet at the same time things feel heavier. It's going to take a bit of walking to get used to..."
          self.carryMod -= 100
-      if ((self.legType != 0) and (which == 0)):
+      if (self.legType != 0 and which == 0):
          if (self.legType == 1):
             tempStr += "\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
-      if ((self.legType != 1) and (which == 1)):
+      if (self.legType != 1 and which == 1):
          if (self.legType == 0):
             tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
-            if self.gametweaks[0]:
+            if self.gametweaks[0] == True:
                tempStr += "Y"
             else:
                tempStr += "Eventually, y"
             tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
          if (self.legType >= 1000):
             tempStr += "\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
-            if self.gametweaks[0]:
+            if self.gametweaks[0] == True:
                tempStr += "Y"
             else:
                tempStr += "Eventually, y"
             tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
          self.carryMod -= 10
          self.runMod += 10
-      if ((self.legType == 1) and (which != 1)):
+      if (self.legType == 1 and which != 1):
          self.carryMod += 10
          self.runMod -= 10
-      if ((self.legType < 1000) and (which > 1000)):
-         if ((self.legType == 0) or (self.legType == 1)):
+      if (self.legType < 1000 and which > 1000):
+         if (self.legType == 0 or self.legType == 1):
             tempStr += f"\n\nYour {self.hipDesc()} hips begin to ache as you feel something grow from them within your {self.clothesBottom()}. Not outward, however, but towards your backside. As your hands grasp them, you can feel your thickening pelvis split in two. Your {self.buttDesc()} rear moves away from your body as the second pelvis grows along your tailbone, your spine forming more vertebrae to extend further. You collapse to your knees while your ass tears through your {self.clothesBottom()}, taking your crotch away from your original legs with it. Bumps form from the new pelvis as two new limbs begin to grow from the sides of your crotch, a second set of legs that touch down upon the ground, making you stumble as they grow longer and turn your rump and crotch upwards to face straight out, as though you were bending over. Your insides feel even stranger as many of your internal organs shift around, doubling or expanding down in between your two sets of legs. More ribs sprout from the lengthening spine, forming a second chest cavity that guards the organs.\n\nIt takes a few minutes before your body finishes growing its second set of legs and nearly a complete second body. A tauric body. You falter a bit as you try to stand on all 4 of your legs, your arms helping pick you up from the ground but waving for balance as your original torso teeters on top. It's a very strange sensation as your mind adjusts to account for a second set of legs, working them in unison until you can walk while your second belly swings between them. Though you do feel like you can hold up much more with this strong, broader frame, so that's a plus. On the other hand, your ass and genital region are much further away now, while your original crotch feels more like a neck to the second body, so that's going to take some getting used to..."
          if (self.legType == 1):
             self.carryMod += 10
             self.runMod -= 10
          self.changeBot(-1)
          self.carryMod += 100
-      if ((self.legType != 1001) and (which == 1001)):
+      if (self.legType != 1001 and which == 1001):
          tempStr += "\n\nYour tauric half feels strange and tingly."
          if (self.skinType != 2):
             tempStr += f" Short fur sprouts up from your {self.skinDesc()}, only on your tauric half, white in color with large black spots"
@@ -23259,8 +23259,8 @@ class NiminFetishFantasyv0975o_fla:
             self.teatSize = 2 * self.nippleSize
          else:
             tempStr += " Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist."
-      if ((self.legType == 1001) and (which != 1001) and (which > 1000)):
-         if ((self.udderCheck(2) == False) and (self.udders == True)):
+      if (self.legType == 1001 and which != 1001 and which > 1000):
+         if (self.udderCheck(2) == False and self.udders == True):
             tempStr += f"\n\nYour udder shrinks into your {self.skinDesc()} and disappears..."
             self.udders = False
             self.udderLactation = 0
@@ -23269,18 +23269,18 @@ class NiminFetishFantasyv0975o_fla:
             self.udderPlay = 0
             self.udderSize = 0
             self.teatSize = 0
-      if ((self.legType != 1002) and (which == 1002)):
+      if (self.legType != 1002 and which == 1002):
          tempStr += "\n\nAll four feet relax themselves against the ground, level from toes to heels, standing plantigrade and sturdy. Not exactly fast and a bit awkward, but they can hold much more weight, especially considering your second half is as thin as the first and would have otherwise not been the best frame for carrying things across your extended back."
-         if ((self.tail > 0) and (self.tail != 1002) and (self.hair != 0)):
+         if (self.tail > 0 and self.tail != 1002 and self.hair != 0):
             tempStr += f" And your {self.tailDesc()} shifts into hairs that matches the hair on your head."
-         elif ((self.tail == 0) and (self.hair != 0)):
+         elif (self.tail == 0 and self.hair != 0):
             tempStr += " And to finish off the transformation, just above your butt sprouts a tail of hairs from your tailbone that matches the hair on your head and swishes with your control."
          else:
             tempStr += " You also feel some extra muscle control above your butt, around your tailbone, where it feels like you've got a tail, but there's nothing there to speak of yet."
          self.tail = 1002
          self.runMod -= 10
          self.carryMod += 15
-      if ((self.legType == 1002) and (which != 1002) and (which > 1000)):
+      if (self.legType == 1002 and which != 1002 and which > 1000):
          self.runMod += 10
          self.carryMod -= 15
       self.legType = which
@@ -23294,18 +23294,19 @@ class NiminFetishFantasyv0975o_fla:
       self.udderSize += sizeChange
       self.teatSize += sizeChange
    def udderCheck(self, which:int):
-      if ((which != 1) and (self.cowAffinity >= 55) or (which != 2) and (self.legType == 1001)):
+      #!Change to ==
+      if (which != 1 and self.cowAffinity >= 55 or which != 2 and self.legType == 1001):
          return True
       return False
    def lactChange(self, which:int, amount:int, ret=False):
       tempStr = ""
-      if ((which == 1) and (self.lactation + amount >= 1) and (self.lactation < 1)):
+      if (which == 1 and self.lactation + amount >= 1 and self.lactation < 1):
          tempStr += f"\n\nBlotches spread across your {self.clothesTop()} around your nipples. Curiously, you dab your finger in the moistness and take a taste. Milk... Your breasts seem to have begun lactating!"
          self.nipplePlay = 20
-      elif ((which == 2) and (self.udderLactation + amount >= 1) and (self.udderLactation < 1) and (self.udders == True)):
+      elif (which == 2 and self.udderLactation + amount >= 1 and self.udderLactation < 1 and self.udders == True):
          tempStr += f"\n\nBlotches spread across your {self.clothesBottom()}, starting from your teats. Curiously, you dab your finger in the moistness and take a taste. Milk... Your udder seems to have begun lactating!"
          self.udderPlay = 20
-      if ((which == 1) and (self.lactation + amount < 1) and (self.lactation >= 1)):
+      if (which == 1 and self.lactation + amount < 1 and self.lactation >= 1):
          tempStr += "\n\nYour nipples feel exceptionally dry... It seems your breasts are no longer producing milk."
          self.nipplePlay = 0
          if (self.milkEngorgementLevel == 1):
@@ -23316,7 +23317,7 @@ class NiminFetishFantasyv0975o_fla:
             self.boobChange(-3)
          self.milkEngorgementLevel = 0
          self.milkEngorgement = 0
-      elif ((which == 2) and (self.udderLactation + amount < 1) and (self.udderLactation >= 1) and (self.udders == True)):
+      elif (which == 2 and self.udderLactation + amount < 1 and self.udderLactation >= 1 and self.udders == True):
          tempStr += "\n\nYour teats feel exceptionally dry... It seems your udder is no longer producing milk."
          if (self.udderEngorgementLevel == 1):
             self.udderChange(-2)
@@ -23332,12 +23333,12 @@ class NiminFetishFantasyv0975o_fla:
       elif (which == 2):
          self.udderLactation += amount
       if (self.milkSuppressant <= 0):
-         if (((self.lactation <= 0) or (self.udderLactation <= 0) and (self.udders == True)) and (self.pregStatus > 0)):
+         if ((self.lactation <= 0 or self.udderLactation <= 0 and self.udders == True) and self.pregStatus > 0):
             tempStr += " ...However a few minutes later your milk starts right back up. Seems your body needs the milk for something else."
             self.lactation = 20
             if (self.udders == True):
                self.udderLactation = 20
-         if (((self.lactation < 3000) or (self.udderLactation < 3000) and (self.udders == True)) and (self.checkItem(252) == True)):
+         if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders == True) and self.checkItem(252)):
             tempStr += " ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy..."
             self.lactation = 3000
             if (self.udders == True):
@@ -23396,7 +23397,7 @@ class NiminFetishFantasyv0975o_fla:
             self.cockSnakePreg = 100
          tempPregMod -= 100000
       as3.trace(f"{chance} {self.pregChanceMod} {tempPregMod}")
-      if ((self.pregCheck(1) == True) and (chance + self.pregChanceMod + tempPregMod >= 90)):
+      if (self.pregCheck(1) and chance + self.pregChanceMod + tempPregMod >= 90):
          i = 0
          extra = 0
          while (self.percent() < self.extraPregChance + 10 - 4 * (i + 1) * i):
@@ -23466,6 +23467,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.pregArray.length > self.vagTotal * 5):
          self.vagChange(0,1)
       self.hrs += 1
+      #!If/else-ify
       if (birthCount == 0):
          tempStr += f"\n\nSuddenly, you feel water splash across your thighs, flooding from {self.oneYour(2)} cunt{self.plural(2)}. You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!"
       if (birthCount > 0):
@@ -23627,97 +23629,97 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(tempStr,False)
    def ptweaksGrammar(self,topic:int,capital:bool=False):
       if topic == 1: #femme-boy/femboy
-         if capital:
-            if self.gametweaks[0]:
+         if capital == True:
+            if self.gametweaks[0] == True:
                return "Femboy"
             return "Femme-boy"
          else:
-            if self.gametweaks[0]:
+            if self.gametweaks[0] == True:
                return "femboy"
             return "femme-boy"
       elif topic == 2: #shemale/futanari
-         if capital:
-            if self.gametweaks[0]:
+         if capital == True:
+            if self.gametweaks[0] == True:
                return "Futanari"
             return "Shemale"
          else:
-            if self.gametweaks[0]:
+            if self.gametweaks[0] == True:
                return "futanari"
             return "shemale"
       elif topic == 3: #Femme boy/Femboy
-         if capital:
-            if self.gametweaks[0]:
+         if capital == True:
+            if self.gametweaks[0] == True:
                return "Femboy"
             return "Femme Boy"
          else:
-            if self.gametweaks[0]:
+            if self.gametweaks[0] == True:
                return "femboy"
             return "femme boy"
    def plural(self, topic:int):
-      if ((topic == 1) and (self.cockTotal > 1)):
+      if (topic == 1 and self.cockTotal > 1):
          return "s"
-      elif ((topic == 2) and (self.vagTotal > 1)):
+      elif (topic == 2 and self.vagTotal > 1):
          return "s"
-      elif ((topic == 3) and (self.cockTotal < 2)):
+      elif (topic == 3 and self.cockTotal < 2):
          return "s"
-      elif ((topic == 4) and (self.vagTotal < 2)):
+      elif (topic == 4 and self.vagTotal < 2):
          return "s"
       elif (topic == 5):
          if (self.cockTotal < 2):
             return "its"
-         elif (self.cockTotal > 1):
+         elif (self.cockTotal > 1): #!can be else
             return "their"
       elif (topic == 6):
          if (self.vagTotal < 2):
             return "its"
-         elif (self.vagTotal > 1):
+         elif (self.vagTotal > 1): #!can be else
             return "their"
       elif (topic == 7):
          if (self.cockTotal < 2):
             return "it's"
-         elif (self.cockTotal > 1):
+         elif (self.cockTotal > 1): #!can be else
             return "they're"
       elif (topic == 8):
          if (self.vagTotal < 2):
             return "it's"
-         elif (self.vagTotal > 1):
+         elif (self.vagTotal > 1): #!can be else
             return "they're"
       elif (topic == 9):
          if (self.cockTotal < 2):
             return "it"
-         elif (self.cockTotal > 1):
+         elif (self.cockTotal > 1): #!can be else
             return "them"
       elif (topic == 10):
          if (self.vagTotal < 2):
             return "it"
-         elif (self.vagTotal > 1):
+         elif (self.vagTotal > 1): #!can be else
             return "them"
       elif (topic == 11):
          if (self.cockTotal < 2):
             return "it"
-         elif (self.cockTotal > 1):
+         elif (self.cockTotal > 1): #!can be else
             return "they"
       elif (topic == 12):
          if (self.vagTotal < 2):
             return "it"
-         elif (self.vagTotal > 1):
+         elif (self.vagTotal > 1): #!can be else
             return "they"
       elif (topic == 13):
          if (self.cockTotal < 2):
             return "is"
-         elif (self.cockTotal > 1):
+         elif (self.cockTotal > 1): #!can be else
             return "are"
       elif (topic == 14):
          if (self.vagTotal < 2):
             return "is"
-         elif (self.vagTotal > 1):
+         elif (self.vagTotal > 1): #!can be else
             return "are"
-      elif ((topic == 15) and (self.cockTotal > 1)):
+      elif (topic == 15 and self.cockTotal > 1):
          return "es"
       elif (topic == 16):
          if (self.vagTotal < 2):
             return "y"
-         elif (self.vagTotal > 1):
+         elif (self.vagTotal > 1): #!can be else
             return "ies"
       else:
          return ""
@@ -23734,11 +23736,12 @@ class NiminFetishFantasyv0975o_fla:
             return "your"
       return f"ONE YOUR ERROR {self.cockTotal} {self.vagTotal}"
    def bodyDesc(self):
+      #!optimize if/else
       if (self.gender == 1):
          if self.body <= 11:
             return "childish"
          elif self.body <= 17:
-            if ((self.hips > 3) and (self.breastSize > 4)):
+            if (self.hips > 3 and self.breastSize > 4):
                return self.ptweaksGrammar(2)
             elif (self.hips > 2):
                return f"{self.ptweaksGrammar(1)}ish"
@@ -23746,19 +23749,20 @@ class NiminFetishFantasyv0975o_fla:
                return "boyish"
          elif self.body <= 25:
             return "manly"
-         else:
+         elif (self.body > 25):
             return "musclebound"
       elif (self.gender == 2):
-         if ((self.body > 9) and (self.body <= 14)):
+         #!if/else=ify
+         if (self.body > 9 and self.body <= 14):
             return "girly"
-         if ((self.body > 14) and (self.body <= 20)):
-            if ((self.hips > 4) or (self.butt > 4) or (self.breastSize > 4)):
+         if (self.body > 14 and self.body <= 20):
+            if (self.hips > 4 or self.butt > 4 or self.breastSize > 4):
                return "voluptuous"
             else:
                return "womanly"
          if (self.body <= 10):
             return "childish"
-         if ((self.body > 17) and (self.breastSize <= 2)):
+         if (self.body > 17 and self.breastSize <= 2):
             return "cunt-boy"
          elif (self.body > 20):
             return "musclebound"
@@ -23766,16 +23770,16 @@ class NiminFetishFantasyv0975o_fla:
          if self.body <= 11:
             return "childish"
          elif self.body <= 23:
-            if ((self.hips > 2) and (self.breastSize > 2)):
+            if (self.hips > 2 and self.breastSize > 2):
                return "feminine"
             else:
                return "masculine"
-         else:
+         elif (self.body > 23):
             return "musclebound"
       elif (self.gender == 0):
-         if ((self.body > 11) and (self.body <= 15)):
+         if (self.body > 11 and self.body <= 15):
             return "teenage"
-         elif ((self.body > 15) and (self.body <= 23)):
+         elif (self.body > 15 and self.body <= 23):
             return "fully grown"
          elif (self.body <= 11):
             return "childish"
@@ -23841,7 +23845,7 @@ class NiminFetishFantasyv0975o_fla:
       return f"TAIL ERROR {self.tail}"
    def humanTaurTailDesc(self):
       tempStr = ""
-      if (self.hairstyleLength(self.hair) == True):
+      if (self.hairstyleLength(self.hair)):
          if self.hairLength == 2:
             tempStr = "short "
          elif self.hairLength == 4:
@@ -23887,6 +23891,7 @@ class NiminFetishFantasyv0975o_fla:
          case _:
             return ""
    def earDesc(self):
+      #!Here
       match self.ears:
          case 1:
             return "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
@@ -23912,8 +23917,7 @@ class NiminFetishFantasyv0975o_fla:
             return "Atop your head, you have small round ears that stand perk, like that of a skunk's"
          case 12:
             return "Hugging the sides of your head, you have long pointy ears with wavy-shaped lobes, colored vibrantly like the wings of a butterfly"
-         case _:
-            return f"EAR ERROR {self.ears}"
+      return f"EAR ERROR {self.ears}"
    def faceDesc(self):
       match self.faceType:
          case 10:
@@ -23964,8 +23968,7 @@ class NiminFetishFantasyv0975o_fla:
             return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large gazing eyes"
          case 121:
             return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large nectar-sucking lips that offset your large darkened eyes"
-         case _:
-            return f"FACE ERROR {self.faceType}"
+      return f"FACE ERROR {self.faceType}"
    def boobDesc(self):
       if (self.percent() <= 50):
          if (self.breastSize <= 0):
@@ -24292,7 +24295,7 @@ class NiminFetishFantasyv0975o_fla:
    def nipDesc(self):
       tempStr = f"NIPPLE ERROR {self.nippleSize}"
       if (self.percent() <= 50):
-         if ((self.nipType == 2) and (self.lust < 50)):
+         if (self.nipType == 2 and self.lust < 50):
             tempStr = "inverted "
          else:
             if (self.nippleSize <= 2):
@@ -24314,7 +24317,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.nippleSize > 300):
                tempStr = "obscene "
       else:
-         if ((self.nipType == 2) and (self.lust < 50)):
+         if (self.nipType == 2 and self.lust < 50):
             tempStr = "sunken "
          else:
             if (self.nippleSize <= 2):
@@ -24568,14 +24571,14 @@ class NiminFetishFantasyv0975o_fla:
          case 9:
             if (self.legType == 1):
                return "paw"
-            elif ((self.legType in (2,1001)) or (self.checkItem(102) == True)):
+            elif (self.legType in (2,1001) or self.checkItem(102)):
                return "hoof"
             else:
                return "foot"
          case 10:
             if (self.legType == 1):
                return "paws"
-            elif ((self.legType in (2,1001)) or (self.checkItem(102) == True)):
+            elif (self.legType in (2,1001) or self.checkItem(102)):
                return "hooves"
             else:
                return "feet"
@@ -24669,11 +24672,11 @@ class NiminFetishFantasyv0975o_fla:
       if self.gender == 0:
          return "n androgynous"
       elif self.gender == 1:
-         if ((self.hips > 3) and (self.breastSize > 4)):
+         if (self.hips > 3 and self.breastSize > 4):
             return " female"
          return " male"
       elif self.gender == 2:
-         if ((self.body > 17) and (self.breastSize <= 2)):
+         if (self.body > 17 and self.breastSize <= 2):
             return " male"
          return " female"
       elif self.gender == 3:
@@ -25900,7 +25903,6 @@ class NiminFetishFantasyv0975o_fla:
       self.openDebugWindow()
       self.detailedDebug()
    def openDebugWindow(self,*useless):
-      #!add refresh button to window
       if (self.debugWinOpen != True):
          self.dw = itk.window(400,400,"Pymin: Debug Window","frame",self.theme,False,False,False)
          if self.fixedresolutionmode:
@@ -25915,7 +25917,6 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.dw.toTop()
    def detailedDebug(self,*useless):
-      #!redo this to include all current variables
       if (self.debugWinOpen == True):
          temp = self.dw.children["text"].yview()
          #!Fix scrollbar positioning
