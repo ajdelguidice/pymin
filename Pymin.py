@@ -8692,7 +8692,7 @@ class NiminFetishFantasyv0975o_fla:
          elif goodsSlot == 5:
             return 103
          elif goodsSlot == 6:
-            return 110 #!supposed to be 105
+            return 105
          elif goodsSlot == 9:
             return 110
          elif goodsSlot == 10:
@@ -9019,7 +9019,7 @@ class NiminFetishFantasyv0975o_fla:
       elif ID == 2:
          return 'R: RejuvPot'
       elif ID == 3:
-         return 'R: RejuvPot' #!Should be "R: ExpPreg"
+         return 'R: ExpPreg'
       elif ID == 4:
          return 'R: BallSwell'
       elif ID == 5:
