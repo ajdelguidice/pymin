@@ -5178,6 +5178,11 @@ class NiminFetishFantasyv0975o_fla:
          self.showButtons(buttonlist)
          self.doButtonChoices(templist)
          def doListen():
+            if self.buttonChoice != 9:
+               self.hideSGButton()
+               self.hideLGButton()
+               self.hideNGButton()
+               self.hideAPButton()
             match self.buttonChoice:
                case 1:
                   self.doBag()
@@ -5246,9 +5251,6 @@ class NiminFetishFantasyv0975o_fla:
       self.mts = False
       self.inBag = True
       self.tempBagPage = 1
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       self.showMoveItem(True)
       if noclear == False and refresh == False:
          self.choiceListButtons("Bag")
@@ -8097,9 +8099,6 @@ class NiminFetishFantasyv0975o_fla:
          self.inStash = False
          self.showPage(False,"")
          self.hideAmount()
-         self.hideSGButton()
-         self.hideLGButton()
-         self.hideNGButton()
          self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
          self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.",True)
          self.doButtonChoices((4,"Store",8,"Remove",12,"Return"))
@@ -8117,9 +8116,6 @@ class NiminFetishFantasyv0975o_fla:
          self.mtb = False
          self.inStash = True
          self.tempBagPage = 1
-         self.hideSGButton()
-         self.hideLGButton()
-         self.hideNGButton()
          self.showMoveItem(True)
          if noclear == False and refresh == False:
             self.choiceListButtons("Stash")
@@ -8391,9 +8387,6 @@ class NiminFetishFantasyv0975o_fla:
             for j in range(tempInt2):
                self.itemAdd(tempInt)
    def doShops(self):
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       self.showButtons(ButtonList(1,1,1,0,0,1,1,0,0,0,0,1))
       self.outputMainText(f"General Store - Come here to see what kinds of goods {self.regionName(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {self.regionName(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {self.regionName(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {self.regionName(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.",True)
       self.doButtonChoices((1,"General",2,"Dyes",3,"Apothecary",6,"Salon",7,"Tailor",12,"Return"))
@@ -10213,9 +10206,6 @@ class NiminFetishFantasyv0975o_fla:
             self.attireBot = ID
    def doDayCare(self):
       tempInt = 0
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       tempStr = "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."
       if (self.currentDayCare != self.currentZone):
          tempStr += f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {self.regionName(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {self.regionName(self.currentDayCare)} to safely bring your children here, it will cost 500 coins."
@@ -10317,9 +10307,6 @@ class NiminFetishFantasyv0975o_fla:
       chance = 0
       tempInt = 0
       getCum = 0
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       if (self.percent() < 33 - self.enticeMod):
          self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.",True)
          self.hrs = 2
@@ -10885,9 +10872,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
    def doSleep(self):
       self.bc()
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       tempStr = "You head into town to sleep for the night..."
       self.exhaustion = 0
       self.skipExhaustion = True
@@ -10976,9 +10960,6 @@ class NiminFetishFantasyv0975o_fla:
       self.doEnd()
    def doMasturbate(self):
       self.currentState = 3
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       tempArray = as3.Array(4,"Bag",7,"Breasts",12,"Return")
       if (self.cockTotal > 0):
          tempArray.push(1,"Penis")
@@ -11572,9 +11553,6 @@ class NiminFetishFantasyv0975o_fla:
       self.hrs += 1
       self.doEnd()
    def doAlchemy(self):
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       self.showButtons(ButtonList(1,0,0,0,0,1,0,0,0,0,1,1))
       self.outputMainText("Choose which list of alchemy you would like to choose from.",True)
       self.doButtonChoices((1,"Simple",6,"Complex",11,"Advanced",12,"Return"))
@@ -12734,9 +12712,6 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def doExplore(self):
       self.bc()
-      self.hideSGButton()
-      self.hideLGButton()
-      self.hideNGButton()
       if self.currentZone == 1:
          buttonlist = ButtonList(1,0,0,0,0,1,1,0,0,1,0,0)
          templist = as3.Array(6, "Softlik", 1, "Forest", 7, "Dairy Farm", 10, "Plains")
