@@ -11696,6 +11696,8 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Simple")
          if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.simpleAlchemy()
+         elif (self.buttonChoice == 12):
+            self.doAlchemy()
          else:
             self.choicePage = 1
          if (self.choiceListResult[0] == "Blondie"):
@@ -11712,8 +11714,6 @@ class NiminFetishFantasyv0975o_fla:
             self.makeAlchemy(507,1)
          elif (self.choiceListResult[0] == "Male Enhance"):
             self.makeAlchemy(534,1)
-         if (self.buttonChoice == 12): #!Rearrange this
-            self.doAlchemy()
       self.doListen = doListen
    def complexAlchemy(self):
       self.comefromalch = 2
@@ -11764,6 +11764,8 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Complex")
          if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.complexAlchemy()
+         elif (self.buttonChoice == 12):
+            self.doAlchemy()
          else:
             self.choicePage = 1
          if (self.choiceListResult[0] == "Black Dye"):
@@ -11786,8 +11788,6 @@ class NiminFetishFantasyv0975o_fla:
             self.makeAlchemy(514,1)
          elif (self.choiceListResult[0] == "Milk Suppress"):
             self.makeAlchemy(535,1)
-         if (self.buttonChoice == 12): #!Rearrange this
-            self.doAlchemy()
       self.doListen = doListen
    def advancedAlchemy(self):
       self.comefromalch = 3
@@ -11828,8 +11828,10 @@ class NiminFetishFantasyv0975o_fla:
       self.choiceListButtons("Advanced")
       def doListen():
          self.choiceListSelect("Advanced")
-         if ((self.buttonChoice == 4) or (self.buttonChoice == 8)):
+         if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.advancedAlchemy()
+         elif (self.buttonChoice == 12):
+            self.doAlchemy()
          else:
             self.choicePage = 1
          if (self.choiceListResult[0] == "Red Dye"):
@@ -11848,8 +11850,6 @@ class NiminFetishFantasyv0975o_fla:
             self.makeAlchemy(532,1)
          elif (self.choiceListResult[0] == "Bazoomba!"):
             self.makeAlchemy(536,1)
-         if (self.buttonChoice == 12): #!Rearrange this
-            self.doAlchemy()
       self.doListen = doListen
    def makeAlchemy(self, ID:int, level:int):
       self.tempID = ID
