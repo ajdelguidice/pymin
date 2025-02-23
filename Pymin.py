@@ -2365,26 +2365,6 @@ class NiminFetishFantasyv0975o_fla:
       self.changeMod = cmath.roundedmultdivide(self.changeMod,10,10)
       self.SexPMod = cmath.roundedmultdivide(self.SexPMod,10,10)
       self.pregRate = cmath.roundedmultdivide(self.pregRate,100,100)
-      self.maleFetish = cmath.roundedmultdivide(self.maleFetish,10,10)
-      self.femaleFetish = cmath.roundedmultdivide(self.femaleFetish,10,10)
-      self.hermFetish = cmath.roundedmultdivide(self.hermFetish,10,10)
-      self.narcissistFetish = cmath.roundedmultdivide(self.narcissistFetish,10,10)
-      self.dependentFetish = cmath.roundedmultdivide(self.dependentFetish,10,10)
-      self.dominantFetish = cmath.roundedmultdivide(self.dominantFetish,10,10)
-      self.submissiveFetish = cmath.roundedmultdivide(self.submissiveFetish,10,10)
-      self.lboobFetish = cmath.roundedmultdivide(self.lboobFetish,10,10)
-      self.sboobFetish = cmath.roundedmultdivide(self.sboobFetish,10,10)
-      self.furryFetish = cmath.roundedmultdivide(self.furryFetish,10,10)
-      self.scalyFetish = cmath.roundedmultdivide(self.scalyFetish,10,10)
-      self.smoothyFetish = cmath.roundedmultdivide(self.smoothyFetish,10,10)
-      self.pregnancyFetish = cmath.roundedmultdivide(self.pregnancyFetish,10,10)
-      self.bestialityFetish = cmath.roundedmultdivide(self.bestialityFetish,10,10)
-      self.milkFetish = cmath.roundedmultdivide(self.milkFetish,10,10)
-      self.sizeFetish = cmath.roundedmultdivide(self.sizeFetish,10,10)
-      self.unbirthingFetish = cmath.roundedmultdivide(self.unbirthingFetish,10,10)
-      self.ovipositionFetish = cmath.roundedmultdivide(self.ovipositionFetish,10,10)
-      self.toyFetish = cmath.roundedmultdivide(self.toyFetish,10,10)
-      self.hyperFetish = cmath.roundedmultdivide(self.hyperFetish,10,10)
    def bc(self):
       self.clearTextAllButtons()
       self.buttonChoice = 0
@@ -3893,58 +3873,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.appearanceGo()
                case 7:
                   self.detailedHelp()
-               case 11:
-                  self.detailedCredits()
-               case 12:
-                  self.doProcess()
-         self.doListen = doListen
-   @deprecated("Fetish system is no longer in use.")
-   def detailedFetishes(self):
-      #Deprecated but should work
-      tempStr = "You have the following interests in kinks (0 being no interest, 1 being average interest, etc):\n"
-      tempStr += "\nMajor kinks (affects most situations):\n"
-      tempStr += f"\nMen\t\t\t{self.maleFetish}"
-      tempStr += f"\nWomen\t\t\t{self.femaleFetish}"
-      tempStr += f"\nHerms\t\t\t{self.hermFetish}"
-      tempStr += f"\nYourself\t\t{self.narcissistFetish}"
-      tempStr += f"\nOthers\t\t\t{self.dependentFetish}"
-      tempStr += "\n\nModerate kinks (affects many situations):\n"
-      tempStr += f"\nDominant\t\t{self.dominantFetish}"
-      tempStr += f"\nSubmissive\t\t{self.submissiveFetish}"
-      tempStr += f"\nLarge Boobs\t{self.lboobFetish}"
-      tempStr += f"\nSmall Boobs\t{self.sboobFetish}"
-      tempStr += f"\nFurries\t\t\t{self.furryFetish}"
-      tempStr += f"\nScalies\t\t\t{self.scalyFetish}"
-      tempStr += f"\nSmoothies\t\t{self.smoothyFetish}"
-      tempStr += "\n\nMinor kinks (affects few situations):\n"
-      tempStr += f"\nPregnancy\t\t{self.pregnancyFetish}"
-      tempStr += f"\nBestiality\t\t{self.bestialityFetish}"
-      tempStr += f"\nMilk\t\t\t{self.milkFetish}"
-      tempStr += f"\nSize\t\t\t{self.sizeFetish}"
-      tempStr += f"\nUnbirthing\t\t{self.unbirthingFetish}"
-      tempStr += f"\nOviposition\t\t{self.ovipositionFetish}"
-      tempStr += f"\nToys\t\t\t{self.toyFetish}"
-      tempStr += f"\nHyper\t\t\t{self.hyperFetish}"
-      if (self.showSide == True):
-         self.outputSideText(tempStr,True)
-      else:
-         self.outputMainText(tempStr,True)
-         self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-         self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",9,"Appearance",11,"Credits",12,"Return"))
-         def doListen():
-            match self.buttonChoice:
-               case 1:
-                  self.detailedStats()
-               case 2:
-                  self.detailedTitles()
-               case 3:
-                  self.detailedStatuses()
-               case 5:
-                  self.detailedLevels()
-               case 6:
-                  self.detailedGear()
-               case 9:
-                  self.appearanceGo()
                case 11:
                   self.detailedCredits()
                case 12:
@@ -12271,129 +12199,6 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doLevelUP()
                self.doListen = doListen
-            case "Fetish Master":
-               #!Here
-               self.outputMainText(f"For those who want to be the very best, like no one ever was, Fetish Master allows you to collect all the kinks. Kinks affect how much you gain or lose lust in situations that involve the appropriate factors.\n\nEvery 4th level, you can increase a Major kink by 30%, but also reduces opposing kinks by a smaller amount.\n\nEvery 3rd level, you can increase a Moderate kink by 20%, also reducing opposing kinks by a smaller amount.\n\nOtherwise, levels in Fetish Master will allow you to increase Minor kinks by 10%.\n\nYou have {self.fetishMasterLevel} levels in Fetish Master.",True)
-               self.buttonConfirm()
-               def doListen():
-                  if (self.buttonChoice == 6):
-                     if ((self.fetishMasterLevel + 1) // 4 > self.fetishMasterLevel // 4):
-                        self.outputMainText("Major fetishes affect most sexual situations. Selecting one will increase your lust gained or lost by an additional 30%. However, since they are so profound, they will also make opposing kinks even less interesting.\n\nMale - Applies to sexual situations with males. Selecting it will reduce your Female kink by 20% and your Herm kink by 10%.\n\nFemale - Applies to sexual situations with females. Selecting it will reduce your Male kink by 20% and your Herm kink by 10%.\n\nHerm - Applies to sexual situation with hermaphrodites, people with both male and female genetalia. Selecting this kink will reduce your Male and Female kinks by 20%.\n\nNarcissist - Applies to sexual situations that only involve yourself. Selecting it will reduce your Dependent kink by 20%.\n\nDependent - Applies to sexual situations that involve others with you. Selecting it will reduce your Narcissist kink by 20%.",True)
-                        self.showButtons(ButtonList(1,1,1,0,1,1,0,0,0,0,0,1))
-                        self.doButtonChoices((1, "Male", 2, "Female", 3, "Herm", 5, "Narcissist", 6, "Dependent", 12, "Cancel"))
-                        def doListen():
-                           if self.buttonChoice == 1:
-                              self.outputMainText("You now find pee-pees more attractive and vagoos more icky.",True)
-                              self.maleFetish += 0.3
-                              self.femaleFetish -= 0.2
-                              self.hermFetish -= 0.1
-                           elif self.buttonChoice == 2:
-                              self.outputMainText("You now find vagoos more attractive and pee-pees more icky.",True)
-                              self.femaleFetish += 0.3
-                              self.maleFetish -= 0.2
-                              self.hermFetish -= 0.1
-                           elif self.buttonChoice == 3:
-                              self.outputMainText("You now find pee-pees and vagoos more attractive together, but kinda weird apart.",True)
-                              self.hermFetish += 0.3
-                              self.femaleFetish -= 0.2
-                              self.maleFetish -= 0.2
-                           elif self.buttonChoice == 5:
-                              self.outputMainText("You now see yourself as more of a sexy devil and everyone else as just trash.",True)
-                              self.narcissistFetish += 0.3
-                              self.dependentFetish -= 0.2
-                           elif self.buttonChoice == 6:
-                              self.outputMainText("You now find yourself more needy of others and have less confidence in your own body.",True)
-                              self.dependentFetish += 0.3
-                              self.narcissistFetish -= 0.2
-                           if (self.buttonChoice == 12):
-                              self.doLevelUP()
-                           else:
-                              self.levelUP -= 1
-                              self.fetishMasterLevel += 1
-                              self.doEnd()
-                        self.doListen = doListen
-                     elif ((self.fetishMasterLevel + 1) // 3 > self.fetishMasterLevel // 3):
-                        self.outputMainText("Moderate fetishes affect many sexual situations. Selecting one will increase your lust gained or lost by an additional 20%. However, since they are somewhat important, they will also make opposing kinks even less interesting.\n\nDominant - Applies to sexual situations where you are in charge. Selecting it will reduce your Submissive kink by 10%.\n\nSubmissive - Applies to sexual situations where you are being dominated. Selecting it will reduce your Dominant kink by 10%.\n\nLarge Breasts - Applies to sexual situations that involve relatively big titties. Selecting it will reduce your Small Breasts kink by 10%.\n\nSmall Breasts- Applies to sexual situations that involve relatively small boobies (mostly does not apply to males). Selecting it will reduce your Large Breasts kink by 10%.\n\nFurry - Applies to sexual situations with fur-covered people. Selecting it will reduce your Scaley and Smoothy kinks by 10%.\n\nScaly - Applies to sexual situations with scale-covered people. Selecting it will reduce your Furry and Smoothy kinks by 10%.\n\nSmoothy - Applies to sexual situations with smooth skin-covered people. Selecting it will reduce your Furry and Scaly kinks by 10%.",True)
-                        self.showButtons(ButtonList(1,1,0,0,1,1,0,0,1,1,1,1))
-                        self.doButtonChoices((1, "Dominant", 2, "Submissive", 5, "Large Boobs", 6, "Small Boobs", 9, "Furry", 10, "Scaly", 11, "Smoothy", 12, "Cancel"))
-                        def doListen():
-                           if self.buttonChoice == 1:
-                              self.outputMainText("You now enjoy stomping on people more and dislike being stepped on.",True)
-                              self.dominantFetish += 0.2
-                              self.submissiveFetish -= 0.1
-                           elif self.buttonChoice == 2:
-                              self.outputMainText("You now enjoy being told what to do more and dislike telling others what to do.",True)
-                              self.submissiveFetish += 0.2
-                              self.dominantFetish -= 0.1
-                           elif self.buttonChoice == 5:
-                              self.outputMainText("You now enjoy motorboating more and dislike boards.",True)
-                              self.lboobFetish += 0.2
-                              self.sboobFetish -= 0.1
-                           elif self.buttonChoice == 6:
-                              self.outputMainText("You now find small dainty tatas more attractive and dislike the excessively fat kind.",True)
-                              self.sboobFetish += 0.2
-                              self.lboobFetish -= 0.1
-                           elif self.buttonChoice == 9:
-                              self.outputMainText("You now enjoy cuddling up with fuzzies more and lack of fuzziness less.",True)
-                              self.furryFetish += 0.2
-                              self.scalyFetish -= 0.1
-                              self.smoothyFetish -= 0.1
-                           elif self.buttonChoice == 10:
-                              self.outputMainText("You now enjoy shiny, luxurious scales more and dull skin less less.",True)
-                              self.scalyFetish += 0.2
-                              self.furryFetish -= 0.1
-                              self.smoothyFetish -= 0.1
-                           elif self.buttonChoice == 11:
-                              self.outputMainText("You now enjoy the feeling of smooth, soft skin more and wierd kinds less.",True)
-                              self.smoothyFetish += 0.2
-                              self.scalyFetish -= 0.1
-                              self.furryFetish -= 0.1
-                           if (self.buttonChoice == 12):
-                              self.doLevelUP()
-                           else:
-                              self.levelUP -= 1
-                              self.fetishMasterLevel += 1
-                              self.doEnd()
-                        self.doListen = doListen
-                     else:
-                        self.outputMainText("Minor fetishes affect some sexual situations. Selecting one will increase your lust gained or lost by an additional 10%. They easily allow room for other fetishes, so they don't reduce others.\n\nPregnancy - Applies to sexual situations where someone is pregnant.\n\nBestiality - Applies to sexual situations with feral animals.\n\nMilk - Applies to sexual situations that involve lactation.\n\nSize - Applies to sexual situations where one person is significantly larger than the other.\n\nUnbirthing - Applies to sexual situations that involve reverse-birthing.\n\nOviposition - Applies to sexual situations where eggs are popping out.\n\nToy - Applies to sexual situations with inanimate objects.\n\nHyper - Applies to sexual situations where something is significantly bigger than usual.",True)
-                        self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,1,0,1))
-                        self.doButtonChoices((1, "Pregnancy", 2, "Bestiality", 3, "Milk", 5, "Size", 6, "Unbirthing", 7, "Oviposition", 9, "Toy", 10, "Hyper", 12, "Cancel"))
-                        def doListen():
-                           if self.buttonChoice == 1:
-                              self.outputMainText("You now enjoy big swollen baby-filled bellies more.",True)
-                              self.pregnancyFetish += 0.1
-                           elif self.buttonChoice == 2:
-                              self.outputMainText("You now enjoy 'doggy-style' being literal more.",True)
-                              self.bestialityFetish += 0.1
-                           elif self.buttonChoice == 3:
-                              self.outputMainText("You now want to suck on those drippy milkbags more.",True)
-                              self.milkFetish += 0.1
-                           elif self.buttonChoice == 5:
-                              self.outputMainText("You now enjoy giants and tiny people more.",True)
-                              self.sizeFetish += 0.1
-                           elif self.buttonChoice == 6:
-                              self.outputMainText("You now find the thought of being stuffed back into a womb more appealing.",True)
-                              self.unbirthingFetish += 0.1
-                           elif self.buttonChoice == 7:
-                              self.outputMainText("You now find egg-laying to be more fun.",True)
-                              self.ovipositionFetish += 0.1
-                           elif self.buttonChoice == 9:
-                              self.outputMainText("You now enjoy the things you keep in your dresser drawer more.",True)
-                              self.toyFetish += 0.1
-                           elif self.buttonChoice == 10:
-                              self.outputMainText("You now find absurd proportions more amusing.",True)
-                              self.hyperFetish += 0.1
-                           if (self.buttonChoice == 12):
-                              self.doLevelUP()
-                           else:
-                              self.levelUP -= 1
-                              self.fetishMasterLevel += 1
-                              self.doEnd()
-                        self.doListen = doListen
-                  else:
-                     self.doLevelUP()
-               self.doListen = doListen
             case "Alchemist":
                self.outputMainText(f"When not turning metals into gold, alchemists also dabble in a variety of other... things.\n\nEvery level, you manage to scrounge up an ingredient or two for a recipe you know, finding more as you become more proficient.\n\nAlso, every level of Alchemist increases your chance of creating an extra simple concoction by 2%, complex concoction by 1%, and advanced concoction by .66%, up to a maximum of 4 concoctions from a single batch.\n\nYou have {self.alchemistLevel} levels in Alchemist.\n\n\nAre you sure you want to spend a Perk on Alchemist?",True)
                self.buttonConfirm()
@@ -15213,8 +15018,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += " The third girl then ducks beneath the other two, bumping through their own breasts to get to one of your freely-flowing ones. She suckles just like the rest, mewling and purring so loudly that it feels like almost the whole room is vibrating."
                   tempStr += f"\n\nTheir thirst isn't the only thing that needs satiating though. The more they drink, the more their hands dive into their loincloths, until their purrs become moans and are nearly drowned by the pervese wet schlicking sounds. But that isn't enough. With the milk soothing their stomach cravings, the pleasant tasty warmth is only making their lower cravings more severe.\n\nEventually, one pops off a nipple with one last big suck. The milk sprays freely, showering the front of the felin. The other two catch on, doing the same and letting the liquid splash over their many tits. They rub it in, mrowling in pleasure and digging deeper beneath their loincloths. Their legs soon give in, making them fall to the floor and lift their loincloths in your direction, exposing their swollen reddened pussies to you and your rain of milk. With each splash over their lower lips, the catty girls twitch and shudder, coming to small orgasms from the feeling and thought alone. Then as the white fluids beads into drops that runs down through their labia, slipping into their nooks and crevices and holes, their hands help the stuff along by rubbing it all over their cunts.\n\nThey climax again and again, delighting in the milky goodness, even after your squirting dies down to steady trickles. When that happens, the girls simply curl around each other, licking the milk from each others slits, jerking and rubbing and groping and coming more and more. The room grows so hot that even your bindings begin to sweat and... you slip free.\n\nHolding back the milk with an arm, you put back on your {self.clothesTop()}, where it then begins to blotch. With the felins still having an orgy on your floor, you grab one of the leftover vials and make your escape, though a little milkier than before..."
                   self.lactation += 50
-                  if (self.submissiveFetish > 1): #!Probably should be remove since fetish is depricated
-                     tempStr += self.doLust(10,0,ret=True)
+                  tempStr += self.doLust(10,0,ret=True)
                   self.outputMainText(tempStr,True)
                   self.itemAdd(105)
                   self.hrs = 3
