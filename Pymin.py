@@ -162,7 +162,7 @@ class NiminFetishFantasyv0975o_fla:
       self.dir = scriptdirectory
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
-      self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsAffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseOldStash(10), MiscChanges(11)]
+      self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
       self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
@@ -1071,9 +1071,9 @@ class NiminFetishFantasyv0975o_fla:
          CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)")
 
          ##Use old stash
-         self.optionswindow.addCheckboxWithLabel("gt","UseOldStash",200,98,210,20,("TimesNewRoman",11),"nw","Use original stash")
-         self.optionswindow.configureChild("UseOldStash",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseOldStash"].frame,text="Use the stash from the original game instead of the new one that works like the\nbag.")
+         self.optionswindow.addCheckboxWithLabel("gt","UseNewStash",200,98,210,20,("TimesNewRoman",11),"nw","Use new stash")
+         self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. While already moving an item, hold shift\nand press button 12 to move items between the bag and stash.")
 
          #Misc Changes
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
@@ -1139,7 +1139,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.gametweaks[9] == True:
          self.optionswindow.children["CorrectBeastRaceFeet"].select()
       if self.gametweaks[10] == True:
-         self.optionswindow.children["UseOldStash"].select()
+         self.optionswindow.children["UseNewStash"].select()
       if self.gametweaks[11] == True:
          self.optionswindow.children["MiscChanges"].select()
       if confmod.as3DebugEnable == True:
@@ -1251,7 +1251,7 @@ class NiminFetishFantasyv0975o_fla:
             self.gametweaks[9] = True
          else:
             self.gametweaks[9] = False
-         if self.optionswindow.children["UseOldStash"].getcb() == 1:
+         if self.optionswindow.children["UseNewStash"].getcb() == 1:
             self.gametweaks[10] = True
          else:
             self.gametweaks[10] = False
@@ -1836,7 +1836,7 @@ class NiminFetishFantasyv0975o_fla:
                self.newGameGo()
          case (16,True): #Shift
             self.shiftHeld = True
-            if self.moveItemID != 0 and self.buttonsVisible[12] == True and self.gametweaks[10] == False:
+            if self.moveItemID != 0 and self.buttonsVisible[12] == True and self.gametweaks[10] == True:
                if self.inBag == True and self.mts == False:
                   self.buttonWrite(12,"Move To Stash")
                   self.bagDiscard = True
@@ -1902,7 +1902,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen == True:
-         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseOldStash","MiscChanges","ApplyButton"):
+         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","ApplyButton"):
             self.optionswindow.configureChild(i,background=color)
          if confmod.as3DebugEnable == True:
             for i in ("dt","ChooseSenario","NoDamage"):
@@ -1936,7 +1936,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseOldStash","MiscChanges","ApplyButton"):
+         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","ApplyButton"):
             self.optionswindow.configureChild(i,foreground=color)
          if confmod.as3DebugEnable == True:
             for i in ("ChooseSenario","NoDamage"):
@@ -5571,7 +5571,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showMoveItem(False)
       else:
          self.refreshMoveItem(self.moveItemID,self.moveItemStack)
-      if (self.inBag or self.inStash) and self.gametweaks[10] == False:
+      if (self.inBag or self.inStash) and self.gametweaks[10] == True:
          if self.moveItemID != 0 and self.buttonsVisible[12] == True:
             if self.inBag == True:
                self.buttonWrite(12,"Move To Stash")
@@ -8165,7 +8165,7 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
    def doStash(self,noclear=False,refresh=False):
       #Stash dialog
-      if self.gametweaks[10]:
+      if self.gametweaks[10] == False:
          self.inStash = False
          self.showPage(False,"")
          self.hideAmount()
@@ -24732,7 +24732,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hideOption7()
       self.hideSGButton()
       self.updateText()
-      self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n    v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n    www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n    fenoxo.com\n\nThis port was made by:    ajdelguidice\n    github.com/ajdelguidice\nFor bug reports, visit github.com/ajdelguidice/pymin/\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk..\n\nThere is now an options menu in the menu bar. Go to File->Options. This is also where you can change various things about the game that significantly alter it (like using a different save/load dialog).\n\nThe stash has now been reworked to work more like the bag and be less infuriating. Moving items in can be acheived by going into the bag/stash, shift clicking an item to move it and then pressing button 12 while still holding shift (The buttons are relabled when doing this to reflect what they do). If you want to use the old bag, you can enable it by going to \"File->Options\" on the menu bar and selecting the \"Use original stash\" option in the Game Tweaks tab ", True)
+      self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n    v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n    www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n    fenoxo.com\n\nThis port was made by:    ajdelguidice\n    github.com/ajdelguidice\nFor bug reports, visit github.com/ajdelguidice/pymin/\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk..\n\nThere is now an options menu in the menu bar. Go to File->Options. This is also where you can change various things about the game that significantly alter it (like using a different save/load dialog).", True)
       #Check if savelocation is valid. If not, open a dialog box to warn the user and ask how to proceed. If so, check if it exists and create it if it doesn't.
       if self.isValidDirectory(self.savelocation,sep) == False:
          self.openSaveInvalidDialog()
