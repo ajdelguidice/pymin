@@ -9248,7 +9248,7 @@ class NiminFetishFantasyv0975o_fla:
             return "straight, stiff hair covering an eye"
          case 14:
             return "giant poofball of hair"
-      return f"HAIR DESC ERROR {self.hair}"
+      return f"HAIR DESC_SHORT ERROR {self.hair}"
    def hairC(self):
       if self.hairColor == 0:
          return ""
@@ -9449,7 +9449,7 @@ class NiminFetishFantasyv0975o_fla:
             return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
          case 14:
             return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
-      return f"CLOTHES NAME ERROR {ID}"
+      return f"HAIR DESC_LONG ERROR {ID}"
    def doTailor(self):
       self.buy = 0
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
