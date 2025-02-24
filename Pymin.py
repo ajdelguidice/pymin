@@ -18009,33 +18009,22 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
             else:
                self.showButtons(ButtonList(0,1,0,0,1,1,1,0,0,1,0,1))
-               templist = [2, "Flying Carp", 5, "A-Grav Rock", 6, "Rein Charm", 7, "Fell Rod", 10, "Recept Bell", 12, "No Thanks"]
+               templist = [12,"No Thanks"]
                tempStr = "\"Anything you might be interested in?\""
-               #!Make these pushes instead if removes. This would also allow for the checks to be combined
-               if (self.checkItem(232)):
-                  templist.remove(2)
-                  templist.remove("Flying Carp")
-               if (self.checkItem(233)):
-                  templist.remove(5)
-                  templist.remove("A-Grav Rock")
-               if (self.checkItem(234)):
-                  templist.remove(6)
-                  templist.remove("Rein Charm")
-               if (self.checkItem(235)):
-                  templist.remove(7)
-                  templist.remove("Fell Rod")
-               if (self.checkItem(236)):
-                  templist.remove(10)
-                  templist.remove("Recept Bell")
                if (self.checkItem(232) == False):
+                  templist.extend((2,"Flying Carp"))
                   tempStr += "\n\nFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town."
                if (self.checkItem(233) == False):
+                  templist.extend((5,"A-Grav Rock"))
                   tempStr += "\n\nAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it."
                if (self.checkItem(234) == False):
+                  templist.extend((6,"Rein Charm"))
                   tempStr += "\n\nReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother."
                if (self.checkItem(235) == False):
+                  templist.extend((7,"Fell Rod"))
                   tempStr += "\n\nFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent."
                if (self.checkItem(236) == False):
+                  templist.extend((10,"Recept Bell"))
                   tempStr += "\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences."
                self.outputMainText(tempStr,True)
                self.doButtonChoices(templist)
