@@ -22995,8 +22995,7 @@ class NiminFetishFantasyv0975o_fla:
       self.udderSize += sizeChange
       self.teatSize += sizeChange
    def udderCheck(self, which:int):
-      #!Change to ==
-      if (which != 1 and self.cowAffinity >= 55 or which != 2 and self.legType == 1001):
+      if (which == 1 and self.legType == 1001 or which == 2 and self.cowAffinity >= 55):
          return True
       return False
    def lactChange(self, which:int, amount:int, ret=False):
