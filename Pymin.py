@@ -21828,11 +21828,8 @@ class NiminFetishFantasyv0975o_fla:
          self.nippleSize -= 8
          self.milkMod -= 50
       if (self.cowAffinity + self.cow < 55 and self.cowAffinity >= 55):
-         #!Move self.hips -= 8 and self.lactChange out of if statement since both cases are the same
          if (self.udderCheck(1) == False):
             tempStr += "\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches."
-            tempStr += self.lactChange(1,-100,ret=True)
-            self.hips -= 8
             self.udders = False
             self.udderLactation = 0
             self.udderEngorgement = 0
@@ -21842,8 +21839,8 @@ class NiminFetishFantasyv0975o_fla:
             self.teatSize = 0
          else:
             tempStr += "\n\nYour waistbands seem quite loose after your hips shrink by a few inches."
-            tempStr += self.lactChange(1,-100,ret=True)
-            self.hips -= 8
+         tempStr += self.lactChange(1,-100,ret=True)
+         self.hips -= 8
       if (self.lizardAffinity + self.lizard >= 40 and self.lizardAffinity < 40):
          if (self.cockTotal == 1):
             tempStr += self.cockChange(0,1,ret=True)
