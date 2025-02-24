@@ -2565,9 +2565,8 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += f"\n\nThe weight of your {self.udderDesc()} udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop."
          elif (self.udderSize > tempNum * 1 / 2):
             tempStr += f"\n\nYou are rather aware of the weight of your {self.udderDesc()} udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing..."
-      #!Add InternalBallsAffectBelly (self.gametweaks[7])
-      if False and self.gametweaks[7] and self.showBalls == False:
-         pass
+      if False and self.gametweaks[7] == True and self.showBalls == False:
+         ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2 + self.ballSize * self.balls / 2) / 5
       else:
          ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2) / 5
       if (ptMbmM2 > tempNum):
@@ -3339,16 +3338,15 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"while you defend yourself with a {self.itemName(self.weapon)} as your weapon."
       if (self.lilaWetStatus > 0 and self.attireBot in (10,11)):
          tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
-      #!Add InternalBallsAffectBelly (self.gametweaks[7])
       if (self.legType >= 1000):
-         if False and self.gametweaks[7] and not self.showBalls:
-            pass
+         if self.gametweaks[7] == True and self.showBalls == False:
+            tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
          tempStr += f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath."
       else:
-         if False and self.gametweaks[7] and self.showBalls == False:
-            pass
+         if self.gametweaks[7] == True and self.showBalls == False:
+            tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
          tempStr += f" Your waist measures {tempBellySize} inches around, sporting a {self.bellyDesc()} belly beneath your {self.clothesTop()}."
@@ -24144,9 +24142,8 @@ class NiminFetishFantasyv0975o_fla:
       return f"HIP ERROR {self.hips}"
    def bellyDesc(self):
       chance = self.percent()
-      #!Add InternalBallsAffectBelly (self.gametweaks[7])
-      if False and self.gametweaks[7] and self.showBalls == False:
-         pass
+      if False and self.gametweaks[7] == True and self.showBalls == False:
+         tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5 + self.ballSize * 0.9 / 5) * 60 / self.tallness
       else:
          tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5) * 60 / self.tallness
       tempStr = f"BELLY ERROR {tempBelly}"
