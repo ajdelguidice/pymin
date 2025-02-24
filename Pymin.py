@@ -2031,8 +2031,7 @@ class NiminFetishFantasyv0975o_fla:
          self.fontSize = int(prefs.find("fontSize").text)
          self.fontBold = strtobool(prefs.find("fontBold").text)
          tempfontColor = f'{prefs.find("fontColor").text}'
-         #!Check if ordering is correct in this one
-         if (self.checkValidHex(temptheme) or (temptheme.isdecimal() and len(temptheme) == 1) and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
+         if (self.checkValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
             if (temptheme.isdecimal() and len(temptheme) == 1):
                self.theme = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[int(temptheme)]
                sp = True
@@ -3406,10 +3405,9 @@ class NiminFetishFantasyv0975o_fla:
             elif self.udderEngorgementLevel == 3:
                tempStr += " and practically spraying milk onto the ground before you from your excessive engorgment"
          if (self.milkSuppressantUdder > 0):
-            #!Shouldn't this be udderEngorgementLevel?
-            if self.milkEngorgementLevel == 2:
+            if self.udderEngorgementLevel == 2:
                tempStr += " feeling stiff as the bag beneath them is swollen with milk"
-            elif self.milkEngorgementLevel == 3:
+            elif self.udderEngorgementLevel == 3:
                tempStr += " feeling quite hard and almost pointing straight out from the very swollen bag beneath them"
          tempStr += "."
       if (self.cockTotal > 0):
