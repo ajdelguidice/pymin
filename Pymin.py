@@ -23428,7 +23428,6 @@ class NiminFetishFantasyv0975o_fla:
             return "your"
       return f"ONE YOUR ERROR {self.cockTotal} {self.vagTotal}"
    def bodyDesc(self):
-      #!optimize if/else
       if (self.gender == 1):
          if self.body <= 11:
             return "childish"
@@ -23444,18 +23443,17 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.body > 25):
             return "musclebound"
       elif (self.gender == 2):
-         #!if/else=ify
-         if (self.body > 9 and self.body <= 14):
+         if (self.body <= 9):
+            return "childish"
+         elif (self.body <= 14):
             return "girly"
-         if (self.body > 14 and self.body <= 20):
+         elif (self.body > 17 and self.breastSize <= 2):
+            return "cunt-boy"
+         elif (self.body <= 20):
             if (self.hips > 4 or self.butt > 4 or self.breastSize > 4):
                return "voluptuous"
             else:
                return "womanly"
-         if (self.body <= 10):
-            return "childish"
-         if (self.body > 17 and self.breastSize <= 2):
-            return "cunt-boy"
          elif (self.body > 20):
             return "musclebound"
       elif (self.gender == 3):
@@ -23469,12 +23467,12 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.body > 23):
             return "musclebound"
       elif (self.gender == 0):
-         if (self.body > 11 and self.body <= 15):
-            return "teenage"
-         elif (self.body > 15 and self.body <= 23):
-            return "fully grown"
-         elif (self.body <= 11):
+         if (self.body <= 11):
             return "childish"
+         elif (self.body <= 15):
+            return "teenage"
+         elif (self.body <= 23):
+            return "fully grown"
          elif (self.body > 23):
             return "musclebound"
       return f"BODY ERROR {self.gender} {self.body}"
