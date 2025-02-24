@@ -3286,7 +3286,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       #!optimize
       # math.floor(self.tallness / 12), self.tallness - math.floor(self.tallness / 12) * 12
-      tempStr = f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc()} butt on an overall {self.bodyDesc()} figure."
+      tempStr = applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
       if (self.hair > 0):
          tempStr += f" With {self.hairC()}{self.hairDesc()}"
          if (self.hairstyleLength(self.hair)):
@@ -23813,7 +23813,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.teatSize > 300):
             return "obscene"
       return f"TEAT ERROR {self.teatSize}"
-   def buttDesc(self):
+   def buttDesc(self,ngrammar=False):
       tempButt = self.butt * self.buttMod
       if (self.percent() <= 50):
          if (tempButt <= 2):
@@ -23821,6 +23821,8 @@ class NiminFetishFantasyv0975o_fla:
          elif (tempButt <= 5):
             return "tight"
          elif (tempButt <= 15):
+            if ngrammar == True and self.gametweaks[0] == True:
+               return "\bn ample"
             return "ample"
          elif (tempButt <= 30):
             return "large"
