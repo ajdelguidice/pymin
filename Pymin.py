@@ -23359,59 +23359,59 @@ class NiminFetishFantasyv0975o_fla:
       elif (topic == 5):
          if (self.cockTotal < 2):
             return "its"
-         elif (self.cockTotal > 1): #!can be else
+         else:
             return "their"
       elif (topic == 6):
          if (self.vagTotal < 2):
             return "its"
-         elif (self.vagTotal > 1): #!can be else
+         else:
             return "their"
       elif (topic == 7):
          if (self.cockTotal < 2):
             return "it's"
-         elif (self.cockTotal > 1): #!can be else
+         else:
             return "they're"
       elif (topic == 8):
          if (self.vagTotal < 2):
             return "it's"
-         elif (self.vagTotal > 1): #!can be else
+         else:
             return "they're"
       elif (topic == 9):
          if (self.cockTotal < 2):
             return "it"
-         elif (self.cockTotal > 1): #!can be else
+         else:
             return "them"
       elif (topic == 10):
          if (self.vagTotal < 2):
             return "it"
-         elif (self.vagTotal > 1): #!can be else
+         else:
             return "them"
       elif (topic == 11):
          if (self.cockTotal < 2):
             return "it"
-         elif (self.cockTotal > 1): #!can be else
+         else:
             return "they"
       elif (topic == 12):
          if (self.vagTotal < 2):
             return "it"
-         elif (self.vagTotal > 1): #!can be else
+         else:
             return "they"
       elif (topic == 13):
          if (self.cockTotal < 2):
             return "is"
-         elif (self.cockTotal > 1): #!can be else
+         else:
             return "are"
       elif (topic == 14):
          if (self.vagTotal < 2):
             return "is"
-         elif (self.vagTotal > 1): #!can be else
+         else:
             return "are"
       elif (topic == 15 and self.cockTotal > 1):
          return "es"
       elif (topic == 16):
          if (self.vagTotal < 2):
             return "y"
-         elif (self.vagTotal > 1): #!can be else
+         else:
             return "ies"
       else:
          return ""
