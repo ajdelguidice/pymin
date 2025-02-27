@@ -6930,14 +6930,14 @@ class NiminFetishFantasyv0975o_fla:
             self.dyeThing(ID,2)
          case 221:
             tempStr = "You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat."
-            if (self.vagTotal < 1): #!can just be else case
-               tempStr += "\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth."
             if (self.vagTotal > 0):
                tempStr += f"\n\nYour loins begin to grow hot. Your hand jerks down to your crotch, rubbing yourself feverishly through your {self.clothesBottom()}. The garment quickly grows moist, your arousal spreading {self.legWhere(1)} your {self.legDesc(2)}. You can feel your labia swell beneath your grip, your lips bulging out of your grasp, while your belly aches slightly with a bloating sensation. Your clit{self.plural(2)} squeeze{self.plural(4)} between your fingers.\n\nThe change soon passes, but the changing in the size of your nethers is easily noticeable, making you walk awkwardly at first as you become accustomed."
                tempStr += self.vagChange(self.percent() // 20 + 2,0,ret=True)
                self.vulvaSize += self.percent() // 20 + 2
                self.clitSize += self.percent() // 20 + 2
                self.vagMoist += 1
+            else:
+               tempStr += "\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth."
             self.outputMainText(tempStr,True)
             self.doEnd()
          case 222:
@@ -6968,7 +6968,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " There's also a slight sensation of coming closer to your fertile period..."
                   if (self.heatTime > 5):
                      self.heatTime -= 5
-                  elif (self.heatTime < 6): #!can just be else case
+                  else:
                      self.heatTime = 1
                elif (self.heatTime < 0):
                   tempStr += " There's also a slight tinge of heat that flows through your body, strengthening your estrus for a little longer..."
@@ -6992,7 +6992,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.heatTime < 0):
                   if (self.heatTime < -3):
                      self.heatTime += 3
-                  elif (self.heatTime > -4): #!can just be else case
+                  else:
                      self.heatTime = -1
             self.outputMainText(tempStr,True)
             self.doEnd()
@@ -20277,11 +20277,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing. With a grin, she slides off of you and back into the ocean, her tentacles twitching excitedly as she disappears..."
             elif (self.gender == 2):
                tempStr += f"She grins at you, particularly happy to see you submit before her. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your {self.buttDesc()} butt. They weave into your {self.clothesBottom()} and pull it {self.pullUD(2)}, exposing your swollen and hungry {self.vulvaDesc()} cunt{self.plural(2)}. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your {self.skinDesc()}, giving her a good grip, while some in particular latch onto your clit{self.plural(2)} and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button{self.plural(2)} and vulva swelling larger as fluids from the cups seep into them."
-               if (self.pregCheck(1) == False): #!Flip this and get rid of the ==
-                  tempStr += "\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals..."
-                  self.clitSize += 4
-                  self.vulvaSize += 2
-               else:
+               if (self.pregCheck(1)):
                   tempStr += f"\n\nWhile your mind is distracted by the multiple climaxes, you hardly notice as she begins to wince and groan, her arms hugging her belly. Then, amidst your ecstatic moans, you let out a gasp as something breaches your {self.vulvaDesc()} pussy, round and large."
                   if (self.vagSize < 20):
                      tempStr += f" The object is so big that it stretches your poor cunt{self.plural(2)} even larger, making sure there's enough room."
@@ -20294,6 +20290,10 @@ class NiminFetishFantasyv0975o_fla:
                         self.pregArray[i + 2] = 216
                         self.pregArray[i + 3] = 180
                         break
+               else:
+                  tempStr += "\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals..."
+                  self.clitSize += 4
+                  self.vulvaSize += 2
             elif (self.gender == 3):
                tempStr += f"With a giggle at your vulnerable state, her tentacles wrap about your {self.buttDesc()} butt, weaving into you {self.clothesBottom()} and pulling out your {self.cockDesc()} erection{self.plural(1)}. She takes {self.oneYour(1)} cock{self.plural(1)} and fondles it with the slimy appendages, making sure it's nice and hard."
                if (self.cockSize * self.cockSizeMod > 50):
@@ -20303,11 +20303,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.cumAmount() > 2300):
                   tempStr += " You come so much that her belly begins to swell larger, stretching to engulf as much of your seed as she can, before gushing back out and down your cock."
                tempStr += f"\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing. With a grin, she seems particularly happy to have found such a suitable partner. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your {self.buttDesc()} butt once more. They squirm around your exposed swollen and hungry {self.vulvaDesc()} cunt{self.plural(2)}, making sure you're still aroused. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Its the thing you had noticed before... Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your {self.skinDesc()}, giving her a good grip, while some in particular latch onto your clit{self.plural(2)} and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button{self.plural(2)} and vulva swelling larger as fluids from the cups seep into them."
-               if (self.pregCheck(1) == False): #!Flip this and get rid of the ==
-                  tempStr += "\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals..."
-                  self.clitSize += 4
-                  self.vulvaSize += 2
-               else:
+               if (self.pregCheck(1)):
                   tempStr += f"\n\nWhile your mind is distracted by the multiple climaxes, you hardly notice as she begins to wince and groan, her arms hugging her belly. Then, amidst your ecstatic moans, you let out a gasp as something breaches your {self.vulvaDesc()} pussy, round and large."
                   if (self.vagSize < 20):
                      tempStr += f" The object is so big that it stretches your poor cunt{self.plural(2)} even larger, making sure there's enough room."
@@ -20320,6 +20316,10 @@ class NiminFetishFantasyv0975o_fla:
                         self.pregArray[i + 2] = 252
                         self.pregArray[i + 3] = 216
                         break
+               else:
+                  tempStr += "\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals..."
+                  self.clitSize += 4
+                  self.vulvaSize += 2
             if ((self.gender == 2 or self.gender == 3) and self.pregCheck(1)):
                tempStr += self.doLust(-(self.sen // 2),2,2,ret=True)
             else:
