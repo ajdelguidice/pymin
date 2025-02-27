@@ -174,6 +174,7 @@ class NiminFetishFantasyv0975o_fla:
       #Window open variables
       self.debugWinOpen = False #debug window
       self.debugGIWinOpen = False #debug give item window
+      self.debugAWinOpen = False #debug affinity window
       self.sfcopen = False #save file converter window
       self.wikiOpen = False #wiki window
       self.optionsWinOpen = False #options window
@@ -1303,6 +1304,9 @@ class NiminFetishFantasyv0975o_fla:
          if self.debugGIWinOpen:
             self.dgiw.geometry("150x100")
             self.dgiw.resizable(False,False)
+         if self.debugAWinOpen == True:
+            self.daw.geometry("170x100")
+            self.daw.resizable(False,False)
       else:
          #unlocks resizing for all windows
          self.mo.enableResizing()
@@ -1314,6 +1318,8 @@ class NiminFetishFantasyv0975o_fla:
             self.dw.enableResizing()
          if self.debugGIWinOpen:
             self.dgiw.resizable(True,True)
+         if self.debugAWinOpen == True:
+            self.daw.resizable(True,True)
    def closeOptionsWindow(self, *args):
       """
       Closes the option window
@@ -25530,6 +25536,7 @@ class NiminFetishFantasyv0975o_fla:
             self.dw.disableResizing()
          self.dw.menubar["root"].add_command(label="Give Item",font=("Terminal",8),command=self.openDebugGiveItemWindow)
          self.dw.menubar["root"].add_command(label="Use Item",font=("Terminal",8),command=self.openDebugUseItemWindow)
+         self.dw.menubar["root"].add_command(label="Affinity",font=("Terminal",8),command=self.openDebugAffinityWindow)
          self.dw.addHTMLScrolledText("root","text",0,0,400,400,("Terminal",8),"nw",True,10)
          self.debugWinOpen = True
          self.dw.group(self.mo.children["root"])
@@ -25620,6 +25627,72 @@ class NiminFetishFantasyv0975o_fla:
       self.doItemUse(ID)
       self.buttonShiftOverride = False
       self.statDisplay()
+   def openDebugAffinityWindow(self,*args):
+      if self.debugAWinOpen == False:
+         self.daw = tkinter.Toplevel()
+         self.daw.title("Affinity")
+         self.daw.geometry("170x100")
+         if self.fixedresolutionmode:
+            self.daw.resizable(False,False)
+         self.dawlabel = tkinter.Label(self.daw,text="Affinity Change",font=("TkTextFont",9))
+         self.dawlabel.place(x=75,y=7,anchor="n")
+         self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Race:","AffinityAdd:"),"Ok",2,"w")
+         self.dawcombo.configure(command=self.debugAffinityChange)
+         self.debugAWinOpen = True
+         self.mo.group(self.daw)
+         self.daw.bind("<Destroy>",self.closeDAWindow)
+      else:
+         self.daw.lift()
+   def debugAffinityChange(self,*args):
+      if self.currentState != 0:
+         err = ""
+         values = self.dawcombo.getEntries()
+         try:
+            race = int(values[0],10)
+         except:
+            err = "Race must be an integer"
+         else:
+            try:
+               affChange = int(values[1],10)
+            except:
+               err = "AffinityAdd must be an integer"
+         if race < 1 or race > 12:
+            err = "Race must be between 1 and 12"
+         if err == "":
+            if race == 1:
+               self.human += affChange
+            elif race == 2:
+               self.horse += affChange
+            elif race == 3:
+               self.wolf += affChange
+            elif race == 4:
+               self.cat += affChange
+            elif race == 5:
+               self.cow += affChange
+            elif race == 6:
+               self.lizard += affChange
+            elif race == 7:
+               self.rabbit += affChange
+            elif race == 8:
+               self.mouse += affChange
+            elif race == 9:
+               self.bird += affChange
+            elif race == 10:
+               self.pig += affChange
+            elif race == 11:
+               self.skunk += affChange
+            elif race == 12:
+               self.bug += affChange
+            if self.currentState == 1 and self.showsavegame == True and self.showloadgame == True and self.shownewgame == True: #Should only happen when in doGeneral
+               self.doProcess()
+            self.detailedDebug()
+         else:
+            print(err)
+      else:
+         #self.dawerrlabel["text"] = "Error: Game not loaded"
+         ...
+   def closeDAWindow(self,*args):
+      self.debugGAWinOpen = False
    def keypress(self, e):
       self.detailedDebug()
       self.key_press(e)
