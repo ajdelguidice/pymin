@@ -2439,12 +2439,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.buttonChoice == 6):
                self.passiveItemRemove(self.moveItemID)
             else:
-               #i = 1
-               #while (i <= self.moveItemStack):
-               #!addmanyitems
-               for i in range(self.moveItemStack):
-                  self.itemAdd(self.moveItemID)
-                  #i += 1
+               self.addManyItem(self.moveItemID,self.moveItemStack)
                self.moveItemID = 0
                self.moveItemStack = 0
                self.showMoveItem(False)
@@ -7027,12 +7022,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.eggLaying > 0):
                   if (self.eggceleratorDose > 6 + math.ceil(self.percent() / 20)):
                      tempStr += f"\n\nYou can feel your next egg starting to come along more quickly than before... but it continues to build. Your {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. You fall back onto your hands, your {self.legDesc(6)} in the air as you lay it with such expediency that your thighs quiver and your pussy gasps in surprise. Yet, the sensation doesn't end, as more eggs begin to develop almost instantly inside your womb, one by one forcing their way through your passageway. Your {self.hipDesc()} hips jerk and your {self.clitDesc()} clit{self.plural(2)} stand{self.plural(4)} tall with a strange arousal as you thrust into the air again and again to plop out egg after egg. Part of you wants to furiously rub yourself as the eggs nearly launch from your spread cunt, but the rapid pace of the laying makes your body a twitching, seizing mess as you cry out in desparation. So many eggs fly out of you into a pile that you can hardly save them all; quite a few crack and ooze over the others. The round, smooth, slick object having their way with your sensitive flesh eventually makes you quake with an odd orgasm, somewhat powerful but not quite fulfilling, making you collapse back onto the ground as your womb pops out the rest...\n\nOver half an hour passes after your egg-laying extravaganza before you can collect yourself. You sit up to wipe the slime from your pussy, gazing upon the pile of eggs you have laid until you finally go through and pull out the good ones. You also notice that your womb seems to have completely calmed down afterwards, the eggcelerator having been purged from your system. It seems you had taken so many doses that your body could no longer handle it..."
-                     #i = 0
-                     #while (i < self.eggceleratorDose):
-                     #!use addManyItems
-                     for i in range(self.eggceleratorDose):
-                        self.itemAdd(219)
-                        #i += 1
+                     self.addManyItem(219,self.eggceleratorDose)
                      tempStr += self.doLust(-self.sen // 3,2,2,ret=True)
                      self.eggceleratorTime = 0
                      self.eggRate -= self.eggceleratorDose
@@ -8456,9 +8446,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doShop()
                      self.doListen = doListen
                   else:
-                     #!addmanyitems
-                     for i in range(tempInt):
-                        self.itemAdd(self.goodsID(self.buy))
+                     self.addManyItem(self.goodsID(self.buy),tempInt)
                      self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
                      self.doProcess()
                else:
@@ -8780,9 +8768,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
                      if (self.apothID(self.buy) > 200):
-                        #!addmanyitems
-                        for i in range(tempInt):
-                           self.itemAdd(self.apothID(self.buy))
+                        self.addManyItem(self.apothID(self.buy),tempInt)
                      else:
                         self.apothLearn(self.apothID(self.buy))
                      self.doProcess()
@@ -15578,9 +15564,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr = "Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. "
                      if self.tempInt == 1:
                         tempStr += "Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs."
-                        #!use addManyItems
-                        for i in range(6 + math.ceil(self.percent() / 20)):
-                           self.itemAdd(219)
+                        self.addManyItem(219,6 + math.ceil(self.percent() / 20))
                         tempStr += self.doLust(self.lib // 2,0,ret=True)
                         self.stats(0,1,1,0)
                         self.outputMainText(tempStr,True)
@@ -16631,7 +16615,6 @@ class NiminFetishFantasyv0975o_fla:
                               self.outputMainText(tempStr + "while the machine churns to drain you of all your milk. After about 6 hours, you pass out where you 'stand', exhausted...",True)
                               self.doNext()
                               def doListen():
-                                 tempInt = 0
                                  tempStr = "You awaken when the machine finally releases you, making you collapse to the floor. Your udder feeling swollen and your teats stretched, you do your best to stand. White goop pours out of your "
                                  if (self.vagTotal > 0):
                                     tempStr += f"cunt{self.plural(2)}"
@@ -16650,14 +16633,7 @@ class NiminFetishFantasyv0975o_fla:
                                           self.pregArray[i + 3] = 220
                                           break
                                  elif (self.vagTotal > 0):
-                                    #!Can just be replace with doMultiImpregnate.
-                                    tempInt = 1
-                                    tempInt2 = 0
-                                    while (tempInt < 13):
-                                       #self.doImpregnate(101)
-                                       tempInt2 += 1
-                                       tempInt += 1
-                                    tempStr += self.doMultiImpregnate(101,tempInt2,ret=True)
+                                    tempStr += self.doMultiImpregnate(101,12,ret=True)
                                  tempStr += self.doLust(-(self.sen // 1.5),2,2,4,ret=True)
                                  tempStr += self.doLust(-(self.sen // 1.5),2,2,4,ret=True)
                                  tempStr += self.doLust(-(self.sen // 1.5),2,2,4,ret=True)
@@ -21117,7 +21093,6 @@ class NiminFetishFantasyv0975o_fla:
       #!Optimize if/else
       birthCount = 0
       tempInt = 0
-      tempInt2 = 0
       tempStr = "Afterwards..."
       self.hrs = 0
       self.pregnancyTime = 0
@@ -21161,14 +21136,14 @@ class NiminFetishFantasyv0975o_fla:
          self.pregStatus = 0
       if (self.eggLaying > 0 and self.vagTotal > 0 and self.pregCheck(1) and time > 0):
          tempInt = time + 2 * self.eggRate
-         tempInt2 = 0
+         eggAmount = 0
          while (tempInt > 0):
             self.eggTime -= 1
             if (self.eggTime <= 0):
-               tempInt2 += 1
+               eggAmount += 1
                self.eggTime = self.eggMaxTime
             tempInt -= 1
-         if (tempInt2 == 1):
+         if (eggAmount == 1):
             if (self.percent() < self.ment / 2 + 20):
                if self.eggType == 0:
                   tempStr += f"\n\nHaving missed your body's signals, you suddenly double over and begin to groan as you feel something press against the inside of {self.oneYour(2)} {self.vulvaDesc()} nether-lips. Your thighs clench to hold it back, but the smooth slick object spreads your cunt wide, squeezing out into your {self.clothesBottom()} where it cracks and spreads into a wet mess.\n\nYolky goop squishing in your groin with little bits of white shell jabbing you here and there, you take a moment to pull out the broken unfertilized egg and attempt to clean up after yourself..."
@@ -21181,8 +21156,8 @@ class NiminFetishFantasyv0975o_fla:
                elif self.eggType == 1:
                   tempStr += f"\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying it off, you have something to snack on later."
                   self.itemAdd(253)
-         elif (tempInt2 > 1):
-            if (self.percent() < self.ment / 2 + 20 - 4 * tempInt2):
+         elif (eggAmount > 1):
+            if (self.percent() < self.ment / 2 + 20 - 4 * eggAmount):
                if self.eggType == 0:
                   tempStr += f"\n\nHaving been distracted and unable to lay for such a long time, you are unprepared for the buildup of ovid objects within your womb. You double over as you feel them crowd against the inside of your {self.vulvaDesc()} nether-lips, your thighs clenching to hold them back, but the smooth slick objects press on through anyways. They squeeze out into your {self.clothesBottom()} where they pile up and crack, spreading into a wet mess.\n\nYolky goop squishing in your groin with little bits of white shell jabbing you here and there, you take a moment to pull out the broken unfertilized eggs and attempt to clean up after yourself..."
                elif self.eggType == 1:
@@ -21190,16 +21165,10 @@ class NiminFetishFantasyv0975o_fla:
             else:
                if self.eggType == 0:
                   tempStr += f"\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying them all off, you have some snacks for later."
-                  #!addmanyitems
-                  while (tempInt2 > 0):
-                     self.itemAdd(219)
-                     tempInt2 -= 1
+                  self.addManyItem(219,eggAmount)
                elif self.eggType == 1:
                   tempStr += f"\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying them all off, you have some snacks for later."
-                  #!addmanyitems
-                  while (tempInt2 > 0):
-                     self.itemAdd(253)
-                     tempInt2 -= 1
+                  self.addManyItem(253,eggAmount)
       if (self.cockSnakePreg > 0):
          if (self.cockSnakePreg - time <= 0):
             birthCount = 0
