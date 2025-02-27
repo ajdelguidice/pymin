@@ -1347,7 +1347,7 @@ class NiminFetishFantasyv0975o_fla:
                tempname = temp.name.upper()
                #invalid if blacklisted characters are used
                for i in tempname:
-                  if i in '<>:"\\/|?*':
+                  if i in '<>:"\\/|?*':
                      return False
                #invalid if last character is " " or "."
                if tempname[-1] in " .":
@@ -1370,7 +1370,7 @@ class NiminFetishFantasyv0975o_fla:
       elif separator != None:
          directory = str(directory)
          if confmod.platform == "Windows":
-            blacklistedChars = '<>:"\\/|?*' #!add ASCII characters from 0-31
+            blacklistedChars = '<>:"\\/|?*'
             blacklistedNames = ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³")
             #convert path to uppercase since windows is not cas sensitive
             directory = directory.upper()
