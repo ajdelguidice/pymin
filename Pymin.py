@@ -2874,43 +2874,42 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lust + changes >= 75 and self.lust < 75):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.cockDesc()} cock{self.plural(1)} squirm{self.plural(3)} in your {self.clothesBottom()}, throbbing and wanting desperately to come."
-            #!if/else-ify
-            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
-               tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
-            if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
-               tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
-            if (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11):
-               tempStr += f" You feel your cock{self.plural(1)} slimed from tip to belly with {self.plural(5)} own pre, a steady dribble down your thigh and your {self.clothesBottom()} looking more like you peed yourself."
             if (self.moistCalc(1) > 11):
                tempStr += f" You feel your cock{self.plural(1)} swimming in {self.plural(5)} own pre, as long strands of slime seep through your {self.clothesBottom()} and stretch down to the ground. With each step, you fling the stuff around you like a whip, smacking across whatever is nearby"
+            elif (self.moistCalc(1) > 7):
+               tempStr += f" You feel your cock{self.plural(1)} slimed from tip to belly with {self.plural(5)} own pre, a steady dribble down your thigh and your {self.clothesBottom()} looking more like you peed yourself."
+            elif (self.moistCalc(1) > 3):
+               tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
+            elif (self.moistCalc(1) > 0):
+               tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.vulvaDesc()} lips feel swollen and hot in your {self.clothesBottom()}, making your {self.legDesc(2)} feel weak. Your {self.clitDesc()} clit{self.plural(2)} seem{self.plural(4)} on the verge of exploding without any attention soon, stiffly rubbing against your {self.clothesBottom()} with each move."
-            if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-               tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
-            if (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
-               tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
-            if (self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
-               tempStr += f" You swear you can hear yourself squish with each step as your {self.clothesBottom()} is completely soaked through with your honey. Your thighs feel like they've been completely oiled down by the warm, sensuous fluid."
             if (self.moistCalc(2) > 11):
                tempStr += f" There must be a waterfall in your {self.clothesBottom()} as a steady flow of clear honey drools from {self.legWhere(1)} your {self.legDesc(2)}. You have to be extra careful of slipping in your own slime..."
+            elif (self.moistCalc(2) > 7):
+               tempStr += f" You swear you can hear yourself squish with each step as your {self.clothesBottom()} is completely soaked through with your honey. Your thighs feel like they've been completely oiled down by the warm, sensuous fluid."
+            elif (self.moistCalc(2) > 3):
+               tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
+            elif (self.moistCalc(2) > 0):
+               tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
          tempStr += f"\n\nYour {self.nipDesc()}nipples threaten to pierce through your {self.clothesTop()}. They feel as hard as diamonds with all your arousal, making you shiver whenever something brushes them."
       elif (self.lust + changes >= 50 and self.lust < 50):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} stiff and engorged with blood. Oh how nice it would be to take care of that problem... "
-            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
-               tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
-            if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
-               tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
             if (self.moistCalc(1) > 7):
                tempStr += f" You feel your cock{self.plural(1)} slimed from tip to belly with its own pre, a steady dribble down your thigh and your {self.clothesBottom()} looking more like you peed yourself."
+            elif (self.moistCalc(1) > 3):
+               tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
+            elif (self.moistCalc(1) > 0):
+               tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.vulvaDesc()} vulva feels puffy with engorgement, making you walk a little awkwardly so as to not squeeze them so much. Your {self.clitDesc()} clit{self.plural(2)} stir{self.plural(4)} in your {self.clothesBottom()}, throbbing gently in anticipation."
-            if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-               tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
-            if (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
-               tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
             if (self.moistCalc(2) > 7):
                tempStr += f" You swear you can hear yourself squish with each step as your {self.clothesBottom()} is completely soaked through with your honey. Your thighs feel like they've been completely oiled down by the warm, sensuous fluid."
+            elif (self.moistCalc(2) > 3):
+               tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
+            elif (self.moistCalc(2) > 0):
+               tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
          if (self.nipType == 2):
             tempStr += f"\n\nYour sunken nipples rise out of your {self.boobDesc()} mounds, standing to attention in your {self.clothesTop()}. They tingle slightly with your arousal."
          else:
@@ -2918,16 +2917,16 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.lust + changes >= 25 and self.lust < 25):
          if (self.cockTotal > 0):
             tempStr += f"\n\nYour {self.cockDesc()} cock{self.plural(1)} wiggle{self.plural(3)} in your {self.clothesBottom()}, stirring awake and growing erect. Bulging against the fabric, you silently wonder if anybody else will notice..."
-            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
-               tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
             if (self.moistCalc(1) > 3):
                tempStr += f" Steady drops of pre leak out, blotching your {self.clothesBottom()} with small patches of slime."
+            elif (self.moistCalc(1) > 0):
+               tempStr += f" A small amount of pre leaks out, making a moist blotch on your {self.clothesBottom()}."
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour {self.vulvaDesc()} slit tingles and sparks. You feel a little giggly and warm with the sensation, delighting in the pleasantness of it all. Your {self.clitDesc()} clit{self.plural(2)} tug{self.plural(4)} at the hood{self.plural(4)}, pulsing awake in your {self.clothesBottom()}."
-            if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-               tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
             if (self.moistCalc(2) > 3):
                tempStr += f" You can feel webs of slime smear across the inside of your {self.clothesBottom()}, your honey dribbling lightly within."
+            elif (self.moistCalc(2) > 0):
+               tempStr += " Your pussy lips slip over each other with each step, slightly lubricated with your arousal."
       if (self.lust + changes >= 30 and self.lustPenalty == 0):
          tempStr += "\n\nThe distraction weighs on your mind constantly, making it hard to focus on normal tasks."
          self.statsMod(0,-4,0,0)
@@ -3445,11 +3444,10 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
             if (self.knot == True):
                tempStr += f" Your cock{self.plural(1)} swell{self.plural(3)} a little near the base, preparing for a chance for the knot{self.plural(1)} to expand."
-            #!These can be optimized
-            if (self.moistCalc(1) > 2 and self.moistCalc(1) <= 5):
-               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
-            elif (self.moistCalc(1) > 5):
+            if (self.moistCalc(1) > 5):
                tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
+            elif (self.moistCalc(1) > 2):
+               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
          else:
             if (self.humanCocks > 0):
                tempStr += f" {self.humanCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
@@ -3467,13 +3465,12 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
             if (self.knot == True):
                tempStr += f" Your cock{self.plural(1)} bulge{self.plural(3)} tremendously at {self.plural(5)} base{self.plural(1)}, the knot{self.plural(1)} completely expecting to come at any moment and nearly {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 4,1))} inches thick."
-            #!These can be optimized
-            if (self.moistCalc(1) > 2 and self.moistCalc(1) <= 5):
-               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
-            elif (self.moistCalc(1) > 5 and self.moistCalc(1) <= 10):
-               tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
-            elif (self.moistCalc(1) > 10):
+            if (self.moistCalc(1) > 10):
                tempStr += f" Your {self.clothesBottom()} feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff {self.oneYour(1)} cock{self.plural(1)} into a pussy half your size without any difficulty, you're so slimy!"
+            elif (self.moistCalc(1) > 5):
+               tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
+            elif (self.moistCalc(1) > 2):
+               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
       if self.balls > 0:
          if self.showBalls == True:
             tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
@@ -3503,12 +3500,12 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
          else:
             tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.25,2))} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
-            if (self.moistCalc(2) > 2 and self.moistCalc(2) <= 5):
-               tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
-            elif (self.moistCalc(2) > 5 and self.moistCalc(2) <= 10):
-               tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
-            elif (self.moistCalc(2) > 10):
+            if (self.moistCalc(2) > 10):
                tempStr += f" A slow waterfall of feminine honey drips from your crotch, your {self.clothesBottom()} completely soaked. If you stand for too long, you worry your {self.legDesc(10)} will slip in the puddle you quickly make beneath you. It's so much that you could probably take a cock twice as large as you are deep!"
+            elif (self.moistCalc(2) > 5):
+               tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
+            elif (self.moistCalc(2) > 2):
+               tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
          if (self.heat > 0 and self.heatTime < 0):
             tempStr += " Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something..."
       if (self.showSide):
@@ -6261,12 +6258,11 @@ class NiminFetishFantasyv0975o_fla:
                         self.doEnd()
                      else:
                         getCum = self.cumAmount()
-                        #!optimize if/else
                         if (self.moistCalc(1) <= 3):
                            self.outputMainText(" The bottle within the machine fills a little with your pre as it seeps out, but it's hardly much.\n\n",False)
-                        elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
+                        elif (self.moistCalc(1) <= 7):
                            self.outputMainText(" The bottle within the machine fills nearly halfway with your pre as it dribbles out, so you quickly spill it out before you climax.\n\n",False)
-                        elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11):
+                        elif (self.moistCalc(1) <= 11):
                            self.outputMainText(" The bottle within the machine fills to the brim with your pre as it spurts from your cock, forcing you to quickly replace it with a fresh bottle before you climax.\n\n",False)
                         elif (self.moistCalc(1) > 11):
                            self.outputMainText(" The bottle within the machine fills to the brim with your pre as it gushes from your cock, spilling over the rim. You pull the bottle out and let your slime spew across the floor until you're about to climax and replace it with a fresh one.\n\n",False)
@@ -6277,25 +6273,24 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText(f"\n\nYou have produced {getCum} ml of spooge!",False)
                         elif (getCum >= 1000):
                            self.outputMainText(f"\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!",False)
-                        #!optimize if/else
                         if (getCum <= 400):
                            self.outputMainText(" Although, the resulting amount is so small that you can't really do anything with it...",False)
-                        elif (getCum > 400 and getCum <= 600):
+                        elif (getCum <= 600):
                            self.outputMainText(" The resulting amount of spunk is just enough to fill a vial!",False)
                            self.itemAdd(523)
-                        elif (getCum > 600 and getCum <= 1200):
+                        elif (getCum <= 1200):
                            self.outputMainText(" The resulting amount of spunk is more than enough to fill a vial, with a quite a bit left to spill over the edge.",False)
                            self.itemAdd(523)
-                        elif (getCum > 1200 and getCum <= 2000):
+                        elif (getCum <= 2000):
                            self.outputMainText(" You come so much that you fill the whole bottle, great for resale!",False)
                            self.itemAdd(524)
-                        elif (getCum > 2000 and getCum <= 4500):
+                        elif (getCum <= 4500):
                            self.outputMainText(" You come so much that you fill the whole bottle, and more continues to gush out over the edge, making quite the mess.",False)
                            self.itemAdd(524)
-                        elif (getCum > 4500 and getCum <= 5500):
+                        elif (getCum <= 5500):
                            self.outputMainText(" Well prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim!",False)
                            self.itemAdd(525)
-                        elif (getCum > 5500 and getCum <= 21000):
+                        elif (getCum <= 21000):
                            self.outputMainText(" Prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim. However, you continue to gush, overfilling it until cum spills over the edge and floods around you, making quite the mess...",False)
                            self.itemAdd(525)
                         elif (getCum > 21000):
@@ -6326,15 +6321,14 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText(f"Feeling a little kinky, you take the smallest available cylinder and push it over {self.oneYour(2)} clit{self.plural(2)}. Turning on the machine, you quickly notice you're still too small, having to manually seal the cylinder against your skin with your fingers. However, that isn't a problem, as you soon begin to enjoy the sucking on your clit, the button swelling from the vacuum while your fingers sliding through your {self.vulvaDesc()} lips and dipping into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
                         elif (self.clitSize > 20):
                            self.outputMainText(f"Feeling a little kinky, you take some cylinders to slide over {self.oneYour(2)} clit{self.plural(2)}. Its so big that it easily fits into one of them, just like it were a cock. Turning on the machine, your {self.hipDesc()} hips squirm as the suction forces your button to swell, becoming even larger. Your fingers slide through your {self.vulvaDesc()} lips and dip into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
-                        #!optimize if/else
-                        if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-                           self.outputMainText(" The pump manages to suck up a few drops of your feminine honey as you masturbate, misting the tubes slightly.",False)
-                        elif (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
-                           self.outputMainText(" The pump manages to suck up some of your dribbling feminine honey, letting it drip lazily from into a bottle that was meant for spunk.",False)
-                        elif (self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
-                           self.outputMainText(" The pump manages to suck up a bit of your flowing feminine honey, spurting it into a bottle meant for spunk instead.",False)
-                        elif (self.moistCalc(2) > 11):
+                        if (self.moistCalc(2) > 11):
                            self.outputMainText(" The pump manages to suck up a good deal of your gushing feminine honey, filling a bottle in the machine that was meant for spunk instead. It's not something you can sell, but it amuses you nonetheless.",False)
+                        elif (self.moistCalc(2) > 7):
+                           self.outputMainText(" The pump manages to suck up a bit of your flowing feminine honey, spurting it into a bottle meant for spunk instead.",False)
+                        elif (self.moistCalc(2) > 3):
+                           self.outputMainText(" The pump manages to suck up some of your dribbling feminine honey, letting it drip lazily from into a bottle that was meant for spunk.",False)   
+                        elif (self.moistCalc(2) > 0):
+                           self.outputMainText(" The pump manages to suck up a few drops of your feminine honey as you masturbate, misting the tubes slightly.",False)
                         self.outputMainText(" You soon quiver and moan as you come to climax, sighing gently as you turn the pump off to enjoy your swollen clit by hand for a while.",False)
                         self.clitPump += 10
                         if (self.clitPump > 40):
@@ -7593,12 +7587,11 @@ class NiminFetishFantasyv0975o_fla:
             elif self.gender == 0:
                chance = self.percent()
                tempStr = "You ingest the potion and quickly begin to feel its effects."
-               #!if/else-ify
                if (chance <= 40):
                   tempStr += self.cockChange(1,1,ret=True)
-               if (chance > 40 and chance <= 80):
+               elif (chance <= 80):
                   tempStr += self.vagChange(1,1,ret=True)
-               if (chance > 80):
+               elif (chance > 80):
                   tempStr += self.cockChange(1,1,ret=True)
                   tempStr += self.vagChange(1,1,ret=True)
             self.outputMainText(tempStr,True)
@@ -7689,15 +7682,14 @@ class NiminFetishFantasyv0975o_fla:
             elif self.gender == 0:
                chance = self.percent()
                self.outputMainText("You ingest the potion and quickly begin to feel its effects.",True)
-               #!if/else-ify
                if (chance <= 40):
                   self.cockChange(math.ceil(self.percent() / 5),1)
                   self.ballSize = math.ceil(self.percent() / 5)
-               if (chance > 40 and chance <= 80):
+               elif (chance <= 80):
                   self.vagChange(math.ceil(self.percent() / 5),1)
                   self.vulvaSize = math.ceil(self.percent() / 5)
                   self.clitSize = math.ceil(self.percent() / 5)
-               if (chance > 80):
+               elif (chance > 80):
                   self.cockChange(math.ceil(self.percent() / 5),1)
                   self.vagChange(math.ceil(self.percent() / 5),1)
                   self.ballSize = math.ceil(self.percent() / 5)
@@ -10875,14 +10867,14 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\n\nDespite everything, your body is calm and sleeps rather soundly."
          if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
             tempStr += " Although your bed is slightly moist from your constant production of lubricant from your loins."
-      if (self.lust > 30 and self.lust <= 70):
+      elif (self.lust <= 70):
          tempStr += "\n\nYour sleep is somewhat disrupted by tossing and turning throughout the night, your arousal making certain attributes swell with blood and desiring attention..."
          self.exhaustion += 3
          if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
             tempStr += " Plus your bed is slightly moist from your constant production of lubricant from your loins."
          if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
             tempStr += " It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid..."
-      if (self.lust > 70):
+      elif (self.lust > 70):
          tempStr += "\n\nYou spend most of the night tossing and turning, your mind having difficulty sleeping with the lust that envelops it. Although you do manage to eventually get some, it's not nearly as good."
          self.exhaustion += 8
          if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 and self.cockTotal > 0 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3 and self.vagTotal > 0):
@@ -10902,32 +10894,32 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.udderEngorgementLevel > 2):
          tempStr += "\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your udder, as you sit up, a pool of the stuff all around you."
       if (self.pregCheck(0)):
-         if (self.pregnancyTime > 18 and self.pregnancyTime <= 36):
-            tempStr += "\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely."
-         elif (self.pregnancyTime > 36 and self.pregnancyTime <= 72):
-            tempStr += "\n\nYou seem to be getting a bit chubbier in your midsection, might be because you've been hungrier and eating more lately. Plus you've been feeling a bit more randy than usual..."
-         elif (self.pregnancyTime > 72 and self.pregnancyTime <= 108):
-            tempStr += "\n\nYour belly is obviously bulging now, more than it would if it were just fat. You should probably accept the fact that you're pregnant..."
-         elif (self.pregnancyTime > 108 and self.pregnancyTime <= 144):
-            tempStr += "\n\nYou can easily hug your belly as it protrudes from your torso, looking like you were trying to smuggle a melon in your womb. But it feels so good to rub and caress it, making you easily get horny."
-         elif (self.pregnancyTime > 144 and self.pregnancyTime <= 180):
-            tempStr += "\n\nYour belly is so large your belly button has turned into an outie. You play with it as you head to sleep, the baby inside kicking back in turn."
-         elif (self.pregnancyTime > 180 and self.pregnancyTime <= 216):
-            tempStr += "\n\nFor most races, you would be giving birth any time now. You actually have to be cautious about people bumping into you as you walk through the town, it protrudes so far."
-         elif (self.pregnancyTime > 216 and self.pregnancyTime <= 252):
-            tempStr += f"\n\nThe {self.skinDesc()} around your giant belly is so taut that you can audibly drum it with your fingers. Which the baby inside does with its feet frequently from inside."
-         elif (self.pregnancyTime > 252 and self.pregnancyTime <= 288):
-            tempStr += "\n\nYou're beginning to draw the eyes of the crowd as you move through town, your belly is so enormous. People are wondering if you've actually got a baby in there and not a small child."
-         elif (self.pregnancyTime > 288 and self.pregnancyTime <= 324):
-            tempStr += "\n\nThis is getting ridiculous... People are starting to come up to you as you move through the street on your way to bed and actually ask if you've got a small person in your belly! Although, you aren't quite sure, but as your hands try to wrap around it, unable to fully embrace it, you begin to wonder yourself."
-         elif (self.pregnancyTime > 324 and self.pregnancyTime <= 360):
-            tempStr += "\n\nYour giant belly is becoming a bit of a nuisance... As you walk through buildings, people back up against a wall to let you pass by. You can feel your belly scrape against the frames of narrow doorways as you pass through, and it's been a while since you've last seen your belly-button..."
-         elif (self.pregnancyTime > 360 and self.pregnancyTime <= 396):
-            tempStr += f"\n\nNow you're actually starting to get a little worried... Your {self.legDesc(6)} are knocking against the underside of your belly when you try to walk. People are clearing the way when you move down the streets to make room for your belly and you have to skillfully wedge yourself through narrow doorways!"
-         elif (self.pregnancyTime > 396 and self.pregnancyTime <= 432):
-            tempStr += f"\n\nAs you lay down to go to sleep, you have to curl forward to fit your belly in your bed, leaving your backside hanging off the mattress. The sheets aren't even wide enough to cover you completely, making you feel a draft on some of your exposed belly. The chill makes you shiver, not from the cold, but from your nerves sparking from the super-taut, extra-sensitive {self.skinDesc()}."
-         elif (self.pregnancyTime > 432):
+         if (self.pregnancyTime > 432):
             tempStr += "\n\nYou don't even bother to head to your bed. Borrowing a bunch of blankets, you've made do with sleeping outside. Your belly is too big to go indoors, even having to handle shop business from the streets. Your hand reaches out as far as it can and hardly wraps around any of your girth. The warmth it emanates and sensations it echoes through your body help you sleep quite soundly and pleasantly, though, so you'll be fine until you give birth."
+         elif (self.pregnancyTime > 396):
+            tempStr += f"\n\nAs you lay down to go to sleep, you have to curl forward to fit your belly in your bed, leaving your backside hanging off the mattress. The sheets aren't even wide enough to cover you completely, making you feel a draft on some of your exposed belly. The chill makes you shiver, not from the cold, but from your nerves sparking from the super-taut, extra-sensitive {self.skinDesc()}."
+         elif (self.pregnancyTime > 360):
+            tempStr += f"\n\nNow you're actually starting to get a little worried... Your {self.legDesc(6)} are knocking against the underside of your belly when you try to walk. People are clearing the way when you move down the streets to make room for your belly and you have to skillfully wedge yourself through narrow doorways!"
+         elif (self.pregnancyTime > 324):
+            tempStr += "\n\nYour giant belly is becoming a bit of a nuisance... As you walk through buildings, people back up against a wall to let you pass by. You can feel your belly scrape against the frames of narrow doorways as you pass through, and it's been a while since you've last seen your belly-button..."
+         elif (self.pregnancyTime > 288):
+            tempStr += "\n\nThis is getting ridiculous... People are starting to come up to you as you move through the street on your way to bed and actually ask if you've got a small person in your belly! Although, you aren't quite sure, but as your hands try to wrap around it, unable to fully embrace it, you begin to wonder yourself."
+         elif (self.pregnancyTime > 252):
+            tempStr += "\n\nYou're beginning to draw the eyes of the crowd as you move through town, your belly is so enormous. People are wondering if you've actually got a baby in there and not a small child."
+         elif (self.pregnancyTime > 216):
+            tempStr += f"\n\nThe {self.skinDesc()} around your giant belly is so taut that you can audibly drum it with your fingers. Which the baby inside does with its feet frequently from inside."
+         elif (self.pregnancyTime > 180):
+            tempStr += "\n\nFor most races, you would be giving birth any time now. You actually have to be cautious about people bumping into you as you walk through the town, it protrudes so far."
+         elif (self.pregnancyTime > 144):
+            tempStr += "\n\nYour belly is so large your belly button has turned into an outie. You play with it as you head to sleep, the baby inside kicking back in turn."
+         elif (self.pregnancyTime > 108):
+            tempStr += "\n\nYou can easily hug your belly as it protrudes from your torso, looking like you were trying to smuggle a melon in your womb. But it feels so good to rub and caress it, making you easily get horny."
+         elif (self.pregnancyTime > 72):
+            tempStr += "\n\nYour belly is obviously bulging now, more than it would if it were just fat. You should probably accept the fact that you're pregnant..."
+         elif (self.pregnancyTime > 36):
+            tempStr += "\n\nYou seem to be getting a bit chubbier in your midsection, might be because you've been hungrier and eating more lately. Plus you've been feeling a bit more randy than usual..."
+         elif (self.pregnancyTime > 18):
+            tempStr += "\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely."
          temp1 = self.body + self.str_ / 2 + self.carryMod
          temp2 = self.pregnancyTime // 10
          if (temp1 < temp2):
@@ -11044,19 +11036,19 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += "pounding your fists up and down its length."
                elif (self.cockSize * self.cockSizeMod > self.tallness * 1.2):
                   tempStr += f"arms around your {whichCock}, hugging it close and trying to jerk yourself the best you can."
-               if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3):
-                  tempStr += " Drops of pre help aid your efforts, though it's still a little rough."
-               elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7):
-                  tempStr += f" A dribble of pre leaks out, sufficiently coating your {self.cockDesc()} cock and making your efforts so much easier."
-               elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11):
-                  tempStr += f" Pre squeezes out of your cock and more than coat your {self.cockDesc()} cock, with plenty extra drooling down across your {self.skinDesc()}."
-               elif (self.moistCalc(1) > 11):
+               if (self.moistCalc(1) > 11):
                   tempStr += f" A flood of pre gushes out from the tip, sufficiently coating yourself, your {self.cockDesc()} cock and then some in slick lubrication."
+               elif (self.moistCalc(1) > 7):
+                  tempStr += f" Pre squeezes out of your cock and more than coat your {self.cockDesc()} cock, with plenty extra drooling down across your {self.skinDesc()}."
+               elif (self.moistCalc(1) > 3):
+                  tempStr += f" A dribble of pre leaks out, sufficiently coating your {self.cockDesc()} cock and making your efforts so much easier."
+               elif (self.moistCalc(1) > 0):
+                  tempStr += " Drops of pre help aid your efforts, though it's still a little rough."
                if (self.showBalls == True):
                   tempStr += f" One of your hands reaches down to knead your {self.ballDesc()} scrotum, letting your {self.balls} cum-factories know it's time."
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
-               elif (self.lust > 30 and self.lust <= 70):
+               elif (self.lust <= 70):
                   tempStr += "\n\nQuickly,"
                elif (self.lust > 70):
                   tempStr += "\n\nAlmost instantly,"
@@ -11069,15 +11061,15 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"Your {self.hipDesc()} hips soon jerk as thick strands of hot spunk launch from your cock-tip{self.plural(1)},"
                if (getCum <= 24):
                   tempStr += " with a bit more drooling down to the floor."
-               elif (getCum > 24 and getCum <= 72):
+               elif (getCum <= 72):
                   tempStr += " spitting small wads again and again until it's done."
-               elif (getCum > 72 and getCum <= 1000):
+               elif (getCum <= 1000):
                   tempStr += " spewing large gobs again and again until you've made a heck of a mess."
-               elif (getCum > 1000 and getCum <= 2200):
+               elif (getCum <= 2200):
                   tempStr += " coming more and more, like it can't stop, until you've made so much cum that you could feed a person with it for a day..."
-               elif (getCum > 2200 and getCum <= 4500):
+               elif (getCum <= 4500):
                   tempStr += " the stuff gushing like a fire-hose. Somewhere between half and a full gallon, you're not sure what to do with it all!"
-               elif (getCum > 4500 and getCum <= 20000):
+               elif (getCum <= 20000):
                   tempStr += " gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!"
                if (getCum > 20000):
                   tempStr += " so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can't take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away."
@@ -11171,14 +11163,14 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.ment < self.lib - 50):
                   tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind "
                tempStr += f"{self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood."
-               if (self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-                  tempStr += f" A bit of sweet feminine honey slips out from {self.legWhere(1)} your {self.legDesc(2)}, your hand taking as much as possible to meagerly lubricate your sex."
-               elif (self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
-                  tempStr += f" Some sweet feminine honey dribbles from {self.legWhere(1)} your {self.legDesc(2)}, slipping back across your {self.buttDesc()} tush and smearing across your thighs, plenty to take care of business."
-               elif (self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
-                  tempStr += f" Lubricant spills from your slit{self.plural(2)}, running down your {self.legDesc(2)} and smearing across your {self.buttDesc()} backside, dribbling off your body, more than enough to frig yourself silly."
-               elif (self.moistCalc(2) > 11):
+               if (self.moistCalc(2) > 11):
                   tempStr += f" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your {self.buttDesc()} ass is practically sopping with it and more flings across your {self.legDesc(2)} and down below you as you go."
+               elif (self.moistCalc(2) > 7):
+                  tempStr += f" Lubricant spills from your slit{self.plural(2)}, running down your {self.legDesc(2)} and smearing across your {self.buttDesc()} backside, dribbling off your body, more than enough to frig yourself silly."
+               elif (self.moistCalc(2) > 3):
+                  tempStr += f" Some sweet feminine honey dribbles from {self.legWhere(1)} your {self.legDesc(2)}, slipping back across your {self.buttDesc()} tush and smearing across your thighs, plenty to take care of business."
+               elif (self.moistCalc(2) > 0):
+                  tempStr += f" A bit of sweet feminine honey slips out from {self.legWhere(1)} your {self.legDesc(2)}, your hand taking as much as possible to meagerly lubricate your sex."
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
                elif (self.lust > 30 and self.lust <= 70):
@@ -11286,9 +11278,9 @@ class NiminFetishFantasyv0975o_fla:
                tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with"
             if (self.nippleSize <= 25):
                tempStr += " your fingers"
-            elif (self.nippleSize > 25 and self.nippleSize <= 60):
+            elif (self.nippleSize <= 60):
                tempStr += " your hands"
-            elif (self.nippleSize > 60 and self.nippleSize <= 180):
+            elif (self.nippleSize <= 180):
                tempStr += " both hands"
             elif (self.nippleSize > 180):
                tempStr += " the nearby wall"
@@ -11327,26 +11319,26 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nMilk "
                if (getMilk <= 500):
                   tempStr += "spits"
-               elif (getMilk > 500 and getMilk <= 1000):
+               elif (getMilk <= 1000):
                   tempStr += "squirts"
-               elif (getMilk > 1000 and getMilk <= 2000):
+               elif (getMilk <= 2000):
                   tempStr += "spews"
-               elif (getMilk > 2000 and getMilk <= 8000):
+               elif (getMilk <= 8000):
                   tempStr += "gushes"
-               elif (getMilk > 8000 and getMilk <= 19000):
+               elif (getMilk <= 19000):
                   tempStr += "erupts"
                elif (getMilk > 19000):
                   tempStr += "explodes"
                tempStr += " from your nipples and dribbles down your front as you begin to lactate. You continue to pump it out in "
                if (getMilk <= 500):
                   tempStr += "small dribbles"
-               elif (getMilk > 500 and getMilk <= 1000):
+               elif (getMilk <= 1000):
                   tempStr += "spurts"
-               elif (getMilk > 1000 and getMilk <= 2000):
+               elif (getMilk <= 2000):
                   tempStr += "sprays"
-               elif (getMilk > 2000 and getMilk <= 8000):
+               elif (getMilk <= 8000):
                   tempStr += "jets"
-               elif (getMilk > 8000 and getMilk <= 19000):
+               elif (getMilk <= 19000):
                   tempStr += "steady streams"
                elif (getMilk > 19000):
                   tempStr += "small floods"
@@ -11362,10 +11354,11 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
             elif (self.ment < self.lib - 50):
                tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull back your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-            if (getMilk > 0 and getMilk < 1000):
-               tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
-            elif ((getMilk > 0) and (getMilk >= 1000)):
-               tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
+            if (getMilk > 0):
+               if (getMilk < 1000):
+                  tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
+               else:
+                  tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
             self.outputMainText(tempStr,True)
             self.nipplePlay += 8
             break
@@ -11431,9 +11424,9 @@ class NiminFetishFantasyv0975o_fla:
                tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with"
             if (self.teatSize <= 25):
                tempStr += " your fingers"
-            elif (self.teatSize > 25 and self.teatSize <= 60):
+            elif (self.teatSize <= 60):
                tempStr += " your hands"
-            elif (self.teatSize > 60 and self.teatSize <= 180):
+            elif (self.teatSize <= 180):
                tempStr += " both hands"
             elif (self.teatSize > 180):
                tempStr += " the nearby wall"
@@ -11444,9 +11437,9 @@ class NiminFetishFantasyv0975o_fla:
             else:
                if (self.lust <= 30):
                   tempStr += "\n\nSlowly,"
-               if (self.lust > 30 and self.lust <= 70):
+               elif (self.lust <= 70):
                   tempStr += "\n\nQuickly,"
-               if (self.lust > 70):
+               elif (self.lust > 70):
                   tempStr += "\n\nAlmost instantly,"
                tempStr += " your whole body begins to quiver,"
                if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
@@ -11465,26 +11458,26 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nMilk "
                if (getMilk <= 500):
                   tempStr += "spits"
-               elif (getMilk > 500 and getMilk <= 1000):
+               elif (getMilk <= 1000):
                   tempStr += "squirts"
-               elif (getMilk > 1000 and getMilk <= 2000):
+               elif (getMilk <= 2000):
                   tempStr += "spews"
-               elif (getMilk > 2000 and getMilk <= 8000):
+               elif (getMilk <= 8000):
                   tempStr += "gushes"
-               elif (getMilk > 8000 and getMilk <= 19000):
+               elif (getMilk <= 19000):
                   tempStr += "erupts"
                elif (getMilk > 19000):
                   tempStr += "explodes"
                tempStr += " from your teats and dribbles down your front as you begin to lactate. You continue to pump it out in "
                if (getMilk <= 500):
                   tempStr += "small dribbles"
-               elif (getMilk > 500 and getMilk <= 1000):
+               elif (getMilk <= 1000):
                   tempStr += "spurts"
-               elif (getMilk > 1000 and getMilk <= 2000):
+               elif (getMilk <= 2000):
                   tempStr += "sprays"
-               elif (getMilk > 2000 and getMilk <= 8000):
+               elif (getMilk <= 8000):
                   tempStr += "jets"
-               elif (getMilk > 8000 and getMilk <= 19000):
+               elif (getMilk <= 19000):
                   tempStr += "steady streams"
                elif (getMilk > 19000):
                   tempStr += "small floods"
@@ -11500,10 +11493,11 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
             elif (self.ment < self.lib - 50):
                tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(1)} your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-            if (getMilk > 0 and getMilk < 1000):
-               tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
-            elif (getMilk > 0 and getMilk >= 1000):
-               tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
+            if (getMilk > 0):
+               if (getMilk < 1000):
+                  tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
+               else:
+                  tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
             self.outputMainText(tempStr,True)
             self.udderPlay += 8
             break
@@ -13197,7 +13191,6 @@ class NiminFetishFantasyv0975o_fla:
    def doFirmshaft(self):
       chance = 0
       chance = self.eventSelect("Firmshaft")
-      #!if/else-ify
       if (chance == 1 and self.jamieRep >= 0 and self.jamieRep < 10):
          if (self.jamieRep == 0):
             self.outputMainText("Passing by one of the many tents, you think you hear a grunt from behind a large outer fold of a canvas wall. Curiously, you move closer, peeking around to check the source. You can't help but giggle a little.\n\nA young equan lad lets out another grunt as he tries to adjust his rather feminine tube-top, his tail swishing up the backside of his skirt. A pair of tight panties hugs his bum, outlining the round forms of his cheeks. You also notice a pair of shorts around his ankles and a shirt tossed onto the ground beside him. And when he turns to face you, you both let out a gasp.\n\nHe blushes tremendously as he sees you looking at him. A large erection pushes out from his skirt, the long shaft nakedly stretching over his belly and disappearing into the tube top, where the thick bulge is easily outlined, especially where the flaring head threatens to pop over the upper edge. Two large testicles squirm in the air as the skirt rests upon them, splayed to either side by the crotch of his panties.\n\n\"Eh?! Th-This isn't what you think!!\" He blushes heavily and attempts to cover himself. \"I-I have trouble hiding my, umm...\" he glances down at his endowment, \"and I th-thought these clothes would help hide it better! P-Please don't tell anybody you caught me wearing girls' clothes!\"",True)
@@ -13215,7 +13208,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.jamieRep += 1
                      self.doEnd()
                   self.doListen = doListen
-               if (self.buttonChoice == 3):
+               elif (self.buttonChoice == 3):
                   self.outputMainText("With a grin, you step towards him. Confused the poor boy steps recoils in turn, only to crash into the tent and land on his rump, his own cock-head punching him in the chin. In the moment he's stunned, you swoop in and kneel down beside him. He blinks at you in fear, but then gasps as you lick over the bulge in his tube top, pushing his length against his chest.\n\nHardly resisting, the boy merely snorts in surprise as you pull his tube top up and pull out the naughty monster. You hold it in both of your hands, looking at it briefly while you consider how you're going to manage it. With a shrug, you open wide and dive down, ramming as much of his head into your mouth as you can. Which isn't that much...\n\nWith your cheeks bulging, you manage to devour maybe an inch past his flaring head. Your tongue dances around his urethra and strokes under the glans, already eliciting a rather large gob of pre. You quickly swallow it to avoid losing your grip on his large anatomy, the warm stuff coating your throat as it goes down. While your hands pump his shaft, you bob your head slightly, your lips pulling back and forth in a meager attempt to suck him. It seems to work fine, however, as his eyes soon clench and his muzzle opens wide with a whinny.\n\nHis hips jerk within the skirt, his butt drumming against the canvas behind him. Gouts of hot spunk spray into your mouth, forcing its way down your throat. You choke at first with the surprising amount of cum, some spurting past your lips and across your hands and his shaft, but you manage to collect yourself, gulping again and again to keep up with the flow. It takes some time, but his eruption eventually comes to a halt...",True)
                   self.doNext()
                   def doListen():
@@ -13226,7 +13219,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.jamieRep += 1
                      self.doEnd()
                   self.doListen = doListen
-               if (self.buttonChoice == 9):
+               elif (self.buttonChoice == 9):
                   self.outputMainText("A bit aghast, you simply turn and walk the other way, leaving the boy to himself while he stands there stunned. You aren't sure what he was up to, but some privacy would probably be helpful.",True)
                   self.hrs = 1
                   self.doEnd()
@@ -13261,7 +13254,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.loseManyItem(533,1)
                               self.doEnd()
                            self.doListen = doListen
-                        if (self.buttonChoice == 3):
+                        elif (self.buttonChoice == 3):
                            self.outputMainText("\"Y-You want me to wear -that- again?!\" A heavy blush floods his face and you can feel the monster buck upon your shoulder. He looks into your eyes to see if you were just joking, but you don't give him any such sign. So, slowly, he concedes. \"You... You would actually like that? I-I suppose I could put it on again. Just... Don't laugh, okay?\"\n\nYou give him an eager nod, backing off to give him some room and letting his erection flop down between his knees. He stands from his bed before kneeling down to grope about beneath it, moving aside some towels until he grabs some other fabrics. The same tube top and skirt you first saw him wearing, he had been hiding it under his bed this whole time.\n\nWith his back to you, the boy finishes stripping by removing his shirt. It's quickly replaced by the tube top, his small frame fitting the small garment well. Then, his tail swishes a bit, giving you flashes of his tight rump, while he steps into the skirt and pulls it up. As it rises to his knees, he angles his member downward, catching it between his knees and behind the waistband of the garment, allowing the skirt to easily rise to his waist without obstruction. The rod pushes his testicles back between his thighs, forcing his legs to bend to give the package room until he can secure the girly thing at his waist. Once it's on, he's able to release the kraken, letting it flick forward with his thighs closing, pulling the hem of the skirt taut just above his knees. He shifts a bit in a crude attempt to make things better before presenting himself, but he eventually gives up and lets out a sigh. Eyes closed, he twirls around.\n\n\"There...\"\n\nThis time he didn't bother to wedge certain parts up into the tube top. Instead, the large cock reaches out at full stiffness, held down by the skirt. The garment doesn't have much give though; with the bulbous testicles making the cloth tight around his thighs, the cock almost points straight down, hardly lifting the skirt at all. He didn't even bother with the panties this time, probably having learned his lesson, and didn't take care to prop his cock up into his tube top, which is good for what you're planning.\n\n\"Happy now?,\" he says with a disgruntled look on his face, even though his cock seems even stiffer now.\n\nYou smile in pleasure with no desire to laugh. You look him over, making sure to give him the feeling that you like what you see. You step behind him and begin to brush at his hair, combing it into a more stylish, girly appearance that matches the skirt. Then you duck down and make the confused boy spread his legs.\n\n\"Wh-What are you doing?\"",True)
                            self.doNext()
                            def doListen():
@@ -13275,7 +13268,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doEnd()
                               self.doListen = doListen
                            self.doListen = doListen
-                        if (self.buttonChoice == 5):
+                        elif (self.buttonChoice == 5):
                            self.outputMainText("The equan lad stares at the object you're offering him. \"You... You want me to use that?\"\n\nA few moments pass as he ponders the drug, rubbing his package in thought until until the monster over your shoulder throbs. He then shrugs, \"I... suppose I can trust your judgement. I mean, you're the only one who has actually taken any interest, so... if you're interested in that, I guess I am too!\"\n\nYou motion for him to open wide and you pop the pill into his mouth. He blinks for a moment after he swallows, beginning to blush as a warmth flows through his body. When that warmth reaches his loins, the whole length of thick meat bucks in return and sending him sprawling backwards onto his bed. He braces himself upon his sheets, his eyes closing and his teeth clenching while things begin to shift and swell.\n\nThe pole upon your shoulder begins to rise, lifting itself from the expanding flesh. If it weren't so large, it could have stood straight up, but instead it bends in the middle, jerking in the air with the growth from each beat of his heart. Gobs of pre ooze lazily from the widening tip, drooling down over your head until you move back a bit for cover.\n\nWhile the shaft above continues to rise and swell, the orbs below also groan with growth. You can see them shift about, urging his legs to spread wider to give them some room. They tug at his crotch, pulling the scrotum down with their increasing weight. You hear an \"Nnngh\" as the tightness and heaviness of the scrotum becomes uncomfortable for the poor prone boy.\n\nBefore things could 'grow' more dire, you take it upon yourself to assist him with a hands-on approach. Specifically, your hands reach out for the throbbing flared equine cockhead that leans in your direction. Your fingertips knead into the soft and plush yet rigid and rough glans, the blood beneath pressing back at your touch with great intensity. You stand to lift the pillar of meat up, holding the tower up in the air so it's not depending on its own strength. The massaging of your fingers over the tender expanding flesh as you hug it makes the boy shiver with a snort.\n\nLarge wads of gooey cum leap heavily from the hole between your fingers, splattering up over your arm. They don't fly much further, too thick and weighty. And with the widening barrel of the loaded cannon, the rest of the spunk gurgles out from the tip like a slowly erupting volcano, the molten stuff surging over your hands and back down its length. However, what the ejaculation lacked in velocity it made up for with quantity...\n\nThe stuff doesn't stop gurgling from the tip as the tower continues its growth. The relief to his testicles barely keeps up with their swelling size, preventing any more discomfort, but in turn leaving him constantly moaning and softly neighing with gob after gob of sticky spooge drooling out of his erection. Your hands rapidly become soaked with a warm blanket of white, his bed sheets becoming shiny and heavy with pearlescant moisture. The coarse hair of his tail swishes from side to side beneath his testicles, his body jerking slightly with each load.",True)
                            self.doNext()
                            def doListen():
@@ -13287,19 +13280,19 @@ class NiminFetishFantasyv0975o_fla:
                               self.loseManyItem(534,1)
                               self.doEnd()
                            self.doListen = doListen
-                        if (self.buttonChoice == 11):
+                        elif (self.buttonChoice == 11):
                            self.outputMainText("In a slightly teasing fashion, you stroke up his length, lift it from your shoulder, and gently let it hang in front of him as you stand up and away from him. You shake your head and let him know that you won't do anything right now, but maybe later.\n\nMouth agape and caught quite off gaurd, the boy looks up at you then down at the dowsing rod that hangs heavily before him. \"A-Alright,\" is all he can muster as you exit his tent. Out of the corner of your eye, you can see his feet stealthily pull a towel out from under his bed just before you leave...",True)
                            self.hrs = 2
                            self.jamieRep = 4
                            self.doEnd()
                      self.doListen = doListen
                   self.doListen = doListen
-               if (self.buttonChoice == 5):
+               elif (self.buttonChoice == 5):
                   self.outputMainText("In a rather immature and annoying fashion you let out a loud laugh at the poor boy's expense, ridiculing him for his pitiful state. Quite embarassed about your reaction to his genuine plea, he turns and runs off in shame, hands palming his testicles so they won't bounce too much.\n\nSuffice it to say, you've really hurt the boy and likely scared him off for good, so you probably won't be seeing him again ever.",True)
                   self.hrs = 1
                   self.jamieRep = -1
                   self.doEnd()
-               if (self.buttonChoice == 7):
+               elif (self.buttonChoice == 7):
                   tempStr = f"Not really worried about the boy's issues, you step closer and intimately suggest something else the two of you could be doing instead while palming the large testicles through his shorts. He snorts in surprise as your massage sends a naughty tingle through his body, making something begin to stiffen between your bodies. You press your body close, squeezing the thing as it rises out of its sheath. You can feel it bulge through his shorts, getting caught on the waistband. He grunts a bit and his butt writhes with his tail as he shifts about awkwardly, until he eventually manages to wiggle the tip under the waistband and letting it pop up between you into his shirt.\n\nYou wrap your arms around him in embrace, slowly grinding up and down his body and quickening his growing rod. \"U-Umm...\" He begins to stammer as he looks around, trying to draw attention to the fact that you're both standing in the middle of the street with fellow villagers strolling about, a rather awkward circumstance for the boy.\n\nNot letting his nervousness go too far, you pull him to the side of the street, allowing him to face the canvas of a random tent where nobody can see what's going on in front of him. With a smirk, you pull up the front of his shirt and quickly undo his waistband, freeing the tower of flesh to fall towards the tent. Stepping over and straddling it, you slip it up between your thighs, 'hiding' it from sight. The boy lets out an erotic whinny as you return to grinding, this time sliding your crotch across the sensitive monster, rapidly bringing him to a gasping pant. You squeeze down on the thing, making him yawn and silently moan as a wave of cum crashes against the canvas behind you.\n\nYou continue to flex around the stiff erection while it spews against the tent, making sure it stays hidden from the strangers walking by. You soon feel it begin to shrink back to its home, slithering between your thighs and leaving a white sticky trail across your {self.clothesBottom()}, until it finally recedes enough that you can lock it back within his shorts once more.\n\nWith a kiss to his cheek, you let him know that you're willing to play whenever he needs it. He nods lazily, meekly announcing, \"I-I'm Jamie, by the way. N-Nice to meet you...\"\n\nWith a giggle, you step away, leaving the hung boy to stare at the mess he made on the side of some person's home before he gets the hint to run off as well. But you'll probably see him again. It's rather hard to miss that thing."
                   self.jamieRep = 2
                   self.hrs = 2
@@ -13307,7 +13300,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(self.lib // 4,0,ret=True)
                   self.outputMainText(tempStr,True)
                   self.doEnd()
-               if (self.buttonChoice == 10):
+               elif (self.buttonChoice == 10):
                   self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"R-Really? I mean, after last time, I don't really have much reason to not trust you. But... H-How do you think you can help me?\"",True)
                   self.showButtons(ButtonList(1,0,1,0,1,0,0,0,0,0,1,0))
                   tempArray = as3.Array(3, "Crossdress", 11, "Maybe Later")
@@ -13329,7 +13322,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.loseManyItem(533,1)
                            self.doEnd()
                         self.doListen = doListen
-                     if (self.buttonChoice == 3):
+                     elif (self.buttonChoice == 3):
                         self.outputMainText("\"Y-You want me to wear -that- again?!\" A heavy blush floods his face and you can see something stir within his shorts. He looks into your eyes to see if you were just joking, but you don't give him any such sign. So, slowly, he concedes. \"You... You would actually like that? I-I suppose I could put it on again. Just... Don't laugh, okay?\"\n\nYou give him an eager nod, ensuring that he's safe with you.\n\n\"O-Okay. But we'll have to go back to my place first, that's where the, umm... 'outfit' is...\"\n\nYou follow his lead and head towards his home. It's not exactly a large tent, but it doesn't need to be either. As you step inside, it's much of what you'd expect from a bachelor's pad. A somewhat disheveled kitchen area, an exposed bathing tub, a large bed with a curtain around it, several crunchy-looking towels around the floor of his bed...\n\nThe boy is quick to kick the 'evidence' under his bed and sits down. \"Sooo... Yeah, this is my place. I-I guess I should change now...\"\n\nHe kneels down before the bed to grope about beneath it, moving aside some towels until he grabs some other fabrics. The same tube top and skirt you first saw him wearing, he had been hiding it under his bed this whole time.\n\nWith his back to you, the boy finishes stripping by removing his shirt. It's quickly replaced by the tube top, his small frame fitting the small garment well. Then, his tail swishes a bit, giving you flashes of his tight rump, while he steps into the skirt and pulls it up. As it rises to his knees, his member grows outward with arousal and he's forced to angle it downward, catching it between his knees and behind the waistband of the garment, allowing the skirt to easily rise to his waist without obstruction. The rod pushes his testicles back between his thighs, forcing his legs to bend to give the package room until he can secure the girly thing at his waist. Once it's on, he's able to release the kraken, letting it flick forward with his thighs closing, pulling the hem of the skirt taut just above his knees. He shifts a bit in a crude attempt to make things better before presenting himself, but he eventually gives up and lets out a sigh. Eyes closed, he twirls around.\n\n\"There...\"\n\nThis time he didn't bother to wedge certain parts up into the tube top. Instead, the large cock reaches out at full stiffness, held down by the skirt. The skirt does have too much give though; with the bulbous testicles making the cloth tight around his thighs, the cock almost points straight down, hardly lifting the skirt at all. He didn't even bother with the panties this time, probably having learned his lesson, and didn't take care to prop his cock up into his tube top, which is good for what you're planning.\n\n\"Happy now?,\" he says with a disgruntled look on his face, even though his cock seems even stiffer now.\n\nYou smile in pleasure with no desire to laugh. You look him over, making sure to give him the feeling that you like what you see. You step behind him and begin to brush at his hair, combing it into a more stylish, girly appearance that matches the skirt. Then you duck down and make the confused boy spread his legs.\n\n\"Wh-What are you doing?\"",True)
                         self.doNext()
                         def doListen():
@@ -13343,7 +13336,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doEnd()
                            self.doListen = doListen
                         self.doListen = doListen
-                     if (self.buttonChoice == 5):
+                     elif (self.buttonChoice == 5):
                         self.outputMainText("The equan lad stares at the object you're offering him. \"You... You want me to use that?\"\n\nA few moments pass as he ponders the drug, rubbing his bulge in thought until a certain monster begins to creep up and bang against his waistband for freedom. He then shrugs, \"I... suppose I can trust your judgement. I mean, you're the only one who has actually taken any interest, so... if you're interested in that, I guess I am too!\"\n\nDucking between some tents so you have a little more privacy. You pop the pill into his mouth while he is caught slack jawed and off guard, forcing him to swallow before he's aware of what happened. He blinks for a moment, beginning to blush as a warmth flows through his body. When that warmth reaches his loins, the whole length of thick meat bucking in return and sending him sprawling back into the tent wall behind him. He braces himself against the canvas, his eyes closing and his teeth clenching while things begin to shift and swell.\n\nThe thing snaps the button of his shorts, making the lad's shirt flutter with the growing girth caught inside. The outline of his bulge becomes more visible, making the pulsing veins more apparent as they stand stiffly. They slowly reacher higher and higher, the large rod inside crawling up his belly and chest, the flaring head dragging across the inside of the fabric. He shivers from the sensation before grunting as the glans catches on the collar of his shirt. The meat bends slightly outward at the middle, unable to pass the simple barrier from the swelling alone. His muscles reflexively jerk at the base, making the whole thing wriggle and buck some more. Eventually, the monster manages to jiggle out, the tip springing up from the collar and launching a gob of pre from the sensitized head to his cheek.\n\nWhile the shaft above continues to rise, the orbs below also groan with growth. You can see them shift about, easily holding up his shorts from the tension, even with the broken button. The garment soon becomes strained with small creaking sounds around the thighs. The stallion looks rather distraught, twisting his hips around with an \"Nnngh\" as the testicles begin to squeeze themselves within the confines. His clothes were beginning to produce an unpleasant pressure with his pent-up arousal.\n\nBefore things could 'grow' more dire, you take it upon yourself to assist him with a hands-on approach. Specifically, your hands reach out for the throbbing flared equine cockhead that currently brushes against the boyn's cheek as it rises. Your fingertips knead into the soft and plush yet rigid and rough glans, the blood beneath pressing back at your touch with great intensity. The massaging of your fingers over the tender expanding flesh makes the boy shiver with a snort.\n\nLarge wads of gooey cum leap heavily from the hole between your fingers, splattering up the side of his face and ear. They don't fly much further, too thick and weighty. And with the widening barrel of the loaded cannon, the rest of the spunk gurgles out from the tip like a slowly erupting volcano, the molten stuff surging over your hands and back down its length. However, what the ejaculation lacked in velocity it made up for with quantity...\n\nThe stuff doesn't stop gurgling from the tip as the tower continues its growth. The relief to his testicles barely keeps up with their swelling size, preventing any more discomfort, but in turn leaving him constantly moaning and softly neighing with gob after gob of sticky spooge drooling out of his erection. Your hands rapidly become soaked with a warm blanket of white, his shirt becoming shiny and heavy with pearlescant moisture. The coarse hair of his tail swishes from side to side against the canvas he leans on, his body jerking slightly with each load.",True)
                         self.doNext()
                         def doListen():
@@ -13355,7 +13348,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.loseManyItem(534,1)
                            self.doEnd()
                         self.doListen = doListen
-                     if (self.buttonChoice == 11):
+                     elif (self.buttonChoice == 11):
                         self.outputMainText("You can help, but not right now. You let the boy know that you might be more prepared at a later time.\n\nThere's not much help he can say but a mild \"Sure, thanks,\" and lets you continue on your way.",True)
                         self.hrs = 1
                         self.jamieRep = 3
@@ -13376,7 +13369,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(self.lib // 5,0,ret=True)
                   self.outputMainText(tempStr,True)
                   self.doEnd()
-               if (self.buttonChoice == 3):
+               elif (self.buttonChoice == 3):
                   tempStr = "Licking your lips in preparation, you push Jamie in between a couple of tents for some privacy, like before. Settling him on the ground so you can have some room to work, you lift his shirt just in time for a nice gob or pre-cum to bead at the center of the wide and almost flat head. You watch it slowly drool down the cleft of his glans and polish the thick bulging shaft as it travels down. He watches you intently as you stare at the clear fluid and tenses when your tongue lunges forward, touching his skin and catching the large drop before it reaches the halfway point down the monster. The boy shivers and quakes as you lick the slimy bead back up the path it came, making the cock buck when your tongue drags back over the cleft and the balls throb below as your mouth manages its best to engulf the tip of the sizeable appendage.\n\nWarm and slightly salty, a very meaty flavor fills your maw, so much that your lips are stretched and your jaw strains to hold it in. Your hands quickly snatch up the rod below, holding it steady as the equine lad squirms. With some stuttered snorts for short breaths, he tries to contain himself the best he can. Which proves to be a rather difficult affair as his member is shoved down your throat, making your neck swell from the hefty portion inside.\n\nEven more pre floods your gullet, coating your tongue and teeth and cheeks as you slide the thing out, the smooth skin slipping all the more easily over it all. Plenty of the stuff, mixed with your saliva, dribbles out from the corners of your mouth, running down his shaft and giving your hand plenty of lubricant to work the rest of him with. Pumping up and down, reaching around and cradling the massive orbs beneath, your fingers dance in rhythm to your head, teasing and squishing and trying to milk the horse shlong for all it's worth. And as a whinny fills the small alley, you find out that the worth is more than you bargained for.\n\nSoft spooge shoots from your nose as your throat stretches more, your stomach rapidly flooding with hot cum. There's not much of a \"swallowing\" action, the stuff is jammed down your gullet with steady force. The taste of spunk is all you can recognize with all the stuff rushing back out and down his length, pooling around his testicles. Your gut distends a little with the excess spunk and your jaw aches slightly from the pulsing meat, leaving you grateful when the thing softens up enough to let you pull off, another squirt giving you a nice white necklace.\n\nYou both take a few moments to catch your breaths, leaving the final oozes of semen to drool down to the grass between you. At a slight loss for words, Jamie simply nudges a small pouch of coins towards you with a nod. Understanding, you take it and head out from the tents to wash up and possibly get something less sticky to drink, leaving the boy to enjoy replaying the scenario again and again in his mind."
                   self.jamieRep = 2
                   self.hrs = 2
@@ -13386,7 +13379,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doLust(self.lib // 5,0,ret=True)
                   self.outputMainText(tempStr,True)
                   self.doEnd()
-               if (self.buttonChoice == 10):
+               elif (self.buttonChoice == 10):
                   self.outputMainText("\"Oh, you don't want to do anything right now?\" He says with increasing blush as he begins to ponder how he's going to deal with the monster. \"I-I'll see you around then!\"\n\nJamie is quick to be on his way undeterred, rather focused on trying to get through the streets without flashing his cock at random people or drawing other unwanted attention. He slinks away, allowing you to leave in peace.",True)
                   self.hrs = 1
                   self.doEnd()
@@ -13421,7 +13414,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.loseManyItem(533,1)
                            self.doEnd()
                         self.doListen = doListen
-                     if (self.buttonChoice == 3):
+                     elif (self.buttonChoice == 3):
                         self.outputMainText("\"Y-You want me to wear -that- again?!\" A heavy blush floods his face and you can see something stir within his shorts. He looks into your eyes to see if you were just joking, but you don't give him any such sign. So, slowly, he concedes. \"You... You would actually like that? I-I suppose I could put it on again. Just... Don't laugh, okay?\"\n\nYou give him an eager nod, ensuring that he's safe with you.\n\n\"O-Okay. But we'll have to go back to my place first, that's where the, umm... 'outfit' is...\"\n\nYou follow his lead and head towards his home. It's not exactly a large tent, but it doesn't need to be either. As you step inside, it's much of what you'd expect from a bachelor's pad. A somewhat disheveled kitchen area, an exposed bathing tub, a large bed with a curtain around it, several crunchy-looking towels around the floor of his bed...\n\nThe boy is quick to kick the 'evidence' under his bed and sits down. \"Sooo... Yeah, this is my place. I-I guess I should change now...\"\n\nHe kneels down before the bed to grope about beneath it, moving aside some towels until he grabs some other fabrics. The same tube top and skirt you first saw him wearing, he had been hiding it under his bed this whole time.\n\nWith his back to you, the boy finishes stripping by removing his shirt. It's quickly replaced by the tube top, his small frame fitting the small garment well. Then, his tail swishes a bit, giving you flashes of his tight rump, while he steps into the skirt and pulls it up. As it rises to his knees, his member grows outward with arousal and he's forced to angle it downward, catching it between his knees and behind the waistband of the garment, allowing the skirt to easily rise to his waist without obstruction. The rod pushes his testicles back between his thighs, forcing his legs to bend to give the package room until he can secure the girly thing at his waist. Once it's on, he's able to release the kraken, letting it flick forward with his thighs closing, pulling the hem of the skirt taut just above his knees. He shifts a bit in a crude attempt to make things better before presenting himself, but he eventually gives up and lets out a sigh. Eyes closed, he twirls around.\n\n\"There...\"\n\nThis time he didn't bother to wedge certain parts up into the tube top. Instead, the large cock reaches out at full stiffness, held down by the skirt. The skirt does have too much give though; with the bulbous testicles making the cloth tight around his thighs, the cock almost points straight down, hardly lifting the skirt at all. He didn't even bother with the panties this time, probably having learned his lesson, and didn't take care to prop his cock up into his tube top, which is good for what you're planning.\n\n\"Happy now?,\" he says with a disgruntled look on his face, even though his cock seems even stiffer now.\n\nYou smile in pleasure with no desire to laugh. You look him over, making sure to give him the feeling that you like what you see. You step behind him and begin to brush at his hair, combing it into a more stylish, girly appearance that matches the skirt. Then you duck down and make the confused boy spread his legs.\n\n\"Wh-What are you doing?\"",True)
                         self.doNext()
                         def doListen():
@@ -13435,7 +13428,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doEnd()
                            self.doListen = doListen
                         self.doListen = doListen
-                     if (self.buttonChoice == 5):
+                     elif (self.buttonChoice == 5):
                         self.outputMainText("The equan lad stares at the object you're offering him. \"You... You want me to use that?\"\n\nA few moments pass as he ponders the drug, rubbing his bulge in thought until a certain monster begins to creep up and bang against his waistband for freedom. He then shrugs, \"I... suppose I can trust your judgement. I mean, you're the only one who has actually taken any interest, so... if you're interested in that, I guess I am too!\"\n\nDucking between some tents so you have a little more privacy. You pop the pill into his mouth while he is caught slack jawed and off guard, forcing him to swallow before he's aware of what happened. He blinks for a moment, beginning to blush as a warmth flows through his body. When that warmth reaches his loins, the whole length of thick meat bucking in return and sending him sprawling back into the tent wall behind him. He braces himself against the canvas, his eyes closing and his teeth clenching while things begin to shift and swell.\n\nThe thing snaps the button of his shorts, making the lad's shirt flutter with the growing girth caught inside. The outline of his bulge becomes more visible, making the pulsing veins more apparent as they stand stiffly. They slowly reacher higher and higher, the large rod inside crawling up his belly and chest, the flaring head dragging across the inside of the fabric. He shivers from the sensation before grunting as the glans catches on the collar of his shirt. The meat bends slightly outward at the middle, unable to pass the simple barrier from the swelling alone. His muscles reflexively jerk at the base, making the whole thing wriggle and buck some more. Eventually, the monster manages to jiggle out, the tip springing up from the collar and launching a gob of pre from the sensitized head to his cheek.\n\nWhile the shaft above continues to rise, the orbs below also groan with growth. You can see them shift about, easily holding up his shorts from the tension, even with the broken button. The garment soon becomes strained with small creaking sounds around the thighs. The stallion looks rather distraught, twisting his hips around with an \"Nnngh\" as the testicles begin to squeeze themselves within the confines. His clothes were beginning to produce an unpleasant pressure with his pent-up arousal.\n\nBefore things could 'grow' more dire, you take it upon yourself to assist him with a hands-on approach. Specifically, your hands reach out for the throbbing flared equine cockhead that currently brushes against the boy's cheek as it rises. Your fingertips knead into the soft and plush yet rigid and rough glans, the blood beneath pressing back at your touch with great intensity. The massaging of your fingers over the tender expanding flesh makes the boy shiver with a snort.\n\nLarge wads of gooey cum leap heavily from the hole between your fingers, splattering up the side of his face and ear. They don't fly much further, too thick and weighty. And with the widening barrel of the loaded cannon, the rest of the spunk gurgles out from the tip like a slowly erupting volcano, the molten stuff surging over your hands and back down its length. However, what the ejaculation lacked in velocity it made up for with quantity...\n\nThe stuff doesn't stop gurgling from the tip as the tower continues its growth. The relief to his testicles barely keeps up with their swelling size, preventing any more discomfort, but in turn leaving him constantly moaning and softly neighing with gob after gob of sticky spooge drooling out of his erection. Your hands rapidly become soaked with a warm blanket of white, his shirt becoming shiny and heavy with pearlescant moisture. The coarse hair of his tail swishes from side to side against the canvas he leans on, his body jerking slightly with each load.",True)
                         self.doNext()
                         def doListen():
@@ -13447,13 +13440,13 @@ class NiminFetishFantasyv0975o_fla:
                            self.loseManyItem(534,1)
                            self.doEnd()
                         self.doListen = doListen
-                     if (self.buttonChoice == 11):
+                     elif (self.buttonChoice == 11):
                         self.outputMainText("You can help, but not right now. You let the boy know that you might be more prepared at a later time.\n\nThere's not much help he can say but a mild \"Sure, thanks,\" and lets you continue on your way.",True)
                         self.hrs = 1
                         self.jamieRep = 3
                         self.doEnd()
                   self.doListen = doListen
-               if (self.buttonChoice == 3):
+               elif (self.buttonChoice == 3):
                   self.outputMainText("\"You... You want to see it again?\" The boy is a little hesitant. \"Well, since you've already seen it, I guess it wouldn't hurt. But not here, of course. Just follow me back to my place again.\"\n\nHe quickly turns to hide his blush and leads you towards his own tent. The same as before, but the 'used' towels are back out in plain sight. The boy is quick to kick them under his bed again and sits down. \"Alright, I guess I should just get this over with?\" Blush spreads as he asks and deepens even more as you nod. \"A-Alright...\"\n\nStill sitting, he begins to unlatch the waistband of his shorts and shimmy out of them. The round sheath is exposed first, thick with much fleshy padding and a little bit of skin showing in the center as something holds itself back. Then the tops of the large orbs are exposed, so smooth and soft compared to the rest of his fur-covered body. He has to take special care to cradle them up out of his shorts with a palm so he can finish pulling the clothing down without tugging on himself. Once emptied, the shorts quickly fall down to his ankles, allowing him to spread his knees and let the things hang. And gosh do they hang... Nearly touching the piled cloth on the floor while he sits on the bed, they look like large living almonds in stretched fleshy sacks that rise and fall slowly as the testicles shift to the cooler air. You make them nearly jump up as you kneel down between his legs for a closer 'inspection'.",True)
                   self.doNext()
                   def doListen():
@@ -13478,7 +13471,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.loseManyItem(533,1)
                               self.doEnd()
                            self.doListen = doListen
-                        if (self.buttonChoice == 3):
+                        elif (self.buttonChoice == 3):
                            self.outputMainText("\"Y-You want me to wear -that- again?!\" A heavy blush floods his face and you can feel the monster buck upon your shoulder. He looks into your eyes to see if you were just joking, but you don't give him any such sign. So, slowly, he concedes. \"You... You would actually like that? I-I suppose I could put it on again. Just... Don't laugh, okay?\"\n\nYou give him an eager nod, backing off to give him some room and letting his erection flop down between his knees. He stands from his bed before kneeling down to grope about beneath it, moving aside some towels until he grabs some other fabrics. The same tube top and skirt you first saw him wearing, he had been hiding it under his bed this whole time.\n\nWith his back to you, the boy finishes stripping by removing his shirt. It's quickly replaced by the tube top, his small frame fitting the small garment well. Then, his tail swishes a bit, giving you flashes of his tight rump, while he steps into the skirt and pulls it up. As it rises to his knees, he angles his member downward, catching it between his knees and behind the waistband of the garment, allowing the skirt to easily rise to his waist without obstruction. The rod pushes his testicles back between his thighs, forcing his legs to bend to give the package room until he can secure the girly thing at his waist. Once it's on, he's able to release the kraken, letting it flick forward with his thighs closing, pulling the hem of the skirt taut just above his knees. He shifts a bit in a crude attempt to make things better before presenting himself, but he eventually gives up and lets out a sigh. Eyes closed, he twirls around.\n\n\"There...\"\n\nThis time he didn't bother to wedge certain parts up into the tube top. Instead, the large cock reaches out at full stiffness, held down by the skirt. The skirt does have too much give though; with the bulbous testicles making the cloth tight around his thighs, the cock almost points straight down, hardly lifting the skirt at all. He didn't even bother with the panties this time, probably having learned his lesson, and didn't take care to prop his cock up into his tube top, which is good for what you're planning.\n\n\"Happy now?,\" he says with a disgruntled look on his face, even though his cock seems even stiffer now.\n\nYou smile in pleasure with no desire to laugh. You look him over, making sure to give him the feeling that you like what you see. You step behind him and begin to brush at his hair, combing it into a more stylish, girly appearance that matches the skirt. Then you duck down and make the confused boy spread his legs.\n\n\"Wh-What are you doing?\"",True)
                            self.doNext()
                            def doListen():
@@ -13492,7 +13485,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doEnd()
                               self.doListen = doListen
                            self.doListen = doListen
-                        if (self.buttonChoice == 5):
+                        elif (self.buttonChoice == 5):
                            self.outputMainText("The equan lad stares at the object you're offering him. \"You... You want me to use that?\"\n\nA few moments pass as he ponders the drug, rubbing his package in thought until until the monster over your shoulder throbs. He then shrugs, \"I... suppose I can trust your judgement. I mean, you're the only one who has actually taken any interest, so... if you're interested in that, I guess I am too!\"\n\nYou motion for him to open wide and you pop the pill into his mouth. He blinks for a moment after he swallows, beginning to blush as a warmth flows through his body. When that warmth reaches his loins, the whole length of thick meat bucks in return and sending him sprawling backwards onto his bed. He braces himself upon his sheets, his eyes closing and his teeth clenching while things begin to shift and swell.\n\nThe pole upon your shoulder begins to rise, lifting itself from the expanding flesh. If it weren't so large, it could have stood straight up, but instead it bends in the middle, jerking in the air with the growth from each beat of his heart. Gobs of pre ooze lazily from the widening tip, drooling down over your head until you move back a bit for cover.\n\nWhile the shaft above continues to rise and swell, the orbs below also groan with growth. You can see them shift about, urging his legs to spread wider to give them some room. They tug at his crotch, pulling the scrotum down with their increasing weight. You hear an \"Nnngh\" as the tightness and heaviness of the scrotum becomes uncomfortable for the poor prone boy.\n\nBefore things could 'grow' more dire, you take it upon yourself to assist him with a hands-on approach. Specifically, your hands reach out for the throbbing flared equine cockhead that leans in your direction. Your fingertips knead into the soft and plush yet rigid and rough glans, the blood beneath pressing back at your touch with great intensity. You stand to lift the pillar of meat up, holding the tower up in the air so it's not depending on its own strength. The massaging of your fingers over the tender expanding flesh as you hug it makes the boy shiver with a snort.\n\nLarge wads of gooey cum leap heavily from the hole between your fingers, splattering up over your arm. They don't fly much further, too thick and weighty. And with the widening barrel of the loaded cannon, the rest of the spunk gurgles out from the tip like a slowly erupting volcano, the molten stuff surging over your hands and back down its length. However, what the ejaculation lacked in velocity it made up for with quantity...\n\nThe stuff doesn't stop gurgling from the tip as the tower continues its growth. The relief to his testicles barely keeps up with their swelling size, preventing any more discomfort, but in turn leaving him constantly moaning and softly neighing with gob after gob of sticky spooge drooling out of his erection. Your hands rapidly become soaked with a warm blanket of white, his bed sheets becoming shiny and heavy with pearlescant moisture. The coarse hair of his tail swishes from side to side beneath his testicles, his body jerking slightly with each load.",True)
                            self.doNext()
                            def doListen():
@@ -13504,14 +13497,14 @@ class NiminFetishFantasyv0975o_fla:
                               self.loseManyItem(534,1)
                               self.doEnd()
                            self.doListen = doListen
-                        if (self.buttonChoice == 11):
+                        elif (self.buttonChoice == 11):
                            self.outputMainText("In a slightly teasing fashion, you stroke up his length, lift it from your shoulder, and gently let it hang in front of him as you stand up and away from him. You shake your head and let him know that you won't do anything right now, but maybe later.\n\nMouth agape and caught quite off gaurd, the boy looks up at you then down at the dowsing rod that hangs heavily before him. \"A-Alright,\" is all he can muster as you exit his tent. Out of the corner of your eye, you can see his feet stealthily pull a towel out from under his bed just before you leave...",True)
                            self.hrs = 2
                            self.jamieRep = 4
                            self.doEnd()
                      self.doListen = doListen
                   self.doListen = doListen
-               if (self.buttonChoice == 10):
+               elif (self.buttonChoice == 10):
                   self.outputMainText("\"O-Oh, you're busy right now, that's fine. I hope I'll catch you again at a better time.\" He blushes and nods, quick to disappear back into the town.",True)
                   self.hrs = 1
                   self.doEnd()
@@ -13981,13 +13974,12 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.lilaMilk <= 19):
                      tempStr += " The girl lets out a meek cry every time your knead one of her breasts, the milk gushing out as her nipples stretch out further as you lightly tug on them. You can hear some of the stuff splatter across the floor, it has so much pressure behind it. And once you start a nipple, it's hard to stop it from flooding down her body as the drops refuse to stop forming and pouring down until you've milked out quite a large amount. When you do, you can feel her breast become much softer, her nipples easily malleable in your grip as they continue to dribble no matter what you do."
                   tempStr += f"\n\nAs you take your time to release her, she quickly relaxes against your {self.boobDesc()} chest, closing her eyes and purring comfortably. Her hands slip between her legs. While you play with her breasts, milk flowing down into your combined laps, you can easily hear the sloshing of her fluids as her hands slip up and down through the cleft of her labia, rubbing her clitoris to heighten the pleasure. Just as you finish off her lowest pair, your hands so close to her loins, she whimpers and seizes as she quietly orgasms in your lap, the bed growing moist beneath you.\n\nIt takes a few moments for her breathing to calm down again and her eyes to open. A slimy hand comes up and touches your cheek, pushing your other cheek towards her mouth as she kisses you. \"Hehe, it felt good... Thank yew~\", she kisses you again.\n\nNow empty, she slides off your lap and onto the floor, strands of her feminine fluid stretching from her bottom to your lap, her tail catching and flicking them as it idly waves. As you stand, more of the stuff is stuck to your own {self.buttDesc()} rump, leaving your {self.clothesBottom()} thoroughly soaked. You help her put on her sundress, making sure it doesn't get stuck on a stray nipple or her tail, and she begins to head out.\n\n\"I'll always hope to see you again,\" she grins. Then she heads out, her friends waiting for her elsewhere in the city."
-                  #!optimize if/else
-                  if (self.lilaMilk > 5 and self.lilaMilk <= 12):
-                     tempStr += "\n\nHowever, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well."
-                     self.itemAdd(224)
                   if (self.lilaMilk > 12):
                      tempStr += "\n\nAnd she was so milky that you were able to save enough milk for two whole bottles! Though it's likely not all milk, thanks to all the mess."
                      self.itemAdd(224)
+                     self.itemAdd(224)
+                  elif (self.lilaMilk > 5):
+                     tempStr += "\n\nHowever, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well."
                      self.itemAdd(224)
                   self.hrs = 3
                   tempStr += self.doLust(self.lib // 3,0,ret=True)
@@ -14289,10 +14281,9 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += " Milk spurts up over her chest and belly as her body shakes with your movement, spilling down her sides and onto your sheets."
                         elif (self.lilaMilk <= 19):
                            tempStr += " Milk gushes between the two of you, exploding with each shake of her little form and jiggle the swollen mounds, flooding about your sheets with its sweet scent."
-                        #!optimize if/else
                         if (self.lilaPreg <= 35):
                            tempStr += "\n\nYou lean down and hug Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck."
-                        elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
+                        elif (self.lilaPreg <= 70):
                            tempStr += "\n\nYou lean around her growing belly, protecting the child and hugging Lila tight as you feel her begin to quake with orgasm, letting her cry out gently into your neck."
                         elif (self.lilaPreg > 70):
                            tempStr += "\n\nYou manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room."
@@ -17219,14 +17210,13 @@ class NiminFetishFantasyv0975o_fla:
                               elif (self.cockSize * self.cockSizeMod > self.eVagLimit(56)):
                                  tempStr += f" She shrieks as you ram your {self.cockDesc()} cock against her fat lips. Yet, despite her rather pronounced size, you're still far too large for her. Instead, you slide your cock between her thighs, running it through the cleft of her pussy and grinding it across her stiff clit until your cock pushes against the other side of the long skirt,"
                                  if (self.malonRep == 4):
-                                    #!if/else-ify
                                     if (self.malonPreg < 54):
                                        tempStr += " wedging it between her hanging breasts until you're literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
-                                    if (self.malonPreg >= 54 and self.malonPreg < 72):
+                                    elif (self.malonPreg < 72):
                                        tempStr += " curving around her pregnant belly until it wedges between her hanging breasts, literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
-                                    if (self.malonPreg >= 72 and self.malonPreg < 108):
+                                    elif (self.malonPreg < 108):
                                        tempStr += " diverting down towards the ground from her massive belly until your ramming into the hay. She turns to spot who could possibly hump her belly likse that and isn't terribly surprised.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
-                                    if (self.malonPreg >= 108):
+                                    elif (self.malonPreg >= 108):
                                        tempStr += " diverting down towards the ground from her massive belly until you're lifting her slightly as your cock wedges between the belly and the hay on the floor. She turns to spot who could possibly hump her belly likse that and isn't terribly surprised.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
                                  else:
                                     tempStr += " wedging it between her hanging breasts until you're literally tit-fucking her from behind. She turns to spot who could possibly plow through her cleavage like that and isn't terribly surprised to see you.\n\n\"Don't frighten me like that!\" She sticks out her tongue and kicks you with a foot.\n\nShe leans backward along your length, running her clit across your shaft until her plump ass presses against you. She shivers in ecstasy from the sensitive contact and the machine still pleasuring her tits."
@@ -17502,16 +17492,14 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += ", her arms hugging her giant belly that nearly pushes past her breasts, easily working despite it"
                   if (self.malonPreg > 144 and self.malonPreg <= 216):
                      tempStr += ", her breasts swollen with pregnancy and supported by her enormously pregnant belly, looking to be even larger than she is. You actually wonder how she manages to work with it"
-               #!if/else-ify
                if (self.malonChildren == 1):
                   tempStr += ", your large-eared and wide-hipped child running around playing, her tail swishing happily through a little white dress just like her mother used to wear, except with a little bulge at the front where her udder jiggles with each step"
-               if (self.malonChildren > 1):
+               elif (self.malonChildren > 1):
                   tempStr += f", your {self.malonChildren} large-eared and wide-hipped children running around playing, their tails swishing happily through little white dresses just like their mother used to wear, except with little bulges at the front where their udders jiggles with each step"
                tempStr += ". The half-bovine woman spots you and her face shines up, turning to come and greet you.\n\n\"Hello hun!\" Her arms wrap around you with a big hug."
-               #!if/else-ify
                if (self.malonChildren == 1):
                   tempStr += "\n\nYour child also spots you and runs up with her own hug, shouting \"Daddy!\""
-               if (self.malonChildren > 1):
+               elif (self.malonChildren > 1):
                   tempStr += "\n\nYour children also spot you and run up with their own hugs, shouting \"Daddy!\""
                self.outputMainText(tempStr + "\n\nYou visit for a while and help Malon with a bit of work, earning you some coin. You spend the time chatting and enjoying yourselves, but eventually Malon gives you a wink.\n\n\"Would you like to do something?\"",True)
                self.doCoin(self.percent() // 20)
@@ -17917,7 +17905,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.doNext()
                   def doListen():
                      chance = self.percent()
-                     #!if/else-ify
                      if (chance <= 40):
                         tempStr = "Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The fuzzy swinging testicles makes it quite obvious what gender he is...\n\nHe spots you quickly, as though he had known you were there. With a grin, his nose and long whiskers twitch, and a rather mishievous twinkle lights in his eyes. Probably two feet high "
                         if (self.tallness <= 216):
@@ -17933,7 +17920,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.eMaxHP = self.eHP
                            self.doBattle()
                         self.doListen = doListen
-                     if (chance > 40 and chance <= 80):
+                     elif (chance <= 80):
                         tempStr = "Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The wobbling tits and thick labia makes it quite obvious what gender she is...\n\nShe spots you quickly, as though she had known you were there. With a grin, her nose and long whiskers twitch, and a rather mishievous twinkle lights in her eyes. Probably two feet high "
                         if (self.tallness <= 216):
                            tempStr += " she towers over you, pleased with the result."
@@ -17948,7 +17935,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.eMaxHP = self.eHP
                            self.doBattle()
                         self.doListen = doListen
-                     if (chance > 80):
+                     elif (chance > 80):
                         self.outputMainText("With the extra-tall grass barring your path behind you, you decide to look around a bit. So small, you're not terribly worried about people spotting your indecency. However, you are careful of the ants and other 'large' creatures that skitter by.\n\nFortunately, none pay you any heed and you manage to make your way to the mouth of the cave. It's still as dark and dank as before, so you don't think to venture inside. Yet, from your shortened vantage point, you notice a small door in the wall at the mouth of the cave. You head towards it, curious as to its existence. How could you have not noticed it when it was bigger?\n\nThe thought doesn't seem to matter, though. When you attempt to open the door, it turns out to be locked. And judging by the keyhole beneath the knob, it would require a rather small key, which you don't have. Nor does this world, yet.\n\nWith a shrug, you turn back towards your pile of clothes. Along the way, your surroundings seem to grow smaller and smaller as you grow taller and taller. By the time you reach the pile, you seem to be back to your normal size, the bottle's effects having worn off.\n\nRedonning your clothing before heading back to Firmshaft, you notice they seem a bit baggier than before... It seems you're still missing a couple inches in height.",True)
                         self.hrs = 2
                         self.doEnd()
@@ -18388,14 +18375,13 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks."
             elif (self.silPreg <= 550):
                tempStr += " She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she 'accidentally' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant..."
-         #!if/else-ify
          if (self.silRep == 1):
             tempStr += " And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh..."
-         if (self.silRep == 2):
+         elif (self.silRep == 2):
             tempStr += " Having completely given up on the clasp of her cloak, the thick nipples of her top breasts barely hold the cloak over most of her mammary flesh. Bigger than her head now, the top pair swings from side to side as she walks, while the smaller pair below jiggle slightly as her belly bobs between them, almost completely bare if it weren't for her wings in the way."
-         if (self.silRep == 3):
+         elif (self.silRep == 3):
             tempStr += " Completely bare, it seems as though she has given up on her cloak... With a heavy blush of embarrassment from her exposed curves, she tries her best to cover herself with her wings, with little success. The top pair of breasts rest heavily atop the second pair, which is squished against her belly, and overall makes it difficult for her to look at you over them when covering them. The third pair jiggle obscenely without any coverage, even larger than her top breasts originally were when you first met her. Most of her efforts in trying to grope her belly mostly wind up fondling this lower pair as well, making them quiver even more lewdly..."
-         if (self.silRep == 4):
+         elif (self.silRep == 4):
             tempStr += " It's' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It's amazing she can even move in such a state..."
          tempStr += "\n\n\"H-Hello- Ungh!\" Her greeting is cut short as she doubles over. It is only now that you see the exorbitant amount of slime spilling "
          if (self.silTied == True):
@@ -18406,26 +18392,25 @@ class NiminFetishFantasyv0975o_fla:
          self.doNext()
          def doListen():
             tempStr = ""
-            #!if/else-ify
             if (self.silRep == 1):
                tempStr += "You run up and grab her, rushing her to her bedroom so she can be more comfortable. Laying her onto her back, you make sure her back is supported appropriately to help with the lay."
                if (self.silTied == True):
                   tempStr += "\n\nHer tail extends itself through the cheeks of her bum and straight across the bed in preparation. Yet, Silandrias quickly gasps loudly as her body realizes that passage is blocked and redirects the flow elsewhere. She spreads her legs wide as she feels her pussy stretch and gape as the eggs force their way through. Her breathing grows rapid and she lets out a warbling howl when the first one breaches her passage, burrowing beneath her testicles and leaving a slimy trail with the next following soon behind. Her wings press down on her belly, trying to help push the orbs out, but they mostly shake from the array of throbbing sensations that blare between her legs like a drum. Slight pain mixed with intense pleasure, she's unsure of what to do and merely pushes harder.\n\nYour hands dive in to lift her package out of the way and help pull the eggs from her supple flesh, making her twitch slightly from your touch. Egg after egg slips out from her, each as large as a grapefruit and smothered in lubrication. Her belly quickly diminishes and within ten minutes she has passed them all."
                else:
                   tempStr += "\n\nHer tail extends itself through the cheeks of her bum and straight across the bed in preparation. Silandrias then pushes her bum up from the sheets with her legs and lets out a warbling howls as the base of her tail swells with the first egg, the bulge quickly running down its length. Before it can even get halfway through, another bulge already forms at the base, making her clench the sheets with her talons. Her back arches higher and higher as she pushes, her round belly pointing straight into the air while her muzzle buries itself within her cleavage, moaning loudly into the flesh. Her cock dangles half-hard above, dribbling a bit of its own lubricant over the base of her tail.\n\nYour hands grope along her tail, encouraging the passing of the eggs from the outside, watching them reach and stretch the tip wide before they're quickly desposited. Egg after egg slips out from her, each as large as a grapefruit and smothered in lubrication. Her belly quickly diminishes and within ten minutes she has passed them all."
-            if (self.silRep == 2):
+            elif (self.silRep == 2):
                tempStr += "You run up and grab her, rushing her to her bedroom so she can be more comfortable. However, just as you can get her onto the bed, Silandrias collapses to her knees before it and leans forward over the edge, unable to go any further. The finger-like talons at the tips of her wings reach out over the sheets and clench the fabric as her back arches into the bed, her top breasts preventing her from going to far while the second pair brushes across the edge and make her nipples grow stiff.\n\nOnce more, her tail thrusts itself straight out,"
                if (self.silTied == True):
                   tempStr += " only to find the passage is blocked by the leather strap. This result only makes her grunt and moan louder as she feels the eggs shift and stretch her cunt. The intense sensation makes her cock flip her loincloth up and pound against the bed with a strange sense of arousal, strands of pre with a mixture of escaping cum splattering with each whack, her testicles groaning to eject some semen as they feel feminine lubricant drool down their backside.\n\nAs your hands reach in to help pull the eggs out, you accidentally brush over her clit, making her howl and push her entire rump into you while an egg forces its way out. Short stuttered spurts of spunk gently paint the overhanging bedsheets with the confused orgasm, not quite a full climax but the sensations are altogether powerful enough to cause the ejaculation. And between each bout of subtle shooting, an egg slips through her tightening and loosening passage, practically firing out into your hands. Her large belly quickly dwindles and by the time she has made a nice waterfall of cum running down her sheets, she has also made a hefty pile of eggs between her feet."
                else:
                   tempStr += " preparing for the onslaught of eggs to come from her large belly. You can hear her gasp and moan into the sheets as her rump pushes back towards you, forcing the eggs into the base of her tail and down its length in turn. The intense pressure from the eggs at her backside causes all of her genitals to engorge themselves, both cunt and cock dribbling with lubricant as they swell slightly.\n\nYour hands grope along her tail, holding it up and encouraging the passing of the eggs from the outside, watching them reach and stretch the tip wide before they're quickly desposited. All the while she claws at the bed, writhing her breasts across the sheets and making her bum wave erotically. The process is almost torturous as it takes so long for the eggs to travel one and two at a time through her tail, making the rest of her a dribbling mess. Her large belly eventually dwindles in size and by the time she has made a nice waterfall of clear fluids from penis and testicles down to the floor, she has also made a hefty pile of eggs beside you."
-            if (self.silRep == 3):
+            elif (self.silRep == 3):
                tempStr += "You run up and grab her, but notice Silandrias is already beginning to squat as her body forces her to start laying. So, rather than head to her room for comfort, you hug her from behind and gently guide her down to the floor of the tunnel, letting her lean back into your for support. Her head nestles back over your shoulder, her muzzle pressing into your face as she groans with the building pressure below, her wings digging her talons into the floor to anchor herself. In preparation, her tail curls up through your crotch and stretches out over your thigh so she is no longer sitting upon it,"
                if (self.silTied == True):
                   tempStr += " but with the passage blocked her legs spread wide as well. You reach around her huge belly the best you can to access her slit. Thankfully, she's already quite half-hard and her increased engorgement allows you to easily grab her masculine portion as it pushes the loin cloth aside and point the rod over her thigh, letting pre drool over her fur. Reaching further, the large orbs are a bit more difficult to lift from this angle, but your fingertips manage to pull at the scaly scrotum and drag it up, propping one hefty testicle against her thigh and shuffling the member around to rest upon your arm.\n\nBefore you can yank the other orb up as well, she lets out a moan and shudders into your body. The second testicle moves further away as the exiting egg pushes it aside, slipping out into a messy puddle of her lubrication below while her cock bucks upon your arm as you hold it back. More pre drizzles down your forearm and over your hand, with even more slick stuff drenching about from underneath. The slippery combination threatens to release the ball from your grip and let it crash against the next oncoming egg, forcing you to grab the sensitive sphere harder to prevent such a tragedy. Her tail whips at you as you do so, her body writhing and an erotic howl escaping her lips as the next egg presses out, with a nice large wad of spunk shooting up to your shoulder. From there, a steady gurgle of hot seed dribbles down your arm and over her thigh, smearing about her dwindling belly and her lower tits, coating her testicles and icing the eggs beneath a white waterfall as they are laid into a pile. On occasion, the egg being laid stretches her especially wide, causing the ejaculating erection to launch a volley up at both of your faces.\n\nBy the time she's finished, you could swear her testicle feels quite lighter..."
                else:
                   tempStr += " a growing bulge at its base already pushing into your groin. You reach around her huge belly to stroke and coax the egg out, feeling the bulge push over your thigh and gently slip out the tip of her tail beside you.\n\nShe arches her back slightly with the continuing oviposition, her loin cloth tenting from the half-hard rod rising beneath. The cloth is moist with pre and grows even wetter with each egg that passes as gobs push through her urethra. Since her tail and backside are doing fine with their steady progress, you manage to reach around with a hand and grab the hunched shaft, smearing the pre down its length. She lets out a guttural moan as she jerks against your body, the loin cloth falling aside and leaving her engorged erection to grow to full length in your grip. The eggs begin to quicken in pace as her hips begin to gently buck up and down with your strokes, clearly expedited by your efforts. By the time a few eggs have slipped out, large wads of hot spunk shoot up over her belly, coating her lower pairs of breasts. The stuff continues to pump out with a gentle gurgle, running down her length and over your hand, spilling from her testicles and forming a nice puddle below. With the occassional larger egg that requires a bit more pushing than the rest, the gentle flood is replaced by lobbing volleys that splatter across your faces and sufficiently make a mess of everything.\n\nBy the time she's finished, even the eggs have been nearly completely coated..."
-            if (self.silRep == 4):
+            elif (self.silRep == 4):
                tempStr += "You run up and grab her, but she lifts a hand, motioning she's alright. Silandrias hugs over your shoulders with one wing while the other cradles her massive tummy the best it can. \"F-First, I want to show you something...\"\n\nUsing you as a crutch, she slowly waddles down the tunnels, taking you down paths you had never seen before. She grunts and wheezes a little as she goes, even having to stop halfway as an egg forces its way through her "
                if (self.silTied == True):
                   tempStr += " slit, allowing you to catch it and a bunch of slime just before it falls to the floor."
@@ -18497,7 +18482,6 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " She leans forward slightly as her weighty girth fills the path before her. Her feathers brush over her taut belly-scales, trying to fan them slightly with the slight pleasure she feels as the finger-like talons grab into the scales as well as they can to help hold her steady. She bends slightly at the knees to aid in holding up her expanding womb, making her look a little silly as she walks."
             elif (self.silPreg <= 550):
                tempStr += " She laughs a little as she drags her enormous belly the best she can above the floor, using her feet to help keep it aloft. Her progress may be slow, but you can see her enjoying every moment of it as she 'accidentally' brushes it against the soft walls as she moves and fans over herself with her wings to keep from getting too hot from the enjoyment of it. Despite her rather excessively-gravid condition, she seems to truly enjoy being this pregnant..."
-         #!if/else-ify
          if (self.silRep == 1):
             if (self.silPreg > 120):
                tempStr += " And despite the swelling of her breasts, she has still managed to clasp her cloak. Though only barely as the clasp seems to be quite threatened by the overflowing flesh..."
@@ -18505,7 +18489,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " Plus, it seems her breasts have also begun to swell slightly with her belly, the clasp in her cloak being much more 'obvious' than before..."
             else:
                tempStr += " Clad in her white cloak as before, the clasp in front nestles between her breasts and seems extra shiny for your arrival."
-         if (self.silRep == 2):
+         elif (self.silRep == 2):
             if (self.silPreg > 200):
                tempStr += " Having completely given up on the clasp of her cloak, the thick nipples of her top breasts barely hold the cloak over most of her mammary flesh. Bigger than her head now, the top pair swings from side to side as she walks, while the smaller pair below jiggle slightly as her belly bobs between them, almost completely bare if it weren't for her wings in the way."
             elif (self.silPreg > 120):
@@ -18514,7 +18498,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " Also her breasts seem to have begun swelling once more, although this time she seems a little embarrassed about some extra growth... Just below her burgeoning bust, another pair of mounds have begun to swell. Her cloak still manages to cover them, but she still tries to cover them with her wings just in case."
             else:
                tempStr += " And her white cloak seems to fit better now after the growth in her breasts has diminished with her belly, though it does look a bit tighter than before the whole thing."
-         if (self.silRep == 3):
+         elif (self.silRep == 3):
             if (self.silPreg > 300):
                tempStr += " Completely bare, it seems as though she has given up on her cloak... With a heavy blush of embarrassment from her exposed curves, she tries her best to cover herself with her wings, with little success. The top pair of breasts rest heavily atop the second pair, which is squished against her belly, and overall makes it difficult for her to look at you over them when covering them. The third pair jiggle obscenely without any coverage, even larger than her top breasts originally were when you first met her. Most of her efforts in trying to grope her belly mostly wind up fondling this lower pair as well, making them quiver even more lewdly..."
             elif (self.silPreg > 200):
@@ -18525,7 +18509,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " In spite of her adjustments to her cloak, her top pair of breasts are once more pushing at the expanded clasp, with her second pair seemingly following suit against their own. However, the most embarrassing part for her is that another pair looks to be growing in as well, flanking her belly with small mounds beneath the cloak..."
             else:
                tempStr += " It also seems as though she's made some adjustments to her cloak. Though her breasts may have reduced in size after the last laying, she still retains the second pair which has been nicely covered by an additional clasp. However the top pair seems to have had some extra cloth added to the bust, to make up for the increased size..."
-         if (self.silRep == 4):
+         elif (self.silRep == 4):
             if (self.silPreg > 450):
                tempStr += " It's' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It's amazing she can even move in such a state..."
             elif (self.silPreg > 300):
@@ -18598,13 +18582,13 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.cockSize * self.cockSizeMod >= 36):
                      tempStr += " Your own length, meanwhile, stretches the walls of her pussy greatly, causing them to tightly hug against your width. Yet, there are no signs of pain as she blissfully lets it plow through her again and again."
                   tempStr += " She bounces upon you so roughly that her "
-                  #!Optimize if/else
-                  if (self.silRep > 3 and self.silPreg > 60):
-                     tempStr += "four pairs of"
-                  elif (self.silRep > 2 and self.silPreg > 60):
-                     tempStr += "three pairs of"
-                  elif (self.silRep > 1 and self.silPreg > 60):
-                     tempStr += "two pairs of"
+                  if (self.silPreg > 60):
+                     if (self.silRep > 3):
+                        tempStr += "four pairs of"
+                     elif (self.silRep > 2):
+                        tempStr += "three pairs of"
+                     elif (self.silRep > 1):
+                        tempStr += "two pairs of"
                   tempStr += " breasts jiggle obscenely, the nipples stiff as though already preparing for a suckling child.\n\nAt this rate, it doesn't take long before Silandrias is letting out a loud, lustful howl as you erupt within her."
                   if (getCum < 1000):
                      tempStr += " Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in."
@@ -23157,11 +23141,11 @@ class NiminFetishFantasyv0975o_fla:
       if (self.pregArray.length > self.vagTotal * 5):
          self.vagChange(0,1)
       self.hrs += 1
-      #!If/else-ify
       if (birthCount == 0):
          tempStr += f"\n\nSuddenly, you feel water splash across your thighs, flooding from {self.oneYour(2)} cunt{self.plural(2)}. You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!"
-      if (birthCount > 0):
+      elif (birthCount > 0):
          tempStr += "\n\nYet, you're still not quite done with the birthing process as fluid splashes out of another one of your vaginas. You tense yourself, already on the ground, and your breathing progresses rapidly as your nearly crush your belly, trying to get more of your babies out!"
+      #!If/else-ify
       match pregnancyType:
          case 1:
             birthNumber = 1 + extra
