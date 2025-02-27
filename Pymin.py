@@ -25575,7 +25575,7 @@ class NiminFetishFantasyv0975o_fla:
          self.dgiwerrlabel = tkinter.Label(self.dgiw,font=("TkTextFont",9))
          self.dgiwerrlabel.place(x=75,y=76,anchor="n")
          self.debugGIWinOpen = True
-         self.mo.group(self.dgiw)
+         self.dgiw.transient(self.dw.children["root"])
          self.dgiw.bind("<Destroy>",self.closeDGIWindow)
       else:
          self.dgiw.lift()
@@ -25639,7 +25639,7 @@ class NiminFetishFantasyv0975o_fla:
          self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Race:","AffinityAdd:"),"Ok",2,"w")
          self.dawcombo.configure(command=self.debugAffinityChange)
          self.debugAWinOpen = True
-         self.mo.group(self.daw)
+         self.daw.transient(self.dw.children["root"])
          self.daw.bind("<Destroy>",self.closeDAWindow)
       else:
          self.daw.lift()
