@@ -1350,7 +1350,7 @@ class NiminFetishFantasyv0975o_fla:
                   if i in '<>:"\\/|?*':
                      return False
                #invalid if last character is " " or "."
-               if tempname[-1] in " .":
+               if tempname[-1] in (" ","."):
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
                if tempname.split(".")[0] in ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"):
@@ -1392,7 +1392,7 @@ class NiminFetishFantasyv0975o_fla:
                   if j in blacklistedChars:
                      return False
                #invalid if last character is " " or "."
-               if i[-1:] in " .":
+               if i[-1:] in (" ","."):
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
                if i.split(".")[0] in blacklistedNames:
