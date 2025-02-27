@@ -9723,11 +9723,9 @@ class NiminFetishFantasyv0975o_fla:
          case 1:
             return "shirt"
          case 3:
-            #!optimize
-            if (self.boobTotal == 2):
-               return "bikini top"
-            elif (self.boobTotal >= 4):
+            if (self.boobTotal > 2):
                return "bikini tops"
+            return "bikini top"
          case 5:
             return "elegant dress"
          case 6:
