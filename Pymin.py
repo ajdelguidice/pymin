@@ -22086,7 +22086,7 @@ class NiminFetishFantasyv0975o_fla:
                self.faceType = 21
                self.hasMuzzle = True
          if (self.dominant == 3 and (self.faceType != 30 or self.faceType != 31)):
-            if (faceType != 30 and faceType != 31):
+            if (self.faceType != 30 and self.faceType != 31):
                if (self.hasMuzzle == True):
                   tempStr += "\n\nYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance."
                else:
