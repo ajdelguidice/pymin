@@ -16014,7 +16014,7 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText("You pause as you kick something soft in the tall grass. You look down and see a somewhat shiny almost rubbery little ball roll a bit before coming to a stop. It looks kinda cute and squishy, making you feel cuddly just looking at it.\n\nWould you like to pick up the ball?",True)
          self.buttonConfirm()
          def doListen():
-            if (self.percent() < self.ment):
+            if (self.percent() < self.ment and not (self.snuggleBall == True and self.gametweaks[11] == True)):
                self.outputMainText(f"Whether you wanted to or not, you seem to be leaning down to pick it up. Some urge to snuggle has overcome you, forcing you to attempt to pick the squishy thing up.\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.",True)
                self.snuggleBall = True
                self.itemAdd(244)
