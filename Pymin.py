@@ -10811,8 +10811,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   break
                elif chance == 3 and self.cockTotal > 0:
-                  #!lizanDontShowBalls (4)
-                  #!showBalls
                   tempStr = f"You wait around behind the bazaar, hoping to earn some coin, when the distinct feeling of eyes upon you takes over your mind. Scanning the area around you, you notice a young Lizan woman looking directly at you with desire in her shining yellow eyes. She walks towards you, her mesmerizing hips swaying about with each step.\n\nShe doesn’t have to say anything, and it is apparent you both know what she wants. She draws closer to you, immediately becoming intimate with your body and rubbing the base of your cock{self.plural(1)}. Luckily it’s not a very busy night for the bazaar, so it’s unlikely that anyone will be around to catch you doing anything so lewd in public. She crouches down to take care of your {self.clothesBottom()} and pulls out your member{self.plural(1)}, already growing erect. With a few strokes, {self.plural(7)} ‘up’ to any task you care to give to {self.plural(9)}. She gently shoves you down onto your back and prepares herself, smiling down at you as she straddles herself over your waiting dick.\n\n"
                   if (self.cockSize <= 28):
                      tempStr += "\"I hope you don’t mind, I just prefer it this way,\" she says with a seductive smile, moaning as she finally lets herself drop down to take you to the hilt. She quickly undoes the buttons on her shirt, letting her ample breasts fall free for you to tend to as she helps herself to your length.\n\n"
@@ -22566,8 +22564,13 @@ class NiminFetishFantasyv0975o_fla:
       if (self.dominant in (5,8,9,10,11)):
          nonCock = True
       if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0): #Loose all cocks
-         #!showballs
-         tempStr += f"\n\nYou shiver a little as your cock{self.plural(1)} and balls shrink into your body, disappearing"
+         tempStr += f"\n\nYou shiver a little as your cock{self.plural(1)} "
+         if self.gametweaks[0] == True and self.showBalls == True:
+            tempstr += "and balls "
+         tempStr += "shrink"
+         if self.gametweaks[0] == True and self.showBalls == True and self.cockTotal < 2:
+            tempStr += "s"
+         tempStr += " into your body, disappearing"
          if (self.vagTotal > 0):
             tempStr += f", leaving you with only your vagina{self.plural(2)} and making you solely female."
             self.gender = 2
