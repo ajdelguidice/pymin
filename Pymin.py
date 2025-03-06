@@ -5296,6 +5296,7 @@ class NiminFetishFantasyv0975o_fla:
       def doListen():
          self.choiceListSelect("Bag")
          if self.buttonChoice == 13:
+            self.PageHide()
             tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
             if (self.moveItemStack > 1):
                tempStr += f" x{self.moveItemStack}"
@@ -5324,6 +5325,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                if (self.moveItemID != 0):
                   self.hideAmount()
+                  self.PageHide()
                   tempStr = f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}"
                   if (self.moveItemStack > 1):
                      tempStr += f" x{self.moveItemStack}"
@@ -8152,6 +8154,7 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             self.choiceListSelect("Stash")
             if self.buttonChoice == 13:
+               self.PageHide()
                tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
                if (self.moveItemStack > 1):
                   tempStr += f" x{self.moveItemStack}"
@@ -8175,6 +8178,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   if (self.moveItemID != 0):
                      self.hideAmount()
+                     self.PageHide()
                      tempStr = f"Closing your stash while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}"
                      if (self.moveItemStack > 1):
                         tempStr += f" x{self.moveItemStack}"
