@@ -1087,7 +1087,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.addNBFrame("nb","if",420,207,"Interface")
          self.optionswindow.configureChild("if",background=self.theme)
          
-         ##Grammar Tweaks
+         ##Original Button Colours
          self.optionswindow.addCheckboxWithLabel("if","OBC",10,10,164,20,("TimesNewRoman",11),"nw","Original Button Colours")
          self.optionswindow.configureChild("OBC",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
@@ -5349,7 +5349,8 @@ class NiminFetishFantasyv0975o_fla:
          elif self.buttonChoice in (4,8):
             self.doBag()
          else:
-            self.showMoveItem(False)
+            if self.choiceListResult[0] != 0:
+               self.showMoveItem(False)
             self.useItem(self.choiceListResult[0])
       self.doListen = doListen
    def useItem(self, ID:int):
@@ -25044,6 +25045,11 @@ class NiminFetishFantasyv0975o_fla:
          temp = self.getColours()
          self.mo.addButton("display","moveitembutton",920,96,140,46,self.font)
          self.mo.configureChild("moveitembutton",text="Move Item",background=temp[0],foreground=temp[1])
+         if self.moveItemID != 0:
+            text = self.itemName(self.moveItemID)
+         else:
+            text = "Move Item"
+         self.mo.configureChild("moveitembutton",text=text)
          self.moveitembuttonvisible = True
    def moveItemHide(self):
       if (self.moveitembuttonvisible):
@@ -25059,7 +25065,12 @@ class NiminFetishFantasyv0975o_fla:
       if (self.moveitemamountvisible == False):
          temp = self.getColours()
          self.mo.addLabel("display","moveitemamount",1030,129,30,15,self.font)
-         self.mo.configureChild("moveitemamount",text="000",background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
+         self.mo.configureChild("moveitemamount",background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
+         if self.moveItemStack != 0:
+            text = self.moveItemStack
+         else:
+            text = "000"
+         self.mo.configureChild("moveitemamount",text=text)
          self.moveitemamountvisible = True
    def moveItemAmountHide(self):
       if (self.moveitemamountvisible):
