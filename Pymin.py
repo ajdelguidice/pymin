@@ -163,6 +163,7 @@ class NiminFetishFantasyv0975o_fla:
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
       self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
+      self.interfacetoggles = [False,False,False] #[OriginalButtonColour(0),ScrolledTextBorders(1),OriginalNewGameButton(2)]
       self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
@@ -1081,6 +1082,19 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
 
+         
+         #Interface page
+         self.optionswindow.addNBFrame("nb","if",420,207,"Interface")
+         self.optionswindow.configureChild("if",background=self.theme)
+         
+         ##Grammar Tweaks
+         self.optionswindow.addCheckboxWithLabel("if","OBC",10,10,164,20,("TimesNewRoman",11),"nw","Original Button Colours")
+         self.optionswindow.configureChild("OBC",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
+         
+         
+         
+         
          if confmod.as3DebugEnable:
             #Debug Tweaks page
             self.optionswindow.addNBFrame("nb","dt",420,207,"Debug Tweaks")
@@ -1143,6 +1157,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["UseNewStash"].select()
       if self.gametweaks[11] == True:
          self.optionswindow.children["MiscChanges"].select()
+      if self.interfacetoggles[0] == True:
+         self.optionswindow.children["OBC"].select()
       if confmod.as3DebugEnable == True:
          if self.debugtweaks[0] == True:
             self.optionswindow.children["ChooseSenario"].select()
@@ -1260,6 +1276,10 @@ class NiminFetishFantasyv0975o_fla:
             self.gametweaks[11] = True
          else:
             self.gametweaks[11] = False
+         if self.optionswindow.children["OBC"].getcb() == 1:
+            self.interfacetoggles[0] = True
+         else:
+            self.interfacetoggles[0] = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
                self.debugtweaks[0] = True
@@ -1888,10 +1908,17 @@ class NiminFetishFantasyv0975o_fla:
       self.updateTheme()
       self.savePreferences()
    def changeBackgroundColor(self, color):
-      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton","savefileselect","savefilelabel","savefileentry","savefilesort","discardbutton"):
+      specialcolour = self.getColours()[0]
+      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "textside", "converttoxmlbutton", "converttosolbutton","savefileselect","savefileentry","savefilelabel"):
          try:
             if (self.mo.getChildAttribute(i, "background") != color):
                self.mo.configureChild(i, background=color)
+         except:
+            continue
+      for i in ("savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "savefilesort","discardbutton"):
+         try:
+            if (self.mo.getChildAttribute(i, "background") != specialcolour):
+               self.mo.configureChild(i, background=specialcolour)
          except:
             continue
       for i in ("window","label","okbutton"):
@@ -1908,24 +1935,32 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen == True:
-         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","ApplyButton"):
+         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges"):
             self.optionswindow.configureChild(i,background=color)
+         self.optionswindow.configureChild("ApplyButton",background=specialcolour)
          if confmod.as3DebugEnable == True:
             for i in ("dt","ChooseSenario","NoDamage"):
                self.optionswindow.configureChild(i,background=color)
       self.style.configure("TFrame",background=color)
       self.style.configure("TNotebook",background=color)
    def changeTextColor(self, color):
-      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "textside", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "converttoxmlbutton", "converttosolbutton","savefileselect","savefilelabel","savefileentry","savefilesort","discardbutton"):
+      specialcolour = self.getColours()[1]
+      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "textside", "converttoxmlbutton", "converttosolbutton","savefileselect","savefilelabel","savefileentry"):
          try:
             if (self.mo.getChildAttribute(i, "foreground") != color):
                self.mo.configureChild(i, foreground=color)
          except:
             continue
+      for i in ("savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount","savefilesort","discardbutton"):
+         try:
+            if (self.mo.getChildAttribute(i, "foreground") != specialcolour):
+               self.mo.configureChild(i, foreground=specialcolour)
+         except:
+            continue
       for i in ("amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount","aboutwindow"):
          try:
             if (self.mo.getChildAttribute(i, "highlightbackground") != color):
-               self.mo.configureChild(i, highlightbackground=color)
+               self.mo.configureChild(i, highlightbackground=specialcolour)
          except:
             continue
       for i in ("window","label","okbutton"):
@@ -1942,8 +1977,9 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","ApplyButton"):
+         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges"):
             self.optionswindow.configureChild(i,foreground=color)
+         self.optionswindow.configureChild("ApplyButton",foreground=specialcolour)
          if confmod.as3DebugEnable == True:
             for i in ("ChooseSenario","NoDamage"):
                self.optionswindow.configureChild(i,foreground=color)
@@ -2189,13 +2225,14 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.showDiscard()
       self.enableAllButtons()
+      temp = self.getColours()
       for i in range(1,13):
          if buttons[i] == 0 and self.buttonsVisible[i] == True:
             self.mo.destroyChild(f"button{i}")
             self.buttonsVisible[i] = False
          elif buttons[i] == 1 and self.buttonsVisible[i] == False:
             self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-            self.mo.configureChild(f"button{i}",text="",background=self.theme,foreground=self.fontColor,command=partial(self.buttonExecProxy,i))
+            self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
             self.buttonsVisible[i] = True
          if i not in (4,8,12):
             tempI = self._showButtonsBagCalc(i,self.choicePage)
@@ -4214,6 +4251,7 @@ class NiminFetishFantasyv0975o_fla:
    def showNewSaveLoadDialog(self):
       #Displays nsld
       if self.newSLDialogVisible == False:
+         temp = self.getColours()
          self.clearTextAllButtons()
          self.mo.addScrolledListbox("display","savefileselect",200,30,460,162-8,self.font,"nw",True,12)
          self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
@@ -4228,7 +4266,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.children["savefileselect"].focus_force()
          self.mo.children["savefileselect"].select_set(0)
          self.mo.addButton("display","savefilesort",840,96,140,46,self.font,"nw")
-         self.mo.configureChild("savefilesort",command=self.toggleNSLDSortOrder,background=self.theme,foreground=self.fontColor,text="Sort")
+         self.mo.configureChild("savefilesort",command=self.toggleNSLDSortOrder,background=temp[0],foreground=temp[1],text="Sort")
          self.newSLDialogVisible = True
          self.keyboardTypingDisable = True
    def nsldSetEntryFromListbox(self,*args):
@@ -24479,6 +24517,10 @@ class NiminFetishFantasyv0975o_fla:
       if rgh == True:
          self.saveInvalid = False
       self.saveinvaliddialog.destroy()
+   def getColours(self):
+      if self.interfacetoggles[0] == True:
+         return ("#FFFFFF","#000000")
+      return (self.theme,self.fontColor)
    def showStatsPane(self):
       self.showStatPane()
       self.showLevelPane()
@@ -24722,8 +24764,9 @@ class NiminFetishFantasyv0975o_fla:
          self.coinlabelvisible = False
    def showSGButton(self):
       if (self.showsavegame == False):
+         temp = self.getColours()
          self.mo.addButton("display","savegamebutton",110,510,100,30,self.font,anchor="n")
-         self.mo.configureChild("savegamebutton",text="Save Game",background=self.theme,foreground=self.fontColor,command=self.saveG)
+         self.mo.configureChild("savegamebutton",text="Save Game",background=temp[0],foreground=temp[1],command=self.saveG)
          self.showsavegame = True
    def hideSGButton(self):
       if (self.showsavegame):
@@ -24731,8 +24774,9 @@ class NiminFetishFantasyv0975o_fla:
          self.showsavegame = False
    def showLGButton(self):
       if (self.showloadgame == False):
+         temp = self.getColours()
          self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
-         self.mo.configureChild("loadgamebutton",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
+         self.mo.configureChild("loadgamebutton",text="Load Game",background=temp[0],foreground=temp[1],command=self.loadG)
          self.showloadgame = True
    def hideLGButton(self):
       if (self.showloadgame):
@@ -24740,8 +24784,9 @@ class NiminFetishFantasyv0975o_fla:
          self.showloadgame = False
    def showNGButton(self):
       if (self.shownewgame == False):
+         temp = self.getColours()
          self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
-         self.mo.configureChild("newgamebutton",text="New Game",background=self.theme,foreground=self.fontColor,command=self.newGameStart)
+         self.mo.configureChild("newgamebutton",text="New Game",background=temp[0],foreground=temp[1],command=self.newGameStart)
          self.shownewgame = True
    def hideNGButton(self):
       if (self.shownewgame):
@@ -24749,8 +24794,9 @@ class NiminFetishFantasyv0975o_fla:
          self.shownewgame = False
    def showDiscard(self):
       if self.discardbuttonvisible == False:
+         temp = self.getColours()
          self.mo.addButton("display","discardbutton",840,162,140,46,self.font)
-         self.mo.configureChild("discardbutton",text="Discard",background=self.theme,foreground=self.fontColor,command=self.buttonEventDiscard)
+         self.mo.configureChild("discardbutton",text="Discard",background=temp[0],foreground=temp[1],command=self.buttonEventDiscard)
          self.discardbuttonvisible = True
    def hideDiscard(self):
       if self.discardbuttonvisible:
@@ -24796,13 +24842,14 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.showDiscard()
       self.enableAllButtons()
+      temp = self.getColours()
       for i in range(1,13):
          if buttons[i] == 0 and self.buttonsVisible[i]:
             self.mo.destroyChild(f"button{i}")
             self.buttonsVisible[i] = False
          elif buttons[i] == 1 and self.buttonsVisible[i] == False:
             self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-            self.mo.configureChild(f"button{i}",text="",background=self.theme,foreground=self.fontColor,command=partial(self.buttonExecProxy,i))
+            self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
             self.buttonsVisible[i] = True
    def buttonWrite(self, buttonNumber:int, buttonText:str):
       self.mo.configureChild(f"button{buttonNumber}",text=buttonText)
@@ -24838,8 +24885,9 @@ class NiminFetishFantasyv0975o_fla:
          self.disableOneButton(i)
    def PageShow(self):
       if (self.pageShow == False):
+         temp = self.getColours()
          self.mo.addLabel("display","pagelabel",843,30,100,30,self.font)
-         self.mo.configureChild("pagelabel",text="BAG 1",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("pagelabel",text="BAG 1",background=temp[0],foreground=temp[1])
          self.pageShow = True
    def PageHide(self):
       if (self.pageShow):
@@ -24858,9 +24906,10 @@ class NiminFetishFantasyv0975o_fla:
    def _viewAmountCalc(buttonNum:int):
       return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
    def viewAmount(self, buttonNum:int, tempBool:bool):
+      temp = self.getColours()
       if tempBool == True and self.amountLabelsVisible[buttonNum] == False:
          self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._viewAmountCalc(buttonNum),30,15,self.font)
-         self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=self.theme,foreground=self.fontColor,highlightbackground=self.fontColor,highlightthickness=1)
+         self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
          self.amountLabelsVisible[buttonNum] = True
       elif tempBool == False and self.amountLabelsVisible[buttonNum] == True:
          self.mo.destroyChild(f"amountlabel{buttonNum}")
@@ -24882,10 +24931,11 @@ class NiminFetishFantasyv0975o_fla:
    def _showSidePanelCalc(buttonNum:int):
       return (823+(83*(buttonNum%4)),210+(30*(buttonNum//4)))
    def showSidePanel(self):
+      temp = self.getColours()
       for i in range(8):
          if self.sidepanelbuttonsvisible[i] == False:
             self.mo.addButton("display",self.sidepanelbuttonnames[i],*self._showSidePanelCalc(i),80,30,self.font)
-            self.mo.configureChild(self.sidepanelbuttonnames[i],text=self.sidepanelbuttontext[i],background=self.theme,foreground=self.fontColor,command=partial(self.sideEvent,i+1))
+            self.mo.configureChild(self.sidepanelbuttonnames[i],text=self.sidepanelbuttontext[i],background=temp[0],foreground=temp[1],command=partial(self.sideEvent,i+1))
             self.sidepanelbuttonsvisible[i] = True
       if self.textsidevisible == False:
          self.mo.addFrame("display","textsidebox",823,275,330,315,"nw")
@@ -24921,8 +24971,9 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.configureChild("themebutton7",text="--")
    def showAPButton(self):
       if self.appearancebuttonvisible == False:
+         temp = self.getColours()
          self.mo.addButton("display","appearancebutton",990,426,150,50,self.font,anchor="center")
-         self.mo.configureChild("appearancebutton",text="Appearance",background=self.theme,foreground=self.fontColor,command=self.appearance)
+         self.mo.configureChild("appearancebutton",text="Appearance",background=temp[0],foreground=temp[1],command=self.appearance)
          self.appearancebuttonvisible = True
    def hideAPButton(self):
       if self.appearancebuttonvisible:
@@ -24990,8 +25041,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("lustimglabel",image=img)
    def moveItemShow(self):
       if (self.moveitembuttonvisible == False):
+         temp = self.getColours()
          self.mo.addButton("display","moveitembutton",920,96,140,46,self.font)
-         self.mo.configureChild("moveitembutton",text="Move Item",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("moveitembutton",text="Move Item",background=temp[0],foreground=temp[1])
          self.moveitembuttonvisible = True
    def moveItemHide(self):
       if (self.moveitembuttonvisible):
@@ -25005,8 +25057,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("moveitembutton",text="")
    def moveItemAmountShow(self):
       if (self.moveitemamountvisible == False):
+         temp = self.getColours()
          self.mo.addLabel("display","moveitemamount",1030,129,30,15,self.font)
-         self.mo.configureChild("moveitemamount",text="000",background=self.theme,foreground=self.fontColor,highlightbackground=self.fontColor,highlightthickness=1)
+         self.mo.configureChild("moveitemamount",text="000",background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
          self.moveitemamountvisible = True
    def moveItemAmountHide(self):
       if (self.moveitemamountvisible):
