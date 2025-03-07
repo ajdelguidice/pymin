@@ -1373,9 +1373,9 @@ class NiminFetishFantasyv0975o_fla:
       """
       Checks if a given directory is valid on the current platform
       """
-      WIN_BlacklistedChars = '<>:"\\/|?*'
-      WIN_BlacklistedNames = ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³")
-      UNIX_BlacklistedChars = "/<>|:&"
+      WIN_BlacklistedChars = {'<','>',':','"','\\','/','|','?','*','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''}
+      WIN_BlacklistedNames = {"CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"}
+      UNIX_BlacklistedChars = {"/","<",">","|",":","&"}
       if type(directory) == type(Path()):
          #While this is ten times slower than using a string, it is much simpler and more robust so should give less incorrect answers
          temp = directory.resolve()
@@ -1388,14 +1388,14 @@ class NiminFetishFantasyv0975o_fla:
                   if i in WIN_BlacklistedChars:
                      return False
                #invalid if last character is " " or "."
-               if tempname[-1] in (" ","."):
+               if tempname[-1] in {" ","."}:
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
                if tempname.split(".")[0] in WIN_BlacklistedNames:
                   return False
                temp = temp.parent
             #Check drive letter
-            if not (str(temp)[0].isalpha() and str(temp)[1:] in (":",":\\",":/")):
+            if not (str(temp)[0].isalpha() and str(temp)[1:] in {":",":\\",":/"}):
                return False
          else:
             #invalid if blacklisted characters are used
@@ -1428,12 +1428,12 @@ class NiminFetishFantasyv0975o_fla:
                   if j in WIN_BlacklistedChars:
                      return False
                #invalid if last character is " " or "."
-               if i[-1:] in (" ","."):
+               if i[-1:] in {" ","."}:
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
                if i.split(".")[0] in WIN_BlacklistedNames:
                   return False
-         elif confmod.platform in ("Linux","Darwin"):
+         elif confmod.platform in {"Linux","Darwin"}:
             #remove trailing path separator
             if directory[-1:] == separator:
                directory = directory[:-1]
@@ -1442,7 +1442,7 @@ class NiminFetishFantasyv0975o_fla:
             #remove starting path separator
             if directory[:1] == separator:
                directory = directory[-(len(directory)-1):]
-            elif directory[:2] in (f".{separator}",f"~{separator}"):
+            elif directory[:2] in {f".{separator}",f"~{separator}"}:
                directory = directory[-(len(directory)-2):]
             dirlist = directory.split(separator)
             for i in dirlist:
