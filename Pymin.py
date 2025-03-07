@@ -170,7 +170,6 @@ class NiminFetishFantasyv0975o_fla:
       self.ofontcolor = "#000000" #original font color from before custom font color was applied
       self.customthemecolor = False #Toggle for custom theme color
       self.othemecolor = "#FFFFFF" #original theme color from before custom theme color was applied
-      self.originaltextboxstyle = True
 
       #Window open variables
       self.debugWinOpen = False #debug window
@@ -833,7 +832,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.addLabel("display","amountlabel12",790,195,30,15,self.font)
          self.mo.configureChild("amountlabel12",text="000",background=self.theme,foreground=self.fontColor)
          self.amountLabelsVisible = [None,True,True,True,True,True,True,True,True,True,True,True,True]
-         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=self.inv(self.originaltextboxstyle))
+         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=self.interfacetoggles[1])
          self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
 
          #frame2 add 803+20 x 30 y
@@ -870,7 +869,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sidepanelbuttonsvisible = [True,True,True,True,True,True,True,True]
          
          self.mo.addFrame("display","textsidebox",823-15,290,330,300+15,"nw")
-         self.mo.addHTMLScrolledText("textsidebox","textside",0,0,330,300+15,self.font,border=self.inv(self.originaltextboxstyle))
+         self.mo.addHTMLScrolledText("textsidebox","textside",0,0,330,300+15,self.font,border=self.interfacetoggles[1])
          self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word")
          self.textsidevisible = True
          self.mo.addButton("display","appearancebutton",990,426,150,50,self.font,anchor="center")
@@ -918,7 +917,7 @@ class NiminFetishFantasyv0975o_fla:
          self.shownewgame = True
          self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
          self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
-         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=self.inv(self.originaltextboxstyle))
+         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=self.interfacetoggles[1])
          self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
          self.pageShow = False
          self.moveitembuttonvisible = False
@@ -1092,6 +1091,10 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("OBC",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
          
+         ##Show scrolledText Borders
+         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,164,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
+         self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders be default but are disabled\nby default because the original game didn't have them. This toggle re-enables\nthem. (Requires restart)")
          
          
          
@@ -1159,6 +1162,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["MiscChanges"].select()
       if self.interfacetoggles[0] == True:
          self.optionswindow.children["OBC"].select()
+      if self.interfacetoggles[1] == True:
+         self.optionswindow.children["ScrolledTextBorders"].select()
       if confmod.as3DebugEnable == True:
          if self.debugtweaks[0] == True:
             self.optionswindow.children["ChooseSenario"].select()
@@ -1280,6 +1285,10 @@ class NiminFetishFantasyv0975o_fla:
             self.interfacetoggles[0] = True
          else:
             self.interfacetoggles[0] = False
+         if self.optionswindow.children["ScrolledTextBorders"].getcb() == 1:
+            self.interfacetoggles[1] = True
+         else:
+            self.interfacetoggles[1] = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
                self.debugtweaks[0] = True
@@ -24944,7 +24953,7 @@ class NiminFetishFantasyv0975o_fla:
             self.sidepanelbuttonsvisible[i] = True
       if self.textsidevisible == False:
          self.mo.addFrame("display","textsidebox",823,275,330,315,"nw")
-         self.mo.addHTMLScrolledText("textsidebox","textside",0,0,330,315,self.font,border=self.inv(self.originaltextboxstyle))
+         self.mo.addHTMLScrolledText("textsidebox","textside",0,0,330,315,self.font,border=self.interfacetoggles[1])
          self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word",background=self.theme,foreground=self.fontColor)
          self.textsidevisible = True
          self.updateText()
