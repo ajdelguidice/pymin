@@ -1092,7 +1092,7 @@ class NiminFetishFantasyv0975o_fla:
          CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
          
          ##Show scrolledText Borders
-         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,164,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
+         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
          self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders be default but are disabled\nby default because the original game didn't have them. This toggle re-enables\nthem. (Requires restart)")
          
@@ -1918,7 +1918,7 @@ class NiminFetishFantasyv0975o_fla:
       self.savePreferences()
    def changeBackgroundColor(self, color):
       specialcolour = self.getColours()[0]
-      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "textside", "converttoxmlbutton", "converttosolbutton","savefileselect","savefileentry","savefilelabel"):
+      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "savefileselect","savefileentry","savefilelabel"):
          try:
             if (self.mo.getChildAttribute(i, "background") != color):
                self.mo.configureChild(i, background=color)
@@ -1954,7 +1954,7 @@ class NiminFetishFantasyv0975o_fla:
       self.style.configure("TNotebook",background=color)
    def changeTextColor(self, color):
       specialcolour = self.getColours()[1]
-      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "bagstashlabel", "textside", "converttoxmlbutton", "converttosolbutton","savefileselect","savefilelabel","savefileentry"):
+      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "savefileselect","savefilelabel","savefileentry"):
          try:
             if (self.mo.getChildAttribute(i, "foreground") != color):
                self.mo.configureChild(i, foreground=color)
