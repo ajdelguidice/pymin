@@ -164,7 +164,7 @@ class NiminFetishFantasyv0975o_fla:
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
       self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
       self.interfacetoggles = [False,False,False] #[OriginalButtonColour(0),ScrolledTextBorders(1),OriginalNewGameButton(2)]
-      self.debugtweaks = [False, False] #[alwaysChooseSenario(0), takeNoDamage(1)]
+      self.debugtweaks = [False,False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
       self.ofontcolor = "#000000" #original font color from before custom font color was applied
@@ -1373,6 +1373,9 @@ class NiminFetishFantasyv0975o_fla:
       """
       Checks if a given directory is valid on the current platform
       """
+      WIN_BlacklistedChars = '<>:"\\/|?*'
+      WIN_BlacklistedNames = ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³")
+      UNIX_BlacklistedChars = "/<>|:&"
       if type(directory) == type(Path()):
          #While this is ten times slower than using a string, it is much simpler and more robust so should give less incorrect answers
          temp = directory.resolve()
@@ -1382,13 +1385,13 @@ class NiminFetishFantasyv0975o_fla:
                tempname = temp.name.upper()
                #invalid if blacklisted characters are used
                for i in tempname:
-                  if i in '<>:"\\/|?*':
+                  if i in WIN_BlacklistedChars:
                      return False
                #invalid if last character is " " or "."
                if tempname[-1] in (" ","."):
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
-               if tempname.split(".")[0] in ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"):
+               if tempname.split(".")[0] in WIN_BlacklistedNames:
                   return False
                temp = temp.parent
             #Check drive letter
@@ -1399,14 +1402,12 @@ class NiminFetishFantasyv0975o_fla:
             while temp != temp.parent:
                #invalid if blacklisted characters are used
                for i in temp.name:
-                  if i in "/<>|:&":
+                  if i in UNIX_BlacklistedChars:
                      return False
                temp = temp.parent
       elif separator != None:
          directory = str(directory)
          if confmod.platform == "Windows":
-            blacklistedChars = '<>:"\\/|?*'
-            blacklistedNames = ("CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³")
             #convert path to uppercase since windows is not cas sensitive
             directory = directory.upper()
             #remove trailing path separator
@@ -1424,16 +1425,15 @@ class NiminFetishFantasyv0975o_fla:
             for i in dirlist:
                #invalid if blacklisted characters are used
                for j in i:
-                  if j in blacklistedChars:
+                  if j in WIN_BlacklistedChars:
                      return False
                #invalid if last character is " " or "."
                if i[-1:] in (" ","."):
                   return False
                #invalid if name is blacklisted and if name before a period is blacklisted
-               if i.split(".")[0] in blacklistedNames:
+               if i.split(".")[0] in WIN_BlacklistedNames:
                   return False
          elif confmod.platform in ("Linux","Darwin"):
-            blacklistedChars = "/<>|:&"
             #remove trailing path separator
             if directory[-1:] == separator:
                directory = directory[:-1]
@@ -1448,7 +1448,7 @@ class NiminFetishFantasyv0975o_fla:
             for i in dirlist:
                #invalid if blacklisted characters are used
                for j in i:
-                  if j in blacklistedChars:
+                  if j in UNIX_BlacklistedChars:
                      return False
       return True
    @staticmethod
