@@ -1375,7 +1375,8 @@ class NiminFetishFantasyv0975o_fla:
       """
       WIN_BlacklistedChars = {'<','>',':','"','\\','/','|','?','*','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''}
       WIN_BlacklistedNames = {"CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"}
-      UNIX_BlacklistedChars = {"/","<",">","|",":","&"}
+      UNIX_BlacklistedChars = {"/","<",">","|",":","&",""}
+      UNIX_BlacklistedNames = {".",".."}
       if type(directory) == type(Path()):
          #While this is ten times slower than using a string, it is much simpler and more robust so should give less incorrect answers
          temp = directory.resolve()
@@ -1398,8 +1399,10 @@ class NiminFetishFantasyv0975o_fla:
             if not (str(temp)[0].isalpha() and str(temp)[1:] in {":",":\\",":/"}):
                return False
          else:
-            #invalid if blacklisted characters are used
             while temp != temp.parent:
+               #invalid if blacklisted names are used
+               if temp.name in UNIX_BlacklistedNames:
+                  return False
                #invalid if blacklisted characters are used
                for i in temp.name:
                   if i in UNIX_BlacklistedChars:
@@ -1446,6 +1449,9 @@ class NiminFetishFantasyv0975o_fla:
                directory = directory[-(len(directory)-2):]
             dirlist = directory.split(separator)
             for i in dirlist:
+               #invalid if blacklisted names are used
+               if i in UNIX_BlacklistedNames:
+                  return False
                #invalid if blacklisted characters are used
                for j in i:
                   if j in UNIX_BlacklistedChars:
