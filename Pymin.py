@@ -12016,13 +12016,20 @@ class NiminFetishFantasyv0975o_fla:
       #!if/else-ify
       self.choiceListArray = as3.Array()
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
-      self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy")
-      if (self.vagTotal > 0):
-         self.choiceListArray.push("Baby Fact")
-      self.choiceListArray.push("Alchemist")
-      if (self.lactation > 0 or self.udderLactation > 0):
-         self.choiceListArray.push("Milk Maid")
-      self.choiceListArray.push("Shapeshifty")
+      if False: #!For interface tweak (needs toggle)
+         self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
+         if (self.vagTotal > 0):
+            self.choiceListArray[4] = "Baby Fact"
+         if (self.lactation > 0 or self.udderLactation > 0):
+            self.choiceListArray[6] = "Milk Maid"
+      else:
+         self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy")
+         if (self.vagTotal > 0):
+            self.choiceListArray.push("Baby Fact")
+         self.choiceListArray.push("Alchemist")
+         if (self.lactation > 0 or self.udderLactation > 0):
+            self.choiceListArray.push("Milk Maid")
+         self.choiceListArray.push("Shapeshifty")
       self.choiceListButtons("Level Up")
       def doListen():
          self.choiceListSelect("Level Up")
