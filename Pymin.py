@@ -4419,6 +4419,7 @@ class NiminFetishFantasyv0975o_fla:
       strack = root.find('track')
       try:
          if (strack.find('v7').text != "test"):
+            tempcs = self.currentState
             sstats = root.find('stats')
             slevel = root.find('level')
             smod = root.find('mod')
@@ -4765,8 +4766,11 @@ class NiminFetishFantasyv0975o_fla:
          self.setDHStats()
          self.setSCStats()
          self.showOption7()
-         self.toggleSide()
-         self.toggleSide()
+         if tempcs == 0:
+            self.toggleSide()
+            self.toggleSide()
+         elif self.showSide == True:
+            self.updateSide()
          self.outputMainText("Your file has been successfully loaded.",True)
          self.doReturn()
       except ValueError as e:
