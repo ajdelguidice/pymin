@@ -1824,31 +1824,31 @@ class NiminFetishFantasyv0975o_fla:
             elif self.newSLDialogVisible == True and self.nsldCheckSelection() == True:
                self.buttonEvent8()
          case (85,True): #u
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                if (self.appearancebuttonvisible == True):
                   self.appearanceGo()
                else:
                   self.sideEvent(1)
          case (73,True): #i
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(2)
          case (79,True): #o
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(3)
          case (80,True): #p
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(4)
          case (72,True): #h
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(5)
          case (74,True): #j
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(6)
          case (75,True): #k
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(7)
          case (76,True): #l
-            if (self.showSide == True):
+            if (self.showSide == True and self.currentState != 0):
                self.sideEvent(8)
          case (37,True): #ArrowLeft
             if self.customthemecolor == False:
