@@ -1924,79 +1924,79 @@ class NiminFetishFantasyv0975o_fla:
       self.savePreferences()
    def changeBackgroundColor(self, color):
       specialcolour = self.getColours()[0]
-      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "savefileselect","savefileentry","savefilelabel"):
+      for i in {"display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "savefileselect","savefileentry","savefilelabel"}:
          try:
             if (self.mo.getChildAttribute(i, "background") != color):
                self.mo.configureChild(i, background=color)
          except:
             continue
-      for i in ("savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "savefilesort","discardbutton"):
+      for i in {"savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount", "savefilesort","discardbutton"}:
          try:
             if (self.mo.getChildAttribute(i, "background") != specialcolour):
                self.mo.configureChild(i, background=specialcolour)
          except:
             continue
-      for i in ("window","label","okbutton"):
+      for i in {"window","label","okbutton"}:
          try:
             self.mo.aboutwindow[2][i].configure(background=color)
          except:
             continue
       if self.wikiOpen == True:
-         for i in ("text","menu"):
+         for i in {"text","menu"}:
             self.wikiwindow.configureChild(i,background=color)
       if self.sfcopen == True:
-         for i in ("display","title","message","inputfilebox","outputfilebox","convertbutton"):
+         for i in {"display","title","message","inputfilebox","outputfilebox","convertbutton"}:
             self.sfcwindow.configureChild(i,background=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen == True:
-         for i in ("display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges"):
+         for i in {"display","options","gt","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges"}:
             self.optionswindow.configureChild(i,background=color)
          self.optionswindow.configureChild("ApplyButton",background=specialcolour)
          if confmod.as3DebugEnable == True:
-            for i in ("dt","ChooseSenario","NoDamage"):
+            for i in {"dt","ChooseSenario","NoDamage"}:
                self.optionswindow.configureChild(i,background=color)
       self.style.configure("TFrame",background=color)
       self.style.configure("TNotebook",background=color)
    def changeTextColor(self, color):
       specialcolour = self.getColours()[1]
-      for i in ("display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "savefileselect","savefilelabel","savefileentry"):
+      for i in {"display", "textmain", "textside", "label1", "strlabel", "strcolonlabel", "strvallabel", "strimglabel", "mentlabel", "mentcolonlabel", "mentvallabel", "mentimglabel", "liblabel", "libcolonlabel", "libvallabel", "libimglabel", "senlabel", "sencolonlabel", "senvallabel", "senimglabel", "label6", "hplabel", "hpcolonlabel", "hpvallabel", "hpimglabel", "lustlabel", "lustcolonlabel", "lustvallabel", "lustimglabel", "hungerlabel", "hungercolonlabel", "hungervallabel", "label10", "currentregionlabel", "levellabel", "levelcolonlabel", "levelvallabel", "sexplabel", "sexpcolonlabel", "sexpvallabel", "coinlabel", "coincolonlabel", "coinvallabel", "daylabel", "daycolonlabel", "dayvallabel", "hourlabel", "hourcolonlabel", "hourvallabel", "savefileselect","savefilelabel","savefileentry"}:
          try:
             if (self.mo.getChildAttribute(i, "foreground") != color):
                self.mo.configureChild(i, foreground=color)
          except:
             continue
-      for i in ("savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount","savefilesort","discardbutton"):
+      for i in {"savegamebutton", "loadgamebutton", "newgamebutton", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9", "button10", "button11", "button12", "looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton", "appearancebutton", "themebutton", "textsizedownbutton", "textsizeresetbutton", "textsizeupbutton", "textboldbutton", "textcolorbutton", "themebutton7", "amountlabel1", "amountlabel2", "amountlabel3", "amountlabel4", "amountlabel5", "amountlabel6", "amountlabel7", "amountlabel8", "amountlabel9", "amountlabel10", "amountlabel11", "amountlabel12", "pagelabel", "moveitembutton", "moveitemamount","savefilesort","discardbutton"}:
          try:
             if (self.mo.getChildAttribute(i, "foreground") != specialcolour):
                self.mo.configureChild(i, foreground=specialcolour)
          except:
             continue
-      for i in ("amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount","aboutwindow"):
+      for i in {"amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount","aboutwindow"}:
          try:
             if (self.mo.getChildAttribute(i, "highlightbackground") != color):
                self.mo.configureChild(i, highlightbackground=specialcolour)
          except:
             continue
-      for i in ("window","label","okbutton"):
+      for i in {"window","label","okbutton"}:
          try:
             self.mo.aboutwindow[2][i].configure(foreground=color)
          except:
             continue
       if self.wikiOpen == True:
-         for i in ("text","menu"):
+         for i in {"text","menu"}:
             self.wikiwindow.configureChild(i,foreground=color)
       if self.sfcopen == True:
-         for i in ("display","title","message","inputfilebox","outputfilebox","convertbutton"):
+         for i in {"display","title","message","inputfilebox","outputfilebox","convertbutton"}:
             self.sfcwindow.configureChild(i,foreground=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges"):
+         for i in {"display","SOLMode","FixedRes","Theme","FontColor","ThemeType","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges"}:
             self.optionswindow.configureChild(i,foreground=color)
          self.optionswindow.configureChild("ApplyButton",foreground=specialcolour)
          if confmod.as3DebugEnable == True:
-            for i in ("ChooseSenario","NoDamage"):
+            for i in {"ChooseSenario","NoDamage"}:
                self.optionswindow.configureChild(i,foreground=color)
    def updateTheme(self):
       self.detailedDebug()
