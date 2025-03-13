@@ -2276,11 +2276,11 @@ class NiminFetishFantasyv0975o_fla:
          self.enableAllButtons()
    def choiceListSelect(self, which:str, hideAmountOverride=False):
       if which == "Bag":
-         tempArray = as3.Array(*[self.bagArray[i] for i in range(27)])
+         tempArray = tuple(self.bagArray[i] for i in range(27))
       elif which == "Stash":
-         tempArray = as3.Array(*[self.stashArray[i] for i in range(27)])
+         tempArray = tuple(self.stashArray[i] for i in range(27))
       else:
-         tempArray = as3.Array(*[self.choiceListArray[i] for i in range(self.choiceListArray.length)])
+         tempArray = tuple(self.choiceListArray[i] for i in range(self.choiceListArray.length))
       if self.buttonChoice != 12:
          tempInt = self.buttonChoice - (1+self.buttonChoice//4)
       else:
@@ -2298,9 +2298,9 @@ class NiminFetishFantasyv0975o_fla:
          if (self.choicePage > 1):
             self.choicePage -= 1
          elif (self.choicePage == 1):
-            self.choicePage = math.ceil(tempArray.length / 9)
+            self.choicePage = math.ceil(len(tempArray) / 9)
       elif self.buttonChoice == 8:
-         if (self.choicePage < math.ceil(tempArray.length / 9)):
+         if (self.choicePage < math.ceil(len(tempArray) / 9)):
             self.choicePage += 1
          else:
             self.choicePage = 1
