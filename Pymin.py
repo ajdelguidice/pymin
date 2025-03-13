@@ -2281,7 +2281,7 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = tuple(self.stashArray[i] for i in range(27))
       else:
          tempArray = tuple(self.choiceListArray[i] for i in range(self.choiceListArray.length))
-      if self.buttonChoice != 12:
+      if self.buttonChoice not in {12,13}:
          tempInt = self.buttonChoice - (1+self.buttonChoice//4)
       else:
          tempInt = 0
@@ -8233,7 +8233,7 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
       def doListen():
          self.choiceListSelect("Stash")
-         if (self.buttonChoice == 12):
+         if (self.buttonChoice in {12,13}):
             self.doBag()
          elif (self.buttonChoice in (4,8)):
             self.choiceListButtons("Stash")
@@ -8270,7 +8270,7 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
       def doListen():
          self.choiceListSelect("Bag")
-         if (self.buttonChoice == 12):
+         if (self.buttonChoice in {12,13}):
             self.doStash()
          elif (self.buttonChoice in (4,8)):
             self.choiceListButtons("Bag")
