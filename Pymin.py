@@ -13571,7 +13571,6 @@ class NiminFetishFantasyv0975o_fla:
          elif self.jamieRep >= 10:
             self.outputMainText("You have reached the end of Jamie's senario as it was implemented in the original game. There is technically more in the code but it is unfinished and was made inaccessible by the origin author.",True)
             self.doEnd()
-         """
          elif (self.jamieRep >= 101 and self.jamieRep < 201):
             tempStr = "\"H-Hello again, it's good to see you!\" Jamie approaches you with a bashful smile upon his reddened face."
             if (self.jamieSize < 2):
@@ -13631,107 +13630,66 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.jamieRep == 22):
                self.outputMainText(" \"We can go to one of those places I mentioned before as well, ...if you want, of course.\"",False)
             if (self.jamieRep == 20):
-               self.showButtons(ButtonList(1,1,0,1,0,0,0,0,0,0,0,0))
+               buttonlist = ButtonList(1,1,0,1,0,0,0,0,0,0,0,0)
             else:
-               self.showButtons(ButtonList(1,0,0,1,1,1,1,0,1,1,1,0))
-            templist = [1,"Show Off",2,"More Clothes",4,"Not Now"]
-            if (self.jamieButt == True and self.jamieRep1 >= 3):
-               this.buttonWrite(5,"Sexy Butt")
-               if(this.cockTotal > 0 && this.cockSize * this.cockSizeMod < this.eVagLimit(96))
-               {
-                  this.Choice5.visible = true;
-               }
-            }
-            else if(this.jamieRep1 == 2)
-            {
-               this.buttonWrite(5,"4x Grain");
-               if(this.countItem(209) >= 4)
-               {
-                  this.Choice5.visible = true;
-               }
-            }
-            else
-            {
-               this.Choice5Outline.visible = false;
-            }
-            if(this.jamieBreasts == true && this.jamieRep2 >= 3)
-            {
-               this.buttonWrite(6,"Boob Fun");
-               this.Choice6.visible = true;
-            }
-            else if(this.jamieRep2 == 2)
-            {
-               this.buttonWrite(6,"3x Red Mush");
-               if(this.countItem(212) >= 3)
-               {
-                  this.Choice6.visible = true;
-               }
-            }
-            else
-            {
-               this.Choice6Outline.visible = false;
-            }
-            if(this.jamieHair == true && this.jamieRep3 >= 3)
-            {
-               this.buttonWrite(7,"Boink");
-               if(this.vagTotal > 0 && this.vagLimit() > 96)
-               {
-                  this.Choice7.visible = true;
-               }
-            }
-            else if(this.jamieRep3 == 2)
-            {
-               this.buttonWrite(7,"Haircut");
-               if(this.coin >= 10)
-               {
-                  this.Choice7.visible = true;
-               }
-            }
-            else
-            {
-               this.Choice7Outline.visible = false;
-            }
-            this.buttonWrite(9,"Naughty Bar");
-            this.buttonWrite(10,"Locker Room");
-            this.buttonWrite(11,"Girl's Tent");
+               buttonlist = ButtonList(1,0,0,1,1,1,1,0,1,1,1,0)
+            templist = as3.Array(1,"Show Off",2,"More Clothes",4,"Not Now",9,"Naughty Bar",10,"Locker Room",11,"Girl's Tent")
+            if (self.jamieButt == True and self.jamieRep1 >= 3 and self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(96)):
+               buttonlist[5] = 1
+               templist.push(5,"Sexy Butt")
+            elif (self.jamieRep1 == 2 and self.countItem(209) >= 4):
+               buttonlist[5] = 1
+               templist.push(5,"4x Grain")
+            else:
+               buttonlist[5] = 0
+            if (self.jamieBreasts == True and self.jamieRep2 >= 3):
+               templist.push(6,"Boob Fun")
+               buttonlist[6] = 1
+            elif (self.jamieRep2 == 2 and self.countItem(212) >= 3):
+               templist.push(6,"3x Red Mush")
+               buttonlist[6] = 1
+            else:
+               buttonlist[6] = 0
+            if (self.jamieHair == True and self.jamieRep3 >= 3 and self.vagTotal > 0 and self.vagLimit() > 96):
+               templist.push(7,"Boink")
+               buttonlist[7] = 1
+            elif (self.jamieRep3 == 2 and self.coin >= 10):
+               templist.push(7,"Haircut")
+               buttonlist[7] = 1
+            else:
+               buttonlist[7] = 0
             self.doButtonChoices(templist)
             def doListen():
-               if (self.buttonChoice == 1):
-
-               if (self.buttonChoice == 2):
+               if (self.buttonChoice == 1):...
+               elif (self.buttonChoice == 2):
                   self.outputMainText("You ask the boy if there's any other 'suitable' outfits that he could wear.\n\n\"Oh, umm... No, not really.\"\n\nOr maybe where he could get more?\n\n\"Hmm...\" His face reddens \"Well, there might be a few places, but I need to make sure first. Umm... let me check them out and I'll get back to you on that!\"\n\nWith a rather excited gait, Jamie sneaks back off to do some scouting for the next time you see him.",True)
                   self.hrs = 1
                   self.jamieRep = 21
                   self.doEnd()
-               if (buttonChoice == 4):
+               elif (self.buttonChoice == 4):
                   self.outputMainText("You tell him that you can't right now, but he doesn't take it harshly. \n\n\"Okay. Maybe later then!\" He turns and ducks back behind the tents, trying not to get too much attention as he enjoys his outting.",False)
                   self.hrs = 1
                   self.doEnd()
-               if ((self.buttonChoice == 5) and (self.jamieRep1 < 3)):
-                  self.outputMainText("You quickly shift his attention as you take out a few pouches of grain.\n\n\"Oh, wild grain? I love grain, but I've never had some wild stuff!\" He doesn't hesitate to take your offer and begin chowing down on the tasty vittles. Arousal can take quite a bit of energy.\n\nTipping the pouches to his mouth, it only takes a couple bites to get through each. Within a minute he downs them all. Licking his teeth and lips he lets out a pleased sigh. \"Mmm. Thank you for that. Wild grain is really quite tasty and I-  ...Eh?!\"\n\nThe boy halts and winces as his skirt begins to creak and grown. His tight rump slowly begins to swell in the denim. His hands palm his cheeks through the skirt while he bends forward and winces, the fabric digging into his testicles in front as it gets pulled more towards the back. He begins scrunching the skirt up into his hands, pulling the hem up over his rear, completely exposing his balls as well. The growing butt continues to swell outward, bubbling in all directions and jiggling slightly as the meaty flesh settles. It only takes a few moments before the expansion finishes...\n\nBare-assed in the middle of the street, Jamie stares at himself over his shoulder. His hand reaches down and grips the excess fat. \"I-It's so soft... and large...\" The hand opens up and rubs around himself before giving it a light slap, making his cock buck in front as the tender flesh behind wobbles. \"W-Wow... I've got a... really nice butt now...\"\n\nIt doesn't take long before he's not the only one admiring the sexy cheeks as some of the others in the street are pausing to take notice of the nude feminine bottom. Jamie blushes and immediately pulls his skirt back down, grunting as it takes a lot more effort to slide the tight hem over the bulging meat. Once clothed, he reaches underneath to prop his testicles up a little higher so they aren't crushed, resulting in another fine sight in front as they snuggle nicely at the top of his thighs.\n\n\"U-Umm... Thanks, I think... This makes me look really quite... nice in this skirt.\" The redness in his face looks like he might pass out at this rate, but he still manages to give his butt another jiggle, making him shudder at the erotic sensation. \"I... I think I need to go. If you don't mind, I'm going to, umm... check things out and get used to it.\"\n\nYou merely grin back and enjoy the sight as the boy walks away. His usual walk causes a cheek to jounce with each step and makes him swoon a little. After several yards, he begins to take up a more gentle and alluring saunter to reduce the quaking of his bottom, making him look even more girly in the tight denim skirt...",True)
-                  self.doSexP(25)
-                  self.hrs = 2
-                  self.jamieButt = True
-                  self.loseManyItem(209,4)
                elif (self.buttonChoice == 5):
-
-               if ((self.buttonChoice == 6) and (self.jamieRep2 < 3)):
-                  self.outputMainText("You offer him a few of your red mushrooms, which makes him curious.\n\n\"What are these? I've never seen them before... Are they edible or something?\"\n\nYou nod your head and offer them for him to eat now.\n\n\"Umm... Sure, ok.\" He pops them one by one into his mouth. The go down the hatch fairly easily and don't seem to make him grimace, at least. \"They have an interesting taste, I suppose. Not exactly my kind of snack, but... Err, does it feel warm all of a sudden?\"\n\nThe boy's hand goes to his tube top to waft some air, but halts as soon as he touches his chest. He eyelashes flutter a bit as his fingers brush across a sensitive nipple that stands erect. Instead of grabbing the collar of the tube top, the hand spreads out across the breast as the flesh bulges out beneath. The other hand joins suit on the other breast, cupping and groping the meat as it fills his palms and pulls at the tube top. His tongue lolls out of his mouth as the flaring head beneath is engulfed by sensitive mounds. His nipples stick out further and further, poking out between his fingers and making him moan from their tenderness. The breasts fill the collar of the top, pulling it down and stretching it out with plush cleavage filling the gap and a surrounding the cock within.\n\nThe ample flesh soon slows to a halt, leaving the boy gasping and shuddering. His hands continue to rove about his chest, feeling himself up and dragging the mounds around the tip of his cock. His fingers pinch his nipples, making him twitch erotically. Staring down at his newly grown melons, he hops a little to watch them bounce, only to swoon in turn.\n\n\"I... I've got... Boobs!\" He shouts a little too excitedly, both in confusion and joy. He quickly quiets down as a few glances shoot his way. \"They're... They're beautiful... And they look so nice in the top.\" He squeezes them through the fabric again, making a gob of pre squeeze up and out into his cleavage, slickening them up. \"Umm... I think I really need to go and... figure these things out...\"\n\nA little too focused on his breasts, Jamie ignores you somewhat and wanders back off into the alleys between tents, his eyes never leaving his own cleavage and his hands never halting in their attention. But that's okay, you'll be able to see them again later.",False);
-                  self.jamieBreasts = True
-                  self.loseManyItem(212,3)
+                  if (self.jamieRep1 < 3):
+                     self.outputMainText("You quickly shift his attention as you take out a few pouches of grain.\n\n\"Oh, wild grain? I love grain, but I've never had some wild stuff!\" He doesn't hesitate to take your offer and begin chowing down on the tasty vittles. Arousal can take quite a bit of energy.\n\nTipping the pouches to his mouth, it only takes a couple bites to get through each. Within a minute he downs them all. Licking his teeth and lips he lets out a pleased sigh. \"Mmm. Thank you for that. Wild grain is really quite tasty and I-  ...Eh?!\"\n\nThe boy halts and winces as his skirt begins to creak and grown. His tight rump slowly begins to swell in the denim. His hands palm his cheeks through the skirt while he bends forward and winces, the fabric digging into his testicles in front as it gets pulled more towards the back. He begins scrunching the skirt up into his hands, pulling the hem up over his rear, completely exposing his balls as well. The growing butt continues to swell outward, bubbling in all directions and jiggling slightly as the meaty flesh settles. It only takes a few moments before the expansion finishes...\n\nBare-assed in the middle of the street, Jamie stares at himself over his shoulder. His hand reaches down and grips the excess fat. \"I-It's so soft... and large...\" The hand opens up and rubs around himself before giving it a light slap, making his cock buck in front as the tender flesh behind wobbles. \"W-Wow... I've got a... really nice butt now...\"\n\nIt doesn't take long before he's not the only one admiring the sexy cheeks as some of the others in the street are pausing to take notice of the nude feminine bottom. Jamie blushes and immediately pulls his skirt back down, grunting as it takes a lot more effort to slide the tight hem over the bulging meat. Once clothed, he reaches underneath to prop his testicles up a little higher so they aren't crushed, resulting in another fine sight in front as they snuggle nicely at the top of his thighs.\n\n\"U-Umm... Thanks, I think... This makes me look really quite... nice in this skirt.\" The redness in his face looks like he might pass out at this rate, but he still manages to give his butt another jiggle, making him shudder at the erotic sensation. \"I... I think I need to go. If you don't mind, I'm going to, umm... check things out and get used to it.\"\n\nYou merely grin back and enjoy the sight as the boy walks away. His usual walk causes a cheek to jounce with each step and makes him swoon a little. After several yards, he begins to take up a more gentle and alluring saunter to reduce the quaking of his bottom, making him look even more girly in the tight denim skirt...",True)
+                     self.doSexP(25)
+                     self.hrs = 2
+                     self.jamieButt = True
+                     self.loseManyItem(209,4)
+                  else:...
                elif (self.buttonChoice == 6):
-
-               if not ((self.buttonChoice == 7) and (self.jamieRep3 < 3)):
-                  if (self.buttonChoice == 7):
-
-               if (self.buttonChoice == 9):
-
-               if (self.buttonChoice == 9):
-
-               if (self.buttonChoice == 9):
-
+                  if (self.jamieRep2 < 3):
+                     self.outputMainText("You offer him a few of your red mushrooms, which makes him curious.\n\n\"What are these? I've never seen them before... Are they edible or something?\"\n\nYou nod your head and offer them for him to eat now.\n\n\"Umm... Sure, ok.\" He pops them one by one into his mouth. The go down the hatch fairly easily and don't seem to make him grimace, at least. \"They have an interesting taste, I suppose. Not exactly my kind of snack, but... Err, does it feel warm all of a sudden?\"\n\nThe boy's hand goes to his tube top to waft some air, but halts as soon as he touches his chest. He eyelashes flutter a bit as his fingers brush across a sensitive nipple that stands erect. Instead of grabbing the collar of the tube top, the hand spreads out across the breast as the flesh bulges out beneath. The other hand joins suit on the other breast, cupping and groping the meat as it fills his palms and pulls at the tube top. His tongue lolls out of his mouth as the flaring head beneath is engulfed by sensitive mounds. His nipples stick out further and further, poking out between his fingers and making him moan from their tenderness. The breasts fill the collar of the top, pulling it down and stretching it out with plush cleavage filling the gap and a surrounding the cock within.\n\nThe ample flesh soon slows to a halt, leaving the boy gasping and shuddering. His hands continue to rove about his chest, feeling himself up and dragging the mounds around the tip of his cock. His fingers pinch his nipples, making him twitch erotically. Staring down at his newly grown melons, he hops a little to watch them bounce, only to swoon in turn.\n\n\"I... I've got... Boobs!\" He shouts a little too excitedly, both in confusion and joy. He quickly quiets down as a few glances shoot his way. \"They're... They're beautiful... And they look so nice in the top.\" He squeezes them through the fabric again, making a gob of pre squeeze up and out into his cleavage, slickening them up. \"Umm... I think I really need to go and... figure these things out...\"\n\nA little too focused on his breasts, Jamie ignores you somewhat and wanders back off into the alleys between tents, his eyes never leaving his own cleavage and his hands never halting in their attention. But that's okay, you'll be able to see them again later.",False);
+                     self.jamieBreasts = True
+                     self.loseManyItem(212,3)
+                  else:...
+               elif not (self.buttonChoice == 7 and self.jamieRep3 < 3):
+                  if (self.buttonChoice == 7):...
+               elif (self.buttonChoice == 9):...
+               elif (self.buttonChoice == 10):...
+               elif (self.buttonChoice == 11):...
             self.doListen = doListen
-         """
       elif (chance == 2):
          tempStr = "Exploring some of the many tents, you find it's very difficult to tell what's what without any kind of signs. Especially as you stumble upon one stallion's harem...\n\nSeveral equan women in rather skimpy, often see-through, attire lounge around soft pillows and cushions, munching on grapes and apples and seeming to be rather relaxed, until you come stumbling through."
          if (self.cockTotal > 0):
