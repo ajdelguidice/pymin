@@ -25784,7 +25784,7 @@ class NiminFetishFantasyv0975o_fla:
          #self.dawerrlabel["text"] = "Error: Game not loaded"
          ...
    def closeDAWindow(self,*args):
-      self.debugGAWinOpen = False
+      self.debugAWinOpen = False
    def keypress(self, e):
       self.detailedDebug()
       self.key_press(e)
