@@ -16460,7 +16460,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " So much so that you wind up with a touch of heat exhaustion, making you tired and aching."
                self.exhaustion += 5
                self.stats(0,0,-1,0)
-               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 6),ret=True) #!Replace math.floor with floor division
+               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 6),ret=True)
             self.outputMainText(tempStr,True)
             self.hrs = 2
             self.doEnd()
@@ -16479,7 +16479,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                tempStr += " So cold that you nearly freeze, causing some damage and weakening you."
                self.stats(-1,0,0,0)
-               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 3.5),ret=True) #!Replace math.floor with floor division
+               tempStr += self.doHP(-math.floor((30 + self.str_ // 2 + self.HPMod) / 3.5),ret=True)
             self.outputMainText(tempStr,True)
             self.hrs = 2
             self.doEnd()
@@ -16630,13 +16630,13 @@ class NiminFetishFantasyv0975o_fla:
          if (self.malonRep > 2):
             tempStr += " Although, she spots you out of the corner of her eye before she enters and turns to give you a bright smile. It looks like she'd wave at you, but her hands are a bit busy at the moment."
          elif (self.malonRep == 4):
-            #if/else-ify
-            if (self.malonPreg > 36 and self.malonPreg <= 72):
-               tempStr += " Especially as one wraps around her protruding belly, obviously pregnant..."
-            if (self.malonPreg > 72 and self.malonPreg <= 144):
-               tempStr += " Yet, despite the massive belly she is sporting, it seems she's managing work just fine."
-            if (self.malonPreg > 144 and self.malonPreg <= 216):
-               tempStr += " You're actually quite surprised that she's even working at all. Though her breasts seem even larger than usual, they're actually supported by her enormously pregnant belly, looking to be even larger than she is."
+            if (self.malonPreg > 36):
+               if (self.malonPreg <= 72):
+                  tempStr += " Especially as one wraps around her protruding belly, obviously pregnant..."
+               elif (self.malonPreg <= 144):
+                  tempStr += " Yet, despite the massive belly she is sporting, it seems she's managing work just fine."
+               elif (self.malonPreg <= 216):
+                  tempStr += " You're actually quite surprised that she's even working at all. Though her breasts seem even larger than usual, they're actually supported by her enormously pregnant belly, looking to be even larger than she is."
          elif (self.malonRep > 3):
             tempStr += "\n\n\"Although, I'm sure you're already aware of the consequences.\"\n\nHe gives you a perverse wink and hands you a complimentary DairE Pill, nodding you along."
          else:
@@ -17009,13 +17009,12 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr = "You quietly open the door and look inside, your eyes going wide at what you see. There are no cows, yet the automatic milker is churning away. In the stalls where the cows should be, stands a young woman, bent forward and hanging onto the guardrail to hold herself up. She wears a long purple skirt with a brown apron, her large rump rocking from side to side as a long tail with a hairy tip dances above in tune. Long red hair dangles down from her shoulders, with long, round ears sticking out. She heaves with each pump of the milker, letting out soft gasping moos.\n\nHer white shirt pushed down around her belly and her yellow shawl draped over the rail beside her, her enormous naked breasts hang down towards the floor. They're larger than watermelons, with nipples several inches long encompassed by the milking cups. Gushes of milk flow through the milker's hoses with each pump, her giant breasts being drained...\n\n\nWhat now?"
                   else:
                      tempStr = "You quietly open the door and look inside, a smirk crossing your face. There are no cows, yet the automatic milker is churning away. In the stalls where the cows should be, stands Malon, the young farm-hand, bent forward and hanging onto the guardrail to hold herself up, her large rump rocking lazily back and forth as her bovine tail swings above in tune. Her white shirt is scrunched down around her belly, her enormous naked breasts hanging down towards the floor. Her nipples are several inches long and encompassed by the milking cups, gushes of milk flow through the milker's hoses with each pump, her giant breasts being drained. In between gasps, she lets out soft moos..."
-                     if (self.malonRep == 4):
-                        #!if/else-ify
-                        if (self.malonPreg > 36 and self.malonPreg <= 72):
+                     if (self.malonRep == 4 and self.malonPreg > 36):
+                        if (self.malonPreg <= 72):
                            tempStr += "\n\nShe rubs her slightly protruding belly, pregnant with one of your children..."
-                        if (self.malonPreg > 72 and self.malonPreg <= 144):
+                        elif (self.malonPreg <= 144):
                            tempStr += "\n\nBoth of her hands rub around her giant belly which hangs nearly as low as her tits, pregnant with one of your children. You don't know how she managed to even pull her shirt down like that..."
-                        if (self.malonPreg > 144 and self.malonPreg <= 216):
+                        elif (self.malonPreg <= 216):
                            tempStr += "\n\nHer flow of milk through the tubes seems even more powerful than before. You're surprised at how large her tits have grown, her nipples nearly scraping along the ground as she bends over. However, her giant belly that she hugs and caresses as she's milked reaches even further, the hay on the floor tickling her protruding belly button. She has propped it up against the guardrail to help maintain her balance, though she doesn't seem terribly uncomfortable."
                      if (self.malonRep == 5 and self.malonChildren > 0):
                         tempStr += "\n\nIt seems as though she has finally found a moment to get away from your offspring and have some time to herself."
@@ -17533,13 +17532,12 @@ class NiminFetishFantasyv0975o_fla:
                self.doListen = doListen
             elif (self.malonRep == 4 or self.malonRep == 5):
                tempStr = "Malon is working outside as you approach the farm once again"
-               if (self.malonRep == 4):
-                  #!if/else-ify
-                  if (self.malonPreg > 36 and self.malonPreg <= 72):
+               if (self.malonRep == 4 and self.malonPreg > 36):
+                  if (self.malonPreg <= 72):
                      tempStr += ", an arm slung under her slightly protruding yet obviously pregnant belly"
-                  if (self.malonPreg > 72 and self.malonPreg <= 144):
+                  elif (self.malonPreg <= 144):
                      tempStr += ", her arms hugging her giant belly that nearly pushes past her breasts, easily working despite it"
-                  if (self.malonPreg > 144 and self.malonPreg <= 216):
+                  elif (self.malonPreg <= 216):
                      tempStr += ", her breasts swollen with pregnancy and supported by her enormously pregnant belly, looking to be even larger than she is. You actually wonder how she manages to work with it"
                if (self.malonChildren == 1):
                   tempStr += ", your large-eared and wide-hipped child running around playing, her tail swishing happily through a little white dress just like her mother used to wear, except with a little bulge at the front where her udder jiggles with each step"
@@ -17590,13 +17588,12 @@ class NiminFetishFantasyv0975o_fla:
                               self.malonPreg = 0
                         elif (self.cockSize * self.cockSizeMod > self.eVagLimit(56)):
                            tempStr += f"\n\nHowever, she can easily tell that you're far too large for her. So, instead, she crawls back up your body, licking you as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she straddles your {self.cockDesc()} erection{self.plural(1)}, humping her clit along your length{self.plural(1)}."
-                        if (self.malonRep == 4):
-                           #!if/else-ify
-                           if (self.malonPreg > 36 and self.malonPreg <= 72):
+                        if (self.malonRep == 4 and self.malonPreg > 36):
+                           if (self.malonPreg <= 72):
                               tempStr += "\n\nYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn't prevent the room from getting hot..."
-                           if (self.malonPreg > 72 and self.malonPreg <= 144):
+                           elif (self.malonPreg <= 144):
                               tempStr += "\n\nYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it."
-                           if (self.malonPreg > 144 and self.malonPreg <= 216):
+                           elif (self.malonPreg <= 216):
                               tempStr += "\n\nHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She rolls back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well."
                         if (self.malonChildren == 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm."
@@ -17617,13 +17614,12 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm."
                         elif (self.malonChildren > 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don't. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success."
-                        if (self.malonRep == 4):
-                           #!if/else-ify
-                           if (self.malonPreg > 36 and self.malonPreg <= 72):
+                        if (self.malonRep == 4 and self.malonPreg > 36):
+                           if (self.malonPreg <= 72):
                               tempStr += "\n\nYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn't prevent the room from getting hot..."
-                           if (self.malonPreg > 72 and self.malonPreg <= 144):
+                           elif (self.malonPreg <= 144):
                               tempStr += "\n\nYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it."
-                           if (self.malonPreg > 144 and self.malonPreg <= 216):
+                           elif (self.malonPreg <= 216):
                               tempStr += "\n\nHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She roll back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well."
                         tempStr += f"\n\nOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\n\nQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. She keeps her mouth shut at first, but as you thrust your clit{self.plural(2)} against hers as you come, she can no longer resist, allowing her mouth stretch wide.\n\n\"MOOOOOOO!\""
                         if (self.malonChildren == 1):
@@ -17636,13 +17632,12 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girl jumps into the bed with you, rubbing her small udder and tugging the short teats until her own milk is flowing. She suckles from the two of you when you two give her the chance, trying to get a nice meal in. However, your actions are so vulgar that she begins to slip her fingers between her own legs and fondle her small breasts, gasping softly as she tries to bring herself to a premature orgasm."
                         elif (self.malonChildren > 1):
                            tempStr += "\n\nAll giggly and just as naked as you are, your little girls jump into the bed with you, rubbing their small udders and tugging at each others short teats until their own milk begins to flow. They suckle from the two of you when you two give them the chance, trying to get a nice meal in, and suckle from each other whenever you don't. However, your actions are so vulgar that they begin to slip their fingers between their own legs and fondle their small breasts, gasping softly as they try to bring themselves to premature orgasms, even going so far to even lick each others developing cunnies in hopes for a greater chance of success."
-                        if (self.malonRep == 4):
-                           #!if/else-ify
-                           if (self.malonPreg > 36 and self.malonPreg <= 72):
+                        if (self.malonRep == 4 and self.malonPreg > 36):
+                           if (self.malonPreg <= 72):
                               tempStr += "\n\nYou both rub her slightly protruding belly as you kiss, delighting in the feeling of new life growing within her. As you rub against each other, you take precautions to protect the womb, but it doesn't prevent the room from getting hot..."
-                           if (self.malonPreg > 72 and self.malonPreg <= 144):
+                           elif (self.malonPreg <= 144):
                               tempStr += "\n\nYou both hug and rub her large belly, her breasts laying atop and just barely hanging past. Her large rump rises in the air, her tail dancing above, as she tries to bend around her swollen womb and kiss you again and again. One of your hands grabs her ass trying to push her back down against you, while the other roves over the taut skin, keen to protect and caress it."
-                           if (self.malonPreg > 144 and self.malonPreg <= 216):
+                           elif (self.malonPreg <= 216):
                               tempStr += "\n\nHer belly is enormous, filling the gap between the two of you and protruding further than her pregnancy-swollen tits, milk already dribbling down the taut skin. She grinds down hard against you, the large girth making her all the hornier. So horny, in fact, that she rolls her giant belly against yours, just to lean in to give you a kiss. Her ass swings in the air, swaying erotically while her tail dances in rhythm. Both of your hands are busy keeping her giant womb balanced against you, stroking the sensitive skin until you can feel her arousal splash down from her hind-qaurters and splatter across your thighs. She roll back to satiate her engorged cunt, letting her feminine lubricant slip beneath her belly, allowing it to slide erotically across you as well."
                         tempStr += "\n\nOver and over, she grinds her wide hips"
                         if (self.knot == True):
