@@ -1960,7 +1960,7 @@ class NiminFetishFantasyv0975o_fla:
       self.style.configure("TNotebook",background=color)
    def changeTextColor(self, color):
       specialcolour = self.getColours()[1]
-      for i in ("display","label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
+      for i in ("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
          try:
             if (self.mo.getChildAttribute(i, "foreground") != color):
                self.mo.configureChild(i, foreground=color)
@@ -1987,12 +1987,12 @@ class NiminFetishFantasyv0975o_fla:
          for i in ("text","menu"):
             self.wikiwindow.configureChild(i,foreground=color)
       if self.sfcopen == True:
-         for i in ("display","title","message","inputfilebox","outputfilebox","convertbutton"):
+         for i in ("title","message","inputfilebox","outputfilebox","convertbutton"):
             self.sfcwindow.configureChild(i,foreground=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("display","SOLMode","FixedRes","Theme","FontColor","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType"):
+         for i in ("SOLMode","FixedRes","Theme","FontColor","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType"):
             self.optionswindow.configureChild(i,foreground=color)
          self.optionswindow.configureChild("ApplyButton",foreground=specialcolour)
          if confmod.as3DebugEnable == True:
