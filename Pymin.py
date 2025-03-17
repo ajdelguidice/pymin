@@ -25200,7 +25200,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcwindow.toTop()
    @staticmethod
    def solString(string):
-      if string in [None,"None","undefined"]:
+      if isinstance(string,as3.allNone) or string in {"None","Undefined"}:
          return ""
       return str(string)
    @staticmethod
