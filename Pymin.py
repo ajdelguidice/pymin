@@ -12904,7 +12904,6 @@ class NiminFetishFantasyv0975o_fla:
          if temp != None:
             return temp
       self.rndArray = as3.Array()
-      tempArray = as3.Array()
       match which:
          case "Softlik":
             tempArray = (0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0)
