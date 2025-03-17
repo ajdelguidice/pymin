@@ -25205,26 +25205,17 @@ class NiminFetishFantasyv0975o_fla:
       return str(string)
    @staticmethod
    def solGetFileName(path:str|Path):
-      if type(path) == str:
+      if isinstance(path,str) == True:
          if confmod.platform == "Windows":
-            templist = path.split("\\")[-1].split(".")
+            filename = path.split("\\")[-1].split(".")
          elif confmod.platform in ("Linux","Darwin"):
-            templist = path.split("/")[-1].split(".")
-         templist.pop(-1)
-         tempstr = ""
-         for i in templist:
-            if i == templist[-1]:
-               tempstr += i
-            else:
-               tempstr += f"{i}."
-         return tempstr
+            filename = path.split("/")[-1].split(".")
       else: #Is path object
          filename = path.resolve().name.split(".")
-         if len(filename) == 1:
-            return filename[0]
-         elif len(filename) > 1:
-            filename.pop()
-            return ".".join(filename)
+      if len(filename) == 1:
+         return filename[0]
+      elif len(filename) > 1:
+         return ".".join(filename[:-1])
    def toSOLReturn(self,inputfile,outputfile,xmlobject=None,xmlroot=None):
       #!reraise error if error occurs for this and toxml
       try:
