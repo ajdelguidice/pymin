@@ -2150,7 +2150,6 @@ class NiminFetishFantasyv0975o_fla:
          self.clearAddMain(texts)
          self.textCheckArray.clear()
       else:
-         #if len(textCheck) == 0 or self.textCheckArray.indexOf(textCheck[0]) == -1:
          if len(textCheck) == 0 or textCheck[0] not in self.textCheckArray:
             self.addMain(texts)
             self.textCheckArray.push(*textCheck)
@@ -2183,12 +2182,13 @@ class NiminFetishFantasyv0975o_fla:
       tempArray2 = as3.Array(12,"Return")
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
       if which == "Bag":
-         tempArray = as3.Array(numElements=27)
-         for i in range(27):
-            if (self.bagArray[i] == 0):
-               tempArray[i] = " "
-            else:
-               tempArray[i] = self.itemName(self.bagArray[i])
+         #tempArray = as3.Array(numElements=27)
+         #for i in range(27):
+         #   if (self.bagArray[i] == 0):
+         #      tempArray[i] = " "
+         #   else:
+         #      tempArray[i] = self.itemName(self.bagArray[i])
+         tempArray = tuple(" " if self.bagArray[i] == 0 else self.itemName(self.bagArray[i]) for i in range(27))
          if (self.inBag == True):
             self.choicePage = self.bagPage
          elif self.mtb == True:
@@ -2196,12 +2196,13 @@ class NiminFetishFantasyv0975o_fla:
          elif page != None:
             self.choicePage = page
       elif which == "Stash":
-         tempArray = as3.Array(numElements=27)
-         for i in range(27):
-            if (self.stashArray[i] == 0):
-               tempArray[i] = " "
-            else:
-               tempArray[i] = self.itemName(self.stashArray[i])
+         #tempArray = as3.Array(numElements=27)
+         #for i in range(27):
+         #   if (self.stashArray[i] == 0):
+         #      tempArray[i] = " "
+         #   else:
+         #      tempArray[i] = self.itemName(self.stashArray[i])
+         tempArray = tuple(" " if self.stashArray[i] == 0 else self.itemName(self.stashArray[i]) for i in range(27))
          if (self.inStash == True):
             self.choicePage = self.stashPage
          elif self.mts == True:
@@ -2210,7 +2211,7 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(numElements=self.choiceListArray.length)
          for i in range(self.choiceListArray.length):
             tempArray[i] = self.choiceListArray[i]
-      if (tempArray.length > 9):
+      if (len(tempArray) > 9):
          buttonlist[4] = 1
          buttonlist[8] = 1
          tempArray2.push(4,"<<",8,">>")
@@ -2222,10 +2223,10 @@ class NiminFetishFantasyv0975o_fla:
             buttonlist[tempInt] = 1
             if (tempArray[tempI] != " "):
                tempArray2.push(tempInt,tempArray[tempI])
-      db = False
-      if which in ("Bag","Stash") and self.inShop == False:
-         db = True
       if which in ("Bag","Stash"):
+         db = False
+         if self.inShop == False:
+            db = True
          self.showButtonsBag(buttonlist,tempArray,which,db)
       else:
          self.showButtons(buttonlist,discardButton=db)
@@ -2242,14 +2243,11 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
       temp = self.getColours()
       for i in range(1,13):
-         if buttons[i] == 0 and self.buttonsVisible[i] == True:
-            self.mo.destroyChild(f"button{i}")
-            self.buttonsVisible[i] = False
-         elif buttons[i] == 1 and self.buttonsVisible[i] == False:
+         if buttons[i] == 1 and self.buttonsVisible[i] == False:
             self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
             self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
             self.buttonsVisible[i] = True
-         if i not in (4,8,12):
+         if i not in {4,8,12}:
             tempI = self._showButtonsBagCalc(i,self.choicePage)
             if (buttonText[tempI]):
                if which == "Bag":
