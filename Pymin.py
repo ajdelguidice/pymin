@@ -3720,7 +3720,7 @@ class NiminFetishFantasyv0975o_fla:
       #elif self.currentZone == 3:
          #{}
       elif self.currentZone == 4:
-         #!Add condition for higher rep
+         #!Add condition for rep 20
          if (self.lilaRep == 2):
             tempStr += "\nLila's Friend"
          elif (self.lilaRep == 3):
@@ -3983,11 +3983,11 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedCredits(self):
       #Credits button in the sidebar
-      tempStr = f"Nimin v{self.versionNumber}\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com"
+      tempStr = f"Nimin Python Port (Pymin) version {__version__}\nMaintained by:\tajdelguidice\n\thttps://github.com/ajdelguidice/pymin.\nPlease direct any bug reports here as this port has nothing to do with the original creators."
+      tempStr += f"\n\nNimin v{self.versionNumber}\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com"
       tempStr += "\n\nSpecial thanks to SumigakiFox (owner of Silandrias) and Arlyurl (made the Nimin image) on FA."
       tempStr += "\n\nProstitution scene editors (thanks for the work!): Torakazu, Bahamad, and omegaokami on FA."
       tempStr += "\n\nProstitution scene writers:\n\t--Buncubus, BantinNysam, TheAbyssalWatcher, mike12345, V, grottokraft, Ludoergosum, perrothetraveler, reikonova, shockblock99, Kidou, bunnybunbun, supernaut, shaesullivan, m3chawolf, Kizzneth, barkbarkboom, Torakazu"
-      tempStr += "\n\nThis version is being maintained by ajdelguidice at https://github.com/ajdelguidice/pymin. Please direct any bug reports here as this port has nothing to do with the original creators."
       if (self.showSide == True):
          self.outputSideText(tempStr,True)
       else:
