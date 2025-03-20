@@ -1508,7 +1508,7 @@ class NiminFetishFantasyv0975o_fla:
          ext = []
          #remove "." from the front of the extensions
          for i in tempext:
-            if i[:1] == ".":
+            if i[0] == ".":
                ext.append(i[1:])
             else:
                ext.append(i)
@@ -22461,6 +22461,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.breastSize > 4):
                   tempStr += f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             self.boobTotal = 10
+      #!
       if self.gametweaks[9] == True:
          bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
