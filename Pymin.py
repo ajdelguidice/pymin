@@ -6421,76 +6421,28 @@ class NiminFetishFantasyv0975o_fla:
          case 108:
             tempStr = "You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side."
             if (self.humanAffinity > 0):
-               #tempStr += "\n\nHuman:\n"
-               #for i in range(self.humanAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nHuman:{''.join(['|' for i in range(self.humanAffinity)])}"
                tempStr += "\n\nHuman:\n" + "|"*self.humanAffinity
             if (self.horseAffinity > 0):
-               #tempStr += "\n\nHorse:\n"
-               #for i in range(self.horseAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nHorse:{''.join(['|' for i in range(self.horseAffinity)])}"
                tempStr += "\n\nHorse:\n" + "|"*self.horseAffinity
             if (self.wolfAffinity > 0):
-               #tempStr += "\n\nWolf:\n"
-               #for i in range(self.wolfAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nWolf:{''.join(['|' for i in range(self.wolfAffinity)])}"
                tempStr += "\n\nWolf:\n" + "|"*self.wolfAffinity
             if (self.catAffinity > 0):
-               #tempStr += "\n\nCat:\n"
-               #for i in range(self.catAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nCat:{''.join(['|' for i in range(self.catAffinity)])}"
                tempStr += "\n\nCat:\n" + "|"*self.catAffinity
             if (self.cowAffinity > 0):
-               #tempStr += "\n\nCow:\n"
-               #for i in range(self.cowAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nCow:{''.join(['|' for i in range(self.cowAffinity)])}"
                tempStr += "\n\nCow:\n" + "|"*self.cowAffinity
             if (self.lizardAffinity > 0):
-               #tempStr += "\n\nLizard:\n"
-               #for i in range(self.lizardAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nLizard:{''.join(['|' for i in range(self.lizardAffinity)])}"
                tempStr += "\n\nLizard:\n" + "|"*self.lizardAffinity
             if (self.rabbitAffinity > 0):
-               #tempStr += "\n\nRabbit:\n"
-               #for i in range(self.rabbitAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nRabbit:{''.join(['|' for i in range(self.rabbitAffinity)])}"
                tempStr += "\n\nRabbit:\n" + "|"*self.rabbitAffinity
             if (self.mouseAffinity > 0):
-               #tempStr += "\n\nMouse:\n"
-               #for i in range(self.mouseAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nMouse:{''.join(['|' for i in range(self.mouseAffinity)])}"
                tempStr += "\n\nMouse:\n" + "|"*self.mouseAffinity
             if (self.birdAffinity > 0):
-               #tempStr += "\n\nBird:\n"
-               #for i in range(self.birdAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nBird:{''.join(['|' for i in range(self.birdAffinity)])}"
                tempStr += "\n\nBird:\n" + "|"*self.birdAffinity
             if (self.pigAffinity > 0):
-               #tempStr += "\n\nPig:\n"
-               #for i in range(self.pigAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nPig:{''.join(['|' for i in range(self.pigAffinity)])}"
                tempStr += "\n\nPig:\n" + "|"*self.pigAffinity
             if (self.skunkAffinity > 0):
-               #tempStr += "\n\nSkunk:\n"
-               #for i in range(self.skunkAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nSkunk:{''.join(['|' for i in range(self.skunkAffinity)])}"
                tempStr += "\n\nSkunk:\n" + "|"*self.skunkAffinity
             if (self.bugAffinity > 0):
-               #tempStr += "\n\nBug:\n"
-               #for i in range(self.bugAffinity):
-                  #tempStr += "|"
-               #tempStr += f"\n\nBug:{''.join(['|' for i in range(self.bugAffinity)])}"
                tempStr += "\n\nBug:\n" + "|"*self.bugAffinity
             self.outputMainText(tempStr,True)
             self.doEnd()
@@ -21854,22 +21806,22 @@ class NiminFetishFantasyv0975o_fla:
          self.stats(0,0,2,0)
       if (self.rabbitAffinity + self.rabbit >= 30 and self.rabbitAffinity < 30):
          self.stats(0,0,5,0)
-      if (self.rabbitAffinity + self.rabbit >= 50 and self.rabbitAffinity < 50):
-         self.stats(0,0,7,0)
       if (self.rabbitAffinity + self.rabbit >= 40 and self.rabbitAffinity < 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal."
          self.pregRate += 1
+      if (self.rabbitAffinity + self.rabbit >= 50 and self.rabbitAffinity < 50):
+         self.stats(0,0,7,0)
       if (self.rabbitAffinity + self.rabbit < 10 and self.rabbitAffinity >= 10):
          self.stats(0,0,-2,0)
       if (self.rabbitAffinity + self.rabbit < 30 and self.rabbitAffinity >= 30):
          self.stats(0,0,-5,0)
-      if (self.rabbitAffinity + self.rabbit < 50 and self.rabbitAffinity >= 50):
-         self.stats(0,0,-7,0)
       if (self.rabbitAffinity + self.rabbit < 40 and self.rabbitAffinity >= 40):
          if (self.vagTotal > 0):
             tempStr += f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} calmer. Now you can take your fertility nice and easy... relatively."
          self.pregRate -= 1
+      if (self.rabbitAffinity + self.rabbit < 50 and self.rabbitAffinity >= 50):
+         self.stats(0,0,-7,0)
       if (self.mouseAffinity + self.mouse >= 40 and self.mouseAffinity < 40):
          tempStr += "\n\nA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle."
          if (self.balls > 0 and self.showBalls == True):
@@ -21913,12 +21865,6 @@ class NiminFetishFantasyv0975o_fla:
       if (self.pigAffinity + self.pig >= 30 and self.pigAffinity < 30):
          tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
          self.bellyMod += 20
-      if (self.pigAffinity + self.pig >= 50 and self.pigAffinity < 50):
-         tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
-         self.bellyMod += 20
-      if (self.pigAffinity + self.pig >= 70 and self.pigAffinity < 70):
-         tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
-         self.bellyMod += 20
       if (self.pigAffinity + self.pig >= 40 and self.pigAffinity < 40):
          tempStr += "\n\nYou groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness."
          if (self.balls > 0 and self.showBalls == True):
@@ -21926,16 +21872,16 @@ class NiminFetishFantasyv0975o_fla:
          self.cumMod += 5
          self.hipMod += 0.5
          self.buttMod += 0.5
+      if (self.pigAffinity + self.pig >= 50 and self.pigAffinity < 50):
+         tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
+         self.bellyMod += 20
+      if (self.pigAffinity + self.pig >= 70 and self.pigAffinity < 70):
+         tempStr += "\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten..."
+         self.bellyMod += 20
       if (self.pigAffinity + self.pig < 10 and self.pigAffinity >= 10):
          tempStr += "\n\nYour belly feels lighter, your extra porkiness dissipating."
          self.bellyMod -= 20
       if (self.pigAffinity + self.pig < 30 and self.pigAffinity >= 30):
-         tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
-         self.bellyMod -= 20
-      if (self.pigAffinity + self.pig < 50 and self.pigAffinity >= 50):
-         tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
-         self.bellyMod -= 20
-      if (self.pigAffinity + self.pig < 70 and self.pigAffinity >= 70):
          tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
          self.bellyMod -= 20
       if (self.pigAffinity + self.pig < 40 and self.pigAffinity >= 40):
@@ -21945,6 +21891,12 @@ class NiminFetishFantasyv0975o_fla:
          self.cumMod -= 5
          self.hipMod -= 0.5
          self.buttMod -= 0.5
+      if (self.pigAffinity + self.pig < 50 and self.pigAffinity >= 50):
+         tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
+         self.bellyMod -= 20
+      if (self.pigAffinity + self.pig < 70 and self.pigAffinity >= 70):
+         tempStr += "\n\nYour belly feels lighter, your extra porkiness diminishing."
+         self.bellyMod -= 20
       if (self.skunkAffinity + self.skunk >= 40 and self.skunkAffinity < 40):
          tempStr += f"\n\nYou feel your {self.buttDesc()} rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn't stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma.\n\nYou try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions."
          if (self.skinType == 2):
