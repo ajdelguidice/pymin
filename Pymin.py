@@ -2865,7 +2865,6 @@ class NiminFetishFantasyv0975o_fla:
       if (self.currentState == 2):
          self.currentState = 1
       if (self.inDungeon == True):
-         #self.regionChange(self.currentZone)
          self.goToInDoProcess = self.currentZone
          self.inDungeon = False
       self.doCoin(-tempNum)
@@ -4017,14 +4016,12 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def getdhSOL(file:str):
       #Gets day and hour from SOL save files to display on the save and load screens
-      so = sol.load(str(file))["track"]
-      return (so[2],so[3])
+      return sol.load(str(file))["track"][2:4] 
    @staticmethod
    def getdhNIM(file:str):
       #Gets day and hour from NIM save files to display on the save and load screens
       with open(str(file), "rb") as f:
-         so = amf3.ByteArray(f).readObject()["data"]["track"]
-      return (so[2],so[3])
+         return amf3.ByteArray(f).readObject()["data"]["track"][2:4]
    def saveGo(self,ret=False):
       #Save game dialog
       self.checkExistsMakeDir(self.savelocation)
