@@ -2223,8 +2223,8 @@ class NiminFetishFantasyv0975o_fla:
             buttonlist[tempInt] = 1
             if (tempArray[tempI] != " "):
                tempArray2.push(tempInt,tempArray[tempI])
+      db = False
       if which in ("Bag","Stash"):
-         db = False
          if self.inShop == False:
             db = True
          self.showButtonsBag(buttonlist,tempArray,which,db)
@@ -2289,7 +2289,6 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.choiceListResult[0] = tempArray[tempInt + (self.choicePage * 9 - 9)]
          self.choiceListResult[1] = tempInt + (self.choicePage * 9 - 9)
-      #if self.choiceListResult[0] != 0 and which in ("Bag","Stash") or which not in ("Bag","Stash"):
       if which not in ("Bag","Stash") and hideAmountOverride == False:
          self.hideAmount()
       if self.buttonChoice == 4:
