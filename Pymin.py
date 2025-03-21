@@ -2321,11 +2321,9 @@ class NiminFetishFantasyv0975o_fla:
          return True
       return False
    def showPage(self, changes:bool, which:str):
-      text = f"{which}: {self.choicePage}"
-      #if (changes == True):
-      if (changes):
+      if (changes == True):
          self.PageShow()
-         self.pageTextChange(text)
+         self.pageTextChange(f"{which}: {self.choicePage}")
       else:
          self.PageHide()
    def checkZero(self):
