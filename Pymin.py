@@ -1,6 +1,6 @@
 #!/bin/python3
 import math, random, tkinter, webbrowser
-from pathlib import Path
+from pathlib import Path, PurePath
 from tkinter import filedialog
 from tkinter import ttk
 import xml.etree.ElementTree as xmletree
@@ -1377,7 +1377,7 @@ class NiminFetishFantasyv0975o_fla:
       WIN_BlacklistedNames = {"CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"}
       UNIX_BlacklistedChars = {"/","<",">","|",":","&",""}
       UNIX_BlacklistedNames = {".",".."}
-      if type(directory) == type(Path()):
+      if isinstance(directory,PurePath):
          #While this is ten times slower than using a string, it is much simpler and more robust so should give less incorrect answers
          temp = directory.resolve()
          if confmod.platform == "Windows":
@@ -1400,11 +1400,12 @@ class NiminFetishFantasyv0975o_fla:
                return False
          else:
             while temp != temp.parent:
+               tempname = temp.name
                #invalid if blacklisted names are used
-               if temp.name in UNIX_BlacklistedNames:
+               if tempname in UNIX_BlacklistedNames:
                   return False
                #invalid if blacklisted characters are used
-               for i in temp.name:
+               for i in tempname:
                   if i in UNIX_BlacklistedChars:
                      return False
                temp = temp.parent
@@ -4551,6 +4552,7 @@ class NiminFetishFantasyv0975o_fla:
             self.pregStatus = int(sstatus.find('pregStatus').text)
             self.eggLaying = int(sstatus.find('eggLaying').text)
             self.eggMaxTime = int(sstatus.find('eggMaxTime').text)
+            #!Make this function for future versions where x and y in x.y.z are no 1 and 0
             if root.find("version") != None and int(root.find("version").find("port").text.replace("\"","").split(".")[-1]) < 10 and int(sstatus.find('eggTime').text) > self.eggMaxTime:
                self.eggTime = 36
             else:
