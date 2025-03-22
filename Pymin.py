@@ -163,7 +163,7 @@ class NiminFetishFantasyv0975o_fla:
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
       self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
-      self.interfacetoggles = [False,False,False] #[OriginalButtonColour(0),ScrolledTextBorders(1),OriginalNewGameButton(2)]
+      self.interfacetoggles = [False,False,False,False] #[OriginalButtonColour(0),ScrolledTextBorders(1),OriginalNewGameButton(2),doLevelUPStaticButtons(3)]
       self.debugtweaks = [False,False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
@@ -1098,6 +1098,12 @@ class NiminFetishFantasyv0975o_fla:
          
          
          
+         ##Static buttons in doLevelUP
+         self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",10,76,187,20,("TimesNewRoman",11),"nw","Static doLevelUP buttons")
+         self.optionswindow.configureChild("doLevelUPStaticButtons",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes the buttons in doLevelUP not move around depending on what is being\ndisplayed.")
+         
+         
          if confmod.as3DebugEnable:
             #Debug Tweaks page
             self.optionswindow.addNBFrame("nb","dt",420,207,"Debug Tweaks")
@@ -1164,6 +1170,10 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["OBC"].select()
       if self.interfacetoggles[1] == True:
          self.optionswindow.children["ScrolledTextBorders"].select()
+      #if self.interfacetoggles[2] == True:
+      #   self.optionswindow.children[""].select()
+      if self.interfacetoggles[3] == True:
+         self.optionswindow.children["doLevelUPStaticButtons"].select()
       if confmod.as3DebugEnable == True:
          if self.debugtweaks[0] == True:
             self.optionswindow.children["ChooseSenario"].select()
@@ -1289,6 +1299,14 @@ class NiminFetishFantasyv0975o_fla:
             self.interfacetoggles[1] = True
          else:
             self.interfacetoggles[1] = False
+         #if self.optionswindow.children[""].getcb() == 1:
+         #   self.interfacetoggles[2] = True
+         #else:
+         #   self.interfacetoggles[2] = False
+         if self.optionswindow.children["doLevelUPStaticButtons"].getcb() == 1:
+            self.interfacetoggles[3] = True
+         else:
+            self.interfacetoggles[3] = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
                self.debugtweaks[0] = True
@@ -1951,7 +1969,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen == True:
-         for i in ("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","gt","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","if","OBC","ScrolledTextBorders","ThemeType"):
+         for i in ("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","gt","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","if","OBC","ScrolledTextBorders","ThemeType","doLevelUPStaticButtons"):
             self.optionswindow.configureChild(i,background=color)
          self.optionswindow.configureChild("ApplyButton",background=specialcolour)
          if confmod.as3DebugEnable == True:
@@ -1993,7 +2011,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen == True:
-         for i in ("SOLMode","FixedRes","Theme","FontColor","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType"):
+         for i in ("SOLMode","FixedRes","Theme","FontColor","SaveLocation","GrammarTweaks","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType","doLevelUPStaticButtons"):
             self.optionswindow.configureChild(i,foreground=color)
          self.optionswindow.configureChild("ApplyButton",foreground=specialcolour)
          if confmod.as3DebugEnable == True:
@@ -11981,7 +11999,7 @@ class NiminFetishFantasyv0975o_fla:
       #!if/else-ify
       self.choiceListArray = as3.Array()
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
-      if False: #!For interface tweak (needs toggle)
+      if self.interfacetoggles[3] == True:
          self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
          if (self.vagTotal > 0):
             self.choiceListArray[4] = "Baby Fact"
