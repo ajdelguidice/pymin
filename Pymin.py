@@ -2241,13 +2241,15 @@ class NiminFetishFantasyv0975o_fla:
          self.hideDiscard()
       else:
          self.showDiscard()
-      self.enableAllButtons()
       temp = self.getColours()
       for i in range(1,13):
-         if buttons[i] == 1 and self.buttonsVisible[i] == False:
-            self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-            self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
-            self.buttonsVisible[i] = True
+         if buttons[i] == 1:
+            if self.buttonsVisible[i] == False:
+               self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
+               self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
+               self.buttonsVisible[i] = True
+            else:
+               self.mo.configureChild(f"button{i}",state="normal")
          if i not in {4,8,12}:
             tempI = self._showButtonsBagCalc(i,self.choicePage)
             if (buttonText[tempI]):
@@ -8075,6 +8077,7 @@ class NiminFetishFantasyv0975o_fla:
                tempArray2.push(tempInt,tempArray[tempI])
       self.doButtonChoices(tempArray2)
       for i in range(1,13):
+         self.mo.configureChild(f"button{i}",state="normal")
          if i not in (4,8,12):
             tempI = (i-(i//4+1)) + (self.choicePage * 9 - 9)
             self.mo.configureChild(f"button{i}",text=tempArray[tempI])
@@ -8090,7 +8093,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                else:
                   self.viewAmount(i,False)
-      self.enableAllButtons()
    def doStash(self,noclear=False,refresh=False):
       #Stash dialog
       if self.gametweaks[10] == False:
@@ -24784,16 +24786,18 @@ class NiminFetishFantasyv0975o_fla:
          self.hideDiscard()
       else:
          self.showDiscard()
-      self.enableAllButtons()
       temp = self.getColours()
       for i in range(1,13):
          if buttons[i] == 0 and self.buttonsVisible[i]:
             self.mo.destroyChild(f"button{i}")
             self.buttonsVisible[i] = False
-         elif buttons[i] == 1 and self.buttonsVisible[i] == False:
-            self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-            self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
-            self.buttonsVisible[i] = True
+         elif buttons[i] == 1:
+            if self.buttonsVisible[i] == False:
+               self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
+               self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
+               self.buttonsVisible[i] = True
+            else:
+               self.mo.configureChild(f"button{i}",state="normal")
    def buttonWrite(self, buttonNumber:int, buttonText:str):
       self.mo.configureChild(f"button{buttonNumber}",text=buttonText)
    def clearTextAllButtons(self):
