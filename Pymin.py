@@ -2102,7 +2102,7 @@ class NiminFetishFantasyv0975o_fla:
    #def sideShow():
       #showSidePanel
    def savePreferences(self):
-      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder></prefs>")
+      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><interfaceToggles>{self.interfacetoggles}</interfaceToggles></prefs>")
       xml = xmletree.ElementTree(element=data)
       xmletree.indent(xml,space="\t")
       xml.write(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml"),encoding="UTF-8",xml_declaration=True)
@@ -2136,8 +2136,8 @@ class NiminFetishFantasyv0975o_fla:
                sp = True
             self.solonlymode = strtobool(prefs.find("solMode").text)
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
-            for i in range(len(self.gametweaks)-len(tempgametweaks)):
-               tempgametweaks.append(False)
+            if len(self.gametweaks) > len(tempgametweaks):
+               tempgametweaks.extend((False for i in range(len(self.gametweaks)-len(tempgametweaks))))
             self.gametweaks = tempgametweaks
             self.fixedresolutionmode = strtobool(prefs.find("fixedResMode").text)
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
@@ -2150,13 +2150,20 @@ class NiminFetishFantasyv0975o_fla:
             sp = True
          else:
             tempdebugtweaks = strtolistbools(prefs.find("debugTweaks").text)
-            for i in range(len(self.debugtweaks)-len(tempdebugtweaks)):
-               tempdebugtweaks.append(False)
+            if len(self.debugtweaks) > len(tempdebugtweaks):
+               tempdebugtweaks.extend((False for i in range(len(self.debugtweaks)-len(tempdebugtweaks))))
             self.debugtweaks = tempdebugtweaks
          if prefs.find("nsldSortOrder") == None:
-            sp =True
+            sp = True
          else:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
+         if prefs.find("interfaceToggles") == None:
+            sp = True
+         else:
+            tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
+            if len(self.interfacetoggles) > len(tempitoggle):
+               tempitoggle.extend((False for i in range(len(self.interfacetoggles)-len(tempitoggle))))
+            self.interfacetoggles = tempitoggle
          if (self.initinterface == False):
             if (strtobool(prefs.find("showSide").text)):
                self.showSidePanel()
