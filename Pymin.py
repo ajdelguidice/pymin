@@ -4552,9 +4552,12 @@ class NiminFetishFantasyv0975o_fla:
             self.pregStatus = int(sstatus.find('pregStatus').text)
             self.eggLaying = int(sstatus.find('eggLaying').text)
             self.eggMaxTime = int(sstatus.find('eggMaxTime').text)
-            #!Make this function for future versions where x and y in x.y.z are no 1 and 0
-            if root.find("version") != None and int(root.find("version").find("port").text.replace("\"","").split(".")[-1]) < 10 and int(sstatus.find('eggTime').text) > self.eggMaxTime:
-               self.eggTime = 36
+            if root.find("version") != None and int(sstatus.find('eggTime').text) > self.eggMaxTime:
+               tempver = root.find("version").find("port").text.replace("\"","").split(".")
+               if tempver[0] == "1" and tempver[1] == "0" and int(tempver[2]) < 10:
+                  self.eggTime = 36
+               else:
+                  self.eggTime = int(sstatus.find('eggTime').text)
             else:
                self.eggTime = int(sstatus.find('eggTime').text)
             self.eggRate = int(sstatus.find('eggRate').text)
