@@ -1096,7 +1096,10 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders be default but are disabled\nby default because the original game didn't have them. This toggle re-enables\nthem. (Requires restart)")
          
-         
+         ##Original new game button size
+         self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original size for new game button")
+         self.optionswindow.configureChild("newgameoriginalsize",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
          
          ##Static buttons in doLevelUP
          self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",10,76,187,20,("TimesNewRoman",11),"nw","Static doLevelUP buttons")
@@ -1170,8 +1173,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["OBC"].select()
       if self.interfacetoggles[1] == True:
          self.optionswindow.children["ScrolledTextBorders"].select()
-      #if self.interfacetoggles[2] == True:
-      #   self.optionswindow.children[""].select()
+      if self.interfacetoggles[2] == True:
+         self.optionswindow.children["newgameoriginalsize"].select()
       if self.interfacetoggles[3] == True:
          self.optionswindow.children["doLevelUPStaticButtons"].select()
       if confmod.as3DebugEnable == True:
@@ -1299,10 +1302,14 @@ class NiminFetishFantasyv0975o_fla:
             self.interfacetoggles[1] = True
          else:
             self.interfacetoggles[1] = False
-         #if self.optionswindow.children[""].getcb() == 1:
-         #   self.interfacetoggles[2] = True
-         #else:
-         #   self.interfacetoggles[2] = False
+         tempng = self.interfacetoggles[2]
+         if self.optionswindow.children["newgameoriginalsize"].getcb() == 1:
+            self.interfacetoggles[2] = True
+         else:
+            self.interfacetoggles[2] = False
+         if tempng != self.interfacetoggles[2] and self.shownewgame == True:
+            self.hideNGButton()
+            self.showNGButton()
          if self.optionswindow.children["doLevelUPStaticButtons"].getcb() == 1:
             self.interfacetoggles[3] = True
          else:
@@ -24748,7 +24755,10 @@ class NiminFetishFantasyv0975o_fla:
    def showNGButton(self):
       if (self.shownewgame == False):
          temp = self.getColours()
-         self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
+         if self.interfacetoggles[2] == True:
+            self.mo.addButton("display","newgamebutton",110,610,90,30,self.font,anchor="n")
+         else:
+            self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
          self.mo.configureChild("newgamebutton",text="New Game",background=temp[0],foreground=temp[1],command=self.newGameStart)
          self.shownewgame = True
    def hideNGButton(self):
