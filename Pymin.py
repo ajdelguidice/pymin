@@ -4553,9 +4553,9 @@ class NiminFetishFantasyv0975o_fla:
             self.eggLaying = int(sstatus.find('eggLaying').text)
             self.eggMaxTime = int(sstatus.find('eggMaxTime').text)
             if root.find("version") != None and int(sstatus.find('eggTime').text) > self.eggMaxTime:
-               tempver = root.find("version").find("port").text.replace("\"","").split(".")
+               tempver = root.find("version").find("port").text.split(".")
                if tempver[0] == "1" and tempver[1] == "0" and int(tempver[2]) < 10:
-                  self.eggTime = 36
+                  self.eggTime = self.eggMaxTime
                else:
                   self.eggTime = int(sstatus.find('eggTime').text)
             else:
