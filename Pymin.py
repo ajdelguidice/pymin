@@ -68,11 +68,12 @@ def strtolistbools(a:str):
    """
    Converts the string representation of a list to a list of booleans
    """
-   b = a[1:-1].split(", ")
-   c = []
-   for i in b:
-      c.append(strtobool(i))
-   return c
+   if a[0] in {"[","("}:
+      a = a[1:-1]
+   b = a.split(", ")
+   if len(b) == 1 and b[0] == "":
+      return []
+   return [strtobool(i) for i in b]
 class ButtonList(list):
    """
    Modified list class for use with nimin's button interface
