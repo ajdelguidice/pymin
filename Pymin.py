@@ -27,14 +27,6 @@ as3.setDataDirectory(scriptdirectory)
 class NullData(Exception):
    ...
 
-def separator():
-   """
-   Returns platform's path separator
-   """
-   if confmod.platform == "Windows":
-      return"\\" 
-   return "/"
-sep = separator()
 def repintorfloat(number):
    """
    Determines whether a number should be displayed as an integer or float based on its value and returns the corrected value. This is a substitute for the way ActionScript 3 displayed numbers as strings.
@@ -1236,7 +1228,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow.children["SaveLocation"].uevar.get() == "":
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
-         elif self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),sep) == False:
+         elif self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),confmod.separator) == False:
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          else:
@@ -2129,7 +2121,7 @@ class NiminFetishFantasyv0975o_fla:
          if None in (prefs.find("saveLocation"),prefs.find("solMode"),prefs.find("gameTweaks"),prefs.find("fixedResMode"),prefs.find("customFontColor"),prefs.find("customThemeColor"),prefs.find('oFontColor'),prefs.find('oThemeColor')):
             sp = True
          else:
-            if self.isValidDirectory(prefs.find("saveLocation").text,sep):
+            if self.isValidDirectory(prefs.find("saveLocation").text,confmod.separator):
                self.savelocation = Path(f"{prefs.find('saveLocation').text}").resolve()
             else:
                as3.trace("Preference Loader: Error: saveLocation is not a valid path. Default value will be used instead.")
@@ -24457,7 +24449,7 @@ class NiminFetishFantasyv0975o_fla:
       self.updateText()
       self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n    v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n    www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n    fenoxo.com\n\nThis port was made by:    ajdelguidice\n    github.com/ajdelguidice\nFor bug reports, visit github.com/ajdelguidice/pymin/\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk..\n\nThere is now an options \"menu\" in the menu bar. Go to File->Options. This is also where you can toggle some things that significantly alter gameplay (called \"Game Tweaks\"). I would recommend turning on \"Grammar Tweaks\", \"Use expanded save dialog\", and \"Use new stash\" as they are mostly fixes and improvement rather than personal preferences.", True)
       #Check if savelocation is valid. If not, open a dialog box to warn the user and ask how to proceed. If so, check if it exists and create it if it doesn't.
-      if self.isValidDirectory(self.savelocation,sep) == False:
+      if self.isValidDirectory(self.savelocation,confmod.separator) == False:
          self.openSaveInvalidDialog()
       else:
          self.checkExistsMakeDir(self.savelocation,True)
