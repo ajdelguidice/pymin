@@ -1,8 +1,7 @@
 #!/bin/python3
 import math, random, tkinter, webbrowser
 from pathlib import Path, PurePath
-from tkinter import filedialog
-from tkinter import ttk
+from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
 from miniamf import sol, AMF3, DecodeError, amf3
 from sys import argv as sysargs
