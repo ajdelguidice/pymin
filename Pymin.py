@@ -936,12 +936,15 @@ class NiminFetishFantasyv0975o_fla:
          self.newSLDialogVisible = False
          self.nsldblindervisible = False
          self.frame1()
-      #self.mo.children["root"].bind("<Control_L-Escape>",self.mo.endProcess)
+      self.mo.children["root"].bind("<Escape>",self.hotkeyClose)
       self.cm = fui.ContextMenu(self.mo.display)
       self.cm.removeAllItems()
       self.vscm = fui.ContextMenuItem("root", "View Source", "vs", type_="Item", command=partial(webbrowser.open,url="https://github.com/ajdelguidice/pymin"))
       self.cm.addItemAt(self.vscm)
       self.mo.mainloop()
+   def hotkeyClose(self,*e):
+      if self.shiftHeld == True and self.altHeld == True:
+         self.mo.endProcess()
    def _aboutwindow(self):
       """
       Sets up the about window
