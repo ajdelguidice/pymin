@@ -909,7 +909,7 @@ class NiminFetishFantasyv0975o_fla:
          self.shownewgame = True
          self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
          self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
-         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=self.interfacetoggles[1])
+         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=False)
          self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
          self.pageShow = False
          self.moveitembuttonvisible = False
@@ -1086,7 +1086,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Show scrolledText Borders
          self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
          self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders be default but are disabled\nby default because the original game didn't have them. This toggle re-enables\nthem. (Requires restart)")
+         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders be default but are disabled\nby default because the original game didn't have them. This toggle re-enables\nthem.")
          
          ##Original new game button size
          self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original size for new game button")
@@ -1316,9 +1316,23 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.debugtweaks[1] = False
          self.savePreferences()
+         self.toggleTextboxBorders(self.interfacetoggles[1])
          self.applyFixedResolution() #Applies fixed resolution
          self.updateText() #Applies custom font color
          self.updateTheme() #Applies custom theme color
+   def toggleTextboxBorders(self,toggle):
+      if toggle == True:
+         self.mo.children["textmain"].configure(borderwidth=1,highlightthickness=1)
+         self.mo.childproperties["textmain"][12] = True
+         if self.textsidevisible:
+            self.mo.children["textside"].configure(borderwidth=1,highlightthickness=1)
+            self.mo.childproperties["textside"][12] = True
+      else:
+         self.mo.children["textmain"].configure(borderwidth=0,highlightthickness=0)
+         self.mo.childproperties["textmain"][12] = False
+         if self.textsidevisible:
+            self.mo.children["textside"].configure(borderwidth=0,highlightthickness=0)
+            self.mo.childproperties["textside"][12] = False
    @staticmethod
    def checkValidHex(hexstr:str):
       """
@@ -2167,6 +2181,7 @@ class NiminFetishFantasyv0975o_fla:
             self.showSidePanel()
       if sp == True:
          self.savePreferences()
+      self.toggleTextboxBorders(self.interfacetoggles[1])
       self.applyFixedResolution()
       self.updateText()
       self.updateTheme()
