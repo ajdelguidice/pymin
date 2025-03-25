@@ -12021,16 +12021,15 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def doLevelUP(self):
       #!if/else-ify
-      self.choiceListArray = as3.Array()
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
       if self.interfacetoggles[3] == True:
-         self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
+         self.choiceListArray = as3.Array("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
          if (self.vagTotal > 0):
             self.choiceListArray[4] = "Baby Fact"
          if (self.lactation > 0 or self.udderLactation > 0):
             self.choiceListArray[6] = "Milk Maid"
       else:
-         self.choiceListArray.push("Super Perk","","Body Build","Hyper Happy")
+         self.choiceListArray = as3.Array("Super Perk","","Body Build","Hyper Happy")
          if (self.vagTotal > 0):
             self.choiceListArray.push("Baby Fact")
          self.choiceListArray.push("Alchemist")
@@ -12042,6 +12041,8 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Level Up")
          if (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.doLevelUP()
+         elif (self.buttonChoice == 12):
+            self.doReturn()
          else:
             self.choicePage = 1
          if self.choiceListResult[0] == "Body Build":
@@ -12072,9 +12073,8 @@ class NiminFetishFantasyv0975o_fla:
             def doListen():
                if (self.buttonChoice == 6):
                   if ((self.hyperHappyLevel + 1) // 5 == self.hyperHappyLevel // 5):
-                     self.choiceListArray = as3.Array()
                      self.outputMainText("Choose a body part you would like to increase.",True)
-                     self.choiceListArray.push("Breasts","Nipples","Butt","Hips")
+                     self.choiceListArray = as3.Array("Breasts","Nipples","Butt","Hips")
                      if (self.vagTotal > 0):
                         self.choiceListArray.push("Pussy","Vulva","Clit")
                      if (self.cockTotal > 0):
@@ -12132,9 +12132,8 @@ class NiminFetishFantasyv0975o_fla:
                            self.doEnd()
                      self.doListen = doListen
                   if ((self.hyperHappyLevel + 1) // 5 > self.hyperHappyLevel // 5):
-                     self.choiceListArray = as3.Array()
                      self.outputMainText("Choose a body part you would like to greatly increase. This will be 10x more effective than a normal level in Hyper Happy, so be careful what you choose.",True)
-                     self.choiceListArray.push("Breasts","Nipples","Butt","Hips")
+                     self.choiceListArray = as3.Array("Breasts","Nipples","Butt","Hips")
                      if (self.vagTotal > 0):
                         self.choiceListArray.push("Pussy","Vulva","Clit")
                      if (self.cockTotal > 0):
@@ -12229,8 +12228,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.alchemistLevel += 1
                   i = 0
                   while (self.percent() < self.alchemistLevel * (10 + self.percent()) - 20 * (i + 2) * i):
-                     self.rndArray = as3.Array()
-                     self.rndArray.push(209,110,203,212)
+                     self.rndArray = as3.Array(209,110,203,212)
                      if (self.knowLustDraft == True):
                         self.rndArray.push(209,114,523)
                      if (self.knowRejuvPot == True):
@@ -12745,8 +12743,6 @@ class NiminFetishFantasyv0975o_fla:
                      self.choicePage = 1
                      self.doLevelUP()
                self.doListen = doListen
-         if (self.buttonChoice == 12):
-            self.doReturn()
       self.doListen = doListen
    def doExplore(self):
       self.bc()
