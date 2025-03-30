@@ -284,12 +284,9 @@ class ListTag:
 
     def _index_to_str(self, index):
         # ------------------------------------------------------------------------------------------
-        prefix = ""
         if index > 26:
-            prefix = self._index_to_str(index // 26)
-            index = index % 26
-
-        return prefix + chr(0x60 + index)
+            return self._index_to_str(index // 26) + chr(0x60 + index%26)
+        return chr(0x60 + index)
 
 
 class HTMLTextParser(HTMLParser):
