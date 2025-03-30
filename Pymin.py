@@ -25424,19 +25424,7 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
-         _bag = ""
-         _bagStack = ""
-         _stash = ""
-         _stashStack = ""
-         for i in range(27):
-            _bag += f"<slot{i}>{_bagArray[i]}</slot{i}>"
-            _bagStack += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
-            _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
-            _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
-         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
-         for i in range(len(_pregArray)):
-            string += f"<i{i}>{_pregArray[i]}</i{i}>"
-         string += "</preg></data>"
+         string += f"{''.join([f'<slot{i}>{_bagArray[i]}</slot{i}>' for i in range(27)])}</bag><bagStack>{''.join([f'<slot{i}>{_bagStackArray[i]}</slot{i}>' for i in range(27)])}</bagStack><stash>{''.join([f'<slot{i}>{_stashArray[i]}</slot{i}>' for i in range(27)])}</stash><stashStack>{''.join([f'<slot{i}>{_stashStackArray[i]}</slot{i}>' for i in range(27)])}</stashStack><preg>{''.join([f'<i{i}>{_pregArray[i]}</i{i}>' for i in range(len(_pregArray))])}</preg></data>"
          data = xmletree.fromstring(string)
          return xmletree.ElementTree(element=data)
       except:
@@ -25487,19 +25475,7 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
-         _bag = ""
-         _bagStack = ""
-         _stash = ""
-         _stashStack = ""
-         for i in range(27):
-            _bag += f"<slot{i}>{_bagArray[i]}</slot{i}>"
-            _bagStack += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
-            _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
-            _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
-         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
-         for i in range(len(_pregArray)):
-            string += f"<i{i}>{_pregArray[i]}</i{i}>"
-         string += "</preg></data>"
+         string += f"{''.join([f'<slot{i}>{_bagArray[i]}</slot{i}>' for i in range(27)])}</bag><bagStack>{''.join([f'<slot{i}>{_bagStackArray[i]}</slot{i}>' for i in range(27)])}</bagStack><stash>{''.join([f'<slot{i}>{_stashArray[i]}</slot{i}>' for i in range(27)])}</stash><stashStack>{''.join([f'<slot{i}>{_stashStackArray[i]}</slot{i}>' for i in range(27)])}</stashStack><preg>{''.join([f'<i{i}>{_pregArray[i]}</i{i}>' for i in range(len(_pregArray))])}</preg></data>"
          data = xmletree.fromstring(string)
          return xmletree.ElementTree(element=data)
       except:
@@ -25548,19 +25524,7 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = so["stashSave"]
          _stashStackArray = so["stashStackSave"]
          _pregArray = so["pregSave"]
-         _bag = ""
-         _bagStack = ""
-         _stash = ""
-         _stashStack = ""
-         for i in range(27):
-            _bag += f"<slot{i}>{_bagArray[i]}</slot{i}>"
-            _bagStack += f"<slot{i}>{_bagStackArray[i]}</slot{i}>"
-            _stash += f"<slot{i}>{_stashArray[i]}</slot{i}>"
-            _stashStack += f"<slot{i}>{_stashStackArray[i]}</slot{i}>"
-         string += f"{_bag}</bag><bagStack>{_bagStack}</bagStack><stash>{_stash}</stash><stashStack>{_stashStack}</stashStack><preg>"
-         for i in range(len(_pregArray)):
-            string += f"<i{i}>{_pregArray[i]}</i{i}>"
-         string += "</preg></data>"
+         string += f"{''.join([f'<slot{i}>{_bagArray[i]}</slot{i}>' for i in range(27)])}</bag><bagStack>{''.join([f'<slot{i}>{_bagStackArray[i]}</slot{i}>' for i in range(27)])}</bagStack><stash>{''.join([f'<slot{i}>{_stashArray[i]}</slot{i}>' for i in range(27)])}</stash><stashStack>{''.join([f'<slot{i}>{_stashStackArray[i]}</slot{i}>' for i in range(27)])}</stashStack><preg>{''.join([f'<i{i}>{_pregArray[i]}</i{i}>' for i in range(len(_pregArray))])}</preg></data>"
          data = xmletree.fromstring(string)
          xml = xmletree.ElementTree(element=data)
          xmletree.indent(xml,space="\t")
