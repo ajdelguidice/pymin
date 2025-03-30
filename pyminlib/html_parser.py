@@ -689,8 +689,7 @@ class HTMLTextParser(HTMLParser):
         tag = tag.lower()
 
         try:
-            index = len(self.html_tags) - self.html_tags[::-1].index(tag) - 1
-            self.html_tags.pop(index)
+            self.html_tags.pop(len(self.html_tags) - self.html_tags[::-1].index(tag) - 1)
         except:
             pass
 
