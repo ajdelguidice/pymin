@@ -2082,7 +2082,7 @@ class NiminFetishFantasyv0975o_fla:
       elif self.fontColor == "#29705C":
          self.fontColor = "#000000"
       else:
-         self.theme = "#000000"
+         self.fontColor = "#000000"
       self.ofontcolor = self.fontColor
       self.updateText()
       self.savePreferences()
