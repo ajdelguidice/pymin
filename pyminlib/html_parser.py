@@ -593,11 +593,10 @@ class HTMLTextParser(HTMLParser):
                 self._w.image_create(tk.INSERT, image=self.images[-1])
 
         elif tag == HTML.Tag.TABLE:
-                tabs = []
-                for i in range(30): # HF was len(self.list_tags)):
-                    offset = 40 * (i + 1)
-                    tabs += [offset, tk.LEFT ]
-                self._stack_add(tag, WCfg.TABS, tabs)
+            tabs = []
+            for i in range(30): # HF was len(self.list_tags)):
+                tabs += [40 * (i + 1), tk.LEFT ]
+            self._stack_add(tag, WCfg.TABS, tabs)
 
         if self.strip:
             if tag == HTML.Tag.BR:
