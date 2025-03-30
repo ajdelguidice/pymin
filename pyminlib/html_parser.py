@@ -657,7 +657,7 @@ class HTMLTextParser(HTMLParser):
         # ------------------------------------------------------------------------------------------
         data = data.replace("  ", " ")
         if "  " in data:
-            data = self._remove_multi_spaces(data)
+            return self._remove_multi_spaces(data)
         return data
 
     def handle_data(self, data):
