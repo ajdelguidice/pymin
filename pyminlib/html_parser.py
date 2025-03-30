@@ -220,15 +220,11 @@ DEFAULT_STACK = {
 # functions
 def get_existing_font(font_families):
     # ------------------------------------------------------------------------------------------
-    try:
-        return next(
-            filter(
-                lambda f: f.lower() in (f.lower() for f in font.families()),
-                font_families,
-            )
-        )
-    except Exception:
-        return "TkTextFont"
+    fflow = tuple(i.lower() for i in font.families())
+    for i in font_families:
+        if i.lower() in fflow:
+            return i
+    return "TkTextFont"
 
 
 # __________________________________________________________________________________________________
