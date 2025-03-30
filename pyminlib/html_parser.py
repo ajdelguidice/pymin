@@ -245,8 +245,7 @@ class HLinkSlot:
     def call(self, event):
         # ------------------------------------------------------------------------------------------
         if self.URL[0] == "\uFFFF":
-            tmp = self.URL[1:].split("\uFFFF")
-            self.callobject(*tmp)
+            self.callobject(*self.URL[1:].split("\uFFFF"))
         else:
             webbrowser.open(self.URL)
             self._w.tag_config(self.tag_name, foreground="purple")
