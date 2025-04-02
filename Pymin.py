@@ -20,8 +20,6 @@ from secrets import choice
 from re import sub
 
 __version__ = "1.0.10"
-scriptdirectory = Path(__file__).resolve().parent
-as3.setDataDirectory(scriptdirectory)
 
 class NullData(Exception):
    ...
@@ -27337,13 +27335,14 @@ class NiminFetishFantasyv0975o_fla:
             return "<h4><u>Silandrias</u></h4><b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
 
 if __name__ == "__main__":
-   mainobject = NiminFetishFantasyv0975o_fla()
-   args = as3.Array(*sysargs)
-   if "-h" in args or "--help" in args or "-?" in args:
-      print("Usage: python Pymin.py [options]\nOptions:\n-d\t: runs the program in debug mode (also --debug)\n-n\t: Prevents the game from initializing and displays all elements on the screen (also --nostart or --noStart)\n-h\t: Prints this message and exits (also --help or -?)")
+   if "-h" in sysargs or "--help" in sysargs or "/?" in sysargs:
+      print("Usage: python Pymin.py [options]\nOptions:\n-h --help\t: Prints this message and exits\n-d --debug\t: Runs the program in as3lib debug mode\n-n --nostart\t: Prevents the game from initializing and displays all elements on the screen")
       exit()
-   if "--debug" in args or "-d" in args:
+   if "--debug" in sysargs or "-d" in sysargs or "/D" in sysargs:
       as3.EnableDebug()
-   if "-n" in args or "--nostart" in args or "--noStart" in args:
+   scriptdirectory = Path(__file__).resolve().parent
+   as3.setDataDirectory(scriptdirectory)
+   mainobject = NiminFetishFantasyv0975o_fla()
+   if "-n" in sysargs or "--nostart" in sysargs or "/N" in sysargs:
       mainobject.debugNoStart = True
    mainobject.MainTimeline()
