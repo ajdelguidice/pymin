@@ -4503,8 +4503,14 @@ class NiminFetishFantasyv0975o_fla:
             self.fetishMasterLevel = int(slevel.find('fetishMasterLevel').text)
             self.milkMaidLevel = int(slevel.find('milkMaidLevel').text)
             self.shapeshiftyLevel = int(slevel.find('shapeshiftyLevel').text)
-            self.shapeshiftyFirst = str(slevel.find('shapeshiftyFirst').text)
-            self.shapeshiftySecond = str(slevel.find('shapeshiftySecond').text)
+            if slevel.find('shapeshiftyFirst').text == None:
+               self.shapeshiftyFirst = ""
+            else:
+               self.shapeshiftyFirst = str(slevel.find('shapeshiftyFirst').text)
+            if slevel.find('shapeshiftySecond').text == None:
+               self.shapeshiftySecond = ""
+            else:
+               self.shapeshiftySecond = str(slevel.find('shapeshiftySecond').text)
             self.runMod = int(smod.find('runMod').text)
             self.rapeMod = int(smod.find('rapeMod').text)
             self.cumMod = float(smod.find('cumMod').text)
