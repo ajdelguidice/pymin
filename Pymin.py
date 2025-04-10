@@ -620,7 +620,6 @@ class NiminFetishFantasyv0975o_fla:
 
       #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/pymin.tcl')
       self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
-      #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/gll.tcl')
       self.style.theme_use("nimin")
 
       #key bindings
@@ -7038,12 +7037,10 @@ class NiminFetishFantasyv0975o_fla:
             if (self.balls > 0 and self.ballSize > 0):
                if (self.showBalls == True):
                   tempStr += " Moments later, you feel a warmth in your groin. You squirm as your testicles feel crowded, your scrotum growing tight. You look to see and find an extra testicle in your sack!"
-                  self.balls += 1
-                  tempStr += self.doLust(self.percent() / 10,0,ret=True)
                else:
                   tempStr += " Moments later, you feel a warmth in your groin. You squirm as you feel your cum churning within your body, something extra growing within... Seems as though this berry caused you to grow an extra internal testicle, somehow."
-                  self.balls += 1
-                  tempStr += self.doLust(self.percent() / 10,0,ret=True)
+               self.balls += 1
+               tempStr += self.doLust(self.percent() / 10,0,ret=True)
             else:
                tempStr += " Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste..."
             self.outputMainText(tempStr,True)
