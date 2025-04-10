@@ -153,12 +153,15 @@ class NiminFetishFantasyv0975o_fla:
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
       self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
       self.interfacetoggles = [False,False,False,False] #[OriginalButtonColour(0),ScrolledTextBorders(1),OriginalNewGameButton(2),doLevelUPStaticButtons(3)]
+      self.tempinterfacetoggles = [] #Temporary storage for interface toggles while nimin theme type is selected
       self.debugtweaks = [False,False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
       self.ofontcolor = "#000000" #original font color from before custom font color was applied
       self.customthemecolor = False #Toggle for custom theme color
       self.othemecolor = "#FFFFFF" #original theme color from before custom theme color was applied
+      self.themeType = 0 #Theme type for interfacetoggles
+      self.changeNGButtonOverride = False #Refreshes the newgame button in OWSaveOptions even if conditions aren't met
 
       #Window open variables
       self.debugWinOpen = False #debug window
@@ -990,20 +993,9 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("FontColor",background=self.theme,foreground=self.fontColor)
          self.optionswindow.children["FontColor"].setUEBehavior("Restore")
          self.optionswindow.children["FontColor"].uevar.set(self.fontColor)
-         
-         ##Theme selection
-         self.optionswindow.addLabelWithRadioButtons("options","ThemeType",10,76,100,95,("TimesNewRoman",11),"nw",3)
-         self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
-         self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
-         self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
-         self.optionswindow.configureChild("ThemeType",text=(2,"\"Lineage\""))
-         self.optionswindow.children["ThemeType"].radiobuttons[1]["state"] = "disabled"
-         self.optionswindow.children["ThemeType"].radiobuttons[2]["state"] = "disabled"
-         self.optionswindow.children["ThemeType"].selected = 0
-         CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nThe theme of the game that this one originally got its engine from (Lineage)")
 
          ##Save Location
-         self.optionswindow.addFileEntryBox("options","SaveLocation",110,98,300,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
+         self.optionswindow.addFileEntryBox("options","SaveLocation",10,98,400,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
          self.optionswindow.configureChild("SaveLocation",background=self.theme,foreground=self.fontColor)
          self.optionswindow.children["SaveLocation"].uevar.set(str(self.savelocation.resolve()))
          self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = str(self.savelocation.resolve())
@@ -1098,6 +1090,16 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("doLevelUPStaticButtons",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes the buttons in doLevelUP not move around depending on what is being\ndisplayed.")
          
+         ##Theme selection
+         self.optionswindow.addLabelWithRadioButtons("if","ThemeType",10,98,100,70,("TimesNewRoman",11),"nw",2)
+         self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
+         self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
+         self.optionswindow.children["ThemeType"].radiobuttons[0]["command"] = partial(self.themeTypeSelect,0)
+         self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = partial(self.themeTypeSelect,1)
+         self.optionswindow.children["ThemeType"].selected = 0
+         CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
+         
          
          if confmod.as3DebugEnable:
             #Debug Tweaks page
@@ -1125,6 +1127,45 @@ class NiminFetishFantasyv0975o_fla:
          self.optionsWinOpen = True
       else:
          self.optionswindow.toTop()
+   def themeTypeSelect(self,type):
+      if type == 1 and self.themeType == 0:
+         self.themeType = 1
+         self.tempinterfacetoggles = self.interfacetoggles
+         self.interfacetoggles = [True,False,True,False]
+         self.optionswindow.children["OBC"].select()
+         self.optionswindow.children["OBC"].cb["state"] = "disabled"
+         self.optionswindow.children["ScrolledTextBorders"].deselect()
+         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
+         self.optionswindow.children["newgameoriginalsize"].select()
+         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
+         self.optionswindow.children["doLevelUPStaticButtons"].deselect()
+         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
+         self.changeNGButtonOverride = True
+      elif type == 0 and self.themeType == 1:
+         self.themeType = 0
+         self.interfacetoggles = self.tempinterfacetoggles
+         self.tempinterfacetoggles = []
+         self.optionswindow.children["OBC"].cb["state"] = "normal"
+         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "normal"
+         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "normal"
+         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "normal"
+         if self.interfacetoggles[0] == True:
+            self.optionswindow.children["OBC"].select()
+         else:
+            self.optionswindow.children["OBC"].deselect()
+         if self.interfacetoggles[1] == True:
+            self.optionswindow.children["ScrolledTextBorders"].select()
+         else:
+            self.optionswindow.children["ScrolledTextBorders"].deselect()
+         if self.interfacetoggles[2] == True:
+            self.optionswindow.children["newgameoriginalsize"].select()
+         else:
+            self.optionswindow.children["newgameoriginalsize"].deselect()
+         if self.interfacetoggles[3] == True:
+            self.optionswindow.children["doLevelUPStaticButtons"].select()
+         else:
+            self.optionswindow.children["doLevelUPStaticButtons"].deselect()
+         self.changeNGButtonOverride = True
    def OWLoadVars(self):
       """
       Loads all of the variables and checks their boxes if they are True
@@ -1169,6 +1210,11 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["newgameoriginalsize"].select()
       if self.interfacetoggles[3] == True:
          self.optionswindow.children["doLevelUPStaticButtons"].select()
+      if self.themeType == 1:
+         self.optionswindow.children["OBC"].cb["state"] = "disabled"
+         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
+         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
+         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
       if confmod.as3DebugEnable == True:
          if self.debugtweaks[0] == True:
             self.optionswindow.children["ChooseSenario"].select()
@@ -1299,7 +1345,8 @@ class NiminFetishFantasyv0975o_fla:
             self.interfacetoggles[2] = True
          else:
             self.interfacetoggles[2] = False
-         if tempng != self.interfacetoggles[2] and self.shownewgame == True:
+         if (tempng != self.interfacetoggles[2] or self.changeNGButtonOverride == True) and self.shownewgame == True:
+            self.changeNGButtonOverride = False
             self.hideNGButton()
             self.showNGButton()
          if self.optionswindow.children["doLevelUPStaticButtons"].getcb() == 1:
@@ -2108,7 +2155,11 @@ class NiminFetishFantasyv0975o_fla:
    #def sideShow():
       #showSidePanel
    def savePreferences(self):
-      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><interfaceToggles>{self.interfacetoggles}</interfaceToggles></prefs>")
+      if self.themeType == 0:
+         tempintertoggle = self.interfacetoggles
+      else:
+         tempintertoggle = self.tempinterfacetoggles
+      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><interfaceToggles>{tempintertoggle}</interfaceToggles><themeType>{self.themeType}</themeType></prefs>")
       xml = xmletree.ElementTree(element=data)
       xmletree.indent(xml,space="\t")
       xml.write(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml"),encoding="UTF-8",xml_declaration=True)
@@ -2163,13 +2214,24 @@ class NiminFetishFantasyv0975o_fla:
             sp = True
          else:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
-         if prefs.find("interfaceToggles") == None:
+         if None in {prefs.find("interfaceToggles"),prefs.find("themeType")}:
             sp = True
          else:
-            tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
-            if len(self.interfacetoggles) > len(tempitoggle):
-               tempitoggle.extend((False for i in range(len(self.interfacetoggles)-len(tempitoggle))))
-            self.interfacetoggles = tempitoggle
+            if int(prefs.find("themeType").text) not in {0,1}:
+               self.themeType = 0
+            else:
+               self.themeType = int(prefs.find("themeType").text)
+            if self.themeType == 0:
+               tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
+               if len(self.interfacetoggles) > len(tempitoggle):
+                  tempitoggle.extend((False for i in range(len(self.interfacetoggles)-len(tempitoggle))))
+               self.interfacetoggles = tempitoggle
+            else:
+               self.interfacetoggles = [True,False,True,False]
+               tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
+               if len(self.interfacetoggles) > len(tempitoggle):
+                  tempitoggle.extend((False for i in range(len(self.interfacetoggles)-len(tempitoggle))))
+               self.tempinterfacetoggles = tempitoggle
          if (self.initinterface == False):
             if (strtobool(prefs.find("showSide").text)):
                self.showSidePanel()
