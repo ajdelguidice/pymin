@@ -25676,8 +25676,10 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
          else:
+            as3.trace(f"Error: Pymin Debug; PlayerAttributeChange Item; {temperr}")
             self.dgiwerrlabel["text"] = temperr
       else:
+         as3.trace("Error: Pymin Debug; Player attribute function called when no game is loaded")
          self.dgiwerrlabel["text"] = "Error: Game not loaded"
    def closeDGIWindow(self,*args):
       self.debugGIWinOpen = False
@@ -25709,6 +25711,8 @@ class NiminFetishFantasyv0975o_fla:
          self.dawlabel.place(x=75,y=7,anchor="n")
          self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Race:","AffinityAdd:"),"Ok",2,"w")
          self.dawcombo.configure(command=self.debugAffinityChange)
+         self.dawerrlabel = tkinter.Label(self.daw,font=("TkTextFont",9))
+         self.dawerrlabel.place(x=75,y=76,anchor="n")
          self.debugAWinOpen = True
          self.daw.transient(self.dw.children["root"])
          self.daw.bind("<Destroy>",self.closeDAWindow)
@@ -25727,7 +25731,7 @@ class NiminFetishFantasyv0975o_fla:
                affChange = int(values[1],10)
             except:
                err = "AffinityAdd must be an integer"
-         if race < 1 or race > 12:
+         if err == "" and (race < 1 or race > 12):
             err = "Race must be between 1 and 12"
          if err == "":
             if race == 1:
@@ -25758,10 +25762,11 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
             self.detailedDebug()
          else:
-            print(err)
+            as3.trace(f"Error: Pymin Debug; PlayerAttributeChange Affinity; {err}")
+            self.dawerrlabel["text"] = err
       else:
-         #self.dawerrlabel["text"] = "Error: Game not loaded"
-         ...
+         as3.trace("Error: Pymin Debug; Player attribute function called when no game is loaded")
+         self.dawerrlabel["text"] = "Error: Game not loaded"
    def closeDAWindow(self,*args):
       self.debugAWinOpen = False
    def keypress(self, e):
