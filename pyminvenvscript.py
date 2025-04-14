@@ -1,6 +1,6 @@
 import requests, platform, configparser
 from shutil import rmtree
-from pathlib import Path
+from pathlib import Path, PurePath
 from sys import argv
 from subprocess import run, check_output
 from urllib.parse import urlparse
@@ -50,7 +50,7 @@ venvpath = curdir / venvfolder
 if curdir in (None, "") or venvpath in (None, ""):
     print("Error: Path is empty. Exiting to avoid problems.")
     exit()
-if type(curdir) != type(Path()) or type(venvpath) != type(Path()):
+if not isinstance(curdir,PurePath) or not isinstance(venvpath,PurePath):
     print("Error: Path is somehow not a pathlib.Path object. Something is wrong because this shouldn't happen.")
     exit()
 
