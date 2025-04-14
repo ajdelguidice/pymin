@@ -1268,7 +1268,6 @@ class NiminFetishFantasyv0975o_fla:
             self.customfontcolor = False
             self.fontColor = self.ofontcolor
             self.mo.configureChild("textcolorbutton",state="normal")
-         #!Add theme type here
          if self.optionswindow.children["SaveLocation"].uevar.get() == "":
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
@@ -5420,26 +5419,7 @@ class NiminFetishFantasyv0975o_fla:
       def doListen():
          self.choiceListSelect("Bag")
          if self.buttonChoice == 13:
-            self.PageHide()
-            tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
-            if (self.moveItemStack > 1):
-               tempStr += f" x{self.moveItemStack}"
-            tempStr += "?"
-            self.outputMainText(tempStr,True)
-            self.hideAmount()
-            self.buttonConfirm()
-            self.buttonShiftOverride = True
-            def doListen():
-               self.buttonShiftOverride = False
-               if self.bagDiscard == True and self.shiftHeld == False:
-                  self.bagDiscard = False
-               if (self.buttonChoice == 6):
-                  self.passiveItemRemove(self.moveItemID)
-                  self.moveItemID = 0
-                  self.moveItemStack = 0
-                  self.showMoveItem(False)
-               self.doBag()
-            self.doListen = doListen
+            self.doButtonDiscard("Bag")
          elif self.buttonChoice == 12:
             if self.bagDiscard == True:
                if (self.canLoseMoveLocation(self.moveItemID) == False):
@@ -8197,6 +8177,35 @@ class NiminFetishFantasyv0975o_fla:
                   self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                else:
                   self.viewAmount(i,False)
+   def doButtonDiscard(self,which):
+      self.PageHide()
+      tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
+      if (self.moveItemStack > 1):
+         tempStr += f" x{self.moveItemStack}"
+      tempStr += "?"
+      self.outputMainText(tempStr,True)
+      self.hideAmount()
+      self.buttonConfirm()
+      self.buttonShiftOverride = True
+      def doListen():
+         self.buttonShiftOverride = False
+         if self.bagDiscard == True and self.shiftHeld == False:
+            self.bagDiscard = False
+         if (self.buttonChoice == 6):
+            if which == "Bag":
+               self.passiveItemRemove(self.moveItemID)
+            self.moveItemID = 0
+            self.moveItemStack = 0
+            self.showMoveItem(False)
+         if which == "Bag":
+            self.doBag()
+         elif which == "Stash":
+            self.doStash()
+         elif which == "mts":
+            self.moveToStash()
+         elif which == "mtb":
+            self.moveToBag()
+      self.doListen = doListen
    def doStash(self,noclear=False,refresh=False):
       #Stash dialog
       if self.gametweaks[10] == False:
@@ -8240,24 +8249,7 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             self.choiceListSelect("Stash")
             if self.buttonChoice == 13:
-               self.PageHide()
-               tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
-               if (self.moveItemStack > 1):
-                  tempStr += f" x{self.moveItemStack}"
-               tempStr += "?"
-               self.outputMainText(tempStr,True)
-               self.buttonConfirm()
-               self.buttonShiftOverride = True
-               def doListen():
-                  self.buttonShiftOverride = False
-                  if self.bagDiscard == True and self.shiftHeld == False:
-                     self.bagDiscard = False
-                  if (self.buttonChoice == 6):
-                     self.moveItemID = 0
-                     self.moveItemStack = 0
-                     self.showMoveItem(False)
-                  self.doStash()
-               self.doListen = doListen
+               self.doButtonDiscard("Stash")
             elif self.buttonChoice == 12:
                if self.bagDiscard == True:
                   self.moveToBag()
@@ -8300,7 +8292,9 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
       def doListen():
          self.choiceListSelect("Stash")
-         if (self.buttonChoice in {12,13}):
+         if (self.buttonChoice == 13):
+            self.doButtonDiscard("mts")
+         elif (self.buttonChoice == 12):
             self.doBag()
          elif (self.buttonChoice in (4,8)):
             self.choiceListButtons("Stash")
@@ -8337,7 +8331,9 @@ class NiminFetishFantasyv0975o_fla:
       self.enableAllButtons()
       def doListen():
          self.choiceListSelect("Bag")
-         if (self.buttonChoice in {12,13}):
+         if (self.buttonChoice == 13):
+            self.doButtonDiscard("mtb")
+         elif (self.buttonChoice == 12):
             self.doStash()
          elif (self.buttonChoice in (4,8)):
             self.choiceListButtons("Bag")
