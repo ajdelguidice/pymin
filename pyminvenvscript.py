@@ -43,16 +43,6 @@ def checkExistsMakeDir(dir_, silent=False):
     else:
         path.mkdir(parents=True)
 
-def strtobool(a:str):
-   """
-   Converts a string to a boolean
-   """
-   low = a.lower()
-   if low == "true":
-      return True
-   elif low == "false":
-      return False
-
 curdir = Path(__file__).resolve().parent #Here because python (Windows) treats the location from which the script is called as ./ instead of the script's directory
 venvfolder = "Pymin-venv"
 venvpath = curdir / venvfolder
@@ -243,6 +233,7 @@ def migrateConfig():
     with open(venvpath / "pyvenv.cfg","r") as f:
         c = configparser.ConfigParser(allow_unnamed_section=True)
         c.read_file(f)
+        c.optionxform=str
         pyversion = c[configparser.UNNAMED_SECTION]["version_info"]
     #Generate new config
     cfgpath = venvpath / "pymin.cfg"
@@ -257,11 +248,13 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
     if configDict != None:
         with open(Path(venvpath / "pymin.cfg"), 'w') as f:
             c = configparser.ConfigParser()
+            c.optionxform=str
             c.read_dict(configDict)
             c.write(f)
     else:
         with open(Path(venvpath / "pymin.cfg"), 'w') as f:
             c = configparser.ConfigParser()
+            c.optionxform=str
             c.read_dict({"Options":{"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}})
             c.write(f)
     noConfigExists = False
@@ -277,33 +270,37 @@ if Path(curdir / "pymin.cfg").exists():
     #load config and set venvpath
     cfgloc = curdir / "pymin.cfg"
     c1 = configparser.ConfigParser()
+    c1.optionxform=str
     c2 = configparser.ConfigParser()
+    c2.optionxform=str
     with open(cfgloc,"r") as f:
         c1.read_file(f)
         c2.read_dict(c1)
     venvpath = Path(c1["Options"]["path"]).resolve()
-    defrun = strtobool(c1["Options"]["defaultToRun"])
-    useuv = strtobool(c1["Options"]["uvGlobal"])
-    useuvi = strtobool(c1["Options"]["uvLocal"])
-    nossl = strtobool(c1["Options"]["noSSLVerify"])
-    nohtmlparser = strtobool(c1["Options"]["nocustomHTMLParser"])
+    defrun = c1.getboolean("Options","defaultToRun",fallback=False)
+    useuv = c1.getboolean("Options","uvGlobal",fallback=False)
+    useuvi = c1.getboolean("Options","uvLocal",fallback=False)
+    nossl = c1.getboolean("Options","noSSLVerify",fallback=False)
+    nohtmlparser = c1.getboolean("Options","noCustomHTMLParser",fallback=False)
     pyinstalversion = c1["Options"]["pyInstalledVersion"]
-    devenv = strtobool(c1["Options"]["isDevEnv"])
+    devenv = c1.getboolean("Options","isDevEnv",fallback=False)
 elif Path(venvpath / "pymin.cfg").exists():
     #load config
     cfgloc = venvpath / "pymin.cfg"
     c1 = configparser.ConfigParser()
+    c1.optionxform=str
     c2 = configparser.ConfigParser()
+    c2.optionxform=str
     with open(cfgloc,"r") as f:
         c1.read_file(f)
         c2.read_dict(c1)
-    defrun = strtobool(c1["Options"]["defaultToRun"])
-    useuv = strtobool(c1["Options"]["uvGlobal"])
-    useuvi = strtobool(c1["Options"]["uvLocal"])
-    nossl = strtobool(c1["Options"]["noSSLVerify"])
-    nohtmlparser = strtobool(c1["Options"]["nocustomHTMLParser"])
+    defrun = c1.getboolean("Options","defaultToRun",fallback=False)
+    useuv = c1.getboolean("Options","uvGlobal",fallback=False)
+    useuvi = c1.getboolean("Options","uvLocal",fallback=False)
+    nossl = c1.getboolean("Options","noSSLVerify",fallback=False)
+    nohtmlparser = c1.getboolean("Options","noCustomHTMLParser",fallback=False)
     pyinstalversion = c1["Options"]["pyInstalledVersion"]
-    devenv = strtobool(c1["Options"]["isDevEnv"])
+    devenv = c1.getboolean("Options","isDevEnv",fallback=False)
 else:
     #Use fallback values because config does not exist
     defrun = False
@@ -314,6 +311,7 @@ else:
     if venvpath.exists():
         with open(venvpath / "pyvenv.cfg", "r") as f:
             c = configparser.ConfigParser(allow_unnamed_section=True)
+            c.optionxform=str
             c.read_file(f)
             pyinstalversion = c[configparser.UNNAMED_SECTION]["version_info"]
     else:
