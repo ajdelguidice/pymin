@@ -19490,7 +19490,6 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(1,1,0,0,1,0,1,0,1,1,0,1))
       self.doButtonChoices(tempArray)
       def doListen():
-         self.hideUpDown()
          self.dmg = 0
          self.eLustChange = 0
          if self.buttonChoice == 1:
