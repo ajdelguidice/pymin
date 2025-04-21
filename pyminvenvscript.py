@@ -32,14 +32,12 @@ class list(list):
             return -1
 
 def checkExistsMakeDir(dir_, silent=False):
-    path = Path(dir_)
     if path.exists():
         if path.is_dir():
             return 1
-        else:
-            if silent == False:
-                print("Path exists but is not a directory.")
-            return -1
+        elif silent == False:
+            print("Path exists but is not a directory.")
+        return -1
     else:
         path.mkdir(parents=True)
 
@@ -47,7 +45,7 @@ curdir = Path(__file__).resolve().parent #Here because python (Windows) treats t
 venvfolder = "Pymin-venv"
 venvpath = curdir / venvfolder
 
-if curdir in (None, "") or venvpath in (None, ""):
+if curdir in {None, ""} or venvpath in {None, ""}:
     print("Error: Path is empty. Exiting to avoid problems.")
     exit()
 if not isinstance(curdir,PurePath) or not isinstance(venvpath,PurePath):
@@ -56,7 +54,7 @@ if not isinstance(curdir,PurePath) or not isinstance(venvpath,PurePath):
 
 def create(script_url="",as3libversion=""):
     #Sets up the virtual environment
-    if (platform.system() == "Windows" and len(str(venvpath)) in (2,3) and venvpath[0] in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" and venvpath[1] == ":") or str(venvpath) == "/":
+    if (platform.system() == "Windows" and len(str(venvpath)) in {2,3} and venvpath[0].isalpha() and venvpath[1] == ":") or str(venvpath) == "/":
         print("Error: venvpath is set to the root directory. Can not create a virtual environment here.")
         exit()
     print("Creating the environment...")
@@ -98,7 +96,7 @@ def installmodules(as3libversion="latest"):
         temp.remove("as3lib")
         temp.remove("tkhtmlview")
         run(temp)
-    elif as3libversion in ("latest",""):
+    elif as3libversion == "latest":
         run(temp)
     elif as3libversion.lower() == "none":
         temp.remove("as3lib")
@@ -114,7 +112,7 @@ def downloadgame(url=""):
     #downloads the game
     print("Installing game... Please wait.")
     with urlopen(url,context=ssl_context) as urlfile:
-        Path(venvpath / "Pymin/Pymin.py").write_bytes(urlfile.read())
+        (venvpath / "Pymin/Pymin.py").write_bytes(urlfile.read())
     print("Done")
 
 def updatemodules(as3libversion="latest"):
@@ -153,7 +151,7 @@ def rezero(url,as3libversion):
     if venvpath.is_dir() == False:
         print(f"Error: Directory \"{venvpath}\" either doesn't exist or is not a directory.")
         return
-    elif (platform.system() == "Windows" and len(str(venvpath)) in (2,3) and venvpath[0] in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" and venvpath[1] == ":") or venvpath == "/":
+    elif (platform.system() == "Windows" and len(str(venvpath)) in {2,3} and venvpath[0].isalpha() and venvpath[1] == ":") or venvpath == "/":
         print("Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...")
         exit()
     else:
@@ -199,9 +197,9 @@ def updatePythonVersion(pyver):
         if platform.system() == "Windows":
             ...
         else:
-            Path(venvpath / f"bin/python{".".join(pyver.split(".")[:2])}").unlink()
-            Path(venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
-            Path(venvpath / "bin/python").unlink()
+            (venvpath / f"bin/python{".".join(pyver.split(".")[:2])}").unlink()
+            (venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
+            (venvpath / "bin/python").unlink()
             rmtree(venvpath / f"lib/python{".".join(pyver.split(".")[:2])}")
             run([*pythonm,"venv","--upgrade",venvpath]) #!Will not work because python was unlinked
             installmodules()
@@ -219,54 +217,61 @@ def migrateConfig():
     tempUVI = False
     tempDR = False
     #Get old config values. Check here in case it moves to a different location in the future.
-    if Path(venvpath / ".USEUV").exists() or Path(venvpath / ".USEUVI").exists() or Path(venvpath / ".DEFAULTRUN").exists():
-        if Path(venvpath / ".USEUV").exists():
-            tempUV = True
-            Path(venvpath / ".USEUV").unlink(missing_ok=True)
-        if Path(venvpath / ".USEUVI").exists():
-            tempUVI = True
-            Path(venvpath / ".USEUVI").unlink(missing_ok=True)
-        if Path(venvpath / ".DEFAULTRUN").exists():
-            tempDR = True
-            Path(venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
+    if (venvpath / ".USEUV").exists():
+        tempUV = True
+        Path(venvpath / ".USEUV").unlink(missing_ok=True)
+    if (venvpath / ".USEUVI").exists():
+        tempUVI = True
+        Path(venvpath / ".USEUVI").unlink(missing_ok=True)
+    if (venvpath / ".DEFAULTRUN").exists():
+        tempDR = True
+        Path(venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
     pyversion = platform.python_version()
     with open(venvpath / "pyvenv.cfg","r") as f:
         c = configparser.ConfigParser(allow_unnamed_section=True)
-        c.read_file(f)
         c.optionxform=str
+        c.read_file(f)
         pyversion = c[configparser.UNNAMED_SECTION]["version_info"]
     #Generate new config
     cfgpath = venvpath / "pymin.cfg"
-    if cfgpath.exists(): #!Implement this
-        #Currently, this will just regenerate the config file because there are no other versions to consider
-        ...
+    if cfgpath.exists():
+        c = configparser.ConfigParser()
+        c.optionxform=str
+        with open(cfgpath, 'r') as f:
+            c.read_file(f)
+        if c.getint("Options","cfgVersion") == 1:
+            if tempUV:
+                c["Options"]["uvGlobal"] = "True"
+                c["Options"]["uvLocal"] = "False"
+            elif tempUVI:
+                c["Options"]["uvGlobal"] = "False"
+                c["Options"]["uvLocal"] = "True"
+            if tempDR:
+                c["Options"]["defaultToRun"] = "True"
+        with open(cfgpath, 'w') as f:
+            c.write(f)
     else:
         createConfigInVenv(path="./",pyInstalledVersion=pyversion,uvGlobal=tempUV,uvLocal=tempUVI,defaultToRun=tempDR,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False)
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
     global noConfigExists
-    if configDict != None:
-        with open(Path(venvpath / "pymin.cfg"), 'w') as f:
-            c = configparser.ConfigParser()
-            c.optionxform=str
-            c.read_dict(configDict)
-            c.write(f)
-    else:
-        with open(Path(venvpath / "pymin.cfg"), 'w') as f:
-            c = configparser.ConfigParser()
-            c.optionxform=str
-            c.read_dict({"Options":{"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}})
-            c.write(f)
+    if configDict == None:
+        configDict = {"Options":{"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}}
+    with open(venvpath / "pymin.cfg", 'w') as f:
+        c = configparser.ConfigParser()
+        c.optionxform=str
+        c.read_dict(configDict)
+        c.write(f)
     noConfigExists = False
 
 ssl_context = None
 noConfigExists = False
 args = list(argv)
-if venvpath.exists() and (Path(venvpath / ".USEUV").exists() or Path(venvpath / ".USEUVI").exists() or Path(venvpath / ".DEFAULTRUN").exists()):
+if (venvpath / ".USEUV").exists() or (venvpath / ".USEUVI").exists() or (venvpath / ".DEFAULTRUN").exists():
     print("Old config detected. Automatically migrating to new one.")
     migrateConfig()
     print("Done")
-if Path(curdir / "pymin.cfg").exists():
+if (curdir / "pymin.cfg").exists():
     #load config and set venvpath
     cfgloc = curdir / "pymin.cfg"
     c1 = configparser.ConfigParser()
@@ -284,7 +289,7 @@ if Path(curdir / "pymin.cfg").exists():
     nohtmlparser = c1.getboolean("Options","noCustomHTMLParser",fallback=False)
     pyinstalversion = c1["Options"]["pyInstalledVersion"]
     devenv = c1.getboolean("Options","isDevEnv",fallback=False)
-elif Path(venvpath / "pymin.cfg").exists():
+elif (venvpath / "pymin.cfg").exists():
     #load config
     cfgloc = venvpath / "pymin.cfg"
     c1 = configparser.ConfigParser()
@@ -342,7 +347,7 @@ if len(args) < 2 and defrun:
 elif len(args) < 2 or 1 in (args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")) or 1 in (args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("run")) and 2 in (args.indexOf("--help"),args.indexOf("-h")):
     print("venvscript {install|update|run|cmd|recreate|uv} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--help\t\t\tDisplays this message\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--overwrite\t\tBypasses the overwrite restriction in the \"install\" command\n\t--migrate-config\tMigrates the config from a previous version to the current one. This should run automatically if an old version is detected.")
 else:
-    if args[1] in ("install","recreate","update","rezero") or args[1][:2] == "--":
+    if args[1] in {"install","recreate","update","rezero"} or args[1][:2] == "--":
         if "--no-ssl" in args:
             nossl = True
             c2["Options"]["noSSLVerify"] = "True"
@@ -411,7 +416,7 @@ else:
         run([pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[2:]])
     elif args[1] == "cmd":
         ...
-    elif args[1] in ("recreate","rezero"):
+    elif args[1] in {"recreate","rezero"}:
         rezero(url,as3libversiontag)
     elif args[1] == "uv":
         if venvpath.exists():
@@ -428,10 +433,10 @@ else:
             run([pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]])
         else:
             ...
-if noConfigExists:
-    if venvpath.exists():
+if venvpath.exists():
+    if noConfigExists:
         createConfigInVenv(configDict=c2)
-elif c1 != c2 and type(c2) != dict and venvpath.exists(): #Check if config was modified
-    #Write modified config to disk
-    with open(cfgloc, 'w') as f:
-        c2.write(f)
+    elif c1 != c2 and type(c2) != dict: #Check if config was modified
+        #Write modified config to disk
+        with open(cfgloc, 'w') as f:
+            c2.write(f)
