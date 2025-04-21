@@ -8,7 +8,6 @@ from urllib.request import urlopen
 
 #Notes:
 #len(str(pathlib.Path)) is a workaround for the windows implementation of pathlib.Path not having a length property
-
 if platform.system() == "Darwin":
     """
     This script should not need this because it doesn't use os.fork but it's here just in case.
@@ -250,6 +249,7 @@ def migrateConfig():
                 c["Options"]["defaultToRun"] = "True"
         with open(cfgpath, 'w') as f:
             c.write(f)
+        del c
     else:
         createConfigInVenv(path="./",pyInstalledVersion=pyversion,uvGlobal=tempUV,uvLocal=tempUVI,defaultToRun=tempDR,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False)
 
@@ -257,11 +257,12 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
     global noConfigExists
     if configDict == None:
         configDict = {"Options":{"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}}
+    c = configparser.ConfigParser()
+    c.optionxform=str
+    c.read_dict(configDict)
     with open(venvpath / "pymin.cfg", 'w') as f:
-        c = configparser.ConfigParser()
-        c.optionxform=str
-        c.read_dict(configDict)
         c.write(f)
+    del c
     noConfigExists = False
 
 ssl_context = None
