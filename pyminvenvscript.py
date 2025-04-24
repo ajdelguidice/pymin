@@ -94,16 +94,12 @@ def installmodules(as3libversion="latest"):
         print("Skipping as3lib and tkhtmlview.")
         temp.remove("as3lib")
         temp.remove("tkhtmlview")
-        run(temp)
-    elif as3libversion == "latest":
-        run(temp)
     elif as3libversion.lower() == "none":
         temp.remove("as3lib")
-        run(temp) 
-    else:
+    elif as3libversion != "latest":
         temp.remove("as3lib")
         temp.append(f"as3lib={as3libversion}")
-        run(temp)
+    run(temp)
     print("Done")
     replaceTkhtmlviewParserWithUnsafeOne()
 
@@ -120,7 +116,7 @@ def updatemodules(as3libversion="latest"):
     if useuv:
         runlist = ["uv", "pip", "install", "--python", pythonvenvloc] + runlist[2:]
     elif useuvi:
-        print("Installing UV...")
+        print("Updating UV...")
         run([pythonvenvloc, "-m", "uv", "pip", "install", "-U", "uv"])
         print("Done")
         runlist = pythonm + ["uv"] + runlist
@@ -133,16 +129,12 @@ def updatemodules(as3libversion="latest"):
         print("Skipping as3lib and tkhtmlview.")
         temp.remove("as3lib")
         temp.remove("tkhtmlview")
-        run(temp)
-    elif as3libversion == "latest":
-        run(temp)
     elif as3libversion.lower() == "none":
         temp.remove("as3lib")
-        run(temp) 
-    else:
+    elif as3libversion != "latest":
         temp.remove("as3lib")
         temp.append(f"as3lib={as3libversion}")
-        run(temp)
+    run(temp)
     print("Done")
     replaceTkhtmlviewParserWithUnsafeOne()
 
@@ -152,7 +144,10 @@ def rezero(url,as3libversion):
         return
     elif (platform.system() == "Windows" and len(str(venvpath)) in {2,3} and venvpath[0].isalpha() and venvpath[1] == ":") or venvpath == "/":
         print("Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...")
-        exit()
+        return
+    elif not ((venvpath / "pymin.cfg").exists() and (venvpath / "Pymin/Pymin.py").exists()):
+        print("Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...")
+        return
     else:
         rmtree(venvpath)
     create(url,as3libversion)
@@ -339,7 +334,7 @@ if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2]:
     updatePythonVersion(pyinstalversion)
 try:
     if venvpath.exists():
-        check_output(f"{pythonvenvloc} -V",shell=True) #!See if this can be hidden
+        check_output(f"{pythonvenvloc} -V",shell=True)
 except:
     repairInstall()
     exit() #!for some reason, this does not exit
