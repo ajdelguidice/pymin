@@ -1368,16 +1368,16 @@ class NiminFetishFantasyv0975o_fla:
    def toggleTextboxBorders(self,toggle):
       if toggle == True:
          self.mo.children["textmain"].configure(borderwidth=1,highlightthickness=1)
-         self.mo.childproperties["textmain"][12] = True
+         self.mo.childproperties["textmain"][7][7] = True
          if self.textsidevisible:
             self.mo.children["textside"].configure(borderwidth=1,highlightthickness=1)
-            self.mo.childproperties["textside"][12] = True
+            self.mo.childproperties["textside"][7][7] = True
       else:
          self.mo.children["textmain"].configure(borderwidth=0,highlightthickness=0)
-         self.mo.childproperties["textmain"][12] = False
+         self.mo.childproperties["textmain"][7][7] = False
          if self.textsidevisible:
             self.mo.children["textside"].configure(borderwidth=0,highlightthickness=0)
-            self.mo.childproperties["textside"][12] = False
+            self.mo.childproperties["textside"][7][7] = False
    @staticmethod
    def checkValidHex(hexstr:str):
       """
