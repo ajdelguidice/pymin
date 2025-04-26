@@ -1007,7 +1007,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Grammar Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","GrammarTweaks",10,10,144,20,("TimesNewRoman",11),"nw","Grammar Tweaks")
          self.optionswindow.configureChild("GrammarTweaks",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["GrammarTweaks"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described and tweaks some other grammar stuff.Ex:\n\"Femme boy\" becomes \"Femboy\",\n\"Shemale\" becomes \"Futanari\"")
+         CreateToolTip(self.optionswindow.children["GrammarTweaks"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described and tweaks some other grammar stuff. Ex:\n\"Femme boy\" becomes \"Femboy\",\n\"Shemale\" becomes \"Futanari\"")
 
          ##Status Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",10,32,124,20,("TimesNewRoman",11),"nw","Status Tweaks")
@@ -1022,17 +1022,17 @@ class NiminFetishFantasyv0975o_fla:
          ##Use isBottomOpen
          self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",10,76,144,20,("TimesNewRoman",11),"nw","Use isBottomOpen")
          self.optionswindow.configureChild("UseIsBottomOpen",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseIsBottomOpen"].frame,text="Uses the function I created called isBottomOpen where appropriate. isBottomOpen\nchecks whether you are wearing clothes on your bottom half that are\nsignificantly open (ex: skirt, sundress).")
+         CreateToolTip(self.optionswindow.children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
 
          ##Lizan Don't Show Balls
          self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",10,98,184,20,("TimesNewRoman",11),"nw","Lizan Don't Show Balls")
          self.optionswindow.configureChild("LizanDontShowBalls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs and those don't have external balls. This changes the\ngame to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
+         CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
          ##Use expanded save file selection dialog
          self.optionswindow.addCheckboxWithLabel("gt","UseExpandedSaveDialog",10,120,190,20,("TimesNewRoman",11),"nw","Use expanded save dialog")
          self.optionswindow.configureChild("UseExpandedSaveDialog",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="Enables the expanded save dialog that I created to enable saving and loading\nfrom any file inside of the save folder without much extra work.")
+         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
 
          ##Herm Can Has Both
          self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",200,10,190,20,("TimesNewRoman",11),"nw","Herm Can Has Both")
@@ -1077,7 +1077,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Show scrolledText Borders
          self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
          self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders be default but are disabled\nby default because the original game didn't have them. This toggle re-enables\nthem.")
+         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders which are disabled to match\nthe original game. This toggle re-enables them.")
          
          ##Original new game button size
          self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original size for new game button")
