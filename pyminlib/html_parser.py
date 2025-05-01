@@ -220,15 +220,11 @@ DEFAULT_STACK = {
 # functions
 def get_existing_font(font_families):
     # ------------------------------------------------------------------------------------------
-    try:
-        return next(
-            filter(
-                lambda f: f.lower() in (f.lower() for f in font.families()),
-                font_families,
-            )
-        )
-    except Exception:
-        return "TkTextFont"
+    fflow = tuple(i.lower() for i in font.families())
+    for i in font_families:
+        if i.lower() in fflow:
+            return i
+    return "TkTextFont"
 
 
 # __________________________________________________________________________________________________
@@ -249,8 +245,7 @@ class HLinkSlot:
     def call(self, event):
         # ------------------------------------------------------------------------------------------
         if self.URL[0] == "\uFFFF":
-            tmp = self.URL[1:].split("\uFFFF")
-            self.callobject(*tmp)
+            self.callobject(*self.URL[1:].split("\uFFFF"))
         else:
             webbrowser.open(self.URL)
             self._w.tag_config(self.tag_name, foreground="purple")
@@ -289,12 +284,9 @@ class ListTag:
 
     def _index_to_str(self, index):
         # ------------------------------------------------------------------------------------------
-        prefix = ""
         if index > 26:
-            prefix = self._index_to_str(index // 26)
-            index = index % 26
-
-        return prefix + chr(0x60 + index)
+            return self._index_to_str(index // 26) + chr(0x60 + index%26)
+        return chr(0x60 + index)
 
 
 class HTMLTextParser(HTMLParser):
@@ -601,11 +593,10 @@ class HTMLTextParser(HTMLParser):
                 self._w.image_create(tk.INSERT, image=self.images[-1])
 
         elif tag == HTML.Tag.TABLE:
-                tabs = []
-                for i in range(30): # HF was len(self.list_tags)):
-                    offset = 40 * (i + 1)
-                    tabs += [offset, tk.LEFT ]
-                self._stack_add(tag, WCfg.TABS, tabs)
+            tabs = []
+            for i in range(30): # HF was len(self.list_tags)):
+                tabs += [40 * (i + 1), tk.LEFT ]
+            self._stack_add(tag, WCfg.TABS, tabs)
 
         if self.strip:
             if tag == HTML.Tag.BR:
@@ -666,7 +657,7 @@ class HTMLTextParser(HTMLParser):
         # ------------------------------------------------------------------------------------------
         data = data.replace("  ", " ")
         if "  " in data:
-            data = self._remove_multi_spaces(data)
+            return self._remove_multi_spaces(data)
         return data
 
     def handle_data(self, data):
@@ -698,8 +689,7 @@ class HTMLTextParser(HTMLParser):
         tag = tag.lower()
 
         try:
-            index = len(self.html_tags) - self.html_tags[::-1].index(tag) - 1
-            self.html_tags.pop(index)
+            self.html_tags.pop(len(self.html_tags) - self.html_tags[::-1].index(tag) - 1)
         except:
             pass
 
