@@ -1059,7 +1059,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. While already moving an item, hold shift\nand press button 12 to move items between the bag and stash.")
 
-         #Misc Changes
+         ##Misc Changes
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
          self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
@@ -1543,29 +1543,11 @@ class NiminFetishFantasyv0975o_fla:
       if path.exists():
          if path.is_dir():
             return 1
-         else:
-            if silent == False:
-               as3.Error("Path exists but is not a directory.")
-            return -1
+         elif silent == False:
+            as3.Error("Path exists but is not a directory.")
+         return -1
       else:
          path.mkdir(parents=True)
-   @staticmethod
-   def checkExtension(file,extension):
-      """
-      Checks if the input file has the correct extension.
-      Inputs:
-         file:string - path to the file
-         extension:string - file extension without the dot
-      Output:
-         result:boolean
-      """
-      if confmod.platform == "Windows":
-         ext = file.split("\\")[-1].split(".")[-1].lower()
-      else:
-         ext = file.split("/")[-1].split(".")[-1].lower()
-      if ext == extension.lower():
-         return True
-      return False
    @staticmethod
    def resolveDir(dir_):
       #Alias for pathlib.Path(directory).resolve() + convert to string
