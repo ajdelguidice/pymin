@@ -2264,12 +2264,6 @@ class NiminFetishFantasyv0975o_fla:
       tempArray2 = as3.Array(12,"Return")
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
       if which == "Bag":
-         #tempArray = as3.Array(numElements=27)
-         #for i in range(27):
-         #   if (self.bagArray[i] == 0):
-         #      tempArray[i] = " "
-         #   else:
-         #      tempArray[i] = self.itemName(self.bagArray[i])
          tempArray = tuple(" " if self.bagArray[i] == 0 else self.itemName(self.bagArray[i]) for i in range(27))
          if (self.inBag == True):
             self.choicePage = self.bagPage
@@ -2278,21 +2272,13 @@ class NiminFetishFantasyv0975o_fla:
          elif page != None:
             self.choicePage = page
       elif which == "Stash":
-         #tempArray = as3.Array(numElements=27)
-         #for i in range(27):
-         #   if (self.stashArray[i] == 0):
-         #      tempArray[i] = " "
-         #   else:
-         #      tempArray[i] = self.itemName(self.stashArray[i])
          tempArray = tuple(" " if self.stashArray[i] == 0 else self.itemName(self.stashArray[i]) for i in range(27))
          if (self.inStash == True):
             self.choicePage = self.stashPage
          elif self.mts == True:
             self.choicePage = self.tempBagPage
       else:
-         tempArray = as3.Array(numElements=self.choiceListArray.length)
-         for i in range(self.choiceListArray.length):
-            tempArray[i] = self.choiceListArray[i]
+         tempArray = as3.Array(*self.choiceListArray)
       if (len(tempArray) > 9):
          buttonlist[4] = 1
          buttonlist[8] = 1
@@ -2358,22 +2344,22 @@ class NiminFetishFantasyv0975o_fla:
          self.enableAllButtons()
    def choiceListSelect(self, which:str, hideAmountOverride=False):
       if which == "Bag":
-         tempArray = tuple(self.bagArray[i] for i in range(27))
+         tempArray = tuple(self.bagArray)
       elif which == "Stash":
-         tempArray = tuple(self.stashArray[i] for i in range(27))
+         tempArray = tuple(self.stashArray)
       else:
-         tempArray = tuple(self.choiceListArray[i] for i in range(self.choiceListArray.length))
+         tempArray = tuple(self.choiceListArray)
       if self.buttonChoice not in {12,13}:
          tempInt = self.buttonChoice - (1+self.buttonChoice//4)
       else:
          tempInt = 0
-      if self.buttonChoice in (4,8,12):
+      if self.buttonChoice in {4,8,12}:
          self.choiceListResult[0] = ""
          self.choiceListResult[1] = -1
       else:
          self.choiceListResult[0] = tempArray[tempInt + (self.choicePage * 9 - 9)]
          self.choiceListResult[1] = tempInt + (self.choicePage * 9 - 9)
-      if which not in ("Bag","Stash") and hideAmountOverride == False:
+      if which not in {"Bag","Stash"} and hideAmountOverride == False:
          self.hideAmount()
       if self.buttonChoice == 4:
          if (self.choicePage > 1):
@@ -2396,7 +2382,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.stashPage = self.choicePage
       if (self.buttonChoice != 4 and self.buttonChoice != 8):
-         if not self.inBag and not self.inStash:
+         if not (self.inBag or self.inStash):
             self.showPage(False,"")
             self.tempBagPage = self.choicePage
          self.choicePage = 1
