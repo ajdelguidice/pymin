@@ -1362,9 +1362,9 @@ class NiminFetishFantasyv0975o_fla:
                self.debugtweaks[1] = False
          self.savePreferences()
          self.toggleTextboxBorders(self.interfacetoggles[1])
-         self.applyFixedResolution() #Applies fixed resolution
-         self.updateText() #Applies custom font color
-         self.updateTheme() #Applies custom theme color
+         self.applyFixedResolution()
+         self.updateText()
+         self.updateTheme()
    def toggleTextboxBorders(self,toggle):
       if toggle == True:
          self.mo.children["textmain"].configure(borderwidth=1,highlightthickness=1)
@@ -1985,21 +1985,17 @@ class NiminFetishFantasyv0975o_fla:
       specialcolour = self.getColours()[0]
       for i in ("display","label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
          try:
-            if (self.mo.getChildAttribute(i, "background") != color):
-               self.mo.configureChild(i, background=color)
+            self.mo.configureChild(i, background=color)
          except:
             continue
       for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","savefilesort","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
          try:
-            if (self.mo.getChildAttribute(i, "background") != specialcolour):
-               self.mo.configureChild(i, background=specialcolour)
+            self.mo.configureChild(i, background=specialcolour)
          except:
             continue
-      for i in ("window","label","okbutton"):
-         try:
+      if self.mo.aboutwindow[0] == True:
+         for i in ("window","label","okbutton"):
             self.mo.aboutwindow[2][i].configure(background=color)
-         except:
-            continue
       if self.wikiOpen == True:
          for i in ("text","menu"):
             self.wikiwindow.configureChild(i,background=color)
@@ -2021,27 +2017,22 @@ class NiminFetishFantasyv0975o_fla:
       specialcolour = self.getColours()[1]
       for i in ("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
          try:
-            if (self.mo.getChildAttribute(i, "foreground") != color):
-               self.mo.configureChild(i, foreground=color)
+            self.mo.configureChild(i, foreground=color)
          except:
             continue
       for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","savefilesort","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
          try:
-            if (self.mo.getChildAttribute(i, "foreground") != specialcolour):
-               self.mo.configureChild(i, foreground=specialcolour)
+            self.mo.configureChild(i, foreground=specialcolour)
          except:
             continue
-      for i in ("amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount","aboutwindow"):
+      for i in ("amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount"):
          try:
-            if (self.mo.getChildAttribute(i, "highlightbackground") != color):
-               self.mo.configureChild(i, highlightbackground=specialcolour)
+            self.mo.configureChild(i, highlightbackground=specialcolour)
          except:
             continue
-      for i in ("window","label","okbutton"):
-         try:
+      if self.mo.aboutwindow[0] == True:
+         for i in ("window","label","okbutton"):
             self.mo.aboutwindow[2][i].configure(foreground=color)
-         except:
-            continue
       if self.wikiOpen == True:
          for i in ("text","menu"):
             self.wikiwindow.configureChild(i,foreground=color)
@@ -2060,7 +2051,6 @@ class NiminFetishFantasyv0975o_fla:
    def updateTheme(self):
       self.detailedDebug()
       self.changeBackgroundColor(self.theme)
-      self.updateText()
    def fontSizeDown(self):
       if (self.fontSize > 3): #originally 4
          self.fontSize -= 2
@@ -2322,13 +2312,13 @@ class NiminFetishFantasyv0975o_fla:
             if (buttonText[tempI]):
                if which == "Bag":
                   if (self.bagStackArray[tempI] > 1):
-                     self.viewAmount(i, True)
+                     self.viewAmount(i,True,temp)
                      self.writeAmount(i, f"{self.bagStackArray[tempI]}")
                   else:
                      self.viewAmount(i,False)
                elif which == "Stash":
                   if (self.stashStackArray[tempI] > 1):
-                     self.viewAmount(i, True)
+                     self.viewAmount(i, True,temp)
                      self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                   else:
                      self.viewAmount(i,False)
@@ -8128,6 +8118,7 @@ class NiminFetishFantasyv0975o_fla:
             if (tempArray[tempI] != " "):
                tempArray2.push(tempInt,tempArray[tempI])
       self.doButtonChoices(tempArray2)
+      temp = self.getColours()
       for i in range(1,13):
          self.mo.configureChild(f"button{i}",state="normal")
          if i not in (4,8,12):
@@ -8135,13 +8126,13 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.configureChild(f"button{i}",text=tempArray[tempI])
             if which == "Bag":
                if (self.bagStackArray[tempI] > 1):
-                  self.viewAmount(i, True)
+                  self.viewAmount(i, True,temp)
                   self.writeAmount(i, f"{self.bagStackArray[tempI]}")
                else:
                   self.viewAmount(i,False)
             elif which == "Stash":
                if (self.stashStackArray[tempI] > 1):
-                  self.viewAmount(i, True)
+                  self.viewAmount(i, True,temp)
                   self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                else:
                   self.viewAmount(i,False)
@@ -24918,18 +24909,17 @@ class NiminFetishFantasyv0975o_fla:
    @cache
    def _viewAmountCalc(buttonNum:int):
       return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
-   def viewAmount(self, buttonNum:int, tempBool:bool):
-      temp = self.getColours()
+   def viewAmount(self,buttonNum:int,tempBool:bool,tempColors=None):
       if tempBool == True and self.amountLabelsVisible[buttonNum] == False:
          self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._viewAmountCalc(buttonNum),30,15,self.font)
-         self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
+         self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=tempColors[0],foreground=tempColors[1],highlightbackground=tempColors[1],highlightthickness=1)
          self.amountLabelsVisible[buttonNum] = True
       elif tempBool == False and self.amountLabelsVisible[buttonNum] == True:
          self.mo.destroyChild(f"amountlabel{buttonNum}")
          self.amountLabelsVisible[buttonNum] = False
    def hideAmount(self):
       for i in range(1,13):
-         self.viewAmount(i, False)
+         self.viewAmount(i,False)
    def initSidePanel(self):
       for i in range(8):
          self.mo.destroyChild(self.sidepanelbuttonnames[i])
@@ -25096,13 +25086,13 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("moveitemamount",text="")
    def openSFC(self):
       if self.sfcopen == False:
-         self.sfcwindow = itk.window(500,294+40,"Pymin: Save File Converter","frame",self.theme,False,False,True)
+         self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,False,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
-         self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman', 20, 'bold'),"n")
+         self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman',20, 'bold'),"n")
          self.sfcwindow.configureChild("title",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
          
-         self.sfcwindow.addLabel("display","message",250,100,300,25,('TimesNewRoman',12),"n")
+         self.sfcwindow.addLabel("display","message",250,100,350,25,('TimesNewRoman',12),"n")
          self.sfcwindow.configureChild("message",text="",foreground=self.fontColor,background=self.theme)
 
          self.sfcwindow.addFileEntryBox("display","inputfilebox",50,150,320,24,('TimesNewRoman',12),anchor="nw",text1="Input File",entrywidth=320,filetype=["file","open"])
@@ -25116,19 +25106,19 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcinputfilecombobox["values"] = ("detect","xml","sol","nim")
          self.sfcinputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
 
-         self.sfcwindow.addFileEntryBox("display","outputfilebox",50,200+10,320,24,('TimesNewRoman',12),anchor="nw",text1="Output File",entrywidth=320,filetype=["file","save"])
+         self.sfcwindow.addFileEntryBox("display","outputfilebox",50,210,320,24,('TimesNewRoman',12),anchor="nw",text1="Output File",entrywidth=320,filetype=["file","save"])
          self.sfcwindow.configureChild("outputfilebox",foreground=self.fontColor,background=self.theme)
          self.sfcwindow.children["outputfilebox"]._properties["fileboxinitdir"] = self.savelocation
 
          self.sfcoutputfilecomboboxtext = tkinter.Label(self.sfcwindow.children["root"],text="Type",font=("TimesNewRoman",12))
-         self.sfcoutputfilecomboboxtext.place(x=390,y=200+10,width=40,height=24,anchor="nw")
+         self.sfcoutputfilecomboboxtext.place(x=390,y=210,width=40,height=24,anchor="nw")
          self.sfcoutputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
          self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
          self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim")
-         self.sfcoutputfilecombobox.place(x=390,y=224+10,width=60,height=24,anchor="nw")
+         self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
 
          self.sfcwindow.children["root"].transient(self.mo.children["root"])
-         self.sfcwindow.addButton("display","convertbutton",500-50-64,250+20,64,24,("TimesNewRoman",12),"nw")
+         self.sfcwindow.addButton("display","convertbutton",386,270,64,24,("TimesNewRoman",12),"nw")
          self.sfcwindow.configureChild("convertbutton",text="Convert",foreground=self.fontColor,background=self.theme,command=self.convertButton)
          self.sfcopen = True
       else:
@@ -25139,8 +25129,8 @@ class NiminFetishFantasyv0975o_fla:
    def convertButton(self,*args):
       self.convertSave(self.sfcwindow.children["inputfilebox"].get(),self.sfcinputfilecombobox.get(),self.sfcwindow.children["outputfilebox"].get(),self.sfcoutputfilecombobox.get())
    def convertSave(self,inputfile,inputfiletype,outputfile,outputfiletype): #New save converter
-      if inputfile in (None,"") or outputfile == (None,""):
-         as3.trace("SaveConverter: Error: Input/Output file can not be \"None\" or empty")
+      if inputfile in {None,""} or outputfile in {None,""}:
+         as3.trace("SaveConverter: Error: Input/Output file can not be empty")
          self.sfcwindow.configureChild("message",text="Error: Input/Output file can not be \"None\" or empty")
          return
       if inputfiletype == outputfiletype and inputfiletype != "detect":
