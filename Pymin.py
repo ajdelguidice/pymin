@@ -1465,7 +1465,7 @@ class NiminFetishFantasyv0975o_fla:
                   if i in WIN_BlacklistedChars:
                      return False
                #invalid if last character is " " or "." or if name or name before a period is blacklisted
-               if tempname.endswith(" ",".") or tempname.split(".")[0] in WIN_BlacklistedNames:
+               if tempname.endswith((" ",".")) or tempname.split(".")[0] in WIN_BlacklistedNames:
                   return False
                temp = temp.parent
             #Check drive letter
@@ -1505,7 +1505,7 @@ class NiminFetishFantasyv0975o_fla:
                   if j in WIN_BlacklistedChars:
                      return False
                #invalid if last character is " " or "." or if name or name before a period is blacklisted
-               if i.endswith(" ",".") or i.split(".")[0] in WIN_BlacklistedNames:
+               if i.endswith((" ",".")) or i.split(".")[0] in WIN_BlacklistedNames:
                   return False
          elif confmod.platform in {"Linux","Darwin"}:
             #remove trailing path separator
@@ -1516,7 +1516,7 @@ class NiminFetishFantasyv0975o_fla:
             #remove starting path separator
             if directory[0] == separator:
                directory = directory[-(len(directory)-1):]
-            elif directory.startswith(f".{separator}",f"~{separator}"):
+            elif directory.startswith((f".{separator}",f"~{separator}")):
                directory = directory[-(len(directory)-2):]
             dirlist = directory.split(separator)
             for i in dirlist:
