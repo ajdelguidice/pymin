@@ -4235,7 +4235,7 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
                def doListen():
                   temp = self.mo.getChildAttribute("savefileentry","text")
-                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,("xml","sol","nim"))):
+                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,(".xml",".sol",".nim"))):
                      self.doLoad(0,self.savelocation / temp)
                   else:
                      self.loadGo(ret=True)
@@ -4263,15 +4263,15 @@ class NiminFetishFantasyv0975o_fla:
    def nsldGetSorted(self):
       #Sorts the save file list in nsld
       if self.nsldSortOrder == 0:
-         return self.listFilesInDir_SortCustom(self.savelocation,("xml","sol","nim"),0)
+         return self.listFilesInDir_SortCustom(self.savelocation,(".xml",".sol",".nim"),0)
       elif self.nsldSortOrder == 1:
-         return self.listFilesInDir_SortCustom(self.savelocation,("xml","sol","nim"),1)
+         return self.listFilesInDir_SortCustom(self.savelocation,(".xml",".sol",".nim"),1)
       elif self.nsldSortOrder == 2:
-         return self.listFilesInDir_SortCustom(self.savelocation,("xml","sol","nim"),2)
+         return self.listFilesInDir_SortCustom(self.savelocation,(".xml",".sol",".nim"),2)
       elif self.nsldSortOrder == 3:
-         return self.listFilesInDir_SortAlpha(self.savelocation,("xml","sol","nim"))
+         return self.listFilesInDir_SortAlpha(self.savelocation,(".xml",".sol",".nim"))
       elif self.nsldSortOrder == 4:
-         return self.listFilesInDir(self.savelocation,("xml","sol","nim"))
+         return self.listFilesInDir(self.savelocation,(".xml",".sol",".nim"))
    def nsldDisplay(self):
       #Displays the save file list in nsld
       self.mo.slb_Delete("savefileselect",0,"end")
