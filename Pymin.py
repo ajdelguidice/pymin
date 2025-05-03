@@ -1553,31 +1553,16 @@ class NiminFetishFantasyv0975o_fla:
       #Alias for pathlib.Path(directory).resolve() + convert to string
       return str(Path(dir_).resolve())
    @staticmethod
-   def listFilesInDir(dir_, ext:list=None, sort=None):
+   def listFilesInDir(dir_, ext:tuple=None, sort=None):
       """
       Lists all files with extension "ext" in directory "dir_" with the sorting of "sort"
       If ext is None, all files are shown
       If sort is None, no sorting will be done. sort must be a valid sorted() key
       """
-      dir_ = Path(dir_)
       files = [str(f.name) for f in dir_.iterdir() if (dir_ / f).is_file()]
       #if extension is specified, remove extension that aren't included
       if ext != None:
-         tempext = ext
-         ext = []
-         #remove "." from the front of the extensions
-         for i in tempext:
-            if i[0] == ".":
-               ext.append(i[1:])
-            else:
-               ext.append(i)
-         tempf = []
-         for i in files:
-            temp = i.split(".")
-            #check if file does not have a type and if no ext is in the whitelist of extensions or if file extension is in the whitelist
-            if (len(temp) == 1 and "" in ext) or temp[-1] in ext:
-               tempf.append(i)
-         files = tempf
+         files = [i for i in files if (i.find(".") == -1 and "" in ext) or i.endswith(ext)]
       #if sort order is specified, use it
       if sort != None:
          return sorted(files, key=sort)
@@ -1591,17 +1576,17 @@ class NiminFetishFantasyv0975o_fla:
       """
       Lists all files in directory "dir_" with extension "ext" with custom sort type of "type_"
       """
-      if type_ not in (0,1,2):
+      if type_ not in {0,1,2}:
          as3.trace("listFilesInDir_SortCustom: Error: Parameter \"type_\" must be either 0, 1, or 2")
          return
-      temp = self.listFilesInDir(dir_,ext)
-      temp2 = []
       if type_ == 0:
          l = ("Nimin_Save1.xml","Nimin_Save2.xml","Nimin_Save3.xml","Nimin_Save5.xml","Nimin_Save6.xml","Nimin_Save7.xml","Nimin_Save9.xml","Nimin_Save10.xml","Nimin_Save11.xml","Nimin_Save1.sol","Nimin_Save2.sol","Nimin_Save3.sol","Nimin_Save5.sol","Nimin_Save6.sol","Nimin_Save7.sol","Nimin_Save9.sol","Nimin_Save10.sol","Nimin_Save11.sol")
       elif type_ == 1:
          l = ("Nimin_Save1.xml","Nimin_Save1.sol","Nimin_Save2.xml","Nimin_Save2.sol","Nimin_Save3.xml","Nimin_Save3.sol","Nimin_Save5.xml","Nimin_Save5.sol","Nimin_Save6.xml","Nimin_Save6.sol","Nimin_Save7.xml","Nimin_Save7.sol","Nimin_Save9.xml","Nimin_Save9.sol","Nimin_Save10.xml","Nimin_Save10.sol","Nimin_Save11.xml","Nimin_Save11.sol")
       else:
          l = ("Nimin_Save1.sol","Nimin_Save2.sol","Nimin_Save3.sol","Nimin_Save5.sol","Nimin_Save6.sol","Nimin_Save7.sol","Nimin_Save9.sol","Nimin_Save10.sol","Nimin_Save11.sol","Nimin_Save1.xml","Nimin_Save2.xml","Nimin_Save3.xml","Nimin_Save5.xml","Nimin_Save6.xml","Nimin_Save7.xml","Nimin_Save9.xml","Nimin_Save10.xml","Nimin_Save11.xml")
+      temp = self.listFilesInDir(dir_,ext)
+      temp2 = []
       for i in l:
          if i in temp:
             temp2.append(i)
@@ -2727,11 +2712,10 @@ class NiminFetishFantasyv0975o_fla:
       return math.floor(random.random() * 100) + 1
    def chooseFrom(self):
       #Returns a random option from self.rndArray. self.rndArray must have atleast one item in it "or else you'll get the hose".
-      #tempInt = 0
-      self.rndResult = 0
       if (self.rndArray.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
          as3.trace(f"chooseFrom: Error: self.rndArray does not contain any items. hour = {self.hour}")
+         self.rndResult = 0
          self.rndArray = as3.Array()
       else:
          self.rndResult = self.rndArray[round(random.random() * (self.rndArray.length - 1))]
@@ -4069,18 +4053,18 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    @staticmethod
-   def getdh(file:str):
+   def getdh(file):
       #Gets day and hour from XML save files to display on the save and load screens
       track = xmletree.parse(file).getroot().find('track')
       return (track.find('day').text, track.find('hour').text)
    @staticmethod
-   def getdhSOL(file:str):
+   def getdhSOL(file):
       #Gets day and hour from SOL save files to display on the save and load screens
       return sol.load(str(file))["track"][2:4] 
    @staticmethod
-   def getdhNIM(file:str):
+   def getdhNIM(file):
       #Gets day and hour from NIM save files to display on the save and load screens
-      with open(str(file), "rb") as f:
+      with open(file, "rb") as f:
          return amf3.ByteArray(f).readObject()["data"]["track"][2:4]
    def saveGo(self,ret=False):
       #Save game dialog
@@ -4138,18 +4122,17 @@ class NiminFetishFantasyv0975o_fla:
                self.doSave(4)
             elif self.buttonChoice == 8:
                temp = self.mo.getChildAttribute("savefileentry","text")
-               if temp[-4:] not in (".xml",".sol",".nim"):
+               if not temp.endswith((".xml",".sol",".nim")):
                   temp += ".xml"
                temp2 = self.savelocation / temp
-               if temp2.exists():
-                  temp1 = str(temp).split(".")[-1]
-                  if len(temp1) > 1:
-                     if temp1 == "xml":
-                        dh = self.getdh(temp2)
-                     elif temp1 == "sol":
-                        dh = self.getdhSOL(temp2)
-                     elif temp1 == "nim":
-                        dh = self.getdhNIM(temp2)
+               if temp2.is_file():
+                  temp1 = str(temp)
+                  if temp1.endswith(".xml"):
+                     dh = self.getdh(temp2)
+                  elif temp1.endswith(".sol"):
+                     dh = self.getdhSOL(temp2)
+                  elif temp1.endswith(".nim"):
+                     dh = self.getdhNIM(temp2)
                   self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.",True)
                else:
                   self.outputMainText(f"This file does not exist.\n\nAre you sure you want to save to {temp}?",True)
@@ -4157,10 +4140,10 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
                def doListen():
                   temp = self.mo.getChildAttribute("savefileentry","text")
-                  if temp[-4:] not in (".xml",".sol",".nim"):
+                  if not temp.endswith((".xml",".sol",".nim")):
                      temp += ".xml"
                   if (self.buttonChoice == 6):
-                     self.doSave(0,(self.savelocation / temp).resolve())
+                     self.doSave(0,self.savelocation / temp)
                      self.hideNewSaveLoadDialog()
                      self.showNSLDBlinder(False)
                      self.hideDiscard()
@@ -4293,16 +4276,14 @@ class NiminFetishFantasyv0975o_fla:
       #Displays the save file list in nsld
       self.mo.slb_Delete("savefileselect",0,"end")
       for i in self.nsldGetSorted():
-         temp = i.split(".")
-         temp[-1] = temp[-1].lower()
-         if len(temp) > 1:
-            if temp[-1] == "xml":
-               dh = self.getdh(self.savelocation / i)
-            elif temp[-1] == "sol":
-               dh = self.getdhSOL(self.savelocation / i)
-            elif temp[-1] == "nim":
-               dh = self.getdhNIM(self.savelocation / i)
-            self.mo.slb_Insert("savefileselect","end",f"D: {dh[0]}, H: {dh[1]} | {i}")
+         temp = i.lower()
+         if temp.endswith(".xml"):
+            dh = self.getdh(self.savelocation / i)
+         elif temp.endswith(".sol"):
+            dh = self.getdhSOL(self.savelocation / i)
+         elif temp.endswith(".nim"):
+            dh = self.getdhNIM(self.savelocation / i)
+         self.mo.slb_Insert("savefileselect","end",f"D: {dh[0]}, H: {dh[1]} | {i}")
       self.mo.children["savefileselect"].activate(0)
       self.mo.children["savefileselect"].select_set(0)
       self.nsldSetEntryFromListbox()
@@ -4383,7 +4364,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.children["savefileselect"].activate(temp + 1)
          self.mo.children["savefileselect"].see(temp + 1)
          self.nsldSetEntryFromListbox()
-   def doSave(self, slot:int, file:str=None):
+   def doSave(self, slot:int, file:PurePath=None):
       #Function to save game
       if (slot == 4):
          if self.solonlymode == True:
@@ -4391,22 +4372,22 @@ class NiminFetishFantasyv0975o_fla:
          else:
             savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("Xml File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
       elif (slot == 0):
-         savefilename = file
+         savefilename = file.resolve()
       else:
          if self.solonlymode == True:
             savefilename = self.savelocation / f"Nimin_Save{slot}.sol"
          else:
             savefilename = self.savelocation / f"Nimin_Save{slot}.xml"
-      if (type(savefilename) == tuple or len(str(savefilename)) == 0):
+      if (isinstance(savefilename,tuple) or len(str(savefilename)) == 0):
          self.saveGo()
          return
       else:
          string = f"<data><track><currentState>{self.currentState}</currentState><currentZone>{self.currentZone}</currentZone><day>{self.day}</day><hour>{self.hour}</hour><currentDayCare>{self.currentDayCare}</currentDayCare><inDungeon>{self.inDungeon}</inDungeon><currentDungeon>{self.currentDungeon}</currentDungeon><v7>{0.75}</v7></track><version><original>0.975o</original><port>{__version__}</port></version><stats><strength>{self.strength}</strength><mentality>{self.mentality}</mentality><libido>{self.libido}</libido><sensitivity>{self.sensitivity}</sensitivity><HP>{self.HP}</HP><lust>{self.lust}</lust><coin>{self.coin}</coin><strMod>{self.strMod}</strMod><mentMod>{self.mentMod}</mentMod><libMod>{self.libMod}</libMod><senMod>{self.senMod}</senMod><hunger>{self.hunger}</hunger></stats><level><SexP>{int(self.SexP)}</SexP><levelUP>{self.levelUP}</levelUP><level>{self.level}</level><babyFactLevel>{self.babyFactLevel}</babyFactLevel><bodyBuildLevel>{self.bodyBuildLevel}</bodyBuildLevel><hyperHappyLevel>{self.hyperHappyLevel}</hyperHappyLevel><alchemistLevel>{self.alchemistLevel}</alchemistLevel><fetishMasterLevel>{self.fetishMasterLevel}</fetishMasterLevel><milkMaidLevel>{self.milkMaidLevel}</milkMaidLevel><shapeshiftyLevel>{self.shapeshiftyLevel}</shapeshiftyLevel>"
-         if self.shapeshiftyFirst in (None,"None",""):
+         if self.shapeshiftyFirst == "":
             string += "<shapeshiftyFirst/>"
          else:
             string += f"<shapeshiftyFirst>{self.shapeshiftyFirst}</shapeshiftyFirst>"
-         if self.shapeshiftySecond in (None,"None",""):
+         if self.shapeshiftySecond == "":
             string += "<shapeshiftySecond/>"
          else:
             string += f"<shapeshiftySecond>{self.shapeshiftySecond}</shapeshiftySecond>"
@@ -4426,17 +4407,17 @@ class NiminFetishFantasyv0975o_fla:
          string += "</preg></data>"
          data = xmletree.fromstring(string)
          xml = xmletree.ElementTree(element=data)
-         sfext = str(savefilename).split(confmod.separator)[-1].split(".")[-1].lower() 
-         if sfext == "sol":
+         sfext = str(savefilename).lower()
+         if sfext.endswith(".sol"):
             self.toSOL(None,savefilename,xml)
-         elif sfext == "nim":
+         elif sfext.endswith(".nim"):
             self.toNim(None,savefilename,xml)
-         elif sfext == "xml":
+         elif sfext.endswith(".xml"):
             xmletree.indent(xml,space="\t")
             xml.write(savefilename,encoding="UTF-8",xml_declaration=True)
          else:
-            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.nim,.sol,.xml) got .{sfext}.")
-   def doLoad(self, slot:int, file:str=None):
+            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.nim,.sol,.xml) got .{sfext.split(confmod.separator)[-1].split('.')[-1]}.")
+   def doLoad(self, slot:int, file:PurePath=None):
       #Function to load game
       loadfilename = ""
       if (slot == 4):
@@ -4444,25 +4425,25 @@ class NiminFetishFantasyv0975o_fla:
             loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
          else:
             loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
-         if (type(loadfilename) == tuple or len(loadfilename) == 0):
+         if (isinstance(loadfilename,tuple) or len(loadfilename) == 0):
             self.loadGo()
             return #was originally "pass" but that stopped working for some reason
       elif (slot == 0):
-         loadfilename = self.resolveDir(file)
+         loadfilename = file.resolve()
       else:
          if (self.savelocation / f"Nimin_Save{slot}.xml").is_file() == True:
             loadfilename = self.savelocation / f"Nimin_Save{slot}.xml"
          else:
             loadfilename = self.savelocation / f"Nimin_Save{slot}.sol"
-      lfextension = str(loadfilename).split(".")[-1].lower()
-      if lfextension == "sol":
+      lfext = str(loadfilename).lower()
+      if lfext.endswith(".sol"):
          root = self.toXmlReturn(loadfilename)
-      elif lfextension == "nim":
+      elif lfext.endswith(".nim"):
          root = self.toXmlReturnNIM(loadfilename)
-      elif lfextension == "xml":
+      elif lfext.endswith(".xml"):
          root = xmletree.parse(loadfilename).getroot()
       else:
-         as3.trace(f"SaveFile Loader: Error: Incorrect save file format. Expected (.nim,.sol,.xml) got .{lfextension}.")
+         as3.trace(f"SaveFile Loader: Error: Incorrect save file format. Expected (.nim,.sol,.xml) got .{lfext.split(".")[-1]}.")
          self.loadGo(message="Error: Could not load save file. Reason: Incorrect file format")
          return #was originally "pass" but that stopped working for some reason
       if root == None:
