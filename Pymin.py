@@ -1543,10 +1543,6 @@ class NiminFetishFantasyv0975o_fla:
       else:
          path.mkdir(parents=True)
    @staticmethod
-   def resolveDir(dir_):
-      #Alias for pathlib.Path(directory).resolve() + convert to string
-      return str(Path(dir_).resolve())
-   @staticmethod
    def listFilesInDir(dir_, ext:tuple=None, sort=None):
       """
       Lists all files with extension "ext" in directory "dir_" with the sorting of "sort"
@@ -2111,15 +2107,15 @@ class NiminFetishFantasyv0975o_fla:
       data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><interfaceToggles>{tempintertoggle}</interfaceToggles><themeType>{self.themeType}</themeType></prefs>")
       xml = xmletree.ElementTree(element=data)
       xmletree.indent(xml,space="\t")
-      xml.write(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml"),encoding="UTF-8",xml_declaration=True)
+      xml.write((self.dir / "Nimin_Prefs.xml").resolve(),encoding="UTF-8",xml_declaration=True)
    def loadPreferences(self):
-      if Path(f"{self.dir}/Nimin_Prefs.xml").is_file():
+      if (self.dir / "Nimin_Prefs.xml").is_file():
          sp = False
-         prefs = xmletree.parse(self.resolveDir(f"{self.dir}/Nimin_Prefs.xml")).getroot()
-         temptheme = f'{prefs.find("theme").text}'
+         prefs = xmletree.parse((self.dir / "Nimin_Prefs.xml").resolve()).getroot()
+         temptheme = prefs.find("theme").text
          self.fontSize = int(prefs.find("fontSize").text)
          self.fontBold = strtobool(prefs.find("fontBold").text)
-         tempfontColor = f'{prefs.find("fontColor").text}'
+         tempfontColor = prefs.find("fontColor").text
          if (self.checkValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
             if (temptheme.isdecimal() and len(temptheme) == 1):
                self.theme = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[int(temptheme)]
@@ -2135,7 +2131,7 @@ class NiminFetishFantasyv0975o_fla:
             sp = True
          else:
             if self.isValidDirectory(prefs.find("saveLocation").text,confmod.separator):
-               self.savelocation = Path(f"{prefs.find('saveLocation').text}").resolve()
+               self.savelocation = Path(prefs.find('saveLocation').text).resolve()
             else:
                as3.trace("Preference Loader: Error: saveLocation is not a valid path. Default value will be used instead.")
                self.savelocation = self.dir / "nimin_saves"
@@ -2148,10 +2144,10 @@ class NiminFetishFantasyv0975o_fla:
             self.fixedresolutionmode = strtobool(prefs.find("fixedResMode").text)
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
             self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
-            self.ofontcolor = f"{prefs.find('oFontColor').text}"
+            self.ofontcolor = prefs.find('oFontColor').text
             self.customthemecolor = strtobool(prefs.find("customThemeColor").text)
             self.mo.configureChild("themebutton",state=self.boolToState(self.inv(self.customthemecolor)))
-            self.othemecolor = f"{prefs.find('oThemeColor').text}"
+            self.othemecolor = prefs.find('oThemeColor').text
          if prefs.find("debugTweaks") == None:
             sp = True
          else:
