@@ -1464,11 +1464,8 @@ class NiminFetishFantasyv0975o_fla:
                for i in tempname:
                   if i in WIN_BlacklistedChars:
                      return False
-               #invalid if last character is " " or "."
-               if tempname[-1] in {" ","."}:
-                  return False
-               #invalid if name is blacklisted and if name before a period is blacklisted
-               if tempname.split(".")[0] in WIN_BlacklistedNames:
+               #invalid if last character is " " or "." or if name or name before a period is blacklisted
+               if tempname.endswith(" ",".") or tempname.split(".")[0] in WIN_BlacklistedNames:
                   return False
                temp = temp.parent
             #Check drive letter
@@ -1491,14 +1488,14 @@ class NiminFetishFantasyv0975o_fla:
             #convert path to uppercase since windows is not cas sensitive
             directory = directory.upper()
             #remove trailing path separator
-            if directory[-1:] == separator:
+            if directory[-1] == separator:
                directory = directory[:-1]
             #remove drive letter or server path designator
             if directory[0].isalpha() and directory[1] == ":" and directory[2] == separator:
                directory = directory[3:]
-            elif directory[:2] == "\\\\":
+            elif directory.startswith("\\\\"):
                directory = directory[2:]
-            elif directory[:2] == f".{separator}":
+            elif directory.startswith(f".{separator}"):
                directory = directory[-(len(directory)-2):]
             #split path into each component
             dirlist = directory.split(separator)
@@ -1507,22 +1504,19 @@ class NiminFetishFantasyv0975o_fla:
                for j in i:
                   if j in WIN_BlacklistedChars:
                      return False
-               #invalid if last character is " " or "."
-               if i[-1:] in {" ","."}:
-                  return False
-               #invalid if name is blacklisted and if name before a period is blacklisted
-               if i.split(".")[0] in WIN_BlacklistedNames:
+               #invalid if last character is " " or "." or if name or name before a period is blacklisted
+               if i.endswith(" ",".") or i.split(".")[0] in WIN_BlacklistedNames:
                   return False
          elif confmod.platform in {"Linux","Darwin"}:
             #remove trailing path separator
-            if directory[-1:] == separator:
+            if directory[-1] == separator:
                directory = directory[:-1]
-            elif directory[-2:] == f"{separator}.":
+            elif directory.endswith(f"{separator}."):
                directory = directory[:-2]
             #remove starting path separator
-            if directory[:1] == separator:
+            if directory[0] == separator:
                directory = directory[-(len(directory)-1):]
-            elif directory[:2] in {f".{separator}",f"~{separator}"}:
+            elif directory.startswith(f".{separator}",f"~{separator}"):
                directory = directory[-(len(directory)-2):]
             dirlist = directory.split(separator)
             for i in dirlist:
