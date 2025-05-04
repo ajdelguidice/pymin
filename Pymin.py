@@ -87,7 +87,7 @@ class ButtonList(list):
    def set(self,*args):
       if len(args) == 12:
          for i in range(12):
-            self[i] = args[i]
+            self[i+1] = args[i]
 
 def applyBackspace(string):
    #From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
@@ -2299,12 +2299,12 @@ class NiminFetishFantasyv0975o_fla:
                      self.viewAmount(i,False)
    def choiceListBlanks(self):
       #if self.inBag == False and self.inStash == False:
-      if not self.inBag and not self.inStash:
-         dlist = [1,2,3,5,6,7,9,10,11]
-         for i in range(1,12):
-            if self.buttonsVisible[i] and i not in (4,8):
-               dlist.remove(i)
-         self.disableSelectedButtons(dlist)
+      if not (self.inBag or self.inStash):
+         #dlist = [1,2,3,5,6,7,9,10,11]
+         #for i in range(1,12):
+         #   if self.buttonsVisible[i] and i not in (4,8):
+         #      dlist.remove(i)
+         self.disableSelectedButtons(i for i in (1,2,3,5,6,7,9,10,11) if not self.buttonsVisible[i])
       elif self.mts or self.mtb:
          self.enableAllButtons()
    def choiceListSelect(self, which:str, hideAmountOverride=False):
@@ -8444,7 +8444,7 @@ class NiminFetishFantasyv0975o_fla:
       tempArray = as3.Array(4, "Buy", 8, "Sell", 12, "Return")
       dlist = []
       for i in range(1,12):
-         if i not in (4,8,12):
+         if i not in {4,8}:
             tempArray.push(i,self.itemName(self.goodsID(i)))
             if (self.itemName(self.goodsID(i)) == " "):
                dlist.append(i)
@@ -8690,8 +8690,8 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
       tempArray = as3.Array(4, "Buy", 12, "Return")
       dlist = []
-      for i in range(1, 12):
-         if i not in (4,8,12):
+      for i in range(1,12):
+         if i not in {4,8}:
             tempArray.push(i,self.itemName(self.dyeID(i)))
             if (self.itemName(self.dyeID(i)) == " "):
                dlist.append(i)
@@ -8764,7 +8764,7 @@ class NiminFetishFantasyv0975o_fla:
       dlist = []
       tempArray = as3.Array(4, "Buy", 12, "Return")
       for i in range(1,12):
-         if i not in (4,8,12):
+         if i not in {4,8}:
             tempArray.push(i,self.apothName(self.apothID(i)))
             if (self.apothName(self.apothID(i)) == ""):
                dlist.append(i)
@@ -9082,7 +9082,7 @@ class NiminFetishFantasyv0975o_fla:
       dlist = []
       tempArray = as3.Array(4, "Buy", 12, "Return")
       for i in range(1,12):
-         if i not in (4,8,10,12):
+         if i not in {4,8,10}:
             tempArray.push(i,self.hairstyleName(self.hairstyleID(i)))
             if (self.hairstyleName(self.hairstyleID(i)) == ""):
                dlist.append(i)
@@ -25712,7 +25712,7 @@ class NiminFetishFantasyv0975o_fla:
             self.customhtmlparser = True
          except:
             self.customhtmlparser = False
-            as3.trace("Wiki: Error: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
+            as3.trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
          self.wikiwindow.configureChild("text",background=self.theme,foreground=self.fontColor)
          self.wikimenuroot = ("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close")
          self.basmenu = ("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back")
@@ -25777,8 +25777,7 @@ class NiminFetishFantasyv0975o_fla:
          case 68 | 39 | 102 | 13: #d,→,numPad6,enter
             self.selectMenuOption()
    def _wikiclose(self, *e):
-      e = e[0]
-      if e.widget == self.wikiwindow.children["root"]:
+      if e[0].widget == self.wikiwindow.children["root"]:
          self.wikiOpen = False
    def _wikidestroy(self, *e):
       self.wikiwindow.endProcess()
