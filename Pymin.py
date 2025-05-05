@@ -20,8 +20,7 @@ from re import sub
 
 __version__ = "1.0.10"
 
-class NullData(Exception):
-   ...
+class NullData(Exception):...
 
 def repintorfloat(number):
    """
@@ -30,14 +29,13 @@ def repintorfloat(number):
       1.05 should be displayed as a float
       1.00 should be displayed as an integer
    """
-   if type(number) == str:
-      number = float(number)
-   elif type(number) == int:
+   if isinstance(number,int):
       return number
+   if isinstance(number,str):
+      number = float(number)
    if number.is_integer():
       return int(number)
-   else:
-      return number
+   return number
 def strtobool(a:str):
    """
    Converts a string to a boolean
@@ -45,7 +43,7 @@ def strtobool(a:str):
    low = a.lower()
    if low == "true":
       return True
-   elif low == "false":
+   if low == "false":
       return False
 def strtolist(a:str):
    """
@@ -1529,11 +1527,10 @@ class NiminFetishFantasyv0975o_fla:
                      return False
       return True
    @staticmethod
-   def checkExistsMakeDir(dir_, silent=False):
+   def checkExistsMakeDir(path, silent=False):
       """
       Checks if a directory exists, creates it if not
       """
-      path = Path(dir_)
       if path.exists():
          if path.is_dir():
             return 1
@@ -1552,7 +1549,8 @@ class NiminFetishFantasyv0975o_fla:
       files = [str(f.name) for f in dir_.iterdir() if (dir_ / f).is_file()]
       #if extension is specified, remove extension that aren't included
       if ext != None:
-         files = [i for i in files if (i.find(".") == -1 and "" in ext) or i.endswith(ext)]
+         #files = [i for i in files if (i.find(".") == -1 and "" in ext) or i.endswith(ext)]
+         files = [i for i in files if ("." not in i and "" in ext) or i.endswith(ext)]
       #if sort order is specified, use it
       if sort != None:
          return sorted(files, key=sort)
@@ -4291,7 +4289,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.newSLDialogVisible == False:
          temp = self.getColours()
          self.clearTextAllButtons()
-         self.mo.addScrolledListbox("display","savefileselect",200,30,460,162-8,self.font,"nw",True,12)
+         self.mo.addScrolledListbox("display","savefileselect",200,30,460,154,self.font,"nw",True,12)
          self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
          self.mo.children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
          self.mo.children["savefileselect"].bind("<Double-Button-1>",self.buttonEvent8)
