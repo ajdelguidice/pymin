@@ -160,6 +160,7 @@ class NiminFetishFantasyv0975o_fla:
       self.othemecolor = "#FFFFFF" #original theme color from before custom theme color was applied
       self.themeType = 0 #Theme type for interfacetoggles
       self.changeNGButtonOverride = False #Refreshes the newgame button in OWSaveOptions even if conditions aren't met
+      self.cmdOpenConverter = False #Tracks whether the save file converter has been opened directly from the command line
 
       #Window open variables
       self.debugWinOpen = False #debug window
@@ -2186,10 +2187,11 @@ class NiminFetishFantasyv0975o_fla:
             self.showSidePanel()
       if sp == True:
          self.savePreferences()
-      self.toggleTextboxBorders(self.interfacetoggles[1])
-      self.applyFixedResolution()
-      self.updateText()
-      self.updateTheme()
+      if self.cmdOpenConverter == False:
+         self.toggleTextboxBorders(self.interfacetoggles[1])
+         self.applyFixedResolution()
+         self.updateText()
+         self.updateTheme()
    def outputMainText(self, texts:str, reset:bool, *textCheck):
       if (reset == True):
          self.clearAddMain(texts)
@@ -25055,7 +25057,10 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("moveitemamount",text="")
    def openSFC(self):
       if self.sfcopen == False:
-         self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,False,False,True)
+         if self.cmdOpenConverter:
+            self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,True,False,True)
+         else:
+            self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,False,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
          self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman',20, 'bold'),"n")
@@ -25085,11 +25090,14 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
          self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim")
          self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
-
-         self.sfcwindow.children["root"].transient(self.mo.children["root"])
+         
+         if self.cmdOpenConverter == False:
+            self.sfcwindow.children["root"].transient(self.mo.children["root"])
          self.sfcwindow.addButton("display","convertbutton",386,270,64,24,("TimesNewRoman",12),"nw")
          self.sfcwindow.configureChild("convertbutton",text="Convert",foreground=self.fontColor,background=self.theme,command=self.convertButton)
          self.sfcopen = True
+         if self.cmdOpenConverter:
+            self.sfcwindow.mainloop()
       else:
          self.sfcwindow.children["root"].lift()
    def closeSFC(self,e):
@@ -27327,7 +27335,7 @@ class NiminFetishFantasyv0975o_fla:
 if __name__ == "__main__":
    from sys import argv
    if "-h" in argv or "--help" in argv or "/?" in argv:
-      print("Usage: python Pymin.py [options]\nOptions:\n-h --help\t: Prints this message and exits\n-d --debug\t: Runs the program in as3lib debug mode\n-n --nostart\t: Prevents the game from initializing and displays all elements on the screen")
+      print("Usage: python Pymin.py [options]\nOptions:\n-h --help\t: Prints this message and exits\n-d --debug\t: Runs the program in as3lib debug mode\n-n --nostart\t: Prevents the game from initializing and displays all elements on the screen\n-C --convert\t: Opens savefile converter instead of the game")
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
       as3.EnableDebug()
@@ -27336,4 +27344,13 @@ if __name__ == "__main__":
    mainobject = NiminFetishFantasyv0975o_fla()
    if "-n" in argv or "--nostart" in argv or "/N" in argv:
       mainobject.debugNoStart = True
-   mainobject.MainTimeline()
+   if "--converter" in argv or "-C" in argv or "/C" in argv:
+      class dummyObject:
+         def configureChild(*args,**kargs):...
+      mainobject.cmdOpenConverter = True
+      mainobject.mo = dummyObject()
+      mainobject.initinterface = True
+      mainobject.loadPreferences()
+      mainobject.openSFC()
+   else:
+      mainobject.MainTimeline()
