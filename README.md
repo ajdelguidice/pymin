@@ -3,7 +3,7 @@
 | <a href="https://www.furaffinity.net/view/12638483/">Original game</a> | <a href="https://github.com/ajdelguidice/nimin-source">Game source code</a> |
 <br><br><b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about.
 <br><br>Version 1.0.7 - 1.0.11 require Python>=3.10.
-<br>Version 1.0.11+ require Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a>
+<br>Version 1.0.12+ require Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a>
 <br>Please read the first section of the <a href="https://github.com/ajdelguidice/python-as3lib/blob/main/README.md">readme for as3lib</a> as well before using.
 <br><br>I made this port because I really like the game. I made it mostly for personal use so it only includes quality of life improvements and bug fixes. I will not be developing the game content any further and do not claim any part of the original game as my own. Just plop your original save files into the nimin_saves directory that the game creates on first launch and start playing like you would the original. I plan on making the interface look more like the original but more on that later.
 <br><br>Virtual environments are the best way to run this program. I have made a script to set everything up, please use it. It has <a href="https://github.com/astral-sh/uv">uv</a> support built in, but enabling it requires you to pass an arguement (either --uv-global or --uv-local). On Unix, if python's minor verion (the X in 3.X.Y) changes, you must run the venvscript's update command as python installs packages in version specific locations and creates version specific binaries for c modules.
