@@ -17,7 +17,11 @@ except:
    from as3lib.py_backports import deprecated
 from secrets import choice
 from re import sub
-import tomllib
+try:
+   import tomllib
+except:
+   import tomli as tomllib
+import tomli_w
 
 __version__ = "1.0.10"
 
@@ -2147,10 +2151,14 @@ class NiminFetishFantasyv0975o_fla:
          tempintertoggle = self.interfacetoggles
       else:
          tempintertoggle = self.tempinterfacetoggles
-      data = xmletree.fromstring(f"<prefs><theme>{self.theme}</theme><fontSize>{self.fontSize}</fontSize><fontBold>{self.fontBold}</fontBold><fontColor>{self.fontColor}</fontColor><showSide>{self.showSide}</showSide><saveLocation>{self.savelocation}</saveLocation><solMode>{self.solonlymode}</solMode><fixedResMode>{self.fixedresolutionmode}</fixedResMode><customFontColor>{self.customfontcolor}</customFontColor><oFontColor>{self.ofontcolor}</oFontColor><customThemeColor>{self.customthemecolor}</customThemeColor><oThemeColor>{self.othemecolor}</oThemeColor><nsldSortOrder>{self.nsldSortOrder}</nsldSortOrder><gameTweaks>{self.gametweaks}</gameTweaks><debugTweaks>{self.debugtweaks}</debugTweaks><interfaceToggles>{tempintertoggle}</interfaceToggles><themeType>{self.themeType}</themeType></prefs>")
-      xml = xmletree.ElementTree(element=data)
-      xmletree.indent(xml,space="\t")
-      xml.write((self.dir / "Nimin_Prefs.xml").resolve(),encoding="UTF-8",xml_declaration=True)
+      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3]},"grammar":{"respectShowBalls":False,"femmeboyToFemboy":False,"shemaleToFuta":False,"ngrammar":False,"femmieMaleReplacement":0,"femboyishToGirly":False,"snuggleBallTweak":False},"gameTweaks":{"grammarTweaks":self.gametweaks[0],"statusTweaks":self.gametweaks[1],"succubusLeavesOne":self.gametweaks[2],"useIsBottomOpen":self.gametweaks[3],"lizanDontShowBalls":self.gametweaks[4],"useExpandedSaveDialog":self.gametweaks[5],"hermGetsBoth":self.gametweaks[6],"intBallsEffectBelly":self.gametweaks[7],"directPathToSanc":self.gametweaks[8],"correctBeastRaceFeet":self.gametweaks[9],"useNewStash":self.gametweaks[10],"miscChanges":self.gametweaks[11]},"debugTweaks":{"chooseSenario":self.debugtweaks[0],"noDamage":self.debugtweaks[1]}}
+      try:
+         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\n\n[grammar]\nrespectShowBalls = false\nfemmeboyToFemboy = false\nshemaleToFuta = false\nngrammar = false\nfemmieMaleReplacement = 0\nfemboyishToGirly = false\nsnuggleBallTweak = false\n\n[gameTweaks]\ngrammarTweaks = {str(self.gametweaks[0]).lower()}\nstatusTweaks = {str(self.gametweaks[1]).lower()}\nsuccubusLeavesOne = {str(self.gametweaks[2]).lower()}\nuseIsBottomOpen = {str(self.gametweaks[3]).lower()}\nlizanDontShowBalls = {str(self.gametweaks[4]).lower()}\nuseExpandedSaveDialog = {str(self.gametweaks[5]).lower()}\nhermGetsBoth = {str(self.gametweaks[6]).lower()}\nintBallsEffectBelly = {str(self.gametweaks[7]).lower()}\ndirectPathToSanc = {str(self.gametweaks[8]).lower()}\ncorrectBeastRaceFeet = {str(self.gametweaks[9]).lower()}\nuseNewStash = {str(self.gametweaks[10]).lower()}\nmiscChanges = {str(self.gametweaks[11]).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugtweaks[0]).lower()}\nnoDamage = {str(self.debugtweaks[1]).lower()}\n'
+         with (self.dir / "Nimin_Prefs.toml").open("wb") as f:
+            tomli_w.dump(temp,f)
+      except AssertionError:
+         as3.trace(tomli_w.dumps(temp))
+         as3.trace("savePreferences: Error: File failed write check, aborting to prevent data loss.")
    def loadPreferences(self):
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():

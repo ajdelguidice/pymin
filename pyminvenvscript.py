@@ -326,7 +326,11 @@ if platform.system() == "Windows": #Windows check
 else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
-runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools"]
+runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
+try:
+    import tomllib
+except:
+    runlist.append("tomli")
 
 if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
     updatePythonVersion(pyinstalversion)
