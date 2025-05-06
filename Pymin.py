@@ -17,6 +17,7 @@ except:
    from as3lib.py_backports import deprecated
 from secrets import choice
 from re import sub
+import tomllib
 
 __version__ = "1.0.10"
 
@@ -2151,8 +2152,54 @@ class NiminFetishFantasyv0975o_fla:
       xmletree.indent(xml,space="\t")
       xml.write((self.dir / "Nimin_Prefs.xml").resolve(),encoding="UTF-8",xml_declaration=True)
    def loadPreferences(self):
-      if (self.dir / "Nimin_Prefs.xml").is_file():
-         sp = False
+      sp = False
+      if (self.dir / "Nimin_Prefs.toml").is_file():
+         with (self.dir / "Nimin_Prefs.toml").open("rb") as f:
+            temp = tomllib.load(f)
+         game = temp.get("game",{})
+         self.fontSize = game.get("fontSize",11)
+         self.fontBold = game.get("fontBold",False)
+         tempTheme = game.get("theme","#FFFFFF")
+         tempFontColor = game.get("fontColor","#000000")
+         if self.checkValidHex(tempTheme) and self.checkValidHex(tempFontColor):
+            self.theme = tempTheme
+            self.fontColor = tempFontColor
+         else:
+            sp = True
+         self.showSide = game.get("showSide",True)
+         self.nsldSortOrder = game.get("nsldSortOrder",0)
+         options = temp.get("options",{})
+         tempdir = Path(options.get("saveLocation"))
+         if self.isValidDirectory(tempdir,confmod.separator):
+            self.savelocation = tempdir.resolve()
+         else:
+            as3.trace("Preference Loader: Error: saveLocation is not a valid path. Default value will be used instead.")
+            self.savelocation = self.dir / "nimin_saves"
+            sp = True
+         self.solonlymode = options.get("solMode",False)
+         self.fixedresolutionmode = options.get("fixedResMode",False)
+         self.customfontcolor = options.get("customFontColor",False)
+         self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
+         self.ofontcolor = options.get("oFontColor","#FFFFFF")
+         self.customthemecolor = options.get("customThemeColor",False)
+         self.mo.configureChild("themebutton",state=self.boolToState(self.inv(self.customthemecolor)))
+         self.othemecolor = options.get("oThemeColor","#000000")
+         interface = temp.get("interface",{})
+         self.themeType = interface.get("themeType",0)
+         tempitoggles = [interface.get("originalButtonColors",False),interface.get("scrolledTextBorders",False),interface.get("originalNewGameButtonSize",False),interface.get("staticDoLevelUPButtons",False)]
+         if self.themeType == 0:
+            self.interfacetoggles = tempitoggles
+         else:
+            self.interfacetoggles = [True,False,True,False]
+            self.tempinterfacetoggles = tempitoggle
+         #!load grammar
+         grammar = temp.get("grammar",{})
+         #!Get rid of grammartweaks variable
+         gt = temp.get("gameTweaks",{})
+         self.gametweaks = [gt.get("grammarTweaks",False),gt.get("statusTweaks",False),gt.get("succubusLeavesOne",False),gt.get("useIsBottomOpen",False),gt.get("lizanDontShowBalls",False),gt.get("useExpandedSaveDialog",False),gt.get("hermGetsBoth",False),gt.get("intBallsEffectBelly",False),gt.get("directPathToSanc",False),gt.get("correctBeastRaceFeet",False),gt.get("useNewStash",False),gt.get("miscChanges",False)]
+         dt = temp.get("debugTweaks",{})
+         self.debugtweaks = [dt.get("chooseSenario",False),dt.get("noDamage",False)]
+      elif (self.dir / "Nimin_Prefs.xml").is_file():
          prefs = xmletree.parse((self.dir / "Nimin_Prefs.xml").resolve()).getroot()
          temptheme = prefs.find("theme").text
          self.fontSize = int(prefs.find("fontSize").text)
