@@ -169,7 +169,7 @@ def replaceTkhtmlviewParserWithUnsafeOne():
 def updatePythonVersion(pyver):
     global c2
     answer = input("(Not Implemented) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)")
-    #if answer.lower() in ("y",""):
+    #if answer.lower() in {"y","")}
     if False:
         """
         tempsettings = []
@@ -188,18 +188,16 @@ def updatePythonVersion(pyver):
         #move saved files back to venv
         #save persistent variables
         """
-        if platform.system() == "Windows":
-            ...
-        else:
-            (venvpath / f"bin/python{".".join(pyver.split(".")[:2])}").unlink()
-            (venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
-            (venvpath / "bin/python").unlink()
-            rmtree(venvpath / f"lib/python{".".join(pyver.split(".")[:2])}")
-            run([*pythonm,"venv","--upgrade",venvpath]) #!Will not work because python was unlinked
-            installmodules()
-            c2["Options"]["pyInstalledVersion"] = platform.python_version()
-
-
+        #(venvpath / f"bin/python{".".join(pyver.split(".")[:2])}").unlink()
+        #(venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
+        #(venvpath / "bin/python").unlink()
+        rmtree(venvpath / f"lib/python{".".join(pyver.split(".")[:2])}")
+        run([*pythonm,"venv","--upgrade",venvpath])
+        temp = devenv
+        devenv = False
+        installmodules()
+        devenv = temp
+        c2["Options"]["pyInstalledVersion"] = platform.python_version()
 
 def repairInstall():
     answer = input("Python failed to launch. Would you like to try automated repair? (y/N)")
@@ -330,7 +328,7 @@ else:
 pythonm = [pythonvenvloc, "-m"]
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools"]
 
-if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2]:
+if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
     updatePythonVersion(pyinstalversion)
 try:
     if venvpath.exists():
@@ -340,7 +338,7 @@ except:
     exit() #!for some reason, this does not exit
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
-elif len(args) < 2 or 1 in (args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")) or 1 in (args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("run")) and 2 in (args.indexOf("--help"),args.indexOf("-h")):
+elif len(args) < 2 or 1 in (args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")) or 1 in (args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("update")) and 2 in (args.indexOf("--help"),args.indexOf("-h")):
     print("venvscript {install|update|run|cmd|recreate|uv} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--help\t\t\tDisplays this message\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--overwrite\t\tBypasses the overwrite restriction in the \"install\" command\n\t--migrate-config\tMigrates the config from a previous version to the current one. This should run automatically if an old version is detected.")
 else:
     if args[1] in {"install","recreate","update","rezero"} or args[1][:2] == "--":
