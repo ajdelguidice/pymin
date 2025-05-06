@@ -999,6 +999,84 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = str(self.savelocation.resolve())
 
 
+         #Interface page
+         self.optionswindow.addNBFrame("nb","if",420,207,"Interface")
+         self.optionswindow.configureChild("if",background=self.theme)
+         
+         ##Original Button Colours
+         self.optionswindow.addCheckboxWithLabel("if","OBC",10,10,164,20,("TimesNewRoman",11),"nw","Original Button Colours")
+         self.optionswindow.configureChild("OBC",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
+         
+         ##Show scrolledText Borders
+         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
+         self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders which are disabled to match\nthe original game. This toggle re-enables them.")
+         
+         ##Original new game button size
+         self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original size for new game button")
+         self.optionswindow.configureChild("newgameoriginalsize",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
+         
+         ##Static buttons in doLevelUP
+         self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",10,76,187,20,("TimesNewRoman",11),"nw","Static doLevelUP buttons")
+         self.optionswindow.configureChild("doLevelUPStaticButtons",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes the buttons in doLevelUP not move around depending on what is being\ndisplayed.")
+         
+         ##Theme selection
+         self.optionswindow.addLabelWithRadioButtons("if","ThemeType",10,98,100,70,("TimesNewRoman",11),"nw",2)
+         self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
+         self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
+         self.optionswindow.children["ThemeType"].radiobuttons[0]["command"] = partial(self.themeTypeSelect,0)
+         self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = partial(self.themeTypeSelect,1)
+         self.optionswindow.children["ThemeType"].selected = 0
+         CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
+
+
+         #Grammar page
+         self.optionswindow.addNBFrame("nb","gs",420,207,"Grammar")
+         self.optionswindow.configureChild("gs",background=self.theme)
+         
+         self.optionswindow.addCheckboxWithLabel("gs","showBalls",10,10,144,20,("TimesNewRoman",11),"nw","Respect showBalls")
+         self.optionswindow.configureChild("showBalls",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["showBalls"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described.")
+         
+         self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",10,32,160,20,("TimesNewRoman",11),"nw","Femme-boy -> Femboy")
+         self.optionswindow.configureChild("femmeboytofemboy",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
+         
+         self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",10,54,144,20,("TimesNewRoman",11),"nw","Shemale -> Futanari")
+         self.optionswindow.configureChild("shemaletofuta",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
+         
+         self.optionswindow.addCheckboxWithLabel("gs","ngrammar",10,76,144,20,("TimesNewRoman",11),"nw","Use n-grammar")
+         self.optionswindow.configureChild("ngrammar",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
+         
+         #!These two should be radiobuttons
+         #!Fix the formatting of this one
+         #!Add a way to turn this off
+         #self.optionswindow.addCheckboxWithLabel("gs","femmiemaletofemininemale",10,98,180,20,("TimesNewRoman",11),"nw","femmie male -> feminine male")
+         #self.optionswindow.configureChild("femmiemaletofemininemale",background=self.theme,foreground=self.fontColor)
+         #CreateToolTip(self.optionswindow.children["femmiemaletofemininemale"].frame,text="This should be a radiobutton")
+         
+         #self.optionswindow.addCheckboxWithLabel("gs","femmiemaletofemboy",10,120,164,20,("TimesNewRoman",11),"nw","femmie male -> femboy")
+         #self.optionswindow.configureChild("femmiemaletofemboy",background=self.theme,foreground=self.fontColor)
+         #CreateToolTip(self.optionswindow.children["femmiemaletofemboy"].frame,text="This should be a radiobutton")
+         
+         self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",10,142,144,20,("TimesNewRoman",11),"nw","femboyish -> girly")
+         self.optionswindow.configureChild("femboyishtogirly",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
+         
+         self.optionswindow.addCheckboxWithLabel("gs","snuggleball",200,10,144,20,("TimesNewRoman",11),"nw","Snuggleball change")
+         self.optionswindow.configureChild("snuggleball",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="")
+         
+         #self.optionswindow.addCheckboxWithLabel("gs","showBalls",200,32,144,20,("TimesNewRoman",11),"nw","Respect showBalls")
+         #self.optionswindow.configureChild("showBalls",background=self.theme,foreground=self.fontColor)
+         #CreateToolTip(self.optionswindow.children["showBalls"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described.")
+
          #Game Tweaks page
          self.optionswindow.addNBFrame("nb","gt",420,207,"Game Tweaks")
          self.optionswindow.configureChild("gt",background=self.theme)
@@ -1062,41 +1140,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
          self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
-
-         
-         #Interface page
-         self.optionswindow.addNBFrame("nb","if",420,207,"Interface")
-         self.optionswindow.configureChild("if",background=self.theme)
-         
-         ##Original Button Colours
-         self.optionswindow.addCheckboxWithLabel("if","OBC",10,10,164,20,("TimesNewRoman",11),"nw","Original Button Colours")
-         self.optionswindow.configureChild("OBC",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
-         
-         ##Show scrolledText Borders
-         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
-         self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders which are disabled to match\nthe original game. This toggle re-enables them.")
-         
-         ##Original new game button size
-         self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original size for new game button")
-         self.optionswindow.configureChild("newgameoriginalsize",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
-         
-         ##Static buttons in doLevelUP
-         self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",10,76,187,20,("TimesNewRoman",11),"nw","Static doLevelUP buttons")
-         self.optionswindow.configureChild("doLevelUPStaticButtons",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes the buttons in doLevelUP not move around depending on what is being\ndisplayed.")
-         
-         ##Theme selection
-         self.optionswindow.addLabelWithRadioButtons("if","ThemeType",10,98,100,70,("TimesNewRoman",11),"nw",2)
-         self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
-         self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
-         self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
-         self.optionswindow.children["ThemeType"].radiobuttons[0]["command"] = partial(self.themeTypeSelect,0)
-         self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = partial(self.themeTypeSelect,1)
-         self.optionswindow.children["ThemeType"].selected = 0
-         CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
          
          
          if confmod.as3DebugEnable:
