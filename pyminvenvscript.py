@@ -410,7 +410,6 @@ else:
     elif args[1] == "run":
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[2:]))
     elif args[1] == "conv":
-        print("Broken")
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", "--converter"))
     elif args[1] == "cmd":
         ...
