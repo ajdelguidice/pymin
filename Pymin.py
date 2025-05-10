@@ -621,10 +621,10 @@ class NiminFetishFantasyv0975o_fla:
       self.crfont = ("TimesNewRoman", 20, "bold")
       
       self.style = ttk.Style(self.mo.children["root"])
-
-      #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/pymin.tcl')
-      self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
-      self.style.theme_use("nimin")
+      if (self.dir / "nimintheme").is_dir():
+         #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/pymin.tcl')
+         self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
+         self.style.theme_use("nimin")
 
       #key bindings
       self.mo.children["root"].bind('<KeyPress>',self.keypress)
