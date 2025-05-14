@@ -154,7 +154,7 @@ class NiminFetishFantasyv0975o_fla:
       self.dir = scriptdirectory
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
-      self.gametweaks = [False,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
+      self.gametweaks = [None,False,False,False,False,False,False,False,False,False,False,False] #[Grammar(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), useOldSaveLoadDialog(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), UseNewStash(10), MiscChanges(11)]
       self.interfacetoggles = [False,False,False,False] #[OriginalButtonColour(0),ScrolledTextBorders(1),OriginalNewGameButton(2),doLevelUPStaticButtons(3)]
       self.tempinterfacetoggles = [] #Temporary storage for interface toggles while nimin theme type is selected
       self.debugtweaks = [False,False] #[alwaysChooseSenario(0), takeNoDamage(1)]
@@ -166,6 +166,16 @@ class NiminFetishFantasyv0975o_fla:
       self.themeType = 0 #Theme type for interfacetoggles
       self.changeNGButtonOverride = False #Refreshes the newgame button in OWSaveOptions even if conditions aren't met
       self.cmdOpenConverter = False #Tracks whether the save file converter has been opened directly from the command line
+      
+      #Grammar Tweaksa
+      self.respectShowBalls = False
+      self.femmeboyToFemboy = False
+      self.shemaleToFuta = False
+      self.ngrammar = False
+      self.femmieMaleReplacement = 0 #0-None, 1-femininemale, 2-femboy
+      self.femboyishToGirly = False
+      self.snuggleBallTweak = False
+      self.grammarFixes = False
 
       #Window open variables
       self.debugWinOpen = False #debug window
@@ -1078,9 +1088,9 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("snuggleball",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="")
          
-         #self.optionswindow.addCheckboxWithLabel("gs","showBalls",200,32,144,20,("TimesNewRoman",11),"nw","Respect showBalls")
-         #self.optionswindow.configureChild("showBalls",background=self.theme,foreground=self.fontColor)
-         #CreateToolTip(self.optionswindow.children["showBalls"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described.")
+         self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",200,32,144,20,("TimesNewRoman",11),"nw","Grammar Fixes")
+         self.optionswindow.configureChild("grammarMisc",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
 
          #Game Tweaks page
          self.optionswindow.addNBFrame("nb","gt",420,207,"Game Tweaks")
@@ -1224,8 +1234,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["Theme"].select()
       if self.customthemecolor == True:
          self.optionswindow.children["FontColor"].select()
-      if self.gametweaks[0] == True:
-         self.optionswindow.children["GrammarTweaks"].select()
       if self.gametweaks[1] == True:
          self.optionswindow.children["StatusTweaks"].select()
       if self.gametweaks[2] == True:
@@ -1256,6 +1264,25 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["newgameoriginalsize"].select()
       if self.interfacetoggles[3] == True:
          self.optionswindow.children["doLevelUPStaticButtons"].select()
+      if self.respectShowBalls:
+         self.optionswindow.children["showBalls"].select()
+      if self.femmeboyToFemboy:
+         self.optionswindow.children["femmeboytofemboy"].select()
+      if self.shemaleToFuta:
+         self.optionswindow.children["shemaletofuta"].select()
+      if self.ngrammar:
+         self.optionswindow.children["ngrammar"].select()
+      #!
+      #if self.femmieMaleReplacement:
+      #femmiemaletofemininemale
+      #femmiemaletofemboy
+      #   self.optionswindow.children[""].select()
+      if self.femboyishToGirly:
+         self.optionswindow.children["femboyishtogirly"].select()
+      if self.snuggleBallTweak:
+         self.optionswindow.children["snuggleball"].select()
+      if self.grammarFixes:
+         self.optionswindow.children["grammarMisc"].select()
       if self.themeType == 1:
          self.optionswindow.children["OBC"].cb["state"] = "disabled"
          self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
@@ -1329,10 +1356,6 @@ class NiminFetishFantasyv0975o_fla:
                self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
                self.optionswindow.children["SaveLocation"].ue["background"] = "#FFFFFF"
                self.saveInvalid = False
-         if self.optionswindow.children["GrammarTweaks"].getcb() == 1:
-            self.gametweaks[0] = True
-         else:
-            self.gametweaks[0] = False
          if self.optionswindow.children["StatusTweaks"].getcb() == 1:
             self.gametweaks[1] = True
          else:
@@ -1398,6 +1421,39 @@ class NiminFetishFantasyv0975o_fla:
             self.interfacetoggles[3] = True
          else:
             self.interfacetoggles[3] = False
+         if self.optionswindow.children["showBalls"].getcb() == 1:
+            self.respectShowBalls = True
+         else:
+            self.respectShowBalls = False
+         if self.optionswindow.children["femmeboytofemboy"].getcb() == 1:
+            self.femmeboyToFemboy = True
+         else:
+            self.femmeboyToFemboy = False
+         if self.optionswindow.children["shemaletofuta"].getcb() == 1:
+            self.shemaleToFuta = True
+         else:
+            self.shemaleToFuta = False
+         if self.optionswindow.children["ngrammar"].getcb() == 1:
+            self.ngrammar = True
+         else:
+            self.ngrammar = False
+         #!
+         #if self.femmieMaleReplacement:
+         #femmiemaletofemininemale
+         #femmiemaletofemboy
+         #   self.optionswindow.children[""].select()
+         if self.optionswindow.children["femboyishtogirly"].getcb() == 1:
+            self.femboyishToGirly = True
+         else:
+            self.femboyishToGirly = False
+         if self.optionswindow.children["snuggleball"].getcb() == 1:
+            self.snuggleBallTweak = True
+         else:
+            self.snuggleBallTweak = False
+         if self.optionswindow.children["grammarMisc"].getcb() == 1:
+            self.grammarFixes = True
+         else:
+            self.grammarFixes = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
                self.debugtweaks[0] = True
@@ -2151,15 +2207,16 @@ class NiminFetishFantasyv0975o_fla:
          tempintertoggle = self.interfacetoggles
       else:
          tempintertoggle = self.tempinterfacetoggles
-      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3]},"grammar":{"respectShowBalls":False,"femmeboyToFemboy":False,"shemaleToFuta":False,"ngrammar":False,"femmieMaleReplacement":0,"femboyishToGirly":False,"snuggleBallTweak":False},"gameTweaks":{"grammarTweaks":self.gametweaks[0],"statusTweaks":self.gametweaks[1],"succubusLeavesOne":self.gametweaks[2],"useIsBottomOpen":self.gametweaks[3],"lizanDontShowBalls":self.gametweaks[4],"useExpandedSaveDialog":self.gametweaks[5],"hermGetsBoth":self.gametweaks[6],"intBallsEffectBelly":self.gametweaks[7],"directPathToSanc":self.gametweaks[8],"correctBeastRaceFeet":self.gametweaks[9],"useNewStash":self.gametweaks[10],"miscChanges":self.gametweaks[11]},"debugTweaks":{"chooseSenario":self.debugtweaks[0],"noDamage":self.debugtweaks[1]}}
+      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3]},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.gametweaks[1],"succubusLeavesOne":self.gametweaks[2],"useIsBottomOpen":self.gametweaks[3],"lizanDontShowBalls":self.gametweaks[4],"useExpandedSaveDialog":self.gametweaks[5],"hermGetsBoth":self.gametweaks[6],"intBallsEffectBelly":self.gametweaks[7],"directPathToSanc":self.gametweaks[8],"correctBeastRaceFeet":self.gametweaks[9],"useNewStash":self.gametweaks[10],"miscChanges":self.gametweaks[11]},"debugTweaks":{"chooseSenario":self.debugtweaks[0],"noDamage":self.debugtweaks[1]}}
       try:
-         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\n\n[grammar]\nrespectShowBalls = false\nfemmeboyToFemboy = false\nshemaleToFuta = false\nngrammar = false\nfemmieMaleReplacement = 0\nfemboyishToGirly = false\nsnuggleBallTweak = false\n\n[gameTweaks]\ngrammarTweaks = {str(self.gametweaks[0]).lower()}\nstatusTweaks = {str(self.gametweaks[1]).lower()}\nsuccubusLeavesOne = {str(self.gametweaks[2]).lower()}\nuseIsBottomOpen = {str(self.gametweaks[3]).lower()}\nlizanDontShowBalls = {str(self.gametweaks[4]).lower()}\nuseExpandedSaveDialog = {str(self.gametweaks[5]).lower()}\nhermGetsBoth = {str(self.gametweaks[6]).lower()}\nintBallsEffectBelly = {str(self.gametweaks[7]).lower()}\ndirectPathToSanc = {str(self.gametweaks[8]).lower()}\ncorrectBeastRaceFeet = {str(self.gametweaks[9]).lower()}\nuseNewStash = {str(self.gametweaks[10]).lower()}\nmiscChanges = {str(self.gametweaks[11]).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugtweaks[0]).lower()}\nnoDamage = {str(self.debugtweaks[1]).lower()}\n'
+         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\n\n[grammar]\nrespectShowBalls = {str(self.respectShowBalls).lower()}\nfemmeboyToFemboy = {str(self.femmeboyToFemboy).lower()}\nshemaleToFuta = {str(self.femmeboyToFemboy).lower()}\nngrammar = {str(self.ngrammar).lower()}\nfemmieMaleReplacement = {self.femmieMaleReplacement}\nfemboyishToGirly = {str(self.femboyishToGirly).lower()}\nsnuggleBallTweak = {str(self.snuggleBallTweak).lower()}\ngrammarFixes = {str(self.grammarFixes).lower()}\n\n[gameTweaks]\nstatusTweaks = {str(self.gametweaks[1]).lower()}\nsuccubusLeavesOne = {str(self.gametweaks[2]).lower()}\nuseIsBottomOpen = {str(self.gametweaks[3]).lower()}\nlizanDontShowBalls = {str(self.gametweaks[4]).lower()}\nuseExpandedSaveDialog = {str(self.gametweaks[5]).lower()}\nhermGetsBoth = {str(self.gametweaks[6]).lower()}\nintBallsEffectBelly = {str(self.gametweaks[7]).lower()}\ndirectPathToSanc = {str(self.gametweaks[8]).lower()}\ncorrectBeastRaceFeet = {str(self.gametweaks[9]).lower()}\nuseNewStash = {str(self.gametweaks[10]).lower()}\nmiscChanges = {str(self.gametweaks[11]).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugtweaks[0]).lower()}\nnoDamage = {str(self.debugtweaks[1]).lower()}\n'
          with (self.dir / "Nimin_Prefs.toml").open("wb") as f:
             tomli_w.dump(temp,f)
       except AssertionError:
          as3.trace(tomli_w.dumps(temp))
          as3.trace("savePreferences: Error: File failed write check, aborting to prevent data loss.")
    def loadPreferences(self):
+      #!Make grammarFixes what old grammartweaks is loaded into
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():
          with (self.dir / "Nimin_Prefs.toml").open("rb") as f:
@@ -2200,11 +2257,17 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.interfacetoggles = [True,False,True,False]
             self.tempinterfacetoggles = tempitoggle
-         #!load grammar
          grammar = temp.get("grammar",{})
-         #!Get rid of grammartweaks variable
+         self.respectShowBalls = grammar.get("respectShowBalls",False)
+         self.femmeboyToFemboy = grammar.get("femmeboyToFemboy",False)
+         self.shemaleToFuta = grammar.get("shemaleToFuta",False)
+         self.ngrammar = grammar.get("ngrammar",False)
+         self.femmieMaleReplacement = grammar.get("femmieMaleReplacement",0)
+         self.femboyishToGirly = grammar.get("femboyishToGirly",False)
+         self.snuggleBallTweak = grammar.get("snuggleBallTweak",False)
+         self.grammarFixes = grammar.get("grammarFixes",False)
          gt = temp.get("gameTweaks",{})
-         self.gametweaks = [gt.get("grammarTweaks",False),gt.get("statusTweaks",False),gt.get("succubusLeavesOne",False),gt.get("useIsBottomOpen",False),gt.get("lizanDontShowBalls",False),gt.get("useExpandedSaveDialog",False),gt.get("hermGetsBoth",False),gt.get("intBallsEffectBelly",False),gt.get("directPathToSanc",False),gt.get("correctBeastRaceFeet",False),gt.get("useNewStash",False),gt.get("miscChanges",False)]
+         self.gametweaks = [None,gt.get("statusTweaks",False),gt.get("succubusLeavesOne",False),gt.get("useIsBottomOpen",False),gt.get("lizanDontShowBalls",False),gt.get("useExpandedSaveDialog",False),gt.get("hermGetsBoth",False),gt.get("intBallsEffectBelly",False),gt.get("directPathToSanc",False),gt.get("correctBeastRaceFeet",False),gt.get("useNewStash",False),gt.get("miscChanges",False)]
          dt = temp.get("debugTweaks",{})
          self.debugtweaks = [dt.get("chooseSenario",False),dt.get("noDamage",False)]
       elif (self.dir / "Nimin_Prefs.xml").is_file():
@@ -3655,9 +3718,9 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
             if self.blueBalls > 36:
                tempStr += " They"
-         elif self.showBalls == False and self.gametweaks[0] == True and self.blueBalls > 36:
+         elif self.showBalls == False and self.respectShowBalls == True and self.blueBalls > 36:
             tempStr += "\n\nYour internal balls"
-         if (self.showBalls == True or self.gametweaks[0] == True) and self.blueBalls > 36:
+         if (self.showBalls == True or self.respectShowBalls == True) and self.blueBalls > 36:
             if (self.blueBalls <= 84):
                tempStr += " groan and squirm, full of hot cum just waiting to blow."
             elif (self.blueBalls > 84):
@@ -7496,7 +7559,7 @@ class NiminFetishFantasyv0975o_fla:
          case 256:
             tempStr = "You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly."
             if (self.eggLaying > 0):
-               if (self.gametweaks[0] == False or self.gametweaks[0] == True and self.vagTotal > 0):
+               if (self.grammarFixes == False or self.grammarFixes == True and self.vagTotal > 0):
                   tempStr += " And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something."
                self.eggTime -= 4
             self.stats(1,0,0,0)
@@ -8074,7 +8137,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer"
                if (self.showBalls == True):
                   tempStr += " and the testicles beneath swell within your scrotum"
-               elif self.gametweaks[0] == True:
+               elif self.respectShowBalls == True:
                   tempStr += ". You can also feel your abdomen grow tighter, as if your internal testicles were swelling"
                tempStr += ".\n\nIt really does work!"
                self.cockSize += 4
@@ -10472,16 +10535,16 @@ class NiminFetishFantasyv0975o_fla:
                            tempStr += " He then pulls off your shaft and begins sucking on the knot itself, allowing it to swell to full size. Then he goes back to deep-throating your cock while squeezing your knot with his hand. The sensation is too much for you and he struggles to swallow down every last drop as you spray your seed into his mouth."
                   else:
                      tempStr += f"\n\nThe young man falls on his knees and admires your {self.cockDesc()} cock. He feels over your large member, surely too big for him to take it all. He slowly licks around the shaft before starting to suck on the tip. He takes in as much of your cock as he can, sucking and licking on it, eyes half-lidded in bliss and moaning softly. He starts to stroke the rest of your cock, much too large to fit in his mouth"
-                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                     if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                         tempStr += f" and with his other hand he massages your {self.ballDesc()} balls"
                      tempStr += f". You enjoy his enthusiasm and his skill as he carefully makes sure that every last inch of your thick shaft is given the attention it deserves. It's not long before you're feeling a familiar pressure building up in your "
-                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                     if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                         tempStr += "nuts"
                      else:
                         tempStr += "abdomen"
                      tempStr += ". Suddenly the boy "
-                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
-                        "stops playing with your balls and "
+                     if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                        tempStr += "stops playing with your balls and "
                      tempStr += "moves his finger over your ass. Pushing one in your asshole, he sends you over the edge and you flood his mouth with cum in return."
                   tempStr += "\n\n\nAs you pull your cock out of his mouth, the last spurt of cum hits his face, marking him. He blushes again, licking his lips and savoring the flavor. He looks around again, still finding no one who could have seen you. He sighs in relief and hands you some coins. He then gets up quickly, and moves away..."
                   tempStr += self.doLust(-(self.sen // 3),2,1,ret=True)
@@ -10490,7 +10553,7 @@ class NiminFetishFantasyv0975o_fla:
                   break
                elif chance == 3 and self.cockTotal > 0:
                   tempStr = f"You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your {self.cockDesc()} cock{self.plural(1)} throb{self.plural(3)} with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub {self.oneYour(1)} hard cock{self.plural(1)} along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your "
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == False:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == False:
                      tempStr += "internal "
                   tempStr += f"balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load."
                   tempStr += "\n\nWhen your orgasm settles down, you ease your member out of her slit with a thick trickle of your seed dribbling out of her hole and coating your cock.\n\nYou go into the bathroom and bathe and, when you return, you find that your client has left some coins on the table."
@@ -10526,7 +10589,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doMultiImpregnate(1,2,ret=True)
                   elif (self.cockTotal == 1 and self.vagTotal == 1):
                      tempStr += f"Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and while doing so an argument erupts behind you as to who gets dibs on your pussy and who gets your cock. The two quickly reach an agreement and one of the sisters wastes no time in guiding the tip of her rigid tumescence to rest lightly on the swollen lips of your vagina. The other sister vying for your cock eases underneath you and raises her ass up to the level of your crotch. Reaching behind her she takes your now absolutely rigid member and begins to guide it to rest against her vulva. With only a moments hesitation spent arranging their body parts so as to not collide with one another, the two begin to urgently grind against you.\n\nThe sister behind you begins by sliding her rigid length into you and following her thrust you plunge deep into the sister below you. Your movement is reciprocated by the sister below you as she grinds her hips against your groin"
-                     if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                     if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                         tempStr += ", your balls wetly slapping the inside of her thighs"
                      tempStr += f". The cock inside of you is one of the biggest you have taken and it soon bottoms out, rubbing the wall of your cervix pleasurably. The two move in near perfect unison, the combined sensation of being filled and filling another at the same time soon leaves you panting and drooling, barely conscious of the outside world.\n\nThe two women's thrusts come faster and faster as they surge closer and closer towards the edge. As they near orgasm, their movements get shorter and faster and you can feel the head of your cock hitting the wall of the bottom sister's cervix with your every movement. Without warning you feel the sister in your pussy tense and shudder as she begins to spasm jets of torrid jizz deep into your womb. The immense warmth filling you sends you flying over the edge and you erupt into the depths of the beauty below you as she lets loose onto the ground below her, her jism quickly forming a small pool. You all continue to ejaculate for what seems forever; if you could muster the energy you wouldn't be surprised to look and see that your belly and the belly of the sister below you have swelled from the sheer amount of liquid which has been expelled. Exhausted and still rather tipsy, the two help each other up.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you on the ground still panting and oozing cum. The two sisters throw another small bag of coins at your {self.legDesc(10)}, thanking you for the best fuck they have had in a long while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your combined cum, their cocks still oozing the white sticky substance onto the ground below them and the excessive amount you pumped into the womb of the sister dripping slowly out. You can't help but wonder if you will get pregnant from the deluge they just released or if they will get pregnant from the seed you just planted deep in one of the sister's bellies."
                      tempStr += self.doImpregnate(1,ret=True)
@@ -10593,7 +10656,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.showBalls == True):
                      tempStr += f" and letting your {self.ballDesc()} balls hang free"
                   tempStr += f" followed by her tearing off her own clothes. She grabs {self.oneYour(1)} wang{self.plural(1)}, gets down onto all fours and presses the head of you penis against her quivering lips. She does not hesitate to force your {self.cockDesc()} cock inside of her sex, letting out a loud orgasmic moan as you sink deep into her folds. You don't even have time to think about being inside her hot, wet depths as the sexy mare begins bucking against the length of your {self.cockDesc()} tool inside her. Your penis and "
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += "balls"
                   else:
                      tempStr += "abdomen"
@@ -10621,10 +10684,10 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.vagTotal > 0):
                      tempStr += f"Moving his tongue deep inside of {self.oneYour(2)} cunt{self.plural(2)} the Equan tastes the thoroughly used tunnel of your female sex and nods in approval as he begins to slowly eat you out. His lips, breath, and tongue are so warm you push back into his face hard enough to make your hurting ass ache as your tender rump lets its sensitivity be known. Rolling his tongue up, down, and all around the Equan spreads you open farther than his finger ever could and pushes forward into your belly so much you think he may have touched your womb."
                   tempStr += "Groaning and writhing"
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += " as a hand takes up your balls and massages them"
                   tempStr += f", you try to bite out a few words of praise. Every attempt is lost as the Equan continues to use you for his own personal pleasure. Your body is like an instrument being strummed by a professional minstrel, and as the Equan keeps tuning you in just the right way you begin to feel the signs of impending orgasm about to overtake you. Against your will you clench up and cry out towards the ceiling as an orgasm tears through you when the Equan nips at your ass. Cum spews "
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += "from your balls"
                   else:
                      tempStr += "out"
@@ -10898,12 +10961,12 @@ class NiminFetishFantasyv0975o_fla:
                chance = math.floor(random.random() * 3) + 1
                if chance == 1 and self.cockTotal == 1:
                   tempStr = f"You look around the desert town and smirk as several male and female Lizans eye you wantonly. Scales of various colors gleam as you walk down the middle of the street, wagging your plump ass at potential clientele. Many of the males watch you with lust clearly shining on their faces. Your eyes catch glimpses of more than a few of them talking to others around them while nodding in your direction; the generous bulge {self.legWhere(1)} your {self.legDesc(2)} puffs up some as you see two Lizan males walk up to you and ask you if you’re selling what they think you are. You nod to them and soon find yourself being pulled away from the growing crowd you have amassed.\n\nThe two males take you to a quiet spot inside of what you assume to be a recreational cave area, the scent of sex drifting strongly along the walls making your nose itch, before asking you to strip for them. You smile amorously at them both, reaching down to rub the lumps of their tenting loincloths before you do as you have been asked. Slowly you strip out of your clothes and present yourself to them.\n\nThe two males circle around you, flicking their tongues out across your body as they survey the goods they have just brought. Hands reach out together for your cock and the two males stroke you gently, "
-                  if self.gametweaks[0] == True:
+                  if self.grammarFixes == True:
                      tempStr += "trying to"
                   else:
                      tempStr += "urging"
                   tempStr += " get you to moan for them, one of the Lizans going even so far to stroke across your "
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += "balls"
                   elif self.gametweaks[4] == True and self.lizardCocks == self.cockTotal:
                      tempStr += "slit"
@@ -10930,11 +10993,13 @@ class NiminFetishFantasyv0975o_fla:
                   break
                elif chance == 2 and self.gender == 1:
                   tempStr = f"Either feeling a little short of cash, or because it's a way to have fun and make some gold, you have decided to sell your body. Donning your {self.currentClothes()}, you stand on a corner of the hot streets of Oviasis, presenting your form for all to admire. Your {self.cockDesc()} package attracts many lustful gazes, however it seems today's whoring will not pay off.\n\nAs you are about to give up for a while and go find something more interesting to do, like eating, a young "
-                  if self.gametweaks[0] == False:
-                     tempStr += "femmie"
-                  else:
-                     tempStr += "feminine"
-                  tempStr += f" male lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your {self.cockDesc()} cock{self.plural(1)} stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of {self.oneYour(1)} {self.cockDesc()} "
+                  if self.femmieMaleReplacement == 0:
+                     tempStr += "femmie male"
+                  elif self.femmieMaleReplacement == 1:
+                     tempStr += "feminine male"
+                  elif self.femmieMaleReplacement == 2:
+                     tempStr += "femboy"
+                  tempStr += f" lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your {self.cockDesc()} cock{self.plural(1)} stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of {self.oneYour(1)} {self.cockDesc()} "
                   if (self.catCocks > 0):
                      tempStr += "barbed"
                   elif (self.wolfCocks > 0):
@@ -10942,7 +11007,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.horseCocks > 0):
                      tempStr += "flaring"
                   tempStr += f" cock against his cute little asshole. As you rub against him, precum begins to leak out of your {self.cockDesc()} wang{self.plural(1)}, lubricating his sweet round ass.\n\nHe nods to you and you push your {self.cockDesc()} rod into his eager ass, causing him to moan in pleasure as he takes your full length. You begin to pound into his squeezable butt, proceeding slowly at first and only giving him the head. Once you begin to develop a rhythm your pace increases, your thrusts penetrating deeper and deeper. With each grunting thrust he moans and quakes under you, his ass swallowing up your cock.\n\nYou pound all the way into his boyish ass"
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += f", your {self.ballDesc()} {self.balls} balls slapping against his"
                      if self.gametweaks[4] == True:
                         tempStr += "thighs."
@@ -10955,7 +11020,7 @@ class NiminFetishFantasyv0975o_fla:
                      else:
                         tempStr += ", his massive nuts slapping against your thighs. A"
                   tempStr += "s you do, you feel your "
-                  if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += "own sack"
                   else:
                      tempStr += "insides"
@@ -12790,7 +12855,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.cockChange(0,-(self.cockTotal - 1))
                                  if (self.balls > 2):
                                     tempStr = "\n\nWithin your "
-                                    if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                                    if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                                        tempStr += "scrotum"
                                     else:
                                        tempStr += "abdomen"
@@ -12807,7 +12872,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.cockChange(0,-(self.cockTotal - 1))
                                  if (self.balls > 2):
                                     tempStr = "\n\nWithin your "
-                                    if self.gametweaks[0] == False or self.gametweaks[0] == True and self.showBalls == True:
+                                    if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                                        tempStr += "scrotum"
                                     else:
                                        tempStr += "abdomen"
@@ -15608,7 +15673,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (tempInt > 0):
                      tempStr += "\n\nHaving had a moment to gather yourself, "
                   tempStr += f"your attention is taken by one of the few lizan girls there, who waves you over as she lays on her back with a guy on top of her. You move closer and see she's already plugged up with one of his two shlongs. Looking a tad pained, it seemed the guy tried to fit both in at the same time, to no success, leaving his other cock bouncing awkwardly upon her clit. Yet, with you there, she's able to get a bit more fun as she directs you to lay on top of her, mushing her soft breasts against your "
-                  if self.gametweaks[0] == True and self.breastSize < 1:
+                  if self.grammarFixes == True and self.breastSize < 1:
                      tempStr += "flat chest"
                   else:
                      tempStr += "own"
@@ -22605,13 +22670,13 @@ class NiminFetishFantasyv0975o_fla:
          nonEgg0 = as3.Math.max(egg1)
          nonEgg1 = as3.Math.max(egg0)
          if (egg0 > nonEgg0 + 20 and self.eggType != 0):
-            if self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0):
+            if self.grammarFixes == False or (self.grammarFixes and self.vagTotal > 0):
                tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 1):
                self.eggMaxTime += 22
             self.eggType = 0
          if (egg1 > nonEgg1 + 20 and self.eggType != 1):
-            if self.gametweaks[0] == False or (self.gametweaks[0] and self.vagTotal > 0):
+            if self.grammarFixes == False or (self.grammarFixes and self.vagTotal > 0):
                tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 0):
                self.eggMaxTime -= 22
@@ -22671,10 +22736,10 @@ class NiminFetishFantasyv0975o_fla:
          nonCock = True
       if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0): #Loose all cocks
          tempStr += f"\n\nYou shiver a little as your cock{self.plural(1)} "
-         if self.gametweaks[0] == True and self.showBalls == True:
+         if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
             tempstr += "and balls "
          tempStr += "shrink"
-         if self.gametweaks[0] == True and self.showBalls == True and self.cockTotal < 2:
+         if self.respectShowBalls == True and self.showBalls == True and self.cockTotal < 2:
             tempStr += "s"
          tempStr += " into your body, disappearing"
          if (self.vagTotal > 0):
@@ -22987,14 +23052,14 @@ class NiminFetishFantasyv0975o_fla:
       if (self.legType != 1 and which == 1):
          if (self.legType == 0):
             tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
-            if self.gametweaks[0] == True:
+            if self.grammarFixes == True:
                tempStr += "Y"
             else:
                tempStr += "Eventually, y"
             tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
          if (self.legType >= 1000):
             tempStr += "\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
-            if self.gametweaks[0] == True:
+            if self.grammarFixes == True:
                tempStr += "Y"
             else:
                tempStr += "Eventually, y"
@@ -23388,31 +23453,19 @@ class NiminFetishFantasyv0975o_fla:
    def ptweaksGrammar(self,topic:int,capital:bool=False):
       if topic == 1: #femme-boy/femboy
          if capital == True:
-            if self.gametweaks[0] == True:
-               return "Femboy"
-            return "Femme-boy"
+            return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
          else:
-            if self.gametweaks[0] == True:
-               return "femboy"
-            return "femme-boy"
+            return "femboy" if self.femmeboyToFemboy else "femme-boy"
       elif topic == 2: #shemale/futanari
          if capital == True:
-            if self.gametweaks[0] == True:
-               return "Futanari"
-            return "Shemale"
+            return "Futanari" if self.shemaleToFuta else "Shemale"
          else:
-            if self.gametweaks[0] == True:
-               return "futanari"
-            return "shemale"
+            return "futanari" if self.shemaleToFuta else "shemale"
       elif topic == 3: #Femme boy/Femboy
          if capital == True:
-            if self.gametweaks[0] == True:
-               return "Femboy"
-            return "Femme Boy"
+            return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
          else:
-            if self.gametweaks[0] == True:
-               return "femboy"
-            return "femme boy"
+            return "femboy" if self.femmeboyToFemboy else "femme boy"
    def plural(self, topic:int):
       if (topic == 1 and self.cockTotal > 1):
          return "s"
@@ -23501,7 +23554,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.hips > 3 and self.breastSize > 4):
                return self.ptweaksGrammar(2)
             elif (self.hips > 2):
-               return f"{self.ptweaksGrammar(1)}ish"
+               return "girly" if self.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
             else:
                return "boyish"
          elif self.body <= 25:
@@ -23547,7 +23600,7 @@ class NiminFetishFantasyv0975o_fla:
       if (chance <= 50):
          match self.tail:
             case 2:
-               if ngrammar and self.gametweaks[0]:
+               if ngrammar and self.ngrammar:
                   return "\bn equine"
                return "equine"
             case 3:
@@ -23866,7 +23919,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (tempButt <= 5):
             return "tight"
          elif (tempButt <= 15):
-            if ngrammar == True and self.gametweaks[0] == True:
+            if ngrammar == True and self.ngrammar == True:
                return "\bn ample"
             return "ample"
          elif (tempButt <= 30):
@@ -24271,7 +24324,7 @@ class NiminFetishFantasyv0975o_fla:
       tempStr = ""
       if (self.skinColor > 0):
          tempStr += self.skinC()
-      if (self.snuggleBall == True and appearanceGo == False and self.gametweaks[0] == True or self.snuggleBall == True and self.gametweaks[0] == False):
+      if (self.snuggleBall == True and appearanceGo == False and self.snuggleBallTweak == True or self.snuggleBall == True and self.snuggleBallTweak == False):
          tempStr += "plush and snuggly "
       if self.skinType == 1:
          return f"{tempStr}skin"
