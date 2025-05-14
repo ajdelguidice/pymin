@@ -1047,7 +1047,16 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = partial(self.themeTypeSelect,1)
          self.optionswindow.children["ThemeType"].selected = 0
          CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
+         
+         ##new save dialogue
+         self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",200,10,190,20,("TimesNewRoman",11),"nw","Use expanded save dialog")
+         self.optionswindow.configureChild("UseExpandedSaveDialog",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
 
+         ##New stash
+         self.optionswindow.addCheckboxWithLabel("if","UseNewStash",200,32,210,20,("TimesNewRoman",11),"nw","Use new stash")
+         self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. While already moving an item, hold shift\nand press button 12 to move items between the bag and stash.")
 
          #Grammar page
          self.optionswindow.addNBFrame("nb","gs",420,207,"Grammar")
@@ -1121,11 +1130,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("LizanDontShowBalls",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
-         ##Use expanded save file selection dialog
-         self.optionswindow.addCheckboxWithLabel("gt","UseExpandedSaveDialog",10,120,190,20,("TimesNewRoman",11),"nw","Use expanded save dialog")
-         self.optionswindow.configureChild("UseExpandedSaveDialog",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
-
          ##Herm Can Has Both
          self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",200,10,190,20,("TimesNewRoman",11),"nw","Herm Can Has Both")
          self.optionswindow.configureChild("HermGetsBoth",background=self.theme,foreground=self.fontColor)
@@ -1145,11 +1149,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,76,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)")
-
-         ##Use old stash
-         self.optionswindow.addCheckboxWithLabel("gt","UseNewStash",200,98,210,20,("TimesNewRoman",11),"nw","Use new stash")
-         self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. While already moving an item, hold shift\nand press button 12 to move items between the bag and stash.")
 
          ##Misc Changes
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
