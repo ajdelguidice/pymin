@@ -50,16 +50,6 @@ def strtobool(a:str):
       return True
    if low == "false":
       return False
-def strtolistbools(a:str):
-   """
-   Converts the string representation of a list to a list of booleans
-   """
-   if a[0] in {"[","("}:
-      a = a[1:-1]
-   b = a.split(", ")
-   if len(b) == 1 and b[0] == "":
-      return []
-   return [strtobool(i) for i in b]
 class ButtonList(list):
    """
    Modified list class for use with nimin's button interface
@@ -2218,7 +2208,6 @@ class NiminFetishFantasyv0975o_fla:
          as3.trace(tomli_w.dumps(temp))
          as3.trace("savePreferences: Error: File failed write check, aborting to prevent data loss.")
    def loadPreferences(self):
-      #!Make grammarFixes what old grammartweaks is loaded into
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():
          with (self.dir / "Nimin_Prefs.toml").open("rb") as f:
@@ -2281,11 +2270,17 @@ class NiminFetishFantasyv0975o_fla:
          dt = temp.get("debugTweaks",{})
          self.debugtweaks = [dt.get("chooseSenario",False),dt.get("noDamage",False)]
       elif (self.dir / "Nimin_Prefs.xml").is_file():
-         #!Fix this. It won't save values to toml
+         def strtolistbools(a:str):
+            if a[0] in {"[","("}:
+               a = a[1:-1]
+            b = a.split(", ")
+            if len(b) == 1 and b[0] == "":
+               return []
+            return [strtobool(i) for i in b]
          prefs = xmletree.parse((self.dir / "Nimin_Prefs.xml").resolve()).getroot()
-         temptheme = prefs.find("theme").text
          self.fontSize = int(prefs.find("fontSize").text)
          self.fontBold = strtobool(prefs.find("fontBold").text)
+         temptheme = prefs.find("theme").text
          tempfontColor = prefs.find("fontColor").text
          if (self.checkValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
             if (temptheme.isdecimal() and len(temptheme) == 1):
@@ -2298,16 +2293,15 @@ class NiminFetishFantasyv0975o_fla:
             self.theme = "#FFFFFF"
             self.fontColor = "#000000"
             sp = True
-         if None in (prefs.find("saveLocation"),prefs.find("solMode"),prefs.find("gameTweaks"),prefs.find("fixedResMode"),prefs.find("customFontColor"),prefs.find("customThemeColor"),prefs.find('oFontColor'),prefs.find('oThemeColor')):
-            sp = True
-         else:
+         if prefs.find("saveLocation") != None:
             if self.isValidDirectory(prefs.find("saveLocation").text,confmod.separator):
                self.savelocation = Path(prefs.find('saveLocation').text).resolve()
             else:
                as3.trace("Preference Loader: Error: saveLocation is not a valid path. Default value will be used instead.")
                self.savelocation = self.dir / "nimin_saves"
                sp = True
-            self.solonlymode = strtobool(prefs.find("solMode").text)
+         self.solonlymode = False if prefs.find("solMode") == None else strtobool(prefs.find("solMode").text)
+         if prefs.find("gameTweaks") != None:
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
             if len(self.gametweaks) > len(tempgametweaks):
                tempgametweaks.extend((False for i in range(len(self.gametweaks)-len(tempgametweaks))))
@@ -2316,53 +2310,48 @@ class NiminFetishFantasyv0975o_fla:
             self.grammarFixes = tempgametweaks[0]
             self.gametweaks = tempgametweaks
             #[None(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), None(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), None(10), MiscChanges(11)]
-            self.fixedresolutionmode = strtobool(prefs.find("fixedResMode").text)
+         self.fixedresolutionmode = False if prefs.find("fixedResMode") == None else strtobool(prefs.find("fixedResMode").text)
+         if prefs.find("customFontColor") != None and prefs.find("customThemeColor") != None:
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
             self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
             self.ofontcolor = prefs.find('oFontColor').text
+         if prefs.find('oFontColor') != None and prefs.find('oThemeColor') != None:
             self.customthemecolor = strtobool(prefs.find("customThemeColor").text)
             self.mo.configureChild("themebutton",state=self.boolToState(self.inv(self.customthemecolor)))
             self.othemecolor = prefs.find('oThemeColor').text
-         if prefs.find("debugTweaks") == None:
-            sp = True
-         else:
+         if prefs.find("debugTweaks") != None:
             tempdebugtweaks = strtolistbools(prefs.find("debugTweaks").text)
             if len(self.debugtweaks) > len(tempdebugtweaks):
                tempdebugtweaks.extend((False for i in range(len(self.debugtweaks)-len(tempdebugtweaks))))
             self.debugtweaks = tempdebugtweaks
-         if prefs.find("nsldSortOrder") == None:
-            sp = True
-         else:
+         if prefs.find("nsldSortOrder") != None:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
-         if None in {prefs.find("interfaceToggles"),prefs.find("themeType")}:
-            sp = True
-         else:
+         if prefs.find("themeType") != None:
             if int(prefs.find("themeType").text) not in {0,1}:
                self.themeType = 0
             else:
                self.themeType = int(prefs.find("themeType").text)
+         if prefs.find("interfaceToggles") != None:
+            tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
+            if len(tempitoggle) < 4:
+               tempitoggle.extend((False for i in range(4-len(tempitoggle))))
             if self.themeType == 0:
-               tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
-               if len(tempitoggle) < 4:
-                  tempitoggle.extend((False for i in range(4-len(tempitoggle))))
                self.oButtonColors = tempitoggle[0]
-               self.scrolledTextBorders = tempitoggles[1]
-               self.oNewGameButton = tempitoggles[2]
-               self.staticdoLevelUPButtons = tempitoggles[3]
+               self.scrolledTextBorders = tempitoggle[1]
+               self.oNewGameButton = tempitoggle[2]
+               self.staticdoLevelUPButtons = tempitoggle[3]
             else:
                self.oButtonColors = True
                self.scrolledTextBorders = False
                self.oNewGameButton = True
                self.staticdoLevelUPButtons = False
-               tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
-               if len(tempitoggle) < 4:
-                  tempitoggle.extend((False for i in range(4-len(tempitoggle))))
                self.tempInterfaceToggles = tempitoggle
          if (self.initinterface == False):
             if (strtobool(prefs.find("showSide").text)):
                self.showSidePanel()
             else:
                self.hideSidePanel()
+         sp = True
       else:
          sp = True
          if (self.initinterface == False):
