@@ -131,17 +131,15 @@ class NiminFetishFantasyv0975o_fla:
       Initilizes all of the variables needed before new game or load game is done
       """
       self.versionNumber = "0.975o"
+      self.dir = scriptdirectory
 
       #Command line arguement variables
       self.debugNoStart = False #variable for the -nostart parameter
       self.cmdOpenConverter = False #Tracks whether the save file converter has been opened directly from the command line
-      
+
       #Options window variables
-      self.dir = scriptdirectory
       self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
       self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
-      self.gametweaks = [None,False,False,False,False,None,False,False,False,False,None,False] #[None(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), None(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), None(10), MiscChanges(11)]
-      self.debugtweaks = [False,False] #[alwaysChooseSenario(0), takeNoDamage(1)]
       self.fixedresolutionmode = False #Toggle for fixed resolution mode
       self.customfontcolor = False #Toggle for custom font color
       self.ofontcolor = "#000000" #original font color from before custom font color was applied
@@ -150,6 +148,15 @@ class NiminFetishFantasyv0975o_fla:
       self.themeType = 0 #Theme type for interfacetoggles
       self.changeNGButtonOverride = False #Refreshes the newgame button in OWSaveOptions even if conditions aren't met
       ##Gametweaks Tab
+      self.statusTweaks = False
+      self.succubusLeavesOne = False
+      self.useIsBottomOpen = False
+      self.lizanDontShowBalls = False
+      self.hermGetsBoth = False
+      self.internalBallsEffectBelly = False
+      self.directPathToSanctuary = False
+      self.correctBeastRaceFeet = False
+      self.gameTweaksMisc = False
       ##Interface Tab
       self.tempInterfaceToggles = [] #Temporary storage for interface toggles while nimin theme type is selected
       self.oButtonColors = False
@@ -168,7 +175,8 @@ class NiminFetishFantasyv0975o_fla:
       self.snuggleBallTweak = False
       self.grammarFixes = False
       ##Debugtweaks Tab
-
+      self.debugChooseSenario = False
+      self.debugNoDamage = False
       #Window open variables
       self.debugWinOpen = False #debug window
       self.debugGIWinOpen = False #debug give item window
@@ -1226,27 +1234,27 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["Theme"].select()
       if self.customthemecolor == True:
          self.optionswindow.children["FontColor"].select()
-      if self.gametweaks[1] == True:
+      if self.statusTweaks:
          self.optionswindow.children["StatusTweaks"].select()
-      if self.gametweaks[2] == True:
+      if self.succubusLeavesOne:
          self.optionswindow.children["SuccubusLeavesOne"].select()
-      if self.gametweaks[3] == True:
+      if self.useIsBottomOpen:
          self.optionswindow.children["UseIsBottomOpen"].select()
-      if self.gametweaks[4] == True:
+      if self.lizanDontShowBalls:
          self.optionswindow.children["LizanDontShowBalls"].select()
       if self.useNewSaveLoadDialog:
          self.optionswindow.children["UseExpandedSaveDialog"].select()
-      if self.gametweaks[6] == True:
+      if self.hermGetsBoth:
          self.optionswindow.children["HermGetsBoth"].select()
-      if self.gametweaks[7] == True:
+      if self.internalBallsEffectBelly:
          self.optionswindow.children["IntBallsEffectBelly"].select()
-      if self.gametweaks[8] == True:
+      if self.directPathToSanctuary:
          self.optionswindow.children["DirectPathToSanc"].select()
-      if self.gametweaks[9] == True:
+      if self.correctBeastRaceFeet:
          self.optionswindow.children["CorrectBeastRaceFeet"].select()
       if self.useNewStash:
          self.optionswindow.children["UseNewStash"].select()
-      if self.gametweaks[11] == True:
+      if self.gameTweaksMisc:
          self.optionswindow.children["MiscChanges"].select()
       if self.oButtonColors:
          self.optionswindow.children["OBC"].select()
@@ -1281,9 +1289,9 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
          self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
       if confmod.as3DebugEnable == True:
-         if self.debugtweaks[0] == True:
+         if self.debugChooseSenario:
             self.optionswindow.children["ChooseSenario"].select()
-         if self.debugtweaks[1] == True:
+         if self.debugNoDamage:
             self.optionswindow.children["NoDamage"].select()
    def OWSaveOptions(self, *args):
       """
@@ -1349,49 +1357,49 @@ class NiminFetishFantasyv0975o_fla:
                self.optionswindow.children["SaveLocation"].ue["background"] = "#FFFFFF"
                self.saveInvalid = False
          if self.optionswindow.children["StatusTweaks"].getcb() == 1:
-            self.gametweaks[1] = True
+            self.statusTweaks = True
          else:
-            self.gametweaks[1] = False
+            self.statusTweaks = False
          if self.optionswindow.children["SuccubusLeavesOne"].getcb() == 1:
-            self.gametweaks[2] = True
+            self.succubusLeavesOne = True
          else:
-            self.gametweaks[2] = False
+            self.succubusLeavesOne = False
          if self.optionswindow.children["UseIsBottomOpen"].getcb() == 1:
-            self.gametweaks[3] = True
+            self.useIsBottomOpen = True
          else:
-            self.gametweaks[3] = False
+            self.useIsBottomOpen = False
          if self.optionswindow.children["LizanDontShowBalls"].getcb() == 1:
-            self.gametweaks[4] = True
+            self.lizanDontShowBalls = True
          else:
-            self.gametweaks[4] = False
+            self.lizanDontShowBalls = False
          if self.optionswindow.children["UseExpandedSaveDialog"].getcb() == 1:
             self.useNewSaveLoadDialog = True
          else:
             self.useNewSaveLoadDialog = False
          if self.optionswindow.children["HermGetsBoth"].getcb() == 1:
-            self.gametweaks[6] = True
+            self.hermGetsBoth = True
          else:
-            self.gametweaks[6] = False
+            self.hermGetsBoth = False
          if self.optionswindow.children["IntBallsEffectBelly"].getcb() == 1:
-            self.gametweaks[7] = True
+            self.internalBallsEffectBelly = True
          else:
-            self.gametweaks[7] = False
+            self.internalBallsEffectBelly = False
          if self.optionswindow.children["DirectPathToSanc"].getcb() == 1:
-            self.gametweaks[8] = True
+            self.directPathToSanctuary = True
          else:
-            self.gametweaks[8] = False
+            self.directPathToSanctuary = False
          if self.optionswindow.children["CorrectBeastRaceFeet"].getcb() == 1:
-            self.gametweaks[9] = True
+            self.correctBeastRaceFeet = True
          else:
-            self.gametweaks[9] = False
+            self.correctBeastRaceFeet = False
          if self.optionswindow.children["UseNewStash"].getcb() == 1:
             self.useNewStash = True
          else:
             self.useNewStash = False
          if self.optionswindow.children["MiscChanges"].getcb() == 1:
-            self.gametweaks[11] = True
+            self.gameTweaksMisc = True
          else:
-            self.gametweaks[11] = False
+            self.gameTweaksMisc = False
          if self.optionswindow.children["OBC"].getcb() == 1:
             self.oButtonColors = True
          else:
@@ -1448,13 +1456,13 @@ class NiminFetishFantasyv0975o_fla:
             self.grammarFixes = False
          if confmod.as3DebugEnable == True:
             if self.optionswindow.children["ChooseSenario"].getcb() == 1:
-               self.debugtweaks[0] = True
+               self.debugChooseSenario = True
             else:
-               self.debugtweaks[0] = False
+               self.debugChooseSenario = False
             if self.optionswindow.children["NoDamage"].getcb() == 1:
-               self.debugtweaks[1] = True
+               self.debugNoDamage = True
             else:
-               self.debugtweaks[1] = False
+               self.debugNoDamage = False
          self.savePreferences()
          self.toggleTextboxBorders(self.scrolledTextBorders)
          self.applyFixedResolution()
@@ -1531,12 +1539,14 @@ class NiminFetishFantasyv0975o_fla:
       """
       #Sets all of the gametweaks to the arguement "value"
       """
+      #!Fix this
       for i in range(len(self.gametweaks)):
          self.gametweaks[i] = value
    def gametweaksCheckIfAllIsValue(self,value:bool):
       """
       Checks if all gametweaks are set to the arguement "value"
       """
+      #!Fix this
       if value != None:
          return not ((not value) in self.gametweaks)
    @staticmethod
@@ -2199,9 +2209,9 @@ class NiminFetishFantasyv0975o_fla:
          tempintertoggle = [self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons]
       else:
          tempintertoggle = self.tempInterfaceToggles
-      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.gametweaks[1],"succubusLeavesOne":self.gametweaks[2],"useIsBottomOpen":self.gametweaks[3],"lizanDontShowBalls":self.gametweaks[4],"hermGetsBoth":self.gametweaks[6],"intBallsEffectBelly":self.gametweaks[7],"directPathToSanc":self.gametweaks[8],"correctBeastRaceFeet":self.gametweaks[9],"miscChanges":self.gametweaks[11]},"debugTweaks":{"chooseSenario":self.debugtweaks[0],"noDamage":self.debugtweaks[1]}}
+      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
       try:
-         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\nuseExpandedSaveDialog = {str(self.useNewSaveLoadDialog).lower()}\nuseNewStash = {str(self.useNewStash).lower()}\n\n[grammar]\nrespectShowBalls = {str(self.respectShowBalls).lower()}\nfemmeboyToFemboy = {str(self.femmeboyToFemboy).lower()}\nshemaleToFuta = {str(self.femmeboyToFemboy).lower()}\nngrammar = {str(self.ngrammar).lower()}\nfemmieMaleReplacement = {self.femmieMaleReplacement}\nfemboyishToGirly = {str(self.femboyishToGirly).lower()}\nsnuggleBallTweak = {str(self.snuggleBallTweak).lower()}\ngrammarFixes = {str(self.grammarFixes).lower()}\n\n[gameTweaks]\nstatusTweaks = {str(self.gametweaks[1]).lower()}\nsuccubusLeavesOne = {str(self.gametweaks[2]).lower()}\nuseIsBottomOpen = {str(self.gametweaks[3]).lower()}\nlizanDontShowBalls = {str(self.gametweaks[4]).lower()}\nhermGetsBoth = {str(self.gametweaks[6]).lower()}\nintBallsEffectBelly = {str(self.gametweaks[7]).lower()}\ndirectPathToSanc = {str(self.gametweaks[8]).lower()}\ncorrectBeastRaceFeet = {str(self.gametweaks[9]).lower()}\nmiscChanges = {str(self.gametweaks[11]).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugtweaks[0]).lower()}\nnoDamage = {str(self.debugtweaks[1]).lower()}\n'
+         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\nuseExpandedSaveDialog = {str(self.useNewSaveLoadDialog).lower()}\nuseNewStash = {str(self.useNewStash).lower()}\n\n[grammar]\nrespectShowBalls = {str(self.respectShowBalls).lower()}\nfemmeboyToFemboy = {str(self.femmeboyToFemboy).lower()}\nshemaleToFuta = {str(self.femmeboyToFemboy).lower()}\nngrammar = {str(self.ngrammar).lower()}\nfemmieMaleReplacement = {self.femmieMaleReplacement}\nfemboyishToGirly = {str(self.femboyishToGirly).lower()}\nsnuggleBallTweak = {str(self.snuggleBallTweak).lower()}\ngrammarFixes = {str(self.grammarFixes).lower()}\n\n[gameTweaks]\nstatusTweaks = {str(self.statusTweaks).lower()}\nsuccubusLeavesOne = {str(self.succubusLeavesOne).lower()}\nuseIsBottomOpen = {str(self.useIsBottomOpen).lower()}\nlizanDontShowBalls = {str(self.lizanDontShowBalls).lower()}\nhermGetsBoth = {str(self.hermGetsBoth).lower()}\nintBallsEffectBelly = {str(self.internalBallsEffectBelly).lower()}\ndirectPathToSanc = {str(self.directPathToSanctuary).lower()}\ncorrectBeastRaceFeet = {str(self.correctBeastRaceFeet).lower()}\nmiscChanges = {str(self.gameTweaksMisc).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugChooseSenario).lower()}\nnoDamage = {str(self.debugNoDamage).lower()}\n'
          with (self.dir / "Nimin_Prefs.toml").open("wb") as f:
             tomli_w.dump(temp,f)
       except AssertionError:
@@ -2266,9 +2276,18 @@ class NiminFetishFantasyv0975o_fla:
          self.snuggleBallTweak = grammar.get("snuggleBallTweak",False)
          self.grammarFixes = grammar.get("grammarFixes",False)
          gt = temp.get("gameTweaks",{})
-         self.gametweaks = [None,gt.get("statusTweaks",False),gt.get("succubusLeavesOne",False),gt.get("useIsBottomOpen",False),gt.get("lizanDontShowBalls",False),None,gt.get("hermGetsBoth",False),gt.get("intBallsEffectBelly",False),gt.get("directPathToSanc",False),gt.get("correctBeastRaceFeet",False),None,gt.get("miscChanges",False)]
+         self.statusTweaks = gt.get("statusTweaks",False)
+         self.succubusLeavesOne = gt.get("succubusLeavesOne",False)
+         self.useIsBottomOpen = gt.get("useIsBottomOpen",False)
+         self.lizanDontShowBalls = gt.get("lizanDontShowBalls",False)
+         self.hermGetsBoth = gt.get("hermGetsBoth",False)
+         self.internalBallsEffectBelly = gt.get("intBallsEffectBelly",False)
+         self.directPathToSanctuary = gt.get("directPathToSanc",False)
+         self.correctBeastRaceFeet = gt.get("correctBeastRaceFeet",False)
+         self.gameTweaksMisc = gt.get("miscChanges",False)
          dt = temp.get("debugTweaks",{})
-         self.debugtweaks = [dt.get("chooseSenario",False),dt.get("noDamage",False)]
+         self.debugChooseSenario = dt.get("chooseSenario",False)
+         self.debugNoDamage = dt.get("noDamage",False)
       elif (self.dir / "Nimin_Prefs.xml").is_file():
          def strtolistbools(a:str):
             if a[0] in {"[","("}:
@@ -2303,13 +2322,20 @@ class NiminFetishFantasyv0975o_fla:
          self.solonlymode = False if prefs.find("solMode") == None else strtobool(prefs.find("solMode").text)
          if prefs.find("gameTweaks") != None:
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
-            if len(self.gametweaks) > len(tempgametweaks):
-               tempgametweaks.extend((False for i in range(len(self.gametweaks)-len(tempgametweaks))))
-            self.useNewSaveLoadDialog = tempgametweaks[5]
-            self.useNewStash = tempgametweaks[10]
+            if len(tempgametweaks) < 12:
+               tempgametweaks.extend((False for i in range(12-len(tempgametweaks))))
             self.grammarFixes = tempgametweaks[0]
-            self.gametweaks = tempgametweaks
-            #[None(0), Status(1), SuccubusLeavesOne(2), isBottomOpen(3), LizanDontShowBalls(4), None(5), HermGetsBoth(6), InternalBallsEffectBelly(7), DirectPathToSanctuary(8), CorrectBeastRaceFeet(9), None(10), MiscChanges(11)]
+            self.statusTweaks = tempgametweaks[1]
+            self.succubusLeavesOne = tempgametweaks[2]
+            self.useIsBottomOpen = tempgametweaks[3]
+            self.lizanDontShowBalls = tempgametweaks[4]
+            self.useNewSaveLoadDialog = tempgametweaks[5]
+            self.hermGetsBoth = tempgametweaks[6]
+            self.internalBallsEffectBelly = tempgametweaks[7]
+            self.directPathToSanctuary = tempgametweaks[8]
+            self.correctBeastRaceFeet = tempgametweaks[9]
+            self.useNewStash = tempgametweaks[10]
+            self.gameTweaksMisc = tempgametweaks[11]
          self.fixedresolutionmode = False if prefs.find("fixedResMode") == None else strtobool(prefs.find("fixedResMode").text)
          if prefs.find("customFontColor") != None and prefs.find("customThemeColor") != None:
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
@@ -2321,9 +2347,10 @@ class NiminFetishFantasyv0975o_fla:
             self.othemecolor = prefs.find('oThemeColor').text
          if prefs.find("debugTweaks") != None:
             tempdebugtweaks = strtolistbools(prefs.find("debugTweaks").text)
-            if len(self.debugtweaks) > len(tempdebugtweaks):
-               tempdebugtweaks.extend((False for i in range(len(self.debugtweaks)-len(tempdebugtweaks))))
-            self.debugtweaks = tempdebugtweaks
+            if len(tempdebugtweaks) < 2:
+               tempdebugtweaks.extend((False for i in range(2-len(tempdebugtweaks))))
+            self.debugChooseSenario = tempdebugtweaks[0]
+            self.debugNoDamage = tempdebugtweaks[1]
          if prefs.find("nsldSortOrder") != None:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
          if prefs.find("themeType") != None:
@@ -2818,7 +2845,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += f"\n\nThe weight of your {self.udderDesc()} udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop."
          elif (self.udderSize > tempNum * 1 / 2):
             tempStr += f"\n\nYou are rather aware of the weight of your {self.udderDesc()} udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing..."
-      if False and self.gametweaks[7] == True and self.showBalls == False:
+      if False and self.internalBallsEffectBelly and self.showBalls == False:
          ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2 + self.ballSize * self.balls / 2) / 5
       else:
          ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2) / 5
@@ -2896,7 +2923,7 @@ class NiminFetishFantasyv0975o_fla:
       self.mentality += menta
       self.libido += libi
       self.sensitivity += sens
-      if self.gametweaks[1] == True:
+      if self.statusTweaks:
          if (self.strength > 200):
             self.strength = 200
          elif (self.strength < 1):
@@ -3589,13 +3616,13 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lilaWetStatus > 0 and self.attireBot in (10,11)):
          tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
       if (self.legType >= 1000):
-         if self.gametweaks[7] == True and self.showBalls == False:
+         if self.internalBallsEffectBelly and self.showBalls == False:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
          tempStr += f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath."
       else:
-         if self.gametweaks[7] == True and self.showBalls == False:
+         if self.internalBallsEffectBelly and self.showBalls == False:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
@@ -5011,7 +5038,7 @@ class NiminFetishFantasyv0975o_fla:
             self.libido = 17
             self.sensitivity = 15
             self.tallness += 4
-            if self.gametweaks[9]:
+            if self.correctBeastRaceFeet:
                self.legType = 2
                #self.runMod += 20
                #self.carryMod -= 10
@@ -5032,7 +5059,7 @@ class NiminFetishFantasyv0975o_fla:
             self.libido = 15
             self.sensitivity = 15
             self.tallness -= 2
-            if self.gametweaks[9]:
+            if self.correctBeastRaceFeet:
                self.legType = 1
                self.runMod += 10
                self.carryMod -= 10
@@ -5069,7 +5096,7 @@ class NiminFetishFantasyv0975o_fla:
             self.libido = 17
             self.sensitivity = 17
             self.tallness -= 3
-            if self.gametweaks[9]:
+            if self.correctBeastRaceFeet:
                self.legType = 1
                self.runMod += 10
                self.carryMod -= 10
@@ -5091,7 +5118,7 @@ class NiminFetishFantasyv0975o_fla:
             self.libido = 15
             self.sensitivity = 16
             self.tallness += 2
-            if self.gametweaks[4] == True:
+            if self.lizanDontShowBalls:
                self.showBalls = False
          self.doGender()
       self.doListen = doListen
@@ -5216,7 +5243,7 @@ class NiminFetishFantasyv0975o_fla:
                self.nippleSize = 2
                self.tallness += 60 + self.percent() // 10
                self.sensitivity += 1
-               if self.gametweaks[1] == True:
+               if self.statusTweaks:
                   self.hips += 3
                   self.butt += 4
                   self.tallness -= 4
@@ -10978,7 +11005,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += " get you to moan for them, one of the Lizans going even so far to stroke across your "
                   if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += "balls"
-                  elif self.gametweaks[4] == True and self.lizardCocks == self.cockTotal:
+                  elif self.lizanDontShowBalls and self.lizardCocks == self.cockTotal:
                      tempStr += "slit"
                   else:
                      tempStr += "butt"
@@ -10986,7 +11013,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.vagTotal > 0):
                      tempStr += f"\n\nOne of them palms your breasts while the other reaches down to finger your behind before chuckling as throaty moans escape you. A slim hand reaches behind your cock only to find your female slit weeping {self.legWhere(1)} your {self.legDesc(2)}. The male who did so wiggles two fingers deep inside of you and hisses in pure Lizan passion as he watches you writhe around his fingers."
                   tempStr += f"\n\nYour {self.legDesc(6)} feel like jelly as they begin quiver. A hand pushes you down onto your {self.legDesc(6)} and without having to be told, you reach up to relieve the Lizan in front of you of his loincloth. A pair of plump, tapered shafts rise up before your eyes, making you almost giddy as the scent of aroused male floods your nose. Behind you the Lizan shuffles himself out of his loincloth and presses himself up against your tailhole, and it is then you feel another pressing against your hole. The presence of four cocks split between your ends makes you groan from the heat as the pair of cocks continue hot-dogging your rump while the others dangle in front of your very eyes. There are no words needed as the two males pull back to line themselves up with your holes; your mouth eagerly opens to receive its due and then you find yourself suddenly filled from both ends with twice the number of throbbing appendages you have been hoping to receive for the last hour.\n\nThe Lizan in front of you fills your mouth quickly as he sinks himself into the warmth of your throat, the twin heads sliding against ahead other as they breach your throat. You gag from his size before catching yourself, your throat stretching to accommodate his girth. "
-                  if self.gametweaks[4] == True:
+                  if self.lizanDontShowBalls:
                      tempStr += "T"
                   else:
                      tempStr += "His balls under your chin feel like heaven as t"
@@ -11019,13 +11046,13 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f" cock against his cute little asshole. As you rub against him, precum begins to leak out of your {self.cockDesc()} wang{self.plural(1)}, lubricating his sweet round ass.\n\nHe nods to you and you push your {self.cockDesc()} rod into his eager ass, causing him to moan in pleasure as he takes your full length. You begin to pound into his squeezable butt, proceeding slowly at first and only giving him the head. Once you begin to develop a rhythm your pace increases, your thrusts penetrating deeper and deeper. With each grunting thrust he moans and quakes under you, his ass swallowing up your cock.\n\nYou pound all the way into his boyish ass"
                   if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
                      tempStr += f", your {self.ballDesc()} {self.balls} balls slapping against his"
-                     if self.gametweaks[4] == True:
+                     if self.lizanDontShowBalls:
                         tempStr += "thighs."
                      else:
                         tempStr += "own massive nuts."
                      tempStr += " A"
                   else:
-                     if self.gametweaks[4] == True:
+                     if self.lizanDontShowBalls:
                         tempStr += ", a"
                      else:
                         tempStr += ", his massive nuts slapping against your thighs. A"
@@ -11319,7 +11346,7 @@ class NiminFetishFantasyv0975o_fla:
             #   {}
             #if (chance == 5 and self.attireBot in (6,17) and self.lust > 80):
             #   {}
-            elif (chance == 6 and (self.gametweaks[3] == False and self.attireBot in (5,7,12,13,14,16) or self.gametweaks[3] == True and self.isBottomOpen() == True) and self.lust > 45):
+            elif (chance == 6 and (self.useIsBottomOpen == False and self.attireBot in (5,7,12,13,14,16) or self.useIsBottomOpen and self.isBottomOpen() == True) and self.lust > 45):
                tempStr = f"Already half hard from your lingering lust, just the thought of masturbating makes your {self.cockDesc()} erection{self.plural(1)} stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your {self.clothesBottom()} as your rod{self.plural(1)} lift{self.plural(3)} the fabric forward. You do your best to press it back down in an attempt to hide {self.plural(9)}, but "
                if (self.cockSize * self.cockSizeMod > 10):
                   tempStr += f"{self.plural(11)} wind up popping out beneath, accidentally flashing a random passerby who quickly pick up their pace to get away before you can try to catch your long thing{self.plural(1)} back within the cloth."
@@ -12818,7 +12845,7 @@ class NiminFetishFantasyv0975o_fla:
                         if (self.buttonChoice == 6):
                            self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.",True)
                            combinedStats = self.str_ + self.ment + self.lib + self.sen
-                           if self.gametweaks[1] == True and combinedStats > 400:
+                           if self.statusTweaks and combinedStats > 400:
                               tempInt = 100
                               addStr = combinedStats - 400
                            else:
@@ -12933,7 +12960,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.foundValley == True):
             buttonlist[1] = 1
             templist.push(1,"Valley")
-         if (self.foundSanctuary == True and self.usedSecretStairs == True and self.gametweaks[8] == True):
+         if (self.foundSanctuary == True and self.usedSecretStairs == True and self.directPathToSanctuary):
             buttonlist[12] = 1
             templist.push(12,"Sanctuary")
          self.showButtons(buttonlist)
@@ -13018,7 +13045,7 @@ class NiminFetishFantasyv0975o_fla:
       elif self.currentZone == 12:
          tempButtons = ButtonList(0,0,0,0,1,1,0,0,0,0,0,0)
          templist = as3.Array(6,"Sanctuary",5,"Cave Descent")
-         if (self.gametweaks[8] == True):
+         if (self.directPathToSanctuary):
             if (self.usedSecretStairs == True):
                templist.push(1,"Firmshaft")
             else:
@@ -13061,7 +13088,7 @@ class NiminFetishFantasyv0975o_fla:
          return numbers[0]
    def eventSelect(self, which:str):
       #!Here
-      if confmod.as3DebugEnable == True and self.debugtweaks[0] == True:
+      if confmod.as3DebugEnable == True and self.debugChooseSenario:
          temp = self.debugSenarioChooser({"Softlik":[1,4],"Firmshaft":[1,3],"Tieden":[1,3],"Siz'Calit":[1,4],"Oviasis":[1,5],"Sanctuary":[3,3],"Forest":[1,6],"Jungle":[1,7],"Plains":[1,5],"Savanna":[1,5],"Desert":[1,5],"Beach":[1,6],"Lake":[1,3],"Dairy Farm":[1,5],"Old Cave":[1,3],"Den":[1,2],"Valley":[1,5]}[which])
          if temp != None:
             return temp
@@ -15562,7 +15589,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          else:
             tempStr = f"\n\nAs you peer over the beach of slick figures, one by your {self.legDesc(10)} squirms a little and opens an eye, only able make out your silhouette amidst the sunlight, but doesn't seem to care.\n\n\"Would you please give me a hand and oil me up? I can feel my scales starting to dry a little.\"\n\nThe deep voice of the very masculine figure is obviously directed at you. He's one of those who prefer to sunbathe in the buff, not afraid to show off his physique. His shoulders are broad and his muscles are nice and toned, even his ass shining with tightness. His tail droops over his crack, "
-            if self.gametweaks[4] == False:
+            if self.lizanDontShowBalls == False:
                tempStr += "though you can see it's lifted a tad from laying atop his testicles and "
             tempStr += "his dual-cocks laying lazily on either side beneath it. You can see a bowl of oils beside him, the stuff he's already glazed with.\n\nWill you add some more?"
             self.outputMainText(tempStr,False)
@@ -15571,7 +15598,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.buttonChoice == 6):
                   if (self.ment <= 10):
                      tempStr = "You nod and derp, picking up the bowl of oils and splashing it across his back. Then you fall down onto him, wiggling like an idiot and using your front to splash and \"massage\" the oil into his scales. The man jerks in shock, rolling out from under you, "
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "his large balls swinging beneath his dual cocks, "
                      tempStr +="as he whacks you for your crude treatment.\n\n\"What are you doing?!\", he shouts with an annoyed tone. \"I'll get someone else to help. You nut!\"\n\nHe stares you down and waits for you to leave before rolling back onto the sand, awkwardly trying to clean up the mess you made on his back..."
                      self.outputMainText(tempStr,True)
@@ -15584,7 +15611,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs = 2
                   elif (self.ment <= 80):
                      tempStr = "You nod and kneel down beside him, picking up the bowl and drizzling the oil down his spine. He shudders a little from the sensation and croons as your hands come down to press it into his scales, gently pushing it around and kneading his muscles carefully. He wiggles a little as you hit his tense areas, obviously enjoying the massage you're giving him. Even his tail whips around a bit as you coat it, exposing his "
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "large testicles and "
                      tempStr += "dual cocks for a moment as he accidentally flashes you.\n\nSoon, he's quite coated and relaxed from your efforts. He thanks you for the unexpectedly pleasant experience and insists you take a vial of the oil with you, at least as compensation."
                      self.outputMainText(tempStr,True)
@@ -15593,28 +15620,28 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs = 3
                   else:
                      tempStr = f"You nod with a smile and straddle his bum as you kneel down, making sure to stay slightly aloft so as to not put any weight on him. You pick up the bowl and drizzle the oil down his spine, then press into it with your hands and spread it out across his body. Using your weight for more pressure, you deeply massage all of his muscles as you knead into his soft scales, making him groan a little from the tender treatment. You can feel his tail beging to flick beneath your {self.buttDesc()} rump as you make your way down to the small of his back, until you trap it as you shuffle back to sit over his knees.\n\nHis tight butt tenses a bit as you genetly brush the oil over it, but quickly relaxes as you grab and gently squeeze it. You softly grind into it, making his tail spasm beneath you until it eventually pulls out from under you as you begin to work at its base. You can see him wince with embarrassment as he realizes he's giving you a good view of his nethers, "
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "his large balls squished between his thighs with the heads of twin cocks peeking out underneath"
                      else:
                         tempStr += "his twin cocks slightly erect from the pleasure of the massage"
                      tempStr += ". You can see a few sparkles from the pre that drips out onto the sand, your efforts being a little too pleasant. However, he doesn't seem to try to cover himself and after a moment of your working at his tail, massaging from the tip to the base, he spreads his legs beneath you until you have to adjust your stance to kneel between them for better access.\n\nHis dongs clearly in view, "
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "his testicles squirming with cum, "
                      tempStr += "your hands move in to oil up between his thighs. You slowly work your way up his legs, teasing him until the drooling pre becomes much more prominent, large drops pushing out as you "
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "grab the orbs"
                      else:
                         tempStr += "rub around his slit"
                      tempStr += ". His tail nearly slaps you in anticipation, flicking around so much, and practically urges you towards the happy ending. Taking the blatent hints, you "
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "grope at the cum-filled things, reaching"
                      else:
                         tempStr += "reach"
                      tempStr += " down to grab one cock in each hand. The fleshy things harden in your grip, growing slightly longer"
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += ", but the overgrown fruits still weigh down on them, covering much of your hands"
                      tempStr +=" as you pump the cocks one after the other. The pre smears about, plenty of lubrication, and he begins to grunt and tense over the sand while you deftly jerk him off. Soon, his tail freezes, standing high as spunk spits out across the sand and pooling around your knees"
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += ", the balls working hard to keep up with the relief"
                      tempStr += " until you're kneeling in a puddle of the stuff.\n\nHis tail collapses onto your shoulder, resting there as you finish wiping him up and bringing him down from the orgasm, until you finally complete your task. Still breathing heavily, his body looking quite tired, he merely turns up towards you.\n\n\"Please, take some oil with you. You seem to be better at using it than me. And here,\" he reaches into his pile of clothes and pulls out a large berry, \"take this with you, I've had enough for a while, if you couldn't tell.\" He sticks out his tongue in jest, but quickly lays back down to take a nice soothing nap to reminisce the recent events, leaving you to go off on your own."
                      self.outputMainText(tempStr,True)
@@ -15663,7 +15690,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nThen "
                   if (self.vagTotal > 1):
                      tempStr += f"a lizan man seems surprised to see your exra attributes. Already hard from thinking about it, he happily kisses you and presses his two pricks against your {self.bellyDesc()} belly before each slips them {self.legWhere(1)} your {self.legDesc(2)} to dive into seperate passages. He hugs you tight as he plunges both in at the same time, quivering slightly as he can feel himself through the fleshy wall that separates the rods. In and out, pre and lubrication spitting into the cleft between the bases of the two cocks and dribbling down his"
-                     if self.gametweaks[4] == False:
+                     if self.lizanDontShowBalls == False:
                         tempStr += "scrotum"
                      else:
                         tempStr += "thighs"
@@ -16198,7 +16225,7 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText("You pause as you kick something soft in the tall grass. You look down and see a somewhat shiny almost rubbery little ball roll a bit before coming to a stop. It looks kinda cute and squishy, making you feel cuddly just looking at it.\n\nWould you like to pick up the ball?",True)
          self.buttonConfirm()
          def doListen():
-            if (self.percent() < self.ment and not (self.snuggleBall == True and self.gametweaks[11] == True)):
+            if (self.percent() < self.ment and not (self.snuggleBall == True and self.gameTweaksMisc)):
                self.outputMainText(f"Whether you wanted to or not, you seem to be leaning down to pick it up. Some urge to snuggle has overcome you, forcing you to attempt to pick the squishy thing up.\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.",True)
                self.snuggleBall = True
                self.itemAdd(244)
@@ -19417,7 +19444,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
       elif self.currentDungeon == 1010:
          tempStr = "The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open.\n\nGazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting.\n\nA massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground.\n\n\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle.\n\n\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"\n\n\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"\n\n\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"\n\nThe succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own."
-         if (self.foundSanctuary == False and self.gametweaks[8] == True):
+         if (self.foundSanctuary == False and self.directPathToSanctuary):
             tempStr += "\n\nYou look to your side and see an engraving on the wall. It is somewhat faded but you manage make out the phrase \"Only the worthy may use this path.\", strange. You feel an urge to touch it. Once you do, you hear a congradulatory melody, like you've just uncovered a secret. The section of wall next to where the engraving was magically disappears, revealing another set of stairs. You have a feeling that these stairs lead to the surface."
          self.outputMainText(tempStr,True)
          self.inDungeon = False
@@ -20666,7 +20693,7 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr
       self.outputMainText(tempStr,False)
    def eDmg(self, eweapon):
-      if self.debugtweaks[1] == True and confmod.as3DebugEnable == True:
+      if self.debugNoDamage and confmod.as3DebugEnable == True:
          return 0
       self.dmgRed = 0
       self.dmg = 0
@@ -21017,7 +21044,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.vagTotal < 1 and self.cockTotal < 1):
                   tempStr += f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you."
                   tempStr += self.doLust(math.floor(10 + self.percent() / 10),1,ret=True)
-            elif (attack > 80 and (self.gametweaks[3] == True and self.isBottomOpen() == True or self.gametweaks[3] == False and self.attireBot == -1)):
+            elif (attack > 80 and (self.useIsBottomOpen and self.isBottomOpen() == True or self.useIsBottomOpen == False and self.attireBot == -1)):
                tempStr += "\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you."
                if (self.vagTotal > 0):
                   tempStr += f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size."
@@ -21116,7 +21143,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.eggceleratorDose += 1
                   if (self.eggceleratorDose > 8 + math.ceil(self.percent() / 20)):
                      tempStr += f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying."
-                     if (self.gametweaks[3] == True and self.isBottomOpen() == True or self.gametweaks[3] == False and (self.attireBot == -2 or self.attireBot == 5 or self.attireBot == 7 or self.attireBot == 12 or self.attireBot == 13 or self.attireBot == 14 or self.attireBot == 16 or self.attireBot == 25)):
+                     if (self.useIsBottomOpen and self.isBottomOpen() == True or self.useIsBottomOpen == False and (self.attireBot == -2 or self.attireBot == 5 or self.attireBot == 7 or self.attireBot == 12 or self.attireBot == 13 or self.attireBot == 14 or self.attireBot == 16 or self.attireBot == 25)):
                         tempStr += f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out."
                      else:
                         tempStr += f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out."
@@ -21195,19 +21222,19 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.butt * self.buttMod < 15):
                   tempStr += f"\n\n\"Mmm... Your backside needs some more attention, doesn't it?\" She rushes around behind you, the spade of her tail giving your {self.buttDesc()} rear a quick spank. One of her vials glows and she smiles as your rump presses against your {self.clothesBottom()}, jiggling slightly as you stand."
                   self.butt += 1
-               elif (self.cockTotal > 0 and (self.gametweaks[2] == False or self.gametweaks[2] == True and self.cockSize > 1)):
+               elif (self.cockTotal > 0 and (self.succubusLeavesOne == False or self.succubusLeavesOne and self.cockSize > 1)):
                   tempStr += f"\n\n\"And this thing you've got here just totally ruins your womanly figure now. We should take care of that~\" The woman steps behind you but her tail reaches around to your {self.cockDesc()} bulge, cradling it with the spade and giving it a shake. You can feel your cock{self.plural(1)} shrink slightly within your {self.clothesBottom()} while one of her vials glow."
-                  if (self.gametweaks[2] == False and self.cockSize > 1 or self.gametweaks[2] == True and self.cockSize > 2):
+                  if (self.succubusLeavesOne == False and self.cockSize > 1 or self.succubusLeavesOne and self.cockSize > 2):
                      tempStr += self.cockChange(-1,0,ret=True)
                   else:
-                     if self.gametweaks[2] == False:
+                     if self.succubusLeavesOne == False:
                         tempStr += self.cockChange(-1,0,ret=True)
-                     elif self.gametweaks[2] == True:
+                     elif self.succubusLeavesOne:
                         if self.dominant != 6 or self.lizardCocks < 2:
                            tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-1),ret=True)
                         else:
                            tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-2),ret=True)
-                     if self.gametweaks[2] == False or (self.gametweaks[2] == True and self.vagTotal == 0):
+                     if self.succubusLeavesOne == False or (self.succubusLeavesOne and self.vagTotal == 0):
                         tempStr += self.vagChange(0,1,ret=True)
                      tempStr += "\n\n\"Now that's my girl~ Who needs all those manly features when you can be a slut~?\" She seems quite pleased with the change."
                else:
@@ -21235,7 +21262,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" and your breasts swell within your {self.clothesTop()}, a sort of kinky sensation overcoming you as you absentmindedly bounce their greater size. The succubus steps back, a vial on her belt glowing from her success."
                      self.boobChange(2)
                      tempStr += self.doLust(15,1,ret=True)
-               elif (chance <= 60 and self.cockTotal > 0 and (self.gametweaks[2] == False and self.cockSize > 2 or self.gametweaks[2] == True and self.cockSize > 3)):
+               elif (chance <= 60 and self.cockTotal > 0 and (self.succubusLeavesOne == False and self.cockSize > 2 or self.succubusLeavesOne and self.cockSize > 3)):
                   tempStr += f"\n\n\"A good girl doesn't need such garish things.\" She steps up to you and blatantly grabs the {self.cockDesc()} bulge in your {self.clothesBottom()}. You feel it tingly in a rather pleasant way"
                   if (self.percent() < self.ment):
                      tempStr += ", but you manage to resist and interrupt her efforts."
@@ -22623,7 +22650,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             self.boobTotal = 10
       #!
-      if self.gametweaks[9] == True:
+      if self.correctBeastRaceFeet:
          bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
          #bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
@@ -22795,10 +22822,10 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "insectile "
             self.bugCocks += 1
          tempStr += "penis stands erect"
-         if self.gametweaks[4] == False or self.gametweaks[4] == True and self.lizardCocks != self.cockTotal:
+         if self.lizanDontShowBalls == False or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
             tempStr += " and balls to match settle within your crotch beneath"
          if (self.vagTotal > 0):
-            if self.gametweaks[4] == False or self.gametweaks[4] == True and self.lizardCocks != self.cockTotal:
+            if self.lizanDontShowBalls == False or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
                tempStr += f", slipping into your {self.vulvaDesc()} lips"
             tempStr += ". You now are considered a cross between genders, a herm."
             self.gender = 3
@@ -22855,11 +22882,11 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.cockLoss(ret=True)
             totalChange += 1
          self.stats(0,0,2 * totalChange,0)
-         if self.gametweaks[1] == True and sizeChange > 0:
+         if self.statusTweaks and sizeChange > 0:
             tempStr += self.cockChange(sizeChange,0,ret=True)
       elif (self.cockTotal > 0): #Size change
          self.cockSize += sizeChange
-      if self.gametweaks[4] == True and self.cockTotal > 0 and self.neuterizerHideBalls == False:
+      if self.lizanDontShowBalls and self.cockTotal > 0 and self.neuterizerHideBalls == False:
          if self.lizardCocks == self.cockTotal and self.cockTotal != 0:
             self.showBalls = False
          else:
@@ -22912,7 +22939,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (minCock == self.bugAffinity and self.bugCocks > 0):
          tempStr += "\n\nYou have lost one bug cock."
          self.bugCocks -= 1
-      if self.gametweaks[4] == True and self.cockTotal > 0 and self.neuterizerHideBalls == False:
+      if self.lizanDontShowBalls and self.cockTotal > 0 and self.neuterizerHideBalls == False:
          if self.lizardCocks == self.cockTotal:
             self.showBalls = False
          else:
@@ -24252,7 +24279,7 @@ class NiminFetishFantasyv0975o_fla:
       return f"HIP ERROR {self.hips}"
    def bellyDesc(self):
       chance = self.percent()
-      if False and self.gametweaks[7] == True and self.showBalls == False:
+      if False and self.internalBallsEffectBelly and self.showBalls == False:
          tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5 + self.ballSize * 0.9 / 5) * 60 / self.tallness
       else:
          tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5) * 60 / self.tallness
@@ -25714,9 +25741,9 @@ class NiminFetishFantasyv0975o_fla:
             temp = temp[0]
          #!Remove self.interfacetoggles
          if self.currentState != 0:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory = {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation = {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\ngametweaks = {self.gametweaks}\ninterfacetoggles = {self.interfacetoggles}\ndebugtweaks = {self.debugtweaks}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\nlustArray = {self.lustArray}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory = {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation = {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\ngametweaks = {self.gametweaks}\ninterfacetoggles = {self.interfacetoggles}\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\nlustArray = {self.lustArray}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
          else:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory = {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation = {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\ngametweaks = {self.gametweaks}\ninterfacetoggles = {self.interfacetoggles}\ndebugtweaks = {self.debugtweaks}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory = {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation = {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\ngametweaks = {self.gametweaks}\ninterfacetoggles = {self.interfacetoggles}\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
          self.dw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
          self.dw.children["text"].yview_moveto(temp)
    def closeDebugWindow(self,*useless):
