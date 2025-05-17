@@ -4737,6 +4737,7 @@ class NiminFetishFantasyv0975o_fla:
          self.pregStatus = sstatus['pregStatus']
          self.eggLaying = sstatus['eggLaying']
          self.eggMaxTime = sstatus['eggMaxTime']
+         self.eggTime = sstatus['eggTime']
          self.eggRate = sstatus['eggRate']
          self.exhaustion = sstatus['exhaustion']
          self.exhaustionPenalty = sstatus['exhaustionPenalty']
