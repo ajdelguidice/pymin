@@ -24,7 +24,7 @@ except:
 import tomli_w
 from io import StringIO
 
-__version__ = "1.0.10"
+__version__ = "1.0.11"
 
 class NullData(Exception):...
 
@@ -3548,235 +3548,236 @@ class NiminFetishFantasyv0975o_fla:
       """
       #!optimize
       # math.floor(self.tallness / 12), self.tallness - math.floor(self.tallness / 12) * 12
-      tempStr = applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
+      tempStr = StringIO()
+      tempStr.write(applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure."))
       if (self.hair > 0):
-         tempStr += f" With {self.hairC()}{self.hairDesc()}"
+         tempStr.write(f" With {self.hairC()}{self.hairDesc()}")
          if (self.hairstyleLength(self.hair)):
-            tempStr += f" {self.hairL()}"
-         tempStr += f", y"
+            tempStr.write(f" {self.hairL()}")
+         tempStr.write(f", y")
       else:
-         tempStr += f" Y"
-      tempStr += f"ou look much like a{self.genName()} {self.domName()}{self.faceDesc()}"
+         tempStr.write(f" Y")
+      tempStr.write(f"ou look much like a{self.genName()} {self.domName()}{self.faceDesc()}")
       if (self.tail > 1):
-         tempStr += applyBackspace(f", and a {self.tailDesc(True)} tail swishing upon your backside")
+         tempStr.write(applyBackspace(f", and a {self.tailDesc(True)} tail swishing upon your backside"))
       if (self.skunkAffinity >= 40):
-         tempStr += ". A rather alluring scent constant lingers from your rump, sweet and pleasant, but with the potential for something far worse"
+         tempStr.write(". A rather alluring scent constant lingers from your rump, sweet and pleasant, but with the potential for something far worse")
          if (self.skinType == 2):
-            tempStr += ". Your fur also sports two stripes that connect at your brow and runs over your head down to the scented area"
+            tempStr.write(". Your fur also sports two stripes that connect at your brow and runs over your head down to the scented area")
             if (self.tail == 11):
-               tempStr += " where they connect to the stripes on your tail"
-      tempStr += f". {self.earDesc()}."
+               tempStr.write(" where they connect to the stripes on your tail")
+      tempStr.write(f". {self.earDesc()}.")
       if (self.checkItem(234)):
-         tempStr += " Large, multi-pointed, slightly fuzzy antlers grow out from atop your head, feeling slightly heavy but perfectly melded to your skull so you can easily lift them."
+         tempStr.write(" Large, multi-pointed, slightly fuzzy antlers grow out from atop your head, feeling slightly heavy but perfectly melded to your skull so you can easily lift them.")
       if (self.checkItem(101)):
-         tempStr += " Soft padding protects the palms of your hands, making them look much like paws, your nails being sharp claws."
+         tempStr.write(" Soft padding protects the palms of your hands, making them look much like paws, your nails being sharp claws.")
       elif (self.dominant == 9):
-         tempStr += " Pointy talons grow from the tips of your fingers, more menacing than normal nails but not useful enough to be a threat."
+         tempStr.write(" Pointy talons grow from the tips of your fingers, more menacing than normal nails but not useful enough to be a threat.")
       if (self.legType >= 1000):
-         tempStr += f" From your waist down extends an almost second body, complete with a second belly and set of legs, standing on four {self.legDesc(10)}. 'Taur' tends to be the term for such a being, with your crotch and rump far back at the end of the continued body."
+         tempStr.write(f" From your waist down extends an almost second body, complete with a second belly and set of legs, standing on four {self.legDesc(10)}. 'Taur' tends to be the term for such a being, with your crotch and rump far back at the end of the continued body.")
          if self.legType == 1001:
-            tempStr += " This second body is covered in white fur with large black patches, and your ass is squared off a bit from the bulky back hips."
+            tempStr.write(" This second body is covered in white fur with large black patches, and your ass is squared off a bit from the bulky back hips.")
          elif self.legType == 1002:
-            tempStr += f" This second body matches the {self.skinDesc()} of your upper half, with a thin and lithe torso, looking somewhat like a humans and not exactly made for riding but makes up for the frailness with plantigrade feet that easily support yourself, even though they aren't the speediest."
+            tempStr.write(f" This second body matches the {self.skinDesc()} of your upper half, with a thin and lithe torso, looking somewhat like a humans and not exactly made for riding but makes up for the frailness with plantigrade feet that easily support yourself, even though they aren't the speediest.")
       #!Add other foot types here
       if (self.checkItem(102) or self.legType in (2,1001)):
-         tempStr += " Keratin extends from your combined toes like hooves, your ankle angled upward and high up like a second backwards knee, making you walk on the tips of your hooved toes with a clap against the ground every step."
+         tempStr.write(" Keratin extends from your combined toes like hooves, your ankle angled upward and high up like a second backwards knee, making you walk on the tips of your hooved toes with a clap against the ground every step.")
       elif (self.legType == 1):
-         tempStr += " Your ankles elongated and lithe, the front of your feet are large wide paws that help balance you as you walk digitigrade, your steps nothing but a soft and gentle patter against the ground."
+         tempStr.write(" Your ankles elongated and lithe, the front of your feet are large wide paws that help balance you as you walk digitigrade, your steps nothing but a soft and gentle patter against the ground.")
       elif (self.skinType == 5 and self.legDesc(10) == "feet"):
-         tempStr += " Chitin extends further past your heels, making you stand higher and balancing more on your toes."
+         tempStr.write(" Chitin extends further past your heels, making you stand higher and balancing more on your toes.")
       if (self.checkItem(234)):
-         tempStr += f" Your {self.buttDesc()} butt also looks a bit tighter for its size with the {self.skinDesc()} around it a lighter color than the rest, acting like a bullseye to your nethers. Below, the bone structure of your {self.legDesc(2)} is also fairly lithe, causing you to step with a graceful swagger and wave your {self.hipDesc()} hips erotically with every footfall."
-      tempStr += "\n\nYou are currently wearing a "
+         tempStr.write(f" Your {self.buttDesc()} butt also looks a bit tighter for its size with the {self.skinDesc()} around it a lighter color than the rest, acting like a bullseye to your nethers. Below, the bone structure of your {self.legDesc(2)} is also fairly lithe, causing you to step with a graceful swagger and wave your {self.hipDesc()} hips erotically with every footfall.")
+      tempStr.write("\n\nYou are currently wearing a ")
       if (self.attireTop != self.attireBot):
-         tempStr += f"{self.clothesTop()} and {self.clothesBottom()} that cover"
+         tempStr.write(f"{self.clothesTop()} and {self.clothesBottom()} that cover")
       else:
-         tempStr += f"{self.clothesTop()} that covers"
+         tempStr.write(f"{self.clothesTop()} that covers")
       if (self.snuggleBall == True):
-         tempStr += " the thick and soft layer of plushy snuggliness which coats"
-      tempStr += f" your {self.skinDesc(True)} "
+         tempStr.write(" the thick and soft layer of plushy snuggliness which coats")
+      tempStr.write(f" your {self.skinDesc(True)} ")
       if (self.weapon == 10):
-         tempStr += "while you defend yourself unarmed."
+         tempStr.write("while you defend yourself unarmed.")
       else:
-         tempStr += f"while you defend yourself with a {self.itemName(self.weapon)} as your weapon."
+         tempStr.write(f"while you defend yourself with a {self.itemName(self.weapon)} as your weapon.")
       if (self.lilaWetStatus > 0 and self.attireBot in (10,11)):
-         tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
+         tempStr.write(f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl.")
       if (self.legType >= 1000):
          if self.internalBallsEffectBelly and self.showBalls == False:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
-         tempStr += f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath."
+         tempStr.write(f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath.")
       else:
          if self.internalBallsEffectBelly and self.showBalls == False:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
-         tempStr += f" Your waist measures {tempBellySize} inches around, sporting a {self.bellyDesc()} belly beneath your {self.clothesTop()}."
+         tempStr.write(f" Your waist measures {tempBellySize} inches around, sporting a {self.bellyDesc()} belly beneath your {self.clothesTop()}.")
       if (self.dominant == 10):
-         tempStr += " There's also a bit of extra pudge around your waist, some chubbiness to add to your pig-like nature."
+         tempStr.write(" There's also a bit of extra pudge around your waist, some chubbiness to add to your pig-like nature.")
       if (self.wings > 0):
-         tempStr += " Holes over your shoulders help your "
+         tempStr.write(" Holes over your shoulders help your ")
          if (self.wings == 9):
-            tempStr += "feathery"
-         tempStr += " wings stretch freely, even though they're not of much use beyond hopping around and flying out of battle."
+            tempStr.write("feathery")
+         tempStr.write(" wings stretch freely, even though they're not of much use beyond hopping around and flying out of battle.")
       if (self.dairyFarmBrand == True):
-         tempStr += f" Beneath your {self.clothesBottom()}, the shape of a bucket with milk splashing out over the edges is forever imprinted upon your {self.buttDesc()} hind, marking you as property of the Softlik Dairy Farm."
+         tempStr.write(f" Beneath your {self.clothesBottom()}, the shape of a bucket with milk splashing out over the edges is forever imprinted upon your {self.buttDesc()} hind, marking you as property of the Softlik Dairy Farm.")
       if (self.breastSize > 0):
          if self.boobTotal == 2:
-            tempStr += f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, with {self.nipDesc()}"
+            tempStr.write(f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, with {self.nipDesc()}")
          elif self.boobTotal == 4:
-            tempStr += f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts; two pairs of equal size, one close below the other. Your dual busts each measure {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, with {self.nipDesc()}"
+            tempStr.write(f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts; two pairs of equal size, one close below the other. Your dual busts each measure {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, with {self.nipDesc()}")
          elif self.boobTotal == 6:
-            tempStr += f"\n\nUpon your chest and down to your belly heaves {self.boobTotal} {self.boobDesc()} breasts; three pairs diminishing in size the lower they go. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, the next pair measuring {repintorfloat(self.decGet(self.breastSize * 0.25,2))} inches and the next measuring {repintorfloat(self.decGet(self.breastSize * 0.15,2))} inches; each with {self.nipDesc()}"
+            tempStr.write(f"\n\nUpon your chest and down to your belly heaves {self.boobTotal} {self.boobDesc()} breasts; three pairs diminishing in size the lower they go. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, the next pair measuring {repintorfloat(self.decGet(self.breastSize * 0.25,2))} inches and the next measuring {repintorfloat(self.decGet(self.breastSize * 0.15,2))} inches; each with {self.nipDesc()}")
          elif self.boobTotal == 8:
-            tempStr += f"\n\nUpon your chest and down to your lower belly heaves {self.boobTotal} {self.boobDesc()} breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.38,1))} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
+            tempStr.write(f"\n\nUpon your chest and down to your lower belly heaves {self.boobTotal} {self.boobDesc()} breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.38,1))} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}")
          elif self.boobTotal == 10:
-            tempStr += f"\n\nUpon your chest and down to just above your crotch heaves {self.boobTotal} {self.boobDesc()} breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.4,1))} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
+            tempStr.write(f"\n\nUpon your chest and down to just above your crotch heaves {self.boobTotal} {self.boobDesc()} breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.4,1))} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}")
          if (self.dominant == 5):
-            tempStr += "teats"
+            tempStr.write("teats")
          else:
-            tempStr += "nipples"
+            tempStr.write("nipples")
          if (self.nipType == 2):
-            tempStr += " hidden within slits in your areola."
+            tempStr.write(" hidden within slits in your areola.")
          elif (self.lust < 50):
-            tempStr += f" softly bulging {repintorfloat(self.decGet(self.nippleSize * 0.1,1))} inches beyond that."
+            tempStr.write(f" softly bulging {repintorfloat(self.decGet(self.nippleSize * 0.1,1))} inches beyond that.")
          elif (self.lust < 75):
-            tempStr += f" stiffly standing {repintorfloat(self.decGet(self.nippleSize * 0.2,1))} inches beyond that."
+            tempStr.write(f" stiffly standing {repintorfloat(self.decGet(self.nippleSize * 0.2,1))} inches beyond that.")
          else:
-            tempStr += f" achingly hard and reaching {repintorfloat(self.decGet(self.nippleSize * 0.25,1))} inches beyond that."
+            tempStr.write(f" achingly hard and reaching {repintorfloat(self.decGet(self.nippleSize * 0.25,1))} inches beyond that.")
          if (self.nipType == 1):
-            tempStr += " With four nubs each, your breasts look quite similar to cows' udders."
+            tempStr.write(" With four nubs each, your breasts look quite similar to cows' udders.")
          if (self.lactation > 0):
             if self.milkEngorgementLevel == 2:
-               tempStr += f" A few drops of milk dangle from each nipple as you pull your {self.clothesTop()} from your engorged breasts to inspect yourself."
+               tempStr.write(f" A few drops of milk dangle from each nipple as you pull your {self.clothesTop()} from your engorged breasts to inspect yourself.")
             elif self.milkEngorgementLevel == 3:
-               tempStr += f" Milk sprays from each of your nipples as you pull your {self.clothesTop()} from your heavily engorged breasts to inspect yourself, and continue to dribble down your belly and soaking into your {self.clothesBottom()}."
+               tempStr.write(f" Milk sprays from each of your nipples as you pull your {self.clothesTop()} from your heavily engorged breasts to inspect yourself, and continue to dribble down your belly and soaking into your {self.clothesBottom()}.")
          if (self.milkSuppressantLact > 0):
             if self.milkEngorgementLevel == 2:
-               tempStr += " The mounds beneath your nipples feel a bit swollen and sensitive, holding back all their milk."
+               tempStr.write(" The mounds beneath your nipples feel a bit swollen and sensitive, holding back all their milk.")
             elif self.milkEngorgementLevel == 3:
-               tempStr += " The mounds beneath your nipples stand more perk than ever, despite feeling so heavy; so stuffed with milk that they're fairly hard."
+               tempStr.write(" The mounds beneath your nipples stand more perk than ever, despite feeling so heavy; so stuffed with milk that they're fairly hard.")
       if (self.udders == True):
          if (self.legType == 1001):
-            tempStr += f"\n\nJust behind your tauric belly, squishing between your rear legs, hangs a {self.udderDesc()} udder "
+            tempStr.write(f"\n\nJust behind your tauric belly, squishing between your rear legs, hangs a {self.udderDesc()} udder ")
          elif (self.cowAffinity >= 55):
-            tempStr += f"\n\nJust below your belly hangs a {self.udderDesc()} udder "
-         tempStr += f"with 4 {self.teatDesc()} teats, each {repintorfloat(self.decGet(self.teatSize * 0.2,1))} inches long"
+            tempStr.write(f"\n\nJust below your belly hangs a {self.udderDesc()} udder ")
+         tempStr.write(f"with 4 {self.teatDesc()} teats, each {repintorfloat(self.decGet(self.teatSize * 0.2,1))} inches long")
          if (self.udderLactation > 0):
             if self.udderEngorgementLevel == 2:
-               tempStr += " and dribbling milk from your engorgement"
+               tempStr.write(" and dribbling milk from your engorgement")
             elif self.udderEngorgementLevel == 3:
-               tempStr += " and practically spraying milk onto the ground before you from your excessive engorgment"
+               tempStr.write(" and practically spraying milk onto the ground before you from your excessive engorgment")
          if (self.milkSuppressantUdder > 0):
             if self.udderEngorgementLevel == 2:
-               tempStr += " feeling stiff as the bag beneath them is swollen with milk"
+               tempStr.write(" feeling stiff as the bag beneath them is swollen with milk")
             elif self.udderEngorgementLevel == 3:
-               tempStr += " feeling quite hard and almost pointing straight out from the very swollen bag beneath them"
-         tempStr += "."
+               tempStr.write(" feeling quite hard and almost pointing straight out from the very swollen bag beneath them")
+         tempStr.write(".")
       if (self.cockTotal > 0):
-         tempStr += f"\n\nAbove your groin rests {self.cockTotal} {self.cockDesc()} wang{self.plural(1)}."
+         tempStr.write(f"\n\nAbove your groin rests {self.cockTotal} {self.cockDesc()} wang{self.plural(1)}.")
          if (self.lust <= 30):
             if (self.humanCocks > 0):
-               tempStr += f" {self.humanCocks} dangle{self.plural(3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, with smooth skin and a mushroom-like glans, just like a human's."
+               tempStr.write(f" {self.humanCocks} dangle{self.plural(3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, with smooth skin and a mushroom-like glans, just like a human's.")
             if (self.horseCocks > 0):
-               tempStr += f" {self.horseCocks} hide{self.plural(3)} within a fuzzy sheath that protrudes from your groin, around {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))} inches in thickness."
+               tempStr.write(f" {self.horseCocks} hide{self.plural(3)} within a fuzzy sheath that protrudes from your groin, around {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))} inches in thickness.")
             if (self.wolfCocks > 0 or self.catCocks > 0 or self.rabbitCocks > 0):
-               tempStr += f" {self.wolfCocks + self.catCocks + self.rabbitCocks} hide{self.plural(3)} within a fuzzy sheath that protrudes from your groin, around {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))} inches in thickness."
+               tempStr.write(f" {self.wolfCocks + self.catCocks + self.rabbitCocks} hide{self.plural(3)} within a fuzzy sheath that protrudes from your groin, around {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))} inches in thickness.")
             if (self.lizardCocks > 0):
-               tempStr += f" {self.lizardCocks} hide{self.plural(3)} in a slit, flush against your body."
+               tempStr.write(f" {self.lizardCocks} hide{self.plural(3)} in a slit, flush against your body.")
             if (self.bugCocks > 0):
-               tempStr += f" {self.bugCocks} dangle{self.plural(3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
+               tempStr.write(f" {self.bugCocks} dangle{self.plural(3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's.")
             if (self.moistCalc(1) > 2):
-               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, "
+               tempStr.write(f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, ")
                if (self.horseCocks > 0 or self.wolfCocks > 0 or self.catCocks > 0 or self.rabbitCocks > 0):
-                  tempStr += f" pooling within your sheath{self.plural(1)},"
-               tempStr += f" running down your thighs as it continually blotches your {self.clothesBottom()}, even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
+                  tempStr.write(f" pooling within your sheath{self.plural(1)},")
+               tempStr.write(f" running down your thighs as it continually blotches your {self.clothesBottom()}, even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least.")
          elif (self.lust <= 70):
             if (self.humanCocks > 0):
-               tempStr += f" {self.humanCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with smooth skin and a mushroom-like glans, just like a human's."
+               tempStr.write(f" {self.humanCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with smooth skin and a mushroom-like glans, just like a human's.")
             if (self.horseCocks > 0):
-               tempStr += f" {self.horseCocks} droop{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))}-inch thick smooth sheath, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
+               tempStr.write(f" {self.horseCocks} droop{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))}-inch thick smooth sheath, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's.")
             if (self.wolfCocks > 0):
-               tempStr += f" {self.wolfCocks} poke{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a wolf's."
+               tempStr.write(f" {self.wolfCocks} poke{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a wolf's.")
             if (self.catCocks > 0):
-               tempStr += f" {self.catCocks} poke{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a cat's."
+               tempStr.write(f" {self.catCocks} poke{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a cat's.")
             if (self.lizardCocks > 0):
-               tempStr += f" {self.lizardCocks} poke{self.plural(3)} through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, probably like a reptile's."
+               tempStr.write(f" {self.lizardCocks} poke{self.plural(3)} through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, probably like a reptile's.")
             if (self.rabbitCocks > 0):
-               tempStr += f" {self.rabbitCocks} poke{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip{self.plural(1)}, somewhat like a carrot, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a rabbit's."
+               tempStr.write(f" {self.rabbitCocks} poke{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip{self.plural(1)}, somewhat like a carrot, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a rabbit's.")
             if (self.bugCocks > 0):
-               tempStr += f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
+               tempStr.write(f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's.")
             if (self.knot == True):
-               tempStr += f" Your cock{self.plural(1)} swell{self.plural(3)} a little near the base, preparing for a chance for the knot{self.plural(1)} to expand."
+               tempStr.write(f" Your cock{self.plural(1)} swell{self.plural(3)} a little near the base, preparing for a chance for the knot{self.plural(1)} to expand.")
             if (self.moistCalc(1) > 5):
-               tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
+               tempStr.write(f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication.")
             elif (self.moistCalc(1) > 2):
-               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
+               tempStr.write(f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least.")
          else:
             if (self.humanCocks > 0):
-               tempStr += f" {self.humanCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
+               tempStr.write(f" {self.humanCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's.")
             if (self.horseCocks > 0):
-               tempStr += f" {self.horseCocks} twitches out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))}-inch thick smooth sheath, trying to stand {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
+               tempStr.write(f" {self.horseCocks} twitches out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))}-inch thick smooth sheath, trying to stand {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's.")
             if (self.wolfCocks > 0):
-               tempStr += f" {self.wolfCocks} throb{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look purple, they're so full of blood, with a narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a wolf's."
+               tempStr.write(f" {self.wolfCocks} throb{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look purple, they're so full of blood, with a narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a wolf's.")
             if (self.catCocks > 0):
-               tempStr += f" {self.catCocks} stiffly stand{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a cat's."
+               tempStr.write(f" {self.catCocks} stiffly stand{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip{self.plural(1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a cat's.")
             if (self.lizardCocks > 0):
-               tempStr += f" {self.lizardCocks} harden{self.plural(3)} through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, probably like a reptile's."
+               tempStr.write(f" {self.lizardCocks} harden{self.plural(3)} through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, probably like a reptile's.")
             if (self.rabbitCocks > 0):
-               tempStr += f" {self.rabbitCocks} stiffly stand{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a rabbit's."
+               tempStr.write(f" {self.rabbitCocks} stiffly stand{self.plural(3)} out of a {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))}-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a rabbit's.")
             if (self.bugCocks > 0):
-               tempStr += f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
+               tempStr.write(f" {self.bugCocks} stand{self.plural(3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's.")
             if (self.knot == True):
-               tempStr += f" Your cock{self.plural(1)} bulge{self.plural(3)} tremendously at {self.plural(5)} base{self.plural(1)}, the knot{self.plural(1)} completely expecting to come at any moment and nearly {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 4,1))} inches thick."
+               tempStr.write(f" Your cock{self.plural(1)} bulge{self.plural(3)} tremendously at {self.plural(5)} base{self.plural(1)}, the knot{self.plural(1)} completely expecting to come at any moment and nearly {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 4,1))} inches thick.")
             if (self.moistCalc(1) > 10):
-               tempStr += f" Your {self.clothesBottom()} feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff {self.oneYour(1)} cock{self.plural(1)} into a pussy half your size without any difficulty, you're so slimy!"
+               tempStr.write(f" Your {self.clothesBottom()} feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff {self.oneYour(1)} cock{self.plural(1)} into a pussy half your size without any difficulty, you're so slimy!")
             elif (self.moistCalc(1) > 5):
-               tempStr += f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication."
+               tempStr.write(f" Pre steadily drips from your groin, making a large wet spot on your {self.clothesBottom()}, looking more like you had peed yourself from all the seminal fluid. Fortunately, you could probably slip {self.oneYour(1)} cock{self.plural(1)} into a pussy smaller than you are, thanks to all the lubrication.")
             elif (self.moistCalc(1) > 2):
-               tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
+               tempStr.write(f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least.")
       if self.balls > 0:
          if self.showBalls == True:
-            tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
+            tempStr.write(f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles.")
             if self.blueBalls > 36:
-               tempStr += " They"
+               tempStr.write(" They")
          elif self.showBalls == False and self.respectShowBalls == True and self.blueBalls > 36:
-            tempStr += "\n\nYour internal balls"
+            tempStr.write("\n\nYour internal balls")
          if (self.showBalls == True or self.respectShowBalls == True) and self.blueBalls > 36:
             if (self.blueBalls <= 84):
-               tempStr += " groan and squirm, full of hot cum just waiting to blow."
+               tempStr.write(" groan and squirm, full of hot cum just waiting to blow.")
             elif (self.blueBalls > 84):
-               tempStr += " groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
+               tempStr.write(" groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come.")
       if (self.vagTotal > 0):
-         tempStr += f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {repintorfloat(self.decGet(self.vagSize * self.vagSizeMod * 0.5,1))} inches deep, when aroused."
+         tempStr.write(f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {repintorfloat(self.decGet(self.vagSize * self.vagSizeMod * 0.5,1))} inches deep, when aroused.")
          if (self.vagSize * self.vagSizeMod * self.vagTotal > self.tallness / 2):
-            tempStr += " So deep, in fact, that your belly bulges more because of the excess vaginal flesh."
+            tempStr.write(" So deep, in fact, that your belly bulges more because of the excess vaginal flesh.")
          if (self.lust <= 30):
             if (self.clitSize > self.vulvaSize * 3):
-               tempStr += f" Although you're hardly aroused, your {self.clitDesc()} clit{self.plural(2)} dangle{self.plural(4)} softly from the front of your slit{self.plural(2)}, measuring nearly {repintorfloat(self.decGet(self.clitSize * 0.1,1))} inches in length."
+               tempStr.write(f" Although you're hardly aroused, your {self.clitDesc()} clit{self.plural(2)} dangle{self.plural(4)} softly from the front of your slit{self.plural(2)}, measuring nearly {repintorfloat(self.decGet(self.clitSize * 0.1,1))} inches in length.")
             if (self.moistCalc(2) > 2):
-               tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
+               tempStr.write(f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness.")
          elif (self.lust <= 70):
-            tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.2,1))} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs."
+            tempStr.write(f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.2,1))} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs.")
             if (self.moistCalc(2) > 2 and self.moistCalc(2) <= 5):
-               tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
+               tempStr.write(f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness.")
             elif (self.moistCalc(2) > 5):
-               tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
+               tempStr.write(f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep.")
          else:
-            tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.25,2))} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
+            tempStr.write(f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.25,2))} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something.")
             if (self.moistCalc(2) > 10):
-               tempStr += f" A slow waterfall of feminine honey drips from your crotch, your {self.clothesBottom()} completely soaked. If you stand for too long, you worry your {self.legDesc(10)} will slip in the puddle you quickly make beneath you. It's so much that you could probably take a cock twice as large as you are deep!"
+               tempStr.write(f" A slow waterfall of feminine honey drips from your crotch, your {self.clothesBottom()} completely soaked. If you stand for too long, you worry your {self.legDesc(10)} will slip in the puddle you quickly make beneath you. It's so much that you could probably take a cock twice as large as you are deep!")
             elif (self.moistCalc(2) > 5):
-               tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
+               tempStr.write(f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep.")
             elif (self.moistCalc(2) > 2):
-               tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
+               tempStr.write(f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness.")
          if (self.heat > 0 and self.heatTime < 0):
-            tempStr += " Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something..."
+            tempStr.write(" Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something...")
       if (self.showSide):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",7,"Help",11,"Credits",12,"Return"))
          def doListen():
@@ -3799,44 +3800,45 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedStats(self):
       #Stats button on the side bar
-      tempStr = "These are the modifiers and multipliers for more detailed stats beyond your base stats:\n"
-      tempStr += f"\n{'Strength Modifier:':<36}{self.strMod}"
-      tempStr += f"\n{'Mentality Modifier:':<36}{self.mentMod}"
-      tempStr += f"\n{'Libidio Modifier:':<41}{self.libMod}"
-      tempStr += f"\n{'Sensitivity Modifier:':<37}{self.senMod}"
-      tempStr += "\n"
-      tempStr += f"\n{'SexP Multiplier:':<40}{repintorfloat(self.SexPMod)}"
-      tempStr += f"\n{'Adapting Multiplier:':<36}{repintorfloat(self.changeMod)}"
-      tempStr += f"\n{'Carry Capacity Modifier:':<32}{self.carryMod}"
-      tempStr += f"\n{'Hit Point Modifier:':<36}+{self.HPMod}"
-      tempStr += f"\n{'Bonus Coin Gain:':<35}+{self.coinMod}"
-      tempStr += "\n"
-      tempStr += f"\n{'Penis Size Multiplier:':<37}{repintorfloat(self.cockSizeMod)}"
-      tempStr += f"\n{'Vagina Size Multiplier:':<36}{repintorfloat(self.vagSizeMod)}"
-      tempStr += f"\n{'Semen Multiplier:':<39}{repintorfloat(self.cumMod)}"
-      tempStr += f"\n{'Butt Size Multiplier:':<39}{self.buttMod}"
-      tempStr += f"\n{'Hip Size Multiplier:':<40}{self.hipMod}"
+      tempStr = StringIO()
+      tempStr.write("These are the modifiers and multipliers for more detailed stats beyond your base stats:\n")
+      tempStr.write(f"\n{'Strength Modifier:':<36}{self.strMod}")
+      tempStr.write(f"\n{'Mentality Modifier:':<36}{self.mentMod}")
+      tempStr.write(f"\n{'Libidio Modifier:':<41}{self.libMod}")
+      tempStr.write(f"\n{'Sensitivity Modifier:':<37}{self.senMod}")
+      tempStr.write("\n")
+      tempStr.write(f"\n{'SexP Multiplier:':<40}{repintorfloat(self.SexPMod)}")
+      tempStr.write(f"\n{'Adapting Multiplier:':<36}{repintorfloat(self.changeMod)}")
+      tempStr.write(f"\n{'Carry Capacity Modifier:':<32}{self.carryMod}")
+      tempStr.write(f"\n{'Hit Point Modifier:':<36}+{self.HPMod}")
+      tempStr.write(f"\n{'Bonus Coin Gain:':<35}+{self.coinMod}")
+      tempStr.write("\n")
+      tempStr.write(f"\n{'Penis Size Multiplier:':<37}{repintorfloat(self.cockSizeMod)}")
+      tempStr.write(f"\n{'Vagina Size Multiplier:':<36}{repintorfloat(self.vagSizeMod)}")
+      tempStr.write(f"\n{'Semen Multiplier:':<39}{repintorfloat(self.cumMod)}")
+      tempStr.write(f"\n{'Butt Size Multiplier:':<39}{self.buttMod}")
+      tempStr.write(f"\n{'Hip Size Multiplier:':<40}{self.hipMod}")
       tempPregMod = 0
       if (self.babyFree > 0):
          tempPregMod -= 50
       #!Fix the formatting past here
-      tempStr += f"\n{'Pregnancy Chance:':<32}{10 + self.pregChanceMod + tempPregMod}%"
-      tempStr += f"\n{'Extra Baby Chance Mod:':<32}+{self.extraPregChance}%"
-      tempStr += f"\n{'Pregnancy Time Mod:':<32}{self.pregTimeMod}hrs"
-      tempStr += f"\n{'Pregnancy Time Rate:':<32}{repintorfloat(self.pregRate)}x"
-      tempStr += f"\n{'Boob Lactation Rate:':<32}{self.lactation}ml/hr"
+      tempStr.write(f"\n{'Pregnancy Chance:':<32}{10 + self.pregChanceMod + tempPregMod}%")
+      tempStr.write(f"\n{'Extra Baby Chance Mod:':<32}+{self.extraPregChance}%")
+      tempStr.write(f"\n{'Pregnancy Time Mod:':<32}{self.pregTimeMod}hrs")
+      tempStr.write(f"\n{'Pregnancy Time Rate:':<32}{repintorfloat(self.pregRate)}x")
+      tempStr.write(f"\n{'Boob Lactation Rate:':<32}{self.lactation}ml/hr")
       if (self.udders == True):
-         tempStr += f"\n{'Udder Lactation Rate:':<32}{self.udderLactation}ml/hr"
-      tempStr += f"\n{'Milk Modifier:':<32}+{self.milkMod}ml/hr"
-      tempStr += f"\n{'Bonus Milk Capacity:':<32}{self.milkCap}ml"
-      tempStr += "\n"
-      tempStr += f"\n{'Rape Modifier:':<32}+{self.rapeMod}"
-      tempStr += f"\n{'Enticement Modifier:':<32}+{self.enticeMod}"
-      tempStr += f"\n{'Run Chance:':<32}{20 + self.runMod}%"
+         tempStr.write(f"\n{'Udder Lactation Rate:':<32}{self.udderLactation}ml/hr")
+      tempStr.write(f"\n{'Milk Modifier:':<32}+{self.milkMod}ml/hr")
+      tempStr.write(f"\n{'Bonus Milk Capacity:':<32}{self.milkCap}ml")
+      tempStr.write("\n")
+      tempStr.write(f"\n{'Rape Modifier:':<32}+{self.rapeMod}")
+      tempStr.write(f"\n{'Enticement Modifier:':<32}+{self.enticeMod}")
+      tempStr.write(f"\n{'Run Chance:':<32}{20 + self.runMod}%")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((2,"Titles",3,"Statuses",5,"Levels",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -3860,75 +3862,80 @@ class NiminFetishFantasyv0975o_fla:
    def detailedTitles(self):
       #!Optimize
       #Titles button on the side bar
-      tempStr = "Around town, you are thought of as being:\n"
+      tempStr = StringIO()
+      tempStr.write("Around town, you are thought of as being:\n")
       if (self.enticeMod >= 10 and self.ment + 40 < self.lib and self.lib > 75):
-         tempStr += "\nA Sex Monster"
+         tempStr.write("\nA Sex Monster")
       elif (self.ment + 40 < self.lib and self.lib > 60):
-         tempStr += "\nA Sex Fiend"
+         tempStr.write("\nA Sex Fiend")
       elif (self.enticeMod >= 10 and self.lib > 60):
-         tempStr += "\nA Slut"
+         tempStr.write("\nA Slut")
       elif (self.enticeMod >= 10):
-         tempStr += "\nA Whore"
+         tempStr.write("\nA Whore")
       if (self.cockSize * self.cockSizeMod > self.tallness and self.breastSize > self.tallness * 3 and self.cockTotal > 0 and (self.vulvaSize > 50 or self.clitSize * 3 > self.tallness) and self.vagTotal > 0):
-         tempStr += "\nA Mobile Pile of Naughtiness"
+         tempStr.write("\nA Mobile Pile of Naughtiness")
       elif (self.cockSize * self.cockSizeMod > self.tallness and self.cockSize * self.cockSizeMod > 300 and self.cockTotal > 0):
-         tempStr += "\nCock Mountain"
+         tempStr.write("\nCock Mountain")
       elif (self.vulvaSize * self.tallness > 300 and self.vulvaSize > 50 and self.vagTotal > 0):
-         tempStr += "\nThe Mobile Fuckable Hill"
+         tempStr.write("\nThe Mobile Fuckable Hill")
       elif (self.cockSize * self.cockSizeMod * 2 > self.tallness and self.cockSize * self.cockSizeMod > 100 and self.cockTotal > 0):
-         tempStr += "\nA Massive Dick"
+         tempStr.write("\nA Massive Dick")
       elif (self.vulvaSize * self.tallness > 100 and self.vulvaSize > 50 and self.vagTotal > 0):
-         tempStr += "\nA Giant Pussy"
+         tempStr.write("\nA Giant Pussy")
       if (self.cockTotal > 10):
-         tempStr += "\nA Cock-Forest"
+         tempStr.write("\nA Cock-Forest")
       elif (self.cockTotal > 4):
-         tempStr += "\nA Cock-Tree"
+         tempStr.write("\nA Cock-Tree")
       if (self.vagTotal > 10):
-         tempStr += "\nPussy Galore"
+         tempStr.write("\nPussy Galore")
       elif (self.vagTotal > 4):
-         tempStr += "\nGreat for Orgies"
+         tempStr.write("\nGreat for Orgies")
       if (self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2 > 20000):
-         tempStr += "\nThe 'Cum Flooder'"
+         tempStr.write("\nThe 'Cum Flooder'")
       elif (self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2 > 5000):
-         tempStr += "\nDangerous When You Come"
+         tempStr.write("\nDangerous When You Come")
       elif (self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2 > 1000):
-         tempStr += "\nOverflowing With Seed"
+         tempStr.write("\nOverflowing With Seed")
       if (self.breastSize > self.tallness * 3):
-         tempStr += "\nMissus Tits"
+         tempStr.write("\nMissus Tits")
       elif (self.breastSize > self.tallness * 2):
-         tempStr += "\nWildly Top-Heavy"
+         tempStr.write("\nWildly Top-Heavy")
       elif (self.breastSize > self.tallness):
-         tempStr += "\nBlessed by the Boob Goddess"
+         tempStr.write("\nBlessed by the Boob Goddess")
       elif (self.breastSize * 2 > self.tallness):
-         tempStr += "\nSurprisingly Stacked"
+         tempStr.write("\nSurprisingly Stacked")
       elif (self.breastSize * 4 > self.tallness):
-         tempStr += "\nThe Beautiful Bouncy Boobs that Everyone Stares At"
+         tempStr.write("\nThe Beautiful Bouncy Boobs that Everyone Stares At")
       if (self.lactation + self.milkMod > 15000 and self.lactation > 0 or self.udderLactation + self.milkMod > 30000 and self.udderLactation > 0):
-         tempStr += "\nThe Milk Cannon"
+         tempStr.write("\nThe Milk Cannon")
       elif (self.lactation + self.milkMod > 5000 and self.lactation > 0 or self.udderLactation + self.milkMod > 10000 and self.udderLactation > 0):
-         tempStr += "\nA Walking Milk Tank"
+         tempStr.write("\nA Walking Milk Tank")
       elif (self.lactation + self.milkMod > 500 and self.lactation > 0 or self.udderLactation + self.milkMod > 1000 and self.udderLactation > 0):
-         tempStr += "\nA Dairy Cow"
+         tempStr.write("\nA Dairy Cow")
       if (self.pregnancyTime + self.vagBellyMod > 500 and self.vagTotal > 0):
-         tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
+         tempStr.write("\nThe 'Extraordinary Enormous Pregnant Belly'")
       elif (self.pregnancyTime + self.vagBellyMod > 300 and self.vagTotal > 0):
-         tempStr += "\nA Fertility Goddess"
-      tempStr += f"\n\nWithin {self.regionName(self.currentZone)} specifically, you are considered to be:\n"
-      if (self.dominant == self.currentZone):
-         tempStr += "\nA Fellow Native"
+         tempStr.write("\nA Fertility Goddess")
+      if self.grammarFixes and tempStr.getvalue() == "Around town, you are thought of as being:\n":
+         tempStr = StringIO()
       else:
-         tempStr += "\nA Strange Outsider"
+         tempStr.write("\n\n")
+      tempStr.write(f"Within {self.regionName(self.currentZone)} specifically, you are considered to be:\n")
+      if (self.dominant == self.currentZone):
+         tempStr.write("\nA Fellow Native")
+      else:
+         tempStr.write("\nA Strange Outsider")
       if self.currentZone == 1:
          if (self.cowAffinity > 50):
-            tempStr += "\nFrom the Dairy Farm"
+            tempStr.write("\nFrom the Dairy Farm")
          if (self.malonRep == 2):
-            tempStr += "\nMalon's Personal Milker"
+            tempStr.write("\nMalon's Personal Milker")
          elif (self.malonRep == 3):
-            tempStr += "\nMalon's Lover"
+            tempStr.write("\nMalon's Lover")
          elif (self.malonRep > 3):
-            tempStr += "\nMalon's Loving Partner"
+            tempStr.write("\nMalon's Loving Partner")
          if (self.malonChildren > 4):
-            tempStr += "\nThe Progenitor of a New Race"
+            tempStr.write("\nThe Progenitor of a New Race")
       #elif self.currentZone == 2:
          #{}
       #elif self.currentZone == 3:
@@ -3936,28 +3943,28 @@ class NiminFetishFantasyv0975o_fla:
       elif self.currentZone == 4:
          #!Add condition for rep 20
          if (self.lilaRep == 2):
-            tempStr += "\nLila's Friend"
+            tempStr.write("\nLila's Friend")
          elif (self.lilaRep == 3):
-            tempStr += "\nLila's 'Playmate'"
+            tempStr.write("\nLila's 'Playmate'")
          elif (self.lilaRep == 4):
-            tempStr += "\nLila's Close Friend"
+            tempStr.write("\nLila's Close Friend")
          elif (self.lilaRep == 5):
-            tempStr += "\nLila's Kinky Mate"
+            tempStr.write("\nLila's Kinky Mate")
       elif self.currentZone == 6:
          if (self.silRep == 1):
-            tempStr += "\nA Friend of the Strange Woman"
+            tempStr.write("\nA Friend of the Strange Woman")
          elif (self.silRep > 1 and self.silRep < 4):
-            tempStr += "\nSilandrias' Virile Companion"
+            tempStr.write("\nSilandrias' Virile Companion")
          elif (self.silRep > 3 and self.silRep < 6):
-            tempStr += "\nSilandrias' Excessively Fertile Companion"
+            tempStr.write("\nSilandrias' Excessively Fertile Companion")
          elif (self.silRep == 6):
-            tempStr += "\nSilandrias' Trusted Lover and Mate"
+            tempStr.write("\nSilandrias' Trusted Lover and Mate")
          elif (self.silRep == 6 and self.silPreg > 5000):
-            tempStr += "\nThe Progenitor of an Extinct Race"
+            tempStr.write("\nThe Progenitor of an Extinct Race")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",3,"Statuses",5,"Levels",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -3980,63 +3987,64 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedStatuses(self):
       #Effects button in the side bar
-      tempStr = "The following status effects are currently active on you that you are aware of: (Name - Hours Left)\n"
+      tempStr = StringIO()
+      tempStr.write("The following status effects are currently active on you that you are aware of: (Name - Hours Left)\n")
       if (self.masoPot > 0):
-         tempStr += f"\nMasochism Potion\t\t{self.masoPot}"
+         tempStr.write(f"\nMasochism Potion\t\t{self.masoPot}")
       if (self.sMasoPot > 0):
-         tempStr += f"\nSupererior Maso. Pot.\t\t{self.sMasoPot}"
+         tempStr.write(f"\nSupererior Maso. Pot.\t\t{self.sMasoPot}")
       if (self.babyFree > 0):
-         tempStr += f"\nBaby Free\t\t\t\t{self.babyFree}"
+         tempStr.write(f"\nBaby Free\t\t\t\t{self.babyFree}")
       if (self.charmTime > 0):
-         tempStr += f"\nCharmed\t\t\t\t{self.charmTime}"
+         tempStr.write(f"\nCharmed\t\t\t\t{self.charmTime}")
       if (self.pheromone > 0):
-         tempStr += f"\nPheromones\t\t\t{self.pheromone}"
+         tempStr.write(f"\nPheromones\t\t\t{self.pheromone}")
       if (self.eggceleratorTime > 0):
-         tempStr += f"\nEggcelerator\t\t\t{self.eggceleratorTime}"
+         tempStr.write(f"\nEggcelerator\t\t\t{self.eggceleratorTime}")
       if (self.bodyOil > 0):
-         tempStr += f"\nBody Oil\t\t\t\t{self.bodyOil}"
+         tempStr.write(f"\nBody Oil\t\t\t\t{self.bodyOil}")
       if (self.fertileGel > 0):
-         tempStr += f"\nFertile Gel\t\t\t{self.fertileGel}"
+         tempStr.write(f"\nFertile Gel\t\t\t{self.fertileGel}")
       if (self.milkSuppressant > 0):
-         tempStr += f"\nMilk Suppressant\t{self.milkSuppressant}"
-      tempStr += "\n"
+         tempStr.write(f"\nMilk Suppressant\t{self.milkSuppressant}")
+      tempStr.write("\n")
       if (self.exhaustionPenalty == 2):
-         tempStr += "\nExhausted"
+         tempStr.write("\nExhausted")
       elif (self.exhaustionPenalty == 1):
-         tempStr += "\nTired"
+         tempStr.write("\nTired")
       if (self.lustPenalty > 0):
-         tempStr += "\nHorny"
+         tempStr.write("\nHorny")
       if (self.heatTime < 0):
-         tempStr += "\nIn Heat"
+         tempStr.write("\nIn Heat")
       if (self.milkEngorgementLevel > 0):
-         tempStr += "\nEngorged Breasts"
+         tempStr.write("\nEngorged Breasts")
       if (self.udderEngorgementLevel > 0):
-         tempStr += "\nEngorged Udder"
+         tempStr.write("\nEngorged Udder")
       if (self.blueBalls > 84):
-         tempStr += "\nBlue Balls"
+         tempStr.write("\nBlue Balls")
       if (self.pregnancyTime > 36):
-         tempStr += "\nPregnant"
-      tempStr += "\n"
+         tempStr.write("\nPregnant")
+      tempStr.write("\n")
       if (self.lockTail > 0):
-         tempStr += "\nRacial-locked Tail"
+         tempStr.write("\nRacial-locked Tail")
       if (self.lockFace > 0):
-         tempStr += "\nRacial-locked Face"
+         tempStr.write("\nRacial-locked Face")
       if (self.lockSkin > 0):
-         tempStr += "\nRacial-locked Skin"
+         tempStr.write("\nRacial-locked Skin")
       if (self.lockBreasts > 0):
-         tempStr += "\nRacial-locked Breasts"
+         tempStr.write("\nRacial-locked Breasts")
       if (self.lockEars > 0):
-         tempStr += "\nRacial-locked Ears"
+         tempStr.write("\nRacial-locked Ears")
       if (self.lockLegs > 0):
-         tempStr += "\nRacial-locked Legs"
+         tempStr.write("\nRacial-locked Legs")
       if (self.lockNipples > 0):
-         tempStr += "\nRacial-locked Nipples"
+         tempStr.write("\nRacial-locked Nipples")
       if (self.lockCock > 0):
-         tempStr += "\nRacial-locked Cocks"
+         tempStr.write("\nRacial-locked Cocks")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",5,"Levels",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -4059,24 +4067,25 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedLevels(self):
       #Levels button in the side bar
-      tempStr = "You have the following perks and their respective ranks:\n"
+      tempStr = StringIO()
+      tempStr.write("You have the following perks and their respective ranks:\n")
       if (self.babyFactLevel > 0):
-         tempStr += f"\nBaby Factory\t\t{self.babyFactLevel}"
+         tempStr.write(f"\nBaby Factory\t\t{self.babyFactLevel}")
       if (self.bodyBuildLevel > 0):
-         tempStr += f"\nBody Builder\t\t{self.bodyBuildLevel}"
+         tempStr.write(f"\nBody Builder\t\t{self.bodyBuildLevel}")
       if (self.hyperHappyLevel > 0):
-         tempStr += f"\nHyper Happy\t\t{self.hyperHappyLevel}"
+         tempStr.write(f"\nHyper Happy\t\t{self.hyperHappyLevel}")
       if (self.alchemistLevel > 0):
-         tempStr += f"\nAlchemist\t\t{self.alchemistLevel}"
+         tempStr.write(f"\nAlchemist\t\t{self.alchemistLevel}")
       if (self.milkMaidLevel > 0):
-         tempStr += f"\nMilk Maid\t\t{self.milkMaidLevel}"
+         tempStr.write(f"\nMilk Maid\t\t{self.milkMaidLevel}")
       if (self.shapeshiftyLevel > 0):
-         tempStr += f"\nShapeshifty\t\t{self.shapeshiftyLevel}"
-      tempStr += f"\n\nFor a total of {self.level} levels."
+         tempStr.write(f"\nShapeshifty\t\t{self.shapeshiftyLevel}")
+      tempStr.write(f"\n\nFor a total of {self.level} levels.")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -4099,16 +4108,17 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedGear(self):
       #Gear button in the side bar
-      tempStr = "You have the following items in your Bag:\n"
+      tempStr = StringIO()
+      tempStr.write("You have the following items in your Bag:\n")
       for i in range(27):
          if (self.bagArray[i] != 0):
-            tempStr += f"\n{self.itemName(self.bagArray[i])}"
+            tempStr.write(f"\n{self.itemName(self.bagArray[i])}")
             if (self.bagStackArray[i] > 1):
-               tempStr += f" x{self.bagStackArray[i]}"
+               tempStr.write(f" x{self.bagStackArray[i]}")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -4131,50 +4141,51 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedHelp(self):
       #Help button in the side bar
-      tempStr = "<b><u>Stats</u></b>\n"
-      tempStr += "\n-Strength - Adds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation."
-      tempStr += "\n-Mentality - Fights hostile lust gain, improves helpful lust loss."
-      tempStr += "\n-Libido - Increases lust gain, can hinder mentality in events."
-      tempStr += "\n-Sensitivity - Increases damage taken and increases lust loss."
-      tempStr += "\n-HP - Your Hit Points. Lose too much and you'll pass out."
-      tempStr += "\n-Lust - Can overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP."
-      tempStr += "\n\n<b><u>Actions</u></b>\n"
-      tempStr += "\n-Stash - Extra inventory space that you cannot carry, but moves with you from town to town."
-      tempStr += "\n-Prostitute - When desparate for money, you can resort to prostitution. Remember, beggars can't be choosers and you may not like the company."
-      tempStr += "\n-Alchemy - Mix items together to get other items. Learn recipes around the world."
-      tempStr += "\n-Bag - Where you hold all your items. Shift+Click will allow you to select an item to move, Shift+Click a slot to move it to."
-      tempStr += "\n-Rape - A combat action to attempt to overpower your opponent and sex their brains out. An aroused opponent is easier to rape."
-      tempStr += "\n-Entice - A combat action to raise opponent's lust (if they find you attractive)."
-      tempStr += "\n-Run - A combat action to flee from battle. Running in a dungeon will leave the dungeon."
-      tempStr += "\n-Submit - Because some people can't wait to be king- I mean raped."
-      tempStr += "\n\n<b><u>Tips</u></b>\n"
-      tempStr += "\n-Carry Capacity - Determined by strength, height, body type, and modifiers. Determines how much of yourself you can carry."
-      tempStr += "\n-Shops - Each town has unique wares in many of their shops, so it's good to look around."
-      tempStr += "\n-Race - Some racial features are based on whatever blood is most dominant. Some features can be shared."
-      tempStr += "\n-Bust Size - 1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup."
-      tempStr += "\n-Breasts - Everybody has breasts. Yes, even males. How many is determined by your race."
-      tempStr += "\n-Empty Button - Outside of inventories, these mean you have access to something, but do not currently have the correct item/requirements."
-      tempStr += "\n\n<b><u>Hotkeys</u></b>\n"
-      tempStr += "\nOnly function when they show."
-      tempStr += "\n-Save = F2, Load = F4, New Game = Backspace, Appearance = U"
-      tempStr += "\n-Font Size+ = Up, Font Size- = Down, Theme = Left, Font Color = Right"
-      tempStr += "\n-Reset Font Size = Ctrl, Font Bold = /?, Toggle Side Window = ."
-      tempStr += "\n-Side window buttons (in order):"
-      tempStr += "\n\tUIOP"
-      tempStr += "\n\tHJKL"
-      tempStr += "\n-Main choice buttons (both keyboard and NumPad in order):"
-      tempStr += "\n\tQWER\t789-"
-      tempStr += "\n\tASDF\t456+"
-      tempStr += "\n\tZXCV\t123Enter"
+      tempStr = StringIO()
+      tempStr.write("<b><u>Stats</u></b>\n")
+      tempStr.write("\n-Strength - Adds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation.")
+      tempStr.write("\n-Mentality - Fights hostile lust gain, improves helpful lust loss.")
+      tempStr.write("\n-Libido - Increases lust gain, can hinder mentality in events.")
+      tempStr.write("\n-Sensitivity - Increases damage taken and increases lust loss.")
+      tempStr.write("\n-HP - Your Hit Points. Lose too much and you'll pass out.")
+      tempStr.write("\n-Lust - Can overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP.")
+      tempStr.write("\n\n<b><u>Actions</u></b>\n")
+      tempStr.write("\n-Stash - Extra inventory space that you cannot carry, but moves with you from town to town.")
+      tempStr.write("\n-Prostitute - When desparate for money, you can resort to prostitution. Remember, beggars can't be choosers and you may not like the company.")
+      tempStr.write("\n-Alchemy - Mix items together to get other items. Learn recipes around the world.")
+      tempStr.write("\n-Bag - Where you hold all your items. Shift+Click will allow you to select an item to move, Shift+Click a slot to move it to.")
+      tempStr.write("\n-Rape - A combat action to attempt to overpower your opponent and sex their brains out. An aroused opponent is easier to rape.")
+      tempStr.write("\n-Entice - A combat action to raise opponent's lust (if they find you attractive).")
+      tempStr.write("\n-Run - A combat action to flee from battle. Running in a dungeon will leave the dungeon.")
+      tempStr.write("\n-Submit - Because some people can't wait to be king- I mean raped.")
+      tempStr.write("\n\n<b><u>Tips</u></b>\n")
+      tempStr.write("\n-Carry Capacity - Determined by strength, height, body type, and modifiers. Determines how much of yourself you can carry.")
+      tempStr.write("\n-Shops - Each town has unique wares in many of their shops, so it's good to look around.")
+      tempStr.write("\n-Race - Some racial features are based on whatever blood is most dominant. Some features can be shared.")
+      tempStr.write("\n-Bust Size - 1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup.")
+      tempStr.write("\n-Breasts - Everybody has breasts. Yes, even males. How many is determined by your race.")
+      tempStr.write("\n-Empty Button - Outside of inventories, these mean you have access to something, but do not currently have the correct item/requirements.")
+      tempStr.write("\n\n<b><u>Hotkeys</u></b>\n")
+      tempStr.write("\nOnly function when they show.")
+      tempStr.write("\n-Save = F2, Load = F4, New Game = Backspace, Appearance = U")
+      tempStr.write("\n-Font Size+ = Up, Font Size- = Down, Theme = Left, Font Color = Right")
+      tempStr.write("\n-Reset Font Size = Ctrl, Font Bold = /?, Toggle Side Window = .")
+      tempStr.write("\n-Side window buttons (in order):")
+      tempStr.write("\n\tUIOP")
+      tempStr.write("\n\tHJKL")
+      tempStr.write("\n-Main choice buttons (both keyboard and NumPad in order):")
+      tempStr.write("\n\tQWER\t789-")
+      tempStr.write("\n\tASDF\t456+")
+      tempStr.write("\n\tZXCV\t123Enter")
       #!Fix these. They look like shit because tkinter doesn't use fixed width fonts
-      tempStr += "\nPymin specific keys (both keyboard and NumPad in order):"
-      tempStr += "\n\t~/` | /    - Open Wiki"
-      tempStr += "\n\tg   | .    - Sort button (new save/load dialog)"
-      tempStr += "\n\tb   | 0    - Discard button (bag/stash) and Converter button (save/load)"
+      tempStr.write("\nPymin specific keys (both keyboard and NumPad in order):")
+      tempStr.write("\n\t~/` | /    - Open Wiki")
+      tempStr.write("\n\tg   | .    - Sort button (new save/load dialog)")
+      tempStr.write("\n\tb   | 0    - Discard button (bag/stash) and Converter button (save/load)")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -4197,15 +4208,16 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedCredits(self):
       #Credits button in the sidebar
-      tempStr = f"Nimin Python Port (Pymin) version {__version__}\nMaintained by:\tajdelguidice\n\thttps://github.com/ajdelguidice/pymin.\nPlease direct any bug reports here as this port has nothing to do with the original creators."
-      tempStr += f"\n\nNimin v{self.versionNumber}\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com"
-      tempStr += "\n\nSpecial thanks to SumigakiFox (owner of Silandrias) and Arlyurl (made the Nimin image) on FA."
-      tempStr += "\n\nProstitution scene editors (thanks for the work!): Torakazu, Bahamad, and omegaokami on FA."
-      tempStr += "\n\nProstitution scene writers:\n\t--Buncubus, BantinNysam, TheAbyssalWatcher, mike12345, V, grottokraft, Ludoergosum, perrothetraveler, reikonova, shockblock99, Kidou, bunnybunbun, supernaut, shaesullivan, m3chawolf, Kizzneth, barkbarkboom, Torakazu"
+      tempStr = StringIO()
+      tempStr.write(f"Nimin Python Port (Pymin) version {__version__}\nMaintained by:\tajdelguidice\n\thttps://github.com/ajdelguidice/pymin.\nPlease direct any bug reports here as this port has nothing to do with the original creators.")
+      tempStr.write(f"\n\nNimin v{self.versionNumber}\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com")
+      tempStr.write("\n\nSpecial thanks to SumigakiFox (owner of Silandrias) and Arlyurl (made the Nimin image) on FA.")
+      tempStr.write("\n\nProstitution scene editors (thanks for the work!): Torakazu, Bahamad, and omegaokami on FA.")
+      tempStr.write("\n\nProstitution scene writers:\n\t--Buncubus, BantinNysam, TheAbyssalWatcher, mike12345, V, grottokraft, Ludoergosum, perrothetraveler, reikonova, shockblock99, Kidou, bunnybunbun, supernaut, shaesullivan, m3chawolf, Kizzneth, barkbarkboom, Torakazu")
       if (self.showSide == True):
-         self.outputSideText(tempStr,True)
+         self.outputSideText(tempStr.getvalue(),True)
       else:
-         self.outputMainText(tempStr,True)
+         self.outputMainText(tempStr.getvalue(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",7,"Help",9,"Appearance",12,"Return"))
          def doListen():
@@ -11712,34 +11724,35 @@ class NiminFetishFantasyv0975o_fla:
    def simpleAlchemy(self):
       self.comefromalch = 1
       self.choiceListArray = as3.Array()
-      tempStr = "Click on an item you would like to create."
+      tempStr = StringIO()
+      tempStr.write("Click on an item you would like to create.")
       self.choiceListArray.push("Blondie")
       if (self.choiceListCheck("Blondie")):
-         tempStr += "\n\nBlondie - Dye that will turn your hair blonde.\nRequires 7 Grain."
+         tempStr.write("\n\nBlondie - Dye that will turn your hair blonde.\nRequires 7 Grain.")
       self.choiceListArray.push("Reduc Reduc")
       if (self.choiceListCheck("Reduc Reduc")):
-         tempStr += "\n\nReduced Reduction - For when you don't want the more powerful shrinkage from a Reduction, this Reduced version shrinks things at a static rate.\nRequires 2 Reductions."
+         tempStr.write("\n\nReduced Reduction - For when you don't want the more powerful shrinkage from a Reduction, this Reduced version shrinks things at a static rate.\nRequires 2 Reductions.")
       if (self.knowLustDraft == True):
          self.choiceListArray.push("Lust Draft")
          if (self.choiceListCheck("Lust Draft")):
-            tempStr += "\n\nLust Draft - When you're having difficulty performing, a quick sip of this will get you up and ready in no time.\nRequires 1 Grain, plus either 1 Sweet Sap, 1 Cum Vial, or moderately moist genitals at the time of creation."
+            tempStr.write("\n\nLust Draft - When you're having difficulty performing, a quick sip of this will get you up and ready in no time.\nRequires 1 Grain, plus either 1 Sweet Sap, 1 Cum Vial, or moderately moist genitals at the time of creation.")
       if (self.knowRejuvPot == True):
          self.choiceListArray.push("Rejuv Pot")
          if (self.choiceListCheck("Rejuv Pot")):
-            tempStr += "\n\nRejuvenating Potion - Both heals and soothes the body.\nRequires 1 Poultice and 1 Wolf Fur."
+            tempStr.write("\n\nRejuvenating Potion - Both heals and soothes the body.\nRequires 1 Poultice and 1 Wolf Fur.")
       if (self.knowExpPreg == True):
          self.choiceListArray.push("Exp Preg")
          if (self.choiceListCheck("Exp Preg")):
-            tempStr += "\n\nExpress Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these to get a jump on the gestation period!\nRequires 1 Sweet Sap and 1 Fresh Egg."
+            tempStr.write("\n\nExpress Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these to get a jump on the gestation period!\nRequires 1 Sweet Sap and 1 Fresh Egg.")
       if (self.knowBallSwell == True):
          self.choiceListArray.push("Ball Swell")
          if (self.choiceListCheck("Ball Swell")):
-            tempStr += "\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\nRequires 1 Blo Berry."
+            tempStr.write("\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\nRequires 1 Blo Berry.")
       if (self.knowMaleEnhance == True):
          self.choiceListArray.push("Male Enhance")
          if (self.choiceListCheck("Male Enhance")):
-            tempStr += "\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry."
-      self.outputMainText(tempStr,True)
+            tempStr.write("\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry.")
+      self.outputMainText(tempStr.getvalue(),True)
       self.choiceListButtons("Simple")
       def doListen():
          self.choiceListSelect("Simple")
@@ -11767,47 +11780,48 @@ class NiminFetishFantasyv0975o_fla:
    def complexAlchemy(self):
       self.comefromalch = 2
       self.choiceListArray = as3.Array()
-      tempStr = "Click on an item you would like to create."
+      tempStr = StringIO()
+      tempStr.write("Click on an item you would like to create.")
       self.choiceListArray.push("Black Dye")
       if (self.choiceListCheck("Black Dye")):
-         tempStr += "\n\nBlack Dye - Dye that will turn your hair black.\nRequires 5 Wolf Fur."
+         tempStr.write("\n\nBlack Dye - Dye that will turn your hair black.\nRequires 5 Wolf Fur.")
       if (self.knowSLustDraft == True):
          self.choiceListArray.push("S Lust Draft")
          if (self.choiceListCheck("S Lust Draft")):
-            tempStr += "\n\nSuperior Lust Draft - When you're having difficulty performing, a quick sip of this will get you up so fast that you may want to avoid pointing towards any nearby eyes.\nRequires 3 Grain plus either 2 Bol Juice, 1 Cum Bottle, or really moist genitals at the time of creation."
+            tempStr.write("\n\nSuperior Lust Draft - When you're having difficulty performing, a quick sip of this will get you up so fast that you may want to avoid pointing towards any nearby eyes.\nRequires 3 Grain plus either 2 Bol Juice, 1 Cum Bottle, or really moist genitals at the time of creation.")
       if (self.knowSRejuvPot == True):
          self.choiceListArray.push("S Rejuv Pot")
          if (self.choiceListCheck("S Rejuv Pot")):
-            tempStr += "\n\nSuperior Rejuvenating Potion - Both greatly heals and soothes the body.\nRequires 1 Lust Draft (to be reversed) and either 1 Milk Jug or 3 Milk Bottle."
+            tempStr.write("\n\nSuperior Rejuvenating Potion - Both greatly heals and soothes the body.\nRequires 1 Lust Draft (to be reversed) and either 1 Milk Jug or 3 Milk Bottle.")
       if (self.knowSExpPreg == True):
          self.choiceListArray.push("S Exp Preg")
          if (self.choiceListCheck("S Exp Preg")):
-            tempStr += "\n\nSuperior Express Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these and that baby will be wanting out in no time!\nRequires 1 Wet Cloth and 3 Fresh Eggs."
+            tempStr.write("\n\nSuperior Express Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these and that baby will be wanting out in no time!\nRequires 1 Wet Cloth and 3 Fresh Eggs.")
       if (self.knowSBallSwell == True):
          self.choiceListArray.push("S Ball Swell")
          if (self.choiceListCheck("S Ball Swell")):
-            tempStr += "\n\nSuperior Ball Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production so much that you may wanna be wary of explosions.\nRequires 1 Blo Berry and 1 Bul Berry."
+            tempStr.write("\n\nSuperior Ball Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production so much that you may wanna be wary of explosions.\nRequires 1 Blo Berry and 1 Bul Berry.")
       if (self.knowBabyFree == True):
          self.choiceListArray.push("Baby Free")
          if (self.choiceListCheck("Baby Free")):
-            tempStr += "\n\nBaby Free Potion - Though this potion may lack babies as an ingredient, it also reduces the chances of any woman who takes it from getting pregnant for a period of time.\nRequires 1 Reduction and 1 Wolf Fur."
+            tempStr.write("\n\nBaby Free Potion - Though this potion may lack babies as an ingredient, it also reduces the chances of any woman who takes it from getting pregnant for a period of time.\nRequires 1 Reduction and 1 Wolf Fur.")
       if (self.knowPotPot == True):
          self.choiceListArray.push("Pot Pot")
          if (self.choiceListCheck("Pot Pot")):
-            tempStr += "\n\nPotency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will make your nuts more effective at their job!\nRequires 3 Ball Swell and 1 Cum Vial."
+            tempStr.write("\n\nPotency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will make your nuts more effective at their job!\nRequires 3 Ball Swell and 1 Cum Vial.")
       if (self.knowGenSwap == True):
          self.choiceListArray.push("Gen Swap")
          if (self.choiceListCheck("Gen Swap")):
-            tempStr += "\n\nGender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. Although you may lose your proportions, you'll know what it feels to be like the opposite gender in no time. Unless you're both, in which case you'd just know how a rather undeveloped version of both genders feels, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Neuter and 1 Reduction."
+            tempStr.write("\n\nGender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. Although you may lose your proportions, you'll know what it feels to be like the opposite gender in no time. Unless you're both, in which case you'd just know how a rather undeveloped version of both genders feels, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Neuter and 1 Reduction.")
       if(self.knowMasoPot == True):
          self.choiceListArray.push("Maso Pot")
          if (self.choiceListCheck("Maso Pot")):
-            tempStr += "\n\nMasochism Potion - This little drink messes up your nervous system for a while, making you perceive some damage as pleasure instead. A batch of Masochism Potion results in 2 potions.\nRequires 2 Wolf Fur and 1 Lust Draft."
+            tempStr.write("\n\nMasochism Potion - This little drink messes up your nervous system for a while, making you perceive some damage as pleasure instead. A batch of Masochism Potion results in 2 potions.\nRequires 2 Wolf Fur and 1 Lust Draft.")
       if (self.knowMilkSuppress == True):
          self.choiceListArray.push("Milk Suppress")
          if (self.choiceListCheck("Milk Suppress")):
-            tempStr += "\n\nMilk Suppressant - A little embarassed by your inopportune leaking? This drug will help prevent any milk from flowing out, though it does not stop the production of milk.\nRequires 1 Milk C Pois and 1 Reduc Reduc."
-      self.outputMainText(tempStr,True)
+            tempStr.write("\n\nMilk Suppressant - A little embarassed by your inopportune leaking? This drug will help prevent any milk from flowing out, though it does not stop the production of milk.\nRequires 1 Milk C Pois and 1 Reduc Reduc.")
+      self.outputMainText(tempStr.getvalue(),True)
       self.choiceListButtons("Complex")
       def doListen():
          self.choiceListSelect("Complex")
@@ -11841,39 +11855,40 @@ class NiminFetishFantasyv0975o_fla:
    def advancedAlchemy(self):
       self.comefromalch = 3
       self.choiceListArray = as3.Array()
-      tempStr = "Click on an item you would like to create."
+      tempStr = StringIO()
+      tempStr.write("Click on an item you would like to create.")
       self.choiceListArray.push("Red Dye")
       if (self.choiceListCheck("Red Dye")):
-         tempStr += "\n\nRed Dye - Dye that will turn your hair red.\nRequires 1 Pink Ink and 3 Red Mush."
+         tempStr.write("\n\nRed Dye - Dye that will turn your hair red.\nRequires 1 Pink Ink and 3 Red Mush.")
       if (self.knowSBabyFree == True):
          self.choiceListArray.push("S Baby Free")
          if (self.choiceListCheck("S Baby Free")):
-            tempStr += "\n\nSuperior Baby Free Potion - This potion really has no babies in it I swear! Seriously. Please believe me! If you drink it you'll be nearly baby free as well for over a week!\nRequires 1 Neuter and 1 Puss Fruit."
+            tempStr.write("\n\nSuperior Baby Free Potion - This potion really has no babies in it I swear! Seriously. Please believe me! If you drink it you'll be nearly baby free as well for over a week!\nRequires 1 Neuter and 1 Puss Fruit.")
       if (self.knowSPotPot == True):
          self.choiceListArray.push("S Pot Pot")
          if (self.choiceListCheck("S Pot Pot")):
-            tempStr += "\n\nSuperior Potency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will definitely kick them... into gear!\nRequires 3 S Ball Swell and 1 Cum Bottle."
+            tempStr.write("\n\nSuperior Potency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will definitely kick them... into gear!\nRequires 3 S Ball Swell and 1 Cum Bottle.")
       if (self.knowSGenSwap == True):
          self.choiceListArray.push("S Gen Swap")
          if (self.choiceListCheck("S Gen Swap")):
-            tempStr += "\n\nSuperior Gender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. And the best part is your endowments will be of equal proportion! Unless you're both, in which case your proportions will swap, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Puss Fruit, 1 Co-Sn Ven, 1 Milk C Pois, and 1 Cock Carv."
+            tempStr.write("\n\nSuperior Gender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. And the best part is your endowments will be of equal proportion! Unless you're both, in which case your proportions will swap, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Puss Fruit, 1 Co-Sn Ven, 1 Milk C Pois, and 1 Cock Carv.")
       if (self.knowSMasoPot == True):
          self.choiceListArray.push("S Maso Pot")
          if (self.choiceListCheck("S Maso Pot")):
-            tempStr += "\n\nSuperior Masochism Potion - This little drink messes up your nervous system for a while, making you perceive all damage as pleasure instead.\nRequires 1 Kinky Carr, 1 Rejuv Pot, and 1 Trinket."
+            tempStr.write("\n\nSuperior Masochism Potion - This little drink messes up your nervous system for a while, making you perceive all damage as pleasure instead.\nRequires 1 Kinky Carr, 1 Rejuv Pot, and 1 Trinket.")
       if (self.knowPussJuice == True):
          self.choiceListArray.push("Puss Juice")
          if (self.choiceListCheck("Puss Juice")):
-            tempStr += "\n\nConcentrated Pussy Fruit Juice - A recipe learned from the felin mistress in Siz'Calit, this mixture increases the potency of the Pussy Fruit and guarantees some interesting reactions.\nRequires 6 Puss Fruit and 1 Sweet Sap."
+            tempStr.write("\n\nConcentrated Pussy Fruit Juice - A recipe learned from the felin mistress in Siz'Calit, this mixture increases the potency of the Pussy Fruit and guarantees some interesting reactions.\nRequires 6 Puss Fruit and 1 Sweet Sap.")
       if (self.knowPheromone == True):
          self.choiceListArray.push("Pheromone")
          if (self.choiceListCheck("Pheromone")):
-            tempStr += "\n\nStrong Pheromone - A recipe learned from an elderly lupan fisherman at the lake outside of Tieden, this concoction supposedly attracts fish quite well and makes great bait. However, due to some missing notes, your results may be a bit more... potent than advertised.\nRequires 1 Charmed Egg, 1 Red Mush, and 1 Trinket."
+            tempStr.write("\n\nStrong Pheromone - A recipe learned from an elderly lupan fisherman at the lake outside of Tieden, this concoction supposedly attracts fish quite well and makes great bait. However, due to some missing notes, your results may be a bit more... potent than advertised.\nRequires 1 Charmed Egg, 1 Red Mush, and 1 Trinket.")
       if (self.knowBazoomba == True):
          self.choiceListArray.push("Bazoomba!")
          if (self.choiceListCheck("Bazoomba!")):
-            tempStr += "\n\nBazoomba! - A secret and powerful recipe that creates more of one of the best things in the world...\nRequires 1 Strange Egg, 1 Milk Jug, 2 Cock Carv, and 3 Red Mush."
-      self.outputMainText(tempStr,True)
+            tempStr.write("\n\nBazoomba! - A secret and powerful recipe that creates more of one of the best things in the world...\nRequires 1 Strange Egg, 1 Milk Jug, 2 Cock Carv, and 3 Red Mush.")
+      self.outputMainText(tempStr.getvalue(),True)
       self.choiceListButtons("Advanced")
       def doListen():
          self.choiceListSelect("Advanced")
@@ -25162,10 +25177,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("moveitemamount",text="")
    def openSFC(self):
       if self.sfcopen == False:
-         if self.cmdOpenConverter:
-            self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,True,False,True)
-         else:
-            self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,False,False,True)
+         self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,self.cmdOpenConverter,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
          self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman',20, 'bold'),"n")
@@ -25210,7 +25222,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcopen = False
    def convertButton(self,*args):
       self.convertSave(self.sfcwindow.children["inputfilebox"].get(),self.sfcinputfilecombobox.get(),self.sfcwindow.children["outputfilebox"].get(),self.sfcoutputfilecombobox.get())
-   def convertSave(self,inputfile,inputfiletype,outputfile,outputfiletype): #New save converter
+   def convertSave(self,inputfile,inputfiletype,outputfile,outputfiletype):
       if inputfile in {None,""} or outputfile in {None,""}:
          as3.trace("SaveConverter: Error: Input/Output file can not be empty")
          self.sfcwindow.configureChild("message",text="Error: Input/Output file can not be \"None\" or empty")
@@ -25230,12 +25242,12 @@ class NiminFetishFantasyv0975o_fla:
       elif inputfiletype == "nim":
          data = self.loadSOL(inputfile,True)
       elif inputfiletype == "detect":
-         ext = inputfile.split(confmod.separator)[-1].split(".")[-1].lower()
-         if ext == "xml":
+         infile = inputfile.lower()
+         if infile.endswith(".xml"):
             data = self.loadXML(inputfile)
-         elif ext == "sol":
+         elif infile.endswith(".sol"):
             data = self.loadSOL(inputfile)
-         elif ext == "nim":
+         elif infile.endswith(".nim"):
             data = self.loadSOL(inputfile,True)
          else:
             as3.trace(f"SaveConverter: Error: Detected input file type {ext} is not a supported file type")
@@ -25251,8 +25263,8 @@ class NiminFetishFantasyv0975o_fla:
       elif outputfiletype == "nim":
          self.saveNIM(data,outputfile)
       elif outputfiletype == "detect":
-         ext = outputfile.split(confmod.separator)[-1].split(".")[-1].lower()
-         if ext == "xml":
+         outfile = outputfile.lower()
+         if outfile.endswith(".xml"):
             try:
                self.saveXml(data,outputfile)
             except:
@@ -25260,9 +25272,9 @@ class NiminFetishFantasyv0975o_fla:
                self.sfcwindow.configureChild("message",text="Error: Failed to save file")
             else:
                self.sfcwindow.configureChild("message",text="Success")
-         elif ext == "sol":
+         elif outfile.endswith(".sol"):
             self.saveSOL(data,outputfile)
-         elif ext == "nim":
+         elif outfile.endswith("nim"):
             self.saveNIM(data,outputfile)
          else:
             as3.trace(f"SaveConverter: Error: Detected output file type {ext} is not a supported file type")
@@ -25406,7 +25418,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
          else:
-            as3.trace("SOL Loader: Error: Can not load file.")
+            as3.trace("SOL Loader: Error: Can not save file.")
       if self.sfcopen == True:
          self.sfcwindow.toTop()
    @staticmethod
@@ -25525,11 +25537,11 @@ class NiminFetishFantasyv0975o_fla:
             temp = 1.0
          else:
             temp = temp[0]
-         #!Remove self.interfacetoggles
+         #!Add new variables
          if self.currentState != 0:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory = {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation = {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\ngametweaks = {self.gametweaks}\ninterfacetoggles = {self.interfacetoggles}\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\nlustArray = {self.lustArray}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\nlustArray = {self.lustArray}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
          else:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory = {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation = {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\ngametweaks = {self.gametweaks}\ninterfacetoggles = {self.interfacetoggles}\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Text Variables|\ncurrentText = {self.currentText}\nsideText = {self.sideText}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\npregTempBool: {self.pregTempBool}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\nbagDiscard: {self.bagDiscard}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}"
          self.dw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
          self.dw.children["text"].yview_moveto(temp)
    def closeDebugWindow(self,*useless):
