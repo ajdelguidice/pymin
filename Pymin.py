@@ -81,6 +81,8 @@ class StringIO(_StringIO):
    def __iadd__(self,string:str):
       self.write(string)
       return self
+   def __eq__(self,string:str):
+      return self.getvalue() == string
 
 def applyBackspace(string):
    #From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
@@ -207,7 +209,7 @@ class NiminFetishFantasyv0975o_fla:
       self.fontColor = "#000000" #str
       self.showSide = True #bool
       self.buttonChoice = 0 #int
-      self.currentText = "" #str
+      self.currentText = StringIO() #str
       self.sideText = "" #str
       self.sideFocus = 1 #int
 
@@ -2382,12 +2384,15 @@ class NiminFetishFantasyv0975o_fla:
          self.updateTheme()
    def outputMainText(self, texts:str, reset:bool, *textCheck):
       if (reset == True):
-         self.clearAddMain(texts)
+         self.currentText.close()
+         self.currentText = StringIO()
+         self.currentText += texts
          self.textCheckArray.clear()
       else:
          if len(textCheck) == 0 or textCheck[0] not in self.textCheckArray:
-            self.addMain(texts)
+            self.currentText += texts
             self.textCheckArray.push(*textCheck)
+      self.doMainText()
    def outputSideText(self, texts:str, reset:bool):
       if (reset == True):
          self.clearAddSide(texts)
@@ -25118,18 +25123,18 @@ class NiminFetishFantasyv0975o_fla:
          self.appearancebuttonvisible = False
    def doMainText(self):
       self.mo.configureChild("textmain",font=("TimesNewRoman",self.fontSize - 2),htmlfontbold=self.fontBold)
-      self.mo.configureChild("textmain",text=self.maintext)
-   def clearMain(self):
-      self.maintext = ""
-      self.doMainText()
-   def clearAddMain(self, text:str):
-      self.maintext = text
-      self.doMainText()
-   def addMain(self, text:str):
-      self.maintext += text
-      self.doMainText()
-   def getMain(self, a, b):
-      return self.mo.children["textmain"].get(a, b)
+      self.mo.configureChild("textmain",text=self.currentText.getvalue())
+   #def clearMain(self):
+   #   self.maintext = ""
+   #   self.doMainText()
+   #def clearAddMain(self, text:str):
+   #   self.maintext = text
+   #   self.doMainText()
+   #def addMain(self, text:str):
+   #   self.maintext += text
+   #   self.doMainText()
+   #def getMain(self, a, b):
+   #   return self.mo.children["textmain"].get(a, b)
    def doSideText(self):
       self.mo.configureChild("textside",font=("TimesNewRoman",self.fontSize - 2),htmlfontbold=self.fontBold)
       self.mo.configureChild("textside",text=self.sidetext)
