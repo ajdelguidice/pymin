@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import requests, platform, configparser
 from shutil import rmtree
 from pathlib import Path, PurePath
