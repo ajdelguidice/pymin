@@ -9,6 +9,7 @@ from urllib.request import urlopen
 #Notes:
 #len(str(pathlib.Path)) is a workaround for the windows implementation of pathlib.Path not having a length property
 if platform.system() == "Darwin":
+    print("Warning: This script is untested on darwin (MacOS), things might be broken.")
     """
     This script should not need this because it doesn't use os.fork but it's here just in case.
     https://docs.python.org/3/library/urllib.request.html
@@ -48,7 +49,7 @@ if None in {curdir,venvpath} or "" in {str(curdir),str(venvpath)}:
     print("Error: Path is empty. Exiting to avoid problems.")
     exit()
 if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
-    print("Error: Path is somehow not a pathlib.Path object. Something is wrong because this shouldn't happen.")
+    print("Error: Path is somehow not a pathlib.Path object. Something is very wrong.")
     exit()
 
 def create(script_url="",as3libversion=""):
@@ -167,28 +168,8 @@ def updatePythonVersion(pyver):
     global c2
     answer = input("(Not Implemented) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)")
     #if answer.lower() in {"y","")}
-    if False:
-        """
-        tempsettings = []
-        for i in (".DEFAULTRUN",".USEUV",".USEUVI"):
-            if Path(venvpath / i).exists():
-                tempsettings.append(True)
-            else:
-                tempsettings.append(False)
-        if Path(venvpath / "Pymin").exists():
-            #copy pymin folder to safe location
-            ...
-        ...
-        rmtree(venvpath) #delete the venv folder
-        a = input("Which as3lib version? (default latest)")
-        create(as3libversion=a,nogame=True) #reinstall venv
-        #move saved files back to venv
-        #save persistent variables
-        """
-        #(venvpath / f"bin/python{".".join(pyver.split(".")[:2])}").unlink()
-        #(venvpath / f"bin/python{".".join(pyver.split(".")[:1])}").unlink()
-        #(venvpath / "bin/python").unlink()
-        rmtree(venvpath / f"lib/python{".".join(pyver.split(".")[:2])}")
+    if False and answer.lower() in {"y",""}:
+        rmtree(venvpath / f"lib/python{'.'.join(pyver.split('.')[:2])}")
         run([*pythonm,"venv","--upgrade",venvpath])
         temp = devenv
         devenv = False
@@ -208,13 +189,13 @@ def migrateConfig():
     #Get old config values. Check here in case it moves to a different location in the future.
     if (venvpath / ".USEUV").exists():
         tempUV = True
-        Path(venvpath / ".USEUV").unlink(missing_ok=True)
+        (venvpath / ".USEUV").unlink(missing_ok=True)
     if (venvpath / ".USEUVI").exists():
         tempUVI = True
-        Path(venvpath / ".USEUVI").unlink(missing_ok=True)
+        (venvpath / ".USEUVI").unlink(missing_ok=True)
     if (venvpath / ".DEFAULTRUN").exists():
         tempDR = True
-        Path(venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
+        (venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
     pyversion = platform.python_version()
     with open(venvpath / "pyvenv.cfg","r") as f:
         c = configparser.ConfigParser(allow_unnamed_section=True)
@@ -239,9 +220,9 @@ def migrateConfig():
                 c["Options"]["defaultToRun"] = "True"
         with open(cfgpath, 'w') as f:
             c.write(f)
-        del c
     else:
         createConfigInVenv(path="./",pyInstalledVersion=pyversion,uvGlobal=tempUV,uvLocal=tempUVI,defaultToRun=tempDR,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False)
+    del c
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
     global noConfigExists
@@ -318,7 +299,7 @@ else:
     c2 = {"Options":{"cfgVersion":1,"path":"./","pyInstalledVersion":pyinstalversion,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}}
     noConfigExists = True
 
-if platform.system() == "Windows": #Windows check
+if platform.system() == "Windows":
     pythonvenvloc = venvpath / "Scripts/python.exe"
 else:
     pythonvenvloc = venvpath / "bin/python"
@@ -342,7 +323,7 @@ if len(args) < 2 and defrun:
 elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("update")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
     print("venvscript {install|update|run|conv|cmd|recreate|uv} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--help\t\t\tDisplays this message\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--overwrite\t\tBypasses the overwrite restriction in the \"install\" command\n\t--migrate-config\tMigrates the config from a previous version to the current one. This should run automatically if an old version is detected.")
 else:
-    if args[1] in {"install","recreate","update","rezero"} or args[1][:2] == "--":
+    if args[1] in {"install","recreate","update","rezero"} or args[1].startswith("--"):
         if "--no-ssl" in args:
             nossl = True
             c2["Options"]["noSSLVerify"] = "True"
@@ -368,7 +349,7 @@ else:
             defrun = False
             c2["Options"]["defaultToRun"] = "False"
         elif "--default-run" in args:
-            defrun =True
+            defrun = True
             c2["Options"]["defaultToRun"] = "True"
         if "--nohtmlparser" in args:
             nohtmlparser = True
@@ -422,13 +403,13 @@ else:
                 if useuv:
                     run(rl)
                 elif useuvi:
-                    run([pythonvenvloc,"-m"]+rl)
+                    run(pythonm+rl)
             else:
                 rl = ["uv",*args[2:],"--python",pythonvenvloc]
                 if useuv:
                     run(rl)
                 elif useuvi:
-                    run([pythonvenvloc,"-m"]+rl)
+                    run(pythonm+rl)
     else:
         if defrun:
             run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]))
