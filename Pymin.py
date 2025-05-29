@@ -1060,7 +1060,7 @@ class NiminFetishFantasyv0975o_fla:
          ##New stash
          self.optionswindow.addCheckboxWithLabel("if","UseNewStash",200,32,210,20,("TimesNewRoman",11),"nw","Use new stash")
          self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. While already moving an item, hold shift\nand press button 12 to move items between the bag and stash.")
+         CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
 
          #Grammar page
          self.optionswindow.addNBFrame("nb","gs",420,207,"Grammar")
