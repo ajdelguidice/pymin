@@ -1112,12 +1112,12 @@ class NiminFetishFantasyv0975o_fla:
          ##Status Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",10,32,124,20,("TimesNewRoman",11),"nw","Status Tweaks")
          self.optionswindow.configureChild("StatusTweaks",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["StatusTweaks"].frame,text="Tweaks specific status things")
+         CreateToolTip(self.optionswindow.children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
          
          ##Succubus Leaves One
          self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",10,54,164,20,("TimesNewRoman",11),"nw","Succubus Leaves One")
          self.optionswindow.configureChild("SuccubusLeavesOne",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and at least 2 lizardCocks)\ninstead of taking all of them.")
+         CreateToolTip(self.optionswindow.children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
 
          ##Use isBottomOpen
          self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",10,76,144,20,("TimesNewRoman",11),"nw","Use isBottomOpen")
@@ -1147,7 +1147,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Digi beast feet
          self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,76,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)")
+         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)\n(Incompatible with the original game)")
 
          ##Misc Changes
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
