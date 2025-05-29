@@ -8421,9 +8421,11 @@ class NiminFetishFantasyv0975o_fla:
                   self.moveItemStack -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
                   self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
                   self.refreshMoveItem(self.moveItemID, self.moveItemStack)
+                  self.moveToStash()
                else:
                   self.stashStackArray[self.choiceListResult[1]] += tempNum2
                   self.refreshMoveItem(0,0)
+                  self.doBag()
             else:
                tempmoveItemID = self.stashArray[self.choiceListResult[1]]
                tempmoveItemStack = self.stashStackArray[self.choiceListResult[1]]
@@ -8431,7 +8433,10 @@ class NiminFetishFantasyv0975o_fla:
                self.stashArray[self.choiceListResult[1]] = tempNum
                self.stashStackArray[self.choiceListResult[1]] = tempNum2
                self.refreshMoveItem(tempmoveItemID,tempmoveItemStack)
-            self.doBag()
+               if tempmoveItemID != 0 and tempmoveItemStack != 0:
+                  self.moveToStash()
+               else:
+                  self.doBag()
          else:
             self.doBag()
             self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another item to move to your stash.",True)
@@ -8459,9 +8464,11 @@ class NiminFetishFantasyv0975o_fla:
                   self.moveItemStack -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
                   self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
                   self.refreshMoveItem(self.moveItemID, self.moveItemStack)
+                  self.moveToBag()
                else:
                   self.bagStackArray[self.choiceListResult[1]] += tempNum2
                   self.refreshMoveItem(0,0)
+                  self.doStash()
             else:
                tempmoveItemID = self.bagArray[self.choiceListResult[1]]
                tempmoveItemStack = self.bagStackArray[self.choiceListResult[1]]
@@ -8469,7 +8476,10 @@ class NiminFetishFantasyv0975o_fla:
                self.bagArray[self.choiceListResult[1]] = tempNum
                self.bagStackArray[self.choiceListResult[1]] = tempNum2
                self.refreshMoveItem(tempmoveItemID,tempmoveItemStack)
-            self.doStash()
+               if tempmoveItemID != 0 and tempmoveItemStack != 0:
+                  self.moveToBag()
+               else:
+                  self.doStash()
       self.doListen = doListen
    def refreshMoveItem(self,item,stack):
       #Function to refresh the item being moved
