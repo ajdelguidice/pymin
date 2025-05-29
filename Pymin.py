@@ -2056,13 +2056,11 @@ class NiminFetishFantasyv0975o_fla:
       for i in ("display","label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
          try:
             self.mo.configureChild(i, background=color)
-         except:
-            continue
+         except:...
       for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","savefilesort","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
          try:
             self.mo.configureChild(i, background=specialcolour)
-         except:
-            continue
+         except:...
       if self.mo.aboutwindow[0] == True:
          for i in ("window","label","okbutton"):
             self.mo.aboutwindow[2][i].configure(background=color)
@@ -2088,18 +2086,15 @@ class NiminFetishFantasyv0975o_fla:
       for i in ("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
          try:
             self.mo.configureChild(i, foreground=color)
-         except:
-            continue
+         except:...
       for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","savefilesort","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
          try:
             self.mo.configureChild(i, foreground=specialcolour)
-         except:
-            continue
+         except:...
       for i in ("amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount"):
          try:
             self.mo.configureChild(i, highlightbackground=specialcolour)
-         except:
-            continue
+         except:...
       if self.mo.aboutwindow[0] == True:
          for i in ("label","okbutton"):
             self.mo.aboutwindow[2][i].configure(foreground=color)
@@ -2559,8 +2554,7 @@ class NiminFetishFantasyv0975o_fla:
                self.bagArray[i] = 0
             if (self.stashStackArray[i] == 0):
                self.stashArray[i] = 0
-         except:
-            continue
+         except:...
       if (self.cockSize < 0):
          self.cockSize = 0
       if (self.cockTotal < 0):
