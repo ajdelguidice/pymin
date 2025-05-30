@@ -1859,158 +1859,158 @@ class NiminFetishFantasyv0975o_fla:
    def hotKeys(self, keyCode):
       #Defines the behavior hotkeys
       self.detailedDebug()
-      match (keyCode, not self.keyboardTypingDisable or self.altHeld):
-         case (18,_): #Alt
-            self.altHeld = True
-         case (103,True) | (81,True): #q, numpad7
-            if self.shiftHeld == False and self.buttonsVisible[1] == True and self.mo.getChildAttribute("button1","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 1
+      special = not self.keyboardTypingDisable or self.altHeld
+      if keyCode == 18: #Alt
+         self.altHeld = True
+      elif (keyCode == 103 or keyCode == 81) and special: #q, numpad7
+         if self.shiftHeld == False and self.buttonsVisible[1] == True and self.mo.getChildAttribute("button1","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 1
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[1] == True:
+            self.itemMove(1)
+      elif (keyCode == 104 or keyCode == 87): #w, numpad8
+         if self.newSLDialogVisible == True and self.nsldblindervisible == False:
+            self.nsldSelectionUp()
+         elif special:
+            if self.shiftHeld == False and self.buttonsVisible[2] == True and self.mo.getChildAttribute("button2","state") == "normal" or self.inStash == True or self.mts == True:
+               self.buttonChoice = 2
                self.hideUpDown()
                self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[1] == True:
-               self.itemMove(1)
-         case (104,True) | (87,True): #w, numpad8
-            if self.newSLDialogVisible == True and self.nsldblindervisible == False:
-               self.nsldSelectionUp()
+            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[2] == True:
+               self.itemMove(2)
+      elif (keyCode == 105 or keyCode == 69) and special: #e, numpad9
+         if self.shiftHeld == False and self.buttonsVisible[3] == True and self.mo.getChildAttribute("button3","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 3
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[3] == True:
+            self.itemMove(3)
+      elif (keyCode == 109 or keyCode == 82) and special: #r, numpadMinus
+         if self.buttonsVisible[4] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button4","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
+            self.buttonChoice = 4
+            self.hideUpDown()
+            self.doListen()
+      elif (keyCode == 100 or keyCode == 65) and special: #a, numpad4
+         if self.shiftHeld == False and self.buttonsVisible[5] == True and self.mo.getChildAttribute("button5","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 5
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[5] == True:
+            self.itemMove(5)
+      elif (keyCode == 101 or keyCode == 83): #s, numpad5
+         if self.newSLDialogVisible == True and self.nsldblindervisible == False:
+            self.nsldSelectionDown()
+         elif special:
+            if self.shiftHeld == False and self.buttonsVisible[6] == True and self.mo.getChildAttribute("button6","state") == "normal" or self.inStash == True or self.mts == True:
+               self.buttonChoice = 6
+               self.hideUpDown()
+               self.doListen()
+            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[6] == True:
+               self.itemMove(6)
+      elif (keyCode == 102 or keyCode == 68) and special: #d, numpad6
+         if self.shiftHeld == False and self.buttonsVisible[7] == True and self.mo.getChildAttribute("button7","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 7
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[7] == True:
+            self.itemMove(7)
+      elif (keyCode == 107 or keyCode == 70) and special: #f, numpadPlus
+         if self.buttonsVisible[8] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button8","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
+            self.buttonChoice = 8
+            self.hideUpDown()
+            self.doListen()
+      elif (keyCode == 97 or keyCode == 90) and special: #z, numpad1
+         if self.shiftHeld == False and self.buttonsVisible[9] == True and self.mo.getChildAttribute("button9","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 9
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[9] == True:
+            self.itemMove(9)
+      elif (keyCode == 98 or keyCode == 88) and special: #x, numpad2
+         if self.shiftHeld == False and self.buttonsVisible[10] == True and self.mo.getChildAttribute("button10","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 10
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[10] == True:
+            self.itemMove(10)
+      elif (keyCode == 99 or keyCode == 67) and special: #c, numpad3
+         if self.shiftHeld == False and self.buttonsVisible[11] == True and self.mo.getChildAttribute("button11","state") == "normal" or self.inStash == True or self.mts == True:
+            self.buttonChoice = 11
+            self.hideUpDown()
+            self.doListen()
+         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[11] == True:
+            self.itemMove(11)
+      elif (keyCode == 13 or keyCode == 86) and special: #v, numpadReturn
+         if (self.buttonsVisible[12] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button12","state") == "normal" or (self.inBag == True or self.inStash == True or self.inShop == True) and self.shiftHeld == True)):
+            self.buttonChoice = 12
+            self.hideUpDown()
+            self.doListen()
+      elif (keyCode == 85) and special: #u
+         if (self.showSide == True and self.currentState != 0):
+            if (self.appearancebuttonvisible == True):
+               self.appearanceGo()
             else:
-               if self.shiftHeld == False and self.buttonsVisible[2] == True and self.mo.getChildAttribute("button2","state") == "normal" or self.inStash == True or self.mts == True:
-                  self.buttonChoice = 2
-                  self.hideUpDown()
-                  self.doListen()
-               elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[2] == True:
-                  self.itemMove(2)
-         case (105,True) | (69,True): #e, numpad9
-            if self.shiftHeld == False and self.buttonsVisible[3] == True and self.mo.getChildAttribute("button3","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 3
-               self.hideUpDown()
-               self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[3] == True:
-               self.itemMove(3)
-         case (109,True) | (82,True): #r, numpadMinus
-            if self.buttonsVisible[4] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button4","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
-               self.buttonChoice = 4
-               self.hideUpDown()
-               self.doListen()
-         case (100,True) | (65,True): #a, numpad4
-            if self.shiftHeld == False and self.buttonsVisible[5] == True and self.mo.getChildAttribute("button5","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 5
-               self.hideUpDown()
-               self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[5] == True:
-               self.itemMove(5)
-         case (101,True) | (83,True): #s, numpad5
+               self.sideEvent(1)
+      elif (keyCode == 73) and special: #i
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(2)
+      elif (keyCode == 79) and special: #o
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(3)
+      elif (keyCode == 80) and special: #p
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(4)
+      elif (keyCode == 72) and special: #h
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(5)
+      elif (keyCode == 74) and special: #j
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(6)
+      elif (keyCode == 75) and special: #k
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(7)
+      elif (keyCode == 76) and special: #l
+         if (self.showSide == True and self.currentState != 0):
+            self.sideEvent(8)
+      elif (keyCode == 37) and special: #ArrowLeft
+         if self.customthemecolor == False:
+            self.toggleTheme()
+      elif (keyCode == 38) and special: #ArrowUp
+         self.fontSizeUp()
+      elif (keyCode == 39) and special: #ArrowRight
+         if self.customfontcolor == False:
+            self.toggleColor()
+      elif (keyCode == 40) and special: #ArrowDown
+         self.fontSizeDown()
+      elif (keyCode == 17) and special: #Control
+         self.fontSizeReset()
+      elif (keyCode == 190) and special: #.
+         self.toggleSide()
+      elif (keyCode == 191) and special: #/
+         self.toggleBold()
+      elif (keyCode == 113) and special:
+         if self.showsavegame == True:
+            self.saveGo()
+      elif (keyCode == 115) and special:
+         if self.showloadgame == True:
+            self.loadGo()
+      elif (keyCode == 8) and special: #Backspace
+         if self.shownewgame == True:
+            self.newGameGo()
+      elif (keyCode == 16) and special: #Shift
+         self.shiftHeld = True
+      elif (keyCode == 192 or keyCode == 111) and special: #~, numpadDivide
+         self.openWiki()
+      elif (keyCode == 108 or keyCode == 110 or keyCode == 71) and special: #numpadDecimal, g
+         if self.newSLDialogVisible == True and self.nsldblindervisible == False:
+            self.toggleNSLDSortOrder()
+      elif (keyCode == 96 or keyCode == 66) and special: #numpade0, b
+         if self.discardbuttonvisible == True:
             if self.newSLDialogVisible == True and self.nsldblindervisible == False:
-               self.nsldSelectionDown()
-            else:
-               if self.shiftHeld == False and self.buttonsVisible[6] == True and self.mo.getChildAttribute("button6","state") == "normal" or self.inStash == True or self.mts == True:
-                  self.buttonChoice = 6
-                  self.hideUpDown()
-                  self.doListen()
-               elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[6] == True:
-                  self.itemMove(6)
-         case (102,True) | (68,True): #d, numpad6
-            if self.shiftHeld == False and self.buttonsVisible[7] == True and self.mo.getChildAttribute("button7","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 7
-               self.hideUpDown()
-               self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[7] == True:
-               self.itemMove(7)
-         case (107,True) | (70,True): #f, numpadPlus
-            if self.buttonsVisible[8] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button8","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
-               self.buttonChoice = 8
-               self.hideUpDown()
-               self.doListen()
-         case (97,True) | (90,True): #z, numpad1
-            if self.shiftHeld == False and self.buttonsVisible[9] == True and self.mo.getChildAttribute("button9","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 9
-               self.hideUpDown()
-               self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[9] == True:
-               self.itemMove(9)
-         case (98,True) | (88,True): #x, numpad2
-            if self.shiftHeld == False and self.buttonsVisible[10] == True and self.mo.getChildAttribute("button10","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 10
-               self.hideUpDown()
-               self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[10] == True:
-               self.itemMove(10)
-         case (99,True) | (67,True): #c, numpad3
-            if self.shiftHeld == False and self.buttonsVisible[11] == True and self.mo.getChildAttribute("button11","state") == "normal" or self.inStash == True or self.mts == True:
-               self.buttonChoice = 11
-               self.hideUpDown()
-               self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[11] == True:
-               self.itemMove(11)
-         case (13,True) | (86,True): #v, numpadReturn
-            if (self.buttonsVisible[12] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button12","state") == "normal" or (self.inBag == True or self.inStash == True or self.inShop == True) and self.shiftHeld == True)):
-               self.buttonChoice = 12
-               self.hideUpDown()
-               self.doListen()
-         case (85,True): #u
-            if (self.showSide == True and self.currentState != 0):
-               if (self.appearancebuttonvisible == True):
-                  self.appearanceGo()
-               else:
-                  self.sideEvent(1)
-         case (73,True): #i
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(2)
-         case (79,True): #o
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(3)
-         case (80,True): #p
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(4)
-         case (72,True): #h
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(5)
-         case (74,True): #j
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(6)
-         case (75,True): #k
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(7)
-         case (76,True): #l
-            if (self.showSide == True and self.currentState != 0):
-               self.sideEvent(8)
-         case (37,True): #ArrowLeft
-            if self.customthemecolor == False:
-               self.toggleTheme()
-         case (38,True): #ArrowUp
-            self.fontSizeUp()
-         case (39,True): #ArrowRight
-            if self.customfontcolor == False:
-               self.toggleColor()
-         case (40,True): #ArrowDown
-            self.fontSizeDown()
-         case (17,True): #Control
-            self.fontSizeReset()
-         case (190,True): #.
-               self.toggleSide()
-         case (191,True): #/
-               self.toggleBold()
-         case (113,True):
-            if self.showsavegame == True:
-               self.saveGo()
-         case (115,True):
-            if self.showloadgame == True:
-               self.loadGo()
-         case (8,True): #Backspace
-            if self.shownewgame == True:
-               self.newGameGo()
-         case (16,True): #Shift
-            self.shiftHeld = True
-         case (192,True) | (111,True): #~, numpadDivide
-            self.openWiki()
-         case (108,True) | (110,True) | (71,True): #numpadDecimal, g
-            if self.newSLDialogVisible == True and self.nsldblindervisible == False:
-               self.toggleNSLDSortOrder()
-         case (96,True) | (66,True): #numpade0, b
-            if self.discardbuttonvisible == True:
-               if self.newSLDialogVisible == True and self.nsldblindervisible == False:
-                  self.openSFC()
-               elif self.moveItemID != 0 and (self.inBag == True or self.inStash == True):
-                  self.buttonEventDiscard()
+               self.openSFC()
+            elif self.moveItemID != 0 and (self.inBag == True or self.inStash == True):
+               self.buttonEventDiscard()
    def appearance(self):
       if self.inBag == False and self.inStash == False and self.inShop == False:
          self.appearanceGo()
@@ -4583,6 +4583,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("savefilesort")
          self.clearTextAllButtons()
          self.newSLDialogVisible = False
+         self._enableKeys()
    def showNSLDBlinder(self,which=False):
       #Hides nsld temporarily while conformation dialog is shown
       if which == True and self.nsldblindervisible == False:
