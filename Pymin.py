@@ -1643,7 +1643,7 @@ class NiminFetishFantasyv0975o_fla:
       If ext is None, all files are shown
       If sort is None, no sorting will be done. sort must be a valid sorted() key
       """
-      files = [f.name for f in dir_.iterdir() if (dir_ / f).is_file()]
+      files = [f.name for f in dir_.iterdir() if f.is_file()]
       #if extension is specified, remove extension that aren't included
       if ext != None:
          files = [i for i in files if ("." not in i and "" in ext) or i.endswith(ext)]
