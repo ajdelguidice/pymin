@@ -1942,12 +1942,10 @@ class NiminFetishFantasyv0975o_fla:
             elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[11] == True:
                self.itemMove(11)
          case (13,True) | (86,True): #v, numpadReturn
-            if (self.buttonsVisible[12] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button12","state") == "normal" or (self.inBag == True or self.inStash == True or self.inShop == True) and self.shiftHeld == True)) and self.newSLDialogVisible == False:
+            if (self.buttonsVisible[12] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button12","state") == "normal" or (self.inBag == True or self.inStash == True or self.inShop == True) and self.shiftHeld == True)):
                self.buttonChoice = 12
                self.hideUpDown()
                self.doListen()
-            elif self.newSLDialogVisible == True and self.nsldCheckSelection() == True:
-               self.buttonEvent8()
          case (85,True): #u
             if (self.showSide == True and self.currentState != 0):
                if (self.appearancebuttonvisible == True):
@@ -4538,6 +4536,10 @@ class NiminFetishFantasyv0975o_fla:
             self.nsldSortOrder = 0
          self.nsldDisplay()
          self.savePreferences()
+   def _disableKeys(self,*e):
+      self.keyboardTypingDisable = True
+   def _enableKeys(self,*e):
+      self.keyboardTypingDisable = False
    def showNewSaveLoadDialog(self):
       #Displays nsld
       if self.newSLDialogVisible == False:
@@ -4547,10 +4549,14 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
          self.mo.children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
          self.mo.children["savefileselect"].bind("<Double-Button-1>",self.buttonEvent8)
+         self.mo.bindChild("savefileselect","<FocusIn>",self._disableKeys)
+         self.mo.bindChild("savefileselect","<FocusOut>",self._enableKeys)
          self.mo.addLabel("display","savefilelabel",200,192-8,75,24,("TimesNewRoman",12),"nw")
          self.mo.configureChild("savefilelabel",background=self.theme,foreground=self.fontColor)
          self.mo.configureChild("savefilelabel",text="File Name:")
          self.mo.addEntry("display","savefileentry",275,192-8,385,24,("TimesNewRoman",12),"nw")
+         self.mo.bindChild("savefileentry","<FocusIn>",self._disableKeys)
+         self.mo.bindChild("savefileentry","<FocusOut>",self._enableKeys)
          self.mo.configureChild("savefileentry",background=self.theme,foreground=self.fontColor)
          self.nsldDisplay()
          self.mo.children["savefileselect"].focus_force()
@@ -4558,7 +4564,6 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.addButton("display","savefilesort",840,96,140,46,self.font,"nw")
          self.mo.configureChild("savefilesort",command=self.toggleNSLDSortOrder,background=temp[0],foreground=temp[1],text="Sort")
          self.newSLDialogVisible = True
-         self.keyboardTypingDisable = True
    def nsldSetEntryFromListbox(self,*args):
       #Function to set the entry box text of nsld
       self.mo.configureChild("savefileentry",text=self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")[-1])
@@ -4578,7 +4583,6 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("savefilesort")
          self.clearTextAllButtons()
          self.newSLDialogVisible = False
-         self.keyboardTypingDisable = False
    def showNSLDBlinder(self,which=False):
       #Hides nsld temporarily while conformation dialog is shown
       if which == True and self.nsldblindervisible == False:
