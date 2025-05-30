@@ -173,6 +173,7 @@ class NiminFetishFantasyv0975o_fla:
       self.useNewSaveLoadDialog = False
       self.useNewStash = False
       self.originalFrame1Message = False
+      self.helpToWiki = False
       ##Grammar Tab
       self.respectShowBalls = False
       self.femmeboyToFemboy = False
@@ -1061,6 +1062,11 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.addCheckboxWithLabel("if","UseNewStash",200,32,210,20,("TimesNewRoman",11),"nw","Use new stash")
          self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
+         
+         ##Help opens wiki
+         self.optionswindow.addCheckboxWithLabel("if","helpToWiki",200,54,210,20,("TimesNewRoman",11),"nw","Help opens wiki")
+         self.optionswindow.configureChild("helpToWiki",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow.children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
 
          #Grammar page
          self.optionswindow.addNBFrame("nb","gs",420,207,"Grammar")
@@ -1110,47 +1116,47 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("gt",background=self.theme)
 
          ##Status Tweaks
-         self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",10,32,124,20,("TimesNewRoman",11),"nw","Status Tweaks")
+         self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",10,10,124,20,("TimesNewRoman",11),"nw","Status Tweaks")
          self.optionswindow.configureChild("StatusTweaks",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
          
          ##Succubus Leaves One
-         self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",10,54,164,20,("TimesNewRoman",11),"nw","Succubus Leaves One")
+         self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",10,32,164,20,("TimesNewRoman",11),"nw","Succubus Leaves One")
          self.optionswindow.configureChild("SuccubusLeavesOne",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
 
          ##Use isBottomOpen
-         self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",10,76,144,20,("TimesNewRoman",11),"nw","Use isBottomOpen")
+         self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",10,54,144,20,("TimesNewRoman",11),"nw","Use isBottomOpen")
          self.optionswindow.configureChild("UseIsBottomOpen",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
 
          ##Lizan Don't Show Balls
-         self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",10,98,184,20,("TimesNewRoman",11),"nw","Lizan Don't Show Balls")
+         self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",10,76,184,20,("TimesNewRoman",11),"nw","Lizan Don't Show Balls")
          self.optionswindow.configureChild("LizanDontShowBalls",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
          ##Herm Can Has Both
-         self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",200,10,190,20,("TimesNewRoman",11),"nw","Herm Can Has Both")
+         self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",10,98,190,20,("TimesNewRoman",11),"nw","Herm Can Has Both")
          self.optionswindow.configureChild("HermGetsBoth",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
 
          ##Internal ball size affects belly size
-         self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",200,32,190,20,("TimesNewRoman",11),"nw","IntBallsEffectBellySize")
+         self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",10,120,190,20,("TimesNewRoman",11),"nw","IntBallsEffectBellySize")
          self.optionswindow.configureChild("IntBallsEffectBelly",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
 
          ##Add direct path to sanctuary
-         self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",200,54,190,20,("TimesNewRoman",11),"nw","Direct Path to Sanctuary")
+         self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",200,10,190,20,("TimesNewRoman",11),"nw","Direct Path to Sanctuary")
          self.optionswindow.configureChild("DirectPathToSanc",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
 
          ##Digi beast feet
-         self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,76,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
+         self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,32,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)\n(Incompatible with the original game)")
 
          ##Misc Changes
-         self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,120,210,20,("TimesNewRoman",11),"nw","Misc Changes")
+         self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,54,210,20,("TimesNewRoman",11),"nw","Misc Changes")
          self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
          
@@ -1246,8 +1252,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["UseIsBottomOpen"].select()
       if self.lizanDontShowBalls:
          self.optionswindow.children["LizanDontShowBalls"].select()
-      if self.useNewSaveLoadDialog:
-         self.optionswindow.children["UseExpandedSaveDialog"].select()
       if self.hermGetsBoth:
          self.optionswindow.children["HermGetsBoth"].select()
       if self.internalBallsEffectBelly:
@@ -1256,8 +1260,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["DirectPathToSanc"].select()
       if self.correctBeastRaceFeet:
          self.optionswindow.children["CorrectBeastRaceFeet"].select()
-      if self.useNewStash:
-         self.optionswindow.children["UseNewStash"].select()
       if self.gameTweaksMisc:
          self.optionswindow.children["MiscChanges"].select()
       if self.oButtonColors:
@@ -1268,6 +1270,12 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["newgameoriginalsize"].select()
       if self.staticdoLevelUPButtons:
          self.optionswindow.children["doLevelUPStaticButtons"].select()
+      if self.useNewSaveLoadDialog:
+         self.optionswindow.children["UseExpandedSaveDialog"].select()
+      if self.useNewStash:
+         self.optionswindow.children["UseNewStash"].select()
+      if self.helpToWiki:
+         self.optionswindow.children["helpToWiki"].select()
       if self.respectShowBalls:
          self.optionswindow.children["showBalls"].select()
       if self.femmeboyToFemboy:
@@ -1376,10 +1384,6 @@ class NiminFetishFantasyv0975o_fla:
             self.lizanDontShowBalls = True
          else:
             self.lizanDontShowBalls = False
-         if self.optionswindow.children["UseExpandedSaveDialog"].getcb() == 1:
-            self.useNewSaveLoadDialog = True
-         else:
-            self.useNewSaveLoadDialog = False
          if self.optionswindow.children["HermGetsBoth"].getcb() == 1:
             self.hermGetsBoth = True
          else:
@@ -1396,10 +1400,6 @@ class NiminFetishFantasyv0975o_fla:
             self.correctBeastRaceFeet = True
          else:
             self.correctBeastRaceFeet = False
-         if self.optionswindow.children["UseNewStash"].getcb() == 1:
-            self.useNewStash = True
-         else:
-            self.useNewStash = False
          if self.optionswindow.children["MiscChanges"].getcb() == 1:
             self.gameTweaksMisc = True
          else:
@@ -1425,6 +1425,18 @@ class NiminFetishFantasyv0975o_fla:
             self.staticdoLevelUPButtons = True
          else:
             self.staticdoLevelUPButtons = False
+         if self.optionswindow.children["UseExpandedSaveDialog"].getcb() == 1:
+            self.useNewSaveLoadDialog = True
+         else:
+            self.useNewSaveLoadDialog = False
+         if self.optionswindow.children["UseNewStash"].getcb() == 1:
+            self.useNewStash = True
+         else:
+            self.useNewStash = False
+         if self.optionswindow.children["helpToWiki"].getcb() == 1:
+            self.helpToWiki = True
+         else:
+            self.helpToWiki = False
          if self.optionswindow.children["showBalls"].getcb() == 1:
             self.respectShowBalls = True
          else:
@@ -2181,9 +2193,9 @@ class NiminFetishFantasyv0975o_fla:
          tempintertoggle = [self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons]
       else:
          tempintertoggle = self.tempInterfaceToggles
-      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
+      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
       try:
-         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\nuseExpandedSaveDialog = {str(self.useNewSaveLoadDialog).lower()}\nuseNewStash = {str(self.useNewStash).lower()}\n\n[grammar]\nrespectShowBalls = {str(self.respectShowBalls).lower()}\nfemmeboyToFemboy = {str(self.femmeboyToFemboy).lower()}\nshemaleToFuta = {str(self.femmeboyToFemboy).lower()}\nngrammar = {str(self.ngrammar).lower()}\nfemmieMaleReplacement = {self.femmieMaleReplacement}\nfemboyishToGirly = {str(self.femboyishToGirly).lower()}\nsnuggleBallTweak = {str(self.snuggleBallTweak).lower()}\ngrammarFixes = {str(self.grammarFixes).lower()}\n\n[gameTweaks]\nstatusTweaks = {str(self.statusTweaks).lower()}\nsuccubusLeavesOne = {str(self.succubusLeavesOne).lower()}\nuseIsBottomOpen = {str(self.useIsBottomOpen).lower()}\nlizanDontShowBalls = {str(self.lizanDontShowBalls).lower()}\nhermGetsBoth = {str(self.hermGetsBoth).lower()}\nintBallsEffectBelly = {str(self.internalBallsEffectBelly).lower()}\ndirectPathToSanc = {str(self.directPathToSanctuary).lower()}\ncorrectBeastRaceFeet = {str(self.correctBeastRaceFeet).lower()}\nmiscChanges = {str(self.gameTweaksMisc).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugChooseSenario).lower()}\nnoDamage = {str(self.debugNoDamage).lower()}\n'
+         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\nuseExpandedSaveDialog = {str(self.useNewSaveLoadDialog).lower()}\nuseNewStash = {str(self.useNewStash).lower()}\nhelpToWiki = {str(self.helpToWiki).lower()}\n\n[grammar]\nrespectShowBalls = {str(self.respectShowBalls).lower()}\nfemmeboyToFemboy = {str(self.femmeboyToFemboy).lower()}\nshemaleToFuta = {str(self.femmeboyToFemboy).lower()}\nngrammar = {str(self.ngrammar).lower()}\nfemmieMaleReplacement = {self.femmieMaleReplacement}\nfemboyishToGirly = {str(self.femboyishToGirly).lower()}\nsnuggleBallTweak = {str(self.snuggleBallTweak).lower()}\ngrammarFixes = {str(self.grammarFixes).lower()}\n\n[gameTweaks]\nstatusTweaks = {str(self.statusTweaks).lower()}\nsuccubusLeavesOne = {str(self.succubusLeavesOne).lower()}\nuseIsBottomOpen = {str(self.useIsBottomOpen).lower()}\nlizanDontShowBalls = {str(self.lizanDontShowBalls).lower()}\nhermGetsBoth = {str(self.hermGetsBoth).lower()}\nintBallsEffectBelly = {str(self.internalBallsEffectBelly).lower()}\ndirectPathToSanc = {str(self.directPathToSanctuary).lower()}\ncorrectBeastRaceFeet = {str(self.correctBeastRaceFeet).lower()}\nmiscChanges = {str(self.gameTweaksMisc).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugChooseSenario).lower()}\nnoDamage = {str(self.debugNoDamage).lower()}\n'
          with (self.dir / "Nimin_Prefs.toml").open("wb") as f:
             tomli_w.dump(temp,f)
       except AssertionError:
@@ -2238,6 +2250,7 @@ class NiminFetishFantasyv0975o_fla:
             self.staticdoLevelUPButtons = False
          self.useNewSaveLoadDialog = interface.get("useExpandedSaveDialog",False)
          self.useNewStash = interface.get("useNewStash",False)
+         self.helpToWiki = interface.get("helpToWiki",False)
          grammar = temp.get("grammar",{})
          self.respectShowBalls = grammar.get("respectShowBalls",False)
          self.femmeboyToFemboy = grammar.get("femmeboyToFemboy",False)
@@ -4194,6 +4207,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedHelp(self):
       #Help button in the side bar
+      if self.helpToWiki:
+         self.openWiki()
+         return
       tempStr = StringIO()
       tempStr += "<b><u>Stats</u></b>\n"
       tempStr += "\n-Strength - Adds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation."
@@ -26978,15 +26994,15 @@ class NiminFetishFantasyv0975o_fla:
          case -10:
             return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
          case 1:
-            return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
+            return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
          case 2:
-            return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained in game."
+            return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
          case 3:
-            return "<h4><u>Teleport Scroll: Any</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained in game."
+            return "<h4><u>Teleport Scroll: Any</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
          case 404:
-            return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
+            return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
          case 418:
-            return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
+            return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
          case 101:
             return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
          case 102:
@@ -27254,9 +27270,9 @@ class NiminFetishFantasyv0975o_fla:
          case 0:
             return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
          case 1:
-            return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+            return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
          case 2:
-            return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+            return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
          case 3:
             return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
          case 4:
