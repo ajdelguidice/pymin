@@ -11257,136 +11257,140 @@ class NiminFetishFantasyv0975o_fla:
             whichCock = "bumpy-ridged spiked bug wang"
          tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          getCum = self.cumAmount()
-         #!Remove while loop if possible
-         while True:
-            #!optimize if/else
-            chance = math.floor(random.random() * 7) + 1
-            if (chance == 1):
+         tempArr = as3.Array(1)
+         #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
+         #   tempArr.push(2)
+         #if getCum > 2000:
+         #   tempArr.push(3)
+         #if self.ment < self.lib - 50:
+         #   tempArr.push(4)
+         #if self.attireBot in {6,17} and self.lust > 80:
+         #   tempArr.push(5)
+         if (self.useIsBottomOpen == False and self.attireBot in {5,7,12,13,14,16} or self.useIsBottomOpen and self.isBottomOpen() == True) and self.lust > 45:
+            tempArr.push(6)
+         if self.attireBot in {4,15,20}:
+            tempArr.push(7)
+         #if self.attireBot in {10,11} and lust > 60:
+         #   tempArr.push(8)
+         chance = self.randChooseFromArray(tempArr)
+         #!optimize if/else
+         if (chance == 1):
+            if (self.ment >= self.lib - 10):
+               tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your "
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+               tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your "
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+               tempStr = f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your "
+            elif (self.ment < self.lib - 50):
+               tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your "
+            if (self.cockSize * self.cockSizeMod <= self.tallness / 3.75):
+               tempStr += f"hand around your {whichCock} and slowly pump it, building stronger and stronger."
+            elif (self.cockSize * self.cockSizeMod > self.tallness / 3.75 and self.cockSize * self.cockSizeMod <= self.tallness * 1.2):
+               tempStr += f"hands around your {whichCock}, "
+               if (self.cockSize * self.cockSizeMod > self.tallness / 1.5):
+                  if (self.breastSize > 4):
+                     tempStr += f"hugging it between your {self.boobTotal} breasts, "
+                  else:
+                     tempStr += "hugging it to your chest, "
+               tempStr += "pounding your fists up and down its length."
+            elif (self.cockSize * self.cockSizeMod > self.tallness * 1.2):
+               tempStr += f"arms around your {whichCock}, hugging it close and trying to jerk yourself the best you can."
+            if (self.moistCalc(1) > 11):
+               tempStr += f" A flood of pre gushes out from the tip, sufficiently coating yourself, your {self.cockDesc()} cock and then some in slick lubrication."
+            elif (self.moistCalc(1) > 7):
+               tempStr += f" Pre squeezes out of your cock and more than coat your {self.cockDesc()} cock, with plenty extra drooling down across your {self.skinDesc()}."
+            elif (self.moistCalc(1) > 3):
+               tempStr += f" A dribble of pre leaks out, sufficiently coating your {self.cockDesc()} cock and making your efforts so much easier."
+            elif (self.moistCalc(1) > 0):
+               tempStr += " Drops of pre help aid your efforts, though it's still a little rough."
+            if (self.showBalls == True):
+               tempStr += f" One of your hands reaches down to knead your {self.ballDesc()} scrotum, letting your {self.balls} cum-factories know it's time."
+            if (self.lust <= 30):
+               tempStr += "\n\nSlowly,"
+            elif (self.lust <= 70):
+               tempStr += "\n\nQuickly,"
+            elif (self.lust > 70):
+               tempStr += "\n\nAlmost instantly,"
+            tempStr += f" your {whichCock} throbs, a pressure building at the base of your spine"
+            if (self.knot == True):
+               tempStr += ", the base of your cock swelling into a thick knot that you begin to tug"
+            tempStr += "."
+            if (self.cockTotal > 1):
+               tempStr += " Your other cocks do the same, your hands dashing back and forth between them, attempting to not leave them completely ignored."
+            tempStr += f"Your {self.hipDesc()} hips soon jerk as thick strands of hot spunk launch from your cock-tip{self.plural(1)},"
+            if (getCum <= 24):
+               tempStr += " with a bit more drooling down to the floor."
+            elif (getCum <= 72):
+               tempStr += " spitting small wads again and again until it's done."
+            elif (getCum <= 1000):
+               tempStr += " spewing large gobs again and again until you've made a heck of a mess."
+            elif (getCum <= 2200):
+               tempStr += " coming more and more, like it can't stop, until you've made so much cum that you could feed a person with it for a day..."
+            elif (getCum <= 4500):
+               tempStr += " the stuff gushing like a fire-hose. Somewhere between half and a full gallon, you're not sure what to do with it all!"
+            elif (getCum <= 20000):
+               tempStr += " gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!"
+            if (getCum > 20000):
+               tempStr += " so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can't take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away."
+               tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
+               self.outputMainText(tempStr,True)
+               self.hrs = 5
+               self.exhaustion -= 2
+            else:
                if (self.ment >= self.lib - 10):
-                  tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your "
+                  tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
                elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                  tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your "
+                  tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some cum was left behind. At least, it smells like some was. And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Or maybe you have a wad of cum in your hair?"
                elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                  tempStr = f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your "
+                  tempStr += f"\n\nYou realize your hiding place is a mess as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though your cock is still drooling and leaving quite the blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. You then dash off before anybody tries to check out what you left behind."
                elif (self.ment < self.lib - 50):
-                  tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your "
-               if (self.cockSize * self.cockSizeMod <= self.tallness / 3.75):
-                  tempStr += f"hand around your {whichCock} and slowly pump it, building stronger and stronger."
-               elif (self.cockSize * self.cockSizeMod > self.tallness / 3.75 and self.cockSize * self.cockSizeMod <= self.tallness * 1.2):
-                  tempStr += f"hands around your {whichCock}, "
-                  if (self.cockSize * self.cockSizeMod > self.tallness / 1.5):
-                     if (self.breastSize > 4):
-                        tempStr += f"hugging it between your {self.boobTotal} breasts, "
-                     else:
-                        tempStr += "hugging it to your chest, "
-                  tempStr += "pounding your fists up and down its length."
-               elif (self.cockSize * self.cockSizeMod > self.tallness * 1.2):
-                  tempStr += f"arms around your {whichCock}, hugging it close and trying to jerk yourself the best you can."
-               if (self.moistCalc(1) > 11):
-                  tempStr += f" A flood of pre gushes out from the tip, sufficiently coating yourself, your {self.cockDesc()} cock and then some in slick lubrication."
-               elif (self.moistCalc(1) > 7):
-                  tempStr += f" Pre squeezes out of your cock and more than coat your {self.cockDesc()} cock, with plenty extra drooling down across your {self.skinDesc()}."
-               elif (self.moistCalc(1) > 3):
-                  tempStr += f" A dribble of pre leaks out, sufficiently coating your {self.cockDesc()} cock and making your efforts so much easier."
-               elif (self.moistCalc(1) > 0):
-                  tempStr += " Drops of pre help aid your efforts, though it's still a little rough."
-               if (self.showBalls == True):
-                  tempStr += f" One of your hands reaches down to knead your {self.ballDesc()} scrotum, letting your {self.balls} cum-factories know it's time."
-               if (self.lust <= 30):
-                  tempStr += "\n\nSlowly,"
-               elif (self.lust <= 70):
-                  tempStr += "\n\nQuickly,"
-               elif (self.lust > 70):
-                  tempStr += "\n\nAlmost instantly,"
-               tempStr += f" your {whichCock} throbs, a pressure building at the base of your spine"
-               if (self.knot == True):
-                  tempStr += ", the base of your cock swelling into a thick knot that you begin to tug"
-               tempStr += "."
-               if (self.cockTotal > 1):
-                  tempStr += " Your other cocks do the same, your hands dashing back and forth between them, attempting to not leave them completely ignored."
-               tempStr += f"Your {self.hipDesc()} hips soon jerk as thick strands of hot spunk launch from your cock-tip{self.plural(1)},"
-               if (getCum <= 24):
-                  tempStr += " with a bit more drooling down to the floor."
-               elif (getCum <= 72):
-                  tempStr += " spitting small wads again and again until it's done."
-               elif (getCum <= 1000):
-                  tempStr += " spewing large gobs again and again until you've made a heck of a mess."
-               elif (getCum <= 2200):
-                  tempStr += " coming more and more, like it can't stop, until you've made so much cum that you could feed a person with it for a day..."
-               elif (getCum <= 4500):
-                  tempStr += " the stuff gushing like a fire-hose. Somewhere between half and a full gallon, you're not sure what to do with it all!"
-               elif (getCum <= 20000):
-                  tempStr += " gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!"
-               if (getCum > 20000):
-                  tempStr += " so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can't take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away."
-                  tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
-                  self.outputMainText(tempStr,True)
-                  self.hrs = 5
-                  self.exhaustion -= 2
-                  break
-               else:
-                  if (self.ment >= self.lib - 10):
-                     tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-                  elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                     tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some cum was left behind. At least, it smells like some was. And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Or maybe you have a wad of cum in your hair?"
-                  elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                     tempStr += f"\n\nYou realize your hiding place is a mess as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though your cock is still drooling and leaving quite the blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. You then dash off before anybody tries to check out what you left behind."
-                  elif (self.ment < self.lib - 50):
-                     tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some women, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, cum dripping down the front and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-                  if (getCum < 1000):
-                     tempStr += f"\n\n\nYou have produced {getCum} ml of spooge!"
-                  elif (getCum >= 1000):
-                     tempStr += f"\n\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!"
-                  tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
-                  self.outputMainText(tempStr,True)
-                  self.hrs = 1
-                  break
-            #if (chance == 2 and self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3):
-            #   {}
-            #if (chance == 3 and getCum > 2000):
-            #   {}
-            #if (chance == 4 and self.ment < self.lib - 50):
-            #   {}
-            #if (chance == 5 and self.attireBot in (6,17) and self.lust > 80):
-            #   {}
-            elif (chance == 6 and (self.useIsBottomOpen == False and self.attireBot in (5,7,12,13,14,16) or self.useIsBottomOpen and self.isBottomOpen() == True) and self.lust > 45):
-               tempStr = f"Already half hard from your lingering lust, just the thought of masturbating makes your {self.cockDesc()} erection{self.plural(1)} stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your {self.clothesBottom()} as your rod{self.plural(1)} lift{self.plural(3)} the fabric forward. You do your best to press it back down in an attempt to hide {self.plural(9)}, but "
-               if (self.cockSize * self.cockSizeMod > 10):
-                  tempStr += f"{self.plural(11)} wind up popping out beneath, accidentally flashing a random passerby who quickly pick up their pace to get away before you can try to catch your long thing{self.plural(1)} back within the cloth."
-               else:
-                  tempStr += f"{self.plural(11)} inevitably slide back up anyways, making your efforts futile."
-               tempStr += f"\n\nLooking for a quick escape, you slink behind the closest structure you can find. Glancing left and right to ensure nobody can see you, you pant as you look down at your tented {self.clothesBottom()}."
-               if (self.moistCalc(1) > 8):
-                  tempStr += " Pre seeping through the fabric and drizzling down in a steady strand over the edge"
-               elif (self.moistCalc(1) > 4):
-                  tempStr += " Pre soaking through the fabric and glistening with a large drop on the outside"
-               else:
-                  tempStr += " Pre blotching the fabric with a large moist spot"
-               tempStr += f", you have no choice but to pull the clothing up, letting your wang{self.plural(1)} bounce out. Grabbing {self.plural(9)} the best you can in your impetuous state, you stroke strongly and swiftly. You lean back against the structure, with people openly walking and talking just on the other side, as you masturbate fervently.\n\nThe fear of being caught only makes your heart beat faster, quickly producing results in your loins. You hardly hold back for a second to let the pressure build, before you release it in a spurting torrent of white fluid. You continue to pet yourself, squeezing out the leftover cum, while your mind savors the dwindling orgasm.\n\nHalf-aware of what you had just done, your mind still in a fuzz, you simply catch your cock{self.plural(1)} within your {self.clothesBottom()} once more, staining it slightly with the gobs of seed at your tip{self.plural(1)}, and leave your secluded area to head back into the public, leaving behind your puddle of lewd mess for someone else to stumble across..."
+                  tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some women, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, cum dripping down the front and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
+               if (getCum < 1000):
+                  tempStr += f"\n\n\nYou have produced {getCum} ml of spooge!"
+               elif (getCum >= 1000):
+                  tempStr += f"\n\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!"
                tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
                self.outputMainText(tempStr,True)
-               break
-            elif (chance == 7 and self.attireBot in (4,15,20)):
-               tempStr = f"With the thought of masturbating on your mind, you can feel your cock{self.plural(1)} begin to swell in anticipation. The tight confines of your {self.clothesBottom()} rapidly growing tighter, you hurry on home.\n\nJust as you step through the doorway to your private abode, the waistband of your {self.clothesBottom()} can no longer contain the {self.cockDesc()} bulge. Your length{self.plural(1)} leap{self.plural(3)} out, flinging "
-               if (self.moistCalc(1) > 8):
-                  tempStr += "ropes"
-               elif (self.moistCalc(1) > 4):
-                  tempStr += "strands"
-               else:
-                  tempStr += "drops"
-               tempStr += f" of pre out across the floor while the shaft{self.plural(1)} droop{self.plural(3)} half-flaccidly over the edge. You slump against the nearest wall, gripping yourself as you eagerly start the stroking process. Free of {self.plural(5)} small prison, the blood-flow picks up, quickly allowing {self.plural(9)} to stiffen to full size while your hands stroke the sensitive skin. Your stroking turns to rhythmic pumps and your back presses against the wall, your hips bucking back in turn."
-               if (self.showBalls == True):
-                  tempStr += f" You can wholly feel the pressure in your {self.ballDesc()} balls building, especially as the {self.clothesBottom()} continues to grip and squeeze them as it hugs your bottom to stay on amidst your efforts."
-               tempStr += f"\n\nBefore long, you wince as you try to hold back a little, one last moment of restraint until you let the fluids spray freely, escaping from your body with enough force to shoot across your room. So strong an orgasm, your {self.legDesc(2)} grow{self.legPlural(1)} weak and you slide down the wall, until you're sitting on the floor while the last spurts of cum shoot out between your {self.legDesc(6)}.\n\nA bit tired, you sit there for a little while longer as the stuff drools from your tip{self.plural(1)}."
-               if (self.knot == True):
-                  tempStr += f" Despite being done, your swollen knot{self.plural(1)} refuse to allow your member{self.plural(1)} to slip back into the {self.clothesBottom()}, standing defiantly against the waistband. The most you can do for now is stuff the knot{self.plural(1)} into the crotch of the piece and hope you soften up later as you proceed to clean up your mess."
-               else:
-                  tempStr += f" Your softening member{self.plural(1)} slowly recede back into the {self.clothesBottom()}, leaving a slight slimy trail in the process, but at least allows you to tuck {self.plural(9)} away for now as you proceed to clean up the mess you made."
-               tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
-               self.outputMainText(tempStr,True)
-               break
-            #if (chance == 8 and self.attireBot in (10,11) and lust > 60):
-            #   {}
+               self.hrs = 1
+         elif (chance == 2):...
+         elif (chance == 3):...
+         elif (chance == 4):...
+         elif (chance == 5):...
+         elif (chance == 6):
+            tempStr = f"Already half hard from your lingering lust, just the thought of masturbating makes your {self.cockDesc()} erection{self.plural(1)} stiffen to full length. Which produces a slight problem... Your arousal is fairly evident through your {self.clothesBottom()} as your rod{self.plural(1)} lift{self.plural(3)} the fabric forward. You do your best to press it back down in an attempt to hide {self.plural(9)}, but "
+            if (self.cockSize * self.cockSizeMod > 10):
+               tempStr += f"{self.plural(11)} wind up popping out beneath, accidentally flashing a random passerby who quickly pick up their pace to get away before you can try to catch your long thing{self.plural(1)} back within the cloth."
+            else:
+               tempStr += f"{self.plural(11)} inevitably slide back up anyways, making your efforts futile."
+            tempStr += f"\n\nLooking for a quick escape, you slink behind the closest structure you can find. Glancing left and right to ensure nobody can see you, you pant as you look down at your tented {self.clothesBottom()}."
+            if (self.moistCalc(1) > 8):
+               tempStr += " Pre seeping through the fabric and drizzling down in a steady strand over the edge"
+            elif (self.moistCalc(1) > 4):
+               tempStr += " Pre soaking through the fabric and glistening with a large drop on the outside"
+            else:
+               tempStr += " Pre blotching the fabric with a large moist spot"
+            tempStr += f", you have no choice but to pull the clothing up, letting your wang{self.plural(1)} bounce out. Grabbing {self.plural(9)} the best you can in your impetuous state, you stroke strongly and swiftly. You lean back against the structure, with people openly walking and talking just on the other side, as you masturbate fervently.\n\nThe fear of being caught only makes your heart beat faster, quickly producing results in your loins. You hardly hold back for a second to let the pressure build, before you release it in a spurting torrent of white fluid. You continue to pet yourself, squeezing out the leftover cum, while your mind savors the dwindling orgasm.\n\nHalf-aware of what you had just done, your mind still in a fuzz, you simply catch your cock{self.plural(1)} within your {self.clothesBottom()} once more, staining it slightly with the gobs of seed at your tip{self.plural(1)}, and leave your secluded area to head back into the public, leaving behind your puddle of lewd mess for someone else to stumble across..."
+            tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
+            self.outputMainText(tempStr,True)
+         elif (chance == 7):
+            tempStr = f"With the thought of masturbating on your mind, you can feel your cock{self.plural(1)} begin to swell in anticipation. The tight confines of your {self.clothesBottom()} rapidly growing tighter, you hurry on home.\n\nJust as you step through the doorway to your private abode, the waistband of your {self.clothesBottom()} can no longer contain the {self.cockDesc()} bulge. Your length{self.plural(1)} leap{self.plural(3)} out, flinging "
+            if (self.moistCalc(1) > 8):
+               tempStr += "ropes"
+            elif (self.moistCalc(1) > 4):
+               tempStr += "strands"
+            else:
+               tempStr += "drops"
+            tempStr += f" of pre out across the floor while the shaft{self.plural(1)} droop{self.plural(3)} half-flaccidly over the edge. You slump against the nearest wall, gripping yourself as you eagerly start the stroking process. Free of {self.plural(5)} small prison, the blood-flow picks up, quickly allowing {self.plural(9)} to stiffen to full size while your hands stroke the sensitive skin. Your stroking turns to rhythmic pumps and your back presses against the wall, your hips bucking back in turn."
+            if (self.showBalls == True):
+               tempStr += f" You can wholly feel the pressure in your {self.ballDesc()} balls building, especially as the {self.clothesBottom()} continues to grip and squeeze them as it hugs your bottom to stay on amidst your efforts."
+            tempStr += f"\n\nBefore long, you wince as you try to hold back a little, one last moment of restraint until you let the fluids spray freely, escaping from your body with enough force to shoot across your room. So strong an orgasm, your {self.legDesc(2)} grow{self.legPlural(1)} weak and you slide down the wall, until you're sitting on the floor while the last spurts of cum shoot out between your {self.legDesc(6)}.\n\nA bit tired, you sit there for a little while longer as the stuff drools from your tip{self.plural(1)}."
+            if (self.knot == True):
+               tempStr += f" Despite being done, your swollen knot{self.plural(1)} refuse to allow your member{self.plural(1)} to slip back into the {self.clothesBottom()}, standing defiantly against the waistband. The most you can do for now is stuff the knot{self.plural(1)} into the crotch of the piece and hope you soften up later as you proceed to clean up your mess."
+            else:
+               tempStr += f" Your softening member{self.plural(1)} slowly recede back into the {self.clothesBottom()}, leaving a slight slimy trail in the process, but at least allows you to tuck {self.plural(9)} away for now as you proceed to clean up the mess you made."
+            tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
+            self.outputMainText(tempStr,True)
+         elif (chance == 8):...
          self.doEnd()
    def doVagMasturbate(self):
       tempInt = 0
@@ -11396,94 +11400,99 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
       else:
          tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
-         while True:
-            #!optimize if/else
-            chance = math.floor(random.random() * 6) + 1
-            if chance == 1:
-               if (self.ment >= self.lib - 10):
-                  tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub "
-               elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                  tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading "
-               elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                  tempStr = f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding "
-               elif (self.ment < self.lib - 50):
-                  tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind "
-               tempStr += f"{self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood."
-               if (self.moistCalc(2) > 11):
-                  tempStr += f" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your {self.buttDesc()} ass is practically sopping with it and more flings across your {self.legDesc(2)} and down below you as you go."
-               elif (self.moistCalc(2) > 7):
-                  tempStr += f" Lubricant spills from your slit{self.plural(2)}, running down your {self.legDesc(2)} and smearing across your {self.buttDesc()} backside, dribbling off your body, more than enough to frig yourself silly."
-               elif (self.moistCalc(2) > 3):
-                  tempStr += f" Some sweet feminine honey dribbles from {self.legWhere(1)} your {self.legDesc(2)}, slipping back across your {self.buttDesc()} tush and smearing across your thighs, plenty to take care of business."
-               elif (self.moistCalc(2) > 0):
-                  tempStr += f" A bit of sweet feminine honey slips out from {self.legWhere(1)} your {self.legDesc(2)}, your hand taking as much as possible to meagerly lubricate your sex."
-               if (self.lust <= 30):
-                  tempStr += "\n\nSlowly,"
-               elif (self.lust > 30 and self.lust <= 70):
-                  tempStr += "\n\nQuickly,"
-               elif (self.lust > 70):
-                  tempStr += "\n\nAlmost instantly,"
-               tempStr += f" your cunt{self.plural(2)} begin{self.plural(4)} to quake and shiver, your whole body tingling. So eager, you ram "
-               if (self.vagLimit() <= self.tallness / 5):
-                  tempStr += "a finger"
-               elif (self.vagLimit() > self.tallness / 5 and self.vagLimit() <= self.tallness / 2.2):
-                  tempStr += "your fingers"
-               elif (self.vagLimit() > self.tallness / 2.2 and self.vagLimit() <= self.tallness / 1.25):
-                  tempStr += "your hand"
-               elif (self.vagLimit() > self.tallness / 1.25 and self.vagLimit() <= self.tallness * 1.2):
-                  tempStr += "both hands"
-               elif (self.vagLimit() > self.tallness * 1.2 and self.vagLimit() <= self.tallness * 1.7):
-                  tempStr += "your forearm"
-               elif (self.vagLimit() > self.tallness * 1.7):
-                  tempStr += "as much of one arm as possible"
-               tempStr += f" into {self.oneYour(2)} hungry hole{self.plural(2)}, pounding away at yourself. Your body twitches and jerks as you come again and again."
-               if (self.ment >= self.lib - 10):
-                  tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area and the bit of slurping that echoed, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-               elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                  tempStr += f"\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your slick lubricant has seeped in somewhere. At least, you're cautious of your step, in case of slipping and falling back on your {self.buttDesc()} ass... And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Well... you were definitely loud, actually."
-               elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                  tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though fem-cum is still slathered about and making your {self.clothesBottom()} blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. With an awkward flutter in your step, you dash off, your body still slightly in mid-orgasm."
-               elif (self.ment < self.lib - 50):
-                  tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, slick slime dripping down your {self.legDesc(2)} and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-               tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
-               self.outputMainText(tempStr,True)
-               self.hrs = 1
-               break
-            #elif chance == 2 and self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
-            #   {}
-            #elif chance == 3:
-            #   {}
-            #elif chance == 4 and self.ment < self.lib - 50:
-            #   {}
-            #elif chance == 5 and (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
-            #   {}
-            elif chance == 6 and self.attireBot in (13,14) and self.lust > 80:
-               tempStr = f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {self.regionName(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n"
-               if (self.vulvaSize < 30):
-                  tempStr += f"Swiftly slipping through your fingers through the tender folds, your {self.hipDesc()} hips start to rock gently as you stand there. Soft slurps slip out from your thighs as you cautiously masturbate in public, with the rustling of the bag in front of you thankfully drowning it out."
-               else:
-                  tempStr += f"Sloshing your entire hand through the quite obvious folds, you actually wonder if the {self.vulvaDesc()} lips normally poke out from under the cloth... The thought of modesty is quickly pushed aside, however, as your hips rock against your fist, making you gasp in pleasure. The lewd slurping is quite obvious over the heavy rustling of your bag, drawing some eyes to your direction, but you're too lost with pushing through your meaty lips to care."
-               if (self.clitSize > 20):
-                  tempStr += f" You can feel your clit{self.plural(2)} tent the {self.clothesBottom()} and gently scrape against the back of the bag whenever your thumb wraps around and rubs {self.plural(10)} with each pass of your hand."
-               else:
-                  tempStr += f" Your thumb wraps around and rubs across your clit{self.plural(2)} with each pass of your hand, making you buck against the back of the bag."
-               if (self.cockTotal > 0):
-                  tempStr += f" Along with your movements, your cock{self.plural(1)} also knock{self.plural(3)} upon your bag from behind, completely neglected as any more stroking would be far to obvious in this state."
-               tempStr += " With the heated slick-friction in your loins and the anxiety of doing this amidst complete strangers, your heart beats so powerfully that it doesn't take long for your whole body to begin burning with orgasm.\n\n"
-               if (self.moistCalc(2) > 8):
-                  tempStr += f"Managing to muffle the moans building in your throat as you peak, your stealthy pleasuring is betrayed by the waterfall of juices that descend {self.legWhere(1)} your {self.legDesc(2)}. Splashing loudly across the ground, your fem-cum draws the attention of several others, their eyes turning to stare at the drooling strands of thick slime that slowly falls post-orgasm. Webs of the stuff stretch over the gap {self.legWhere(1)} your {self.legDesc(2)}, with large gobs of the lubricant forming puddles about your {self.legDesc(10)}.\n\nIn the seconds it takes to catch your breath and realize you've been caught, a heavy blush fills your cheeks. You lower your head and lift your bag back up, more slime trailing from the guilty hand, and proceed to run off, a slight limp and squish in your step as the excess fluids allow your thighs to slip erotically over your sensitive bits..."
-               elif (self.moistCalc(2) > 4):
-                  tempStr += f"Muffling most of the moan that builds with your climax, you can feel your fluids spill down to your {self.legDesc(6)}. The audible squishing and slurping of the spilling lubrication quickly cut your orgasm short, bringing your attention to the few eyes that have turned toward you. Blush warming your face and the tinges of climax still lingering, you do your best to act as casually as possible.\n\nLowering the bag even further to disguise the fem-cum that drizzles lightly down your {self.legDesc(2)}, you turn and rush away, hoping nobody notices the shimmering strands that reach back to your sensitive bits as the drops slowly spill to the ground beneath you..."
-               else:
-                  tempStr += "Muffling your moans as you come, you're able to take a few breaths of relief and relaxation as you relish the sensations. Not a soul knows what you have done, allowing you to fully enjoy your orgasm. And when you slip your hand back out from behind the bag, you take a moment to quickly lick off the moistness upon them, your pleasured flavor quite tasty.\n\nAs if nothing had happened at all, you're able to pick up your bag and strut off, your thighs sqeezing the sensitive lips slightly with each step."
-               tempStr += -self.doLust(-(self.sen // 2),2,1,ret=True)
-               self.outputMainText(tempStr,True)
-               self.hrs = 1
-               break
-            #elif chance == 7 and (self.attireBot == 4 or self.attireBot == 15):
-            #   {}
-            #elif chance == 8 and (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
-            #   {}
+         tempArr = as3.Array(1)
+         #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
+         #   tempArr.push(2)
+         #tempArr.push(3)
+         #if self.ment < self.lib - 50:
+         #   tempArr.push(4)
+         #if (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
+         #   tempArr.push(5)
+         if self.attireBot in (13,14) and self.lust > 80:
+            tempArr.push(6)
+         #if (self.attireBot == 4 or self.attireBot == 15):
+         #   tempArr.push(7)
+         #if (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
+         #   tempArr.push(8)
+         chance = self.randChooseFromArray(tempArr)
+         #!optimize if/else
+         if chance == 1:
+            if (self.ment >= self.lib - 10):
+               tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub "
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+               tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading "
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+               tempStr = f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding "
+            elif (self.ment < self.lib - 50):
+               tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind "
+            tempStr += f"{self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood."
+            if (self.moistCalc(2) > 11):
+               tempStr += f" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your {self.buttDesc()} ass is practically sopping with it and more flings across your {self.legDesc(2)} and down below you as you go."
+            elif (self.moistCalc(2) > 7):
+               tempStr += f" Lubricant spills from your slit{self.plural(2)}, running down your {self.legDesc(2)} and smearing across your {self.buttDesc()} backside, dribbling off your body, more than enough to frig yourself silly."
+            elif (self.moistCalc(2) > 3):
+               tempStr += f" Some sweet feminine honey dribbles from {self.legWhere(1)} your {self.legDesc(2)}, slipping back across your {self.buttDesc()} tush and smearing across your thighs, plenty to take care of business."
+            elif (self.moistCalc(2) > 0):
+               tempStr += f" A bit of sweet feminine honey slips out from {self.legWhere(1)} your {self.legDesc(2)}, your hand taking as much as possible to meagerly lubricate your sex."
+            if (self.lust <= 30):
+               tempStr += "\n\nSlowly,"
+            elif (self.lust > 30 and self.lust <= 70):
+               tempStr += "\n\nQuickly,"
+            elif (self.lust > 70):
+               tempStr += "\n\nAlmost instantly,"
+            tempStr += f" your cunt{self.plural(2)} begin{self.plural(4)} to quake and shiver, your whole body tingling. So eager, you ram "
+            if (self.vagLimit() <= self.tallness / 5):
+               tempStr += "a finger"
+            elif (self.vagLimit() > self.tallness / 5 and self.vagLimit() <= self.tallness / 2.2):
+               tempStr += "your fingers"
+            elif (self.vagLimit() > self.tallness / 2.2 and self.vagLimit() <= self.tallness / 1.25):
+               tempStr += "your hand"
+            elif (self.vagLimit() > self.tallness / 1.25 and self.vagLimit() <= self.tallness * 1.2):
+               tempStr += "both hands"
+            elif (self.vagLimit() > self.tallness * 1.2 and self.vagLimit() <= self.tallness * 1.7):
+               tempStr += "your forearm"
+            elif (self.vagLimit() > self.tallness * 1.7):
+               tempStr += "as much of one arm as possible"
+            tempStr += f" into {self.oneYour(2)} hungry hole{self.plural(2)}, pounding away at yourself. Your body twitches and jerks as you come again and again."
+            if (self.ment >= self.lib - 10):
+               tempStr += "\n\nYou quietly heave as you attempt to clean up your mess with the towels you have brought along, hiding them until you can safely clean them without being caught. Except for the smell that permeates the area and the bit of slurping that echoed, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
+            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+               tempStr += f"\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your slick lubricant has seeped in somewhere. At least, you're cautious of your step, in case of slipping and falling back on your {self.buttDesc()} ass... And as you leave the place, one of your neighbors eyes you with a surprised look. You were probably a bit loud... Well... you were definitely loud, actually."
+            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+               tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though fem-cum is still slathered about and making your {self.clothesBottom()} blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. With an awkward flutter in your step, you dash off, your body still slightly in mid-orgasm."
+            elif (self.ment < self.lib - 50):
+               tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, slick slime dripping down your {self.legDesc(2)} and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
+            tempStr += self.doLust(-(self.sen // 2),2,1,ret=True)
+            self.outputMainText(tempStr,True)
+            self.hrs = 1
+         elif chance == 2:...
+         elif chance == 3:...
+         elif chance == 4:...
+         elif chance == 5:...
+         elif chance == 6:
+            tempStr = f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {self.regionName(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n"
+            if (self.vulvaSize < 30):
+               tempStr += f"Swiftly slipping through your fingers through the tender folds, your {self.hipDesc()} hips start to rock gently as you stand there. Soft slurps slip out from your thighs as you cautiously masturbate in public, with the rustling of the bag in front of you thankfully drowning it out."
+            else:
+               tempStr += f"Sloshing your entire hand through the quite obvious folds, you actually wonder if the {self.vulvaDesc()} lips normally poke out from under the cloth... The thought of modesty is quickly pushed aside, however, as your hips rock against your fist, making you gasp in pleasure. The lewd slurping is quite obvious over the heavy rustling of your bag, drawing some eyes to your direction, but you're too lost with pushing through your meaty lips to care."
+            if (self.clitSize > 20):
+               tempStr += f" You can feel your clit{self.plural(2)} tent the {self.clothesBottom()} and gently scrape against the back of the bag whenever your thumb wraps around and rubs {self.plural(10)} with each pass of your hand."
+            else:
+               tempStr += f" Your thumb wraps around and rubs across your clit{self.plural(2)} with each pass of your hand, making you buck against the back of the bag."
+            if (self.cockTotal > 0):
+               tempStr += f" Along with your movements, your cock{self.plural(1)} also knock{self.plural(3)} upon your bag from behind, completely neglected as any more stroking would be far to obvious in this state."
+            tempStr += " With the heated slick-friction in your loins and the anxiety of doing this amidst complete strangers, your heart beats so powerfully that it doesn't take long for your whole body to begin burning with orgasm.\n\n"
+            if (self.moistCalc(2) > 8):
+               tempStr += f"Managing to muffle the moans building in your throat as you peak, your stealthy pleasuring is betrayed by the waterfall of juices that descend {self.legWhere(1)} your {self.legDesc(2)}. Splashing loudly across the ground, your fem-cum draws the attention of several others, their eyes turning to stare at the drooling strands of thick slime that slowly falls post-orgasm. Webs of the stuff stretch over the gap {self.legWhere(1)} your {self.legDesc(2)}, with large gobs of the lubricant forming puddles about your {self.legDesc(10)}.\n\nIn the seconds it takes to catch your breath and realize you've been caught, a heavy blush fills your cheeks. You lower your head and lift your bag back up, more slime trailing from the guilty hand, and proceed to run off, a slight limp and squish in your step as the excess fluids allow your thighs to slip erotically over your sensitive bits..."
+            elif (self.moistCalc(2) > 4):
+               tempStr += f"Muffling most of the moan that builds with your climax, you can feel your fluids spill down to your {self.legDesc(6)}. The audible squishing and slurping of the spilling lubrication quickly cut your orgasm short, bringing your attention to the few eyes that have turned toward you. Blush warming your face and the tinges of climax still lingering, you do your best to act as casually as possible.\n\nLowering the bag even further to disguise the fem-cum that drizzles lightly down your {self.legDesc(2)}, you turn and rush away, hoping nobody notices the shimmering strands that reach back to your sensitive bits as the drops slowly spill to the ground beneath you..."
+            else:
+               tempStr += "Muffling your moans as you come, you're able to take a few breaths of relief and relaxation as you relish the sensations. Not a soul knows what you have done, allowing you to fully enjoy your orgasm. And when you slip your hand back out from behind the bag, you take a moment to quickly lick off the moistness upon them, your pleasured flavor quite tasty.\n\nAs if nothing had happened at all, you're able to pick up your bag and strut off, your thighs sqeezing the sensitive lips slightly with each step."
+            tempStr += -self.doLust(-(self.sen // 2),2,1,ret=True)
+            self.outputMainText(tempStr,True)
+            self.hrs = 1
+         elif chance == 7:...
+         elif chance == 8:...
          self.doEnd()
    def doBothMasturbate(self):
       self.outputMainText("Not Implemented", True)
@@ -11507,276 +11516,275 @@ class NiminFetishFantasyv0975o_fla:
          self.lustArray.push(23)
       elif (self.breastSize < 5):
          self.lustArray.push(24)
-      #!remove while loop if possible
-      while True:
-         chance = math.floor(random.random() * 6) + 1
-         #!optimize if/else
-         if (chance == 1):
-            if (self.lactation > 0):
-               self.lustArray.push(53)
-            if (self.ment >= self.lib - 10):
-               tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with"
-            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-               tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with"
-            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-               tempStr = f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with"
-            elif (self.ment < self.lib - 50):
-               tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with"
-            if (self.nippleSize <= 25):
-               tempStr += " your fingers"
-            elif (self.nippleSize <= 60):
-               tempStr += " your hands"
-            elif (self.nippleSize <= 180):
-               tempStr += " both hands"
-            elif (self.nippleSize > 180):
-               tempStr += " the nearby wall"
-            tempStr += " until they begin to feel warm and tingly."
-            #!Add case for bootTotal == 10
-            if (self.boobTotal == 4):
-               tempStr += " Your hands even double their work as they fondle your second set of breasts as well, molding and massaging them just as much as the first pair, feeling twice as much pleasure."
-            elif (self.boobTotal == 6):
-               tempStr += " Your hands have their work cut out for them as they attempt to give all 6 of your breasts attention, running up and down, from chest to belly, caressing them restlessly as you heave to control yourself just a little longer."
-            elif (self.boobTotal == 8):
-               tempStr += " From chest to lower belly, your hands continue to rove to fondle all four sets of tits, fervently groping them all with great pleasure."
-            if (self.sen <= 30):
-               tempStr += " Unfortunately, you can't really come as your breasts simply aren't sensitive enough. But, it does feel nice as you continue to play with your nipples."
-               tempStr += self.doLust(-(self.sen // 5),2,3,ret=True)
-            else:
-               if (self.lust <= 30):
-                  tempStr += "\n\nSlowly,"
-               elif (self.lust > 30 and self.lust <= 70):
-                  tempStr += "\n\nQuickly,"
-               elif (self.lust > 70):
-                  tempStr += "\n\nAlmost instantly,"
-               tempStr += " your whole body begins to quiver,"
-               if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-                  tempStr += f" your {self.clothesBottom()} growing a tad moist,"
-               elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
-                  tempStr += f" your {self.clothesBottom()} growing wet,"
-               elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11 or self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
-                  tempStr += f" your {self.clothesBottom()} becoming soaked through,"
-               elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
-                  tempStr += f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,"
-               tempStr += " being wracked by a boobgasm."
-               tempStr += self.doLust(-(self.sen // 2),2,3,ret=True)
-            if (self.lactation > 0):
-               self.hrs += 1
-               getMilk = self.milkAmount(1)
-               tempStr += "\n\nMilk "
-               if (getMilk <= 500):
-                  tempStr += "spits"
-               elif (getMilk <= 1000):
-                  tempStr += "squirts"
-               elif (getMilk <= 2000):
-                  tempStr += "spews"
-               elif (getMilk <= 8000):
-                  tempStr += "gushes"
-               elif (getMilk <= 19000):
-                  tempStr += "erupts"
-               elif (getMilk > 19000):
-                  tempStr += "explodes"
-               tempStr += " from your nipples and dribbles down your front as you begin to lactate. You continue to pump it out in "
-               if (getMilk <= 500):
-                  tempStr += "small dribbles"
-               elif (getMilk <= 1000):
-                  tempStr += "spurts"
-               elif (getMilk <= 2000):
-                  tempStr += "sprays"
-               elif (getMilk <= 8000):
-                  tempStr += "jets"
-               elif (getMilk <= 19000):
-                  tempStr += "steady streams"
-               elif (getMilk > 19000):
-                  tempStr += "small floods"
-               tempStr += f", relieving your {self.boobDesc()} breasts of their supply"
-               if (self.dominant == 5):
-                  tempStr += " as you let out a contented 'mooo~'"
-               tempStr += "."
-            if (self.ment >= self.lib - 10):
-               tempStr += "\n\nYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-               tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere..."
-            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-               tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
-            elif (self.ment < self.lib - 50):
-               tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull back your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-            if (getMilk > 0):
-               if (getMilk < 1000):
-                  tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
-               else:
-                  tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
-            self.outputMainText(tempStr,True)
-            self.nipplePlay += 8
-            break
-         if (chance == 2 and self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0):
+      tempArr = as3.Array(1)
+      if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
+         tempArr.push(2)
+      chance = self.randChooseFromArray(tempArr)
+      #!optimize if/else
+      if (chance == 1):
+         if (self.lactation > 0):
             self.lustArray.push(53)
-            tempStr = f"Relaxing in your room, you sneak your breasts out of your {self.clothesTop()}, palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your {self.clothesBottom()}. It looks so delicious that you can't help but...\n\nYou reach under a boob and hoist it up, craning your neck down to meet "
-            if (self.nipType == 0):
-               tempStr += f"the {self.nipDesc()} nipple"
-            elif (self.nipType == 1):
-               tempStr += f"one of the four {self.nipDesc()} nipples"
-            tempStr += " with your mouth. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the stiffened nipple, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight."
-            getMilk = self.milkAmount(1)
-            if (getMilk < 300):
-               tempStr += "\n\nThin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other "
-            elif (getMilk < 1500):
-               tempStr += "\n\nThe flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other "
-            elif (getMilk < 3000):
-               tempStr += "\n\nThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other "
-            else:
-               tempStr += "\n\nCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other "
-            if (self.nipType != 1 and self.boobTotal == 2):
-               tempStr += " breast "
-            else:
-               tempStr += " tits "
-            tempStr += " do the same as you grope about with your other hand. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\n\nA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own nipple in ecstasy. You open wide and gasp as the nipple washes your mouth, with saliva and milk spilling out as you moan blissfully.\n\nYou then collapse back into your bed, continuing to suckle from yourself slowly and express what is left in your breasts."
-            if (getMilk < 300):
-               tempStr += " With the nice drink "
-               tempStr += self.doHP(2 + self.milkHPMod // 2,ret=True)
-            elif (getMilk < 1500):
-               tempStr += " With the small meal "
-               tempStr += self.doHP(8 + self.milkHPMod // 2,ret=True)
-            elif (getMilk < 3000):
-               tempStr += " With the abundant nourishment and slight bloating of your belly "
-               tempStr += self.doHP(10 + self.milkHPMod,ret=True)
-            else:
-               tempStr += " With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath "
-               tempStr += self.doHP(math.ceil((30 + self.str_ // 2 + self.HPMod) / 4) + self.milkHPMod,ret=True)
-            tempStr += ", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~"
+         if (self.ment >= self.lib - 10):
+            tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with"
+         elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+            tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with"
+         elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+            tempStr = f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with"
+         elif (self.ment < self.lib - 50):
+            tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with"
+         if (self.nippleSize <= 25):
+            tempStr += " your fingers"
+         elif (self.nippleSize <= 60):
+            tempStr += " your hands"
+         elif (self.nippleSize <= 180):
+            tempStr += " both hands"
+         elif (self.nippleSize > 180):
+            tempStr += " the nearby wall"
+         tempStr += " until they begin to feel warm and tingly."
+         #!Add case for bootTotal == 10
+         if (self.boobTotal == 4):
+            tempStr += " Your hands even double their work as they fondle your second set of breasts as well, molding and massaging them just as much as the first pair, feeling twice as much pleasure."
+         elif (self.boobTotal == 6):
+            tempStr += " Your hands have their work cut out for them as they attempt to give all 6 of your breasts attention, running up and down, from chest to belly, caressing them restlessly as you heave to control yourself just a little longer."
+         elif (self.boobTotal == 8):
+            tempStr += " From chest to lower belly, your hands continue to rove to fondle all four sets of tits, fervently groping them all with great pleasure."
+         if (self.sen <= 30):
+            tempStr += " Unfortunately, you can't really come as your breasts simply aren't sensitive enough. But, it does feel nice as you continue to play with your nipples."
+            tempStr += self.doLust(-(self.sen // 5),2,3,ret=True)
+         else:
+            if (self.lust <= 30):
+               tempStr += "\n\nSlowly,"
+            elif (self.lust > 30 and self.lust <= 70):
+               tempStr += "\n\nQuickly,"
+            elif (self.lust > 70):
+               tempStr += "\n\nAlmost instantly,"
+            tempStr += " your whole body begins to quiver,"
+            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
+               tempStr += f" your {self.clothesBottom()} growing a tad moist,"
+            elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
+               tempStr += f" your {self.clothesBottom()} growing wet,"
+            elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11 or self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
+               tempStr += f" your {self.clothesBottom()} becoming soaked through,"
+            elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
+               tempStr += f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,"
+            tempStr += " being wracked by a boobgasm."
             tempStr += self.doLust(-(self.sen // 2),2,3,ret=True)
-            self.outputMainText(tempStr,True)
-            self.hrs += 2
-            break
+         if (self.lactation > 0):
+            self.hrs += 1
+            getMilk = self.milkAmount(1)
+            tempStr += "\n\nMilk "
+            if (getMilk <= 500):
+               tempStr += "spits"
+            elif (getMilk <= 1000):
+               tempStr += "squirts"
+            elif (getMilk <= 2000):
+               tempStr += "spews"
+            elif (getMilk <= 8000):
+               tempStr += "gushes"
+            elif (getMilk <= 19000):
+               tempStr += "erupts"
+            elif (getMilk > 19000):
+               tempStr += "explodes"
+            tempStr += " from your nipples and dribbles down your front as you begin to lactate. You continue to pump it out in "
+            if (getMilk <= 500):
+               tempStr += "small dribbles"
+            elif (getMilk <= 1000):
+               tempStr += "spurts"
+            elif (getMilk <= 2000):
+               tempStr += "sprays"
+            elif (getMilk <= 8000):
+               tempStr += "jets"
+            elif (getMilk <= 19000):
+               tempStr += "steady streams"
+            elif (getMilk > 19000):
+               tempStr += "small floods"
+            tempStr += f", relieving your {self.boobDesc()} breasts of their supply"
+            if (self.dominant == 5):
+               tempStr += " as you let out a contented 'mooo~'"
+            tempStr += "."
+         if (self.ment >= self.lib - 10):
+            tempStr += "\n\nYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
+         elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+            tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere..."
+         elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+            tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
+         elif (self.ment < self.lib - 50):
+            tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull back your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
+         if (getMilk > 0):
+            if (getMilk < 1000):
+               tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
+            else:
+               tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
+         self.outputMainText(tempStr,True)
+         self.nipplePlay += 8
+      elif (chance == 2):
+         self.lustArray.push(53)
+         tempStr = f"Relaxing in your room, you sneak your breasts out of your {self.clothesTop()}, palming their undersides and gently kneading them. Hanging from your chest, so soft and squishy, your anticipation over playing with them already begins to make drops of milk form around your nipples. The white nurturing fluid drips warmly from the tips, splashing upon your {self.clothesBottom()}. It looks so delicious that you can't help but...\n\nYou reach under a boob and hoist it up, craning your neck down to meet "
+         if (self.nipType == 0):
+            tempStr += f"the {self.nipDesc()} nipple"
+         elif (self.nipType == 1):
+            tempStr += f"one of the four {self.nipDesc()} nipples"
+         tempStr += " with your mouth. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the stiffened nipple, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight."
+         getMilk = self.milkAmount(1)
+         if (getMilk < 300):
+            tempStr += "\n\nThin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other "
+         elif (getMilk < 1500):
+            tempStr += "\n\nThe flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other "
+         elif (getMilk < 3000):
+            tempStr += "\n\nThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other "
+         else:
+            tempStr += "\n\nCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other "
+         if (self.nipType != 1 and self.boobTotal == 2):
+            tempStr += " breast "
+         else:
+            tempStr += " tits "
+         tempStr += " do the same as you grope about with your other hand. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\n\nA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own nipple in ecstasy. You open wide and gasp as the nipple washes your mouth, with saliva and milk spilling out as you moan blissfully.\n\nYou then collapse back into your bed, continuing to suckle from yourself slowly and express what is left in your breasts."
+         if (getMilk < 300):
+            tempStr += " With the nice drink "
+            tempStr += self.doHP(2 + self.milkHPMod // 2,ret=True)
+         elif (getMilk < 1500):
+            tempStr += " With the small meal "
+            tempStr += self.doHP(8 + self.milkHPMod // 2,ret=True)
+         elif (getMilk < 3000):
+            tempStr += " With the abundant nourishment and slight bloating of your belly "
+            tempStr += self.doHP(10 + self.milkHPMod,ret=True)
+         else:
+            tempStr += " With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath "
+            tempStr += self.doHP(math.ceil((30 + self.str_ // 2 + self.HPMod) / 4) + self.milkHPMod,ret=True)
+         tempStr += ", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~"
+         tempStr += self.doLust(-(self.sen // 2),2,3,ret=True)
+         self.outputMainText(tempStr,True)
+         self.hrs += 2
       self.hrs += 1
       self.doEnd()
    def doUdderMasturbate(self):
       chance = 0
       getMilk = 0
       self.lustArray = as3.Array(4)
-      #!remove while loop if possible
-      while True:
-         #!optimize if/else
-         chance = math.floor(random.random() * 2) + 1
-         if (chance == 1):
-            if (self.udderLactation > 0):
-               self.lustArray.push(53)
-            if (self.ment >= self.lib - 10):
-               tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with"
-            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-               tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with"
-            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-               tempStr = f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with"
-            elif (self.ment < self.lib - 50):
-               tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with"
-            if (self.teatSize <= 25):
-               tempStr += " your fingers"
-            elif (self.teatSize <= 60):
-               tempStr += " your hands"
-            elif (self.teatSize <= 180):
-               tempStr += " both hands"
-            elif (self.teatSize > 180):
-               tempStr += " the nearby wall"
-            tempStr += " until they begin to feel warm and tingly."
-            if (self.sen <= 30):
-               tempStr += " Unfortunately, you can't really come as your udder simply isn't sensitive enough. But, it does feel nice as you continue to play with your teats."
-               tempStr += self.doLust(-(self.sen // 5),2,4,ret=True)
-            else:
-               if (self.lust <= 30):
-                  tempStr += "\n\nSlowly,"
-               elif (self.lust <= 70):
-                  tempStr += "\n\nQuickly,"
-               elif (self.lust > 70):
-                  tempStr += "\n\nAlmost instantly,"
-               tempStr += " your whole body begins to quiver,"
-               if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
-                  tempStr += f" your {self.clothesBottom()} growing a tad moist,"
-               elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
-                  tempStr += f" your {self.clothesBottom()} growing wet,"
-               elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11 or self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
-                  tempStr += f" your {self.clothesBottom()} becoming soaked through,"
-               elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
-                  tempStr += f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,"
-               tempStr += " being wracked by an udder orgasm."
-               tempStr += self.doLust(-(self.sen // 2),2,4,ret=True)
-            if (self.udderLactation > 0):
-               self.hrs += 1
-               getMilk = self.milkAmount(2)
-               tempStr += "\n\nMilk "
-               if (getMilk <= 500):
-                  tempStr += "spits"
-               elif (getMilk <= 1000):
-                  tempStr += "squirts"
-               elif (getMilk <= 2000):
-                  tempStr += "spews"
-               elif (getMilk <= 8000):
-                  tempStr += "gushes"
-               elif (getMilk <= 19000):
-                  tempStr += "erupts"
-               elif (getMilk > 19000):
-                  tempStr += "explodes"
-               tempStr += " from your teats and dribbles down your front as you begin to lactate. You continue to pump it out in "
-               if (getMilk <= 500):
-                  tempStr += "small dribbles"
-               elif (getMilk <= 1000):
-                  tempStr += "spurts"
-               elif (getMilk <= 2000):
-                  tempStr += "sprays"
-               elif (getMilk <= 8000):
-                  tempStr += "jets"
-               elif (getMilk <= 19000):
-                  tempStr += "steady streams"
-               elif (getMilk > 19000):
-                  tempStr += "small floods"
-               tempStr += f", relieving your {self.udderDesc()} udder of its supply"
-               if (self.dominant == 5):
-                  tempStr += " as you let out a contented 'mooo~'"
-               tempStr += "."
-            if (self.ment >= self.lib - 10):
-               tempStr += "\n\nYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
-            elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-               tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere..."
-            elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-               tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
-            elif (self.ment < self.lib - 50):
-               tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(1)} your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
-            if (getMilk > 0):
-               if (getMilk < 1000):
-                  tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
-               else:
-                  tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
-            self.outputMainText(tempStr,True)
-            self.udderPlay += 8
-            break
-         if (chance == 2 and self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0):
+      tempArr = as3.Array(1)
+      if self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0:
+         tempArr.push(2)
+      chance = self.randChooseFromArray(tempArr)
+      #!optimize if/else
+      chance = math.floor(random.random() * 2) + 1
+      if (chance == 1):
+         if (self.udderLactation > 0):
             self.lustArray.push(53)
-            tempStr = f"Relaxing in your room, you pull your udder out of your {self.clothesBottom()}, lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your {self.legDesc(2)} and the floor. It looks so delicious that you can't help but...\n\nYou hug around the udder and hoist it up, craning your neck down to meet a {self.teatDesc()} teat with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight."
-            getMilk = self.milkAmount(2)
-            if (getMilk < 300):
-               tempStr += "\n\nThin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other "
-            elif (getMilk < 1500):
-               tempStr += "\n\nThe flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other "
-            elif (getMilk < 3000):
-               tempStr += "\n\nThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other "
-            else:
-               tempStr += "\n\nCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other "
-            tempStr += f" teats do the same as you grope about with your other hand, your arm bending around to keep the udder elevated. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\n\nA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own teat in ecstasy. You open wide and gasp as the {self.teatDesc()} teat washes your mouth, with saliva and milk spilling out as you moan blissfully.\n\nYou then collapse back into your bed, curled around and continuing to suckle from yourself slowly, gently milking what is left in your udder."
-            if (getMilk < 300):
-               tempStr += " With the nice drink "
-               tempStr += self.doHP(2 + self.milkHPMod // 2,ret=True)
-            elif (getMilk < 1500):
-               tempStr += " With the small meal "
-               tempStr += self.doHP(8 + self.milkHPMod // 2,ret=True)
-            elif (getMilk < 3000):
-               tempStr += " With the abundant nourishment and slight bloating of your belly "
-               tempStr += self.doHP(10 + self.milkHPMod,ret=True)
-            else:
-               tempStr += " With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath "
-               tempStr += self.doHP(math.ceil((30 + self.str_ // 2 + self.HPMod) / 4) + self.milkHPMod,ret=True)
-            tempStr += ", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~"
+         if (self.ment >= self.lib - 10):
+            tempStr = f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with"
+         elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+            tempStr = f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with"
+         elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+            tempStr = f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with"
+         elif (self.ment < self.lib - 50):
+            tempStr = f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with"
+         if (self.teatSize <= 25):
+            tempStr += " your fingers"
+         elif (self.teatSize <= 60):
+            tempStr += " your hands"
+         elif (self.teatSize <= 180):
+            tempStr += " both hands"
+         elif (self.teatSize > 180):
+            tempStr += " the nearby wall"
+         tempStr += " until they begin to feel warm and tingly."
+         if (self.sen <= 30):
+            tempStr += " Unfortunately, you can't really come as your udder simply isn't sensitive enough. But, it does feel nice as you continue to play with your teats."
+            tempStr += self.doLust(-(self.sen // 5),2,4,ret=True)
+         else:
+            if (self.lust <= 30):
+               tempStr += "\n\nSlowly,"
+            elif (self.lust <= 70):
+               tempStr += "\n\nQuickly,"
+            elif (self.lust > 70):
+               tempStr += "\n\nAlmost instantly,"
+            tempStr += " your whole body begins to quiver,"
+            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3):
+               tempStr += f" your {self.clothesBottom()} growing a tad moist,"
+            elif (self.moistCalc(1) > 3 and self.moistCalc(1) <= 7 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 7):
+               tempStr += f" your {self.clothesBottom()} growing wet,"
+            elif (self.moistCalc(1) > 7 and self.moistCalc(1) <= 11 or self.moistCalc(2) > 7 and self.moistCalc(2) <= 11):
+               tempStr += f" your {self.clothesBottom()} becoming soaked through,"
+            elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
+               tempStr += f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,"
+            tempStr += " being wracked by an udder orgasm."
             tempStr += self.doLust(-(self.sen // 2),2,4,ret=True)
-            self.outputMainText(tempStr,True)
-            self.hrs += 2
-            break
+         if (self.udderLactation > 0):
+            self.hrs += 1
+            getMilk = self.milkAmount(2)
+            tempStr += "\n\nMilk "
+            if (getMilk <= 500):
+               tempStr += "spits"
+            elif (getMilk <= 1000):
+               tempStr += "squirts"
+            elif (getMilk <= 2000):
+               tempStr += "spews"
+            elif (getMilk <= 8000):
+               tempStr += "gushes"
+            elif (getMilk <= 19000):
+               tempStr += "erupts"
+            elif (getMilk > 19000):
+               tempStr += "explodes"
+            tempStr += " from your teats and dribbles down your front as you begin to lactate. You continue to pump it out in "
+            if (getMilk <= 500):
+               tempStr += "small dribbles"
+            elif (getMilk <= 1000):
+               tempStr += "spurts"
+            elif (getMilk <= 2000):
+               tempStr += "sprays"
+            elif (getMilk <= 8000):
+               tempStr += "jets"
+            elif (getMilk <= 19000):
+               tempStr += "steady streams"
+            elif (getMilk > 19000):
+               tempStr += "small floods"
+            tempStr += f", relieving your {self.udderDesc()} udder of its supply"
+            if (self.dominant == 5):
+               tempStr += " as you let out a contented 'mooo~'"
+            tempStr += "."
+         if (self.ment >= self.lib - 10):
+            tempStr += "\n\nYou quietly heave as you attempt to clean up any mess you have made, hoping the bedsheets will dry quickly. Except for some stains, you don't think anybody will catch on to your lewd actions, and you continue on with your day."
+         elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+            tempStr += "\n\nComing down from your high, you clean up your mess the best you can, though its likely some of your fluids have seeped in somewhere. At least, you're cautious of cleaning any mess up with your sheets. And as you leave the place, one of your neighbors eyes you with a surprised look. You probably left a blotch or few on your clothes somewhere..."
+         elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+            tempStr += f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. You also have the slight problem of milk blotching your {self.clothesTop()}... As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. Rubbing your chest through the fabric once more, you dash away hoping it will dry."
+         elif (self.ment < self.lib - 50):
+            tempStr += f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement, having given them quite the show. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(1)} your {self.clothesTop()}, milk splashing everywhere and slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done..."
+         if (getMilk > 0):
+            if (getMilk < 1000):
+               tempStr += f"\n\n\nYou produced {getMilk} ml of milk!"
+            else:
+               tempStr += f"\n\n\nYou produced {self.decGet(getMilk / 1000,1)} liters of milk!"
+         self.outputMainText(tempStr,True)
+         self.udderPlay += 8
+      elif (chance == 2):
+         self.lustArray.push(53)
+         tempStr = f"Relaxing in your room, you pull your udder out of your {self.clothesBottom()}, lifting the underside and gently kneading the supple bag. Hanging from below your belly, so soft and squishy, your anticipation over playing with it already begins to make drops of milk form around your teats. The white nurturing fluid drips warmly from the tips, splashing over your {self.legDesc(2)} and the floor. It looks so delicious that you can't help but...\n\nYou hug around the udder and hoist it up, craning your neck down to meet a {self.teatDesc()} teat with your mouth, guiding it with a hand. You lick around it at first, but quickly suck it into your mouth, letting out an unintended \"Mmm~\" as the erect peak readily compresses over your tongue, rewarding you with a mouthful of squirting sustenance. Sweet and rich, the stuff is better than it looked. And with your mouth fellating the semi-firm teat, the sensations and flavor only make you try to gulp down more, nomming and sucking with delight."
+         getMilk = self.milkAmount(2)
+         if (getMilk < 300):
+            tempStr += "\n\nThin sprays occassionally spurt and spit about your mouth, with a gentle trickle dribbling down your throat. Though you may only produce a few mouthfuls before you run dry, you savor every swallow while your other "
+         elif (getMilk < 1500):
+            tempStr += "\n\nThe flow picks up a little, with constant spurting about your mouth and down your throat. You steadily gulp again and again as your mouth refills, serving you a nice meal of milk while your other "
+         elif (getMilk < 3000):
+            tempStr += "\n\nThe flow quickly increases with wide streams of milk spraying within your mouth and down your throat. You hastily gulp again and again to keep up with the outpour of milk, barely able to keep up with the supply and a little dribbling out the corners of your mouth while your other "
+         else:
+            tempStr += "\n\nCaught slightly off gaurd, the flow of milk rapidly increases to a powerful gushing. Like a geyser erupting in your mouth, you do all you can to drink down as much as possible, but plenty more floods out of your mouth in a pale waterfall over your body while your other "
+         tempStr += f" teats do the same as you grope about with your other hand, your arm bending around to keep the udder elevated. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\n\nA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own teat in ecstasy. You open wide and gasp as the {self.teatDesc()} teat washes your mouth, with saliva and milk spilling out as you moan blissfully.\n\nYou then collapse back into your bed, curled around and continuing to suckle from yourself slowly, gently milking what is left in your udder."
+         if (getMilk < 300):
+            tempStr += " With the nice drink "
+            tempStr += self.doHP(2 + self.milkHPMod // 2,ret=True)
+         elif (getMilk < 1500):
+            tempStr += " With the small meal "
+            tempStr += self.doHP(8 + self.milkHPMod // 2,ret=True)
+         elif (getMilk < 3000):
+            tempStr += " With the abundant nourishment and slight bloating of your belly "
+            tempStr += self.doHP(10 + self.milkHPMod,ret=True)
+         else:
+            tempStr += " With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath "
+            tempStr += self.doHP(math.ceil((30 + self.str_ // 2 + self.HPMod) / 4) + self.milkHPMod,ret=True)
+         tempStr += ", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~"
+         tempStr += self.doLust(-(self.sen // 2),2,4,ret=True)
+         self.outputMainText(tempStr,True)
+         self.hrs += 2
       self.hrs += 1
       self.doEnd()
    def doAlchemy(self):
