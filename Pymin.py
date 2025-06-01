@@ -1874,84 +1874,84 @@ class NiminFetishFantasyv0975o_fla:
       if keyCode == 18: #Alt
          self.altHeld = True
       elif (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
-         if self.mo.getChildAttribute("button1","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(1)
+         elif self.mo.getChildAttribute("button1","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 1
             self.hideUpDown()
             self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(1)
       elif (keyCode == 104 or keyCode == 87): #w, numpad8
          if self.newSLDialogVisible and not self.nsldblindervisible:
             self.nsldSelectionUp()
          elif special and self.buttonsVisible[2]:
-            if self.mo.getChildAttribute("button2","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+            if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+               self.itemMove(2)
+            elif self.mo.getChildAttribute("button2","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
                self.buttonChoice = 2
                self.hideUpDown()
                self.doListen()
-            elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-               self.itemMove(2)
       elif (keyCode == 105 or keyCode == 69) and special and self.buttonsVisible[3]: #e, numpad9
-         if self.mo.getChildAttribute("button3","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(3)
+         elif self.mo.getChildAttribute("button3","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 3
             self.hideUpDown()
             self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(3)
       elif (keyCode == 109 or keyCode == 82) and special and self.buttonsVisible[4]: #r, numpadMinus
          if self.mo.getChildAttribute("button4","state") == "normal":
             self.buttonChoice = 4
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 100 or keyCode == 65) and special and self.buttonsVisible[5]: #a, numpad4
-         if self.mo.getChildAttribute("button5","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(5)
+         elif self.mo.getChildAttribute("button5","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 5
             self.hideUpDown()
             self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(5)
       elif (keyCode == 101 or keyCode == 83): #s, numpad5
          if self.newSLDialogVisible and not self.nsldblindervisible:
             self.nsldSelectionDown()
          elif special and self.buttonsVisible[6]:
-            if self.mo.getChildAttribute("button6","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+            if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+               self.itemMove(6)
+            elif self.mo.getChildAttribute("button6","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
                self.buttonChoice = 6
                self.hideUpDown()
                self.doListen()
-            elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-               self.itemMove(6)
       elif (keyCode == 102 or keyCode == 68) and special and self.buttonsVisible[7]: #d, numpad6
-         if self.mo.getChildAttribute("button7","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(7)
+         elif self.mo.getChildAttribute("button7","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 7
             self.hideUpDown()
             self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(7)
       elif (keyCode == 107 or keyCode == 70) and special and self.buttonsVisible[8]: #f, numpadPlus
          if self.mo.getChildAttribute("button8","state") == "normal":
             self.buttonChoice = 8
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 97 or keyCode == 90) and special and self.buttonsVisible[9]: #z, numpad1
-         if self.mo.getChildAttribute("button9","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(9)
+         elif self.mo.getChildAttribute("button9","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 9
             self.hideUpDown()
-            self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(9)
+            self.doListen() 
       elif (keyCode == 98 or keyCode == 88) and special and self.buttonsVisible[10]: #x, numpad2
-         if self.mo.getChildAttribute("button10","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(10)
+         elif self.mo.getChildAttribute("button10","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 10
             self.hideUpDown()
             self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(10)
       elif (keyCode == 99 or keyCode == 67) and special and self.buttonsVisible[11]: #c, numpad3
-         if self.mo.getChildAttribute("button11","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts) and not (not self.mts and self.inBag and self.moveItemID != 0):
+         if not self.mts and (self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0)):
+            self.itemMove(11)
+         elif self.mo.getChildAttribute("button11","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
             self.buttonChoice = 11
             self.hideUpDown()
             self.doListen()
-         elif self.inBag and self.shiftHeld or (self.inBag and self.moveItemID != 0):
-            self.itemMove(11)
       elif (keyCode == 13 or keyCode == 86) and special and self.buttonsVisible[12]: #v, numpadReturn
          if self.mo.getChildAttribute("button12","state") == "normal":
             self.buttonChoice = 12
