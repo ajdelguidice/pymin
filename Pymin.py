@@ -1874,125 +1874,96 @@ class NiminFetishFantasyv0975o_fla:
       special = not self.keyboardTypingDisable or self.altHeld
       if keyCode == 18: #Alt
          self.altHeld = True
-      elif (keyCode == 103 or keyCode == 81) and special: #q, numpad7
-         if self.shiftHeld == False and self.buttonsVisible[1] == True and self.mo.getChildAttribute("button1","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
+         if self.shiftHeld == False and self.mo.getChildAttribute("button1","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 1
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[1] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(1)
       elif (keyCode == 104 or keyCode == 87): #w, numpad8
          if self.newSLDialogVisible == True and self.nsldblindervisible == False:
             self.nsldSelectionUp()
-         elif special:
-            if self.shiftHeld == False and self.buttonsVisible[2] == True and self.mo.getChildAttribute("button2","state") == "normal" or self.inStash == True or self.mts == True:
+         elif special and self.buttonsVisible[2]:
+            if self.shiftHeld == False and self.mo.getChildAttribute("button2","state") == "normal" or self.inStash == True or self.mts == True:
                self.buttonChoice = 2
                self.hideUpDown()
                self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[2] == True:
+            elif self.inBag == True and self.shiftHeld == True:
                self.itemMove(2)
-      elif (keyCode == 105 or keyCode == 69) and special: #e, numpad9
-         if self.shiftHeld == False and self.buttonsVisible[3] == True and self.mo.getChildAttribute("button3","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 105 or keyCode == 69) and special and self.buttonsVisible[3]: #e, numpad9
+         if self.shiftHeld == False and self.mo.getChildAttribute("button3","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 3
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[3] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(3)
-      elif (keyCode == 109 or keyCode == 82) and special: #r, numpadMinus
-         if self.buttonsVisible[4] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button4","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
+      elif (keyCode == 109 or keyCode == 82) and special and self.buttonsVisible[4]: #r, numpadMinus
+         if (self.shiftHeld == False and self.mo.getChildAttribute("button4","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
             self.buttonChoice = 4
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 100 or keyCode == 65) and special: #a, numpad4
-         if self.shiftHeld == False and self.buttonsVisible[5] == True and self.mo.getChildAttribute("button5","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 100 or keyCode == 65) and special and self.buttonsVisible[5]: #a, numpad4
+         if self.shiftHeld == False and self.mo.getChildAttribute("button5","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 5
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[5] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(5)
       elif (keyCode == 101 or keyCode == 83): #s, numpad5
          if self.newSLDialogVisible == True and self.nsldblindervisible == False:
             self.nsldSelectionDown()
-         elif special:
-            if self.shiftHeld == False and self.buttonsVisible[6] == True and self.mo.getChildAttribute("button6","state") == "normal" or self.inStash == True or self.mts == True:
+         elif special and self.buttonsVisible[6]:
+            if self.shiftHeld == False and self.mo.getChildAttribute("button6","state") == "normal" or self.inStash == True or self.mts == True:
                self.buttonChoice = 6
                self.hideUpDown()
                self.doListen()
-            elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[6] == True:
+            elif self.inBag == True and self.shiftHeld == True:
                self.itemMove(6)
-      elif (keyCode == 102 or keyCode == 68) and special: #d, numpad6
-         if self.shiftHeld == False and self.buttonsVisible[7] == True and self.mo.getChildAttribute("button7","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 102 or keyCode == 68) and special and self.buttonsVisible[7]: #d, numpad6
+         if self.shiftHeld == False and self.mo.getChildAttribute("button7","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 7
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[7] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(7)
-      elif (keyCode == 107 or keyCode == 70) and special: #f, numpadPlus
-         if self.buttonsVisible[8] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button8","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
+      elif (keyCode == 107 or keyCode == 70) and special and self.buttonsVisible[8]: #f, numpadPlus
+         if (self.shiftHeld == False and self.mo.getChildAttribute("button8","state") == "normal" or (self.inBag == True or self.inStash == True) and self.shiftHeld == True):
             self.buttonChoice = 8
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 97 or keyCode == 90) and special: #z, numpad1
-         if self.shiftHeld == False and self.buttonsVisible[9] == True and self.mo.getChildAttribute("button9","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 97 or keyCode == 90) and special and self.buttonsVisible[9]: #z, numpad1
+         if self.shiftHeld == False and self.mo.getChildAttribute("button9","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 9
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[9] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(9)
-      elif (keyCode == 98 or keyCode == 88) and special: #x, numpad2
-         if self.shiftHeld == False and self.buttonsVisible[10] == True and self.mo.getChildAttribute("button10","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 98 or keyCode == 88) and special and self.buttonsVisible[10]: #x, numpad2
+         if self.shiftHeld == False and self.mo.getChildAttribute("button10","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 10
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[10] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(10)
-      elif (keyCode == 99 or keyCode == 67) and special: #c, numpad3
-         if self.shiftHeld == False and self.buttonsVisible[11] == True and self.mo.getChildAttribute("button11","state") == "normal" or self.inStash == True or self.mts == True:
+      elif (keyCode == 99 or keyCode == 67) and special and self.buttonsVisible[11]: #c, numpad3
+         if self.shiftHeld == False and self.mo.getChildAttribute("button11","state") == "normal" or self.inStash == True or self.mts == True:
             self.buttonChoice = 11
             self.hideUpDown()
             self.doListen()
-         elif self.inBag == True and self.shiftHeld == True and self.buttonsVisible[11] == True:
+         elif self.inBag == True and self.shiftHeld == True:
             self.itemMove(11)
-      elif (keyCode == 13 or keyCode == 86) and special: #v, numpadReturn
-         if (self.buttonsVisible[12] == True and (self.shiftHeld == False and self.mo.getChildAttribute("button12","state") == "normal" or (self.inBag == True or self.inStash == True or self.inShop == True) and self.shiftHeld == True)):
+      elif (keyCode == 13 or keyCode == 86) and special and self.buttonsVisible[12]: #v, numpadReturn
+         if ((self.shiftHeld == False and self.mo.getChildAttribute("button12","state") == "normal" or (self.inBag == True or self.inStash == True or self.inShop == True) and self.shiftHeld == True)):
             self.buttonChoice = 12
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 85) and special: #u
-         if (self.showSide == True and self.currentState != 0):
-            if (self.appearancebuttonvisible == True):
-               self.appearanceGo()
-            else:
-               self.sideEvent(1)
-      elif (keyCode == 73) and special: #i
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(2)
-      elif (keyCode == 79) and special: #o
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(3)
-      elif (keyCode == 80) and special: #p
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(4)
-      elif (keyCode == 72) and special: #h
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(5)
-      elif (keyCode == 74) and special: #j
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(6)
-      elif (keyCode == 75) and special: #k
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(7)
-      elif (keyCode == 76) and special: #l
-         if (self.showSide == True and self.currentState != 0):
-            self.sideEvent(8)
-      elif (keyCode == 37) and special: #ArrowLeft
-         if self.customthemecolor == False:
-            self.toggleTheme()
+      elif (keyCode == 37) and special and not self.customthemecolor: #ArrowLeft
+         self.toggleTheme()
       elif (keyCode == 38) and special: #ArrowUp
          self.fontSizeUp()
-      elif (keyCode == 39) and special: #ArrowRight
-         if self.customfontcolor == False:
-            self.toggleColor()
+      elif (keyCode == 39) and special and not self.customfontcolor: #ArrowRight
+         self.toggleColor()
       elif (keyCode == 40) and special: #ArrowDown
          self.fontSizeDown()
       elif (keyCode == 17) and special: #Control
@@ -2001,28 +1972,43 @@ class NiminFetishFantasyv0975o_fla:
          self.toggleSide()
       elif (keyCode == 191) and special: #/
          self.toggleBold()
-      elif (keyCode == 113) and special:
-         if self.showsavegame == True:
-            self.saveGo()
-      elif (keyCode == 115) and special:
-         if self.showloadgame == True:
-            self.loadGo()
-      elif (keyCode == 8) and special: #Backspace
-         if self.shownewgame == True:
-            self.newGameGo()
+      elif (keyCode == 113) and special and self.showsavegame:
+         self.saveGo()
+      elif (keyCode == 115) and special and self.showloadgame:
+         self.loadGo()
+      elif (keyCode == 8) and special and self.shownewgame: #Backspace
+         self.newGameGo()
       elif (keyCode == 16) and special: #Shift
          self.shiftHeld = True
       elif (keyCode == 192 or keyCode == 111) and special: #~, numpadDivide
          self.openWiki()
-      elif (keyCode == 108 or keyCode == 110 or keyCode == 71) and special: #numpadDecimal, g
+      elif (keyCode == 108 or keyCode == 110 or keyCode == 71) and special and self.newSLDialogVisible and not self.nsldblindervisible: #numpadDecimal, g
+         self.toggleNSLDSortOrder()
+      elif (keyCode == 96 or keyCode == 66) and special and self.discardbuttonvisible: #numpade0, b
          if self.newSLDialogVisible == True and self.nsldblindervisible == False:
-            self.toggleNSLDSortOrder()
-      elif (keyCode == 96 or keyCode == 66) and special: #numpade0, b
-         if self.discardbuttonvisible == True:
-            if self.newSLDialogVisible == True and self.nsldblindervisible == False:
-               self.openSFC()
-            elif self.moveItemID != 0 and (self.inBag == True or self.inStash == True):
-               self.buttonEventDiscard()
+            self.openSFC()
+         elif self.moveItemID != 0 and (self.inBag == True or self.inStash == True):
+            self.buttonEventDiscard()
+      elif self.showSide and self.currentState != 0:
+         elif (keyCode == 85) and special: #u
+            if (self.appearancebuttonvisible):
+               self.appearanceGo()
+            else:
+               self.sideEvent(1)
+         if (keyCode == 73) and special: #i
+            self.sideEvent(2)
+         elif (keyCode == 79) and special: #o
+            self.sideEvent(3)
+         elif (keyCode == 80) and special: #p
+            self.sideEvent(4)
+         elif (keyCode == 72) and special: #h
+            self.sideEvent(5)
+         elif (keyCode == 74) and special: #j
+            self.sideEvent(6)
+         elif (keyCode == 75) and special: #k
+            self.sideEvent(7)
+         elif (keyCode == 76) and special: #l
+            self.sideEvent(8)
    def appearance(self):
       if self.inBag == False and self.inStash == False and self.inShop == False:
          self.appearanceGo()
@@ -2207,17 +2193,17 @@ class NiminFetishFantasyv0975o_fla:
          with (self.dir / "Nimin_Prefs.toml").open("rb") as f:
             temp = tomllib.load(f)
          game = temp.get("game",{})
-         self.fontSize = game.get("fontSize",11)
-         self.fontBold = game.get("fontBold",False)
-         tempTheme = game.get("theme","#FFFFFF")
-         tempFontColor = game.get("fontColor","#000000")
+         self.fontSize = int(game.get("fontSize",11))
+         self.fontBold = bool(game.get("fontBold",False))
+         tempTheme = str(game.get("theme","#FFFFFF"))
+         tempFontColor = str(game.get("fontColor","#000000"))
          if self.checkValidHex(tempTheme) and self.checkValidHex(tempFontColor):
             self.theme = tempTheme
             self.fontColor = tempFontColor
          else:
             sp = True
-         self.showSide = game.get("showSide",True)
-         self.nsldSortOrder = game.get("nsldSortOrder",0)
+         self.showSide = bool(game.get("showSide",True))
+         self.nsldSortOrder = int(game.get("nsldSortOrder",0))
          options = temp.get("options",{})
          tempdir = Path(options.get("saveLocation"))
          if self.isValidDirectory(tempdir):
@@ -2226,17 +2212,17 @@ class NiminFetishFantasyv0975o_fla:
             as3.trace("Preference Loader: Warning: saveLocation is not a valid path. Default value will be used instead.")
             self.savelocation = self.dir / "nimin_saves"
             sp = True
-         self.solonlymode = options.get("solMode",False)
-         self.fixedresolutionmode = options.get("fixedResMode",False)
-         self.customfontcolor = options.get("customFontColor",False)
+         self.solonlymode = bool(options.get("solMode",False))
+         self.fixedresolutionmode = bool(options.get("fixedResMode",False))
+         self.customfontcolor = bool(options.get("customFontColor",False))
          self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
-         self.ofontcolor = options.get("oFontColor","#FFFFFF")
-         self.customthemecolor = options.get("customThemeColor",False)
+         self.ofontcolor = str(options.get("oFontColor","#FFFFFF"))
+         self.customthemecolor = bool(options.get("customThemeColor",False))
          self.mo.configureChild("themebutton",state=self.boolToState(self.inv(self.customthemecolor)))
-         self.othemecolor = options.get("oThemeColor","#000000")
+         self.othemecolor = str(options.get("oThemeColor","#000000"))
          interface = temp.get("interface",{})
          self.themeType = interface.get("themeType",0)
-         tempitoggles = [interface.get("originalButtonColors",False),interface.get("scrolledTextBorders",False),interface.get("originalNewGameButtonSize",False),interface.get("staticDoLevelUPButtons",False)]
+         tempitoggles = [bool(interface.get("originalButtonColors",False)),bool(interface.get("scrolledTextBorders",False)),bool(interface.get("originalNewGameButtonSize",False)),bool(interface.get("staticDoLevelUPButtons",False))]
          if self.themeType == 0:
             self.oButtonColors = tempitoggles[0]
             self.scrolledTextBorders = tempitoggles[1]
@@ -2248,31 +2234,31 @@ class NiminFetishFantasyv0975o_fla:
             self.scrolledTextBorders = False
             self.oNewGameButton = True
             self.staticdoLevelUPButtons = False
-         self.useNewSaveLoadDialog = interface.get("useExpandedSaveDialog",False)
-         self.useNewStash = interface.get("useNewStash",False)
-         self.helpToWiki = interface.get("helpToWiki",False)
+         self.useNewSaveLoadDialog = bool(interface.get("useExpandedSaveDialog",False))
+         self.useNewStash = bool(interface.get("useNewStash",False))
+         self.helpToWiki = bool(interface.get("helpToWiki",False))
          grammar = temp.get("grammar",{})
-         self.respectShowBalls = grammar.get("respectShowBalls",False)
-         self.femmeboyToFemboy = grammar.get("femmeboyToFemboy",False)
-         self.shemaleToFuta = grammar.get("shemaleToFuta",False)
-         self.ngrammar = grammar.get("ngrammar",False)
-         self.femmieMaleReplacement = grammar.get("femmieMaleReplacement",0)
-         self.femboyishToGirly = grammar.get("femboyishToGirly",False)
-         self.snuggleBallTweak = grammar.get("snuggleBallTweak",False)
-         self.grammarFixes = grammar.get("grammarFixes",False)
+         self.respectShowBalls = bool(grammar.get("respectShowBalls",False))
+         self.femmeboyToFemboy = bool(grammar.get("femmeboyToFemboy",False))
+         self.shemaleToFuta = bool(grammar.get("shemaleToFuta",False))
+         self.ngrammar = bool(grammar.get("ngrammar",False))
+         self.femmieMaleReplacement = int(grammar.get("femmieMaleReplacement",0))
+         self.femboyishToGirly = bool(grammar.get("femboyishToGirly",False))
+         self.snuggleBallTweak = bool(grammar.get("snuggleBallTweak",False))
+         self.grammarFixes = bool(grammar.get("grammarFixes",False))
          gt = temp.get("gameTweaks",{})
-         self.statusTweaks = gt.get("statusTweaks",False)
-         self.succubusLeavesOne = gt.get("succubusLeavesOne",False)
-         self.useIsBottomOpen = gt.get("useIsBottomOpen",False)
-         self.lizanDontShowBalls = gt.get("lizanDontShowBalls",False)
-         self.hermGetsBoth = gt.get("hermGetsBoth",False)
-         self.internalBallsEffectBelly = gt.get("intBallsEffectBelly",False)
-         self.directPathToSanctuary = gt.get("directPathToSanc",False)
-         self.correctBeastRaceFeet = gt.get("correctBeastRaceFeet",False)
-         self.gameTweaksMisc = gt.get("miscChanges",False)
+         self.statusTweaks = bool(gt.get("statusTweaks",False))
+         self.succubusLeavesOne = bool(gt.get("succubusLeavesOne",False))
+         self.useIsBottomOpen = bool(gt.get("useIsBottomOpen",False))
+         self.lizanDontShowBalls = bool(gt.get("lizanDontShowBalls",False))
+         self.hermGetsBoth = bool(gt.get("hermGetsBoth",False))
+         self.internalBallsEffectBelly = bool(gt.get("intBallsEffectBelly",False))
+         self.directPathToSanctuary = bool(gt.get("directPathToSanc",False))
+         self.correctBeastRaceFeet = bool(gt.get("correctBeastRaceFeet",False))
+         self.gameTweaksMisc = bool(gt.get("miscChanges",False))
          dt = temp.get("debugTweaks",{})
-         self.debugChooseSenario = dt.get("chooseSenario",False)
-         self.debugNoDamage = dt.get("noDamage",False)
+         self.debugChooseSenario = bool(dt.get("chooseSenario",False))
+         self.debugNoDamage = bool(dt.get("noDamage",False))
       elif (self.dir / "Nimin_Prefs.xml").is_file():
          def strtolistbools(a:str):
             if a[0] in {"[","("}:
@@ -4709,284 +4695,284 @@ class NiminFetishFantasyv0975o_fla:
          smoderateFetish = data['moderateFetish']
          sminorFetish = data['minorFetish']
          skid = data['kid']
-         self.currentState = strack['currentState']
-         self.currentZone = strack['currentZone']
-         self.day = strack['day']
-         self.hour = strack['hour']
-         self.currentDayCare = strack['currentDayCare']
-         self.inDungeon = strack['inDungeon']
-         self.currentDungeon = strack['currentDungeon']
-         self.v7 = strack['v7']
-         self.strength = sstats['strength']
-         self.mentality = sstats['mentality']
-         self.libido = sstats['libido']
-         self.sensitivity = sstats['sensitivity']
-         self.HP = sstats['HP']
-         self.lust = sstats['lust']
-         self.coin = sstats['coin']
-         self.strMod = sstats['strMod']
-         self.mentMod = sstats['mentMod']
-         self.libMod = sstats['libMod']
-         self.senMod = sstats['senMod']
-         self.hunger = sstats['hunger']
-         self.SexP = slevel['SexP']
-         self.levelUP = slevel['levelUP']
-         self.level = slevel['level']
-         self.babyFactLevel = slevel['babyFactLevel']
-         self.bodyBuildLevel = slevel['bodyBuildLevel']
-         self.hyperHappyLevel = slevel['hyperHappyLevel']
-         self.alchemistLevel = slevel['alchemistLevel']
-         self.fetishMasterLevel = slevel['fetishMasterLevel']
-         self.milkMaidLevel = slevel['milkMaidLevel']
-         self.shapeshiftyLevel = slevel['shapeshiftyLevel']
-         self.shapeshiftyFirst = slevel.get('shapeshiftyFirst',"")
-         self.shapeshiftySecond = slevel.get('shapeshiftySecond',"")
-         self.runMod = smod['runMod']
-         self.rapeMod = smod['rapeMod']
-         self.cumMod = smod['cumMod']
-         self.cockSizeMod = smod['cockSizeMod']
-         self.milkMod = smod['milkMod']
-         self.carryMod = smod['carryMod']
-         self.vagBellyMod = smod['vagBellyMod']
-         self.pregChanceMod = smod['pregChanceMod']
-         self.extraPregChance = smod['extraPregChance']
-         self.pregTimeMod = smod['pregTimeMod']
-         self.enticeMod = smod['enticeMod']
-         self.milkHPMod = smod['milkHPMod']
-         self.vagSizeMod = smod['vagSizeMod']
-         self.vagElastic = smod['vagElastic']
-         self.changeMod = smod['changeMod']
-         self.HPMod = smod['HPMod']
-         self.SexPMod = smod['SexPMod']
-         self.minLust = smod['minLust']
-         self.milkCap = smod['milkCap']
-         self.coinMod = smod['coinMod']
-         self.hipMod = smod['hipMod']
-         self.buttMod = smod['buttMod']
-         self.bellyMod = smod['bellyMod']
-         self.cockMoistMod = smod['cockMoistMod']
-         self.vagMoistMod = smod['vagMoistMod']
-         self.lockTail = smod['lockTail']
-         self.lockFace = smod['lockFace']
-         self.lockSkin = smod['lockSkin']
-         self.lockBreasts = smod['lockBreasts']
-         self.lockEars = smod['lockEars']
-         self.lockLegs = smod['lockLegs']
-         self.lockNipples = smod['lockNipples']
-         self.lockCock = smod['lockCock']
-         self.gender = squality['gender']
-         self.race = squality['race']
-         self.body = squality['body']
-         self.dominant = squality['dominant']
-         self.hips = squality['hips']
-         self.butt = squality['butt']
-         self.tallness = squality['tallness']
-         self.skinType = squality['skinType']
-         self.tail = squality['tail']
-         self.ears = squality['ears']
-         self.hair = squality['hair']
-         self.hairColor = squality['hairColor']
-         self.hairLength = squality['hairLength']
-         self.legType = squality['legType']
-         self.wings = squality['wings']
-         self.faceType = squality['faceType']
-         self.skinColor = squality['skinColor']
-         self.cockTotal = scock['cockTotal']
-         self.humanCocks = scock['humanCocks']
-         self.horseCocks = scock['horseCocks']
-         self.wolfCocks = scock['wolfCocks']
-         self.catCocks = scock['catCocks']
-         self.rabbitCocks = scock['rabbitCocks']
-         self.lizardCocks = scock['lizardCocks']
-         self.cockSize = scock['cockSize']
-         self.cockMoist = scock['cockMoist']
-         self.balls = scock['balls']
-         self.ballSize = scock['ballSize']
-         self.showBalls = scock['showBalls']
-         self.knot = scock['knot']
-         self.bugCocks = scock['bugCocks']
-         self.neuterizerHideBalls = scock.get("neuterizerHideBalls",False)
-         self.breastSize = sgirl['breastSize']
-         self.boobTotal = sgirl['boobTotal']
-         self.nippleSize = sgirl['nippleSize']
-         self.udders = sgirl['udders']
-         self.udderSize = sgirl['udderSize']
-         self.teatSize = sgirl['teatSize']
-         self.clitSize = sgirl['clitSize']
-         self.vagTotal = sgirl['vagTotal']
-         self.vagSize = sgirl['vagSize']
-         self.vagMoist = sgirl['vagMoist']
-         self.vulvaSize = sgirl['vulvaSize']
-         self.nipType = sgirl['nipType']
-         self.attireTop = sgear['attireTop']
-         self.attireBot = sgear['attireBot']
-         self.weapon = sgear['weapon']
-         self.pregRate = sstatus['pregRate']
-         self.pregnancyTime = sstatus['pregnancyTime']
-         self.pregStatus = sstatus['pregStatus']
-         self.eggLaying = sstatus['eggLaying']
-         self.eggMaxTime = sstatus['eggMaxTime']
-         self.eggTime = sstatus['eggTime']
-         self.eggRate = sstatus['eggRate']
-         self.exhaustion = sstatus['exhaustion']
-         self.exhaustionPenalty = sstatus['exhaustionPenalty']
-         self.milkEngorgement = sstatus['milkEngorgement']
-         self.milkEngorgementLevel = sstatus['milkEngorgementLevel']
-         self.udderEngorgement = sstatus['udderEngorgement']
-         self.udderEngorgementLevel = sstatus['udderEngorgementLevel']
-         self.heat = sstatus['heat']
-         self.heatTime = sstatus['heatTime']
-         self.heatMaxTime = sstatus['heatMaxTime']
-         self.lactation = sstatus['lactation']
-         self.udderLactation = sstatus['udderLactation']
-         self.nipplePlay = sstatus['nipplePlay']
-         self.udderPlay = sstatus['udderPlay']
-         self.blueBalls = sstatus['blueBalls']
-         self.teatPump = sstatus['teatPump']
-         self.nipPump = sstatus['nipPump']
-         self.cockPump = sstatus['cockPump']
-         self.clitPump = sstatus['clitPump']
-         self.vulvaPump = sstatus['vulvaPump']
-         self.masoPot = sstatus['masoPot']
-         self.sMasoPot = sstatus['sMasoPot']
-         self.babyFree = sstatus['babyFree']
-         self.charmTime = sstatus['charmTime']
-         self.pheromone = sstatus['pheromone']
-         self.eggceleratorTime = sstatus['eggceleratorTime']
-         self.eggceleratorDose = sstatus['eggceleratorDose']
-         self.bodyOil = sstatus['bodyOil']
-         self.lustPenalty = sstatus['lustPenalty']
-         self.fertileGel = sstatus['fertileGel']
-         self.snuggleBall = sstatus['snuggleBall']
-         self.eggType = sstatus['eggType']
-         self.milkSuppressant = sstatus['milkSuppressant']
-         self.milkSuppressantLact = sstatus['milkSuppressantLact']
-         self.milkSuppressantUdder = sstatus['milkSuppressantUdder']
-         self.suppHarness = sstatus['suppHarness']
-         self.fertilityStatueCurse = sstatus['fertilityStatueCurse']
-         self.plumpQuats = sstatus['plumpQuats']
-         self.lilaWetStatus = sstatus['lilaWetStatus']
-         self.cockSnakePreg = sstatus['cockSnakePreg']
-         self.milkCPoisonNip = sstatus['milkCPoisonNip']
-         self.milkCPoisonUdd = sstatus['milkCPoisonUdd']
-         self.cockSnakeVenom = sstatus['cockSnakeVenom']
-         self.humanAffinity = saffinity['humanAffinity']
-         self.horseAffinity = saffinity['horseAffinity']
-         self.wolfAffinity = saffinity['wolfAffinity']
-         self.catAffinity = saffinity['catAffinity']
-         self.cowAffinity = saffinity['cowAffinity']
-         self.lizardAffinity = saffinity['lizardAffinity']
-         self.rabbitAffinity = saffinity['rabbitAffinity']
-         self.fourBoobAffinity = saffinity['fourBoobAffinity']
-         self.mouseAffinity = saffinity['mouseAffinity']
-         self.birdAffinity = saffinity['birdAffinity']
-         self.pigAffinity = saffinity['pigAffinity']
-         self.twoBoobAffinity = saffinity['twoBoobAffinity']
-         self.sixBoobAffinity = saffinity['sixBoobAffinity']
-         self.eightBoobAffinity = saffinity['eightBoobAffinity']
-         self.tenBoobAffinity = saffinity['tenBoobAffinity']
-         self.cowTaurAffinity = saffinity['cowTaurAffinity']
-         self.humanTaurAffinity = saffinity['humanTaurAffinity']
-         self.skunkAffinity = saffinity['skunkAffinity']
-         self.bugAffinity = saffinity['bugAffinity']
-         self.lilaRep = srep['lilaRep']
-         self.lilaVulva = srep['lilaVulva']
-         self.lilaMilk = srep['lilaMilk']
-         self.lilaPreg = srep['lilaPreg']
-         self.malonRep = srep['malonRep']
-         self.malonPreg = srep['malonPreg']
-         self.malonChildren = srep['malonChildren']
-         self.mistressRep = srep['mistressRep']
-         self.jamieRep = srep['jamieRep']
-         self.jamieSize = srep['jamieSize']
-         self.jamieChildren = srep['jamieChildren']
-         self.silRep = srep['silRep']
-         self.silPreg = srep['silPreg']
-         self.silRate = srep['silRate']
-         self.silLay = srep['silLay']
-         self.silGrowthTime = srep['silGrowthTime']
-         self.silTied = srep['silTied']
-         self.lilaUB = srep['lilaUB']
-         self.dairyFarmBrand = srep['dairyFarmBrand']
-         self.lilaWetness = srep['lilaWetness']
-         self.jamieButt = srep['jamieButt']
-         self.jamieBreasts = srep['jamieBreasts']
-         self.jamieHair = srep['jamieHair']
+         self.currentState = int(strack['currentState'])
+         self.currentZone = int(strack['currentZone'])
+         self.day = int(strack['day'])
+         self.hour = int(strack['hour'])
+         self.currentDayCare = int(strack['currentDayCare'])
+         self.inDungeon = bool(strack['inDungeon'])
+         self.currentDungeon = int(strack['currentDungeon'])
+         self.v7 = str(strack['v7'])
+         self.strength = int(sstats['strength'])
+         self.mentality = int(sstats['mentality'])
+         self.libido = int(sstats['libido'])
+         self.sensitivity = int(sstats['sensitivity'])
+         self.HP = int(sstats['HP'])
+         self.lust = int(sstats['lust'])
+         self.coin = int(sstats['coin'])
+         self.strMod = int(sstats['strMod'])
+         self.mentMod = int(sstats['mentMod'])
+         self.libMod = int(sstats['libMod'])
+         self.senMod = int(sstats['senMod'])
+         self.hunger = int(sstats['hunger'])
+         self.SexP = int(slevel['SexP'])
+         self.levelUP = int(slevel['levelUP'])
+         self.level = int(slevel['level'])
+         self.babyFactLevel = int(slevel['babyFactLevel'])
+         self.bodyBuildLevel = int(slevel['bodyBuildLevel'])
+         self.hyperHappyLevel = int(slevel['hyperHappyLevel'])
+         self.alchemistLevel = int(slevel['alchemistLevel'])
+         self.fetishMasterLevel = int(slevel['fetishMasterLevel'])
+         self.milkMaidLevel = int(slevel['milkMaidLevel'])
+         self.shapeshiftyLevel = int(slevel['shapeshiftyLevel'])
+         self.shapeshiftyFirst = str(slevel.get('shapeshiftyFirst',""))
+         self.shapeshiftySecond = str(slevel.get('shapeshiftySecond',""))
+         self.runMod = int(smod['runMod'])
+         self.rapeMod = int(smod['rapeMod'])
+         self.cumMod = float(smod['cumMod'])
+         self.cockSizeMod = float(smod['cockSizeMod'])
+         self.milkMod = int(smod['milkMod'])
+         self.carryMod = int(smod['carryMod'])
+         self.vagBellyMod = int(smod['vagBellyMod'])
+         self.pregChanceMod = int(smod['pregChanceMod'])
+         self.extraPregChance = int(smod['extraPregChance'])
+         self.pregTimeMod = int(smod['pregTimeMod'])
+         self.enticeMod = int(smod['enticeMod'])
+         self.milkHPMod = int(smod['milkHPMod'])
+         self.vagSizeMod = float(smod['vagSizeMod'])
+         self.vagElastic = float(smod['vagElastic'])
+         self.changeMod = float(smod['changeMod'])
+         self.HPMod = int(smod['HPMod'])
+         self.SexPMod = float(smod['SexPMod'])
+         self.minLust = int(smod['minLust'])
+         self.milkCap = int(smod['milkCap'])
+         self.coinMod = int(smod['coinMod'])
+         self.hipMod = int(smod['hipMod'])
+         self.buttMod = int(smod['buttMod'])
+         self.bellyMod = int(smod['bellyMod'])
+         self.cockMoistMod = int(smod['cockMoistMod'])
+         self.vagMoistMod = int(smod['vagMoistMod'])
+         self.lockTail = int(smod['lockTail'])
+         self.lockFace = int(smod['lockFace'])
+         self.lockSkin = int(smod['lockSkin'])
+         self.lockBreasts = int(smod['lockBreasts'])
+         self.lockEars = int(smod['lockEars'])
+         self.lockLegs = int(smod['lockLegs'])
+         self.lockNipples = int(smod['lockNipples'])
+         self.lockCock = int(smod['lockCock'])
+         self.gender = int(squality['gender'])
+         self.race = int(squality['race'])
+         self.body = int(squality['body'])
+         self.dominant = int(squality['dominant'])
+         self.hips = int(squality['hips'])
+         self.butt = int(squality['butt'])
+         self.tallness = int(squality['tallness'])
+         self.skinType = int(squality['skinType'])
+         self.tail = int(squality['tail'])
+         self.ears = int(squality['ears'])
+         self.hair = int(squality['hair'])
+         self.hairColor = int(squality['hairColor'])
+         self.hairLength = int(squality['hairLength'])
+         self.legType = int(squality['legType'])
+         self.wings = int(squality['wings'])
+         self.faceType = int(squality['faceType'])
+         self.skinColor = int(squality['skinColor'])
+         self.cockTotal = int(scock['cockTotal'])
+         self.humanCocks = int(scock['humanCocks'])
+         self.horseCocks = int(scock['horseCocks'])
+         self.wolfCocks = int(scock['wolfCocks'])
+         self.catCocks = int(scock['catCocks'])
+         self.rabbitCocks = int(scock['rabbitCocks'])
+         self.lizardCocks = int(scock['lizardCocks'])
+         self.cockSize = int(scock['cockSize'])
+         self.cockMoist = int(scock['cockMoist'])
+         self.balls = int(scock['balls'])
+         self.ballSize = int(scock['ballSize'])
+         self.showBalls = bool(scock['showBalls'])
+         self.knot = bool(scock['knot'])
+         self.bugCocks = int(scock['bugCocks'])
+         self.neuterizerHideBalls = bool(scock.get("neuterizerHideBalls",False))
+         self.breastSize = int(sgirl['breastSize'])
+         self.boobTotal = int(sgirl['boobTotal'])
+         self.nippleSize = int(sgirl['nippleSize'])
+         self.udders = bool(sgirl['udders'])
+         self.udderSize = int(sgirl['udderSize'])
+         self.teatSize = int(sgirl['teatSize'])
+         self.clitSize = int(sgirl['clitSize'])
+         self.vagTotal = int(sgirl['vagTotal'])
+         self.vagSize = int(sgirl['vagSize'])
+         self.vagMoist = int(sgirl['vagMoist'])
+         self.vulvaSize = int(sgirl['vulvaSize'])
+         self.nipType = int(sgirl['nipType'])
+         self.attireTop = int(sgear['attireTop'])
+         self.attireBot = int(sgear['attireBot'])
+         self.weapon = int(sgear['weapon']) #!This was a float in original
+         self.pregRate = float(sstatus['pregRate'])
+         self.pregnancyTime = int(sstatus['pregnancyTime'])
+         self.pregStatus = int(sstatus['pregStatus'])
+         self.eggLaying = int(sstatus['eggLaying'])
+         self.eggMaxTime = int(sstatus['eggMaxTime'])
+         self.eggTime = int(sstatus['eggTime'])
+         self.eggRate = int(sstatus['eggRate'])
+         self.exhaustion = int(sstatus['exhaustion'])
+         self.exhaustionPenalty = int(sstatus['exhaustionPenalty'])
+         self.milkEngorgement = int(sstatus['milkEngorgement'])
+         self.milkEngorgementLevel = int(sstatus['milkEngorgementLevel'])
+         self.udderEngorgement = int(sstatus['udderEngorgement'])
+         self.udderEngorgementLevel = int(sstatus['udderEngorgementLevel'])
+         self.heat = int(sstatus['heat'])
+         self.heatTime = int(sstatus['heatTime'])
+         self.heatMaxTime = int(sstatus['heatMaxTime'])
+         self.lactation = int(sstatus['lactation'])
+         self.udderLactation = int(sstatus['udderLactation'])
+         self.nipplePlay = float(sstatus['nipplePlay'])
+         self.udderPlay = float(sstatus['udderPlay'])
+         self.blueBalls = int(sstatus['blueBalls'])
+         self.teatPump = int(sstatus['teatPump'])
+         self.nipPump = int(sstatus['nipPump'])
+         self.cockPump = int(sstatus['cockPump'])
+         self.clitPump = int(sstatus['clitPump'])
+         self.vulvaPump = int(sstatus['vulvaPump'])
+         self.masoPot = int(sstatus['masoPot'])
+         self.sMasoPot = int(sstatus['sMasoPot'])
+         self.babyFree = int(sstatus['babyFree'])
+         self.charmTime = int(sstatus['charmTime'])
+         self.pheromone = int(sstatus['pheromone'])
+         self.eggceleratorTime = int(sstatus['eggceleratorTime'])
+         self.eggceleratorDose = int(sstatus['eggceleratorDose'])
+         self.bodyOil = int(sstatus['bodyOil'])
+         self.lustPenalty = int(sstatus['lustPenalty'])
+         self.fertileGel = int(sstatus['fertileGel'])
+         self.snuggleBall = bool(sstatus['snuggleBall'])
+         self.eggType = int(sstatus['eggType'])
+         self.milkSuppressant = int(sstatus['milkSuppressant'])
+         self.milkSuppressantLact = int(sstatus['milkSuppressantLact'])
+         self.milkSuppressantUdder = int(sstatus['milkSuppressantUdder'])
+         self.suppHarness = bool(sstatus['suppHarness'])
+         self.fertilityStatueCurse = int(sstatus['fertilityStatueCurse'])
+         self.plumpQuats = int(sstatus['plumpQuats'])
+         self.lilaWetStatus = int(sstatus['lilaWetStatus'])
+         self.cockSnakePreg = int(sstatus['cockSnakePreg'])
+         self.milkCPoisonNip = int(sstatus['milkCPoisonNip'])
+         self.milkCPoisonUdd = int(sstatus['milkCPoisonUdd'])
+         self.cockSnakeVenom = int(sstatus['cockSnakeVenom'])
+         self.humanAffinity = int(saffinity['humanAffinity'])
+         self.horseAffinity = int(saffinity['horseAffinity'])
+         self.wolfAffinity = int(saffinity['wolfAffinity'])
+         self.catAffinity = int(saffinity['catAffinity'])
+         self.cowAffinity = int(saffinity['cowAffinity'])
+         self.lizardAffinity = int(saffinity['lizardAffinity'])
+         self.rabbitAffinity = int(saffinity['rabbitAffinity'])
+         self.fourBoobAffinity = int(saffinity['fourBoobAffinity'])
+         self.mouseAffinity = int(saffinity['mouseAffinity'])
+         self.birdAffinity = int(saffinity['birdAffinity'])
+         self.pigAffinity = int(saffinity['pigAffinity'])
+         self.twoBoobAffinity = int(saffinity['twoBoobAffinity'])
+         self.sixBoobAffinity = int(saffinity['sixBoobAffinity'])
+         self.eightBoobAffinity = int(saffinity['eightBoobAffinity'])
+         self.tenBoobAffinity = int(saffinity['tenBoobAffinity'])
+         self.cowTaurAffinity = int(saffinity['cowTaurAffinity'])
+         self.humanTaurAffinity = int(saffinity['humanTaurAffinity'])
+         self.skunkAffinity = int(saffinity['skunkAffinity'])
+         self.bugAffinity = int(saffinity['bugAffinity'])
+         self.lilaRep = int(srep['lilaRep'])
+         self.lilaVulva = int(srep['lilaVulva'])
+         self.lilaMilk = int(srep['lilaMilk'])
+         self.lilaPreg = int(srep['lilaPreg'])
+         self.malonRep = int(srep['malonRep'])
+         self.malonPreg = int(srep['malonPreg'])
+         self.malonChildren = int(srep['malonChildren'])
+         self.mistressRep = int(srep['mistressRep'])
+         self.jamieRep = int(srep['jamieRep'])
+         self.jamieSize = int(srep['jamieSize'])
+         self.jamieChildren = int(srep['jamieChildren'])
+         self.silRep = int(srep['silRep'])
+         self.silPreg = int(srep['silPreg'])
+         self.silRate = int(srep['silRate'])
+         self.silLay = int(srep['silLay'])
+         self.silGrowthTime = int(srep['silGrowthTime'])
+         self.silTied = bool(srep['silTied'])
+         self.lilaUB = bool(srep['lilaUB'])
+         self.dairyFarmBrand = bool(srep['dairyFarmBrand']) #!Was originally * for some reason
+         self.lilaWetness = int(srep['lilaWetness'])
+         self.jamieButt = bool(srep['jamieButt'])
+         self.jamieBreasts = bool(srep['jamieBreasts'])
+         self.jamieHair = bool(srep['jamieHair'])
          if (self.jamieSize == 0 and self.jamieRep > 5):
             self.jamieRep = 3
          if (self.jamieSize == 0):
             self.jamieSize = 4
-         self.foundSoftlik = sknowledge['foundSoftlik']
-         self.foundFirmshaft = sknowledge['foundFirmshaft']
-         self.foundTieden = sknowledge['foundTieden']
-         self.foundSizCalit = sknowledge['foundSizCalit']
-         self.foundOviasis = sknowledge['foundOviasis']
-         self.foundValley = sknowledge['foundValley']
-         self.foundSanctuary = sknowledge['foundSanctuary']
-         self.usedSecretStairs = sknowledge.get('usedSecretStairs',False)
-         self.defeatedMinotaur = sboss['defeatedMinotaur']
-         self.defeatedFreakyGirl = sboss['defeatedFreakyGirl']
-         self.defeatedSuccubus = sboss['defeatedSuccubus']
-         self.knowLustDraft = sknowSimpleAlchemy['knowLustDraft']
-         self.knowRejuvPot = sknowSimpleAlchemy['knowRejuvPot']
-         self.knowExpPreg = sknowSimpleAlchemy['knowExpPreg']
-         self.knowBallSwell = sknowSimpleAlchemy['knowBallSwell']
-         self.knowMaleEnhance = sknowSimpleAlchemy['knowMaleEnhance']
-         self.knowSLustDraft = sknowAdvancedAlchemy['knowSLustDraft']
-         self.knowSRejuvPot = sknowAdvancedAlchemy['knowSRejuvPot']
-         self.knowSExpPreg = sknowAdvancedAlchemy['knowSExpPreg']
-         self.knowSBallSwell = sknowAdvancedAlchemy['knowSBallSwell']
-         self.knowGenSwap = sknowAdvancedAlchemy['knowGenSwap']
-         self.knowMasoPot = sknowAdvancedAlchemy['knowMasoPot']
-         self.knowBabyFree = sknowAdvancedAlchemy['knowBabyFree']
-         self.knowPotPot = sknowAdvancedAlchemy['knowPotPot']
-         self.knowMilkSuppress = sknowAdvancedAlchemy['knowMilkSuppress']
-         self.knowSGenSwap = sknowComplexAlchemy['knowSGenSwap']
-         self.knowSMasoPot = sknowComplexAlchemy['knowSMasoPot']
-         self.knowSBabyFree = sknowComplexAlchemy['knowSBabyFree']
-         self.knowSPotPot = sknowComplexAlchemy['knowSPotPot']
-         self.knowPussJuice = sknowComplexAlchemy['knowPussJuice']
-         self.knowPheromone = sknowComplexAlchemy['knowPheromone']
-         self.knowBazoomba = sknowComplexAlchemy['knowBazoomba']
-         self.maleFetish = smajorFetish['maleFetish']
-         self.femaleFetish = smajorFetish['femaleFetish']
-         self.hermFetish = smajorFetish['hermFetish']
-         self.narcissistFetish = smajorFetish['narcissistFetish']
-         self.dependentFetish = smajorFetish['dependentFetish']
-         self.dominantFetish = smoderateFetish['dominantFetish']
-         self.submissiveFetish = smoderateFetish['submissiveFetish']
-         self.lboobFetish = smoderateFetish['lboobFetish']
-         self.sboobFetish = smoderateFetish['sboobFetish']
-         self.furryFetish = smoderateFetish['furryFetish']
-         self.scalyFetish = smoderateFetish['scalyFetish']
-         self.smoothyFetish = smoderateFetish['smoothyFetish']
-         self.pregnancyFetish = sminorFetish['pregnancyFetish']
-         self.bestialityFetish = sminorFetish['bestialityFetish']
-         self.milkFetish = sminorFetish['milkFetish']
-         self.sizeFetish = sminorFetish['sizeFetish']
-         self.unbirthingFetish = sminorFetish['unbirthingFetish']
-         self.ovipositionFetish = sminorFetish['ovipositionFetish']
-         self.toyFetish = sminorFetish['toyFetish']
-         self.hyperFetish = sminorFetish['hyperFetish']
-         self.humanChildren = skid['humanChildren']
-         self.equanChildren = skid['equanChildren']
-         self.lupanChildren = skid['lupanChildren']
-         self.felinChildren = skid['felinChildren']
-         self.cowChildren = skid['cowChildren']
-         self.lizanChildren = skid['lizanChildren']
-         self.lizanEggs = skid['lizanEggs']
-         self.bunnionChildren = skid['bunnionChildren']
-         self.wolfPupChildren = skid['wolfPupChildren']
-         self.miceChildren = skid['miceChildren']
-         self.birdEggs = skid['birdEggs']
-         self.birdChildren = skid['birdChildren']
-         self.pigChildren = skid['pigChildren']
-         self.calfChildren = skid['calfChildren']
-         self.bugEggs = skid['bugEggs']
-         self.bugChildren = skid['bugChildren']
-         self.skunkChildren = skid['skunkChildren']
-         self.minotaurChildren = skid['minotaurChildren']
-         self.freakyGirlChildren = skid['freakyGirlChildren']
+         self.foundSoftlik = bool(sknowledge['foundSoftlik'])
+         self.foundFirmshaft = bool(sknowledge['foundFirmshaft'])
+         self.foundTieden = bool(sknowledge['foundTieden'])
+         self.foundSizCalit = bool(sknowledge['foundSizCalit'])
+         self.foundOviasis = bool(sknowledge['foundOviasis'])
+         self.foundValley = bool(sknowledge['foundValley'])
+         self.foundSanctuary = bool(sknowledge['foundSanctuary'])
+         self.usedSecretStairs = bool(sknowledge.get('usedSecretStairs',False))
+         self.defeatedMinotaur = bool(sboss['defeatedMinotaur'])
+         self.defeatedFreakyGirl = bool(sboss['defeatedFreakyGirl'])
+         self.defeatedSuccubus = bool(sboss['defeatedSuccubus'])
+         self.knowLustDraft = bool(sknowSimpleAlchemy['knowLustDraft'])
+         self.knowRejuvPot = bool(sknowSimpleAlchemy['knowRejuvPot'])
+         self.knowExpPreg = bool(sknowSimpleAlchemy['knowExpPreg'])
+         self.knowBallSwell = bool(sknowSimpleAlchemy['knowBallSwell'])
+         self.knowMaleEnhance = bool(sknowSimpleAlchemy['knowMaleEnhance'])
+         self.knowSLustDraft = bool(sknowAdvancedAlchemy['knowSLustDraft'])
+         self.knowSRejuvPot = bool(sknowAdvancedAlchemy['knowSRejuvPot'])
+         self.knowSExpPreg = bool(sknowAdvancedAlchemy['knowSExpPreg'])
+         self.knowSBallSwell = bool(sknowAdvancedAlchemy['knowSBallSwell'])
+         self.knowGenSwap = bool(sknowAdvancedAlchemy['knowGenSwap'])
+         self.knowMasoPot = bool(sknowAdvancedAlchemy['knowMasoPot'])
+         self.knowBabyFree = bool(sknowAdvancedAlchemy['knowBabyFree'])
+         self.knowPotPot = bool(sknowAdvancedAlchemy['knowPotPot'])
+         self.knowMilkSuppress = bool(sknowAdvancedAlchemy['knowMilkSuppress'])
+         self.knowSGenSwap = bool(sknowComplexAlchemy['knowSGenSwap'])
+         self.knowSMasoPot = bool(sknowComplexAlchemy['knowSMasoPot'])
+         self.knowSBabyFree = bool(sknowComplexAlchemy['knowSBabyFree'])
+         self.knowSPotPot = bool(sknowComplexAlchemy['knowSPotPot'])
+         self.knowPussJuice = bool(sknowComplexAlchemy['knowPussJuice'])
+         self.knowPheromone = bool(sknowComplexAlchemy['knowPheromone'])
+         self.knowBazoomba = bool(sknowComplexAlchemy['knowBazoomba'])
+         self.maleFetish = float(smajorFetish['maleFetish'])
+         self.femaleFetish = float(smajorFetish['femaleFetish'])
+         self.hermFetish = float(smajorFetish['hermFetish'])
+         self.narcissistFetish = float(smajorFetish['narcissistFetish'])
+         self.dependentFetish = float(smajorFetish['dependentFetish'])
+         self.dominantFetish = float(smoderateFetish['dominantFetish'])
+         self.submissiveFetish = float(smoderateFetish['submissiveFetish'])
+         self.lboobFetish = float(smoderateFetish['lboobFetish'])
+         self.sboobFetish = float(smoderateFetish['sboobFetish'])
+         self.furryFetish = float(smoderateFetish['furryFetish'])
+         self.scalyFetish = float(smoderateFetish['scalyFetish'])
+         self.smoothyFetish = float(smoderateFetish['smoothyFetish'])
+         self.pregnancyFetish = float(sminorFetish['pregnancyFetish'])
+         self.bestialityFetish = float(sminorFetish['bestialityFetish'])
+         self.milkFetish = float(sminorFetish['milkFetish'])
+         self.sizeFetish = float(sminorFetish['sizeFetish'])
+         self.unbirthingFetish = float(sminorFetish['unbirthingFetish'])
+         self.ovipositionFetish = float(sminorFetish['ovipositionFetish'])
+         self.toyFetish = float(sminorFetish['toyFetish'])
+         self.hyperFetish = float(sminorFetish['hyperFetish'])
+         self.humanChildren = int(skid['humanChildren'])
+         self.equanChildren = int(skid['equanChildren'])
+         self.lupanChildren = int(skid['lupanChildren'])
+         self.felinChildren = int(skid['felinChildren'])
+         self.cowChildren = int(skid['cowChildren'])
+         self.lizanChildren = int(skid['lizanChildren'])
+         self.lizanEggs = int(skid['lizanEggs'])
+         self.bunnionChildren = int(skid['bunnionChildren'])
+         self.wolfPupChildren = int(skid['wolfPupChildren'])
+         self.miceChildren = int(skid['miceChildren'])
+         self.birdEggs = int(skid['birdEggs'])
+         self.birdChildren = int(skid['birdChildren'])
+         self.pigChildren = int(skid['pigChildren'])
+         self.calfChildren = int(skid['calfChildren'])
+         self.bugEggs = int(skid['bugEggs'])
+         self.bugChildren = int(skid['bugChildren'])
+         self.skunkChildren = int(skid['skunkChildren'])
+         self.minotaurChildren = int(skid['minotaurChildren'])
+         self.freakyGirlChildren = int(skid['freakyGirlChildren'])
          trav = data['trav']
          self.bagArray = as3.Array(*data['bag'])
          self.bagStackArray = as3.Array(*data['bagStack'])
