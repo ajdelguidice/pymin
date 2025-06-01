@@ -8310,6 +8310,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAmount()
       self.buttonConfirm()
       self.buttonShiftOverride = True
+      self.inBag = False
       def doListen():
          self.buttonShiftOverride = False
          if (self.buttonChoice == 6):
@@ -8319,10 +8320,12 @@ class NiminFetishFantasyv0975o_fla:
             self.moveItemStack = 0
             self.showMoveItem(False)
          if which == "Bag":
+            self.inBag = True
             self.doBag()
          elif which == "Stash":
             self.doStash()
          elif which == "mts":
+            self.inBag = True
             self.moveToStash()
          elif which == "mtb":
             self.moveToBag()
