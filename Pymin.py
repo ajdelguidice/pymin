@@ -644,7 +644,7 @@ class NiminFetishFantasyv0975o_fla:
          self.style.theme_use("nimin")
 
       #key bindings
-      self.mo.children["root"].bind('<KeyPress>',self.keypress)
+      self.mo.children["root"].bind('<KeyPress>',self.key_press)
       self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
       self.mo.children["root"].bind("<Escape>",self.mo.outfullscreen)
 
@@ -1363,7 +1363,7 @@ class NiminFetishFantasyv0975o_fla:
             self.savelocation = Path(self.optionswindow.children["SaveLocation"].uevar.get()).resolve()
             if self.saveInvalid == True:
                self.mo.destroyChild("GameHider")
-               self.mo.children["root"].bind('<KeyPress>',self.keypress)
+               self.mo.children["root"].bind('<KeyPress>',self.key_press)
                self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
                self.optionswindow.children["SaveLocation"].ue["background"] = "#FFFFFF"
                self.saveInvalid = False
@@ -1702,6 +1702,7 @@ class NiminFetishFantasyv0975o_fla:
       return "disabled"
    def key_press(self, e):
       #When key is pressed
+      self.detailedDebug()
       if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.hotKeys(ckeys.tkeventToJavascriptKeycode(e))
    def keysUp(self, e):
@@ -1713,7 +1714,7 @@ class NiminFetishFantasyv0975o_fla:
          self.altHeld = False
    def buttonEvent1(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(1)
       else:
          self.buttonChoice = 1
@@ -1721,7 +1722,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent2(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(2)
       else:
          self.buttonChoice = 2
@@ -1729,7 +1730,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent3(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(3)
       else:
          self.buttonChoice = 3
@@ -1737,7 +1738,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent4(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.buttonChoice = 4
          self.hideUpDown()
          self.doListen()
@@ -1747,7 +1748,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent5(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(5)
       else:
          self.buttonChoice = 5
@@ -1755,7 +1756,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent6(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(6)
       else:
          self.buttonChoice = 6
@@ -1763,7 +1764,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent7(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(7)
       else:
          self.buttonChoice = 7
@@ -1771,7 +1772,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent8(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.buttonChoice = 8
          self.hideUpDown()
          self.doListen()
@@ -1781,7 +1782,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent9(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(9)
       else:
          self.buttonChoice = 9
@@ -1789,7 +1790,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent10(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(10)
       else:
          self.buttonChoice = 10
@@ -1797,7 +1798,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent11(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.itemMove(11)
       else:
          self.buttonChoice = 11
@@ -1805,7 +1806,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent12(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld == True and self.inBag == True and self.buttonShiftOverride == False and self.mts == False):
+      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
          self.buttonChoice = 12
          self.hideUpDown()
          self.doListen()
@@ -25822,9 +25823,6 @@ class NiminFetishFantasyv0975o_fla:
          self.dawerrlabel["text"] = "Error: Game not loaded"
    def closeDAWindow(self,*args):
       self.debugAWinOpen = False
-   def keypress(self, e):
-      self.detailedDebug()
-      self.key_press(e)
    def openWiki(self):
       if self.wikiOpen == False:
          self.wikiOpen = True
