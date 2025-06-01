@@ -1990,12 +1990,12 @@ class NiminFetishFantasyv0975o_fla:
          elif self.moveItemID != 0 and (self.inBag == True or self.inStash == True):
             self.buttonEventDiscard()
       elif self.showSide and self.currentState != 0:
-         elif (keyCode == 85) and special: #u
+         if (keyCode == 85) and special: #u
             if (self.appearancebuttonvisible):
                self.appearanceGo()
             else:
                self.sideEvent(1)
-         if (keyCode == 73) and special: #i
+         elif (keyCode == 73) and special: #i
             self.sideEvent(2)
          elif (keyCode == 79) and special: #o
             self.sideEvent(3)
