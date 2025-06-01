@@ -1898,7 +1898,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.inBag and self.shiftHeld:
             self.itemMove(3)
       elif (keyCode == 109 or keyCode == 82) and special and self.buttonsVisible[4]: #r, numpadMinus
-         if self.mo.getChildAttribute("button4","state") == "normal" and not (self.inBag or self.inStash) or (self.inBag or self.inStash) and self.shiftHeld:
+         if self.mo.getChildAttribute("button4","state") == "normal":
             self.buttonChoice = 4
             self.hideUpDown()
             self.doListen()
@@ -1927,7 +1927,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.inBag and self.shiftHeld:
             self.itemMove(7)
       elif (keyCode == 107 or keyCode == 70) and special and self.buttonsVisible[8]: #f, numpadPlus
-         if self.mo.getChildAttribute("button8","state") == "normal" and not (self.inBag or self.inStash) or (self.inBag or self.inStash) and self.shiftHeld:
+         if self.mo.getChildAttribute("button8","state") == "normal":
             self.buttonChoice = 8
             self.hideUpDown()
             self.doListen()
@@ -1953,7 +1953,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.inBag and self.shiftHeld:
             self.itemMove(11)
       elif (keyCode == 13 or keyCode == 86) and special and self.buttonsVisible[12]: #v, numpadReturn
-         if self.mo.getChildAttribute("button12","state") == "normal" and not (self.inBag or self.inStash or self.inShop) or (self.inBag or self.inStash or self.inShop) and self.shiftHeld:
+         if self.mo.getChildAttribute("button12","state") == "normal":
             self.buttonChoice = 12
             self.hideUpDown()
             self.doListen()
