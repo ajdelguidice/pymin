@@ -6071,7 +6071,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def usableItem(ID:int):
       #Returns True if item ID can be used
-      if ID in (2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418):
+      if ID in {2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418}:
          return True
       return False
    def canLose(self, ID:int):
@@ -6089,7 +6089,7 @@ class NiminFetishFantasyv0975o_fla:
       #Returns True if item IO is consumable
       #alternate title: isConsumable
       #!Wouldn't it be faster to list all non consumable items?
-      if ID in (103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540):
+      if ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
          return True
       return False
    def passiveItemAdd(self, ID:int):
@@ -6254,7 +6254,7 @@ class NiminFetishFantasyv0975o_fla:
             return True
    @staticmethod
    def useItemHidePage(ID:int):
-      if ID in (101,102,200,206,215,229,233,234,236,237,252,254,404):
+      if ID in {101,102,200,206,215,229,233,234,236,237,252,254,404}:
          return False
       return True
    def doItemUse(self, ID:int): #!optimize
@@ -7986,59 +7986,114 @@ class NiminFetishFantasyv0975o_fla:
          case 529:
             tempStr = StringIO()
             tempStr += "You crack open the strange egg and down its contents, feeling odd..."
-            #!Some of these should probably be mutually exclusive (gametweak)
-            if (self.percent() <= 10):
-               tempStr += "\n\nYou grow an inch taller."
-               self.tallness += 1
-            if (self.percent() <= 10):
-               tempStr += "\n\nYou shrink by an inch."
-               self.tallness -= 1
-            if (self.percent() <= 10):
-               tempStr += "\n\nYour chest springs out, swelling in size."
-               self.breastSize += math.ceil(self.percent() / 10)
-            if (self.percent() <= 10 and self.breastSize > 1):
-               tempStr += "\n\nYour breasts recoil back, deflating."
-               self.breastSize -= math.ceil(self.percent() / 10)
-            if (self.percent() <= 10):
-               tempStr += "\n\nYour crotch feels strange as some feminine bits begin to appear..."
-               tempStr += self.vagChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
-            if (self.percent() <= 10):
-               tempStr += "\n\nYour crotch feels strange as some masculine bits begin to appear..."
-               tempStr += self.cockChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
-            #!optimize if/else
-            if (self.percent() <= 10 and self.cockTotal > 0):
-               tempStr += f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically."
-               tempStr += self.cockChange(math.ceil(self.percent() / 10),0,ret=True)
-            if (self.percent() <= 10 and self.cockTotal > 0):
-               tempStr += f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically."
-               tempStr += self.cockChange(-math.ceil(self.percent() / 10),0,ret=True)
-            if (self.percent() <= 10 and self.vagTotal > 0):
-               tempStr += f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically."
-               tempStr += self.vagChange(math.ceil(self.percent() / 10),0,ret=True)
-               self.vulvaSize += math.ceil(self.percent() / 10)
-               self.clitSize += math.ceil(self.percent() / 10)
-            if (self.percent() <= 10 and self.vagTotal > 0):
-               tempStr += f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically."
-               tempStr += self.vagChange(-math.ceil(self.percent() / 10),0,ret=True)
-               self.vulvaSize -= math.ceil(self.percent() / 10)
-               self.clitSize -= math.ceil(self.percent() / 10)
-            if (self.percent() <= 10):
-               tempStr += "\n\nIt feels as though your blood has thinned out a bit."
-               self.aff(0,0,-10)
-            if (self.percent() <= 10):
-               tempStr += "\n\nYou suddenly feel very aroused."
-               tempStr += self.doLust(50,0,ret=True)
-            if (self.percent() <= 10):
-               tempStr += "\n\nYour arousal suddenly dies down."
-               tempStr += self.doLust(-50,0,ret=True)
-            if (self.percent() <= 10):
-               tempStr += "\n\n10 coins pop out of your ears."
-               self.doCoin(10)
-            if (self.percent() <= 10 and self.vagTotal > 0):
-               tempStr += f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!"
-               self.addManyItem(219,3)
+            #!Maybe make this its own gametweak
+            if self.gameTweaksMisc:
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYou grow an inch taller."
+                  self.tallness += 1
+               elif (self.percent() <= 10):
+                  tempStr += "\n\nYou shrink by an inch."
+                  self.tallness -= 1
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour chest springs out, swelling in size."
+                  self.breastSize += math.ceil(self.percent() / 10)
+               elif (self.percent() <= 10 and self.breastSize > 1):
+                  tempStr += "\n\nYour breasts recoil back, deflating."
+                  self.breastSize -= math.ceil(self.percent() / 10)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour crotch feels strange as some feminine bits begin to appear..."
+                  tempStr += self.vagChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour crotch feels strange as some masculine bits begin to appear..."
+                  tempStr += self.cockChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
+               if (self.cockTotal > 0):
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically."
+                     tempStr += self.cockChange(math.ceil(self.percent() / 10),0,ret=True)
+                  elif (self.percent() <= 10):
+                     tempStr += f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically."
+                     tempStr += self.cockChange(-math.ceil(self.percent() / 10),0,ret=True)
+               if (self.vagTotal > 0):
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically."
+                     tempStr += self.vagChange(math.ceil(self.percent() / 10),0,ret=True)
+                     self.vulvaSize += math.ceil(self.percent() / 10)
+                     self.clitSize += math.ceil(self.percent() / 10)
+                  elif (self.percent() <= 10):
+                     tempStr += f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically."
+                     tempStr += self.vagChange(-math.ceil(self.percent() / 10),0,ret=True)
+                     self.vulvaSize -= math.ceil(self.percent() / 10)
+                     self.clitSize -= math.ceil(self.percent() / 10)
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!"
+                     self.addManyItem(219,3)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nIt feels as though your blood has thinned out a bit."
+                  self.aff(0,0,-10)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYou suddenly feel very aroused."
+                  tempStr += self.doLust(50,0,ret=True)
+               elif (self.percent() <= 10):
+                  tempStr += "\n\nYour arousal suddenly dies down."
+                  tempStr += self.doLust(-50,0,ret=True)
+               if (self.percent() <= 10):
+                  tempStr += "\n\n10 coins pop out of your ears."
+                  self.doCoin(10)
+            else:
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYou grow an inch taller."
+                  self.tallness += 1
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYou shrink by an inch."
+                  self.tallness -= 1
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour chest springs out, swelling in size."
+                  self.breastSize += math.ceil(self.percent() / 10)
+               if (self.percent() <= 10 and self.breastSize > 1):
+                  tempStr += "\n\nYour breasts recoil back, deflating."
+                  self.breastSize -= math.ceil(self.percent() / 10)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour crotch feels strange as some feminine bits begin to appear..."
+                  tempStr += self.vagChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour crotch feels strange as some masculine bits begin to appear..."
+                  tempStr += self.cockChange(math.ceil(self.percent() / 10),math.ceil(self.percent() / 20),ret=True)
+               if (self.cockTotal > 0):
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically."
+                     tempStr += self.cockChange(math.ceil(self.percent() / 10),0,ret=True)
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically."
+                     tempStr += self.cockChange(-math.ceil(self.percent() / 10),0,ret=True)
+               if (self.vagTotal > 0):
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically."
+                     tempStr += self.vagChange(math.ceil(self.percent() / 10),0,ret=True)
+                     self.vulvaSize += math.ceil(self.percent() / 10)
+                     self.clitSize += math.ceil(self.percent() / 10)
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically."
+                     tempStr += self.vagChange(-math.ceil(self.percent() / 10),0,ret=True)
+                     self.vulvaSize -= math.ceil(self.percent() / 10)
+                     self.clitSize -= math.ceil(self.percent() / 10)
+                  if (self.percent() <= 10):
+                     tempStr += f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!"
+                     self.addManyItem(219,3)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nIt feels as though your blood has thinned out a bit."
+                  self.aff(0,0,-10)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYou suddenly feel very aroused."
+                  tempStr += self.doLust(50,0,ret=True)
+               if (self.percent() <= 10):
+                  tempStr += "\n\nYour arousal suddenly dies down."
+                  tempStr += self.doLust(-50,0,ret=True)
+               if (self.percent() <= 10):
+                  tempStr += "\n\n10 coins pop out of your ears."
+                  self.doCoin(10)
             tempStr += "\n\nQuite strange indeed..."
             self.outputMainText(tempStr.getvalue(),True)
+            tempStr.close()
             self.doEnd()
          case 530:
             self.outputMainText("You crack the charmed egg open and gulp its contents. You suddenly feel charming, oh so charming, it's alarming how charming you feeeeel~",True)
@@ -9203,42 +9258,40 @@ class NiminFetishFantasyv0975o_fla:
    def apothDescription(self, ID:int):
       if ID >= 200:
          return self.itemDescription(ID)
-      else:
-         match ID:
-            case 1:
-               return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
-            case 2:
-               return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
-            case 3:
-               return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
-            case 4:
-               return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
-            case 5:
-               return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
-            case 6:
-               return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
-            case 7:
-               return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
-            case 8:
-               return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
-            case 9:
-               return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
-            case 10:
-               return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
-            case 11:
-               return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
-            case 12:
-               return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
-            case 13:
-               return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
-            case 14:
-               return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
-            case 15:
-               return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
-            case 16:
-               return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
-            case 17:
-               return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
+      elif ID == 1:
+         return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
+      elif ID == 2:
+         return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
+      elif ID == 3:
+         return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
+      elif ID == 4:
+         return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
+      elif ID == 5:
+         return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
+      elif ID == 6:
+         return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
+      elif ID == 7:
+         return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
+      elif ID == 8:
+         return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
+      elif ID == 9:
+         return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
+      elif ID == 10:
+         return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
+      elif ID == 11:
+         return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
+      elif ID == 12:
+         return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
+      elif ID == 13:
+         return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
+      elif ID == 14:
+         return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
+      elif ID == 15:
+         return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
+      elif ID == 16:
+         return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
+      elif ID == 17:
+         return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
       return ""
    def apothValue(self, ID:int):
       if (ID >= 200):
@@ -9564,7 +9617,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def hairstyleLength(ID:int):
       #Returns whether a specific hairstyle has length options
-      if ID in (1,2,3,4,8,9,10,11,13):
+      if ID in {1,2,3,4,8,9,10,11,13}:
          return True
       return False
    @staticmethod
@@ -10055,22 +10108,22 @@ class NiminFetishFantasyv0975o_fla:
       return "CURRENT CLOTHES ERROR"
    def pullUD(self, source:int):
       if source == 1:
-         if self.attireTop in (-1,6,9,21,29):
+         if self.attireTop in {-1,6,9,21,29}:
             return "open"
-         elif self.attireTop in (0,1,18,28):
+         elif self.attireTop in {0,1,18,28}:
             return "up"
-         elif self.attireTop in (3,5,12,13,17,19,25,26,30):
+         elif self.attireTop in {3,5,12,13,17,19,25,26,30}:
             return "down"
          elif self.attireTop == 27:
             return "off"
       elif source == 2:
-         if self.attireBot in (-1,6,29):
+         if self.attireBot in {-1,6,29}:
             return "open"
-         elif self.attireBot in (0,2,4,8,10,11,15,20,22,23,24):
+         elif self.attireBot in {0,2,4,8,10,11,15,20,22,23,24}:
             return "down"
-         elif self.attireBot in (5,7,12,13,14,16,25):
+         elif self.attireBot in {5,7,12,13,14,16,25}:
             return "up"
-         elif self.attireBot in (17,21):
+         elif self.attireBot in {17,21}:
             return "aside"
       return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
    def clothesChange(self, ID:int):
@@ -10541,7 +10594,7 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs = 2
          self.doEnd()
       else:
-         tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5) #!Floor div?
+         tempInt = math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          tempStr = ""
          if self.currentZone == 1:
             tempArr = as3.Array(1,4,5)
@@ -16685,8 +16738,12 @@ class NiminFetishFantasyv0975o_fla:
                         tempStr = f"\"Whew... Thanks a lot, dearie. Sorry to umm...\" She looks at your {self.clothesBottom()} and how drenched it is with her husband's seed. \"come on you like that... Don't worry though, it'll wash right out. And he takes a drug to keep it sterile for our little outtings. Wouldn't want to have all these eggs be alive now, would we?\" She chuckles. \"But here, take one for yourself. They're good for you, when they don't have babies in them!\"\n\nShe giggles and kisses you on the cheek, thanking you once again before you head off. She dozes back off, her tail idly swishing in the pool of semen, her thighs drenched in the stuff, and looking all the happier for it."
                         self.itemAdd(219)
                         if (self.percent() < 35):
-                           #!lizanDontShowBalls
-                           tempStr += "\n\nAs you begin to leave, however, you spot something move towards you. Another reptillian, this one seems quite male as two cocks hang from his groin and knock against his knees. He seems a bit sheepish at first, blush filling the scales of his face due to his rather immodest lack of an outfit, but realizes the damage is already done and waves you over.\n\n\"Umm... I suppose you helped out my wife then?\" He spots the egg in your hand and the lack of belly on his wife. \"Well, thank you for that. Sometimes I just can't get back in time. Here, take one of these at least, I think I've got plenty.\"\n\nHe hands you a berry but actually refers to his scrotum. It hangs past his wangs and seems stuffed with testicles, though you can't easily count how many. They're each at least the size of a small melon and can easily explain how his wife was so bloated.\n\nNevertheless, he thanks you again and lets you head off, wanting some more time with his wife."
+                           tempStr += "\n\nAs you begin to leave, however, you spot something move towards you. Another reptillian, this one seems quite male as two cocks hang from his groin and knock against his knees. He seems a bit sheepish at first, blush filling the scales of his face due to his rather immodest lack of an outfit, but realizes the damage is already done and waves you over.\n\n\"Umm... I suppose you helped out my wife then?\" He spots the egg in your hand and the lack of belly on his wife. \"Well, thank you for that. Sometimes I just can't get back in time. Here, take one of these at least, I think I've got plenty.\"\n\nHe hands you a berry but "
+                           if self.lizanDontShowBalls:
+                              tempStr += "seemed to be refering to someting else." #!Make this better
+                           else:
+                              tempStr += "actually refers to his scrotum. It hangs past his wangs and seems stuffed with testicles, though you can't easily count how many. They're each at least the size of a small melon and can easily explain how his wife was so bloated."
+                           tempStr += "\n\nNevertheless, he thanks you again and lets you head off, wanting some more time with his wife."
                            self.itemAdd(218)
                         self.outputMainText(tempStr,True)
                         self.hrs = 4
@@ -19293,7 +19350,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.currentDungeon > 1000 and self.currentDungeon <= 1010):
          self.doOldCaveDescent()
    def doOldCaveDescent(self):
-      if self.currentDungeon in (1001,1002,1003):
+      if self.currentDungeon in {1001,1002,1003}:
          if (self.defeatedMinotaur == False):
             self.outputMainText("With the lantern allowing you to actually see where you're going, you're able to venture much deeper into the old cave. It is surpisingly long for a cave that doesn't open up into a large cavern and there's not terribly much of note either, nothing you could have accidentally bumped into. The only thing particularly interesting are holes that line the bottom of the walls that angle downward, as a sort of natural drainage system for fluids. Otherwise, things are just rather... humid and slimy. It's not something you think too much about, however, as your light eventually begins to glisten off of the back wall of the cave, finally having reached the end. Or so you think it's the end.\n\nAs you reach the back wall, you notice another cave branching off. Yet, it's not exactly another cave. From the way the stone is hewn and the entrance is elevated from the normal floor of the original cave, this appears to have been carved out. You step up inside and immediately notice... There's stairs going down. Since ventured this far in, you continue on, walking down the spiraling staircase.\n\nThis passage appears to be ancient, with many of the steps rather worn from all the footsteps. The walls are slightly warped and scratched, but otherwise in good condition for their age. And they just keep going down and down and down... You quickly lose count of how many steps you've descended and it just becomes a relentless trek downward until... you find a room!\n\nAlthough, it's not much of a room... Rectangular, somewhat large, lighted by a couple torches and relatively boring, with another stairwell against the opposite wall. This is just a sort of waypoint along the stairwell... But it's not empty either.",True)
             self.doNext()
@@ -19347,7 +19404,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.goToInDoProcess = 2
                   self.doEnd()
             self.doListen = doListen
-      elif self.currentDungeon in (1004,1005,1006):
+      elif self.currentDungeon in {1004,1005,1006}:
          if (self.defeatedFreakyGirl == False):
             self.outputMainText("Even more stairs than before, you keep going and going, deeper below the surface. You don't know how long it takes, but you do know it's a while before you find the end and step into another room. Just like before, it's nothing too grandoise, just a rectangular room hewn in the ancient stone. And at the far and, you see even more stairs descending down... However, something far more interesting grabs your attention.\n\n\"Ooo, look Mr. Snuggles, someone to pway with!\" The cute little girly voice cuts through the boredom of stairs like a sweet delicate knife.\n\nOnly as the girl gets up from sitting cross-legged do you notice a flash of her white panties. With the short frilly skirt that curls outward and shows off much of her supple legs, she must have been exposing her undergarments to you much longer as she sat on the floor. Although, you quickly try to dash that thought as you realize how young she seems to be. Barely over four feet tall, she hardly has any curves to speak of; a rather flat chest that hardly pushes out her soft shirt just by the slightly puffy nipples beneath and her hips more emphasized by the short bouncy skirt then their own girth. Her hair is bound on either side by big ribbons, pulled into two pigtails the dangle down past her shoulders, brushing across the puffed short sleeves of the otherwise tight-fitting shirt and exposing her large long ears that look almost goofy on her small form.\n\nAnd as she stands, her immaturity is further amplified by the large plushy doll she lifts with her. Nearly as large as herself, it looks like the minotaur you defeated in the previous room, except small and adorable. The thing seems to have seen a fair deal of use, however, as it's completely covered in patches of leather. You can't really tell how old it is, considering much of the leather looks brand new whereas other places look quite worn and faded, with quite a few gashes from some kind of scratches that should probably be patched up as well soon. Nevertheless, the girl hugs it close as she begins to skip around in a circle, her skirt bouncing with small glimpses of her undies as she frolics. \"We're gonna pla-ay~ We're gonna pla-ay~ We're gonna pla-ay~\"\n\nShe seems just so adorable that you almost feel obligated to play. That is... until she stops dead in her tracks and turns to you with a ferocious stare, her eyes looking far darker and her pigtails looking almost like wings as the hair curls outward sinisterly. Her nails dig into the leather of Mr. Snuggles, scratching it like all the other gashes you noticed, and she speaks in a much louder, much more snarling voice. \"IT'S BEEN YEARS SINCE I'VE HAD A GOOD TOY~\"\n\nUh oh...",True)
             self.doNext()
@@ -19407,7 +19464,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doOldCaveDescent()
                   self.doListen = doListen
             self.doListen = doListen
-      elif self.currentDungeon in (1007,1008,1009):
+      elif self.currentDungeon in {1007,1008,1009}:
          if (self.defeatedSuccubus == False):
             self.outputMainText("The spiraling stairs just keep going down further and further... You don't know how far down below the surface you've traveled, there's no signs of being any deeper. The rock walls look the same, the steps look the same, even the air isn't as stale as you would expect such a deep cavern to be. Even as you muse over these thoughts, the fact that you have reach yet another room almost eludes you until your feet attempt to continue down non-existant steps and slam into the floor abruptly. You've reached another room, just like the others, except your eyes widen in hope as you see a door on the far wall, no more stairs! Yet, your attention is turned as a sweet feminine voice tantalizes your ears and blocks your exit.\n\n\"Well, well. Looks like I've finally got a visitor. So you managed to get past the other two guardians? That's quite the feat. To be honest, that little girl creeps the hell out of me.\"\n\nThe figure steps into your view of the door as she shudders at the thought. Her chest wobbles with two grandoise mounds, the things barely held back by an overburdened red leather bikini top. They look even larger when compared to her surprisingly thin waist that widens back out to some very ample hips, the cheeks of her rump jiggling erotically in the matching red leather panties and her long thin tail tipped with a fleshy spade waves behind her to accentuate the movement further. Garters descend down to help hold up her thigh-high high-heeled boots from a belt that lazily hangs around her waist, adorned with glowing vials and a long beatiful whip. To top the whole image off, her milky white skin, long black hair, short little horns, short bat-like wings, and eyes as red as her outfit, all amount to a single idea. A succubus. A creature popular in legends passed down from earlier generations. A creature that, according to the myths, is known for being extremely attractive and for sucking out the essence of men.\n\nSure you've encountered a lot of strange things, but this is something you already knew about and is something that supposedly did NOT exist. However, you don't have time to contemplate such things further as she proceeds to take her whip in hand and lash it against the floor.\n\n\"On the other hand, if you were able to beat those two, then you must be quite a treat for me. Don't worry, I won't hurt you... much. I doubt you'll be able to pass, but if you do it would be worth it. I'd probably like to try my hand at you again sometime.\" She gives you a wink before lunging in to fight.",True)
             self.doNext()
@@ -19745,45 +19802,44 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def weaponAttack(self):
       self.dmg = 0
-      match self.weapon:
-         case 2:
-            self.dmg = 99999
-            self.outputMainText(f"You hit the {self.enemyName()} with your debug stick, dealing {self.dmg} damage!",True)
-            self.doeHP(-99999)
-         case 10:
-            self.dmg = math.floor(random.random() * 10) + 1 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You punch the {self.enemyName()} with your fists, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-         case 116:
-            self.dmg = math.floor(random.random() * 8) + 5 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You lunge at the {self.enemyName()} and stab it with your dagger, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-         case 117:
-            self.dmg = math.floor(random.random() * 19) + 2 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You swing your hammer at the {self.enemyName()}, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-         case 118:
-            self.dmg = math.floor(random.random() * 16) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You slash at the {self.enemyName()} with your saber, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-         case 119:
-            self.dmg = math.floor(random.random() * 7) + 12 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You lash at the {self.enemyName()} with your whip, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-         case 127:
-            self.dmg = math.floor(random.random() * 11) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You whip around your tail and smack the {self.enemyName()} with the spike at the end, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-         case 235:
-            self.dmg = math.floor(random.random() * 5) + 1 + math.ceil(self.ment / 10)
-            if (self.ment < 30):
-               self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {self.dmg} HP from the {self.enemyName()}.",True)
-            elif (self.ment < 70):
-               self.outputMainText(f"You gently lick around the wide-rimmed head of the rod before sliding it into your mouth and gently sucking from the tip, draining a whole {self.dmg} HP from the {self.enemyName()}.",True)
-            else:
-               self.outputMainText(f"You lick up the shaft of the rod before swirling your tongue around the wide-rimmed head, coaxing it into your mouth as you continue to drag your tastebuds over and around it while pumping it in and out gently, draining {self.dmg} HP from the {self.enemyName()}!",True)
-            self.doeHP(-self.dmg)
-            self.doHP(self.dmg)
+      if self.weapon == 2:
+         self.dmg = 99999
+         self.outputMainText(f"You hit the {self.enemyName()} with your debug stick, dealing {self.dmg} damage!",True)
+         self.doeHP(-99999)
+      elif self.weapon == 10:
+         self.dmg = math.floor(random.random() * 10) + 1 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+         self.outputMainText(f"You punch the {self.enemyName()} with your fists, dealing {self.dmg} damage!",True)
+         self.doeHP(-self.dmg)
+      elif self.weapon == 116:
+         self.dmg = math.floor(random.random() * 8) + 5 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+         self.outputMainText(f"You lunge at the {self.enemyName()} and stab it with your dagger, dealing {self.dmg} damage!",True)
+         self.doeHP(-self.dmg)
+      elif self.weapon == 117:
+         self.dmg = math.floor(random.random() * 19) + 2 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+         self.outputMainText(f"You swing your hammer at the {self.enemyName()}, dealing {self.dmg} damage!",True)
+         self.doeHP(-self.dmg)
+      elif self.weapon == 118:
+         self.dmg = math.floor(random.random() * 16) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+         self.outputMainText(f"You slash at the {self.enemyName()} with your saber, dealing {self.dmg} damage!",True)
+         self.doeHP(-self.dmg)
+      elif self.weapon == 119:
+         self.dmg = math.floor(random.random() * 7) + 12 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+         self.outputMainText(f"You lash at the {self.enemyName()} with your whip, dealing {self.dmg} damage!",True)
+         self.doeHP(-self.dmg)
+      elif self.weapon == 127:
+         self.dmg = math.floor(random.random() * 11) + 10 + math.floor(self.str_ / 2 - (100 - self.eSen) / 20)
+         self.outputMainText(f"You whip around your tail and smack the {self.enemyName()} with the spike at the end, dealing {self.dmg} damage!",True)
+         self.doeHP(-self.dmg)
+      elif self.weapon == 235:
+         self.dmg = math.floor(random.random() * 5) + 1 + math.ceil(self.ment / 10)
+         if (self.ment < 30):
+            self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {self.dmg} HP from the {self.enemyName()}.",True)
+         elif (self.ment < 70):
+            self.outputMainText(f"You gently lick around the wide-rimmed head of the rod before sliding it into your mouth and gently sucking from the tip, draining a whole {self.dmg} HP from the {self.enemyName()}.",True)
+         else:
+            self.outputMainText(f"You lick up the shaft of the rod before swirling your tongue around the wide-rimmed head, coaxing it into your mouth as you continue to drag your tastebuds over and around it while pumping it in and out gently, draining {self.dmg} HP from the {self.enemyName()}!",True)
+         self.doeHP(-self.dmg)
+         self.doHP(self.dmg)
    def doSpecialAbility(self, more:int):
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
       self.choicePage = more
@@ -25393,7 +25449,6 @@ class NiminFetishFantasyv0975o_fla:
       elif len(filename) > 1:
          return ".".join(filename[:-1])
    def returnSOL(self,dictionary:dict,outputfile):
-      #!reraise error if error occurs for this and saveXml
       try:
          data = sol.SOL(self.solGetFileName(outputfile))
          data["track"] = list(dictionary["track"].values())
@@ -25427,10 +25482,11 @@ class NiminFetishFantasyv0975o_fla:
          data["stashStackSave"] = list(dictionary["stashStack"])
          data["pregSave"] = list(dictionary["preg"])
          return data
-      except:
+      except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
+         raise e
    def saveNIM(self,dictionary:dict,outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
@@ -25446,10 +25502,11 @@ class NiminFetishFantasyv0975o_fla:
          as3.trace("File Loader: Error: Nim save file data is null. Try again")
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
-      except:
+      except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"nim\"")
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
+         raise e
       if self.sfcopen == True:
          self.sfcwindow.toTop()
    def saveSOL(self,dictionary:dict,outputfile):
@@ -25457,10 +25514,11 @@ class NiminFetishFantasyv0975o_fla:
          sol.save(self.returnSOL(dictionary,outputfile),str(outputfile),AMF3)
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Success")
-      except:
+      except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
+         raise e
       if self.sfcopen == True:
          self.sfcwindow.toTop()
    def saveXml(self,dictionary:dict,outputfile):
@@ -25507,11 +25565,12 @@ class NiminFetishFantasyv0975o_fla:
             self.sfcwindow.configureChild("message",text="Success")
       except DecodeError:
          as3.trace("SOL Loader: Error: Missing or unknown SOL version header. If you are trying to load .nim files, this is not the function to load those.")
-      except:
+      except Exception as e:
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
          else:
             as3.trace("SOL Loader: Error: Can not save file.")
+         raise e
       if self.sfcopen == True:
          self.sfcwindow.toTop()
    @staticmethod
@@ -25594,8 +25653,9 @@ class NiminFetishFantasyv0975o_fla:
                sstash.extend(l)
                sstashStack.extend(l)
          return {"track":{"currentState":strack[0],"currentZone":strack[1],"day":strack[2],"hour":strack[3],"currentDayCare":strack[4],"inDungeon":strack[5],"currentDungeon":strack[6],"v7":strack[7]},"version":{"original":so["versionNumber"],"port":ver},"stats":{"strength":sstats[0],"mentality":sstats[1],"libido":sstats[2],"sensitivity":sstats[3],"HP":sstats[4],"lust":sstats[5],"coin":sstats[6],"strMod":sstats[7],"mentMod":sstats[8],"libMod":sstats[9],"senMod":sstats[10],"hunger":sstats[11]},"level":{"SexP":slevel[0],"levelUP":slevel[1],"level":slevel[2],"babyFactLevel":slevel[3],"bodyBuildLevel":slevel[4],"hyperHappyLevel":slevel[5],"alchemistLevel":slevel[6],"fetishMasterLevel":slevel[7],"milkMaidLevel":slevel[8],"shapeshiftyLevel":slevel[9],"shapeshiftyFirst":slevel[10],"shapeshiftySecond":slevel[11]},"mod":{"runMod":smod[0],"rapeMod":smod[1],"cumMod":smod[2],"cockSizeMod":smod[3],"milkMod":smod[4],"carryMod":smod[5],"vagBellyMod":smod[6],"pregChanceMod":smod[7],"extraPregChance":smod[8],"pregTimeMod":smod[9],"enticeMod":smod[10],"milkHPMod":smod[11],"vagSizeMod":smod[12],"vagElastic":smod[13],"changeMod":smod[14],"HPMod":smod[15],"SexPMod":smod[16],"minLust":smod[17],"milkCap":smod[18],"coinMod":smod[19],"hipMod":smod[20],"buttMod":smod[21],"bellyMod":smod[22],"cockMoistMod":smod[23],"vagMoistMod":smod[24],"lockTail":smod[25],"lockFace":smod[26],"lockSkin":smod[27],"lockBreasts":smod[28],"lockEars":smod[29],"lockLegs":smod[30],"lockNipples":smod[31],"lockCock":smod[32]},"quality":{"gender":squality[0],"race":squality[1],"body":squality[2],"dominant":squality[3],"hips":squality[4],"butt":squality[5],"tallness":squality[6],"skinType":squality[7],"tail":squality[8],"ears":squality[9],"hair":squality[10],"hairColor":squality[11],"hairLength":squality[12],"legType":squality[13],"wings":squality[14],"faceType":squality[15],"skinColor":squality[16]},"cock":{"cockTotal":scock[0],"humanCocks":scock[1],"horseCocks":scock[2],"wolfCocks":scock[3],"catCocks":scock[4],"rabbitCocks":scock[5],"lizardCocks":scock[6],"cockSize":scock[7],"cockMoist":scock[8],"balls":scock[9],"ballSize":scock[10],"showBalls":scock[11],"knot":scock[12],"bugCocks":scock[13],"neuterizerHideBalls":scock[14] if len(scock) == 15 else False},"girl":{"breastSize":sgirl[0],"boobTotal":sgirl[1],"nippleSize":sgirl[2],"udders":sgirl[3],"udderSize":sgirl[4],"teatSize":sgirl[5],"clitSize":sgirl[6],"vagTotal":sgirl[7],"vagSize":sgirl[8],"vagMoist":sgirl[9],"vulvaSize":sgirl[10],"nipType":sgirl[11]},"gear":{"attireTop":sgear[0],"attireBot":sgear[1],"weapon":sgear[2]},"status":{"pregRate":sstatus[0],"pregnancyTime":sstatus[1],"pregStatus":sstatus[2],"eggLaying":sstatus[3],"eggMaxTime":sstatus[4],"eggTime":sstatus[4] if sstatus[5] > sstatus[4] and tempver[0] == "1" and tempver[1] == "0" and int(tempver[2]) < 10 else sstatus[5],"eggRate":sstatus[6],"exhaustion":sstatus[7],"exhaustionPenalty":sstatus[8],"milkEngorgement":sstatus[9],"milkEngorgementLevel":sstatus[10],"udderEngorgement":sstatus[11],"udderEngorgementLevel":sstatus[12],"heat":sstatus[13],"heatTime":sstatus[14],"heatMaxTime":sstatus[15],"lactation":sstatus[16],"udderLactation":sstatus[17],"nipplePlay":sstatus[18],"udderPlay":sstatus[19],"blueBalls":sstatus[20],"teatPump":sstatus[21],"nipPump":sstatus[22],"cockPump":sstatus[23],"clitPump":sstatus[24],"vulvaPump":sstatus[25],"masoPot":sstatus[26],"sMasoPot":sstatus[27],"babyFree":sstatus[28],"charmTime":sstatus[29],"pheromone":sstatus[30],"eggceleratorTime":sstatus[31],"eggceleratorDose":sstatus[32],"bodyOil":sstatus[33],"lustPenalty":sstatus[34],"fertileGel":sstatus[35],"snuggleBall":sstatus[36],"eggType":sstatus[37],"milkSuppressant":sstatus[38],"milkSuppressantLact":sstatus[39],"milkSuppressantUdder":sstatus[40],"suppHarness":sstatus[41],"fertilityStatueCurse":sstatus[42],"plumpQuats":sstatus[43],"lilaWetStatus":sstatus[44],"cockSnakePreg":sstatus[45],"milkCPoisonNip":sstatus[46],"milkCPoisonUdd":sstatus[47],"cockSnakeVenom":sstatus[48]},"affinity":{"humanAffinity":saffinity[0],"horseAffinity":saffinity[1],"wolfAffinity":saffinity[2],"catAffinity":saffinity[3],"cowAffinity":saffinity[4],"lizardAffinity":saffinity[5],"rabbitAffinity":saffinity[6],"fourBoobAffinity":saffinity[7],"mouseAffinity":saffinity[8],"birdAffinity":saffinity[9],"pigAffinity":saffinity[10],"twoBoobAffinity":saffinity[11],"sixBoobAffinity":saffinity[12],"eightBoobAffinity":saffinity[13],"tenBoobAffinity":saffinity[14],"cowTaurAffinity":saffinity[15],"humanTaurAffinity":saffinity[16],"skunkAffinity":saffinity[17],"bugAffinity":saffinity[18]},"rep":{"lilaRep":srep[0],"lilaVulva":srep[1],"lilaMilk":srep[2],"lilaPreg":srep[3],"malonRep":srep[4],"malonPreg":srep[5],"malonChildren":srep[6],"mistressRep":srep[7],"jamieRep":srep[8],"jamieSize":srep[9],"jamieChildren":srep[10],"silRep":srep[11],"silPreg":srep[12],"silRate":srep[13],"silLay":srep[14],"silGrowthTime":srep[15],"silTied":srep[16],"lilaUB":srep[17],"dairyFarmBrand":srep[18],"lilaWetness":srep[19],"jamieButt":srep[20],"jamieBreasts":srep[21],"jamieHair":srep[22]},"knowledge":{"foundSoftlik":sknowledge[0],"foundFirmshaft":sknowledge[1],"foundTieden":sknowledge[2],"foundSizCalit":sknowledge[3],"foundOviasis":sknowledge[4],"foundValley":sknowledge[5],"foundSanctuary":sknowledge[6],"usedSecretStairs":sknowledge[7] if len(sknowledge) == 8 else False},"boss":{"defeatedMinotaur":sboss[0],"defeatedFreakyGirl":sboss[1],"defeatedSuccubus":sboss[2]},"knowSimpleAlchemy":{"knowLustDraft":sknowSimpleAlchemy[0],"knowRejuvPot":sknowSimpleAlchemy[1],"knowExpPreg":sknowSimpleAlchemy[2],"knowBallSwell":sknowSimpleAlchemy[3],"knowMaleEnhance":sknowSimpleAlchemy[4]},"knowAdvancedAlchemy":{"knowSLustDraft":sknowAdvancedAlchemy[0],"knowSRejuvPot":sknowAdvancedAlchemy[1],"knowSExpPreg":sknowAdvancedAlchemy[2],"knowSBallSwell":sknowAdvancedAlchemy[3],"knowGenSwap":sknowAdvancedAlchemy[4],"knowMasoPot":sknowAdvancedAlchemy[5],"knowBabyFree":sknowAdvancedAlchemy[6],"knowPotPot":sknowAdvancedAlchemy[7],"knowMilkSuppress":sknowAdvancedAlchemy[8]},"knowComplexAlchemy":{"knowSGenSwap":sknowComplexAlchemy[0],"knowSMasoPot":sknowComplexAlchemy[1],"knowSBabyFree":sknowComplexAlchemy[2],"knowSPotPot":sknowComplexAlchemy[3],"knowPussJuice":sknowComplexAlchemy[4],"knowPheromone":sknowComplexAlchemy[5],"knowBazoomba":sknowComplexAlchemy[6]},"majorFetish":{"maleFetish":smajorFetish[0],"femaleFetish":smajorFetish[1],"hermFetish":smajorFetish[2],"narcissistFetish":smajorFetish[3],"dependentFetish":smajorFetish[4]},"moderateFetish":{"dominantFetish":smoderateFetish[0],"submissiveFetish":smoderateFetish[1],"lboobFetish":smoderateFetish[2],"sboobFetish":smoderateFetish[3],"furryFetish":smoderateFetish[4],"scalyFetish":smoderateFetish[5],"smoothyFetish":smoderateFetish[6]},"minorFetish":{"pregnancyFetish":sminorFetish[0],"bestialityFetish":sminorFetish[1],"milkFetish":sminorFetish[2],"sizeFetish":sminorFetish[3],"unbirthingFetish":sminorFetish[4],"ovipositionFetish":sminorFetish[5],"toyFetish":sminorFetish[6],"hyperFetish":sminorFetish[7]},"kid":{"humanChildren":skid[0],"equanChildren":skid[1],"lupanChildren":skid[2],"felinChildren":skid[3],"cowChildren":skid[4],"lizanChildren":skid[5],"lizanEggs":skid[6],"bunnionChildren":skid[7],"wolfPupChildren":skid[8],"miceChildren":skid[9],"birdEggs":skid[10],"birdChildren":skid[11],"pigChildren":skid[12],"calfChildren":skid[13],"bugEggs":skid[14],"bugChildren":skid[15],"skunkChildren":skid[16],"minotaurChildren":skid[17],"freakyGirlChildren":skid[18]},"trav":so["trav"],"bag":sbag,"bagStack":sbagStack,"stash":sstash,"stashStack":sstashStack,"preg":so["pregSave"]}
-      except:
+      except Exception as e:
          as3.trace("SOL Loader: Error: Malformed save file")
+         raise e
    def loadXML(self,filename,origin:str=None):
       try:
          data = xmletree.parse(filename).getroot()
@@ -25723,7 +25783,7 @@ class NiminFetishFantasyv0975o_fla:
                if temperr == "":
                   temperr = "Quantity must be a number"
          if temperr == "":
-            if ID not in (2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540):
+            if ID not in {2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
                self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
             else:
                if QUAN > 0:
