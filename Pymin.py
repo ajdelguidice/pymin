@@ -15963,7 +15963,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempArr.push(3)
                if (self.cockTotal > 0):
                   tempArr.push(4)
-               if (self.balls > 0 and self.showBalls == True):
+               if (self.balls > 0 and (self.showBalls or self.respectShowBalls)):
                   tempArr.push(5)
                if (self.cockTotal > 0):
                   tempArr.push(6)
@@ -15989,7 +15989,10 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric."
                      self.cockSize += math.floor(self.percent() / 20 + 1)
                   case 5:
-                     tempStr += "your testicles swell between your thighs, making you hunch over your crotch for an instant."
+                     if self.respectShowBalls and not self.showBalls:
+                        tempStr += "your internal testicles swell, making you hunch over for an instant."
+                     else:
+                        tempStr += "your testicles swell between your thighs, making you hunch over your crotch for an instant."
                      self.ballSize += math.floor(self.percent() / 20 + 1)
                   case 6:
                      tempStr += f"you blast your semen into your {self.clothesBottom()}, a sudden spontaneous ejaculation."
