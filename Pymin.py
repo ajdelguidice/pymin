@@ -2724,7 +2724,6 @@ class NiminFetishFantasyv0975o_fla:
          self.showPage(False,"")
          self.hideDiscard()
          self.hideAmount()
-         self.hideDiscard()
       if self.inBag:
          self.doBag()
       elif self.inStash:
@@ -2842,7 +2841,7 @@ class NiminFetishFantasyv0975o_fla:
       return False
    def checkMagicItem(self):
       #Checks if player has a magic item in their bag
-      for i in (101,102,200,215,232,233,234,235,236,237,252):
+      for i in {101,102,200,215,232,233,234,235,236,237,252}:
          if (self.checkItem(i)):
             return True
       return False
@@ -3622,7 +3621,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.legType == 1002:
             tempStr += f" This second body matches the {self.skinDesc()} of your upper half, with a thin and lithe torso, looking somewhat like a humans and not exactly made for riding but makes up for the frailness with plantigrade feet that easily support yourself, even though they aren't the speediest."
       #!Add other foot types here
-      if (self.checkItem(102) or self.legType in (2,1001)):
+      if (self.checkItem(102) or self.legType in {2,1001}):
          tempStr += " Keratin extends from your combined toes like hooves, your ankle angled upward and high up like a second backwards knee, making you walk on the tips of your hooved toes with a clap against the ground every step."
       elif (self.legType == 1):
          tempStr += " Your ankles elongated and lithe, the front of your feet are large wide paws that help balance you as you walk digitigrade, your steps nothing but a soft and gentle patter against the ground."
@@ -3642,7 +3641,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "while you defend yourself unarmed."
       else:
          tempStr += f"while you defend yourself with a {self.itemName(self.weapon)} as your weapon."
-      if (self.lilaWetStatus > 0 and self.attireBot in (10,11)):
+      if (self.lilaWetStatus > 0 and self.attireBot in {10,11}):
          tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
       if (self.legType >= 1000):
          if self.internalBallsEffectBelly and self.showBalls == False:
@@ -5574,7 +5573,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.inBag = False
                   self.doReturn(nodjp=True)
-         elif self.buttonChoice in (4,8):
+         elif self.buttonChoice in {4,8}:
             self.doBag()
          else:
             if self.choiceListResult[0] != 0:
@@ -5661,7 +5660,7 @@ class NiminFetishFantasyv0975o_fla:
             self.bagArray.push(0)
          if (self.bagStackArray.length < 27):
             self.bagStackArray.push(0)
-   def bagSlotRemove(self, amount:int): #not currently used
+   def bagSlotRemove(self, amount:int):
       for i in range(amount):
          tempInt = self.bagArray.pop()
          tempInt2 = self.bagStackArray.pop()
@@ -5673,7 +5672,7 @@ class NiminFetishFantasyv0975o_fla:
       self.passiveItemRemove(self.bagArray[slot])
       self.bagArray[slot] = 0
       self.bagStackArray[slot] = 0
-   def clearEmptySlots(self): #not currently used
+   def clearEmptySlots(self):
       for i in range(27):
          if self.bagArray[i] == 0 or self.bagStackArray[i] == 0:
             self.bagStackArray[i] = 0
@@ -5717,7 +5716,7 @@ class NiminFetishFantasyv0975o_fla:
       tempI = slot + self.choicePage * 9 - 9
       if slot < 12:
          tempI -= slot//4+1
-      if self.inBag == True:
+      if self.inBag:
          if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI])):
             if (self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI])):
                self.bagStackArray[tempI] += self.moveItemStack
@@ -5734,7 +5733,7 @@ class NiminFetishFantasyv0975o_fla:
             as3.trace(tempI)
             as3.trace(self.bagArray)
             as3.trace(self.bagStackArray)
-      elif self.inStash == True:
+      elif self.inStash:
          if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI])):
             if (self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI])):
                self.stashStackArray[tempI] += self.moveItemStack
@@ -5762,9 +5761,9 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonWrite(12,"Bag")
       #self.hideAmount()
-      if self.inBag == True:
+      if self.inBag:
          self.doBag(refresh=True)
-      elif self.inStash == True:
+      elif self.inStash:
          self.doStash(refresh=True)
    def showMoveItem(self, which:bool):
       #Function to show the item which is being moved in a box off to the side
@@ -5779,9 +5778,276 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def itemName(ID:int):
       #Function which returns the name of the item ID
-      NameArray = as3.Array(' ', 'Test', 'Debug Stick', 'TS Any', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'Anc Claws', 'Imb Shoes', 'Dry Sand', 'Milker', "Cat's Meow", 'Penis Pump', None, 'Blood Gge', 'Edu Egg', 'Reduction', 'Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Poultice', 'Dagger', 'Hammer', 'Saber', 'Whip', 'Neuter', 'TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'Oas Water', 'Tail Spike', 'TS Sanct', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, "Lila's Gift", 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch', 'Sm Pouch', 'Trinket', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'DairE Pill', 'Red Mush', 'Wet Cloth', 'Lon Milk', 'Lon Pendant', 'Pink Ink', 'Egg Jelly', 'Bul Berry', 'Fresh Egg', 'Blondie', 'Puss Juice', 'Kinky Carr', 'Eq Snack', "Lila's Milk", 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Leath Strap', 'Eggcelerator', 'Desi Sand', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Dewy Gift', 'Squ Cheese', 'Shiny Rock', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Snuggle Ball', 'Facial Mud', 'Fertile Gel', 'Supp Harness', 'Breeder Pot', "Treant's Tear", 'Foomp Bomb', 'Plump Quat', 'Milky Pend', 'Bug Egg', 'Lantern', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Sweet&Sour', 'Succ Draft', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'Item Not Found', None, None, None, None, None, None, None, None, None, None, None, None, None, 'Teapot', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Lust Draft', 'Rejuv Pot', 'Bad Exper', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Bad Exper', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Black Dye', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'Red Dye', 'S Baby Free', 'S Pot Pot', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg')
-      if not (isinstance(NameArray[ID],(as3.undefined,as3.null)) or NameArray[ID] in (None,"undefined")):
-         return NameArray[ID]
+      if (ID == 0):
+         return " "
+      if (ID == 1):
+         return "Test"
+      if (ID == 2):
+         return "Debug Stick"
+      if (ID == 3):
+         return "TS Any"
+      if (ID == 404):
+         return "Item Not Found"
+      if (ID == 418):
+         return "Teapot"
+      if (ID == 101):
+         return "Anc Claws"
+      if (ID == 102):
+         return "Imb Shoes"
+      if (ID == 103):
+         return "Dry Sand"
+      if (ID == 104):
+         return "Milker"
+      if (ID == 105):
+         return "Cat's Meow"
+      if (ID == 106):
+         return "Penis Pump"
+      if (ID == 108):
+         return "Blood Gge"
+      if (ID == 109):
+         return "Edu Egg"
+      if (ID == 110):
+         return "Reduction"
+      if (ID == 111):
+         return "Skin Balm"
+      if (ID == 112):
+         return "Bol Juice"
+      if (ID == 113):
+         return "Taint Leaf"
+      if (ID == 114):
+         return "Sweet Sap"
+      if (ID == 115):
+         return "Poultice"
+      if (ID == 116):
+         return "Dagger"
+      if (ID == 117):
+         return "Hammer"
+      if (ID == 118):
+         return "Saber"
+      if (ID == 119):
+         return "Whip"
+      if (ID == 120):
+         return "Neuter"
+      if (ID == 121):
+         return "TS Soft"
+      if (ID == 122):
+         return "TS Firm"
+      if (ID == 123):
+         return "TS Tied"
+      if (ID == 124):
+         return "TS Siz"
+      if (ID == 125):
+         return "TS Ovi"
+      if (ID == 126):
+         return "Oas Water"
+      if (ID == 127):
+         return "Tail Spike"
+      if (ID == 128):
+         return "TS Sanct"
+      if (ID == 200):
+         return "Lila's Gift"
+      if (ID == 201):
+         return "Milk C Pois"
+      if (ID == 202):
+         return "Co-Snak Ven"
+      if (ID == 203):
+         return "Wolf Fur"
+      if (ID == 204):
+         return "Sm Pouch"
+      if (ID == 205):
+         return "Sm Pouch"
+      if (ID == 206):
+         return "Trinket"
+      if (ID == 207):
+         return "Cock Carv"
+      if (ID == 208):
+         return "Blo Berry"
+      if (ID == 209):
+         return "Grain"
+      if (ID == 210):
+         return "Puss Fruit"
+      if (ID == 211):
+         return "DairE Pill"
+      if (ID == 212):
+         return "Red Mush"
+      if (ID == 213):
+         return "Wet Cloth"
+      if (ID == 214):
+         return "Lon Milk"
+      if (ID == 215):
+         return "Lon Pendant"
+      if (ID == 216):
+         return "Pink Ink"
+      if (ID == 217):
+         return "Egg Jelly"
+      if (ID == 218):
+         return "Bul Berry"
+      if (ID == 219):
+         return "Fresh Egg"
+      if (ID == 220):
+         return "Blondie"
+      if (ID == 221):
+         return "Puss Juice"
+      if (ID == 222):
+         return "Kinky Carr"
+      if (ID == 223):
+         return "Eq Snack"
+      if (ID == 224):
+         return "Lila's Milk"
+      if (ID == 225):
+         return "Body Wash"
+      if (ID == 226):
+         return "Felin Tea"
+      if (ID == 227):
+         return "Oral Wash"
+      if (ID == 228):
+         return "Body Oil"
+      if (ID == 229):
+         return "Leath Strap"
+      if (ID == 230):
+         return "Eggcelerator"
+      if (ID == 231):
+         return "Desi Sand"
+      if (ID == 232):
+         return "Flying Carp"
+      if (ID == 233):
+         return "A-Grav Rock"
+      if (ID == 234):
+         return "Rein Charm"
+      if (ID == 235):
+         return "Fell Rod"
+      if (ID == 236):
+         return "Recept Bell"
+      if (ID == 237):
+         return "Dewy Gift"
+      if (ID == 238):
+         return "Squ Cheese"
+      if (ID == 239):
+         return "Shiny Rock"
+      if (ID == 240):
+         return "Auburn Dye"
+      if (ID == 241):
+         return "Brown Dye"
+      if (ID == 242):
+         return "Grey Dye"
+      if (ID == 243):
+         return "White Dye"
+      if (ID == 244):
+         return "Snuggle Ball"
+      if (ID == 245):
+         return "Facial Mud"
+      if (ID == 246):
+         return "Fertile Gel"
+      if (ID == 247):
+         return "Supp Harness"
+      if (ID == 248):
+         return "Breeder Pot"
+      if (ID == 249):
+         return "Treant\'s Tear"
+      if (ID == 250):
+         return "Foomp Bomb"
+      if (ID == 251):
+         return "Plump Quat"
+      if (ID == 252):
+         return "Milky Pend"
+      if (ID == 253):
+         return "Bug Egg"
+      if (ID == 254):
+         return "Lantern"
+      if (ID == 255):
+         return "Frag Flower"
+      if (ID == 256):
+         return "Nectar Candy"
+      if (ID == 257):
+         return "Too Human"
+      if (ID == 258):
+         return "Tainted Pot"
+      if (ID == 259):
+         return "Sweet&Sour"
+      if (ID == 260):
+         return "Succ Draft"
+      if (ID == 500):
+         return "Milk Bottle"
+      if (ID == 501):
+         return "Milk Jug"
+      if (ID == 502):
+         return "Milk Barrel"
+      if (ID == 503):
+         return "Lust Draft"
+      if (ID == 504):
+         return "Rejuv Pot"
+      if (ID == 505):
+         return "Bad Exper"
+      if (ID == 506):
+         return "Exp Preg"
+      if (ID == 507):
+         return "Ball Sweller"
+      if (ID == 508):
+         return "S Lust Draft"
+      if (ID == 509):
+         return "S Rejuv Pot"
+      if (ID == 510):
+         return "S Bad Exper"
+      if (ID == 511):
+         return "S Exp Preg"
+      if (ID == 512):
+         return "S Ball Sweller"
+      if (ID == 513):
+         return "Gen Swap"
+      if (ID == 514):
+         return "Maso Pot"
+      if (ID == 515):
+         return "Black Dye"
+      if (ID == 516):
+         return "Baby Free"
+      if (ID == 517):
+         return "Pot Pot"
+      if (ID == 518):
+         return "S Gen Swap"
+      if (ID == 519):
+         return "S Maso Pot"
+      if (ID == 520):
+         return "Red Dye"
+      if (ID == 521):
+         return "S Baby Free"
+      if (ID == 522):
+         return "S Pot Pot"
+      if (ID == 523):
+         return "Cum Vial"
+      if (ID == 524):
+         return "Cum Bottle"
+      if (ID == 525):
+         return "Cum Jug"
+      if (ID == 526):
+         return "Cum Barrel"
+      if (ID == 527):
+         return "Good Egg"
+      if (ID == 528):
+         return "Bad Egg"
+      if (ID == 529):
+         return "Strange Egg"
+      if (ID == 530):
+         return "Charmed Egg"
+      if (ID == 531):
+         return "Divine Egg"
+      if (ID == 532):
+         return "Pheromone"
+      if (ID == 533):
+         return "Reduc Reduc"
+      if (ID == 534):
+         return "Male Enhance"
+      if (ID == 535):
+         return "Milk Suppress"
+      if (ID == 536):
+         return "Bazoomba!"
+      if (ID == 537):
+         return "Queen Egg"
+      if (ID == 538):
+         return "Soldier Egg"
+      if (ID == 539):
+         return "Drone Egg"
+      if (ID == 540):
+         return "Worker Egg"
       return f"ITEM NAME ERROR {ID}"
    def itemDescription(self, ID:int):
       #Function which returns the description of the item ID
@@ -5933,17 +6199,16 @@ class NiminFetishFantasyv0975o_fla:
          case 243:
             return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
          case 244:
-            if (self.snuggleBall == False):
-               return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-            else:
+            if (self.snuggleBall):
                return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
+            return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
          case 245:
             return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
          case 246:
             return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
          case 247:
             tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-            if (self.suppHarness == True):
+            if (self.suppHarness):
                tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
             return tempStr
          case 248:
@@ -6190,7 +6455,7 @@ class NiminFetishFantasyv0975o_fla:
       #Function which returns the value of the item ID
       tempNum = 0
       IDArray = as3.Array(None, 13, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 50, 50, 20, 100, 30, 75, None, 50, 125, 20, 15, 15, 15, 15, 5, 20, 30, 55, 40, 30, 15, 15, 15, 15, 15, 15, 35, 25, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 0, 15, 15, 5, 1, 1, 30, 20, 15, 3, 17, 10, 14, 5, 5, 0, 150, 40, 20, 5, 50, 30, 15, 15, 10, 10, 5, 10, 10, 0, 25, 15, 0, 0, 0, 0, 0, 0, 10, 3, 75, 30, 45, 100, 35, 15, 20, 80, 25, 45, 45, 10, 0, 3, 0, 15, 20, 30, 30, 50, 45, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 5, 15, 70, 10, 10, 10, 10, 10, 25, 25, 25, 25, 25, 20, 20, 20, 20, 20, 50, 50, 150, 50, 50, 2, 7, 25, 5, 10, 2, 30, 40, 69, 75, 5, 10, 20, 20, 30, 20, 10, 5)
-      if not (isinstance(IDArray[ID],(as3.undefined,as3.null)) or IDArray[ID] in (None,"undefined")):
+      if not (isinstance(IDArray[ID],(as3.undefined,as3.null)) or IDArray[ID] in {None,"undefined"}):
          tempNum = IDArray[ID]
       return tempNum
    @staticmethod
@@ -6820,7 +7085,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.bellyMod -= self.bellyMod // 2
                      tempStr += f"{self.bellyDesc()}."
                self.outputMainText(tempStr,True)
-               if self.buttonChoice in (4,8):
+               if self.buttonChoice in {4,8}:
                   self.choiceListButtons("Reduction")
                elif self.buttonChoice == 12:
                   self.itemAdd(110)
@@ -6951,7 +7216,7 @@ class NiminFetishFantasyv0975o_fla:
             self.aff(6,math.floor(self.percent() / 15 + 2),-2)
             self.doEnd()
          case 127:
-            if self.tail in (4,5,6,8):
+            if self.tail in {4,5,6,8}:
                self.outputMainText("You strap the tail spike to your tail, equipping it as your weapon.",True)
                self.weapon = 127
             else:
@@ -8397,7 +8662,7 @@ class NiminFetishFantasyv0975o_fla:
       temp = self.getColours()
       for i in range(1,13):
          self.mo.configureChild(f"button{i}",state="normal")
-         if i not in (4,8,12):
+         if i not in {4,8,12}:
             tempI = (i-(i//4+1)) + (self.choicePage * 9 - 9)
             self.mo.configureChild(f"button{i}",text=tempArray[tempI])
             if which == "Bag":
@@ -8514,7 +8779,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.inStash = False
                      self.doReturn(nodjp=True)
-            elif self.buttonChoice in (4,8):
+            elif self.buttonChoice in {4,8}:
                self.doStash()
             else:
                self.choicePage = self.stashPage
@@ -8532,7 +8797,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doButtonDiscard("mts")
          elif (self.buttonChoice == 12):
             self.doBag()
-         elif (self.buttonChoice in (4,8)):
+         elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Stash")
             self.choiceListBlanks()
          elif self.canLoseMoveLocation(self.moveItemID) == True:
@@ -8575,7 +8840,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doButtonDiscard("mtb")
          elif (self.buttonChoice == 12):
             self.doStash()
-         elif (self.buttonChoice in (4,8)):
+         elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Bag")
             self.choiceListBlanks()
          else:
@@ -8625,7 +8890,7 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Bag")
          if self.buttonChoice == 12:
             self.doStash()
-         elif self.buttonChoice in (4,8):
+         elif self.buttonChoice in {4,8}:
             self.choiceListButtons("Bag")
          else:
             as3.trace(self.bagArray[self.choiceListResult[1]])
@@ -8642,7 +8907,7 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Stash")
          if self.buttonChoice == 12:
             self.doStash()
-         elif self.buttonChoice in (4,8):
+         elif self.buttonChoice in {4,8}:
             self.choiceListButtons("Stash")
          else:
             self.stashRemove(self.choiceListResult[1])
@@ -8766,7 +9031,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if (self.buttonChoice not in (4,8,12) and self.goodsID(self.buttonChoice) != 0):
+         if (self.buttonChoice not in {4,8,12} and self.goodsID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.goodsID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
@@ -8790,7 +9055,7 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
             def doListen():
                tempInt = 0
-               if (self.buttonChoice not in (7,12)):
+               if (self.buttonChoice not in {7,12}):
                   if (self.buttonChoice == 1):
                      tempInt = 1
                   elif (self.buttonChoice == 6):
@@ -8847,7 +9112,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.buttonChoice == 12):
             self.hideAmount()
             self.doShop()
-         elif (self.buttonChoice in (4,8)):
+         elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Bag")
          elif (self.choiceListResult[0] != 0):
             if (self.bagStackArray[self.choiceListResult[1]] < 2):
@@ -9013,7 +9278,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if (self.buttonChoice not in (4,8,12) and self.dyeID(self.buttonChoice) != 0):
+         if (self.buttonChoice not in {4,8,12} and self.dyeID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.itemDescription(self.dyeID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.dyeID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
@@ -9086,7 +9351,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if (self.buttonChoice not in (4,8,12) and self.apothID(self.buttonChoice) != 0):
+         if (self.buttonChoice not in {4,8,12} and self.apothID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
@@ -9110,7 +9375,7 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
             def doListen():
                tempInt = 0
-               if (self.buttonChoice not in (7,12)):
+               if (self.buttonChoice not in {7,12}):
                   if self.buttonChoice == 1:
                      tempInt = 1
                   elif self.buttonChoice == 2:
@@ -9402,7 +9667,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doButtonChoices(tempArray)
       self.disableSelectedButtons(dlist)
       def doListen():
-         if (self.buttonChoice not in (4,8,12) and self.clothesID(self.buttonChoice) != 0):
+         if (self.buttonChoice not in {4,8,12} and self.clothesID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.hairstyleDescription(self.hairstyleID(self.buttonChoice))}\n\nCost: {self.hairstyleValue(self.hairstyleID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
@@ -9716,12 +9981,12 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
       tempArray = as3.Array(4, "Buy", 12, "Return")
       for i in range(1,12):
-         if i not in (4,8,12):
+         if i not in {4,8,12}:
             tempArray.push(i,self.clothesName(self.clothesID(i)))
       self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.",True)
       self.doButtonChoices(tempArray)
       def doListen():
-         if (self.buttonChoice not in (4,8,12) and self.clothesID(self.buttonChoice) != 0):
+         if (self.buttonChoice not in {4,8,12} and self.clothesID(self.buttonChoice) != 0):
             self.outputMainText(f"{self.clothesDescription(self.clothesID(self.buttonChoice))}\n\nCost: {self.clothesValue(self.clothesID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
@@ -10979,7 +11244,8 @@ class NiminFetishFantasyv0975o_fla:
             chance = self.randChooseFromArray(tempArr)
             if chance == 1:
                tempStr = "Hanging out at your usual spot, a male Felin saunters up to you. He gives you a silent, appraising look, lingering on your larger curves. \"Not the normal playmate here, are you? Well, you're good enough.\" You give a list of the services you offer but are quickly cut off. \"Whoa! I don't know where you've been or what you've done. I just want you to give me a simple handjob. If you do well, I might pay even pay extra.\" Accepting the offer, he leads you to an open-air lounge located on a sturdy tree. A quick look down says you're about 35 feet up with a nice view. He makes sure the entrance is blocked before approaching you again.\n\nThe Felin man whips out a larger-than-average dick, the tip covered with soft barbs. \"Let's play,\" he commands. Your hands tease at his small thorns which start swelling with arousal. Your fingers play up and down his shaft and a moan escapes both of your mouths. Lust begins to permeate the atmosphere as copious streams of his precum soak into your hands. You pump faster and faster, hands flying on his pulsing member. His thrusts jerk through your palms, sometimes coming close to your face or chest. After a minute of grasping at his large wang, you feel confident enough to take a hand from his cock to massage his churning balls."
-               if self.dominant in (2,5):
+               if self.dominant in {2,5}:
+                  #!psuedo-hooves
                   tempStr += " Your psuedo-hooves grope at the soft spheres. Somehow with his lust-riddled mind, he gasps, \"Wow, is this standard with you? You must be very popular!\""
                elif self.dominant == 3:
                   tempStr += " Fondling his sack with precise movements, he shudders. Bits of drool run down his chin as he groans with intense pleasure. \"Really good at this! Have you done this before?\""
@@ -11098,17 +11364,17 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" sex. With a purr he leans in and begins to nibble your ears, causing your {self.legDesc(2)} to buckle with pleasure.\n\nAs your strength wanes he takes the opportunity to carry you to his silk canopy draped bed. He lays you down and pulls off your {self.currentClothes()} piece by piece, revealing your naked form. He eyes you, then crawls over you, grinding his hardened bulge against your crotch and rubbing your {self.boobDesc()} breasts. His bright blue eyes flick up at you, then he grins and begins sucking on one of your teats as his hand slips down and begins rubbing your sex.\n\nOnce you are aroused to his liking, he begins to strip down, revealing his two massive and completely hard feline cocks. You grin, he must have encountered something in the wild to give him two such large dicks. However you're not complaining. He strokes them both, grunting in pleasure. Then he lowers himself towards you and begins to rub his cockheads against your "
                if self.gender == 1:
                   tempStr += f"{self.buttDesc()} ass. Without any warning he pushes both into your ass"
-               elif self.gender in (2,3):
+               elif self.gender in {2,3}:
                   tempStr += f"{self.vulvaDesc()} puss{self.plural(16)}. Without any warning he pushes both into {self.oneYour(2)} slit{self.plural(2)}"
                tempStr += ".\n\nYou groan in pleasure as you are penetrated by two cocks, and gasp with a mixture of pain and pleasure as he begins to rapidly push all the way into your hungry hole with a loud and satisfied sounding grunt. It doesn't take him long to hilt inside of you, his massive balls resting against your bottom.\n\nHe stays that way, letting your hole get used to his size, then he begins to hump into you. He starts slowly, then begins to pick up pace, moaning and gasping with each thrust into your quivering hole. As he fucks you, his hands reach around and begin to rub your "
                if self.gender == 2:
                   tempStr += f"{self.clitDesc()} clit{self.plural(2)}"
-               elif self.gender in (1,3):
+               elif self.gender in {1,3}:
                   tempStr += f"{self.cockDesc()} cock{self.plural(1)}"
                tempStr += ".\n\nEach thrust begins to pick up pace and his moaning grows louder as he pounds into your hole. Then with a loud yowl his thick and hot seed spills out of his both his pricks and into your "
                if self.gender == 1:
                   tempStr += "ass"
-               elif self.gender in (2,3):
+               elif self.gender in {2,3}:
                   tempStr += "pussy"
                tempStr += ". Even through his own climax, he keeps rubbing your tender arousal, and brings you to orgasm, making your sexual fluids spill all over the bed.\n\nHe slowly pulls, out grinning at you. \"So, have you ever had a fuck like that sexy?\" he asks, sounding on the arrogant side about his size and skill in the sexual fields. As you turn to leave he presses a few more coins into your hand.\n\n\"A bonus, you're a good fuck.\" he tells you before he steps aside to let you leave his home."
                if (self.vagTotal > 0):
@@ -11531,7 +11797,7 @@ class NiminFetishFantasyv0975o_fla:
          #   tempArr.push(4)
          #if (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
          #   tempArr.push(5)
-         if self.attireBot in (13,14) and self.lust > 80:
+         if self.attireBot in {13,14} and self.lust > 80:
             tempArr.push(6)
          #if (self.attireBot == 4 or self.attireBot == 15):
          #   tempArr.push(7)
@@ -12494,7 +12760,7 @@ class NiminFetishFantasyv0975o_fla:
                            case "Hips":
                               self.hips += 20
                               self.outputMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...",False)
-                        if self.buttonChoice in (4,8):
+                        if self.buttonChoice in {4,8}:
                            self.choiceListButtons("Hyper Happy")
                         elif self.buttonChoice == 12:
                            self.choicePage = 1
@@ -16702,7 +16968,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.outputMainText(tempStr,True)
                      self.hrs = 4
                      self.doEnd()
-               elif self.currentZone in (2,4):
+               elif self.currentZone in {2,4}:
                   tempStr += "You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through into an area sheltered from the wind by large rock formations. As you blink and brush the sand from your eyes, you're left in awe by the paradise before you.\n\nAn oasis somewhere within the desert, hidden within a ring of tall rock formations and mountains, you can see the water sparkle from here and the palm trees sway lazily around it. And all along the rocks, built into caves and sprawled across the beaches, reptillian people have made their home here, relaxing and enjoying their gorgeous habitat.\n\nYou have now entered the Lizan home-city of Oviasis! Though thanks to the storm you have no idea how you got here or how to get back..."
                   self.regionChange(6)
                   if (self.foundOviasis == False):
@@ -20022,7 +20288,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += " tantalizingly."
          else:
             tempStr = f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge."
-         if self.ePref in (1,4):
+         if self.ePref in {1,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
@@ -20037,7 +20303,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "."
          else:
             tempStr = f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand."
-         if self.ePref in (2,4):
+         if self.ePref in {2,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
@@ -20052,7 +20318,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "."
          else:
             tempStr = "You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come."
-         if self.ePref in (1,4):
+         if self.ePref in {1,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
@@ -20069,7 +20335,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
                tempStr += f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}"
             tempStr += "."
-         if self.ePref in (2,4):
+         if self.ePref in {2,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
@@ -20091,7 +20357,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "."
          elif (self.chance > 75):
             tempStr = "You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come."
-         if self.ePref in (1,4):
+         if self.ePref in {1,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2),ret=True)
@@ -20118,7 +20384,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "."
          elif (chance > 75):
             tempStr = f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand."
-         if self.ePref in (2,4):
+         if self.ePref in {2,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5),ret=True)
          elif self.ePref == 3:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10),ret=True)
@@ -20139,9 +20405,9 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f"Your {self.tailDesc()} tail swishes across the ground in anticipation."
          elif (chance > 75):
             tempStr = f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the {self.cockDesc()} phallic outline in your {self.clothesBottom()} with your other hand."
-         if self.ePref in (3,4):
+         if self.ePref in {3,4}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 5),ret=True)
-         elif self.ePref in (1,2):
+         elif self.ePref in {1,2}:
             tempStr += self.doeLust(math.floor(self.percent() / 10 + self.eLib / 10),ret=True)
       elif (self.gender == 0 and self.ePref != 0 and self.eGen != 0):
          tempStr = f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got."
@@ -20233,7 +20499,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.currentState == 2):
          if self.enemyID == 303:
             tempStr += "\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you were't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself."
-         elif self.enemyID in (304,305):
+         elif self.enemyID in {304,305}:
             tempStr += "\n\nJust as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way..."
          elif self.enemyID == 309:
             tempStr += "\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\""
@@ -20328,7 +20594,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doLust(-(self.sen // 2),2,1,5,ret=True)
          case 303:
             tempStr = StringIO()
-            if self.gender in (1,3): #!Add a percent chance to 3
+            if self.gender in {1,3}: #!Add a percent chance to 3
                tempStr += f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} erection{self.plural(2)} wobble out. Aligning yourself, you thrust "
                if (self.cockTotal == 1):
                   tempStr += "it"
@@ -22933,7 +23199,7 @@ class NiminFetishFantasyv0975o_fla:
       tempStr = ""
       nonCock = False #Variable storing whether current race doesn't have its own cock type
       maxCock = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.lizardAffinity,self.rabbitAffinity,self.bugAffinity)
-      if (self.dominant in (5,8,9,10,11)):
+      if (self.dominant in {5,8,9,10,11}):
          nonCock = True
       if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0): #Loose all cocks
          tempStr += f"\n\nYou shiver a little as your cock{self.plural(1)} "
@@ -24525,7 +24791,7 @@ class NiminFetishFantasyv0975o_fla:
       tempStr = ""
       if (self.skinColor > 0):
          tempStr += self.skinC()
-      if (self.snuggleBall == True and appearanceGo == False and self.snuggleBallTweak == True or self.snuggleBall == True and self.snuggleBallTweak == False):
+      if (self.snuggleBall and not appearanceGo and self.snuggleBallTweak or self.snuggleBall and not self.snuggleBallTweak):
          tempStr += "plush and snuggly "
       if self.skinType == 1:
          return f"{tempStr}skin"
@@ -24582,14 +24848,14 @@ class NiminFetishFantasyv0975o_fla:
          case 9:
             if (self.legType == 1):
                return "paw"
-            elif (self.legType in (2,1001) or self.checkItem(102)):
+            elif (self.legType in {2,1001} or self.checkItem(102)):
                return "hoof"
             else:
                return "foot"
          case 10:
             if (self.legType == 1):
                return "paws"
-            elif (self.legType in (2,1001) or self.checkItem(102)):
+            elif (self.legType in {2,1001} or self.checkItem(102)):
                return "hooves"
             else:
                return "feet"
@@ -25234,11 +25500,11 @@ class NiminFetishFantasyv0975o_fla:
    def _viewAmountCalc(buttonNum:int):
       return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
    def viewAmount(self,buttonNum:int,tempBool:bool,tempColors=None):
-      if tempBool == True and self.amountLabelsVisible[buttonNum] == False:
+      if tempBool and not self.amountLabelsVisible[buttonNum]:
          self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._viewAmountCalc(buttonNum),30,15,self.font)
          self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=tempColors[0],foreground=tempColors[1],highlightbackground=tempColors[1],highlightthickness=1)
          self.amountLabelsVisible[buttonNum] = True
-      elif tempBool == False and self.amountLabelsVisible[buttonNum] == True:
+      elif not tempBool and self.amountLabelsVisible[buttonNum]:
          self.mo.destroyChild(f"amountlabel{buttonNum}")
          self.amountLabelsVisible[buttonNum] = False
    def hideAmount(self):
@@ -25500,7 +25766,7 @@ class NiminFetishFantasyv0975o_fla:
       if isinstance(path,str):
          if confmod.platform == "Windows":
             filename = path.split("\\")[-1].split(".")
-         elif confmod.platform in ("Linux","Darwin"):
+         elif confmod.platform in {"Linux","Darwin"}:
             filename = path.split("/")[-1].split(".")
       else: #Is path object
          filename = path.resolve().name.split(".")
