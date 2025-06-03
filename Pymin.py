@@ -6076,122 +6076,112 @@ class NiminFetishFantasyv0975o_fla:
       return False
    def canLose(self, ID:int):
       #Returns True if item ID can be lost
-      if (ID == 244 and self.countItem(244) == 1 and self.snuggleBall == True or ID == 247 and self.countItem(247) == 1 and self.suppHarness == True):
+      if (ID == 244 and self.countItem(244) == 1 and self.snuggleBall or ID == 247 and self.countItem(247) == 1 and self.suppHarness):
          return False
       return True
    def canLoseMoveLocation(self, ID:int):
       #This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
-      if (ID == 244 and self.countItem(244) == 0 and self.snuggleBall == True or ID == 247 and self.countItem(247) == 0 and self.suppHarness == True):
+      if (ID == 244 and self.countItem(244) == 0 and self.snuggleBall or ID == 247 and self.countItem(247) == 0 and self.suppHarness):
          return False
       return True
    @staticmethod
    def conItem(ID:int):
-      #Returns True if item IO is consumable
-      #alternate title: isConsumable
-      #!Wouldn't it be faster to list all non consumable items?
+      #Returns True if item ID is consumable
       if ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
          return True
       return False
    def passiveItemAdd(self, ID:int):
       #Applies the passive effect for item ID
-      match ID:
-         case 101:
-            self.rapeMod += 10
-         case 102:
-            self.runMod += 20
-         case 200:
-            self.vagMoistMod += 4
-            self.cockMoistMod += 4
-            self.statsMod(0,0,0,10)
-         case 215:
-            self.rapeMod += 5
-            self.runMod += 5
-            self.milkHPMod += 5
-         case 233:
-            self.carryMod += 75
-         case 234:
-            self.pregRate += 0.5
-            self.minLust += 10
-            self.hips += 10
-            self.doLust(0,0)
-         case 236:
-            self.SexPMod += 0.5
-            self.changeMod += 0.3
-         case 237:
-            self.vagMoistMod += 8
-            self.cockMoistMod += 8
-            self.statsMod(0,0,0,10)
-            if (self.heat < 1):
-               self.heatMaxTime = 96
-               self.heatTime = 96
-               self.heat += 1
-            elif (self.heat >= 1):
-               self.heatMaxTime -= 12
-               self.heat += 1
-         case 252:
-            self.rapeMod += 5
-            self.runMod += 5
-            self.milkHPMod += 5
-            self.carryMod += 10
-            self.milkCap += 3000
+      if ID == 101:
+         self.rapeMod += 10
+      elif ID == 102:
+         self.runMod += 20
+      elif ID == 200:
+         self.vagMoistMod += 4
+         self.cockMoistMod += 4
+         self.statsMod(0,0,0,10)
+      elif ID == 215:
+         self.rapeMod += 5
+         self.runMod += 5
+         self.milkHPMod += 5
+      elif ID == 233:
+         self.carryMod += 75
+      elif ID == 234:
+         self.pregRate += 0.5
+         self.minLust += 10
+         self.hips += 10
+         self.doLust(0,0)
+      elif ID == 236:
+         self.SexPMod += 0.5
+         self.changeMod += 0.3
+      elif ID == 237:
+         self.vagMoistMod += 8
+         self.cockMoistMod += 8
+         self.statsMod(0,0,0,10)
+         if (self.heat < 1):
+            self.heatMaxTime = 96
+            self.heatTime = 96
+            self.heat += 1
+         elif (self.heat >= 1):
+            self.heatMaxTime -= 12
+            self.heat += 1
+      elif ID == 252:
+         self.rapeMod += 5
+         self.runMod += 5
+         self.milkHPMod += 5
+         self.carryMod += 10
+         self.milkCap += 3000
    def passiveItemRemove(self, ID:int):
       #Removes the passive effect for item ID
-      match ID:
-         case 2:
-            if (self.weapon == 2):
-               self.weapon = 10
-         case 101:
-            self.rapeMod -= 10
-         case 102:
-            self.runMod -= 20
-         case 200:
-            self.vagMoistMod -= 4
-            self.cockMoistMod -= 4
-            self.statsMod(0,0,0,-10)
-         case 215:
-            self.rapeMod -= 5
-            self.runMod -= 5
-            self.milkHPMod -= 5
-         case 233:
-            self.carryMod -= 75
-         case 234:
-            self.pregRate -= 0.5
-            self.minLust -= 10
-            self.hips -= 10
-         case 236:
-            self.SexPMod -= 0.5
-            self.changeMod -= 0.3
-         case 237:
-            self.vagMoistMod -= 8
-            self.cockMoistMod -= 8
-            self.statsMod(0,0,0,-10)
-            if (self.heat >= 2):
-               self.heatMaxTime += 12
-            self.heat -= 1
-         case 252:
-            self.rapeMod -= 5
-            self.runMod -= 5
-            self.milkHPMod -= 5
-            self.carryMod -= 10
-            self.milkCap -= 3000
-         case 116:
-            if (self.weapon == 116):
-               self.weapon = 10
-         case 117:
-            if (self.weapon == 117):
-               self.weapon = 10
-         case 118:
-            if (self.weapon == 118):
-               self.weapon = 10
-         case 119:
-            if (self.weapon == 119):
-               self.weapon = 10
-         case 127:
-            if (self.weapon == 127):
-               self.weapon = 10
-         case 235:
-            if (self.weapon == 235):
-               self.weapon = 10
+      #!Can't this just be "if ID == self.weapon". If this works, it would mean that only one is needed
+      if (ID == 2 and self.weapon == 2):
+         self.weapon = 10
+      elif (ID == 116 and self.weapon == 116):
+         self.weapon = 10
+      elif (ID == 117 and self.weapon == 117):
+         self.weapon = 10
+      elif (ID == 118 and self.weapon == 118):
+         self.weapon = 10
+      elif (ID == 119 and self.weapon == 119):
+         self.weapon = 10
+      elif (ID == 127 and self.weapon == 127):
+         self.weapon = 10
+      elif (ID == 235 and self.weapon == 235):
+         self.weapon = 10
+      elif ID == 101:
+         self.rapeMod -= 10
+      elif ID == 102:
+         self.runMod -= 20
+      elif ID == 200:
+         self.vagMoistMod -= 4
+         self.cockMoistMod -= 4
+         self.statsMod(0,0,0,-10)
+      elif ID == 215:
+         self.rapeMod -= 5
+         self.runMod -= 5
+         self.milkHPMod -= 5
+      elif ID == 233:
+         self.carryMod -= 75
+      elif ID == 234:
+         self.pregRate -= 0.5
+         self.minLust -= 10
+         self.hips -= 10
+      elif ID == 236:
+         self.SexPMod -= 0.5
+         self.changeMod -= 0.3
+      elif ID == 237:
+         self.vagMoistMod -= 8
+         self.cockMoistMod -= 8
+         self.statsMod(0,0,0,-10)
+         if (self.heat >= 2):
+            self.heatMaxTime += 12
+         self.heat -= 1
+      elif ID == 252:
+         self.rapeMod -= 5
+         self.runMod -= 5
+         self.milkHPMod -= 5
+         self.carryMod -= 10
+         self.milkCap -= 3000
    def loseManyItem(self, ID:int, amount:int):
       #Function for losing multiple items
       for i in range(26,-1,-1):
@@ -6219,39 +6209,119 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    def itemStackMax(ID:int):
       #Function which returns the maximum number of the item ID that can be in a stack
-      tempNum = 0
-      IDArray = as3.Array(None, 1, 1, 1, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 1, 1, 15, 1, 5, 1, None, 1, 1, 5, 5, 5, 5, 5, 10, 1, 1, 1, 1, 5, 10, 10, 10, 10, 10, 5, 1, 10, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 1, 5, 5, 15, 5, 5, 10, 5, 10, 15, 5, 15, 10, 10, 10, 1, 5, 5, 10, 5, 5, 10, 5, 10, 10, 10, 15, 10, 10, 1, 5, 10, 1, 1, 1, 1, 1, 1, 15, 15, 5, 5, 5, 5, 1, 15, 10, 1, 10, 5, 5, 15, 1, 15, 1, 15, 15, 5, 5, 10, 10, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 1, None, None, None, None, None, None, None, None, None, None, None, None, None, 1, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 10, 5, 1, 10, 10, 5, 10, 10, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 15, 10, 5, 1, 10, 10, 5, 5, 1, 5, 15, 10, 10, 5, 5, 10, 10, 15)
-      if not (isinstance(IDArray[ID],(as3.undefined,as3.null)) or IDArray[ID] in (None,"undefined")):
-         tempNum = IDArray[ID]
-      return tempNum
+      if ID in {1,2,3,101,102,104,106,108,109,116,117,118,119,127,200,215,229,232,233,234,235,236,237,244,247,252,254,404,418,502,526,531}:
+         return 1
+      if ID in {105,110,111,112,113,114,120,126,201,202,204,205,207,210,216,217,219,220,222,230,240,241,242,243,249,250,257,258,501,505,513,514,515,516,517,518,519,520,521,522,525,529,530,532,536,537}:
+         return 5
+      if ID in {115,121,122,123,124,125,128,206,208,212,213,214,218,221,223,224,225,227,228,231,246,248,259,260,500,503,504,506,507,508,509,510,511,512,524,527,528,534,535,538,539}:
+         return 10
+      if ID in {103,203,209,211,226,238,239,245,251,253,255,256,523,533,540}:
+         return 15
+      return 0
    def foodItem(self,ID:int):
       #Function which returns the food value of the item ID
       tempNum = 0
-      IDArray = as3.Array(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 5, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 8, 10, 20, 5, 15, None, 30, None, None, None, 10, 15, None, 15, 10, 25, 20, None, 10, None, None, None, None, None, None, None, None, None, None, None, 20, None, None, None, None, None, None, None, None, None, None, None, None, 40, None, 4, None, None, 15, None, None, 25, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 30, 70, None, 3, 5, None, 5, 7, 7, 8, None, 10, 10, 4, 4, None, 15, 15, 8, 8, None, 20, 20, 10, 30, None, None, 15, None, 1, 20, 50, None, None, 5, 10, 15, 25, 20, 15, 10)
-      if not (isinstance(IDArray[ID],(as3.undefined,as3.null)) or IDArray[ID] in (None,"undefined")):
-         tempNum = IDArray[ID]
+      if ID == 114:
+         tempNum = 5
+      elif ID == 208:
+         tempNum = 8
+      elif ID == 209:
+         tempNum = 10
+      elif ID == 210:
+         tempNum = 20
+      elif ID == 211:
+         tempNum = 5
+      elif ID == 212:
+         tempNum = 15
+      elif ID == 214:
+         tempNum = 30
+      elif ID == 218:
+         tempNum = 10
+      elif ID == 219:
+         tempNum = 15
+      elif ID == 221:
+         tempNum = 15
+      elif ID == 222:
+         tempNum = 10
+      elif ID == 223:
+         tempNum = 25
+      elif ID == 224:
+         tempNum = 20
+      elif ID == 226:
+         tempNum = 10
+      elif ID == 238:
+         tempNum = 20
+      elif ID == 251:
+         tempNum = 40
+      elif ID == 253:
+         tempNum = 4
+      elif ID == 256:
+         tempNum = 15
+      elif ID == 259:
+         tempNum = 25
+      elif ID == 500:
+         tempNum = 30
+      elif ID == 501:
+         tempNum = 70
+      elif ID == 503:
+         tempNum = 3
+      elif ID == 504:
+         tempNum = 5
+      elif ID == 506:
+         tempNum = 5
+      elif ID == 507:
+         tempNum = 7
+      elif ID == 508:
+         tempNum = 7
+      elif ID == 509:
+         tempNum = 8
+      elif ID == 511:
+         tempNum = 10
+      elif ID == 512:
+         tempNum = 10
+      elif ID == 513:
+         tempNum = 4
+      elif ID == 514:
+         tempNum = 4
+      elif ID == 516:
+         tempNum = 15
+      elif ID == 517:
+         tempNum = 15
+      elif ID == 518:
+         tempNum = 8
+      elif ID == 519:
+         tempNum = 8
+      elif ID == 521:
+         tempNum = 20
+      elif ID == 522:
+         tempNum = 20
+      elif ID == 523:
+         tempNum = 10
+      elif ID == 524:
+         tempNum = 30
+      elif ID == 527:
+         tempNum = 15
+      elif ID == 529:
+         tempNum = 1
+      elif ID == 530:
+         tempNum = 20
+      elif ID == 531:
+         tempNum = 50
+      elif ID == 534:
+         tempNum = 5
+      elif ID == 535:
+         tempNum = 10
+      elif ID == 536:
+         tempNum = 15
+      elif ID == 537:
+         tempNum = 25
+      elif ID == 538:
+         tempNum = 20
+      elif ID == 539:
+         tempNum = 15
+      elif ID == 540:
+         tempNum = 10
       self.hunger += 2 * tempNum
-   def canUseItemNow(self,ID:int):
-      if self.currentState == 0: #Title
-         return False
-      else:
-         if self.currentState == 3: #Masturbate
-            #Only includes relavant things, ex: milker
-            templist = as3.Array(104,106)
-            if ID in templist:
-               return True
-            return False
-         else:
-            templist = as3.Array(200,206,215,229,233,234,236,237,252,254,404)
-            if self.currentState == 1: #Normal
-               templist.push(231,250,505,510)
-            elif self.currentState == 2: #Battle
-               templist.push(232,526,528)
-               if False: #Remove teleport scrolls in battle
-                  templist.push(3,121,122,123,124,125,128)
-            if ID in templist:
-               return False
-            return True
    @staticmethod
    def useItemHidePage(ID:int):
       if ID in {101,102,200,206,215,229,233,234,236,237,252,254,404}:
