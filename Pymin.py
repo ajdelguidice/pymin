@@ -6133,20 +6133,7 @@ class NiminFetishFantasyv0975o_fla:
          self.milkCap += 3000
    def passiveItemRemove(self, ID:int):
       #Removes the passive effect for item ID
-      #!Can't this just be "if ID == self.weapon". If this works, it would mean that only one is needed
-      if (ID == 2 and self.weapon == 2):
-         self.weapon = 10
-      elif (ID == 116 and self.weapon == 116):
-         self.weapon = 10
-      elif (ID == 117 and self.weapon == 117):
-         self.weapon = 10
-      elif (ID == 118 and self.weapon == 118):
-         self.weapon = 10
-      elif (ID == 119 and self.weapon == 119):
-         self.weapon = 10
-      elif (ID == 127 and self.weapon == 127):
-         self.weapon = 10
-      elif (ID == 235 and self.weapon == 235):
+      if (ID == self.weapon):
          self.weapon = 10
       elif ID == 101:
          self.rapeMod -= 10
