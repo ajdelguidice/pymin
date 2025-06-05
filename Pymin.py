@@ -1416,7 +1416,7 @@ class NiminFetishFantasyv0975o_fla:
             self.oNewGameButton = True
          else:
             self.oNewGameButton = False
-         if (tempng != self.oNewGameButton or self.changeNGButtonOverride == True) and self.shownewgame == True:
+         if (tempng != self.oNewGameButton or self.changeNGButtonOverride) and self.shownewgame:
             self.changeNGButtonOverride = False
             self.hideNGButton()
             self.showNGButton()
@@ -3789,13 +3789,13 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.moistCalc(1) > 2):
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
       if self.balls > 0:
-         if self.showBalls == True:
+         if self.showBalls:
             tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
             if self.blueBalls > 36:
                tempStr += " They"
-         elif self.showBalls == False and self.respectShowBalls == True and self.blueBalls > 36:
+         elif self.respectShowBalls and not self.showBalls and self.blueBalls > 36:
             tempStr += "\n\nYour internal balls"
-         if (self.showBalls == True or self.respectShowBalls == True) and self.blueBalls > 36:
+         if (self.respectShowBalls or self.showBalls) and self.blueBalls > 36:
             if (self.blueBalls <= 84):
                tempStr += " groan and squirm, full of hot cum just waiting to blow."
             elif (self.blueBalls > 84):
@@ -4310,7 +4310,7 @@ class NiminFetishFantasyv0975o_fla:
       #Save game dialog
       self.checkExistsMakeDir(self.savelocation)
       self.hideAPButton()
-      if self.useNewSaveLoadDialog == False:
+      if not self.useNewSaveLoadDialog:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
          tempArray = as3.Array(4,"Save as",8,"Convert",12,"Return")
          for i in range(9):
@@ -4403,7 +4403,7 @@ class NiminFetishFantasyv0975o_fla:
       #Load game dialog
       self.checkExistsMakeDir(self.savelocation)
       self.hideAPButton()
-      if self.useNewSaveLoadDialog == False:
+      if not self.useNewSaveLoadDialog:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
          tempArray = as3.Array(4,"Load File",8,"Convert")
          if self.currentState != 0:
@@ -5754,7 +5754,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showMoveItem(False)
       else:
          self.refreshMoveItem(self.moveItemID,self.moveItemStack)
-      if (self.inBag or self.inStash) and self.useNewStash:
+      if self.useNewStash and (self.inBag or self.inStash):
          if self.moveItemID != 0 and self.buttonsVisible[12] == True:
             if self.inBag == True:
                self.buttonWrite(12,"Stash")
@@ -7912,7 +7912,7 @@ class NiminFetishFantasyv0975o_fla:
          case 256:
             tempStr = "You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly."
             if (self.eggLaying > 0):
-               if (self.grammarFixes == False or self.grammarFixes == True and self.vagTotal > 0):
+               if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
                   tempStr += " And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something."
                self.eggTime -= 4
             self.stats(1,0,0,0)
@@ -8544,9 +8544,9 @@ class NiminFetishFantasyv0975o_fla:
             tempStr = "You pop the pill into your mouth, feeling a bit of warmth emanating from your groin."
             if (self.cockTotal > 0):
                tempStr += f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer"
-               if (self.showBalls == True):
+               if (self.showBalls):
                   tempStr += " and the testicles beneath swell within your scrotum"
-               elif self.respectShowBalls == True:
+               elif self.respectShowBalls:
                   tempStr += ". You can also feel your abdomen grow tighter, as if your internal testicles were swelling"
                tempStr += ".\n\nIt really does work!"
                self.cockSize += 4
@@ -8709,7 +8709,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def doStash(self,noclear=False,refresh=False):
       #Stash dialog
-      if self.useNewStash == False:
+      if not self.useNewStash:
          self.inStash = False
          self.showPage(False,"")
          self.hideAmount()
@@ -10955,15 +10955,15 @@ class NiminFetishFantasyv0975o_fla:
                         tempStr += " He then pulls off your shaft and begins sucking on the knot itself, allowing it to swell to full size. Then he goes back to deep-throating your cock while squeezing your knot with his hand. The sensation is too much for you and he struggles to swallow down every last drop as you spray your seed into his mouth."
                else:
                   tempStr += f"\n\nThe young man falls on his knees and admires your {self.cockDesc()} cock. He feels over your large member, surely too big for him to take it all. He slowly licks around the shaft before starting to suck on the tip. He takes in as much of your cock as he can, sucking and licking on it, eyes half-lidded in bliss and moaning softly. He starts to stroke the rest of your cock, much too large to fit in his mouth"
-                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                  if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                      tempStr += f" and with his other hand he massages your {self.ballDesc()} balls"
                   tempStr += f". You enjoy his enthusiasm and his skill as he carefully makes sure that every last inch of your thick shaft is given the attention it deserves. It's not long before you're feeling a familiar pressure building up in your "
-                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                  if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                      tempStr += "nuts"
                   else:
                      tempStr += "abdomen"
                   tempStr += ". Suddenly the boy "
-                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                  if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                      tempStr += "stops playing with your balls and "
                   tempStr += "moves his finger over your ass. Pushing one in your asshole, he sends you over the edge and you flood his mouth with cum in return."
                tempStr += "\n\n\nAs you pull your cock out of his mouth, the last spurt of cum hits his face, marking him. He blushes again, licking his lips and savoring the flavor. He looks around again, still finding no one who could have seen you. He sighs in relief and hands you some coins. He then gets up quickly, and moves away..."
@@ -10972,7 +10972,7 @@ class NiminFetishFantasyv0975o_fla:
                self.cumAmount()
             elif chance == 3:
                tempStr = f"You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your {self.cockDesc()} cock{self.plural(1)} throb{self.plural(3)} with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub {self.oneYour(1)} hard cock{self.plural(1)} along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your "
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == False:
+               if not self.respectShowBalls or self.respectShowBalls and not self.showBalls:
                   tempStr += "internal "
                tempStr += f"balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load."
                tempStr += "\n\nWhen your orgasm settles down, you ease your member out of her slit with a thick trickle of your seed dribbling out of her hole and coating your cock.\n\nYou go into the bathroom and bathe and, when you return, you find that your client has left some coins on the table."
@@ -11005,7 +11005,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += self.doMultiImpregnate(1,2,ret=True)
                elif (self.cockTotal == 1 and self.vagTotal == 1):
                   tempStr += f"Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and while doing so an argument erupts behind you as to who gets dibs on your pussy and who gets your cock. The two quickly reach an agreement and one of the sisters wastes no time in guiding the tip of her rigid tumescence to rest lightly on the swollen lips of your vagina. The other sister vying for your cock eases underneath you and raises her ass up to the level of your crotch. Reaching behind her she takes your now absolutely rigid member and begins to guide it to rest against her vulva. With only a moments hesitation spent arranging their body parts so as to not collide with one another, the two begin to urgently grind against you.\n\nThe sister behind you begins by sliding her rigid length into you and following her thrust you plunge deep into the sister below you. Your movement is reciprocated by the sister below you as she grinds her hips against your groin"
-                  if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                  if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                      tempStr += ", your balls wetly slapping the inside of her thighs"
                   tempStr += f". The cock inside of you is one of the biggest you have taken and it soon bottoms out, rubbing the wall of your cervix pleasurably. The two move in near perfect unison, the combined sensation of being filled and filling another at the same time soon leaves you panting and drooling, barely conscious of the outside world.\n\nThe two women's thrusts come faster and faster as they surge closer and closer towards the edge. As they near orgasm, their movements get shorter and faster and you can feel the head of your cock hitting the wall of the bottom sister's cervix with your every movement. Without warning you feel the sister in your pussy tense and shudder as she begins to spasm jets of torrid jizz deep into your womb. The immense warmth filling you sends you flying over the edge and you erupt into the depths of the beauty below you as she lets loose onto the ground below her, her jism quickly forming a small pool. You all continue to ejaculate for what seems forever; if you could muster the energy you wouldn't be surprised to look and see that your belly and the belly of the sister below you have swelled from the sheer amount of liquid which has been expelled. Exhausted and still rather tipsy, the two help each other up.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you on the ground still panting and oozing cum. The two sisters throw another small bag of coins at your {self.legDesc(10)}, thanking you for the best fuck they have had in a long while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your combined cum, their cocks still oozing the white sticky substance onto the ground below them and the excessive amount you pumped into the womb of the sister dripping slowly out. You can't help but wonder if you will get pregnant from the deluge they just released or if they will get pregnant from the seed you just planted deep in one of the sister's bellies."
                   tempStr += self.doImpregnate(1,ret=True)
@@ -11075,7 +11075,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.showBalls == True):
                   tempStr += f" and letting your {self.ballDesc()} balls hang free"
                tempStr += f" followed by her tearing off her own clothes. She grabs {self.oneYour(1)} wang{self.plural(1)}, gets down onto all fours and presses the head of you penis against her quivering lips. She does not hesitate to force your {self.cockDesc()} cock inside of her sex, letting out a loud orgasmic moan as you sink deep into her folds. You don't even have time to think about being inside her hot, wet depths as the sexy mare begins bucking against the length of your {self.cockDesc()} tool inside her. Your penis and "
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+               if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                   tempStr += "balls"
                else:
                   tempStr += "abdomen"
@@ -11102,10 +11102,10 @@ class NiminFetishFantasyv0975o_fla:
                if (self.vagTotal > 0):
                   tempStr += f"Moving his tongue deep inside of {self.oneYour(2)} cunt{self.plural(2)} the Equan tastes the thoroughly used tunnel of your female sex and nods in approval as he begins to slowly eat you out. His lips, breath, and tongue are so warm you push back into his face hard enough to make your hurting ass ache as your tender rump lets its sensitivity be known. Rolling his tongue up, down, and all around the Equan spreads you open farther than his finger ever could and pushes forward into your belly so much you think he may have touched your womb."
                tempStr += "Groaning and writhing"
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+               if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                   tempStr += " as a hand takes up your balls and massages them"
                tempStr += f", you try to bite out a few words of praise. Every attempt is lost as the Equan continues to use you for his own personal pleasure. Your body is like an instrument being strummed by a professional minstrel, and as the Equan keeps tuning you in just the right way you begin to feel the signs of impending orgasm about to overtake you. Against your will you clench up and cry out towards the ceiling as an orgasm tears through you when the Equan nips at your ass. Cum spews "
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+               if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                   tempStr += "from your balls"
                else:
                   tempStr += "out"
@@ -11394,12 +11394,12 @@ class NiminFetishFantasyv0975o_fla:
             chance = self.randChooseFromArray(tempArr)
             if chance == 1:
                tempStr = f"You look around the desert town and smirk as several male and female Lizans eye you wantonly. Scales of various colors gleam as you walk down the middle of the street, wagging your plump ass at potential clientele. Many of the males watch you with lust clearly shining on their faces. Your eyes catch glimpses of more than a few of them talking to others around them while nodding in your direction; the generous bulge {self.legWhere(1)} your {self.legDesc(2)} puffs up some as you see two Lizan males walk up to you and ask you if you’re selling what they think you are. You nod to them and soon find yourself being pulled away from the growing crowd you have amassed.\n\nThe two males take you to a quiet spot inside of what you assume to be a recreational cave area, the scent of sex drifting strongly along the walls making your nose itch, before asking you to strip for them. You smile amorously at them both, reaching down to rub the lumps of their tenting loincloths before you do as you have been asked. Slowly you strip out of your clothes and present yourself to them.\n\nThe two males circle around you, flicking their tongues out across your body as they survey the goods they have just brought. Hands reach out together for your cock and the two males stroke you gently, "
-               if self.grammarFixes == True:
+               if self.grammarFixes:
                   tempStr += "trying to"
                else:
                   tempStr += "urging"
                tempStr += " get you to moan for them, one of the Lizans going even so far to stroke across your "
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+               if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                   tempStr += "balls"
                elif self.lizanDontShowBalls and self.lizardCocks == self.cockTotal:
                   tempStr += "slit"
@@ -11439,7 +11439,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.horseCocks > 0):
                   tempStr += "flaring"
                tempStr += f" cock against his cute little asshole. As you rub against him, precum begins to leak out of your {self.cockDesc()} wang{self.plural(1)}, lubricating his sweet round ass.\n\nHe nods to you and you push your {self.cockDesc()} rod into his eager ass, causing him to moan in pleasure as he takes your full length. You begin to pound into his squeezable butt, proceeding slowly at first and only giving him the head. Once you begin to develop a rhythm your pace increases, your thrusts penetrating deeper and deeper. With each grunting thrust he moans and quakes under you, his ass swallowing up your cock.\n\nYou pound all the way into his boyish ass"
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+               if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                   tempStr += f", your {self.ballDesc()} {self.balls} balls slapping against his"
                   if self.lizanDontShowBalls:
                      tempStr += "thighs."
@@ -11452,7 +11452,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      tempStr += ", his massive nuts slapping against your thighs. A"
                tempStr += "s you do, you feel your "
-               if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+               if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                   tempStr += "own sack"
                else:
                   tempStr += "insides"
@@ -11655,7 +11655,7 @@ class NiminFetishFantasyv0975o_fla:
          #   tempArr.push(4)
          #if self.attireBot in {6,17} and self.lust > 80:
          #   tempArr.push(5)
-         if (self.useIsBottomOpen == False and self.attireBot in {5,7,12,13,14,16} or self.useIsBottomOpen and self.isBottomOpen() == True) and self.lust > 45:
+         if (not self.useIsBottomOpen and self.attireBot in {5,7,12,13,14,16} or self.useIsBottomOpen and self.isBottomOpen() == True) and self.lust > 45:
             tempArr.push(6)
          if self.attireBot in {4,15,20}:
             tempArr.push(7)
@@ -13283,7 +13283,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.cockChange(0,-(self.cockTotal - 1))
                                  if (self.balls > 2):
                                     tempStr = "\n\nWithin your "
-                                    if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                                        tempStr += "scrotum"
                                     else:
                                        tempStr += "abdomen"
@@ -13300,7 +13300,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.cockChange(0,-(self.cockTotal - 1))
                                  if (self.balls > 2):
                                     tempStr = "\n\nWithin your "
-                                    if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+                                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
                                        tempStr += "scrotum"
                                     else:
                                        tempStr += "abdomen"
@@ -13351,7 +13351,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.foundValley == True):
             buttonlist[1] = 1
             templist.push(1,"Valley")
-         if (self.foundSanctuary == True and self.usedSecretStairs == True and self.directPathToSanctuary):
+         if (self.directPathToSanctuary and self.foundSanctuary and self.usedSecretStairs):
             buttonlist[12] = 1
             templist.push(12,"Sanctuary")
          self.showButtons(buttonlist)
@@ -15980,7 +15980,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          else:
             tempStr = f"\n\nAs you peer over the beach of slick figures, one by your {self.legDesc(10)} squirms a little and opens an eye, only able make out your silhouette amidst the sunlight, but doesn't seem to care.\n\n\"Would you please give me a hand and oil me up? I can feel my scales starting to dry a little.\"\n\nThe deep voice of the very masculine figure is obviously directed at you. He's one of those who prefer to sunbathe in the buff, not afraid to show off his physique. His shoulders are broad and his muscles are nice and toned, even his ass shining with tightness. His tail droops over his crack, "
-            if self.lizanDontShowBalls == False:
+            if not self.lizanDontShowBalls:
                tempStr += "though you can see it's lifted a tad from laying atop his testicles and "
             tempStr += "his dual-cocks laying lazily on either side beneath it. You can see a bowl of oils beside him, the stuff he's already glazed with.\n\nWill you add some more?"
             self.outputMainText(tempStr,False)
@@ -15989,7 +15989,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.buttonChoice == 6):
                   if (self.ment <= 10):
                      tempStr = "You nod and derp, picking up the bowl of oils and splashing it across his back. Then you fall down onto him, wiggling like an idiot and using your front to splash and \"massage\" the oil into his scales. The man jerks in shock, rolling out from under you, "
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "his large balls swinging beneath his dual cocks, "
                      tempStr +="as he whacks you for your crude treatment.\n\n\"What are you doing?!\", he shouts with an annoyed tone. \"I'll get someone else to help. You nut!\"\n\nHe stares you down and waits for you to leave before rolling back onto the sand, awkwardly trying to clean up the mess you made on his back..."
                      self.outputMainText(tempStr,True)
@@ -16002,7 +16002,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs = 2
                   elif (self.ment <= 80):
                      tempStr = "You nod and kneel down beside him, picking up the bowl and drizzling the oil down his spine. He shudders a little from the sensation and croons as your hands come down to press it into his scales, gently pushing it around and kneading his muscles carefully. He wiggles a little as you hit his tense areas, obviously enjoying the massage you're giving him. Even his tail whips around a bit as you coat it, exposing his "
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "large testicles and "
                      tempStr += "dual cocks for a moment as he accidentally flashes you.\n\nSoon, he's quite coated and relaxed from your efforts. He thanks you for the unexpectedly pleasant experience and insists you take a vial of the oil with you, at least as compensation."
                      self.outputMainText(tempStr,True)
@@ -16011,28 +16011,28 @@ class NiminFetishFantasyv0975o_fla:
                      self.hrs = 3
                   else:
                      tempStr = f"You nod with a smile and straddle his bum as you kneel down, making sure to stay slightly aloft so as to not put any weight on him. You pick up the bowl and drizzle the oil down his spine, then press into it with your hands and spread it out across his body. Using your weight for more pressure, you deeply massage all of his muscles as you knead into his soft scales, making him groan a little from the tender treatment. You can feel his tail beging to flick beneath your {self.buttDesc()} rump as you make your way down to the small of his back, until you trap it as you shuffle back to sit over his knees.\n\nHis tight butt tenses a bit as you genetly brush the oil over it, but quickly relaxes as you grab and gently squeeze it. You softly grind into it, making his tail spasm beneath you until it eventually pulls out from under you as you begin to work at its base. You can see him wince with embarrassment as he realizes he's giving you a good view of his nethers, "
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "his large balls squished between his thighs with the heads of twin cocks peeking out underneath"
                      else:
                         tempStr += "his twin cocks slightly erect from the pleasure of the massage"
                      tempStr += ". You can see a few sparkles from the pre that drips out onto the sand, your efforts being a little too pleasant. However, he doesn't seem to try to cover himself and after a moment of your working at his tail, massaging from the tip to the base, he spreads his legs beneath you until you have to adjust your stance to kneel between them for better access.\n\nHis dongs clearly in view, "
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "his testicles squirming with cum, "
                      tempStr += "your hands move in to oil up between his thighs. You slowly work your way up his legs, teasing him until the drooling pre becomes much more prominent, large drops pushing out as you "
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "grab the orbs"
                      else:
                         tempStr += "rub around his slit"
                      tempStr += ". His tail nearly slaps you in anticipation, flicking around so much, and practically urges you towards the happy ending. Taking the blatent hints, you "
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "grope at the cum-filled things, reaching"
                      else:
                         tempStr += "reach"
                      tempStr += " down to grab one cock in each hand. The fleshy things harden in your grip, growing slightly longer"
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += ", but the overgrown fruits still weigh down on them, covering much of your hands"
                      tempStr +=" as you pump the cocks one after the other. The pre smears about, plenty of lubrication, and he begins to grunt and tense over the sand while you deftly jerk him off. Soon, his tail freezes, standing high as spunk spits out across the sand and pooling around your knees"
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += ", the balls working hard to keep up with the relief"
                      tempStr += " until you're kneeling in a puddle of the stuff.\n\nHis tail collapses onto your shoulder, resting there as you finish wiping him up and bringing him down from the orgasm, until you finally complete your task. Still breathing heavily, his body looking quite tired, he merely turns up towards you.\n\n\"Please, take some oil with you. You seem to be better at using it than me. And here,\" he reaches into his pile of clothes and pulls out a large berry, \"take this with you, I've had enough for a while, if you couldn't tell.\" He sticks out his tongue in jest, but quickly lays back down to take a nice soothing nap to reminisce the recent events, leaving you to go off on your own."
                      self.outputMainText(tempStr,True)
@@ -16081,7 +16081,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += "\n\nThen "
                   if (self.vagTotal > 1):
                      tempStr += f"a lizan man seems surprised to see your exra attributes. Already hard from thinking about it, he happily kisses you and presses his two pricks against your {self.bellyDesc()} belly before each slips them {self.legWhere(1)} your {self.legDesc(2)} to dive into seperate passages. He hugs you tight as he plunges both in at the same time, quivering slightly as he can feel himself through the fleshy wall that separates the rods. In and out, pre and lubrication spitting into the cleft between the bases of the two cocks and dribbling down his"
-                     if self.lizanDontShowBalls == False:
+                     if not self.lizanDontShowBalls:
                         tempStr += "scrotum"
                      else:
                         tempStr += "thighs"
@@ -16101,7 +16101,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (tempInt > 0):
                      tempStr += "\n\nHaving had a moment to gather yourself, "
                   tempStr += f"your attention is taken by one of the few lizan girls there, who waves you over as she lays on her back with a guy on top of her. You move closer and see she's already plugged up with one of his two shlongs. Looking a tad pained, it seemed the guy tried to fit both in at the same time, to no success, leaving his other cock bouncing awkwardly upon her clit. Yet, with you there, she's able to get a bit more fun as she directs you to lay on top of her, mushing her soft breasts against your "
-                  if self.grammarFixes == True and self.breastSize < 1:
+                  if self.grammarFixes and self.breastSize < 1:
                      tempStr += "flat chest"
                   else:
                      tempStr += "own"
@@ -16286,7 +16286,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempArr.push(3)
                if (self.cockTotal > 0):
                   tempArr.push(4)
-               if (self.balls > 0 and (self.showBalls or self.respectShowBalls)):
+               if (self.balls > 0 and (self.respectShowBalls or self.showBalls)):
                   tempArr.push(5)
                if (self.cockTotal > 0):
                   tempArr.push(6)
@@ -16619,7 +16619,7 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText("You pause as you kick something soft in the tall grass. You look down and see a somewhat shiny almost rubbery little ball roll a bit before coming to a stop. It looks kinda cute and squishy, making you feel cuddly just looking at it.\n\nWould you like to pick up the ball?",True)
          self.buttonConfirm()
          def doListen():
-            if (self.percent() < self.ment and not (self.snuggleBall == True and self.gameTweaksMisc)):
+            if (self.percent() < self.ment and not (self.gameTweaksMisc and self.snuggleBall)):
                self.outputMainText(f"Whether you wanted to or not, you seem to be leaning down to pick it up. Some urge to snuggle has overcome you, forcing you to attempt to pick the squishy thing up.\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.",True)
                self.snuggleBall = True
                self.itemAdd(244)
@@ -19853,7 +19853,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
       elif self.currentDungeon == 1010:
          tempStr = "The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open.\n\nGazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting.\n\nA massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground.\n\n\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle.\n\n\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"\n\n\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"\n\n\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"\n\nThe succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own."
-         if (self.foundSanctuary == False and self.directPathToSanctuary):
+         if (self.directPathToSanctuary and not self.foundSanctuary):
             tempStr += "\n\nYou look to your side and see an engraving on the wall. It is somewhat faded but you manage make out the phrase \"Only the worthy may use this path.\", strange. You feel an urge to touch it. Once you do, you hear a congradulatory melody, like you've just uncovered a secret. The section of wall next to where the engraving was magically disappears, revealing another set of stairs. You have a feeling that these stairs lead to the surface."
          self.outputMainText(tempStr,True)
          self.inDungeon = False
@@ -21472,7 +21472,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.vagTotal < 1 and self.cockTotal < 1):
                   tempStr += f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you."
                   tempStr += self.doLust(math.floor(10 + self.percent() / 10),1,ret=True)
-            elif (attack > 80 and (self.useIsBottomOpen and self.isBottomOpen() == True or self.useIsBottomOpen == False and self.attireBot == -1)):
+            elif (attack > 80 and (self.useIsBottomOpen and self.isBottomOpen() == True or not self.useIsBottomOpen and self.attireBot == -1)):
                tempStr += "\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you."
                if (self.vagTotal > 0):
                   tempStr += f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size."
@@ -21571,7 +21571,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.eggceleratorDose += 1
                   if (self.eggceleratorDose > 8 + math.ceil(self.percent() / 20)):
                      tempStr += f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying."
-                     if (self.useIsBottomOpen and self.isBottomOpen() == True or self.useIsBottomOpen == False and (self.attireBot == -2 or self.attireBot == 5 or self.attireBot == 7 or self.attireBot == 12 or self.attireBot == 13 or self.attireBot == 14 or self.attireBot == 16 or self.attireBot == 25)):
+                     if (self.useIsBottomOpen and self.isBottomOpen() == True or not self.useIsBottomOpen and self.attireBot in {-2,5,7,12,13,14,16,25}):
                         tempStr += f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out."
                      else:
                         tempStr += f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out."
@@ -21650,19 +21650,19 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.butt * self.buttMod < 15):
                   tempStr += f"\n\n\"Mmm... Your backside needs some more attention, doesn't it?\" She rushes around behind you, the spade of her tail giving your {self.buttDesc()} rear a quick spank. One of her vials glows and she smiles as your rump presses against your {self.clothesBottom()}, jiggling slightly as you stand."
                   self.butt += 1
-               elif (self.cockTotal > 0 and (self.succubusLeavesOne == False or self.succubusLeavesOne and self.cockSize > 1)):
+               elif (self.cockTotal > 0 and (not self.succubusLeavesOne or self.succubusLeavesOne and self.cockSize > 1)):
                   tempStr += f"\n\n\"And this thing you've got here just totally ruins your womanly figure now. We should take care of that~\" The woman steps behind you but her tail reaches around to your {self.cockDesc()} bulge, cradling it with the spade and giving it a shake. You can feel your cock{self.plural(1)} shrink slightly within your {self.clothesBottom()} while one of her vials glow."
-                  if (self.succubusLeavesOne == False and self.cockSize > 1 or self.succubusLeavesOne and self.cockSize > 2):
+                  if (not self.succubusLeavesOne and self.cockSize > 1 or self.succubusLeavesOne and self.cockSize > 2):
                      tempStr += self.cockChange(-1,0,ret=True)
                   else:
-                     if self.succubusLeavesOne == False:
+                     if (not self.succubusLeavesOne):
                         tempStr += self.cockChange(-1,0,ret=True)
-                     elif self.succubusLeavesOne:
-                        if self.dominant != 6 or self.lizardCocks < 2:
+                     elif (self.succubusLeavesOne):
+                        if (self.dominant != 6 or self.lizardCocks < 2):
                            tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-1),ret=True)
                         else:
                            tempStr += self.cockChange(-(self.cockSize-1),-(self.cockTotal-2),ret=True)
-                     if self.succubusLeavesOne == False or (self.succubusLeavesOne and self.vagTotal == 0):
+                     if (not self.succubusLeavesOne or self.succubusLeavesOne and self.vagTotal == 0):
                         tempStr += self.vagChange(0,1,ret=True)
                      tempStr += "\n\n\"Now that's my girl~ Who needs all those manly features when you can be a slut~?\" She seems quite pleased with the change."
                else:
@@ -21690,7 +21690,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" and your breasts swell within your {self.clothesTop()}, a sort of kinky sensation overcoming you as you absentmindedly bounce their greater size. The succubus steps back, a vial on her belt glowing from her success."
                      self.boobChange(2)
                      tempStr += self.doLust(15,1,ret=True)
-               elif (chance <= 60 and self.cockTotal > 0 and (self.succubusLeavesOne == False and self.cockSize > 2 or self.succubusLeavesOne and self.cockSize > 3)):
+               elif (chance <= 60 and self.cockTotal > 0 and (not self.succubusLeavesOne and self.cockSize > 2 or self.succubusLeavesOne and self.cockSize > 3)):
                   tempStr += f"\n\n\"A good girl doesn't need such garish things.\" She steps up to you and blatantly grabs the {self.cockDesc()} bulge in your {self.clothesBottom()}. You feel it tingly in a rather pleasant way"
                   if (self.percent() < self.ment):
                      tempStr += ", but you manage to resist and interrupt her efforts."
@@ -23137,13 +23137,13 @@ class NiminFetishFantasyv0975o_fla:
          nonEgg0 = as3.Math.max(egg1)
          nonEgg1 = as3.Math.max(egg0)
          if (egg0 > nonEgg0 + 20 and self.eggType != 0):
-            if self.grammarFixes == False or (self.grammarFixes and self.vagTotal > 0):
+            if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
                tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 1):
                self.eggMaxTime += 22
             self.eggType = 0
          if (egg1 > nonEgg1 + 20 and self.eggType != 1):
-            if self.grammarFixes == False or (self.grammarFixes and self.vagTotal > 0):
+            if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
                tempStr += "\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before."
             if (self.eggType == 0):
                self.eggMaxTime -= 22
@@ -23203,10 +23203,10 @@ class NiminFetishFantasyv0975o_fla:
          nonCock = True
       if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0): #Loose all cocks
          tempStr += f"\n\nYou shiver a little as your cock{self.plural(1)} "
-         if self.respectShowBalls == False or self.respectShowBalls == True and self.showBalls == True:
+         if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
             tempstr += "and balls "
          tempStr += "shrink"
-         if self.respectShowBalls == True and self.showBalls == True and self.cockTotal < 2:
+         if self.respectShowBalls and self.showBalls and self.cockTotal < 2:
             tempStr += "s"
          tempStr += " into your body, disappearing"
          if (self.vagTotal > 0):
@@ -23252,10 +23252,10 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "insectile "
             self.bugCocks += 1
          tempStr += "penis stands erect"
-         if self.lizanDontShowBalls == False or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
+         if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
             tempStr += " and balls to match settle within your crotch beneath"
          if (self.vagTotal > 0):
-            if self.lizanDontShowBalls == False or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
+            if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
                tempStr += f", slipping into your {self.vulvaDesc()} lips"
             tempStr += ". You now are considered a cross between genders, a herm."
             self.gender = 3
@@ -23519,14 +23519,14 @@ class NiminFetishFantasyv0975o_fla:
       if (self.legType != 1 and which == 1):
          if (self.legType == 0):
             tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
-            if self.grammarFixes == True:
+            if self.grammarFixes:
                tempStr += "Y"
             else:
                tempStr += "Eventually, y"
             tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
          if (self.legType >= 1000):
             tempStr += "\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
-            if self.grammarFixes == True:
+            if self.grammarFixes:
                tempStr += "Y"
             else:
                tempStr += "Eventually, y"
@@ -24386,7 +24386,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (tempButt <= 5):
             return "tight"
          elif (tempButt <= 15):
-            if ngrammar == True and self.ngrammar == True:
+            if ngrammar == True and self.ngrammar:
                return "\bn ample"
             return "ample"
          elif (tempButt <= 30):
