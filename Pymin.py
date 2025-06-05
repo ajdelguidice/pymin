@@ -1325,7 +1325,7 @@ class NiminFetishFantasyv0975o_fla:
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is not a valid hexadecimal color code")
                self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
             else:
-               if self.customthemecolor == False:
+               if not self.customthemecolor:
                   self.othemecolor = self.theme
                self.customthemecolor = True
                self.theme = self.optionswindow.children["Theme"].get()
@@ -1343,7 +1343,7 @@ class NiminFetishFantasyv0975o_fla:
                as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is not a valid hexadecimal color code")
                self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
             else:
-               if self.customfontcolor == False:
+               if not self.customfontcolor:
                   self.ofontcolor = self.fontColor
                self.customfontcolor = True
                self.fontColor = self.optionswindow.children["FontColor"].get()
@@ -1995,7 +1995,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (keyCode == 76) and special: #l
             self.sideEvent(8)
    def appearance(self):
-      if self.inBag == False and self.inStash == False and self.inShop == False:
+      if not (self.inBag or self.inStash or self.inShop):
          self.appearanceGo()
    def saveG(self):
       self.saveGo()
@@ -2386,19 +2386,19 @@ class NiminFetishFantasyv0975o_fla:
       tempInt = 0
       tempArray2 = as3.Array(12,"Return")
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
-      if which == "Bag":
+      if (which == "Bag"):
          tempArray = tuple(" " if i == 0 else self.itemName(i) for i in self.bagArray)
-         if (self.inBag == True):
+         if (self.inBag):
             self.choicePage = self.bagPage
-         elif self.mtb == True:
+         elif (self.mtb):
             self.choicePage = self.tempBagPage
-         elif page != None:
+         elif (page != None):
             self.choicePage = page
-      elif which == "Stash":
+      elif (which == "Stash"):
          tempArray = tuple(" " if i == 0 else self.itemName(i) for i in self.stashArray)
-         if (self.inStash == True):
+         if (self.inStash):
             self.choicePage = self.stashPage
-         elif self.mts == True:
+         elif (self.mts):
             self.choicePage = self.tempBagPage
       else:
          tempArray = as3.Array(*self.choiceListArray)
@@ -2415,8 +2415,8 @@ class NiminFetishFantasyv0975o_fla:
             if (tempArray[tempI] != " "):
                tempArray2.push(tempInt,tempArray[tempI])
       db = False
-      if which in {"Bag","Stash"}:
-         if self.inShop == False:
+      if (which in {"Bag","Stash"}):
+         if (not self.inShop):
             db = True
          self.showButtonsBag(buttonlist,tempArray,which,db)
       else:
@@ -2493,13 +2493,13 @@ class NiminFetishFantasyv0975o_fla:
             self.choicePage += 1
          else:
             self.choicePage = 1
-      if self.inBag:
-         if self.mts:
+      if (self.inBag):
+         if (self.mts):
             self.tempBagPage = self.choicePage
          else:
             self.bagPage = self.choicePage
-      elif self.inStash:
-         if self.mtb:
+      elif (self.inStash):
+         if (self.mtb):
             self.tempBagPage = self.choicePage
          else:
             self.stashPage = self.choicePage
@@ -2709,17 +2709,17 @@ class NiminFetishFantasyv0975o_fla:
          self.showPage(False,"")
          self.hideDiscard()
          self.hideAmount()
-      if self.inBag:
+      if (self.inBag):
          self.doBag()
-      elif self.inStash:
+      elif (self.inStash):
          self.doStash()
-      elif self.inShop:
+      elif (self.inShop):
          self.doShop()
       elif (self.currentState == 2):
          self.doBattle()
       elif (self.currentState == 3):
          self.doMasturbate()
-      elif self.inDungeon:
+      elif (self.inDungeon):
          self.doDungeon()
       elif (self.currentState == 1):
          self.doGeneral(nodjp)
@@ -3176,7 +3176,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lust + changes >= 100):
          self.lust = 100
          changes = 0
-         if (self.inBag == False):
+         if (not self.inBag):
             self.doLustForcedMasturbate()
       if (self.lust + changes < self.minLust + 20 and self.heat > 0 and self.heatTime < 0 and self.pregCheck(0) != True):
          self.lust = self.minLust + 20
@@ -3193,7 +3193,7 @@ class NiminFetishFantasyv0975o_fla:
       #For when player's lust gets too high
       if (self.currentState == 2):
          self.outputMainText(f"\n\nAmidst the heat of battle, your {self.legDesc(2)} buckle{self.legPlural(1)} from your intense arousal, preventing you from fighting any further.",False)
-         if (self.inBag == False):
+         if (not self.inBag):
             self.currentState = 1
          self.doNext()
          def doListen():
@@ -4300,7 +4300,7 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(4,"Save as",8,"Convert",12,"Return")
          for i in range(9):
             tempInt = i+1+i//3
-            if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True and self.solonlymode == False):
+            if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True and not self.solonlymode):
                dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
                tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
             elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
@@ -4321,7 +4321,7 @@ class NiminFetishFantasyv0975o_fla:
                self.openSFC()
             else:
                self.slot = self.buttonChoice
-               if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() == True and self.solonlymode == False):
+               if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() == True and not self.solonlymode):
                   dh = self.getdh(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
                   tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
                elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
@@ -4393,7 +4393,7 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(4,"Load File",8,"Convert")
          if self.currentState != 0:
             tempArray.push(12,"Return")
-         if self.solonlymode == True:
+         if self.solonlymode:
             for i in range(9):
                tempInt = i+1+i//3
                if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
@@ -4423,7 +4423,7 @@ class NiminFetishFantasyv0975o_fla:
                self.openSFC()
             else:
                self.slot = self.buttonChoice
-               if self.solonlymode == True:
+               if self.solonlymode:
                   if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
                      dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                      tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
@@ -4600,14 +4600,14 @@ class NiminFetishFantasyv0975o_fla:
    def doSave(self, slot:int, file:PurePath=None):
       #Function to save game
       if (slot == 4):
-         if self.solonlymode == True:
+         if self.solonlymode:
             savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
          else:
             savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("Xml File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
       elif (slot == 0):
          savefilename = file.resolve()
       else:
-         if self.solonlymode == True:
+         if self.solonlymode:
             savefilename = self.savelocation / f"Nimin_Save{slot}.sol"
          else:
             savefilename = self.savelocation / f"Nimin_Save{slot}.xml"
@@ -4629,7 +4629,7 @@ class NiminFetishFantasyv0975o_fla:
       #Function to load game
       loadfilename = ""
       if (slot == 4):
-         if self.solonlymode == True:
+         if self.solonlymode:
             loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
          else:
             loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
@@ -5743,14 +5743,14 @@ class NiminFetishFantasyv0975o_fla:
          self.refreshMoveItem(self.moveItemID,self.moveItemStack)
       if self.useNewStash and (self.inBag or self.inStash):
          if self.moveItemID != 0 and self.buttonsVisible[12] == True:
-            if self.inBag == True:
+            if (self.inBag):
                self.buttonWrite(12,"Stash")
             else:
                self.buttonWrite(12,"Bag")
       #self.hideAmount()
-      if self.inBag:
+      if (self.inBag):
          self.doBag(refresh=True)
-      elif self.inStash:
+      elif (self.inStash):
          self.doStash(refresh=True)
    def showMoveItem(self, which:bool):
       #Function to show the item which is being moved in a box off to the side
@@ -9080,7 +9080,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doSell()
          elif (self.buttonChoice == 12):
             self.inShop = False
-            if (self.shiftHeld == True):
+            if (self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -9284,7 +9284,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doDyeShop()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld == True):
+            if (self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -9400,7 +9400,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doApothecary()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld == True):
+            if (self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -9691,7 +9691,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doSalon()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld == True):
+            if (self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -9994,7 +9994,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doTailor()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld == True):
+            if (self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -21065,7 +21065,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.eHP + changes <= 0):
          self.specialKOWin()
          self.outputMainText("\n\nYou win the battle!",False)
-         if (self.inBag == True):
+         if (self.inBag):
             self.inBag = False
          self.currentState = 1
          self.doNext()
@@ -26200,7 +26200,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.wikiOpen == False:
          self.wikiOpen = True
          self.wikiwindow = itk.window(700,500,"Pymin: Wiki","frame","#A0A0A0",False,False,True)
-         if self.fixedresolutionmode == True:
+         if self.fixedresolutionmode:
             self.wikiwindow.disableResizing()
          self.wikiwindow.group(self.mo.children["root"])
          self.wikiwindow.addScrolledListbox("display","menu",0,0,153,500,("TkTextFont",8),"nw",True,10)
