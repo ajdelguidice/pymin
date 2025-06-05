@@ -1235,13 +1235,13 @@ class NiminFetishFantasyv0975o_fla:
       """
       Loads all of the variables and checks their boxes if they are True
       """
-      if self.solonlymode == True:
+      if self.solonlymode:
          self.optionswindow.children["SOLMode"].select()
-      if self.fixedresolutionmode == True:
+      if self.fixedresolutionmode:
          self.optionswindow.children["FixedRes"].select()
-      if self.customfontcolor == True:
+      if self.customfontcolor:
          self.optionswindow.children["Theme"].select()
-      if self.customthemecolor == True:
+      if self.customthemecolor:
          self.optionswindow.children["FontColor"].select()
       if self.statusTweaks:
          self.optionswindow.children["StatusTweaks"].select()
@@ -1714,7 +1714,7 @@ class NiminFetishFantasyv0975o_fla:
          self.altHeld = False
    def buttonEvent1(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(1)
       else:
          self.buttonChoice = 1
@@ -1722,7 +1722,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent2(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(2)
       else:
          self.buttonChoice = 2
@@ -1730,7 +1730,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent3(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(3)
       else:
          self.buttonChoice = 3
@@ -1738,17 +1738,12 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent4(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
-         self.buttonChoice = 4
-         self.hideUpDown()
-         self.doListen()
-      else:
-         self.buttonChoice = 4
-         self.hideUpDown()
-         self.doListen()
+      self.buttonChoice = 4
+      self.hideUpDown()
+      self.doListen()
    def buttonEvent5(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(5)
       else:
          self.buttonChoice = 5
@@ -1756,7 +1751,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent6(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(6)
       else:
          self.buttonChoice = 6
@@ -1764,7 +1759,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent7(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(7)
       else:
          self.buttonChoice = 7
@@ -1772,17 +1767,12 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent8(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
-         self.buttonChoice = 8
-         self.hideUpDown()
-         self.doListen()
-      else:
-         self.buttonChoice = 8
-         self.hideUpDown()
-         self.doListen()
+      self.buttonChoice = 8
+      self.hideUpDown()
+      self.doListen()
    def buttonEvent9(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(9)
       else:
          self.buttonChoice = 9
@@ -1790,7 +1780,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent10(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(10)
       else:
          self.buttonChoice = 10
@@ -1798,7 +1788,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent11(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
          self.itemMove(11)
       else:
          self.buttonChoice = 11
@@ -1806,14 +1796,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent12(self,*args):
       self.detailedDebug()
-      if (self.shiftHeld and self.inBag and not self.buttonShiftOverride and not self.mts):
-         self.buttonChoice = 12
-         self.hideUpDown()
-         self.doListen()
-      else:
-         self.buttonChoice = 12
-         self.hideUpDown()
-         self.doListen()
+      self.buttonChoice = 12
+      self.hideUpDown()
+      self.doListen()
    def buttonEventDiscard(self,*args):
       self.detailedDebug()
       self.buttonChoice = 13
