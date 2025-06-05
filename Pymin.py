@@ -1714,7 +1714,7 @@ class NiminFetishFantasyv0975o_fla:
          self.altHeld = False
    def buttonEvent1(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(1)
       else:
          self.buttonChoice = 1
@@ -1722,7 +1722,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent2(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(2)
       else:
          self.buttonChoice = 2
@@ -1730,7 +1730,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent3(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(3)
       else:
          self.buttonChoice = 3
@@ -1743,7 +1743,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen()
    def buttonEvent5(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(5)
       else:
          self.buttonChoice = 5
@@ -1751,7 +1751,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent6(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(6)
       else:
          self.buttonChoice = 6
@@ -1759,7 +1759,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent7(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(7)
       else:
          self.buttonChoice = 7
@@ -1772,7 +1772,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen()
    def buttonEvent9(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(9)
       else:
          self.buttonChoice = 9
@@ -1780,7 +1780,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent10(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(10)
       else:
          self.buttonChoice = 10
@@ -1788,7 +1788,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen()
    def buttonEvent11(self,*args):
       self.detailedDebug()
-      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+      if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(11)
       else:
          self.buttonChoice = 11
@@ -1860,9 +1860,9 @@ class NiminFetishFantasyv0975o_fla:
       if keyCode == 18: #Alt
          self.altHeld = True
       elif (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(1)
-         elif self.mo.getChildAttribute("button1","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button1","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 1
             self.hideUpDown()
             self.doListen()
@@ -1870,16 +1870,16 @@ class NiminFetishFantasyv0975o_fla:
          if self.newSLDialogVisible and not self.nsldblindervisible:
             self.nsldSelectionUp()
          elif special and self.buttonsVisible[2]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                self.itemMove(2)
-            elif self.mo.getChildAttribute("button2","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+            elif self.mo.getChildAttribute("button2","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                self.buttonChoice = 2
                self.hideUpDown()
                self.doListen()
       elif (keyCode == 105 or keyCode == 69) and special and self.buttonsVisible[3]: #e, numpad9
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(3)
-         elif self.mo.getChildAttribute("button3","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button3","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 3
             self.hideUpDown()
             self.doListen()
@@ -1889,9 +1889,9 @@ class NiminFetishFantasyv0975o_fla:
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 100 or keyCode == 65) and special and self.buttonsVisible[5]: #a, numpad4
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(5)
-         elif self.mo.getChildAttribute("button5","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button5","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 5
             self.hideUpDown()
             self.doListen()
@@ -1899,16 +1899,16 @@ class NiminFetishFantasyv0975o_fla:
          if self.newSLDialogVisible and not self.nsldblindervisible:
             self.nsldSelectionDown()
          elif special and self.buttonsVisible[6]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                self.itemMove(6)
-            elif self.mo.getChildAttribute("button6","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+            elif self.mo.getChildAttribute("button6","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                self.buttonChoice = 6
                self.hideUpDown()
                self.doListen()
       elif (keyCode == 102 or keyCode == 68) and special and self.buttonsVisible[7]: #d, numpad6
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(7)
-         elif self.mo.getChildAttribute("button7","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button7","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 7
             self.hideUpDown()
             self.doListen()
@@ -1918,23 +1918,23 @@ class NiminFetishFantasyv0975o_fla:
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 97 or keyCode == 90) and special and self.buttonsVisible[9]: #z, numpad1
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(9)
-         elif self.mo.getChildAttribute("button9","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button9","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 9
             self.hideUpDown()
             self.doListen() 
       elif (keyCode == 98 or keyCode == 88) and special and self.buttonsVisible[10]: #x, numpad2
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(10)
-         elif self.mo.getChildAttribute("button10","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button10","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 10
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 99 or keyCode == 67) and special and self.buttonsVisible[11]: #c, numpad3
-         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0):
+         if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(11)
-         elif self.mo.getChildAttribute("button11","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts):
+         elif self.mo.getChildAttribute("button11","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 11
             self.hideUpDown()
             self.doListen()
@@ -5581,7 +5581,9 @@ class NiminFetishFantasyv0975o_fla:
             if (self.conItem(ID)):
                self.outputMainText("\n\nWarning: Using this item will consume it.",False)
             self.buttonConfirm()
+            self.buttonShiftOverride = True
             def doListen():
+               self.buttonShiftOverride = False
                if (self.buttonChoice == 6):
                   if (self.conItem(ID)):
                      if (self.bagStackArray[self.choiceListResult[1]] <= 1):
@@ -8672,7 +8674,6 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAmount()
       self.buttonConfirm()
       self.buttonShiftOverride = True
-      self.inBag = False
       def doListen():
          self.buttonShiftOverride = False
          if (self.buttonChoice == 6):
@@ -8682,12 +8683,10 @@ class NiminFetishFantasyv0975o_fla:
             self.moveItemStack = 0
             self.showMoveItem(False)
          if which == "Bag":
-            self.inBag = True
             self.doBag()
          elif which == "Stash":
             self.doStash()
          elif which == "mts":
-            self.inBag = True
             self.moveToStash()
          elif which == "mtb":
             self.moveToBag()
