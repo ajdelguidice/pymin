@@ -25654,7 +25654,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcinputfilecomboboxtext.place(x=390,y=150,width=40,height=24,anchor="nw")
          self.sfcinputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
          self.sfcinputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
-         self.sfcinputfilecombobox["values"] = ("detect","xml","sol","nim")
+         self.sfcinputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcinputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
 
          self.sfcwindow.addFileEntryBox("display","outputfilebox",50,210,320,24,('TimesNewRoman',12),anchor="nw",text1="Output File",entrywidth=320,filetype=["file","save"])
@@ -25665,7 +25665,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcoutputfilecomboboxtext.place(x=390,y=210,width=40,height=24,anchor="nw")
          self.sfcoutputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
          self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
-         self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim")
+         self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
          
          if not self.cmdOpenConverter:
@@ -25701,6 +25701,8 @@ class NiminFetishFantasyv0975o_fla:
          data = self.loadSOL(inputfile)
       elif inputfiletype == "nim":
          data = self.loadSOL(inputfile,True)
+      elif inputfiletype == "toml":
+          data = self.loadTOML(inputfile)
       elif inputfiletype == "detect":
          infile = inputfile.lower()
          if infile.endswith(".xml"):
@@ -25709,6 +25711,8 @@ class NiminFetishFantasyv0975o_fla:
             data = self.loadSOL(inputfile)
          elif infile.endswith(".nim"):
             data = self.loadSOL(inputfile,True)
+         elif infile.endswith(".toml"):
+            data = self.loadTOML(inputfile)
          else:
             as3.trace(f"SaveConverter: Error: Detected input file type {ext} is not a supported file type")
             self.sfcwindow.configureChild("message",text=f"Error: Detected input file type {ext} is not a supported file type")
@@ -25722,6 +25726,8 @@ class NiminFetishFantasyv0975o_fla:
          self.saveSOL(data,outputfile)
       elif outputfiletype == "nim":
          self.saveNIM(data,outputfile)
+      elif inputfiletype == "toml":
+          self.saveTOML(data,outputfile)
       elif outputfiletype == "detect":
          outfile = outputfile.lower()
          if outfile.endswith(".xml"):
@@ -25734,8 +25740,10 @@ class NiminFetishFantasyv0975o_fla:
                self.sfcwindow.configureChild("message",text="Success")
          elif outfile.endswith(".sol"):
             self.saveSOL(data,outputfile)
-         elif outfile.endswith("nim"):
+         elif outfile.endswith(".nim"):
             self.saveNIM(data,outputfile)
+         elif outfile.endswith(".toml"):
+            self.saveTOML(data,outputfile)
          else:
             as3.trace(f"SaveConverter: Error: Detected output file type {ext} is not a supported file type")
             self.sfcwindow.configureChild("message",text=f"Error: Detected output file type {ext} is not a supported file type")
@@ -25797,6 +25805,15 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen == True:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
+   def saveTOML(self,dictionary:dict,outputfile):
+      #Work around for tomllib/tomli putting excess newlines between every element in an array
+      for i in {"trav","bag","bagStack","stash","stashStack","preg"}:
+         dictionary[i] = str(list(dictionary[i]))
+      #Write file
+      temp = tomli_w.dumps(dictionary).replace("\"[","[").replace("]\"","]")
+      assert True #!Check if output is correct with tomli_w.dumps(dictionary)
+      with open(outputfile,"w") as f:
+         f.write(temp)
    def saveNIM(self,dictionary:dict,outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
@@ -25883,6 +25900,14 @@ class NiminFetishFantasyv0975o_fla:
          raise e
       if self.sfcopen == True:
          self.sfcwindow.toTop()
+   def loadTOML(self,filename):
+      #from tomllib._parser import parse_array
+      with open(filename,"rb") as f:
+      #   temp = tomllib.load(f)
+         return tomllib.load(f)
+      #for i in {"trav","bagSave","bagStackSave","stashSave","stashStackSave","pregSave"}:
+      #   temp[i] = parse_array(temp[i],0,float)[-1]
+      return temp
    @staticmethod
    def loadSOL(filename,nim=False):
       try:
@@ -25972,8 +25997,8 @@ class NiminFetishFantasyv0975o_fla:
          if data == None:
             return
          strack = data.find('track')
-         sver = data.find('sver')
-         sver = ("0.975o","1.0.0") if sver == None else (sver.find("original"),sver.find("port"))
+         sver = data.find('version')
+         sver = ("0.975o","1.0.0") if sver == None else (sver.find("original").text,sver.find("port").text)
          sstats = data.find('stats')
          slevel = data.find('level')
          smod = data.find('mod')
