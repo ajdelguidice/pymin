@@ -974,7 +974,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function for the option window
       """
-      if self.optionsWinOpen == False:
+      if not self.optionsWinOpen:
          #Window
          self.optionswindow = itk.window(width=420,height=207,title="Options",type_="frame",color=self.theme,mainwindow=False,nomenu=True)
          #self.mo.group(self.optionswindow.children["root"])
@@ -1526,7 +1526,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.debugGIWinOpen:
             self.dgiw.geometry("150x100")
             self.dgiw.resizable(False,False)
-         if self.debugAWinOpen == True:
+         if self.debugAWinOpen:
             self.daw.geometry("170x100")
             self.daw.resizable(False,False)
       else:
@@ -1540,13 +1540,13 @@ class NiminFetishFantasyv0975o_fla:
             self.dw.enableResizing()
          if self.debugGIWinOpen:
             self.dgiw.resizable(True,True)
-         if self.debugAWinOpen == True:
+         if self.debugAWinOpen:
             self.daw.resizable(True,True)
    def closeOptionsWindow(self, *args):
       """
       Closes the option window
       """
-      if self.optionsWinOpen == True:
+      if self.optionsWinOpen:
          self.optionswindow.closeWindow()
          self.optionsWinOpen = False
    @staticmethod
@@ -2033,15 +2033,15 @@ class NiminFetishFantasyv0975o_fla:
       if self.mo.aboutwindow[0] == True:
          for i in ("window","label","okbutton"):
             self.mo.aboutwindow[2][i].configure(background=color)
-      if self.wikiOpen == True:
+      if self.wikiOpen:
          for i in ("text","menu"):
             self.wikiwindow.configureChild(i,background=color)
-      if self.sfcopen == True:
+      if self.sfcopen:
          for i in ("display","title","message","inputfilebox","outputfilebox","convertbutton"):
             self.sfcwindow.configureChild(i,background=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
-      if self.optionsWinOpen == True:
+      if self.optionsWinOpen:
          for i in ("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","if","OBC","ScrolledTextBorders","ThemeType","newgameoriginalsize","doLevelUPStaticButtons"):
             self.optionswindow.configureChild(i,background=color)
          self.optionswindow.configureChild("ApplyButton",background=specialcolour)
@@ -2067,15 +2067,15 @@ class NiminFetishFantasyv0975o_fla:
       if self.mo.aboutwindow[0] == True:
          for i in ("label","okbutton"):
             self.mo.aboutwindow[2][i].configure(foreground=color)
-      if self.wikiOpen == True:
+      if self.wikiOpen:
          for i in ("text","menu"):
             self.wikiwindow.configureChild(i,foreground=color)
-      if self.sfcopen == True:
+      if self.sfcopen:
          for i in ("title","message","inputfilebox","outputfilebox","convertbutton"):
             self.sfcwindow.configureChild(i,foreground=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
-      if self.optionsWinOpen == True:
+      if self.optionsWinOpen:
          for i in ("SOLMode","FixedRes","Theme","FontColor","SaveLocation","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType","newgameoriginalsize","doLevelUPStaticButtons"):
             self.optionswindow.configureChild(i,foreground=color)
          self.optionswindow.configureChild("ApplyButton",foreground=specialcolour)
@@ -25649,7 +25649,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.moveitemamountvisible):
          self.mo.configureChild("moveitemamount",text="")
    def openSFC(self):
-      if self.sfcopen == False:
+      if not self.sfcopen:
          self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,self.cmdOpenConverter,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
@@ -25815,7 +25815,7 @@ class NiminFetishFantasyv0975o_fla:
          return data
       except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
    def saveTOML(self,dictionary:dict,outputfile):
@@ -25836,30 +25836,30 @@ class NiminFetishFantasyv0975o_fla:
          byteData.writeObject(so)
          with open(outputfile,"wb") as f:
             f.write(byteData.getvalue())
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
       except NullData:
          as3.trace("File Loader: Error: Nim save file data is null. Try again")
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
       except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"nim\"")
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
-      if self.sfcopen == True:
+      if self.sfcopen:
          self.sfcwindow.toTop()
    def saveSOL(self,dictionary:dict,outputfile):
       try:
          sol.save(self.returnSOL(dictionary,outputfile),str(outputfile),AMF3)
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
       except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
-      if self.sfcopen == True:
+      if self.sfcopen:
          self.sfcwindow.toTop()
    def saveXML(self,dictionary:dict,outputfile):
       try:
@@ -25901,17 +25901,17 @@ class NiminFetishFantasyv0975o_fla:
          xml = xmletree.ElementTree(element=data)
          xmletree.indent(xml,space="\t")
          xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
       except DecodeError:
          as3.trace("SOL Loader: Error: Missing or unknown SOL version header. If you are trying to load .nim files, this is not the function to load those.")
       except Exception as e:
-         if self.sfcopen == True:
+         if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          else:
             as3.trace("SOL Loader: Error: Can not save file.")
          raise e
-      if self.sfcopen == True:
+      if self.sfcopen:
          self.sfcwindow.toTop()
    def loadTOML(self,filename):
       with open(filename,"rb") as f:
@@ -26060,7 +26060,7 @@ class NiminFetishFantasyv0975o_fla:
       self.openDebugWindow()
       self.detailedDebug()
    def openDebugWindow(self,*useless):
-      if (self.debugWinOpen != True):
+      if (not self.debugWinOpen):
          self.dw = itk.window(400,400,"Pymin: Debug Window","frame",self.theme,False,False,False)
          if self.fixedresolutionmode:
             self.dw.disableResizing()
@@ -26075,7 +26075,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.dw.toTop()
    def detailedDebug(self,*useless):
-      if (self.debugWinOpen == True):
+      if (self.debugWinOpen):
          temp = self.dw.children["text"].yview()
          #!Fix scrollbar positioning
          if temp[1] == 1.0: #temporary workaround so that the scrollbar position stays atleast when it hits the bottom
@@ -26093,7 +26093,7 @@ class NiminFetishFantasyv0975o_fla:
       self.debugWinOpen = False
       self.dw.closeWindow()
    def openDebugGiveItemWindow(self,*args):
-      if self.debugGIWinOpen == False:
+      if not self.debugGIWinOpen:
          self.dgiw = tkinter.Toplevel()
          self.dgiw.title("Give Item")
          self.dgiw.geometry("150x100")
@@ -26161,7 +26161,7 @@ class NiminFetishFantasyv0975o_fla:
       self.buttonShiftOverride = False
       self.statDisplay()
    def openDebugAffinityWindow(self,*args):
-      if self.debugAWinOpen == False:
+      if not self.debugAWinOpen:
          self.daw = tkinter.Toplevel()
          self.daw.title("Affinity")
          self.daw.geometry("170x100")
@@ -26230,7 +26230,7 @@ class NiminFetishFantasyv0975o_fla:
    def closeDAWindow(self,*args):
       self.debugAWinOpen = False
    def openWiki(self):
-      if self.wikiOpen == False:
+      if not self.wikiOpen:
          self.wikiOpen = True
          self.wikiwindow = itk.window(700,500,"Pymin: Wiki","frame","#A0A0A0",False,False,True)
          if self.fixedresolutionmode:
