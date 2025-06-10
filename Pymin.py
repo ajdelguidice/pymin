@@ -25823,7 +25823,7 @@ class NiminFetishFantasyv0975o_fla:
       for i in {"trav","bag","bagStack","stash","stashStack","preg"}:
          dictionary[i] = str(list(dictionary[i]))
       #Write file
-      temp = tomli_w.dumps(dictionary).replace("\"[","[").replace("]\"","]")
+      temp = tomli_w.dumps(dictionary).replace("\"[","[").replace("]\"","]").replace(", ",",")
       assert True #!Check if output is correct with tomli_w.dumps(dictionary)
       with open(outputfile,"w") as f:
          f.write(temp)
