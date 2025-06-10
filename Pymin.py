@@ -4283,6 +4283,12 @@ class NiminFetishFantasyv0975o_fla:
       track = xmletree.parse(file).getroot().find('track')
       return (track.find('day').text, track.find('hour').text)
    @staticmethod
+   def getdhTOML(file):
+      #Gets day and hour from TOML save files to display on the save and load screens
+      with open(file,"rb") as f:
+         temp = tomllib.load(f)["track"]
+         return temp["day"], temp["hour"]
+   @staticmethod
    def getdhSOL(file):
       #Gets day and hour from SOL save files to display on the save and load screens
       return sol.load(str(file))["track"][2:4] 
@@ -4300,10 +4306,10 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = as3.Array(4,"Save as",8,"Convert",12,"Return")
          for i in range(9):
             tempInt = i+1+i//3
-            if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True and not self.solonlymode):
+            if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() and not self.solonlymode):
                dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
                tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
-            elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
+            elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
                dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
             else:
@@ -4321,12 +4327,11 @@ class NiminFetishFantasyv0975o_fla:
                self.openSFC()
             else:
                self.slot = self.buttonChoice
-               if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() == True and not self.solonlymode):
+               if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
                   dh = self.getdh(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
                   tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
-               elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
+               elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                  #tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
                   tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
                else:
                   tempStr = "The chosen slot is empty"
@@ -4348,12 +4353,14 @@ class NiminFetishFantasyv0975o_fla:
                self.doSave(4)
             elif self.buttonChoice == 8:
                temp = self.mo.getChildAttribute("savefileentry","text")
-               if not temp.endswith((".xml",".sol",".nim")):
+               if not temp.endswith((".toml",".xml",".sol",".nim")):
                   temp += ".xml"
                temp2 = self.savelocation / temp
                if temp2.is_file():
                   temp1 = str(temp)
-                  if temp1.endswith(".xml"):
+                  if temp1.endswith(".toml"):
+                     dh = self.getdhTOML(temp2)
+                  elif temp1.endswith(".xml"):
                      dh = self.getdh(temp2)
                   elif temp1.endswith(".sol"):
                      dh = self.getdhSOL(temp2)
@@ -4366,7 +4373,7 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
                def doListen():
                   temp = self.mo.getChildAttribute("savefileentry","text")
-                  if not temp.endswith((".xml",".sol",".nim")):
+                  if not temp.endswith((".toml",".xml",".sol",".nim")):
                      temp += ".xml"
                   if (self.buttonChoice == 6):
                      self.doSave(0,self.savelocation / temp)
@@ -4396,16 +4403,16 @@ class NiminFetishFantasyv0975o_fla:
          if self.solonlymode:
             for i in range(9):
                tempInt = i+1+i//3
-               if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
+               if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
          else:
             for i in range(9):
                tempInt = i+1+i//3
-               if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() == True):
+               if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file()):
                   dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
-               elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file() == True):
+               elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                   tempArray.push(tempInt, f"D:{dh[0]} H:{dh[1]}")
          if message == None:
@@ -4424,14 +4431,14 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.slot = self.buttonChoice
                if self.solonlymode:
-                  if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
+                  if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                      dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                      tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
                else:
-                  if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() == True):
+                  if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
                      dh = self.getdh(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
                      tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
-                  elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file() == True):
+                  elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                      dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                      tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
                self.outputMainText(tempStr + f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.",True)
@@ -4461,7 +4468,7 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
                def doListen():
                   temp = self.mo.getChildAttribute("savefileentry","text")
-                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,(".xml",".sol",".nim"))):
+                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))):
                      self.doLoad(0,self.savelocation / temp)
                   else:
                      self.loadGo(ret=True)
@@ -4489,21 +4496,23 @@ class NiminFetishFantasyv0975o_fla:
    def nsldGetSorted(self):
       #Sorts the save file list in nsld
       if self.nsldSortOrder == 0:
-         return self.listFilesInDir_SortCustom(self.savelocation,(".xml",".sol",".nim"),0)
+         return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),0)
       elif self.nsldSortOrder == 1:
-         return self.listFilesInDir_SortCustom(self.savelocation,(".xml",".sol",".nim"),1)
+         return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),1)
       elif self.nsldSortOrder == 2:
-         return self.listFilesInDir_SortCustom(self.savelocation,(".xml",".sol",".nim"),2)
+         return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),2)
       elif self.nsldSortOrder == 3:
-         return self.listFilesInDir_SortAlpha(self.savelocation,(".xml",".sol",".nim"))
+         return self.listFilesInDir_SortAlpha(self.savelocation,(".toml",".xml",".sol",".nim"))
       elif self.nsldSortOrder == 4:
-         return self.listFilesInDir(self.savelocation,(".xml",".sol",".nim"))
+         return self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))
    def nsldDisplay(self):
       #Displays the save file list in nsld
       self.mo.slb_Delete("savefileselect",0,"end")
       for i in self.nsldGetSorted():
          temp = i.lower()
-         if temp.endswith(".xml"):
+         if temp.endswith(".toml"):
+            dh = self.getdhTOML(self.savelocation / i)
+         elif temp.endswith(".xml"):
             dh = self.getdh(self.savelocation / i)
          elif temp.endswith(".sol"):
             dh = self.getdhSOL(self.savelocation / i)
@@ -4528,7 +4537,7 @@ class NiminFetishFantasyv0975o_fla:
       self.keyboardTypingDisable = False
    def showNewSaveLoadDialog(self):
       #Displays nsld
-      if self.newSLDialogVisible == False:
+      if not self.newSLDialogVisible:
          temp = self.getColours()
          self.clearTextAllButtons()
          self.mo.addScrolledListbox("display","savefileselect",200,30,460,154,self.font,"nw",True,12)
@@ -4562,7 +4571,7 @@ class NiminFetishFantasyv0975o_fla:
          return False
    def hideNewSaveLoadDialog(self):
       #Hides nsld
-      if self.newSLDialogVisible == True:
+      if self.newSLDialogVisible:
          self.mo.destroyChild("savefileselect")
          self.mo.destroyChild("savefilelabel")
          self.mo.destroyChild("savefileentry")
@@ -4572,11 +4581,11 @@ class NiminFetishFantasyv0975o_fla:
          self._enableKeys()
    def showNSLDBlinder(self,which=False):
       #Hides nsld temporarily while conformation dialog is shown
-      if which == True and self.nsldblindervisible == False:
+      if which == True and not self.nsldblindervisible:
          self.mo.addLabel("display","nsldblinder",200,30,780,184,("TimesNewRoman",12),"nw")
          self.mo.configureChild("nsldblinder",background=self.theme,foreground=self.fontColor)
          self.nsldblindervisible = True
-      elif which == False and self.nsldblindervisible == True:
+      elif which == False and self.nsldblindervisible:
          self.mo.destroyChild("nsldblinder")
          self.nsldblindervisible = False
    def nsldSelectionUp(self):
@@ -4603,7 +4612,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.solonlymode:
             savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
          else:
-            savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("Xml File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
+            savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
       elif (slot == 0):
          savefilename = file.resolve()
       else:
@@ -4622,9 +4631,11 @@ class NiminFetishFantasyv0975o_fla:
          elif sfext.endswith(".nim"):
             self.saveNIM(data,savefilename)
          elif sfext.endswith(".xml"):
-            self.saveXml(data,savefilename)
+            self.saveXML(data,savefilename)
+         elif sfext.endswith(".toml"):
+            self.saveTOML(data,savefilename)
          else:
-            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.nim,.sol,.xml) got .{sfext.split(confmod.separator)[-1].split('.')[-1]}.")
+            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext.split(confmod.separator)[-1].split('.')[-1]}.")
    def doLoad(self, slot:int, file:PurePath=None):
       #Function to load game
       loadfilename = ""
@@ -4632,14 +4643,14 @@ class NiminFetishFantasyv0975o_fla:
          if self.solonlymode:
             loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
          else:
-            loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
+            loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
          if (isinstance(loadfilename,tuple) or len(loadfilename) == 0):
             self.loadGo()
             return #was originally "pass" but that stopped working for some reason
       elif (slot == 0):
          loadfilename = file.resolve()
       else:
-         if (self.savelocation / f"Nimin_Save{slot}.xml").is_file() == True:
+         if (self.savelocation / f"Nimin_Save{slot}.xml").is_file():
             loadfilename = self.savelocation / f"Nimin_Save{slot}.xml"
          else:
             loadfilename = self.savelocation / f"Nimin_Save{slot}.sol"
@@ -4650,8 +4661,10 @@ class NiminFetishFantasyv0975o_fla:
          data = self.loadSOL(loadfilename,True)
       elif lfext.endswith(".xml"):
          data = self.loadXML(loadfilename,"doLoad")
+      elif lfext.endswith(".toml"):
+         data = self.loadTOML(loadfilename)
       else:
-         as3.trace(f"SaveFile Loader: Error: Incorrect save file format. Expected (.nim,.sol,.xml) got .{lfext.split(".")[-1]}.")
+         as3.trace(f"SaveFile Loader: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext.split(".")[-1]}.")
          self.loadGo(message="Error: Could not load save file. Reason: Incorrect file format")
          return #was originally "pass" but that stopped working for some reason
       if data == None:
@@ -25721,7 +25734,7 @@ class NiminFetishFantasyv0975o_fla:
          as3.trace("SaveConverter: Error: Input save data is null. Try again")
          return
       if outputfiletype == "xml":
-         self.saveXml(data,outputfile)
+         self.saveXML(data,outputfile)
       elif outputfiletype == "sol":
          self.saveSOL(data,outputfile)
       elif outputfiletype == "nim":
@@ -25732,7 +25745,7 @@ class NiminFetishFantasyv0975o_fla:
          outfile = outputfile.lower()
          if outfile.endswith(".xml"):
             try:
-               self.saveXml(data,outputfile)
+               self.saveXML(data,outputfile)
             except:
                as3.trace("File Saver: Error: Failed to save file")
                self.sfcwindow.configureChild("message",text="Error: Failed to save file")
@@ -25848,7 +25861,7 @@ class NiminFetishFantasyv0975o_fla:
          raise e
       if self.sfcopen == True:
          self.sfcwindow.toTop()
-   def saveXml(self,dictionary:dict,outputfile):
+   def saveXML(self,dictionary:dict,outputfile):
       try:
          string = StringIO()
          strack = list(dictionary["track"].values())
