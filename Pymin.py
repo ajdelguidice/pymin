@@ -987,9 +987,9 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("options",background=self.theme)
          
          ##Sol Mode
-         self.optionswindow.addCheckboxWithLabel("options","SOLMode",10,10,80,20,("TimesNewRoman",11),"nw","Sol Mode")
+         self.optionswindow.addCheckboxWithLabel("options","SOLMode",10,10,152,20,("TimesNewRoman",11),"nw","Strict Save Compat")
          self.optionswindow.configureChild("SOLMode",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="Forces the game to only use save files compatible with the original game. Does\nnot effect the expanded save dialog (gametweak).")
+         CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
          
          ##Fixed Resolution
          self.optionswindow.addCheckboxWithLabel("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution")
