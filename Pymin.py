@@ -25914,13 +25914,8 @@ class NiminFetishFantasyv0975o_fla:
       if self.sfcopen == True:
          self.sfcwindow.toTop()
    def loadTOML(self,filename):
-      #from tomllib._parser import parse_array
       with open(filename,"rb") as f:
-      #   temp = tomllib.load(f)
          return tomllib.load(f)
-      #for i in {"trav","bagSave","bagStackSave","stashSave","stashStackSave","pregSave"}:
-      #   temp[i] = parse_array(temp[i],0,float)[-1]
-      return temp
    @staticmethod
    def loadSOL(filename,nim=False):
       try:
