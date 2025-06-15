@@ -55,7 +55,7 @@ if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
     print("Error: Path is somehow not a pathlib.Path object. Something is very wrong.")
     exit()
 
-def create(script_url="",as3libversion=""):
+def create(script_url="",as3libversion="",cfgDict:dict=None):
     #Sets up the virtual environment
     if (platform.system() == "Windows" and len(str(venvpath)) in {2,3} and venvpath[0].isalpha() and venvpath[1] == ":") or str(venvpath) == "/":
         print("Error: venvpath is set to the root directory. Can not create a virtual environment here.")
@@ -71,7 +71,7 @@ def create(script_url="",as3libversion=""):
         run([f"python", "-m" "venv", venvpath])
     
     #Create config
-    createConfigInVenv("./",platform.python_version(),useuv,useuvi,defrun,nossl,nohtmlparser,devenv)
+    createConfigInVenv("./",platform.python_version(),useuv,useuvi,defrun,nossl,nohtmlparser,devenv,cfgDict)
     
     #create game directory
     checkExistsMakeDir(venvpath / "Pymin")
@@ -138,7 +138,7 @@ def updatemodules(as3libversion="latest"):
     print("Done")
     replaceTkhtmlviewParserWithUnsafeOne()
 
-def recreate(url,as3libversion):
+def recreate(url,as3libversion,cfgDict:dict=None):
     if venvpath.is_dir() == False:
         print(f"Error: Directory \"{venvpath}\" either doesn't exist or is not a directory. Aborting...")
         return
@@ -150,7 +150,7 @@ def recreate(url,as3libversion):
         return
     else:
         rmtree(venvpath)
-    create(url,as3libversion)
+    create(url,as3libversion,cfgDict)
 
 def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands instead from href tags. Only use this inside of this project's virtual environment.
@@ -185,11 +185,11 @@ def repairInstall():
     if answer.lower() == "y":
         ...
 
-def migrateConfig():
-    #!Add toml
+def migrateConfig(save:bool=False):
     tempUV = False
     tempUVI = False
     tempDR = False
+    cfgloc = venvpath / "pymin.toml"
     #Get old config values. Check here in case it moves to a different location in the future.
     if (venvpath / ".USEUV").exists():
         tempUV = True
@@ -200,39 +200,44 @@ def migrateConfig():
     if (venvpath / ".DEFAULTRUN").exists():
         tempDR = True
         (venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
-    pyversion = platform.python_version()
-    with open(venvpath / "pyvenv.cfg","r") as f:
-        c = configparser.ConfigParser(allow_unnamed_section=True)
-        c.optionxform=str
-        c.read_file(f)
-        pyversion = c[configparser.UNNAMED_SECTION]["version_info"]
-    #Generate new config
-    cfgpath = venvpath / "pymin.cfg"
-    if cfgpath.exists():
+    if (curdir / "pymin.cfg").exists() or (venvpath / "pymin.cfg").exists():
+        #load config
+        if (curdir / "pymin.cfg").exists():
+            temploc = curdir / "pymin.cfg"
+            cfgloc = curdir / "pymin.toml"
+        else:
+            temploc = venvpath / "pymin.cfg"
         c = configparser.ConfigParser()
         c.optionxform=str
-        with open(cfgpath, 'r') as f:
+        with open(temploc,"r") as f:
             c.read_file(f)
-        if c.getint("Options","cfgVersion") == 1:
-            if tempUV:
-                c["Options"]["uvGlobal"] = "True"
-                c["Options"]["uvLocal"] = "False"
-            elif tempUVI:
-                c["Options"]["uvGlobal"] = "False"
-                c["Options"]["uvLocal"] = "True"
-            if tempDR:
-                c["Options"]["defaultToRun"] = "True"
-        with open(cfgpath, 'w') as f:
-            c.write(f)
+        conf = {"cfgVersion":1,"path":"","pyInstalledVersion":c["Options"]["pyInstalledVersion"]}
+        conf["path"] = c.get("Options","path",fallback=str(venvpath))
+        for i in {"uvGlobal","uvLocal","defaultToRun","noSSLVerify","noCustomHTMLParser","isDevEnv"}:
+            conf[i] = c.getboolean("Options",i,fallback=False)
+        temploc.unlink(missing_ok=True)
     else:
-        createConfigInVenv(path="./",pyInstalledVersion=pyversion,uvGlobal=tempUV,uvLocal=tempUVI,defaultToRun=tempDR,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False)
+        pyversion = platform.python_version()
+        with open(venvpath / "pyvenv.cfg","r") as f:
+            c = configparser.ConfigParser(allow_unnamed_section=True)
+            c.optionxform=str
+            c.read_file(f)
+            pyversion = c[configparser.UNNAMED_SECTION]["version_info"]
+        conf = {"cfgVersion":1,"path":"./","pyInstalledVersion":pyversion,"uvGlobal":tempUV,"uvLocal":tempUVI,"defaultToRun":tempDR,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
     del c
+    if save:
+        cfgWrite(cfgloc,conf)
+    else:
+        return conf
+
+def cfgWrite(file,configDict,mode="w"):
+    with open(file, mode) as f:
+        f.write(f"cfgVersion = 1\npath = \"{configDict['path']}\"\npyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
     if configDict == None:
         configDict = {"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}
-    with open(venvpath / "pymin.toml", 'w') as f:
-        f.write(f"cfgVersion = 1\npath = \"{configDict['path']}\"\npyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
+    cfgWrite(venvpath / "pymin.toml",configDict)
 
 def strbool(b):
     return "true" if b else "false"
@@ -254,9 +259,9 @@ except:
     import tomli as tomllib
     runlist.append("tomli")
 
-if (venvpath / ".USEUV").exists() or (venvpath / ".USEUVI").exists() or (venvpath / ".DEFAULTRUN").exists():
+if (venvpath / ".USEUV").exists() or (venvpath / ".USEUVI").exists() or (venvpath / ".DEFAULTRUN").exists() or (curdir / "pymin.cfg").exists() or (venvpath / "pymin.cfg").exists():
     print("Old config detected. Automatically migrating to new one.")
-    migrateConfig()
+    migrateConfig(True)
     print("Done")
 if (curdir / "pymin.toml").exists():
     #load config and set venvpath
@@ -285,34 +290,6 @@ elif (venvpath / "pymin.toml").exists():
     nohtmlparser = c2.get("noCustomHTMLParser",False)
     pyinstalversion = c2.get("pyInstalledVersion")
     devenv = c2.get("isDevEnv",False)
-elif (curdir / "pymin.cfg").exists() or (venvpath / "pymin.cfg").exists():
-    #load config
-    usepath = False
-    if (curdir / "pymin.cfg").exists():
-        usepath = True
-        temploc = curdir / "pymin.cfg"
-        cfgloc = curdir / "pymin.toml"
-    else:
-        temploc = venvpath / "pymin.cfg"
-        cfgloc = venvpath / "pymin.toml"
-    c = configparser.ConfigParser()
-    c.optionxform=str
-    with open(temploc,"r") as f:
-        c.read_file(f)
-    c1 = {}
-    c2 = {"cfgVersion":1,"path":"","pyInstalledVersion":c["Options"]["pyInstalledVersion"]}
-    c2["path"] = c.get("Options","path",fallback=str(venvpath))
-    for i in {"uvGlobal","uvLocal","defaultToRun","noSSLVerify","noCustomHTMLParser","isDevEnv"}:
-        c2[i] = c.getboolean("Options",i,fallback=False)
-    if usepath:
-        venvpath = Path(c2["path"]).resolve()
-    defrun = c2["defaultToRun"]
-    useuv = c2["uvGlobal"]
-    useuvi = c2["uvLocal"]
-    nossl = c2["noSSLVerify"]
-    nohtmlparser = c2["noCustomHTMLParser"]
-    pyinstalversion = c2["pyInstalledVersion"]
-    devenv = c2["isDevEnv"]
 else:
     #Use fallback values because config does not exist
     defrun = False
@@ -431,13 +408,12 @@ else:
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[2:]))
     elif args[1] == "conv":
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", "--converter"))
-    elif args[1] == "cmd":
-        ...
+    elif args[1] == "cmd":...
     elif args[1] == "recreate":
         if "--migrate-config" in args:
-            migrateConfig() #!Fix this so that it moves it to the new one
+            cfgdict = migrateConfig()
         if "--with-saves" in args:...
-        recreate(url,as3libversiontag)
+        recreate(url,as3libversiontag,cfgdict)
     elif args[1] == "uv":
         if venvpath.exists():
             if len(args) == 2:
@@ -454,5 +430,4 @@ else:
                     run(pythonm+rl)
 if venvpath.exists() and c1 != c2: #Check if config was modified
     #Write modified config to disk
-    with open(cfgloc, 'w') as f:
-        f.write(f"cfgVersion = 1\npath = \"{c2['path']}\"\npyInstalledVersion = \"{c2['pyInstalledVersion']}\"\nuvGlobal = {strbool(c2['uvGlobal'])}\nuvLocal = {strbool(c2['uvLocal'])}\ndefaultToRun = {strbool(c2['defaultToRun'])}\nnoSSLVerify = {strbool(c2['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(c2['noCustomHTMLParser'])}\nisDevEnv = {strbool(c2['isDevEnv'])}\n")
+    cfgWrite(cfgloc,c2)
