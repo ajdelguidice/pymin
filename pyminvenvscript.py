@@ -6,6 +6,8 @@ from sys import argv
 from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlopen
+import ssl
+from io import StringIO
 
 #Notes:
 #len(str(pathlib.Path)) is a workaround for the windows implementation of pathlib.Path not having a length property
@@ -106,7 +108,7 @@ def installmodules(as3libversion="latest"):
 def downloadgame(url=""):
     #downloads the game
     print("Installing game... Please wait.")
-    with urlopen(url,context=ssl_context) as urlfile:
+    with urlopen(url,context=getSSLContext()) as urlfile:
         (venvpath / "Pymin/Pymin.py").write_bytes(urlfile.read())
     print("Done")
 
@@ -136,7 +138,7 @@ def updatemodules(as3libversion="latest"):
     print("Done")
     replaceTkhtmlviewParserWithUnsafeOne()
 
-def rezero(url,as3libversion):
+def recreate(url,as3libversion):
     if venvpath.is_dir() == False:
         print(f"Error: Directory \"{venvpath}\" either doesn't exist or is not a directory. Aborting...")
         return
@@ -161,7 +163,7 @@ def replaceTkhtmlviewParserWithUnsafeOne():
             path = Path(temp.replace("\\\\","/").replace("\\r",""))
         else:
             path = Path(temp)
-        with urlopen("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py",context=ssl_context) as urlfile:
+        with urlopen("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py",context=getSSLContext()) as urlfile:
             path.write_bytes(urlfile.read())
         print("Done")
 
@@ -235,8 +237,15 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
 def strbool(b):
     return "true" if b else "false"
 
-ssl_context = None
+insecure_context = ssl._create_unverified_context()
+
+def getSSLContext():
+    if nossl or tempnossl:
+        return insecure_context
+    return None
+
 args = list(argv)
+tempnossl = False
 
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
 try:
@@ -340,10 +349,34 @@ except:
     exit() #!for some reason, this does not exit
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
-elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("rezero"),args.indexOf("update")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
-    print("venvscript {install|update|run|conv|cmd|recreate|uv} [args]\nCommands:\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\trun\t\t\tRuns the game. All arguement pass to this will be forwarded to the game instead of being used by this script.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment.\n\nArguements:\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\t--help\t\t\tDisplays this message\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--overwrite\t\tBypasses the overwrite restriction in the \"install\" command\n\t--migrate-config\tMigrates the config from a previous version to the current one. This should run automatically if an old version is detected.")
+elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("update")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
+elif args[1] == "migrate-config":
+    migrateConfig()
+elif defrun and (len(args) < 2 or args[1].startswith(("-","--","/"))):
+    run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]))
 else:
-    if args[1] in {"install","recreate","update","rezero"} or args[1].startswith("--"):
+    if args[1] in {"install","update","recreate"}:
+        if nossl or "--unverified" in args:
+            tempnossl = True
+        if "--version" in args:
+            versiontag = args[args.indexOf("--version") + 1]
+        else:
+            versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
+        url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
+        if "--as3libversion" in args:
+            as3libversiontag = args[args.indexOf("--as3libversion") + 1]
+        else:
+            as3libversiontag = "latest"
+    if args[1] == "cfg":
+        if len(args) == 2:
+            text = StringIO()
+            for k,v in c2.items():
+                text.write(f"{k}: {v}\n")
+            text.write(f"tempNoSSL: {tempnossl}")
+            print(text.getvalue())
+            text.close()
+            exit()
         if "--no-ssl" in args:
             nossl = True
             c2["noSSLVerify"] = True
@@ -383,21 +416,7 @@ else:
             #All this does is make the script not update anything that I might be working on
             devenv = True
             c2["isDevEnv"] = True
-        if "--migrate-config" in args:
-            migrateConfig()
-        if nossl or "--unverified" in args:
-            import ssl
-            ssl_context = ssl._create_unverified_context()
-        if "--version" in args:
-            versiontag = args[args.indexOf("--version") + 1]
-        else:
-            versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
-        url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-        if "--as3libversion" in args:
-            as3libversiontag = args[args.indexOf("--as3libversion") + 1]
-        else:
-            as3libversiontag = "latest"
-    if args[1] == "install":
+    elif args[1] == "install":
         if venvpath.exists() and "--overwrite" in args:
             print("You can not use install in an existing directory. Did you mean \"update\"?")
             exit()
@@ -414,8 +433,11 @@ else:
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", "--converter"))
     elif args[1] == "cmd":
         ...
-    elif args[1] in {"recreate","rezero"}:
-        rezero(url,as3libversiontag)
+    elif args[1] == "recreate":
+        if "--migrate-config" in args:
+            migrateConfig() #!Fix this so that it moves it to the new one
+        if "--with-saves" in args:...
+        recreate(url,as3libversiontag)
     elif args[1] == "uv":
         if venvpath.exists():
             if len(args) == 2:
@@ -430,11 +452,6 @@ else:
                     run(rl)
                 elif useuvi:
                     run(pythonm+rl)
-    else:
-        if defrun:
-            run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]))
-        else:
-            ...
 if venvpath.exists() and c1 != c2: #Check if config was modified
     #Write modified config to disk
     with open(cfgloc, 'w') as f:
