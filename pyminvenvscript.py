@@ -176,7 +176,7 @@ def updatePythonVersion(pyver):
         devenv = False
         installmodules()
         devenv = temp
-        c2["Options"]["pyInstalledVersion"] = platform.python_version()
+        c2["pyInstalledVersion"] = platform.python_version()
 
 def repairInstall():
     answer = input("Python failed to launch. Would you like to try automated repair? (y/N)")
@@ -184,6 +184,7 @@ def repairInstall():
         ...
 
 def migrateConfig():
+    #!Add toml
     tempUV = False
     tempUVI = False
     tempDR = False
@@ -226,59 +227,83 @@ def migrateConfig():
     del c
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
-    global noConfigExists
     if configDict == None:
-        configDict = {"Options":{"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}}
-    c = configparser.ConfigParser()
-    c.optionxform=str
-    c.read_dict(configDict)
-    with open(venvpath / "pymin.cfg", 'w') as f:
-        c.write(f)
-    del c
-    noConfigExists = False
+        configDict = {"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}
+    with open(venvpath / "pymin.toml", 'w') as f:
+        f.write(f"cfgVersion = 1\npath = \"{configDict['path']}\"\npyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
+
+def strbool(b):
+    return "true" if b else "false"
 
 ssl_context = None
-noConfigExists = False
 args = list(argv)
+
+runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
+try:
+    import tomllib
+except:
+    import tomli as tomllib
+    runlist.append("tomli")
+
 if (venvpath / ".USEUV").exists() or (venvpath / ".USEUVI").exists() or (venvpath / ".DEFAULTRUN").exists():
     print("Old config detected. Automatically migrating to new one.")
     migrateConfig()
     print("Done")
-if (curdir / "pymin.cfg").exists():
+if (curdir / "pymin.toml").exists():
     #load config and set venvpath
-    cfgloc = curdir / "pymin.cfg"
-    c1 = configparser.ConfigParser()
-    c1.optionxform=str
-    c2 = configparser.ConfigParser()
-    c2.optionxform=str
-    with open(cfgloc,"r") as f:
-        c1.read_file(f)
-        c2.read_dict(c1)
-    venvpath = Path(c2["Options"]["path"]).resolve()
-    defrun = c2.getboolean("Options","defaultToRun",fallback=False)
-    useuv = c2.getboolean("Options","uvGlobal",fallback=False)
-    useuvi = c2.getboolean("Options","uvLocal",fallback=False)
-    nossl = c2.getboolean("Options","noSSLVerify",fallback=False)
-    nohtmlparser = c2.getboolean("Options","noCustomHTMLParser",fallback=False)
-    pyinstalversion = c2["Options"]["pyInstalledVersion"]
-    devenv = c2.getboolean("Options","isDevEnv",fallback=False)
-elif (venvpath / "pymin.cfg").exists():
+    cfgloc = curdir / "pymin.toml"
+    with open(cfgloc,"rb") as f:
+        c1 = tomllib.load(f)
+        c2 = dict(c1)
+    venvpath = Path(c2.get("path",venvpath)).resolve()
+    defrun = c2.get("defaultToRun",False)
+    useuv = c2.get("uvGlobal",False)
+    useuvi = c2.get("uvLocal",False)
+    nossl = c2.get("noSSLVerify",False)
+    nohtmlparser = c2.get("noCustomHTMLParser",False)
+    pyinstalversion = c2.get("pyInstalledVersion")
+    devenv = c2.get("isDevEnv",False)
+elif (venvpath / "pymin.toml").exists():
     #load config
-    cfgloc = venvpath / "pymin.cfg"
-    c1 = configparser.ConfigParser()
-    c1.optionxform=str
-    c2 = configparser.ConfigParser()
-    c2.optionxform=str
-    with open(cfgloc,"r") as f:
-        c1.read_file(f)
-        c2.read_dict(c1)
-    defrun = c2.getboolean("Options","defaultToRun",fallback=False)
-    useuv = c2.getboolean("Options","uvGlobal",fallback=False)
-    useuvi = c2.getboolean("Options","uvLocal",fallback=False)
-    nossl = c2.getboolean("Options","noSSLVerify",fallback=False)
-    nohtmlparser = c2.getboolean("Options","noCustomHTMLParser",fallback=False)
-    pyinstalversion = c2["Options"]["pyInstalledVersion"]
-    devenv = c2.getboolean("Options","isDevEnv",fallback=False)
+    cfgloc = venvpath / "pymin.toml"
+    with open(cfgloc,"rb") as f:
+        c1 = tomllib.load(f)
+        c2 = dict(c1)
+    defrun = c2.get("defaultToRun",False)
+    useuv = c2.get("uvGlobal",False)
+    useuvi = c2.get("uvLocal",False)
+    nossl = c2.get("noSSLVerify",False)
+    nohtmlparser = c2.get("noCustomHTMLParser",False)
+    pyinstalversion = c2.get("pyInstalledVersion")
+    devenv = c2.get("isDevEnv",False)
+elif (curdir / "pymin.cfg").exists() or (venvpath / "pymin.cfg").exists():
+    #load config
+    usepath = False
+    if (curdir / "pymin.cfg").exists():
+        usepath = True
+        temploc = curdir / "pymin.cfg"
+        cfgloc = curdir / "pymin.toml"
+    else:
+        temploc = venvpath / "pymin.cfg"
+        cfgloc = venvpath / "pymin.toml"
+    c = configparser.ConfigParser()
+    c.optionxform=str
+    with open(temploc,"r") as f:
+        c.read_file(f)
+    c1 = {}
+    c2 = {"cfgVersion":1,"path":"","pyInstalledVersion":c["Options"]["pyInstalledVersion"]}
+    c2["path"] = c.get("Options","path",fallback=str(venvpath))
+    for i in {"uvGlobal","uvLocal","defaultToRun","noSSLVerify","noCustomHTMLParser","isDevEnv"}:
+        c2[i] = c.getboolean("Options",i,fallback=False)
+    if usepath:
+        venvpath = Path(c2["path"]).resolve()
+    defrun = c2["defaultToRun"]
+    useuv = c2["uvGlobal"]
+    useuvi = c2["uvLocal"]
+    nossl = c2["noSSLVerify"]
+    nohtmlparser = c2["noCustomHTMLParser"]
+    pyinstalversion = c2["pyInstalledVersion"]
+    devenv = c2["isDevEnv"]
 else:
     #Use fallback values because config does not exist
     defrun = False
@@ -297,19 +322,13 @@ else:
         pyinstalversion = platform.python_version()
     devenv = False
     c1 = {}
-    c2 = {"Options":{"cfgVersion":1,"path":"./","pyInstalledVersion":pyinstalversion,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}}
-    noConfigExists = True
+    c2 = {"cfgVersion":1,"path":"./","pyInstalledVersion":pyinstalversion,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
 
 if platform.system() == "Windows":
     pythonvenvloc = venvpath / "Scripts/python.exe"
 else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
-runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
-try:
-    import tomllib
-except:
-    runlist.append("tomli")
 
 if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
     updatePythonVersion(pyinstalversion)
@@ -327,43 +346,43 @@ else:
     if args[1] in {"install","recreate","update","rezero"} or args[1].startswith("--"):
         if "--no-ssl" in args:
             nossl = True
-            c2["Options"]["noSSLVerify"] = "True"
+            c2["noSSLVerify"] = True
         elif "--use-ssl" in args:
             nossl = False
-            c2["Options"]["noSSLVerify"] = "False"
+            c2["noSSLVerify"] = False
         if "--uv-global" in args:
             useuv = True
-            c2["Options"]["uvGlobal"] = "True"
+            c2["uvGlobal"] = True
             useuvi = False
-            c2["Options"]["uvLocal"] = "False"
+            c2["uvLocal"] = False
         elif "--uv-local" in args:
             useuv = False
-            c2["Options"]["uvGlobal"] = "False"
+            c2["uvGlobal"] = False
             useuvi = True
-            c2["Options"]["uvLocal"] = "True"
+            c2["uvLocal"] = True
         elif "--no-uv" in args:
             useuv = False
-            c2["Options"]["uvGlobal"] = "False"
+            c2["uvGlobal"] = False
             useuvi = False
-            c2["Options"]["uvLocal"] = "False"
+            c2["uvLocal"] = False
         if "--default-help" in args:
             defrun = False
-            c2["Options"]["defaultToRun"] = "False"
+            c2["defaultToRun"] = False
         elif "--default-run" in args:
             defrun = True
-            c2["Options"]["defaultToRun"] = "True"
+            c2["defaultToRun"] = True
         if "--nohtmlparser" in args:
             nohtmlparser = True
-            c2["Options"]["nocustomHTMLParser"] = "True"
+            c2["nocustomHTMLParser"] = True
         elif "--withhtmlparser" in args:
             nohtmlparser = False
-            c2["Options"]["nocustomHTMLParser"] = "False"
+            c2["nocustomHTMLParser"] = False
         if "--supersecretdevmode" in args:
             #This arguement is meant to be undocumented in the help section
             #Does not have an option to disable because I would never need to disable this
             #All this does is make the script not update anything that I might be working on
             devenv = True
-            c2["Options"]["isDevEnv"] = "True"
+            c2["isDevEnv"] = True
         if "--migrate-config" in args:
             migrateConfig()
         if nossl or "--unverified" in args:
@@ -416,10 +435,7 @@ else:
             run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]))
         else:
             ...
-if venvpath.exists():
-    if noConfigExists:
-        createConfigInVenv(configDict=c2)
-    elif c1 != c2 and type(c2) != dict: #Check if config was modified
-        #Write modified config to disk
-        with open(cfgloc, 'w') as f:
-            c2.write(f)
+if venvpath.exists() and c1 != c2: #Check if config was modified
+    #Write modified config to disk
+    with open(cfgloc, 'w') as f:
+        f.write(f"cfgVersion = 1\npath = \"{c2['path']}\"\npyInstalledVersion = \"{c2['pyInstalledVersion']}\"\nuvGlobal = {strbool(c2['uvGlobal'])}\nuvLocal = {strbool(c2['uvLocal'])}\ndefaultToRun = {strbool(c2['defaultToRun'])}\nnoSSLVerify = {strbool(c2['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(c2['noCustomHTMLParser'])}\nisDevEnv = {strbool(c2['isDevEnv'])}\n")
