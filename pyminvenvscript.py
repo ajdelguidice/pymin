@@ -185,11 +185,12 @@ def repairInstall():
     if answer.lower() == "y":
         ...
 
-def migrateConfig(save:bool=False):
+def migrateConfig(save:bool=False,getNew:bool=False):
     tempUV = False
     tempUVI = False
     tempDR = False
     cfgloc = venvpath / "pymin.toml"
+    conf = None
     #Get old config values. Check here in case it moves to a different location in the future.
     if (venvpath / ".USEUV").exists():
         tempUV = True
@@ -200,8 +201,13 @@ def migrateConfig(save:bool=False):
     if (venvpath / ".DEFAULTRUN").exists():
         tempDR = True
         (venvpath / ".DEFAULTRUN").unlink(missing_ok=True)
-    if (curdir / "pymin.cfg").exists() or (venvpath / "pymin.cfg").exists():
-        #load config
+    #load config
+    if getNew and ((curdir / "pymin.toml").exists() or (venvpath / "pymin.toml").exists()):
+        if (curdir / "pymin.toml").exists():
+            cfgloc = curdir / "pymin.toml"
+        with open(cfgloc,"rb") as f:
+            conf = tomllib.load(f)
+    elif (curdir / "pymin.cfg").exists() or (venvpath / "pymin.cfg").exists():
         if (curdir / "pymin.cfg").exists():
             temploc = curdir / "pymin.cfg"
             cfgloc = curdir / "pymin.toml"
@@ -225,7 +231,9 @@ def migrateConfig(save:bool=False):
             pyversion = c[configparser.UNNAMED_SECTION]["version_info"]
         conf = {"cfgVersion":1,"path":"./","pyInstalledVersion":pyversion,"uvGlobal":tempUV,"uvLocal":tempUVI,"defaultToRun":tempDR,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
     del c
-    if save:
+    if conf == None:
+        print("Nothing to do.")
+    elif save:
         cfgWrite(cfgloc,conf)
     else:
         return conf
@@ -326,7 +334,7 @@ except:
     exit() #!for some reason, this does not exit
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
-elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("cmd"),args.indexOf("recreate"),args.indexOf("update")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
+elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
     print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
 elif args[1] == "migrate-config":
     migrateConfig()
@@ -411,7 +419,9 @@ else:
     elif args[1] == "cmd":...
     elif args[1] == "recreate":
         if "--migrate-config" in args:
-            cfgdict = migrateConfig()
+            print("Fetching old config.")
+            cfgdict = migrateConfig(getNew=True)
+            print("Done.")
         if "--with-saves" in args:...
         recreate(url,as3libversiontag,cfgdict)
     elif args[1] == "uv":
