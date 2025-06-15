@@ -5702,7 +5702,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.buttonChoice == 6):
                   self.bagSlotClear(self.choiceListResult[1])
                   self.gainItem(self.tempID)
-               if (self.buttonChoice == 7):
+               else:
                   self.doDiscard(self.tempID)
             self.doListen = doListen
          elif (self.canLose(self.choiceListResult[0]) == False):
@@ -9052,7 +9052,9 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
             def doListen():
                tempInt = 0
-               if (self.buttonChoice not in {7,12}):
+               if (self.buttonChoice in {7,12}):
+                  self.doShop()
+               else:
                   if (self.buttonChoice == 1):
                      tempInt = 1
                   elif (self.buttonChoice == 6):
@@ -9086,8 +9088,6 @@ class NiminFetishFantasyv0975o_fla:
                      self.addManyItem(self.goodsID(self.buy),tempInt)
                      self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
                      self.doProcess()
-               else:
-                  self.doShop()
             self.doListen = doListen
          elif (self.buttonChoice == 8):
             self.doSell()
@@ -9372,7 +9372,9 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
             def doListen():
                tempInt = 0
-               if (self.buttonChoice not in {7,12}):
+               if (self.buttonChoice in {7,12}):
+                  self.doApothecary()
+               else:
                   if self.buttonChoice == 1:
                      tempInt = 1
                   elif self.buttonChoice == 2:
@@ -9409,8 +9411,6 @@ class NiminFetishFantasyv0975o_fla:
                      else:
                         self.apothLearn(self.apothID(self.buy))
                      self.doProcess()
-               else:
-                  self.doApothecary()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
             if (self.shiftHeld):
@@ -16516,7 +16516,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doEnd()
                            self.doListen = doListen
                         self.doListen = doListen
-                     elif (self.buttonChoice == 7):
+                     else:
                         self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.",True)
                         self.doSexP(7)
                         self.hrs = 1
