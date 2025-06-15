@@ -25669,6 +25669,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcinputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
          self.sfcinputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcinputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
+         self.sfcinputfilecombobox.current(0)
 
          self.sfcwindow.addFileEntryBox("display","outputfilebox",50,210,320,24,('TimesNewRoman',12),anchor="nw",text1="Output File",entrywidth=320,filetype=["file","save"])
          self.sfcwindow.configureChild("outputfilebox",foreground=self.fontColor,background=self.theme)
@@ -25680,7 +25681,8 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
          self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
-         
+         self.sfcoutputfilecombobox.current(0)
+
          if not self.cmdOpenConverter:
             self.sfcwindow.children["root"].transient(self.mo.children["root"])
          self.sfcwindow.addButton("display","convertbutton",386,270,64,24,("TimesNewRoman",12),"nw")
