@@ -25809,11 +25809,11 @@ class NiminFetishFantasyv0975o_fla:
          data["minorFetish"] = list(dictionary["minorFetish"].values())
          data["kid"] = list(dictionary["kid"].values())
          data["trav"] = []
-         data["bagSave"] = list(dictionary["bag"])
-         data["bagStackSave"] = list(dictionary["bagStack"])
-         data["stashSave"] = list(dictionary["stash"])
-         data["stashStackSave"] = list(dictionary["stashStack"])
-         data["pregSave"] = list(dictionary["preg"])
+         data["bagSave"] = dictionary["bag"]
+         data["bagStackSave"] = dictionary["bagStack"]
+         data["stashSave"] = dictionary["stash"]
+         data["stashStackSave"] = dictionary["stashStack"]
+         data["pregSave"] = dictionary["preg"]
          return data
       except Exception as e:
          as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
