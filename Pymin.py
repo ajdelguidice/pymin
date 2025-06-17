@@ -1029,7 +1029,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Show scrolledText Borders
          self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
          self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="The widget for html ScrolledText comes with borders which are disabled to match\nthe original game. This toggle re-enables them.")
+         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
          
          ##Original new game button size
          self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original size for new game button")
@@ -1039,7 +1039,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Static buttons in doLevelUP
          self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",10,76,187,20,("TimesNewRoman",11),"nw","Static doLevelUP buttons")
          self.optionswindow.configureChild("doLevelUPStaticButtons",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes the buttons in doLevelUP not move around depending on what is being\ndisplayed.")
+         CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
          
          ##Theme selection
          self.optionswindow.addLabelWithRadioButtons("if","ThemeType",10,98,100,70,("TimesNewRoman",11),"nw",2)
@@ -1072,7 +1072,7 @@ class NiminFetishFantasyv0975o_fla:
          
          self.optionswindow.addCheckboxWithLabel("gs","showBalls",10,10,144,20,("TimesNewRoman",11),"nw","Respect showBalls")
          self.optionswindow.configureChild("showBalls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["showBalls"].frame,text="Makes the game respect showBalls == False in almost all places where the\nplayer's balls are described.")
+         CreateToolTip(self.optionswindow.children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
          
          self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",10,32,160,20,("TimesNewRoman",11),"nw","Femme-boy -> Femboy")
          self.optionswindow.configureChild("femmeboytofemboy",background=self.theme,foreground=self.fontColor)
@@ -1101,9 +1101,9 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("femboyishtogirly",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow.children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
          
-         self.optionswindow.addCheckboxWithLabel("gs","snuggleball",200,10,144,20,("TimesNewRoman",11),"nw","Snuggleball change")
+         self.optionswindow.addCheckboxWithLabel("gs","snuggleball",200,10,144,20,("TimesNewRoman",11),"nw","Snuggleball tweak")
          self.optionswindow.configureChild("snuggleball",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="")
+         CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="Removes the redundant text in the when the Snuggle Ball is equiped")
          
          self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",200,32,144,20,("TimesNewRoman",11),"nw","Grammar Fixes")
          self.optionswindow.configureChild("grammarMisc",background=self.theme,foreground=self.fontColor)
