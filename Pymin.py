@@ -1866,7 +1866,7 @@ class NiminFetishFantasyv0975o_fla:
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 104 or keyCode == 87): #w, numpad8
-         if self.newSLDialogVisible and not self.nsldblindervisible:
+         if self.newSLDialogVisible and not self.nsldblindervisible and not self.keyboardTypingDisable:
             self.nsldSelectionUp()
          elif special and self.buttonsVisible[2]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
@@ -1895,7 +1895,7 @@ class NiminFetishFantasyv0975o_fla:
             self.hideUpDown()
             self.doListen()
       elif (keyCode == 101 or keyCode == 83): #s, numpad5
-         if self.newSLDialogVisible and not self.nsldblindervisible:
+         if self.newSLDialogVisible and not self.nsldblindervisible and not self.keyboardTypingDisable:
             self.nsldSelectionDown()
          elif special and self.buttonsVisible[6]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
@@ -4544,8 +4544,6 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
          self.mo.children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
          self.mo.children["savefileselect"].bind("<Double-Button-1>",self.buttonEvent8)
-         self.mo.bindChild("savefileselect","<FocusIn>",self._disableKeys)
-         self.mo.bindChild("savefileselect","<FocusOut>",self._enableKeys)
          self.mo.addLabel("display","savefilelabel",200,192-8,75,24,("TimesNewRoman",12),"nw")
          self.mo.configureChild("savefilelabel",background=self.theme,foreground=self.fontColor)
          self.mo.configureChild("savefilelabel",text="File Name:")
