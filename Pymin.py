@@ -1103,7 +1103,7 @@ class NiminFetishFantasyv0975o_fla:
          
          self.optionswindow.addCheckboxWithLabel("gs","snuggleball",200,10,144,20,("TimesNewRoman",11),"nw","Snuggleball tweak")
          self.optionswindow.configureChild("snuggleball",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="Removes the redundant text in the when the Snuggle Ball is equiped")
+         CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
          
          self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",200,32,144,20,("TimesNewRoman",11),"nw","Grammar Fixes")
          self.optionswindow.configureChild("grammarMisc",background=self.theme,foreground=self.fontColor)
