@@ -25967,38 +25967,18 @@ class NiminFetishFantasyv0975o_fla:
             stashLoadFix = so["stashSave"]
             stackLoadFix = so["stackSave"]
             stashStackLoadFix = so["stashStackSave"]
-            #for(this.i = 1; this.i <= itemLoadFix.length; ++this.i)
-            #   if(itemLoadFix[this.i] > 10)
-            #      bagLoadArray.push(itemLoadFix[this.i]);
-            #      bagStackLoadArray.push(stackLoadFix[this.i]);
-            i = 1
-            while i <= len(itemLoadFix):
+            for i in range(1,len(itemLoadFix)):
                if (itemLoadFix[i] > 10):
                   sbag.append(itemLoadFix[i])
                   sbagStack.append(stackLoadFix[i])
-               i += 1
-            #if(bagLoadArray.length < 27)
-            #   for(this.i = bagLoadArray.length; this.i < 27; ++this.i)
-            #      bagLoadArray.push(0);
-            #      bagStackLoadArray.push(0);
             if len(sbag) < 27:
                l = [0 for i in range(27-len(sbag))]
                sbag.extend(l)
                sbagStack.extend(l)
-            #for(this.i = 1; this.i <= stashLoadFix.length; ++this.i)
-            #   if(stashLoadFix[this.i] > 10)
-            #      stashLoadArray.push(stashLoadFix[this.i]);
-            #      stashStackLoadArray.push(stashStackLoadFix[this.i]);
-            i = 1
-            while i <= len(stashLoadFix):
+            for i in range(1,len(stashLoadFix)):
                if (stashLoadFix[i] > 10):
                   sstash.append(stashLoadFix[i])
                   sstashStack.append(stashStackLoadFix[i])
-               i += 1
-            #if(stashLoadArray.length < 27)
-            #   for(this.i = stashLoadArray.length; this.i < 27; ++this.i)
-            #      stashLoadArray.push(0);
-            #      stashStackLoadArray.push(0);
             if len(sstash) < 27:
                l = [0 for i in range(27-len(sstash))]
                sstash.extend(l)
