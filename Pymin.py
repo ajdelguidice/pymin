@@ -2329,7 +2329,7 @@ class NiminFetishFantasyv0975o_fla:
                self.oNewGameButton = True
                self.staticdoLevelUPButtons = False
                self.tempInterfaceToggles = tempitoggle
-         if (self.initinterface == False):
+         if (not self.initinterface):
             if (strtobool(prefs.find("showSide").text)):
                self.showSidePanel()
             else:
@@ -2337,9 +2337,9 @@ class NiminFetishFantasyv0975o_fla:
          sp = True
       else:
          sp = True
-         if (self.initinterface == False):
+         if (not self.initinterface):
             self.showSidePanel()
-      if sp == True:
+      if sp:
          self.savePreferences()
       if not self.cmdOpenConverter:
          self.toggleTextboxBorders(self.scrolledTextBorders)
@@ -4524,7 +4524,7 @@ class NiminFetishFantasyv0975o_fla:
       self.nsldSetEntryFromListbox()
    def toggleNSLDSortOrder(self):
       #Function called when the sort button is pressed in nsld
-      if self.newSLDialogVisible == True:
+      if self.newSLDialogVisible:
          self.mo.slb_Delete("savefileselect",0,"end")
          self.nsldSortOrder += 1
          if self.nsldSortOrder >= 5:
@@ -5431,7 +5431,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.exhaustion > 44):
          templist = (6, "Sleep")
          tempStr += "\n\nThere's only one thing on your mind right now..."
-      if (djp == True):
+      if (djp):
          self.doJizzPants()
       else:
          self.outputMainText(tempStr.getvalue(),True)
@@ -8004,7 +8004,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.pregCheck(0) == True):
                tempStr = f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!"
                for i in range(0,self.pregArray.length,5):
-                  if (self.pregArray[i] == True):
+                  if (self.pregArray[i]):
                      self.pregArray[i + 3] += 50
                tempStr += f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size."
                self.outputMainText(tempStr,True)
@@ -8050,7 +8050,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.pregCheck(0) == True):
                tempStr = f"Drinking this potion, you can feel your {self.bellyDesc()} belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the {self.skinDesc()} creak, growing taut, to the point where you fear it will tear!"
                for i in range(0,self.pregArray.length,5):
-                  if (self.pregArray[i] == True):
+                  if (self.pregArray[i]):
                      self.pregArray[i + 3] += 120
                tempStr += f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size..."
                self.outputMainText(tempStr,True)
@@ -8109,7 +8109,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagTotal = 0
                i = 0
                while (i < self.pregArray.length):
-                  if (self.pregArray[i] == False):
+                  if (not self.pregArray[i]):
                      self.pregArray.splice(i,5)
                      i = -5
                   i += 5
@@ -8200,7 +8200,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagTotal = 0
                i = 0
                while (i < self.pregArray.length):
-                  if (self.pregArray[i] == False):
+                  if (not self.pregArray[i]):
                      self.pregArray.splice(i,5)
                      i = -5
                   i += 5
@@ -12454,7 +12454,7 @@ class NiminFetishFantasyv0975o_fla:
                case 536:
                   if (self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529)):
                      tempBool = True
-            if (tempBool == True):
+            if (tempBool):
                match ID:
                   case 220:
                      self.loseManyItem(209,7)
@@ -12888,7 +12888,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.tempBool = True
                      self.choiceListArray = as3.Array()
                      self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?",True)
-                     if (self.tempBool == False):
+                     if (not self.tempBool):
                         if (self.shapeshiftySecond != "Face"):
                            self.choiceListArray.push("Face")
                         if (self.shapeshiftySecond != "Skin"):
@@ -12925,7 +12925,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.choiceListButtons("Shapeshifty")
                      def doListen():
                         self.choiceListSelect("Shapeshifty")
-                        if (self.tempBool == False):
+                        if (not self.tempBool):
                            if self.shapeshiftyFirst == "Face":
                               self.lockFace -= 1
                            elif self.shapeshiftyFirst == "Skin":
@@ -12960,49 +12960,49 @@ class NiminFetishFantasyv0975o_fla:
                            elif self.shapeshiftySecond == "Cock":
                               self.lockCock -= 1
                         if self.choiceListResult[0] == "Face":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Face"
                            else:
                               self.shapeshiftySecond = "Face"
                            self.lockFace += 1
                         elif self.choiceListResult[0] == "Skin":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Skin"
                            else:
                               self.shapeshiftySecond = "Skin"
                            self.lockSkin += 1
                         elif self.choiceListResult[0] == "Ears":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Ears"
                            else:
                               self.shapeshiftySecond = "Ears"
                            self.lockEars += 1
                         elif self.choiceListResult[0] == "Legs":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Legs"
                            else:
                               self.shapeshiftySecond = "Legs"
                            self.lockLegs += 1
                         elif self.choiceListResult[0] == "Breasts":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Breasts"
                            else:
                               self.shapeshiftySecond = "Breasts"
                            self.lockBreasts += 1
                         elif self.choiceListResult[0] == "Nipples":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Nipples"
                            else:
                               self.shapeshiftySecond = "Nipples"
                            self.lockNipples += 1
                         elif self.choiceListResult[0] == "Tail":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Tail"
                            else:
                               self.shapeshiftySecond = "Tail"
                            self.lockTail += 1
                         elif self.choiceListResult[0] == "Cock":
-                           if (self.tempBool == False):
+                           if (not self.tempBool):
                               self.shapeshiftyFirst = "Cock"
                            else:
                               self.shapeshiftySecond = "Cock"
@@ -13432,7 +13432,7 @@ class NiminFetishFantasyv0975o_fla:
          tempButtons = ButtonList(0,0,0,0,1,1,0,0,0,0,0,0)
          templist = as3.Array(6,"Sanctuary",5,"Cave Descent")
          if (self.directPathToSanctuary):
-            if (self.usedSecretStairs == True):
+            if (self.usedSecretStairs):
                templist.push(1,"Firmshaft")
             else:
                templist.push(1,"Secret Stairs")
@@ -13441,7 +13441,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doButtonChoices(templist)
          def doListen():
             if self.buttonChoice == 1:
-               if (self.usedSecretStairs == True):
+               if (self.usedSecretStairs):
                   self.outputMainText("You take the stairs that opened up when you defeated the succubus. You are now in Firmshaft.",True)
                else:
                   self.outputMainText("You walk up to the opening that you discovered when defeated the succubus and went inside. It is supprisingly well lit despite not having any torches and the stairs are in much better shape than the ones you went down before. Once you start climbing, it doesn't take long to reach the top. Weird, you thought it would take longer considering you were going down the stairs to get here long enough for you to feel like they would never end. Anyways, you find yourself in the open next to the enterance to the Old Cave, ready to head back to Firmshaft.",True)
@@ -13698,7 +13698,7 @@ class NiminFetishFantasyv0975o_fla:
                self.rndArray.push(3)
          case "Den":
             tempArray = (0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and self.silTied == False and self.checkItem(229) == False and self.checkStash(229) == False):
+            if (tempArray[self.hour] == "x" and not self.silTied and self.checkItem(229) == False and self.checkStash(229) == False):
                self.rndArray.push(1)
             tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
             if (tempArray[self.hour] == "x"):
@@ -14397,7 +14397,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.outputMainText("The strange woman lies in bed with you for another hour, cuddling up and resting your bellies side-to-side. But eventually she realizes how much time she has spent indulging herself at your 'expense'. \"I'm sorry to have taken so long to get that out of my system, but... it was very enjoyable indeed. Here, sweetie, a gift from my business. I'm actually a breeder of pets for people and this helps with the process. I do love the big swollen bellies so~ You could probably sell it for a nice chunk of change, or maybe you can find some use for it too.\" She gives you a wink as she slips a potion into your hand.\n\nThen she cradles her belly as she slinks off the bed and stands, her nipples blotching her shirt as she dons it. When she reaches for her shorts, however, she realizes they're a bit... unwearable now. Her fluffy tail curls down between her legs, snugging up against the underside of her belly on the other side like a pair of panties. She gives you another wink. \"Don't worry, I'll be alright. Wouldn't be the first time~\" and she skips out the door, so absolutely giddy from her time with you.",True)
                         if (self.pregCheck(0)):
                            for i in range(0,self.pregArray.length,5):
-                              if (self.pregArray[i] == True):
+                              if (self.pregArray[i]):
                                  self.pregArray[i + 3] += 20
                         self.itemAdd(248)
                         self.hrs = 3
@@ -17238,7 +17238,7 @@ class NiminFetishFantasyv0975o_fla:
                                  tempStr += "..."
                                  if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
                                     for i in range(0,self.pregArray.length,5):
-                                       if (self.pregArray[i] == False):
+                                       if (not self.pregArray[i]):
                                           self.pregArray[i] = True
                                           self.pregArray[i + 1] = 501
                                           self.pregArray[i + 2] = 230
@@ -17288,7 +17288,7 @@ class NiminFetishFantasyv0975o_fla:
                                  if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and self.getCum > 5000):
                                     tempStr += " With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish.\n\nHaving spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period."
                                     for i in range(0,self.pregArray.length,5):
-                                       if (self.pregArray[i] == False):
+                                       if (not self.pregArray[i]):
                                           self.pregArray[i] = True
                                           self.pregArray[i + 1] = 502
                                           self.pregArray[i + 2] = 230
@@ -18435,7 +18435,7 @@ class NiminFetishFantasyv0975o_fla:
                            if (self.pregCheck(1) and self.percent() <= 60 and self.vagSize * self.vagSizeMod > 56):
                               tempStr += " And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?"
                               for i in range(0,self.pregArray.length,5):
-                                 if (self.pregArray[i] == False):
+                                 if (not self.pregArray[i]):
                                     self.pregArray[i] = True
                                     if (self.percent() <= 50):
                                        self.pregArray[i + 1] = 201
@@ -18672,7 +18672,7 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             tempStr = StringIO()
             tempStr += f"The pup grabs you by your {self.clothesBottom()} and yanks you toward a flying carpet to aid with the laying. The two of you fly up and meet the other pup at her "
-            if (self.silTied == True):
+            if (self.silTied):
                tempStr += "nethers, just in time to see her pussy gape surprisingly wide, her hips spreading for the object within. Her cock visibly twitches, spitting out pre in large gobs as the egg approaches, and begins to gush across her scales with steamy spunk as the white shell begins to crown. The seed-cannon doesn't end, continually spurting as the egg pushes its way out as lubrication spills across her swollen testicles, which drops onto the carpet a pup has readied."
             else:
                tempStr += "tail, just in time to see the base of her tail swell obscenely, her hips spreading for the object within. Her cock visible twitches, spitting out pre in large gobs as the egg stalls at her rump, her legs furiously bucking trying to push it. She groans and howls, desperately trying to get it through, but her muscles are too tense to allow it through. So, taking matters into your own hands, you lean up against her erection and knead it roughly.\n\nThe howl turns from pained to ecstatic as the organ bursts across her scales with steamy spunk as the bulge pushes through the base of her tail. The seed-cannon doesn't end, continually spurting as the egg pushes its way through her tail, making it look many times thicker than before, as lubrication spills out from the tip until the egg plops onto the carpet a pup has readied."
@@ -18747,9 +18747,9 @@ class NiminFetishFantasyv0975o_fla:
             tempArray.push(1,"Fuck")
          if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempArray.push(3,"Be Fucked")
-         if (self.checkItem(229) and self.silTied == False):
+         if (self.checkItem(229) and not self.silTied):
             tempArray.push(5,"Tie Tail")
-         if (self.silTied == True):
+         if (self.silTied):
             tempArray.push(5,"Untie")
          if (self.checkItem(230) and self.silPreg > 30):
             tempArray.push(7,"Eggcelerator")
@@ -18822,7 +18822,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
                self.doListen = doListen
             elif self.buttonChoice == 5:
-               if (self.silTied == False):
+               if (not self.silTied):
                   tempStr = "Even though she doesn't seem to be constantly laying from her tail now, or at all for that matter, you thinkg it's a good idea to attach the leather strap anyways. Silandrias nods and trusts you, lifting up her tail "
                   if (self.silPreg / 100 > self.tallness / 12):
                      tempStr += "as you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, "
@@ -18969,7 +18969,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.silRep == 4):
             tempStr += " It's' also quite silly how she practically has to burrow her nose into her cleavage to see you... Each time she brushes against a wall, she also leaves behind a trail of milk as her nipples spurt everywhere from the pressure. It's amazing she can even move in such a state..."
          tempStr += "\n\n\"H-Hello- Ungh!\" Her greeting is cut short as she doubles over. It is only now that you see the exorbitant amount of slime spilling "
-         if (self.silTied == True):
+         if (self.silTied):
             tempStr += "between her legs from behind her loincloth"
          else:
             tempStr += "from the tip of her tail"
@@ -18979,25 +18979,25 @@ class NiminFetishFantasyv0975o_fla:
             tempStr = ""
             if (self.silRep == 1):
                tempStr += "You run up and grab her, rushing her to her bedroom so she can be more comfortable. Laying her onto her back, you make sure her back is supported appropriately to help with the lay."
-               if (self.silTied == True):
+               if (self.silTied):
                   tempStr += "\n\nHer tail extends itself through the cheeks of her bum and straight across the bed in preparation. Yet, Silandrias quickly gasps loudly as her body realizes that passage is blocked and redirects the flow elsewhere. She spreads her legs wide as she feels her pussy stretch and gape as the eggs force their way through. Her breathing grows rapid and she lets out a warbling howl when the first one breaches her passage, burrowing beneath her testicles and leaving a slimy trail with the next following soon behind. Her wings press down on her belly, trying to help push the orbs out, but they mostly shake from the array of throbbing sensations that blare between her legs like a drum. Slight pain mixed with intense pleasure, she's unsure of what to do and merely pushes harder.\n\nYour hands dive in to lift her package out of the way and help pull the eggs from her supple flesh, making her twitch slightly from your touch. Egg after egg slips out from her, each as large as a grapefruit and smothered in lubrication. Her belly quickly diminishes and within ten minutes she has passed them all."
                else:
                   tempStr += "\n\nHer tail extends itself through the cheeks of her bum and straight across the bed in preparation. Silandrias then pushes her bum up from the sheets with her legs and lets out a warbling howls as the base of her tail swells with the first egg, the bulge quickly running down its length. Before it can even get halfway through, another bulge already forms at the base, making her clench the sheets with her talons. Her back arches higher and higher as she pushes, her round belly pointing straight into the air while her muzzle buries itself within her cleavage, moaning loudly into the flesh. Her cock dangles half-hard above, dribbling a bit of its own lubricant over the base of her tail.\n\nYour hands grope along her tail, encouraging the passing of the eggs from the outside, watching them reach and stretch the tip wide before they're quickly desposited. Egg after egg slips out from her, each as large as a grapefruit and smothered in lubrication. Her belly quickly diminishes and within ten minutes she has passed them all."
             elif (self.silRep == 2):
                tempStr += "You run up and grab her, rushing her to her bedroom so she can be more comfortable. However, just as you can get her onto the bed, Silandrias collapses to her knees before it and leans forward over the edge, unable to go any further. The finger-like talons at the tips of her wings reach out over the sheets and clench the fabric as her back arches into the bed, her top breasts preventing her from going to far while the second pair brushes across the edge and make her nipples grow stiff.\n\nOnce more, her tail thrusts itself straight out,"
-               if (self.silTied == True):
+               if (self.silTied):
                   tempStr += " only to find the passage is blocked by the leather strap. This result only makes her grunt and moan louder as she feels the eggs shift and stretch her cunt. The intense sensation makes her cock flip her loincloth up and pound against the bed with a strange sense of arousal, strands of pre with a mixture of escaping cum splattering with each whack, her testicles groaning to eject some semen as they feel feminine lubricant drool down their backside.\n\nAs your hands reach in to help pull the eggs out, you accidentally brush over her clit, making her howl and push her entire rump into you while an egg forces its way out. Short stuttered spurts of spunk gently paint the overhanging bedsheets with the confused orgasm, not quite a full climax but the sensations are altogether powerful enough to cause the ejaculation. And between each bout of subtle shooting, an egg slips through her tightening and loosening passage, practically firing out into your hands. Her large belly quickly dwindles and by the time she has made a nice waterfall of cum running down her sheets, she has also made a hefty pile of eggs between her feet."
                else:
                   tempStr += " preparing for the onslaught of eggs to come from her large belly. You can hear her gasp and moan into the sheets as her rump pushes back towards you, forcing the eggs into the base of her tail and down its length in turn. The intense pressure from the eggs at her backside causes all of her genitals to engorge themselves, both cunt and cock dribbling with lubricant as they swell slightly.\n\nYour hands grope along her tail, holding it up and encouraging the passing of the eggs from the outside, watching them reach and stretch the tip wide before they're quickly desposited. All the while she claws at the bed, writhing her breasts across the sheets and making her bum wave erotically. The process is almost torturous as it takes so long for the eggs to travel one and two at a time through her tail, making the rest of her a dribbling mess. Her large belly eventually dwindles in size and by the time she has made a nice waterfall of clear fluids from penis and testicles down to the floor, she has also made a hefty pile of eggs beside you."
             elif (self.silRep == 3):
                tempStr += "You run up and grab her, but notice Silandrias is already beginning to squat as her body forces her to start laying. So, rather than head to her room for comfort, you hug her from behind and gently guide her down to the floor of the tunnel, letting her lean back into your for support. Her head nestles back over your shoulder, her muzzle pressing into your face as she groans with the building pressure below, her wings digging her talons into the floor to anchor herself. In preparation, her tail curls up through your crotch and stretches out over your thigh so she is no longer sitting upon it,"
-               if (self.silTied == True):
+               if (self.silTied):
                   tempStr += " but with the passage blocked her legs spread wide as well. You reach around her huge belly the best you can to access her slit. Thankfully, she's already quite half-hard and her increased engorgement allows you to easily grab her masculine portion as it pushes the loin cloth aside and point the rod over her thigh, letting pre drool over her fur. Reaching further, the large orbs are a bit more difficult to lift from this angle, but your fingertips manage to pull at the scaly scrotum and drag it up, propping one hefty testicle against her thigh and shuffling the member around to rest upon your arm.\n\nBefore you can yank the other orb up as well, she lets out a moan and shudders into your body. The second testicle moves further away as the exiting egg pushes it aside, slipping out into a messy puddle of her lubrication below while her cock bucks upon your arm as you hold it back. More pre drizzles down your forearm and over your hand, with even more slick stuff drenching about from underneath. The slippery combination threatens to release the ball from your grip and let it crash against the next oncoming egg, forcing you to grab the sensitive sphere harder to prevent such a tragedy. Her tail whips at you as you do so, her body writhing and an erotic howl escaping her lips as the next egg presses out, with a nice large wad of spunk shooting up to your shoulder. From there, a steady gurgle of hot seed dribbles down your arm and over her thigh, smearing about her dwindling belly and her lower tits, coating her testicles and icing the eggs beneath a white waterfall as they are laid into a pile. On occasion, the egg being laid stretches her especially wide, causing the ejaculating erection to launch a volley up at both of your faces.\n\nBy the time she's finished, you could swear her testicle feels quite lighter..."
                else:
                   tempStr += " a growing bulge at its base already pushing into your groin. You reach around her huge belly to stroke and coax the egg out, feeling the bulge push over your thigh and gently slip out the tip of her tail beside you.\n\nShe arches her back slightly with the continuing oviposition, her loin cloth tenting from the half-hard rod rising beneath. The cloth is moist with pre and grows even wetter with each egg that passes as gobs push through her urethra. Since her tail and backside are doing fine with their steady progress, you manage to reach around with a hand and grab the hunched shaft, smearing the pre down its length. She lets out a guttural moan as she jerks against your body, the loin cloth falling aside and leaving her engorged erection to grow to full length in your grip. The eggs begin to quicken in pace as her hips begin to gently buck up and down with your strokes, clearly expedited by your efforts. By the time a few eggs have slipped out, large wads of hot spunk shoot up over her belly, coating her lower pairs of breasts. The stuff continues to pump out with a gentle gurgle, running down her length and over your hand, spilling from her testicles and forming a nice puddle below. With the occassional larger egg that requires a bit more pushing than the rest, the gentle flood is replaced by lobbing volleys that splatter across your faces and sufficiently make a mess of everything.\n\nBy the time she's finished, even the eggs have been nearly completely coated..."
             elif (self.silRep == 4):
                tempStr += "You run up and grab her, but she lifts a hand, motioning she's alright. Silandrias hugs over your shoulders with one wing while the other cradles her massive tummy the best it can. \"F-First, I want to show you something...\"\n\nUsing you as a crutch, she slowly waddles down the tunnels, taking you down paths you had never seen before. She grunts and wheezes a little as she goes, even having to stop halfway as an egg forces its way through her "
-               if (self.silTied == True):
+               if (self.silTied):
                   tempStr += " slit, allowing you to catch it and a bunch of slime just before it falls to the floor."
                else:
                   tempStr += " tail, slipping out with a puddle of slime onto the floor behind her."
@@ -19030,12 +19030,12 @@ class NiminFetishFantasyv0975o_fla:
                   self.doListen = doListen
                elif (self.silRep == 4):
                   tempStr = "Unable to focus any longer, she doubles over once more. This time she doesn't seem to be able to stop it as "
-                  if (self.silTied == True):
+                  if (self.silTied):
                      tempStr += "a steady stream of lubrication dribbles down the insides of her thighs."
                   else:
                      tempStr += "a steady flow of lubrication spills from the tip of her tail."
                   tempStr += " You attempt to aid her in sitting down, but she continues to bend forward, her instincts rather adamant about rolling onto her belly.\n\nWith her tummy so large, it doesn't take much more than bending slightly at her knees to touch the belly-scales to the floor. She slowly rolls forward, her legs spreading wide to step forward while flanking her own girth, with her lowest pair of breasts soon squishing against the floor, squirting out jets of milk. Then she continues going as the next pair sprays everywhere, followed by the next, and finally her top pair bulges out the sides of her torso like fleshy pillows as she lays down upon them, her legs no longer able to touch the ground. Her wings fold over her bloated chest, covering the white streams to prevent any from spraying into her face, allowing her to yawn wide with a low howl.\n\nFrom behind, her tail lurches forward, "
-                  if (self.silTied == True):
+                  if (self.silTied):
                      tempStr += "only to turn straight up as the passage is blocked, giving you a fantastic view of her nethers. The underside of her belly is already thoroughly soaked in pre as her greatly engorged erection pulses out large gobs of the stuff, while her testicles, larger than cantaloupes, hang down heavily over the base of the shaft and are drenched from the slit above. Her tush tenses and her moaning howls stutter as the first egg begins to crown through her lips. You jump in to catch it, coating your hands with slime in the process. Placing the egg aside, you prepare for the next, slipping your fingers slightly into her nethers to help pull the eggs out. Her cock throbs with each passing and looks so close to blowing a massive load, but it seems to be waiting...\n\nIt doesn't wait long.\n\nThe eggs stop for a moment, giving Silandrias a moment to breathe. However, after a deep breath, her howling renews with a much louder and warbling sensual tone. You see white beginning to crown once more as white splatters all over her belly-scales in audible bouts of thick steamy ropes. The crowning progresses, stretching her slit wider and wider than you have seen any of her palmable eggs done before. Your eyes go wide as you even watch her hips spread wider, her body much more elastic than you could have guessed, while her pussy gapes larger than her own head, completely filled with an enormous white shell.\n\nHer gushing peaks as the widest part of the giant egg passes through, quickly slipping out into your arms and right to the floor as you gently settle it upon the ground. Easily more than two feet in height and more than a foot in diameter, the big egg half-fits into one of the several round beddings that decorate the floor of this room. You don't have much time to analyze it, however, as you hear the mother begin to cry out again.\n\nAnother egg just as large pushes through her passage with a spunk-filled greeting into the world. This second egg seems to be the last as Silandrias' belly deflates with its departure, leaving her gasping and moaning as she lay upon her many milky tits, her ejaculation diminishing to a few leftover throbs of oozing cum."
                   else:
                      tempStr += "pointing straight back to the floor in preparation. The underside of her belly is already thoroughly soaked in pre as her greatly engorged erection pulses out large gobs of the stuff, while her testicles, larger than cantaloupes, hang down heavily over the base of the shaft. Her tush tenses and her moaning howls stutter as the first egg begins to bulge through her tail. You tenderly massage the scales from the outside, coaxing the egg along until it slips out the tip. Placing the egg aside, you prepare for the next, returning to her rump and rubbing the small of her back to help direct the eggs out. Her cock throbs with each passing and looks so close to blowing a massive load, but it seems to be waiting...\n\nIt doesn't wait long.\n\nThe eggs stop for a moment, giving Silandrias a moment to breathe. However, after a deep breath, her howling renews with a much louder and warbling sensual tone. You see another bulge begin to grow at the base of her tail, but it keeps growing and growing, much larger than you have ever seen before. It stretches both her tail and hips obscenely wide, her body far more elastic than you could have ever guessed. However, this new giant egg comes to a halt before the widest portion can enter the passage in her tail. Silandrias grunts and groans, feebly rocking her legs and humping her own belly slightly as she tries to push it through. Her cock also turns redder and redder as she forces more blood to her bottom, making it drool incessantly. Taking a chance to help her out, you smear the slime along her length and stroke the throbbing rod roughly.\n\nSilandrias' howls turn into an erotic outcry as white splatters all over her belly-scales in audible bouts of thick steamy ropes. The intense orgasm relaxes some of her muscles, letting the giant egg into her tail-passage and rapidly push through to the floor as you gently settle it upon the ground. Easily more than two feet in height and more than a foot in diameter, the big egg half-fits into one of the several round beddings that decorate the floor of this room. You don't have much time to analyze it, however, as you hear the mother begin to cry out again.\n\nAnother egg just as large pushes through her passage with a noisy spunk-filled greeting into the world. This second egg seems to be the last as Silandrias' belly deflates with its departure, leaving her gasping and moaning as she lay upon her many milky tits, her ejaculation diminishing to a few leftover throbs of oozing cum."
@@ -19114,7 +19114,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += " you can tell that you definitely wouldn't be able to fit her maleness, so that is pretty much out of the question."
          tempStr += "\n\n\"Hello~\" Silandrias greets you with joy, happy to have your company again. \"Come on in, please.\" She turns to lead you into the network of tunnels. \"Would you care to do something, hun?\""
          if (self.silPreg > 40):
-            if (self.silTied == False):
+            if (not self.silTied):
                if (self.silRep == 1):
                   tempStr += "\n\nOnly a few steps in, however, she pauses for a moment and lets out a gasp as the base of her tail expands. A round object passes through, stretching her tail as it moves, before her tail reflexively flicks to the side of the tunnel. As the round object approaches the narrow tip, she shivers a little as the tip opens to let the hard-shelled egg through. Laid gently against the wall, lubrication stretches and snaps off from her secondary vaginal passage that is hidden within her tail, leaving the egg still moist.\n\nShe looks down at what she had done before you and blushes. \"Oh dear... I-I've been a little embarrassed since I've begun laying them all over, and even moreso now that I've done it in front of you... D-Don't worry about it though. I just kinda... 'know' that they aren't real, they won't grow or hatch at all, there's nothing in them except normal egg-stuff. Don't really know why though... But it just kinda happens every now and then since we've, umm, had our fun.\" She glances to the side. \"We can leave it for now, I'll pick it up later, with the rest of them...\" Her stride picks up in eagerness to spend some time with you."
                else:
@@ -19128,9 +19128,9 @@ class NiminFetishFantasyv0975o_fla:
             tempArray.push(1,"Fuck")
          if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempArray.push(3,"Be Fucked")
-         if (self.checkItem(229) and self.silTied == False):
+         if (self.checkItem(229) and not self.silTied):
             tempArray.push(5,"Tie Tail")
-         if (self.silTied == True):
+         if (self.silTied):
             tempArray.push(5,"Untie")
          if (self.checkItem(230) and self.silPreg > 30):
             tempArray.push(7,"Eggcelerator")
@@ -19154,7 +19154,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.silPreg > 36):
                      tempStr += ", her bulging belly slightly touching yours"
                   tempStr += ", she steadies herself while her hips begin to grind and twist hungrily on top of you. Her tongue lols from her muzzle and she pants happily while her ears bob up and down, her tail flicking about sporadically from the joy of having you inside of her."
-                  if (self.silRate > 2 and self.silTied == False):
+                  if (self.silRate > 2 and not self.silTied):
                      tempStr += " She pauses only for a moment as she feels an egg drop into her tail, the eggcelerator causing some rather unexpected layings, making her moan a little as she deposits it on the bed beside you, only to make her even more aroused."
                   if (self.silPreg > 150):
                      tempStr += f"\n\nHaving swollen quite a bit with her pregnancy with her belly, her cock slaps loudly against you with each hop and flings pre all over your front. The large testicles rest around your groin, hugging your cock{self.plural(1)} whenever she lifts high enough to allow them to roll beneath her."
@@ -19184,7 +19184,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.silPreg > 36):
                      tempStr += " Her belly swells above you as her fertile nature quickly processes your stuff, pushing forward her eggy pregnancy with blossoming fecundity."
                   tempStr += " With a couple twitches after being filled by you, her own cock explodes over you, whipping the strands of cum across your body like laced icing. She goes on and on until she's sucked all the cum she can get from you and you look reminiscent of a cheese danish before she finally collapses over you with a heavy sigh."
-                  if (self.silRate > 4 and self.silTied == False):
+                  if (self.silRate > 4 and not self.silTied):
                      tempStr += " And though she may be spent, she clenches your body as her cock kicks up a bit more spunk, yet another egg making its way through her tail..."
                else:
                   tempStr += f" Her belly too large to wield on top of you, she opts to lie back onto her bed, spreading her legs wide with welcoming access. Prepping {self.oneYour(1)} member{self.plural(1)} for action with a gentle rubbing about the tip, you move in on your prey."
@@ -19197,7 +19197,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += f" Lifting them up, you droop her large shaft over your shoulder, pinning the lower portion between your {self.boobDesc()} chest and her belly while drooping the scrotum over your own length."
                   else:
                      tempStr += f" Lifting them up, you trap her appendage between your {self.boobDesc()} chest and her belly and droop her scrotum over your own length."
-                  if (self.silRate > 2 and self.silTied == False):
+                  if (self.silRate > 2 and not self.silTied):
                      tempStr += " Thanks to this odd position and the doses of eggcelerator, she lets out an early moan as an egg pushes its way through her tail and down onto the floor."
                   tempStr += f"\n\nNow with clear access, you slip into her thirsty hole. She is already drenched in lubricant, with plenty spilling and drooling down her tail, the heavy belly and hormones having made her especially aroused. You squeeze her testicles with your {self.hipDesc()} hips while you press in for the first thrust, eliciting a guttural moan of joy from the girl behind the fertile mound. She tries to hump back a little but merely wiggles her rod between your bodies. To help, you lean up against her, moving your whole body with each pump of your cock, slathering the pre that spills from her own over your body to reduce the friction. Quite soon, the lower hemisphere of her belly is shining in slick juices, allowing you to easily rub across her belly-scales. Maybe a little too easily as you have to "
                   if (self.silRep > 3):
@@ -19213,7 +19213,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      tempStr += "\n\nHot spunk gushes between you, splattering all over her body and painting your face white."
                   tempStr += " Her knees crush you like a vice as she comes, forcing you to give into your own pressure and explode inside. It's all a blur as you feel your cum churn about within her, and no matter how much you gush, she seems to take in the majority of it as little squirts out from her extra-slick hole. Having so much contact with her gravid shape, you definitely feel it shift and grow from your blast, devouring your seed and feeding her fertile womb. It takes so long for her cries of ecstasy to eventually die down, so lost in bliss..."
-                  if (self.silRate > 4 and self.silTied == False):
+                  if (self.silRate > 4 and not self.silTied):
                      tempStr += "\n\nAnd interjecting into the pleasant relaxing, she lets out a gasp as yet another egg forces its way through to be laid on the bed with you."
                if (math.ceil(getCum / 50 > 100) and self.silPreg > 0):
                   self.silPreg += 100
@@ -19241,7 +19241,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.cockTotal < 1):
                      tempStr += "belly"
                   tempStr += " with a splatter of slimy pre."
-                  if (self.silRate > 3 and self.silTied == False):
+                  if (self.silRate > 3 and not self.silTied):
                      tempStr += " She pauses as her rear pulls back a bit, her talons clenching as a bulge travels down her tail. The eggcelerator doses obviously working, she lays the egg on the floor and quickly returns her attention to you."
                   if (self.silPreg > 36):
                      tempStr += " Slightly swollen from her growing pregnancy, she takes a moment to caress her longer member, getting a feel for how large it has become."
@@ -19295,7 +19295,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
                self.doListen = doListen
             elif (self.buttonChoice == 5):
-               if (self.silTied == False):
+               if (not self.silTied):
                   self.outputMainText("You think it's a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn't seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and notice she's starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail's vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen.\n\nAfter a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion.\n\nTying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you're soon on your way.",True)
                   self.silTied = True
                   self.loseManyItem(229,1)
@@ -19309,7 +19309,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
             elif (self.buttonChoice == 7):
                tempStr = "To help her along with her current eggy pregnancy, you consider giving her a dose of eggcelerator. Even though she isn't of lizan descent, the egg-aid may help her somehow.\n\nSilandrias agrees to take it, as long as you help her administer it. Leading you back to her room, "
-               if (self.silRate > 2 and self.silTied == False):
+               if (self.silRate > 2 and not self.silTied):
                   tempStr += "her tail already laying another egg along the way thanks to previous doses,"
                tempStr += "she readily sits down on her bed and leans back while spreading her legs wide for your convenience.\n\nTaking a moment to stare at the wonderful view, you lean in and pull her veiling loin cloth aside."
                if (self.silPreg <= 200):
@@ -19319,9 +19319,9 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.silPreg <= 600):
                   tempStr += " It then takes quite a bit of effort to both hold aloft the engorged penis and testicles, a bit of pre drooling over your arm from her pregnant arousal, and do your best to feel under her huge belly until you can find her soft slit beneath all the swollen bits."
                tempStr += " From there, slipping the small suppository inside is simple, as it sucks itself in thanks to its torpedo-like shape.\n\nWithin moments you can feel her shiver as the stuff dissolves and makes her giggle a little."
-               if (self.silRate > 5 and self.silTied == False):
+               if (self.silRate > 5 and not self.silTied):
                   tempStr += " However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more."
-               elif (self.silTied == False):
+               elif (not self.silTied):
                   tempStr += " She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she's breathing normally again."
                else:
                   tempStr += " She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles."
@@ -19352,7 +19352,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += " gently kissing her shoulders as you talk. The two of you alternate between stories of your travels and the findings of her treasures. There's even a bit of small talk mixed in as well as periods of silence where you simply enjoy each others company.\n\nEventually, however, you must be on your way so that something can get done. As much as the two of you would like to continue, you can't ignore the need to get some food or other preparations or ignore the rest of your lives."
                if (self.silPreg > 36):
                   tempStr += " However, you could swear her form grew bigger than when you started. It seems your company has really made her feel comfortable and... motherly."
-               if (self.silRate > 3 and self.silTied == False):
+               if (self.silRate > 3 and not self.silTied):
                   tempStr += " Despite her having laid a few eggs during your time together as well."
                self.outputMainText(tempStr + "\n\nYou soon give each other a kiss and exchange farewells, hopefully to not spend too much time apart.",True)
                self.hrs = 4
@@ -20765,7 +20765,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.pregCheck(1)):
                   tempStr += f"\n\nSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your {self.legDesc(1)}, holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\n\nAnd it's quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can't help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\n\nIn that moment of peak pleasure, the snake lets go of your {self.legDesc(1)} and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\n\nIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you..."
                   for i in range(0,self.pregArray.length,5):
-                     if (self.pregArray[i] == False):
+                     if (not self.pregArray[i]):
                         self.pregArray[i] = True
                         self.pregArray[i + 1] = 503
                         self.pregArray[i + 2] = 240
@@ -20888,7 +20888,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.vagSize += 2
                   tempStr += f"\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your {self.clitDesc()} clit{self.plural(2)}, you can do nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, the things inside shivering slightly at the warmth of their new home...\n\nHappy with her spawning season, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate..."
                   for i in range(0,self.pregArray.length,5):
-                     if (self.pregArray[i] == False):
+                     if (not self.pregArray[i]):
                         self.pregArray[i] = True
                         self.pregArray[i + 1] = 200
                         self.pregArray[i + 2] = 216
@@ -20914,7 +20914,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.vagSize += 3
                   tempStr += f"\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your {self.clitDesc()} clit{self.plural(2)}, you can nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, even the extra bit she gained from after you filled her with your cum, the things inside shivering slightly at the warmth of their new home...\n\nEspecially happy with how well her spawning season went this week, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate..."
                   for i in range(0,self.pregArray.length,5):
-                     if (self.pregArray[i] == False):
+                     if (not self.pregArray[i]):
                         self.pregArray[i] = True
                         self.pregArray[i + 1] = 200
                         self.pregArray[i + 2] = 252
@@ -21580,7 +21580,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.pregCheck(0)):
                   tempStr += "\n\nYour womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust."
                   for i in range(0,self.pregArray.length,5):
-                     if (self.pregArray[i] == True):
+                     if (self.pregArray[i]):
                         self.pregArray[i + 3] += 10
                elif (self.gender != 0):
                   tempStr += "\n\nYour loins feel suddenly more fertile. If you can consider the desire to fuck as being more 'fertile'..."
@@ -21718,7 +21718,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                tempStr += "\n\nThe whip snaps across the room and strikes you. \"Just need to keep you awake, hun~\""
                tempStr += self.doHP(-self.eDmg(15),ret=True,retPO=True)
-      if output == True:
+      if output:
          self.outputMainText(tempStr.getvalue(),False)
       if self.passOut:
          self.passOut = False
@@ -21733,7 +21733,7 @@ class NiminFetishFantasyv0975o_fla:
       self.pregnancyTime = 0
       birthCount = 0
       for i in range(0,self.pregArray.length,5):
-         if (self.pregArray[i] == True):
+         if (self.pregArray[i]):
             if (self.pregArray[i + 3] + math.ceil(time * self.pregRate) > self.pregArray[i + 2] + self.pregTimeMod):
                self.pregArray[i] = False
                self.pregArray[i + 3] = 0
@@ -21850,7 +21850,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.silPreg > 0 and self.silRep < 5 and time > 0):
          self.silPreg += time + 2 * self.silRate
          tempInt = time + self.silRate
-         if (self.silPreg > 30 and self.silTied == False):
+         if (self.silPreg > 30 and not self.silTied):
             while (tempInt > 0):
                self.silLay -= 1
                if (self.silLay <= 0):
@@ -22698,20 +22698,20 @@ class NiminFetishFantasyv0975o_fla:
             self.hasMuzzle = True
          if (self.dominant == 1 and self.faceType != 10):
             tempStr += "\n\n"
-            if (self.hasMuzzle == True):
+            if (self.hasMuzzle):
                tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
             tempStr += "Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human's."
             self.faceType = 10
             self.hasMuzzle = False
          if (self.dominant == 2 and (self.faceType != 20 or self.faceType != 21)):
             if (self.faceType != 20 and self.faceType != 21):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance."
                else:
                   tempStr += "\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also appears wider to make up for the slightly stretched appearance."
                self.faceType = 20
             elif (self.faceType != 21 and self.horseAffinity > 70):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large eyes peering down the strong jaw, you seem to have a more equine appearance."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse."
@@ -22719,13 +22719,13 @@ class NiminFetishFantasyv0975o_fla:
                self.hasMuzzle = True
          if (self.dominant == 3 and (self.faceType != 30 or self.faceType != 31)):
             if (self.faceType != 30 and self.faceType != 31):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance."
                else:
                   tempStr += "\n\nYour teeth grow sharper and your eyes focus more. The tip of your nose also moistens and becomes softer, giving you a more feral appearance."
                self.faceType = 30
             elif (self.faceType != 31 and self.wolfAffinity > 70):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour muzzle narrows and your teeth grow long and sharp, your canines especially visible. With your narrow eyes peering down the vicious jaw, you seem to have a more lupin appearance."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf."
@@ -22734,7 +22734,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 4 and (self.faceType != 40 or self.faceType != 41)):
             if (self.faceType != 40 and self.faceType != 41):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face flattens and your nose shrinks a bit, the tip changing color slightly and becoming softer. Your eyes grow narrow as well, making you seem like a hunter."
                self.faceType = 40
@@ -22744,13 +22744,13 @@ class NiminFetishFantasyv0975o_fla:
                self.faceType = 41
          if (self.dominant == 5 and (self.faceType != 50 or self.faceType != 51)):
             if (self.faceType != 50 and self.faceType != 51):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance."
                else:
                   tempStr += "\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also seems noticeably broader."
                self.faceType = 50
             elif (self.faceType != 51 and self.cowAffinity > 70):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large droopy eyes peering down the broad muzzle, you seem to have a more bovine appearance."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow."
@@ -22758,13 +22758,13 @@ class NiminFetishFantasyv0975o_fla:
                self.hasMuzzle = True
          if (self.dominant == 6 and (self.faceType != 60 or self.faceType != 61)):
             if (self.faceType != 60 and self.faceType != 61):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour nostrils flatten into slits against your muzzle, giving you a more reptillian appearance."
                else:
                   tempStr += "\n\nYour nose flattens until your nostrils are almost merely slits. Your lips also thin slightly, giving you a more reptillian appearance."
                self.faceType = 60
             elif (self.faceType != 61 and self.lizardAffinity > 70):
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "\n\nYour muzzle narrows and flattens out a bit more, making you look more like some kind of lizard."
                else:
                   tempStr += "\n\nYour jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard."
@@ -22773,7 +22773,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 7 and (self.faceType != 70 or self.faceType != 71)):
             if (self.faceType != 70 and self.faceType != 71):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face flattens while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become round and soft, making you seem relatively meek."
                self.faceType = 70
@@ -22784,7 +22784,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 8 and (self.faceType != 80 or self.faceType != 81)):
             if (self.faceType != 80 and self.faceType != 81):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your lower face protrudes outward while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become slightly smaller yet more open, making you seem more cautious of your surroundings."
                self.faceType = 80
@@ -22795,7 +22795,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 9 and (self.faceType != 90 or self.faceType != 91)):
             if (self.faceType != 90 and self.faceType != 91):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your jaw becomes sharper while your nose grows larger from the rest of your face, almost have a hooked shape. Your eyes become wide and aware, making you seem more focused."
                self.faceType = 90
@@ -22806,7 +22806,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 10 and (self.faceType != 100 or self.faceType != 101 or self.faceType != 102)):
             if (self.faceType != 100 and self.faceType != 101 and self.faceType != 102):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look."
                self.faceType = 100
@@ -22820,7 +22820,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 11 and (self.faceType != 110 or self.faceType != 111)):
             if (self.faceType != 110 and self.faceType != 111):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face stretches out along your nose a bit, the tip growing smaller and more narrow and becoming softer. Your eyes become soft and gentle, but with the potential to become defensive and vicious at any moment."
                self.faceType = 110
@@ -22831,7 +22831,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 12 and (self.faceType != 120 or self.faceType != 121)):
             if (self.faceType != 120 and self.faceType != 121):
                tempStr += "\n\n"
-               if (self.hasMuzzle == True):
+               if (self.hasMuzzle):
                   tempStr += "The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. "
                tempStr += "Your face flattens and your nose shrinks a bit, a chitinous 'bandage' forming over the bridge of your nose to protect it. Your eyes grow much larger compared to the rest of your face, almost alien but still able to show plenty of emotion."
                self.faceType = 120
@@ -23225,25 +23225,25 @@ class NiminFetishFantasyv0975o_fla:
          self.neuterizerHideBalls = False
       elif (self.cockTotal + totalChange > 0 and self.cockTotal < 1): #Gain cock when no cock
          tempStr += f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to pull {self.pullUD(2)} your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, a fresh, new "
-         if (self.dominant == 1 or nonCock == True and maxCock == self.humanAffinity):
+         if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
             tempStr += "human "
             self.humanCocks += 1
-         elif (self.dominant == 2 or nonCock == True and maxCock == self.horseAffinity):
+         elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
             tempStr += "equine "
             self.horseCocks += 1
-         elif (self.dominant == 3 or nonCock == True and maxCock == self.wolfAffinity):
+         elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
             tempStr += "canine "
             self.wolfCocks += 1
-         elif (self.dominant == 4 or nonCock == True and maxCock == self.catAffinity):
+         elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
             tempStr += "feline "
             self.catCocks += 1
-         elif (self.dominant == 6 or nonCock == True and maxCock == self.lizardAffinity):
+         elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
             tempStr += "reptillian "
             self.lizardCocks += 1
-         elif (self.dominant == 7 or nonCock == True and maxCock == self.rabbitAffinity):
+         elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
             tempStr += "lapin "
             self.rabbitCocks += 1
-         elif (self.dominant == 12 or nonCock == True and maxCock == self.bugAffinity):
+         elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
             tempStr += "insectile "
             self.bugCocks += 1
          tempStr += "penis stands erect"
@@ -23272,25 +23272,25 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to open your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,"
          if (totalChange > 1):
             tempStr += f" {totalChange}"
-         if (self.dominant == 1 or nonCock == True and maxCock == self.humanAffinity):
+         if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
             tempStr += " human "
             self.humanCocks += totalChange
-         elif (self.dominant == 2 or nonCock == True and maxCock == self.horseAffinity):
+         elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
             tempStr += " equine "
             self.horseCocks += totalChange
-         elif (self.dominant == 3 or nonCock == True and maxCock == self.wolfAffinity):
+         elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
             tempStr += " canine "
             self.wolfCocks += totalChange
-         elif (self.dominant == 4 or nonCock == True and maxCock == self.catAffinity):
+         elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
             tempStr += " feline "
             self.catCocks += totalChange
-         elif (self.dominant == 6 or nonCock == True and maxCock == self.lizardAffinity):
+         elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
             tempStr += " reptillian "
             self.lizardCocks += totalChange
-         elif (self.dominant == 7 or nonCock == True and maxCock == self.rabbitAffinity):
+         elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
             tempStr += " lapin "
             self.rabbitCocks += totalChange
-         elif (self.dominant == 12 or nonCock == True and maxCock == self.bugAffinity):
+         elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
             tempStr += " insectile "
             self.bugCocks += totalChange
          tempStr += "penis"
@@ -23311,7 +23311,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.cockChange(sizeChange,0,ret=True)
       elif (self.cockTotal > 0): #Size change
          self.cockSize += sizeChange
-      if self.lizanDontShowBalls and self.cockTotal > 0 and self.neuterizerHideBalls == False:
+      if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
          if self.lizardCocks == self.cockTotal and self.cockTotal != 0:
             self.showBalls = False
          else:
@@ -23364,7 +23364,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (minCock == self.bugAffinity and self.bugCocks > 0):
          tempStr += "\n\nYou have lost one bug cock."
          self.bugCocks -= 1
-      if self.lizanDontShowBalls and self.cockTotal > 0 and self.neuterizerHideBalls == False:
+      if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
          if self.lizardCocks == self.cockTotal:
             self.showBalls = False
          else:
@@ -23409,7 +23409,7 @@ class NiminFetishFantasyv0975o_fla:
          self.clitSize = 0
          i = 0
          while (i < self.pregArray.length):
-            if (self.pregArray[i] == False):
+            if (not self.pregArray[i]):
                self.pregArray.splice(i,5)
                i = -5
             i += 5
@@ -23455,7 +23455,7 @@ class NiminFetishFantasyv0975o_fla:
          while (totalChange < 0):
             if (self.pregCheck(1)):
                for i in range(0,self.pregArray.length,5):
-                  if (self.pregArray[i] == False):
+                  if (not self.pregArray[i]):
                      self.pregArray.splice(i,5)
                      totalChange += 1
                      break
@@ -23629,7 +23629,7 @@ class NiminFetishFantasyv0975o_fla:
          if ((self.lactation <= 0 or self.udderLactation <= 0 and self.udders) and self.pregStatus > 0):
             tempStr += " ...However a few minutes later your milk starts right back up. Seems your body needs the milk for something else."
             self.lactation = 20
-            if (self.udders == True):
+            if (self.udders):
                self.udderLactation = 20
          if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.checkItem(252)):
             tempStr += " ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy..."
@@ -23646,11 +23646,11 @@ class NiminFetishFantasyv0975o_fla:
    def pregCheck(self, amount:int):
       if (amount == 0):
          for i in range(0,self.pregArray.length,5):
-            if (self.pregArray[i] == True):
+            if (self.pregArray[i]):
                return True
       elif (amount == 1):
          for i in range(0,self.pregArray.length,5):
-            if (self.pregArray[i] == False):
+            if (not self.pregArray[i]):
                return True
       elif (amount > 1):
          for i in range(0,self.pregArray.length,5):
@@ -23664,7 +23664,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.doImpregnate(erace,suppressCockSnakeMessage=False,ret=ret)
          else:
             tempStr += self.doImpregnate(erace,suppressCockSnakeMessage=True,ret=ret)
-      if ret == True:
+      if ret:
          return tempStr
    def doImpregnate(self, erace:int, suppressCockSnakeMessage=False, ret=False):
       tempStr = ""
@@ -23691,7 +23691,7 @@ class NiminFetishFantasyv0975o_fla:
             extra += 1
             i += 1
          for i in range(0,self.pregArray.length,5):
-            if (self.pregArray[i] == False):
+            if (not self.pregArray[i]):
                match erace:
                   case 1:
                      self.pregArray[i + 2] = 140 + self.percent() // 5 + extra * 70
@@ -23744,7 +23744,7 @@ class NiminFetishFantasyv0975o_fla:
                self.pregArray[i + 1] = erace
                self.pregArray[i] = True
                break
-      if ret == True:
+      if ret:
          return tempStr
    def doBirth(self, pregnancyType:int, extra:int, birthCount:int, ret=False):
       tempStr = ""
@@ -26070,7 +26070,7 @@ class NiminFetishFantasyv0975o_fla:
             temp = 1.0
          else:
             temp = temp[0]
-         #!Add new variables
+         #!Add new variables (self.neuterizerHideBalls)
          if self.currentState != 0:
             tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.getvalue()}\nsideText = {self.sideText.getvalue()}"
          else:
@@ -27341,7 +27341,7 @@ class NiminFetishFantasyv0975o_fla:
       match Num:
          case 0:
             tempStr = f"<b><u>This wiki is not complete yet and some of it hasn't even been implemented yet.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
-            if self.customhtmlparser == False:
+            if not self.customhtmlparser:
                tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
             return tempStr
          case 1:
