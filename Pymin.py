@@ -1700,12 +1700,16 @@ class NiminFetishFantasyv0975o_fla:
          return "normal"
       return "disabled"
    def key_press(self, e):
-      #When key is pressed
+      """
+      Function activated on key press
+      """
       self.detailedDebug()
       if (key := ckeys.tkeventToJavascriptKeycode(e)) != None:
          self.hotKeys(key)
    def keysUp(self, e):
-      #When key is released
+      """
+      Function activated on key release
+      """
       kc = ckeys.tkeventToJavascriptKeycode(e)
       if kc == 16: #Shift
          self.shiftHeld = False
@@ -1853,7 +1857,9 @@ class NiminFetishFantasyv0975o_fla:
    def option7Event(self):
       self.toggleSide()
    def hotKeys(self, keyCode):
-      #Defines the behavior hotkeys
+      """
+      Executes hotkey behaviour from its actionscript keycode
+      """
       self.detailedDebug()
       special = not self.keyboardTypingDisable or self.altHeld
       if keyCode == 18: #Alt
@@ -2100,10 +2106,6 @@ class NiminFetishFantasyv0975o_fla:
       self.updateText()
       self.savePreferences()
    def toggleBold(self):
-      #if (not self.fontBold):
-      #   self.fontBold = True
-      #else:
-      #   self.fontBold = False
       self.fontBold = not self.fontBold
       self.updateText()
       self.savePreferences()
@@ -2820,30 +2822,40 @@ class NiminFetishFantasyv0975o_fla:
       else:
          return tempStr.getvalue()
    def checkItem(self, ID:int):
-      #Checks if player has item ID in their bag
+      """
+      Checks if player has item ID in their bag
+      """
       if ID in self.bagArray:
          return True
       return False
    def checkMagicItem(self):
-      #Checks if player has a magic item in their bag
+      """
+      Checks if player has a magic item in their bag
+      """
       for i in {101,102,200,215,232,233,234,235,236,237,252}:
          if (self.checkItem(i)):
             return True
       return False
    def checkStash(self, ID:int):
-      #Checks if player has item ID in their stash
+      """
+      Checks if player has item ID in their stash
+      """
       if ID in self.stashArray:
          return True
       return False
    def countItem(self, ID:int):
-      #Counts how many of item ID player has in their bag
+      """
+      Counts how many of item ID player has in their bag
+      """
       tempInt = 0
       for i in range(27):
          if (self.bagArray[i] == ID):
             tempInt += self.bagStackArray[i]
       return tempInt
    def countStash(self, ID:int): #not currently used
-      #Counts how many of item ID player has in their stash
+      """
+      Counts how many of item ID player has in their stash
+      """
       tempInt = 0
       for i in range(27):
          if (self.stashArray[i] == ID):
@@ -2851,10 +2863,14 @@ class NiminFetishFantasyv0975o_fla:
       return tempInt
    @staticmethod
    def percent():
-      #Returns a number between 1 and 100
+      """
+      Returns a random number between 1 and 100.
+      """
       return math.floor(random.random() * 100) + 1
    def chooseFrom(self):
-      #Returns a random option from self.rndArray. self.rndArray must have atleast one item in it "or else you'll get the hose".
+      """
+      Returns a random option from self.rndArray. self.rndArray must have atleast one item in it "or else you'll get the hose".
+      """
       if (self.rndArray.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
          as3.trace(f"chooseFrom: Error: self.rndArray does not contain any items. hour = {self.hour}")
@@ -2865,13 +2881,18 @@ class NiminFetishFantasyv0975o_fla:
          self.rndArray = as3.Array()
          return self.rndResult
    def randChooseFromArray(self,array:as3.Array):
+      """
+      Returns a random option from an array. The array must have atleast one item in it "or else you'll get the hose".
+      """
       if (array.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
          as3.trace(f"randChooseFromArray: Error: array does not contain any items. hour = {self.hour}")
       else:
          return choice(array)
    def stats(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
-      #Updates stats and displays the up/down images
+      """
+      Updates player stats and displays the up/down images
+      """
       if self.currentState != 2 and noclear == False:
          self.hideUpDown()
       self.strength += stre
@@ -2922,7 +2943,9 @@ class NiminFetishFantasyv0975o_fla:
          self.UpDownSenImg("valdownimg")
       self.statDisplay()
    def statsMod(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
-      #Updates the stats modifiers and displays the up/down images
+      """
+      Updates player stats modifiers and displays the up/down images
+      """
       if self.currentState != 2 and noclear == False:
          self.hideUpDown()
       self.strMod += stre
@@ -2947,7 +2970,9 @@ class NiminFetishFantasyv0975o_fla:
          self.UpDownSenImg("valdownimg")
       self.statDisplay()
    def statDisplay(self, nolsc=False):
-      #Updates the displayed values for your stats
+      """
+      Updates the displayed player's stats values
+      """
       self.str_ = self.strength + self.strMod
       self.ment = self.mentality + self.mentMod
       self.lib = self.libido + self.libMod
@@ -2959,7 +2984,9 @@ class NiminFetishFantasyv0975o_fla:
          self.setLevelStat()
          self.setSCStats()
    def doSexP(self, changes:int):
-      #Calculates SexP and levels then updates the displayed values
+      """
+      Calculates player's SexP and levels then updates the displayed values
+      """
       if (self.SexP + changes * self.SexPMod >= 100):
          changes -= math.ceil((100 - self.SexP) / self.SexPMod)
          self.SexP = 0
@@ -2971,7 +2998,9 @@ class NiminFetishFantasyv0975o_fla:
       self.SexP = int(self.SexP)
       self.setSCStats()
    def regionChange(self, changes:int):
-      #Changes the displayed region name
+      """
+      Changes the region the player is in and updates the displayed name
+      """
       if self.inDungeon:
          self.currentDungeon = changes
          if (changes > 1000 and changes < 1010):
@@ -2991,14 +3020,18 @@ class NiminFetishFantasyv0975o_fla:
          elif changes == 12:
             self.mo.configureChild("currentregionlabel",text="Sanctuary")
    def dayTime(self, Time:int):
-      #Adds "Time" hours to the current time, calculates the new day and hour values, then calls doStatus
+      """
+      Adds "Time" hours to the current time, calculates the new day and hour values, then calls doStatus
+      """
       addTime = int(Time) + self.hour
       self.day += addTime//24
       self.hour = addTime%24
       self.setDHStats()
       self.doStatus(Time)
    def doCoin(self, changes:int):
-      #Adds "changes" to your coins and then calls setSCStats
+      """
+      Adds "changes" to player's coins and then calls setSCStats
+      """
       if (self.coin + changes < 0):
          self.coin = 0
          changes = 0
@@ -3008,7 +3041,9 @@ class NiminFetishFantasyv0975o_fla:
       self.coin = int(self.coin)
       self.setSCStats()
    def doHP(self, changes:int, suppressImgChange:bool=False, ret=False, retPO=False):
-      #Changes player's HP
+      """
+      Changes player's HP
+      """
       tempStr = ""
       if (changes < 0):
          if (self.masoPot > 0 and self.sMasoPot <= 0):
@@ -3042,7 +3077,9 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr
       self.outputMainText(tempStr,False)
    def doPassOut(self, ret=False):
-      #Function for when player reaches 0 HP
+      """
+      Function for when player reaches 0 HP
+      """
       tempStr = ""
       tempNum = math.floor(self.percent() / 10 * self.level + self.level * self.percent() / 10)
       if (self.coin - tempNum < 0):
@@ -3064,7 +3101,9 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(tempStr,False)
       self.doEnd()
    def doLust(self, changes:int, source:int, *triggers, ret=False):
-      #Changes player lust and provides lust event descriptions
+      """
+      Changes player lust and provides lust event descriptions
+      """
       #!optimize
       tempStr = StringIO()
       if source == 1 and changes > 0:
@@ -3190,7 +3229,9 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr.getvalue()
       self.outputMainText(tempStr.getvalue(),False)
    def doLustForcedMasturbate(self):
-      #For when player's lust gets too high
+      """
+      For when player's lust gets too high
+      """
       if (self.currentState == 2):
          self.outputMainText(f"\n\nAmidst the heat of battle, your {self.legDesc(2)} buckle{self.legPlural(1)} from your intense arousal, preventing you from fighting any further.",False)
          if (not self.inBag):
@@ -3204,7 +3245,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doGetRaped()
          self.doListen = doListen
    def newGameGo(self):
-      #Function ran when the "new game" button is pressed
+      """
+      Function ran when the "new game" button is pressed
+      """
       self.hideAPButton()
       self.hideSGButton()
       self.hideNewSaveLoadDialog()
@@ -3517,6 +3560,9 @@ class NiminFetishFantasyv0975o_fla:
          return 0.1
       return temp
    def cockPlural(self,typeCock,plural):
+      """
+      Determines the correct plurality of a given cock based on "type" and "plural".
+      """
       if self.grammarFixes:
          if plural == 1:
             if typeCock == 1 and self.humanCocks > 1:
@@ -3570,10 +3616,9 @@ class NiminFetishFantasyv0975o_fla:
             return ""
    def appearanceGo(self):
       """
-      Function that generates appearance text
+      Function that generates player appearance text
       """
       #!optimize
-      # math.floor(self.tallness / 12), self.tallness - math.floor(self.tallness / 12) * 12
       tempStr = StringIO()
       tempStr += applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
       if (self.hair > 0):
@@ -3835,7 +3880,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    def detailedStats(self):
-      #Stats button on the side bar
+      """
+      Stats button on the side bar
+      """
       tempStr = StringIO()
       tempStr += "These are the modifiers and multipliers for more detailed stats beyond your base stats:\n"
       tempStr += f"\n{'Strength Modifier:':<36}{self.strMod}"
@@ -3897,7 +3944,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    def detailedTitles(self):
       #!Optimize
-      #Titles button on the side bar
+      """
+      Titles button on the side bar
+      """
       tempStr = StringIO()
       tempStr += "Around town, you are thought of as being:\n"
       if (self.enticeMod >= 10 and self.ment + 40 < self.lib and self.lib > 75):
@@ -3972,10 +4021,8 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += "\nMalon's Loving Partner"
          if (self.malonChildren > 4):
             tempStr += "\nThe Progenitor of a New Race"
-      #elif self.currentZone == 2:
-         #{}
-      #elif self.currentZone == 3:
-         #{}
+      elif self.currentZone == 2:...
+      elif self.currentZone == 3:...
       elif self.currentZone == 4:
          #!Add condition for rep 20
          if (self.lilaRep == 2):
@@ -4022,7 +4069,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    def detailedStatuses(self):
-      #Effects button in the side bar
+      """
+      Effects button in the side bar
+      """
       tempStr = StringIO()
       tempStr += "The following status effects are currently active on you that you are aware of: (Name - Hours Left)\n"
       if (self.masoPot > 0):
@@ -4102,7 +4151,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    def detailedLevels(self):
-      #Levels button in the side bar
+      """
+      Levels button in the side bar
+      """
       tempStr = StringIO()
       tempStr += "You have the following perks and their respective ranks:\n"
       if (self.babyFactLevel > 0):
@@ -4143,7 +4194,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    def detailedGear(self):
-      #Gear button in the side bar
+      """
+      Gear button in the side bar
+      """
       tempStr = StringIO()
       tempStr += "You have the following items in your Bag:\n"
       for i in range(27):
@@ -4176,7 +4229,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    def detailedHelp(self):
-      #Help button in the side bar
+      """
+      Help button in the side bar
+      """
       if self.helpToWiki:
          self.openWiki()
          return
@@ -4246,7 +4301,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess()
          self.doListen = doListen
    def detailedCredits(self):
-      #Credits button in the sidebar
+      """
+      Credits button in the sidebar
+      """
       tempStr = StringIO()
       tempStr += f"Nimin Python Port (Pymin) version {__version__}\nMaintained by:\tajdelguidice\n\thttps://github.com/ajdelguidice/pymin.\nPlease direct any bug reports here as this port has nothing to do with the original creators."
       tempStr += f"\n\nNimin v{self.versionNumber}\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com"
@@ -4279,26 +4336,36 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
    @staticmethod
    def getdh(file):
-      #Gets day and hour from XML save files to display on the save and load screens
+      """
+      Gets day and hour from XML save files to display on the save and load screens
+      """
       track = xmletree.parse(file).getroot().find('track')
       return (track.find('day').text, track.find('hour').text)
    @staticmethod
    def getdhTOML(file):
-      #Gets day and hour from TOML save files to display on the save and load screens
+      """
+      Gets day and hour from TOML save files to display on the save and load screens
+      """
       with open(file,"rb") as f:
          temp = tomllib.load(f)["track"]
          return temp["day"], temp["hour"]
    @staticmethod
    def getdhSOL(file):
-      #Gets day and hour from SOL save files to display on the save and load screens
+      """
+      Gets day and hour from SOL save files to display on the save and load screens
+      """
       return sol.load(str(file))["track"][2:4] 
    @staticmethod
    def getdhNIM(file):
-      #Gets day and hour from NIM save files to display on the save and load screens
+      """
+      Gets day and hour from NIM save files to display on the save and load screens
+      """
       with open(file, "rb") as f:
          return amf3.ByteArray(f).readObject()["data"]["track"][2:4]
    def saveGo(self,ret=False):
-      #Save game dialog
+      """
+      Save game stage 1 (dialog)
+      """
       self.checkExistsMakeDir(self.savelocation)
       self.hideAPButton()
       if not self.useNewSaveLoadDialog:
@@ -4392,7 +4459,9 @@ class NiminFetishFantasyv0975o_fla:
                self.openSFC()
          self.doListen = doListen
    def loadGo(self, message=None, ret=False):
-      #Load game dialog
+      """
+      Load game stage 1 (dialog)
+      """
       self.checkExistsMakeDir(self.savelocation)
       self.hideAPButton()
       if not self.useNewSaveLoadDialog:
@@ -4481,7 +4550,9 @@ class NiminFetishFantasyv0975o_fla:
                self.openSFC()
          self.doListen = doListen
    def doNewSaveLoadDialog(self,which:str,ret):
-      #New save/load dialog that displays all save files inside of the save directory (referred to as nsld)
+      """
+      New save/load dialog that displays all save files inside of the save directory (referred to as nsld internally)
+      """
       if ret == False:
          self.showNewSaveLoadDialog()
       else:
@@ -4494,7 +4565,9 @@ class NiminFetishFantasyv0975o_fla:
       self.showDiscard()
       self.mo.configureChild("discardbutton",text="Convert")
    def nsldGetSorted(self):
-      #Sorts the save file list in nsld
+      """
+      Sorts the save file list in nsld
+      """
       if self.nsldSortOrder == 0:
          return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),0)
       elif self.nsldSortOrder == 1:
@@ -4506,7 +4579,9 @@ class NiminFetishFantasyv0975o_fla:
       elif self.nsldSortOrder == 4:
          return self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))
    def nsldDisplay(self):
-      #Displays the save file list in nsld
+      """
+      Displays the save file list in nsld
+      """
       self.mo.slb_Delete("savefileselect",0,"end")
       for i in self.nsldGetSorted():
          temp = i.lower()
@@ -4523,7 +4598,9 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.children["savefileselect"].select_set(0)
       self.nsldSetEntryFromListbox()
    def toggleNSLDSortOrder(self):
-      #Function called when the sort button is pressed in nsld
+      """
+      Function called when the sort button is pressed in nsld
+      """
       if self.newSLDialogVisible:
          self.mo.slb_Delete("savefileselect",0,"end")
          self.nsldSortOrder += 1
@@ -4536,7 +4613,9 @@ class NiminFetishFantasyv0975o_fla:
    def _enableKeys(self,*e):
       self.keyboardTypingDisable = False
    def showNewSaveLoadDialog(self):
-      #Displays nsld
+      """
+      Displays nsld
+      """
       if not self.newSLDialogVisible:
          temp = self.getColours()
          self.clearTextAllButtons()
@@ -4558,17 +4637,23 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("savefilesort",command=self.toggleNSLDSortOrder,background=temp[0],foreground=temp[1],text="Sort")
          self.newSLDialogVisible = True
    def nsldSetEntryFromListbox(self,*args):
-      #Function to set the entry box text of nsld
+      """
+      Function to set the entry box text of nsld
+      """
       self.mo.configureChild("savefileentry",text=self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")[-1])
    def nsldCheckSelection(self):
-      #Makes sure that an item is selected before trying to load it in nsld
+      """
+      Makes sure that an item is selected before trying to load it in nsld
+      """
       try:
          self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection())
          return True
       except:
          return False
    def hideNewSaveLoadDialog(self):
-      #Hides nsld
+      """
+      Hides nsld
+      """
       if self.newSLDialogVisible:
          self.mo.destroyChild("savefileselect")
          self.mo.destroyChild("savefilelabel")
@@ -4578,7 +4663,9 @@ class NiminFetishFantasyv0975o_fla:
          self.newSLDialogVisible = False
          self._enableKeys()
    def showNSLDBlinder(self,which=False):
-      #Hides nsld temporarily while conformation dialog is shown
+      """
+      Hides nsld temporarily while conformation dialog is shown
+      """
       if which == True and not self.nsldblindervisible:
          self.mo.addLabel("display","nsldblinder",200,30,780,184,("TimesNewRoman",12),"nw")
          self.mo.configureChild("nsldblinder",background=self.theme,foreground=self.fontColor)
@@ -4587,7 +4674,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("nsldblinder")
          self.nsldblindervisible = False
    def nsldSelectionUp(self):
-      #Moves pointer up the list in nsld
+      """
+      Moves pointer up the list in nsld
+      """
       temp = self.mo.children["savefileselect"].curselection()[0]
       if temp != 0:
          self.mo.children["savefileselect"].selection_clear(temp)
@@ -4596,7 +4685,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.children["savefileselect"].see(temp - 1)
          self.nsldSetEntryFromListbox()
    def nsldSelectionDown(self):
-      #Moves pointer down the list in nsld
+      """
+      Moves pointer down the list in nsld
+      """
       temp = self.mo.children["savefileselect"].curselection()[0]
       if (temp + 1) < len(self.mo.children["savefileselect"].get(0,"end")):
          self.mo.children["savefileselect"].selection_clear(temp)
@@ -4605,7 +4696,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.children["savefileselect"].see(temp + 1)
          self.nsldSetEntryFromListbox()
    def doSave(self, slot:int, file:PurePath=None):
-      #Function to save game
+      """
+      Save game stage 2 (file manipulation)
+      """
       if (slot == 4):
          if self.solonlymode:
             savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
@@ -4635,7 +4728,9 @@ class NiminFetishFantasyv0975o_fla:
          else:
             as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext.split(confmod.separator)[-1].split('.')[-1]}.")
    def doLoad(self, slot:int, file:PurePath=None):
-      #Function to load game
+      """
+      Load game stage 2 (file manipulation)
+      """
       loadfilename = ""
       if (slot == 4):
          if self.solonlymode:
@@ -4644,7 +4739,7 @@ class NiminFetishFantasyv0975o_fla:
             loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
          if (isinstance(loadfilename,tuple) or len(loadfilename) == 0):
             self.loadGo()
-            return #was originally "pass" but that stopped working for some reason
+            return
       elif (slot == 0):
          loadfilename = file.resolve()
       else:
@@ -4664,10 +4759,10 @@ class NiminFetishFantasyv0975o_fla:
       else:
          as3.trace(f"SaveFile Loader: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext.split(".")[-1]}.")
          self.loadGo(message="Error: Could not load save file. Reason: Incorrect file format")
-         return #was originally "pass" but that stopped working for some reason
+         return
       if data == None:
          self.loadGo(message="Error: Could not load save file. Reason: No data was received by doLoad")
-         return #was originally "pass" but that stopped working for some reason
+         return
       try:
          tempcs = self.currentState
          strack = data['track']
@@ -5002,7 +5097,9 @@ class NiminFetishFantasyv0975o_fla:
          self.loadGo(message="Error: Could not load save file. Reason: Malformed save file",ret=True)
          raise e
    def doRace(self):
-      #New Game race selection dialog
+      """
+      New Game race selection dialog
+      """
       as3.trace("race")
       as3.trace(self.tallness)
       self.showButtons(ButtonList(1,0,1,0,0,1,0,0,1,0,1,0))
@@ -5112,7 +5209,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doGender()
       self.doListen = doListen
    def doGender(self):
-      #New game gender (technically sex) selection dialog
+      """
+      New game sex selection dialog
+      """
       self.currentDayCare = self.dominant
       self.statDisplay(nolsc=True)
       self.outputMainText("Choose which gender you want to be:\n\nMale - You has painus!\n\nFemale - You has vagoo!\n\nHerm - You has painus and vagoo!",True)
@@ -5174,7 +5273,9 @@ class NiminFetishFantasyv0975o_fla:
          self.bodyType()
       self.doListen = doListen
    def bodyType(self):
-      #New game body typw selection dialog
+      """
+      New game body type selection dialog
+      """
       self.statDisplay(nolsc=True)
       if self.gender == 1:
          self.showButtons(ButtonList(1,0,1,0,1,0,1,0,0,1,0,0))
@@ -5338,7 +5439,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doStartingDescription()
       self.doListen = doListen
    def doStartingDescription(self):
-      #New game dialog after character selection
+      """
+      New game dialog after character creation
+      """
       self.showRegionPane()
       self.setDHStats()
       self.doHP(10000, True)
@@ -5393,7 +5496,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       self.doListen = doListen
    def doGeneral(self, nodjp=False):
-      #Game's main dialog prompt. This is where you go back to after most actions
+      """
+      Game's main dialog prompt. This is where you go back to after most actions
+      """
       djp = False
       self.bc()
       self.currentState = 1
@@ -5474,7 +5579,9 @@ class NiminFetishFantasyv0975o_fla:
                   self.doExplore()
          self.doListen = doListen
    def doJizzPants(self, ret=False):
-      #Forced action when balls are "too full"
+      """
+      Forced action when balls are "too full"
+      """
       getCum = self.cumAmount()
       tempStr = f"\n\nYour {self.ballDesc()} balls feel so absolutely swollen and sensitive, that you can't stop thinking about it. They just feel like they've gotta... gotta... gotta..."
       self.hrs += 1
@@ -5512,7 +5619,9 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(tempStr,True)
       self.doEnd()
    def doBag(self, noclear=False, refresh=False):
-      #Bag dialog
+      """
+      Bag dialog
+      """
       self.mts = False
       self.inBag = True
       self.tempBagPage = 1
@@ -5577,7 +5686,9 @@ class NiminFetishFantasyv0975o_fla:
             self.useItem(self.choiceListResult[0])
       self.doListen = doListen
    def useItem(self, ID:int):
-      #Function called after item is clicked on in the bag
+      """
+      Function called after item is clicked on in the bag
+      """
       if (ID == 0):
          self.outputMainText("This slot is empty.",True)
          self.doBag(noclear=True)
@@ -5612,10 +5723,14 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.doBag()
    def itemAdd(self, ID:int):
-      #Function called when giving the player items
+      """
+      Function called when giving the player items
+      """
       self.itemGainArray.push(ID)
    def gainItem(self, ID:int):
-      #Function used to actually give the player items
+      """
+      Function used to actually give the player items
+      """
       self.hideAmount()
       tempNum = 0
       openSlot = self.checkOpenSlot(ID)
@@ -5666,7 +5781,9 @@ class NiminFetishFantasyv0975o_fla:
             for tempInt3 in range(1, tempInt2):
                self.itemAdd(tempInt)
    def bagSlotClear(self, slot:int):
-      #Clears a slot in the bag
+      """
+      Clears a slot in the bag
+      """
       self.passiveItemRemove(self.bagArray[slot])
       self.bagArray[slot] = 0
       self.bagStackArray[slot] = 0
@@ -5679,7 +5796,9 @@ class NiminFetishFantasyv0975o_fla:
             self.stashStackArray[i] = 0
             self.stashArray[i] = 0
    def doDiscard(self, ID:int):
-      #Function to discard an item
+      """
+      Function to discard an item
+      """
       self.tempID = ID
       self.choiceListButtons("Bag")
       def doListen():
@@ -5708,7 +5827,9 @@ class NiminFetishFantasyv0975o_fla:
             self.doDiscard(self.tempID)
       self.doListen = doListen
    def itemMove(self, slot:int):
-      #Function to move an item
+      """
+      Function to move an item
+      """
       tempInt = self.moveItemID
       tempInt2 = self.moveItemStack
       tempI = slot + self.choicePage * 9 - 9
@@ -5764,7 +5885,9 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.inStash):
          self.doStash(refresh=True)
    def showMoveItem(self, which:bool):
-      #Function to show the item which is being moved in a box off to the side
+      """
+      Function to show the item which is being moved in a box off to the side
+      """
       if (which == True):
          if (self.moveItemID != 0):
             self.moveItemShow()
@@ -5775,7 +5898,9 @@ class NiminFetishFantasyv0975o_fla:
          self.moveItemAmountHide()
    @staticmethod
    def itemName(ID:int):
-      #Function which returns the name of the item ID
+      """
+      Function which returns the name of the item ID
+      """
       if (ID == 0):
          return " "
       if (ID == 1):
@@ -6048,7 +6173,9 @@ class NiminFetishFantasyv0975o_fla:
          return "Worker Egg"
       return f"ITEM NAME ERROR {ID}"
    def itemDescription(self, ID:int):
-      #Function which returns the description of the item ID
+      """
+      Function which returns the description of the item ID
+      """
       match ID:
          case 2:
             return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
@@ -6333,28 +6460,38 @@ class NiminFetishFantasyv0975o_fla:
       return f"ITEM DESCRIPTION ERROR {ID}"
    @staticmethod
    def usableItem(ID:int):
-      #Returns True if item ID can be used
+      """
+      Returns True if item ID can be used
+      """
       if ID in {2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418}:
          return True
       return False
    def canLose(self, ID:int):
-      #Returns True if item ID can be lost
+      """
+      Returns True if item ID can be lost
+      """
       if (ID == 244 and self.countItem(244) == 1 and self.snuggleBall or ID == 247 and self.countItem(247) == 1 and self.suppHarness):
          return False
       return True
    def canLoseMoveLocation(self, ID:int):
-      #This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
+      """
+      This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
+      """
       if (ID == 244 and self.countItem(244) == 0 and self.snuggleBall or ID == 247 and self.countItem(247) == 0 and self.suppHarness):
          return False
       return True
    @staticmethod
    def conItem(ID:int):
-      #Returns True if item ID is consumable
+      """
+      Returns True if item ID is consumable
+      """
       if ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
          return True
       return False
    def passiveItemAdd(self, ID:int):
-      #Applies the passive effect for item ID
+      """
+      Applies the passive effect for item ID
+      """
       if ID == 101:
          self.rapeMod += 10
       elif ID == 102:
@@ -6395,7 +6532,9 @@ class NiminFetishFantasyv0975o_fla:
          self.carryMod += 10
          self.milkCap += 3000
    def passiveItemRemove(self, ID:int):
-      #Removes the passive effect for item ID
+      """
+      Removes the passive effect for item ID
+      """
       if (ID == self.weapon):
          self.weapon = 10
       elif ID == 101:
@@ -6433,7 +6572,9 @@ class NiminFetishFantasyv0975o_fla:
          self.carryMod -= 10
          self.milkCap -= 3000
    def loseManyItem(self, ID:int, amount:int):
-      #Function for losing multiple items
+      """
+      Function for losing multiple items
+      """
       for i in range(26,-1,-1):
          if (self.bagArray[i] == ID and amount > 0):
             if (amount >= self.bagStackArray[i]):
@@ -6445,12 +6586,16 @@ class NiminFetishFantasyv0975o_fla:
                self.bagStackArray[i] -= amount
                amount = 0
    def addManyItem(self, ID:int, amount:int):
-      #Function for gaining many items
+      """
+      Function for gaining many items
+      """
       for i in range(amount):
          self.itemAdd(ID)
    @staticmethod
    def itemValue(ID:int):
-      #Function which returns the value of the item ID
+      """
+      Function which returns the value of the item ID
+      """
       tempNum = 0
       IDArray = as3.Array(None, 13, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 50, 50, 20, 100, 30, 75, None, 50, 125, 20, 15, 15, 15, 15, 5, 20, 30, 55, 40, 30, 15, 15, 15, 15, 15, 15, 35, 25, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 0, 15, 15, 5, 1, 1, 30, 20, 15, 3, 17, 10, 14, 5, 5, 0, 150, 40, 20, 5, 50, 30, 15, 15, 10, 10, 5, 10, 10, 0, 25, 15, 0, 0, 0, 0, 0, 0, 10, 3, 75, 30, 45, 100, 35, 15, 20, 80, 25, 45, 45, 10, 0, 3, 0, 15, 20, 30, 30, 50, 45, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 5, 15, 70, 10, 10, 10, 10, 10, 25, 25, 25, 25, 25, 20, 20, 20, 20, 20, 50, 50, 150, 50, 50, 2, 7, 25, 5, 10, 2, 30, 40, 69, 75, 5, 10, 20, 20, 30, 20, 10, 5)
       if not (isinstance(IDArray[ID],(as3.undefined,as3.null)) or IDArray[ID] in {None,"undefined"}):
@@ -6458,7 +6603,9 @@ class NiminFetishFantasyv0975o_fla:
       return tempNum
    @staticmethod
    def itemStackMax(ID:int):
-      #Function which returns the maximum number of the item ID that can be in a stack
+      """
+      Function which returns the maximum number of the item ID that can be in a stack
+      """
       if ID in {1,2,3,101,102,104,106,108,109,116,117,118,119,127,200,215,229,232,233,234,235,236,237,244,247,252,254,404,418,502,526,531}:
          return 1
       if ID in {105,110,111,112,113,114,120,126,201,202,204,205,207,210,216,217,219,220,222,230,240,241,242,243,249,250,257,258,501,505,513,514,515,516,517,518,519,520,521,522,525,529,530,532,536,537}:
@@ -6469,7 +6616,9 @@ class NiminFetishFantasyv0975o_fla:
          return 15
       return 0
    def foodItem(self,ID:int):
-      #Function which returns the food value of the item ID
+      """
+      Function which returns the food value of the item ID
+      """
       tempNum = 0
       if ID == 114:
          tempNum = 5
@@ -6578,7 +6727,9 @@ class NiminFetishFantasyv0975o_fla:
          return False
       return True
    def doItemUse(self, ID:int): #!optimize
-      #Function which does the defined behavior of item ID
+      """
+      Does the behaviour of item "ID"
+      """
       self.tempNum = 0
       chance = 0
       self.dmg = 0
@@ -8643,6 +8794,9 @@ class NiminFetishFantasyv0975o_fla:
             self.exhaustion -= 6
             self.doEnd()
    def bsRefresh(self,which):
+      """
+      Refreshes the bag/stash so doBag and doStash do not need to be called again.
+      """
       tempInt = 0
       tempArray2 = as3.Array(12,"Return")
       if which == "Bag":
@@ -8676,6 +8830,9 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.viewAmount(i,False)
    def doButtonDiscard(self,which):
+      """
+      Discard button action
+      """
       self.PageHide()
       tempStr = f"Are you sure you want to discard {self.itemName(self.moveItemID)}"
       if (self.moveItemStack > 1):
@@ -8703,7 +8860,9 @@ class NiminFetishFantasyv0975o_fla:
             self.moveToBag()
       self.doListen = doListen
    def doStash(self,noclear=False,refresh=False):
-      #Stash dialog
+      """
+      Stash dialog
+      """
       if not self.useNewStash:
          self.inStash = False
          self.showPage(False,"")
@@ -8864,7 +9023,9 @@ class NiminFetishFantasyv0975o_fla:
                   self.doStash()
       self.doListen = doListen
    def refreshMoveItem(self,item,stack):
-      #Function to refresh the item being moved
+      """
+      Function to refresh the item being moved
+      """
       self.moveItemID = item
       self.moveItemStack = stack
       if self.moveItemID != 0 and self.moveItemStack != 0:
@@ -9933,7 +10094,9 @@ class NiminFetishFantasyv0975o_fla:
       return 0
    @staticmethod
    def hairstyleLength(ID:int):
-      #Returns whether a specific hairstyle has length options
+      """
+      Returns whether a specific hairstyle has length options
+      """
       if ID in {1,2,3,4,8,9,10,11,13}:
          return True
       return False
@@ -10520,8 +10683,7 @@ class NiminFetishFantasyv0975o_fla:
             self.statsMod(2,2,0,0)
          elif (self.attireTop == 0):
             self.statsMod(0,4,0,0)
-         #elif (self.attireTop == 1):
-            #{}
+         elif (self.attireTop == 1):...
          elif (self.attireTop == 3):
             self.enticeMod -= 6
             self.statsMod(0,2,0,-2)
@@ -10594,8 +10756,7 @@ class NiminFetishFantasyv0975o_fla:
             self.statsMod(-2,-2,0,0)
          elif (ID == 0):
             self.statsMod(0,-4,0,0)
-         #elif (ID == 1):
-            #{}
+         elif (ID == 1):...
          elif (ID == 3):
             self.enticeMod += 6
             self.statsMod(0,-2,0,2)
@@ -10672,8 +10833,7 @@ class NiminFetishFantasyv0975o_fla:
             self.statsMod(2,2,0,0)
          elif (self.attireBot == 0):
             self.statsMod(0,4,0,0)
-         #elif (self.attireBot == 2):
-            #{}
+         elif (self.attireBot == 2):...
          elif (self.attireBot == 4):
             self.enticeMod -= 6
             self.statsMod(0,2,0,-2)
@@ -10738,8 +10898,7 @@ class NiminFetishFantasyv0975o_fla:
             self.statsMod(-2,-2,0,0)
          elif (ID == 0):
             self.statsMod(0,-4,0,0)
-         #elif(ID == 2):
-            #{}
+         elif(ID == 2):...
          elif (ID == 4):
             self.enticeMod += 6
             self.statsMod(0,-2,0,2)
@@ -21072,7 +21231,11 @@ class NiminFetishFantasyv0975o_fla:
       self.eSexP = enemySexP
       self.eItem = enemyItem
    def doeHP(self, changes:int, ret=False):
-      #DOES NOT RETURN THE BATTLE WIN MESSAGE
+      """
+      Calculate and set enemy's HP
+      
+      DOES NOT RETURN THE BATTLE WIN MESSAGE
+      """
       if (self.eHP + changes <= 0):
          self.specialKOWin()
          self.outputMainText("\n\nYou win the battle!",False)
@@ -22072,8 +22235,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.hunger - time >= 100):
          tempStr += "\n\nYou notice a bit more chub around your belly thanks to all you've been eating lately. You may want to watch your diet more closely."
          self.bellyMod += 5
-         #self.hunger = self.hunger - time - 30
-         self.hunger -= (time + 30)
+         self.hunger -= time + 30
       else:
          self.hunger -= time
       if (self.skipExhaustion):
@@ -22923,8 +23085,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the {self.skinDesc()} left smooth as though there were never anything there. You have lost your wings, it seems."
          self.runMod -= 20
          self.wings = 0
-      #if ((wings > 0) and (dominant != wings)):
-      # {}
+      if ((self.wings > 0) and (self.dominant != self.wings)):...
       if (self.lockEars == 0):
          if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
             self.ears = 1
@@ -25290,11 +25451,11 @@ class NiminFetishFantasyv0975o_fla:
          self.hourlabelvisible = False
    def showRegionPane(self):
       if not self.label10visible:
-         self.mo.addnwhLabel("display","label10",90+20,250+30,self.font,anchor="n") #,100,20
+         self.mo.addnwhLabel("display","label10",110,280,self.font,anchor="n")
          self.mo.configureChild("label10",text="Current Region",background=self.theme,foreground=self.fontColor)
          self.label10visible = True
       if not self.currentregionlabelvisible:
-         self.mo.addnwhLabel("display","currentregionlabel",90+20,270+30,self.crfont,anchor="n") #,120,40
+         self.mo.addnwhLabel("display","currentregionlabel",110,300,self.crfont,anchor="n")
          self.mo.configureChild("currentregionlabel",text="Region",background=self.theme,foreground=self.fontColor)
          self.currentregionlabelvisible = True
       self.regionChange(self.currentZone)
