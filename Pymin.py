@@ -2466,7 +2466,7 @@ class NiminFetishFantasyv0975o_fla:
          self.disableSelectedButtons(i for i in (1,2,3,5,6,7,9,10,11) if not self.buttonsVisible[i])
       elif self.mts or self.mtb:
          self.enableAllButtons()
-   def choiceListSelect(self, which:str, hideAmountOverride=False):
+   def choiceListSelect(self, which:str, hideAmountOverride=False, hidePageOverride=False):
       if which == "Bag":
          tempArray = tuple(self.bagArray)
       elif which == "Stash":
@@ -2506,7 +2506,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.stashPage = self.choicePage
       if (self.buttonChoice != 4 and self.buttonChoice != 8):
-         if not (self.inBag or self.inStash):
+         if not (self.inBag or self.inStash) and not hidePageOverride:
             self.showPage(False,"")
             self.tempBagPage = self.choicePage
          self.choicePage = 1
@@ -9310,9 +9310,10 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.outputMainText("Click on an item you would like to sell.",True)
       def doListen():
-         self.choiceListSelect("Bag",True)
+         self.choiceListSelect("Bag",True,True)
          if (self.buttonChoice == 12):
             self.hideAmount()
+            self.PageHide()
             self.doShop()
          elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Bag")
@@ -9323,6 +9324,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doSell(True)
                else:
                   self.hideAmount()
+                  self.PageHide()
                   self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?",True)
                   self.buttonConfirm()
                   def doListen():
@@ -9334,6 +9336,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doListen = doListen
             else:
                self.hideAmount()
+               self.PageHide()
                self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?",True)
                buttonlist = ButtonList(1,0,1,0,0,0,0,0,1,0,1,0)
                tempArray = as3.Array(1, "1", 3, "2", 9, "All", 11, "None")
