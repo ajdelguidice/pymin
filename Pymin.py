@@ -5553,30 +5553,29 @@ class NiminFetishFantasyv0975o_fla:
                self.hideLGButton()
                self.hideNGButton()
                self.hideAPButton()
-            match self.buttonChoice:
-               case 1:
-                  self.doBag()
-               case 2:
-                  self.doStash()
-               case 3:
-                  self.doShops()
-               case 4:
-                  self.doDayCare()
-               case 5:
-                  self.doMasturbate()
-               case 6:
-                  self.doSleep()
-               case 7:
-                  self.doAlchemy()
-               case 8:
-                  self.doLevelUP()
-               case 9:
-                  self.hrs += 1
-                  self.doProcess()
-               case 10:
-                  self.doProstitute()
-               case 12:
-                  self.doExplore()
+            if self.buttonChoice == 1:
+               self.doBag()
+            elif self.buttonChoice == 2:
+               self.doStash()
+            elif self.buttonChoice == 3:
+               self.doShops()
+            elif self.buttonChoice == 4:
+               self.doDayCare()
+            elif self.buttonChoice == 5:
+               self.doMasturbate()
+            elif self.buttonChoice == 6:
+               self.doSleep()
+            elif self.buttonChoice == 7:
+               self.doAlchemy()
+            elif self.buttonChoice == 8:
+               self.doLevelUP()
+            elif self.buttonChoice == 9:
+               self.hrs += 1
+               self.doProcess()
+            elif self.buttonChoice == 10:
+               self.doProstitute()
+            elif self.buttonChoice == 12:
+               self.doExplore()
          self.doListen = doListen
    def doJizzPants(self, ret=False):
       """
@@ -6176,287 +6175,286 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function which returns the description of the item ID
       """
-      match ID:
-         case 2:
-            return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
-         case 3:
-            return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
-         case 101:
-            return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
-         case 102:
-            return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
-         case 103:
-            return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
-         case 104:
-            return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
-         case 105:
-            return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
-         case 106:
-            return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
-         case 108:
-            return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
-         case 109:
-            return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
-         case 110:
-            return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
-         case 111:
-            return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
-         case 112:
-            return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
-         case 113:
-            return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
-         case 114:
-            return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
-         case 115:
-            return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
-         case 116:
-            return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
-         case 117:
-            return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
-         case 118:
-            return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
-         case 119:
-            return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
-         case 120:
-            return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
-         case 121:
-            return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
-         case 122:
-            return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
-         case 123:
-            return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
-         case 124:
-            return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
-         case 125:
-            return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
-         case 126:
-            return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
-         case 127:
-            return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
-         case 128:
-            return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
-         case 200:
-            return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
-         case 201:
-            return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
-         case 202:
-            return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
-         case 203:
-            return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
-         case 204:
-            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
-         case 205:
-            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
-         case 206:
-            return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
-         case 207:
-            return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
-         case 208:
-            return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
-         case 209:
-            return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
-         case 210:
-            return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
-         case 211:
-            return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
-         case 212:
-            return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
-         case 213:
-            return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
-         case 214:
-            return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
-         case 215:
-            return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
-         case 216:
-            return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
-         case 217:
-            return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
-         case 218:
-            return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
-         case 219:
-            return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
-         case 220:
-            return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
-         case 221:
-            return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
-         case 222:
-            return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
-         case 223:
-            return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
-         case 224:
-            return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
-         case 225:
-            return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
-         case 226:
-            return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
-         case 227:
-            return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
-         case 228:
-            return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
-         case 229:
-            return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
-         case 230:
-            return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
-         case 231:
-            return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
-         case 232:
-            return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
-         case 233:
-            return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
-         case 234:
-            return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
-         case 235:
-            return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
-         case 236:
-            return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
-         case 237:
-            return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
-         case 238:
-            return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
-         case 239:
-            return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
-         case 240:
-            return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
-         case 241:
-            return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
-         case 242:
-            return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
-         case 243:
-            return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
-         case 244:
-            if (self.snuggleBall):
-               return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
-            return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-         case 245:
-            return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
-         case 246:
-            return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
-         case 247:
-            tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-            if (self.suppHarness):
-               tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
-            return tempStr
-         case 248:
-            return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
-         case 249:
-            return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
-         case 250:
-            return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
-         case 251:
-            return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
-         case 252:
-            return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
-         case 253:
-            tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
-            if (self.tail == 12):
-               tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
-            return tempStr
-         case 254:
-            return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
-         case 255:
-            return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
-         case 256:
-            return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
-         case 257:
-            return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
-         case 258:
-            return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
-         case 259:
-            return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
-         case 260:
-            return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
-         case 404:
-            temp = "Item Not Found\n\nItem Not Found"
-            if confmod.as3DebugEnable == True:
-               temp += " (This is a joke item referencing status code 404)"
-            return temp
-         case 418:
-            temp = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
-            if confmod.as3DebugEnable == True:
-               temp += " (This is a joke item referencing status code 418)"
-            return temp
-         case 500:
-            return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
-         case 501:
-            return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
-         case 502:
-            return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
-         case 503:
-            return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
-         case 504:
-            return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
-         case 505:
-            return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-         case 506:
-            return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
-         case 507:
-            return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
-         case 508:
-            return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
-         case 509:
-            return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
-         case 510:
-            return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-         case 511:
-            return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
-         case 512:
-            return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
-         case 513:
-            return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
-         case 514:
-            return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
-         case 515:
-            return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
-         case 516:
-            return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-         case 517:
-            return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
-         case 518:
-            return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
-         case 519:
-            return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
-         case 520:
-            return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
-         case 521:
-            return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-         case 522:
-            return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
-         case 523:
-            return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
-         case 524:
-            return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
-         case 525:
-            return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
-         case 526:
-            return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
-         case 527:
-            return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
-         case 528:
-            return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
-         case 529:
-            return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
-         case 530:
-            return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
-         case 531:
-            return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
-         case 532:
-            return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
-         case 533:
-            return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
-         case 534:
-            return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
-         case 535:
-            return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
-         case 536:
-            return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
-         case 537:
-            return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
-         case 538:
-            return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
-         case 539:
-            return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
-         case 540:
-            return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
+      if ID == 2:
+         return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
+      if ID == 3:
+         return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
+      if ID == 101:
+         return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
+      if ID == 102:
+         return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
+      if ID == 103:
+         return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
+      if ID == 104:
+         return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
+      if ID == 105:
+         return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
+      if ID == 106:
+         return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
+      if ID == 108:
+         return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
+      if ID == 109:
+         return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
+      if ID == 110:
+         return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
+      if ID == 111:
+         return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
+      if ID == 112:
+         return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
+      if ID == 113:
+         return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
+      if ID == 114:
+         return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
+      if ID == 115:
+         return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
+      if ID == 116:
+         return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
+      if ID == 117:
+         return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
+      if ID == 118:
+         return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
+      if ID == 119:
+         return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
+      if ID == 120:
+         return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
+      if ID == 121:
+         return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
+      if ID == 122:
+         return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
+      if ID == 123:
+         return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
+      if ID == 124:
+         return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
+      if ID == 125:
+         return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
+      if ID == 126:
+         return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
+      if ID == 127:
+         return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
+      if ID == 128:
+         return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
+      if ID == 200:
+         return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
+      if ID == 201:
+         return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
+      if ID == 202:
+         return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
+      if ID == 203:
+         return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
+      if ID == 204:
+         return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+      if ID == 205:
+         return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+      if ID == 206:
+         return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
+      if ID == 207:
+         return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
+      if ID == 208:
+         return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
+      if ID == 209:
+         return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
+      if ID == 210:
+         return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
+      if ID == 211:
+         return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
+      if ID == 212:
+         return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
+      if ID == 213:
+         return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
+      if ID == 214:
+         return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
+      if ID == 215:
+         return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
+      if ID == 216:
+         return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
+      if ID == 217:
+         return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
+      if ID == 218:
+         return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
+      if ID == 219:
+         return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
+      if ID == 220:
+         return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
+      if ID == 221:
+         return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
+      if ID == 222:
+         return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
+      if ID == 223:
+         return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
+      if ID == 224:
+         return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
+      if ID == 225:
+         return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
+      if ID == 226:
+         return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
+      if ID == 227:
+         return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
+      if ID == 228:
+         return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
+      if ID == 229:
+         return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
+      if ID == 230:
+         return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
+      if ID == 231:
+         return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
+      if ID == 232:
+         return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
+      if ID == 233:
+         return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
+      if ID == 234:
+         return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
+      if ID == 235:
+         return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
+      if ID == 236:
+         return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
+      if ID == 237:
+         return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
+      if ID == 238:
+         return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
+      if ID == 239:
+         return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
+      if ID == 240:
+         return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
+      if ID == 241:
+         return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
+      if ID == 242:
+         return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
+      if ID == 243:
+         return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
+      if ID == 244:
+         if (self.snuggleBall):
+            return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
+         return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
+      if ID == 245:
+         return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
+      if ID == 246:
+         return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
+      if ID == 247:
+         tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
+         if (self.suppHarness):
+            tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
+         return tempStr
+      if ID == 248:
+         return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
+      if ID == 249:
+         return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
+      if ID == 250:
+         return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
+      if ID == 251:
+         return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
+      if ID == 252:
+         return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
+      if ID == 253:
+         tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
+         if (self.tail == 12):
+            tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
+         return tempStr
+      if ID == 254:
+         return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
+      if ID == 255:
+         return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
+      if ID == 256:
+         return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
+      if ID == 257:
+         return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
+      if ID == 258:
+         return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
+      if ID == 259:
+         return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
+      if ID == 260:
+         return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
+      if ID == 404:
+         temp = "Item Not Found\n\nItem Not Found"
+         if confmod.as3DebugEnable == True:
+            temp += " (This is a joke item referencing status code 404)"
+         return temp
+      if ID == 418:
+         temp = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
+         if confmod.as3DebugEnable == True:
+            temp += " (This is a joke item referencing status code 418)"
+         return temp
+      if ID == 500:
+         return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
+      if ID == 501:
+         return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
+      if ID == 502:
+         return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
+      if ID == 503:
+         return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
+      if ID == 504:
+         return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
+      if ID == 505:
+         return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+      if ID == 506:
+         return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
+      if ID == 507:
+         return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
+      if ID == 508:
+         return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
+      if ID == 509:
+         return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
+      if ID == 510:
+         return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+      if ID == 511:
+         return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
+      if ID == 512:
+         return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
+      if ID == 513:
+         return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
+      if ID == 514:
+         return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
+      if ID == 515:
+         return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
+      if ID == 516:
+         return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+      if ID == 517:
+         return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
+      if ID == 518:
+         return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
+      if ID == 519:
+         return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
+      if ID == 520:
+         return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
+      if ID == 521:
+         return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+      if ID == 522:
+         return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
+      if ID == 523:
+         return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
+      if ID == 524:
+         return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
+      if ID == 525:
+         return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
+      if ID == 526:
+         return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
+      if ID == 527:
+         return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
+      if ID == 528:
+         return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
+      if ID == 529:
+         return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
+      if ID == 530:
+         return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
+      if ID == 531:
+         return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
+      if ID == 532:
+         return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
+      if ID == 533:
+         return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
+      if ID == 534:
+         return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
+      if ID == 535:
+         return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
+      if ID == 536:
+         return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
+      if ID == 537:
+         return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
+      if ID == 538:
+         return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
+      if ID == 539:
+         return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
+      if ID == 540:
+         return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
       return f"ITEM DESCRIPTION ERROR {ID}"
    @staticmethod
    def usableItem(ID:int):
@@ -6596,11 +6594,59 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function which returns the value of the item ID
       """
-      tempNum = 0
-      IDArray = as3.Array(None, 13, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 50, 50, 20, 100, 30, 75, None, 50, 125, 20, 15, 15, 15, 15, 5, 20, 30, 55, 40, 30, 15, 15, 15, 15, 15, 15, 35, 25, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 0, 15, 15, 5, 1, 1, 30, 20, 15, 3, 17, 10, 14, 5, 5, 0, 150, 40, 20, 5, 50, 30, 15, 15, 10, 10, 5, 10, 10, 0, 25, 15, 0, 0, 0, 0, 0, 0, 10, 3, 75, 30, 45, 100, 35, 15, 20, 80, 25, 45, 45, 10, 0, 3, 0, 15, 20, 30, 30, 50, 45, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 5, 15, 70, 10, 10, 10, 10, 10, 25, 25, 25, 25, 25, 20, 20, 20, 20, 20, 50, 50, 150, 50, 50, 2, 7, 25, 5, 10, 2, 30, 40, 69, 75, 5, 10, 20, 20, 30, 20, 10, 5)
-      if not (isinstance(IDArray[ID],(as3.undefined,as3.null)) or IDArray[ID] in {None,"undefined"}):
-         tempNum = IDArray[ID]
-      return tempNum
+      if ID in {200, 215, 229, 232, 233, 234, 235, 236, 237, 252, 254}:
+         return 0
+      if ID in {204, 205}:
+         return 1
+      if ID in {523, 528}:
+         return 2
+      if ID in {209, 239, 253}:
+         return 3
+      if ID in {115, 203, 213, 214, 219, 226, 500, 526, 533, 540}:
+         return 5
+      if ID == 524:
+         return 7
+      if ID in {211, 224, 225, 227, 228, 238, 251, 503, 504, 505, 506, 507, 527, 534, 539}:
+         return 10
+      if ID == 1:
+         return 13
+      if ID == 212:
+         return 14
+      if ID in {111, 112, 113, 114, 121, 122, 123, 124, 125, 126, 201, 202, 208, 222, 223, 231, 245, 255, 501}:
+         return 15
+      if ID == 210:
+         return 17
+      if ID in {103, 110, 116, 207, 218, 246, 256, 513, 514, 515, 516, 517, 535, 536, 538}:
+         return 20
+      if ID in {128, 230, 248, 508, 509, 510, 511, 512, 525}:
+         return 25
+      if ID in {105, 117, 120, 206, 221, 241, 257, 258, 529, 537}:
+         return 30
+      if ID in {127, 244}:
+         return 35
+      if ID in {119, 217, 530}:
+         return 40
+      if ID in {242, 249, 250, 260}:
+         return 45
+      if ID in {101, 102, 108, 220, 259, 518, 519, 521, 522}:
+         return 50
+      if ID == 118:
+         return 55
+      if ID == 531:
+         return 69
+      if ID == 502:
+         return 70
+      if ID in {106, 240, 532}:
+         return 75
+      if ID == 247:
+         return 80
+      if ID in {104, 243}:
+         return 100
+      if ID == 109:
+         return 125
+      if ID in {216, 520}:
+         return 150
+      return 0
    @staticmethod
    def itemStackMax(ID:int):
       """
@@ -9660,153 +9706,152 @@ class NiminFetishFantasyv0975o_fla:
          return f"ZONE ERROR: {self.currentZone}"
       return 0
    def apothLearn(self, ID:int):
-      match ID:
-         case 1:
-            self.knowLustDraft = True
-         case 2:
-            self.knowRejuvPot = True
-         case 3:
-            self.knowExpPreg = True
-         case 4:
-            self.knowBallSwell = True
-         case 5:
-            self.knowSLustDraft = True
-         case 6:
-            self.knowSRejuvPot = True
-         case 7:
-            self.knowSExpPreg = True
-         case 8:
-            self.knowSBallSwell = True
-         case 9:
-            self.knowGenSwap = True
-         case 10:
-            self.knowMasoPot = True
-         case 11:
-            self.knowBabyFree = True
-         case 12:
-            self.knowPotPot = True
-         case 13:
-            self.knowSGenSwap = True
-         case 14:
-            self.knowSMasoPot = True
-         case 15:
-            self.knowSBabyFree = True
-         case 16:
-            self.knowSPotPot = True
-         case 17:
-            self.knowMilkSuppress = True
+      if ID == 1:
+         self.knowLustDraft = True
+      if ID == 2:
+         self.knowRejuvPot = True
+      if ID == 3:
+         self.knowExpPreg = True
+      if ID == 4:
+         self.knowBallSwell = True
+      if ID == 5:
+         self.knowSLustDraft = True
+      if ID == 6:
+         self.knowSRejuvPot = True
+      if ID == 7:
+         self.knowSExpPreg = True
+      if ID == 8:
+         self.knowSBallSwell = True
+      if ID == 9:
+         self.knowGenSwap = True
+      if ID == 10:
+         self.knowMasoPot = True
+      if ID == 11:
+         self.knowBabyFree = True
+      if ID == 12:
+         self.knowPotPot = True
+      if ID == 13:
+         self.knowSGenSwap = True
+      if ID == 14:
+         self.knowSMasoPot = True
+      if ID == 15:
+         self.knowSBabyFree = True
+      if ID == 16:
+         self.knowSPotPot = True
+      if ID == 17:
+         self.knowMilkSuppress = True
    def apothName(self, ID:int):
       if ID >= 200:
          return self.itemName(ID)
-      elif ID == 1:
+      if ID == 1:
          return 'R: LustDraft'
-      elif ID == 2:
+      if ID == 2:
          return 'R: RejuvPot'
-      elif ID == 3:
+      if ID == 3:
          return 'R: ExpPreg'
-      elif ID == 4:
+      if ID == 4:
          return 'R: BallSwell'
-      elif ID == 5:
+      if ID == 5:
          return 'R: SLustDraft'
-      elif ID == 6:
+      if ID == 6:
          return 'R: SRejuvPot'
-      elif ID == 7:
+      if ID == 7:
          return 'R: SExpPreg'
-      elif ID == 8:
+      if ID == 8:
          return 'R: SBallSwell'
-      elif ID == 9:
+      if ID == 9:
          return 'R: GenSwap'
-      elif ID == 10:
+      if ID == 10:
          return 'R: MasoPot'
-      elif ID == 11:
+      if ID == 11:
          return 'R: BabyFree'
-      elif ID == 12:
+      if ID == 12:
          return 'R: PotPot'
-      elif ID == 13:
+      if ID == 13:
          return 'R: SGenSwap'
-      elif ID == 14:
+      if ID == 14:
          return 'R: SMasoPot'
-      elif ID == 15:
+      if ID == 15:
          return 'R: SBabyFree'
-      elif ID == 16:
+      if ID == 16:
          return 'R: SPotPot'
-      elif ID == 17:
+      if ID == 17:
          return 'R: MilkSuppress'
       return ""
    def apothDescription(self, ID:int):
       if ID >= 200:
          return self.itemDescription(ID)
-      elif ID == 1:
+      if ID == 1:
          return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
-      elif ID == 2:
+      if ID == 2:
          return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
-      elif ID == 3:
+      if ID == 3:
          return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
-      elif ID == 4:
+      if ID == 4:
          return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
-      elif ID == 5:
+      if ID == 5:
          return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
-      elif ID == 6:
+      if ID == 6:
          return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
-      elif ID == 7:
+      if ID == 7:
          return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
-      elif ID == 8:
+      if ID == 8:
          return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
-      elif ID == 9:
+      if ID == 9:
          return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
-      elif ID == 10:
+      if ID == 10:
          return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
-      elif ID == 11:
+      if ID == 11:
          return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
-      elif ID == 12:
+      if ID == 12:
          return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
-      elif ID == 13:
+      if ID == 13:
          return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
-      elif ID == 14:
+      if ID == 14:
          return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
-      elif ID == 15:
+      if ID == 15:
          return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
-      elif ID == 16:
+      if ID == 16:
          return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
-      elif ID == 17:
+      if ID == 17:
          return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
       return ""
    def apothValue(self, ID:int):
       if (ID >= 200):
          return self.itemValue(ID)
-      elif ID == 1:
+      if ID == 1:
          return 20
-      elif ID == 2:
+      if ID == 2:
          return 25
-      elif ID == 3:
+      if ID == 3:
          return 25
-      elif ID == 4:
+      if ID == 4:
          return 20
-      elif ID == 5:
+      if ID == 5:
          return 35
-      elif ID == 6:
+      if ID == 6:
          return 40
-      elif ID == 7:
+      if ID == 7:
          return 35
-      elif ID == 8:
+      if ID == 8:
          return 30
-      elif ID == 9:
+      if ID == 9:
          return 45
-      elif ID == 10:
+      if ID == 10:
          return 45
-      elif ID == 11:
+      if ID == 11:
          return 40
-      elif ID == 12:
+      if ID == 12:
          return 45
-      elif ID == 13:
+      if ID == 13:
          return 60
-      elif ID == 14:
+      if ID == 14:
          return 70
-      elif ID == 15:
+      if ID == 15:
          return 55
-      elif ID == 16:
+      if ID == 16:
          return 65
-      elif ID == 17:
+      if ID == 17:
          return 35
       return 0
    def doSalon(self):
@@ -9871,98 +9916,97 @@ class NiminFetishFantasyv0975o_fla:
    def hairstyleName(self, ID:int):
       if ID == 0:
          return 'None'
-      elif ID == 1:
+      if ID == 1:
          return 'Wavy'
-      elif ID == 2:
+      if ID == 2:
          return 'Pigtail'
-      elif ID == 3:
+      if ID == 3:
          return 'Ponytail'
-      elif ID == 4:
+      if ID == 4:
          return 'Straight'
-      elif ID == 5:
+      if ID == 5:
          return 'Buzzcut'
-      elif ID == 6:
+      if ID == 6:
          return 'Mohawk'
-      elif ID == 7:
+      if ID == 7:
          return 'Bun'
-      elif ID == 8:
+      if ID == 8:
          return 'Curly'
-      elif ID == 9:
+      if ID == 9:
          return 'B Pigtail'
-      elif ID == 10:
+      if ID == 10:
          return 'B Ponytail'
-      elif ID == 11:
+      if ID == 11:
          return 'Braided'
-      elif ID == 12:
+      if ID == 12:
          return 'Spiky'
-      elif ID == 13:
+      if ID == 13:
          return 'Emo'
-      elif ID == 14:
+      if ID == 14:
          return 'Afro'
       return f"HAIRSTYLE NAME ERROR {self.hair}"
    def hairDesc(self):
-      match self.hair:
-         case 1:
-            return "wavy hair"
-         case 2:
-            return "hair pulled to the sides of your head in pigtails"
-         case 3:
-            return "hair pulled back into a ponytail"
-         case 4:
-            return "straight hair"
-         case 5:
-            return "really short hair"
-         case 6:
-            return "hair styled up into a mohawk"
-         case 7:
-            return "hair curled up into a bun"
-         case 8:
-            return "curly hair"
-         case 9:
-            return "hair pulled to the sides of your head in braided pigtails"
-         case 10:
-            return "hair pulled back into a braided ponytail"
-         case 11:
-            return "braided hair"
-         case 12:
-            return "spiky hair"
-         case 13:
-            return "straight, stiff hair covering an eye"
-         case 14:
-            return "giant poofball of hair"
+      if self.hair == 1:
+         return "wavy hair"
+      if self.hair == 2:
+         return "hair pulled to the sides of your head in pigtails"
+      if self.hair == 3:
+         return "hair pulled back into a ponytail"
+      if self.hair == 4:
+         return "straight hair"
+      if self.hair == 5:
+         return "really short hair"
+      if self.hair == 6:
+         return "hair styled up into a mohawk"
+      if self.hair == 7:
+         return "hair curled up into a bun"
+      if self.hair == 8:
+         return "curly hair"
+      if self.hair == 9:
+         return "hair pulled to the sides of your head in braided pigtails"
+      if self.hair == 10:
+         return "hair pulled back into a braided ponytail"
+      if self.hair == 11:
+         return "braided hair"
+      if self.hair == 12:
+         return "spiky hair"
+      if self.hair == 13:
+         return "straight, stiff hair covering an eye"
+      if self.hair == 14:
+         return "giant poofball of hair"
       return f"HAIR DESC_SHORT ERROR {self.hair}"
    def hairC(self):
       if self.hairColor == 0:
          return ""
-      elif self.hairColor == 1:
+      if self.hairColor == 1:
          return "black "
-      elif self.hairColor == 2:
+      if self.hairColor == 2:
          return "blonde "
-      elif self.hairColor == 3:
+      if self.hairColor == 3:
          return "red "
-      elif self.hairColor == 4:
+      if self.hairColor == 4:
          return "blue "
-      elif self.hairColor == 5:
+      if self.hairColor == 5:
          return "coral pink "
-      elif self.hairColor == 6:
+      if self.hairColor == 6:
          return "auburn "
-      elif self.hairColor == 7:
+      if self.hairColor == 7:
          return "brown "
-      elif self.hairColor == 8:
+      if self.hairColor == 8:
          return "grey "
-      elif self.hairColor == 9:
+      if self.hairColor == 9:
          return "white "
       return f"HAIR COLOR ERROR {self.hairColor}"
    def hairL(self):
       if self.hairLength == 2:
          return "that is short enough to not dangle past your head"
-      elif self.hairLength == 4:
+      if self.hairLength == 4:
          return "that reaches down to your shoulders"
-      elif self.hairLength == 6:
+      if self.hairLength == 6:
          return "that reaches down your back"
-      elif self.hairLength == 8:
+      if self.hairLength == 8:
          return "that reaches down to your butt"
-      elif self.hairLength == 10:
+      if self.hairLength == 10:
          return "that reaches down to the ground"
       return f"HAIR LENGTH ERROR {self.hairLength}"
    def hairstyleID(self, choice:int):
@@ -10102,37 +10146,36 @@ class NiminFetishFantasyv0975o_fla:
       return False
    @staticmethod
    def hairstyleDescription(ID:int):
-      match ID:
-         case 0:
-            return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
-         case 1:
-            return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
-         case 2:
-            return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
-         case 3:
-            return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
-         case 4:
-            return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
-         case 5:
-            return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
-         case 6:
-            return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
-         case 7:
-            return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
-         case 8:
-            return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
-         case 9:
-            return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-         case 10:
-            return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-         case 11:
-            return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
-         case 12:
-            return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
-         case 13:
-            return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
-         case 14:
-            return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
+      if ID == 0:
+         return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
+      if ID == 1:
+         return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 2:
+         return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 3:
+         return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 4:
+         return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 5:
+         return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
+      if ID == 6:
+         return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
+      if ID == 7:
+         return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
+      if ID == 8:
+         return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 9:
+         return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 10:
+         return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 11:
+         return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 12:
+         return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
+      if ID == 13:
+         return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
+      if ID == 14:
+         return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
       return f"HAIR DESC_LONG ERROR {ID}"
    def doTailor(self):
       self.buy = 0
@@ -10175,71 +10218,70 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    @staticmethod
    def clothesName(ID:int):
-      match ID:
-         case -1:
-            return "Tattered Shreds"
-         case 0:
-            return "Invisible Underwear"
-         case 1:
-            return "Shirt"
-         case 2:
-            return "Pants"
-         case 3:
-            return "Bikini Top"
-         case 4:
-            return "Bikini Bottom"
-         case 5:
-            return "Elegant Dress"
-         case 6:
-            return "Latex Suit"
-         case 7:
-            return "Skirt"
-         case 8:
-            return "Shorts"
-         case 9:
-            return "Blouse"
-         case 10:
-            return "Diaper"
-         case 11:
-            return "Poofy Diaper"
-         case 12:
-            return "Sundress"
-         case 13:
-            return "Skimpy Dress"
-         case 14:
-            return "Short Skirt"
-         case 15:
-            return "Short Shorts"
-         case 16:
-            return "Loin Cloth"
-         case 17:
-            return "Bathing Suit"
-         case 18:
-            return "Muscle Shirt"
-         case 19:
-            return "Corset"
-         case 20:
-            return "Silk Panties"
-         case 21:
-            return "Slingkini"
-         case 22:
-            return "Thong"
-         case 23:
-            return "Bloomers"
-         case 24:
-            return "Tights"
-         case 25:
-            return "Gothic Dress"
-         case 26:
-            return "Tube Top"
-         case 27:
-            return "Nipple Pasties"
-         case 28:
-            return "Camisole"
-         case 29:
-            return "Training Suit"
-         case 30:
-            return "Bouncy Bra"
+      if ID == -1:
+         return "Tattered Shreds"
+      if ID == 0:
+         return "Invisible Underwear"
+      if ID == 1:
+         return "Shirt"
+      if ID == 2:
+         return "Pants"
+      if ID == 3:
+         return "Bikini Top"
+      if ID == 4:
+         return "Bikini Bottom"
+      if ID == 5:
+         return "Elegant Dress"
+      if ID == 6:
+         return "Latex Suit"
+      if ID == 7:
+         return "Skirt"
+      if ID == 8:
+         return "Shorts"
+      if ID == 9:
+         return "Blouse"
+      if ID == 10:
+         return "Diaper"
+      if ID == 11:
+         return "Poofy Diaper"
+      if ID == 12:
+         return "Sundress"
+      if ID == 13:
+         return "Skimpy Dress"
+      if ID == 14:
+         return "Short Skirt"
+      if ID == 15:
+         return "Short Shorts"
+      if ID == 16:
+         return "Loin Cloth"
+      if ID == 17:
+         return "Bathing Suit"
+      if ID == 18:
+         return "Muscle Shirt"
+      if ID == 19:
+         return "Corset"
+      if ID == 20:
+         return "Silk Panties"
+      if ID == 21:
+         return "Slingkini"
+      if ID == 22:
+         return "Thong"
+      if ID == 23:
+         return "Bloomers"
+      if ID == 24:
+         return "Tights"
+      if ID == 25:
+         return "Gothic Dress"
+      if ID == 26:
+         return "Tube Top"
+      if ID == 27:
+         return "Nipple Pasties"
+      if ID == 28:
+         return "Camisole"
+      if ID == 29:
+         return "Training Suit"
+      if ID == 30:
+         return "Bouncy Bra"
       return "CLOTHES NAME ERROR"
    def clothesID(self, choice:int):
       if self.currentZone == 1:
@@ -10361,132 +10403,130 @@ class NiminFetishFantasyv0975o_fla:
       return 0
    @staticmethod
    def clothesValue(ID:int):
-      match ID:
-         case 1:
-            return 5
-         case 2:
-            return 5
-         case 3:
-            return 25
-         case 4:
-            return 25
-         case 5:
-            return 45
-         case 6:
-            return 60
-         case 7:
-            return 25
-         case 8:
-            return 25
-         case 9:
-            return 25
-         case 10:
-            return 30
-         case 11:
-            return 40
-         case 12:
-            return 40
-         case 13:
-            return 50
-         case 14:
-            return 35
-         case 15:
-            return 35
-         case 16:
-            return 40
-         case 17:
-            return 55
-         case 18:
-            return 15
-         case 19:
-            return 50
-         case 20:
-            return 35
-         case 21:
-            return 65
-         case 22:
-            return 40
-         case 23:
-            return 30
-         case 24:
-            return 35
-         case 25:
-            return 60
-         case 26:
-            return 20
-         case 27:
-            return 45
-         case 28:
-            return 40
-         case 29:
-            return 35
-         case 30:
-            return 45
+      if ID == 1:
+         return 5
+      if ID == 2:
+         return 5
+      if ID == 3:
+         return 25
+      if ID == 4:
+         return 25
+      if ID == 5:
+         return 45
+      if ID == 6:
+         return 60
+      if ID == 7:
+         return 25
+      if ID == 8:
+         return 25
+      if ID == 9:
+         return 25
+      if ID == 10:
+         return 30
+      if ID == 11:
+         return 40
+      if ID == 12:
+         return 40
+      if ID == 13:
+         return 50
+      if ID == 14:
+         return 35
+      if ID == 15:
+         return 35
+      if ID == 16:
+         return 40
+      if ID == 17:
+         return 55
+      if ID == 18:
+         return 15
+      if ID == 19:
+         return 50
+      if ID == 20:
+         return 35
+      if ID == 21:
+         return 65
+      if ID == 22:
+         return 40
+      if ID == 23:
+         return 30
+      if ID == 24:
+         return 35
+      if ID == 25:
+         return 60
+      if ID == 26:
+         return 20
+      if ID == 27:
+         return 45
+      if ID == 28:
+         return 40
+      if ID == 29:
+         return 35
+      if ID == 30:
+         return 45
       return 0
    @staticmethod
    def clothesDescription(ID:int):
       #!Here
-      match ID:
-         case 1:
-            return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
-         case 2:
-            return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
-         case 3:
-            return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
-         case 4:
-            return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
-         case 5:
-            return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
-         case 6:
-            return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
-         case 7:
-            return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
-         case 8:
-            return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
-         case 9:
-            return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
-         case 10:
-            return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-         case 11:
-            return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-         case 12:
-            return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
-         case 13:
-            return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
-         case 14:
-            return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
-         case 15:
-            return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
-         case 16:
-            return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
-         case 17:
-            return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
-         case 18:
-            return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
-         case 19:
-            return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
-         case 20:
-            return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
-         case 21:
-            return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
-         case 22:
-            return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
-         case 23:
-            return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
-         case 24:
-            return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
-         case 25:
-            return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
-         case 26:
-            return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
-         case 27:
-            return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
-         case 28:
-            return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
-         case 29:
-            return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
-         case 30:
-            return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
+      if ID == 1:
+         return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
+      if ID == 2:
+         return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
+      if ID == 3:
+         return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
+      if ID == 4:
+         return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
+      if ID == 5:
+         return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
+      if ID == 6:
+         return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
+      if ID == 7:
+         return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
+      if ID == 8:
+         return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
+      if ID == 9:
+         return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
+      if ID == 10:
+         return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
+      if ID == 11:
+         return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
+      if ID == 12:
+         return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
+      if ID == 13:
+         return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
+      if ID == 14:
+         return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
+      if ID == 15:
+         return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
+      if ID == 16:
+         return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
+      if ID == 17:
+         return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
+      if ID == 18:
+         return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
+      if ID == 19:
+         return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
+      if ID == 20:
+         return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
+      if ID == 21:
+         return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
+      if ID == 22:
+         return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
+      if ID == 23:
+         return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
+      if ID == 24:
+         return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
+      if ID == 25:
+         return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
+      if ID == 26:
+         return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
+      if ID == 27:
+         return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
+      if ID == 28:
+         return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
+      if ID == 29:
+         return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
+      if ID == 30:
+         return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
       return "CLOTHES DESCRIPTION ERROR"
    def clothesTop(self):
       match self.attireTop:
@@ -12537,175 +12577,148 @@ class NiminFetishFantasyv0975o_fla:
          tempBool = False
          if (self.buttonChoice == 6):
             tempBool = False
-            match ID:
-               case 220:
-                  if (self.countItem(209) >= 7):
-                     tempBool = True
-               case 221:
-                  if (self.countItem(210) >= 6 and self.checkItem(114)):
-                     tempBool = True
-               case 503:
-                  if (self.checkItem(209) and (self.checkItem(114) or self.checkItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
-                     tempBool = True
-               case 504:
-                  if (self.checkItem(115) and self.checkItem(203)):
-                     tempBool = True
-               case 506:
-                  if (self.checkItem(114) and self.checkItem(219)):
-                     tempBool = True
-               case 507:
-                  if (self.checkItem(208)):
-                     tempBool = True
-               case 508:
-                  if (self.countItem(209) >= 3 and (self.countItem(112) >= 2 or self.checkItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
-                     tempBool = True
-               case 509:
-                  if (self.checkItem(503) and (self.checkItem(501) or self.countItem(500) >= 3)):
-                     tempBool = True
-               case 511:
-                  if (self.checkItem(213) and self.countItem(219) >= 3):
-                     tempBool = True
-               case 512:
-                  if (self.checkItem(208) and self.checkItem(218)):
-                     tempBool = True
-               case 513:
-                  if (self.checkItem(110) and self.checkItem(120)):
-                     tempBool = True
-               case 514:
-                  if (self.countItem(203) >= 2 and self.checkItem(503)):
-                     tempBool = True
-               case 515:
-                  if (self.countItem(203) >= 5):
-                     tempBool = True
-               case 516:
-                  if (self.checkItem(110) and self.checkItem(203)):
-                     tempBool = True
-               case 517:
-                  if (self.countItem(507) >= 3 and self.checkItem(523)):
-                     tempBool = True
-               case 518:
-                  if (self.checkItem(201) and self.checkItem(202) and self.checkItem(207) and self.checkItem(210)):
-                     tempBool = True
-               case 519:
-                  if (self.checkItem(222) and self.checkItem(206) and self.checkItem(504)):
-                     tempBool = True
-               case 520:
-                  if (self.checkItem(216) and self.countItem(212) >= 3):
-                     tempBool = True
-               case 521:
-                  if (self.checkItem(120) and self.checkItem(210)):
-                     tempBool = True
-               case 522:
-                  if (self.countItem(512) >= 3 and self.checkItem(524)):
-                     tempBool = True
-               case 532:
-                  if (self.checkItem(530) and self.checkItem(212) and self.checkItem(206)):
-                     tempBool = True
-               case 533:
-                  if (self.countItem(110) >= 2):
-                     tempBool = True
-               case 534:
-                  if (self.countItem(202) >= 2 and (self.checkItem(208) or self.checkItem(218))):
-                     tempBool = True
-               case 535:
-                  if (self.checkItem(201) and self.checkItem(533)):
-                     tempBool = True
-               case 536:
-                  if (self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529)):
-                     tempBool = True
+            if ID == 220 and self.countItem(209) >= 7:
+               tempBool = True
+            elif ID == 221 and self.countItem(210) >= 6 and self.checkItem(114):
+               tempBool = True
+            elif ID == 503 and (self.checkItem(209) and (self.checkItem(114) or self.checkItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
+               tempBool = True
+            elif ID == 504 and self.checkItem(115) and self.checkItem(203):
+               tempBool = True
+            elif ID == 506 and self.checkItem(114) and self.checkItem(219):
+               tempBool = True
+            elif ID == 507 and self.checkItem(208):
+               tempBool = True
+            elif ID == 508 and (self.countItem(209) >= 3 and (self.countItem(112) >= 2 or self.checkItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
+               tempBool = True
+            elif ID == 509 and (self.checkItem(503) and (self.checkItem(501) or self.countItem(500) >= 3)):
+               tempBool = True
+            elif ID == 511 and self.checkItem(213) and self.countItem(219) >= 3:
+               tempBool = True
+            elif ID == 512 and self.checkItem(208) and self.checkItem(218):
+               tempBool = True
+            elif ID == 513 and self.checkItem(110) and self.checkItem(120):
+               tempBool = True
+            elif ID == 514 and self.countItem(203) >= 2 and self.checkItem(503):
+               tempBool = True
+            elif ID == 515 and self.countItem(203) >= 5:
+               tempBool = True
+            elif ID == 516 and self.checkItem(110) and self.checkItem(203):
+               tempBool = True
+            elif ID == 517 and self.countItem(507) >= 3 and self.checkItem(523):
+               tempBool = True
+            elif ID == 518 and self.checkItem(201) and self.checkItem(202) and self.checkItem(207) and self.checkItem(210):
+               tempBool = True
+            elif ID == 519 and self.checkItem(222) and self.checkItem(206) and self.checkItem(504):
+               tempBool = True
+            elif ID == 520 and self.checkItem(216) and self.countItem(212) >= 3:
+               tempBool = True
+            elif ID == 521 and self.checkItem(120) and self.checkItem(210):
+               tempBool = True
+            elif ID == 522 and self.countItem(512) >= 3 and self.checkItem(524):
+               tempBool = True
+            elif ID == 532 and self.checkItem(530) and self.checkItem(212) and self.checkItem(206):
+               tempBool = True
+            elif ID == 533 and self.countItem(110) >= 2:
+               tempBool = True
+            elif ID == 534 and (self.countItem(202) >= 2 and (self.checkItem(208) or self.checkItem(218))):
+               tempBool = True
+            elif ID == 535 and self.checkItem(201) and self.checkItem(533):
+               tempBool = True
+            elif ID == 536 and self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529):
+               tempBool = True
             if (tempBool):
-               match ID:
-                  case 220:
-                     self.loseManyItem(209,7)
-                  case 221:
-                     self.loseManyItem(210,6)
-                     self.loseManyItem(114,1)
-                  case 503:
-                     self.loseManyItem(209,1)
-                     if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
-                        if (self.checkItem(523)):
-                           self.loseManyItem(523,1)
-                        else:
-                           self.loseManyItem(114,1)
-                  case 504:
-                     self.loseManyItem(115,1)
-                     self.loseManyItem(203,1)
-                  case 506:
-                     self.loseManyItem(114,1)
-                     self.loseManyItem(219,1)
-                  case 507:
-                     self.loseManyItem(208,1)
-                  case 508:
-                     self.loseManyItem(209,3)
-                     if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
-                        if (self.checkItem(524)):
-                           self.loseManyItem(524,1)
-                        else:
-                           self.loseManyItem(112,2)
-                  case 509:
-                     self.loseManyItem(503,1)
-                     if (self.countItem(500) >= 3):
-                        self.loseManyItem(500,3)
+               if ID == 220:
+                  self.loseManyItem(209,7)
+               elif ID == 221:
+                  self.loseManyItem(210,6)
+                  self.loseManyItem(114,1)
+               elif ID == 503:
+                  self.loseManyItem(209,1)
+                  if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
+                     if (self.checkItem(523)):
+                        self.loseManyItem(523,1)
                      else:
-                        self.loseManyItem(501,1)
-                  case 511:
-                     self.loseManyItem(213,1)
-                     self.loseManyItem(219,3)
-                  case 512:
-                     self.loseManyItem(208,1)
-                     self.loseManyItem(218,1)
-                  case 513:
-                     self.loseManyItem(110,1)
-                     self.loseManyItem(120,1)
-                  case 514:
-                     self.loseManyItem(203,2)
-                     self.loseManyItem(503,1)
-                  case 515:
-                     self.loseManyItem(203,5)
-                  case 516:
-                     self.loseManyItem(110,1)
-                     self.loseManyItem(203,1)
-                  case 517:
-                     self.loseManyItem(507,3)
-                     self.loseManyItem(523,1)
-                  case 518:
-                     self.loseManyItem(201,1)
-                     self.loseManyItem(202,1)
-                     self.loseManyItem(207,1)
-                     self.loseManyItem(210,1)
-                  case 519:
-                     self.loseManyItem(206,1)
-                     self.loseManyItem(222,1)
-                     self.loseManyItem(504,1)
-                  case 520:
-                     self.loseManyItem(212,3)
-                     self.loseManyItem(216,1)
-                  case 521:
-                     self.loseManyItem(120,1)
-                     self.loseManyItem(210,1)
-                  case 522:
-                     self.loseManyItem(512,3)
-                     self.loseManyItem(524,1)
-                  case 532:
-                     self.loseManyItem(530,1)
-                     self.loseManyItem(212,1)
-                     self.loseManyItem(206,1)
-                  case 533:
-                     self.loseManyItem(110,2)
-                  case 534:
-                     self.loseManyItem(202,2)
-                     if (self.checkItem(208)):
-                        self.loseManyItem(208,1)
+                        self.loseManyItem(114,1)
+               elif ID == 504:
+                  self.loseManyItem(115,1)
+                  self.loseManyItem(203,1)
+               elif ID == 506:
+                  self.loseManyItem(114,1)
+                  self.loseManyItem(219,1)
+               elif ID == 507:
+                  self.loseManyItem(208,1)
+               elif ID == 508:
+                  self.loseManyItem(209,3)
+                  if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
+                     if (self.checkItem(524)):
+                        self.loseManyItem(524,1)
                      else:
-                        self.loseManyItem(218,1)
-                  case 535:
-                     self.loseManyItem(201,1)
-                     self.loseManyItem(533,1)
-                  case 536:
+                        self.loseManyItem(112,2)
+               elif ID == 509:
+                  self.loseManyItem(503,1)
+                  if (self.countItem(500) >= 3):
+                     self.loseManyItem(500,3)
+                  else:
                      self.loseManyItem(501,1)
-                     self.loseManyItem(529,1)
-                     self.loseManyItem(207,2)
-                     self.loseManyItem(212,3)
+               elif ID == 511:
+                  self.loseManyItem(213,1)
+                  self.loseManyItem(219,3)
+               elif ID == 512:
+                  self.loseManyItem(208,1)
+                  self.loseManyItem(218,1)
+               elif ID == 513:
+                  self.loseManyItem(110,1)
+                  self.loseManyItem(120,1)
+               elif ID == 514:
+                  self.loseManyItem(203,2)
+                  self.loseManyItem(503,1)
+               elif ID == 515:
+                  self.loseManyItem(203,5)
+               elif ID == 516:
+                  self.loseManyItem(110,1)
+                  self.loseManyItem(203,1)
+               elif ID == 517:
+                  self.loseManyItem(507,3)
+                  self.loseManyItem(523,1)
+               elif ID == 518:
+                  self.loseManyItem(201,1)
+                  self.loseManyItem(202,1)
+                  self.loseManyItem(207,1)
+                  self.loseManyItem(210,1)
+               elif ID == 519:
+                  self.loseManyItem(206,1)
+                  self.loseManyItem(222,1)
+                  self.loseManyItem(504,1)
+               elif ID == 520:
+                  self.loseManyItem(212,3)
+                  self.loseManyItem(216,1)
+               elif ID == 521:
+                  self.loseManyItem(120,1)
+                  self.loseManyItem(210,1)
+               elif ID == 522:
+                  self.loseManyItem(512,3)
+                  self.loseManyItem(524,1)
+               elif ID == 532:
+                  self.loseManyItem(530,1)
+                  self.loseManyItem(212,1)
+                  self.loseManyItem(206,1)
+               elif ID == 533:
+                  self.loseManyItem(110,2)
+               elif ID == 534:
+                  self.loseManyItem(202,2)
+                  if (self.checkItem(208)):
+                     self.loseManyItem(208,1)
+                  else:
+                     self.loseManyItem(218,1)
+               elif ID == 535:
+                  self.loseManyItem(201,1)
+                  self.loseManyItem(533,1)
+               elif ID == 536:
+                  self.loseManyItem(501,1)
+                  self.loseManyItem(529,1)
+                  self.loseManyItem(207,2)
+                  self.loseManyItem(212,3)
                if level == 1:
                   self.itemAdd(ID)
                   if (self.percent() <= 55 + self.alchemistLevel * 2):
@@ -21292,63 +21305,60 @@ class NiminFetishFantasyv0975o_fla:
          self.dmg = 0
       return self.dmg
    def enemyName(self):
-      match self.enemyID:
-         case 101:
-            return "cock-snake"
-         case 102:
-            return "desiccating dust devil"
-         case 201:
-            return "lone male wolf"
-         case 202:
-            return "gay wolf"
-         case 301:
-            return "felin in heat"
-         case 302:
-            return "drunken equan"
-         case 303:
-            return "octopus girl"
-         case 304:
-            return "little big bunny-man"
-         case 305:
-            return "little big bunny-girl"
-         case 306:
-            return "fierce naga"
-         case 307:
-            return "Minotaur"
-         case 308:
-            return "freaky little girl"
-         case 309:
-            return "succubus"
-         case _:
-            return "ENEMY NAME ERROR"
+      if self.enemyID == 101:
+         return "cock-snake"
+      if self.enemyID == 102:
+         return "desiccating dust devil"
+      if self.enemyID == 201:
+         return "lone male wolf"
+      if self.enemyID == 202:
+         return "gay wolf"
+      if self.enemyID == 301:
+         return "felin in heat"
+      if self.enemyID == 302:
+         return "drunken equan"
+      if self.enemyID == 303:
+         return "octopus girl"
+      if self.enemyID == 304:
+         return "little big bunny-man"
+      if self.enemyID == 305:
+         return "little big bunny-girl"
+      if self.enemyID == 306:
+         return "fierce naga"
+      if self.enemyID == 307:
+         return "Minotaur"
+      if self.enemyID == 308:
+         return "freaky little girl"
+      if self.enemyID == 309:
+         return "succubus"
+      return "ENEMY NAME ERROR"
    def enemyBaseStats(self):
-      match self.enemyID:
-         case 101:
-            self.setEnemystats(30,16,4,8,0,0,0,4,0,15,202)
-         case 102:
-            self.setEnemystats(25,0,20,0,50,0,0,0,0,10,231)
-         case 201:
-            self.setEnemystats(45,22,16,13,11,30,1,2,0,20,203)
-         case 202:
-            self.setEnemystats(45,26,16,20,11,40,1,1,0,20,203)
-         case 301:
-            self.setEnemystats(50,12,10,24,30,40,2,4,self.percent() // 10,25,204)
-         case 302:
-            self.setEnemystats(60,28,9,18,14,30,1,4,self.percent() // 10,25,205)
-         case 303:
-            self.setEnemystats(150,45,30,25,35,20,2,4,0,50,216)
-         case 304:
-            self.setEnemystats(55,35,30,35,45,10,1,4,self.percent() // 10,30,222)
-         case 305:
-            self.setEnemystats(50,35,30,45,35,10,2,4,self.percent() // 10,30,222)
-         case 306:
-            self.setEnemystats(100,50,20,40,2,40,2,4,self.percent() // 5,55,230)
-         case 307:
-            self.setEnemystats(250,70,20,50,20,10,1,4,math.floor(self.percent() / 4 + 5),50,525)
-         case 308:
-            self.setEnemystats(175,80,40,70,60,10,2,4,math.floor(self.percent() / 4 + 5),55,259)
-         case 309:
-            self.setEnemystats(150,35,80,40,40,0,2,4,math.floor(self.percent() / 4 + 5),60,260)
+      if self.enemyID == 101:
+         self.setEnemystats(30,16,4,8,0,0,0,4,0,15,202)
+      elif self.enemyID == 102:
+         self.setEnemystats(25,0,20,0,50,0,0,0,0,10,231)
+      elif self.enemyID == 201:
+         self.setEnemystats(45,22,16,13,11,30,1,2,0,20,203)
+      elif self.enemyID == 202:
+         self.setEnemystats(45,26,16,20,11,40,1,1,0,20,203)
+      elif self.enemyID == 301:
+         self.setEnemystats(50,12,10,24,30,40,2,4,self.percent() // 10,25,204)
+      elif self.enemyID == 302:
+         self.setEnemystats(60,28,9,18,14,30,1,4,self.percent() // 10,25,205)
+      elif self.enemyID == 303:
+         self.setEnemystats(150,45,30,25,35,20,2,4,0,50,216)
+      elif self.enemyID == 304:
+         self.setEnemystats(55,35,30,35,45,10,1,4,self.percent() // 10,30,222)
+      elif self.enemyID == 305:
+         self.setEnemystats(50,35,30,45,35,10,2,4,self.percent() // 10,30,222)
+      elif self.enemyID == 306:
+         self.setEnemystats(100,50,20,40,2,40,2,4,self.percent() // 5,55,230)
+      elif self.enemyID == 307:
+         self.setEnemystats(250,70,20,50,20,10,1,4,math.floor(self.percent() / 4 + 5),50,525)
+      elif self.enemyID == 308:
+         self.setEnemystats(175,80,40,70,60,10,2,4,math.floor(self.percent() / 4 + 5),55,259)
+      elif self.enemyID == 309:
+         self.setEnemystats(150,35,80,40,40,0,2,4,math.floor(self.percent() / 4 + 5),60,260)
    def enemyBaby(self):
       if self.enemyID == 201:
          return 100
@@ -24221,59 +24231,57 @@ class NiminFetishFantasyv0975o_fla:
    def tailDesc(self,ngrammar=False):
       chance = self.percent()
       if (chance <= 50):
-         match self.tail:
-            case 2:
-               if ngrammar and self.ngrammar:
-                  return "\bn equine"
-               return "equine"
-            case 3:
-               return "wolfish"
-            case 4:
-               return "cat-like"
-            case 5:
-               return "bovine"
-            case 6:
-               return "reptillian"
-            case 7:
-               return "bunny"
-            case 8:
-               return "mousy"
-            case 9:
-               return "birdy"
-            case 10:
-               return "piggy"
-            case 11:
-               return "skunky"
-            case 12:
-               return "thick ovipositor"
-            case 1002:
-               return self.humanTaurTailDesc()
+         if self.tail == 2:
+            if ngrammar and self.ngrammar:
+               return "\bn equine"
+            return "equine"
+         if self.tail == 3:
+            return "wolfish"
+         if self.tail == 4:
+            return "cat-like"
+         if self.tail == 5:
+            return "bovine"
+         if self.tail == 6:
+            return "reptillian"
+         if self.tail == 7:
+            return "bunny"
+         if self.tail == 8:
+            return "mousy"
+         if self.tail == 9:
+            return "birdy"
+         if self.tail == 10:
+            return "piggy"
+         if self.tail == 11:
+            return "skunky"
+         if self.tail == 12:
+            return "thick ovipositor"
+         if self.tail == 1002:
+            return self.humanTaurTailDesc()
       else:
-         match self.tail:
-            case 2:
-               return "bristly"
-            case 3:
-               return "fluffy"
-            case 4:
-               return "lithe"
-            case 5:
-               return "skinny, bristly-tipped"
-            case 6:
-               return "thick, sleek"
-            case 7:
-               return "poofy puff-ball"
-            case 8:
-               return "thin, naked"
-            case 9:
-               return "feathery"
-            case 10:
-               return "short, curly"
-            case 11:
-               return "big striped fluffy"
-            case 12:
-               return "wide bulbous"
-            case 1002:
-               return self.humanTaurTailDesc()
+         if self.tail == 2:
+            return "bristly"
+         if self.tail == 3:
+            return "fluffy"
+         if self.tail == 4:
+            return "lithe"
+         if self.tail == 5:
+            return "skinny, bristly-tipped"
+         if self.tail == 6:
+            return "thick, sleek"
+         if self.tail == 7:
+            return "poofy puff-ball"
+         if self.tail == 8:
+            return "thin, naked"
+         if self.tail == 9:
+            return "feathery"
+         if self.tail == 10:
+            return "short, curly"
+         if self.tail == 11:
+            return "big striped fluffy"
+         if self.tail == 12:
+            return "wide bulbous"
+         if self.tail == 1002:
+            return self.humanTaurTailDesc()
       return f"TAIL ERROR {self.tail}"
    def humanTaurTailDesc(self):
       tempStr = ""
@@ -24324,31 +24332,30 @@ class NiminFetishFantasyv0975o_fla:
             return ""
    def earDesc(self):
       #!Here
-      match self.ears:
-         case 1:
-            return "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
-         case 2:
-            return "Atop your head, you have large tear-drop shaped ears that flick every now and then, able to hear quite well, like that of a horse's"
-         case 3:
-            return "Atop your head, you have small triangular ears that stand perk, like that of a wolf's"
-         case 4:
-            return "Atop your head, you have small triangular ears that stand perk, like that of a cat's"
-         case 5:
-            return "Standing out perpendicular from the sides of your head, you have large oval ears that that droop slightly from their size, like that of a cow's"
-         case 6:
-            return "On the sides of your head, you have sleek holes for ears, like many lizards have"
-         case 7:
-            return "Atop your head, you have long ears that stand high and vigilant, like that of a rabbit's"
-         case 8:
-            return "Standing out perpendicular the sides of your head, large rounded ears practically flap when they twitch, looking like you glued discs to the sides of your head, like that of a mouse's"
-         case 9:
-            return "On the sides of your head, have flat patches of feathers covering your holes, like a bird's"
-         case 10:
-            return "Standing out perpendicular from the sides of your head, you have triangular ears that fold near the ends and droop down from their length, like that of a pig's"
-         case 11:
-            return "Atop your head, you have small round ears that stand perk, like that of a skunk's"
-         case 12:
-            return "Hugging the sides of your head, you have long pointy ears with wavy-shaped lobes, colored vibrantly like the wings of a butterfly"
+      if self.ears == 1:
+         return "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
+      if self.ears == 2:
+         return "Atop your head, you have large tear-drop shaped ears that flick every now and then, able to hear quite well, like that of a horse's"
+      if self.ears == 3:
+         return "Atop your head, you have small triangular ears that stand perk, like that of a wolf's"
+      if self.ears == 4:
+         return "Atop your head, you have small triangular ears that stand perk, like that of a cat's"
+      if self.ears == 5:
+         return "Standing out perpendicular from the sides of your head, you have large oval ears that that droop slightly from their size, like that of a cow's"
+      if self.ears == 6:
+         return "On the sides of your head, you have sleek holes for ears, like many lizards have"
+      if self.ears == 7:
+         return "Atop your head, you have long ears that stand high and vigilant, like that of a rabbit's"
+      if self.ears == 8:
+         return "Standing out perpendicular the sides of your head, large rounded ears practically flap when they twitch, looking like you glued discs to the sides of your head, like that of a mouse's"
+      if self.ears == 9:
+         return "On the sides of your head, have flat patches of feathers covering your holes, like a bird's"
+      if self.ears == 10:
+         return "Standing out perpendicular from the sides of your head, you have triangular ears that fold near the ends and droop down from their length, like that of a pig's"
+      if self.ears == 11:
+         return "Atop your head, you have small round ears that stand perk, like that of a skunk's"
+      if self.ears == 12:
+         return "Hugging the sides of your head, you have long pointy ears with wavy-shaped lobes, colored vibrantly like the wings of a butterfly"
       return f"EAR ERROR {self.ears}"
    def faceDesc(self):
       match self.faceType:
@@ -24951,81 +24958,77 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "plush and snuggly "
       if self.skinType == 1:
          return f"{tempStr}skin"
-      elif self.skinType == 2:
+      if self.skinType == 2:
          return f"{tempStr}fur"
-      elif self.skinType == 3:
+      if self.skinType == 3:
          return f"{tempStr}scales"
-      elif self.skinType == 4:
+      if self.skinType == 4:
          return f"{tempStr}feathers"
-      elif self.skinType == 5:
+      if self.skinType == 5:
          return f"{tempStr}chitin"
       return f"SKIN ERROR {self.skinType}"
    def skinC(self):
-      match self.skinColor:
-         case 0:
-            return ""
-         case 1:
-            return "black "
-         case 2:
-            return "blonde "
-         case 3:
-            return "red "
-         case 4:
-            return "brown "
-         case 5:
-            return "coral pink "
-         case 6:
-            return "auburn "
-         case 7:
-            return "brown "
-         case 8:
-            return "grey "
-         case 9:
-            return "white "
+      if self.skinColor == 0:
+         return ""
+      if self.skinColor == 1:
+         return "black "
+      if self.skinColor == 2:
+         return "blonde "
+      if self.skinColor == 3:
+         return "red "
+      if self.skinColor == 4:
+         return "brown "
+      if self.skinColor == 5:
+         return "coral pink "
+      if self.skinColor == 6:
+         return "auburn "
+      if self.skinColor == 7:
+         return "brown "
+      if self.skinColor == 8:
+         return "grey "
+      if self.skinColor == 9:
+         return "white "
       return f"SKIN COLOR ERROR {self.skinColor}"
    def legDesc(self, part:int):
-      match part:
-         case 1:
-            return "leg"
-         case 2:
-            return "legs"
-         case 3:
-            return "thigh"
-         case 4:
-            return "thighs"
-         case 5:
-            return "knee"
-         case 6:
-            return "knees"
-         case 7:
-            return "ankle"
-         case 8:
-            return "ankles"
-         case 9:
-            if (self.legType == 1):
-               return "paw"
-            elif (self.legType in {2,1001} or self.checkItem(102)):
-               return "hoof"
-            else:
-               return "foot"
-         case 10:
-            if (self.legType == 1):
-               return "paws"
-            elif (self.legType in {2,1001} or self.checkItem(102)):
-               return "hooves"
-            else:
-               return "feet"
+      if part == 1:
+         return "leg"
+      if part == 2:
+         return "legs"
+      if part == 3:
+         return "thigh"
+      if part == 4:
+         return "thighs"
+      if part == 5:
+         return "knee"
+      if part == 6:
+         return "knees"
+      if part == 7:
+         return "ankle"
+      if part == 8:
+         return "ankles"
+      if part == 9:
+         if (self.legType == 1):
+            return "paw"
+         if (self.legType in {2,1001} or self.checkItem(102)):
+            return "hoof"
+         return "foot"
+      if part == 10:
+         if (self.legType == 1):
+            return "paws"
+         if (self.legType in {2,1001} or self.checkItem(102)):
+            return "hooves"
+         return "feet"
       return f"LEG ERROR PART {part} TYPE {self.legType}"
    def legVerb(self, part:int):
       if part == 1:
          return "spreading"
-      elif part == 2:
+      if part == 2:
          return "spread wide"
-      elif part == 3:
+      if part == 3:
          return "spread"
-      elif part == 4:
+      if part == 4:
          return "clench"
-      elif part == 5:
+      if part == 5:
          return "straddling"
       return f"LEG VERB ERROR {part} TYPE {self.legType}"
    def legWhere(self, part:int):
@@ -25033,67 +25036,66 @@ class NiminFetishFantasyv0975o_fla:
          if (self.legType == 1001):
             return "behind"
          return "between"
-      elif part == 2:
+      if part == 2:
          return "between"
       return f"LEG WHERE ERROR {part} TYPE {self.legType}"
    def legPlural(self, which:int):
       if which == 1:
          return ""
-      elif which == 2:
+      if which == 2:
          return "are"
       return f"LEG PLURAL ERROR TYPE {self.legType}"
    def regionName(self, region:int):
       if region == 1:
          return "Softlik"
-      elif region == 2:
+      if region == 2:
          return "Firmshaft"
-      elif region == 3:
+      if region == 3:
          return "Tieden"
-      elif region == 4:
+      if region == 4:
          return "Siz'Calit"
-      elif region == 6:
+      if region == 6:
          return "Oviasis"
-      elif region == 12:
+      if region == 12:
          return "Sanctuary"
       return f"REGION ERROR {self.currentZone}"
    def raceName(self):
       if self.race == 1:
          return "Human"
-      elif self.race == 2:
+      if self.race == 2:
          return "Equan"
-      elif self.race == 3:
+      if self.race == 3:
          return "Lupan"
-      elif self.race == 4:
+      if self.race == 4:
          return "Felin"
-      elif self.race == 6:
+      if self.race == 6:
          return "Lizan"
       return f"RACE ERROR {self.race}"
    def domName(self):
-      match self.dominant:
-         case 1:
-            return "human"
-         case 2:
-            return "horse"
-         case 3:
-            return "wolf"
-         case 4:
-            return "cat"
-         case 5:
-            return "cow"
-         case 6:
-            return "lizard"
-         case 7:
-            return "bunny"
-         case 8:
-            return "mouse"
-         case 9:
-            return "bird"
-         case 10:
-            return "pig"
-         case 11:
-            return "skunk"
-         case 12:
-            return "bug"
+      if self.dominant == 1:
+         return "human"
+      if self.dominant == 2:
+         return "horse"
+      if self.dominant == 3:
+         return "wolf"
+      if self.dominant == 4:
+         return "cat"
+      if self.dominant == 5:
+         return "cow"
+      if self.dominant == 6:
+         return "lizard"
+      if self.dominant == 7:
+         return "bunny"
+      if self.dominant == 8:
+         return "mouse"
+      if self.dominant == 9:
+         return "bird"
+      if self.dominant == 10:
+         return "pig"
+      if self.dominant == 11:
+         return "skunk"
+      if self.dominant == 12:
+         return "bug"
       return f"DOMINANT ERROR {self.dominant}"
    def isBottomOpen(self, ID:int=None):
       if ID == None:
@@ -25104,15 +25106,15 @@ class NiminFetishFantasyv0975o_fla:
    def genName(self):
       if self.gender == 0:
          return "n androgynous"
-      elif self.gender == 1:
+      if self.gender == 1:
          if (self.hips > 3 and self.breastSize > 4):
             return " female"
          return " male"
-      elif self.gender == 2:
+      if self.gender == 2:
          if (self.body > 17 and self.breastSize <= 2):
             return " male"
          return " female"
-      elif self.gender == 3:
+      if self.gender == 3:
          return " herm"
       return f"GENDER ERROR {self.gender}"
    def cumAmount(self):
