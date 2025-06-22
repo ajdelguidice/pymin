@@ -2506,8 +2506,9 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.stashPage = self.choicePage
       if (self.buttonChoice != 4 and self.buttonChoice != 8):
-         if not (self.inBag or self.inStash) and not hidePageOverride:
-            self.showPage(False,"")
+         if not (self.inBag or self.inStash):
+            if not hidePageOverride:
+               self.showPage(False,"")
             self.tempBagPage = self.choicePage
          self.choicePage = 1
    def choiceListCheck(self, *which):
