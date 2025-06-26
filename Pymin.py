@@ -625,7 +625,7 @@ class NiminFetishFantasyv0975o_fla:
       self.specialAbilityArray = as3.Array()
    def MainTimeline(self):
       """
-      Interface setup function
+      Sets up the interface, then runs the "frame1" function
       """
       self.initinterface = True
 
@@ -963,7 +963,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.endProcess()
    def _aboutwindow(self):
       """
-      Sets up the about window
+      Opens the about window
       """
       self.mo.aboutwin()
       self.mo.aboutwindow[2]["window"].configure(background=self.theme,highlightthickness=1,highlightbackground=self.fontColor)
@@ -972,7 +972,7 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.aboutwindow[2]["window"].title("About Pymin")
    def optionsWindow(self, *args):
       """
-      Function for the option window
+      Opens the options window
       """
       if not self.optionsWinOpen:
          #Window
@@ -1185,7 +1185,10 @@ class NiminFetishFantasyv0975o_fla:
          self.optionsWinOpen = True
       else:
          self.optionswindow.toTop()
-   def themeTypeSelect(self,type):
+   def themeTypeSelect(self,type:int):
+      """
+      Changes the game's theme type to the one specified in the "type" arguement
+      """
       if type == 1 and self.themeType == 0:
          self.themeType = 1
          self.tempInterfaceToggles = [self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons]
@@ -27397,8 +27400,7 @@ class NiminFetishFantasyv0975o_fla:
                case "Back":
                   self.clearAddMenuOptions(self.locmenu)
                   self.menunum = 20
-         case 23:
-            pass
+         case 23:...
          case 24: #Shops menu
             match selection:
                case "General Shop":
@@ -27479,66 +27481,63 @@ class NiminFetishFantasyv0975o_fla:
          temp = len(self.wikipreviouspage) - 1
          if temp == -1 or temp > -1 and self.wikipreviouspage[temp] != [topic,Num]:
             self.wikipreviouspage.append([topic,Num])
-      match topic:
-         case "Basic":
-            text = self.wikiBasicDescription(Num)
-         case "Item":
-            text = self.wikiItemDescription(Num)
-         case "Clothes":
-            text = self.wikiClothesDescription(Num)
-         case "Enemy":
-            text = self.wikiEnemyDescription(Num)
-         case "Race":
-            text = self.wikiRaceDescription(Num)
-         case "Town":
-            text = self.wikiTownDescription(Num)
-         case "Location":
-            text = self.wikiLocationDescription(Num)
-         case "Shop":
-            text = self.wikiShopDescription(Num)
-         case "NPC":
-            text = self.wikiNPCDescription(Num)
-         case "MenuBar":
-            text = self.wikiMenuBarDescription(Num)
+      if topic == "Basic":
+         text = self.wikiBasicDescription(Num)
+      elif topic == "Item":
+         text = self.wikiItemDescription(Num)
+      elif topic == "Clothes":
+         text = self.wikiClothesDescription(Num)
+      elif topic == "Enemy":
+         text = self.wikiEnemyDescription(Num)
+      elif topic == "Race":
+         text = self.wikiRaceDescription(Num)
+      elif topic == "Town":
+         text = self.wikiTownDescription(Num)
+      elif topic == "Location":
+         text = self.wikiLocationDescription(Num)
+      elif topic == "Shop":
+         text = self.wikiShopDescription(Num)
+      elif topic == "NPC":
+         text = self.wikiNPCDescription(Num)
+      elif topic == "MenuBar":
+         text = self.wikiMenuBarDescription(Num)
       self.clearAddWikiText(text)
    """
    Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
    """
    def wikiBasicDescription(self, Num:int):
-      match Num:
-         case 0:
-            tempStr = f"<b><u>This wiki is not complete yet and some of it hasn't even been implemented yet.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
-            if not self.customhtmlparser:
-               tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
-            return tempStr
-         case 1:
-            return "<h4><u>Stats</u></h4><u>Strength</u>\nAdds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation.\n\n<u>Mentality</u>\nFights hostile lust gain, improves helpful lust loss.\n\n<u>Libido</u>\nIncreases lust gain, can hinder mentality in events.\n\n<u>Sensitivity</u>\nIncreases damage taken and increases lust loss.\n\n<u>HP</u>\nYour Hit Points. Lose too much and you'll pass out.\n\n<u>Lust</u>\nCan overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP."
-         case 2:
-            return "<h4><u>Actions</u></h4><u>Stash</u>\nExtra inventory space that you cannot carry, but moves with you from town to town.\n\n<u>Prostitute</u>\nWhen desparate for money, you can resort to prostitution. Remember, beggars can't be choosers and you may not like the company.\n\n<u>Alchemy</u>\nMix items together to get other items. Learn recipes around the world.\n\n<u>Bag</u>\nWhere you hold all your items. Shift+Click will allow you to select an item to move, Shift+Click a slot to move it to.\n\n<u>Rape</u>\nA combat action to attempt to overpower your opponent and sex their brains out. An aroused opponent is easier to rape.\n\n<u>Entice</u>\nA combat action to raise opponent's lust (if they find you attractive).\n\n<u>Run</u>\nA combat action to flee from battle. Running in a dungeon will leave the dungeon.\n\n<u>Submit</u>\nBecause some people can't wait to be king- I mean raped."
-         case 3:
-            return "<h4><u>Tips</u></h4><u>Carry Capacity</u>\nDetermined by strength, height, body type, and modifiers. Determines how much of yourself you can carry.\n\n<u>Shops</u>\nEach town has unique wares in many of their shops, so it's good to look around.\n\n<u>Race</u>\nSome racial features are based on whatever blood is most dominant. Some features can be shared.\n\n<u>Bust Size</u>\n1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup.\n\n<u>Breasts</u>\nEverybody has breasts. Yes, even males. How many is determined by your race.\n\n<u>Empty Button</u>\nOutside of inventories, these mean you have access to something, but do not currently have the correct item/requirements."
-         case 4:
-            return "<h4><u>Hotkeys</u></h4>Due to how tkinter handles hotkeys, they will only work when you are focused on the window.\n\n<u>Game</u>\nHotkeys in this section only function when they show.\n-Save = F2, Load = F4, New Game = Backspace, Appearance = U\n-Font Size+ = Up, Font Size- = Down, Theme = Left, Font Color = Right\n-Reset Font Size = Ctrl, Font Bold = /?, Toggle Side Window = .\n-Side window buttons (in order):\n\tUIOP\n\tHJKL\n-Main choice buttons (both keyboard and NumPad in order):\n\tQWER\t789-\n\tASDF\t456+\n\tZXCV\t123Enter\n\n<u>Wiki</u>\nTilde - open wiki\nq, backspace, numPad7 - Close the wiki\nw, ↑, numPad8 - Move selection up\ns, ↓, numPad6 - Move selection down\na, ←, numPad4 - Go back one menu\nd, →, numPad6, enter - Select option\ne, ., numPad9 - Go to previous page\nr, /, numPadMinus - Switch selection between menu and text"
-         case 5:
-            return "<h4><u>Wiki Key</u></h4>This page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<u>General Notations</u>\n<b><u>Bold and Underlined</u></b>: page title or warning\n<u>Underlined</u>: section title\n<i>Italic</i>: a page exists somewhere in the wiki for that topic (links don't work so this will have to do)\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
-         case 6:
-            return "<h4><u>Changes</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exitdoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='\uFFFFMenuBar\uFFFF1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\n\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
+      if Num == 0:
+         tempStr = f"<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
+         if not self.customhtmlparser:
+            tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
+         return tempStr
+      if Num == 1:
+         return "<h4><u>Stats</u></h4><u>Strength</u>\nAdds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation.\n\n<u>Mentality</u>\nFights hostile lust gain, improves helpful lust loss.\n\n<u>Libido</u>\nIncreases lust gain, can hinder mentality in events.\n\n<u>Sensitivity</u>\nIncreases damage taken and increases lust loss.\n\n<u>HP</u>\nYour Hit Points. Lose too much and you'll pass out.\n\n<u>Lust</u>\nCan overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP."
+      if Num == 2:
+         return "<h4><u>Actions</u></h4><u>Stash</u>\nExtra inventory space that you cannot carry, but moves with you from town to town.\n\n<u>Prostitute</u>\nWhen desparate for money, you can resort to prostitution. Remember, beggars can't be choosers and you may not like the company.\n\n<u>Alchemy</u>\nMix items together to get other items. Learn recipes around the world.\n\n<u>Bag</u>\nWhere you hold all your items. Shift+Click will allow you to select an item to move, Shift+Click a slot to move it to.\n\n<u>Rape</u>\nA combat action to attempt to overpower your opponent and sex their brains out. An aroused opponent is easier to rape.\n\n<u>Entice</u>\nA combat action to raise opponent's lust (if they find you attractive).\n\n<u>Run</u>\nA combat action to flee from battle. Running in a dungeon will leave the dungeon.\n\n<u>Submit</u>\nBecause some people can't wait to be king- I mean raped."
+      if Num == 3:
+         return "<h4><u>Tips</u></h4><u>Carry Capacity</u>\nDetermined by strength, height, body type, and modifiers. Determines how much of yourself you can carry.\n\n<u>Shops</u>\nEach town has unique wares in many of their shops, so it's good to look around.\n\n<u>Race</u>\nSome racial features are based on whatever blood is most dominant. Some features can be shared.\n\n<u>Bust Size</u>\n1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup.\n\n<u>Breasts</u>\nEverybody has breasts. Yes, even males. How many is determined by your race.\n\n<u>Empty Button</u>\nOutside of inventories, these mean you have access to something, but do not currently have the correct item/requirements."
+      if Num == 4:
+         return "<h4><u>Hotkeys</u></h4>Due to how tkinter handles hotkeys, they will only work when you are focused on the window.\n\n<u>Game</u>\nHotkeys in this section only function when their buttons are shown.\n-Save = F2, Load = F4, New Game = Backspace, Appearance = U\n-Font Size+ = Up, Font Size- = Down, Theme = Left, Font Color = Right\n-Reset Font Size = Ctrl, Font Bold = /?, Toggle Side Window = .\n-Side window buttons (in order):\n\tUIOP\n\tHJKL\n-Main choice buttons (both keyboard and NumPad in order):\n\tQWER\t789-\n\tASDF\t456+\n\tZXCV\t123Enter\n\n<u>Wiki</u>\nTilde - open wiki\nq, backspace, numPad7 - Close the wiki\nw, ↑, numPad8 - Move selection up\ns, ↓, numPad6 - Move selection down\na, ←, numPad4 - Go back one menu\nd, →, numPad6, enter - Select option\ne, ., numPad9 - Go to previous page\nr, /, numPadMinus - Switch selection between menu and text"
+      if Num == 5:
+         return "<h4><u>Wiki Key</u></h4>This page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<h6><u>General Notations</u></h6><b><u>Header 4 with underline</u></b>: page title\n<u>Header 6 with underline</u>: section title\n<u>Underline</u>: Subsection title\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
+      if Num == 6:
+         return "<h4><u>Changes (Outdated)</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exitdoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='\uFFFFMenuBar\uFFFF1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
    def wikiMenuBarDescription(self, Num:int):
-      match Num:
-         case 1: #File->Options
-            return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to list them. Their functions are described below:\n\n<u>Options Tab</u>\nThis tab contains the basic configuration that the average person might want to touch.\n\n<b>Sol Mode</b>\nForces the game to use the original save file formats instead of xml. The game can still load sol file without this options, xml files are just the priority. This does not do anything if \"Use Expanded Save Dialog\" is active.\n\n<b>Fixed Resolution</b>\n(Not implemented yet) Forces the game's main window to be at a specific resolution and prevents its subwindows from resizing.\n\n<b>Custom Theme Color</b>\nAllows you to set a custom theme color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n<b>Custom Font Color</b>\nAllows you to set a custom font color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n<b>Save Location</b>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n<u>Game Tweaks Tab</u>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<b>Grammar Tweaks</b>\nChanges specific words in the game to be less derogetory or more correct. Also toggles specific changes I made to make the game more consistent or make more sense (sometimes the game wouldn't check if you actually had something before giving a description of it). Some examples are:\nFemmie -> Feminine\nFemme-boy -> Femboy\nShemale -> Futanari\n\n<b>Status Tweaks</b>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<b>Succubus Leaves One</b>\nMakes the succubus leave one cock instead of taking all of them.\n\n<b>Use isBottomOpen</b>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming that was by accident).\n\n<b>Lizan Don't Show Balls</b>\n(Most) Lizards don't come with (external) nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<b>Use Expanded Save Dialog</b>\nReplaces the save/load dialog with one that can load any file from inside of the game's save directory.\n\n<b>Herm Can Has Both</b>\n(Not implemented yet) Makes herms able to experience both male and female senarios where it makes sense.\n\n<b>Internal Balls Affect Belly Size</b>\n(Not implemented yet) When self.showBalls is False, makes self.ballSize affect belly size in the calculation the game does for weight and size.\n\n<b>Direct Path to Sanctuary</b>\nAdds an explore option that appears once you defeat the final boss in doOldCaveDescent that allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<b>Some races get digitgrade feet</b>\n(Implementation incomplete) Gives some races (feline, lupine, equine, bovine) digitgrade feet. Feline and lupine get digipaws, equine and bovine get hooves. The logic for digipaws was already implemented in the game but was only used for the skunk race.\n\n<b>Use original stash</b>\nAllows you to use the stash from the original game instead of the one that I made to be less infuriating. Here just in case you like the old one better.\n\n<u>Debug Tweaks Tab</u>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<b>alwaysChooseSenario(debug mode only)</b>\nAllows you to choose whatever senario from your current area that you want when exploring. Requires user input in the terminal every time.\n\n<b>takeNoDamage</b>\nMakes enemies deal no damage. (currently only does anything in eDmg)"
-         case 2: #File->Quit
-            return "<h4><u>File->Quit</u></h4>Close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed as long as you have a mouse."
-         case 3: #View->Full Screen
-            return "<h4><u>File->Full Screen</u></h4>Maximizes the window."
-         case 4: #View->Reset Size
-            return "<h4><u>View->Reset Size</u></h4>Resets the main window to its default size."
-         case 5: #Help->Wiki
-            return "<h4><u>Help->Wiki</u></h4>If you are reading this, you know what this button does, it opens the wiki."
-         case 6: #Help->About Game
-            return "<h4><u>Help->About Game</u></h4>Opens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window."
-         case 7: #Debug Window
-            return "<h4><u>Debug Window</u></h4>This option only shows up when debug mode is active. Opens a separate window which displays all of the relavant variables in the game and their state. This also gives you other debug options:\n\n<b>Give Item</b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the user an item of the specified ID and specified amount.\n\n<b>Use Item</b>\n(Not implemented yet) Does the specified item's useItem event without consuming the item or checking if the user has it."
+      if Num == 1: #File->Options
+         return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to display them. Their functions and containing tabs are described below:\n\n\n<h6><u>Options Tab</u></h6>This tab contains the more basic configuration options.\n\n<u>Strict Save Compat</u>\nForces the use of save files compatible with the original game and disables any configuration options that interfere with that. Even without this active, the game can still save and load the old formats, the new format just takes priority.\n\n<u>Fixed Resolution</u>\nForces all windows to be at their default resolution and prevents resizing.\n\n<u>Custom Theme Color</u>\nAllows you to set a custom theme color. This could not be done in the original game.\n\n<u>Custom Font Color</u>\nAllows you to set a custom font color. In the original game, this could only be done by editing the nimin_prefs.sol file.\n\n<u>Save Location</u>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n\n<h6><u>Interface Tab</u></h6>This tab contains toggles that alter the game's interface.\n\n<u>Original Button Colours</u>\n(Implementation incomplete) Makes the buttons in the game window have their original colours instead of the new ones. This currently does not add borders to the buttons because that causes visual artifacts when resizing.\n\n<u>Show ScrolledText Borders</u>\nToggles the borders on the scrollable text areas. They come with borders so I thought it would be nice to allow people to re-enable them if they wanted to.\n\n<u>Original Size For New Game</u>\nUses the original size and location of the new game button.\n\n<u>Static doLevelUP Buttons</u>\nForces the buttons in the level up screen to stay in the same place no matter what is being displayed.\n\n<u>Theme Type Selector</u>\nSelects the theme you want to go with. The 'Pymin' theme is the default and allows more customization. The 'Nimin' theme sticks more strictly to the original game's style where possible and limits your customization options.\n\n<u>Use Expanded Save Dialog</u>\nToggles the use of the new save/load dialog. This new dialog uses a scrollable listbox to allow the selection of any save file in the save folder. You can also enter the file name in the entry box if you wish.\n\n<u>Use New Stash</u>\nMakes the stash work like the bag instead of the limited mess that it was originally. When moving an item in either the bag or stash, the return button switches to a button which allows you to move between them with the item. Instead of pressing the return button to discard things, a dedicated discard button has been added to the right of the return button.\n\n<u>Help Opens Wiki</u>\nMakes the 'Help' button on the side bar open the wiki instead of displaying the help text.\n\n\n<h6><u>Grammar Tab</u></h6>This tab contains all grammar related toggles. Some are based on personal preference, some are fixes.\n\n<u>Respect showBalls</u>\nMakes the game always respect the visible status of your balls. There were a lot of places where this was not the case before.\n\n<u>Femme-boy -> Femboy</u>\nChanges Femme-boy to Femboy.\n\n<u>Shemale -> Futanari</u>\nChanges Shemale to Futanari.\n\n<u>Use n-grammar</u>\nMakes the game use 'an' instead of just 'a' where needed. I'm pretty sure this will differ between different versions of english, so it may not be 'correct' to you.\n\n<u>Femme Male Replacement</u>\n(No toggle yet)This replaces 'femmie male' with your choice of either 'feminine male' or 'femboy'.\n\n<u>femboyish -> girly</u>\nChanges femboyish to girly.\n\n<u>Snuggleball Tweak</u>\nRemoves the redundant description text for the snuggleball in the appearance text.\n\n<u>Grammar Fixes</u>\nToggles grammar fixes throughout the game.\n\n\n<h6><u>Game Tweaks Tab</u></h6>This tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<u>Status Tweaks</u>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<u>Succubus Leaves One</u>\nMakes the succubus leave one cock (or 2 if you are a Lizan and have two or more lizard cocks) instead of taking all of them.\n\n<u>Use isBottomOpen</u>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming this was an oversight).\n\n<u>Lizan Don't Show Balls</u>\n(Most) Lizards don't come with external nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<u>Herm Can Has Both</u>\n(Not implemented yet) Makes herms able to experience both male and female senarios where it makes sense.\n\n<u>Internal Balls Affect Belly Size</u>\n(Implementation incomplete) When showBalls is False, makes ballSize affect belly size in the calculation the game does for weight and size.\n\n<u>Direct Path to Sanctuary</u>\nAdds an explore option that appears once you defeat the final boss in Old Cave Descent which allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<u>Some races get digitgrade feet</u>\n(Implementation incomplete) Gives some races (feline, lupine, equine, bovine) digitgrade feet. Feline and lupine get digipaws, equine and bovine get hooves. The logic for digipaws was already implemented in the game but was only used for the skunk race.\n\n\n<h6><u>Debug Tweaks Tab</u></h6>This tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<u>alwaysChooseSenario</u>\nAllows you to choose whatever senario from your current area that you want when exploring. Requires user input in the terminal every time.\n\n<u>takeNoDamage</u>\nMakes enemies deal no damage. (currently only does anything in eDmg)\n"
+      if Num == 2: #File->Quit
+         return "<h4><u>File->Quit</u></h4>Close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed from the game window if you have a mouse."
+      if Num == 3: #View->Full Screen
+         return "<h4><u>File->Full Screen</u></h4>Maximizes the window."
+      if Num == 4: #View->Reset Size
+         return "<h4><u>View->Reset Size</u></h4>Resets the main window to its default size."
+      if Num == 5: #Help->Wiki
+         return "<h4><u>Help->Wiki</u></h4>If you are reading this, you know what this button does, it opens the wiki."
+      if Num == 6: #Help->About Game
+         return "<h4><u>Help->About Game</u></h4>Opens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window."
+      if Num == 7: #Debug Window
+         return "<h4><u>Debug Window</u></h4>This option only shows up when debug mode is active. Clicking this will open a new window which displays all of the relavant variables in the game and their state. This also gives you other debug options (must have a game loaded to use):\n\n<u>Give Item</u>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and specified amount.\n\n<u>Use Item</u>\n(Not implemented yet) Does the specified item's useItem event without consuming the item or checking if the player has it.\n\n<u>Affinity</u>\nOpens a popup window that allows the player to modify their affinities."
    def wikiItemDescription(self, ID:int):
       match ID:
          case -10:
@@ -27812,207 +27811,200 @@ class NiminFetishFantasyv0975o_fla:
          case 540:
             return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
    def wikiClothesDescription(self, ID:int):
-      match ID:
-         case -10:
-            return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case -1:
-            return "<h4><u>Tattered Shreds</u></h4>(Clothes ID -1)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nWhen worn\n\t-4 strMod (strength modifier)\n\t-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
-         case 0:
-            return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
-         case 1:
-            return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
-         case 2:
-            return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
-         case 3:
-            return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 4:
-            return "<h4><u>Bikini Bottom</u></h4>(Clothes ID 4)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 5:
-            return "<h4><u>Elegant Dress</u></h4>(Clothes ID 5)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 6:
-            return "<h4><u>Latex Suit</u></h4>(Clothes ID 6)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 7:
-            return "<h4><u>Skirt</u></h4>(Clothes ID 7)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 8:
-            return "<h4><u>Shorts</u></h4>(Clothes ID 8)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 9:
-            return "<h4><u>Blouse</u></h4>(Clothes ID 9)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 10:
-            return "<h4><u>Diaper</u></h4>(Clothes ID 10)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 11:
-            return "<h4><u>Poofy Diaper</u></h4>(Clothes ID 11)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 12:
-            return "<h4><u>Sundress</u></h4>(Clothes ID 12)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 13:
-            return "<h4><u>Skimpy Dress</u></h4>(Clothes ID 13)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 14:
-            return "<h4><u>Short Skirt</u></h4>(Clothes ID 14)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 15:
-            return "<h4><u>Short Shorts</u></h4>(Clothes ID 15)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 16:
-            return "<h4><u>Loin Cloth</u></h4>(Clothes ID 16)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 17:
-            return "<h4><u>Bathing Suite</u></h4>(Clothes ID 17)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 18:
-            return "<h4><u>Muscle Shirt</u></h4>(Clothes ID 18)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 19:
-            return "<h4><u>Corset</u></h4>(Clothes ID 19)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 20:
-            return "<h4><u>Silk Panties</u></h4>(Clothes ID 20)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 21:
-            return "<h4><u>Slingkini</u></h4>(Clothes ID 21)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 22:
-            return "<h4><u>Thong</u></h4>(Clothes ID 22)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 23:
-            return "<h4><u>Bloomers</u></h4>(Clothes ID 23)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 24:
-            return "<h4><u>Tights</u></h4>(Clothes ID 24)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 25:
-            return "<h4><u>Gothic Dress</u></h4>(Clothes ID 25)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 26:
-            return "<h4><u>Tube Top</u></h4>(Clothes ID 26)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 27:
-            return "<h4><u>Nipple Pasties</u></h4>(Clothes ID 27)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 28:
-            return "<h4><u>Camisole</u></h4>(Clothes ID 28)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 29:
-            return "<h4><u>Training Suit</u></h4>(Clothes ID 29)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 30:
-            return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == -10:
+         return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == -1:
+         return "<h4><u>Tattered Shreds</u></h4>(Clothes ID -1)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nWhen worn\n\t-4 strMod (strength modifier)\n\t-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
+      if ID == 0:
+         return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
+      if ID == 1:
+         return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+      if ID == 2:
+         return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+      if ID == 3:
+         return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 4:
+         return "<h4><u>Bikini Bottom</u></h4>(Clothes ID 4)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 5:
+         return "<h4><u>Elegant Dress</u></h4>(Clothes ID 5)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 6:
+         return "<h4><u>Latex Suit</u></h4>(Clothes ID 6)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 7:
+         return "<h4><u>Skirt</u></h4>(Clothes ID 7)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 8:
+         return "<h4><u>Shorts</u></h4>(Clothes ID 8)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 9:
+         return "<h4><u>Blouse</u></h4>(Clothes ID 9)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 10:
+         return "<h4><u>Diaper</u></h4>(Clothes ID 10)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 11:
+         return "<h4><u>Poofy Diaper</u></h4>(Clothes ID 11)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 12:
+         return "<h4><u>Sundress</u></h4>(Clothes ID 12)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 13:
+         return "<h4><u>Skimpy Dress</u></h4>(Clothes ID 13)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 14:
+         return "<h4><u>Short Skirt</u></h4>(Clothes ID 14)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 15:
+         return "<h4><u>Short Shorts</u></h4>(Clothes ID 15)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 16:
+         return "<h4><u>Loin Cloth</u></h4>(Clothes ID 16)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 17:
+         return "<h4><u>Bathing Suite</u></h4>(Clothes ID 17)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 18:
+         return "<h4><u>Muscle Shirt</u></h4>(Clothes ID 18)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 19:
+         return "<h4><u>Corset</u></h4>(Clothes ID 19)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 20:
+         return "<h4><u>Silk Panties</u></h4>(Clothes ID 20)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 21:
+         return "<h4><u>Slingkini</u></h4>(Clothes ID 21)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 22:
+         return "<h4><u>Thong</u></h4>(Clothes ID 22)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 23:
+         return "<h4><u>Bloomers</u></h4>(Clothes ID 23)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 24:
+         return "<h4><u>Tights</u></h4>(Clothes ID 24)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 25:
+         return "<h4><u>Gothic Dress</u></h4>(Clothes ID 25)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 26:
+         return "<h4><u>Tube Top</u></h4>(Clothes ID 26)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 27:
+         return "<h4><u>Nipple Pasties</u></h4>(Clothes ID 27)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 28:
+         return "<h4><u>Camisole</u></h4>(Clothes ID 28)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 29:
+         return "<h4><u>Training Suit</u></h4>(Clothes ID 29)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 30:
+         return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
    def wikiEnemyDescription(self, ID:int):
-      match ID:
-         case -10:
-            return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 1:
-            return "<h4><u>Test Enemy</u></h4>(Enemy ID 1)\n\n<u>Enemy Description</u>\nThis enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs.\n\n<u>Base Stats</u>\nThis enemy has no stats.\n\n<u>Attacks</u>\nThis enemy has no attacks.\n\n<u>Locations</u>\nThis enemy is not encounterable.\n\n<u>Encounter Conditions</u>\nThis enemy is not encounterable."
-         case 101:
-            return "<h4><u>Cock-snake</u></h4>(Enemy ID 101)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:30\nStrength:16\nMentality:4\nSensitivity:8\nLibido:0\nLust:0\nGender:0\nPreference:4\nCoin:0\nSexp:15\nItem:202\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 102:
-            return "<h4><u>Desiccating Dust Devil</u></h4>(Enemy ID 102)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:25\nStrength:0\nMentality:20\nSensitivity:0\nLibido:50\nLust:0\nGender:0\nPreference:0\nCoin:0\nSexp:10\nItem:231\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 201:
-            return "<h4><u>Lone Male Wolf</u></h4>(Enemy ID 201)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:22\nMentality:16\nSensitivity:13\nLibido:11\nLust:30\nGender:1\nPreference:2\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 202:
-            return "<h4><u>Gay Wolf</u></h4>(Enemy ID 202)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:26\nMentality:16\nSensitivity:20\nLibido:11\nLust:40\nGender:1\nPreference:1\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 301:
-            return "<h4><u>Felin in Heat</u></h4>(Enemy ID 301)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:12\nMentality:10\nSensitivity:24\nLibido:30\nLust:40\nGender:2\nPreference:4\nCoin:0-10\nSexp:25\nItem:204\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 302:
-            return "<h4><u>Drunken Equan</u></h4>(Enemy ID 302)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:60\nStrength:28\nMentality:9\nSensitivity:18\nLibido:14\nLust:30\nGender:1\nPreference:4\nCoin:0-10\nSexp:25\nItem:205\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 303:
-            return "<h4><u>Octopus Girl</u></h4>(Enemy ID 303)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:45\nMentality:30\nSensitivity:25\nLibido:35\nLust:20\nGender:2\nPreference:4\nCoin:0\nSexp:50\nItem:216\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 304:
-            return "<h4><u>Little Big Bunny-man</u></h4>(Enemy ID 304)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:55\nStrength:35\nMentality:30\nSensitivity:35\nLibido:45\nLust:10\nGender:1\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 305:
-            return "<h4><u>Little Big Bunny-girl</u></h4>(Enemy ID 305)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:35\nMentality:30\nSensitivity:45\nLibido:35\nLust:10\nGender:2\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 306:
-            return "<h4><u>Fierce Naga</u></h4>(Enemy ID 306)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:100\nStrength:50\nMentality:20\nSensitivity:40\nLibido:2\nLust:40\nGender:2\nPreference:4\nCoin:0-20\nSexp:55\nItem:230\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-         case 307:
-            return "<h4><u>Minotaur</u></h4>(Enemy ID 307)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:250\nStrength:70\nMentality:20\nSensitivity:50\nLibido:20\nLust:10\nGender:1\nPreference:4\nCoin:5-30\nSexp:50\nItem:525\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
-         case 308:
-            return "<h4><u>Freaky Little Girl</u></h4>(Enemy ID 308)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:175\nStrength:80\nMentality:40\nSensitivity:70\nLibido:60\nLust:10\nGender:2\nPreference:4\nCoin:5-30\nSexp:55\nItem:559\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
-         case 309:
-            return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
+      if ID == -10:
+         return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 1:
+         return "<h4><u>Test Enemy</u></h4>(Enemy ID 1)\n\n<u>Enemy Description</u>\nThis enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs.\n\n<u>Base Stats</u>\nThis enemy has no stats.\n\n<u>Attacks</u>\nThis enemy has no attacks.\n\n<u>Locations</u>\nThis enemy is not encounterable.\n\n<u>Encounter Conditions</u>\nThis enemy is not encounterable."
+      if ID == 101:
+         return "<h4><u>Cock-snake</u></h4>(Enemy ID 101)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:30\nStrength:16\nMentality:4\nSensitivity:8\nLibido:0\nLust:0\nGender:0\nPreference:4\nCoin:0\nSexp:15\nItem:202\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 102:
+         return "<h4><u>Desiccating Dust Devil</u></h4>(Enemy ID 102)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:25\nStrength:0\nMentality:20\nSensitivity:0\nLibido:50\nLust:0\nGender:0\nPreference:0\nCoin:0\nSexp:10\nItem:231\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 201:
+         return "<h4><u>Lone Male Wolf</u></h4>(Enemy ID 201)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:22\nMentality:16\nSensitivity:13\nLibido:11\nLust:30\nGender:1\nPreference:2\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 202:
+         return "<h4><u>Gay Wolf</u></h4>(Enemy ID 202)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:26\nMentality:16\nSensitivity:20\nLibido:11\nLust:40\nGender:1\nPreference:1\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 301:
+         return "<h4><u>Felin in Heat</u></h4>(Enemy ID 301)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:12\nMentality:10\nSensitivity:24\nLibido:30\nLust:40\nGender:2\nPreference:4\nCoin:0-10\nSexp:25\nItem:204\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 302:
+         return "<h4><u>Drunken Equan</u></h4>(Enemy ID 302)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:60\nStrength:28\nMentality:9\nSensitivity:18\nLibido:14\nLust:30\nGender:1\nPreference:4\nCoin:0-10\nSexp:25\nItem:205\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 303:
+         return "<h4><u>Octopus Girl</u></h4>(Enemy ID 303)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:45\nMentality:30\nSensitivity:25\nLibido:35\nLust:20\nGender:2\nPreference:4\nCoin:0\nSexp:50\nItem:216\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 304:
+         return "<h4><u>Little Big Bunny-man</u></h4>(Enemy ID 304)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:55\nStrength:35\nMentality:30\nSensitivity:35\nLibido:45\nLust:10\nGender:1\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 305:
+         return "<h4><u>Little Big Bunny-girl</u></h4>(Enemy ID 305)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:35\nMentality:30\nSensitivity:45\nLibido:35\nLust:10\nGender:2\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 306:
+         return "<h4><u>Fierce Naga</u></h4>(Enemy ID 306)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:100\nStrength:50\nMentality:20\nSensitivity:40\nLibido:2\nLust:40\nGender:2\nPreference:4\nCoin:0-20\nSexp:55\nItem:230\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 307:
+         return "<h4><u>Minotaur</u></h4>(Enemy ID 307)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:250\nStrength:70\nMentality:20\nSensitivity:50\nLibido:20\nLust:10\nGender:1\nPreference:4\nCoin:5-30\nSexp:50\nItem:525\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
+      if ID == 308:
+         return "<h4><u>Freaky Little Girl</u></h4>(Enemy ID 308)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:175\nStrength:80\nMentality:40\nSensitivity:70\nLibido:60\nLust:10\nGender:2\nPreference:4\nCoin:5-30\nSexp:55\nItem:559\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
+      if ID == 309:
+         return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
    def wikiRaceDescription(self, ID:int):
-      match ID:
-         case -10:
-            return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
-         case 1:
-            return "<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Skin Balm</i> (Item ID 111)"
-         case 2:
-            return "<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Bolstering Juice</i> (Item ID 112)"
-         case 3:
-            return "<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Tainted Leaf</i> (Item ID 113)"
-         case 4:
-            return "<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Sweet Sap</i> (Item ID 114)"
-         case 5:
-            return "<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>DairE Pill</i> (Item ID 211)\n<i>Malon's Milk</i> (Item ID 214)"
-         case 6:
-            return "<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Oasis Water</i> (Item ID 126)"
-         case 7:
-            return "<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Kinky Carrot</i> (Item ID 222)"
-         case 8:
-            return "<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Squeaky Cheese</i> (Item ID 238)"
-         case 9:
-            return "<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Shiny Rock</i> (Item ID 239)"
-         case 10:
-            return "<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Facial Mud</i> (Item ID 245)"
-         case 11:
-            return "<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Fragrant Flower</i> (Item ID 255)"
-         case 12:
-            return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
+      if ID == -10:
+         return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
+      if ID == 1:
+         return "<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Skin Balm</i> (Item ID 111)"
+      if ID == 2:
+         return "<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Bolstering Juice</i> (Item ID 112)"
+      if ID == 3:
+         return "<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Tainted Leaf</i> (Item ID 113)"
+      if ID == 4:
+         return "<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Sweet Sap</i> (Item ID 114)"
+      if ID == 5:
+         return "<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>DairE Pill</i> (Item ID 211)\n<i>Malon's Milk</i> (Item ID 214)"
+      if ID == 6:
+         return "<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Oasis Water</i> (Item ID 126)"
+      if ID == 7:
+         return "<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Kinky Carrot</i> (Item ID 222)"
+      if ID == 8:
+         return "<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Squeaky Cheese</i> (Item ID 238)"
+      if ID == 9:
+         return "<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Shiny Rock</i> (Item ID 239)"
+      if ID == 10:
+         return "<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Facial Mud</i> (Item ID 245)"
+      if ID == 11:
+         return "<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Fragrant Flower</i> (Item ID 255)"
+      if ID == 12:
+         return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
    def wikiTownDescription(self, Num:int):
-      match Num:
-         case -10:
-            return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
-         case 1:
-            return "<h4><u>Softlik</u></h4>(Zone ID 1)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2193"
-         case 2:
-            return "<h4><u>Firmshaft</u></h4>(Zone ID 2)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u2198"
-         case 3:
-            return "<h4><u>Tieden</u></h4>(Zone ID 3)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF7\"><i>Lake</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2193\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2198"
-         case 4:
-            return "<h4><u>Siz'Calit</u></h4>(Zone ID 4)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF6\"><i>Beach</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2198"
-         case 6:
-            return "<h4><u>Oviasis</u></h4>(Zone ID 6)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF11\"><i>Den</i></a> \u2197 \u25CE"
-         case 12:
-            return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u2190"
+      if Num == -10:
+         return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+      if Num == 1:
+         return "<h4><u>Softlik</u></h4>(Zone ID 1)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2193"
+      if Num == 2:
+         return "<h4><u>Firmshaft</u></h4>(Zone ID 2)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u2198"
+      if Num == 3:
+         return "<h4><u>Tieden</u></h4>(Zone ID 3)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF7\"><i>Lake</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2193\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2198"
+      if Num == 4:
+         return "<h4><u>Siz'Calit</u></h4>(Zone ID 4)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF6\"><i>Beach</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2198"
+      if Num == 6:
+         return "<h4><u>Oviasis</u></h4>(Zone ID 6)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF11\"><i>Den</i></a> \u2197 \u25CE"
+      if Num == 12:
+         return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u2190"
    def wikiLocationDescription(self, Num:int):
-      match Num:
-         case -10:
-            return "<h4><u>Location Name</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
-         case 1:
-            return "<h4><u>Forest</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)"
-         case 2:
-            return "<h4><u>Jungle</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u25CE"
-         case 3:
-            return "<h4><u>Plains</u></h4>"
-         case 4:
-            return "<h4><u>Savanna</u></h4>"
-         case 5:
-            return "<h4><u>Desert</u></h4>"
-         case 6:
-            return "<h4><u>Beach</u></h4>"
-         case 7:
-            return "<h4><u>Lake</u></h4>"
-         case 8:
-            return "<h4><u>Dairy Farm</u></h4>"
-         case 9:
-            return "<h4><u>Old Cave</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u29BF"
-         case 10:
-            return "<h4><u>Old Cave Descent</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u29BF\n<a href=\"\uFFFFTown\uFFFF12\"><i>Sanctuary</i></a> (Zone ID 12)"
-         case 11:
-            return "<h4><u>Den</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF6\"><i>Oviasis</i></a> (Zone ID 6)"
-         case 12:
-            return "<h4><u>Valley</u></h4><u>Description</u>\nDescription\n\n<u>Discovery</u>\n\nYou have a small random chance of discovering the valley when going into the jungle from hours 10 to 15 (inclusive) as long as it isn't your first time exploring.\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u29BF"
-         case 13:
-            return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
+      if Num == -10:
+         return "<h4><u>Location Name</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+      if Num == 1:
+         return "<h4><u>Forest</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)"
+      if Num == 2:
+         return "<h4><u>Jungle</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u25CE"
+      if Num == 3:
+         return "<h4><u>Plains</u></h4>"
+      if Num == 4:
+         return "<h4><u>Savanna</u></h4>"
+      if Num == 5:
+         return "<h4><u>Desert</u></h4>"
+      if Num == 6:
+         return "<h4><u>Beach</u></h4>"
+      if Num == 7:
+         return "<h4><u>Lake</u></h4>"
+      if Num == 8:
+         return "<h4><u>Dairy Farm</u></h4>"
+      if Num == 9:
+         return "<h4><u>Old Cave</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u29BF"
+      if Num == 10:
+         return "<h4><u>Old Cave Descent</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u29BF\n<a href=\"\uFFFFTown\uFFFF12\"><i>Sanctuary</i></a> (Zone ID 12)"
+      if Num == 11:
+         return "<h4><u>Den</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF6\"><i>Oviasis</i></a> (Zone ID 6)"
+      if Num == 12:
+         return "<h4><u>Valley</u></h4><u>Description</u>\nDescription\n\n<u>Discovery</u>\n\nYou have a small random chance of discovering the valley when going into the jungle from hours 10 to 15 (inclusive) as long as it isn't your first time exploring.\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u29BF"
+      if Num == 13:
+         return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
    def wikiShopDescription(self, Num:int):
-      match Num:
-         case -10:
-            return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
-         case 1:
-            return "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow.\n\n<u>Softlik</u>\n<i>Milking Machine</i>\n<i>Skin Balm</i>\n<i>Dagger</i>\n<i>Bottle of Milk</i>\n<i>Jug of Milk</i>\n<i>Blood Gauge</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Softlik</i>\n\n<u>Firmshaft</u>\n<i>Imbued Horseshoes</i>\n<i>Bolstering Juice</i>\n<i>Warhammer</i>\n<i>Penis Pump</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Firmshaft</i>\n\n<u>Tieden</u>\n<i>Claws of the Lupine Ancestors</i>\n<i>Tainted Leaf</i>\n<i>Saber</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Tieden</i>\n\n<u>Siz'Calit</u>\n<i>Sweet Sap</i>\n<i>Whip</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Cat's Meow' Potion</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Siz'Calit</i>\n\n<u>Oviasis</u>\n<i>Educated Eggdicator</i>\n<i>Oasis Water</i>\n<i>Tail Spike</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Eggcelerator</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Oviasis</i>\n\n<u>Sanctuary</u>\n<i>Support Harness</i>\n<i>Foomp Bomb</i>\n<i>Nectar Candy</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Sanctuary</i>"
-         case 2:
-            return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
-         case 3:
-            return "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them.\n\n<u>Softlik</u>\n<i>Tuft of Wolf Fur</i>\n<i>Handful of Grain</i>\n<i>Vial of Cum</i>\n<i>Recipe: Lust Draft</i>\n<i>Recipe: Superior Rejuvenating Potion</i>\n<i>Recipe: Masochism Potion</i>\n<i>Recipe: Baby Free Potion</i>\n\n<u>Firmshaft</u>\n<i>Handful of Grain</i>\n<i>Cock-Snake Venom</i>\n<i>Shiny Trinket</i>\n<i>Red Mushroom</i>\n<i>Bottle of Cum</i>\n<i>Recipe: Rejuvenating Potion</i>\n<i>Recipe: Superior Lust Draft</i>\n<i>Recipe: Superior Masochism Potion</i>\n\n<u>Tieden</u>\n<i>Milk Creeper Poison</i>\n<i>Cock-Snake Venom</i>\n<i>Wet, Slimy Cloth</i>\n<i>Tuft of Wolf Fur</i>\n<i>Recipe: Ball Sweller</i>\n<i>Recipe: Potency Potion</i>\n<i>Recipe: Superior Gender Swap Potion</i>\n\n<u>Siz'Calit</u>\n<i>Pussy Fruit</i>\n<i>Milk Creeper Poison</i>\n<i>Bulging Berry</i>\n<i>Recipe: Express Pregnancy Potion</i>\n<i>Recipe: Gender Swap Potion</i>\n<i>Recipe: Superior Baby Free Potion</i>\n\n<u>Oviasis</u>\n<i>Wooden Cock Carving</i>\n<i>Wet, Slimy Cloth</i>\n<i>Bloated Berry</i>\n<i>Body Oil</i>\n<i>Recipe: Superior Express Pregnancy Potion</i>\n<i>Recipe: Superior Ball Sweller</i>\n<i>Recipe: Superior Potency Potion</i>\n\n<u>Sanctuary</u>\n<i>Recipe: Milk Suppressant</i>"
-         case 4:
-            return "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
-         case 5:
-            return "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+      if Num == -10:
+         return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+      if Num == 1:
+         return "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow.\n\n<u>Softlik</u>\n<i>Milking Machine</i>\n<i>Skin Balm</i>\n<i>Dagger</i>\n<i>Bottle of Milk</i>\n<i>Jug of Milk</i>\n<i>Blood Gauge</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Softlik</i>\n\n<u>Firmshaft</u>\n<i>Imbued Horseshoes</i>\n<i>Bolstering Juice</i>\n<i>Warhammer</i>\n<i>Penis Pump</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Firmshaft</i>\n\n<u>Tieden</u>\n<i>Claws of the Lupine Ancestors</i>\n<i>Tainted Leaf</i>\n<i>Saber</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Tieden</i>\n\n<u>Siz'Calit</u>\n<i>Sweet Sap</i>\n<i>Whip</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Cat's Meow' Potion</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Siz'Calit</i>\n\n<u>Oviasis</u>\n<i>Educated Eggdicator</i>\n<i>Oasis Water</i>\n<i>Tail Spike</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Eggcelerator</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Oviasis</i>\n\n<u>Sanctuary</u>\n<i>Support Harness</i>\n<i>Foomp Bomb</i>\n<i>Nectar Candy</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Sanctuary</i>"
+      if Num == 2:
+         return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
+      if Num == 3:
+         return "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them.\n\n<u>Softlik</u>\n<i>Tuft of Wolf Fur</i>\n<i>Handful of Grain</i>\n<i>Vial of Cum</i>\n<i>Recipe: Lust Draft</i>\n<i>Recipe: Superior Rejuvenating Potion</i>\n<i>Recipe: Masochism Potion</i>\n<i>Recipe: Baby Free Potion</i>\n\n<u>Firmshaft</u>\n<i>Handful of Grain</i>\n<i>Cock-Snake Venom</i>\n<i>Shiny Trinket</i>\n<i>Red Mushroom</i>\n<i>Bottle of Cum</i>\n<i>Recipe: Rejuvenating Potion</i>\n<i>Recipe: Superior Lust Draft</i>\n<i>Recipe: Superior Masochism Potion</i>\n\n<u>Tieden</u>\n<i>Milk Creeper Poison</i>\n<i>Cock-Snake Venom</i>\n<i>Wet, Slimy Cloth</i>\n<i>Tuft of Wolf Fur</i>\n<i>Recipe: Ball Sweller</i>\n<i>Recipe: Potency Potion</i>\n<i>Recipe: Superior Gender Swap Potion</i>\n\n<u>Siz'Calit</u>\n<i>Pussy Fruit</i>\n<i>Milk Creeper Poison</i>\n<i>Bulging Berry</i>\n<i>Recipe: Express Pregnancy Potion</i>\n<i>Recipe: Gender Swap Potion</i>\n<i>Recipe: Superior Baby Free Potion</i>\n\n<u>Oviasis</u>\n<i>Wooden Cock Carving</i>\n<i>Wet, Slimy Cloth</i>\n<i>Bloated Berry</i>\n<i>Body Oil</i>\n<i>Recipe: Superior Express Pregnancy Potion</i>\n<i>Recipe: Superior Ball Sweller</i>\n<i>Recipe: Superior Potency Potion</i>\n\n<u>Sanctuary</u>\n<i>Recipe: Milk Suppressant</i>"
+      if Num == 4:
+         return "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+      if Num == 5:
+         return "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
    def wikiNPCDescription(self, Num:int):
-      match Num:
-         case -10:
-            return "<h4><u>Name</u></h4><u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
-         case 1:
-            return "<h4><u>Fidoris</u></h4><b><i>Fetish Content:</i></b> Size difference"
-         case 2:
-            return "<h4><u>Jamie</u></h4><b><i>Fetish Content:</i></b> Femboy, Large genitalia\n\n<u>Character Description</u>\nJamie is an equine male who has an extra large \"package\". He is introduced as a femboy however, in the parts of his encounter that wheren't implemented, it is implied that he is either a trans woman or a sissy (can't tell in this context because of the fetish aspect). If you dont believe me, here's the line that is written after you give him Red Mushrooms: '\"I... I\'ve got... Boobs!\" He shouts a little too excitedly, both in confusion and joy.'. This is only one of many examples of this type of thing.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
-         case 3:
-            return "<h4><u>Lila</u></h4><b><i>Fetish Content:</i></b> Unbirth, Cub (I think), Diapers"
-         case 4:
-            return "<h4><u>Malon</u></h4><b><i>Fetish Content:</i></b> Cow, Udders, Milking\n\n<u>Character Description</u>\nMalon is the \"Cow girl on the farm\" (the space between cow and girl is intentional). She lives on the Softlik Dairy Farm and became a humanoid cow by eating too many DairE Pills.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
-         case 5:
-            return "<h4><u>Silandrias</u></h4><b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
+      if Num == -10:
+         return "<h4><u>Name</u></h4><u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+      if Num == 1:
+         return "<h4><u>Fidoris</u></h4><b><i>Fetish Content:</i></b> Size difference"
+      if Num == 2:
+         return "<h4><u>Jamie</u></h4><b><i>Fetish Content:</i></b> Femboy, Large genitalia\n\n<u>Character Description</u>\nJamie is an equine male who has an extra large \"package\". He is introduced as a femboy however, in the parts of his encounter that wheren't implemented, it is implied that he is either a trans woman or a sissy (can't tell in this context because of the fetish aspect). If you dont believe me, here's the line that is written after you give him Red Mushrooms: '\"I... I\'ve got... Boobs!\" He shouts a little too excitedly, both in confusion and joy.'. This is only one of many examples of this type of thing.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+      if Num == 3:
+         return "<h4><u>Lila</u></h4><b><i>Fetish Content:</i></b> Unbirth, Cub (I think), Diapers"
+      if Num == 4:
+         return "<h4><u>Malon</u></h4><b><i>Fetish Content:</i></b> Cow, Udders, Milking\n\n<u>Character Description</u>\nMalon is the \"Cow girl on the farm\" (the space between cow and girl is intentional). She lives on the Softlik Dairy Farm and became a humanoid cow by eating too many DairE Pills.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+      if Num == 5:
+         return "<h4><u>Silandrias</u></h4><b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
 
 if __name__ == "__main__":
    from sys import argv
