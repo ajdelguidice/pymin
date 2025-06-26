@@ -4767,7 +4767,6 @@ class NiminFetishFantasyv0975o_fla:
          self.loadGo(message="Error: Could not load save file. Reason: No data was received by doLoad")
          return
       try:
-         tempcs = self.currentState
          strack = data['track']
          sstats = data['stats']
          slevel = data['level']
@@ -5094,10 +5093,8 @@ class NiminFetishFantasyv0975o_fla:
             self.setDHStats()
             self.setSCStats()
             self.showOption7()
-            if tempcs == 0:
-               self.toggleSide()
-               self.toggleSide()
-            elif self.showSide:
+            if (self.showSide):
+               self.showSidePanel()
                self.updateSide()
             self.outputMainText("Your file has been successfully loaded.",True)
             self.doReturn()
@@ -5491,8 +5488,9 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText("You finally get out of bed and start your day. And after that dream, you just can't seem to shake the feeling that there's more to this life, this world... The dangerously odd world of Nimin.",True)
                            self.doNext()
                            def doListen():
-                              self.toggleSide()
-                              self.toggleSide()
+                              if (self.showSide):
+                                 self.showSidePanel()
+                                 self.updateSide()
                               self.showOption7()
                               self.currentState = 1
                               self.doGeneral()
