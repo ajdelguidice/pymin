@@ -876,8 +876,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("creditsbutton",text="Credits",background=self.theme,foreground=self.fontColor)
          self.sidepanelbuttonsvisible = [True,True,True,True,True,True,True,True]
          
-         self.mo.addFrame("display","textsidebox",823-15,290,330,300+15,"nw")
-         self.mo.addHTMLScrolledText("textsidebox","textside",0,0,330,300+15,self.font,border=self.scrolledTextBorders)
+         self.mo.addHTMLScrolledText("display","textside",823,290,330,315,self.font,border=self.scrolledTextBorders)
          self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word")
          self.textsidevisible = True
          self.mo.addButton("display","appearancebutton",990,426,150,50,self.font,anchor="center")
@@ -25681,7 +25680,6 @@ class NiminFetishFantasyv0975o_fla:
          self.sidepanelbuttonsvisible[i] = False
       if self.textsidevisible:
          self.mo.destroyChild("textside")
-         self.mo.destroyChild("textsidebox")
          self.textsidevisible = False
       self.hideAPButton()
    @staticmethod
@@ -25696,8 +25694,7 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.configureChild(self.sidepanelbuttonnames[i],text=self.sidepanelbuttontext[i],background=temp[0],foreground=temp[1],command=partial(self.sideEvent,i+1))
             self.sidepanelbuttonsvisible[i] = True
       if not self.textsidevisible:
-         self.mo.addFrame("display","textsidebox",823,275,330,315,"nw")
-         self.mo.addHTMLScrolledText("textsidebox","textside",0,0,330,315,self.font,border=self.scrolledTextBorders)
+         self.mo.addHTMLScrolledText("display","textside",823,275,330,315,self.font,border=self.scrolledTextBorders)
          self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word",background=self.theme,foreground=self.fontColor)
          self.textsidevisible = True
          self.updateText()
@@ -25708,8 +25705,7 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.destroyChild(self.sidepanelbuttonnames[i])
             self.sidepanelbuttonsvisible[i] = False
       if self.textsidevisible:
-         self.mo.destroyChild("textside")
-         self.mo.destroyChild("textsidebox")
+         self.mo.children["textside"].frame.destroy()
          self.textsidevisible = False
       self.showAPButton()
    def showOption7(self):
