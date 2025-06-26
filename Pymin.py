@@ -1961,7 +1961,7 @@ class NiminFetishFantasyv0975o_fla:
          self.fontSizeDown()
       elif (keyCode == 17) and special: #Control
          self.fontSizeReset()
-      elif (keyCode == 190) and special: #.
+      elif (keyCode == 190) and special and self.option7Visible and self.mo.getChildAttribute("themebutton7","state") == "normal": #.
          self.toggleSide()
       elif (keyCode == 191) and special: #/
          self.toggleBold()
