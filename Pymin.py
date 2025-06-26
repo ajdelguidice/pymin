@@ -2818,12 +2818,14 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nThe weight of your {self.bellyDesc()} belly is becoming irksome. You take a bit more time to come to a halt whenever you move as it retains much of your momentum. And whenever you bend over, it's difficult to rise back up."
       elif (ptMbmM2 > tempNum * 1 / 2):
          tempStr += f"\n\nYou are rather aware of the weight of your {self.bellyDesc()} belly. You often subconsciously center your weight more by resting your hands on top of it rather than let them hang at your sides."
+      text = tempStr.getvalue()
+      tempStr.close()
       if retText == False:
          if showText:
-            self.outputMainText(tempStr.getvalue(),False)
+            self.outputMainText(text,False)
          return tempBool
       else:
-         return tempStr.getvalue()
+         return text
    def checkItem(self, ID:int):
       """
       Checks if player has item ID in their bag
@@ -3228,9 +3230,11 @@ class NiminFetishFantasyv0975o_fla:
          changes = 0
       self.lust += changes
       self.statDisplay()
+      text = tempStr.getvalue()
+      tempStr.close()
       if (ret):
-         return tempStr.getvalue()
-      self.outputMainText(tempStr.getvalue(),False)
+         return text
+      self.outputMainText(text,False)
    def doLustForcedMasturbate(self):
       """
       For when player's lust gets too high
@@ -3882,6 +3886,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedStats(self):
       """
       Stats button on the side bar
@@ -3945,6 +3950,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedTitles(self):
       #!Optimize
       """
@@ -4071,6 +4077,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedStatuses(self):
       """
       Effects button in the side bar
@@ -4153,6 +4160,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedLevels(self):
       """
       Levels button in the side bar
@@ -4196,6 +4204,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedGear(self):
       """
       Gear button in the side bar
@@ -4231,6 +4240,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedHelp(self):
       """
       Help button in the side bar
@@ -4303,6 +4313,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    def detailedCredits(self):
       """
       Credits button in the sidebar
@@ -4337,6 +4348,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doProcess()
          self.doListen = doListen
+      tempStr.close()
    @staticmethod
    def getdh(file):
       """
@@ -5584,6 +5596,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 12:
                self.doExplore()
          self.doListen = doListen
+      tempStr.close()
    def doJizzPants(self, ret=False):
       """
       Forced action when balls are "too full"
@@ -6953,6 +6966,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.teatSize += 1
                         tempStr += "\n\nHowever, this time your teats don't seem to relax back to their original state, permanently swollen larger..."
                   self.outputMainText(tempStr.getvalue(),True)
+                  tempStr.close()
                   self.doNext()
                   def doListen():
                      if (self.getMilk < 1000):
@@ -7177,6 +7191,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.bugAffinity > 0):
                tempStr += "\n\nBug:\n" + "|"*self.bugAffinity
             self.outputMainText(tempStr.getvalue(),True)
+            tempStr.close()
             self.doEnd()
          case 109:
             if (self.checkItem(219)):
@@ -11023,6 +11038,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.coin >= 500):
             templist.extend((1,"Transfer"))
          self.outputMainText(tempStr.getvalue(), True)
+         tempStr.close()
          self.showButtons(ButtonList(1,0,0,0,0,0,0,0,0,0,0,1))
          self.doButtonChoices(templist)
          def doListen():
@@ -11109,6 +11125,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.",True)
          else:
             self.outputMainText(tempStr.getvalue(),True)
+         tempStr.close()
          self.doEnd(leave=True)
    def doProstitute(self):
       #! Spellcheck
@@ -11776,6 +11793,7 @@ class NiminFetishFantasyv0975o_fla:
       if (not self.firstExplore and self.percent() < 10):
          tempStr += "\n\n\"Please... Anybody?\" Despite everything, your mind focuses on that echoing dream for another night now..."
       self.outputMainText(tempStr.getvalue(),True)
+      tempStr.close()
       self.hrs = 8
       self.doEnd()
    def doMasturbate(self):
@@ -12414,6 +12432,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.choiceListCheck("Male Enhance")):
             tempStr += "\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry."
       self.outputMainText(tempStr.getvalue(),True)
+      tempStr.close()
       self.choiceListButtons("Simple")
       def doListen():
          self.choiceListSelect("Simple")
@@ -12483,6 +12502,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.choiceListCheck("Milk Suppress")):
             tempStr += "\n\nMilk Suppressant - A little embarassed by your inopportune leaking? This drug will help prevent any milk from flowing out, though it does not stop the production of milk.\nRequires 1 Milk C Pois and 1 Reduc Reduc."
       self.outputMainText(tempStr.getvalue(),True)
+      tempStr.close()
       self.choiceListButtons("Complex")
       def doListen():
          self.choiceListSelect("Complex")
@@ -12550,6 +12570,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.choiceListCheck("Bazoomba!")):
             tempStr += "\n\nBazoomba! - A secret and powerful recipe that creates more of one of the best things in the world...\nRequires 1 Strange Egg, 1 Milk Jug, 2 Cock Carv, and 3 Red Mush."
       self.outputMainText(tempStr.getvalue(),True)
+      tempStr.close()
       self.choiceListButtons("Advanced")
       def doListen():
          self.choiceListSelect("Advanced")
@@ -18778,6 +18799,7 @@ class NiminFetishFantasyv0975o_fla:
                   templist.extend((10,"Recept Bell"))
                   tempStr += "\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences."
                self.outputMainText(tempStr.getvalue(),True)
+               tempStr.close()
                self.doButtonChoices(templist)
                def doListen():
                   if (self.buttonChoice == 12):
@@ -18868,6 +18890,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.silPreg <= 2000):
                tempStr += " The pup quickly deposits the egg on the floor nearby, easier than using the balconies at this height, before returning for the next egg, alternating with her sister to carry the ovoid objects away as they squeeze out of their mother."
             self.outputMainText(tempStr.getvalue(),True)
+            tempStr.close()
             self.doNext()
             def doListen():
                tempStr = "Hours later, Silandrias is panting upon the floor, cushioned by her soft breasts, her belly finally empty."
@@ -19577,6 +19600,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(0,0,ret=True)
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.hrs = 2
                      self.doEnd()
                   elif self.buttonChoice == 3:
@@ -19596,6 +19620,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(0,0,ret=True)
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.hrs = 2
                      self.doEnd()
                   elif self.buttonChoice == 8:
@@ -19660,6 +19685,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(0,0,ret=True)
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.hrs = 2
                      self.doEnd()
                   elif self.buttonChoice == 8:
@@ -19684,6 +19710,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(0,0,ret=True)
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.hrs = 2
                      self.doEnd()
                   elif self.buttonChoice == 11:
@@ -19707,6 +19734,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(0,0,ret=True)
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.hrs = 2
                      self.doEnd()
                self.doListen = doListen
@@ -19742,6 +19770,7 @@ class NiminFetishFantasyv0975o_fla:
                      tempStr += self.doLust(0,0,ret=True)
                      tempStr += "\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town."
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.hrs = 2
                      self.doEnd()
                   elif self.buttonChoice == 8:
@@ -19769,6 +19798,7 @@ class NiminFetishFantasyv0975o_fla:
                      else:
                         self.loseManyItem(501,1)
                      self.outputMainText(tempStr.getvalue(),True)
+                     tempStr.close()
                      self.doEnd()
                self.doListen = doListen
             elif self.buttonChoice == 10:
@@ -20607,6 +20637,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.eItem != 0):
          self.itemAdd(self.eItem)
       self.outputMainText(tempStr.getvalue(),True)
+      tempStr.close()
       self.hrs = 2
       self.doEnd()
    def specialRapeWin(self):
@@ -20925,6 +20956,7 @@ class NiminFetishFantasyv0975o_fla:
             self.body -= 1
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
       self.outputMainText(tempStr.getvalue(),True)
+      tempStr.close()
    def doGetRaped(self):
       match self.enemyID:
          case 1:
@@ -21233,6 +21265,7 @@ class NiminFetishFantasyv0975o_fla:
             self.body -= 2
             tempStr += self.doLust(-(self.sen // 2),2,1,2,ret=True)
       self.outputMainText(tempStr.getvalue() + "\n\nYou pass out in a puddle of mixed sensual fluids...",True)
+      tempStr.close()
       if (self.inDungeon):
          self.regionChange(self.currentZone)
          self.inDungeon = False
@@ -21903,6 +21936,7 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += self.doHP(-self.eDmg(15),ret=True,retPO=True)
       if output:
          self.outputMainText(tempStr.getvalue(),False)
+      tempStr.close()
       if self.passOut:
          self.passOut = False
          self.doEnd()
@@ -22417,6 +22451,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.outputMainText(tempStr.getvalue(),True)
          self.doEnd()
+      tempStr.close()
    def affinity(self, humanChange:int, horseChange:int, wolfChange:int, catChange:int, cowChange:int, lizardChange:int, rabbitChange:int): #not used
       self.human += math.ceil(humanChange * self.changeMod)
       self.horse += math.ceil(horseChange * self.changeMod)
@@ -23371,6 +23406,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.outputMainText(tempStr.getvalue(),True)
          self.doEnd()
+      tempStr.close()
    def cockChange(self, sizeChange:int, totalChange:int, ret=False):
       tempStr = ""
       nonCock = False #Variable storing whether current race doesn't have its own cock type
