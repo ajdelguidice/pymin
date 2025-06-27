@@ -5098,10 +5098,10 @@ class NiminFetishFantasyv0975o_fla:
             self.showNSLDBlinder(False)
             self.bagPage = 1
             self.stashPage = 1
-            self.hideUpDown()
             self.showStatsPane()
             self.regionChange(self.currentZone)
-            self.stats(0,0,0,0)
+            self.statDisplay()
+            self.hideUpDown()
             self.setDHStats()
             self.setSCStats()
             self.showOption7()
