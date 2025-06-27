@@ -5112,7 +5112,12 @@ class NiminFetishFantasyv0975o_fla:
             self.doReturn()
          except Exception as e:
             as3.trace("doLoad: Failed after loading file data.")
-            self.loadGo(message="Error: Failed after loading file data.",ret=True)
+            if not self.showsavegame:
+               self.hideOption7()
+               self.hideStatsPane()
+               self.initSidePanel()
+            self.showNSLDBlinder(False)
+            self.loadGo(message="Error: Failed after loading file data.")
             raise e
    def doRace(self):
       """
@@ -25719,7 +25724,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild(self.sidepanelbuttonnames[i])
          self.sidepanelbuttonsvisible[i] = False
       if self.textsidevisible:
-         self.mo.destroyChild("textside")
+         self.mo.children["textside"].frame.destroy()
          self.textsidevisible = False
       self.hideAPButton()
    @staticmethod
