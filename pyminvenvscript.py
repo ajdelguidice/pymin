@@ -69,9 +69,9 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         run(["uv","venv",venvpath])
     else:    
         run([f"python", "-m" "venv", venvpath])
-    
+
     #Create config
-    createConfigInVenv("./",platform.python_version(),useuv,useuvi,defrun,nossl,nohtmlparser,devenv,cfgDict)
+    createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,devenv,configDict=cfgDict)
     
     #create game directory
     checkExistsMakeDir(venvpath / "Pymin")
@@ -335,7 +335,7 @@ except:
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
-    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --use-uv(i). Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{install}\t--with-uv\t\tToggles the use of uv when first setting up the venv becuase config can not be saved yet.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
 elif args[1] == "migrate-config":
     migrateConfig()
 elif defrun and (len(args) < 2 or args[1].startswith(("-","--","/"))):
@@ -344,6 +344,8 @@ else:
     if args[1] in {"install","update","recreate"}:
         if nossl or "--unverified" in args:
             tempnossl = True
+        if "--nohtmlparser" in args:
+            nohtmlparser = True
         if "--version" in args:
             versiontag = args[args.indexOf("--version") + 1]
         else:
@@ -405,6 +407,17 @@ else:
         if venvpath.exists() and "--overwrite" in args:
             print("You can not use install in an existing directory. Did you mean \"update\"?")
             exit()
+        if "--with-uv" in args:
+            if True: #!Check for global uv install
+                useuv = True
+                c2["uvGlobal"] = True
+                useuvi = False
+                c2["uvLocal"] = False
+            else:
+                useuv = False
+                c2["uvGlobal"] = False
+                useuvi = True
+                c2["uvLocal"] = True
         create(url,as3libversiontag)
     elif args[1] == "update":
         if devenv:
