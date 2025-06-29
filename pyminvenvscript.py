@@ -35,9 +35,9 @@ class list(list):
             return -1
 
 def checkExistsMakeDir(dir_, silent=False):
-    if dir_.exists():
-        if dir_.is_dir():
-            return 1
+    if dir_.is_dir():
+        return 1
+    elif dir_.exists():
         elif silent == False:
             print("Path exists but is not a directory.")
         return -1
