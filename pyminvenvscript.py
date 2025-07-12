@@ -46,6 +46,7 @@ def checkExistsMakeDir(dir_, silent=False):
 curdir = Path(__file__).resolve().parent #This is a workaround for python (Windows) that I use instead of "./"
 venvfolder = "Pymin-venv"
 venvpath = curdir / venvfolder
+cfgloc = None
 
 if None in {curdir,venvpath} or "" in {str(curdir),str(venvpath)}:
     print("Error: Path is empty. Exiting to avoid problems.")
@@ -70,10 +71,20 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         run([f"python", "-m" "venv", venvpath])
 
     #Create config
-    if cfgloc == None:
+    move = False
+    if (curdir / "pymin.toml").exists() and venvpath == curdir / "Pymin-venv":
+        #Ask if user wants to move the config to venv
+        inp = input("Config exists. Would you like to move it into the venv? (y/N)").lower()
+        if inp == "y":
+            move = True
+    global cfgloc
+    if move == True:
+        c2["path"] = "./"
+        (curdir / "pymin.toml").unlink(missing_ok=True)
+        cfgloc = venvpath / "pymin.toml"
+    elif cfgloc == None:
         createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,isDevEnv=devenv,configDict=cfgDict)
     else:
-        global c2
         c2["path"] = venvpath
     
     #create game directory
@@ -243,7 +254,10 @@ def migrateConfig(save:bool=False,getNew:bool=False):
 
 def cfgWrite(file,configDict,mode="w"):
     with open(file, mode) as f:
-        f.write(f"cfgVersion = 1\npath = \"{configDict['path']}\"\npyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
+        f.write(f"cfgVersion = 1\n")
+        if configDict.get('path') != None:
+            f.write(f"path = \"{configDict["path"]}\"\n")
+        f.write(f"pyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
     if configDict == None:
@@ -263,7 +277,6 @@ def getSSLContext():
 args = list(argv)
 tempnossl = False
 hasVenv = True
-cfgloc = None
 
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
 try:
