@@ -7,7 +7,6 @@ from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlopen
 import ssl
-from io import StringIO
 
 #Notes:
 #len(str(pathlib.Path)) is a workaround for the windows implementation of pathlib.Path not having a length property
@@ -71,7 +70,11 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         run([f"python", "-m" "venv", venvpath])
 
     #Create config
-    createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,isDevEnv=devenv,configDict=cfgDict)
+    if cfgloc == None:
+        createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,isDevEnv=devenv,configDict=cfgDict)
+    else:
+        global c2
+        c2["path"] = venvpath
     
     #create game directory
     checkExistsMakeDir(venvpath / "Pymin")
@@ -259,6 +262,8 @@ def getSSLContext():
 
 args = list(argv)
 tempnossl = False
+hasVenv = True
+cfgloc = None
 
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
 try:
@@ -305,33 +310,37 @@ else:
     useuvi = False
     nossl = False
     nohtmlparser = False
+    c1 = {}
+    c2 = {"cfgVersion":1,"pyInstalledVersion":None,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
     if venvpath.exists():
         with open(venvpath / "pyvenv.cfg", "r") as f:
             c = configparser.ConfigParser(allow_unnamed_section=True)
             c.optionxform=str
             c.read_file(f)
             pyinstalversion = c[configparser.UNNAMED_SECTION]["version_info"]
+        c2["path"] = venvpath
     else:
         #Fallback
         pyinstalversion = platform.python_version()
+        hasVenv = False
     devenv = False
-    c1 = {}
-    c2 = {"cfgVersion":1,"path":"./","pyInstalledVersion":pyinstalversion,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
+    c2["pyInstalledVersion"] = pyinstalversion
+
 
 if platform.system() == "Windows":
     pythonvenvloc = venvpath / "Scripts/python.exe"
 else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
-
-if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
-    updatePythonVersion(pyinstalversion)
-try:
-    if venvpath.exists():
-        check_output(f"{pythonvenvloc} -V",shell=True)
-except:
-    repairInstall()
-    exit() #!for some reason, this does not exit
+if hasVenv:
+    if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
+        updatePythonVersion(pyinstalversion)
+    try:
+        if venvpath.exists():
+            check_output(f"{pythonvenvloc} -V",shell=True)
+    except:
+        repairInstall()
+        exit() #!for some reason, this does not exit
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
@@ -356,7 +365,13 @@ else:
         else:
             as3libversiontag = "latest"
     if args[1] == "cfg":
+        if cfgloc == None:
+            if not hasVenv:
+                cfgloc = curdir / "pymin.toml"
+            else:
+                cfgloc = venvpath / "pymin.toml"
         if len(args) == 2:
+            from io import StringIO
             with StringIO() as text:
                 for k,v in c2.items():
                     text.write(f"{k}: {v}\n")
@@ -450,6 +465,7 @@ else:
                     run(rl)
                 elif useuvi:
                     run(pythonm+rl)
-if venvpath.exists() and c1 != c2: #Check if config was modified
+
+if c1 != c2: #Check if config was modified
     #Write modified config to disk
     cfgWrite(cfgloc,c2)
