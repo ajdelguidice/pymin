@@ -38,7 +38,7 @@ def checkExistsMakeDir(dir_, silent=False):
     if dir_.is_dir():
         return 1
     elif dir_.exists():
-        elif silent == False:
+        if silent == False:
             print("Path exists but is not a directory.")
         return -1
     else:
@@ -71,7 +71,7 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         run([f"python", "-m" "venv", venvpath])
 
     #Create config
-    createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,devenv,configDict=cfgDict)
+    createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,isDevEnv=devenv,configDict=cfgDict)
     
     #create game directory
     checkExistsMakeDir(venvpath / "Pymin")
@@ -357,12 +357,11 @@ else:
             as3libversiontag = "latest"
     if args[1] == "cfg":
         if len(args) == 2:
-            text = StringIO()
-            for k,v in c2.items():
-                text.write(f"{k}: {v}\n")
-            text.write(f"tempNoSSL: {tempnossl}")
-            print(text.getvalue())
-            text.close()
+            with StringIO() as text:
+                for k,v in c2.items():
+                    text.write(f"{k}: {v}\n")
+                text.write(f"tempNoSSL: {tempnossl}")
+                print(text.getvalue())
             exit()
         if "--no-ssl" in args:
             nossl = True
