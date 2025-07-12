@@ -82,8 +82,8 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         c2["path"] = "./"
         (curdir / "pymin.toml").unlink(missing_ok=True)
         cfgloc = venvpath / "pymin.toml"
-    elif cfgloc == None:
-        createConfigInVenv(uvGlobal=useuv,uvLocal=useuvi,noSSLVerify=nossl,noCustomHTMLParser=nohtmlparser,isDevEnv=devenv,configDict=cfgDict)
+    elif cfgloc == None or cfgDict != None:
+        createConfigInVenv(configDict=cfgDict)
     else:
         c2["path"] = venvpath
     
