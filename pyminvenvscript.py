@@ -57,7 +57,7 @@ if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
 
 def create(script_url="",as3libversion="",cfgDict:dict=None):
     #Sets up the virtual environment
-    if (platform.system() == "Windows" and len(str(venvpath)) in {2,3} and venvpath[0].isalpha() and venvpath[1] == ":") or str(venvpath) == "/":
+    if venvpath == venvpath.parent:
         print("Error: venvpath is set to the root directory. Can not create a virtual environment here.")
         exit()
     print("Creating the environment...")
@@ -153,17 +153,16 @@ def updatemodules(as3libversion="latest"):
     replaceTkhtmlviewParserWithUnsafeOne()
 
 def recreate(url,as3libversion,cfgDict:dict=None):
-    if venvpath.is_dir() == False:
+    if not venvpath.is_dir():
         print(f"Error: Directory \"{venvpath}\" either doesn't exist or is not a directory. Aborting...")
         return
-    elif (platform.system() == "Windows" and len(str(venvpath)) in {2,3} and venvpath[0].isalpha() and venvpath[1] == ":") or venvpath == "/":
+    if venvpath == venvpath.parent:
         print("Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...")
         return
-    elif not ((venvpath / "pymin.cfg").exists() and (venvpath / "Pymin/Pymin.py").exists()):
+    if not ((venvpath / "pymin.cfg").exists() and (venvpath / "Pymin/Pymin.py").exists()):
         print("Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...")
         return
-    else:
-        rmtree(venvpath)
+    rmtree(venvpath)
     create(url,as3libversion,cfgDict)
 
 def replaceTkhtmlviewParserWithUnsafeOne():
