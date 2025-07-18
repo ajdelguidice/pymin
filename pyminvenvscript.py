@@ -83,6 +83,7 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         (curdir / "pymin.toml").unlink(missing_ok=True)
         cfgloc = venvpath / "pymin.toml"
     elif cfgloc == None or cfgDict != None:
+        cfgloc = venvpath / "pymin.toml"
         createConfigInVenv(configDict=cfgDict)
     else:
         c2["path"] = venvpath
@@ -255,7 +256,7 @@ def cfgWrite(file,configDict,mode="w"):
     with open(file, mode) as f:
         f.write(f"cfgVersion = 1\n")
         if configDict.get('path') != None:
-            f.write(f"path = \"{configDict["path"]}\"\n")
+            f.write(f"path = \"{configDict['path']}\"\n")
         f.write(f"pyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
