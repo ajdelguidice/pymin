@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 import math, random, tkinter, webbrowser
 from pathlib import Path, PurePath
 from tkinter import filedialog, ttk
@@ -4545,7 +4545,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doLoad(4)
             elif self.buttonChoice == 8:
                temp = self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")
-               self.outputMainText(f"{temp[0].replace("D:","Day:").replace("H:","Hour:")}:00\n\nAre you sure you want to load {temp[1]}?",True)
+               self.outputMainText(f"{temp[0].replace('D:','Day:').replace('H:','Hour:')}:00\n\nAre you sure you want to load {temp[1]}?",True)
                if self.currentState != 0:
                   self.outputMainText("\n\nYou will lose any unsaved data from the current game.",False)
                self.showNSLDBlinder(True)
@@ -4772,7 +4772,7 @@ class NiminFetishFantasyv0975o_fla:
       elif lfext.endswith(".toml"):
          data = self.loadTOML(loadfilename)
       else:
-         as3.trace(f"SaveLoader Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext.split(".")[-1]}.")
+         as3.trace(f"SaveLoader Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext.split('.')[-1]}.")
          self.loadGo(message="Error: Could not load save file. Reason: Incorrect file format")
          return
       if data == None:
@@ -6825,7 +6825,8 @@ class NiminFetishFantasyv0975o_fla:
                temp.remove(("","Softlik","Firmshaft","Tieden","Siz'Calit","","Oviasis","","","","","","Sanctuary")[self.currentZone])
                self.doButtonChoices(temp)
                def doListen():
-                  self.outputMainText(f"Are you sure that you want to travel to {('','Tieden','','Softlik','','Siz\'Calit','','Firmshaft','Sanctuary','','Oviasis')[self.buttonChoice]}?",True)
+                  place = ('','Tieden','','Softlik','','Siz\'Calit','','Firmshaft','Sanctuary','','Oviasis')[self.buttonChoice]
+                  self.outputMainText(f"Are you sure that you want to travel to {place}?",True)
                   self.tempNum = self.buttonChoice
                   self.buttonConfirm()
                   def doListen():
