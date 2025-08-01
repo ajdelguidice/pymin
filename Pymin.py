@@ -25170,17 +25170,17 @@ class NiminFetishFantasyv0975o_fla:
          return " herm"
       return f"GENDER ERROR {self.gender}"
    def cumAmount(self):
-      tempNum = 0
-      if (self.blueBalls <= 12):
-         tempNum = self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 0.5
-      elif (self.blueBalls <= 36):
-         tempNum = self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 1
-      elif (self.blueBalls <= 84):
-         tempNum = self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2
-      else:
-         tempNum = self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2.5
+      tempNum = self.ballSize * self.ballSize / 2 * self.balls * self.cumMod
+      temp = self.blueBalls
       self.blueBalls = 0
-      return math.floor(tempNum)
+      if (temp <= 12):
+         return math.floor(tempNum * 0.5)
+      elif (temp <= 36):
+         return math.floor(tempNum * 1)
+      elif (temp <= 84):
+         return math.floor(tempNum * 2)
+      else:
+         return math.floor(tempNum * 2.5)
    def milkAmount(self, origin:int):
       tempNum = 0
       if origin == 1:
