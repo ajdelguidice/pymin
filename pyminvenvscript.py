@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-import requests, platform, configparser
-from shutil import rmtree
+import requests, platform, configparser, ssl, tempfile
+from shutil import rmtree, copytree
 from pathlib import Path, PurePath
 from sys import argv
 from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlopen
-import ssl
 
 #Notes:
 #len(str(pathlib.Path)) is a workaround for the windows implementation of pathlib.Path not having a length property
@@ -153,18 +152,26 @@ def updatemodules(as3libversion="latest"):
     print("Done")
     replaceTkhtmlviewParserWithUnsafeOne()
 
-def recreate(url,as3libversion,cfgDict:dict=None):
+def recreate(url,as3libversion,cfgDict:dict=None,withsaves=False):
     if not venvpath.is_dir():
         print(f"Error: Directory \"{venvpath}\" either doesn't exist or is not a directory. Aborting...")
         return
     if venvpath == venvpath.parent:
         print("Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...")
         return
-    if not ((venvpath / "pymin.cfg").exists() and (venvpath / "Pymin/Pymin.py").exists()):
+    if not ((venvpath / "pymin.toml").exists() and (venvpath / "Pymin/Pymin.py").exists()):
         print("Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...")
         return
-    rmtree(venvpath)
-    create(url,as3libversion,cfgDict)
+    if withsaves:
+        with tempfile.TemporaryDirectory() as d:
+            tempdir = Path(d)
+            copytree(venvpath / "Pymin/nimin_saves", tempdir / "nimin_saves")
+            rmtree(venvpath)
+            create(url,as3libversion,cfgDict)
+            copytree(tempdir / "nimin_saves", venvpath / "Pymin/nimin_saves")
+    else:
+        rmtree(venvpath)
+        create(url,as3libversion,cfgDict)
 
 def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands instead from href tags. Only use this inside of this project's virtual environment.
@@ -236,6 +243,7 @@ def migrateConfig(save:bool=False,getNew:bool=False):
         for i in {"uvGlobal","uvLocal","defaultToRun","noSSLVerify","noCustomHTMLParser","isDevEnv"}:
             conf[i] = c.getboolean("Options",i,fallback=False)
         temploc.unlink(missing_ok=True)
+        del c
     else:
         pyversion = platform.python_version()
         with open(venvpath / "pyvenv.cfg","r") as f:
@@ -243,8 +251,8 @@ def migrateConfig(save:bool=False,getNew:bool=False):
             c.optionxform=str
             c.read_file(f)
             pyversion = c[configparser.UNNAMED_SECTION]["version_info"]
+            del c
         conf = {"cfgVersion":1,"path":"./","pyInstalledVersion":pyversion,"uvGlobal":tempUV,"uvLocal":tempUVI,"defaultToRun":tempDR,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
-    del c
     if conf == None:
         print("Nothing to do.")
     elif save:
@@ -357,7 +365,7 @@ if hasVenv:
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
-    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
 elif args[1] == "migrate-config":
     migrateConfig()
 elif defrun and (len(args) < 2 or args[1].startswith(("-","--","/"))):
@@ -446,13 +454,15 @@ else:
     elif args[1] == "conv":
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", "--converter"))
     elif args[1] == "cmd":...
-    elif args[1] == "recreate":
+    elif args[1] == "recreate" and venvpath.exists():
+        withsaves = False
         if "--migrate-config" in args:
             print("Fetching old config.")
             cfgdict = migrateConfig(getNew=True)
             print("Done.")
-        if "--with-saves" in args:...
-        recreate(url,as3libversiontag,cfgdict)
+        if "--with-saves" in args:
+            withsaves = True
+        recreate(url,as3libversiontag,cfgdict,withsaves)
     elif args[1] == "uv" and venvpath.exists():
         if len(args) == 2:
             rl = ["uv","--help"]
