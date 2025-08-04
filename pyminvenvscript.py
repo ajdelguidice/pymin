@@ -7,8 +7,6 @@ from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
-#Notes:
-#len(str(pathlib.Path)) is a workaround for the windows implementation of pathlib.Path not having a length property
 if platform.system() == "Darwin":
     print("Warning: This script is untested on darwin (MacOS), things might be broken.")
     """
@@ -42,7 +40,7 @@ def checkExistsMakeDir(dir_, silent=False):
     else:
         dir_.mkdir(parents=True)
 
-curdir = Path(__file__).resolve().parent #This is a workaround for python (Windows) that I use instead of "./"
+curdir = Path(__file__).resolve().parent #This is a workaround for python on Windows
 venvfolder = "Pymin-venv"
 venvpath = curdir / venvfolder
 cfgloc = None
@@ -174,18 +172,16 @@ def recreate(url,as3libversion,cfgDict:dict=None,withsaves=False):
         create(url,as3libversion,cfgDict)
 
 def replaceTkhtmlviewParserWithUnsafeOne():
-    #Replaces tkhtmlview.html_parser with a modified one that can run python commands instead from href tags. Only use this inside of this project's virtual environment.
+    #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
     if devenv:
         print("Skipped custom html_parser.py.")
-    elif nohtmlparser == False:
+    elif not nohtmlparser:
         print("Replacing tkhtmlview html_parser.py with my custom one...")
-        temp = str(check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True))[2:][:-1].replace("\\n","").replace("__init__.py","html_parser.py")
+        temp = str(check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True)).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
         if platform.system() == "Windows":
-            path = Path(temp.replace("\\\\","/").replace("\\r",""))
-        else:
-            path = Path(temp)
+            temp = temp.replace("\\\\","/").replace("\\r","")
         with urlopen("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py",context=getSSLContext()) as urlfile:
-            path.write_bytes(urlfile.read())
+            Path(temp).write_bytes(urlfile.read())
         print("Done")
 
 def updatePythonVersion(pyver):
@@ -354,7 +350,7 @@ else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
 if hasVenv:
-    if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
+    if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2]:
         updatePythonVersion(pyinstalversion)
     try:
         if venvpath.exists():
@@ -432,14 +428,17 @@ else:
         elif "--withhtmlparser" in args:
             nohtmlparser = False
             c2["nocustomHTMLParser"] = False
-        if "--supersecretdevmode" in args:
+        if "--activateDevMode" in args:
             #This arguement is meant to be undocumented in the help section
-            #Does not have an option to disable because I would never need to disable this
             #All this does is make the script not update anything that I might be working on
             devenv = True
             c2["isDevEnv"] = True
+            print("Dev mode activated. This is meant for interal use and should not be used by the end user. If you did not mean to enable this, use --deactivateDevMode to disable it.")
+        elif "--deactivateDevMode" in args:
+            devenv = False
+            c2["isDevEnv"] = False
     elif args[1] == "install":
-        if venvpath.exists() and "--overwrite" in args:
+        if venvpath.exists() and "--overwrite" not in args:
             print("You can not use install in an existing directory. Did you mean \"update\"?")
             exit()
         create(url,as3libversiontag)
