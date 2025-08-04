@@ -357,7 +357,7 @@ if hasVenv:
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
-    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes commands with uv inside of the environment. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tMoves config to new venv and writes it as the current format.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory. (Not Implemented)")
 elif args[1] == "migrate-config":
     migrateConfig()
 elif defrun and (len(args) < 2 or args[1].startswith(("-","--","/"))):
@@ -453,20 +453,24 @@ else:
             print("Done.")
         if "--with-saves" in args:...
         recreate(url,as3libversiontag,cfgdict)
-    elif args[1] == "uv":
-        if venvpath.exists():
-            if len(args) == 2:
-                rl = ["uv","--help"]
-                if useuv:
-                    run(rl)
-                elif useuvi:
-                    run(pythonm+rl)
-            else:
-                rl = ["uv",*args[2:],"--python",pythonvenvloc]
-                if useuv:
-                    run(rl)
-                elif useuvi:
-                    run(pythonm+rl)
+    elif args[1] == "uv" and venvpath.exists():
+        if len(args) == 2:
+            rl = ["uv","--help"]
+            if useuv:
+                run(rl)
+            elif useuvi:
+                run(pythonm+rl)
+        else:
+            rl = ["uv",*args[2:],"--python",pythonvenvloc]
+            if useuv:
+                run(rl)
+            elif useuvi:
+                run(pythonm+rl)
+    elif args[1] == "pip" and venvpath.exists():
+        if len(args) == 2:
+            run([*pythonm, "pip","--help"])
+        else:
+            run([*pythonm, "pip",*args[2:]])
 
 if c1 != c2: #Check if config was modified
     #Write modified config to disk
