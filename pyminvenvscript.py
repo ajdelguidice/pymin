@@ -382,13 +382,13 @@ else:
         else:
             as3libversiontag = "latest"
     if args[1] == "cfg":
+        from io import StringIO
         if cfgloc == None:
             if not hasVenv:
                 cfgloc = curdir / "pymin.toml"
             else:
                 cfgloc = venvpath / "pymin.toml"
         if len(args) == 2:
-            from io import StringIO
             with StringIO() as text:
                 for k,v in c2.items():
                     text.write(f"{k}: {v}\n")
@@ -396,10 +396,9 @@ else:
                 print(text.getvalue())
             exit()
         if args[2] == "game":
+            with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
+                gameconf = tomllib.load(f)
             if len(args) == 3:
-                from io import StringIO
-                with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
-                    gameconf = tomllib.load(f)
                 with StringIO() as text:
                     for k1,v1 in gameconf.items():
                         text.write(f"|{k1}|\n")
@@ -408,18 +407,43 @@ else:
                         text.write("\n")
                     print(text.getvalue())
             else:
-                #!load file
-                gameconf = {} #!temp
                 tempargs = tuple(tuple(i.split("=")) for i in args[3:])
                 for i in tempargs:
                     section, key = i[0].split(".")
-                    if not (gameconf.get(section) and gameconf.get(section).get(value)):
+                    if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
                         print(f"Key {section}.{key} does not exist.")
                         continue
-                    #!interpret value
-                    value = i[1] #!temp
+                    temp = gameconf[section][key]
+                    value = None
+                    if isinstance(temp,str):
+                        value = str(i[1])
+                    elif isinstance(temp,bool):
+                        if i[1].lower() == "true":
+                            value = True
+                        elif i[1].lower() == "false":
+                            value = False
+                    elif isinstance(temp,int):
+                        value = int(i[1])
+                    elif isinstance(temp,float):
+                        value = float(i[1])
+                    if value == None:
+                        print(f"Type could not be determined. Skipping {section}.{key}")
+                        continue
                     gameconf[section][key] = value
-                #!write file
+                with StringIO() as text:
+                    for k1,v1 in gameconf.items():
+                        text.write(f"[{k1}]\n")
+                        for k2,v2 in v1.items():
+                            text.write(f"{k2} = ")
+                            if isinstance(v2,str):
+                                text.write(f'"{v2}"\n')
+                            elif isinstance(v2,bool):
+                                text.write(f'{strbool(v2)}\n')
+                            else:
+                                text.write(f"{v2}\n")
+                        text.write(f"\n")
+                    with open(venvpath / "Pymin/Nimin_Prefs.toml","w") as f:
+                        f.write(text.getvalue())
             exit()
         if "--no-ssl" in args:
             nossl = True
