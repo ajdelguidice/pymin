@@ -350,7 +350,7 @@ else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
 if hasVenv:
-    if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2]:
+    if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
         updatePythonVersion(pyinstalversion)
     try:
         if venvpath.exists():
@@ -394,6 +394,32 @@ else:
                     text.write(f"{k}: {v}\n")
                 text.write(f"tempNoSSL: {tempnossl}")
                 print(text.getvalue())
+            exit()
+        if args[2] == "game":
+            if len(args) == 3:
+                from io import StringIO
+                with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
+                    gameconf = tomllib.load(f)
+                with StringIO() as text:
+                    for k1,v1 in gameconf.items():
+                        text.write(f"|{k1}|\n")
+                        for k2,v2 in v1.items():
+                            text.write(f"{k2}: {v2}\n")
+                        text.write("\n")
+                    print(text.getvalue())
+            else:
+                #!load file
+                gameconf = {} #!temp
+                tempargs = tuple(tuple(i.split("=")) for i in args[3:])
+                for i in tempargs:
+                    section, key = i[0].split(".")
+                    if not (gameconf.get(section) and gameconf.get(section).get(value)):
+                        print(f"Key {section}.{key} does not exist.")
+                        continue
+                    #!interpret value
+                    value = i[1] #!temp
+                    gameconf[section][key] = value
+                #!write file
             exit()
         if "--no-ssl" in args:
             nossl = True
