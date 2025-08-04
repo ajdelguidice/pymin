@@ -6,6 +6,7 @@ from sys import argv
 from subprocess import run, check_output
 from urllib.parse import urlparse
 from urllib.request import urlopen
+from io import StringIO
 
 if platform.system() == "Darwin":
     print("Warning: This script is untested on darwin (MacOS), things might be broken.")
@@ -177,7 +178,7 @@ def replaceTkhtmlviewParserWithUnsafeOne():
         print("Skipped custom html_parser.py.")
     elif not nohtmlparser:
         print("Replacing tkhtmlview html_parser.py with my custom one...")
-        temp = str(check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True)).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
+        temp = check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
         if platform.system() == "Windows":
             temp = temp.replace("\\\\","/").replace("\\r","")
         with urlopen("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py",context=getSSLContext()) as urlfile:
@@ -252,21 +253,36 @@ def migrateConfig(save:bool=False,getNew:bool=False):
     if conf == None:
         print("Nothing to do.")
     elif save:
-        cfgWrite(cfgloc,conf)
+        writeTOML(cfgloc,conf)
     else:
         return conf
 
-def cfgWrite(file,configDict,mode="w"):
-    with open(file, mode) as f:
-        f.write(f"cfgVersion = 1\n")
-        if configDict.get('path') != None:
-            f.write(f"path = \"{configDict['path']}\"\n")
-        f.write(f"pyInstalledVersion = \"{configDict['pyInstalledVersion']}\"\nuvGlobal = {strbool(configDict['uvGlobal'])}\nuvLocal = {strbool(configDict['uvLocal'])}\ndefaultToRun = {strbool(configDict['defaultToRun'])}\nnoSSLVerify = {strbool(configDict['noSSLVerify'])}\nnoCustomHTMLParser = {strbool(configDict['noCustomHTMLParser'])}\nisDevEnv = {strbool(configDict['isDevEnv'])}\n")
+def TOMLValue(key,value,text):
+    text.write(f"{key} = ")
+    if isinstance(value,str):
+        text.write(f'"{value}"\n')
+    elif isinstance(value,bool):
+        text.write(f'{strbool(value)}\n')
+    else:
+        text.write(f"{value}\n")
+
+def writeTOML(file,valDict,mode="w"):
+    with StringIO() as text:
+        for k1,v1 in valDict.items():
+            if isinstance(v1,dict):
+                text.write(f"[{k1}]\n")
+                for k2,v2 in v1.items():
+                    TOMLValue(k2,v2,text)
+                text.write(f"\n")
+            else:
+                TOMLValue(k1,v1,text)
+        with open(file,mode) as f:
+            f.write(text.getvalue())
 
 def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uvGlobal=False,uvLocal=False,defaultToRun=False,noSSLVerify=False,noCustomHTMLParser=False,isDevEnv=False,configDict:dict=None):
     if configDict == None:
         configDict = {"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}
-    cfgWrite(venvpath / "pymin.toml",configDict)
+    writeTOML(venvpath / "pymin.toml",configDict)
 
 def strbool(b):
     return "true" if b else "false"
@@ -361,7 +377,7 @@ if hasVenv:
 if len(args) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
-    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tcfg-game\t\tAllows modification of pymin's config. key/values are in the form \"section.key=value\". Displaying values is done the same as cfg. Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
 elif args[1] == "migrate-config":
     migrateConfig()
 elif defrun and (len(args) < 2 or args[1].startswith(("-","--","/"))):
@@ -382,7 +398,6 @@ else:
         else:
             as3libversiontag = "latest"
     if args[1] == "cfg":
-        from io import StringIO
         if cfgloc == None:
             if not hasVenv:
                 cfgloc = curdir / "pymin.toml"
@@ -394,56 +409,6 @@ else:
                     text.write(f"{k}: {v}\n")
                 text.write(f"tempNoSSL: {tempnossl}")
                 print(text.getvalue())
-            exit()
-        if args[2] == "game":
-            with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
-                gameconf = tomllib.load(f)
-            if len(args) == 3:
-                with StringIO() as text:
-                    for k1,v1 in gameconf.items():
-                        text.write(f"|{k1}|\n")
-                        for k2,v2 in v1.items():
-                            text.write(f"{k2}: {v2}\n")
-                        text.write("\n")
-                    print(text.getvalue())
-            else:
-                tempargs = tuple(tuple(i.split("=")) for i in args[3:])
-                for i in tempargs:
-                    section, key = i[0].split(".")
-                    if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
-                        print(f"Key {section}.{key} does not exist.")
-                        continue
-                    temp = gameconf[section][key]
-                    value = None
-                    if isinstance(temp,str):
-                        value = str(i[1])
-                    elif isinstance(temp,bool):
-                        if i[1].lower() == "true":
-                            value = True
-                        elif i[1].lower() == "false":
-                            value = False
-                    elif isinstance(temp,int):
-                        value = int(i[1])
-                    elif isinstance(temp,float):
-                        value = float(i[1])
-                    if value == None:
-                        print(f"Type could not be determined. Skipping {section}.{key}")
-                        continue
-                    gameconf[section][key] = value
-                with StringIO() as text:
-                    for k1,v1 in gameconf.items():
-                        text.write(f"[{k1}]\n")
-                        for k2,v2 in v1.items():
-                            text.write(f"{k2} = ")
-                            if isinstance(v2,str):
-                                text.write(f'"{v2}"\n')
-                            elif isinstance(v2,bool):
-                                text.write(f'{strbool(v2)}\n')
-                            else:
-                                text.write(f"{v2}\n")
-                        text.write(f"\n")
-                    with open(venvpath / "Pymin/Nimin_Prefs.toml","w") as f:
-                        f.write(text.getvalue())
             exit()
         if "--no-ssl" in args:
             nossl = True
@@ -487,6 +452,43 @@ else:
         elif "--deactivateDevMode" in args:
             devenv = False
             c2["isDevEnv"] = False
+    elif args[1] == "cfg-game":
+        with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
+            gameconf = tomllib.load(f)
+        if len(args) == 2:
+            with StringIO() as text:
+                for k1,v1 in gameconf.items():
+                    text.write(f"|{k1}|\n")
+                    for k2,v2 in v1.items():
+                        text.write(f"{k2}: {v2}\n")
+                    text.write("\n")
+                print(text.getvalue())
+        else:
+            tempargs = tuple(tuple(i.split("=")) for i in args[3:])
+            for i in tempargs:
+                section, key = i[0].split(".")
+                if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
+                    print(f"Key {section}.{key} does not exist.")
+                    continue
+                temp = gameconf[section][key]
+                value = None
+                if isinstance(temp,str):
+                    value = str(i[1])
+                elif isinstance(temp,bool):
+                    if i[1].lower() == "true":
+                        value = True
+                    elif i[1].lower() == "false":
+                        value = False
+                elif isinstance(temp,int):
+                    value = int(i[1])
+                elif isinstance(temp,float):
+                    value = float(i[1])
+                if value == None:
+                    print(f"Type could not be determined. Skipping {section}.{key}")
+                    continue
+                gameconf[section][key] = value
+            writeTOML(venvpath / "Pymin/Nimin_Prefs.toml", gameconf)
+        exit()
     elif args[1] == "install":
         if venvpath.exists() and "--overwrite" not in args:
             print("You can not use install in an existing directory. Did you mean \"update\"?")
@@ -533,4 +535,4 @@ else:
 
 if c1 != c2: #Check if config was modified
     #Write modified config to disk
-    cfgWrite(cfgloc,c2)
+    writeTOML(cfgloc,c2)
