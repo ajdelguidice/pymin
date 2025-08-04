@@ -23,14 +23,6 @@ if platform.system() == "Darwin":
     import os
     os.environ["no_proxy"] = "*"
 
-class list(list):
-    #Needed because list.index sucks
-    def indexOf(self, item):
-        try:
-            return self.index(item)
-        except:
-            return -1
-
 def checkExistsMakeDir(dir_, silent=False):
     if dir_.is_dir():
         return 1
@@ -262,7 +254,7 @@ def TOMLValue(key,value,text):
     if isinstance(value,str):
         text.write(f'"{value}"\n')
     elif isinstance(value,bool):
-        text.write(f'{strbool(value)}\n')
+        text.write(("true" if value else "false") + "\n")
     else:
         text.write(f"{value}\n")
 
@@ -284,9 +276,6 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
         configDict = {"cfgVersion":1,"path":path,"pyInstalledVersion":pyInstalledVersion,"uvGlobal":uvGlobal,"uvLocal":uvLocal,"defaultToRun":defaultToRun,"noSSLVerify":noSSLVerify,"noCustomHTMLParser":noCustomHTMLParser,"isDevEnv":isDevEnv}
     writeTOML(venvpath / "pymin.toml",configDict)
 
-def strbool(b):
-    return "true" if b else "false"
-
 insecure_context = ssl._create_unverified_context()
 
 def getSSLContext():
@@ -294,7 +283,12 @@ def getSSLContext():
         return insecure_context
     return None
 
-args = list(argv)
+def indexOf(l, item):
+    try:
+        return l.index(item)
+    except:
+        return -1
+
 tempnossl = False
 hasVenv = True
 
@@ -374,88 +368,88 @@ if hasVenv:
     except:
         repairInstall()
         exit() #!for some reason, this does not exit
-if len(args) < 2 and defrun:
+if len(argv) < 2 and defrun:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
-elif len(args) < 2 or 1 in {args.indexOf("--help"),args.indexOf("-h"),args.indexOf("help")} or 1 in {args.indexOf("install"),args.indexOf("update"),args.indexOf("cfg"),args.indexOf("cmd"),args.indexOf("recreate")} and 2 in {args.indexOf("--help"),args.indexOf("-h")}:
+elif len(argv) < 2 or 1 in {indexOf(argv,"--help"),indexOf(argv,"-h"),indexOf(argv,"help")} or 1 in {indexOf(argv,"install"),indexOf(argv,"update"),indexOf(argv,"cfg"),indexOf(argv,"cmd"),indexOf(argv,"recreate")} and 2 in {indexOf(argv,"--help"),indexOf(argv,"-h")}:
     print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tcfg-game\t\tAllows modification of pymin's config. key/values are in the form \"section.key=value\". Displaying values is done the same as cfg. Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
-elif args[1] == "migrate-config":
+elif argv[1] == "migrate-config":
     migrateConfig()
-elif defrun and (len(args) < 2 or args[1].startswith(("-","--","/"))):
-    run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[1:]))
+elif defrun and (len(argv) < 2 or argv[1].startswith(("-","--","/"))):
+    run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *argv[1:]))
 else:
-    if args[1] in {"install","update","recreate"}:
-        if nossl or "--unverified" in args:
+    if argv[1] in {"install","update","recreate"}:
+        if nossl or "--unverified" in argv:
             tempnossl = True
-        if "--nohtmlparser" in args:
+        if "--nohtmlparser" in argv:
             nohtmlparser = True
-        if "--version" in args:
-            versiontag = args[args.indexOf("--version") + 1]
+        if "--version" in argv:
+            versiontag = argv[indexOf(argv,"--version") + 1]
         else:
             versiontag = requests.get("https://github.com/ajdelguidice/pymin/releases/latest").url.split("/")[-1]
         url = f"https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py"
-        if "--as3libversion" in args:
-            as3libversiontag = args[args.indexOf("--as3libversion") + 1]
+        if "--as3libversion" in argv:
+            as3libversiontag = argv[indexOf(argv,"--as3libversion") + 1]
         else:
             as3libversiontag = "latest"
-    if args[1] == "cfg":
+    if argv[1] == "cfg":
         if cfgloc == None:
             if not hasVenv:
                 cfgloc = curdir / "pymin.toml"
             else:
                 cfgloc = venvpath / "pymin.toml"
-        if len(args) == 2:
+        if len(argv) == 2:
             with StringIO() as text:
                 for k,v in c2.items():
                     text.write(f"{k}: {v}\n")
                 text.write(f"tempNoSSL: {tempnossl}")
                 print(text.getvalue())
             exit()
-        if "--no-ssl" in args:
+        if "--no-ssl" in argv:
             nossl = True
             c2["noSSLVerify"] = True
-        elif "--use-ssl" in args:
+        elif "--use-ssl" in argv:
             nossl = False
             c2["noSSLVerify"] = False
-        if "--uv-global" in args:
+        if "--uv-global" in argv:
             useuv = True
             c2["uvGlobal"] = True
             useuvi = False
             c2["uvLocal"] = False
-        elif "--uv-local" in args:
+        elif "--uv-local" in argv:
             useuv = False
             c2["uvGlobal"] = False
             useuvi = True
             c2["uvLocal"] = True
-        elif "--no-uv" in args:
+        elif "--no-uv" in argv:
             useuv = False
             c2["uvGlobal"] = False
             useuvi = False
             c2["uvLocal"] = False
-        if "--default-help" in args:
+        if "--default-help" in argv:
             defrun = False
             c2["defaultToRun"] = False
-        elif "--default-run" in args:
+        elif "--default-run" in argv:
             defrun = True
             c2["defaultToRun"] = True
-        if "--nohtmlparser" in args:
+        if "--nohtmlparser" in argv:
             nohtmlparser = True
             c2["nocustomHTMLParser"] = True
-        elif "--withhtmlparser" in args:
+        elif "--withhtmlparser" in argv:
             nohtmlparser = False
             c2["nocustomHTMLParser"] = False
-        if "--activateDevMode" in args:
+        if "--activateDevMode" in argv:
             #This arguement is meant to be undocumented in the help section
             #All this does is make the script not update anything that I might be working on
             devenv = True
             c2["isDevEnv"] = True
             print("Dev mode activated. This is meant for interal use and should not be used by the end user. If you did not mean to enable this, use --deactivateDevMode to disable it.")
-        elif "--deactivateDevMode" in args:
+        elif "--deactivateDevMode" in argv:
             devenv = False
             c2["isDevEnv"] = False
-    elif args[1] == "cfg-game":
+    elif argv[1] == "cfg-game":
         with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
             gameconf = tomllib.load(f)
-        if len(args) == 2:
+        if len(argv) == 2:
             with StringIO() as text:
                 for k1,v1 in gameconf.items():
                     text.write(f"|{k1}|\n")
@@ -464,7 +458,7 @@ else:
                     text.write("\n")
                 print(text.getvalue())
         else:
-            tempargs = tuple(tuple(i.split("=")) for i in args[3:])
+            tempargs = tuple(tuple(i.split("=")) for i in argv[3:])
             for i in tempargs:
                 section, key = i[0].split(".")
                 if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
@@ -489,49 +483,49 @@ else:
                 gameconf[section][key] = value
             writeTOML(venvpath / "Pymin/Nimin_Prefs.toml", gameconf)
         exit()
-    elif args[1] == "install":
-        if venvpath.exists() and "--overwrite" not in args:
+    elif argv[1] == "install":
+        if venvpath.exists() and "--overwrite" not in argv:
             print("You can not use install in an existing directory. Did you mean \"update\"?")
             exit()
         create(url,as3libversiontag)
-    elif args[1] == "update":
+    elif argv[1] == "update":
         if devenv:
             print("Skipped game download.")
         else:
             downloadgame(url)
         updatemodules(as3libversiontag)
-    elif args[1] == "run":
-        run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *args[2:]))
-    elif args[1] == "conv":
+    elif argv[1] == "run":
+        run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *argv[2:]))
+    elif argv[1] == "conv":
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", "--converter"))
-    elif args[1] == "cmd":...
-    elif args[1] == "recreate" and venvpath.exists():
+    elif argv[1] == "cmd":...
+    elif argv[1] == "recreate" and venvpath.exists():
         withsaves = False
-        if "--migrate-config" in args:
+        if "--migrate-config" in argv:
             print("Fetching old config.")
             cfgdict = migrateConfig(getNew=True)
             print("Done.")
-        if "--with-saves" in args:
+        if "--with-saves" in argv:
             withsaves = True
         recreate(url,as3libversiontag,cfgdict,withsaves)
-    elif args[1] == "uv" and venvpath.exists():
-        if len(args) == 2:
+    elif argv[1] == "uv" and venvpath.exists():
+        if len(argv) == 2:
             rl = ["uv","--help"]
             if useuv:
                 run(rl)
             elif useuvi:
                 run(pythonm+rl)
         else:
-            rl = ["uv",*args[2:],"--python",pythonvenvloc]
+            rl = ["uv",*argv[2:],"--python",pythonvenvloc]
             if useuv:
                 run(rl)
             elif useuvi:
                 run(pythonm+rl)
-    elif args[1] == "pip" and venvpath.exists():
-        if len(args) == 2:
+    elif argv[1] == "pip" and venvpath.exists():
+        if len(argv) == 2:
             run([*pythonm, "pip","--help"])
         else:
-            run([*pythonm, "pip",*args[2:]])
+            run([*pythonm, "pip",*argv[2:]])
 
 if c1 != c2: #Check if config was modified
     #Write modified config to disk
