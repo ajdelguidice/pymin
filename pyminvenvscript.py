@@ -246,14 +246,13 @@ def migrateConfig(save:bool=False,getNew:bool=False):
     else:
         return conf
 
-def TOMLValue(key,value,text):
-    text.write(f"{key} = ")
+def TOMLValue(key,value):
     if isinstance(value,str):
-        text.write(f'"{value}"\n')
+        return f'{key} = "{value}"\n'
     elif isinstance(value,bool):
-        text.write(("true" if value else "false") + "\n")
+        return f'{key} = {"true" if value else "false"}\n'
     else:
-        text.write(f"{value}\n")
+        return f"{key} = {value}\n"
 
 def writeTOML(file,valDict,mode="w"):
     with StringIO() as text:
@@ -261,10 +260,10 @@ def writeTOML(file,valDict,mode="w"):
             if isinstance(v1,dict):
                 text.write(f"[{k1}]\n")
                 for k2,v2 in v1.items():
-                    TOMLValue(k2,v2,text)
+                    text.write(TOMLValue(k2,v2))
                 text.write(f"\n")
             else:
-                TOMLValue(k1,v1,text)
+                text.write(TOMLValue(k1,v1))
         with open(file,mode) as f:
             f.write(text.getvalue())
 
