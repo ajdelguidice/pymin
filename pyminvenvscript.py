@@ -74,7 +74,9 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         cfgloc = venvpath / "pymin.toml"
     elif cfgloc == None or cfgDict != None:
         cfgloc = venvpath / "pymin.toml"
-        createConfigInVenv(cfgDict)
+        if cfgDict == None:
+            cfgDict = {"cfgVersion":1,"path":"./","pyInstalledVersion":platform.python_version(),"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
+        writeTOML(cfgloc,cfgDict)
     else:
         c2["path"] = venvpath
     
@@ -275,11 +277,6 @@ def writeTOML(file,valDict,mode="w"):
                 text.write(TOMLValue(k1,v1))
         with open(file,mode) as f:
             f.write(text.getvalue())
-
-def createConfigInVenv(configDict:dict=None):
-    if configDict == None:
-        configDict = {"cfgVersion":1,"path":"./","pyInstalledVersion":platform.python_version(),"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
-    writeTOML(venvpath / "pymin.toml",configDict)
 
 insecure_context = ssl._create_unverified_context()
 
