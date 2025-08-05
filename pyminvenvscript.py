@@ -55,7 +55,7 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
     checkExistsMakeDir(venvpath)
 
     #create the virtual environment
-    if useuv:
+    if c2["uvGlobal"]:
         run(["uv","venv",venvpath])
     else:    
         run([f"python", "-m" "venv", venvpath])
@@ -85,11 +85,11 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
     downloadgame(script_url)
     installmodules(as3libversion)
 
-def installmodules(as3libversion="latest"):
+def installmodules(as3libversion="latest",overrideDev=False):
     #installs the required modules using pip inside the virtual environment
-    if useuv:
+    if c2["uvGlobal"]:
         temp = ["uv", "pip", "install", "--python", pythonvenvloc] + runlist[2:]
-    elif useuvi:
+    elif c2["uvLocal"]:
         print("Installing UV...")
         run([pythonvenvloc, "-m", "pip", "install", "uv"])
         print("Done")
@@ -97,7 +97,7 @@ def installmodules(as3libversion="latest"):
     else:
         temp = pythonm + runlist
     print("Installing dependencies...")
-    if devenv:
+    if c2["isDevEnv"] and not overrideDev:
         print("Skipping as3lib and tkhtmlview.")
         temp.remove("as3lib")
         temp.remove("tkhtmlview")
@@ -119,9 +119,9 @@ def downloadgame(url=""):
 
 def updatemodules(as3libversion="latest"):
     #updates the required modules using pip inside the virtual environment
-    if useuv:
+    if c2["uvGlobal"]:
         temp = ["uv", "pip", "install", "--python", pythonvenvloc] + runlist[2:]
-    elif useuvi:
+    elif c2["uvLocal"]:
         print("Updating UV...")
         run([pythonvenvloc, "-m", "uv", "pip", "install", "-U", "uv"])
         print("Done")
@@ -130,7 +130,7 @@ def updatemodules(as3libversion="latest"):
         temp = pythonm + runlist
     print("Updating dependencies...")
     temp.insert(temp.index("install")+1,"-U")
-    if devenv:
+    if c2["isDevEnv"]:
         print("Skipping as3lib and tkhtmlview.")
         temp.remove("as3lib")
         temp.remove("tkhtmlview")
@@ -166,9 +166,9 @@ def recreate(url,as3libversion,cfgDict:dict=None,withsaves=False):
 
 def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
-    if devenv:
+    if c2["isDevEnv"]:
         print("Skipped custom html_parser.py.")
-    elif not nohtmlparser:
+    elif not (tempnohtmlparser or c2["noCustomHTMLParser"]):
         print("Replacing tkhtmlview html_parser.py with my custom one...")
         temp = check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
         if platform.system() == "Windows":
@@ -177,17 +177,14 @@ def replaceTkhtmlviewParserWithUnsafeOne():
             Path(temp).write_bytes(urlfile.read())
         print("Done")
 
-def updatePythonVersion(pyver):
+def updatePythonVersion():
     global c2
     answer = input("(Not Implemented) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)")
     #if answer.lower() in {"y","")}
     if False and answer.lower() in {"y",""}:
-        rmtree(venvpath / f"lib/python{'.'.join(pyver.split('.')[:2])}")
+        rmtree(venvpath / f"lib/python{'.'.join(c2["pyInstalledVersion"].split('.')[:2])}")
         run([*pythonm,"venv","--upgrade",venvpath])
-        temp = devenv
-        devenv = False
-        installmodules()
-        devenv = temp
+        installmodules(overrideDev=True)
         c2["pyInstalledVersion"] = platform.python_version()
 
 def repairInstall():
@@ -279,7 +276,7 @@ def createConfigInVenv(path="./",pyInstalledVersion=platform.python_version(),uv
 insecure_context = ssl._create_unverified_context()
 
 def getSSLContext():
-    if nossl or tempnossl:
+    if c2["noSSLVerify"] or tempnossl:
         return insecure_context
     return None
 
@@ -308,35 +305,36 @@ if (curdir / "pymin.toml").exists():
     cfgloc = curdir / "pymin.toml"
     with open(cfgloc,"rb") as f:
         c1 = tomllib.load(f)
-        c2 = dict(c1)
-    venvpath = Path(c2.get("path",venvpath)).resolve()
-    defrun = c2.get("defaultToRun",False)
-    useuv = c2.get("uvGlobal",False)
-    useuvi = c2.get("uvLocal",False)
-    nossl = c2.get("noSSLVerify",False)
-    nohtmlparser = c2.get("noCustomHTMLParser",False)
-    pyinstalversion = c2.get("pyInstalledVersion")
-    devenv = c2.get("isDevEnv",False)
+    c2 = {
+        "cfgVersion":c1.get("cfgVersion",1),
+        "path":Path(c1.get("path",venvpath)).resolve(),
+        "pyInstalledVersion":c1.get("pyInstalledVersion"),
+        "uvGlobal":c1.get("uvGlobal",False),
+        "uvLocal":c1.get("uvLocal",False),
+        "defaultToRun":c1.get("defaultToRun",False),
+        "noSSLVerify":c1.get("noSSLVerify",False),
+        "noCustomHTMLParser":c1.get("noCustomHTMLParser",False),
+        "isDevEnv":c1.get("isDevEnv",False)
+    }
+    venvpath = c2["path"]
 elif (venvpath / "pymin.toml").exists():
     #load config
     cfgloc = venvpath / "pymin.toml"
     with open(cfgloc,"rb") as f:
         c1 = tomllib.load(f)
-        c2 = dict(c1)
-    defrun = c2.get("defaultToRun",False)
-    useuv = c2.get("uvGlobal",False)
-    useuvi = c2.get("uvLocal",False)
-    nossl = c2.get("noSSLVerify",False)
-    nohtmlparser = c2.get("noCustomHTMLParser",False)
-    pyinstalversion = c2.get("pyInstalledVersion")
-    devenv = c2.get("isDevEnv",False)
+    c2 = {
+        "cfgVersion":c1.get("cfgVersion",1),
+        "path":c1.get("path",venvpath),
+        "pyInstalledVersion":c1.get("pyInstalledVersion"),
+        "uvGlobal":c1.get("uvGlobal",False),
+        "uvLocal":c1.get("uvLocal",False),
+        "defaultToRun":c1.get("defaultToRun",False),
+        "noSSLVerify":c1.get("noSSLVerify",False),
+        "noCustomHTMLParser":c1.get("noCustomHTMLParser",False),
+        "isDevEnv":c1.get("isDevEnv",False)
+    }
 else:
     #Use fallback values because config does not exist
-    defrun = False
-    useuv = False
-    useuvi = False
-    nossl = False
-    nohtmlparser = False
     c1 = {}
     c2 = {"cfgVersion":1,"pyInstalledVersion":None,"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
     if venvpath.exists():
@@ -344,14 +342,12 @@ else:
             c = configparser.ConfigParser(allow_unnamed_section=True)
             c.optionxform=str
             c.read_file(f)
-            pyinstalversion = c[configparser.UNNAMED_SECTION]["version_info"]
+            c2["pyInstalledVersion"] = c[configparser.UNNAMED_SECTION]["version_info"]
         c2["path"] = venvpath
     else:
         #Fallback
-        pyinstalversion = platform.python_version()
+        c2["pyInstalledVersion"] = platform.python_version()
         hasVenv = False
-    devenv = False
-    c2["pyInstalledVersion"] = pyinstalversion
 
 
 if platform.system() == "Windows":
@@ -360,28 +356,28 @@ else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
 if hasVenv:
-    if platform.python_version().split(".")[:2] != pyinstalversion.split(".")[:2] and platform.system() != "Windows":
-        updatePythonVersion(pyinstalversion)
+    if platform.python_version().split(".")[:2] != c2["pyInstalledVersion"].split(".")[:2] and platform.system() != "Windows":
+        updatePythonVersion()
     try:
         if venvpath.exists():
             check_output(f"{pythonvenvloc} -V",shell=True)
     except:
         repairInstall()
         exit() #!for some reason, this does not exit
-if len(argv) < 2 and defrun:
+if len(argv) < 2 and c2["defaultToRun"]:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(argv) < 2 or 1 in {indexOf(argv,"--help"),indexOf(argv,"-h"),indexOf(argv,"help")} or 1 in {indexOf(argv,"install"),indexOf(argv,"update"),indexOf(argv,"cfg"),indexOf(argv,"cmd"),indexOf(argv,"recreate")} and 2 in {indexOf(argv,"--help"),indexOf(argv,"-h")}:
     print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tcfg-game\t\tAllows modification of pymin's config. key/values are in the form \"section.key=value\". Displaying values is done the same as cfg. Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
 elif argv[1] == "migrate-config":
     migrateConfig()
-elif defrun and (len(argv) < 2 or argv[1].startswith(("-","--","/"))):
+elif c2["defaultToRun"] and (len(argv) < 2 or argv[1].startswith(("-","--","/"))):
     run((pythonvenvloc, venvpath / "Pymin/Pymin.py", *argv[1:]))
 else:
     if argv[1] in {"install","update","recreate"}:
-        if nossl or "--unverified" in argv:
+        if "--unverified" in argv:
             tempnossl = True
         if "--nohtmlparser" in argv:
-            nohtmlparser = True
+            tempnohtmlparser = True
         if "--version" in argv:
             versiontag = argv[indexOf(argv,"--version") + 1]
         else:
@@ -405,46 +401,32 @@ else:
                 print(text.getvalue())
             exit()
         if "--no-ssl" in argv:
-            nossl = True
             c2["noSSLVerify"] = True
         elif "--use-ssl" in argv:
-            nossl = False
             c2["noSSLVerify"] = False
         if "--uv-global" in argv:
-            useuv = True
             c2["uvGlobal"] = True
-            useuvi = False
             c2["uvLocal"] = False
         elif "--uv-local" in argv:
-            useuv = False
             c2["uvGlobal"] = False
-            useuvi = True
             c2["uvLocal"] = True
         elif "--no-uv" in argv:
-            useuv = False
             c2["uvGlobal"] = False
-            useuvi = False
             c2["uvLocal"] = False
         if "--default-help" in argv:
-            defrun = False
             c2["defaultToRun"] = False
         elif "--default-run" in argv:
-            defrun = True
             c2["defaultToRun"] = True
         if "--nohtmlparser" in argv:
-            nohtmlparser = True
-            c2["nocustomHTMLParser"] = True
+            c2["noCustomHTMLParser"] = True
         elif "--withhtmlparser" in argv:
-            nohtmlparser = False
-            c2["nocustomHTMLParser"] = False
+            c2["noCustomHTMLParser"] = False
         if "--activateDevMode" in argv:
             #This arguement is meant to be undocumented in the help section
             #All this does is make the script not update anything that I might be working on
-            devenv = True
             c2["isDevEnv"] = True
             print("Dev mode activated. This is meant for interal use and should not be used by the end user. If you did not mean to enable this, use --deactivateDevMode to disable it.")
         elif "--deactivateDevMode" in argv:
-            devenv = False
             c2["isDevEnv"] = False
     elif argv[1] == "cfg-game":
         with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
@@ -489,7 +471,7 @@ else:
             exit()
         create(url,as3libversiontag)
     elif argv[1] == "update":
-        if devenv:
+        if c2["isDevEnv"]:
             print("Skipped game download.")
         else:
             downloadgame(url)
@@ -511,15 +493,15 @@ else:
     elif argv[1] == "uv" and venvpath.exists():
         if len(argv) == 2:
             rl = ["uv","--help"]
-            if useuv:
+            if c2["uvGlobal"]:
                 run(rl)
-            elif useuvi:
+            elif c2["uvLocal"]:
                 run(pythonm+rl)
         else:
             rl = ["uv",*argv[2:],"--python",pythonvenvloc]
-            if useuv:
+            if c2["uvGlobal"]:
                 run(rl)
-            elif useuvi:
+            elif c2["uvLocal"]:
                 run(pythonm+rl)
     elif argv[1] == "pip" and venvpath.exists():
         if len(argv) == 2:
@@ -528,5 +510,4 @@ else:
             run([*pythonm, "pip",*argv[2:]])
 
 if c1 != c2: #Check if config was modified
-    #Write modified config to disk
     writeTOML(cfgloc,c2)
