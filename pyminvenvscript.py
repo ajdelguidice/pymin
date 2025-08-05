@@ -286,6 +286,19 @@ def indexOf(l, item):
     except:
         return -1
 
+def ParseValue(value,expected):
+    if isinstance(expected,str):
+        return str(value)
+    elif isinstance(expected,bool):
+        if value.lower() == "true":
+            return True
+        elif value.lower() == "false":
+            return False
+    elif isinstance(expected,int):
+        return int(value)
+    elif isinstance(expected,float):
+        return float(value)
+
 tempnossl = False
 hasVenv = True
 
@@ -367,7 +380,7 @@ if hasVenv:
 if len(argv) < 2 and c2["defaultToRun"]:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(argv) < 2 or 1 in {indexOf(argv,"--help"),indexOf(argv,"-h"),indexOf(argv,"help")} or 1 in {indexOf(argv,"install"),indexOf(argv,"update"),indexOf(argv,"cfg"),indexOf(argv,"cmd"),indexOf(argv,"recreate")} and 2 in {indexOf(argv,"--help"),indexOf(argv,"-h")}:
-    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. Use without any arguements will list all current values.\n\tcfg-game\t\tAllows modification of pymin's config. key/values are in the form \"section.key=value\". Displaying values is done the same as cfg. Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {cfg}:\n\t--no-ssl\t\tBypasses ssl certification and uses the insecure context even when using https (persistent)\n\t--use-ssl\t\tOpposite of --no-ssl (persistent)\n\t--uv-global\t\tUses uv instead of pip. uv must be in the path. (persistent)\n\t--uv-local\t\tInstalls and uses uv inside of the venv. (persistent)\n\t--no-uv\t\t\tOpposite of --uv-glocal and --uv-local. Does not uninstall uv from the venv. (persistent)\n\t--default-help\t\tSets help as the default command. (persistent)\n\t--default-run\t\tSets run as the default command. (persistent)\n\t--nohtmlparser\t\tDoes not download my custom html parser for tkhtmlview. (persistent)\n\t--withhtmlparser\tOpposite of --nohtmlparser (persistent)\n\nArguements {install|update|recreate}:\n\t--unverified\t\tSame as --no-ssl but not persistent\n\t--version\t\tSpecifies the version of the game to download [default:latest]\n\t--as3libversion\t\tSpecifies the version of as3lib to download [default:latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form \"key=value\". Use without arguements to list all values.\n\tcfg-game\t\tFor modifying pymin's config. Works the same as cfg except key/values are in the form \"section.key=value\". Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nCommand Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--migrate-config\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.")
 elif argv[1] == "migrate-config":
     migrateConfig()
 elif c2["defaultToRun"] and (len(argv) < 2 or argv[1].startswith(("-","--","/"))):
@@ -400,34 +413,19 @@ else:
                 text.write(f"tempNoSSL: {tempnossl}")
                 print(text.getvalue())
             exit()
-        if "--no-ssl" in argv:
-            c2["noSSLVerify"] = True
-        elif "--use-ssl" in argv:
-            c2["noSSLVerify"] = False
-        if "--uv-global" in argv:
-            c2["uvGlobal"] = True
-            c2["uvLocal"] = False
-        elif "--uv-local" in argv:
-            c2["uvGlobal"] = False
-            c2["uvLocal"] = True
-        elif "--no-uv" in argv:
-            c2["uvGlobal"] = False
-            c2["uvLocal"] = False
-        if "--default-help" in argv:
-            c2["defaultToRun"] = False
-        elif "--default-run" in argv:
-            c2["defaultToRun"] = True
-        if "--nohtmlparser" in argv:
-            c2["noCustomHTMLParser"] = True
-        elif "--withhtmlparser" in argv:
-            c2["noCustomHTMLParser"] = False
-        if "--activateDevMode" in argv:
-            #This arguement is meant to be undocumented in the help section
-            #All this does is make the script not update anything that I might be working on
-            c2["isDevEnv"] = True
-            print("Dev mode activated. This is meant for interal use and should not be used by the end user. If you did not mean to enable this, use --deactivateDevMode to disable it.")
-        elif "--deactivateDevMode" in argv:
-            c2["isDevEnv"] = False
+        else:
+            tempargs = tuple(tuple(i.split("=")) for i in argv[2:])
+            for key,value in tempargs:
+                if key in {"cfgVersion","pyInstalledVersion"}:
+                    print(f"Restricted value {key} can not be changed by this command.")
+                if c2.get(key) == None:
+                    print(f"Key {section}.{key} does not exist.")
+                    continue
+                value = ParseValue(value,c2[key])
+                if value == None:
+                    print(f"Type could not be determined. Skipping {section}.{key}")
+                    continue
+                c2[key] = value
     elif argv[1] == "cfg-game":
         if not (hasVenv and (venvpath / "Pymin/Nimin_Prefs.toml").exists()):
             print("Can not read game config because it does not exist.")
@@ -443,25 +441,13 @@ else:
                     text.write("\n")
                 print(text.getvalue())
         else:
-            tempargs = tuple(tuple(i.split("=")) for i in argv[3:])
+            tempargs = tuple(tuple(i.split("=")) for i in argv[2:])
             for i in tempargs:
                 section, key = i[0].split(".")
                 if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
                     print(f"Key {section}.{key} does not exist.")
                     continue
-                temp = gameconf[section][key]
-                value = None
-                if isinstance(temp,str):
-                    value = str(i[1])
-                elif isinstance(temp,bool):
-                    if i[1].lower() == "true":
-                        value = True
-                    elif i[1].lower() == "false":
-                        value = False
-                elif isinstance(temp,int):
-                    value = int(i[1])
-                elif isinstance(temp,float):
-                    value = float(i[1])
+                value = ParseValue(i[1],gameconf[section][key])
                 if value == None:
                     print(f"Type could not be determined. Skipping {section}.{key}")
                     continue
