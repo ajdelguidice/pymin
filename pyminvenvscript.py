@@ -429,6 +429,9 @@ else:
         elif "--deactivateDevMode" in argv:
             c2["isDevEnv"] = False
     elif argv[1] == "cfg-game":
+        if not (hasVenv and (venvpath / "Pymin/Nimin_Prefs.toml").exists()):
+            print("Can not read game config because it does not exist.")
+            exit()
         with open(venvpath / "Pymin/Nimin_Prefs.toml","rb") as f:
             gameconf = tomllib.load(f)
         if len(argv) == 2:
