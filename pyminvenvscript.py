@@ -257,22 +257,36 @@ def migrateConfig(save:bool=False,getNew:bool=False):
     else:
         return conf
 
+def TOMLArray(value):
+    with StringIO() as text:
+        text.write('[')
+        for i in value:
+            if isinstance(i,(list,tuple)):
+                text.write(f'{TOMLArray(i)},')
+            else:
+                text.write(f'{i},')
+        text.seek(text.tell() - 1)
+        text.write(']')
+        return text.getvalue()
+
 def TOMLValue(key,value):
     if isinstance(value,str):
         return f'{key} = "{value}"\n'
     elif isinstance(value,bool):
         return f'{key} = {"true" if value else "false"}\n'
+    elif isinstance(value,(list,tuple)):
+        return f'{key} = {TOMLArray(value)}'
     else:
-        return f"{key} = {value}\n"
+        return f'{key} = {value}\n'
 
 def writeTOML(file,valDict,mode="w"):
     with StringIO() as text:
         for k1,v1 in valDict.items():
             if isinstance(v1,dict):
-                text.write(f"[{k1}]\n")
+                text.write(f'[{k1}]\n')
                 for k2,v2 in v1.items():
                     text.write(TOMLValue(k2,v2))
-                text.write(f"\n")
+                text.write(f'\n')
             else:
                 text.write(TOMLValue(k1,v1))
         with open(file,mode) as f:
