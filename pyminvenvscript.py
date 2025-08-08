@@ -78,7 +78,7 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
             cfgDict = {"cfgVersion":1,"path":"./","pyInstalledVersion":platform.python_version(),"uvGlobal":False,"uvLocal":False,"defaultToRun":False,"noSSLVerify":False,"noCustomHTMLParser":False,"isDevEnv":False}
         writeTOML(cfgloc,cfgDict)
     else:
-        c2["path"] = venvpath
+        c2["path"] = str(venvpath)
     
     #create game directory
     checkExistsMakeDir(venvpath / "Pymin")
@@ -326,7 +326,7 @@ if (curdir / "pymin.toml").exists():
         c1 = tomllib.load(f)
     c2 = {
         "cfgVersion":c1.get("cfgVersion",1),
-        "path":Path(c1.get("path",venvpath)).resolve(),
+        "path":c1.get("path",venvpath),
         "pyInstalledVersion":c1.get("pyInstalledVersion"),
         "uvGlobal":c1.get("uvGlobal",False),
         "uvLocal":c1.get("uvLocal",False),
@@ -335,7 +335,7 @@ if (curdir / "pymin.toml").exists():
         "noCustomHTMLParser":c1.get("noCustomHTMLParser",False),
         "isDevEnv":c1.get("isDevEnv",False)
     }
-    venvpath = c2["path"]
+    venvpath = Path(c2["path"]).resolve()
 elif (venvpath / "pymin.toml").exists():
     #load config
     cfgloc = venvpath / "pymin.toml"
