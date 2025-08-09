@@ -263,6 +263,8 @@ def TOMLArray(value):
         for i in value:
             if isinstance(i,(list,tuple)):
                 text.write(f'{TOMLArray(i)},')
+            elif isinstance(i, str):
+                text.write(f'"{i}"')
             else:
                 text.write(f'{i},')
         text.seek(text.tell() - 1)
