@@ -67,10 +67,10 @@ def create(script_url="",as3libversion="",cfgDict:dict=None):
         inp = input("Config exists. Would you like to move it into the venv? (y/N)").lower()
         if inp == "y":
             move = True
-    global cfgloc
+    global cfgloc, delconf
     if move == True:
         c2["path"] = "./"
-        (curdir / "pymin.toml").unlink(missing_ok=True)
+        delconf = (curdir / "pymin.toml")
         cfgloc = venvpath / "pymin.toml"
     elif cfgloc == None or cfgDict != None:
         cfgloc = venvpath / "pymin.toml"
@@ -323,6 +323,7 @@ def ParseValue(value,expected):
 tempnossl = False
 hasVenv = True
 tempnohtmlparser = False
+delconf = None
 
 runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
 try:
@@ -523,3 +524,5 @@ else:
 
 if c1 != c2: #Check if config was modified
     writeTOML(cfgloc,c2)
+if delconf != None:
+    delconf.unlink(missing_ok=True)
