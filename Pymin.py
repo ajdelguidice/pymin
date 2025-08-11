@@ -4363,13 +4363,13 @@ class NiminFetishFantasyv0975o_fla:
       """
       if self.nsldSortOrder == 0:
          return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),0)
-      elif self.nsldSortOrder == 1:
+      if self.nsldSortOrder == 1:
          return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),1)
-      elif self.nsldSortOrder == 2:
+      if self.nsldSortOrder == 2:
          return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),2)
-      elif self.nsldSortOrder == 3:
+      if self.nsldSortOrder == 3:
          return self.listFilesInDir_SortAlpha(self.savelocation,(".toml",".xml",".sol",".nim"))
-      elif self.nsldSortOrder == 4:
+      if self.nsldSortOrder == 4:
          return self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))
    def nsldDisplay(self):
       """
@@ -9179,101 +9179,99 @@ class NiminFetishFantasyv0975o_fla:
       if self.currentZone == 1:
          if goodsSlot == 1:
             return 104
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 111
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 116
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 500
-         elif goodsSlot == 6:
+         if goodsSlot == 6:
             return 501
-         elif goodsSlot == 7:
+         if goodsSlot == 7:
             return 108
-         elif goodsSlot == 9:
+         if goodsSlot == 9:
             return 110
-         elif goodsSlot == 10:
+         if goodsSlot == 10:
             return 115
-         elif goodsSlot == 11:
+         if goodsSlot == 11:
             return 121
       elif self.currentZone == 2:
          if goodsSlot == 1:
             return 102
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 112
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 117
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 106
-         elif goodsSlot == 9:
+         if goodsSlot == 9:
             return 110
-         elif goodsSlot == 10:
+         if goodsSlot == 10:
             return 115
-         elif goodsSlot == 11:
+         if goodsSlot == 11:
             return 122
       elif self.currentZone == 3:
          if goodsSlot == 1:
             return 101
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 113
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 118
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 120
-         elif goodsSlot == 9:
+         if goodsSlot == 9:
             return 110
-         elif goodsSlot == 10:
+         if goodsSlot == 10:
             return 115
-         elif goodsSlot == 11:
+         if goodsSlot == 11:
             return 123
       elif self.currentZone == 4:
          if goodsSlot == 2:
             return 114
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 119
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 103
-         elif goodsSlot == 6:
+         if goodsSlot == 6:
             return 105
-         elif goodsSlot == 9:
+         if goodsSlot == 9:
             return 110
-         elif goodsSlot == 10:
+         if goodsSlot == 10:
             return 115
-         elif goodsSlot == 11:
+         if goodsSlot == 11:
             return 124
       elif self.currentZone == 6:
          if goodsSlot == 1:
             return 109
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 126
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 127
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 103
-         elif goodsSlot == 6:
+         if goodsSlot == 6:
             return 230
-         elif goodsSlot == 9:
+         if goodsSlot == 9:
             return 110
-         elif goodsSlot == 10:
+         if goodsSlot == 10:
             return 115
-         elif goodsSlot == 11:
+         if goodsSlot == 11:
             return 125
       elif self.currentZone == 12:
          if goodsSlot == 1:
             return 247
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 250
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 256
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 120
-         elif goodsSlot == 9:
+         if goodsSlot == 9:
             return 110
-         elif goodsSlot == 10:
+         if goodsSlot == 10:
             return 115
-         elif goodsSlot == 11:
+         if goodsSlot == 11:
             return 128
-      else:
-         return f"ZONE ERROR: {self.currentZone}"
       return 0
    def doDyeShop(self):
       self.buy = 0
@@ -9320,11 +9318,11 @@ class NiminFetishFantasyv0975o_fla:
    def dyeID(goodsSlot:int):
       if goodsSlot == 1:
          return 240
-      elif goodsSlot == 2:
+      if goodsSlot == 2:
          return 241
-      elif goodsSlot == 5:
+      if goodsSlot == 5:
          return 242
-      elif goodsSlot == 6:
+      if goodsSlot == 6:
          return 243
       return 0
    def dyeThing(self, ID, color):
@@ -9436,83 +9434,81 @@ class NiminFetishFantasyv0975o_fla:
       if self.currentZone == 1:
          if goodsSlot == 1:
             return 203
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 209
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 523
-         elif goodsSlot == 7 and not self.knowLustDraft:
+         if goodsSlot == 7 and not self.knowLustDraft:
             return 1
-         elif goodsSlot == 9 and not self.knowSRejuvPot:
+         if goodsSlot == 9 and not self.knowSRejuvPot:
             return 6
-         elif goodsSlot == 10 and not self.knowMasoPot:
+         if goodsSlot == 10 and not self.knowMasoPot:
             return 10
-         elif goodsSlot == 11 and not self.knowBabyFree:
+         if goodsSlot == 11 and not self.knowBabyFree:
             return 11
       elif self.currentZone == 2:
          if goodsSlot == 1:
             return 209
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 202
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 206
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 212
-         elif goodsSlot == 6:
+         if goodsSlot == 6:
             return 524
-         elif goodsSlot == 9 and not self.knowRejuvPot:
+         if goodsSlot == 9 and not self.knowRejuvPot:
             return 2
-         elif goodsSlot == 10 and not self.knowSLustDraft:
+         if goodsSlot == 10 and not self.knowSLustDraft:
             return 5
-         elif goodsSlot == 11 and not self.knowSMasoPot:
+         if goodsSlot == 11 and not self.knowSMasoPot:
             return 14
       elif self.currentZone == 3:
          if goodsSlot == 1:
             return 201
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 202
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 213
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 203
-         elif goodsSlot == 9 and not self.knowBallSwell:
+         if goodsSlot == 9 and not self.knowBallSwell:
             return 4
-         elif goodsSlot == 10 and not self.knowPotPot:
+         if goodsSlot == 10 and not self.knowPotPot:
             return 12
-         elif goodsSlot == 11 and not self.knowSGenSwap:
+         if goodsSlot == 11 and not self.knowSGenSwap:
             return 13
       elif self.currentZone == 4:
          if goodsSlot == 1:
             return 210
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 201
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 218
-         elif goodsSlot == 9 and not self.knowExpPreg:
+         if goodsSlot == 9 and not self.knowExpPreg:
             return 3
-         elif goodsSlot == 10 and not self.knowGenSwap:
+         if goodsSlot == 10 and not self.knowGenSwap:
             return 9
-         elif goodsSlot == 11 and not self.knowSBabyFree:
+         if goodsSlot == 11 and not self.knowSBabyFree:
             return 15
       elif self.currentZone == 6:
          if goodsSlot == 1:
             return 207
-         elif goodsSlot == 2:
+         if goodsSlot == 2:
             return 213
-         elif goodsSlot == 3:
+         if goodsSlot == 3:
             return 208
-         elif goodsSlot == 5:
+         if goodsSlot == 5:
             return 228
-         elif goodsSlot == 9 and not self.knowSExpPreg:
+         if goodsSlot == 9 and not self.knowSExpPreg:
             return 7
-         elif goodsSlot == 10 and not self.knowSBallSwell:
+         if goodsSlot == 10 and not self.knowSBallSwell:
             return 8
-         elif goodsSlot == 11 and not self.knowSPotPot:
+         if goodsSlot == 11 and not self.knowSPotPot:
             return 16
       elif self.currentZone == 12:
          if goodsSlot == 9 and not self.knowMilkSuppress:
             return 17
-      else:
-         return f"ZONE ERROR: {self.currentZone}"
       return 0
    def apothLearn(self, ID:int):
       if ID == 1:
@@ -9824,125 +9820,123 @@ class NiminFetishFantasyv0975o_fla:
       elif self.currentZone == 1:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 4
-         elif choice == 3:
+         if choice == 3:
             return 8
-         elif choice == 5:
+         if choice == 5:
             return 2
-         elif choice == 6:
+         if choice == 6:
             return 3
-         elif choice == 7:
+         if choice == 7:
             return 12
-         elif choice == 9:
+         if choice == 9:
             return 14
       elif self.currentZone == 2:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 4
-         elif choice == 3:
+         if choice == 3:
             return 8
-         elif choice == 5:
+         if choice == 5:
             return 3
-         elif choice == 6:
+         if choice == 6:
             return 10
-         elif choice == 7:
+         if choice == 7:
             return 5
-         elif choice == 9:
+         if choice == 9:
             return 6
       elif self.currentZone == 3:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 4
-         elif choice == 3:
+         if choice == 3:
             return 8
-         elif choice == 5:
+         if choice == 5:
             return 6
-         elif choice == 6:
+         if choice == 6:
             return 11
-         elif choice == 7:
+         if choice == 7:
             return 12
-         elif choice == 9:
+         if choice == 9:
             return 13
       elif self.currentZone == 4:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 4
-         elif choice == 3:
+         if choice == 3:
             return 8
-         elif choice == 5:
+         if choice == 5:
             return 2
-         elif choice == 6:
+         if choice == 6:
             return 9
-         elif choice == 7:
+         if choice == 7:
             return 7
-         elif choice == 9:
+         if choice == 9:
             return 13
       elif self.currentZone == 6:
          if choice == 1:
             return 2
-         elif choice == 2:
+         if choice == 2:
             return 3
-         elif choice == 3:
+         if choice == 3:
             return 4
-         elif choice == 5:
+         if choice == 5:
             return 9
-         elif choice == 6:
+         if choice == 6:
             return 10
-         elif choice == 7:
+         if choice == 7:
             return 11
-         elif choice == 9:
+         if choice == 9:
             return 12
       elif self.currentZone == 12:
          if choice == 1:
             return 2
-         elif choice == 2:
+         if choice == 2:
             return 9
-         elif choice == 3:
+         if choice == 3:
             return 6
-         elif choice == 5:
+         if choice == 5:
             return 12
-         elif choice == 6:
+         if choice == 6:
             return 13
-         elif choice == 7:
+         if choice == 7:
             return 1
-         elif choice == 9:
+         if choice == 9:
             return 4
-      else:
-         return f"ZONE ERROR: {self.currentZone}"
       return 0
    @staticmethod
    def hairstyleValue(ID:int):
       if ID == 1:
          return 5
-      elif ID == 2:
+      if ID == 2:
          return 8
-      elif ID == 3:
+      if ID == 3:
          return 8
-      elif ID == 4:
+      if ID == 4:
          return 5
-      elif ID == 5:
+      if ID == 5:
          return 7
-      elif ID == 6:
+      if ID == 6:
          return 20
-      elif ID == 7:
+      if ID == 7:
          return 10
-      elif ID == 8:
+      if ID == 8:
          return 5
-      elif ID == 9:
+      if ID == 9:
          return 15
-      elif ID == 10:
+      if ID == 10:
          return 15
-      elif ID == 11:
+      if ID == 11:
          return 23
-      elif ID == 12:
+      if ID == 12:
          return 18
-      elif ID == 13:
+      if ID == 13:
          return 18
-      elif ID == 14:
+      if ID == 14:
          return 20
       return 0
    @staticmethod
@@ -10096,119 +10090,117 @@ class NiminFetishFantasyv0975o_fla:
       if self.currentZone == 1:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 2
-         elif choice == 3:
+         if choice == 3:
             return 29
-         elif choice == 5:
+         if choice == 5:
             return 6
-         elif choice == 6:
+         if choice == 6:
             return 9
-         elif choice == 7:
+         if choice == 7:
             return 10
-         elif choice == 9:
+         if choice == 9:
             return 13
-         elif choice == 10:
+         if choice == 10:
             return 22
-         elif choice == 11:
+         if choice == 11:
             return 27
       elif self.currentZone == 2:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 2
-         elif choice == 3:
+         if choice == 3:
             return 29
-         elif choice == 5:
+         if choice == 5:
             return 8
-         elif choice == 6:
+         if choice == 6:
             return 9
-         elif choice == 7:
+         if choice == 7:
             return 15
-         elif choice == 9:
+         if choice == 9:
             return 18
-         elif choice == 10:
+         if choice == 10:
             return 24
-         elif choice == 11:
+         if choice == 11:
             return 26
       elif self.currentZone == 3:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 2
-         elif choice == 3:
+         if choice == 3:
             return 29
-         elif choice == 5:
+         if choice == 5:
             return 5
-         elif choice == 6:
+         if choice == 6:
             return 13
-         elif choice == 7:
+         if choice == 7:
             return 19
-         elif choice == 9:
+         if choice == 9:
             return 22
-         elif choice == 10:
+         if choice == 10:
             return 23
-         elif choice == 11:
+         if choice == 11:
             return 25
       elif self.currentZone == 4:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 2
-         elif choice == 3:
+         if choice == 3:
             return 29
-         elif choice == 5:
+         if choice == 5:
             return 3
-         elif choice == 6:
+         if choice == 6:
             return 4
-         elif choice == 7:
+         if choice == 7:
             return 11
-         elif choice == 9:
+         if choice == 9:
             return 12
-         elif choice == 10:
+         if choice == 10:
             return 20
-         elif choice == 11:
+         if choice == 11:
             return 28
       elif self.currentZone == 6:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 2
-         elif choice == 3:
+         if choice == 3:
             return 29
-         elif choice == 5:
+         if choice == 5:
             return 7
-         elif choice == 6:
+         if choice == 6:
             return 14
-         elif choice == 7:
+         if choice == 7:
             return 16
-         elif choice == 9:
+         if choice == 9:
             return 17
-         elif choice == 10:
+         if choice == 10:
             return 19
-         elif choice == 11:
+         if choice == 11:
             return 21
       elif self.currentZone == 12:
          if choice == 1:
             return 1
-         elif choice == 2:
+         if choice == 2:
             return 2
-         elif choice == 3:
+         if choice == 3:
             return 29
-         elif choice == 5:
+         if choice == 5:
             return 28
-         elif choice == 6:
+         if choice == 6:
             return 30
-         elif choice == 7:
+         if choice == 7:
             return 25
-         elif choice == 9:
+         if choice == 9:
             return 23
-         elif choice == 10:
+         if choice == 10:
             return 22
-         elif choice == 11:
+         if choice == 11:
             return 19
-      else:
-         return f"ZONE ERROR: {self.currentZone}"
       return 0
    @staticmethod
    def clothesValue(ID:int):
@@ -10436,20 +10428,20 @@ class NiminFetishFantasyv0975o_fla:
       if source == 1:
          if self.attireTop in {-1,6,9,21,29}:
             return "open"
-         elif self.attireTop in {0,1,18,28}:
+         if self.attireTop in {0,1,18,28}:
             return "up"
-         elif self.attireTop in {3,5,12,13,17,19,25,26,30}:
+         if self.attireTop in {3,5,12,13,17,19,25,26,30}:
             return "down"
-         elif self.attireTop == 27:
+         if self.attireTop == 27:
             return "off"
       elif source == 2:
          if self.attireBot in {-1,6,29}:
             return "open"
-         elif self.attireBot in {0,2,4,8,10,11,15,20,22,23,24}:
+         if self.attireBot in {0,2,4,8,10,11,15,20,22,23,24}:
             return "down"
-         elif self.attireBot in {5,7,12,13,14,16,25}:
+         if self.attireBot in {5,7,12,13,14,16,25}:
             return "up"
-         elif self.attireBot in {17,21}:
+         if self.attireBot in {17,21}:
             return "aside"
       return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
    def clothesChange(self, ID:int):
@@ -21185,13 +21177,13 @@ class NiminFetishFantasyv0975o_fla:
    def enemyBaby(self):
       if self.enemyID == 201:
          return 100
-      elif self.enemyID == 302:
+      if self.enemyID == 302:
          return 2
-      elif self.enemyID == 304:
+      if self.enemyID == 304:
          return 7
-      elif self.enemyID == 307:
+      if self.enemyID == 307:
          return 307
-      elif self.enemyID == 308:
+      if self.enemyID == 308:
          return 308
       return 0
    def enemyAttack(self):
@@ -23913,92 +23905,80 @@ class NiminFetishFantasyv0975o_fla:
          if capital == True:
             return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
          return "femboy" if self.femmeboyToFemboy else "femme-boy"
-      elif topic == 2: #shemale/futanari
+      if topic == 2: #shemale/futanari
          if capital == True:
             return "Futanari" if self.shemaleToFuta else "Shemale"
          return "futanari" if self.shemaleToFuta else "shemale"
-      elif topic == 3: #Femme boy/Femboy
+      if topic == 3: #Femme boy/Femboy
          if capital == True:
             return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
          return "femboy" if self.femmeboyToFemboy else "femme boy"
    def plural(self, topic:int):
       if (topic == 1 and self.cockTotal > 1):
          return "s"
-      elif (topic == 2 and self.vagTotal > 1):
+      if (topic == 2 and self.vagTotal > 1):
          return "s"
-      elif (topic == 3 and self.cockTotal < 2):
+      if (topic == 3 and self.cockTotal < 2):
          return "s"
-      elif (topic == 4 and self.vagTotal < 2):
+      if (topic == 4 and self.vagTotal < 2):
          return "s"
-      elif (topic == 5):
+      if (topic == 5):
          if (self.cockTotal < 2):
             return "its"
-         else:
-            return "their"
-      elif (topic == 6):
+         return "their"
+      if (topic == 6):
          if (self.vagTotal < 2):
             return "its"
-         else:
-            return "their"
-      elif (topic == 7):
+         return "their"
+      if (topic == 7):
          if (self.cockTotal < 2):
             return "it's"
-         else:
-            return "they're"
-      elif (topic == 8):
+         return "they're"
+      if (topic == 8):
          if (self.vagTotal < 2):
             return "it's"
-         else:
-            return "they're"
-      elif (topic == 9):
+         return "they're"
+      if (topic == 9):
          if (self.cockTotal < 2):
             return "it"
-         else:
-            return "them"
-      elif (topic == 10):
+         return "them"
+      if (topic == 10):
          if (self.vagTotal < 2):
             return "it"
-         else:
-            return "them"
-      elif (topic == 11):
+         return "them"
+      if (topic == 11):
          if (self.cockTotal < 2):
             return "it"
-         else:
-            return "they"
-      elif (topic == 12):
+         return "they"
+      if (topic == 12):
          if (self.vagTotal < 2):
             return "it"
-         else:
-            return "they"
-      elif (topic == 13):
+         return "they"
+      if (topic == 13):
          if (self.cockTotal < 2):
             return "is"
-         else:
-            return "are"
-      elif (topic == 14):
+         return "are"
+      if (topic == 14):
          if (self.vagTotal < 2):
             return "is"
-         else:
-            return "are"
-      elif (topic == 15 and self.cockTotal > 1):
+         return "are"
+      if (topic == 15 and self.cockTotal > 1):
          return "es"
-      elif (topic == 16):
+      if (topic == 16):
          if (self.vagTotal < 2):
             return "y"
-         else:
-            return "ies"
-      else:
-         return ""
+         return "ies"
+      return ""
    def oneYour(self, topic:int):
       if (topic == 1):
          if (self.cockTotal > 1):
             return "one of your"
-         elif (self.cockTotal == 1):
+         if (self.cockTotal == 1):
             return "your"
       elif (topic == 2):
          if (self.vagTotal > 1):
             return "one of your"
-         elif (self.vagTotal == 1):
+         if (self.vagTotal == 1):
             return "your"
       return f"ONE YOUR ERROR {self.cockTotal} {self.vagTotal}"
    def bodyDesc(self):
@@ -24010,8 +23990,7 @@ class NiminFetishFantasyv0975o_fla:
                return self.ptweaksGrammar(2)
             elif (self.hips > 2):
                return "girly" if self.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
-            else:
-               return "boyish"
+            return "boyish"
          elif self.body <= 25:
             return "manly"
          elif (self.body > 25):
@@ -24026,8 +24005,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.body <= 20):
             if (self.hips > 4 or self.butt > 4 or self.breastSize > 4):
                return "voluptuous"
-            else:
-               return "womanly"
+            return "womanly"
          elif (self.body > 20):
             return "musclebound"
       elif (self.gender == 3):
@@ -24036,8 +24014,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.body <= 23:
             if (self.hips > 2 and self.breastSize > 2):
                return "feminine"
-            else:
-               return "masculine"
+            return "masculine"
          elif (self.body > 23):
             return "musclebound"
       elif (self.gender == 0):
