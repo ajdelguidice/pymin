@@ -917,7 +917,7 @@ class NiminFetishFantasyv0975o_fla:
          ##Digi beast feet
          self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,32,210,20,("TimesNewRoman",11),"nw","Some races get digitgrade feet")
          self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Incomplete)\n(Incompatible with the original game)")
+         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have digitgrade feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
 
          ##Misc Changes
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,54,210,20,("TimesNewRoman",11),"nw","Misc Changes")
@@ -4927,8 +4927,8 @@ class NiminFetishFantasyv0975o_fla:
             self.tallness += 4
             if self.correctBeastRaceFeet:
                self.legType = 2
-               #self.runMod += 20
-               #self.carryMod -= 10
+               self.runMod += 10
+               self.carryMod -= 10
          elif self.buttonChoice == 3:
             self.race = 3
             self.foundTieden = True
@@ -23062,25 +23062,24 @@ class NiminFetishFantasyv0975o_fla:
                if (self.breastSize > 4):
                   tempStr += f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             self.boobTotal = 10
-      #!
       if self.correctBeastRaceFeet:
          bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
-         #bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
+         bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
          otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
       else:
          bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          bipedalDigiPaw = as3.Math.max(self.skunkAffinity)
-         #bipedalHooves = -1000
+         bipedalHooves = -1000
          otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
-      #legArray = as3.Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
+      legArray = as3.Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
       legArray = as3.Array(bipedal,bipedalDigiPaw,0)
       legArray = legArray.concat(otherLegs)
       legArray.sort(16)
       secondLegs = legArray[-2]
       if (self.lockLegs == 0):
-         #if (bipedalHooves > secondLegs + 50 and self.legType != 2):
-         #   tempStr += self.legChange(2,ret=True)
+         if (bipedalHooves > secondLegs + 50 and self.legType != 2):
+            tempStr += self.legChange(2,ret=True)
          if (bipedalDigiPaw > secondLegs + 50 and self.legType != 1):
             tempStr += self.legChange(1,ret=True)
          if (bipedal > secondLegs + 50 and self.legType != 0):
@@ -23499,6 +23498,8 @@ class NiminFetishFantasyv0975o_fla:
       if (self.legType != 0 and which == 0):
          if (self.legType == 1):
             tempStr += "\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
+         elif (self.legType == 2):
+            tempStr += "\n\nYour hooves feel strange as they begin to groe. You almost lose your balance and fall over, but your ankles touch against the floor, forming heels. The tip of your hooves start to break apart into toes. Your ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
       if (self.legType != 1 and which == 1):
          if (self.legType == 0):
             tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
@@ -23507,6 +23508,8 @@ class NiminFetishFantasyv0975o_fla:
             else:
                tempStr += "Eventually, y"
             tempStr += "ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things."
+         if (self.legType == 2):
+            tempStr += "\n\nYour hooves ache as your hooves start to separate into toes. As the toes grow larger, the bottoms of your hooves also change, growing soft pads. Your new paws are very soft and nice to walk on. Your capabilities don't seem to have been affected."
          if (self.legType >= 1000):
             tempStr += "\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
             if self.grammarFixes:
@@ -23517,6 +23520,17 @@ class NiminFetishFantasyv0975o_fla:
          self.carryMod -= 10
          self.runMod += 10
       if (self.legType == 1 and which != 1):
+         self.carryMod += 10
+         self.runMod -= 10
+      if (self.legType != 2 and which == 2): #gain
+         #!Do these
+         if (self.legType == 0):...
+         if (self.legType == 1):...
+         if (self.legType == 1001):...
+         if (self.legType == 1002):...
+         self.carryMod -= 10
+         self.runMod += 10
+      if (self.legType == 2 and which != 2): #loose
          self.carryMod += 10
          self.runMod -= 10
       if (self.legType < 1000 and which > 1000):
