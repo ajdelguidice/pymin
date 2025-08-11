@@ -1878,8 +1878,8 @@ class NiminFetishFantasyv0975o_fla:
       Executes hotkey behaviour from its actionscript keycode
       """
       self.detailedDebug()
-      special = not self.keyboardTypingDisable or self.altHeld
       self.hotKeysGeneric(keyCode)
+      special = not self.keyboardTypingDisable or self.altHeld
       if (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(1)
@@ -10509,7 +10509,6 @@ class NiminFetishFantasyv0975o_fla:
       return 0
    @staticmethod
    def clothesDescription(ID:int):
-      #!Here
       if ID == 1:
          return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
       if ID == 2:
@@ -10572,96 +10571,94 @@ class NiminFetishFantasyv0975o_fla:
          return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
       return "CLOTHES DESCRIPTION ERROR"
    def clothesTop(self):
-      match self.attireTop:
-         case -1:
-            return "tattered shreds"
-         case 0:
-            return "invisible underwear"
-         case 1:
-            return "shirt"
-         case 3:
-            if (self.boobTotal > 2):
-               return "bikini tops"
-            return "bikini top"
-         case 5:
-            return "elegant dress"
-         case 6:
-            return "latex suit"
-         case 9:
-            return "blouse"
-         case 12:
-            return "sundress"
-         case 13:
-            return "skimpy dress"
-         case 17:
-            return "bathing suit"
-         case 18:
-            return "muscle shirt"
-         case 19:
-            return "corset"
-         case 21:
-            return "slingkini"
-         case 25:
-            return "gothic dress"
-         case 26:
-            return "tube top"
-         case 27:
-            return "nipple pasties"
-         case 28:
-            return "camisole"
-         case 29:
-            return "training suit"
-         case 30:
-            return "bouncy bra"
+      if self.attireTop == -1:
+         return "tattered shreds"
+      if self.attireTop == 0:
+         return "invisible underwear"
+      if self.attireTop == 1:
+         return "shirt"
+      if self.attireTop == 3:
+         if (self.boobTotal > 2):
+            return "bikini tops"
+         return "bikini top"
+      if self.attireTop == 5:
+         return "elegant dress"
+      if self.attireTop == 6:
+         return "latex suit"
+      if self.attireTop == 9:
+         return "blouse"
+      if self.attireTop == 12:
+         return "sundress"
+      if self.attireTop == 13:
+         return "skimpy dress"
+      if self.attireTop == 17:
+         return "bathing suit"
+      if self.attireTop == 18:
+         return "muscle shirt"
+      if self.attireTop == 19:
+         return "corset"
+      if self.attireTop == 21:
+         return "slingkini"
+      if self.attireTop == 25:
+         return "gothic dress"
+      if self.attireTop == 26:
+         return "tube top"
+      if self.attireTop == 27:
+         return "nipple pasties"
+      if self.attireTop == 28:
+         return "camisole"
+      if self.attireTop == 29:
+         return "training suit"
+      if self.attireTop == 30:
+         return "bouncy bra"
       return f"CLOTHES TOP ERROR {self.attireTop}"
    def clothesBottom(self):
-      match self.attireBot:
-         case -1:
-            return "tattered shreds"
-         case 0:
-            return "invisible underwear"
-         case 2:
-            return "pants"
-         case 4:
-            return "bikini bottom"
-         case 5:
-            return "elegant dress"
-         case 6:
-            return "latex suit"
-         case 7:
-            return "skirt"
-         case 8:
-            return "shorts"
-         case 10:
-            return "diaper"
-         case 11:
-            return "poofy diaper"
-         case 12:
-            return "sundress"
-         case 13:
-            return "skimpy dress"
-         case 14:
-            return "short skirt"
-         case 15:
-            return "short shorts"
-         case 16:
-            return "loincloth"
-         case 17:
-            return "bathing suit"
-         case 20:
-            return "silken panties"
-         case 21:
-            return "slingkini"
-         case 22:
-            return "thong"
-         case 23:
-            return "bloomer"
-         case 24:
-            return "tights"
-         case 25:
-            return "gothic dress"
-         case 29:
-            return "training suit"
+      if self.attireBot == -1:
+         return "tattered shreds"
+      if self.attireBot == 0:
+         return "invisible underwear"
+      if self.attireBot == 2:
+         return "pants"
+      if self.attireBot == 4:
+         return "bikini bottom"
+      if self.attireBot == 5:
+         return "elegant dress"
+      if self.attireBot == 6:
+         return "latex suit"
+      if self.attireBot == 7:
+         return "skirt"
+      if self.attireBot == 8:
+         return "shorts"
+      if self.attireBot == 10:
+         return "diaper"
+      if self.attireBot == 11:
+         return "poofy diaper"
+      if self.attireBot == 12:
+         return "sundress"
+      if self.attireBot == 13:
+         return "skimpy dress"
+      if self.attireBot == 14:
+         return "short skirt"
+      if self.attireBot == 15:
+         return "short shorts"
+      if self.attireBot == 16:
+         return "loincloth"
+      if self.attireBot == 17:
+         return "bathing suit"
+      if self.attireBot == 20:
+         return "silken panties"
+      if self.attireBot == 21:
+         return "slingkini"
+      if self.attireBot == 22:
+         return "thong"
+      if self.attireBot == 23:
+         return "bloomer"
+      if self.attireBot == 24:
+         return "tights"
+      if self.attireBot == 25:
+         return "gothic dress"
+      if self.attireBot == 29:
+         return "training suit"
       return f"CLOTHES BOTTOM ERROR {self.attireBot}"
    def currentClothes(self):
       if (self.attireTop == self.attireBot):
@@ -10690,75 +10687,74 @@ class NiminFetishFantasyv0975o_fla:
             return "aside"
       return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
    def clothesChange(self, ID:int):
-      match ID:
-         case 1:
-            self.changeTop(1)
-         case 2:
-            self.changeBot(2)
-         case 3:
-            self.changeTop(3)
-         case 4:
-            self.changeBot(4)
-         case 5:
-            self.changeTop(5)
-            self.changeBot(5)
-         case 6:
-            self.changeTop(6)
-            self.changeBot(6)
-         case 7:
-            self.changeBot(7)
-         case 8:
-            self.changeBot(8)
-         case 9:
-            self.changeTop(9)
-         case 10:
-            self.changeBot(10)
-         case 11:
-            self.changeBot(11)
-         case 12:
-            self.changeTop(12)
-            self.changeBot(12)
-         case 13:
-            self.changeTop(13)
-            self.changeBot(13)
-         case 14:
-            self.changeBot(14)
-         case 15:
-            self.changeBot(15)
-         case 16:
-            self.changeBot(16)
-         case 17:
-            self.changeTop(17)
-            self.changeBot(17)
-         case 18:
-            self.changeTop(18)
-         case 19:
-            self.changeTop(19)
-         case 20:
-            self.changeBot(20)
-         case 21:
-            self.changeTop(21)
-            self.changeBot(21)
-         case 22:
-            self.changeBot(22)
-         case 23:
-            self.changeBot(23)
-         case 24:
-            self.changeBot(24)
-         case 25:
-            self.changeTop(25)
-            self.changeBot(25)
-         case 26:
-            self.changeTop(26)
-         case 27:
-            self.changeTop(27)
-         case 28:
-            self.changeTop(28)
-         case 29:
-            self.changeTop(29)
-            self.changeBot(29)
-         case 30:
-            self.changeTop(30)
+      if ID == 1:
+         self.changeTop(1)
+      elif ID == 2:
+         self.changeBot(2)
+      elif ID == 3:
+         self.changeTop(3)
+      elif ID == 4:
+         self.changeBot(4)
+      elif ID == 5:
+         self.changeTop(5)
+         self.changeBot(5)
+      elif ID == 6:
+         self.changeTop(6)
+         self.changeBot(6)
+      elif ID == 7:
+         self.changeBot(7)
+      elif ID == 8:
+         self.changeBot(8)
+      elif ID == 9:
+         self.changeTop(9)
+      elif ID == 10:
+         self.changeBot(10)
+      elif ID == 11:
+         self.changeBot(11)
+      elif ID == 12:
+         self.changeTop(12)
+         self.changeBot(12)
+      elif ID == 13:
+         self.changeTop(13)
+         self.changeBot(13)
+      elif ID == 14:
+         self.changeBot(14)
+      elif ID == 15:
+         self.changeBot(15)
+      elif ID == 16:
+         self.changeBot(16)
+      elif ID == 17:
+         self.changeTop(17)
+         self.changeBot(17)
+      elif ID == 18:
+         self.changeTop(18)
+      elif ID == 19:
+         self.changeTop(19)
+      elif ID == 20:
+         self.changeBot(20)
+      elif ID == 21:
+         self.changeTop(21)
+         self.changeBot(21)
+      elif ID == 22:
+         self.changeBot(22)
+      elif ID == 23:
+         self.changeBot(23)
+      elif ID == 24:
+         self.changeBot(24)
+      elif ID == 25:
+         self.changeTop(25)
+         self.changeBot(25)
+      elif ID == 26:
+         self.changeTop(26)
+      elif ID == 27:
+         self.changeTop(27)
+      elif ID == 28:
+         self.changeTop(28)
+      elif ID == 29:
+         self.changeTop(29)
+         self.changeBot(29)
+      elif ID == 30:
+         self.changeTop(30)
    def changeTop(self, ID:int):
       #!Here
       if (ID != self.attireTop):
@@ -24389,7 +24385,6 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr + "poofball"
       return ""
    def earDesc(self):
-      #!Here
       if self.ears == 1:
          return "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
       if self.ears == 2:
@@ -24416,55 +24411,54 @@ class NiminFetishFantasyv0975o_fla:
          return "Hugging the sides of your head, you have long pointy ears with wavy-shaped lobes, colored vibrantly like the wings of a butterfly"
       return f"EAR ERROR {self.ears}"
    def faceDesc(self):
-      match self.faceType:
-         case 10:
-            return ", your face round with a moderate-sized nose"
-         case 20:
-            return ", your face slightly longer than normal with large confident eyes"
-         case 21:
-            return ", your face having a wide and strong muzzle with large confident eyes"
-         case 30:
-            return ", your face looking slightly fierce with sharp teeth and focused eyes"
-         case 31:
-            return ", your face having a narrow and toothy muzzle with focused eyes"
-         case 40:
-            return ", your face somewhat flat with a small button nose"
-         case 41:
-            return ", your face somewhat flat with a small button nose, long whiskers, and a general catty grin"
-         case 50:
-            return ", your face seemingly docile with a broad nose and slightly gentle eyes"
-         case 51:
-            return ", your face having a broad muzzle and calm gentle eyes"
-         case 60:
-            return ", your face somewhat flat with a nose that is mostly a slight bump with two slits for nostrils"
-         case 61:
-            return ", your face narrowing down a short muzzle with only slits for nostrils"
-         case 70:
-            return ", your face somewhat flat with a twitchy button nose and large friendly eyes"
-         case 71:
-            return ", your face somewhat flat with a twitchy button nose and whiskers, slightly buck-toothed, and your eyes large and friendly"
-         case 80:
-            return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings"
-         case 81:
-            return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings while your buck-teeth chitter as the whiskers on your puffy cheeks twitch"
-         case 90:
-            return ", your face rather awake with your large hooked nose and constantly alert eyes"
-         case 91:
-            return ", your face narrowing down to a razor-sharp beak that makes up your nose and mouth while your eyes are constantly watchful"
-         case 100:
-            return ", your face rather round and somewhat pudgy"
-         case 101:
-            return ", your face rather round and somewhat pudgy with a large upturned nose"
-         case 102:
-            return ", your face rather round and somewhat pudgy with a large upturned nose and pointed tusks that grow up from the sides of your mouth to nearly obstruct your vision"
-         case 110:
-            return ", your face somewhat long with a small button nose and cute eyes"
-         case 111:
-            return ", your face somewhat long with a small button nose, long whiskers, and cute gentle eyes"
-         case 120:
-            return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large gazing eyes"
-         case 121:
-            return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large nectar-sucking lips that offset your large darkened eyes"
+      if self.faceType == 10:
+         return ", your face round with a moderate-sized nose"
+      if self.faceType == 20:
+         return ", your face slightly longer than normal with large confident eyes"
+      if self.faceType == 21:
+         return ", your face having a wide and strong muzzle with large confident eyes"
+      if self.faceType == 30:
+         return ", your face looking slightly fierce with sharp teeth and focused eyes"
+      if self.faceType == 31:
+         return ", your face having a narrow and toothy muzzle with focused eyes"
+      if self.faceType == 40:
+         return ", your face somewhat flat with a small button nose"
+      if self.faceType == 41:
+         return ", your face somewhat flat with a small button nose, long whiskers, and a general catty grin"
+      if self.faceType == 50:
+         return ", your face seemingly docile with a broad nose and slightly gentle eyes"
+      if self.faceType == 51:
+         return ", your face having a broad muzzle and calm gentle eyes"
+      if self.faceType == 60:
+         return ", your face somewhat flat with a nose that is mostly a slight bump with two slits for nostrils"
+      if self.faceType == 61:
+         return ", your face narrowing down a short muzzle with only slits for nostrils"
+      if self.faceType == 70:
+         return ", your face somewhat flat with a twitchy button nose and large friendly eyes"
+      if self.faceType == 71:
+         return ", your face somewhat flat with a twitchy button nose and whiskers, slightly buck-toothed, and your eyes large and friendly"
+      if self.faceType == 80:
+         return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings"
+      if self.faceType == 81:
+         return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings while your buck-teeth chitter as the whiskers on your puffy cheeks twitch"
+      if self.faceType == 90:
+         return ", your face rather awake with your large hooked nose and constantly alert eyes"
+      if self.faceType == 91:
+         return ", your face narrowing down to a razor-sharp beak that makes up your nose and mouth while your eyes are constantly watchful"
+      if self.faceType == 100:
+         return ", your face rather round and somewhat pudgy"
+      if self.faceType == 101:
+         return ", your face rather round and somewhat pudgy with a large upturned nose"
+      if self.faceType == 102:
+         return ", your face rather round and somewhat pudgy with a large upturned nose and pointed tusks that grow up from the sides of your mouth to nearly obstruct your vision"
+      if self.faceType == 110:
+         return ", your face somewhat long with a small button nose and cute eyes"
+      if self.faceType == 111:
+         return ", your face somewhat long with a small button nose, long whiskers, and cute gentle eyes"
+      if self.faceType == 120:
+         return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large gazing eyes"
+      if self.faceType == 121:
+         return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large nectar-sucking lips that offset your large darkened eyes"
       return f"FACE ERROR {self.faceType}"
    def boobDesc(self):
       if (self.percent() <= 50):
@@ -26499,11 +26493,11 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.toTop()
    def wikiKeyPress(self,e):
       if ckeys.tkeventToJavascriptKeycode(e) != None:
-         self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e),e)
-   def wikiHotkeys(self,keyCode,e):
+         self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e))
+   def wikiHotkeys(self,keyCode):
       self.hotKeysGeneric(keyCode)
       if keyCode in {81,8,103} and self.wikiOpen: #q,backspace,numPad7
-         self._wikidestroy(e)
+         self._wikidestroy()
       elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
          self.wikiMenuSelectionUp()
       elif keyCode in {69,190,105}: #e,.,numPad9
@@ -28057,7 +28051,7 @@ class NiminFetishFantasyv0975o_fla:
 if __name__ == "__main__":
    from sys import argv
    if "-h" in argv or "--help" in argv or "/?" in argv:
-      print("Usage: python Pymin.py [options]\nOptions:\n-h --help\t: Prints this message and exits\n-d --debug\t: Runs the program in as3lib debug mode\n-n --nostart\t: Prevents the game from initializing and displays all elements on the screen\n-C --convert\t: Opens savefile converter instead of the game")
+      print("Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode. (one time)\n\t-n --nostart\tPrevents the game from initializing and displays all elements on the screen.\n\t-C --convert\tOpens savefile converter instead of the game.")
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
       as3.EnableDebug()
