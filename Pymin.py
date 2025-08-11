@@ -23482,7 +23482,6 @@ class NiminFetishFantasyv0975o_fla:
             self.gender = 1
          self.ballSize = 1
          self.balls = 2
-         #self.showBalls = True
          self.neuterizerHideBalls = False
          self.cockSize = 1
          self.stats(0,0,2,0)
@@ -24139,18 +24138,15 @@ class NiminFetishFantasyv0975o_fla:
       if topic == 1: #femme-boy/femboy
          if capital == True:
             return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
-         else:
-            return "femboy" if self.femmeboyToFemboy else "femme-boy"
+         return "femboy" if self.femmeboyToFemboy else "femme-boy"
       elif topic == 2: #shemale/futanari
          if capital == True:
             return "Futanari" if self.shemaleToFuta else "Shemale"
-         else:
-            return "futanari" if self.shemaleToFuta else "shemale"
+         return "futanari" if self.shemaleToFuta else "shemale"
       elif topic == 3: #Femme boy/Femboy
          if capital == True:
             return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
-         else:
-            return "femboy" if self.femmeboyToFemboy else "femme boy"
+         return "femboy" if self.femmeboyToFemboy else "femme boy"
    def plural(self, topic:int):
       if (topic == 1 and self.cockTotal > 1):
          return "s"
@@ -24349,39 +24345,37 @@ class NiminFetishFantasyv0975o_fla:
          elif self.hairLength == 10:
             tempStr = "ground-dragging "
       tempStr += self.hairC()
-      match self.hair:
-         case 0:
-            return tempStr + "hairy"
-         case 1:
-            return tempStr + "wavy haired"
-         case 2:
-            return tempStr + "pigtailed"
-         case 3:
-            return tempStr + "ponytailed"
-         case 4:
-            return tempStr + "straight haired"
-         case 5:
-            return tempStr + "stubbly haired"
-         case 6:
-            return tempStr + "mohawked"
-         case 7:
-            return tempStr + "bunned"
-         case 8:
-            return tempStr + "curly haired"
-         case 9:
-            return tempStr + "braided pigtailed"
-         case 10:
-            return tempStr + "braided ponytailed "
-         case 11:
-            return tempStr + "braided"
-         case 12:
-            return tempStr + "spiky haired"
-         case 13:
-            return tempStr + "stiff haired"
-         case 14:
-            return tempStr + "poofball"
-         case _:
-            return ""
+      if self.hair == 0:
+         return tempStr + "hairy"
+      if self.hair == 1:
+         return tempStr + "wavy haired"
+      if self.hair == 2:
+         return tempStr + "pigtailed"
+      if self.hair == 3:
+         return tempStr + "ponytailed"
+      if self.hair == 4:
+         return tempStr + "straight haired"
+      if self.hair == 5:
+         return tempStr + "stubbly haired"
+      if self.hair == 6:
+         return tempStr + "mohawked"
+      if self.hair == 7:
+         return tempStr + "bunned"
+      if self.hair == 8:
+         return tempStr + "curly haired"
+      if self.hair == 9:
+         return tempStr + "braided pigtailed"
+      if self.hair == 10:
+         return tempStr + "braided ponytailed "
+      if self.hair == 11:
+         return tempStr + "braided"
+      if self.hair == 12:
+         return tempStr + "spiky haired"
+      if self.hair == 13:
+         return tempStr + "stiff haired"
+      if self.hair == 14:
+         return tempStr + "poofball"
+      return ""
    def earDesc(self):
       #!Here
       if self.ears == 1:
@@ -26494,21 +26488,20 @@ class NiminFetishFantasyv0975o_fla:
       if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e),e)
    def wikiHotkeys(self,keyCode,e):
-      match keyCode:
-         case 81 | 8 | 103: #q,backspace,numPad7
-            self._wikidestroy(e)
-         case 87 | "midKeyW" | 104: #w,<>,numPad8
-            self.wikiMenuSelectionUp()
-         case 69 | 190 | 105: #e,.,numPad9
-            self.doWikiPrevious()
-         case 82 | 191 | 109: #r,/,numPadMinus
-            self.wikiSwitchSelection()
-         case 65 | 37 | 100: #a,←,numPad4
-            self.wikiMenuBack()
-         case 83 | "midKeyS" | 101: #s,<>,numPad5
-            self.wikiMenuSelectionDown()
-         case 68 | 39 | 102 | 13: #d,→,numPad6,enter
-            self.selectMenuOption()
+      if keyCode in {81,8,103}: #q,backspace,numPad7
+         self._wikidestroy(e)
+      elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
+         self.wikiMenuSelectionUp()
+      elif keyCode in {69,190,105}: #e,.,numPad9
+         self.doWikiPrevious()
+      elif keyCode in {82,191,109}: #r,/,numPadMinus
+         self.wikiSwitchSelection()
+      elif keyCode in {65,37,100}: #a,←,numPad4
+         self.wikiMenuBack()
+      elif keyCode in {83,"midKeyS",101}: #s,<>,numPad5
+         self.wikiMenuSelectionDown()
+      elif keyCode in {68,39,102,13}: #d,→,numPad6,enter
+         self.selectMenuOption()
    def _wikiclose(self, *e):
       if e[0].widget == self.wikiwindow.children["root"]:
          self.wikiOpen = False
