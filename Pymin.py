@@ -141,7 +141,6 @@ class NiminFetishFantasyv0975o_fla:
       self.dir = scriptdirectory
 
       #Command line arguement variables
-      self.debugNoStart = False #variable for the -nostart parameter
       self.cmdOpenConverter = False #Tracks whether the save file converter has been opened directly from the command line
 
       #Options window variables
@@ -671,287 +670,59 @@ class NiminFetishFantasyv0975o_fla:
       self.sidepanelbuttonnames = ("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton")
       self.sidepanelbuttontext = ("Look","Stats","Effects","Help","Levels","Gear","Titles","Credits")
 
-      if self.debugNoStart:
-         self.mo.addnwhLabel("display","label1",20,30,self.font)
-         self.mo.configureChild("label1",text="Base Stats",background=self.theme,foreground=self.fontColor)
-         self.label1visible = True
-         self.mo.addnwhLabel("display","strlabel",20,70,self.font)
-         self.mo.configureChild("strlabel",text="Strength",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","strcolonlabel",110,69,self.font,anchor="n")
-         self.mo.configureChild("strcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","strvallabel",130,70,self.font)
-         self.mo.configureChild("strvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","strimglabel",174,70,20,20,image_name="valupimg")
-         self.mo.configureChild("strimglabel",background=self.theme,foreground=self.fontColor)
-         self.strlabelvisible = True
-         self.mo.addnwhLabel("display","mentlabel",20,90,self.font)
-         self.mo.configureChild("mentlabel",text="Mentality",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","mentcolonlabel",110,89,self.font,anchor="n")
-         self.mo.configureChild("mentcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","mentvallabel",130,90,self.font)
-         self.mo.configureChild("mentvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","mentimglabel",174,90,20,20,image_name="valupimg")
-         self.mo.configureChild("mentimglabel",background=self.theme,foreground=self.fontColor)
-         self.mentlabelvisible = True
-         self.mo.addnwhLabel("display","liblabel",20,110,self.font)
-         self.mo.configureChild("liblabel",text="Libido",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","libcolonlabel",110,109,self.font,anchor="n")
-         self.mo.configureChild("libcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","libvallabel",130,110,self.font)
-         self.mo.configureChild("libvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","libimglabel",174,110,20,20,image_name="valupimg")
-         self.mo.configureChild("libimglabel",background=self.theme,foreground=self.fontColor)
-         self.liblabelvisible = True
-         self.mo.addnwhLabel("display","senlabel",20,130,self.font)
-         self.mo.configureChild("senlabel",text="Sensitivity",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","sencolonlabel",110,129,self.font,anchor="n")
-         self.mo.configureChild("sencolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","senvallabel",130,130,self.font)
-         self.mo.configureChild("senvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","senimglabel",174,130,20,20,image_name="valupimg")
-         self.mo.configureChild("senimglabel",background=self.theme,foreground=self.fontColor)
-         self.senlabelvisible = True
-         self.mo.addnwhLabel("display","label6",20,170,self.font)
-         self.mo.configureChild("label6",text="Combat Stats",background=self.theme,foreground=self.fontColor)
-         self.label6visible = True
-         self.mo.addnwhLabel("display","hplabel",20,190,self.font)
-         self.mo.configureChild("hplabel",text="HP",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hpcolonlabel",110,189,self.font,anchor="n")
-         self.mo.configureChild("hpcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hpvallabel",130,190,self.font)
-         self.mo.configureChild("hpvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","hpimglabel",174,190,20,20,image_name="valupimg")
-         self.mo.configureChild("hpimglabel",background=self.theme,foreground=self.fontColor)
-         self.hplabelvisible = True
-         self.mo.addnwhLabel("display","lustlabel",20,210,self.font)
-         self.mo.configureChild("lustlabel",text="Lust",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","lustcolonlabel",110,209,self.font,anchor="n")
-         self.mo.configureChild("lustcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","lustvallabel",130,210,self.font)
-         self.mo.configureChild("lustvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","lustimglabel",174,210,20,20,image_name="valupimg")
-         self.mo.configureChild("lustimglabel",background=self.theme,foreground=self.fontColor)
-         self.lustlabelvisible = True
-         self.mo.addnwhLabel("display","hungerlabel",20,230,self.font)
-         self.mo.configureChild("hungerlabel",text="Hunger",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hungercolonlabel",110,229,self.font,anchor="n")
-         self.mo.configureChild("hungercolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hungervallabel",130,230,self.font)
-         self.mo.configureChild("hungervallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.hungerlabelvisible = True
-         self.mo.addnwhLabel("display","label10",90+20,250+30,self.font,anchor="n")
-         self.mo.configureChild("label10",text="Current Region",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","currentregionlabel",90+20,270+30,self.crfont,anchor="n")
-         self.mo.configureChild("currentregionlabel",text="Region",background=self.theme,foreground=self.fontColor)
-         self.label10visible = True
-         self.currentregionlabelvisible = True
-         self.mo.addnwhLabel("display","levellabel",20,370,self.font)
-         self.mo.configureChild("levellabel",text="Level",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","levelcolonlabel",110,369,self.font,anchor="n")
-         self.mo.configureChild("levelcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","levelvallabel",130,370,self.font)
-         self.mo.configureChild("levelvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.levellabelvisible = True
-         self.mo.addnwhLabel("display","sexplabel",20,390,self.font)
-         self.mo.configureChild("sexplabel",text="SexP",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","sexpcolonlabel",110,389,self.font,anchor="n")
-         self.mo.configureChild("sexpcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","sexpvallabel",130,390,self.font)
-         self.mo.configureChild("sexpvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.sexplabelvisible = True
-         self.mo.addnwhLabel("display","coinlabel",20,410,self.font)
-         self.mo.configureChild("coinlabel",text="Coin",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","coincolonlabel",110,409,self.font,anchor="n")
-         self.mo.configureChild("coincolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","coinvallabel",130,410,self.font)
-         self.mo.configureChild("coinvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.coinlabelvisible = True
-         self.mo.addnwhLabel("display","daylabel",20,450,self.font)
-         self.mo.configureChild("daylabel",text="Day",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","daycolonlabel",110,449,self.font,anchor="n")
-         self.mo.configureChild("daycolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","dayvallabel",130,450,self.font)
-         self.mo.configureChild("dayvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.daylabelvisible = True
-         self.mo.addnwhLabel("display","hourlabel",20,470,self.font)
-         self.mo.configureChild("hourlabel",text="Hour",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hourcolonlabel",110,469,self.font,anchor="n")
-         self.mo.configureChild("hourcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hourvallabel",130,470,self.font)
-         self.mo.configureChild("hourvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.hourlabelvisible = True
-         self.mo.addButton("display","savegamebutton",110,510,100,30,self.font,anchor="n")
-         self.mo.configureChild("savegamebutton",text="Save Game",background=self.theme,foreground=self.fontColor,command=self.saveG)
-         self.showsavegame = True
-         self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
-         self.mo.configureChild("loadgamebutton",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
-         self.showloadgame = True
-         self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
-         self.mo.configureChild("newgamebutton",text="New Game",background=self.theme,foreground=self.fontColor,command=self.newGameStart)
-         self.shownewgame = True
+      self.label1visible = False
+      self.strlabelvisible = False
+      self.mentlabelvisible = False
+      self.liblabelvisible = False
+      self.senlabelvisible = False
+      self.label6visible = False
+      self.hplabelvisible = False
+      self.lustlabelvisible = False
+      self.hungerlabelvisible = False
+      self.label10visible = False
+      self.currentregionlabelvisible = False
+      self.levellabelvisible = False
+      self.sexplabelvisible = False
+      self.coinlabelvisible = False
+      self.daylabelvisible = False
+      self.hourlabelvisible = False
+      self.showsavegame = False
+      self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
+      self.mo.configureChild("loadgamebutton",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
+      self.showloadgame = True
+      self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
+      self.mo.configureChild("newgamebutton",text="New Game",background=self.theme,foreground=self.fontColor,command=self.newGameStart)
+      self.shownewgame = True
+      self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
+      self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
+      self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=False)
+      self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
+      self.pageShow = False
+      self.moveitembuttonvisible = False
+      self.moveitemamountvisible = False
+      self.discardbuttonvisible = False
+      self.sidepanelbuttonsvisible = [False,False,False,False,False,False,False,False]
+      self.textsidevisible = False
+      self.appearancebuttonvisible = False
+      self.mo.addButton("display","themebutton",823,595,60,30,self.font)
+      self.mo.configureChild("themebutton",text="Theme",background=self.theme,foreground=self.fontColor,command=self.option1Event)
+      self.mo.addButton("display","textsizedownbutton",906,595,30,30,("Times New Roman", 10))
+      self.mo.configureChild("textsizedownbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option2Event)
+      self.mo.addButton("display","textsizeresetbutton",941,595,30,30,("Times New Roman", 12))
+      self.mo.configureChild("textsizeresetbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option3Event)
+      self.mo.addButton("display","textsizeupbutton",976,595,30,30,("Times New Roman", 14))
+      self.mo.configureChild("textsizeupbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option4Event)
+      self.mo.addButton("display","textboldbutton",1023,595,30,30,self.font)
+      self.mo.configureChild("textboldbutton",text="B",background=self.theme,foreground=self.fontColor,command=self.option5Event)
+      self.mo.addButton("display","textcolorbutton",1067,595,30,30,self.font)
+      self.mo.configureChild("textcolorbutton",text="C",background=self.theme,foreground=self.fontColor,command=self.option6Event)
+      self.mo.addButton("display","themebutton7",1124,595,30,30,self.font)
+      self.mo.configureChild("themebutton7",text="O",background=self.theme,foreground=self.fontColor,command=self.option7Event)
+      self.option7Visible = True
+      self.newSLDialogVisible = False
+      self.nsldblindervisible = False
+      self.frame1()
 
-         #buttonpanel add 180+20 x 30 y
-         self.mo.addButton("display","button1",200,30,140,46,self.font)
-         self.mo.configureChild("button1",text="Button 1",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button2",360,30,140,46,self.font)
-         self.mo.configureChild("button2",text="Button 2",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button3",520,30,140,46,self.font)
-         self.mo.configureChild("button3",text="Button 3",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button4",680,30,140,46,self.font)
-         self.mo.configureChild("button4",text="Button 4",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button5",200,96,140,46,self.font)
-         self.mo.configureChild("button5",text="Button 5",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button6",360,96,140,46,self.font)
-         self.mo.configureChild("button6",text="Button 6",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button7",520,96,140,46,self.font)
-         self.mo.configureChild("button7",text="Button 7",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button8",680,96,140,46,self.font)
-         self.mo.configureChild("button8",text="Button 8",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button9",200,162,140,46,self.font)
-         self.mo.configureChild("button9",text="Button 9",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button10",360,162,140,46,self.font)
-         self.mo.configureChild("button10",text="Button 10",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button11",520,162,140,46,self.font)
-         self.mo.configureChild("button11",text="Button 11",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","button12",680,162,140,46,self.font)
-         self.mo.configureChild("button12",text="Button 12",background=self.theme,foreground=self.fontColor)
-         self.buttonsVisible = [None,True,True,True,True,True,True,True,True,True,True,True,True]
-         self.mo.addLabel("display","amountlabel1",310,63,30,15,self.font)
-         self.mo.configureChild("amountlabel1",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel2",470,63,30,15,self.font)
-         self.mo.configureChild("amountlabel2",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel3",630,63,30,15,self.font)
-         self.mo.configureChild("amountlabel3",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel4",790,63,30,15,self.font)
-         self.mo.configureChild("amountlabel4",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel5",310,129,30,15,self.font)
-         self.mo.configureChild("amountlabel5",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel6",470,129,30,15,self.font)
-         self.mo.configureChild("amountlabel6",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel7",630,129,30,15,self.font)
-         self.mo.configureChild("amountlabel7",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel8",790,129,30,15,self.font)
-         self.mo.configureChild("amountlabel8",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel9",310,195,30,15,self.font)
-         self.mo.configureChild("amountlabel9",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel10",470,195,30,15,self.font)
-         self.mo.configureChild("amountlabel10",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel11",630,195,30,15,self.font)
-         self.mo.configureChild("amountlabel11",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","amountlabel12",790,195,30,15,self.font)
-         self.mo.configureChild("amountlabel12",text="000",background=self.theme,foreground=self.fontColor)
-         self.amountLabelsVisible = [None,True,True,True,True,True,True,True,True,True,True,True,True]
-         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=self.scrolledTextBorders)
-         self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
-
-         #frame2 add 803+20 x 30 y
-         self.mo.addLabel("display","pagelabel",843,30,80,30,self.font)
-         self.mo.configureChild("pagelabel",text="BAG 1",background=self.theme,foreground=self.fontColor)
-         self.pageShow = True
-         self.mo.addButton("display","moveitembutton",920,96,140,46,self.font)
-         self.mo.configureChild("moveitembutton",text="Move Item",background=self.theme,foreground=self.fontColor)
-         self.mo.addLabel("display","moveitemamount",1030,129,30,15,self.font)
-         self.mo.configureChild("moveitemamount",text="000",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","discardbutton",840,162,140,46,self.font)
-         self.mo.configureChild("discardbutton",text="Discard",background=self.theme,foreground=self.fontColor)
-         self.moveitembuttonvisible = True
-         self.moveitemamountvisible = True
-         self.discardbuttonvisible = True
-
-         #sidebar add 803+20 x 180+30 y
-         self.mo.addButton("display","looksbutton",823,210,80,30,self.font)
-         self.mo.configureChild("looksbutton",text="Look",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","statsbutton",906,210,80,30,self.font)
-         self.mo.configureChild("statsbutton",text="Stats",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","effectsbutton",989,210,80,30,self.font)
-         self.mo.configureChild("effectsbutton",text="Effects",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","helpbutton",1072,210,80,30,self.font)
-         self.mo.configureChild("helpbutton",text="Help",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","levelsbutton",823,240,80,30,self.font)
-         self.mo.configureChild("levelsbutton",text="Levels",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","gearbutton",906,240,80,30,self.font)
-         self.mo.configureChild("gearbutton",text="Gear",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","titlesbutton",989,240,80,30,self.font)
-         self.mo.configureChild("titlesbutton",text="Titles",background=self.theme,foreground=self.fontColor)
-         self.mo.addButton("display","creditsbutton",1072,240,80,30,self.font)
-         self.mo.configureChild("creditsbutton",text="Credits",background=self.theme,foreground=self.fontColor)
-         self.sidepanelbuttonsvisible = [True,True,True,True,True,True,True,True]
-         
-         self.mo.addHTMLScrolledText("display","textside",823,290,330,315,self.font,border=self.scrolledTextBorders)
-         self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word")
-         self.textsidevisible = True
-         self.mo.addButton("display","appearancebutton",990,426,150,50,self.font,anchor="center")
-         self.mo.configureChild("appearancebutton",text="Appearance",background=self.theme,foreground=self.fontColor)
-         self.appearancebuttonvisible = True
-
-         self.mo.addButton("display","themebutton",823,595,60,30,self.font)
-         self.mo.configureChild("themebutton",text="Theme",background=self.theme,foreground=self.fontColor,command=self.option1Event)
-         self.mo.addButton("display","textsizedownbutton",906,595,30,30,("Times New Roman", 10))
-         self.mo.configureChild("textsizedownbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option2Event)
-         self.mo.addButton("display","textsizeresetbutton",941,595,30,30,("Times New Roman", 12))
-         self.mo.configureChild("textsizeresetbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option3Event)
-         self.mo.addButton("display","textsizeupbutton",976,595,30,30,("Times New Roman", 14))
-         self.mo.configureChild("textsizeupbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option4Event)
-         self.mo.addButton("display","textboldbutton",1023,595,30,30,self.font)
-         self.mo.configureChild("textboldbutton",text="B",background=self.theme,foreground=self.fontColor,command=self.option5Event)
-         self.mo.addButton("display","textcolorbutton",1067,595,30,30,self.font)
-         self.mo.configureChild("textcolorbutton",text="C",background=self.theme,foreground=self.fontColor,command=self.option6Event)
-         self.mo.addButton("display","themebutton7",1124,595,30,30,self.font)
-         self.mo.configureChild("themebutton7",text="O",background=self.theme,foreground=self.fontColor,command=self.option7Event)
-         self.option7Visible = True
-      else:
-         self.label1visible = False
-         self.strlabelvisible = False
-         self.mentlabelvisible = False
-         self.liblabelvisible = False
-         self.senlabelvisible = False
-         self.label6visible = False
-         self.hplabelvisible = False
-         self.lustlabelvisible = False
-         self.hungerlabelvisible = False
-         self.label10visible = False
-         self.currentregionlabelvisible = False
-         self.levellabelvisible = False
-         self.sexplabelvisible = False
-         self.coinlabelvisible = False
-         self.daylabelvisible = False
-         self.hourlabelvisible = False
-         self.showsavegame = False
-         self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
-         self.mo.configureChild("loadgamebutton",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
-         self.showloadgame = True
-         self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
-         self.mo.configureChild("newgamebutton",text="New Game",background=self.theme,foreground=self.fontColor,command=self.newGameStart)
-         self.shownewgame = True
-         self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
-         self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
-         self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=False)
-         self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
-         self.pageShow = False
-         self.moveitembuttonvisible = False
-         self.moveitemamountvisible = False
-         self.discardbuttonvisible = False
-         self.sidepanelbuttonsvisible = [False,False,False,False,False,False,False,False]
-         self.textsidevisible = False
-         self.appearancebuttonvisible = False
-         self.mo.addButton("display","themebutton",823,595,60,30,self.font)
-         self.mo.configureChild("themebutton",text="Theme",background=self.theme,foreground=self.fontColor,command=self.option1Event)
-         self.mo.addButton("display","textsizedownbutton",906,595,30,30,("Times New Roman", 10))
-         self.mo.configureChild("textsizedownbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option2Event)
-         self.mo.addButton("display","textsizeresetbutton",941,595,30,30,("Times New Roman", 12))
-         self.mo.configureChild("textsizeresetbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option3Event)
-         self.mo.addButton("display","textsizeupbutton",976,595,30,30,("Times New Roman", 14))
-         self.mo.configureChild("textsizeupbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option4Event)
-         self.mo.addButton("display","textboldbutton",1023,595,30,30,self.font)
-         self.mo.configureChild("textboldbutton",text="B",background=self.theme,foreground=self.fontColor,command=self.option5Event)
-         self.mo.addButton("display","textcolorbutton",1067,595,30,30,self.font)
-         self.mo.configureChild("textcolorbutton",text="C",background=self.theme,foreground=self.fontColor,command=self.option6Event)
-         self.mo.addButton("display","themebutton7",1124,595,30,30,self.font)
-         self.mo.configureChild("themebutton7",text="O",background=self.theme,foreground=self.fontColor,command=self.option7Event)
-         self.option7Visible = True
-         self.newSLDialogVisible = False
-         self.nsldblindervisible = False
-         self.frame1()
       self.mo.children["root"].bind("<Escape>",self.hotkeyClose)
       self.cm = fui.ContextMenu(self.mo.display)
       self.cm.removeAllItems()
@@ -26284,9 +26055,9 @@ class NiminFetishFantasyv0975o_fla:
             temp = temp[0]
          #!Add new variables (self.neuterizerHideBalls)
          if self.currentState != 0:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.getvalue()}\nsideText = {self.sideText.getvalue()}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.getvalue()}\nsideText = {self.sideText.getvalue()}"
          else:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ndebugNoStart: {self.debugNoStart}\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.getvalue()}\nsideText = {self.sideText.getvalue()}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\npassOut: {self.passOut}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\ni: {self.i}\npregTempInt: {self.pregTempInt}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.getvalue()}\nsideText = {self.sideText.getvalue()}"
          self.dw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
          self.dw.children["text"].yview_moveto(temp)
    def closeDebugWindow(self,*useless):
@@ -28051,7 +27822,7 @@ class NiminFetishFantasyv0975o_fla:
 if __name__ == "__main__":
    from sys import argv
    if "-h" in argv or "--help" in argv or "/?" in argv:
-      print("Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode. (one time)\n\t-n --nostart\tPrevents the game from initializing and displays all elements on the screen.\n\t-C --convert\tOpens savefile converter instead of the game.")
+      print("Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode. (one time)\n\t-C --convert\tOpens savefile converter instead of the game.")
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
       as3.EnableDebug()
