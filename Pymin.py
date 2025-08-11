@@ -202,6 +202,7 @@ class NiminFetishFantasyv0975o_fla:
       self.nsldSortOrder = 0 #Variable used to store the perferred sort order of save files in the new save/load dialog
       self.keyboardTypingDisable = False #Used to tell the game to use keyboard as text input device instead of hotkeys
       self.altHeld = False #When alt is held
+      self.ctrlHeld = False #When ctrl is held
 
       #interface
       self.theme = "#FFFFFF" #str
@@ -1715,6 +1716,8 @@ class NiminFetishFantasyv0975o_fla:
       kc = ckeys.tkeventToJavascriptKeycode(e)
       if kc == 16: #Shift
          self.shiftHeld = False
+      if kc == 17:
+         self.ctrlHeld = False
       if kc == 18: #Alt
          self.altHeld = False
    def buttonEvent1(self,*args):
@@ -1858,15 +1861,26 @@ class NiminFetishFantasyv0975o_fla:
       self.toggleColor()
    def option7Event(self):
       self.toggleSide()
+   def hotKeysGeneric(self, keyCode):
+      if keyCode == 16: #Shift
+         self.shiftHeld = True
+      elif keyCode == 17: #ctrl
+         self.ctrlHeld = True
+      elif keyCode == 18: #Alt
+         self.altHeld = True
+      elif keyCode == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
+         if self.cmdOpenConverter:
+            self.sfcwindow.endProcess
+         else:
+            self.mo.endProcess()
    def hotKeys(self, keyCode):
       """
       Executes hotkey behaviour from its actionscript keycode
       """
       self.detailedDebug()
       special = not self.keyboardTypingDisable or self.altHeld
-      if keyCode == 18: #Alt
-         self.altHeld = True
-      elif (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
+      self.hotKeysGeneric(keyCode)
+      if (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(1)
          elif self.mo.getChildAttribute("button1","state") == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
@@ -1970,8 +1984,6 @@ class NiminFetishFantasyv0975o_fla:
          self.loadGo()
       elif (keyCode == 8) and special and self.shownewgame: #Backspace
          self.newGameGo()
-      elif (keyCode == 16) and special: #Shift
-         self.shiftHeld = True
       elif (keyCode == 192 or keyCode == 111) and special: #~, numpadDivide
          self.openWiki()
       elif (keyCode == 108 or keyCode == 110 or keyCode == 71) and special and self.newSLDialogVisible and not self.nsldblindervisible: #numpadDecimal, g
@@ -26474,10 +26486,11 @@ class NiminFetishFantasyv0975o_fla:
          self.clearAddMenuOptions(self.wikimenuroot)
          self.menunum = 0
          self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
-         self.wikiwindow.bindChild("root","<Destroy>",self._wikiclose)
+         self.wikiwindow.bindChild("root","<Destroy>",self._wikidestroy)
 
          self.wikiwindow.bindChild("menu",'<Double-1>', self.selectMenuOption)
          self.wikiwindow.bindChild("root","<KeyPress>",self.wikiKeyPress)
+         self.wikiwindow.bindChild("root",'<KeyRelease>',self.keysUp)
 
          self.doWikiPage("Basic",0)
          self.wikifocus = 1
@@ -26488,7 +26501,8 @@ class NiminFetishFantasyv0975o_fla:
       if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e),e)
    def wikiHotkeys(self,keyCode,e):
-      if keyCode in {81,8,103}: #q,backspace,numPad7
+      self.hotKeysGeneric(keyCode)
+      if keyCode in {81,8,103} and self.wikiOpen: #q,backspace,numPad7
          self._wikidestroy(e)
       elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
          self.wikiMenuSelectionUp()
@@ -26502,12 +26516,11 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiMenuSelectionDown()
       elif keyCode in {68,39,102,13}: #d,→,numPad6,enter
          self.selectMenuOption()
-   def _wikiclose(self, *e):
-      if e[0].widget == self.wikiwindow.children["root"]:
-         self.wikiOpen = False
    def _wikidestroy(self, *e):
-      self.wikiwindow.endProcess()
-      self.wikiOpen = False
+      try:
+         self.wikiwindow.endProcess()
+      finally:
+         self.wikiOpen = False
    def wikiMenuSelectionUp(self,*useless):
       temp = self.wikiwindow.children["menu"].curselection()[0]
       if temp != 0:
