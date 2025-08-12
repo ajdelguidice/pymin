@@ -265,6 +265,8 @@ def TOMLArray(value):
                 text.write(f'{TOMLArray(i)},')
             elif isinstance(i, str):
                 text.write(f'"{i}"')
+            elif isinstance(i,bool):
+                text.write("true" if i else "false")
             else:
                 text.write(f'{i},')
         text.seek(text.tell() - 1)
