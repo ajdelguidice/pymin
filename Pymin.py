@@ -23077,7 +23077,6 @@ class NiminFetishFantasyv0975o_fla:
             bipedalHooves = -1000
             otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
          legArray = as3.Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
-         legArray = as3.Array(bipedal,bipedalDigiPaw,0)
          legArray = legArray.concat(otherLegs)
          legArray.sort(16)
          secondLegs = legArray[-2]
@@ -25875,7 +25874,7 @@ class NiminFetishFantasyv0975o_fla:
          _stashArray = dictionary["stash"]
          _stashStackArray = dictionary["stashStack"]
          _pregArray = dictionary["preg"]
-         string += f"{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagArray)])}</bag><bagStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagStackArray)])}</bagStack><stash>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashArray)])}</stash><stashStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashStackArray)])}</stashStack><preg>{''.join([f'<i{i}>{j}</i{i}>' for i in enumerate(_pregArray)])}</preg></data>"
+         string += f"{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagArray)])}</bag><bagStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagStackArray)])}</bagStack><stash>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashArray)])}</stash><stashStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashStackArray)])}</stashStack><preg>{''.join([f'<i{i}>{j}</i{i}>' for i,j in enumerate(_pregArray)])}</preg></data>"
          data = xmletree.fromstring(string.getvalue())
          string.close()
          xml = xmletree.ElementTree(element=data)
