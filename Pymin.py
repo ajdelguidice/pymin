@@ -505,9 +505,9 @@ class NiminFetishFantasyv0975o_fla:
       #self.jamieRep = 0 #int
       #self.jamieSize = 4 #int
       #self.jamieChildren = 0 #int
-      #self.jamieRep1 = 0 #int
-      #self.jamieRep2 = 0 #int
-      #self.jamieRep3 = 0 #int
+      self.jamieRep1 = 0 #int
+      self.jamieRep2 = 0 #int
+      self.jamieRep3 = 0 #int
       self.jamieButt = False #bool
       self.jamieBreasts = False #bool
       self.jamieHair = False #bool
@@ -22648,17 +22648,17 @@ class NiminFetishFantasyv0975o_fla:
          self.bugAffinity = 100
       else:
          self.bugAffinity += self.bug
-      maxSkin = as3.Math.max(self.humanAffinity,self.pigAffinity)
-      maxFur = as3.Math.max(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.rabbitAffinity,self.mouseAffinity,self.skunkAffinity)
-      maxScale = as3.Math.max(self.lizardAffinity)
-      maxFeather = as3.Math.max(self.birdAffinity)
-      maxChitin = as3.Math.max(self.bugAffinity)
-      maxNonSkin = as3.Math.max(maxFur,maxScale,maxFeather,maxChitin)
-      maxNonFur = as3.Math.max(maxSkin,maxScale,maxFeather,maxChitin)
-      maxNonScale = as3.Math.max(maxFur,maxSkin,maxFeather,maxChitin)
-      maxNonFeather = as3.Math.max(maxFur,maxScale,maxSkin,maxChitin)
-      maxNonChitin = as3.Math.max(maxFur,maxScale,maxSkin,maxFeather)
       if (self.lockSkin == 0):
+         maxSkin = as3.Math.max(self.humanAffinity,self.pigAffinity)
+         maxFur = as3.Math.max(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.rabbitAffinity,self.mouseAffinity,self.skunkAffinity)
+         maxScale = as3.Math.max(self.lizardAffinity)
+         maxFeather = as3.Math.max(self.birdAffinity)
+         maxChitin = as3.Math.max(self.bugAffinity)
+         maxNonSkin = as3.Math.max(maxFur,maxScale,maxFeather,maxChitin)
+         maxNonFur = as3.Math.max(maxSkin,maxScale,maxFeather,maxChitin)
+         maxNonScale = as3.Math.max(maxFur,maxSkin,maxFeather,maxChitin)
+         maxNonFeather = as3.Math.max(maxFur,maxScale,maxSkin,maxChitin)
+         maxNonChitin = as3.Math.max(maxFur,maxScale,maxSkin,maxFeather)
          if (maxSkin > maxNonSkin + 35 and self.skinType != 1):
             tempStr += f"\n\nYour {self.skinDesc()} feels oddly cool. Looking at it, your {self.skinDesc()} shrinks into your skin, leaving you 'bald' all over. You feel a little naked as you get used to your bare skin."
             self.skinType = 1
@@ -22829,12 +22829,12 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += "\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance."
                self.faceType = 121
       #as3.trace(f"Face :{self.faceType}")
-      tempTailArray = as3.Array(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity,self.skunkAffinity,self.bugAffinity,self.humanTaurAffinity)
-      tempTailArray.sort(16)
-      maxTail = tempTailArray[-1]
-      secondTail = tempTailArray[-2]
-      maxNonTail = as3.Math.max(self.humanAffinity)
       if (self.lockTail == 0):
+         tempTailArray = as3.Array(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity,self.skunkAffinity,self.bugAffinity,self.humanTaurAffinity)
+         tempTailArray.sort(16)
+         maxTail = tempTailArray[-1]
+         secondTail = tempTailArray[-2]
+         maxNonTail = as3.Math.max(self.humanAffinity)
          if (self.tail < 1):
             if (self.dominant == 2 and self.horseAffinity > maxNonTail + 15):
                self.tail = 2
@@ -22912,7 +22912,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the {self.skinDesc()} left smooth as though there were never anything there. You have lost your wings, it seems."
          self.runMod -= 20
          self.wings = 0
-      if ((self.wings > 0) and (self.dominant != self.wings)):...
+      if (self.wings > 0 and self.dominant != self.wings):...
       if (self.lockEars == 0):
          if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
             self.ears = 1
@@ -22950,17 +22950,17 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 12 and self.bugAffinity > second + 15 and self.ears != 12):
             self.ears = 12
             tempStr += "\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings."
-      twoBoob = as3.Math.max(self.twoBoobAffinity,self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity)
-      sixBoob = as3.Math.max(self.sixBoobAffinity,self.catAffinity,self.wolfAffinity,self.skunkAffinity)
-      fourBoob = as3.Math.max(self.fourBoobAffinity)
-      eightBoob = as3.Math.max(self.eightBoobAffinity,self.pigAffinity)
-      tenBoob = as3.Math.max(self.tenBoobAffinity,self.bugAffinity)
-      nonTwoBoob = as3.Math.max(sixBoob,fourBoob,eightBoob,tenBoob)
-      nonSixBoob = as3.Math.max(twoBoob,fourBoob,eightBoob,tenBoob)
-      nonFourBoob = as3.Math.max(twoBoob,sixBoob,eightBoob,tenBoob)
-      nonEightBoob = as3.Math.max(twoBoob,sixBoob,fourBoob,tenBoob)
-      nonTenBoob = as3.Math.max(twoBoob,fourBoob,eightBoob,sixBoob)
       if (self.lockBreasts == 0):
+         twoBoob = as3.Math.max(self.twoBoobAffinity,self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity)
+         sixBoob = as3.Math.max(self.sixBoobAffinity,self.catAffinity,self.wolfAffinity,self.skunkAffinity)
+         fourBoob = as3.Math.max(self.fourBoobAffinity)
+         eightBoob = as3.Math.max(self.eightBoobAffinity,self.pigAffinity)
+         tenBoob = as3.Math.max(self.tenBoobAffinity,self.bugAffinity)
+         nonTwoBoob = as3.Math.max(sixBoob,fourBoob,eightBoob,tenBoob)
+         nonSixBoob = as3.Math.max(twoBoob,fourBoob,eightBoob,tenBoob)
+         nonFourBoob = as3.Math.max(twoBoob,sixBoob,eightBoob,tenBoob)
+         nonEightBoob = as3.Math.max(twoBoob,sixBoob,fourBoob,tenBoob)
+         nonTenBoob = as3.Math.max(twoBoob,fourBoob,eightBoob,sixBoob)
          #!if/else-ify
          if (twoBoob > nonTwoBoob + 20 and self.boobTotal != 2):
             if (self.boobTotal == 4):
@@ -23062,22 +23062,22 @@ class NiminFetishFantasyv0975o_fla:
                if (self.breastSize > 4):
                   tempStr += f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             self.boobTotal = 10
-      if self.correctBeastRaceFeet:
-         bipedal = as3.Math.max(self.humanAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
-         bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
-         bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
-         otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
-      else:
-         bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
-         bipedalDigiPaw = as3.Math.max(self.skunkAffinity)
-         bipedalHooves = -1000
-         otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
-      legArray = as3.Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
-      legArray = as3.Array(bipedal,bipedalDigiPaw,0)
-      legArray = legArray.concat(otherLegs)
-      legArray.sort(16)
-      secondLegs = legArray[-2]
       if (self.lockLegs == 0):
+         if self.correctBeastRaceFeet:
+            bipedal = as3.Math.max(self.humanAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
+            bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
+            bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
+            otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
+         else:
+            bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
+            bipedalDigiPaw = as3.Math.max(self.skunkAffinity)
+            bipedalHooves = -1000
+            otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
+         legArray = as3.Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
+         legArray = as3.Array(bipedal,bipedalDigiPaw,0)
+         legArray = legArray.concat(otherLegs)
+         legArray.sort(16)
+         secondLegs = legArray[-2]
          if (bipedalHooves > secondLegs + 50 and self.legType != 2):
             tempStr += self.legChange(2,ret=True)
          if (bipedalDigiPaw > secondLegs + 50 and self.legType != 1):
@@ -23088,13 +23088,13 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += self.legChange(1001,ret=True)
          if (self.humanTaurAffinity > secondLegs + 50 and self.legType != 1002):
             tempStr += self.legChange(1002,ret=True)
-      nip0 = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
-      nip1 = as3.Math.max(self.cowAffinity)
-      nip2 = as3.Math.max(self.bugAffinity)
-      nonNip0 = as3.Math.max(nip1,nip2)
-      nonNip1 = as3.Math.max(nip0,nip2)
-      nonNip2 = as3.Math.max(nip0,nip1)
       if (self.lockNipples == 0):
+         nip0 = as3.Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
+         nip1 = as3.Math.max(self.cowAffinity)
+         nip2 = as3.Math.max(self.bugAffinity)
+         nonNip0 = as3.Math.max(nip1,nip2)
+         nonNip1 = as3.Math.max(nip0,nip2)
+         nonNip2 = as3.Math.max(nip0,nip1)
          if (nip0 > nonNip0 + 60 and self.nipType != 0):
             if (self.nipType == 1):
                tempStr += f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each."
