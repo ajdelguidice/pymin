@@ -2449,7 +2449,7 @@ class NiminFetishFantasyv0975o_fla:
          dlist.remove(buttonlist[i])
          self.buttonWrite(buttonlist[i],buttonlist[i+1])
       self.disableSelectedButtons(dlist)
-   def doProcess(self):
+   def doProcess(self,override=None):
       if self.goToInDoProcess != -1:
          self.regionChange(self.goToInDoProcess)
          self.goToInDoProcess = -1
@@ -2471,7 +2471,10 @@ class NiminFetishFantasyv0975o_fla:
                self.moveItemStack = 0
                self.showMoveItem(False)
          self.doListen = doListen
-      if (self.itemGainArray.length != 0):
+      if override != None:
+         if override == "aff":
+            self.affinityChange()
+      elif (self.itemGainArray.length != 0):
          self.itemGainArray.sort(16)
          self.gainItem(self.itemGainArray.pop())
       elif any((self.human,self.horse,self.wolf,self.cat,self.cow,self.lizard,self.rabbit,self.mouse,self.bird,self.pig,self.skunk,self.bug)):
@@ -26126,7 +26129,7 @@ class NiminFetishFantasyv0975o_fla:
             self.daw.resizable(False,False)
          self.dawlabel = tkinter.Label(self.daw,text="Affinity Change",font=("TkTextFont",9))
          self.dawlabel.place(x=75,y=7,anchor="n")
-         self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Race:","AffinityAdd:"),"Ok",2,"w")
+         self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Type:","Amount:"),"Ok",2,"w")
          self.dawcombo.configure(command=self.debugAffinityChange)
          self.dawerrlabel = tkinter.Label(self.daw,font=("TkTextFont",9))
          self.dawerrlabel.place(x=75,y=76,anchor="n")
@@ -26139,44 +26142,76 @@ class NiminFetishFantasyv0975o_fla:
       if self.currentState != 0:
          err = ""
          values = self.dawcombo.getEntries()
-         try:
-            race = int(values[0],10)
-         except:
-            err = "Race must be an integer"
+         aff = values[0].upper()
+         validAff = {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "L1001",
+            "L1002",
+            "B2",
+            "B4",
+            "B6",
+            "B8",
+            "B10"
+         }
+         if aff not in validAff:
+            err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
          else:
             try:
-               affChange = int(values[1],10)
+               amount = int(values[1],10)
             except:
-               err = "AffinityAdd must be an integer"
-         if err == "" and (race < 1 or race > 12):
-            err = "Race must be between 1 and 12"
+               err = "Amount must be an integer"
          if err == "":
-            if race == 1:
-               self.human += affChange
-            elif race == 2:
-               self.horse += affChange
-            elif race == 3:
-               self.wolf += affChange
-            elif race == 4:
-               self.cat += affChange
-            elif race == 5:
-               self.cow += affChange
-            elif race == 6:
-               self.lizard += affChange
-            elif race == 7:
-               self.rabbit += affChange
-            elif race == 8:
-               self.mouse += affChange
-            elif race == 9:
-               self.bird += affChange
-            elif race == 10:
-               self.pig += affChange
-            elif race == 11:
-               self.skunk += affChange
-            elif race == 12:
-               self.bug += affChange
+            if aff == "1":
+               self.human += amount
+            elif aff == "2":
+               self.horse += amount
+            elif aff == "3":
+               self.wolf += amount
+            elif aff == "4":
+               self.cat += amount
+            elif aff == "5":
+               self.cow += amount
+            elif aff == "6":
+               self.lizard += amount
+            elif aff == "7":
+               self.rabbit += amount
+            elif aff == "8":
+               self.mouse += amount
+            elif aff == "9":
+               self.bird += amount
+            elif aff == "10":
+               self.pig += amount
+            elif aff == "11":
+               self.skunk += amount
+            elif aff == "12":
+               self.bug += amount
+            elif aff == "L1001":
+               self.cowTaurAffinity += amount
+            elif aff == "L1002":
+               self.humanTaurAffinity += amount
+            elif aff == "B2":
+               self.twoBoobAffinity += amount
+            elif aff == "B4":
+               self.fourBoobAffinity += amount
+            elif aff == "B6":
+               self.sixBoobAffinity += amount
+            elif aff == "B8":
+               self.eightBoobAffinity += amount
+            elif aff == "B10":
+               self.tenBoobAffinity += amount
             if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame: #Should only happen when in doGeneral
-               self.doProcess()
+               self.doProcess(override="aff")
             self.detailedDebug()
          else:
             as3.trace(f"Error: Pymin Debug; PlayerAttributeChange Affinity; {err}")
