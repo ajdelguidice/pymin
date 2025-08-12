@@ -25797,10 +25797,24 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
+   def TOMLArray(self,value):
+      with StringIO() as text:
+         text.write('[')
+         for i in value:
+            if isinstance(i,(list,tuple)):
+               text.write(f'{self.TOMLArray(i)},')
+            elif isinstance(i,bool):
+               text.write("true," if i else "false,")
+            elif isinstance(i, str):
+               text.write(f'"{i},"')
+            else:
+               text.write(f'{i},')
+         text.write(']')
+         return text.getvalue()
    def saveTOML(self,dictionary:dict,outputfile):
       #Work around for tomllib/tomli putting excess newlines between every element in an array
       for i in {"trav","bag","bagStack","stash","stashStack","preg"}:
-         dictionary[i] = str(list(dictionary[i]))
+         dictionary[i] = self.TOMLArray(dictionary[i])
       #Write file
       temp = tomli_w.dumps(dictionary).replace("\"[","[").replace("]\"","]").replace(", ",",")
       assert True #!Check if output is correct with tomli_w.dumps(dictionary)
