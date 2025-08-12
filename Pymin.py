@@ -346,19 +346,19 @@ class NiminFetishFantasyv0975o_fla:
       #self.lockCock = 0 #int
 
       #Enemy stats
-      #self.enemyID = 0 #int
-      #self.eHP = 0 #int
-      #self.eMaxHP = 0 #int
-      #self.eStr = 0 #int
-      #self.eMenta = 0 #int
-      #self.eSen = 0 #int
-      #self.eLib = 0 #int
-      #self.eLust = 0 #int
-      #self.eGen = 0 #int
-      #self.ePref = 0 #int
-      #self.eCoin = 0 #int
-      #self.eSexP = 0 #int
-      #self.eItem = 0 #int
+      self.enemyID = 0 #int
+      self.eHP = 0 #int
+      self.eMaxHP = 0 #int
+      self.eStr = 0 #int
+      self.eMenta = 0 #int
+      self.eSen = 0 #int
+      self.eLib = 0 #int
+      self.eLust = 0 #int
+      self.eGen = 0 #int
+      self.ePref = 0 #int
+      self.eCoin = 0 #int
+      self.eSexP = 0 #int
+      self.eItem = 0 #int
 
       #Body features
       #self.gender = 0 #int
@@ -23063,7 +23063,7 @@ class NiminFetishFantasyv0975o_fla:
                   tempStr += f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly."
             self.boobTotal = 10
       if self.correctBeastRaceFeet:
-         bipedal = as3.Math.max(self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
+         bipedal = as3.Math.max(self.humanAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          bipedalDigiPaw = as3.Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
          bipedalHooves = as3.Math.max(self.horseAffinity,self.cowAffinity)
          otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
@@ -23499,7 +23499,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.legType == 1):
             tempStr += "\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
          elif (self.legType == 2):
-            tempStr += "\n\nYour hooves feel strange as they begin to groe. You almost lose your balance and fall over, but your ankles touch against the floor, forming heels. The tip of your hooves start to break apart into toes. Your ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
+            tempStr += "\n\nYour hooves feel strange as they begin to grow. You almost lose your balance and fall over, but your ankles touch against the floor, forming heels. The tip of your hooves start to break apart into toes. Your ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier."
       if (self.legType != 1 and which == 1):
          if (self.legType == 0):
             tempStr += "\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. "
