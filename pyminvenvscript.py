@@ -264,12 +264,11 @@ def TOMLArray(value):
             if isinstance(i,(list,tuple)):
                 text.write(f'{TOMLArray(i)},')
             elif isinstance(i, str):
-                text.write(f'"{i}"')
+                text.write(f'"{i}",')
             elif isinstance(i,bool):
-                text.write("true" if i else "false")
+                text.write("true," if i else "false,")
             else:
                 text.write(f'{i},')
-        text.seek(text.tell() - 1)
         text.write(']')
         return text.getvalue()
 
