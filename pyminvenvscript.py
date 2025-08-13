@@ -308,7 +308,7 @@ def indexOf(l, item):
     except:
         return -1
 
-def ParseArrayValue(value):
+def Args_ParseInner(value):
     if value.startswith(('"',"'")) and value.endswith(('"',"'")): #string
         return value[1:-1]
     if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()): #int
@@ -321,24 +321,22 @@ def ParseArrayValue(value):
         return False
     return value
 
-def ParseArray(strio):
-    #! Ignore whitespace between values
+def Args_ParseArray(strio):
     arr = []
     value = StringIO()
     while True:
         char = strio.read(1)
         if char == "]":
             if value.getvalue() != "": #Accounts for no trailing comma
-                arr.append(ParseArrayValue(value.getvalue()))
+                arr.append(Args_ParseInner(value.getvalue()))
                 value.close()
                 value = StringIO()
             break
         elif char == "[":
-            arr.append(ParseArray(strio))
-        elif char == "{":...
+            arr.append(Args_ParseArray(strio))
         elif char == ",":
             if value.getvalue() != "": #Accounts for when arrays are parsed
-                arr.append(ParseArrayValue(value.getvalue()))
+                arr.append(Args_ParseInner(value.getvalue()))
                 value.close()
                 value = StringIO()
         else:
@@ -346,7 +344,7 @@ def ParseArray(strio):
     value.close()
     return arr
 
-def ParseValue(value,expected):
+def Args_ParseOuter(value,expected):
     if isinstance(expected,str):
         return str(value)
     elif isinstance(expected,bool):
@@ -358,11 +356,11 @@ def ParseValue(value,expected):
         return int(value)
     elif isinstance(expected,float):
         return float(value)
-    elif isinstance(expected,(list,tuple)):
+    elif isinstance(expected,list):
         with StringIO() as text:
             text.write(value)
             text.seek(1)
-            return ParseArray(text)
+            return Args_ParseArray(text)
 
 tempnossl = False
 hasVenv = True
@@ -488,7 +486,7 @@ else:
                 if c2.get(key) == None:
                     print(f"Key {section}.{key} does not exist.")
                     continue
-                value = ParseValue(value,c2[key])
+                value = Args_ParseOuter(value,c2[key])
                 if value == None:
                     print(f"Type could not be determined. Skipping {section}.{key}")
                     continue
@@ -514,7 +512,7 @@ else:
                 if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
                     print(f"Key {section}.{key} does not exist.")
                     continue
-                value = ParseValue(i[1],gameconf[section][key])
+                value = Args_ParseOuter(i[1],gameconf[section][key])
                 if value == None:
                     print(f"Type could not be determined. Skipping {section}.{key}")
                     continue
