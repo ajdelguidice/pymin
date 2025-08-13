@@ -308,6 +308,44 @@ def indexOf(l, item):
     except:
         return -1
 
+def ParseArrayValue(value):
+    if value.startswith(('"',"'")) and value.endswith(('"',"'")): #string
+        return value[1:-1]
+    if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()): #int
+        return int(value)
+    if set(value) - {'.','-','1','2','3','4','5','6','7','8','9','0'} == set() and value.count(".") == 1: #float
+        return float(value)
+    if value.lower() == "true":
+        return True
+    if value.lower() == "false":
+        return False
+    return value
+
+def ParseArray(strio):
+    #! Ignore whitespace between values
+    arr = []
+    value = StringIO()
+    while True:
+        char = strio.read(1)
+        if char == "]":
+            if value.getvalue() != "": #Accounts for no trailing comma
+                arr.append(ParseArrayValue(value.getvalue()))
+                value.close()
+                value = StringIO()
+            break
+        elif char == "[":
+            arr.append(ParseArray(strio))
+        elif char == "{":...
+        elif char == ",":
+            if value.getvalue() != "": #Accounts for when arrays are parsed
+                arr.append(ParseArrayValue(value.getvalue()))
+                value.close()
+                value = StringIO()
+        else:
+            value.write(char)
+    value.close()
+    return arr
+
 def ParseValue(value,expected):
     if isinstance(expected,str):
         return str(value)
@@ -320,6 +358,11 @@ def ParseValue(value,expected):
         return int(value)
     elif isinstance(expected,float):
         return float(value)
+    elif isinstance(expected,(list,tuple)):
+        with StringIO() as text:
+            text.write(value)
+            text.seek(1)
+            return ParseArray(text)
 
 tempnossl = False
 hasVenv = True
