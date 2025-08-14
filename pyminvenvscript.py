@@ -198,11 +198,6 @@ def updatePythonVersion():
         installmodules(overrideDev=True)
         c2["pyInstalledVersion"] = platform.python_version()
 
-def repairInstall():
-    answer = input("Python failed to launch. Would you like to try automated repair? (y/N)")
-    if answer.lower() == "y":
-        ...
-
 def migrateConfig(save:bool=False,getNew:bool=False):
     tempUV = False
     tempUVI = False
@@ -433,15 +428,8 @@ if platform.system() == "Windows":
 else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
-if hasVenv:
-    if platform.python_version().split(".")[:2] != c2["pyInstalledVersion"].split(".")[:2] and platform.system() != "Windows":
-        updatePythonVersion()
-    try:
-        if venvpath.exists():
-            check_output((f"{pythonvenvloc}","-V"))
-    except:
-        repairInstall()
-        exit() #!for some reason, this does not exit
+if hasVenv and platform.python_version().split(".")[:2] != c2["pyInstalledVersion"].split(".")[:2] and platform.system() != "Windows":
+    updatePythonVersion()
 if len(argv) < 2 and c2["defaultToRun"]:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(argv) < 2 or 1 in {indexOf(argv,"--help"),indexOf(argv,"-h"),indexOf(argv,"help")} or 1 in {indexOf(argv,"install"),indexOf(argv,"update"),indexOf(argv,"cfg"),indexOf(argv,"cmd"),indexOf(argv,"recreate")} and 2 in {indexOf(argv,"--help"),indexOf(argv,"-h")}:
