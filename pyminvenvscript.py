@@ -180,8 +180,8 @@ def replaceTkhtmlviewParserWithUnsafeOne():
     if c2["isDevEnv"]:
         print("Skipped custom html_parser.py.")
     elif not (tempnohtmlparser or c2["noCustomHTMLParser"]):
-        print("Replacing tkhtmlview html_parser.py with my custom one...")
-        temp = check_output(f"{pythonvenvloc} -c \"import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)\"",shell=True).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
+        print("Replacing tkhtmlview html_parser.py...")
+        temp = check_output((f"{pythonvenvloc}","-c","import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)")).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
         if platform.system() == "Windows":
             temp = temp.replace("\\\\","/").replace("\\r","")
         with urlopen("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py",context=getSSLContext()) as urlfile:
@@ -438,7 +438,7 @@ if hasVenv:
         updatePythonVersion()
     try:
         if venvpath.exists():
-            check_output(f"{pythonvenvloc} -V",shell=True)
+            check_output((f"{pythonvenvloc}","-V"))
     except:
         repairInstall()
         exit() #!for some reason, this does not exit
