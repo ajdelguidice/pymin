@@ -13803,7 +13803,6 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs = 1
          self.doEnd()
    def doFirmshaft(self):
-      chance = 0
       chance = self.eventSelect("Firmshaft")
       if (chance == 1 and self.jamieRep >= 0 and self.jamieRep < 10): # Jamie Event
          if (self.jamieRep == 0):
@@ -16479,7 +16478,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
          self.doListen = doListen
    def doJungle(self): # Found Valley
-      chance = 0
       chance = self.eventSelect("Jungle")
       if chance == 1:
          self.outputMainText("You trip on a vine and start rolling down a hill!",True)
@@ -16648,7 +16646,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
          self.doListen = doListen
    def doPlains(self):
-      chance = 0
       chance = self.eventSelect("Plains")
       if chance == 1:
          self.outputMainText("You pause as you kick something soft in the tall grass. You look down and see a somewhat shiny almost rubbery little ball roll a bit before coming to a stop. It looks kinda cute and squishy, making you feel cuddly just looking at it.\n\nWould you like to pick up the ball?",True)
@@ -16788,7 +16785,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
          self.doListen = doListen
    def doDesert(self):
-      chance = 0
       chance = self.eventSelect("Desert")
       if chance == 1:
          #!"sand witch"?
@@ -17180,7 +17176,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
    def doDairyFarm(self):
       #!optimize if/else
-      chance = 0
       chance = self.eventSelect("Dairy Farm")
       if (self.malonRep == 4 and self.malonPreg > 216):
          tempStr = "As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly.\n\n\"Hurry! Malon's gone into labor!!\"\n\nThe farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction.\n\n\"Here it comes!\", one of the farmhands announces as the baby begins to crown.\n\nAn eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl"
@@ -18394,7 +18389,6 @@ class NiminFetishFantasyv0975o_fla:
             self.hrs = 2
             self.doEnd()
    def doOldCave(self):
-      chance = 0
       chance = self.eventSelect("Old Cave")
       if chance == 1:
          self.outputMainText("Growing on the wall of the cave, you find a small, odd looking mushroom. It has a red cap speckled with a few large white dots. You pluck it.",True)
@@ -18593,7 +18587,6 @@ class NiminFetishFantasyv0975o_fla:
             self.hrs = 1
             self.doEnd()
    def doDen(self):
-      chance = 0
       chance = self.eventSelect("Den")
       if (chance == 1):
          self.outputMainText("You head to the den, but this time Silandrias isn't there to greet you at the entrance. Just checking to make sure she's not there, you head inside to see if you can find her.\n\nYou quickly discover this was a bad idea.\n\nThe maze of tunnels is so confusing that you wind up lost and wandering about. You have no idea where you are going, though you intended to meet her in a main room, and instead find yourself in some sort of storage room. It's obviously been a long time since it has really been used, there's hardly any items in it. However, you do spot a strange piece of leather. Holding it up and eyeing it, the leather strap is circular with a few large holes. Thinking more carefully, you realize this would fit perfectly around the base of Silandrias' tail, with room for the spikes, and tie tightly.\n\nWith a shrug, you take it with you as you may find some use for it eventually.",True)
@@ -20266,38 +20259,37 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(buttonlist)
       self.doButtonChoices(templist)
       def doListen():
-         match self.buttonChoice:
-            case 1:
-               self.specialAbilityUse(self.specialAbilityArray[0 + (self.fp1 * 9 - 9)])
-            case 2:
-               self.specialAbilityUse(self.specialAbilityArray[1 + (self.fp1 * 9 - 9)])
-            case 3:
-               self.specialAbilityUse(self.specialAbilityArray[2 + (self.fp1 * 9 - 9)])
-            case 5:
-               self.specialAbilityUse(self.specialAbilityArray[3 + (self.fp1 * 9 - 9)])
-            case 6:
-               self.specialAbilityUse(self.specialAbilityArray[4 + (self.fp1 * 9 - 9)])
-            case 7:
-               self.specialAbilityUse(self.specialAbilityArray[5 + (self.fp1 * 9 - 9)])
-            case 9:
-               self.specialAbilityUse(self.specialAbilityArray[6 + (self.fp1 * 9 - 9)])
-            case 10:
-               self.specialAbilityUse(self.specialAbilityArray[7 + (self.fp1 * 9 - 9)])
-            case 11:
-               self.specialAbilityUse(self.specialAbilityArray[8 + (self.fp1 * 9 - 9)])
-            case 4:
-               if (self.specialAbilityArray.length / 9 < self.fp1):
-                  self.doSpecialAbility(1)
-               else:
-                  self.doSpecialAbility(self.fp1 + 1)
-            case 8:
-               if (self.fp1 == 1):
-                  self.doSpecialAbility(self.specialAbilityArray.length // 9)
-               else:
-                  self.doSpecialAbility(self.fp1 - 1)
-            case 12:
-               self.showPage(False,"")
-               self.doReturn()
+         if self.buttonChoice == 1:
+            self.specialAbilityUse(self.specialAbilityArray[0 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 2:
+            self.specialAbilityUse(self.specialAbilityArray[1 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 3:
+            self.specialAbilityUse(self.specialAbilityArray[2 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 5:
+            self.specialAbilityUse(self.specialAbilityArray[3 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 6:
+            self.specialAbilityUse(self.specialAbilityArray[4 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 7:
+            self.specialAbilityUse(self.specialAbilityArray[5 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 9:
+            self.specialAbilityUse(self.specialAbilityArray[6 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 10:
+            self.specialAbilityUse(self.specialAbilityArray[7 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 11:
+            self.specialAbilityUse(self.specialAbilityArray[8 + (self.fp1 * 9 - 9)])
+         elif self.buttonChoice == 4:
+            if (self.specialAbilityArray.length / 9 < self.fp1):
+               self.doSpecialAbility(1)
+            else:
+               self.doSpecialAbility(self.fp1 + 1)
+         elif self.buttonChoice == 8:
+            if (self.fp1 == 1):
+               self.doSpecialAbility(self.specialAbilityArray.length // 9)
+            else:
+               self.doSpecialAbility(self.fp1 - 1)
+         elif self.buttonChoice == 12:
+            self.showPage(False,"")
+            self.doReturn()
       self.doListen = doListen
    @staticmethod
    def specialAbilityName(ID:int):
@@ -22322,31 +22314,30 @@ class NiminFetishFantasyv0975o_fla:
       self.tenBoobAffinity += math.ceil(otherChange * self.changeMod)
       self.cowTaurAffinity += math.ceil(otherChange * self.changeMod)
       self.humanTaurAffinity += math.ceil(otherChange * self.changeMod)
-      match tempRace:
-         case 1:
-            self.human += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 2:
-            self.horse += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 3:
-            self.wolf += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 4:
-            self.cat += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 5:
-            self.cow += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 6:
-            self.lizard += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 7:
-            self.rabbit += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 8:
-            self.mouse += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 9:
-            self.bird += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 10:
-            self.pig += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 11:
-            self.skunk += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
-         case 12:
-            self.bug += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      if tempRace == 1:
+         self.human += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 2:
+         self.horse += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 3:
+         self.wolf += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 4:
+         self.cat += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 5:
+         self.cow += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 6:
+         self.lizard += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 7:
+         self.rabbit += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 8:
+         self.mouse += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 9:
+         self.bird += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 10:
+         self.pig += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 11:
+         self.skunk += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
+      elif tempRace == 12:
+         self.bug += math.ceil(tempChange * self.changeMod) - math.ceil(otherChange * self.changeMod)
    def affinityChange(self):
       #!optimize if/else
       tempStr = StringIO()
@@ -26403,7 +26394,7 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.children["menu"].see(temp + 1)
    def wikiMenuBack(self, *e):
       if self.menunum != 0:
-         self.selectMenuOption(selection="Back")
+         self.selectMenuOption(sel="Back")
    def wikiSwitchSelection(self, *e):
       if self.wikifocus == 0:
          self.wikiwindow.children["text"].vbar.focus_force()
@@ -26427,960 +26418,932 @@ class NiminFetishFantasyv0975o_fla:
       self.wikiwindow.children["menu"].insert("end",*items)
       self.wikiwindow.children["menu"].select_set(0)
       self.wikiwindow.children["menu"].activate(0)
-   def selectMenuOption(self, e=None, selection=""):
-      if selection == "":
-         selection = self.wikiwindow.children["menu"].get(self.wikiwindow.children["menu"].curselection())
+   def selectMenuOption(self, e=None, sel=None):
+      if sel == None:
+         sel = self.wikiwindow.children["menu"].get(self.wikiwindow.children["menu"].curselection())
       match self.menunum:
          case -1:
-            match selection:
-               case "Debug Stick":
-                  self.doWikiPage("Item",2)
-               case "Item Not Found":
-                  self.doWikiPage("Item",404)
-               case "Teapot":
-                  self.doWikiPage("Item",418)
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Debug Stick":
+               self.doWikiPage("Item",2)
+            elif sel == "Item Not Found":
+               self.doWikiPage("Item",404)
+            elif sel == "Teapot":
+               self.doWikiPage("Item",418)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 0:
-            match selection:
-               case "Basics": #menunum 1
-                  self.clearAddMenuOptions(self.basmenu)
-                  self.menunum = 1
-               case "Items": #menunum 2
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
-               case "Clothes": #menunum 17
-                  self.clearAddMenuOptions(self.clothesmenu)
-                  self.menunum = 17
-               case "Enemies": #menunum 18
-                  self.clearAddMenuOptions(self.enemymenu)
-                  self.menunum = 18
-               case "Races": #menunum 19
-                  self.clearAddMenuOptions(self.racemenu)
-                  self.menunum = 19
-               case "Locations": #menunum 20
-                  self.clearAddMenuOptions(self.locmenu)
-                  self.menunum = 20
-               case "Shops": #menunum 24
-                  self.clearAddMenuOptions(self.shopmenu)
-                  self.menunum = 24
-               case "Named Characters": #menunum 25
-                  self.clearAddMenuOptions(self.spnpcmenu)
-                  self.menunum = 25
-               case "Close":
-                  self.menunum = 0
-                  self._wikidestroy()
+            if sel == "Basics": #menunum 1
+               self.clearAddMenuOptions(self.basmenu)
+               self.menunum = 1
+            elif sel == "Items": #menunum 2
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
+            elif sel == "Clothes": #menunum 17
+               self.clearAddMenuOptions(self.clothesmenu)
+               self.menunum = 17
+            elif sel == "Enemies": #menunum 18
+               self.clearAddMenuOptions(self.enemymenu)
+               self.menunum = 18
+            elif sel == "Races": #menunum 19
+               self.clearAddMenuOptions(self.racemenu)
+               self.menunum = 19
+            elif sel == "Locations": #menunum 20
+               self.clearAddMenuOptions(self.locmenu)
+               self.menunum = 20
+            elif sel == "Shops": #menunum 24
+               self.clearAddMenuOptions(self.shopmenu)
+               self.menunum = 24
+            elif sel == "Named Characters": #menunum 25
+               self.clearAddMenuOptions(self.spnpcmenu)
+               self.menunum = 25
+            elif sel == "Close":
+               self.menunum = 0
+               self._wikidestroy()
          case 1: #Basics menu
-            match selection:
-               case "Welcome Screen":
-                  self.doWikiPage("Basic",0)
-               case "Wiki Key":
-                  self.doWikiPage("Basic",5)
-               case "Stats":
-                  self.doWikiPage("Basic",1)
-               case "Actions":
-                  self.doWikiPage("Basic",2)
-               case "Tips":
-                  self.doWikiPage("Basic",3)
-               case "Hotkeys":
-                  self.doWikiPage("Basic",4)
-               case "Changes":
-                  self.doWikiPage("Basic",6)
-               case "Menu Bar":
-                  self.clearAddMenuOptions(self.basbarmenu)
-                  self.menunum = 27
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "Welcome Screen":
+               self.doWikiPage("Basic",0)
+            elif sel == "Wiki Key":
+               self.doWikiPage("Basic",5)
+            elif sel == "Stats":
+               self.doWikiPage("Basic",1)
+            elif sel == "Actions":
+               self.doWikiPage("Basic",2)
+            elif sel == "Tips":
+               self.doWikiPage("Basic",3)
+            elif sel == "Hotkeys":
+               self.doWikiPage("Basic",4)
+            elif sel == "Changes":
+               self.doWikiPage("Basic",6)
+            elif sel == "Menu Bar":
+               self.clearAddMenuOptions(self.basbarmenu)
+               self.menunum = 27
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 2: #Item menu
-            match selection:
-               case "All Items": #menunum 3
-                  self.clearAddMenuOptions(self.allitemmenu)
-                  self.menunum = 3
-               case "Debug Items":
-                  self.clearAddMenuOptions(self.debugitemmenu)
-                  self.menunum = -1
-               case "Equipable Items": #menunum 4
-                  self.clearAddMenuOptions(self.equipitemmenu)
-                  self.menunum = 4
-               case "Passive Items":
-                  self.clearAddMenuOptions(self.passiveitemmenu)
-                  self.menunum = 26
-               case "Consumables": #menunum 7
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
-               case "Silandrias' Magic Items": #menunum 14
-                  self.clearAddMenuOptions(self.silitemmenu)
-                  self.menunum = 14
-               case "Special Items": #menunum 15
-                  self.clearAddMenuOptions(self.specialitemmenu)
-                  self.menunum = 15
-               case "Other Items": #menunum 16
-                  self.clearAddMenuOptions(self.otheritemmenu)
-                  self.menunum = 16
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "All Items": #menunum 3
+               self.clearAddMenuOptions(self.allitemmenu)
+               self.menunum = 3
+            elif sel == "Debug Items":
+               self.clearAddMenuOptions(self.debugitemmenu)
+               self.menunum = -1
+            elif sel == "Equipable Items": #menunum 4
+               self.clearAddMenuOptions(self.equipitemmenu)
+               self.menunum = 4
+            elif sel == "Passive Items":
+               self.clearAddMenuOptions(self.passiveitemmenu)
+               self.menunum = 26
+            elif sel == "Consumables": #menunum 7
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
+            elif sel == "Silandrias' Magic Items": #menunum 14
+               self.clearAddMenuOptions(self.silitemmenu)
+               self.menunum = 14
+            elif sel == "Special Items": #menunum 15
+               self.clearAddMenuOptions(self.specialitemmenu)
+               self.menunum = 15
+            elif sel == "Other Items": #menunum 16
+               self.clearAddMenuOptions(self.otheritemmenu)
+               self.menunum = 16
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 3: #All items menu
-            match selection:
-               case "Test":
-                  self.doWikiPage("Item",1)
-               case "Anc Claws":
-                  self.doWikiPage("Item",101)
-               case "Imb Shoes":
-                  self.doWikiPage("Item",102)
-               case "Dry Sand":
-                  self.doWikiPage("Item",103)
-               case "Milker":
-                  self.doWikiPage("Item",104)
-               case "Cat's Meow":
-                  self.doWikiPage("Item",105)
-               case "Penis Pump":
-                  self.doWikiPage("Item",106)
-               case "Blood Gge":
-                  self.doWikiPage("Item",108)
-               case "Edu Egg":
-                  self.doWikiPage("Item",109)
-               case "Reduction":
-                  self.doWikiPage("Item",110)
-               case "Skin Balm":
-                  self.doWikiPage("Item",111)
-               case "Bol Juice":
-                  self.doWikiPage("Item",112)
-               case "Taint Leaf":
-                  self.doWikiPage("Item",113)
-               case "Sweet Sap":
-                  self.doWikiPage("Item",114)
-               case "Poultice":
-                  self.doWikiPage("Item",115)
-               case "Dagger":
-                  self.doWikiPage("Item",116)
-               case "Hammer":
-                  self.doWikiPage("Item",117)
-               case "Saber":
-                  self.doWikiPage("Item",118)
-               case "Whip":
-                  self.doWikiPage("Item",119)
-               case "Neuter":
-                  self.doWikiPage("Item",120)
-               case "TS Soft":
-                  self.doWikiPage("Item",121)
-               case "TS Firm":
-                  self.doWikiPage("Item",122)
-               case "TS Tied":
-                  self.doWikiPage("Item",123)
-               case "TS Siz":
-                  self.doWikiPage("Item",124)
-               case "TS Ovi":
-                  self.doWikiPage("Item",125)
-               case "Oas Water":
-                  self.doWikiPage("Item",126)
-               case "Tail Spike":
-                  self.doWikiPage("Item",127)
-               case "TS Sanct":
-                  self.doWikiPage("Item",128)
-               case "Lila's Gift":
-                  self.doWikiPage("Item",200)
-               case "Milk C Pois":
-                  self.doWikiPage("Item",201)
-               case "Co-Snak Ven":
-                  self.doWikiPage("Item",202)
-               case "Wolf Fur":
-                  self.doWikiPage("Item",203)
-               case "Sm Pouch (ItemID 204)":
-                  self.doWikiPage("Item",204)
-               case "Sm Pouch (ItemID 205)":
-                  self.doWikiPage("Item",205)
-               case "Trinket":
-                  self.doWikiPage("Item",206)
-               case "Cock Carv":
-                  self.doWikiPage("Item",207)
-               case "Blo Berry":
-                  self.doWikiPage("Item",208)
-               case "Grain":
-                  self.doWikiPage("Item",209)
-               case "Puss Fruit":
-                  self.doWikiPage("Item",210)
-               case "DairE Pill":
-                  self.doWikiPage("Item",211)
-               case "Red Mush":
-                  self.doWikiPage("Item",212)
-               case "Wet Cloth":
-                  self.doWikiPage("Item",213)
-               case "Lon Milk":
-                  self.doWikiPage("Item",214)
-               case "Lon Pendant":
-                  self.doWikiPage("Item",215)
-               case "Pink Ink":
-                  self.doWikiPage("Item",216)
-               case "Egg Jelly":
-                  self.doWikiPage("Item",217)
-               case "Bul Berry":
-                  self.doWikiPage("Item",218)
-               case "Fresh Egg":
-                  self.doWikiPage("Item",219)
-               case "Blondie":
-                  self.doWikiPage("Item",220)
-               case "Puss Juice":
-                  self.doWikiPage("Item",221)
-               case "Kinky Carr":
-                  self.doWikiPage("Item",222)
-               case "Eq Snack":
-                  self.doWikiPage("Item",223)
-               case "Lila's Milk":
-                  self.doWikiPage("Item",224)
-               case "Body Wash":
-                  self.doWikiPage("Item",225)
-               case "Felin Tea":
-                  self.doWikiPage("Item",226)
-               case "Oral Wash":
-                  self.doWikiPage("Item",227)
-               case "Body Oil":
-                  self.doWikiPage("Item",228)
-               case "Leath Strap":
-                  self.doWikiPage("Item",229)
-               case "Eggcelerator":
-                  self.doWikiPage("Item",230)
-               case "Desi Sand":
-                  self.doWikiPage("Item",231)
-               case "Flying Carp":
-                  self.doWikiPage("Item",232)
-               case "A-Grav Rock":
-                  self.doWikiPage("Item",233)
-               case "Rein Charm":
-                  self.doWikiPage("Item",234)
-               case "Fell Rod":
-                  self.doWikiPage("Item",235)
-               case "Recept Bell":
-                  self.doWikiPage("Item",236)
-               case "Dewy Gift":
-                  self.doWikiPage("Item",237)
-               case "Squ Cheese":
-                  self.doWikiPage("Item",238)
-               case "Shiny Rock":
-                  self.doWikiPage("Item",239)
-               case "Auburn Dye":
-                  self.doWikiPage("Item",240)
-               case "Brown Dye":
-                  self.doWikiPage("Item",241)
-               case "Grey Dye":
-                  self.doWikiPage("Item",242)
-               case "White Dye":
-                  self.doWikiPage("Item",243)
-               case "Snuggle Ball":
-                  self.doWikiPage("Item",244)
-               case "Facial Mud":
-                  self.doWikiPage("Item",245)
-               case "Fertile Gel":
-                  self.doWikiPage("Item",246)
-               case "Supp Harness":
-                  self.doWikiPage("Item",247)
-               case "Breeder Pot":
-                  self.doWikiPage("Item",248)
-               case "Treant's Tear":
-                  self.doWikiPage("Item",249)
-               case "Foomp Bomb":
-                  self.doWikiPage("Item",250)
-               case "Plump Quat":
-                  self.doWikiPage("Item",251)
-               case "Milky Pend":
-                  self.doWikiPage("Item",252)
-               case "Bug Egg":
-                  self.doWikiPage("Item",253)
-               case "Lantern":
-                  self.doWikiPage("Item",254)
-               case "Frag Flower":
-                  self.doWikiPage("Item",255)
-               case "Nectar Candy":
-                  self.doWikiPage("Item",256)
-               case "Too Human":
-                  self.doWikiPage("Item",257)
-               case "Tainted Pot":
-                  self.doWikiPage("Item",258)
-               case "Sweet&Sour":
-                  self.doWikiPage("Item",259)
-               case "Succ Draft":
-                  self.doWikiPage("Item",260)
-               case "Milk Bottle":
-                  self.doWikiPage("Item",500)
-               case "Milk Jug":
-                  self.doWikiPage("Item",501)
-               case "Milk Barrel":
-                  self.doWikiPage("Item",502)
-               case "Lust Draft":
-                  self.doWikiPage("Item",503)
-               case "Rejuv Pot":
-                  self.doWikiPage("Item",504)
-               case "Bad Exper":
-                  self.doWikiPage("Item",505)
-               case "Exp Preg":
-                  self.doWikiPage("Item",506)
-               case "Ball Sweller":
-                  self.doWikiPage("Item",507)
-               case "S Lust Draft":
-                  self.doWikiPage("Item",508)
-               case "S Rejuv Pot":
-                  self.doWikiPage("Item",509)
-               case "S Bad Exper":
-                  self.doWikiPage("Item",510)
-               case "S Exp Preg":
-                  self.doWikiPage("Item",511)
-               case "S Ball Sweller":
-                  self.doWikiPage("Item",512)
-               case "Gen Swap":
-                  self.doWikiPage("Item",513)
-               case "Maso Pot":
-                  self.doWikiPage("Item",514)
-               case "Black Dye":
-                  self.doWikiPage("Item",515)
-               case "Baby Free":
-                  self.doWikiPage("Item",516)
-               case "Pot Pot":
-                  self.doWikiPage("Item",517)
-               case "S Gen Swap":
-                  self.doWikiPage("Item",518)
-               case "S Maso Pot":
-                  self.doWikiPage("Item",519)
-               case "Red Dye":
-                  self.doWikiPage("Item",520)
-               case "S Baby Free":
-                  self.doWikiPage("Item",521)
-               case "S Pot Pot":
-                  self.doWikiPage("Item",522)
-               case "Cum Vial":
-                  self.doWikiPage("Item",523)
-               case "Cum Bottle":
-                  self.doWikiPage("Item",524)
-               case "Cum Jug":
-                  self.doWikiPage("Item",525)
-               case "Cum Barrel":
-                  self.doWikiPage("Item",526)
-               case "Good Egg":
-                  self.doWikiPage("Item",527)
-               case "Bad Egg":
-                  self.doWikiPage("Item",528)
-               case "Strange Egg":
-                  self.doWikiPage("Item",529)
-               case "Charmed Egg":
-                  self.doWikiPage("Item",530)
-               case "Divine Egg":
-                  self.doWikiPage("Item",531)
-               case "Pheromone":
-                  self.doWikiPage("Item",532)
-               case "Reduc Reduc":
-                  self.doWikiPage("Item",533)
-               case "Male Enhance":
-                  self.doWikiPage("Item",534)
-               case "Milk Suppress":
-                  self.doWikiPage("Item",535)
-               case "Bazoomba!":
-                  self.doWikiPage("Item",536)
-               case "Queen Egg":
-                  self.doWikiPage("Item",537)
-               case "Soldier Egg":
-                  self.doWikiPage("Item",538)
-               case "Drone Egg":
-                  self.doWikiPage("Item",539)
-               case "Worker Egg":
-                  self.doWikiPage("Item",540)
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Test":
+               self.doWikiPage("Item",1)
+            elif sel == "Anc Claws":
+               self.doWikiPage("Item",101)
+            elif sel == "Imb Shoes":
+               self.doWikiPage("Item",102)
+            elif sel == "Dry Sand":
+               self.doWikiPage("Item",103)
+            elif sel == "Milker":
+               self.doWikiPage("Item",104)
+            elif sel == "Cat's Meow":
+               self.doWikiPage("Item",105)
+            elif sel == "Penis Pump":
+               self.doWikiPage("Item",106)
+            elif sel == "Blood Gge":
+               self.doWikiPage("Item",108)
+            elif sel == "Edu Egg":
+               self.doWikiPage("Item",109)
+            elif sel == "Reduction":
+               self.doWikiPage("Item",110)
+            elif sel == "Skin Balm":
+               self.doWikiPage("Item",111)
+            elif sel == "Bol Juice":
+               self.doWikiPage("Item",112)
+            elif sel == "Taint Leaf":
+               self.doWikiPage("Item",113)
+            elif sel == "Sweet Sap":
+               self.doWikiPage("Item",114)
+            elif sel == "Poultice":
+               self.doWikiPage("Item",115)
+            elif sel == "Dagger":
+               self.doWikiPage("Item",116)
+            elif sel == "Hammer":
+               self.doWikiPage("Item",117)
+            elif sel == "Saber":
+               self.doWikiPage("Item",118)
+            elif sel == "Whip":
+               self.doWikiPage("Item",119)
+            elif sel == "Neuter":
+               self.doWikiPage("Item",120)
+            elif sel == "TS Soft":
+               self.doWikiPage("Item",121)
+            elif sel == "TS Firm":
+               self.doWikiPage("Item",122)
+            elif sel == "TS Tied":
+               self.doWikiPage("Item",123)
+            elif sel == "TS Siz":
+               self.doWikiPage("Item",124)
+            elif sel == "TS Ovi":
+               self.doWikiPage("Item",125)
+            elif sel == "Oas Water":
+               self.doWikiPage("Item",126)
+            elif sel == "Tail Spike":
+               self.doWikiPage("Item",127)
+            elif sel == "TS Sanct":
+               self.doWikiPage("Item",128)
+            elif sel == "Lila's Gift":
+               self.doWikiPage("Item",200)
+            elif sel == "Milk C Pois":
+               self.doWikiPage("Item",201)
+            elif sel == "Co-Snak Ven":
+               self.doWikiPage("Item",202)
+            elif sel == "Wolf Fur":
+               self.doWikiPage("Item",203)
+            elif sel == "Sm Pouch (ItemID 204)":
+               self.doWikiPage("Item",204)
+            elif sel == "Sm Pouch (ItemID 205)":
+               self.doWikiPage("Item",205)
+            elif sel == "Trinket":
+               self.doWikiPage("Item",206)
+            elif sel == "Cock Carv":
+               self.doWikiPage("Item",207)
+            elif sel == "Blo Berry":
+               self.doWikiPage("Item",208)
+            elif sel == "Grain":
+               self.doWikiPage("Item",209)
+            elif sel == "Puss Fruit":
+               self.doWikiPage("Item",210)
+            elif sel == "DairE Pill":
+               self.doWikiPage("Item",211)
+            elif sel == "Red Mush":
+               self.doWikiPage("Item",212)
+            elif sel == "Wet Cloth":
+               self.doWikiPage("Item",213)
+            elif sel == "Lon Milk":
+               self.doWikiPage("Item",214)
+            elif sel == "Lon Pendant":
+               self.doWikiPage("Item",215)
+            elif sel == "Pink Ink":
+               self.doWikiPage("Item",216)
+            elif sel == "Egg Jelly":
+               self.doWikiPage("Item",217)
+            elif sel == "Bul Berry":
+               self.doWikiPage("Item",218)
+            elif sel == "Fresh Egg":
+               self.doWikiPage("Item",219)
+            elif sel == "Blondie":
+               self.doWikiPage("Item",220)
+            elif sel == "Puss Juice":
+               self.doWikiPage("Item",221)
+            elif sel == "Kinky Carr":
+               self.doWikiPage("Item",222)
+            elif sel == "Eq Snack":
+               self.doWikiPage("Item",223)
+            elif sel == "Lila's Milk":
+               self.doWikiPage("Item",224)
+            elif sel == "Body Wash":
+               self.doWikiPage("Item",225)
+            elif sel == "Felin Tea":
+               self.doWikiPage("Item",226)
+            elif sel == "Oral Wash":
+               self.doWikiPage("Item",227)
+            elif sel == "Body Oil":
+               self.doWikiPage("Item",228)
+            elif sel == "Leath Strap":
+               self.doWikiPage("Item",229)
+            elif sel == "Eggcelerator":
+               self.doWikiPage("Item",230)
+            elif sel == "Desi Sand":
+               self.doWikiPage("Item",231)
+            elif sel == "Flying Carp":
+               self.doWikiPage("Item",232)
+            elif sel == "A-Grav Rock":
+               self.doWikiPage("Item",233)
+            elif sel == "Rein Charm":
+               self.doWikiPage("Item",234)
+            elif sel == "Fell Rod":
+               self.doWikiPage("Item",235)
+            elif sel == "Recept Bell":
+               self.doWikiPage("Item",236)
+            elif sel == "Dewy Gift":
+               self.doWikiPage("Item",237)
+            elif sel == "Squ Cheese":
+               self.doWikiPage("Item",238)
+            elif sel == "Shiny Rock":
+               self.doWikiPage("Item",239)
+            elif sel == "Auburn Dye":
+               self.doWikiPage("Item",240)
+            elif sel == "Brown Dye":
+               self.doWikiPage("Item",241)
+            elif sel == "Grey Dye":
+               self.doWikiPage("Item",242)
+            elif sel == "White Dye":
+               self.doWikiPage("Item",243)
+            elif sel == "Snuggle Ball":
+               self.doWikiPage("Item",244)
+            elif sel == "Facial Mud":
+               self.doWikiPage("Item",245)
+            elif sel == "Fertile Gel":
+               self.doWikiPage("Item",246)
+            elif sel == "Supp Harness":
+               self.doWikiPage("Item",247)
+            elif sel == "Breeder Pot":
+               self.doWikiPage("Item",248)
+            elif sel == "Treant's Tear":
+               self.doWikiPage("Item",249)
+            elif sel == "Foomp Bomb":
+               self.doWikiPage("Item",250)
+            elif sel == "Plump Quat":
+               self.doWikiPage("Item",251)
+            elif sel == "Milky Pend":
+               self.doWikiPage("Item",252)
+            elif sel == "Bug Egg":
+               self.doWikiPage("Item",253)
+            elif sel == "Lantern":
+               self.doWikiPage("Item",254)
+            elif sel == "Frag Flower":
+               self.doWikiPage("Item",255)
+            elif sel == "Nectar Candy":
+               self.doWikiPage("Item",256)
+            elif sel == "Too Human":
+               self.doWikiPage("Item",257)
+            elif sel == "Tainted Pot":
+               self.doWikiPage("Item",258)
+            elif sel == "Sweet&Sour":
+               self.doWikiPage("Item",259)
+            elif sel == "Succ Draft":
+               self.doWikiPage("Item",260)
+            elif sel == "Milk Bottle":
+               self.doWikiPage("Item",500)
+            elif sel == "Milk Jug":
+               self.doWikiPage("Item",501)
+            elif sel == "Milk Barrel":
+               self.doWikiPage("Item",502)
+            elif sel == "Lust Draft":
+               self.doWikiPage("Item",503)
+            elif sel == "Rejuv Pot":
+               self.doWikiPage("Item",504)
+            elif sel == "Bad Exper":
+               self.doWikiPage("Item",505)
+            elif sel == "Exp Preg":
+               self.doWikiPage("Item",506)
+            elif sel == "Ball Sweller":
+               self.doWikiPage("Item",507)
+            elif sel == "S Lust Draft":
+               self.doWikiPage("Item",508)
+            elif sel == "S Rejuv Pot":
+               self.doWikiPage("Item",509)
+            elif sel == "S Bad Exper":
+               self.doWikiPage("Item",510)
+            elif sel == "S Exp Preg":
+               self.doWikiPage("Item",511)
+            elif sel == "S Ball Sweller":
+               self.doWikiPage("Item",512)
+            elif sel == "Gen Swap":
+               self.doWikiPage("Item",513)
+            elif sel == "Maso Pot":
+               self.doWikiPage("Item",514)
+            elif sel == "Black Dye":
+               self.doWikiPage("Item",515)
+            elif sel == "Baby Free":
+               self.doWikiPage("Item",516)
+            elif sel == "Pot Pot":
+               self.doWikiPage("Item",517)
+            elif sel == "S Gen Swap":
+               self.doWikiPage("Item",518)
+            elif sel == "S Maso Pot":
+               self.doWikiPage("Item",519)
+            elif sel == "Red Dye":
+               self.doWikiPage("Item",520)
+            elif sel == "S Baby Free":
+               self.doWikiPage("Item",521)
+            elif sel == "S Pot Pot":
+               self.doWikiPage("Item",522)
+            elif sel == "Cum Vial":
+               self.doWikiPage("Item",523)
+            elif sel == "Cum Bottle":
+               self.doWikiPage("Item",524)
+            elif sel == "Cum Jug":
+               self.doWikiPage("Item",525)
+            elif sel == "Cum Barrel":
+               self.doWikiPage("Item",526)
+            elif sel == "Good Egg":
+               self.doWikiPage("Item",527)
+            elif sel == "Bad Egg":
+               self.doWikiPage("Item",528)
+            elif sel == "Strange Egg":
+               self.doWikiPage("Item",529)
+            elif sel == "Charmed Egg":
+               self.doWikiPage("Item",530)
+            elif sel == "Divine Egg":
+               self.doWikiPage("Item",531)
+            elif sel == "Pheromone":
+               self.doWikiPage("Item",532)
+            elif sel == "Reduc Reduc":
+               self.doWikiPage("Item",533)
+            elif sel == "Male Enhance":
+               self.doWikiPage("Item",534)
+            elif sel == "Milk Suppress":
+               self.doWikiPage("Item",535)
+            elif sel == "Bazoomba!":
+               self.doWikiPage("Item",536)
+            elif sel == "Queen Egg":
+               self.doWikiPage("Item",537)
+            elif sel == "Soldier Egg":
+               self.doWikiPage("Item",538)
+            elif sel == "Drone Egg":
+               self.doWikiPage("Item",539)
+            elif sel == "Worker Egg":
+               self.doWikiPage("Item",540)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 4: #Equipables menu
-            match selection:
-               case "Weapons": #menunum 5
-                  self.clearAddMenuOptions(self.weaponequipitemmenu)
-                  self.menunum = 5
-               case "Other Equipables": #menunum 6
-                  self.clearAddMenuOptions(self.otherequipitemmenu)
-                  self.menunum = 6
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Weapons": #menunum 5
+               self.clearAddMenuOptions(self.weaponequipitemmenu)
+               self.menunum = 5
+            elif sel == "Other Equipables": #menunum 6
+               self.clearAddMenuOptions(self.otherequipitemmenu)
+               self.menunum = 6
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 5: #Weapon equipables menu
-            match selection:
-               case "Dagger":
-                  self.doWikiPage("Item",116)
-               case "Hammer":
-                  self.doWikiPage("Item",117)
-               case "Saber":
-                  self.doWikiPage("Item",118)
-               case "Whip":
-                  self.doWikiPage("Item",119)
-               case "Tail Spike":
-                  self.doWikiPage("Item",127)
-               case "Back":
-                  self.clearAddMenuOptions(self.equipitemmenu)
-                  self.menunum = 4
+            if sel == "Dagger":
+               self.doWikiPage("Item",116)
+            elif sel == "Hammer":
+               self.doWikiPage("Item",117)
+            elif sel == "Saber":
+               self.doWikiPage("Item",118)
+            elif sel == "Whip":
+               self.doWikiPage("Item",119)
+            elif sel == "Tail Spike":
+               self.doWikiPage("Item",127)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.equipitemmenu)
+               self.menunum = 4
          case 6: #Other equipables menu
-            match selection:
-               case "Snuggle Ball":
-                  self.doWikiPage("Item",244)
-               case "Supp Harness":
-                  self.doWikiPage("Item",247)
-               case "Back":
-                  self.clearAddMenuOptions(self.equipitemmenu)
-                  self.menunum = 4
+            if sel == "Snuggle Ball":
+               self.doWikiPage("Item",244)
+            elif sel == "Supp Harness":
+               self.doWikiPage("Item",247)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.equipitemmenu)
+               self.menunum = 4
          case 7: #Consumables menu
-            match selection:
-               case "Affinity Items": #menunum 8
-                  self.clearAddMenuOptions(self.affconsitemmenu)
-                  self.menunum = 8
-               case "Alchemy Items": #menunum 9
-                  self.clearAddMenuOptions(self.alchconsitemmenu)
-                  self.menunum = 9
-               case "Dyes": #menunum 10
-                  self.clearAddMenuOptions(self.dyeconsitemmenu)
-                  self.menunum = 10
-               case "Teleport Scrolls": #menunum 11
-                  self.clearAddMenuOptions(self.tsconsitemmenu)
-                  self.menunum = 11
-               case "Eggs": #menunum 12
-                  self.clearAddMenuOptions(self.eggconsitemmenu)
-                  self.menunum = 12
-               case "Other Consumables": #menunum 13
-                  self.clearAddMenuOptions(self.otherconsitemmenu)
-                  self.menunum = 13
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Affinity Items": #menunum 8
+               self.clearAddMenuOptions(self.affconsitemmenu)
+               self.menunum = 8
+            elif sel == "Alchemy Items": #menunum 9
+               self.clearAddMenuOptions(self.alchconsitemmenu)
+               self.menunum = 9
+            elif sel == "Dyes": #menunum 10
+               self.clearAddMenuOptions(self.dyeconsitemmenu)
+               self.menunum = 10
+            elif sel == "Teleport Scrolls": #menunum 11
+               self.clearAddMenuOptions(self.tsconsitemmenu)
+               self.menunum = 11
+            elif sel == "Eggs": #menunum 12
+               self.clearAddMenuOptions(self.eggconsitemmenu)
+               self.menunum = 12
+            elif sel == "Other Consumables": #menunum 13
+               self.clearAddMenuOptions(self.otherconsitemmenu)
+               self.menunum = 13
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 8: #Affinity Consumables menu
-            match selection:
-               case "Skin Balm":
-                  self.doWikiPage("Item",111)
-               case "Bol Juice":
-                  self.doWikiPage("Item",112)
-               case "Taint Leaf":
-                  self.doWikiPage("Item",113)
-               case "Sweet Sap":
-                  self.doWikiPage("Item",114)
-               case "Oas Water":
-                  self.doWikiPage("Item",126)
-               case "DairE Pill":
-                  self.doWikiPage("Item",211)
-               case "Lon Milk":
-                  self.doWikiPage("Item",214)
-               case "Kinky Carr":
-                  self.doWikiPage("Item",222)
-               case "Squ Cheese":
-                  self.doWikiPage("Item",238)
-               case "Shiny Rock":
-                  self.doWikiPage("Item",239)
-               case "Facial Mud":
-                  self.doWikiPage("Item",245)
-               case "Frag Flower":
-                  self.doWikiPage("Item",255)
-               case "Nectar Candy":
-                  self.doWikiPage("Item",256)
-               case "Too Human":
-                  self.doWikiPage("Item",257)
-               case "Tainted Pot":
-                  self.doWikiPage("Item",258)
-               case "Back":
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
+            if sel == "Skin Balm":
+               self.doWikiPage("Item",111)
+            elif sel == "Bol Juice":
+               self.doWikiPage("Item",112)
+            elif sel == "Taint Leaf":
+               self.doWikiPage("Item",113)
+            elif sel == "Sweet Sap":
+               self.doWikiPage("Item",114)
+            elif sel == "Oas Water":
+               self.doWikiPage("Item",126)
+            elif sel == "DairE Pill":
+               self.doWikiPage("Item",211)
+            elif sel == "Lon Milk":
+               self.doWikiPage("Item",214)
+            elif sel == "Kinky Carr":
+               self.doWikiPage("Item",222)
+            elif sel == "Squ Cheese":
+               self.doWikiPage("Item",238)
+            elif sel == "Shiny Rock":
+               self.doWikiPage("Item",239)
+            elif sel == "Facial Mud":
+               self.doWikiPage("Item",245)
+            elif sel == "Frag Flower":
+               self.doWikiPage("Item",255)
+            elif sel == "Nectar Candy":
+               self.doWikiPage("Item",256)
+            elif sel == "Too Human":
+               self.doWikiPage("Item",257)
+            elif sel == "Tainted Pot":
+               self.doWikiPage("Item",258)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
          case 9: #Alchemy Consumables menu
-            match selection:
-               case "Blondie":
-                  self.doWikiPage("Item",220)
-               case "Puss Juice":
-                  self.doWikiPage("Item",221)
-               case "Lust Draft":
-                  self.doWikiPage("Item",503)
-               case "Rejuv Pot":
-                  self.doWikiPage("Item",504)
-               case "Exp Preg":
-                  self.doWikiPage("Item",506)
-               case "Ball Sweller":
-                  self.doWikiPage("Item",507)
-               case "S Lust Draft":
-                  self.doWikiPage("Item",508)
-               case "S Rejuv Pot":
-                  self.doWikiPage("Item",509)
-               case "S Exp Preg":
-                  self.doWikiPage("Item",511)
-               case "S Ball Sweller":
-                  self.doWikiPage("Item",512)
-               case "Gen Swap":
-                  self.doWikiPage("Item",513)
-               case "Maso Pot":
-                  self.doWikiPage("Item",514)
-               case "Baby Free":
-                  self.doWikiPage("Item",516)
-               case "Pot Pot":
-                  self.doWikiPage("Item",517)
-               case "S Gen Swap":
-                  self.doWikiPage("Item",518)
-               case "S Maso Pot":
-                  self.doWikiPage("Item",519)
-               case "S Baby Free":
-                  self.doWikiPage("Item",521)
-               case "S Pot Pot":
-                  self.doWikiPage("Item",522)
-               case "Pheromone":
-                  self.doWikiPage("Item",532)
-               case "Reduc Reduc":
-                  self.doWikiPage("Item",533)
-               case "Male Enhance":
-                  self.doWikiPage("Item",534)
-               case "Milk Suppress":
-                  self.doWikiPage("Item",535)
-               case "Bazoomba!":
-                  self.doWikiPage("Item",536)
-               case "Back":
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
+            if sel == "Blondie":
+               self.doWikiPage("Item",220)
+            elif sel == "Puss Juice":
+               self.doWikiPage("Item",221)
+            elif sel == "Lust Draft":
+               self.doWikiPage("Item",503)
+            elif sel == "Rejuv Pot":
+               self.doWikiPage("Item",504)
+            elif sel == "Exp Preg":
+               self.doWikiPage("Item",506)
+            elif sel == "Ball Sweller":
+               self.doWikiPage("Item",507)
+            elif sel == "S Lust Draft":
+               self.doWikiPage("Item",508)
+            elif sel == "S Rejuv Pot":
+               self.doWikiPage("Item",509)
+            elif sel == "S Exp Preg":
+               self.doWikiPage("Item",511)
+            elif sel == "S Ball Sweller":
+               self.doWikiPage("Item",512)
+            elif sel == "Gen Swap":
+               self.doWikiPage("Item",513)
+            elif sel == "Maso Pot":
+               self.doWikiPage("Item",514)
+            elif sel == "Baby Free":
+               self.doWikiPage("Item",516)
+            elif sel == "Pot Pot":
+               self.doWikiPage("Item",517)
+            elif sel == "S Gen Swap":
+               self.doWikiPage("Item",518)
+            elif sel == "S Maso Pot":
+               self.doWikiPage("Item",519)
+            elif sel == "S Baby Free":
+               self.doWikiPage("Item",521)
+            elif sel == "S Pot Pot":
+               self.doWikiPage("Item",522)
+            elif sel == "Pheromone":
+               self.doWikiPage("Item",532)
+            elif sel == "Reduc Reduc":
+               self.doWikiPage("Item",533)
+            elif sel == "Male Enhance":
+               self.doWikiPage("Item",534)
+            elif sel == "Milk Suppress":
+               self.doWikiPage("Item",535)
+            elif sel == "Bazoomba!":
+               self.doWikiPage("Item",536)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
          case 10: #Dyes Consumables menu
-            match selection:
-               case "Pink Ink":
-                  self.doWikiPage("Item",216)
-               case "Auburn Dye":
-                  self.doWikiPage("Item",240)
-               case "Brown Dye":
-                  self.doWikiPage("Item",241)
-               case "Grey Dye":
-                  self.doWikiPage("Item",242)
-               case "White Dye":
-                  self.doWikiPage("Item",243)
-               case "Black Dye":
-                  self.doWikiPage("Item",515)
-               case "Red Dye":
-                  self.doWikiPage("Item",520)
-               case "Back":
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
+            if sel == "Pink Ink":
+               self.doWikiPage("Item",216)
+            elif sel == "Auburn Dye":
+               self.doWikiPage("Item",240)
+            elif sel == "Brown Dye":
+               self.doWikiPage("Item",241)
+            elif sel == "Grey Dye":
+               self.doWikiPage("Item",242)
+            elif sel == "White Dye":
+               self.doWikiPage("Item",243)
+            elif sel == "Black Dye":
+               self.doWikiPage("Item",515)
+            elif sel == "Red Dye":
+               self.doWikiPage("Item",520)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
          case 11: #Teleport Scrolls Consumables menu
-            match selection:
-               case "TS Soft":
-                  self.doWikiPage("Item",121)
-               case "TS Firm":
-                  self.doWikiPage("Item",122)
-               case "TS Tied":
-                  self.doWikiPage("Item",123)
-               case "TS Siz":
-                  self.doWikiPage("Item",124)
-               case "TS Ovi":
-                  self.doWikiPage("Item",125)
-               case "TS Sanct":
-                  self.doWikiPage("Item",128)
-               case "Back":
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
+            if sel == "TS Soft":
+               self.doWikiPage("Item",121)
+            elif sel == "TS Firm":
+               self.doWikiPage("Item",122)
+            elif sel == "TS Tied":
+               self.doWikiPage("Item",123)
+            elif sel == "TS Siz":
+               self.doWikiPage("Item",124)
+            elif sel == "TS Ovi":
+               self.doWikiPage("Item",125)
+            elif sel == "TS Sanct":
+               self.doWikiPage("Item",128)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
          case 12: #Eggs Consumables menu
-            match selection:
-               case "Fresh Egg":
-                  self.doWikiPage("Item",219)
-               case "Bug Egg":
-                  self.doWikiPage("Item",253)
-               case "Good Egg":
-                  self.doWikiPage("Item",527)
-               case "Bag Egg":
-                  self.doWikiPage("Item",528)
-               case "Strange Egg":
-                  self.doWikiPage("Item",529)
-               case "Charmed Egg":
-                  self.doWikiPage("Item",530)
-               case "Divine Egg":
-                  self.doWikiPage("Item",531)
-               case "Queen Egg":
-                  self.doWikiPage("Item",537)
-               case "Soldier Egg":
-                  self.doWikiPage("Item",538)
-               case "Drone Egg":
-                  self.doWikiPage("Item",539)
-               case "Worker Egg":
-                  self.doWikiPage("Item",540)
-               case "Back":
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
+            if sel == "Fresh Egg":
+               self.doWikiPage("Item",219)
+            elif sel == "Bug Egg":
+               self.doWikiPage("Item",253)
+            elif sel == "Good Egg":
+               self.doWikiPage("Item",527)
+            elif sel == "Bag Egg":
+               self.doWikiPage("Item",528)
+            elif sel == "Strange Egg":
+               self.doWikiPage("Item",529)
+            elif sel == "Charmed Egg":
+               self.doWikiPage("Item",530)
+            elif sel == "Divine Egg":
+               self.doWikiPage("Item",531)
+            elif sel == "Queen Egg":
+               self.doWikiPage("Item",537)
+            elif sel == "Soldier Egg":
+               self.doWikiPage("Item",538)
+            elif sel == "Drone Egg":
+               self.doWikiPage("Item",539)
+            elif sel == "Worker Egg":
+               self.doWikiPage("Item",540)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
          case 13: #Other Consumables menu
-            match selection:
-               case "Dry Sand":
-                  self.doWikiPage("Item",103)
-               case "Cat's Meow":
-                  self.doWikiPage("Item",105)
-               case "Reduction":
-                  self.doWikiPage("Item",110)
-               case "Poultice":
-                  self.doWikiPage("Item",115)
-               case "Neuter":
-                  self.doWikiPage("Item",120)
-               case "Milk C Pois":
-                  self.doWikiPage("Item",201)
-               case "Co-Snak Ven":
-                  self.doWikiPage("Item",202)
-               case "Wolf Fur":
-                  self.doWikiPage("Item",203)
-               case "Sm Pouch (ItemID 204)":
-                  self.doWikiPage("Item",204)
-               case "Sm Pouch (ItemID 205)":
-                  self.doWikiPage("Item",205)
-               case "Cock Carv":
-                  self.doWikiPage("Item",207)
-               case "Blo Berry":
-                  self.doWikiPage("Item",208)
-               case "Grain":
-                  self.doWikiPage("Item",209)
-               case "Puss Fruit":
-                  self.doWikiPage("Item",210)
-               case "Red Mush":
-                  self.doWikiPage("Item",212)
-               case "Wet Cloth":
-                  self.doWikiPage("Item",213)
-               case "Egg Jelly":
-                  self.doWikiPage("Item",217)
-               case "Bul Berry":
-                  self.doWikiPage("Item",218)
-               case "Eq Snack":
-                  self.doWikiPage("Item",223)
-               case "Lila's Milk":
-                  self.doWikiPage("Item",224)
-               case "Body Wash":
-                  self.doWikiPage("Item",225)
-               case "Felin Tea":
-                  self.doWikiPage("Item",226)
-               case "Oral Wash":
-                  self.doWikiPage("Item",227)
-               case "Body Oil":
-                  self.doWikiPage("Item",228)
-               case "Eggcelerator":
-                  self.doWikiPage("Item",230)
-               case "Desi Sand":
-                  self.doWikiPage("Item",231)
-               case "Fertile Gel":
-                  self.doWikiPage("Item",246)
-               case "Breeder Pot":
-                  self.doWikiPage("Item",248)
-               case "Treant's Tear":
-                  self.doWikiPage("Item",249)
-               case "Foomp Bomb":
-                  self.doWikiPage("Item",250)
-               case "Plump Quat":
-                  self.doWikiPage("Item",251)
-               case "Sweet&Sour":
-                  self.doWikiPage("Item",259)
-               case "Succ Draft":
-                  self.doWikiPage("Item",260)
-               case "Milk Bottle":
-                  self.doWikiPage("Item",500)
-               case "Milk Jug":
-                  self.doWikiPage("Item",501)
-               case "Milk Barrel":
-                  self.doWikiPage("Item",502)
-               case "Bad Exper":
-                  self.doWikiPage("Item",505)
-               case "S Bad Exper":
-                  self.doWikiPage("Item",510)
-               case "Cum Vial":
-                  self.doWikiPage("Item",523)
-               case "Cum Bottle":
-                  self.doWikiPage("Item",524)
-               case "Cum Jug":
-                  self.doWikiPage("Item",525)
-               case "Cum Barrel":
-                  self.doWikiPage("Item",526)
-               case "Back":
-                  self.clearAddMenuOptions(self.consitemmenu)
-                  self.menunum = 7
+            if sel == "Dry Sand":
+               self.doWikiPage("Item",103)
+            elif sel == "Cat's Meow":
+               self.doWikiPage("Item",105)
+            elif sel == "Reduction":
+               self.doWikiPage("Item",110)
+            elif sel == "Poultice":
+               self.doWikiPage("Item",115)
+            elif sel == "Neuter":
+               self.doWikiPage("Item",120)
+            elif sel == "Milk C Pois":
+               self.doWikiPage("Item",201)
+            elif sel == "Co-Snak Ven":
+               self.doWikiPage("Item",202)
+            elif sel == "Wolf Fur":
+               self.doWikiPage("Item",203)
+            elif sel == "Sm Pouch (ItemID 204)":
+               self.doWikiPage("Item",204)
+            elif sel == "Sm Pouch (ItemID 205)":
+               self.doWikiPage("Item",205)
+            elif sel == "Cock Carv":
+               self.doWikiPage("Item",207)
+            elif sel == "Blo Berry":
+               self.doWikiPage("Item",208)
+            elif sel == "Grain":
+               self.doWikiPage("Item",209)
+            elif sel == "Puss Fruit":
+               self.doWikiPage("Item",210)
+            elif sel == "Red Mush":
+               self.doWikiPage("Item",212)
+            elif sel == "Wet Cloth":
+               self.doWikiPage("Item",213)
+            elif sel == "Egg Jelly":
+               self.doWikiPage("Item",217)
+            elif sel == "Bul Berry":
+               self.doWikiPage("Item",218)
+            elif sel == "Eq Snack":
+               self.doWikiPage("Item",223)
+            elif sel == "Lila's Milk":
+               self.doWikiPage("Item",224)
+            elif sel == "Body Wash":
+               self.doWikiPage("Item",225)
+            elif sel == "Felin Tea":
+               self.doWikiPage("Item",226)
+            elif sel == "Oral Wash":
+               self.doWikiPage("Item",227)
+            elif sel == "Body Oil":
+               self.doWikiPage("Item",228)
+            elif sel == "Eggcelerator":
+               self.doWikiPage("Item",230)
+            elif sel == "Desi Sand":
+               self.doWikiPage("Item",231)
+            elif sel == "Fertile Gel":
+               self.doWikiPage("Item",246)
+            elif sel == "Breeder Pot":
+               self.doWikiPage("Item",248)
+            elif sel == "Treant's Tear":
+               self.doWikiPage("Item",249)
+            elif sel == "Foomp Bomb":
+               self.doWikiPage("Item",250)
+            elif sel == "Plump Quat":
+               self.doWikiPage("Item",251)
+            elif sel == "Sweet&Sour":
+               self.doWikiPage("Item",259)
+            elif sel == "Succ Draft":
+               self.doWikiPage("Item",260)
+            elif sel == "Milk Bottle":
+               self.doWikiPage("Item",500)
+            elif sel == "Milk Jug":
+               self.doWikiPage("Item",501)
+            elif sel == "Milk Barrel":
+               self.doWikiPage("Item",502)
+            elif sel == "Bad Exper":
+               self.doWikiPage("Item",505)
+            elif sel == "S Bad Exper":
+               self.doWikiPage("Item",510)
+            elif sel == "Cum Vial":
+               self.doWikiPage("Item",523)
+            elif sel == "Cum Bottle":
+               self.doWikiPage("Item",524)
+            elif sel == "Cum Jug":
+               self.doWikiPage("Item",525)
+            elif sel == "Cum Barrel":
+               self.doWikiPage("Item",526)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.consitemmenu)
+               self.menunum = 7
          case 14: #Silandrias' Items menu
-            match selection:
-               case "Leath Strap":
-                  self.doWikiPage("Item",229)
-               case "Flying Carp":
-                  self.doWikiPage("Item",232)
-               case "A-Grav Rock":
-                  self.doWikiPage("Item",233)
-               case "Rein Charm":
-                  self.doWikiPage("Item",234)
-               case "Fell Rod":
-                  self.doWikiPage("Item",235)
-               case "Recept Bell":
-                  self.doWikiPage("Item",236)
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Leath Strap":
+               self.doWikiPage("Item",229)
+            elif sel == "Flying Carp":
+               self.doWikiPage("Item",232)
+            elif sel == "A-Grav Rock":
+               self.doWikiPage("Item",233)
+            elif sel == "Rein Charm":
+               self.doWikiPage("Item",234)
+            elif sel == "Fell Rod":
+               self.doWikiPage("Item",235)
+            elif sel == "Recept Bell":
+               self.doWikiPage("Item",236)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 15: #Special Items menu
-            match selection:
-               case "Milker":
-                  self.doWikiPage("Item",104)
-               case "Penis Pump":
-                  self.doWikiPage("Item",106)
-               case "Blood Gge":
-                  self.doWikiPage("Item",108)
-               case "Edu Egg":
-                  self.doWikiPage("Item",109)
-               case "Trinket":
-                  self.doWikiPage("Item",206)
-               case "Lantern":
-                  self.doWikiPage("Item",254)
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Milker":
+               self.doWikiPage("Item",104)
+            elif sel == "Penis Pump":
+               self.doWikiPage("Item",106)
+            elif sel == "Blood Gge":
+               self.doWikiPage("Item",108)
+            elif sel == "Edu Egg":
+               self.doWikiPage("Item",109)
+            elif sel == "Trinket":
+               self.doWikiPage("Item",206)
+            elif sel == "Lantern":
+               self.doWikiPage("Item",254)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 16: #Other Items menu
-            match selection:
-               case "Test":
-                  self.doWikiPage("Item",1)
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Test":
+               self.doWikiPage("Item",1)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 17: #Clothes menu
-            match selection:
-               case "Tattered Shreds":
-                  self.doWikiPage("Clothes",-1)
-               case "Invisible Underwear":
-                  self.doWikiPage("Clothes",0)
-               case "Shirt":
-                  self.doWikiPage("Clothes",1)
-               case "Pants":
-                  self.doWikiPage("Clothes",2)
-               case "Bikini Top":
-                  self.doWikiPage("Clothes",3)
-               case "Bikini Bottom":
-                  self.doWikiPage("Clothes",4)
-               case "Elegant Dress":
-                  self.doWikiPage("Clothes",5)
-               case "Latex Suit":
-                  self.doWikiPage("Clothes",6)
-               case "Skirt":
-                  self.doWikiPage("Clothes",7)
-               case "Shorts":
-                  self.doWikiPage("Clothes",8)
-               case "Blouse":
-                  self.doWikiPage("Clothes",9)
-               case "Diaper":
-                  self.doWikiPage("Clothes",10)
-               case "Poofy Diaper":
-                  self.doWikiPage("Clothes",11)
-               case "Sundress":
-                  self.doWikiPage("Clothes",12)
-               case "Skimpy Dress":
-                  self.doWikiPage("Clothes",13)
-               case "Short Skirt":
-                  self.doWikiPage("Clothes",14)
-               case "Short Shorts":
-                  self.doWikiPage("Clothes",15)
-               case "Loin Cloth":
-                  self.doWikiPage("Clothes",16)
-               case "Bathing Suit":
-                  self.doWikiPage("Clothes",17)
-               case "Muscle Shirt":
-                  self.doWikiPage("Clothes",18)
-               case "Corset":
-                  self.doWikiPage("Clothes",19)
-               case "Silk Panties":
-                  self.doWikiPage("Clothes",20)
-               case "Slingkini":
-                  self.doWikiPage("Clothes",21)
-               case "Thong":
-                  self.doWikiPage("Clothes",22)
-               case "Bloomers":
-                  self.doWikiPage("Clothes",23)
-               case "Tights":
-                  self.doWikiPage("Clothes",24)
-               case "Gothic Dress":
-                  self.doWikiPage("Clothes",25)
-               case "Tube Top":
-                  self.doWikiPage("Clothes",26)
-               case "Nipple Pasties":
-                  self.doWikiPage("Clothes",27)
-               case "Camisole":
-                  self.doWikiPage("Clothes",28)
-               case "Training Suit":
-                  self.doWikiPage("Clothes",29)
-               case "Bouncy Bra":
-                  self.doWikiPage("Clothes",30)
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "Tattered Shreds":
+               self.doWikiPage("Clothes",-1)
+            elif sel == "Invisible Underwear":
+               self.doWikiPage("Clothes",0)
+            elif sel == "Shirt":
+               self.doWikiPage("Clothes",1)
+            elif sel == "Pants":
+               self.doWikiPage("Clothes",2)
+            elif sel == "Bikini Top":
+               self.doWikiPage("Clothes",3)
+            elif sel == "Bikini Bottom":
+               self.doWikiPage("Clothes",4)
+            elif sel == "Elegant Dress":
+               self.doWikiPage("Clothes",5)
+            elif sel == "Latex Suit":
+               self.doWikiPage("Clothes",6)
+            elif sel == "Skirt":
+               self.doWikiPage("Clothes",7)
+            elif sel == "Shorts":
+               self.doWikiPage("Clothes",8)
+            elif sel == "Blouse":
+               self.doWikiPage("Clothes",9)
+            elif sel == "Diaper":
+               self.doWikiPage("Clothes",10)
+            elif sel == "Poofy Diaper":
+               self.doWikiPage("Clothes",11)
+            elif sel == "Sundress":
+               self.doWikiPage("Clothes",12)
+            elif sel == "Skimpy Dress":
+               self.doWikiPage("Clothes",13)
+            elif sel == "Short Skirt":
+               self.doWikiPage("Clothes",14)
+            elif sel == "Short Shorts":
+               self.doWikiPage("Clothes",15)
+            elif sel == "Loin Cloth":
+               self.doWikiPage("Clothes",16)
+            elif sel == "Bathing Suit":
+               self.doWikiPage("Clothes",17)
+            elif sel == "Muscle Shirt":
+               self.doWikiPage("Clothes",18)
+            elif sel == "Corset":
+               self.doWikiPage("Clothes",19)
+            elif sel == "Silk Panties":
+               self.doWikiPage("Clothes",20)
+            elif sel == "Slingkini":
+               self.doWikiPage("Clothes",21)
+            elif sel == "Thong":
+               self.doWikiPage("Clothes",22)
+            elif sel == "Bloomers":
+               self.doWikiPage("Clothes",23)
+            elif sel == "Tights":
+               self.doWikiPage("Clothes",24)
+            elif sel == "Gothic Dress":
+               self.doWikiPage("Clothes",25)
+            elif sel == "Tube Top":
+               self.doWikiPage("Clothes",26)
+            elif sel == "Nipple Pasties":
+               self.doWikiPage("Clothes",27)
+            elif sel == "Camisole":
+               self.doWikiPage("Clothes",28)
+            elif sel == "Training Suit":
+               self.doWikiPage("Clothes",29)
+            elif sel == "Bouncy Bra":
+               self.doWikiPage("Clothes",30)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 18: #Enemies menu
-            match selection:
-               case "Test Enemy":
-                  self.doWikiPage("Enemy",1)
-               case "Cock-snake":
-                  self.doWikiPage("Enemy",101)
-               case "Desiccating Dust Devil":
-                  self.doWikiPage("Enemy",102)
-               case "Lone Male Wolf":
-                  self.doWikiPage("Enemy",201)
-               case "Gay Wolf":
-                  self.doWikiPage("Enemy",202)
-               case "Felin in Heat":
-                  self.doWikiPage("Enemy",301)
-               case "Drunken Equan":
-                  self.doWikiPage("Enemy",302)
-               case "Octopus Girl":
-                  self.doWikiPage("Enemy",303)
-               case "Little Big Bunny-man":
-                  self.doWikiPage("Enemy",304)
-               case "Little Big Bunny-girl":
-                  self.doWikiPage("Enemy",305)
-               case "Fierce Naga":
-                  self.doWikiPage("Enemy",306)
-               case "Minotaur":
-                  self.doWikiPage("Enemy",307)
-               case "Freaky Little Girl":
-                  self.doWikiPage("Enemy",308)
-               case "Succubus":
-                  self.doWikiPage("Enemy",309)
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "Test Enemy":
+               self.doWikiPage("Enemy",1)
+            elif sel == "Cock-snake":
+               self.doWikiPage("Enemy",101)
+            elif sel == "Desiccating Dust Devil":
+               self.doWikiPage("Enemy",102)
+            elif sel == "Lone Male Wolf":
+               self.doWikiPage("Enemy",201)
+            elif sel == "Gay Wolf":
+               self.doWikiPage("Enemy",202)
+            elif sel == "Felin in Heat":
+               self.doWikiPage("Enemy",301)
+            elif sel == "Drunken Equan":
+               self.doWikiPage("Enemy",302)
+            elif sel == "Octopus Girl":
+               self.doWikiPage("Enemy",303)
+            elif sel == "Little Big Bunny-man":
+               self.doWikiPage("Enemy",304)
+            elif sel == "Little Big Bunny-girl":
+               self.doWikiPage("Enemy",305)
+            elif sel == "Fierce Naga":
+               self.doWikiPage("Enemy",306)
+            elif sel == "Minotaur":
+               self.doWikiPage("Enemy",307)
+            elif sel == "Freaky Little Girl":
+               self.doWikiPage("Enemy",308)
+            elif sel == "Succubus":
+               self.doWikiPage("Enemy",309)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 19: #Race menu
-            match selection:
-               case "Human":
-                  self.doWikiPage("Race",1)
-               case "Equan":
-                  self.doWikiPage("Race",2)
-               case "Lupan":
-                  self.doWikiPage("Race",3)
-               case "Felin":
-                  self.doWikiPage("Race",4)
-               case "Cow":
-                  self.doWikiPage("Race",5)
-               case "Lizan":
-                  self.doWikiPage("Race",6)
-               case "Bunny":
-                  self.doWikiPage("Race",7)
-               case "Mouse":
-                  self.doWikiPage("Race",8)
-               case "Bird":
-                  self.doWikiPage("Race",9)
-               case "Pig":
-                  self.doWikiPage("Race",10)
-               case "Skunk":
-                  self.doWikiPage("Race",11)
-               case "Bug":
-                  self.doWikiPage("Race",12)
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "Human":
+               self.doWikiPage("Race",1)
+            elif sel == "Equan":
+               self.doWikiPage("Race",2)
+            elif sel == "Lupan":
+               self.doWikiPage("Race",3)
+            elif sel == "Felin":
+               self.doWikiPage("Race",4)
+            elif sel == "Cow":
+               self.doWikiPage("Race",5)
+            elif sel == "Lizan":
+               self.doWikiPage("Race",6)
+            elif sel == "Bunny":
+               self.doWikiPage("Race",7)
+            elif sel == "Mouse":
+               self.doWikiPage("Race",8)
+            elif sel == "Bird":
+               self.doWikiPage("Race",9)
+            elif sel == "Pig":
+               self.doWikiPage("Race",10)
+            elif sel == "Skunk":
+               self.doWikiPage("Race",11)
+            elif sel == "Bug":
+               self.doWikiPage("Race",12)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 20: #Locations menu
-            match selection:
-               case "Towns": #menunum 21
-                  self.clearAddMenuOptions(self.townlocmenu)
-                  self.menunum = 21
-               case "Other Locations": #menunum 22
-                  self.clearAddMenuOptions(self.otherlocmenu)
-                  self.menunum = 22
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "Towns": #menunum 21
+               self.clearAddMenuOptions(self.townlocmenu)
+               self.menunum = 21
+            elif sel == "Other Locations": #menunum 22
+               self.clearAddMenuOptions(self.otherlocmenu)
+               self.menunum = 22
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 21: #Town Location menu
-            match selection:
-               case "Softlik":
-                  self.doWikiPage("Town",1)
-               case "Firmshaft":
-                  self.doWikiPage("Town",2)
-               case "Tieden":
-                  self.doWikiPage("Town",3)
-               case "Siz'Calit":
-                  self.doWikiPage("Town",4)
-               case "Oviasis":
-                  self.doWikiPage("Town",6)
-               case "Sanctuary":
-                  self.doWikiPage("Town",12)
-               case "Back":
-                  self.clearAddMenuOptions(self.locmenu)
-                  self.menunum = 20
+            if sel == "Softlik":
+               self.doWikiPage("Town",1)
+            elif sel == "Firmshaft":
+               self.doWikiPage("Town",2)
+            elif sel == "Tieden":
+               self.doWikiPage("Town",3)
+            elif sel == "Siz'Calit":
+               self.doWikiPage("Town",4)
+            elif sel == "Oviasis":
+               self.doWikiPage("Town",6)
+            elif sel == "Sanctuary":
+               self.doWikiPage("Town",12)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.locmenu)
+               self.menunum = 20
          case 22: #Other Location menu
-            match selection:
-               case "Forest":
-                  self.doWikiPage("Location",1)
-               case "Jungle":
-                  self.doWikiPage("Location",2)
-               case "Plains":
-                  self.doWikiPage("Location",3)
-               case "Savanna":
-                  self.doWikiPage("Location",4)
-               case "Desert":
-                  self.doWikiPage("Location",5)
-               case "Beach":
-                  self.doWikiPage("Location",6)
-               case "Lake":
-                  self.doWikiPage("Location",7)
-               case "Dairy Farm":
-                  self.doWikiPage("Location",8)
-               case "Old Cave":
-                  self.doWikiPage("Location",9)
-               case "Old Cave Descent":
-                  self.doWikiPage("Location",10)
-               case "Den":
-                  self.doWikiPage("Location",11)
-               case "Valley":
-                  self.doWikiPage("Location",12)
-               case "Knothole":
-                  self.doWikiPage("Location",13)
-               case "Back":
-                  self.clearAddMenuOptions(self.locmenu)
-                  self.menunum = 20
+            if sel == "Forest":
+               self.doWikiPage("Location",1)
+            elif sel == "Jungle":
+               self.doWikiPage("Location",2)
+            elif sel == "Plains":
+               self.doWikiPage("Location",3)
+            elif sel == "Savanna":
+               self.doWikiPage("Location",4)
+            elif sel == "Desert":
+               self.doWikiPage("Location",5)
+            elif sel == "Beach":
+               self.doWikiPage("Location",6)
+            elif sel == "Lake":
+               self.doWikiPage("Location",7)
+            elif sel == "Dairy Farm":
+               self.doWikiPage("Location",8)
+            elif sel == "Old Cave":
+               self.doWikiPage("Location",9)
+            elif sel == "Old Cave Descent":
+               self.doWikiPage("Location",10)
+            elif sel == "Den":
+               self.doWikiPage("Location",11)
+            elif sel == "Valley":
+               self.doWikiPage("Location",12)
+            elif sel == "Knothole":
+               self.doWikiPage("Location",13)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.locmenu)
+               self.menunum = 20
          case 23:...
          case 24: #Shops menu
-            match selection:
-               case "General Shop":
-                  self.doWikiPage("Shop",1)
-               case "Dye Shop":
-                  self.doWikiPage("Shop",2)
-               case "Apothecary":
-                  self.doWikiPage("Shop",3)
-               case "Salon":
-                  self.doWikiPage("Shop",4)
-               case "Tailor":
-                  self.doWikiPage("Shop",5)
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "General Shop":
+               self.doWikiPage("Shop",1)
+            elif sel == "Dye Shop":
+               self.doWikiPage("Shop",2)
+            elif sel == "Apothecary":
+               self.doWikiPage("Shop",3)
+            elif sel == "Salon":
+               self.doWikiPage("Shop",4)
+            elif sel == "Tailor":
+               self.doWikiPage("Shop",5)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 25: #Encounters menu
-            match selection:
-               case "Fidoris":
-                  self.doWikiPage("NPC",1)
-               case "Jamie":
-                  self.doWikiPage("NPC",2)
-               case "Lila":
-                  self.doWikiPage("NPC",3)
-               case "Malon":
-                  self.doWikiPage("NPC",4)
-               case "Silandrias":
-                  self.doWikiPage("NPC",5)
-               case "Back":
-                  self.clearAddMenuOptions(self.wikimenuroot)
-                  self.menunum = 0
+            if sel == "Fidoris":
+               self.doWikiPage("NPC",1)
+            elif sel == "Jamie":
+               self.doWikiPage("NPC",2)
+            elif sel == "Lila":
+               self.doWikiPage("NPC",3)
+            elif sel == "Malon":
+               self.doWikiPage("NPC",4)
+            elif sel == "Silandrias":
+               self.doWikiPage("NPC",5)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.wikimenuroot)
+               self.menunum = 0
          case 26: #Passive items menu
-            match selection:
-               case "Anc Claws":
-                  self.doWikiPage("Item",101)
-               case "Imb Shoes":
-                  self.doWikiPage("Item",102)
-               case "Lila's Gift":
-                  self.doWikiPage("Item",200)
-               case "Lon Pendant":
-                  self.doWikiPage("Item",215)
-               case "Dewy Gift":
-                  self.doWikiPage("Item",237)
-               case "Milky Pend":
-                  self.doWikiPage("Item",252)
-               case "Back":
-                  self.clearAddMenuOptions(self.itemmenu)
-                  self.menunum = 2
+            if sel == "Anc Claws":
+               self.doWikiPage("Item",101)
+            elif sel == "Imb Shoes":
+               self.doWikiPage("Item",102)
+            elif sel == "Lila's Gift":
+               self.doWikiPage("Item",200)
+            elif sel == "Lon Pendant":
+               self.doWikiPage("Item",215)
+            elif sel == "Dewy Gift":
+               self.doWikiPage("Item",237)
+            elif sel == "Milky Pend":
+               self.doWikiPage("Item",252)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.itemmenu)
+               self.menunum = 2
          case 27: #Menubar menu
-            match selection:
-               case "File->Options":
-                  self.doWikiPage("MenuBar",1)
-               case "File->Quit":
-                  self.doWikiPage("MenuBar",2)
-               case "View->Full Screen":
-                  self.doWikiPage("MenuBar",3)
-               case "View->Reset Size":
-                  self.doWikiPage("MenuBar",4)
-               case "Help->Wiki":
-                  self.doWikiPage("MenuBar",5)
-               case "Help->About Game":
-                  self.doWikiPage("MenuBar",6)
-               case "Debug Window":
-                  self.doWikiPage("MenuBar",7)
-               case "Back":
-                  self.clearAddMenuOptions(self.basmenu)
-                  self.menunum = 1
+            if sel == "File->Options":
+               self.doWikiPage("MenuBar",1)
+            elif sel == "File->Quit":
+               self.doWikiPage("MenuBar",2)
+            elif sel == "View->Full Screen":
+               self.doWikiPage("MenuBar",3)
+            elif sel == "View->Reset Size":
+               self.doWikiPage("MenuBar",4)
+            elif sel == "Help->Wiki":
+               self.doWikiPage("MenuBar",5)
+            elif sel == "Help->About Game":
+               self.doWikiPage("MenuBar",6)
+            elif sel == "Debug Window":
+               self.doWikiPage("MenuBar",7)
+            elif sel == "Back":
+               self.clearAddMenuOptions(self.basmenu)
+               self.menunum = 1
    def doWikiPage(self, topic:str, Num, returning=False):
       if not isinstance(Num,int):
          try:
@@ -27453,277 +27416,276 @@ class NiminFetishFantasyv0975o_fla:
       if Num == 7: #Debug Window
          return "<h4><u>Debug Window</u></h4>This option only shows up when debug mode is active. Clicking this will open a new window which displays all of the relavant variables in the game and their state. This also gives you other debug options (must have a game loaded to use):\n\n<u>Give Item</u>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and specified amount.\n\n<u>Use Item</u>\n(Not implemented yet) Does the specified item's useItem event without consuming the item or checking if the player has it.\n\n<u>Affinity</u>\nOpens a popup window that allows the player to modify their affinities."
    def wikiItemDescription(self, ID:int):
-      match ID:
-         case -10:
-            return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 1:
-            return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
-         case 2:
-            return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-         case 3:
-            return "<h4><u>Teleport Scroll: Any</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-         case 404:
-            return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-         case 418:
-            return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-         case 101:
-            return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 102:
-            return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 103:
-            return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 104:
-            return "<h4><u>Milking Machine (Milker)</u></h4>(Item ID 104)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 105:
-            return "<h4><u>'Cat's Meow' Potion (Cat's Meow)</u></h4>(Item ID 105)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 106:
-            return "<h4><u>Penis Pump</u></h4>(Item ID 106)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 108:
-            return "<h4><u>Blood Gauge (Blood Gge)</u></h4>(Item ID 108)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 109:
-            return "<h4><u>Educated Eddicator (Edu Egg)</u></h4>(Item ID 109)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 110:
-            return "<h4><u>A Reduction of Reducer Agents (Reduction)</u></h4>(Item ID 110)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 111:
-            return "<h4><u>Skin Balm</u></h4>(Item ID 111)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 112:
-            return "<h4><u>Bolstering Juice (Bol Juice)</u></h4>(Item ID 112)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 113:
-            return "<h4><u>Tainted Leaf (Taint Leaf)</u></h4>(Item ID 113)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 114:
-            return "<h4><u>Sweet Sap</u></h4>(Item ID 114)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 115:
-            return "<h4><u>Poultice</u></h4>(Item ID 115)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 116:
-            return "<h4><u>Dagger</u></h4>(Item ID 116)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 117:
-            return "<h4><u>Warhammer (Hammer)</u></h4>(Item ID 117)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 118:
-            return "<h4><u>Saber</u></h4>(Item ID 118)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 119:
-            return "<h4><u>Whip</u></h4>(Item ID 119)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 120:
-            return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 121:
-            return "<h4><u>Teleport Scroll: Softlik (TS Soft)</u></h4>(Item ID 121)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 122:
-            return "<h4><u>Teleport Scroll: Firmshaft (TS Firm)</u></h4>(Item ID 122)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 123:
-            return "<h4><u>Teleport Scroll: Tieden (TS Tied)</u></h4>(Item ID 123)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 124:
-            return "<h4><u>Teleport Scroll: Siz'Calit (TS Siz)</u></h4>(Item ID 124)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 125:
-            return "<h4><u>Teleport Scroll: Oviasis (TS Ovi)</u></h4>(Item ID 125)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 126:
-            return "<h4><u>Oasis Water (Oas Water)</u></h4>(Item ID 126)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 127:
-            return "<h4><u>Tail Spike</u></h4>(Item ID 127)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 128:
-            return "<h4><u>Teleport Scroll: Sanctuary (TS Sanct)</u></h4>(Item ID 128)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 200:
-            return "<h4><u>Lila's Gift</u></h4>(Item ID 200)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 201:
-            return "<h4><u>Milk Creeper Poison (Milk C Pois)</u></h4>(Item ID 201)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 202:
-            return "<h4><u>Cock-Snake Venom (Co-Snak Ven)</u></h4>(Item ID 202)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 203:
-            return "<h4><u>Tuft of Wolf Fur (Wolf Fur)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 204:
-            return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 204)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 205:
-            return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 205)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 206:
-            return "<h4><u>Shiny Trinket (Trinket)</u></h4>(Item ID 206)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 207:
-            return "<h4><u>Wooden Cock Carving (Cock Carv)</u></h4>(Item ID 207)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 208:
-            return "<h4><u>Bloated Berry (Blo Berry)</u></h4>(Item ID 208)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 209:
-            return "<h4><u>Handful of Grain (Grain)</u></h4>(Item ID 209)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 210:
-            return "<h4><u>Pussy Fruit (Puss Fruit)</u></h4>(Item ID 210)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 211:
-            return "<h4><u>DairE Pill</u></h4>(Item ID 211)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 212:
-            return "<h4><u>Red Mushroom (Red Mush)</u></h4>(Item ID 212)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 213:
-            return "<h4><u>Wet, Slimy Cloth (Wet Cloth)</u></h4>(Item ID 213)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 214:
-            return "<h4><u>Malon's Milk (Lon Milk)</u></h4>(Item ID 214)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 215:
-            return "<h4><u>Malon's Pendant (Lon Pendant)</u></h4>(Item ID 215)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 216:
-            return "<h4><u>Pink Ink</u></h4>(Item ID 216)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 217:
-            return "<h4><u>Octopus Egg Jelly (Egg Jelly)</u></h4>(Item ID 217)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 218:
-            return "<h4><u>Bulging Berry (Bul Berry)</u></h4>(Item ID 218)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 219:
-            return "<h4><u>Fresh Egg</u></h4>(Item ID 219)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 220:
-            return "<h4><u>Blonde Dye (Blondie)</u></h4>(Item ID 220)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 221:
-            return "<h4><u>Concentrated Pussy Fruit Juice (Puss Juice)</u></h4>(Item ID 221)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 222:
-            return "<h4><u>Kinky Carrot (Kinky Carr)</u></h4>(Item ID 222)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 223:
-            return "<h4><u>Equan Snack (Eq Snack)</u></h4>(Item ID 223)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 224:
-            return "<h4><u>Lila's Milk</u></h4>(Item ID 224)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 225:
-            return "<h4><u>Body Wash</u></h4>(Item ID 225)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 226:
-            return "<h4><u>Felin Tea Mix (Felin Tea)</u></h4>(Item ID 226)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 227:
-            return "<h4><u>Felin Oral Wash (Oral Wash)</u></h4>(Item ID 227)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 228:
-            return "<h4><u>Body Oil</u></h4>(Item ID 228)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 229:
-            return "<h4><u>Leather Strap (Leath Strap)</u></h4>(Item ID 229)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 230:
-            return "<h4><u>Eggcelerator</u></h4>(Item ID 230)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 231:
-            return "<h4><u>Desiccating Sand (Desi Sand)</u></h4>(Item ID 231)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 232:
-            return "<h4><u>Flying Carpet (Flying Carp)</u></h4>(Item ID 232)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 233:
-            return "<h4><u>Anti-Gravity Rock (A-Grav Rock)</u></h4>(Item ID 233)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 234:
-            return "<h4><u>Reindeer Charm (Rein Charm)</u></h4>(Item ID 234)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 235:
-            return "<h4><u>Fellatio Rod (Fell Rod)</u></h4>(Item ID 235)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 236:
-            return "<h4><u>Reception Bell (Recept Bell)</u></h4>(Item ID 236)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 237:
-            return "<h4><u>Lila's Dewy Gift (Dewy Gift)</u></h4>(Item ID 237)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 238:
-            return "<h4><u>Squeaky Cheese (Squ Cheese)</u></h4>(Item ID 238)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 239:
-            return "<h4><u>Shiny Rock</u></h4>(Item ID 239)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 240:
-            return "<h4><u>Auburn Dye</u></h4>(Item ID 240)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 241:
-            return "<h4><u>Brown Dye</u></h4>(Item ID 241)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 242:
-            return "<h4><u>Grey Dye</u></h4>(Item ID 242)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 243:
-            return "<h4><u>White Dye</u></h4>(Item ID 243)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 244:
-            return "<h4><u>Snuggle Ball</u></h4>(Item ID 244)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 245:
-            return "<h4><u>Facial Mud</u></h4>(Item ID 245)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 246:
-            return "<h4><u>Fertile Gel</u></h4>(Item ID 246)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 247:
-            return "<h4><u>Support Harness (Supp Harness)</u></h4>(Item ID 247)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 248:
-            return "<h4><u>Breeder Potion (Breeder Pot)</u></h4>(Item ID 248)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 249:
-            return "<h4><u>Treant's Tear</u></h4>(Item ID 249)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 250:
-            return "<h4><u>Foomp Bomb</u></h4>(Item ID 250)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 251:
-            return "<h4><u>Plump Quat</u></h4>(Item ID 251)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 252:
-            return "<h4><u>Malon's Milky Pendant (Milky Pend)</u></h4>(Item ID 252)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 253:
-            return "<h4><u>Bug Egg</u></h4>(Item ID 253)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 254:
-            return "<h4><u>Lantern</u></h4>(Item ID 254)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 255:
-            return "<h4><u>Fragrant Flower (Frag Flower)</u></h4>(Item ID 255)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 256:
-            return "<h4><u>Nectar Candy</u></h4>(Item ID 256)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 257:
-            return "<h4><u>Too Human Potion (Too Human)</u></h4>(Item ID 257)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 258:
-            return "<h4><u>Tainted Potion (Tainted Pot)</u></h4>(Item ID 258)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 259:
-            return "<h4><u>Sweet & Sour Candy (Sweet&Sour)</u></h4>(Item ID 259)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 260:
-            return "<h4><u>Succubus Draft (Succ Draft)</u></h4>(Item ID 260)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 500:
-            return "<h4><u>Bottle of Milk (Milk Bottle)</u></h4>(Item ID 500)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 501:
-            return "<h4><u>Jug of Milk (Milk Jug)</u></h4>(Item ID 501)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 502:
-            return "<h4><u>Barrel of Milk (Milk Barrel)</u></h4>(Item ID 502)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 503:
-            return "<h4><u>Lust Draft</u></h4>(Item ID 503)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 504:
-            return "<h4><u>Rejuvenating Potion (Rejuv Pot)</u></h4>(Item ID 504)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 505:
-            return "<h4><u>Bad Experiment (Bad Exper)</u></h4>(Item ID 505)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 506:
-            return "<h4><u>Express Pregnancy Potion (Exp Preg)</u></h4>(Item ID 506)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 507:
-            return "<h4><u>Ball Sweller</u></h4>(Item ID 507)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 508:
-            return "<h4><u>Superior Lust Draft (S Lust Draft)</u></h4>(Item ID 508)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 509:
-            return "<h4><u>Superior Rejuvenating Potion (S Rejuv Pot)</u></h4>(Item ID 509)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 510:
-            return "<h4><u>Superior Bad Experiment (S Bad Exper)</u></h4>(Item ID 510)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 511:
-            return "<h4><u>Superior Express Pregnancy Potion (S Exp Preg)</u></h4>(Item ID 511)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 512:
-            return "<h4><u>Superior Ball Sweller (S Ball Sweller)</u></h4>(Item ID 512)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 513:
-            return "<h4><u>Gender Swap Potion (Gen Swap)</u></h4>(Item ID 513)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 514:
-            return "<h4><u>Masochism Potion (Maso Pot)</u></h4>(Item ID 514)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 515:
-            return "<h4><u>Black Dye</u></h4>(Item ID 515)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 516:
-            return "<h4><u>Baby Free Potion (Baby Free)</u></h4>(Item ID 516)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 517:
-            return "<h4><u>Potency Potion (Pot Pot)</u></h4>(Item ID 517)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 518:
-            return "<h4><u>Superior Gender Swap Potion (S Gen Swap)</u></h4>(Item ID 518)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 519:
-            return "<h4><u>Superior Masochism Potion (S Maso Pot)</u></h4>(Item ID 519)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 520:
-            return "<h4><u>Red Dye</u></h4>(Item ID 520)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 521:
-            return "<h4><u>Superior Baby Free Potion (S Baby Free)</u></h4>(Item ID 521)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 522:
-            return "<h4><u>Superior Potency Potion (S Pot Pot)</u></h4>(Item ID 522)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 523:
-            return "<h4><u>Vial of Cum (Cum Vial)</u></h4>(Item ID 523)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 524:
-            return "<h4><u>Bottle of Cum (Cum Bottle)</u></h4>(Item ID 524)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 525:
-            return "<h4><u>Jug of Cum (Cum Jug)</u></h4>(Item ID 525)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 526:
-            return "<h4><u>Barrel of Cum (Cum Barrel)</u></h4>(Item ID 526)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 527:
-            return "<h4><u>Good Egg</u></h4>(Item ID 527)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 528:
-            return "<h4><u>Bad Egg</u></h4>(Item ID 528)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 529:
-            return "<h4><u>Strange Egg</u></h4>(Item ID 529)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 530:
-            return "<h4><u>Charmed Egg</u></h4>(Item ID 530)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 531:
-            return "<h4><u>Divine Egg</u></h4>(Item ID 531)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 532:
-            return "<h4><u>Strong Pheromone (Pheromone)</u></h4>(Item ID 532)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 533:
-            return "<h4><u>Reduced Reduction (Reduc Reduc)</u></h4>(Item ID 533)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 534:
-            return "<h4><u>Male Enhancement Drug (Male Enhance)</u></h4>(Item ID 534)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 535:
-            return "<h4><u>Milk Suppressant (Milk Suppress)</u></h4>(Item ID 535)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 536:
-            return "<h4><u>Bazoomba!</u></h4>(Item ID 536)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 537:
-            return "<h4><u>Queen Egg</u></h4>(Item ID 537)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 538:
-            return "<h4><u>Soldier Egg</u></h4>(Item ID 538)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 539:
-            return "<h4><u>Drone Egg</u></h4>(Item ID 539)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-         case 540:
-            return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == -10:
+         return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 1:
+         return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
+      if ID == 2:
+         return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 3:
+         return "<h4><u>Teleport Scroll: Any</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 404:
+         return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 418:
+         return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 101:
+         return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 102:
+         return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 103:
+         return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 104:
+         return "<h4><u>Milking Machine (Milker)</u></h4>(Item ID 104)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 105:
+         return "<h4><u>'Cat's Meow' Potion (Cat's Meow)</u></h4>(Item ID 105)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 106:
+         return "<h4><u>Penis Pump</u></h4>(Item ID 106)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 108:
+         return "<h4><u>Blood Gauge (Blood Gge)</u></h4>(Item ID 108)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 109:
+         return "<h4><u>Educated Eddicator (Edu Egg)</u></h4>(Item ID 109)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 110:
+         return "<h4><u>A Reduction of Reducer Agents (Reduction)</u></h4>(Item ID 110)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 111:
+         return "<h4><u>Skin Balm</u></h4>(Item ID 111)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 112:
+         return "<h4><u>Bolstering Juice (Bol Juice)</u></h4>(Item ID 112)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 113:
+         return "<h4><u>Tainted Leaf (Taint Leaf)</u></h4>(Item ID 113)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 114:
+         return "<h4><u>Sweet Sap</u></h4>(Item ID 114)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 115:
+         return "<h4><u>Poultice</u></h4>(Item ID 115)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 116:
+         return "<h4><u>Dagger</u></h4>(Item ID 116)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 117:
+         return "<h4><u>Warhammer (Hammer)</u></h4>(Item ID 117)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 118:
+         return "<h4><u>Saber</u></h4>(Item ID 118)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 119:
+         return "<h4><u>Whip</u></h4>(Item ID 119)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 120:
+         return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 121:
+         return "<h4><u>Teleport Scroll: Softlik (TS Soft)</u></h4>(Item ID 121)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 122:
+         return "<h4><u>Teleport Scroll: Firmshaft (TS Firm)</u></h4>(Item ID 122)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 123:
+         return "<h4><u>Teleport Scroll: Tieden (TS Tied)</u></h4>(Item ID 123)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 124:
+         return "<h4><u>Teleport Scroll: Siz'Calit (TS Siz)</u></h4>(Item ID 124)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 125:
+         return "<h4><u>Teleport Scroll: Oviasis (TS Ovi)</u></h4>(Item ID 125)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 126:
+         return "<h4><u>Oasis Water (Oas Water)</u></h4>(Item ID 126)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 127:
+         return "<h4><u>Tail Spike</u></h4>(Item ID 127)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 128:
+         return "<h4><u>Teleport Scroll: Sanctuary (TS Sanct)</u></h4>(Item ID 128)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 200:
+         return "<h4><u>Lila's Gift</u></h4>(Item ID 200)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 201:
+         return "<h4><u>Milk Creeper Poison (Milk C Pois)</u></h4>(Item ID 201)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 202:
+         return "<h4><u>Cock-Snake Venom (Co-Snak Ven)</u></h4>(Item ID 202)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 203:
+         return "<h4><u>Tuft of Wolf Fur (Wolf Fur)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 204:
+         return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 204)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 205:
+         return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 205)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 206:
+         return "<h4><u>Shiny Trinket (Trinket)</u></h4>(Item ID 206)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 207:
+         return "<h4><u>Wooden Cock Carving (Cock Carv)</u></h4>(Item ID 207)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 208:
+         return "<h4><u>Bloated Berry (Blo Berry)</u></h4>(Item ID 208)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 209:
+         return "<h4><u>Handful of Grain (Grain)</u></h4>(Item ID 209)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 210:
+         return "<h4><u>Pussy Fruit (Puss Fruit)</u></h4>(Item ID 210)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 211:
+         return "<h4><u>DairE Pill</u></h4>(Item ID 211)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 212:
+         return "<h4><u>Red Mushroom (Red Mush)</u></h4>(Item ID 212)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 213:
+         return "<h4><u>Wet, Slimy Cloth (Wet Cloth)</u></h4>(Item ID 213)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 214:
+         return "<h4><u>Malon's Milk (Lon Milk)</u></h4>(Item ID 214)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 215:
+         return "<h4><u>Malon's Pendant (Lon Pendant)</u></h4>(Item ID 215)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 216:
+         return "<h4><u>Pink Ink</u></h4>(Item ID 216)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 217:
+         return "<h4><u>Octopus Egg Jelly (Egg Jelly)</u></h4>(Item ID 217)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 218:
+         return "<h4><u>Bulging Berry (Bul Berry)</u></h4>(Item ID 218)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 219:
+         return "<h4><u>Fresh Egg</u></h4>(Item ID 219)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 220:
+         return "<h4><u>Blonde Dye (Blondie)</u></h4>(Item ID 220)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 221:
+         return "<h4><u>Concentrated Pussy Fruit Juice (Puss Juice)</u></h4>(Item ID 221)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 222:
+         return "<h4><u>Kinky Carrot (Kinky Carr)</u></h4>(Item ID 222)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 223:
+         return "<h4><u>Equan Snack (Eq Snack)</u></h4>(Item ID 223)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 224:
+         return "<h4><u>Lila's Milk</u></h4>(Item ID 224)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 225:
+         return "<h4><u>Body Wash</u></h4>(Item ID 225)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 226:
+         return "<h4><u>Felin Tea Mix (Felin Tea)</u></h4>(Item ID 226)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 227:
+         return "<h4><u>Felin Oral Wash (Oral Wash)</u></h4>(Item ID 227)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 228:
+         return "<h4><u>Body Oil</u></h4>(Item ID 228)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 229:
+         return "<h4><u>Leather Strap (Leath Strap)</u></h4>(Item ID 229)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 230:
+         return "<h4><u>Eggcelerator</u></h4>(Item ID 230)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 231:
+         return "<h4><u>Desiccating Sand (Desi Sand)</u></h4>(Item ID 231)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 232:
+         return "<h4><u>Flying Carpet (Flying Carp)</u></h4>(Item ID 232)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 233:
+         return "<h4><u>Anti-Gravity Rock (A-Grav Rock)</u></h4>(Item ID 233)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 234:
+         return "<h4><u>Reindeer Charm (Rein Charm)</u></h4>(Item ID 234)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 235:
+         return "<h4><u>Fellatio Rod (Fell Rod)</u></h4>(Item ID 235)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 236:
+         return "<h4><u>Reception Bell (Recept Bell)</u></h4>(Item ID 236)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 237:
+         return "<h4><u>Lila's Dewy Gift (Dewy Gift)</u></h4>(Item ID 237)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 238:
+         return "<h4><u>Squeaky Cheese (Squ Cheese)</u></h4>(Item ID 238)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 239:
+         return "<h4><u>Shiny Rock</u></h4>(Item ID 239)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 240:
+         return "<h4><u>Auburn Dye</u></h4>(Item ID 240)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 241:
+         return "<h4><u>Brown Dye</u></h4>(Item ID 241)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 242:
+         return "<h4><u>Grey Dye</u></h4>(Item ID 242)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 243:
+         return "<h4><u>White Dye</u></h4>(Item ID 243)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 244:
+         return "<h4><u>Snuggle Ball</u></h4>(Item ID 244)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 245:
+         return "<h4><u>Facial Mud</u></h4>(Item ID 245)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 246:
+         return "<h4><u>Fertile Gel</u></h4>(Item ID 246)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 247:
+         return "<h4><u>Support Harness (Supp Harness)</u></h4>(Item ID 247)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 248:
+         return "<h4><u>Breeder Potion (Breeder Pot)</u></h4>(Item ID 248)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 249:
+         return "<h4><u>Treant's Tear</u></h4>(Item ID 249)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 250:
+         return "<h4><u>Foomp Bomb</u></h4>(Item ID 250)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 251:
+         return "<h4><u>Plump Quat</u></h4>(Item ID 251)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 252:
+         return "<h4><u>Malon's Milky Pendant (Milky Pend)</u></h4>(Item ID 252)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 253:
+         return "<h4><u>Bug Egg</u></h4>(Item ID 253)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 254:
+         return "<h4><u>Lantern</u></h4>(Item ID 254)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 255:
+         return "<h4><u>Fragrant Flower (Frag Flower)</u></h4>(Item ID 255)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 256:
+         return "<h4><u>Nectar Candy</u></h4>(Item ID 256)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 257:
+         return "<h4><u>Too Human Potion (Too Human)</u></h4>(Item ID 257)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 258:
+         return "<h4><u>Tainted Potion (Tainted Pot)</u></h4>(Item ID 258)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 259:
+         return "<h4><u>Sweet & Sour Candy (Sweet&Sour)</u></h4>(Item ID 259)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 260:
+         return "<h4><u>Succubus Draft (Succ Draft)</u></h4>(Item ID 260)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 500:
+         return "<h4><u>Bottle of Milk (Milk Bottle)</u></h4>(Item ID 500)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 501:
+         return "<h4><u>Jug of Milk (Milk Jug)</u></h4>(Item ID 501)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 502:
+         return "<h4><u>Barrel of Milk (Milk Barrel)</u></h4>(Item ID 502)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 503:
+         return "<h4><u>Lust Draft</u></h4>(Item ID 503)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 504:
+         return "<h4><u>Rejuvenating Potion (Rejuv Pot)</u></h4>(Item ID 504)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 505:
+         return "<h4><u>Bad Experiment (Bad Exper)</u></h4>(Item ID 505)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 506:
+         return "<h4><u>Express Pregnancy Potion (Exp Preg)</u></h4>(Item ID 506)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 507:
+         return "<h4><u>Ball Sweller</u></h4>(Item ID 507)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 508:
+         return "<h4><u>Superior Lust Draft (S Lust Draft)</u></h4>(Item ID 508)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 509:
+         return "<h4><u>Superior Rejuvenating Potion (S Rejuv Pot)</u></h4>(Item ID 509)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 510:
+         return "<h4><u>Superior Bad Experiment (S Bad Exper)</u></h4>(Item ID 510)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 511:
+         return "<h4><u>Superior Express Pregnancy Potion (S Exp Preg)</u></h4>(Item ID 511)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 512:
+         return "<h4><u>Superior Ball Sweller (S Ball Sweller)</u></h4>(Item ID 512)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 513:
+         return "<h4><u>Gender Swap Potion (Gen Swap)</u></h4>(Item ID 513)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 514:
+         return "<h4><u>Masochism Potion (Maso Pot)</u></h4>(Item ID 514)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 515:
+         return "<h4><u>Black Dye</u></h4>(Item ID 515)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 516:
+         return "<h4><u>Baby Free Potion (Baby Free)</u></h4>(Item ID 516)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 517:
+         return "<h4><u>Potency Potion (Pot Pot)</u></h4>(Item ID 517)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 518:
+         return "<h4><u>Superior Gender Swap Potion (S Gen Swap)</u></h4>(Item ID 518)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 519:
+         return "<h4><u>Superior Masochism Potion (S Maso Pot)</u></h4>(Item ID 519)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 520:
+         return "<h4><u>Red Dye</u></h4>(Item ID 520)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 521:
+         return "<h4><u>Superior Baby Free Potion (S Baby Free)</u></h4>(Item ID 521)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 522:
+         return "<h4><u>Superior Potency Potion (S Pot Pot)</u></h4>(Item ID 522)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 523:
+         return "<h4><u>Vial of Cum (Cum Vial)</u></h4>(Item ID 523)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 524:
+         return "<h4><u>Bottle of Cum (Cum Bottle)</u></h4>(Item ID 524)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 525:
+         return "<h4><u>Jug of Cum (Cum Jug)</u></h4>(Item ID 525)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 526:
+         return "<h4><u>Barrel of Cum (Cum Barrel)</u></h4>(Item ID 526)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 527:
+         return "<h4><u>Good Egg</u></h4>(Item ID 527)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 528:
+         return "<h4><u>Bad Egg</u></h4>(Item ID 528)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 529:
+         return "<h4><u>Strange Egg</u></h4>(Item ID 529)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 530:
+         return "<h4><u>Charmed Egg</u></h4>(Item ID 530)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 531:
+         return "<h4><u>Divine Egg</u></h4>(Item ID 531)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 532:
+         return "<h4><u>Strong Pheromone (Pheromone)</u></h4>(Item ID 532)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 533:
+         return "<h4><u>Reduced Reduction (Reduc Reduc)</u></h4>(Item ID 533)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 534:
+         return "<h4><u>Male Enhancement Drug (Male Enhance)</u></h4>(Item ID 534)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 535:
+         return "<h4><u>Milk Suppressant (Milk Suppress)</u></h4>(Item ID 535)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 536:
+         return "<h4><u>Bazoomba!</u></h4>(Item ID 536)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 537:
+         return "<h4><u>Queen Egg</u></h4>(Item ID 537)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 538:
+         return "<h4><u>Soldier Egg</u></h4>(Item ID 538)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 539:
+         return "<h4><u>Drone Egg</u></h4>(Item ID 539)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 540:
+         return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
    def wikiClothesDescription(self, ID:int):
       if ID == -10:
          return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
