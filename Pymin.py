@@ -13462,245 +13462,245 @@ class NiminFetishFantasyv0975o_fla:
       match which:
          # Towns
          case "Softlik":
-            tempArray = (0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0)
-            if (tempArray[self.hour] == "x"): # Squeaky Cheese
+            tempArray = (0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
+            if (tempArray[self.hour]): # Squeaky Cheese
                self.rndArray.push(1)
-            tempArray = ("x","x","x","x","x","x",0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x")
-            if (tempArray[self.hour] == "x"): # Male Enhance
+            tempArray = (1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1)
+            if (tempArray[self.hour]): # Male Enhance
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Too Human
+            tempArray = (0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Too Human
                self.rndArray.push(3)
-            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Gen
+            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Gen
                self.rndArray.push(4)
          case "Firmshaft":
-            tempArray = (0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
-            if (tempArray[self.hour] == "x"): # Jamie
+            tempArray = (0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1)
+            if (tempArray[self.hour]): # Jamie
                self.rndArray.push(1)
-            tempArray = ("x","x","x","x","x","x","x","x","x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0)
-            if (tempArray[self.hour] == "x"): # Harem
+            tempArray = (1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
+            if (tempArray[self.hour]): # Harem
                self.rndArray.push(2)
-            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Gen
+            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Gen
                self.rndArray.push(3)
          case "Tieden":
-            tempArray = ("x","x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
-            if (tempArray[self.hour] == "x"): # Knothole
+            tempArray = (1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
+            if (tempArray[self.hour]): # Knothole
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0,0)
-            if (tempArray[self.hour] == "x" and self.pregnancyTime >= 180 and self.vagTotal > 0): # Preggo Lover
+            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
+            if (tempArray[self.hour] and self.pregnancyTime >= 180 and self.vagTotal > 0): # Preggo Lover
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x",0,0,0)
-            if (tempArray[self.hour] == "x"): # Gen
+            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
+            if (tempArray[self.hour]): # Gen
                self.rndArray.push(3)
          case "Siz'Calit":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Lila
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0)
+            if (tempArray[self.hour]): # Lila
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,"x","x","x",0,0)
-            if (tempArray[self.hour] == "x" and self.lilaRep > 3): # Lila+
+            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,0,0)
+            if (tempArray[self.hour] and self.lilaRep > 3): # Lila+
                self.rndArray.push(1)
-            tempArray = ("x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
-            if (tempArray[self.hour] == "x"): # Cat Attack
+            tempArray = (1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1)
+            if (tempArray[self.hour]): # Cat Attack
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Hyper Mistress
+            tempArray = (0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Hyper Mistress
                self.rndArray.push(3)
-            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Gen
+            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Gen
                self.rndArray.push(4)
          case "Oviasis":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0)
-            if (tempArray[self.hour] == "x" and self.silRep < 6): # Silandrias
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0)
+            if (tempArray[self.hour] and self.silRep < 6): # Silandrias
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x",0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Sunbathing
+            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0)
+            if (tempArray[self.hour]): # Sunbathing
                self.rndArray.push(2)
-            tempArray = ("x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
-            if (tempArray[self.hour] == "x"): # Night Sex
+            tempArray = (1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
+            if (tempArray[self.hour]): # Night Sex
                self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x",0,0,0,0,"x","x","x",0,0)
-            if (tempArray[self.hour] == "x"): # Water Eggs
+            tempArray = (0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,0)
+            if (tempArray[self.hour]): # Water Eggs
                self.rndArray.push(4)
-            tempArray = ("x","x","x","x","x","x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,"x",0,"x","x")
-            if (tempArray[self.hour] == "x"): # Gen
+            tempArray = (1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1)
+            if (tempArray[self.hour]): # Gen
                self.rndArray.push(5)
          case "Sanctuary":
-            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Gen
+            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Gen
                self.rndArray.push(3)
          # Shared
          case "Forest":
-            tempArray = (0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0,"x","x")
-            if (tempArray[self.hour] == "x"): # Wolf
+            tempArray = (0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1)
+            if (tempArray[self.hour]): # Wolf
                self.rndArray.push(1)
-            tempArray = ("x",0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,0)
-            if (tempArray[self.hour] == "x"): # Gay Wolf
+            tempArray = (1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
+            if (tempArray[self.hour]): # Gay Wolf
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Cock-Snake
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0)
+            if (tempArray[self.hour]): # Cock-Snake
                self.rndArray.push(3)
-            tempArray = ("x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0,0,0,"x","x",0,0,0,0,"x")
-            if (tempArray[self.hour] == "x"): # Sneeze Flower
+            tempArray = (1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1)
+            if (tempArray[self.hour]): # Sneeze Flower
                self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Milk Creeper
+            tempArray = (0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Milk Creeper
                self.rndArray.push(5)
-            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Path
+            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Path
                self.rndArray.push(6)
          case "Jungle":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and not self.foundValley and self.firstExplore): # Find Valley
+            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour] and not self.foundValley and self.firstExplore): # Find Valley
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Milk Creeper
+            tempArray = (0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Milk Creeper
                self.rndArray.push(2)
-            tempArray = (0,"x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
-            if (tempArray[self.hour] == "x"): # Wolf
+            tempArray = (0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
+            if (tempArray[self.hour]): # Wolf
                self.rndArray.push(3)
-            tempArray = ("x",0,"x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x",0)
-            if (tempArray[self.hour] == "x"): # Gay Wolf
+            tempArray = (1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0)
+            if (tempArray[self.hour]): # Gay Wolf
                self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0)
-            if (tempArray[self.hour] == "x"): # Pussy Fruit
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0)
+            if (tempArray[self.hour]): # Pussy Fruit
                self.rndArray.push(5)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Shiny Rock
+            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Shiny Rock
                self.rndArray.push(6)
-            tempArray = (0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Path
+            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Path
                self.rndArray.push(7)
          case "Plains":
-            tempArray = ("x",0,"x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0)
-            if (tempArray[self.hour] == "x" and self.checkOpenSlot(244) > 0): # Snuggle Ball
+            tempArray = (1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0)
+            if (tempArray[self.hour] and self.checkOpenSlot(244) > 0): # Snuggle Ball
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Cock Snake
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0)
+            if (tempArray[self.hour]): # Cock Snake
                self.rndArray.push(2)
-            tempArray = (0,"x",0,"x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x",0,"x",0,"x")
-            if (tempArray[self.hour] == "x"): # Drunken Equan
+            tempArray = (0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
+            if (tempArray[self.hour]): # Drunken Equan
                self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Grain
+            tempArray = (0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Grain
                self.rndArray.push(4)
-            tempArray = ("x","x","x","x",0,0,0,0,0,0,"x",0,0,"x",0,0,0,0,0,0,"x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Path
+            tempArray = (1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1)
+            if (tempArray[self.hour]): # Path
                self.rndArray.push(5)
          case "Savanna":
-            tempArray = (0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Horny Felin
+            tempArray = (0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Horny Felin
                self.rndArray.push(1)
-            tempArray = ("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Drunken Equan
+            tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1)
+            if (tempArray[self.hour]): # Drunken Equan
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,"x","x","x","x",0,0)
-            if (tempArray[self.hour] == "x"): # Warmth
+            tempArray = (0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0)
+            if (tempArray[self.hour]): # Warmth
                self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x",0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Facial Mud
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Facial Mud
                self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Path
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0)
+            if (tempArray[self.hour]): # Path
                self.rndArray.push(5)
          case "Desert":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x",0)
-            if (tempArray[self.hour] == "x"): # Sandwich
+            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0)
+            if (tempArray[self.hour]): # Sandwich
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and self.currentZone == 6 and self.silRep == 0): # Silanrias
+            tempArray = (0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour] and self.currentZone == 6 and self.silRep == 0): # Silanrias
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,0,"x","x","x","x",0,0,0)
-            if (tempArray[self.hour] == "x"): # Dust Devil
+            tempArray = (0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0)
+            if (tempArray[self.hour]): # Dust Devil
                self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x",0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Hot Sun
+            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Hot Sun
                self.rndArray.push(4)
-            tempArray = ("x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x")
-            if (tempArray[self.hour] == "x"): # Path
+            tempArray = (1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1)
+            if (tempArray[self.hour]): # Path
                self.rndArray.push(5)
          # Areas
          case "Beach":
-            tempArray = (0,0,0,0,0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Octo Girl
+            tempArray = (0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Octo Girl
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,"x","x",0,"x","x",0,"x","x",0,"x","x",0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Pregnant Lizan
+            tempArray = (0,0,0,0,0,0,0,1,1,0,1,1,0,1,1,0,1,1,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Pregnant Lizan
                self.rndArray.push(2)
-            tempArray = (0,0,"x",0,0,0,"x",0,0,0,0,"x","x",0,"x",0,0,0,"x","x",0,0,0,"x")
-            if (tempArray[self.hour] == "x"): # Trinket
+            tempArray = (0,0,1,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,1,1,0,0,0,1)
+            if (tempArray[self.hour]): # Trinket
                self.rndArray.push(3)
-            tempArray = ("x",0,0,0,0,"x",0,0,0,0,"x",0,0,0,0,0,0,0,0,0,"x",0,"x",0)
-            if (tempArray[self.hour] == "x"): # Cock Carve
+            tempArray = (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0)
+            if (tempArray[self.hour]): # Cock Carve
                self.rndArray.push(4)
-            tempArray = (0,"x",0,"x",0,"x",0,0,0,"x",0,0,0,"x",0,"x",0,"x",0,0,0,"x",0,0)
-            if (tempArray[self.hour] == "x"): # Urchin
+            tempArray = (0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0)
+            if (tempArray[self.hour]): # Urchin
                self.rndArray.push(5)
-            tempArray = (0,"x",0,"x","x",0,0,"x",0,"x","x",0,0,"x",0,0,"x","x",0,"x",0,0,"x",0)
-            if (tempArray[self.hour] == "x"): # Relax
+            tempArray = (0,1,0,1,1,0,0,1,0,1,1,0,0,1,0,0,1,1,0,1,0,0,1,0)
+            if (tempArray[self.hour]): # Relax
                self.rndArray.push(6)
          case "Lake":
-            tempArray = ("x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Wet Cloth
+            tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Wet Cloth
                self.rndArray.push(1)
-            tempArray = (0,0,0,0,"x","x","x","x","x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and not self.knowPheromone): # Fisherman
+            tempArray = (0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour] and not self.knowPheromone): # Fisherman
                self.rndArray.push(2)
-            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Song
+            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Song
                self.rndArray.push(3)
          case "Dairy Farm":
-            tempArray = (0,0,0,0,"x","x","x",0,0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Free Pill
+            tempArray = (0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Free Pill
                self.rndArray.push(1)
-            tempArray = ("x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x")
-            if (tempArray[self.hour] == "x" and self.udders and self.udderLactation > 0 and self.udderEngorgementLevel > 0): # Experimental Milk Machine
+            tempArray = (1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
+            if (tempArray[self.hour] and self.udders and self.udderLactation > 0 and self.udderEngorgementLevel > 0): # Experimental Milk Machine
                self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0,"x","x","x")
-            if (tempArray[self.hour] == "x"): # Buy Pill
+            tempArray = (0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1)
+            if (tempArray[self.hour]): # Buy Pill
                self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,"x","x","x","x","x","x",0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Malon
+            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
+            if (tempArray[self.hour]): # Malon
                self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and self.malonRep > 0): # Malon+
+            tempArray = (0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0)
+            if (tempArray[self.hour] and self.malonRep > 0): # Malon+
                self.rndArray.push(4)
-            tempArray = ("x","x","x","x",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"x","x","x",0,0,0)
-            if (tempArray[self.hour] == "x"): # Steal Milk
+            tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0)
+            if (tempArray[self.hour]): # Steal Milk
                self.rndArray.push(5)
          case "Old Cave":
-            tempArray = (0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x")
-            if (tempArray[self.hour] == "x"): # Red Mush
+            tempArray = (0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1)
+            if (tempArray[self.hour]): # Red Mush
                self.rndArray.push(1)
-            tempArray = ("x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0,"x","x",0,0)
-            if (tempArray[self.hour] == "x"): # Cake or Cup
+            tempArray = (1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0)
+            if (tempArray[self.hour]): # Cake or Cup
                self.rndArray.push(2)
-            tempArray = ("x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0,"x",0,0)
-            if (tempArray[self.hour] == "x"): # Wander
+            tempArray = (1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0)
+            if (tempArray[self.hour]): # Wander
                self.rndArray.push(3)
          case "Den":
-            tempArray = (0,0,0,0,0,"x","x","x","x",0,0,0,0,0,0,"x","x","x",0,0,0,0,0,0)
-            if (tempArray[self.hour] == "x" and not self.silTied and self.checkItem(229) == False and self.checkStash(229) == False): # Strap
+            tempArray = (0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0)
+            if (tempArray[self.hour] and not self.silTied and self.checkItem(229) == False and self.checkStash(229) == False): # Strap
                self.rndArray.push(1)
-            tempArray = ("x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x")
-            if (tempArray[self.hour] == "x"): # Sil
+            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+            if (tempArray[self.hour]): # Sil
                self.rndArray.push(2)
          case "Valley":
-            tempArray = (0,"x","x",0,0,"x","x",0,0,"x","x",0,0,0,0,0,0,"x","x",0,0,"x","x",0)
-            if (tempArray[self.hour] == "x"): # Fertility Statue
+            tempArray = (0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,1,0)
+            if (tempArray[self.hour]): # Fertility Statue
                self.rndArray.push(1)
-            tempArray = ("x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0,"x",0,"x",0,0,0,0,0)
-            if (tempArray[self.hour] == "x"): # Fragrant Flower
+            tempArray = (1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0)
+            if (tempArray[self.hour]): # Fragrant Flower
                self.rndArray.push(2)
-            tempArray = (0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x",0,"x")
-            if (tempArray[self.hour] == "x"): # Plump Quats
+            tempArray = (0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1)
+            if (tempArray[self.hour]): # Plump Quats
                self.rndArray.push(3)
-            tempArray = ("x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0,"x",0,0,0)
-            if (tempArray[self.hour] == "x"): # Treant Seed
+            tempArray = (1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0)
+            if (tempArray[self.hour]): # Treant Seed
                self.rndArray.push(4)
-            tempArray = (0,0,0,"x","x",0,"x","x",0,0,0,"x","x","x","x","x",0,0,0,"x","x",0,"x","x")
-            if (tempArray[self.hour] == "x"): # Slumber
+            tempArray = (0,0,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,1,1)
+            if (tempArray[self.hour]): # Slumber
                self.rndArray.push(5)
       as3.trace(self.rndArray)
       return self.chooseFrom()
