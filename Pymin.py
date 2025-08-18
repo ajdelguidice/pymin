@@ -26310,38 +26310,40 @@ class NiminFetishFantasyv0975o_fla:
             self.customhtmlparser = False
             as3.trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
          self.wikiwindow.configureChild("text",background=self.theme,foreground=self.fontColor)
-         self.wikimenuroot = ("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close")
-         self.basmenu = ("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back")
-         self.basbarmenu = ("File->Options","File->Quit","View->Full Screen","View->Reset Size","Help->Wiki","Help->About Game","Debug Window","Back")
-         self.itemmenu = ["All Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"]
+         self.wikimenus = {
+            "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
+            "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
+            "Basics.MenuBar":("File->Options","File->Quit","View->Full Screen","View->Reset Size","Help->Wiki","Help->About Game","Debug Window","Back"),
+            "Items":["All Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"],
+            "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
+            "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
+            "Items.Equipable":("Weapons","Other Equipables","Back"),
+            "Items.Equipable.Weapons":("Dagger","Hammer","Saber","Whip","Tail Spike","Back"),
+            "Items.Equipable.Other":("Snuggle Ball","Supp Harness","Back"),
+            "Items.Passive":("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back"),
+            "Items.Consumables":("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back"),
+            "Items.Consumables.Affinity":("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back"),
+            "Items.Consumables.Alchemy":("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back"),
+            "Items.Consumables.Dyes":("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back"),
+            "Items.Consumables.TScrolls":("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back"),
+            "Items.Consumables.Eggs":("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
+            "Items.Consumables.Other":("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back"),
+            "Items.Silandrias":("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back"),
+            "Items.Special":("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back"),
+            "Items.Other":("Test","Back"),
+            "Clothes":("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back"),
+            "Enemies":("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back"),
+            "Races":("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back"),
+            "Locations":("Towns","Other Locations","Back"),
+            "Locations.Towns":("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back"),
+            "Locations.Other":("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back"),
+            "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
+            "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
+         }
          if confmod.as3DebugEnable == True:
-            self.itemmenu.insert(1,"Debug Items")
-         self.debugitemmenu = ("Debug Stick","Item Not Found","Teapot","Back")
-         self.allitemmenu = ("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back")
-         self.equipitemmenu = ("Weapons","Other Equipables","Back")
-         self.weaponequipitemmenu = ("Dagger","Hammer","Saber","Whip","Tail Spike","Back")
-         self.otherequipitemmenu = ("Snuggle Ball","Supp Harness","Back")
-         self.passiveitemmenu = ("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back")
-         self.consitemmenu = ("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back")
-         self.affconsitemmenu = ("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back")
-         self.alchconsitemmenu = ("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back")
-         self.dyeconsitemmenu = ("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back")
-         self.tsconsitemmenu = ("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back")
-         self.eggconsitemmenu = ("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back")
-         self.otherconsitemmenu = ("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back")
-         self.silitemmenu = ("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back")
-         self.specialitemmenu = ("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back")
-         self.otheritemmenu = ("Test","Back")
-         self.clothesmenu = ("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back")
-         self.enemymenu = ("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back")
-         self.racemenu = ("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back")
-         self.locmenu = ("Towns","Other Locations","Back")
-         self.townlocmenu = ("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back")
-         self.otherlocmenu = ("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back")
-         self.shopmenu = ("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back")
-         self.spnpcmenu = ("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
-         self.clearAddMenuOptions(self.wikimenuroot)
-         self.menunum = 0
+            self.wikimenus["Items"].insert(1,"Debug Items")
+         
+         self.doWikiMenu("")
          self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
          self.wikiwindow.bindChild("root","<Destroy>",self._wikidestroy)
 
@@ -26393,7 +26395,7 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.children["menu"].activate(temp + 1)
          self.wikiwindow.children["menu"].see(temp + 1)
    def wikiMenuBack(self, *e):
-      if self.menunum != 0:
+      if self.currentMenu != "":
          self.selectMenuOption(sel="Back")
    def wikiSwitchSelection(self, *e):
       if self.wikifocus == 0:
@@ -26413,54 +26415,39 @@ class NiminFetishFantasyv0975o_fla:
    def clearAddWikiText(self, text):
       self.textwiki = text
       self.doWikiText()
-   def clearAddMenuOptions(self, items:list|tuple):
+   def doWikiMenu(self, menuName=str):
+      self.currentMenu = menuName
       self.wikiwindow.slb_Delete("menu",0,"end")
-      self.wikiwindow.children["menu"].insert("end",*items)
+      self.wikiwindow.children["menu"].insert("end",*self.wikimenus[menuName])
       self.wikiwindow.children["menu"].select_set(0)
       self.wikiwindow.children["menu"].activate(0)
    def selectMenuOption(self, e=None, sel=None):
       if sel == None:
          sel = self.wikiwindow.children["menu"].get(self.wikiwindow.children["menu"].curselection())
-      match self.menunum:
-         case -1:
-            if sel == "Debug Stick":
-               self.doWikiPage("Item",2)
-            elif sel == "Item Not Found":
-               self.doWikiPage("Item",404)
-            elif sel == "Teapot":
-               self.doWikiPage("Item",418)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 0:
-            if sel == "Basics": #menunum 1
-               self.clearAddMenuOptions(self.basmenu)
-               self.menunum = 1
-            elif sel == "Items": #menunum 2
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-            elif sel == "Clothes": #menunum 17
-               self.clearAddMenuOptions(self.clothesmenu)
-               self.menunum = 17
-            elif sel == "Enemies": #menunum 18
-               self.clearAddMenuOptions(self.enemymenu)
-               self.menunum = 18
-            elif sel == "Races": #menunum 19
-               self.clearAddMenuOptions(self.racemenu)
-               self.menunum = 19
-            elif sel == "Locations": #menunum 20
-               self.clearAddMenuOptions(self.locmenu)
-               self.menunum = 20
-            elif sel == "Shops": #menunum 24
-               self.clearAddMenuOptions(self.shopmenu)
-               self.menunum = 24
-            elif sel == "Named Characters": #menunum 25
-               self.clearAddMenuOptions(self.spnpcmenu)
-               self.menunum = 25
+      if sel == "Back":
+         self.doWikiMenu(".".join(self.currentMenu.split(".")[:-1]))
+         pass
+      match self.currentMenu:
+         case "":
+            if sel == "Basics":
+               self.doWikiMenu("Basics")
+            elif sel == "Items":
+               self.doWikiMenu("Items")
+            elif sel == "Clothes":
+               self.doWikiMenu("Clothes")
+            elif sel == "Enemies":
+               self.doWikiMenu("Enemies")
+            elif sel == "Races":
+               self.doWikiMenu("Races")
+            elif sel == "Locations":
+               self.doWikiMenu("Locations")
+            elif sel == "Shops":
+               self.doWikiMenu("Shops")
+            elif sel == "Named Characters":
+               self.doWikiMenu("NPCs")
             elif sel == "Close":
-               self.menunum = 0
                self._wikidestroy()
-         case 1: #Basics menu
+         case "Basics":
             if sel == "Welcome Screen":
                self.doWikiPage("Basic",0)
             elif sel == "Wiki Key":
@@ -26476,40 +26463,40 @@ class NiminFetishFantasyv0975o_fla:
             elif sel == "Changes":
                self.doWikiPage("Basic",6)
             elif sel == "Menu Bar":
-               self.clearAddMenuOptions(self.basbarmenu)
-               self.menunum = 27
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 2: #Item menu
+               self.doWikiMenu("Basics.MenuBar")
+         case "Basics.MenuBar":
+            if sel == "File->Options":
+               self.doWikiPage("MenuBar",1)
+            elif sel == "File->Quit":
+               self.doWikiPage("MenuBar",2)
+            elif sel == "View->Full Screen":
+               self.doWikiPage("MenuBar",3)
+            elif sel == "View->Reset Size":
+               self.doWikiPage("MenuBar",4)
+            elif sel == "Help->Wiki":
+               self.doWikiPage("MenuBar",5)
+            elif sel == "Help->About Game":
+               self.doWikiPage("MenuBar",6)
+            elif sel == "Debug Window":
+               self.doWikiPage("MenuBar",7)
+         case "Items":
             if sel == "All Items": #menunum 3
-               self.clearAddMenuOptions(self.allitemmenu)
-               self.menunum = 3
+               self.doWikiMenu("Items.All")
             elif sel == "Debug Items":
-               self.clearAddMenuOptions(self.debugitemmenu)
-               self.menunum = -1
+               self.doWikiMenu("Items.Debug")
             elif sel == "Equipable Items": #menunum 4
-               self.clearAddMenuOptions(self.equipitemmenu)
-               self.menunum = 4
+               self.doWikiMenu("Items.Equipable")
             elif sel == "Passive Items":
-               self.clearAddMenuOptions(self.passiveitemmenu)
-               self.menunum = 26
+               self.doWikiMenu("Items.Passive")
             elif sel == "Consumables": #menunum 7
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
+               self.doWikiMenu("Items.Consumables")
             elif sel == "Silandrias' Magic Items": #menunum 14
-               self.clearAddMenuOptions(self.silitemmenu)
-               self.menunum = 14
+               self.doWikiMenu("Items.Silandrias")
             elif sel == "Special Items": #menunum 15
-               self.clearAddMenuOptions(self.specialitemmenu)
-               self.menunum = 15
+               self.doWikiMenu("Items.Special")
             elif sel == "Other Items": #menunum 16
-               self.clearAddMenuOptions(self.otheritemmenu)
-               self.menunum = 16
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 3: #All items menu
+               self.doWikiMenu("Items.Other")
+         case "Items.All":
             if sel == "Test":
                self.doWikiPage("Item",1)
             elif sel == "Anc Claws":
@@ -26770,20 +26757,19 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",539)
             elif sel == "Worker Egg":
                self.doWikiPage("Item",540)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 4: #Equipables menu
-            if sel == "Weapons": #menunum 5
-               self.clearAddMenuOptions(self.weaponequipitemmenu)
-               self.menunum = 5
-            elif sel == "Other Equipables": #menunum 6
-               self.clearAddMenuOptions(self.otherequipitemmenu)
-               self.menunum = 6
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 5: #Weapon equipables menu
+         case "Items.Debug":
+            if sel == "Debug Stick":
+               self.doWikiPage("Item",2)
+            elif sel == "Item Not Found":
+               self.doWikiPage("Item",404)
+            elif sel == "Teapot":
+               self.doWikiPage("Item",418)
+         case "Items.Equipable":
+            if sel == "Weapons":
+               self.doWikiMenu("Items.Equipable.Weapons")
+            elif sel == "Other Equipables":
+               self.doWikiMenu("Items.Equipable.Other")
+         case "Items.Equipable.Weapons":
             if sel == "Dagger":
                self.doWikiPage("Item",116)
             elif sel == "Hammer":
@@ -26794,40 +26780,38 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",119)
             elif sel == "Tail Spike":
                self.doWikiPage("Item",127)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.equipitemmenu)
-               self.menunum = 4
-         case 6: #Other equipables menu
+         case "Items.Equipable.Other":
             if sel == "Snuggle Ball":
                self.doWikiPage("Item",244)
             elif sel == "Supp Harness":
                self.doWikiPage("Item",247)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.equipitemmenu)
-               self.menunum = 4
-         case 7: #Consumables menu
-            if sel == "Affinity Items": #menunum 8
-               self.clearAddMenuOptions(self.affconsitemmenu)
-               self.menunum = 8
-            elif sel == "Alchemy Items": #menunum 9
-               self.clearAddMenuOptions(self.alchconsitemmenu)
-               self.menunum = 9
-            elif sel == "Dyes": #menunum 10
-               self.clearAddMenuOptions(self.dyeconsitemmenu)
-               self.menunum = 10
-            elif sel == "Teleport Scrolls": #menunum 11
-               self.clearAddMenuOptions(self.tsconsitemmenu)
-               self.menunum = 11
-            elif sel == "Eggs": #menunum 12
-               self.clearAddMenuOptions(self.eggconsitemmenu)
-               self.menunum = 12
-            elif sel == "Other Consumables": #menunum 13
-               self.clearAddMenuOptions(self.otherconsitemmenu)
-               self.menunum = 13
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 8: #Affinity Consumables menu
+         case "Items.Passive":
+            if sel == "Anc Claws":
+               self.doWikiPage("Item",101)
+            elif sel == "Imb Shoes":
+               self.doWikiPage("Item",102)
+            elif sel == "Lila's Gift":
+               self.doWikiPage("Item",200)
+            elif sel == "Lon Pendant":
+               self.doWikiPage("Item",215)
+            elif sel == "Dewy Gift":
+               self.doWikiPage("Item",237)
+            elif sel == "Milky Pend":
+               self.doWikiPage("Item",252)
+         case "Items.Consumables":
+            if sel == "Affinity Items":
+               self.doWikiMenu("Items.Consumables.Affinity")
+            elif sel == "Alchemy Items":
+               self.doWikiMenu("Items.Consumables.Alchemy")
+            elif sel == "Dyes":
+               self.doWikiMenu("Items.Consumables.Dyes")
+            elif sel == "Teleport Scrolls":
+               self.doWikiMenu("Items.Consumables.TScrolls")
+            elif sel == "Eggs":
+               self.doWikiMenu("Items.Consumables.Eggs")
+            elif sel == "Other Consumables":
+               self.doWikiMenu("Items.Consumables.Other")
+         case "Items.Consumables.Affinity":
             if sel == "Skin Balm":
                self.doWikiPage("Item",111)
             elif sel == "Bol Juice":
@@ -26858,10 +26842,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",257)
             elif sel == "Tainted Pot":
                self.doWikiPage("Item",258)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
-         case 9: #Alchemy Consumables menu
+         case "Items.Consumables.Alchemy":
             if sel == "Blondie":
                self.doWikiPage("Item",220)
             elif sel == "Puss Juice":
@@ -26908,10 +26889,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",535)
             elif sel == "Bazoomba!":
                self.doWikiPage("Item",536)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
-         case 10: #Dyes Consumables menu
+         case "Items.Consumables.Dyes":
             if sel == "Pink Ink":
                self.doWikiPage("Item",216)
             elif sel == "Auburn Dye":
@@ -26926,10 +26904,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",515)
             elif sel == "Red Dye":
                self.doWikiPage("Item",520)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
-         case 11: #Teleport Scrolls Consumables menu
+         case "Items.Consumables.TScrolls":
             if sel == "TS Soft":
                self.doWikiPage("Item",121)
             elif sel == "TS Firm":
@@ -26942,10 +26917,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",125)
             elif sel == "TS Sanct":
                self.doWikiPage("Item",128)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
-         case 12: #Eggs Consumables menu
+         case "Items.Consumables.Eggs":
             if sel == "Fresh Egg":
                self.doWikiPage("Item",219)
             elif sel == "Bug Egg":
@@ -26968,10 +26940,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",539)
             elif sel == "Worker Egg":
                self.doWikiPage("Item",540)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
-         case 13: #Other Consumables menu
+         case "Items.Consumables.Other":
             if sel == "Dry Sand":
                self.doWikiPage("Item",103)
             elif sel == "Cat's Meow":
@@ -27056,10 +27025,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",525)
             elif sel == "Cum Barrel":
                self.doWikiPage("Item",526)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.consitemmenu)
-               self.menunum = 7
-         case 14: #Silandrias' Items menu
+         case "Items.Silandrias":
             if sel == "Leath Strap":
                self.doWikiPage("Item",229)
             elif sel == "Flying Carp":
@@ -27072,10 +27038,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",235)
             elif sel == "Recept Bell":
                self.doWikiPage("Item",236)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 15: #Special Items menu
+         case "Items.Special":
             if sel == "Milker":
                self.doWikiPage("Item",104)
             elif sel == "Penis Pump":
@@ -27088,16 +27051,10 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Item",206)
             elif sel == "Lantern":
                self.doWikiPage("Item",254)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 16: #Other Items menu
+         case "Items.Other":
             if sel == "Test":
                self.doWikiPage("Item",1)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 17: #Clothes menu
+         case "Clothes":
             if sel == "Tattered Shreds":
                self.doWikiPage("Clothes",-1)
             elif sel == "Invisible Underwear":
@@ -27162,10 +27119,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Clothes",29)
             elif sel == "Bouncy Bra":
                self.doWikiPage("Clothes",30)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 18: #Enemies menu
+         case "Enemies":
             if sel == "Test Enemy":
                self.doWikiPage("Enemy",1)
             elif sel == "Cock-snake":
@@ -27194,10 +27148,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Enemy",308)
             elif sel == "Succubus":
                self.doWikiPage("Enemy",309)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 19: #Race menu
+         case "Races":
             if sel == "Human":
                self.doWikiPage("Race",1)
             elif sel == "Equan":
@@ -27222,20 +27173,12 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Race",11)
             elif sel == "Bug":
                self.doWikiPage("Race",12)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 20: #Locations menu
-            if sel == "Towns": #menunum 21
-               self.clearAddMenuOptions(self.townlocmenu)
-               self.menunum = 21
-            elif sel == "Other Locations": #menunum 22
-               self.clearAddMenuOptions(self.otherlocmenu)
-               self.menunum = 22
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 21: #Town Location menu
+         case "Locations":
+            if sel == "Towns":
+               self.doWikiMenu("Locations.Towns")
+            elif sel == "Other Locations":
+               self.doWikiMenu("Locations.Other")
+         case "Locations.Towns":
             if sel == "Softlik":
                self.doWikiPage("Town",1)
             elif sel == "Firmshaft":
@@ -27248,10 +27191,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Town",6)
             elif sel == "Sanctuary":
                self.doWikiPage("Town",12)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.locmenu)
-               self.menunum = 20
-         case 22: #Other Location menu
+         case "Locations.Other":
             if sel == "Forest":
                self.doWikiPage("Location",1)
             elif sel == "Jungle":
@@ -27278,11 +27218,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Location",12)
             elif sel == "Knothole":
                self.doWikiPage("Location",13)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.locmenu)
-               self.menunum = 20
-         case 23:...
-         case 24: #Shops menu
+         case "Shops":
             if sel == "General Shop":
                self.doWikiPage("Shop",1)
             elif sel == "Dye Shop":
@@ -27293,10 +27229,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("Shop",4)
             elif sel == "Tailor":
                self.doWikiPage("Shop",5)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 25: #Encounters menu
+         case "NPCs":
             if sel == "Fidoris":
                self.doWikiPage("NPC",1)
             elif sel == "Jamie":
@@ -27307,43 +27240,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doWikiPage("NPC",4)
             elif sel == "Silandrias":
                self.doWikiPage("NPC",5)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.wikimenuroot)
-               self.menunum = 0
-         case 26: #Passive items menu
-            if sel == "Anc Claws":
-               self.doWikiPage("Item",101)
-            elif sel == "Imb Shoes":
-               self.doWikiPage("Item",102)
-            elif sel == "Lila's Gift":
-               self.doWikiPage("Item",200)
-            elif sel == "Lon Pendant":
-               self.doWikiPage("Item",215)
-            elif sel == "Dewy Gift":
-               self.doWikiPage("Item",237)
-            elif sel == "Milky Pend":
-               self.doWikiPage("Item",252)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.itemmenu)
-               self.menunum = 2
-         case 27: #Menubar menu
-            if sel == "File->Options":
-               self.doWikiPage("MenuBar",1)
-            elif sel == "File->Quit":
-               self.doWikiPage("MenuBar",2)
-            elif sel == "View->Full Screen":
-               self.doWikiPage("MenuBar",3)
-            elif sel == "View->Reset Size":
-               self.doWikiPage("MenuBar",4)
-            elif sel == "Help->Wiki":
-               self.doWikiPage("MenuBar",5)
-            elif sel == "Help->About Game":
-               self.doWikiPage("MenuBar",6)
-            elif sel == "Debug Window":
-               self.doWikiPage("MenuBar",7)
-            elif sel == "Back":
-               self.clearAddMenuOptions(self.basmenu)
-               self.menunum = 1
    def doWikiPage(self, topic:str, Num, returning=False):
       if not isinstance(Num,int):
          try:
