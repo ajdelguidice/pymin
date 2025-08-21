@@ -3781,8 +3781,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.pregnancyTime + self.vagBellyMod > 300 and self.vagTotal > 0):
          tempStr += "\nA Fertility Goddess"
       if self.grammarFixes and tempStr == "Around town, you are thought of as being:\n":
-         tempStr.close()
-         tempStr = textObject()
+         tempStr.clear()
       else:
          tempStr += "\n\n"
       tempStr += f"Within {self.regionName(self.currentZone)} specifically, you are considered to be:\n"
