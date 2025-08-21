@@ -22,7 +22,7 @@ try:
 except:
    import tomli as tomllib
 import tomli_w
-from io import StringIO as _StringIO
+from io import StringIO
 
 __version__ = "1.0.11"
 
@@ -77,12 +77,6 @@ class ButtonList(list):
       if len(args) == 12:
          for i in range(12):
             self[i+1] = args[i]
-class StringIO(_StringIO):
-   def __iadd__(self,string:str):
-      self.write(string)
-      return self
-   def __eq__(self,string:str):
-      return self.getvalue() == string
 
 def applyBackspace(string):
    #From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
@@ -130,12 +124,15 @@ def CreateToolTip(widget, text):
 #====================================================================================
 class textObject:
    def __init__(self):
-      self.text = _StringIO()
+      self.text = StringIO()
+   def __iadd__(self,string:str):
+      self.text.write(string)
+      return self
    def __eq__(self,value):
       return self.text.getvalue() == value
    def clear(self):
       self.text.close()
-      self.text = _StringIO()
+      self.text = StringIO()
    def get(self):
       return self.text.getvalue()
    def add(self,value):
@@ -2557,7 +2554,7 @@ class NiminFetishFantasyv0975o_fla:
          return tempStr
    def doWeight(self):
       tempBool = False
-      tempStr = StringIO()
+      tempStr = textObject()
       tempNum = (self.body * 2 + self.str_ + self.carryMod) * (self.tallness / 60)
       if (self.cockTotal > 0):
          if (self.cockSize * self.cockSizeMod > tempNum):
@@ -2612,7 +2609,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nThe weight of your {self.bellyDesc()} belly is becoming irksome. You take a bit more time to come to a halt whenever you move as it retains much of your momentum. And whenever you bend over, it's difficult to rise back up."
       elif (ptMbmM2 > tempNum * 1 / 2):
          tempStr += f"\n\nYou are rather aware of the weight of your {self.bellyDesc()} belly. You often subconsciously center your weight more by resting your hands on top of it rather than let them hang at your sides."
-      self.doMainText(tempStr.getvalue())
+      self.doMainText(tempStr.get())
       tempStr.close()
       return tempBool
    def checkItem(self, ID:int):
@@ -3399,7 +3396,7 @@ class NiminFetishFantasyv0975o_fla:
       Function that generates player appearance text
       """
       #!optimize
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
       if (self.hair > 0):
          tempStr += f" With {self.hairC()}{self.hairDesc()}"
@@ -3636,9 +3633,9 @@ class NiminFetishFantasyv0975o_fla:
          if (self.heat > 0 and self.heatTime < 0):
             tempStr += " Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something..."
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",7,"Help",11,"Credits",12,"Return"))
          def doListen():
@@ -3664,7 +3661,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Stats button on the side bar
       """
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += "These are the modifiers and multipliers for more detailed stats beyond your base stats:\n"
       tempStr += f"\n{'Strength Modifier:':<36}{self.strMod}"
       tempStr += f"\n{'Mentality Modifier:':<36}{self.mentMod}"
@@ -3700,9 +3697,9 @@ class NiminFetishFantasyv0975o_fla:
       tempStr += f"\n{'Enticement Modifier:':<32}+{self.enticeMod}"
       tempStr += f"\n{'Run Chance:':<32}{20 + self.runMod}%"
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((2,"Titles",3,"Statuses",5,"Levels",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -3729,7 +3726,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Titles button on the side bar
       """
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += "Around town, you are thought of as being:\n"
       if (self.enticeMod >= 10 and self.ment + 40 < self.lib and self.lib > 75):
          tempStr += "\nA Sex Monster"
@@ -3783,9 +3780,9 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
       elif (self.pregnancyTime + self.vagBellyMod > 300 and self.vagTotal > 0):
          tempStr += "\nA Fertility Goddess"
-      if self.grammarFixes and tempStr.getvalue() == "Around town, you are thought of as being:\n":
+      if self.grammarFixes and tempStr.get() == "Around town, you are thought of as being:\n":
          tempStr.close()
-         tempStr = StringIO()
+         tempStr = textObject()
       else:
          tempStr += "\n\n"
       tempStr += f"Within {self.regionName(self.currentZone)} specifically, you are considered to be:\n"
@@ -3828,9 +3825,9 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.silRep == 6 and self.silPreg > 5000):
             tempStr += "\nThe Progenitor of an Extinct Race"
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",3,"Statuses",5,"Levels",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -3856,7 +3853,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Effects button in the side bar
       """
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += "The following status effects are currently active on you that you are aware of: (Name - Hours Left)\n"
       if (self.masoPot > 0):
          tempStr += f"\nMasochism Potion\t\t{self.masoPot}"
@@ -3911,9 +3908,9 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lockCock > 0):
          tempStr += "\nRacial-locked Cocks"
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",5,"Levels",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -3939,7 +3936,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Levels button in the side bar
       """
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += "You have the following perks and their respective ranks:\n"
       if (self.babyFactLevel > 0):
          tempStr += f"\nBaby Factory\t\t{self.babyFactLevel}"
@@ -3955,9 +3952,9 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\nShapeshifty\t\t{self.shapeshiftyLevel}"
       tempStr += f"\n\nFor a total of {self.level} levels."
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",6,"Gear",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -3983,7 +3980,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Gear button in the side bar
       """
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += "You have the following items in your Bag:\n"
       for i in range(27):
          if (self.bagArray[i] != 0):
@@ -3991,9 +3988,9 @@ class NiminFetishFantasyv0975o_fla:
             if (self.bagStackArray[i] > 1):
                tempStr += f" x{self.bagStackArray[i]}"
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",7,"Help",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -4022,7 +4019,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.helpToWiki:
          self.openWiki()
          return
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += "<b><u>Stats</u></b>\n"
       tempStr += "\n-Strength - Adds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation."
       tempStr += "\n-Mentality - Fights hostile lust gain, improves helpful lust loss."
@@ -4064,9 +4061,9 @@ class NiminFetishFantasyv0975o_fla:
       tempStr += "\n\tg   | .    - Sort button (new save/load dialog)"
       tempStr += "\n\tb   | 0    - Discard button (bag/stash) and Converter button (save/load)"
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",9,"Appearance",11,"Credits",12,"Return"))
          def doListen():
@@ -4092,16 +4089,16 @@ class NiminFetishFantasyv0975o_fla:
       """
       Credits button in the sidebar
       """
-      tempStr = StringIO()
+      tempStr = textObject()
       tempStr += f"Nimin Python Port (Pymin) version {__version__}\nMaintained by:\tajdelguidice\n\thttps://github.com/ajdelguidice/pymin.\nPlease direct any bug reports here as this port has nothing to do with the original creators."
       tempStr += f"\n\nNimin v{self.versionNumber}\nCreated by:\t--Xadera\n\twww.furaffinity.net/user/xadera/\n\nOriginal concept by:\t--Fenoxo\n\tfenoxo.com"
       tempStr += "\n\nSpecial thanks to SumigakiFox (owner of Silandrias) and Arlyurl (made the Nimin image) on FA."
       tempStr += "\n\nProstitution scene editors (thanks for the work!): Torakazu, Bahamad, and omegaokami on FA."
       tempStr += "\n\nProstitution scene writers:\n\t--Buncubus, BantinNysam, TheAbyssalWatcher, mike12345, V, grottokraft, Ludoergosum, perrothetraveler, reikonova, shockblock99, Kidou, bunnybunbun, supernaut, shaesullivan, m3chawolf, Kizzneth, barkbarkboom, Torakazu"
       if (self.showSide):
-         self.outputSideText(tempStr.getvalue(),True)
+         self.outputSideText(tempStr.get(),True)
       else:
-         self.outputMainText(tempStr.getvalue(),True)
+         self.outputMainText(tempStr.get(),True)
          self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
          self.doButtonChoices((1,"More Stats",2,"Titles",3,"Statuses",5,"Levels",6,"Gear",7,"Help",9,"Appearance",12,"Return"))
          def doListen():
