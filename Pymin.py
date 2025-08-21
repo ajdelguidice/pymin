@@ -2852,7 +2852,6 @@ class NiminFetishFantasyv0975o_fla:
       if (self.HP + changes <= 0):
          self.HP = 1
          changes = 0
-         self.doMainText(tempStr)
          self.doPassOut()
       if self.HP + changes > 30 + self.str_ // 2 + self.HPMod:
          self.HP = 30 + self.str_ // 2 + self.HPMod
@@ -4180,13 +4179,13 @@ class NiminFetishFantasyv0975o_fla:
                self.slot = self.buttonChoice
                if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
                   dh = self.getdh(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
-                  tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
+                  self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                  tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
+                  self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                else:
-                  tempStr = "The chosen slot is empty"
-               self.outputMainText(tempStr + f"\n\nAre you sure you want to save your game to slot {self.buttonChoice}?\n\nAny data already saved there will be completely overwritten.",True)
+                  self.doMainText("The chosen slot is empty",True)
+               self.outputMainText(f"\n\nAre you sure you want to save your game to slot {self.buttonChoice}?\n\nAny data already saved there will be completely overwritten.")
                self.buttonConfirm()
                def doListen():
                   if (self.buttonChoice == 6):
@@ -4286,15 +4285,15 @@ class NiminFetishFantasyv0975o_fla:
                if self.solonlymode:
                   if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                      dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                     tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
+                     self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                else:
                   if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
                      dh = self.getdh(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
-                     tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
+                     self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                   elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                      dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                     tempStr = f"Day: {dh[0]}, Hour: {dh[1]}:00"
-               self.outputMainText(tempStr + f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.",True)
+                     self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
+               self.outputMainText(f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.")
                self.buttonConfirm()
                def doListen():
                   if (self.buttonChoice == 6):
@@ -7591,7 +7590,7 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {self.dmg} damage!",True)
                self.doeHP(-self.dmg)
                if (self.percent() <= 25):
-                  self.outputMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ",False)
+                  self.outputMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
                   self.rndArray = as3.Array("Desi Sand")
                   if (self.cockSizeMod > 0.5 and self.cockTotal > 0):
                      self.rndArray.push(1)
@@ -7606,24 +7605,24 @@ class NiminFetishFantasyv0975o_fla:
                   self.rndArray.push(6)
                   self.chooseFrom()
                   if self.rndResult == 1:
-                     self.outputMainText(f"The stuff rushes across your {self.cockDesc()} cock{self.plural(1)}, seeping in deep and causing some permanent shrinkage.",False)
+                     self.outputMainText(f"The stuff rushes across your {self.cockDesc()} cock{self.plural(1)}, seeping in deep and causing some permanent shrinkage.")
                      self.cockSizeMod -= 0.05
                   elif self.rndResult == 2:
-                     self.outputMainText(f"The stuff rushes between your legs and you can feel some slip up into your passage{self.plural(2)}, seeping in deep and resulting in some permanent shriveling.",False)
+                     self.outputMainText(f"The stuff rushes between your legs and you can feel some slip up into your passage{self.plural(2)}, seeping in deep and resulting in some permanent shriveling.")
                      self.vagSizeMod -= 0.05
                   elif self.rndResult == 3:
-                     self.outputMainText(f"The stuff rushes across your {self.ballDesc()} balls, sinking through the scrotum and causing them to lose some of their efficiency.",False)
+                     self.outputMainText(f"The stuff rushes across your {self.ballDesc()} balls, sinking through the scrotum and causing them to lose some of their efficiency.")
                      self.cumMod -= 0.1
                   elif self.rndResult == 4:
-                     self.outputMainText(f"The stuff rushes across your {self.boobDesc()} breasts, sinking into your mammary glands and reducing their power.",False)
+                     self.outputMainText(f"The stuff rushes across your {self.boobDesc()} breasts, sinking into your mammary glands and reducing their power.")
                      self.milkMod -= 5
                   elif self.rndResult == 5:
-                     self.outputMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.",False)
+                     self.outputMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.")
                      self.pregRate -= 0.05
                      self.pregChanceMod -= 1
                      self.extraPregChance -= 1
                   else:
-                     self.outputMainText("Thankfully, it barely touches you and you're left unaffected.",False)
+                     self.outputMainText("Thankfully, it barely touches you and you're left unaffected.")
                if (self.currentState == 2):
                   self.doEnd()
          case 232:
@@ -8745,11 +8744,10 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.moveItemID != 0):
                      self.hideAmount()
                      self.PageHide()
-                     tempStr = f"Closing your stash while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}"
+                     self.doMainText(f"Closing your stash while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}",True)
                      if (self.moveItemStack > 1):
-                        tempStr += f" x{self.moveItemStack}"
-                     tempStr += "?"
-                     self.outputMainText(tempStr,True)
+                        self.doMainText(f" x{self.moveItemStack}")
+                     self.outputMainText("?")
                      self.buttonConfirm()
                      self.buttonShiftOverride = True
                      def doListen():
@@ -9024,20 +9022,20 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.goodsID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.goodsID(self.buy))}?",False)
+            self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.goodsID(self.buy))}?")
             if (self.itemStackMax(self.goodsID(self.buy)) > 1):
                buttonlist = ButtonList(1,1,1,0,0,0,0,0,0,0,0,1)
                tempDict = {1:"Buy 1", 2:"Buy 2", 3:"Buy 5", 12:"Nevermind"}
-               tempStr = f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins"
+               self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins")
                if (self.itemStackMax(self.goodsID(self.buy)) >= 10):
                   buttonlist[9] = 1
                   tempDict[9] = "Buy 10"
-                  tempStr += f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins"
+                  self.doMainText(f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins")
                if (self.itemStackMax(self.goodsID(self.buy)) >= 15):
                   buttonlist[10] = 1
                   tempDict[10] = "Buy 15"
-                  tempStr += f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins"
-               self.outputMainText(tempStr + ".",False)
+                  self.doMainText(f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins")
+               self.outputMainText(".")
                self.showButtons(buttonlist)
                self.doButtonChoices(tempDict)
             else:
@@ -9060,12 +9058,12 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.buttonChoice == 10):
                      tempInt = 15
                   if (self.coin < 3 * tempInt * self.itemValue(self.goodsID(self.buy))):
-                     tempStr = f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase "
+                     self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase ",True)
                      if (tempInt > 1):
-                        tempStr += f"{tempInt}x {self.itemName(self.goodsID(self.buy))}."
+                        self.doMainText(f"{tempInt}x {self.itemName(self.goodsID(self.buy))}.")
                      else:
-                        tempStr += f"{self.itemName(self.goodsID(self.buy))}."
-                     self.outputMainText(tempStr,True)
+                        self.doMainText(f"{self.itemName(self.goodsID(self.buy))}.")
+                     self.displayMainText()
                      self.doNext()
                      def doListen():
                         self.doShop()
@@ -9093,7 +9091,7 @@ class NiminFetishFantasyv0975o_fla:
    def doSell(self,cantsell=False):
       self.choiceListButtons("Bag",page=self.tempBagPage)
       if cantsell == True:
-         self.outputMainText("\n\nClick on a different item you would like to sell.",False)
+         self.outputMainText("\n\nClick on a different item you would like to sell.")
       else:
          self.outputMainText("Click on an item you would like to sell.",True)
       def doListen():
@@ -9272,7 +9270,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"{self.itemDescription(self.dyeID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.dyeID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.dyeID(self.buy))}?",False)
+            self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.dyeID(self.buy))}?")
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
@@ -9345,20 +9343,20 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?",False)
+            self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?")
             if (self.apothID(self.buy) > 200 and self.itemStackMax(self.apothID(self.buy)) > 1):
                buttonlist = ButtonList(1,1,1,0,0,0,0,0,0,0,0,1)
                tempDict = {1:"Buy 1", 2:"Buy 2", 3:"Buy 5", 12:"Nevermind"}
-               tempStr = f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins"
+               self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins")
                if (self.itemStackMax(self.apothID(self.buy)) >= 10):
                   tempDict[9] = "Buy 10"
                   buttonlist[9] = 1
-                  tempStr += f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins"
+                  self.doMainText(f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins")
                if (self.itemStackMax(self.apothID(self.buy)) >= 15):
                   tempDict[10] = "Buy 15"
                   buttonlist[10] = 1
-                  tempStr += f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins"
-               self.outputMainText(tempStr + ".",False)
+                  self.doMainText(f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins")
+               self.outputMainText(".")
                self.showButtons(buttonlist)
                self.doButtonChoices(tempDict)
             else:
@@ -9381,12 +9379,12 @@ class NiminFetishFantasyv0975o_fla:
                   elif self.buttonChoice == 10:
                      tempInt = 15
                   if (self.coin < 3 * tempInt * self.apothValue(self.apothID(self.buy))):
-                     tempStr = f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase "
+                     self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ",True)
                      if (tempInt > 1):
-                        tempStr += f"{tempInt}x {self.apothName(self.apothID(self.buy))}."
+                        self.doMainText(f"{tempInt}x {self.apothName(self.apothID(self.buy))}.")
                      else:
-                        tempStr += f"{self.apothName(self.apothID(self.buy))}."
-                     self.outputMainText(tempStr,True)
+                        self.doMainText(f"{self.apothName(self.apothID(self.buy))}.")
+                     self.displayMainText()
                      self.doNext()
                      def doListen():
                         self.doApothecary()
@@ -9658,7 +9656,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"{self.hairstyleDescription(self.hairstyleID(self.buttonChoice))}\n\nCost: {self.hairstyleValue(self.hairstyleID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.hairstyleName(self.hairstyleID(self.buy))}?",False)
+            self.outputMainText(f"\n\nAre you sure you would like to buy {self.hairstyleName(self.hairstyleID(self.buy))}?")
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
@@ -9673,7 +9671,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doCoin(-self.hairstyleValue(self.hairstyleID(self.buy)))
                      if (self.hairstyleLength(self.hairstyleID(self.buy)) == True):
                         self.showButtons(ButtonList(1,1,0,0,1,1,1,0,0,0,0,0))
-                        self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.",False)
+                        self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
                         self.doButtonChoices({1:"Short", 2:"Medium", 5:"Long", 6:"X-Long", 7:"XX-Long"})
                         def doListen():
                            if (self.buttonChoice == 1):
@@ -9975,9 +9973,9 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"{self.clothesDescription(self.clothesID(self.buttonChoice))}\n\nCost: {self.clothesValue(self.clothesID(self.buttonChoice))} coins.",True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.clothesName(self.clothesID(self.buy))}?",False)
+            self.outputMainText(f"\n\nAre you sure you would like to buy {self.clothesName(self.clothesID(self.buy))}?")
             if (self.attireTop == self.attireBot):
-               self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.",False)
+               self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.")
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
@@ -12961,10 +12959,11 @@ class NiminFetishFantasyv0975o_fla:
                   elif ((self.shapeshiftyLevel + 2) // 3 > self.shapeshiftyLevel // 3):
                      self.showButtons(ButtonList(1,0,1,0,0,0,0,0,0,1,0,1))
                      tempDict = {1:"Increase", 3:"Decrease", 10:"Lay Egg", 12:"Cancel"}
-                     self.outputMainText("Would you like to increase or decrease your racial susceptibility by 10%?",True)
+                     self.doMainText("Would you like to increase or decrease your racial susceptibility by 10%?",True)
                      if (self.changeMod == 0):
-                        self.outputMainText("\n\nHowever, you're already immune to blood-type changes, so you cannot decrease it any further.",False)
+                        self.doMainText("\n\nHowever, you're already immune to blood-type changes, so you cannot decrease it any further.")
                         tempDict.pop(3)
+                     self.displayMainText()
                      self.doButtonChoices(tempDict)
                      def doListen():
                         self.choiceListSelect("Shapeshifty")
@@ -13058,7 +13057,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.choiceListResult[0] == "Super Perk":
             self.outputMainText("Super perks focuses the experience from 3 perks to apply a single major effect upon yourself. They can be taken as many times as you like, but cost 3 perks every time.\n\n\nPure Blood - Choose a currently major blood type active within your body (at least 50% maximum or your dominant type). That blood type will get a slight boost while all other blood types will be purged from your body.\n\nRegression - Your body regresses to a more childlike state.\n\nBalance - Your primary stats are added together and evenly distributed amongst them all.\n\nHP Boost - Your body becomes fortified, increasing your maximum HP by 15.\n\nSex Reset - Choose a gender. All genitals not related to the chosen gender will be purged. All extra genitals related to the chosen gender will be purged, leaving you with a single basic set.",True)
             if (self.levelUP < 3):
-               self.outputMainText("\n\nHowever, you do not have enough levels to achieve any of the perks.",False)
+               self.outputMainText("\n\nHowever, you do not have enough levels to achieve any of the perks.")
                self.showButtons(ButtonList(0,0,0,0,0,1,0,0,0,0,0,0))
                self.doButtonChoices({6:"Back"})
                def doListen():
