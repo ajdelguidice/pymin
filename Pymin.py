@@ -1095,7 +1095,7 @@ class NiminFetishFantasyv0975o_fla:
             if self.optionswindow.children["Theme"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
                self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
-            elif self.checkValidHex(self.optionswindow.children["Theme"].get()) == False:
+            elif not self.checkValidHex(self.optionswindow.children["Theme"].get()):
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is not a valid hexadecimal color code")
                self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
             else:
@@ -1113,7 +1113,7 @@ class NiminFetishFantasyv0975o_fla:
             if self.optionswindow.children["FontColor"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is empty")
                self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
-            elif self.checkValidHex(self.optionswindow.children["FontColor"].get()) == False:
+            elif not self.checkValidHex(self.optionswindow.children["FontColor"].get()):
                as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is not a valid hexadecimal color code")
                self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
             else:
@@ -1130,7 +1130,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow.children["SaveLocation"].uevar.get() == "":
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
-         elif self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),confmod.separator) == False:
+         elif not self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),confmod.separator):
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          else:
@@ -1637,7 +1637,7 @@ class NiminFetishFantasyv0975o_fla:
          self.altHeld = True
       elif keyCode == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
          if self.cmdOpenConverter:
-            self.sfcwindow.endProcess
+            self.sfcwindow.endProcess()
          else:
             self.mo.endProcess()
    def hotKeys(self, keyCode):
@@ -5592,7 +5592,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doDiscard(self.tempID)
             self.doListen = doListen
-         elif (self.canLose(self.choiceListResult[0]) == False):
+         elif (not self.canLose(self.choiceListResult[0])):
             self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
             self.doDiscard(self.tempID)
       self.doListen = doListen
@@ -6946,7 +6946,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          case 109:
             if (self.checkItem(219)):
-               if (self.knowPheromone and self.silRep < 1 and self.checkItem(530) == False and self.checkStash(530) == False and self.checkItem(532) == False and self.checkStash(532) == False and self.pheromone < 1):
+               if (self.knowPheromone and self.silRep < 1 and not (self.checkItem(530) or self.checkStash(530) or self.checkItem(532) or self.checkStash(532)) and self.pheromone < 1):
                   self.loseManyItem(219,1)
                   self.outputMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.",True)
                   self.itemAdd(530)
@@ -7975,7 +7975,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doeHP(-self.dmg)
                self.doBattle()
          case 506:
-            if (self.pregCheck(0) == True):
+            if (self.pregCheck(0)):
                self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!",True)
                for i in range(0,self.pregArray.length,5):
                   if (self.pregArray[i]):
@@ -8746,7 +8746,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Stash")
             self.choiceListBlanks()
-         elif self.canLoseMoveLocation(self.moveItemID) == True:
+         elif self.canLoseMoveLocation(self.moveItemID):
             tempNum = self.moveItemID
             tempNum2 = self.moveItemStack
             if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
@@ -8844,7 +8844,7 @@ class NiminFetishFantasyv0975o_fla:
             self.choiceListButtons("Bag")
          else:
             as3.trace(self.bagArray[self.choiceListResult[1]])
-            if (self.canLose(self.bagArray[self.choiceListResult[1]]) == True):
+            if (self.canLose(self.bagArray[self.choiceListResult[1]])):
                self.stashStore(self.choiceListResult[1])
             else:
                self.doStoreStash()
@@ -8910,7 +8910,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.buttonChoice == 4 or self.buttonChoice == 8):
             self.choiceListButtons("Bag")
             self.choiceListBlanks()
-         elif (self.canLose(self.choiceListResult[0]) == True):
+         elif (self.canLose(self.choiceListResult[0])):
             tempNum = self.stashArray[self.tempStoreItem]
             tempNum2 = self.stashStackArray[self.tempStoreItem]
             if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
@@ -9016,7 +9016,7 @@ class NiminFetishFantasyv0975o_fla:
                      def doListen():
                         self.doShop()
                      self.doListen = doListen
-                  elif (self.checkItem(self.goodsID(self.buy)) == True and self.conItem(self.goodsID(self.buy)) == False):
+                  elif (self.checkItem(self.goodsID(self.buy)) and not self.conItem(self.goodsID(self.buy))):
                      self.outputMainText(f"Sorry, but you cannot buy {self.itemName(self.goodsID(self.buy))} if you already have one. Please choose something else.",True)
                      self.doNext()
                      def doListen():
@@ -9052,7 +9052,7 @@ class NiminFetishFantasyv0975o_fla:
             self.choiceListButtons("Bag")
          elif (self.choiceListResult[0] != 0):
             if (self.bagStackArray[self.choiceListResult[1]] < 2):
-               if (self.itemValue(self.choiceListResult[0]) == 0 or self.canLose(self.choiceListResult[0]) == False):
+               if (self.itemValue(self.choiceListResult[0]) == 0 or not self.canLose(self.choiceListResult[0])):
                   self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.",True)
                   self.doSell(False)
                else:
@@ -9337,7 +9337,7 @@ class NiminFetishFantasyv0975o_fla:
                      def doListen():
                         self.doApothecary()
                      self.doListen = doListen
-                  elif (self.checkItem(self.apothID(self.buy)) == True and self.conItem(self.apothID(self.buy)) == False):
+                  elif (self.checkItem(self.apothID(self.buy)) and not self.conItem(self.apothID(self.buy))):
                      self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.",True)
                      self.doNext()
                      def doListen():
@@ -9617,7 +9617,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.hair = self.hairstyleID(self.buy)
                      self.doCoin(-self.hairstyleValue(self.hairstyleID(self.buy)))
-                     if (self.hairstyleLength(self.hairstyleID(self.buy)) == True):
+                     if (self.hairstyleLength(self.hairstyleID(self.buy))):
                         self.showButtons(ButtonList(1,1,0,0,1,1,1,0,0,0,0,0))
                         self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
                         self.doButtonChoices({1:"Short", 2:"Medium", 5:"Long", 6:"X-Long", 7:"XX-Long"})
@@ -11567,7 +11567,7 @@ class NiminFetishFantasyv0975o_fla:
          #   tempArr.push(4)
          #if self.attireBot in {6,17} and self.lust > 80:
          #   tempArr.push(5)
-         if (not self.useIsBottomOpen and self.attireBot in {5,7,12,13,14,16} or self.useIsBottomOpen and self.isBottomOpen() == True) and self.lust > 45:
+         if (not self.useIsBottomOpen and self.attireBot in {5,7,12,13,14,16} or self.useIsBottomOpen and self.isBottomOpen()) and self.lust > 45:
             tempArr.push(6)
          if self.attireBot in {4,15,20}:
             tempArr.push(7)
@@ -13586,7 +13586,7 @@ class NiminFetishFantasyv0975o_fla:
             self.rndArray.push(3)
       elif which == "Den":
          tempArray = (0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0)
-         if (tempArray[self.hour] and not self.silTied and self.checkItem(229) == False and self.checkStash(229) == False): # Strap
+         if (tempArray[self.hour] and not self.silTied and not (self.checkItem(229) or self.checkStash(229))): # Strap
             self.rndArray.push(1)
          tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
          if (tempArray[self.hour]): # Sil
@@ -15039,7 +15039,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("You come across Lila as you walk through the city. She grins and runs up to you, pouncing you with a great big hug around your waist. She thanks you again, although she shifts awkwardly as she lets go. 6 blotches form across her dress from chest to belly, with another, smaller one below...\n\n\"Uhh... Umm... I-I kinda have a diffewent problem now... The other kids don't know yet,\" she reaches under her dress, pulling out a large square of absorbant cloth that has been soaked through, \"and I'm afwaid of Mommy finding out. C-Can yew help me again?\" She blushes.\n\nNodding, you think it best to at least see what is going on. You take her hand and once again lead her up to your private hut. As you enter, you turn to shut the door-like curtain so nobody outside can see. Yet, as you turn back, you already find Lila pulling up her dress to show you her new issue. She get a bit stuck trying to pull it over her head, leaving the rest of her body completely naked. Thin streams of white liquid slowly drizzle down her half-dozen nipples, soaking into her fur. Not quite as bad as the slimy mess that has returned between her legs, but enough to leave her with a bashful blush as she finally frees herself and finds you staring at her dribbly nipples.\n\n\"I-I thought if I took a dwink like Mommy sometimes does, I would be older like her. But then the othew day my chest felt funny. I wubbed it and then milk stawted leaking. I keep wubbing it when I get milky, but it doesn't stop and I have to walk awound with a towel so nobody sees. What should I do?\"",True)
             self.showButtons(ButtonList(1,0,0,0,1,0,0,0,0,1,0,0))
             tempDict = {5:"Lick", 10:"Get Help"}
-            if (self.checkItem(103) == True):
+            if (self.checkItem(103)):
                tempDict[1] = "Dry Sand"
             self.doButtonChoices(tempDict)
             def doListen():
@@ -15109,7 +15109,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("You come across the small felin girl you had met before as you walk through the city. She walks up with a smile to say hello and thanks you again, though she shifts awkwardly as she stands, a small blotch forming on her dress at her groin as she recalls how you helped her...\n\nWith some slight embarrassment in her tone, she speaks \"Uhh... Umm... D-Do yew mind helping me like you did before? I-It seems to have come back...\"\n\nHer feet rub against each other as she looks up at you with an adorable expression. Obviously whatever you did before was only a temporary solution, for some reason. Not that it's a problem though, as she seems to enjoy your help.",True)
             self.showButtons(ButtonList(1,0,0,0,1,0,0,0,0,1,0,0))
             tempDict = {5:"Fondle Her", 10:"Get Help"}
-            if (self.checkItem(103) == True):
+            if (self.checkItem(103)):
                tempDict[1] = "Dry Sand"
             self.doButtonChoices(tempDict)
             def doListen():
@@ -15167,9 +15167,9 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(" Could yew take cawe of it?\"")
             self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,0,1))
             tempDict = {9:"Lick", 12:"Not Now"}
-            if (self.checkItem(103) == True):
+            if (self.checkItem(103)):
                tempDict[1] = "Dry Sand"
-            if (self.checkItem(213) == True):
+            if (self.checkItem(213)):
                tempDict[3] = "Wet Cloth"
             self.doButtonChoices(tempDict)
             def doListen():
@@ -15305,7 +15305,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("\n\n\nWhat do you do?")
             self.showButtons(ButtonList(1,0,1,0,1,1,1,0,0,1,0,0))
             tempDict = {3:"Diaper", 5:"Masturbate", 6:"Lick", 7:"Sex", 10:"Get Help"}
-            if (self.checkItem(103) == True):
+            if (self.checkItem(103)):
                tempDict[1] = "Dry Sand"
             self.doButtonChoices(tempDict)
             def doListen():
@@ -18516,19 +18516,19 @@ class NiminFetishFantasyv0975o_fla:
                self.showButtons(ButtonList(0,1,0,0,1,1,1,0,0,1,0,1))
                tempDict = {12:"No Thanks"}
                self.doMainText("\"Anything you might be interested in?\"",True)
-               if (self.checkItem(232) == False):
+               if (not self.checkItem(232)):
                   tempDict[2] = "Flying Carp"
                   self.doMainText("\n\nFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.")
-               if (self.checkItem(233) == False):
+               if (not self.checkItem(233)):
                   tempDict[5] = "A-Grav Rock"
                   self.doMainText("\n\nAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.")
-               if (self.checkItem(234) == False):
+               if (not self.checkItem(234)):
                   tempDict[6] = "Rein Charm"
                   self.doMainText("\n\nReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.")
-               if (self.checkItem(235) == False):
+               if (not self.checkItem(235)):
                   tempDict[7] = "Fell Rod"
                   self.doMainText("\n\nFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.")
-               if (self.checkItem(236) == False):
+               if (not self.checkItem(236)):
                   tempDict[10] = "Recept Bell"
                   self.doMainText("\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.")
                self.displayMainText()
@@ -21363,7 +21363,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.vagTotal < 1 and self.cockTotal < 1):
                   self.doMainText(f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you.")
                   self.doLust(math.floor(10 + self.percent() / 10),1)
-            elif (attack > 80 and (self.useIsBottomOpen and self.isBottomOpen() == True or not self.useIsBottomOpen and self.attireBot == -1)):
+            elif (attack > 80 and (self.useIsBottomOpen and self.isBottomOpen() or not self.useIsBottomOpen and self.attireBot == -1)):
                self.doMainText("\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you.")
                if (self.vagTotal > 0):
                   self.doMainText(f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size.")
@@ -21460,7 +21460,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.eggceleratorDose += 1
                   if (self.eggceleratorDose > 8 + math.ceil(self.percent() / 20)):
                      self.doMainText(f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying.")
-                     if (self.useIsBottomOpen and self.isBottomOpen() == True or not self.useIsBottomOpen and self.attireBot in {-2,5,7,12,13,14,16,25}):
+                     if (self.useIsBottomOpen and self.isBottomOpen() or not self.useIsBottomOpen and self.attireBot in {-2,5,7,12,13,14,16,25}):
                         self.doMainText(f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
                      else:
                         self.doMainText(f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
@@ -21745,7 +21745,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.silPreg > 0 and self.silRep == 5 and time > 0 and self.silGrowthTime <= 360 and self.silPreg < 10000):
          self.silPreg += time + 2 * self.silRate
          self.silGrowthTime += time
-      if (self.heat > 0 and self.vagTotal > 0 and self.pregCheck(0) == False):
+      if (self.heat > 0 and self.vagTotal > 0 and not self.pregCheck(0)):
          if (self.heatTime >= 0 and self.heatTime - time < 0):
             self.doMainText("\n\nYour crotch feels hot and tingly, your face becoming flush. Thoughts of sex, being pounded and filled with seed until your womb has been sufficiently impregnated, permeate your mind and makes you greatly aroused. You're feeling especially fertile and extremely lustful as you go into heat...")
             self.pregChanceMod += 15
@@ -22297,7 +22297,7 @@ class NiminFetishFantasyv0975o_fla:
          self.nippleSize -= 8
          self.milkMod -= 50
       if (self.cowAffinity + self.cow < 55 and self.cowAffinity >= 55):
-         if (self.udderCheck(1) == False):
+         if (not self.udderCheck(1)):
             self.doMainText("\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.")
             self.udders = False
             self.udderLactation = 0
@@ -23350,7 +23350,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(f"\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your {self.buttDesc()} ass while your crotch shifts forward to nestle between your front legs.")
          if (self.legType == 1001):
             self.doMainText(f" Your keratin hooves soften and elongate into bipedal feet, the black and white fur disappearing to match your {self.skinDesc()}.")
-            if (self.udderCheck(2) == False and self.udders):
+            if (not self.udderCheck(2) and self.udders):
                self.doMainText(" Your udder also shrinks away into nothing...")
                self.udders = False
                self.udderLactation = 0
@@ -23430,7 +23430,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.doMainText(" Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist.")
       if (self.legType == 1001 and which != 1001 and which > 1000):
-         if (self.udderCheck(2) == False and self.udders):
+         if (not self.udderCheck(2) and self.udders):
             self.doMainText(f"\n\nYour udder shrinks into your {self.skinDesc()} and disappears...")
             self.udders = False
             self.udderLactation = 0
@@ -24886,10 +24886,10 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{self.versionNumber})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).", True)
       #Check if savelocation is valid. If not, open a dialog box to warn the user and ask how to proceed. If so, check if it exists and create it if it doesn't.
-      if self.isValidDirectory(self.savelocation,confmod.separator) == False:
-         self.openSaveInvalidDialog()
-      else:
+      if self.isValidDirectory(self.savelocation,confmod.separator):
          self.checkExistsMakeDir(self.savelocation,True)
+      else:
+         self.openSaveInvalidDialog()
    def openSaveInvalidDialog(self):
       self.saveinvaliddialog = tkinter.Toplevel()
       self.saveinvaliddialog.geometry("370x160")
