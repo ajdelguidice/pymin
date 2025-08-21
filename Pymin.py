@@ -1640,7 +1640,7 @@ class NiminFetishFantasyv0975o_fla:
    def hotKeysGeneric(self, keyCode):
       if keyCode == 16: #Shift
          self.shiftHeld = True
-      elif keyCode == 17: #ctrl
+      elif keyCode == 17: #Ctrl
          self.ctrlHeld = True
       elif keyCode == 18: #Alt
          self.altHeld = True
@@ -6567,7 +6567,6 @@ class NiminFetishFantasyv0975o_fla:
       Does the behaviour of item "ID"
       """
       self.tempNum = 0
-      chance = 0
       self.dmg = 0
       tempCockSize = 0
       tempBallSize = 0
@@ -7028,51 +7027,51 @@ class NiminFetishFantasyv0975o_fla:
             def doListen():
                self.choiceListSelect("Reduction")
                self.doMainText("You splash the elixir out onto your ",True)
-               match self.choiceListResult[0]:
-                  case "Cock":
-                     self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch with a shiver as the flesh receeds.")
-                     self.cockChange(-math.ceil(self.cockSize / 2),0)
-                  case "Balls":
-                     self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink, becoming ")
-                     self.ballSize -= self.ballSize // 2
-                     self.doMainText(f"{self.ballDesc()}.")
-                  case "Pussy":
-                     self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
-                     self.vagChange(-self.vagSize // 2,0)
-                  case "Vulva":
-                     self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
-                     self.vulvaSize -= self.vulvaSize // 2
-                     self.doMainText(f"{self.vulvaDesc()}.")
-                  case "Clit":
-                     self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
-                     self.clitSize -= self.clitSize // 2
-                     self.doMainText(f"{self.clitDesc()}.")
-                  case "Breasts":
-                     self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink.")
-                     self.breastSize -= self.breastSize // 2
-                  case "Nipples":
-                     self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts.")
-                     self.nippleSize -= self.nippleSize // 2
-                  case "Udder":
-                     self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
-                     self.udderSize -= self.udderSize // 2
-                     self.doMainText(f"{self.udderDesc()}.")
-                  case "Teats":
-                     self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
-                     self.teatSize -= self.teatSize // 2
-                     self.doMainText(f"{self.teatDesc()}.")
-                  case "Butt":
-                     self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
-                     self.butt -= self.butt // 2
-                     self.doMainText(f"{self.buttDesc()}.")
-                  case "Hips":
-                     self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
-                     self.hips -= self.hips // 2
-                     self.doMainText(f"{self.hipDesc()}.")
-                  case "Belly":
-                     self.doMainText(f"{self.bellyDesc()} belly and feel lighter as the chubbiness burns off, becoming ")
-                     self.bellyMod -= self.bellyMod // 2
-                     self.doMainText(f"{self.bellyDesc()}.")
+               temp = self.choiceListResult[0]
+               if temp == "Cock":
+                  self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch with a shiver as the flesh receeds.")
+                  self.cockChange(-math.ceil(self.cockSize / 2),0)
+               elif temp == "Balls":
+                  self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink, becoming ")
+                  self.ballSize -= self.ballSize // 2
+                  self.doMainText(f"{self.ballDesc()}.")
+               elif temp == "Pussy":
+                  self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
+                  self.vagChange(-self.vagSize // 2,0)
+               elif temp == "Vulva":
+                  self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
+                  self.vulvaSize -= self.vulvaSize // 2
+                  self.doMainText(f"{self.vulvaDesc()}.")
+               elif temp == "Clit":
+                  self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
+                  self.clitSize -= self.clitSize // 2
+                  self.doMainText(f"{self.clitDesc()}.")
+               elif temp == "Breasts":
+                  self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink.")
+                  self.breastSize -= self.breastSize // 2
+               elif temp == "Nipples":
+                  self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts.")
+                  self.nippleSize -= self.nippleSize // 2
+               elif temp == "Udder":
+                  self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
+                  self.udderSize -= self.udderSize // 2
+                  self.doMainText(f"{self.udderDesc()}.")
+               elif temp == "Teats":
+                  self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
+                  self.teatSize -= self.teatSize // 2
+                  self.doMainText(f"{self.teatDesc()}.")
+               elif temp == "Butt":
+                  self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
+                  self.butt -= self.butt // 2
+                  self.doMainText(f"{self.buttDesc()}.")
+               elif temp == "Hips":
+                  self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
+                  self.hips -= self.hips // 2
+                  self.doMainText(f"{self.hipDesc()}.")
+               elif temp == "Belly":
+                  self.doMainText(f"{self.bellyDesc()} belly and feel lighter as the chubbiness burns off, becoming ")
+                  self.bellyMod -= self.bellyMod // 2
+                  self.doMainText(f"{self.bellyDesc()}.")
                self.displayMainText()
                if self.buttonChoice in {4,8}:
                   self.choiceListButtons("Reduction")
@@ -8477,50 +8476,50 @@ class NiminFetishFantasyv0975o_fla:
             def doListen():
                self.choiceListSelect("Reduc Reduc")
                self.doMainText("You splash the elixir out onto your ",True)
-               match self.choiceListResult[0]:
-                  case "Cock":
-                     self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch the appendage{self.plural(1)} quiver and shrivel down by {2 * self.cockSizeMod} inches.")
-                     self.cockChange(-4,0)
-                  case "Balls":
-                     self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink.")
-                     self.ballSize -= 4
-                  case "Pussy":
-                     self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
-                     self.vagChange(-4,0)
-                  case "Vulva":
-                     self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
-                     self.vulvaSize -= 4
-                     self.doMainText(f"{self.vulvaDesc()}.")
-                  case "Clit":
-                     self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
-                     self.clitSize -= 4
-                     self.doMainText(f"{self.clitDesc()}.")
-                  case "Breasts":
-                     self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink by about 2 inches.")
-                     self.breastSize -= 4
-                  case "Nipples":
-                     self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts nearly an inch.")
-                     self.nippleSize -= 4
-                  case "Udder":
-                     self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
-                     self.udderSize -= 4
-                     self.doMainText(f"{self.udderDesc()}.")
-                  case "Teats":
-                     self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
-                     self.teatSize -= 4
-                     self.doMainText(f"{self.teatDesc()}.")
-                  case "Butt":
-                     self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
-                     self.butt -= 4
-                     self.doMainText(f"{self.buttDesc()}.")
-                  case "Hips":
-                     self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
-                     self.hips -= 4
-                     self.doMainText(f"{self.hipDesc()}.")
-                  case "Belly":
-                     self.doMainText(f"{self.bellyDesc()} belly and watch as some of the fat burns off, becoming ")
-                     self.bellyMod -= 4
-                     self.doMainText(f"{self.bellyDesc()}.")
+               temp = self.choiceListResult[0]
+               if temp == "Cock":
+                  self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch the appendage{self.plural(1)} quiver and shrivel down by {2 * self.cockSizeMod} inches.")
+                  self.cockChange(-4,0)
+               elif temp == "Balls":
+                  self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink.")
+                  self.ballSize -= 4
+               elif temp == "Pussy":
+                  self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
+                  self.vagChange(-4,0)
+               elif temp == "Vulva":
+                  self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
+                  self.vulvaSize -= 4
+                  self.doMainText(f"{self.vulvaDesc()}.")
+               elif temp == "Clit":
+                  self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
+                  self.clitSize -= 4
+                  self.doMainText(f"{self.clitDesc()}.")
+               elif temp == "Breasts":
+                  self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink by about 2 inches.")
+                  self.breastSize -= 4
+               elif temp == "Nipples":
+                  self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts nearly an inch.")
+                  self.nippleSize -= 4
+               elif temp == "Udder":
+                  self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
+                  self.udderSize -= 4
+                  self.doMainText(f"{self.udderDesc()}.")
+               elif temp == "Teats":
+                  self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
+                  self.teatSize -= 4
+                  self.doMainText(f"{self.teatDesc()}.")
+               elif temp == "Butt":
+                  self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
+                  self.butt -= 4
+                  self.doMainText(f"{self.buttDesc()}.")
+               elif temp == "Hips":
+                  self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
+                  self.hips -= 4
+                  self.doMainText(f"{self.hipDesc()}.")
+               elif temp == "Belly":
+                  self.doMainText(f"{self.bellyDesc()} belly and watch as some of the fat burns off, becoming ")
+                  self.bellyMod -= 4
+                  self.doMainText(f"{self.bellyDesc()}.")
                self.displayMainText()
                if (self.buttonChoice == 4 or self.buttonChoice == 8):
                   self.choiceListButtons("Reduc Reduc")
@@ -11404,7 +11403,7 @@ class NiminFetishFantasyv0975o_fla:
                elif self.femmieMaleReplacement == 1:
                   self.doMainText("feminine male")
                elif self.femmieMaleReplacement == 2:
-                  self.doMainText("femboy") #! Use femme-boy/femboy grammar tweak here
+                  self.doMainText(self.ptweaksGrammar(1))
                self.doMainText(f" lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your {self.cockDesc()} cock{self.plural(1)} stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of {self.oneYour(1)} {self.cockDesc()} ")
                if (self.catCocks > 0):
                   self.doMainText("barbed")
@@ -12603,40 +12602,40 @@ class NiminFetishFantasyv0975o_fla:
                      self.choiceListButtons("Hyper Happy")
                      def doListen():
                         self.choiceListSelect("Hyper Happy")
-                        match self.choiceListResult[0]:
-                           case "Cock":
-                              self.doMainText(f"Your cock{self.plural(1)} grow{self.plural(3)} slightly larger.",True)
-                              self.cockChange(2,0)
-                           case "Balls":
-                              self.ballSize += 2
-                              self.doMainText("Your testicles swell a bit.",True)
-                           case "Pussy":
-                              self.doMainText(f"Your vagina{self.plural(2)} grow{self.plural(4)} slightly deeper.",True)
-                              self.vagChange(2,0)
-                           case "Vulva":
-                              self.vulvaSize += 2
-                              self.doMainText("Your pussy lips swell a bit.",True)
-                           case "Clit":
-                              self.clitSize += 2
-                              self.doMainText(f"Your clit{self.plural(2)} grow{self.plural(4)} slightly larger.",True)
-                           case "Breasts":
-                              self.breastSize += 2
-                              self.doMainText("Your breasts swell a bit.",True)
-                           case "Nipples":
-                              self.nippleSize += 2
-                              self.doMainText("Your nipples grow slightly longer.",True)
-                           case "Udder":
-                              self.udderSize += 2
-                              self.doMainText("Your udder swells a bit.",True)
-                           case "Teats":
-                              self.teatSize += 2
-                              self.doMainText("Your teats grow slightly longer.",True)
-                           case "Butt":
-                              self.butt += 2
-                              self.doMainText("Your rump swells a bit.",True)
-                           case "Hips":
-                              self.hips += 2
-                              self.doMainText("Your hips widen a bit.",True)
+                        temp = self.choiceListResult[0]
+                        if temp == "Cock":
+                           self.doMainText(f"Your cock{self.plural(1)} grow{self.plural(3)} slightly larger.",True)
+                           self.cockChange(2,0)
+                        elif temp == "Balls":
+                           self.ballSize += 2
+                           self.doMainText("Your testicles swell a bit.",True)
+                        elif temp == "Pussy":
+                           self.doMainText(f"Your vagina{self.plural(2)} grow{self.plural(4)} slightly deeper.",True)
+                           self.vagChange(2,0)
+                        elif temp == "Vulva":
+                           self.vulvaSize += 2
+                           self.doMainText("Your pussy lips swell a bit.",True)
+                        elif temp == "Clit":
+                           self.clitSize += 2
+                           self.doMainText(f"Your clit{self.plural(2)} grow{self.plural(4)} slightly larger.",True)
+                        elif temp == "Breasts":
+                           self.breastSize += 2
+                           self.doMainText("Your breasts swell a bit.",True)
+                        elif temp == "Nipples":
+                           self.nippleSize += 2
+                           self.doMainText("Your nipples grow slightly longer.",True)
+                        elif temp == "Udder":
+                           self.udderSize += 2
+                           self.doMainText("Your udder swells a bit.",True)
+                        elif temp == "Teats":
+                           self.teatSize += 2
+                           self.doMainText("Your teats grow slightly longer.",True)
+                        elif temp == "Butt":
+                           self.butt += 2
+                           self.doMainText("Your rump swells a bit.",True)
+                        elif temp == "Hips":
+                           self.hips += 2
+                           self.doMainText("Your hips widen a bit.",True)
                         self.displayMainText()
                         if (self.buttonChoice == 4 or self.buttonChoice == 8):
                            self.choiceListButtons("Hyper Happy")
@@ -12665,40 +12664,40 @@ class NiminFetishFantasyv0975o_fla:
                         self.choiceListSelect("Hyper Happy")
                         if (self.buttonChoice != 4 and self.buttonChoice != 8 and self.buttonChoice != 12):
                            self.outputMainText("With some focus and a sudden surge of growth, your ",True)
-                        match self.choiceListResult[0]:
-                           case "Cock":
-                              self.doMainText(f"cock{self.plural(1)} extend{self.plural(3)} within your {self.clothesBottom()}, growing thicker and longer until {self.plural(11)} spring{self.plural(3)} out and you catch {self.plural(11)} in your hands. Heavier and more cumbersome, you barely manage to fit {self.plural(9)} back into your {self.clothesBottom()}...",False)
-                              self.cockChange(20,0)
-                           case "Balls":
-                              self.ballSize += 20
-                              self.doMainText(f"testicles swell tremendously within your {self.clothesBottom()}, lifting your cock{self.plural(1)} and pushing against your thighs. You quickly pull {self.pullUD(2)} your {self.clothesBottom()} and breathe a sigh of relief as the orbs settle before you. It takes some time to squeeze them back in...",False)
-                           case "Pussy":
-                              self.doMainText(f"vagina{self.plural(2)} grow{self.plural(4)} much deeper, filling you up inside with more tunnel space to plow...",False)
-                              self.vagChange(20,0)
-                           case "Vulva":
-                              self.vulvaSize += 20
-                              self.doMainText(f"pussy lips swell tremendously, bulging in your {self.clothesBottom()} and pressing into your thighs until you have to pull{self.pullUD(2)} your {self.clothesBottom()} and give your labiasome air. So thick and tender, it takes some time to stuff yourself back into your clothes...",False)
-                           case "Clit":
-                              self.clitSize += 20
-                              self.doMainText(f"clit{self.plural(2)} extend{self.plural(4)} within your {self.clothesBottom()}, forming a more noticeable bulge in the fabric and nearly driving you to orgasm as {self.plural(12)} drag{self.plural(4)} across the cloth...",False)
-                           case "Breasts":
-                              self.breastSize += 20
-                              self.doMainText(f"breasts swell tremendously, pressing against your {self.clothesTop()} until you have to pull the cloth {self.pullUD(1)} and let your bosom fall out with a gasp. They're much heavier and wobble a bit until you can get balanced and take some time to stuff back in...",False)
-                           case "Nipples":
-                              self.nippleSize += 20
-                              self.doMainText(f"nipples grow much longer, protruding through your {self.clothesTop()} far more and making you gasp in near-orgasm as they drag across the fabric...",False)
-                           case "Udder":
-                              self.udderSize += 20
-                              self.doMainText("udder swells tremendously, making you fall to your knees as it weighs you down until you let it flop over the ground. You take a few moments before you're able to lift yourself back up, swinging your hips slightly as you try to balance yourself with the added mass...",False)
-                           case "Teats":
-                              self.teatSize += 20
-                              self.doMainText("teats grow much longer, flopping out over your udder and protruding much further, almost like you've got multiple erections forming over your belly...",False)
-                           case "Butt":
-                              self.butt += 20
-                              self.doMainText(f"rump swells tremendously, making your {self.clothesBottom()} creak as your tush pushes at the fabric. You quickly pull the {self.clothesBottom()} {self.pullUD(2)} and bend forward while your ass hangs out behind you, wobbling and jiggling with its sudden spurt. You have quite some trouble fitting back into your clothes, with a good deal of crack and cheek still exposed...",False)
-                           case "Hips":
-                              self.hips += 20
-                              self.doMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...",False)
+                        temp = self.choiceListResult[0]
+                        if temp == "Cock":
+                           self.doMainText(f"cock{self.plural(1)} extend{self.plural(3)} within your {self.clothesBottom()}, growing thicker and longer until {self.plural(11)} spring{self.plural(3)} out and you catch {self.plural(11)} in your hands. Heavier and more cumbersome, you barely manage to fit {self.plural(9)} back into your {self.clothesBottom()}...",False)
+                           self.cockChange(20,0)
+                        elif temp == "Balls":
+                           self.ballSize += 20
+                           self.doMainText(f"testicles swell tremendously within your {self.clothesBottom()}, lifting your cock{self.plural(1)} and pushing against your thighs. You quickly pull {self.pullUD(2)} your {self.clothesBottom()} and breathe a sigh of relief as the orbs settle before you. It takes some time to squeeze them back in...",False)
+                        elif temp == "Pussy":
+                           self.doMainText(f"vagina{self.plural(2)} grow{self.plural(4)} much deeper, filling you up inside with more tunnel space to plow...",False)
+                           self.vagChange(20,0)
+                        elif temp == "Vulva":
+                           self.vulvaSize += 20
+                           self.doMainText(f"pussy lips swell tremendously, bulging in your {self.clothesBottom()} and pressing into your thighs until you have to pull{self.pullUD(2)} your {self.clothesBottom()} and give your labiasome air. So thick and tender, it takes some time to stuff yourself back into your clothes...",False)
+                        elif temp == "Clit":
+                           self.clitSize += 20
+                           self.doMainText(f"clit{self.plural(2)} extend{self.plural(4)} within your {self.clothesBottom()}, forming a more noticeable bulge in the fabric and nearly driving you to orgasm as {self.plural(12)} drag{self.plural(4)} across the cloth...",False)
+                        elif temp == "Breasts":
+                           self.breastSize += 20
+                           self.doMainText(f"breasts swell tremendously, pressing against your {self.clothesTop()} until you have to pull the cloth {self.pullUD(1)} and let your bosom fall out with a gasp. They're much heavier and wobble a bit until you can get balanced and take some time to stuff back in...",False)
+                        elif temp == "Nipples":
+                           self.nippleSize += 20
+                           self.doMainText(f"nipples grow much longer, protruding through your {self.clothesTop()} far more and making you gasp in near-orgasm as they drag across the fabric...",False)
+                        elif temp == "Udder":
+                           self.udderSize += 20
+                           self.doMainText("udder swells tremendously, making you fall to your knees as it weighs you down until you let it flop over the ground. You take a few moments before you're able to lift yourself back up, swinging your hips slightly as you try to balance yourself with the added mass...",False)
+                        elif temp == "Teats":
+                           self.teatSize += 20
+                           self.doMainText("teats grow much longer, flopping out over your udder and protruding much further, almost like you've got multiple erections forming over your belly...",False)
+                        elif temp == "Butt":
+                           self.butt += 20
+                           self.doMainText(f"rump swells tremendously, making your {self.clothesBottom()} creak as your tush pushes at the fabric. You quickly pull the {self.clothesBottom()} {self.pullUD(2)} and bend forward while your ass hangs out behind you, wobbling and jiggling with its sudden spurt. You have quite some trouble fitting back into your clothes, with a good deal of crack and cheek still exposed...",False)
+                        elif temp == "Hips":
+                           self.hips += 20
+                           self.doMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...",False)
                         self.displayMainText()
                         if self.buttonChoice in {4,8}:
                            self.choiceListButtons("Hyper Happy")
@@ -13022,31 +13021,31 @@ class NiminFetishFantasyv0975o_fla:
                      self.choiceListButtons("Shapeshifty")
                      def doListen():
                         self.choiceListSelect("Shapeshifty")
-                        match self.choiceListResult[0]:
-                           case "Human":
-                              self.aff(1,20,0)
-                           case "Equan":
-                              self.aff(2,20,0)
-                           case "Lupan":
-                              self.aff(3,20,0)
-                           case "Felin":
-                              self.aff(4,20,0)
-                           case "Cow":
-                              self.aff(5,20,0)
-                           case "Lizan":
-                              self.aff(6,20,0)
-                           case "Rabbit":
-                              self.aff(7,20,0)
-                           case "Mouse":
-                              self.aff(8,20,0)
-                           case "Bird":
-                              self.aff(9,20,0)
-                           case "Pig":
-                              self.aff(10,20,0)
-                           case "Skunk":
-                              self.aff(11,20,0)
-                           case "Bug":
-                              self.aff(12,20,0)
+                        temp = self.choiceListResult[0]
+                        if temp == "Human":
+                           self.aff(1,20,0)
+                        elif temp == "Equan":
+                           self.aff(2,20,0)
+                        elif temp == "Lupan":
+                           self.aff(3,20,0)
+                        elif temp == "Felin":
+                           self.aff(4,20,0)
+                        elif temp == "Cow":
+                           self.aff(5,20,0)
+                        elif temp == "Lizan":
+                           self.aff(6,20,0)
+                        elif temp == "Rabbit":
+                           self.aff(7,20,0)
+                        elif temp == "Mouse":
+                           self.aff(8,20,0)
+                        elif temp == "Bird":
+                           self.aff(9,20,0)
+                        elif temp == "Pig":
+                           self.aff(10,20,0)
+                        elif temp == "Skunk":
+                           self.aff(11,20,0)
+                        elif temp == "Bug":
+                           self.aff(12,20,0)
                         if (self.buttonChoice == 4 or self.buttonChoice == 8):
                            self.choiceListButtons("Shapeshifty")
                         elif (self.buttonChoice == 12):
@@ -13112,31 +13111,31 @@ class NiminFetishFantasyv0975o_fla:
                            def doListen():
                               self.choiceListSelect("Pure Blood")
                               self.outputMainText("You take a moment to focus, channeling the experience you have gained to single out the blood coursing through your body, making yourself racially pure blood-wise, though you may have some 'leftovers'...",True)
-                              match self.choiceListResult[0]:
-                                 case "Human":
-                                    self.aff(1,10,-1000)
-                                 case "Equan":
-                                    self.aff(2,10,-1000)
-                                 case "Lupan":
-                                    self.aff(3,10,-1000)
-                                 case "Felin":
-                                    self.aff(4,10,-1000)
-                                 case "Cow":
-                                    self.aff(5,10,-1000)
-                                 case "Lizan":
-                                    self.aff(6,10,-1000)
-                                 case "Mouse":
-                                    self.aff(8,10,-1000)
-                                 case "Bird":
-                                    self.aff(9,10,-1000)
-                                 case "Pig":
-                                    self.aff(10,10,-1000)
-                                 case "Rabbit":
-                                    self.aff(7,10,-1000)
-                                 case "Skunk":
-                                    self.aff(11,10,-1000)
-                                 case "Bug":
-                                    self.aff(12,10,-1000)
+                              temp = self.choiceListResult[0]
+                              if temp == "Human":
+                                 self.aff(1,10,-1000)
+                              elif temp == "Equan":
+                                 self.aff(2,10,-1000)
+                              elif temp == "Lupan":
+                                 self.aff(3,10,-1000)
+                              elif temp == "Felin":
+                                 self.aff(4,10,-1000)
+                              elif temp == "Cow":
+                                 self.aff(5,10,-1000)
+                              elif temp == "Lizan":
+                                 self.aff(6,10,-1000)
+                              elif temp == "Mouse":
+                                 self.aff(8,10,-1000)
+                              elif temp == "Bird":
+                                 self.aff(9,10,-1000)
+                              elif temp == "Pig":
+                                 self.aff(10,10,-1000)
+                              elif temp == "Rabbit":
+                                 self.aff(7,10,-1000)
+                              elif temp == "Skunk":
+                                 self.aff(11,10,-1000)
+                              elif temp == "Bug":
+                                 self.aff(12,10,-1000)
                               if (self.buttonChoice == 4 or self.buttonChoice == 8):
                                  self.choiceListButtons("Pure Blood")
                               elif (self.buttonChoice == 12):
@@ -13425,249 +13424,248 @@ class NiminFetishFantasyv0975o_fla:
          if temp != None:
             return temp
       self.rndArray = as3.Array()
-      match which:
-         # Towns
-         case "Softlik":
-            tempArray = (0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
-            if (tempArray[self.hour]): # Squeaky Cheese
-               self.rndArray.push(1)
-            tempArray = (1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1)
-            if (tempArray[self.hour]): # Male Enhance
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Too Human
-               self.rndArray.push(3)
-            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Gen
-               self.rndArray.push(4)
-         case "Firmshaft":
-            tempArray = (0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1)
-            if (tempArray[self.hour]): # Jamie
-               self.rndArray.push(1)
-            tempArray = (1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
-            if (tempArray[self.hour]): # Harem
-               self.rndArray.push(2)
-            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Gen
-               self.rndArray.push(3)
-         case "Tieden":
-            tempArray = (1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
-            if (tempArray[self.hour]): # Knothole
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
-            if (tempArray[self.hour] and self.pregnancyTime >= 180 and self.vagTotal > 0): # Preggo Lover
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
-            if (tempArray[self.hour]): # Gen
-               self.rndArray.push(3)
-         case "Siz'Calit":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0)
-            if (tempArray[self.hour]): # Lila
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,0,0)
-            if (tempArray[self.hour] and self.lilaRep > 3): # Lila+
-               self.rndArray.push(1)
-            tempArray = (1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1)
-            if (tempArray[self.hour]): # Cat Attack
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Hyper Mistress
-               self.rndArray.push(3)
-            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Gen
-               self.rndArray.push(4)
-         case "Oviasis":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0)
-            if (tempArray[self.hour] and self.silRep < 6): # Silandrias
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0)
-            if (tempArray[self.hour]): # Sunbathing
-               self.rndArray.push(2)
-            tempArray = (1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
-            if (tempArray[self.hour]): # Night Sex
-               self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,0)
-            if (tempArray[self.hour]): # Water Eggs
-               self.rndArray.push(4)
-            tempArray = (1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1)
-            if (tempArray[self.hour]): # Gen
-               self.rndArray.push(5)
-         case "Sanctuary":
-            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Gen
-               self.rndArray.push(3)
-         # Shared
-         case "Forest":
-            tempArray = (0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1)
-            if (tempArray[self.hour]): # Wolf
-               self.rndArray.push(1)
-            tempArray = (1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
-            if (tempArray[self.hour]): # Gay Wolf
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0)
-            if (tempArray[self.hour]): # Cock-Snake
-               self.rndArray.push(3)
-            tempArray = (1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1)
-            if (tempArray[self.hour]): # Sneeze Flower
-               self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Milk Creeper
-               self.rndArray.push(5)
-            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Path
-               self.rndArray.push(6)
-         case "Jungle":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] and not self.foundValley and self.firstExplore): # Find Valley
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Milk Creeper
-               self.rndArray.push(2)
-            tempArray = (0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
-            if (tempArray[self.hour]): # Wolf
-               self.rndArray.push(3)
-            tempArray = (1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0)
-            if (tempArray[self.hour]): # Gay Wolf
-               self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0)
-            if (tempArray[self.hour]): # Pussy Fruit
-               self.rndArray.push(5)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Shiny Rock
-               self.rndArray.push(6)
-            tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Path
-               self.rndArray.push(7)
-         case "Plains":
-            tempArray = (1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0)
-            if (tempArray[self.hour] and self.checkOpenSlot(244) > 0): # Snuggle Ball
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0)
-            if (tempArray[self.hour]): # Cock Snake
-               self.rndArray.push(2)
-            tempArray = (0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
-            if (tempArray[self.hour]): # Drunken Equan
-               self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Grain
-               self.rndArray.push(4)
-            tempArray = (1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1)
-            if (tempArray[self.hour]): # Path
-               self.rndArray.push(5)
-         case "Savanna":
-            tempArray = (0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Horny Felin
-               self.rndArray.push(1)
-            tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1)
-            if (tempArray[self.hour]): # Drunken Equan
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0)
-            if (tempArray[self.hour]): # Warmth
-               self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Facial Mud
-               self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0)
-            if (tempArray[self.hour]): # Path
-               self.rndArray.push(5)
-         case "Desert":
-            tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0)
-            if (tempArray[self.hour]): # Sandwich
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] and self.currentZone == 6 and self.silRep == 0): # Silanrias
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0)
-            if (tempArray[self.hour]): # Dust Devil
-               self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Hot Sun
-               self.rndArray.push(4)
-            tempArray = (1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1)
-            if (tempArray[self.hour]): # Path
-               self.rndArray.push(5)
-         # Areas
-         case "Beach":
-            tempArray = (0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Octo Girl
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,0,0,0,1,1,0,1,1,0,1,1,0,1,1,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Pregnant Lizan
-               self.rndArray.push(2)
-            tempArray = (0,0,1,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,1,1,0,0,0,1)
-            if (tempArray[self.hour]): # Trinket
-               self.rndArray.push(3)
-            tempArray = (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0)
-            if (tempArray[self.hour]): # Cock Carve
-               self.rndArray.push(4)
-            tempArray = (0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0)
-            if (tempArray[self.hour]): # Urchin
-               self.rndArray.push(5)
-            tempArray = (0,1,0,1,1,0,0,1,0,1,1,0,0,1,0,0,1,1,0,1,0,0,1,0)
-            if (tempArray[self.hour]): # Relax
-               self.rndArray.push(6)
-         case "Lake":
-            tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Wet Cloth
-               self.rndArray.push(1)
-            tempArray = (0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour] and not self.knowPheromone): # Fisherman
-               self.rndArray.push(2)
-            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Song
-               self.rndArray.push(3)
-         case "Dairy Farm":
-            tempArray = (0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Free Pill
-               self.rndArray.push(1)
-            tempArray = (1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
-            if (tempArray[self.hour] and self.udders and self.udderLactation > 0 and self.udderEngorgementLevel > 0): # Experimental Milk Machine
-               self.rndArray.push(2)
-            tempArray = (0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1)
-            if (tempArray[self.hour]): # Buy Pill
-               self.rndArray.push(3)
-            tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
-            if (tempArray[self.hour]): # Malon
-               self.rndArray.push(4)
-            tempArray = (0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0)
-            if (tempArray[self.hour] and self.malonRep > 0): # Malon+
-               self.rndArray.push(4)
-            tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0)
-            if (tempArray[self.hour]): # Steal Milk
-               self.rndArray.push(5)
-         case "Old Cave":
-            tempArray = (0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1)
-            if (tempArray[self.hour]): # Red Mush
-               self.rndArray.push(1)
-            tempArray = (1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0)
-            if (tempArray[self.hour]): # Cake or Cup
-               self.rndArray.push(2)
-            tempArray = (1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0)
-            if (tempArray[self.hour]): # Wander
-               self.rndArray.push(3)
-         case "Den":
-            tempArray = (0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0)
-            if (tempArray[self.hour] and not self.silTied and self.checkItem(229) == False and self.checkStash(229) == False): # Strap
-               self.rndArray.push(1)
-            tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-            if (tempArray[self.hour]): # Sil
-               self.rndArray.push(2)
-         case "Valley":
-            tempArray = (0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,1,0)
-            if (tempArray[self.hour]): # Fertility Statue
-               self.rndArray.push(1)
-            tempArray = (1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0)
-            if (tempArray[self.hour]): # Fragrant Flower
-               self.rndArray.push(2)
-            tempArray = (0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1)
-            if (tempArray[self.hour]): # Plump Quats
-               self.rndArray.push(3)
-            tempArray = (1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0)
-            if (tempArray[self.hour]): # Treant Seed
-               self.rndArray.push(4)
-            tempArray = (0,0,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,1,1)
-            if (tempArray[self.hour]): # Slumber
-               self.rndArray.push(5)
+      # Towns
+      if which == "Softlik":
+         tempArray = (0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
+         if (tempArray[self.hour]): # Squeaky Cheese
+            self.rndArray.push(1)
+         tempArray = (1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1)
+         if (tempArray[self.hour]): # Male Enhance
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Too Human
+            self.rndArray.push(3)
+         tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Gen
+            self.rndArray.push(4)
+      elif which == "Firmshaft":
+         tempArray = (0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1)
+         if (tempArray[self.hour]): # Jamie
+            self.rndArray.push(1)
+         tempArray = (1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
+         if (tempArray[self.hour]): # Harem
+            self.rndArray.push(2)
+         tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Gen
+            self.rndArray.push(3)
+      elif which == "Tieden":
+         tempArray = (1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
+         if (tempArray[self.hour]): # Knothole
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
+         if (tempArray[self.hour] and self.pregnancyTime >= 180 and self.vagTotal > 0): # Preggo Lover
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0)
+         if (tempArray[self.hour]): # Gen
+            self.rndArray.push(3)
+      elif which == "Siz'Calit":
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0)
+         if (tempArray[self.hour]): # Lila
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,1,1,0,0)
+         if (tempArray[self.hour] and self.lilaRep > 3): # Lila+
+            self.rndArray.push(1)
+         tempArray = (1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1)
+         if (tempArray[self.hour]): # Cat Attack
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Hyper Mistress
+            self.rndArray.push(3)
+         tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Gen
+            self.rndArray.push(4)
+      elif which == "Oviasis":
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0)
+         if (tempArray[self.hour] and self.silRep < 6): # Silandrias
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0)
+         if (tempArray[self.hour]): # Sunbathing
+            self.rndArray.push(2)
+         tempArray = (1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
+         if (tempArray[self.hour]): # Night Sex
+            self.rndArray.push(3)
+         tempArray = (0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,0,0)
+         if (tempArray[self.hour]): # Water Eggs
+            self.rndArray.push(4)
+         tempArray = (1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1)
+         if (tempArray[self.hour]): # Gen
+            self.rndArray.push(5)
+      elif which == "Sanctuary":
+         tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Gen
+            self.rndArray.push(3)
+      # Shared
+      elif which == "Forest":
+         tempArray = (0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1)
+         if (tempArray[self.hour]): # Wolf
+            self.rndArray.push(1)
+         tempArray = (1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
+         if (tempArray[self.hour]): # Gay Wolf
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0)
+         if (tempArray[self.hour]): # Cock-Snake
+            self.rndArray.push(3)
+         tempArray = (1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1)
+         if (tempArray[self.hour]): # Sneeze Flower
+            self.rndArray.push(4)
+         tempArray = (0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Milk Creeper
+            self.rndArray.push(5)
+         tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Path
+            self.rndArray.push(6)
+      elif which == "Jungle":
+         tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour] and not self.foundValley and self.firstExplore): # Find Valley
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Milk Creeper
+            self.rndArray.push(2)
+         tempArray = (0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
+         if (tempArray[self.hour]): # Wolf
+            self.rndArray.push(3)
+         tempArray = (1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0)
+         if (tempArray[self.hour]): # Gay Wolf
+            self.rndArray.push(4)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0)
+         if (tempArray[self.hour]): # Pussy Fruit
+            self.rndArray.push(5)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Shiny Rock
+            self.rndArray.push(6)
+         tempArray = (0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Path
+            self.rndArray.push(7)
+      elif which == "Plains":
+         tempArray = (1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0)
+         if (tempArray[self.hour] and self.checkOpenSlot(244) > 0): # Snuggle Ball
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0)
+         if (tempArray[self.hour]): # Cock Snake
+            self.rndArray.push(2)
+         tempArray = (0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1)
+         if (tempArray[self.hour]): # Drunken Equan
+            self.rndArray.push(3)
+         tempArray = (0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Grain
+            self.rndArray.push(4)
+         tempArray = (1,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1)
+         if (tempArray[self.hour]): # Path
+            self.rndArray.push(5)
+      elif which == "Savanna":
+         tempArray = (0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Horny Felin
+            self.rndArray.push(1)
+         tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1)
+         if (tempArray[self.hour]): # Drunken Equan
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0)
+         if (tempArray[self.hour]): # Warmth
+            self.rndArray.push(3)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Facial Mud
+            self.rndArray.push(4)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0)
+         if (tempArray[self.hour]): # Path
+            self.rndArray.push(5)
+      elif which == "Desert":
+         tempArray = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0)
+         if (tempArray[self.hour]): # Sandwich
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour] and self.currentZone == 6 and self.silRep == 0): # Silanrias
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0)
+         if (tempArray[self.hour]): # Dust Devil
+            self.rndArray.push(3)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Hot Sun
+            self.rndArray.push(4)
+         tempArray = (1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1)
+         if (tempArray[self.hour]): # Path
+            self.rndArray.push(5)
+      # Areas
+      elif which == "Beach":
+         tempArray = (0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Octo Girl
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,0,0,0,1,1,0,1,1,0,1,1,0,1,1,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Pregnant Lizan
+            self.rndArray.push(2)
+         tempArray = (0,0,1,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,1,1,0,0,0,1)
+         if (tempArray[self.hour]): # Trinket
+            self.rndArray.push(3)
+         tempArray = (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0)
+         if (tempArray[self.hour]): # Cock Carve
+            self.rndArray.push(4)
+         tempArray = (0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0)
+         if (tempArray[self.hour]): # Urchin
+            self.rndArray.push(5)
+         tempArray = (0,1,0,1,1,0,0,1,0,1,1,0,0,1,0,0,1,1,0,1,0,0,1,0)
+         if (tempArray[self.hour]): # Relax
+            self.rndArray.push(6)
+      elif which == "Lake":
+         tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Wet Cloth
+            self.rndArray.push(1)
+         tempArray = (0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour] and not self.knowPheromone): # Fisherman
+            self.rndArray.push(2)
+         tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Song
+            self.rndArray.push(3)
+      elif which == "Dairy Farm":
+         tempArray = (0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Free Pill
+            self.rndArray.push(1)
+         tempArray = (1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1)
+         if (tempArray[self.hour] and self.udders and self.udderLactation > 0 and self.udderEngorgementLevel > 0): # Experimental Milk Machine
+            self.rndArray.push(2)
+         tempArray = (0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1)
+         if (tempArray[self.hour]): # Buy Pill
+            self.rndArray.push(3)
+         tempArray = (0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0)
+         if (tempArray[self.hour]): # Malon
+            self.rndArray.push(4)
+         tempArray = (0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0)
+         if (tempArray[self.hour] and self.malonRep > 0): # Malon+
+            self.rndArray.push(4)
+         tempArray = (1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0)
+         if (tempArray[self.hour]): # Steal Milk
+            self.rndArray.push(5)
+      elif which == "Old Cave":
+         tempArray = (0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1)
+         if (tempArray[self.hour]): # Red Mush
+            self.rndArray.push(1)
+         tempArray = (1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0)
+         if (tempArray[self.hour]): # Cake or Cup
+            self.rndArray.push(2)
+         tempArray = (1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0)
+         if (tempArray[self.hour]): # Wander
+            self.rndArray.push(3)
+      elif which == "Den":
+         tempArray = (0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0)
+         if (tempArray[self.hour] and not self.silTied and self.checkItem(229) == False and self.checkStash(229) == False): # Strap
+            self.rndArray.push(1)
+         tempArray = (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+         if (tempArray[self.hour]): # Sil
+            self.rndArray.push(2)
+      elif which == "Valley":
+         tempArray = (0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,1,0,0,1,1,0)
+         if (tempArray[self.hour]): # Fertility Statue
+            self.rndArray.push(1)
+         tempArray = (1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0)
+         if (tempArray[self.hour]): # Fragrant Flower
+            self.rndArray.push(2)
+         tempArray = (0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1)
+         if (tempArray[self.hour]): # Plump Quats
+            self.rndArray.push(3)
+         tempArray = (1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0)
+         if (tempArray[self.hour]): # Treant Seed
+            self.rndArray.push(4)
+         tempArray = (0,0,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,1,1)
+         if (tempArray[self.hour]): # Slumber
+            self.rndArray.push(5)
       as3.trace(self.rndArray)
       return self.chooseFrom()
    def doSoftlik(self):
@@ -14574,10 +14572,7 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.lilaVulva >= 5):
                      self.doMainText(" However, she doesn't seem to be finished quite yet, as her legs maintain their hold. You lick and lick, hearing her breathing harder and harder and rapidly approaching yet another orgasmic cry.")
                   self.doMainText(f"\n\nTired, her breath slowly coming to a gentle purr, she curls around to look at you. Silently urging you up onto the bed, she licks across your dampened face as you climb up with her. She cuddles into your {self.boobDesc()} chest and quickly slips into sweet dreams while you follow behind.")
-                  if (self.lilaVulva > 10): #! Does this even need to be here?
-                     self.doLust(self.lilaVulva + self.lib // 3,0)
-                  else:
-                     self.doLust(self.lilaVulva + self.lib // 3,0)
+                  self.doLust(self.lilaVulva + self.lib // 3,0)
                   if (self.lilaPreg > 35):
                      self.doLust(self.lib // 6,0)
                   self.displayMainText()
@@ -16298,41 +16293,41 @@ class NiminFetishFantasyv0975o_fla:
                   tempArr.push(9)
                if (self.gender != 0):
                   tempArr.push(10)
-               match self.randChooseFromArray(tempArr):
-                  case 1:
-                     self.doMainText("your hips stretch outward, becoming wider.")
-                     self.hips += math.floor(self.percent() / 20 + 1)
-                  case 2:
-                     self.doMainText(f"your butt balloons outward behind you, straining your {self.clothesBottom()}.")
-                     self.butt += math.floor(self.percent() / 20 + 1)
-                  case 3:
-                     self.doMainText("your hair suddenly grows faster than you can blink, much longer than before.")
-                     self.hairLength += 2
-                  case 4:
-                     self.doMainText(f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric.")
-                     self.cockSize += math.floor(self.percent() / 20 + 1)
-                  case 5:
-                     if self.respectShowBalls and not self.showBalls:
-                        self.doMainText("your internal testicles swell, making you hunch over for an instant.")
-                     else:
-                        self.doMainText("your testicles swell between your thighs, making you hunch over your crotch for an instant.")
-                     self.ballSize += math.floor(self.percent() / 20 + 1)
-                  case 6:
-                     self.doMainText(f"you blast your semen into your {self.clothesBottom()}, a sudden spontaneous ejaculation.")
-                     self.cumAmount()
-                     self.doLust(-20,0)
-                  case 7:
-                     self.doMainText(f"your breasts inflate, nearly tearing through your {self.clothesTop()}.")
-                     self.breastSize += math.floor(self.percent() / 20 + 1)
-                  case 8:
-                     self.doMainText(f"all the milk in your breasts sprays out of your nipples, completely soaking your {self.clothesTop()}.")
-                     self.milkAmount(1)
-                  case 9:
-                     self.doMainText(f"your vulva expands {self.legWhere(1)} your {self.legDesc(2)}, squished between your thighs and making you walk awkwardly.")
-                     self.vulvaSize += math.floor(self.percent() / 20 + 1)
-                  case 10:
-                     self.doMainText("your blood floods to your genitals, suddenly arousing you.")
-                     self.doLust(self.percent() // 5,0)
+               tempInt = self.randChooseFromArray(tempArr)
+               if tempInt == 1:
+                  self.doMainText("your hips stretch outward, becoming wider.")
+                  self.hips += math.floor(self.percent() / 20 + 1)
+               elif tempInt == 2:
+                  self.doMainText(f"your butt balloons outward behind you, straining your {self.clothesBottom()}.")
+                  self.butt += math.floor(self.percent() / 20 + 1)
+               elif tempInt == 3:
+                  self.doMainText("your hair suddenly grows faster than you can blink, much longer than before.")
+                  self.hairLength += 2
+               elif tempInt == 4:
+                  self.doMainText(f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric.")
+                  self.cockSize += math.floor(self.percent() / 20 + 1)
+               elif tempInt == 5:
+                  if self.respectShowBalls and not self.showBalls:
+                     self.doMainText("your internal testicles swell, making you hunch over for an instant.")
+                  else:
+                     self.doMainText("your testicles swell between your thighs, making you hunch over your crotch for an instant.")
+                  self.ballSize += math.floor(self.percent() / 20 + 1)
+               elif tempInt == 6:
+                  self.doMainText(f"you blast your semen into your {self.clothesBottom()}, a sudden spontaneous ejaculation.")
+                  self.cumAmount()
+                  self.doLust(-20,0)
+               elif tempInt == 7:
+                  self.doMainText(f"your breasts inflate, nearly tearing through your {self.clothesTop()}.")
+                  self.breastSize += math.floor(self.percent() / 20 + 1)
+               elif tempInt == 8:
+                  self.doMainText(f"all the milk in your breasts sprays out of your nipples, completely soaking your {self.clothesTop()}.")
+                  self.milkAmount(1)
+               elif tempInt == 9:
+                  self.doMainText(f"your vulva expands {self.legWhere(1)} your {self.legDesc(2)}, squished between your thighs and making you walk awkwardly.")
+                  self.vulvaSize += math.floor(self.percent() / 20 + 1)
+               elif tempInt == 10:
+                  self.doMainText("your blood floods to your genitals, suddenly arousing you.")
+                  self.doLust(self.percent() // 5,0)
                self.outputMainText(" You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.")
                self.hrs += 2
                self.doEnd()
@@ -18808,8 +18803,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doImpregnate(self.dominant)
                if (self.cockTotal > 0):
                   self.cumAmount()
-               elif (self.silPreg > 400): #!Does this need to be here?
-                  self.doLust(-(self.sen // 2),2,2,5)
                else:
                   self.doLust(-(self.sen // 2),2,2,5)
                self.displayMainText()
