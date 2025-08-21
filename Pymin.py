@@ -728,15 +728,11 @@ class NiminFetishFantasyv0975o_fla:
       self.nsldblindervisible = False
       self.frame1()
 
-      self.mo.children["root"].bind("<Escape>",self.hotkeyClose)
       self.cm = fui.ContextMenu(self.mo.display)
       self.cm.removeAllItems()
       self.vscm = fui.ContextMenuItem("root", "View Source", "vs", type_="Item", command=partial(webbrowser.open,url="https://github.com/ajdelguidice/pymin"))
       self.cm.addItemAt(self.vscm)
       self.mo.mainloop()
-   def hotkeyClose(self,*e):
-      if self.shiftHeld and self.altHeld:
-         self.mo.endProcess()
    def _aboutwindow(self):
       """
       Opens the about window
@@ -1467,17 +1463,13 @@ class NiminFetishFantasyv0975o_fla:
       return temp2 + sorted(temp,key=str.lower)
    @staticmethod
    def inv(boolean:bool):
-      if boolean == None:
-         return None
-      return not boolean
+      return None if boolean == None else not boolean
    @staticmethod
    def boolToState(boolean:bool):
       """
       Converts a boolean to a tkinter state. True -> normal. False -> disabled
       """
-      if boolean == True:
-         return "normal"
-      return "disabled"
+      return "normal" if boolean else "disabled"
    def key_press(self, e):
       """
       Function activated on key press
@@ -1496,7 +1488,7 @@ class NiminFetishFantasyv0975o_fla:
          self.ctrlHeld = False
       if kc == 18: #Alt
          self.altHeld = False
-   def buttonEvent1(self,*args):
+   def buttonEvent1(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(1)
@@ -1504,7 +1496,7 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 1
          self.hideUpDown()
          self.doListen()
-   def buttonEvent2(self,*args):
+   def buttonEvent2(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(2)
@@ -1512,7 +1504,7 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 2
          self.hideUpDown()
          self.doListen()
-   def buttonEvent3(self,*args):
+   def buttonEvent3(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(3)
@@ -1520,12 +1512,12 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 3
          self.hideUpDown()
          self.doListen()
-   def buttonEvent4(self,*args):
+   def buttonEvent4(self, *e):
       self.detailedDebug()
       self.buttonChoice = 4
       self.hideUpDown()
       self.doListen()
-   def buttonEvent5(self,*args):
+   def buttonEvent5(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(5)
@@ -1533,7 +1525,7 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 5
          self.hideUpDown()
          self.doListen()
-   def buttonEvent6(self,*args):
+   def buttonEvent6(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(6)
@@ -1541,7 +1533,7 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 6
          self.hideUpDown()
          self.doListen()
-   def buttonEvent7(self,*args):
+   def buttonEvent7(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(7)
@@ -1549,12 +1541,12 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 7
          self.hideUpDown()
          self.doListen()
-   def buttonEvent8(self,*args):
+   def buttonEvent8(self, *e):
       self.detailedDebug()
       self.buttonChoice = 8
       self.hideUpDown()
       self.doListen()
-   def buttonEvent9(self,*args):
+   def buttonEvent9(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(9)
@@ -1562,7 +1554,7 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 9
          self.hideUpDown()
          self.doListen()
-   def buttonEvent10(self,*args):
+   def buttonEvent10(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(10)
@@ -1570,7 +1562,7 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 10
          self.hideUpDown()
          self.doListen()
-   def buttonEvent11(self,*args):
+   def buttonEvent11(self, *e):
       self.detailedDebug()
       if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
          self.itemMove(11)
@@ -1578,17 +1570,16 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonChoice = 11
          self.hideUpDown()
          self.doListen()
-   def buttonEvent12(self,*args):
+   def buttonEvent12(self, *e):
       self.detailedDebug()
       self.buttonChoice = 12
       self.hideUpDown()
       self.doListen()
-   def buttonEventDiscard(self,*args):
+   def buttonEventDiscard(self, *e):
       self.detailedDebug()
       self.buttonChoice = 13
       self.doListen()
-   def doListen(self):
-      pass
+   def doListen(self):...
    def side1Event(self):
       self.sideEvent(1)
    def side2Event(self):
@@ -1931,12 +1922,12 @@ class NiminFetishFantasyv0975o_fla:
       if (self.showSide):
          self.showSide = False
          self.hideSidePanel()
-         self.option7Text()
+         self.swapOption7()
       else:
          self.showSide = True
          self.showSidePanel()
          self.updateSide()
-         self.option7Text()
+         self.swapOption7()
       if (self.option7Visible):
          self.savePreferences()
    def updateText(self):
@@ -2211,7 +2202,7 @@ class NiminFetishFantasyv0975o_fla:
             db = True
          self.showButtonsBag(buttonlist,tempArray,which,db)
       else:
-         self.showButtons(buttonlist,discardButton=db)
+         self.showButtons(buttonlist,db)
       self.doButtonChoices(tempDict)
    @staticmethod
    @cache
@@ -2255,7 +2246,7 @@ class NiminFetishFantasyv0975o_fla:
          self.disableSelectedButtons(i for i in (1,2,3,5,6,7,9,10,11) if not self.buttonsVisible[i])
       elif self.mts or self.mtb:
          self.enableAllButtons()
-   def choiceListSelect(self, which:str, hideAmountOverride=False, hidePageOverride=False):
+   def choiceListSelect(self, which:str, hideOverride:bool=False):
       if which == "Bag":
          tempArray = tuple(self.bagArray)
       elif which == "Stash":
@@ -2272,7 +2263,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.choiceListResult[0] = tempArray[tempInt + (self.choicePage * 9 - 9)]
          self.choiceListResult[1] = tempInt + (self.choicePage * 9 - 9)
-      if which not in {"Bag","Stash"} and hideAmountOverride == False:
+      if which not in {"Bag","Stash"} and hideOverride == False:
          self.hideAmount()
       if self.buttonChoice == 4:
          if (self.choicePage > 1):
@@ -2296,7 +2287,7 @@ class NiminFetishFantasyv0975o_fla:
             self.stashPage = self.choicePage
       if (self.buttonChoice != 4 and self.buttonChoice != 8):
          if not (self.inBag or self.inStash):
-            if not hidePageOverride:
+            if not hideOverride:
                self.showPage(False,"")
             self.tempBagPage = self.choicePage
          self.choicePage = 1
@@ -2306,8 +2297,12 @@ class NiminFetishFantasyv0975o_fla:
       return False
    def showPage(self, changes:bool, which:str):
       if (changes == True):
-         self.PageShow()
-         self.pageTextChange(f"{which}: {self.choicePage}")
+         if (not self.pageShow):
+            temp = self.getColours()
+            self.mo.addLabel("display","pagelabel",843,30,100,30,self.font)
+            self.mo.configureChild("pagelabel",text="BAG 1",background=temp[0],foreground=temp[1])
+            self.pageShow = True
+         self.mo.configureChild("pagelabel",text=f"{which}: {self.choicePage}")
       else:
          self.PageHide()
    def checkZero(self):
@@ -2458,7 +2453,7 @@ class NiminFetishFantasyv0975o_fla:
          dlist.remove(k)
          self.buttonWrite(k,v)
       self.disableSelectedButtons(dlist)
-   def doProcess(self,override=None):
+   def doProcess(self, override=None):
       if self.goToInDoProcess != -1:
          self.regionChange(self.goToInDoProcess)
          self.goToInDoProcess = -1
@@ -2662,7 +2657,7 @@ class NiminFetishFantasyv0975o_fla:
       Returns a random option from self.rndArray. self.rndArray must have atleast one item in it "or else you'll get the hose".
       """
       if (self.rndArray.length < 1):
-         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
+         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
          as3.trace(f"chooseFrom: Error: self.rndArray does not contain any items. hour = {self.hour}")
          self.rndResult = 0
          self.rndArray = as3.Array()
@@ -2670,20 +2665,20 @@ class NiminFetishFantasyv0975o_fla:
          self.rndResult = self.rndArray[round(random.random() * (self.rndArray.length - 1))]
          self.rndArray = as3.Array()
          return self.rndResult
-   def randChooseFromArray(self,array:as3.Array):
+   def randChooseFromArray(self, array:as3.Array):
       """
       Returns a random option from an array. The array must have atleast one item in it "or else you'll get the hose".
       """
       if (array.length < 1):
-         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.",False)
+         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
          as3.trace(f"randChooseFromArray: Error: array does not contain any items. hour = {self.hour}")
       else:
          return choice(array)
-   def stats(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
+   def stats(self, stre:int, menta:int, libi:int, sens:int):
       """
       Updates player stats and displays the up/down images
       """
-      if self.currentState != 2 and noclear == False:
+      if self.currentState != 2:
          self.hideUpDown()
       self.strength += stre
       self.mentality += menta
@@ -2732,11 +2727,11 @@ class NiminFetishFantasyv0975o_fla:
       elif (sens < 0):
          self.UpDownSenImg("valdownimg")
       self.statDisplay()
-   def statsMod(self, stre:int, menta:int, libi:int, sens:int, noclear=False):
+   def statsMod(self, stre:int, menta:int, libi:int, sens:int):
       """
       Updates player stats modifiers and displays the up/down images
       """
-      if self.currentState != 2 and noclear == False:
+      if self.currentState != 2:
          self.hideUpDown()
       self.strMod += stre
       self.mentMod += menta
@@ -2759,7 +2754,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (sens < 0):
          self.UpDownSenImg("valdownimg")
       self.statDisplay()
-   def statDisplay(self, nolsc=False):
+   def statDisplay(self, lsc=True):
       """
       Updates the displayed player's stats values
       """
@@ -2770,7 +2765,7 @@ class NiminFetishFantasyv0975o_fla:
       self.setCStats()
       self.setHPStat()
       self.setLustStat()
-      if nolsc == False:
+      if lsc == True:
          self.setLevelStat()
          self.setSCStats()
    def doSexP(self, changes:int):
@@ -3007,7 +3002,7 @@ class NiminFetishFantasyv0975o_fla:
       For when player's lust gets too high
       """
       if (self.currentState == 2):
-         self.outputMainText(f"\n\nAmidst the heat of battle, your {self.legDesc(2)} buckle{self.legPlural(1)} from your intense arousal, preventing you from fighting any further.",False)
+         self.outputMainText(f"\n\nAmidst the heat of battle, your {self.legDesc(2)} buckle{self.legPlural(1)} from your intense arousal, preventing you from fighting any further.")
          if (not self.inBag):
             self.currentState = 1
          self.doNext()
@@ -4118,7 +4113,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       tempStr.close()
    @staticmethod
-   def getdh(file):
+   def getdhXML(file):
       """
       Gets day and hour from XML save files to display on the save and load screens
       """
@@ -4145,7 +4140,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       with open(file, "rb") as f:
          return amf3.ByteArray(f).readObject()["data"]["track"][2:4]
-   def saveGo(self,ret=False):
+   def saveGo(self, ret=False):
       """
       Save game stage 1 (dialog)
       """
@@ -4157,7 +4152,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in range(9):
             tempInt = i+1+i//3
             if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() and not self.solonlymode):
-               dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
+               dh = self.getdhXML(self.savelocation / f"Nimin_Save{tempInt}.xml")
                tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
             elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
                dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
@@ -4178,7 +4173,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.slot = self.buttonChoice
                if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
-                  dh = self.getdh(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
+                  dh = self.getdhXML(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
                   self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
@@ -4211,7 +4206,7 @@ class NiminFetishFantasyv0975o_fla:
                   if temp1.endswith(".toml"):
                      dh = self.getdhTOML(temp2)
                   elif temp1.endswith(".xml"):
-                     dh = self.getdh(temp2)
+                     dh = self.getdhXML(temp2)
                   elif temp1.endswith(".sol"):
                      dh = self.getdhSOL(temp2)
                   elif temp1.endswith(".nim"):
@@ -4232,7 +4227,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.hideDiscard()
                      self.doReturn()
                   else:
-                     self.saveGo(ret=True)
+                     self.saveGo(True)
                self.doListen = doListen
             elif self.buttonChoice == 12 and self.currentState != 0:
                self.hideNewSaveLoadDialog()
@@ -4262,7 +4257,7 @@ class NiminFetishFantasyv0975o_fla:
             for i in range(9):
                tempInt = i+1+i//3
                if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file()):
-                  dh = self.getdh(self.savelocation / f"Nimin_Save{tempInt}.xml")
+                  dh = self.getdhXML(self.savelocation / f"Nimin_Save{tempInt}.xml")
                   tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
                elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
@@ -4288,7 +4283,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                else:
                   if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
-                     dh = self.getdh(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
+                     dh = self.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
                      self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                   elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                      dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
@@ -4315,7 +4310,7 @@ class NiminFetishFantasyv0975o_fla:
                temp = self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")
                self.outputMainText(f"{temp[0].replace('D:','Day:').replace('H:','Hour:')}:00\n\nAre you sure you want to load {temp[1]}?",True)
                if self.currentState != 0:
-                  self.outputMainText("\n\nYou will lose any unsaved data from the current game.",False)
+                  self.outputMainText("\n\nYou will lose any unsaved data from the current game.")
                self.showNSLDBlinder(True)
                self.buttonConfirm()
                def doListen():
@@ -4332,7 +4327,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 13:
                self.openSFC()
          self.doListen = doListen
-   def doNewSaveLoadDialog(self,which:str,ret):
+   def doNewSaveLoadDialog(self, which:str, ret):
       """
       New save/load dialog that displays all save files inside of the save directory (referred to as nsld internally)
       """
@@ -4371,7 +4366,7 @@ class NiminFetishFantasyv0975o_fla:
          if temp.endswith(".toml"):
             dh = self.getdhTOML(self.savelocation / i)
          elif temp.endswith(".xml"):
-            dh = self.getdh(self.savelocation / i)
+            dh = self.getdhXML(self.savelocation / i)
          elif temp.endswith(".sol"):
             dh = self.getdhSOL(self.savelocation / i)
          elif temp.endswith(".nim"):
@@ -4391,9 +4386,9 @@ class NiminFetishFantasyv0975o_fla:
             self.nsldSortOrder = 0
          self.nsldDisplay()
          self.savePreferences()
-   def _disableKeys(self,*e):
+   def _disableKeys(self, *e):
       self.keyboardTypingDisable = True
-   def _enableKeys(self,*e):
+   def _enableKeys(self, *e):
       self.keyboardTypingDisable = False
    def showNewSaveLoadDialog(self):
       """
@@ -4419,7 +4414,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.addButton("display","savefilesort",840,96,140,46,self.font,"nw")
          self.mo.configureChild("savefilesort",command=self.toggleNSLDSortOrder,background=temp[0],foreground=temp[1],text="Sort")
          self.newSLDialogVisible = True
-   def nsldSetEntryFromListbox(self,*args):
+   def nsldSetEntryFromListbox(self, *e):
       """
       Function to set the entry box text of nsld
       """
@@ -4445,7 +4440,7 @@ class NiminFetishFantasyv0975o_fla:
          self.clearTextAllButtons()
          self.newSLDialogVisible = False
          self._enableKeys()
-   def showNSLDBlinder(self,which=False):
+   def showNSLDBlinder(self, which=False):
       """
       Hides nsld temporarily while conformation dialog is shown
       """
@@ -4541,10 +4536,10 @@ class NiminFetishFantasyv0975o_fla:
          data = self.loadTOML(loadfilename)
       else:
          as3.trace(f"SaveLoader Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext.split('.')[-1]}.")
-         self.loadGo(message="Error: Could not load save file. Reason: Incorrect file format")
+         self.loadGo("Error: Could not load save file. Reason: Incorrect file format")
          return
       if data == None:
-         self.loadGo(message="Error: Could not load save file. Reason: No data was received by doLoad")
+         self.loadGo("Error: Could not load save file. Reason: No data was received by doLoad")
          return
       try:
          strack = data['track']
@@ -4853,11 +4848,11 @@ class NiminFetishFantasyv0975o_fla:
          self.pregArray = as3.Array(*data['preg'])
       except ValueError as e:
          as3.trace("SaveLoader Error: Error: One or more values has an invalid type.")
-         self.loadGo(message="Error: Could not load save file. Reason: One or more saved values are of an unexpected type.",ret=True)
+         self.loadGo("Error: Could not load save file. Reason: One or more saved values are of an unexpected type.",True)
          raise e
       except Exception as e:
          as3.trace("SaveLoader Error: File failed to load.")
-         self.loadGo(message="Error: Could not load save file. Reason: Malformed save file",ret=True)
+         self.loadGo("Error: Could not load save file. Reason: Malformed save file",True)
          raise e
       else:
          try:
@@ -4883,9 +4878,15 @@ class NiminFetishFantasyv0975o_fla:
             if not self.showsavegame:
                self.hideOption7()
                self.hideStatsPane()
-               self.initSidePanel()
+               for i in range(8):
+                  self.mo.destroyChild(self.sidepanelbuttonnames[i])
+                  self.sidepanelbuttonsvisible[i] = False
+               if self.textsidevisible:
+                  self.mo.children["textside"].frame.destroy()
+                  self.textsidevisible = False
+               self.hideAPButton()
             self.showNSLDBlinder(False)
-            self.loadGo(message="Error: Failed after loading file data.")
+            self.loadGo("Error: Failed after loading file data.")
             raise e
    def doRace(self):
       """
@@ -5004,7 +5005,7 @@ class NiminFetishFantasyv0975o_fla:
       New game sex selection dialog
       """
       self.currentDayCare = self.dominant
-      self.statDisplay(nolsc=True)
+      self.statDisplay(False)
       self.outputMainText("Choose which gender you want to be:\n\nMale - You has painus!\n\nFemale - You has vagoo!\n\nHerm - You has painus and vagoo!",True)
       self.showButtons(ButtonList(0,0,0,0,1,1,1,0,0,0,0,0))
       self.doButtonChoices({5:"Male",6:"Female",7:"Herm"})
@@ -5067,7 +5068,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       New game body type selection dialog
       """
-      self.statDisplay(nolsc=True)
+      self.statDisplay(False)
       if self.gender == 1:
          self.showButtons(ButtonList(1,0,1,0,1,0,1,0,0,1,0,0))
          tempDict = {1:"Bodybuilder", 3:"Average", 5:"Cunt Boy", 7:self.ptweaksGrammar(3,True), 10:"Childlike"}
@@ -5401,7 +5402,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doLust(-(self.lib // 4),2,1)
       self.displayMainText()
       self.doEnd()
-   def doBag(self, noclear=False, refresh=False):
+   def doBag(self, refresh=False, noclear=False):
       """
       Bag dialog
       """
@@ -5415,9 +5416,7 @@ class NiminFetishFantasyv0975o_fla:
          self.enableAllButtons()
       else:
          self.choicePage = self.bagPage
-         if noclear == True:
-            x = 0 #placeholder
-         else: #when refresh is True.
+         if refresh == True:
             self.bsRefresh("Bag")
       if self.useNewStash and self.moveItemID != 0:
          self.buttonWrite(12,"Stash")
@@ -5431,7 +5430,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doButtonDiscard("Bag")
          elif self.buttonChoice == 12:
             if self.useNewStash and self.moveItemID != 0:
-               if (self.canLoseMoveLocation(self.moveItemID) == False):
+               if (not self.canLoseMoveLocation(self.moveItemID)):
                   self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
                else:
                   self.moveToStash()
@@ -5551,19 +5550,6 @@ class NiminFetishFantasyv0975o_fla:
          if (self.bagArray[i] == 0):
             return i
       return -1
-   def bagSlotAdd(self, amount:int):
-      for i in range(amount):
-         if (self.bagArray.length < 27):
-            self.bagArray.push(0)
-         if (self.bagStackArray.length < 27):
-            self.bagStackArray.push(0)
-   def bagSlotRemove(self, amount:int):
-      for i in range(amount):
-         tempInt = self.bagArray.pop()
-         tempInt2 = self.bagStackArray.pop()
-         if (tempInt != 0) and (tempInt2 != 0):
-            for tempInt3 in range(1, tempInt2):
-               self.itemAdd(tempInt)
    def bagSlotClear(self, slot:int):
       """
       Clears a slot in the bag
@@ -5665,9 +5651,9 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonWrite(12,"Bag")
       #self.hideAmount()
       if (self.inBag):
-         self.doBag(refresh=True)
+         self.doBag(True)
       elif (self.inStash):
-         self.doStash(refresh=True)
+         self.doStash(True)
    def showMoveItem(self, which:bool):
       """
       Function to show the item which is being moved in a box off to the side
@@ -7794,7 +7780,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your anatomy immediately falls out of the slings, taken you with it as you crash to the ground, completely anchored by your own body. You at least manage to finish unequipping the harness and put it in your bag, but now you've got some issues...",True)
                   self.doWeight()
                else:
-                  self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your bits bounce out as they're set free, making you jerk as the weight falls back upon your body. You then stuff the harness back into your bag, no longer equipped, and prepare yourself to continue on with the unsupported weight.",False)
+                  self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your bits bounce out as they're set free, making you jerk as the weight falls back upon your body. You then stuff the harness back into your bag, no longer equipped, and prepare yourself to continue on with the unsupported weight.")
                self.suppHarness = False
             self.doEnd()
          case 248:
@@ -8626,11 +8612,10 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("You quickly chomp down the egg. It doesn't exactly taste good or bad, but that doesn't really matter. You just feel like you've got more energy to keep working!",True)
             self.exhaustion -= 6
             self.doEnd()
-   def bsRefresh(self,which):
+   def bsRefresh(self, which):
       """
       Refreshes the bag/stash so doBag and doStash do not need to be called again.
       """
-      tempInt = 0
       tempDict = {12:"Return"}
       if which == "Bag":
          tempArray = as3.Array(*[self.itemName(self.bagArray[i]) for i in range(27)])
@@ -8662,7 +8647,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                else:
                   self.viewAmount(i,False)
-   def doButtonDiscard(self,which):
+   def doButtonDiscard(self, which):
       """
       Discard button action
       """
@@ -8691,11 +8676,45 @@ class NiminFetishFantasyv0975o_fla:
          elif which == "mtb":
             self.moveToBag()
       self.doListen = doListen
-   def doStash(self,noclear=False,refresh=False):
+   def doStash(self, refresh=False):
       """
       Stash dialog
       """
-      if not self.useNewStash:
+      if self.useNewStash:
+         self.mtb = False
+         self.inStash = True
+         self.tempBagPage = 1
+         self.showMoveItem(True)
+         if refresh == True:
+            self.choicePage = self.stashPage
+            self.bsRefresh("Stash")
+         else:
+            self.choiceListButtons("Stash")
+            self.choiceListBlanks()
+            self.enableAllButtons()
+         if self.moveItemID != 0:
+            self.buttonWrite(12,"Bag")
+         if self.moveItemID == 0:
+            self.mo.configureChild("discardbutton",state="disabled")
+         else:
+            self.mo.configureChild("discardbutton",state="normal")
+         def doListen():
+            self.choiceListSelect("Stash")
+            if self.buttonChoice == 13:
+               self.doButtonDiscard("Stash")
+            elif self.buttonChoice == 12:
+               if self.moveItemID != 0:
+                  self.moveToBag()
+               else:
+                  self.inStash = False
+                  self.doReturn(nodjp=True)
+            elif self.buttonChoice in {4,8}:
+               self.doStash()
+            else:
+               self.choicePage = self.stashPage
+               self.itemMove(self.buttonChoice)
+         self.doListen = doListen
+      else:
          self.inStash = False
          self.showPage(False,"")
          self.hideAmount()
@@ -8711,64 +8730,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doRemoveStash()
             elif self.buttonChoice == 12:
                self.doReturn()
-         self.doListen = doListen
-      else:
-         self.mtb = False
-         self.inStash = True
-         self.tempBagPage = 1
-         self.showMoveItem(True)
-         if noclear == False and refresh == False:
-            self.choiceListButtons("Stash")
-            self.choiceListBlanks()
-            self.enableAllButtons()
-         else:
-            self.choicePage = self.stashPage
-            if noclear == True:
-               x = 0 #placeholder
-            else: #when refresh is True.
-               self.bsRefresh("Stash")
-         if self.moveItemID != 0:
-            self.buttonWrite(12,"Bag")
-         if self.moveItemID == 0:
-            self.mo.configureChild("discardbutton",state="disabled")
-         else:
-            self.mo.configureChild("discardbutton",state="normal")
-         def doListen():
-            self.choiceListSelect("Stash")
-            if self.buttonChoice == 13:
-               self.doButtonDiscard("Stash")
-            elif self.buttonChoice == 12:
-               if self.moveItemID != 0:
-                  self.moveToBag()
-               else:
-                  if (self.moveItemID != 0):
-                     self.hideAmount()
-                     self.PageHide()
-                     self.doMainText(f"Closing your stash while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}",True)
-                     if (self.moveItemStack > 1):
-                        self.doMainText(f" x{self.moveItemStack}")
-                     self.outputMainText("?")
-                     self.buttonConfirm()
-                     self.buttonShiftOverride = True
-                     def doListen():
-                        self.buttonShiftOverride = False
-                        if (self.buttonChoice == 6):
-                           self.moveItemID = 0
-                           self.moveItemStack = 0
-                           self.showMoveItem(False)
-                           self.inStash = False
-                           self.doReturn()
-                        else:
-                           self.doStash()
-                     self.doListen = doListen
-                  else:
-                     self.inStash = False
-                     self.doReturn(nodjp=True)
-            elif self.buttonChoice in {4,8}:
-               self.doStash()
-            else:
-               self.choicePage = self.stashPage
-               self.itemMove(self.buttonChoice)
          self.doListen = doListen
    def moveToStash(self):
       self.mts = True
@@ -8853,7 +8814,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doStash()
       self.doListen = doListen
-   def refreshMoveItem(self,item,stack):
+   def refreshMoveItem(self, item, stack):
       """
       Function to refresh the item being moved
       """
@@ -8861,10 +8822,12 @@ class NiminFetishFantasyv0975o_fla:
       self.moveItemStack = stack
       if self.moveItemID != 0 and self.moveItemStack != 0:
          self.moveItemShow()
-         self.moveItemChangeItem(self.itemName(self.moveItemID))
+         if (self.moveitembuttonvisible):
+            self.mo.configureChild("moveitembutton",text=self.itemName(self.moveItemID))
          if (self.moveItemStack > 1):
             self.moveItemAmountShow()
-            self.moveItemAmountChange(self.moveItemStack)
+            if (self.moveitemamountvisible):
+               self.mo.configureChild("moveitemamount",text=self.moveItemStack)
          else:
             self.moveItemAmountHide()
       else:
@@ -8969,21 +8932,6 @@ class NiminFetishFantasyv0975o_fla:
             self.stashRemove(self.tempStoreItem)
             self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another slot to move your stashed item into.",True)
       self.doListen = doListen
-   def stashSlotAdd(self, amount:int):
-      for i in range(amount):
-         if (self.stashArray.length < 27):
-            self.stashArray.push(0)
-         if (self.stashStackArray.length < 27):
-            self.stashStackArray.push(0)
-   def stashSlotRemove(self, amount:int):
-      tempInt = 0
-      tempInt2 = 0
-      for i in range(amount):
-         tempInt = int(self.stashArray.pop())
-         tempInt2 = int(self.stashStackArray.pop())
-         if (tempInt != 0 and tempInt2 != 0):
-            for j in range(tempInt2):
-               self.itemAdd(tempInt)
    def doShops(self):
       self.showButtons(ButtonList(1,1,1,0,0,1,1,0,0,0,0,1))
       self.outputMainText(f"General Store - Come here to see what kinds of goods {self.regionName(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {self.regionName(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {self.regionName(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {self.regionName(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.",True)
@@ -9088,14 +9036,14 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.doReturn()
       self.doListen = doListen
-   def doSell(self,cantsell=False):
+   def doSell(self, cansell=True):
       self.choiceListButtons("Bag",page=self.tempBagPage)
-      if cantsell == True:
-         self.outputMainText("\n\nClick on a different item you would like to sell.")
-      else:
+      if cansell == True:
          self.outputMainText("Click on an item you would like to sell.",True)
+      else:
+         self.outputMainText("\n\nClick on a different item you would like to sell.")
       def doListen():
-         self.choiceListSelect("Bag",True,True)
+         self.choiceListSelect("Bag",True)
          if (self.buttonChoice == 12):
             self.hideAmount()
             self.PageHide()
@@ -9106,7 +9054,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.bagStackArray[self.choiceListResult[1]] < 2):
                if (self.itemValue(self.choiceListResult[0]) == 0 or self.canLose(self.choiceListResult[0]) == False):
                   self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.",True)
-                  self.doSell(True)
+                  self.doSell(False)
                else:
                   self.hideAmount()
                   self.PageHide()
@@ -12659,38 +12607,38 @@ class NiminFetishFantasyv0975o_fla:
                            self.outputMainText("With some focus and a sudden surge of growth, your ",True)
                         temp = self.choiceListResult[0]
                         if temp == "Cock":
-                           self.doMainText(f"cock{self.plural(1)} extend{self.plural(3)} within your {self.clothesBottom()}, growing thicker and longer until {self.plural(11)} spring{self.plural(3)} out and you catch {self.plural(11)} in your hands. Heavier and more cumbersome, you barely manage to fit {self.plural(9)} back into your {self.clothesBottom()}...",False)
+                           self.doMainText(f"cock{self.plural(1)} extend{self.plural(3)} within your {self.clothesBottom()}, growing thicker and longer until {self.plural(11)} spring{self.plural(3)} out and you catch {self.plural(11)} in your hands. Heavier and more cumbersome, you barely manage to fit {self.plural(9)} back into your {self.clothesBottom()}...")
                            self.cockChange(20,0)
                         elif temp == "Balls":
                            self.ballSize += 20
-                           self.doMainText(f"testicles swell tremendously within your {self.clothesBottom()}, lifting your cock{self.plural(1)} and pushing against your thighs. You quickly pull {self.pullUD(2)} your {self.clothesBottom()} and breathe a sigh of relief as the orbs settle before you. It takes some time to squeeze them back in...",False)
+                           self.doMainText(f"testicles swell tremendously within your {self.clothesBottom()}, lifting your cock{self.plural(1)} and pushing against your thighs. You quickly pull {self.pullUD(2)} your {self.clothesBottom()} and breathe a sigh of relief as the orbs settle before you. It takes some time to squeeze them back in...")
                         elif temp == "Pussy":
-                           self.doMainText(f"vagina{self.plural(2)} grow{self.plural(4)} much deeper, filling you up inside with more tunnel space to plow...",False)
+                           self.doMainText(f"vagina{self.plural(2)} grow{self.plural(4)} much deeper, filling you up inside with more tunnel space to plow...")
                            self.vagChange(20,0)
                         elif temp == "Vulva":
                            self.vulvaSize += 20
-                           self.doMainText(f"pussy lips swell tremendously, bulging in your {self.clothesBottom()} and pressing into your thighs until you have to pull{self.pullUD(2)} your {self.clothesBottom()} and give your labiasome air. So thick and tender, it takes some time to stuff yourself back into your clothes...",False)
+                           self.doMainText(f"pussy lips swell tremendously, bulging in your {self.clothesBottom()} and pressing into your thighs until you have to pull{self.pullUD(2)} your {self.clothesBottom()} and give your labiasome air. So thick and tender, it takes some time to stuff yourself back into your clothes...")
                         elif temp == "Clit":
                            self.clitSize += 20
-                           self.doMainText(f"clit{self.plural(2)} extend{self.plural(4)} within your {self.clothesBottom()}, forming a more noticeable bulge in the fabric and nearly driving you to orgasm as {self.plural(12)} drag{self.plural(4)} across the cloth...",False)
+                           self.doMainText(f"clit{self.plural(2)} extend{self.plural(4)} within your {self.clothesBottom()}, forming a more noticeable bulge in the fabric and nearly driving you to orgasm as {self.plural(12)} drag{self.plural(4)} across the cloth...")
                         elif temp == "Breasts":
                            self.breastSize += 20
-                           self.doMainText(f"breasts swell tremendously, pressing against your {self.clothesTop()} until you have to pull the cloth {self.pullUD(1)} and let your bosom fall out with a gasp. They're much heavier and wobble a bit until you can get balanced and take some time to stuff back in...",False)
+                           self.doMainText(f"breasts swell tremendously, pressing against your {self.clothesTop()} until you have to pull the cloth {self.pullUD(1)} and let your bosom fall out with a gasp. They're much heavier and wobble a bit until you can get balanced and take some time to stuff back in...")
                         elif temp == "Nipples":
                            self.nippleSize += 20
-                           self.doMainText(f"nipples grow much longer, protruding through your {self.clothesTop()} far more and making you gasp in near-orgasm as they drag across the fabric...",False)
+                           self.doMainText(f"nipples grow much longer, protruding through your {self.clothesTop()} far more and making you gasp in near-orgasm as they drag across the fabric...")
                         elif temp == "Udder":
                            self.udderSize += 20
-                           self.doMainText("udder swells tremendously, making you fall to your knees as it weighs you down until you let it flop over the ground. You take a few moments before you're able to lift yourself back up, swinging your hips slightly as you try to balance yourself with the added mass...",False)
+                           self.doMainText("udder swells tremendously, making you fall to your knees as it weighs you down until you let it flop over the ground. You take a few moments before you're able to lift yourself back up, swinging your hips slightly as you try to balance yourself with the added mass...")
                         elif temp == "Teats":
                            self.teatSize += 20
-                           self.doMainText("teats grow much longer, flopping out over your udder and protruding much further, almost like you've got multiple erections forming over your belly...",False)
+                           self.doMainText("teats grow much longer, flopping out over your udder and protruding much further, almost like you've got multiple erections forming over your belly...")
                         elif temp == "Butt":
                            self.butt += 20
-                           self.doMainText(f"rump swells tremendously, making your {self.clothesBottom()} creak as your tush pushes at the fabric. You quickly pull the {self.clothesBottom()} {self.pullUD(2)} and bend forward while your ass hangs out behind you, wobbling and jiggling with its sudden spurt. You have quite some trouble fitting back into your clothes, with a good deal of crack and cheek still exposed...",False)
+                           self.doMainText(f"rump swells tremendously, making your {self.clothesBottom()} creak as your tush pushes at the fabric. You quickly pull the {self.clothesBottom()} {self.pullUD(2)} and bend forward while your ass hangs out behind you, wobbling and jiggling with its sudden spurt. You have quite some trouble fitting back into your clothes, with a good deal of crack and cheek still exposed...")
                         elif temp == "Hips":
                            self.hips += 20
-                           self.doMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...",False)
+                           self.doMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...")
                         self.displayMainText()
                         if self.buttonChoice in {4,8}:
                            self.choiceListButtons("Hyper Happy")
@@ -12703,7 +12651,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.doEnd()
                      self.doListen = doListen
                   if ((self.hyperHappyLevel + 1) // 3 > self.hyperHappyLevel // 3):
-                     self.outputMainText("\n\nYou also become a bit more accustomed to your attributes, learning how to carry them more efficiently.",False)
+                     self.outputMainText("\n\nYou also become a bit more accustomed to your attributes, learning how to carry them more efficiently.")
                      self.carryMod += 10
                else:
                   self.doLevelUP()
@@ -13394,7 +13342,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 6:
                self.doSanctuary()
          self.doListen = doListen
-   def debugSenarioChooser(self,numbers:tuple):
+   def debugSenarioChooser(self, numbers:tuple):
       if numbers[0] != numbers[1]:
          self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.",True)
          self.bc()
@@ -14103,7 +14051,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" He has opted out of his usual t-shirts for a 'more-fitting' buttoned shirt. 'Fitting' in that he can actually wear it while leaving the lower buttons open for the thick shaft to pass through. He holds the member up in the crook of his arm, letting the giant tip lean to the side, as large as his normal head. A simple towel is draped over the monster in a futile attempt at decency, with his balls spreading his knees as they hang below the hem of the denim skirt and bulge against the front and back of the fabric.")
             elif (self.jamieSize < 23):
                self.doMainText(" Both of his hands hold the sides of his massive cock, trying to keep it from dragging across the ground too much. A towel slung over the end of the shaft in an attempt to hide some of himself merely bunches up against the wide head that flares obscenely toward the lower half of your body. His balls, on the other hand, hang tightly in his scrotum just a few inches above the ground, well past the denim skirt and kicked again and again with each step as he tries to move with the weight. People stare at him as he moves, much more obvious than he had ever thought possible.")
-            self.outputMainText("\"I was wondering if you would be interested in... 'helping' me again at all?\"",False)
+            self.outputMainText("\"I was wondering if you would be interested in... 'helping' me again at all?\"")
             self.showButtons(ButtonList(1,0,1,0,0,1,1,0,1,0,1,1))
             tempDict = {12:"Not Now"}
             if (self.checkItem(533)):
@@ -14180,7 +14128,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.jamieRep = 21
                   self.doEnd()
                elif (self.buttonChoice == 4):
-                  self.outputMainText("You tell him that you can't right now, but he doesn't take it harshly. \n\n\"Okay. Maybe later then!\" He turns and ducks back behind the tents, trying not to get too much attention as he enjoys his outting.",False)
+                  self.outputMainText("You tell him that you can't right now, but he doesn't take it harshly. \n\n\"Okay. Maybe later then!\" He turns and ducks back behind the tents, trying not to get too much attention as he enjoys his outting.")
                   self.hrs = 1
                   self.doEnd()
                elif (self.buttonChoice == 5):
@@ -14193,7 +14141,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:...
                elif (self.buttonChoice == 6):
                   if (self.jamieRep2 < 3):
-                     self.outputMainText("You offer him a few of your red mushrooms, which makes him curious.\n\n\"What are these? I've never seen them before... Are they edible or something?\"\n\nYou nod your head and offer them for him to eat now.\n\n\"Umm... Sure, ok.\" He pops them one by one into his mouth. The go down the hatch fairly easily and don't seem to make him grimace, at least. \"They have an interesting taste, I suppose. Not exactly my kind of snack, but... Err, does it feel warm all of a sudden?\"\n\nThe boy's hand goes to his tube top to waft some air, but halts as soon as he touches his chest. He eyelashes flutter a bit as his fingers brush across a sensitive nipple that stands erect. Instead of grabbing the collar of the tube top, the hand spreads out across the breast as the flesh bulges out beneath. The other hand joins suit on the other breast, cupping and groping the meat as it fills his palms and pulls at the tube top. His tongue lolls out of his mouth as the flaring head beneath is engulfed by sensitive mounds. His nipples stick out further and further, poking out between his fingers and making him moan from their tenderness. The breasts fill the collar of the top, pulling it down and stretching it out with plush cleavage filling the gap and a surrounding the cock within.\n\nThe ample flesh soon slows to a halt, leaving the boy gasping and shuddering. His hands continue to rove about his chest, feeling himself up and dragging the mounds around the tip of his cock. His fingers pinch his nipples, making him twitch erotically. Staring down at his newly grown melons, he hops a little to watch them bounce, only to swoon in turn.\n\n\"I... I've got... Boobs!\" He shouts a little too excitedly, both in confusion and joy. He quickly quiets down as a few glances shoot his way. \"They're... They're beautiful... And they look so nice in the top.\" He squeezes them through the fabric again, making a gob of pre squeeze up and out into his cleavage, slickening them up. \"Umm... I think I really need to go and... figure these things out...\"\n\nA little too focused on his breasts, Jamie ignores you somewhat and wanders back off into the alleys between tents, his eyes never leaving his own cleavage and his hands never halting in their attention. But that's okay, you'll be able to see them again later.",False);
+                     self.outputMainText("You offer him a few of your red mushrooms, which makes him curious.\n\n\"What are these? I've never seen them before... Are they edible or something?\"\n\nYou nod your head and offer them for him to eat now.\n\n\"Umm... Sure, ok.\" He pops them one by one into his mouth. The go down the hatch fairly easily and don't seem to make him grimace, at least. \"They have an interesting taste, I suppose. Not exactly my kind of snack, but... Err, does it feel warm all of a sudden?\"\n\nThe boy's hand goes to his tube top to waft some air, but halts as soon as he touches his chest. He eyelashes flutter a bit as his fingers brush across a sensitive nipple that stands erect. Instead of grabbing the collar of the tube top, the hand spreads out across the breast as the flesh bulges out beneath. The other hand joins suit on the other breast, cupping and groping the meat as it fills his palms and pulls at the tube top. His tongue lolls out of his mouth as the flaring head beneath is engulfed by sensitive mounds. His nipples stick out further and further, poking out between his fingers and making him moan from their tenderness. The breasts fill the collar of the top, pulling it down and stretching it out with plush cleavage filling the gap and a surrounding the cock within.\n\nThe ample flesh soon slows to a halt, leaving the boy gasping and shuddering. His hands continue to rove about his chest, feeling himself up and dragging the mounds around the tip of his cock. His fingers pinch his nipples, making him twitch erotically. Staring down at his newly grown melons, he hops a little to watch them bounce, only to swoon in turn.\n\n\"I... I've got... Boobs!\" He shouts a little too excitedly, both in confusion and joy. He quickly quiets down as a few glances shoot his way. \"They're... They're beautiful... And they look so nice in the top.\" He squeezes them through the fabric again, making a gob of pre squeeze up and out into his cleavage, slickening them up. \"Umm... I think I really need to go and... figure these things out...\"\n\nA little too focused on his breasts, Jamie ignores you somewhat and wanders back off into the alleys between tents, his eyes never leaving his own cleavage and his hands never halting in their attention. But that's okay, you'll be able to see them again later.");
                      self.jamieBreasts = True
                      self.loseManyItem(212,3)
                   else:...
@@ -16473,11 +16421,11 @@ class NiminFetishFantasyv0975o_fla:
       elif chance == 2:
          self.outputMainText("You hear ominous swishing through the trees around you...",True)
          if (self.percent() < 10 + self.runMod):
-            self.outputMainText("\n\nYet you manage to run off before anything can catch you.",False)
+            self.outputMainText("\n\nYet you manage to run off before anything can catch you.")
             self.hrs = 1
             self.doEnd()
          elif (self.breastSize < 6):
-            self.doMainText("\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your chest, feeling about and scratching it roughly.\n\nHowever, the tentacles seem to be uninterested and disappear as quick as they came, leaving you with a rather hurtful chest and wasted time.",False)
+            self.doMainText("\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your chest, feeling about and scratching it roughly.\n\nHowever, the tentacles seem to be uninterested and disappear as quick as they came, leaving you with a rather hurtful chest and wasted time.")
             self.doHP(-math.floor(self.percent() / 10 + 2))
             self.displayMainText()
             self.hrs = 1
@@ -16521,7 +16469,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
             self.doListen = doListen
          else:
-            self.outputMainText(f"\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your {self.boobDesc()} chest, feeling about and scratching it roughly. They pull back for a moment, but before you can recoup from your confused stupor, even more come flying out from the trees, this time whipping around your wrists and {self.legDesc(8)}.\n\nStruggle as you may, you can't seem to wrench yourself free. You can only watch in fear as more tentacles pull your {self.clothesTop()} away and roam about your {self.boobDesc()} breasts. They poke and tease at your {self.nipDesc()}nipples, causing them to stand hard and erect. Then, short narrow needles draw out of two narrow tentacles. They drip with some sort of pearlescant fluid and they plunge gently into each of your {self.boobTotal} fleshy masses...",False)
+            self.outputMainText(f"\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your {self.boobDesc()} chest, feeling about and scratching it roughly. They pull back for a moment, but before you can recoup from your confused stupor, even more come flying out from the trees, this time whipping around your wrists and {self.legDesc(8)}.\n\nStruggle as you may, you can't seem to wrench yourself free. You can only watch in fear as more tentacles pull your {self.clothesTop()} away and roam about your {self.boobDesc()} breasts. They poke and tease at your {self.nipDesc()}nipples, causing them to stand hard and erect. Then, short narrow needles draw out of two narrow tentacles. They drip with some sort of pearlescant fluid and they plunge gently into each of your {self.boobTotal} fleshy masses...")
             self.doNext()
             def doListen():
                self.boobChange(1)
@@ -20242,11 +20190,11 @@ class NiminFetishFantasyv0975o_fla:
       self.dmg = 0
       if ID == 1: # Skunk Spray
          self.dmg = math.floor(10 + self.percent() / 10)
-         self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {self.dmg} damage.",False)
+         self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {self.dmg} damage.")
          self.doeHP(-self.dmg)
          if (self.currentState == 2):
             if (self.percent() < 35):
-               self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.",False)
+               self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.")
             else:
                self.enemyAttack()
       if (self.currentState == 2):
@@ -21036,7 +20984,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       if (self.eHP + changes <= 0):
          self.specialKOWin()
-         self.outputMainText("\n\nYou win the battle!",False)
+         self.outputMainText("\n\nYou win the battle!")
          if (self.inBag):
             self.inBag = False
          self.currentState = 1
@@ -21046,7 +20994,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       self.eHP += changes
       if (self.eHP > 0):
-         self.outputMainText(f"\n\nYour enemy now seems to be under {math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.",False)
+         self.outputMainText(f"\n\nYour enemy now seems to be under {math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.")
    def doeLust(self, changes:int):
       if self.eGen == 1:
          if (self.eLust + changes > 65 and self.eLust <= 65):
@@ -23815,7 +23763,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doLust(-(self.sen // 4),2,2)
          case 504:
             self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
-   def ptweaksGrammar(self,topic:int,capital:bool=False):
+   def ptweaksGrammar(self, topic:int, capital:bool=False):
       if topic == 1: #femme-boy/femboy
          if capital == True:
             return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
@@ -23942,7 +23890,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.body > 23):
             return "musclebound"
       return f"BODY ERROR {self.gender} {self.body}"
-   def tailDesc(self,ngrammar=False):
+   def tailDesc(self, ngrammar=False):
       chance = self.percent()
       if (chance <= 50):
          if self.tail == 2:
@@ -24251,7 +24199,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.teatSize > 300):
             return "obscene"
       return f"TEAT ERROR {self.teatSize}"
-   def buttDesc(self,ngrammar=False):
+   def buttDesc(self, ngrammar=False):
       tempButt = self.butt * self.buttMod
       if (self.percent() <= 50):
          if (tempButt <= 2):
@@ -24660,7 +24608,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                tempStr += " meaty"
       return tempStr
-   def skinDesc(self,appearanceGo=False):
+   def skinDesc(self, appearanceGo=False):
       tempStr = ""
       if (self.skinColor > 0):
          tempStr += self.skinC()
@@ -24972,7 +24920,7 @@ class NiminFetishFantasyv0975o_fla:
       self.saveinvalid = True
       self.optionsWindow()
       self.closeSaveInvalidDialog(False)
-   def closeSaveInvalidDialog(self,rgh=True):
+   def closeSaveInvalidDialog(self, rgh=True):
       if rgh == True:
          self.saveInvalid = False
       self.saveinvaliddialog.destroy()
@@ -25262,7 +25210,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.discardbuttonvisible:
          self.mo.destroyChild("discardbutton")
          self.discardbuttonvisible = False
-   def buttonExecProxy(self,buttonNum:int):
+   def buttonExecProxy(self, buttonNum:int):
       if buttonNum == 1:
          self.buttonEvent1()
       elif buttonNum == 2:
@@ -25291,12 +25239,11 @@ class NiminFetishFantasyv0975o_fla:
    @cache
    def _showButtonsCalc(buttonNum:int):
       return (200+(160*((buttonNum-1)%4)),30+(66*((buttonNum-1)//4)))
-   def showButtons(self, buttons:ButtonList, discardButton:bool=False, bc=True):
+   def showButtons(self, buttons:ButtonList, discardButton:bool=False):
       """
       Replacement function for viewButtonOutline
       """
-      if bc:
-         self.bc()
+      self.bc()
       if discardButton == False:
          self.hideDiscard()
       else:
@@ -25319,55 +25266,27 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(1,13):
          if (self.buttonsVisible[i]):
             self.mo.configureChild(f"button{i}",text="")
-   def clearTextOneButton(self, buttonNum:int):
-      if (self.buttonsVisible[buttonNum]):
-         self.mo.configureChild(f"button{buttonNum}",text="")
-   def clearTextSelectedButtons(self, a:list):
-      for i in a:
-         self.clearTextOneButton(i)
    def enableAllButtons(self):
       for i in range(1,13):
          if (self.buttonsVisible[i]):
             self.mo.configureChild(f"button{i}",state="normal")
-   def enableOneButton(self, buttonNum:int):
-      if (self.buttonsVisible[buttonNum]):
-         self.mo.configureChild(f"button{buttonNum}",state="normal")
-   def enableSelectedButtons(self, a:list):
-      for i in a:
-         self.enableOneButton(i)
-   def disableAllButtons(self):
-      for i in range(1,13):
-         if (self.buttonsVisible[i]):
-            self.mo.configureChild(f"button{i}",state="disabled")
    def disableOneButton(self, buttonNum:int):
       if (self.buttonsVisible[buttonNum]):
          self.mo.configureChild(f"button{buttonNum}",state="disabled")
    def disableSelectedButtons(self, a:list):
       for i in a:
          self.disableOneButton(i)
-   def PageShow(self):
-      if (not self.pageShow):
-         temp = self.getColours()
-         self.mo.addLabel("display","pagelabel",843,30,100,30,self.font)
-         self.mo.configureChild("pagelabel",text="BAG 1",background=temp[0],foreground=temp[1])
-         self.pageShow = True
    def PageHide(self):
       if (self.pageShow):
          self.mo.destroyChild("pagelabel")
          self.pageShow = False
-   def pageTextChange(self, text:str):
-      if (self.pageShow):
-         self.mo.configureChild("pagelabel",text=text)
-   def pageTextClear(self):
-      if (self.pageShow):
-         self.mo.configureChild("pagelabel",text="")
    def writeAmount(self, number, amount):
       self.mo.configureChild(f"amountlabel{number}",text=amount)
    @staticmethod
    @cache
    def _viewAmountCalc(buttonNum:int):
       return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
-   def viewAmount(self,buttonNum:int,tempBool:bool,tempColors=None):
+   def viewAmount(self, buttonNum:int, tempBool:bool, tempColors=None):
       if tempBool and not self.amountLabelsVisible[buttonNum]:
          self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._viewAmountCalc(buttonNum),30,15,self.font)
          self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=tempColors[0],foreground=tempColors[1],highlightbackground=tempColors[1],highlightthickness=1)
@@ -25378,14 +25297,6 @@ class NiminFetishFantasyv0975o_fla:
    def hideAmount(self):
       for i in range(1,13):
          self.viewAmount(i,False)
-   def initSidePanel(self):
-      for i in range(8):
-         self.mo.destroyChild(self.sidepanelbuttonnames[i])
-         self.sidepanelbuttonsvisible[i] = False
-      if self.textsidevisible:
-         self.mo.children["textside"].frame.destroy()
-         self.textsidevisible = False
-      self.hideAPButton()
    @staticmethod
    @cache
    def _showSidePanelCalc(buttonNum:int):
@@ -25416,12 +25327,12 @@ class NiminFetishFantasyv0975o_fla:
       if (not self.option7Visible):
          self.mo.configureChild("themebutton7",state="normal")
          self.option7Visible = True
-         self.option7Text()
+         self.swapOption7()
    def hideOption7(self):
       if (self.option7Visible):
          self.mo.configureChild("themebutton7",text="",state="disabled")
          self.option7Visible = False
-   def option7Text(self):
+   def swapOption7(self):
       if (self.option7Visible):
          if (self.showSide):
             self.mo.configureChild("themebutton7",text="O")
@@ -25489,12 +25400,6 @@ class NiminFetishFantasyv0975o_fla:
       if (self.moveitembuttonvisible):
          self.mo.destroyChild("moveitembutton")
          self.moveitembuttonvisible = False
-   def moveItemChangeItem(self, item:str):
-      if (self.moveitembuttonvisible):
-         self.mo.configureChild("moveitembutton",text=item)
-   def moveItemClear(self):
-      if (self.moveitembuttonvisible):
-         self.mo.configureChild("moveitembutton",text="")
    def moveItemAmountShow(self):
       if (not self.moveitemamountvisible):
          temp = self.getColours()
@@ -25510,12 +25415,6 @@ class NiminFetishFantasyv0975o_fla:
       if (self.moveitemamountvisible):
          self.mo.destroyChild("moveitemamount")
          self.moveitemamountvisible = False
-   def moveItemAmountChange(self, amount:int):
-      if (self.moveitemamountvisible):
-         self.mo.configureChild("moveitemamount",text=amount)
-   def moveItemAmountClear(self):
-      if (self.moveitemamountvisible):
-         self.mo.configureChild("moveitemamount",text="")
    def openSFC(self):
       if not self.sfcopen:
          self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,self.cmdOpenConverter,False,True)
@@ -25560,12 +25459,12 @@ class NiminFetishFantasyv0975o_fla:
             self.sfcwindow.mainloop()
       else:
          self.sfcwindow.children["root"].lift()
-   def closeSFC(self,e):
+   def closeSFC(self, e):
       if e.widget == self.sfcwindow.children["root"]:
          self.sfcopen = False
-   def convertButton(self,*args):
+   def convertButton(self, *e):
       self.convertSave(self.sfcwindow.children["inputfilebox"].get(),self.sfcinputfilecombobox.get(),self.sfcwindow.children["outputfilebox"].get(),self.sfcoutputfilecombobox.get())
-   def convertSave(self,inputfile,inputfiletype,outputfile,outputfiletype):
+   def convertSave(self, inputfile, inputfiletype, outputfile, outputfiletype):
       if inputfile in {None,""} or outputfile in {None,""}:
          as3.trace("SaveConverter: Error: Input/Output file can not be empty")
          self.sfcwindow.configureChild("message",text="Error: Input/Output file can not be \"None\" or empty")
@@ -25657,7 +25556,7 @@ class NiminFetishFantasyv0975o_fla:
          return filename[0]
       elif len(filename) > 1:
          return ".".join(filename[:-1])
-   def returnSOL(self,dictionary:dict,outputfile):
+   def returnSOL(self, dictionary:dict, outputfile):
       try:
          data = sol.SOL(self.solGetFileName(outputfile))
          data["track"] = list(dictionary["track"].values())
@@ -25696,7 +25595,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
-   def TOMLArray(self,value):
+   def TOMLArray(self, value):
       with StringIO() as text:
          text.write('[')
          for i in value:
@@ -25710,7 +25609,7 @@ class NiminFetishFantasyv0975o_fla:
                text.write(f'{i},')
          text.write(']')
          return text.getvalue()
-   def saveTOML(self,dictionary:dict,outputfile):
+   def saveTOML(self, dictionary:dict, outputfile):
       #Work around for tomllib/tomli putting excess newlines between every element in an array
       for i in {"trav","bag","bagStack","stash","stashStack","preg"}:
          dictionary[i] = self.TOMLArray(dictionary[i])
@@ -25719,7 +25618,7 @@ class NiminFetishFantasyv0975o_fla:
       assert True #!Check if output is correct with tomli_w.dumps(dictionary)
       with open(outputfile,"w") as f:
          f.write(temp)
-   def saveNIM(self,dictionary:dict,outputfile):
+   def saveNIM(self, dictionary:dict, outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
          if so["data"] == None:
@@ -25741,7 +25640,7 @@ class NiminFetishFantasyv0975o_fla:
          raise e
       if self.sfcopen:
          self.sfcwindow.toTop()
-   def saveSOL(self,dictionary:dict,outputfile):
+   def saveSOL(self, dictionary:dict, outputfile):
       try:
          sol.save(self.returnSOL(dictionary,outputfile),str(outputfile),AMF3)
          if self.sfcopen:
@@ -25753,7 +25652,7 @@ class NiminFetishFantasyv0975o_fla:
          raise e
       if self.sfcopen:
          self.sfcwindow.toTop()
-   def saveXML(self,dictionary:dict,outputfile):
+   def saveXML(self, dictionary:dict, outputfile):
       try:
          string = StringIO()
          strack = list(dictionary["track"].values())
@@ -25805,11 +25704,11 @@ class NiminFetishFantasyv0975o_fla:
          raise e
       if self.sfcopen:
          self.sfcwindow.toTop()
-   def loadTOML(self,filename):
+   def loadTOML(self, filename):
       with open(filename,"rb") as f:
          return tomllib.load(f)
    @staticmethod
-   def loadSOL(filename,nim=False):
+   def loadSOL(filename, nim=False):
       try:
          if nim == True:
             with open(filename, "rb") as file:
@@ -25871,7 +25770,7 @@ class NiminFetishFantasyv0975o_fla:
       except Exception as e:
          as3.trace("SOL Loader: Error: Malformed save file")
          raise e
-   def loadXML(self,filename,origin:str=None):
+   def loadXML(self, filename, origin:str=None):
       try:
          data = xmletree.parse(filename).getroot()
          if data == None:
@@ -25921,17 +25820,17 @@ class NiminFetishFantasyv0975o_fla:
       except ValueError as e:
          as3.trace("SaveLoader Error: One or more values has an invalid type.")
          if origin == "doLoad":
-            self.loadGo(message="Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",ret=True)
+            self.loadGo("Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",True)
          raise e
       except Exception as e:
          as3.trace("SaveLoader Error: Malformed save file")
          if origin == "doLoad":
-            self.loadGo(message="XML Loader: Error: Could not load save file. Reason: Malformed save file",ret=True)
+            self.loadGo("XML Loader: Error: Could not load save file. Reason: Malformed save file",True)
          raise e
-   def menudwo(self,*useless):
+   def menudwo(self, *e):
       self.openDebugWindow()
       self.detailedDebug()
-   def openDebugWindow(self,*useless):
+   def openDebugWindow(self, *e):
       if (not self.debugWinOpen):
          self.dw = itk.window(400,400,"Pymin: Debug Window","frame",self.theme,False,False,False)
          if self.fixedresolutionmode:
@@ -25946,7 +25845,7 @@ class NiminFetishFantasyv0975o_fla:
          self.dw.bindChild("root","<Destroy>",self.closeDebugWindow)
       else:
          self.dw.toTop()
-   def detailedDebug(self,*useless):
+   def detailedDebug(self, *e):
       if (self.debugWinOpen):
          temp = self.dw.children["text"].yview()
          #!Fix scrollbar positioning
@@ -25961,10 +25860,10 @@ class NiminFetishFantasyv0975o_fla:
             tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugWinOpen: {self.debugWinOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcopen: {self.sfcopen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nsaveInvalid: {self.saveInvalid}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\neLustChange: {self.eLustChange}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\ntravArray = {self.travArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
          self.dw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
          self.dw.children["text"].yview_moveto(temp)
-   def closeDebugWindow(self,*useless):
+   def closeDebugWindow(self, *e):
       self.debugWinOpen = False
       self.dw.closeWindow()
-   def openDebugGiveItemWindow(self,*args):
+   def openDebugGiveItemWindow(self, *e):
       if not self.debugGIWinOpen:
          self.dgiw = tkinter.Toplevel()
          self.dgiw.title("Give Item")
@@ -25982,7 +25881,7 @@ class NiminFetishFantasyv0975o_fla:
          self.dgiw.bind("<Destroy>",self.closeDGIWindow)
       else:
          self.dgiw.lift()
-   def debugGiveItem(self,*args):
+   def debugGiveItem(self, *e):
       self.debugGITimes = 0
       if self.currentState != 0:
          EN = self.dgiwcombo.getEntries()
@@ -26013,18 +25912,18 @@ class NiminFetishFantasyv0975o_fla:
       else:
          as3.trace("Error: Pymin Debug; Player attribute function called when no game is loaded")
          self.dgiwerrlabel["text"] = "Error: Game not loaded"
-   def closeDGIWindow(self,*args):
+   def closeDGIWindow(self, *e):
       self.debugGIWinOpen = False
       self.dgiwlabel.destroy()
       self.dgiwcombo.destroy()
       self.dgiwerrlabel.destroy()
-   def openDebugUseItemWindow(self,*args):
+   def openDebugUseItemWindow(self, *e):
       print("useitem")
       """
       if ID not in (2,404,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540):
          self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
       """
-   def debugUseItem(self,*args):
+   def debugUseItem(self, *e):
       #!needs modifications to doitemuse to work with some items
       #ID = int(self.dgiw.getEntry(),10)
       self.foodItem(ID)
@@ -26032,7 +25931,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doItemUse(ID)
       self.buttonShiftOverride = False
       self.statDisplay()
-   def openDebugAffinityWindow(self,*args):
+   def openDebugAffinityWindow(self, *e):
       if not self.debugAWinOpen:
          self.daw = tkinter.Toplevel()
          self.daw.title("Affinity")
@@ -26050,7 +25949,7 @@ class NiminFetishFantasyv0975o_fla:
          self.daw.bind("<Destroy>",self.closeDAWindow)
       else:
          self.daw.lift()
-   def debugAffinityChange(self,*args):
+   def debugAffinityChange(self, *e):
       if self.currentState != 0:
          err = ""
          values = self.dawcombo.getEntries()
@@ -26131,7 +26030,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          as3.trace("Error: Pymin Debug; Player attribute function called when no game is loaded")
          self.dawerrlabel["text"] = "Error: Game not loaded"
-   def closeDAWindow(self,*args):
+   def closeDAWindow(self, *e):
       self.debugAWinOpen = False
    def openWiki(self):
       if not self.wikiOpen:
@@ -26197,10 +26096,10 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiSwitchSelection("e")
       else:
          self.wikiwindow.toTop()
-   def wikiKeyPress(self,e):
+   def wikiKeyPress(self, e):
       if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e))
-   def wikiHotkeys(self,keyCode):
+   def wikiHotkeys(self, keyCode):
       self.hotKeysGeneric(keyCode)
       if keyCode in {81,8,103} and self.wikiOpen: #q,backspace,numPad7
          self._wikidestroy()
@@ -26221,14 +26120,14 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.endProcess()
       finally:
          self.wikiOpen = False
-   def wikiMenuSelectionUp(self,*useless):
+   def wikiMenuSelectionUp(self, *e):
       temp = self.wikiwindow.children["menu"].curselection()[0]
       if temp != 0:
          self.wikiwindow.children["menu"].selection_clear(temp)
          self.wikiwindow.children["menu"].select_set(temp - 1)
          self.wikiwindow.children["menu"].activate(temp - 1)
          self.wikiwindow.children["menu"].see(temp - 1)
-   def wikiMenuSelectionDown(self,*useless):
+   def wikiMenuSelectionDown(self, *e):
       temp = self.wikiwindow.children["menu"].curselection()[0]
       if (temp + 1) < len(self.wikiwindow.children["menu"].get(0,"end")):
          self.wikiwindow.children["menu"].selection_clear(temp)
