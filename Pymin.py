@@ -3780,7 +3780,7 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
       elif (self.pregnancyTime + self.vagBellyMod > 300 and self.vagTotal > 0):
          tempStr += "\nA Fertility Goddess"
-      if self.grammarFixes and tempStr.get() == "Around town, you are thought of as being:\n":
+      if self.grammarFixes and tempStr == "Around town, you are thought of as being:\n":
          tempStr.close()
          tempStr = textObject()
       else:
@@ -10878,7 +10878,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText(f"\n\nYou have {self.minotaurChildren} babies from the Minotaur. They are quite large and hulking compared to other babies, and powerful as well. They don't seem like the smartest children in the world, but they like to help out by lifting and carrying things.")
          if (self.freakyGirlChildren > 0):
             self.doMainText(f"\n\nYou have {self.freakyGirlChildren} cute little balls of fuzz babies with adorable human-like faces and long ears. They roll and bounce about, acting adorable, but if you're not careful and make them angry, you might lose a finger... You're not entirely sure if they'll grow legs and a full body like their 'father'; you don't know much about them at all, really.")
-         if (self.currentText.get() == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."):
+         if (self.currentText == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."):
             self.doMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.",True)
          self.displayMainText()
          self.doEnd(leave=True)
@@ -22180,7 +22180,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.cockSnakeVenom -= time
       self.statDisplay()
-      if (self.currentText.get() == "Afterwards..."):
+      if (self.currentText == "Afterwards..."):
          self.outputMainText("",True)
          self.doProcess()
       else:
@@ -23130,7 +23130,7 @@ class NiminFetishFantasyv0975o_fla:
       self.pig = 0
       self.skunk = 0
       self.bug = 0
-      if (self.currentText.get() == "Something feels odd..."):
+      if (self.currentText == "Something feels odd..."):
          self.outputMainText("",True)
          self.doProcess()
       else:
