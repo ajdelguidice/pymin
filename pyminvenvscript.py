@@ -259,8 +259,20 @@ def TOMLValue(value):
         return "true" if value else "false"
     elif isinstance(value,(list,tuple)):
         return TOMLArray(value)
+    elif isinstance(value,dict):
+        return TOMLTable(value)
     else:
         return f'{value}'
+
+def TOMLTable(value):
+    with StringIO() as text:
+        text.write('{')
+        for k,v in value.items():
+            text.write(f'{k} = {TOMLValue(v)},')
+        if text.getvalue()[-1] == ",": #!Make this better
+            return text.getvalue()[:-1] + '}'
+        text.write('}')
+        return text.getvalue()
 
 def TOMLArray(value):
     with StringIO() as text:
