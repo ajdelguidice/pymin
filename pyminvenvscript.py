@@ -283,15 +283,23 @@ def TOMLArray(value):
         return text.getvalue()
 
 def writeTOML(file,valDict,mode="w"):
+    nontables = []
+    tables = []
+    for k,v in valDict.items():
+        if isinstance(v,dict):
+            tables.append(k)
+        else:
+            nontables.append(k)
     with StringIO() as text:
-        for k1,v1 in valDict.items():
-            if isinstance(v1,dict):
-                text.write(f'[{k1}]\n')
-                for k2,v2 in v1.items():
-                    text.write(f'{k2} = {TOMLValue(v2)}\n')
-                text.write('\n')
-            else:
-                text.write(f'{k1} = {TOMLValue(v1)}\n')
+        for k in nontables:
+            text.write(f'{k} = {TOMLValue(valDict[k])}\n')
+        if len(nontables) > 0:
+            text.write('\n')
+        for k in tables:
+            text.write(f'[{k}]\n')
+            for k2,v2 in valDict[k].items():
+                text.write(f'{k2} = {TOMLValue(v2)}\n')
+            text.write('\n')
         with open(file,mode) as f:
             f.write(text.getvalue())
 
