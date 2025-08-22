@@ -352,7 +352,7 @@ def Args_ParseArray(strio):
     value.close()
     return arr
 
-def Args_ParseOuter(value,expected):
+def Args_ParseOuter(value,expected): #!Add table support
     if isinstance(expected,str):
         return str(value)
     elif isinstance(expected,bool):
@@ -482,14 +482,15 @@ else:
         else:
             tempargs = tuple(tuple(i.split("=")) for i in argv[2:])
             for key,value in tempargs:
-                if key in {"cfgVersion","pyInstalledVersion"}:
-                    print(f"Restricted value {key} can not be changed by this command.")
+                if key in {"cfgVersion","pyInstalledVersion"} and not c2["isDevEnv"]:
+                    print(f"Warning: {key} is restricted and should not be changed. Skipping.")
+                    continue
                 if c2.get(key) == None:
-                    print(f"Key {section}.{key} does not exist.")
+                    print(f"Key {key} does not exist.")
                     continue
                 value = Args_ParseOuter(value,c2[key])
                 if value == None:
-                    print(f"Type could not be determined. Skipping {section}.{key}")
+                    print(f"Type of {key} could not be determined. Skipping.")
                     continue
                 c2[key] = value
     elif argv[1] == "cfg-game":
@@ -515,7 +516,7 @@ else:
                     continue
                 value = Args_ParseOuter(i[1],gameconf[section][key])
                 if value == None:
-                    print(f"Type could not be determined. Skipping {section}.{key}")
+                    print(f"Type of {section}.{key} could not be determined. Skipping.")
                     continue
                 gameconf[section][key] = value
             writeTOML(venvpath / "Pymin/Nimin_Prefs.toml", gameconf)
