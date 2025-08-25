@@ -316,18 +316,18 @@ def indexOf(l, item):
     except:
         return -1
 
-def Args_ParseInner(value):
-    if value.startswith(('"',"'")) and value.endswith(('"',"'")): #string
-        return value[1:-1]
-    if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()): #int
-        return int(value)
-    if set(value) - {'.','-','1','2','3','4','5','6','7','8','9','0'} == set() and value.count(".") == 1: #float
-        return float(value)
-    if value.lower() == "true":
+def Args_ParseInner(val):
+    if val.startswith(('"',"'")) and val.endswith(('"',"'")): #string
+        return val[1:-1]
+    if val.isnumeric() or (val[0] == "-" and val[1:].isnumeric()): #int
+        return int(val)
+    if set(val) - {'.','-','1','2','3','4','5','6','7','8','9','0'} == set() and val.count(".") == 1: #float
+        return float(val)
+    if val.lower() == "true":
         return True
-    if value.lower() == "false":
+    if val.lower() == "false":
         return False
-    return value
+    return val
 
 class Args_TextObject:
    def __init__(self):
@@ -342,20 +342,72 @@ class Args_TextObject:
    def close(self):
       self.text.close()
 
+def Args_ParseTableKey(key): #!Check the validity of keys
+    if key.startswith(('"',"'")) and key.endswith(('"',"'")): #string
+        return key[1:-1]
+    return key
+
+def Args_ParseTable(strio):
+    table = {}
+    ParseKey = True
+    key = Args_TextObject()
+    value = Args_TextObject()
+    while True:
+        char = strio.read(1)
+        if char == "}":
+            if value.get() != "": #Accounts for no trailing comma
+                table[Args_ParseTableKey(key.get())] = Args_ParseInner(value.get())
+                key.clear()
+                value.clear()
+            break
+        elif char == "{":
+            if ParseKey:
+                print("Error: Tables can not used as keys as they can not be parsed. Aborting.")
+                key.close()
+                value.close()
+                exit()
+            table[Args_ParseTableKey(key.get())] = Args_ParseTable(strio)
+            key.clear()
+        elif char == "[":
+            if ParseKey:
+                print("Error: Arrays can not used as keys as they can not be parsed. Aborting.")
+                key.close()
+                value.close()
+                exit()
+            table[Args_ParseTableKey(key.get())] = Args_ParseArray(strio)
+            key.clear()
+        elif char == ",":
+            if value.get() != "": #Accounts for when tables are parsed
+                table[Args_ParseTableKey(key.get())] = Args_ParseInner(value.get())
+            value.clear()
+            key.clear()
+            ParseKey = True
+        elif char == ":":
+            ParseKey = False
+        elif ParseKey:
+            key.add(char)
+        else:
+            value.add(char)
+    key.close()
+    value.close()
+    return table
+
 def Args_ParseArray(strio):
     arr = []
     value = Args_TextObject()
     while True:
         char = strio.read(1)
         if char == "]":
-            if value.getvalue() != "": #Accounts for no trailing comma
+            if value.get() != "": #Accounts for no trailing comma
                 arr.append(Args_ParseInner(value.get()))
                 value.clear()
             break
         elif char == "[":
             arr.append(Args_ParseArray(strio))
+        elif char == "{":
+            arr.append(Args_ParseTable(strio))
         elif char == ",":
-            if value.getvalue() != "": #Accounts for when arrays are parsed
+            if value.get() != "": #Accounts for when arrays are parsed
                 arr.append(Args_ParseInner(value.get()))
                 value.clear()
         else:
@@ -380,6 +432,11 @@ def Args_ParseOuter(value,expected): #!Add table support
             text.write(value)
             text.seek(1)
             return Args_ParseArray(text)
+    elif isinstance(expected,dict):
+        with StringIO() as text:
+            text.write(value)
+            text.seek(1)
+            return Args_ParseTable(text)
 
 tempnossl = False
 hasVenv = True
@@ -457,7 +514,7 @@ if hasVenv and platform.python_version().split(".")[:2] != c2["pyInstalledVersio
 if len(argv) < 2 and c2["defaultToRun"]:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
 elif len(argv) < 2 or 1 in {indexOf(argv,"--help"),indexOf(argv,"-h"),indexOf(argv,"help")} or 1 in {indexOf(argv,"install"),indexOf(argv,"update"),indexOf(argv,"cfg"),indexOf(argv,"cmd"),indexOf(argv,"recreate")} and 2 in {indexOf(argv,"--help"),indexOf(argv,"-h")}:
-    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form \"key=value\". Use without arguements to list all values.\n\tcfg-game\t\tFor modifying pymin's config. Works the same as cfg except key/values are in the form \"section.key=value\". Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tSpecifies the version of pymin you want to install. ex: \"--version x.y.z\" [default: latest]\n\t--as3libversion\t\tSpecifies the version of as3lib you want to install. ex: \"--as3libversion x.y.z\" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game's config.")
+    print("venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it's dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form \"key=value\". Use without arguements to list all values.\n\tcfg-game\t\tFor modifying pymin's config. Works the same as cfg except key/values are in the form \"section.key=value\". Only works on pymin 1.0.12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\tcmd\t\t\tEnters the virtual environment (not implemented yet)\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\ncfg/cfg-game parsing rules:\n\tThere are no checks for the validity of keys. This should only be an issue when using tables.\n\tDo not use spaces unless they are a part of the value, whitespace is not ignored.\n\tMake sure to escape any curly brackets. They are special characters in the terminal (only tested in bash).\n\tDo not use brackets [ ] or curly brackets { } in table keys. They are currently not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML. I was being lazy and didn't want to deal it.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tSpecifies the version of pymin you want to install. ex: \"--version x.y.z\" [default: latest]\n\t--as3libversion\t\tSpecifies the version of as3lib you want to install. ex: \"--as3libversion x.y.z\" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game's config.")
 elif argv[1] == "migrate-config":
     migrateConfig()
 elif c2["defaultToRun"] and (len(argv) < 2 or argv[1].startswith(("-","--","/"))):
