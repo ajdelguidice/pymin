@@ -329,26 +329,37 @@ def Args_ParseInner(value):
         return False
     return value
 
+class Args_TextObject:
+   def __init__(self):
+      self.text = StringIO()
+   def clear(self):
+      self.text.close()
+      self.text = StringIO()
+   def get(self):
+      return self.text.getvalue()
+   def add(self,value):
+      self.text.write(value)
+   def close(self):
+      self.text.close()
+
 def Args_ParseArray(strio):
     arr = []
-    value = StringIO()
+    value = Args_TextObject()
     while True:
         char = strio.read(1)
         if char == "]":
             if value.getvalue() != "": #Accounts for no trailing comma
-                arr.append(Args_ParseInner(value.getvalue()))
-                value.close()
-                value = StringIO()
+                arr.append(Args_ParseInner(value.get()))
+                value.clear()
             break
         elif char == "[":
             arr.append(Args_ParseArray(strio))
         elif char == ",":
             if value.getvalue() != "": #Accounts for when arrays are parsed
-                arr.append(Args_ParseInner(value.getvalue()))
-                value.close()
-                value = StringIO()
+                arr.append(Args_ParseInner(value.get()))
+                value.clear()
         else:
-            value.write(char)
+            value.add(char)
     value.close()
     return arr
 
