@@ -34,8 +34,7 @@ def checkExistsMakeDir(dir_, silent=False):
         dir_.mkdir(parents=True)
 
 curdir = Path(__file__).resolve().parent #This is a workaround for python on Windows
-venvfolder = "Pymin-venv"
-venvpath = curdir / venvfolder
+venvpath = curdir / "Pymin-venv"
 cfgloc = None
 
 if None in {curdir,venvpath} or "" in {str(curdir),str(venvpath)}:
@@ -472,6 +471,8 @@ if (curdir / "pymin.toml").exists():
         "isDevEnv":c1.get("isDevEnv",False)
     }
     venvpath = Path(c2["path"]).resolve()
+    if not venvpath.exists():
+        hasVenv = False
 elif (venvpath / "pymin.toml").exists():
     #load config
     cfgloc = venvpath / "pymin.toml"
