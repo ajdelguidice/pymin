@@ -252,57 +252,6 @@ def migrateConfig(save:bool=False,getNew:bool=False):
     else:
         return conf
 
-def TOMLValue(value):
-    if isinstance(value,str):
-        return f'"{value}"'
-    elif isinstance(value,bool):
-        return "true" if value else "false"
-    elif isinstance(value,(list,tuple)):
-        return TOMLArray(value)
-    elif isinstance(value,dict):
-        return TOMLTable(value)
-    else:
-        return f'{value}'
-
-def TOMLTable(value):
-    with StringIO() as text:
-        text.write('{')
-        for k,v in value.items():
-            text.write(f'{k} = {TOMLValue(v)},')
-        if text.getvalue()[-1] == ",": #!Make this better
-            return text.getvalue()[:-1] + '}'
-        text.write('}')
-        return text.getvalue()
-
-def TOMLArray(value):
-    with StringIO() as text:
-        text.write('[')
-        for i in value:
-            text.write(f'{TOMLValue(i)},')
-        text.write(']')
-        return text.getvalue()
-
-def writeTOML(file,valDict,mode="w"):
-    nontables = []
-    tables = []
-    for k,v in valDict.items():
-        if isinstance(v,dict):
-            tables.append(k)
-        else:
-            nontables.append(k)
-    with StringIO() as text:
-        for k in nontables:
-            text.write(f'{k} = {TOMLValue(valDict[k])}\n')
-        if len(nontables) > 0:
-            text.write('\n')
-        for k in tables:
-            text.write(f'[{k}]\n')
-            for k2,v2 in valDict[k].items():
-                text.write(f'{k2} = {TOMLValue(v2)}\n')
-            text.write('\n')
-        with open(file,mode) as f:
-            f.write(text.getvalue())
-
 insecure_context = ssl._create_unverified_context()
 
 def getSSLContext():
@@ -316,130 +265,179 @@ def indexOf(l, item):
     except:
         return -1
 
-def Args_ParseInner(val):
-    if val.startswith(('"',"'")) and val.endswith(('"',"'")): #string
-        return val[1:-1]
-    if val.isnumeric() or (val[0] == "-" and val[1:].isnumeric()): #int
-        return int(val)
-    if set(val) - {'.','-','1','2','3','4','5','6','7','8','9','0'} == set() and val.count(".") == 1: #float
-        return float(val)
-    if val.lower() == "true":
-        return True
-    if val.lower() == "false":
-        return False
-    return val
+class TextObject:
+    def __init__(self):
+        self.text = StringIO()
+    def clear(self):
+        self.text.close()
+        self.text = StringIO()
+    def get(self):
+        return self.text.getvalue()
+    def add(self,value):
+        self.text.write(value)
+    def close(self):
+        self.text.close()
 
-class Args_TextObject:
-   def __init__(self):
-      self.text = StringIO()
-   def clear(self):
-      self.text.close()
-      self.text = StringIO()
-   def get(self):
-      return self.text.getvalue()
-   def add(self,value):
-      self.text.write(value)
-   def close(self):
-      self.text.close()
-
-def Args_ValidateKey(key):
-    if len(key) == 0:
-        print(f"Error: TOML keys can not be empty.")
-        exit()
-    if key.startswith(('"',"'")) and key.endswith(('"',"'")): #!Validate these
-        return key
-    #Bare keys
-    if set(key.lower()) - {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','_','-'} != set():
-        print("Error: TOML bare keys can only contain ASCII letters, ASCII digits, underscores, and dashes.")
-        exit()
-    return key
-
-def Args_ParseTable(strio):
-    table = {}
-    ParseKey = True
-    key = Args_TextObject()
-    value = Args_TextObject()
-    while True:
-        char = strio.read(1)
-        if char == "}":
-            if value.get() != "": #Accounts for no trailing comma
-                table[Args_ValidateKey(key.get())] = Args_ParseInner(value.get())
-                key.clear()
-                value.clear()
-            break
-        elif char == "{":
-            if ParseKey:
-                print("Error: Tables can not used as keys as they can not be parsed. Aborting.")
-                exit()
-            table[Args_ValidateKey(key.get())] = Args_ParseTable(strio)
-            key.clear()
-        elif char == "[":
-            if ParseKey:
-                print("Error: Arrays can not used as keys as they can not be parsed. Aborting.")
-                exit()
-            table[Args_ValidateKey(key.get())] = Args_ParseArray(strio)
-            key.clear()
-        elif char == ",":
-            if value.get() != "": #Accounts for when tables are parsed
-                table[Args_ValidateKey(key.get())] = Args_ParseInner(value.get())
-            value.clear()
-            key.clear()
-            ParseKey = True
-        elif char == ":":
-            ParseKey = False
-        elif ParseKey:
-            key.add(char)
-        else:
-            value.add(char)
-    key.close()
-    value.close()
-    return table
-
-def Args_ParseArray(strio):
-    arr = []
-    value = Args_TextObject()
-    while True:
-        char = strio.read(1)
-        if char == "]":
-            if value.get() != "": #Accounts for no trailing comma
-                arr.append(Args_ParseInner(value.get()))
-                value.clear()
-            break
-        elif char == "[":
-            arr.append(Args_ParseArray(strio))
-        elif char == "{":
-            arr.append(Args_ParseTable(strio))
-        elif char == ",":
-            if value.get() != "": #Accounts for when arrays are parsed
-                arr.append(Args_ParseInner(value.get()))
-                value.clear()
-        else:
-            value.add(char)
-    value.close()
-    return arr
-
-def Args_ParseOuter(value,expected): #!Add table support
-    if isinstance(expected,str):
-        return str(value)
-    elif isinstance(expected,bool):
+class Args:
+    #These were put into a class to work around an issue with global variables
+    def ParseInner(value):
+        if value.startswith(('"',"'")) and value.endswith(('"',"'")): #string
+            return value[1:-1]
+        if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()): #int
+            return int(value)
+        if set(value) - {'.','-','1','2','3','4','5','6','7','8','9','0'} == set() and value.count(".") == 1: #float
+            return float(value)
         if value.lower() == "true":
             return True
-        elif value.lower() == "false":
+        if value.lower() == "false":
             return False
-    elif isinstance(expected,int):
-        return int(value)
-    elif isinstance(expected,float):
-        return float(value)
-    elif isinstance(expected,list):
+        return value
+    def ValidateKey(key):
+        if len(key) == 0:
+            print(f"Error: TOML keys can not be empty.")
+            exit()
+        if key.startswith(('"',"'")) and key.endswith(('"',"'")): #!Validate these
+            return key
+        #Bare keys
+        if set(key.lower()) - {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','_','-'} != set():
+            print("Error: TOML bare keys can only contain ASCII letters, ASCII digits, underscores, and dashes.")
+            exit()
+        return key
+    def ParseTable(strio):
+        table = {}
+        ParseKey = True
+        key = TextObject()
+        value = TextObject()
+        while True:
+            char = strio.read(1)
+            if char == "}":
+                if value.get() != "": #Accounts for no trailing comma
+                    table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
+                    key.clear()
+                    value.clear()
+                break
+            elif char == "{":
+                if ParseKey:
+                    print("Error: Tables can not used as keys as they can not be parsed. Aborting.")
+                    exit()
+                table[Args.ValidateKey(key.get())] = Args.ParseTable(strio)
+                key.clear()
+            elif char == "[":
+                if ParseKey:
+                    print("Error: Arrays can not used as keys as they can not be parsed. Aborting.")
+                    exit()
+                table[Args.ValidateKey(key.get())] = Args.ParseArray(strio)
+                key.clear()
+            elif char == ",":
+                if value.get() != "": #Accounts for when tables are parsed
+                    table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
+                value.clear()
+                key.clear()
+                ParseKey = True
+            elif char == ":":
+                ParseKey = False
+            elif ParseKey:
+                key.add(char)
+            else:
+                value.add(char)
+        key.close()
+        value.close()
+        return table
+    def ParseArray(strio):
+        arr = []
+        value = TextObject()
+        while True:
+            char = strio.read(1)
+            if char == "]":
+                if value.get() != "": #Accounts for no trailing comma
+                    arr.append(Args.ParseInner(value.get()))
+                    value.clear()
+                break
+            elif char == "[":
+                arr.append(Args.ParseArray(strio))
+            elif char == "{":
+                arr.append(Args.ParseTable(strio))
+            elif char == ",":
+                if value.get() != "": #Accounts for when arrays are parsed
+                    arr.append(Args.ParseInner(value.get()))
+                    value.clear()
+            else:
+                value.add(char)
+        value.close()
+        return arr
+    def ParseOuter(value, expected): #!Add table support
+        if isinstance(expected,str):
+            return str(value)
+        elif isinstance(expected,bool):
+            if value.lower() == "true":
+                return True
+            elif value.lower() == "false":
+                return False
+        elif isinstance(expected,int):
+            return int(value)
+        elif isinstance(expected,float):
+            return float(value)
+        elif isinstance(expected,list):
+            with StringIO() as text:
+                text.write(value)
+                text.seek(1)
+                return Args.ParseArray(text)
+        elif isinstance(expected,dict):
+            with StringIO() as text:
+                text.write(value)
+                text.seek(1)
+                return Args.ParseTable(text)
+
+class TOML:
+    #These were put into a class to work around an issue with global variables
+    def Value(value):
+        if isinstance(value,str):
+            return f'"{value}"'
+        elif isinstance(value,bool):
+            return "true" if value else "false"
+        elif isinstance(value,(list,tuple)):
+            return TOML.Array(value)
+        elif isinstance(value,dict):
+            return TOML.Table(value)
+        else:
+            return f'{value}'
+    def Table(value):
         with StringIO() as text:
-            text.write(value)
-            text.seek(1)
-            return Args_ParseArray(text)
-    elif isinstance(expected,dict):
+            text.write('{')
+            for k,v in value.items():
+                text.write(f'{k} = {TOML.Value(v)},')
+            if text.getvalue()[-1] == ",": #!Make this better
+                return text.getvalue()[:-1] + '}'
+            text.write('}')
+            return text.getvalue()
+    def Array(value):
         with StringIO() as text:
-            text.write(value)
-            text.seek(1)
-            return Args_ParseTable(text)
+            text.write('[')
+            for i in value:
+                text.write(f'{TOML.Value(i)},')
+            text.write(']')
+            return text.getvalue()
+
+def writeTOML(file,valDict,mode="w"):
+    nontables = []
+    tables = []
+    for k,v in valDict.items():
+        if isinstance(v,dict):
+            tables.append(k)
+        else:
+            nontables.append(k)
+    with StringIO() as text:
+        for k in nontables:
+            text.write(f'{k} = {TOML.Value(valDict[k])}\n')
+        if len(nontables) > 0:
+            text.write('\n')
+        for k in tables:
+            text.write(f'[{k}]\n')
+            for k2,v2 in valDict[k].items():
+                text.write(f'{k2} = {TOML.Value(v2)}\n')
+            text.write('\n')
+        with open(file,mode) as f:
+            f.write(text.getvalue())
 
 tempnossl = False
 hasVenv = True
@@ -559,7 +557,7 @@ else:
                 if c2.get(key) == None:
                     print(f"Key {key} does not exist.")
                     continue
-                value = Args_ParseOuter(value,c2[key])
+                value = Args.ParseOuter(value,c2[key])
                 if value == None:
                     print(f"Type of {key} could not be determined. Skipping.")
                     continue
@@ -585,7 +583,7 @@ else:
                 if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
                     print(f"Key {section}.{key} does not exist.")
                     continue
-                value = Args_ParseOuter(i[1],gameconf[section][key])
+                value = Args.ParseOuter(i[1],gameconf[section][key])
                 if value == None:
                     print(f"Type of {section}.{key} could not be determined. Skipping.")
                     continue
