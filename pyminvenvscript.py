@@ -592,7 +592,7 @@ else:
             writeTOML(venvpath / "Pymin/Nimin_Prefs.toml", gameconf)
         exit()
     elif argv[1] == "install":
-        if venvpath.exists() and "--overwrite" not in argv:
+        if hasVevn and "--overwrite" not in argv:
             print("You can not use install in an existing directory. Did you mean \"update\"?")
             exit()
         create(url,as3libversiontag)
@@ -607,7 +607,7 @@ else:
     elif argv[1] == "conv":
         run((pythonvenvloc, venvpath / "Pymin/Pymin.py", "--converter"))
     elif argv[1] == "cmd":...
-    elif argv[1] == "recreate" and venvpath.exists():
+    elif argv[1] == "recreate" and hasVenv:
         withsaves = False
         withconf = False
         if "--with-config" in argv:
@@ -617,7 +617,7 @@ else:
         if "--with-game-config" in argv:
             withconf = True
         recreate(url,as3libversiontag,cfgdict,withsaves,withconf)
-    elif argv[1] == "uv" and venvpath.exists():
+    elif argv[1] == "uv" and hasVenv:
         if len(argv) == 2:
             rl = ["uv","--help"]
             if c2["uvGlobal"]:
@@ -630,7 +630,7 @@ else:
                 run(rl)
             elif c2["uvLocal"]:
                 run(pythonm+rl)
-    elif argv[1] == "pip" and venvpath.exists():
+    elif argv[1] == "pip" and hasVenv:
         if len(argv) == 2:
             run([*pythonm, "pip","--help"])
         else:
