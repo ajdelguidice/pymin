@@ -365,7 +365,7 @@ class Args:
                 value.add(char)
         value.close()
         return arr
-    def ParseOuter(value, expected): #!Add table support
+    def ParseOuter(value, expected):
         if isinstance(expected,str):
             return str(value)
         elif isinstance(expected,bool):
@@ -406,10 +406,10 @@ class TOML:
             text.write('{')
             for k,v in value.items():
                 text.write(f'{k} = {TOML.Value(v)},')
-            if text.getvalue()[-1] == ",": #!Make this better
-                return text.getvalue()[:-1] + '}'
-            text.write('}')
-            return text.getvalue()
+            temp = text.getvalue()
+            if temp.endswith(","): #!Make this better
+                return temp[:-1] + '}'
+            return temp + '}'
     def Array(value):
         with StringIO() as text:
             text.write('[')
