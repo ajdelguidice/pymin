@@ -120,6 +120,16 @@ def downloadgame(url=""):
 
 def updatemodules(as3libversion="latest"):
     #updates the required modules using pip inside the virtual environment
+    if uninstallMiniAMF:
+        print("Uninstalling old Mini-AMF version...")
+        rl = ["pip","uninstall","Mini-AMF"]
+        if c2["uvGlobal"]:
+            run(["uv"]+rl+["--python",pythonvenvloc])
+        elif c2["uvLocal"]:
+            run(pythonm+["uv"]+rl)
+        else:
+            run(pythonm+rl)
+        print("Done")
     if c2["uvGlobal"]:
         temp = ["uv", "pip", "install", "--python", pythonvenvloc] + runlist[2:]
     elif c2["uvLocal"]:
@@ -180,9 +190,9 @@ def replaceTkhtmlviewParserWithUnsafeOne():
         print("Skipped custom html_parser.py.")
     elif not (tempnohtmlparser or c2["noCustomHTMLParser"]):
         print("Replacing tkhtmlview html_parser.py...")
-        temp = check_output((f"{pythonvenvloc}","-c","import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)")).decode("utf-8").replace("\\n","").replace("__init__.py","html_parser.py")
+        temp = check_output((f"{pythonvenvloc}","-c","import importlib.util;print(importlib.util.find_spec('tkhtmlview').origin)")).decode("utf-8").replace("\n","").replace("__init__.py","html_parser.py")
         if platform.system() == "Windows":
-            temp = temp.replace("\\\\","/").replace("\\r","")
+            temp = temp.replace("\\","/").replace("\r","")
         with urlopen("https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py",context=getSSLContext()) as urlfile:
             Path(temp).write_bytes(urlfile.read())
         print("Done")
@@ -442,8 +452,9 @@ tempnossl = False
 hasVenv = True
 tempnohtmlparser = False
 delconf = None
+uninstallMiniAMF = False
 
-runlist = ["pip", "install", "Mini-AMF", "tkhtmlview", "numpy", "Pillow", "as3lib", "setuptools","tomli-w"]
+runlist = ["pip", "install", "tkhtmlview", "numpy", "Pillow", "as3lib", "tomli-w"]
 try:
     import tomllib
 except:
@@ -511,6 +522,15 @@ if platform.system() == "Windows":
 else:
     pythonvenvloc = venvpath / "bin/python"
 pythonm = [pythonvenvloc, "-m"]
+
+pyvertuple = c2["pyInstalledVersion"].split(".")
+if int(pyvertuple[0]) == 3 and int(pyvertuple[1]) >= 11:
+    runlist.append("as3lib-miniAMF")
+    if hasVenv and check_output((f'{pythonvenvloc}','-c','from importlib.util import find_spec;from pathlib import Path;print((Path(find_spec("tkhtmlview").origin) / "../../Mini_AMF-0.9.1.dist-info").resolve().exists())')).decode('utf-8').replace('\n','').replace('\r','') == 'True':
+        uninstallMiniAMF = True
+else:
+    runlist.extend(("setuptools", "Mini-AMF"))
+
 if hasVenv and platform.python_version().split(".")[:2] != c2["pyInstalledVersion"].split(".")[:2] and platform.system() != "Windows":
     updatePythonVersion()
 if len(argv) < 2 and c2["defaultToRun"]:
