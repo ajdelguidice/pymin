@@ -67,7 +67,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
             move = True
     global cfgloc, delconf
     if move == True:
-        c2['path'] = str(curdir / 'Pymin-venv')
+        c2['path'] = ""
         delconf = curdir / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
     elif cfgloc == None or cfgDict != None:
@@ -75,7 +75,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
         if cfgDict == None:
             cfgDict = {
                 'cfgVersion':1,
-                'path':str(curdir / 'Pymin-venv'),
+                'path':"",
                 'pyInstalledVersion':platform.python_version(),
                 'uvGlobal':False,
                 'uvLocal':False,
@@ -266,7 +266,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
             del c
         conf = {
             'cfgVersion':1,
-            'path':str(curdir / 'Pymin-venv'),
+            'path':"",
             'pyInstalledVersion':pyversion,
             'uvGlobal':tempUV,
             'uvLocal':tempUVI,
@@ -508,6 +508,9 @@ if (curdir / 'pymin.toml').exists():
         'noCustomHTMLParser':c1.get('noCustomHTMLParser',False),
         'isDevEnv':c1.get('isDevEnv',False)
     }
+    if c2['path'] == '':
+        print("Error: path in config is empty. This script will break if this is not set when the config is outside of the venv.")
+        exit()
     venvpath = Path(c2['path']).resolve()
     if not venvpath.exists():
         hasVenv = False
@@ -518,7 +521,7 @@ elif (venvpath / 'pymin.toml').exists():
         c1 = tomllib.load(f)
     c2 = {
         'cfgVersion':c1.get('cfgVersion',1),
-        'path':c1.get('path',venvpath),
+        'path':c1.get('path',''),
         'pyInstalledVersion':c1.get('pyInstalledVersion'),
         'uvGlobal':c1.get('uvGlobal',False),
         'uvLocal':c1.get('uvLocal',False),
