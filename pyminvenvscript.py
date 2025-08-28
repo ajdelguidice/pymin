@@ -602,7 +602,7 @@ else:
         if len(argv) == 2:
             with StringIO() as text:
                 for k,v in c2.items():
-                    text.write('{k}: {v}\n')
+                    text.write(f'{k}: {v}\n')
                 print(text.getvalue())
             exit()
         else:
