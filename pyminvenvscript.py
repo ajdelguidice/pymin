@@ -23,12 +23,11 @@ if platform.system() == 'Darwin':
     import os
     os.environ['no_proxy'] = '*'
 
-def checkExistsMakeDir(dir_, silent=False):
+def checkExistsMakeDir(dir_):
     if dir_.is_dir():
         return 1
     elif dir_.exists():
-        if silent == False:
-            print('Path exists but is not a directory.')
+        print('Path exists but is not a directory.')
         return -1
     else:
         dir_.mkdir(parents=True)
@@ -164,7 +163,7 @@ def updatemodules(as3libversion):
     print('Done')
     replaceTkhtmlviewParserWithUnsafeOne()
 
-def recreate(url, as3libversion, cfgDict:dict=None, withsaves=False, withconf=False):
+def recreate(url, as3libversion, cfgDict:dict, withsaves, withconf):
     if not venvpath.is_dir():
         print(f'Error: Directory "{venvpath}" either doesn\'t exist or is not a directory. Aborting...')
         return
@@ -664,6 +663,7 @@ else:
         run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', '--converter'))
     elif argv[1] == 'cmd':...
     elif argv[1] == 'recreate' and hasVenv:
+        cfgdict = None
         withsaves = False
         withconf = False
         if '--with-config' in argv:
