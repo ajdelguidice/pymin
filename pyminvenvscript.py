@@ -526,7 +526,7 @@ pythonm = [pythonvenvloc, "-m"]
 pyvertuple = c2["pyInstalledVersion"].split(".")
 if int(pyvertuple[0]) == 3 and int(pyvertuple[1]) >= 11:
     runlist.append("as3lib-miniAMF")
-    if hasVenv and check_output((f'{pythonvenvloc}','-c','from importlib.util import find_spec;from pathlib import Path;print((Path(find_spec("tkhtmlview").origin) / "../../Mini_AMF-0.9.1.dist-info").resolve().exists())')).decode('utf-8').replace('\n','').replace('\r','') == 'True':
+    if hasVenv and check_output((f'{pythonvenvloc}','-c','from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n','').replace('\r','') == 'True':
         uninstallMiniAMF = True
 else:
     runlist.extend(("setuptools", "Mini-AMF"))
