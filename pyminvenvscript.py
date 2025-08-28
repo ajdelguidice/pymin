@@ -300,7 +300,7 @@ class Args:
             return True
         if value.lower() == "false":
             return False
-        return value
+        return value #Unknown
     def ValidateKey(key):
         if len(key) == 0:
             print(f"Error: TOML keys can not be empty.")
@@ -319,7 +319,10 @@ class Args:
         value = TextObject()
         while True:
             char = strio.read(1)
-            if char == "}":
+            if char == '': #This should only happen at EOF
+                print("Warning: Table was never closed.")
+                break
+            elif char == "}":
                 if value.get() != "": #Accounts for no trailing comma
                     table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
                     key.clear()
@@ -357,7 +360,10 @@ class Args:
         value = TextObject()
         while True:
             char = strio.read(1)
-            if char == "]":
+            if char == '': #This should only happen at EOF
+                print("Warning: Array was never closed.")
+                break
+            elif char == "]":
                 if value.get() != "": #Accounts for no trailing comma
                     arr.append(Args.ParseInner(value.get()))
                     value.clear()
