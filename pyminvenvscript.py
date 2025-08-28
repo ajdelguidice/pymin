@@ -67,7 +67,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
             move = True
     global cfgloc, delconf
     if move == True:
-        c2['path'] = './'
+        c2['path'] = str(curdir / 'Pymin-venv')
         delconf = curdir / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
     elif cfgloc == None or cfgDict != None:
@@ -75,7 +75,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
         if cfgDict == None:
             cfgDict = {
                 'cfgVersion':1,
-                'path':'./',
+                'path':str(curdir / 'Pymin-venv'),
                 'pyInstalledVersion':platform.python_version(),
                 'uvGlobal':False,
                 'uvLocal':False,
@@ -266,7 +266,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
             del c
         conf = {
             'cfgVersion':1,
-            'path':'./',
+            'path':str(curdir / 'Pymin-venv'),
             'pyInstalledVersion':pyversion,
             'uvGlobal':tempUV,
             'uvLocal':tempUVI,
