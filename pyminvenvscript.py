@@ -4,7 +4,6 @@ from shutil import rmtree, copytree, copyfile
 from pathlib import Path, PurePath
 from sys import argv
 from subprocess import run, check_output
-from urllib.parse import urlparse
 from urllib.request import urlopen
 from io import StringIO
 
@@ -67,7 +66,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
             move = True
     global cfgloc, delconf
     if move == True:
-        c2['path'] = ""
+        c2['path'] = ''
         delconf = curdir / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
     elif cfgloc == None or cfgDict != None:
@@ -75,7 +74,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
         if cfgDict == None:
             cfgDict = {
                 'cfgVersion':1,
-                'path':"",
+                'path':'',
                 'pyInstalledVersion':platform.python_version(),
                 'uvGlobal':False,
                 'uvLocal':False,
@@ -266,7 +265,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
             del c
         conf = {
             'cfgVersion':1,
-            'path':"",
+            'path':'',
             'pyInstalledVersion':pyversion,
             'uvGlobal':tempUV,
             'uvLocal':tempUVI,
@@ -404,21 +403,21 @@ class Args:
     def ParseOuter(value, expected):
         if isinstance(expected,str):
             return str(value)
-        elif isinstance(expected,bool):
+        if isinstance(expected,bool):
             if value.lower() == 'true':
                 return True
-            elif value.lower() == 'false':
+            if value.lower() == 'false':
                 return False
-        elif isinstance(expected,int):
+        if isinstance(expected,int):
             return int(value)
-        elif isinstance(expected,float):
+        if isinstance(expected,float):
             return float(value)
-        elif isinstance(expected,list):
+        if isinstance(expected,list):
             with StringIO() as text:
                 text.write(value)
                 text.seek(1)
                 return Args.ParseArray(text)
-        elif isinstance(expected,dict):
+        if isinstance(expected,dict):
             with StringIO() as text:
                 text.write(value)
                 text.seek(1)
@@ -429,14 +428,13 @@ class TOML:
     def Value(value):
         if isinstance(value,str):
             return f'"{value}"'
-        elif isinstance(value,bool):
+        if isinstance(value,bool):
             return 'true' if value else 'false'
-        elif isinstance(value,(list,tuple)):
+        if isinstance(value,(list,tuple)):
             return TOML.Array(value)
-        elif isinstance(value,dict):
+        if isinstance(value,dict):
             return TOML.Table(value)
-        else:
-            return f'{value}'
+        return f'{value}'
     def Table(value):
         with StringIO() as text:
             text.write('{')
