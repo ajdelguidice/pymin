@@ -284,9 +284,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
 insecure_context = ssl._create_unverified_context()
 
 def getSSLContext():
-    if c2['noSSLVerify'] or tempnossl:
-        return insecure_context
-    return None
+    return insecure_context if c2['noSSLVerify'] or tempnossl else None
 
 def indexOf(l, item):
     try:
