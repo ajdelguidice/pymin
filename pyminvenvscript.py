@@ -202,7 +202,7 @@ def updatePythonVersion():
     answer = input("(Not Implemented) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)")
     #if answer.lower() in {"y","")}
     if False and answer.lower() in {"y",""}:
-        rmtree(venvpath / f"lib/python{'.'.join(c2["pyInstalledVersion"].split('.')[:2])}")
+        rmtree(venvpath / f"lib/python{'.'.join(pyvertuple[:2])}")
         run([*pythonm,"venv","--upgrade",venvpath])
         installmodules(overrideDev=True)
         c2["pyInstalledVersion"] = platform.python_version()
@@ -531,7 +531,7 @@ if int(pyvertuple[0]) == 3 and int(pyvertuple[1]) >= 11:
 else:
     runlist.extend(("setuptools", "Mini-AMF"))
 
-if hasVenv and platform.python_version().split(".")[:2] != c2["pyInstalledVersion"].split(".")[:2] and platform.system() != "Windows":
+if hasVenv and platform.python_version().split(".")[:2] != pyvertuple[:2] and platform.system() != "Windows":
     updatePythonVersion()
 if len(argv) < 2 and c2["defaultToRun"]:
     run([pythonvenvloc, venvpath / "Pymin/Pymin.py"])
