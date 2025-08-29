@@ -477,7 +477,7 @@ tempnohtmlparser = False
 delconf = None
 uninstallMiniAMF = False
 
-runlist = ['pip', 'install', 'tkhtmlview', 'numpy', 'Pillow', 'as3lib', 'tomli-w']
+runlist = ['pip', 'install', 'tkhtmlview', 'numpy', 'Pillow', 'as3lib']
 try:
     import tomllib
 except:
