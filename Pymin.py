@@ -21,7 +21,6 @@ try:
    import tomllib
 except:
    import tomli as tomllib
-import tomli_w
 from io import StringIO
 
 __version__ = "1.0.11"
@@ -139,6 +138,54 @@ class textObject:
       self.text.write(value)
    def close(self):
       self.text.close()
+
+class TOML:
+   def Value(value):
+      if isinstance(value,str):
+         return f'"{value}"'
+      if isinstance(value,bool):
+         return 'true' if value else 'false'
+      if isinstance(value,(list,tuple)):
+         return TOML.Array(value)
+      if isinstance(value,dict):
+         return TOML.Table(value)
+      return f'{value}'
+   def Table(value):
+      with StringIO() as text:
+         text.write('{')
+         for k,v in value.items():
+            text.write(f'{k} = {TOML.Value(v)},')
+         temp = text.getvalue()
+         if temp.endswith(','): #!Make this better
+            return temp[:-1] + '}'
+         return temp + '}'
+   def Array(value):
+      with StringIO() as text:
+         text.write('[')
+         for i in value:
+            text.write(f'{TOML.Value(i)},')
+         text.write(']')
+         return text.getvalue()
+   def Write(file, valDict, mode='w'):
+      nontables = []
+      tables = []
+      for k,v in valDict.items():
+         if isinstance(v,dict):
+            tables.append(k)
+         else:
+            nontables.append(k)
+      with StringIO() as text:
+         for k in nontables:
+            text.write(f'{k} = {TOML.Value(valDict[k])}\n')
+         if len(nontables) > 0:
+            text.write('\n')
+         for k in tables:
+            text.write(f'[{k}]\n')
+            for k2,v2 in valDict[k].items():
+               text.write(f'{k2} = {TOML.Value(v2)}\n')
+            text.write('\n')
+         with open(file,mode) as f:
+            f.write(text.getvalue())
 
 class NiminFetishFantasyv0975o_fla: 
    """
@@ -1949,12 +1996,9 @@ class NiminFetishFantasyv0975o_fla:
          tempintertoggle = self.tempInterfaceToggles
       temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
       try:
-         assert tomli_w.dumps(temp) == f'[game]\ntheme = "{self.theme}"\nfontSize = {self.fontSize}\nfontBold = {str(self.fontBold).lower()}\nfontColor = "{self.fontColor}"\nshowSide = {str(self.showSide).lower()}\nnsldSortOrder = {self.nsldSortOrder}\n\n[options]\nsaveLocation = "{self.savelocation}"\nsolMode = {str(self.solonlymode).lower()}\nfixedResMode = {str(self.fixedresolutionmode).lower()}\ncustomFontColor = {str(self.customfontcolor).lower()}\noFontColor = "{self.ofontcolor}"\ncustomThemeColor = {str(self.customthemecolor).lower()}\noThemeColor = "{self.othemecolor}"\n\n[interface]\nthemeType = {self.themeType}\noriginalButtonColors = {str(tempintertoggle[0]).lower()}\nscrolledTextBorders = {str(tempintertoggle[1]).lower()}\noriginalNewGameButtonSize = {str(tempintertoggle[2]).lower()}\nstaticDoLevelUPButtons = {str(tempintertoggle[3]).lower()}\nuseExpandedSaveDialog = {str(self.useNewSaveLoadDialog).lower()}\nuseNewStash = {str(self.useNewStash).lower()}\nhelpToWiki = {str(self.helpToWiki).lower()}\n\n[grammar]\nrespectShowBalls = {str(self.respectShowBalls).lower()}\nfemmeboyToFemboy = {str(self.femmeboyToFemboy).lower()}\nshemaleToFuta = {str(self.femmeboyToFemboy).lower()}\nngrammar = {str(self.ngrammar).lower()}\nfemmieMaleReplacement = {self.femmieMaleReplacement}\nfemboyishToGirly = {str(self.femboyishToGirly).lower()}\nsnuggleBallTweak = {str(self.snuggleBallTweak).lower()}\ngrammarFixes = {str(self.grammarFixes).lower()}\n\n[gameTweaks]\nstatusTweaks = {str(self.statusTweaks).lower()}\nsuccubusLeavesOne = {str(self.succubusLeavesOne).lower()}\nuseIsBottomOpen = {str(self.useIsBottomOpen).lower()}\nlizanDontShowBalls = {str(self.lizanDontShowBalls).lower()}\nhermGetsBoth = {str(self.hermGetsBoth).lower()}\nintBallsEffectBelly = {str(self.internalBallsEffectBelly).lower()}\ndirectPathToSanc = {str(self.directPathToSanctuary).lower()}\ncorrectBeastRaceFeet = {str(self.correctBeastRaceFeet).lower()}\nmiscChanges = {str(self.gameTweaksMisc).lower()}\n\n[debugTweaks]\nchooseSenario = {str(self.debugChooseSenario).lower()}\nnoDamage = {str(self.debugNoDamage).lower()}\n'
-         with (self.dir / "Nimin_Prefs.toml").open("wb") as f:
-            tomli_w.dump(temp,f)
-      except AssertionError:
-         as3.trace(tomli_w.dumps(temp))
-         as3.trace("savePreferences: Error: Data failed integrity check, aborting to prevent data loss.")
+         TOML.Write(self.dir / "Nimin_Prefs.toml", temp)
+      except:
+         as3.trace("savePreferences: Error: Failed to create TOML. Write aborted.")
    def loadPreferences(self):
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():
@@ -25610,14 +25654,11 @@ class NiminFetishFantasyv0975o_fla:
          text.write(']')
          return text.getvalue()
    def saveTOML(self, dictionary:dict, outputfile):
-      #Work around for tomllib/tomli putting excess newlines between every element in an array
-      for i in {"trav","bag","bagStack","stash","stashStack","preg"}:
-         dictionary[i] = self.TOMLArray(dictionary[i])
       #Write file
-      temp = tomli_w.dumps(dictionary).replace("\"[","[").replace("]\"","]").replace(", ",",")
-      assert True #!Check if output is correct with tomli_w.dumps(dictionary)
-      with open(outputfile,"w") as f:
-         f.write(temp)
+      try:
+         TOML.Write(outputfile, dictionary)
+      except:
+         as3.trace("saveTOML: Error: Failed to create TOML. Write aborted.")
    def saveNIM(self, dictionary:dict, outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
