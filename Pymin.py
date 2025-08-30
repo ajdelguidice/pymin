@@ -1129,7 +1129,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow.children["SaveLocation"].uevar.get() == "":
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
-         elif not self.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),as3state.separator):
+         elif not as3._isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),as3state.separator):
             as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          else:
@@ -1323,90 +1323,6 @@ class NiminFetishFantasyv0975o_fla:
       if self.optionsWinOpen:
          self.optionswindow.closeWindow()
          self.optionsWinOpen = False
-   @staticmethod
-   def isValidDirectory(directory,separator=None):
-      """
-      Checks if a given directory is valid on the current platform
-      """
-      WIN_BlacklistedChars = {'<','>',':','"','\\','/','|','?','*','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''}
-      WIN_BlacklistedNames = {"CON","PRN","AUX","NUL","COM0","COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM¹","COM²","COM³","LPT0","LPT1","LPT2","LPT3","LPT4","LPT5","LPT6","LPT7","LPT8","LPT9","LPT¹","LPT²","LPT³"}
-      UNIX_BlacklistedChars = {"/","<",">","|",":","&",""}
-      UNIX_BlacklistedNames = {".",".."}
-      if isinstance(directory,PurePath):
-         #While this is ten times slower than using a string, it is much simpler and more robust so should give less incorrect answers
-         temp = directory.resolve()
-         if as3state.platform == "Windows":
-            while temp != temp.parent:
-               #get directory name and convert it to uppercase since windows is not case sensitive
-               tempname = temp.name.upper()
-               #invalid if blacklisted characters are used
-               for i in tempname:
-                  if i in WIN_BlacklistedChars:
-                     return False
-               #invalid if last character is " " or "." or if name or name before a period is blacklisted
-               if tempname.endswith((" ",".")) or tempname.split(".")[0] in WIN_BlacklistedNames:
-                  return False
-               temp = temp.parent
-            #Check drive letter
-            if not (str(temp)[0].isalpha() and str(temp)[1:] in {":",":\\",":/"}):
-               return False
-         else:
-            while temp != temp.parent:
-               tempname = temp.name
-               #invalid if blacklisted names are used
-               if tempname in UNIX_BlacklistedNames:
-                  return False
-               #invalid if blacklisted characters are used
-               for i in tempname:
-                  if i in UNIX_BlacklistedChars:
-                     return False
-               temp = temp.parent
-      elif separator != None:
-         directory = str(directory)
-         if as3state.platform == "Windows":
-            #convert path to uppercase since windows is not cas sensitive
-            directory = directory.upper()
-            #remove trailing path separator
-            if directory[-1] == separator:
-               directory = directory[:-1]
-            #remove drive letter or server path designator
-            if directory[0].isalpha() and directory[1] == ":" and directory[2] == separator:
-               directory = directory[3:]
-            elif directory.startswith("\\\\"):
-               directory = directory[2:]
-            elif directory.startswith(f".{separator}"):
-               directory = directory[-(len(directory)-2):]
-            #split path into each component
-            dirlist = directory.split(separator)
-            for i in dirlist:
-               #invalid if blacklisted characters are used
-               for j in i:
-                  if j in WIN_BlacklistedChars:
-                     return False
-               #invalid if last character is " " or "." or if name or name before a period is blacklisted
-               if i.endswith((" ",".")) or i.split(".")[0] in WIN_BlacklistedNames:
-                  return False
-         elif as3state.platform in {"Linux","Darwin"}:
-            #remove trailing path separator
-            if directory[-1] == separator:
-               directory = directory[:-1]
-            elif directory.endswith(f"{separator}."):
-               directory = directory[:-2]
-            #remove starting path separator
-            if directory[0] == separator:
-               directory = directory[-(len(directory)-1):]
-            elif directory.startswith((f".{separator}",f"~{separator}")):
-               directory = directory[-(len(directory)-2):]
-            dirlist = directory.split(separator)
-            for i in dirlist:
-               #invalid if blacklisted names are used
-               if i in UNIX_BlacklistedNames:
-                  return False
-               #invalid if blacklisted characters are used
-               for j in i:
-                  if j in UNIX_BlacklistedChars:
-                     return False
-      return True
    @staticmethod
    def checkExistsMakeDir(path, silent=False):
       """
@@ -1970,7 +1886,7 @@ class NiminFetishFantasyv0975o_fla:
          self.nsldSortOrder = int(game.get("nsldSortOrder",0))
          options = temp.get("options",{})
          tempdir = Path(options.get("saveLocation"))
-         if self.isValidDirectory(tempdir):
+         if as3._isValidDirectory(tempdir):
             self.savelocation = tempdir.resolve()
          else:
             as3.trace("Preference Loader: Warning: saveLocation is not a valid path. Default value will be used instead.")
@@ -2048,7 +1964,7 @@ class NiminFetishFantasyv0975o_fla:
             self.fontColor = "#000000"
             sp = True
          if prefs.find("saveLocation") != None:
-            if self.isValidDirectory(prefs.find("saveLocation").text,as3state.separator):
+            if as3._isValidDirectory(prefs.find("saveLocation").text,as3state.separator):
                self.savelocation = Path(prefs.find('saveLocation').text).resolve()
             else:
                as3.trace("Preference Loader: Warning: saveLocation is not a valid path. Default value will be used instead.")
@@ -24882,7 +24798,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{self.versionNumber})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).", True)
       #Check if savelocation is valid. If not, open a dialog box to warn the user and ask how to proceed. If so, check if it exists and create it if it doesn't.
-      if self.isValidDirectory(self.savelocation,as3state.separator):
+      if as3._isValidDirectory(self.savelocation,as3state.separator):
          self.checkExistsMakeDir(self.savelocation,True)
       else:
          self.openSaveInvalidDialog()
