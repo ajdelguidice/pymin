@@ -634,7 +634,7 @@ class NiminFetishFantasyv0975o_fla:
       self.initinterface = True
 
       #window
-      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", type_="frame", defaultmenu=False)
+      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultmenu=False)
       self.mo.setAboutWindowText(f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}")
 
       self.font = ("TimesNewRoman", 12)
@@ -747,7 +747,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       if not self.optionsWinOpen:
          #Window
-         self.optionswindow = itk.window(width=420,height=207,title="Options",type_="frame",color=self.theme,mainwindow=False,nomenu=True)
+         self.optionswindow = itk.window(width=420,height=207,title="Options",color=self.theme,mainwindow=False,nomenu=True)
          #self.mo.group(self.optionswindow.children["root"])
          if self.fixedresolutionmode:
             self.optionswindow.disableResizing()
@@ -25329,7 +25329,7 @@ class NiminFetishFantasyv0975o_fla:
          self.moveitemamountvisible = False
    def openSFC(self):
       if not self.sfcopen:
-         self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter","frame",self.theme,self.cmdOpenConverter,False,True)
+         self.sfcwindow = itk.window(500,334,"Pymin: Save File Converter",self.theme,self.cmdOpenConverter,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
          self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman',20, 'bold'),"n")
@@ -25741,7 +25741,7 @@ class NiminFetishFantasyv0975o_fla:
       self.detailedDebug()
    def openDebugWindow(self, *e):
       if (not self.debugWinOpen):
-         self.dw = itk.window(400,400,"Pymin: Debug Window","frame",self.theme,False,False,False)
+         self.dw = itk.window(400,400,"Pymin: Debug Window",self.theme,False,False,False)
          if self.fixedresolutionmode:
             self.dw.disableResizing()
          self.dw.menubar["root"].add_command(label="Give Item",font=("Terminal",8),command=self.openDebugGiveItemWindow)
@@ -25944,7 +25944,7 @@ class NiminFetishFantasyv0975o_fla:
    def openWiki(self):
       if not self.wikiOpen:
          self.wikiOpen = True
-         self.wikiwindow = itk.window(700,500,"Pymin: Wiki","frame","#A0A0A0",False,False,True)
+         self.wikiwindow = itk.window(700,500,"Pymin: Wiki","#A0A0A0",False,False,True)
          if self.fixedresolutionmode:
             self.wikiwindow.disableResizing()
          self.wikiwindow.group(self.mo.children["root"])
