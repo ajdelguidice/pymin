@@ -3,12 +3,13 @@ import math, random, tkinter, webbrowser
 from pathlib import Path, PurePath
 from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
-from miniamf import sol, AMF3, DecodeError, amf3
+from miniamf import sol, AMF3, DecodeError
 from functools import partial, cache
 import as3lib.toplevel as as3
 import as3lib.interface_tk as itk
 import as3lib.flash.ui as fui
 import as3lib.keyConversions as ckeys
+from as3lib.flash.utils import ByteArray
 from as3lib import cmath, as3state
 from as3lib.config import TOML
 try:
@@ -4051,7 +4052,7 @@ class NiminFetishFantasyv0975o_fla:
       Gets day and hour from NIM save files to display on the save and load screens
       """
       with open(file, "rb") as f:
-         return amf3.ByteArray(f).readObject()["data"]["track"][2:4]
+         return ByteArray(f).readObject()["data"]["track"][2:4]
    def saveGo(self, ret=False):
       """
       Save game stage 1 (dialog)
@@ -25532,7 +25533,7 @@ class NiminFetishFantasyv0975o_fla:
          so = {"data":self.returnSOL(dictionary,outputfile)}
          if so["data"] == None:
             raise NullData()
-         byteData = amf3.ByteArray()
+         byteData = ByteArray()
          byteData.writeObject(so)
          with open(outputfile,"wb") as f:
             f.write(byteData.getvalue())
@@ -25621,7 +25622,7 @@ class NiminFetishFantasyv0975o_fla:
       try:
          if nim == True:
             with open(filename, "rb") as file:
-               so = amf3.ByteArray(file).readObject()["data"]
+               so = ByteArray(file).readObject()["data"]
          else:
             so = sol.load(str(filename))
          strack = so["track"]
