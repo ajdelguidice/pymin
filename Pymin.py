@@ -3,7 +3,7 @@ import math, random, tkinter, webbrowser
 from pathlib import Path, PurePath
 from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
-from miniamf import sol, AMF3, DecodeError
+from miniamf import sol, DecodeError
 from functools import partial, cache
 import as3lib.toplevel as as3
 import as3lib.interface_tk as itk
@@ -173,7 +173,7 @@ class NiminFetishFantasyv0975o_fla:
       self.correctBeastRaceFeet = False
       self.gameTweaksMisc = False
       ##Interface Tab
-      self.tempInterfaceToggles = [] #Temporary storage for interface toggles while nimin theme type is selected
+      self.tempInterfaceToggles = () #Temporary storage for interface toggles while nimin theme type is selected
       self.oButtonColors = False
       self.scrolledTextBorders = False
       self.oNewGameButton = False
@@ -963,7 +963,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       if type == 1 and self.themeType == 0:
          self.themeType = 1
-         self.tempInterfaceToggles = [self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons]
+         self.tempInterfaceToggles = (self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons)
          self.oButtonColors = True
          self.scrolledTextBorders = False
          self.oNewGameButton = True
@@ -983,7 +983,7 @@ class NiminFetishFantasyv0975o_fla:
          self.scrolledTextBorders = self.tempInterfaceToggles[1]
          self.oNewGameButton = self.tempInterfaceToggles[2]
          self.staticdoLevelUPButtons = self.tempInterfaceToggles[3]
-         self.tempInterfaceToggles = []
+         self.tempInterfaceToggles = None
          self.optionswindow.children["OBC"].cb["state"] = "normal"
          self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "normal"
          self.optionswindow.children["newgameoriginalsize"].cb["state"] = "normal"
@@ -1083,14 +1083,8 @@ class NiminFetishFantasyv0975o_fla:
       Saves all of the options when the "Apply" button is pressed
       """
       if self.optionsWinOpen:
-         if self.optionswindow.children["SOLMode"].getcb() == 1:
-            self.solonlymode = True
-         else:
-            self.solonlymode = False
-         if self.optionswindow.children["FixedRes"].getcb() == 1:
-            self.fixedresolutionmode = True
-         else:
-            self.fixedresolutionmode = False
+         self.solonlymode = True if self.optionswindow.children["SOLMode"].getcb() else False
+         self.fixedresolutionmode = True if self.optionswindow.children["FixedRes"].getcb() else False
          if self.optionswindow.children["Theme"].getcb() == 1:
             if self.optionswindow.children["Theme"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
@@ -1141,117 +1135,42 @@ class NiminFetishFantasyv0975o_fla:
                self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
                self.optionswindow.children["SaveLocation"].ue["background"] = "#FFFFFF"
                self.saveInvalid = False
-         if self.optionswindow.children["StatusTweaks"].getcb() == 1:
-            self.statusTweaks = True
-         else:
-            self.statusTweaks = False
-         if self.optionswindow.children["SuccubusLeavesOne"].getcb() == 1:
-            self.succubusLeavesOne = True
-         else:
-            self.succubusLeavesOne = False
-         if self.optionswindow.children["UseIsBottomOpen"].getcb() == 1:
-            self.useIsBottomOpen = True
-         else:
-            self.useIsBottomOpen = False
-         if self.optionswindow.children["LizanDontShowBalls"].getcb() == 1:
-            self.lizanDontShowBalls = True
-         else:
-            self.lizanDontShowBalls = False
-         if self.optionswindow.children["HermGetsBoth"].getcb() == 1:
-            self.hermGetsBoth = True
-         else:
-            self.hermGetsBoth = False
-         if self.optionswindow.children["IntBallsEffectBelly"].getcb() == 1:
-            self.internalBallsEffectBelly = True
-         else:
-            self.internalBallsEffectBelly = False
-         if self.optionswindow.children["DirectPathToSanc"].getcb() == 1:
-            self.directPathToSanctuary = True
-         else:
-            self.directPathToSanctuary = False
-         if self.optionswindow.children["CorrectBeastRaceFeet"].getcb() == 1:
-            self.correctBeastRaceFeet = True
-         else:
-            self.correctBeastRaceFeet = False
-         if self.optionswindow.children["MiscChanges"].getcb() == 1:
-            self.gameTweaksMisc = True
-         else:
-            self.gameTweaksMisc = False
-         if self.optionswindow.children["OBC"].getcb() == 1:
-            self.oButtonColors = True
-         else:
-            self.oButtonColors = False
-         if self.optionswindow.children["ScrolledTextBorders"].getcb() == 1:
-            self.scrolledTextBorders = True
-         else:
-            self.scrolledTextBorders = False
+         self.statusTweaks = True if self.optionswindow.children["StatusTweaks"].getcb() else False
+         self.succubusLeavesOne = True if self.optionswindow.children["SuccubusLeavesOne"].getcb() else False
+         self.useIsBottomOpen = True if self.optionswindow.children["UseIsBottomOpen"].getcb() else False
+         self.lizanDontShowBalls = True if self.optionswindow.children["LizanDontShowBalls"].getcb() else False
+         self.hermGetsBoth = True if self.optionswindow.children["HermGetsBoth"].getcb() else False
+         self.internalBallsEffectBelly = True if self.optionswindow.children["IntBallsEffectBelly"].getcb() else False
+         self.directPathToSanctuary = True if self.optionswindow.children["DirectPathToSanc"].getcb() else False
+         self.correctBeastRaceFeet = True if self.optionswindow.children["CorrectBeastRaceFeet"].getcb() else False
+         self.gameTweaksMisc = True if self.optionswindow.children["MiscChanges"].getcb() else False
+         self.oButtonColors = True if self.optionswindow.children["OBC"].getcb() else False
+         self.scrolledTextBorders = True if self.optionswindow.children["ScrolledTextBorders"].getcb() else False
          tempng = self.oNewGameButton
-         if self.optionswindow.children["newgameoriginalsize"].getcb() == 1:
-            self.oNewGameButton = True
-         else:
-            self.oNewGameButton = False
+         self.oNewGameButton = True if self.optionswindow.children["newgameoriginalsize"].getcb() else False
          if (tempng != self.oNewGameButton or self.changeNGButtonOverride) and self.shownewgame:
             self.changeNGButtonOverride = False
             self.hideNGButton()
             self.showNGButton()
-         if self.optionswindow.children["doLevelUPStaticButtons"].getcb() == 1:
-            self.staticdoLevelUPButtons = True
-         else:
-            self.staticdoLevelUPButtons = False
-         if self.optionswindow.children["UseExpandedSaveDialog"].getcb() == 1:
-            self.useNewSaveLoadDialog = True
-         else:
-            self.useNewSaveLoadDialog = False
-         if self.optionswindow.children["UseNewStash"].getcb() == 1:
-            self.useNewStash = True
-         else:
-            self.useNewStash = False
-         if self.optionswindow.children["helpToWiki"].getcb() == 1:
-            self.helpToWiki = True
-         else:
-            self.helpToWiki = False
-         if self.optionswindow.children["showBalls"].getcb() == 1:
-            self.respectShowBalls = True
-         else:
-            self.respectShowBalls = False
-         if self.optionswindow.children["femmeboytofemboy"].getcb() == 1:
-            self.femmeboyToFemboy = True
-         else:
-            self.femmeboyToFemboy = False
-         if self.optionswindow.children["shemaletofuta"].getcb() == 1:
-            self.shemaleToFuta = True
-         else:
-            self.shemaleToFuta = False
-         if self.optionswindow.children["ngrammar"].getcb() == 1:
-            self.ngrammar = True
-         else:
-            self.ngrammar = False
+         self.staticdoLevelUPButtons = True if self.optionswindow.children["doLevelUPStaticButtons"].getcb() else False
+         self.useNewSaveLoadDialog = True if self.optionswindow.children["UseExpandedSaveDialog"].getcb() else False
+         self.useNewStash = True if self.optionswindow.children["UseNewStash"].getcb() else False
+         self.helpToWiki = True if self.optionswindow.children["helpToWiki"].getcb() else False
+         self.respectShowBalls = True if self.optionswindow.children["showBalls"].getcb() else False
+         self.femmeboyToFemboy = True if self.optionswindow.children["femmeboytofemboy"].getcb() else False
+         self.shemaleToFuta = True if self.optionswindow.children["shemaletofuta"].getcb() else False
+         self.ngrammar = True if self.optionswindow.children["ngrammar"].getcb() else False
          #!
          #if self.femmieMaleReplacement:
          #femmiemaletofemininemale
          #femmiemaletofemboy
          #   self.optionswindow.children[""].select()
-         if self.optionswindow.children["femboyishtogirly"].getcb() == 1:
-            self.femboyishToGirly = True
-         else:
-            self.femboyishToGirly = False
-         if self.optionswindow.children["snuggleball"].getcb() == 1:
-            self.snuggleBallTweak = True
-         else:
-            self.snuggleBallTweak = False
-         if self.optionswindow.children["grammarMisc"].getcb() == 1:
-            self.grammarFixes = True
-         else:
-            self.grammarFixes = False
-         if as3state.as3DebugEnable == True:
-            if self.optionswindow.children["ChooseSenario"].getcb() == 1:
-               self.debugChooseSenario = True
-            else:
-               self.debugChooseSenario = False
-            if self.optionswindow.children["NoDamage"].getcb() == 1:
-               self.debugNoDamage = True
-            else:
-               self.debugNoDamage = False
+         self.femboyishToGirly = True if self.optionswindow.children["femboyishtogirly"].getcb() else False
+         self.snuggleBallTweak = True if self.optionswindow.children["snuggleball"].getcb() else False
+         self.grammarFixes = True if self.optionswindow.children["grammarMisc"].getcb() else False
+         if as3state.as3DebugEnable:
+            self.debugChooseSenario = True if self.optionswindow.children["ChooseSenario"].getcb() else False
+            self.debugNoDamage = True if self.optionswindow.children["NoDamage"].getcb() else False
          self.savePreferences()
          self.toggleTextboxBorders(self.scrolledTextBorders)
          self.applyFixedResolution()
@@ -1377,9 +1296,6 @@ class NiminFetishFantasyv0975o_fla:
             temp2.append(i)
             temp.remove(i)
       return temp2 + sorted(temp,key=str.lower)
-   @staticmethod
-   def inv(boolean:bool):
-      return None if boolean == None else not boolean
    @staticmethod
    def boolToState(boolean:bool):
       """
@@ -1860,7 +1776,7 @@ class NiminFetishFantasyv0975o_fla:
       #showSidePanel
    def savePreferences(self):
       if self.themeType == 0:
-         tempintertoggle = [self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons]
+         tempintertoggle = (self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons)
       else:
          tempintertoggle = self.tempInterfaceToggles
       temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
@@ -1896,10 +1812,10 @@ class NiminFetishFantasyv0975o_fla:
          self.solonlymode = bool(options.get("solMode",False))
          self.fixedresolutionmode = bool(options.get("fixedResMode",False))
          self.customfontcolor = bool(options.get("customFontColor",False))
-         self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
+         self.mo.configureChild("textcolorbutton",state=self.boolToState(not self.customfontcolor))
          self.ofontcolor = str(options.get("oFontColor","#FFFFFF"))
          self.customthemecolor = bool(options.get("customThemeColor",False))
-         self.mo.configureChild("themebutton",state=self.boolToState(self.inv(self.customthemecolor)))
+         self.mo.configureChild("themebutton",state=self.boolToState(not self.customthemecolor))
          self.othemecolor = str(options.get("oThemeColor","#000000"))
          interface = temp.get("interface",{})
          self.themeType = interface.get("themeType",0)
@@ -1991,11 +1907,11 @@ class NiminFetishFantasyv0975o_fla:
          self.fixedresolutionmode = False if prefs.find("fixedResMode") == None else strtobool(prefs.find("fixedResMode").text)
          if prefs.find("customFontColor") != None and prefs.find("customThemeColor") != None:
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
-            self.mo.configureChild("textcolorbutton",state=self.boolToState(self.inv(self.customfontcolor)))
+            self.mo.configureChild("textcolorbutton",state=self.boolToState(not self.customfontcolor))
             self.ofontcolor = prefs.find('oFontColor').text
          if prefs.find('oFontColor') != None and prefs.find('oThemeColor') != None:
             self.customthemecolor = strtobool(prefs.find("customThemeColor").text)
-            self.mo.configureChild("themebutton",state=self.boolToState(self.inv(self.customthemecolor)))
+            self.mo.configureChild("themebutton",state=self.boolToState(not self.customthemecolor))
             self.othemecolor = prefs.find('oThemeColor').text
          if prefs.find("debugTweaks") != None:
             tempdebugtweaks = strtolistbools(prefs.find("debugTweaks").text)
@@ -2113,7 +2029,7 @@ class NiminFetishFantasyv0975o_fla:
       if (which in {"Bag","Stash"}):
          if (not self.inShop):
             db = True
-         self.showButtonsBag(buttonlist,tempArray,which,db)
+         self.showButtonsBag(tempArray,which,db)
       else:
          self.showButtons(buttonlist,db)
       self.doButtonChoices(tempDict)
@@ -2121,20 +2037,19 @@ class NiminFetishFantasyv0975o_fla:
    @cache
    def _showButtonsBagCalc(buttonNum:int,choicePage:int):
       return (buttonNum-(buttonNum//4+1))+(choicePage*9-9)
-   def showButtonsBag(self,buttons:ButtonList,buttonText,which:str,discardButton:bool):
-      if discardButton == False:
-         self.hideDiscard()
-      else:
+   def showButtonsBag(self,buttonText,which:str,discardButton:bool):
+      if discardButton:
          self.showDiscard()
+      else:
+         self.hideDiscard()
       temp = self.getColours()
       for i in range(1,13):
-         if buttons[i] == 1:
-            if not self.buttonsVisible[i]:
-               self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-               self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
-               self.buttonsVisible[i] = True
-            else:
-               self.mo.configureChild(f"button{i}",state="normal")
+         if not self.buttonsVisible[i]:
+            self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
+            self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
+            self.buttonsVisible[i] = True
+         else:
+            self.mo.configureChild(f"button{i}",state="normal")
          if i not in {4,8,12}:
             tempI = self._showButtonsBagCalc(i,self.choicePage)
             if (buttonText[tempI]):
@@ -2209,7 +2124,7 @@ class NiminFetishFantasyv0975o_fla:
          return True
       return False
    def showPage(self, changes:bool, which:str):
-      if (changes == True):
+      if (changes):
          if (not self.pageShow):
             temp = self.getColours()
             self.mo.addLabel("display","pagelabel",843,30,100,30,self.font)
@@ -2310,14 +2225,14 @@ class NiminFetishFantasyv0975o_fla:
    def bc(self):
       self.clearTextAllButtons()
       self.buttonChoice = 0
-   def buttonConfirm(self, b6:int = 1, b7:int = 1):
+   def buttonConfirm(self, b6:bool=True, b7:bool=True):
       self.detailedDebug()
       self.showButtons(ButtonList(0,0,0,0,0,1,1,0,0,0,0,0))
-      if (b6 == 1):
+      if (b6):
          self.buttonWrite(6,"Yes")
       else:
          self.disableOneButton(6)
-      if (b7 == 1):
+      if (b7):
          self.buttonWrite(7,"No")
       else:
          self.disableOneButton(7)
@@ -2339,16 +2254,16 @@ class NiminFetishFantasyv0975o_fla:
          self.hideAmount()
          self.doLustForcedMasturbate()
       else:
-         if (leave == False):
-            self.doNext()
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.doProcess()
-            self.doListen = doListen
-         else:
+         if (leave):
             self.doLeave()
             def doListen():
                if (self.buttonChoice == 12):
+                  self.doProcess()
+            self.doListen = doListen
+         else:
+            self.doNext()
+            def doListen():
+               if (self.buttonChoice == 6):
                   self.doProcess()
             self.doListen = doListen
    def doButtonChoices(self, buttondict:dict):
@@ -2435,12 +2350,11 @@ class NiminFetishFantasyv0975o_fla:
          tempNum = 0
       if (self.lust >= 75):
          return math.ceil(tempNum * 1.5)
-      elif (self.lust >= 50):
+      if (self.lust >= 50):
          return math.ceil(tempNum * 1)
-      elif (self.lust >= 25):
+      if (self.lust >= 25):
          return math.ceil(tempNum * 0.75)
-      else:
-         return math.ceil(tempNum * 0.25)
+      return math.ceil(tempNum * 0.25)
    def vagLimit(self):
       return self.vagSize * (self.vagSizeMod + self.vagElastic) + self.vagSize * self.vagSizeMod * self.moistCalc(2) / 10
    def eVagLimit(self, limit:int):
@@ -2455,10 +2369,8 @@ class NiminFetishFantasyv0975o_fla:
       if (tempInt > 0):
          if (places == 0):
             return tempStr[0: tempInt]
-         else:
-            return tempStr[0: tempInt + places + 1]
-      else:
-         return tempStr
+         return tempStr[0: tempInt + places + 1]
+      return tempStr
    def doWeight(self):
       tempBool = False
       tempStr = textObject()
@@ -2936,10 +2848,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hideNewSaveLoadDialog()
       self.showNSLDBlinder(False)
       self.outputMainText("Are you sure you would like to start a new game?",True)
-      a1 = 1
-      if (self.currentState == 0):
-         a1 = 0
-      self.buttonConfirm(b7=a1)
+      self.buttonConfirm(b7=False if (self.currentState == 0) else True)
       def doListen():
          if (self.buttonChoice == 6):
             self.showStatPane()
@@ -3252,16 +3161,14 @@ class NiminFetishFantasyv0975o_fla:
                return "s"
             if typeCock == 2 and self.horseCocks > 1:
                return "s"
-            if (self.lust <= 30):
-               if typeCock in {3,4,7} and self.wolfCocks + self.catCocks + self.rabbitCocks > 1:
-                  return "s"
-            else:
-               if typeCock == 3 and self.wolfCocks > 1:
-                  return "s"
-               if typeCock == 4 and self.catCocks > 1:
-                  return "s"
-               if typeCock == 7 and self.rabbitCocks > 1:
-                  return "s"
+            if (self.lust <= 30 and typeCock in {3,4,7} and self.wolfCocks + self.catCocks + self.rabbitCocks > 1):
+               return "s"
+            if typeCock == 3 and self.wolfCocks > 1:
+               return "s"
+            if typeCock == 4 and self.catCocks > 1:
+               return "s"
+            if typeCock == 7 and self.rabbitCocks > 1:
+               return "s"
             if typeCock == 6 and self.lizardCocks > 1:
                return "s"
             if typeCock == 12 and self.bugCocks > 1:
@@ -3273,16 +3180,14 @@ class NiminFetishFantasyv0975o_fla:
                return "s"
             if typeCock == 2 and self.horseCocks < 2:
                return "s"
-            if (self.lust <= 30):
-               if typeCock in {3,4,7} and self.wolfCocks + self.catCocks + self.rabbitCocks < 2:
-                  return "s"
-            else:
-               if typeCock == 3 and self.wolfCocks < 2:
-                  return "s"
-               if typeCock == 4 and self.catCocks < 2:
-                  return "s"
-               if typeCock == 7 and self.rabbitCocks < 2:
-                  return "s"
+            if (self.lust <= 30 and typeCock in {3,4,7} and self.wolfCocks + self.catCocks + self.rabbitCocks < 2):
+               return "s"
+            if typeCock == 3 and self.wolfCocks < 2:
+               return "s"
+            if typeCock == 4 and self.catCocks < 2:
+               return "s"
+            if typeCock == 7 and self.rabbitCocks < 2:
+               return "s"
             if typeCock == 6 and self.lizardCocks < 2:
                return "s"
             if typeCock == 12 and self.bugCocks < 2:
@@ -3290,13 +3195,12 @@ class NiminFetishFantasyv0975o_fla:
          if plural == 4 and self.wolfCocks < 2:
             return "s"
          return ""
-      else:
-         if plural in {1,3}:
-            return self.plural(plural)
-         if plural == 2:
-            return "es"
-         if plural == 4:
-            return ""
+      if plural in {1,3}:
+         return self.plural(plural)
+      if plural == 2:
+         return "es"
+      if plural == 4:
+         return ""
    def appearanceGo(self):
       """
       Function that generates player appearance text
@@ -4353,15 +4257,15 @@ class NiminFetishFantasyv0975o_fla:
          self.clearTextAllButtons()
          self.newSLDialogVisible = False
          self._enableKeys()
-   def showNSLDBlinder(self, which=False):
+   def showNSLDBlinder(self, which:bool=False):
       """
       Hides nsld temporarily while conformation dialog is shown
       """
-      if which == True and not self.nsldblindervisible:
+      if which and not self.nsldblindervisible:
          self.mo.addLabel("display","nsldblinder",200,30,780,184,("TimesNewRoman",12),"nw")
          self.mo.configureChild("nsldblinder",background=self.theme,foreground=self.fontColor)
          self.nsldblindervisible = True
-      elif which == False and self.nsldblindervisible:
+      elif not which and self.nsldblindervisible:
          self.mo.destroyChild("nsldblinder")
          self.nsldblindervisible = False
    def nsldSelectionUp(self):
@@ -4392,9 +4296,9 @@ class NiminFetishFantasyv0975o_fla:
       """
       if (slot == 4):
          if self.solonlymode:
-            savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
+            savefilename = Path(filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim"))))
          else:
-            savefilename = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
+            savefilename = Path(filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim"))))
       elif (slot == 0):
          savefilename = file.resolve()
       else:
@@ -4407,17 +4311,17 @@ class NiminFetishFantasyv0975o_fla:
          return
       else:
          data = self.dictSAVE({"track":{"currentState":self.currentState,"currentZone":self.currentZone,"day":self.day,"hour":self.hour,"currentDayCare":self.currentDayCare,"inDungeon":self.inDungeon,"currentDungeon":self.currentDungeon,"v7":0.75},"version":{"original":"0.975o","port":__version__},"stats":{"strength":self.strength,"mentality":self.mentality,"libido":self.libido,"sensitivity":self.sensitivity,"HP":self.HP,"lust":self.lust,"coin":self.coin,"strMod":self.strMod,"mentMod":self.mentMod,"libMod":self.libMod,"senMod":self.senMod,"hunger":self.hunger},"level":{"SexP":int(self.SexP),"levelUP":self.levelUP,"level":self.level,"babyFactLevel":self.babyFactLevel,"bodyBuildLevel":self.bodyBuildLevel,"hyperHappyLevel":self.hyperHappyLevel,"alchemistLevel":self.alchemistLevel,"fetishMasterLevel":self.fetishMasterLevel,"milkMaidLevel":self.milkMaidLevel,"shapeshiftyLevel":self.shapeshiftyLevel,"shapeshiftyFirst":self.shapeshiftyFirst,"shapeshiftySecond":self.shapeshiftySecond},"mod":{"runMod":self.runMod,"rapeMod":self.rapeMod,"cumMod":repintorfloat(self.cumMod),"cockSizeMod":repintorfloat(self.cockSizeMod),"milkMod":self.milkMod,"carryMod":self.carryMod,"vagBellyMod":self.vagBellyMod,"pregChanceMod":self.pregChanceMod,"extraPregChance":self.extraPregChance,"pregTimeMod":self.pregTimeMod,"enticeMod":self.enticeMod,"milkHPMod":self.milkHPMod,"vagSizeMod":repintorfloat(self.vagSizeMod),"vagElastic":repintorfloat(self.vagElastic),"changeMod":repintorfloat(self.changeMod),"HPMod":self.HPMod,"SexPMod":repintorfloat(self.SexPMod),"minLust":self.minLust,"milkCap":self.milkCap,"coinMod":self.coinMod,"hipMod":self.hipMod,"buttMod":self.buttMod,"bellyMod":self.bellyMod,"cockMoistMod":self.cockMoistMod,"vagMoistMod":self.vagMoistMod,"lockTail":self.lockTail,"lockFace":self.lockFace,"lockSkin":self.lockSkin,"lockBreasts":self.lockBreasts,"lockEars":self.lockEars,"lockLegs":self.lockLegs,"lockNipples":self.lockNipples,"lockCock":self.lockCock},"quality":{"gender":self.gender,"race":self.race,"body":self.body,"dominant":self.dominant,"hips":self.hips,"butt":self.butt,"tallness":self.tallness,"skinType":self.skinType,"tail":self.tail,"ears":self.ears,"hair":self.hair,"hairColor":self.hairColor,"hairLength":self.hairLength,"legType":self.legType,"wings":self.wings,"faceType":self.faceType,"skinColor":self.skinColor},"cock":{"cockTotal":self.cockTotal,"humanCocks":self.humanCocks,"horseCocks":self.horseCocks,"wolfCocks":self.wolfCocks,"catCocks":self.catCocks,"rabbitCocks":self.rabbitCocks,"lizardCocks":self.lizardCocks,"cockSize":self.cockSize,"cockMoist":self.cockMoist,"balls":self.balls,"ballSize":self.ballSize,"showBalls":self.showBalls,"knot":self.knot,"bugCocks":self.bugCocks,"neuterizerHideBalls":self.neuterizerHideBalls},"girl":{"breastSize":self.breastSize,"boobTotal":self.boobTotal,"nippleSize":self.nippleSize,"udders":self.udders,"udderSize":self.udderSize,"teatSize":self.teatSize,"clitSize":self.clitSize,"vagTotal":self.vagTotal,"vagSize":self.vagSize,"vagMoist":self.vagMoist,"vulvaSize":self.vulvaSize,"nipType":self.nipType},"gear":{"attireTop":self.attireTop,"attireBot":self.attireBot,"weapon":self.weapon},"status":{"pregRate":self.pregRate,"pregnancyTime":self.pregnancyTime,"pregStatus":self.pregStatus,"eggLaying":self.eggLaying,"eggMaxTime":self.eggMaxTime,"eggTime":self.eggTime,"eggRate":self.eggRate,"exhaustion":self.exhaustion,"exhaustionPenalty":self.exhaustionPenalty,"milkEngorgement":self.milkEngorgement,"milkEngorgementLevel":self.milkEngorgementLevel,"udderEngorgement":self.udderEngorgement,"udderEngorgementLevel":self.udderEngorgementLevel,"heat":self.heat,"heatTime":self.heatTime,"heatMaxTime":self.heatMaxTime,"lactation":self.lactation,"udderLactation":self.udderLactation,"nipplePlay":repintorfloat(self.nipplePlay),"udderPlay":repintorfloat(self.udderPlay),"blueBalls":self.blueBalls,"teatPump":self.teatPump,"nipPump":self.nipPump,"cockPump":self.cockPump,"clitPump":self.clitPump,"vulvaPump":self.vulvaPump,"masoPot":self.masoPot,"sMasoPot":self.sMasoPot,"babyFree":self.babyFree,"charmTime":self.charmTime,"pheromone":self.pheromone,"eggceleratorTime":self.eggceleratorTime,"eggceleratorDose":self.eggceleratorDose,"bodyOil":self.bodyOil,"lustPenalty":self.lustPenalty,"fertileGel":self.fertileGel,"snuggleBall":self.snuggleBall,"eggType":self.eggType,"milkSuppressant":self.milkSuppressant,"milkSuppressantLact":self.milkSuppressantLact,"milkSuppressantUdder":self.milkSuppressantUdder,"suppHarness":self.suppHarness,"fertilityStatueCurse":self.fertilityStatueCurse,"plumpQuats":self.plumpQuats,"lilaWetStatus":self.lilaWetStatus,"cockSnakePreg":self.cockSnakePreg,"milkCPoisonNip":self.milkCPoisonNip,"milkCPoisonUdd":self.milkCPoisonUdd,"cockSnakeVenom":self.cockSnakeVenom},"affinity":{"humanAffinity":self.humanAffinity,"horseAffinity":self.horseAffinity,"wolfAffinity":self.wolfAffinity,"catAffinity":self.catAffinity,"cowAffinity":self.cowAffinity,"lizardAffinity":self.lizardAffinity,"rabbitAffinity":self.rabbitAffinity,"fourBoobAffinity":self.fourBoobAffinity,"mouseAffinity":self.mouseAffinity,"birdAffinity":self.birdAffinity,"pigAffinity":self.pigAffinity,"twoBoobAffinity":self.twoBoobAffinity,"sixBoobAffinity":self.sixBoobAffinity,"eightBoobAffinity":self.eightBoobAffinity,"tenBoobAffinity":self.tenBoobAffinity,"cowTaurAffinity":self.cowTaurAffinity,"humanTaurAffinity":self.humanTaurAffinity,"skunkAffinity":self.skunkAffinity,"bugAffinity":self.bugAffinity},"rep":{"lilaRep":self.lilaRep,"lilaVulva":self.lilaVulva,"lilaMilk":self.lilaMilk,"lilaPreg":self.lilaPreg,"malonRep":self.malonRep,"malonPreg":self.malonPreg,"malonChildren":self.malonChildren,"mistressRep":self.mistressRep,"jamieRep":self.jamieRep,"jamieSize":self.jamieSize,"jamieChildren":self.jamieChildren,"silRep":self.silRep,"silPreg":self.silPreg,"silRate":self.silRate,"silLay":self.silLay,"silGrowthTime":self.silGrowthTime,"silTied":self.silTied,"lilaUB":self.lilaUB,"dairyFarmBrand":self.dairyFarmBrand,"lilaWetness":self.lilaWetness,"jamieButt":self.jamieButt,"jamieBreasts":self.jamieBreasts,"jamieHair":self.jamieHair},"knowledge":{"foundSoftlik":self.foundSoftlik,"foundFirmshaft":self.foundFirmshaft,"foundTieden":self.foundTieden,"foundSizCalit":self.foundSizCalit,"foundOviasis":self.foundOviasis,"foundValley":self.foundValley,"foundSanctuary":self.foundSanctuary,"usedSecretStairs":self.usedSecretStairs},"boss":{"defeatedMinotaur":self.defeatedMinotaur,"defeatedFreakyGirl":self.defeatedFreakyGirl,"defeatedSuccubus":self.defeatedSuccubus},"knowSimpleAlchemy":{"knowLustDraft":self.knowLustDraft,"knowRejuvPot":self.knowRejuvPot,"knowExpPreg":self.knowExpPreg,"knowBallSwell":self.knowBallSwell,"knowMaleEnhance":self.knowMaleEnhance},"knowAdvancedAlchemy":{"knowSLustDraft":self.knowSLustDraft,"knowSRejuvPot":self.knowSRejuvPot,"knowSExpPreg":self.knowSExpPreg,"knowSBallSwell":self.knowSBallSwell,"knowGenSwap":self.knowGenSwap,"knowMasoPot":self.knowMasoPot,"knowBabyFree":self.knowBabyFree,"knowPotPot":self.knowPotPot,"knowMilkSuppress":self.knowMilkSuppress},"knowComplexAlchemy":{"knowSGenSwap":self.knowSGenSwap,"knowSMasoPot":self.knowSMasoPot,"knowSBabyFree":self.knowSBabyFree,"knowSPotPot":self.knowSPotPot,"knowPussJuice":self.knowPussJuice,"knowPheromone":self.knowPheromone,"knowBazoomba":self.knowBazoomba},"majorFetish":{"maleFetish":repintorfloat(self.maleFetish),"femaleFetish":repintorfloat(self.femaleFetish),"hermFetish":repintorfloat(self.hermFetish),"narcissistFetish":repintorfloat(self.narcissistFetish),"dependentFetish":repintorfloat(self.dependentFetish)},"moderateFetish":{"dominantFetish":repintorfloat(self.dominantFetish),"submissiveFetish":repintorfloat(self.submissiveFetish),"lboobFetish":repintorfloat(self.lboobFetish),"sboobFetish":repintorfloat(self.sboobFetish),"furryFetish":repintorfloat(self.furryFetish),"scalyFetish":repintorfloat(self.scalyFetish),"smoothyFetish":repintorfloat(self.smoothyFetish)},"minorFetish":{"pregnancyFetish":repintorfloat(self.pregnancyFetish),"bestialityFetish":repintorfloat(self.bestialityFetish),"milkFetish":repintorfloat(self.milkFetish),"sizeFetish":repintorfloat(self.sizeFetish),"unbirthingFetish":repintorfloat(self.unbirthingFetish),"ovipositionFetish":repintorfloat(self.ovipositionFetish),"toyFetish":repintorfloat(self.toyFetish),"hyperFetish":repintorfloat(self.hyperFetish)},"kid":{"humanChildren":self.humanChildren,"equanChildren":self.equanChildren,"lupanChildren":self.lupanChildren,"felinChildren":self.felinChildren,"cowChildren":self.cowChildren,"lizanChildren":self.lizanChildren,"lizanEggs":self.lizanEggs,"bunnionChildren":self.bunnionChildren,"wolfPupChildren":self.wolfPupChildren,"miceChildren":self.miceChildren,"birdEggs":self.birdEggs,"birdChildren":self.birdChildren,"pigChildren":self.pigChildren,"calfChildren":self.calfChildren,"bugEggs":self.bugEggs,"bugChildren":self.bugChildren,"skunkChildren":self.skunkChildren,"minotaurChildren":self.minotaurChildren,"freakyGirlChildren":self.freakyGirlChildren},"trav":[],"bag":list(self.bagArray),"bagStack":list(self.bagStackArray),"stash":list(self.stashArray),"stashStack":list(self.stashStackArray),"preg":list(self.pregArray)})
-         sfext = str(savefilename).lower()
-         if sfext.endswith(".sol"):
+         sfext = savefilename.suffix.lower()
+         if sfext == ".sol":
             self.saveSOL(data,savefilename)
-         elif sfext.endswith(".nim"):
+         elif sfext ==".nim":
             self.saveNIM(data,savefilename)
-         elif sfext.endswith(".xml"):
+         elif sfext == ".xml":
             self.saveXML(data,savefilename)
-         elif sfext.endswith(".toml"):
+         elif sfext == ".toml":
             self.saveTOML(data,savefilename)
          else:
-            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext.split(as3state.separator)[-1].split('.')[-1]}.")
+            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext}.")
    def doLoad(self, slot:int, file:PurePath=None):
       """
       Load game stage 2 (file manipulation)
@@ -4425,9 +4329,9 @@ class NiminFetishFantasyv0975o_fla:
       loadfilename = ""
       if (slot == 4):
          if self.solonlymode:
-            loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))   
+            loadfilename = Path(filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim"))))
          else:
-            loadfilename = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
+            loadfilename = Path(filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim"))))
          if (isinstance(loadfilename,tuple) or len(loadfilename) == 0):
             self.loadGo()
             return
@@ -4438,17 +4342,17 @@ class NiminFetishFantasyv0975o_fla:
             loadfilename = self.savelocation / f"Nimin_Save{slot}.xml"
          else:
             loadfilename = self.savelocation / f"Nimin_Save{slot}.sol"
-      lfext = str(loadfilename).lower()
-      if lfext.endswith(".sol"):
+      lfext = loadfilename.suffix.lower()
+      if lfext == ".sol":
          data = self.loadSOL(loadfilename)
-      elif lfext.endswith(".nim"):
+      elif lfext == ".nim":
          data = self.loadSOL(loadfilename,True)
-      elif lfext.endswith(".xml"):
+      elif lfext == ".xml":
          data = self.loadXML(loadfilename,"doLoad")
-      elif lfext.endswith(".toml"):
+      elif lfext == ".toml":
          data = self.loadTOML(loadfilename)
       else:
-         as3.trace(f"SaveLoader Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext.split('.')[-1]}.")
+         as3.trace(f"SaveLoader Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
          self.loadGo("Error: Could not load save file. Reason: Incorrect file format")
          return
       if data == None:
@@ -4571,7 +4475,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showBalls = bool(scock['showBalls'])
          self.knot = bool(scock['knot'])
          self.bugCocks = int(scock['bugCocks'])
-         self.neuterizerHideBalls = bool(scock.get("neuterizerHideBalls",False))
+         self.neuterizerHideBalls = bool(scock["neuterizerHideBalls"])
          self.breastSize = int(sgirl['breastSize'])
          self.boobTotal = int(sgirl['boobTotal'])
          self.nippleSize = int(sgirl['nippleSize'])
@@ -4689,7 +4593,7 @@ class NiminFetishFantasyv0975o_fla:
          self.foundOviasis = bool(sknowledge['foundOviasis'])
          self.foundValley = bool(sknowledge['foundValley'])
          self.foundSanctuary = bool(sknowledge['foundSanctuary'])
-         self.usedSecretStairs = bool(sknowledge.get('usedSecretStairs',False))
+         self.usedSecretStairs = bool(sknowledge['usedSecretStairs'])
          self.defeatedMinotaur = bool(sboss['defeatedMinotaur'])
          self.defeatedFreakyGirl = bool(sboss['defeatedFreakyGirl'])
          self.defeatedSuccubus = bool(sboss['defeatedSuccubus'])
@@ -5558,10 +5462,7 @@ class NiminFetishFantasyv0975o_fla:
          self.refreshMoveItem(self.moveItemID,self.moveItemStack)
       if self.useNewStash and (self.inBag or self.inStash):
          if self.moveItemID != 0 and self.buttonsVisible[12]:
-            if (self.inBag):
-               self.buttonWrite(12,"Stash")
-            else:
-               self.buttonWrite(12,"Bag")
+            self.buttonWrite(12,"Stash" if (self.inBag) else "Bag")
       #self.hideAmount()
       if (self.inBag):
          self.doBag(True)
@@ -5571,7 +5472,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function to show the item which is being moved in a box off to the side
       """
-      if (which == True):
+      if (which):
          if (self.moveItemID != 0):
             self.moveItemShow()
             if (self.moveItemStack > 1):
@@ -6049,12 +5950,12 @@ class NiminFetishFantasyv0975o_fla:
          return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
       if ID == 404:
          temp = "Item Not Found\n\nItem Not Found"
-         if as3state.as3DebugEnable == True:
+         if as3state.as3DebugEnable:
             temp += " (This is a joke item referencing status code 404)"
          return temp
       if ID == 418:
          temp = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
-         if as3state.as3DebugEnable == True:
+         if as3state.as3DebugEnable:
             temp += " (This is a joke item referencing status code 418)"
          return temp
       if ID == 500:
@@ -10261,9 +10162,8 @@ class NiminFetishFantasyv0975o_fla:
    def currentClothes(self):
       if (self.attireTop == self.attireBot):
          return self.clothesTop()
-      else:
-         return f"{self.clothesTop()} and {self.clothesBottom()}"
-      return "CURRENT CLOTHES ERROR"
+      return f"{self.clothesTop()} and {self.clothesBottom()}"
+      #return "CURRENT CLOTHES ERROR"
    def pullUD(self, source:int):
       if source == 1:
          if self.attireTop in {-1,6,9,21,29}:
@@ -11434,10 +11334,6 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText(f"You're hardly aroused enough to get your cock{self.plural(1)} standing, let alone masturbate. You'll just have to settle for something else.",True)
          self.doEnd()
       else:
-         tempInt = 0
-         whichCock = ""
-         getCum = 0
-         chance = 0
          self.rndArray = as3.Array()
          if (self.humanCocks > 0):
             self.rndArray.push(1)
@@ -11604,8 +11500,6 @@ class NiminFetishFantasyv0975o_fla:
          self.displayMainText()
          self.doEnd()
    def doVagMasturbate(self):
-      tempInt = 0
-      chance = 0
       if (self.lust < 20):
          self.outputMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
          self.doEnd()
@@ -11719,8 +11613,6 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lust > 20):
          self.doSexP(10)
    def doBoobMasturbate(self):
-      chance = 0
-      getMilk = 0
       tempArr = as3.Array(1)
       if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
          tempArr.push(2)
@@ -11859,8 +11751,6 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
       self.doEnd()
    def doUdderMasturbate(self):
-      chance = 0
-      getMilk = 0
       tempArr = as3.Array(1)
       if self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0:
          tempArr.push(2)
@@ -13267,13 +13157,11 @@ class NiminFetishFantasyv0975o_fla:
             return None
          if temp < numbers[0] or temp > numbers[1]:
             return None
-         else:
-            return temp
-      else:
-         return numbers[0]
+         return temp
+      return numbers[0]
    def eventSelect(self, which:str):
       #!Here
-      if as3state.as3DebugEnable == True and self.debugChooseSenario:
+      if as3state.as3DebugEnable and self.debugChooseSenario:
          temp = self.debugSenarioChooser({"Softlik":[1,4],"Firmshaft":[1,3],"Tieden":[1,3],"Siz'Calit":[1,4],"Oviasis":[1,5],"Sanctuary":[3,3],"Forest":[1,6],"Jungle":[1,7],"Plains":[1,5],"Savanna":[1,5],"Desert":[1,5],"Beach":[1,6],"Lake":[1,3],"Dairy Farm":[1,5],"Old Cave":[1,3],"Den":[1,2],"Valley":[1,5]}[which])
          if temp != None:
             return temp
@@ -13598,12 +13486,8 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          else:
             self.doMainText(" With you right next to him, his attention turns your way. \"Hey you, would you like to buy one of these? Since the people around here have a tendancy of changing into other things, I've been trying to come up with a brew that will help make humans more human rather than something else. But I keep coming up with this failure that is TOO human... Anyways, I just bring it down to some traveling salesman, but if you want one you can have one for 100 coins. It'll save me some effort from trying to haggle them all to that cutthroat...\"")
-            if (self.coin < 100):
-               a1 = 0
-            else:
-               a1 = 1
             self.displayMainText()
-            self.buttonConfirm(b6 = a1)
+            self.buttonConfirm(b6=False if (self.coin < 100) else True)
             def doListen():
                if (self.buttonChoice == 6):
                   self.outputMainText("\"Well, here you go.\" He hands you a vial as he takes your coins. \"Now I've got to get going to catch that rat bastard who's going to rip me off. Good luck to you!\"\n\nHe starts trudging down the street, but turns back for only a moment to shout, \"Oh! And don't forget to read the warning label!\" And with that he's gone.\n\nLooking down at the vial, you can't seem to find any kind of warning... Now that you think about it, wasn't there a label on the crate?",True)
@@ -20277,16 +20161,12 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.")
          if (not self.defeatedMinotaur):
             self.defeatedMinotaur = True
-            self.currentDungeon = 1003
-         else:
-            self.currentDungeon = 1003
+         self.currentDungeon = 1003
       elif self.enemyID == 308:
          self.doMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
          if (not self.defeatedFreakyGirl):
             self.defeatedFreakyGirl = True
-            self.currentDungeon = 1006
-         else:
-            self.currentDungeon = 1006
+         self.currentDungeon = 1006
       elif self.enemyID == 309:
          self.doMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
          if (not self.defeatedSuccubus):
@@ -20310,16 +20190,12 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.")
          if (not self.defeatedMinotaur):
             self.defeatedMinotaur = True
-            self.currentDungeon = 1002
-         else:
-            self.currentDungeon = 1002
+         self.currentDungeon = 1002
       elif self.enemyID == 308:
          self.doMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.")
          if (not self.defeatedFreakyGirl):
             self.defeatedFreakyGirl = True
-            self.currentDungeon = 1004
-         else:
-            self.currentDungeon = 1004
+         self.currentDungeon = 1004
       elif self.enemyID == 309:
          self.doMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
          if (not self.defeatedSuccubus):
@@ -20932,7 +20808,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can while its erection clearly grows.")
       self.eLust += changes
    def eDmg(self, eweapon):
-      if self.debugNoDamage and as3state.as3DebugEnable == True:
+      if self.debugNoDamage and as3state.as3DebugEnable:
          return 0
       self.dmgRed = 0
       self.dmg = 0
@@ -24694,12 +24570,11 @@ class NiminFetishFantasyv0975o_fla:
       self.blueBalls = 0
       if (temp <= 12):
          return math.floor(tempNum * 0.5)
-      elif (temp <= 36):
+      if (temp <= 36):
          return math.floor(tempNum * 1)
-      elif (temp <= 84):
+      if (temp <= 84):
          return math.floor(tempNum * 2)
-      else:
-         return math.floor(tempNum * 2.5)
+      return math.floor(tempNum * 2.5)
    def milkAmount(self, origin:int):
       tempNum = 0
       if origin == 1:
@@ -25157,16 +25032,16 @@ class NiminFetishFantasyv0975o_fla:
       Replacement function for viewButtonOutline
       """
       self.bc()
-      if discardButton == False:
-         self.hideDiscard()
-      else:
+      if discardButton:
          self.showDiscard()
+      else:
+         self.hideDiscard()
       temp = self.getColours()
       for i in range(1,13):
-         if buttons[i] == 0 and self.buttonsVisible[i]:
+         if not buttons[i] and self.buttonsVisible[i]:
             self.mo.destroyChild(f"button{i}")
             self.buttonsVisible[i] = False
-         elif buttons[i] == 1:
+         elif buttons[i]:
             if not self.buttonsVisible[i]:
                self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
                self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
@@ -25467,7 +25342,7 @@ class NiminFetishFantasyv0975o_fla:
          filename = path.resolve().name.split(".")
       if len(filename) == 1:
          return filename[0]
-      elif len(filename) > 1:
+      if len(filename) > 1:
          return ".".join(filename[:-1])
    def returnSOL(self, dictionary:dict, outputfile):
       try:
@@ -25508,20 +25383,6 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
-   def TOMLArray(self, value):
-      with StringIO() as text:
-         text.write('[')
-         for i in value:
-            if isinstance(i,(list,tuple)):
-               text.write(f'{self.TOMLArray(i)},')
-            elif isinstance(i,bool):
-               text.write("true," if i else "false,")
-            elif isinstance(i, str):
-               text.write(f'"{i},"')
-            else:
-               text.write(f'{i},')
-         text.write(']')
-         return text.getvalue()
    def saveTOML(self, dictionary:dict, outputfile):
       #Write file
       try:
@@ -25552,7 +25413,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcwindow.toTop()
    def saveSOL(self, dictionary:dict, outputfile):
       try:
-         sol.save(self.returnSOL(dictionary,outputfile),str(outputfile),AMF3)
+         sol.save(self.returnSOL(dictionary,outputfile),str(outputfile),3)
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
       except Exception as e:
@@ -25564,7 +25425,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcwindow.toTop()
    def saveXML(self, dictionary:dict, outputfile):
       try:
-         string = StringIO()
+         string = textObject()
          strack = list(dictionary["track"].values())
          sver = list(dictionary["version"].values())
          sstats = list(dictionary["stats"].values())
@@ -25597,20 +25458,18 @@ class NiminFetishFantasyv0975o_fla:
          _stashStackArray = dictionary["stashStack"]
          _pregArray = dictionary["preg"]
          string += f"{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagArray)])}</bag><bagStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagStackArray)])}</bagStack><stash>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashArray)])}</stash><stashStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashStackArray)])}</stashStack><preg>{''.join([f'<i{i}>{j}</i{i}>' for i,j in enumerate(_pregArray)])}</preg></data>"
-         data = xmletree.fromstring(string.getvalue())
+         data = xmletree.fromstring(string.get())
          string.close()
          xml = xmletree.ElementTree(element=data)
          xmletree.indent(xml,space="\t")
          xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
-      except DecodeError:
-         as3.trace("SOL Loader: Error: Missing or unknown SOL version header. If you are trying to load .nim files, this is not the function to load those.")
       except Exception as e:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          else:
-            as3.trace("SOL Loader: Error: Can not save file.")
+            as3.trace("File Loader: Error: Can not save file.")
          raise e
       if self.sfcopen:
          self.sfcwindow.toTop()
@@ -25618,9 +25477,9 @@ class NiminFetishFantasyv0975o_fla:
       with open(filename,"rb") as f:
          return tomllib.load(f)
    @staticmethod
-   def loadSOL(filename, nim=False):
+   def loadSOL(filename, nim:bool=False):
       try:
-         if nim == True:
+         if nim:
             with open(filename, "rb") as file:
                so = ByteArray(file).readObject()["data"]
          else:
@@ -25678,7 +25537,7 @@ class NiminFetishFantasyv0975o_fla:
                sstashStack.extend(l)
          return {"track":{"currentState":strack[0],"currentZone":strack[1],"day":strack[2],"hour":strack[3],"currentDayCare":strack[4],"inDungeon":strack[5],"currentDungeon":strack[6],"v7":strack[7]},"version":{"original":so["versionNumber"],"port":ver},"stats":{"strength":sstats[0],"mentality":sstats[1],"libido":sstats[2],"sensitivity":sstats[3],"HP":sstats[4],"lust":sstats[5],"coin":sstats[6],"strMod":sstats[7],"mentMod":sstats[8],"libMod":sstats[9],"senMod":sstats[10],"hunger":sstats[11]},"level":{"SexP":slevel[0],"levelUP":slevel[1],"level":slevel[2],"babyFactLevel":slevel[3],"bodyBuildLevel":slevel[4],"hyperHappyLevel":slevel[5],"alchemistLevel":slevel[6],"fetishMasterLevel":slevel[7],"milkMaidLevel":slevel[8],"shapeshiftyLevel":slevel[9],"shapeshiftyFirst":slevel[10],"shapeshiftySecond":slevel[11]},"mod":{"runMod":smod[0],"rapeMod":smod[1],"cumMod":smod[2],"cockSizeMod":smod[3],"milkMod":smod[4],"carryMod":smod[5],"vagBellyMod":smod[6],"pregChanceMod":smod[7],"extraPregChance":smod[8],"pregTimeMod":smod[9],"enticeMod":smod[10],"milkHPMod":smod[11],"vagSizeMod":smod[12],"vagElastic":smod[13],"changeMod":smod[14],"HPMod":smod[15],"SexPMod":smod[16],"minLust":smod[17],"milkCap":smod[18],"coinMod":smod[19],"hipMod":smod[20],"buttMod":smod[21],"bellyMod":smod[22],"cockMoistMod":smod[23],"vagMoistMod":smod[24],"lockTail":smod[25],"lockFace":smod[26],"lockSkin":smod[27],"lockBreasts":smod[28],"lockEars":smod[29],"lockLegs":smod[30],"lockNipples":smod[31],"lockCock":smod[32]},"quality":{"gender":squality[0],"race":squality[1],"body":squality[2],"dominant":squality[3],"hips":squality[4],"butt":squality[5],"tallness":squality[6],"skinType":squality[7],"tail":squality[8],"ears":squality[9],"hair":squality[10],"hairColor":squality[11],"hairLength":squality[12],"legType":squality[13],"wings":squality[14],"faceType":squality[15],"skinColor":squality[16]},"cock":{"cockTotal":scock[0],"humanCocks":scock[1],"horseCocks":scock[2],"wolfCocks":scock[3],"catCocks":scock[4],"rabbitCocks":scock[5],"lizardCocks":scock[6],"cockSize":scock[7],"cockMoist":scock[8],"balls":scock[9],"ballSize":scock[10],"showBalls":scock[11],"knot":scock[12],"bugCocks":scock[13],"neuterizerHideBalls":scock[14] if len(scock) == 15 else False},"girl":{"breastSize":sgirl[0],"boobTotal":sgirl[1],"nippleSize":sgirl[2],"udders":sgirl[3],"udderSize":sgirl[4],"teatSize":sgirl[5],"clitSize":sgirl[6],"vagTotal":sgirl[7],"vagSize":sgirl[8],"vagMoist":sgirl[9],"vulvaSize":sgirl[10],"nipType":sgirl[11]},"gear":{"attireTop":sgear[0],"attireBot":sgear[1],"weapon":sgear[2]},"status":{"pregRate":sstatus[0],"pregnancyTime":sstatus[1],"pregStatus":sstatus[2],"eggLaying":sstatus[3],"eggMaxTime":sstatus[4],"eggTime":sstatus[4] if sstatus[5] > sstatus[4] and tempver[0] == "1" and tempver[1] == "0" and int(tempver[2]) < 10 else sstatus[5],"eggRate":sstatus[6],"exhaustion":sstatus[7],"exhaustionPenalty":sstatus[8],"milkEngorgement":sstatus[9],"milkEngorgementLevel":sstatus[10],"udderEngorgement":sstatus[11],"udderEngorgementLevel":sstatus[12],"heat":sstatus[13],"heatTime":sstatus[14],"heatMaxTime":sstatus[15],"lactation":sstatus[16],"udderLactation":sstatus[17],"nipplePlay":sstatus[18],"udderPlay":sstatus[19],"blueBalls":sstatus[20],"teatPump":sstatus[21],"nipPump":sstatus[22],"cockPump":sstatus[23],"clitPump":sstatus[24],"vulvaPump":sstatus[25],"masoPot":sstatus[26],"sMasoPot":sstatus[27],"babyFree":sstatus[28],"charmTime":sstatus[29],"pheromone":sstatus[30],"eggceleratorTime":sstatus[31],"eggceleratorDose":sstatus[32],"bodyOil":sstatus[33],"lustPenalty":sstatus[34],"fertileGel":sstatus[35],"snuggleBall":sstatus[36],"eggType":sstatus[37],"milkSuppressant":sstatus[38],"milkSuppressantLact":sstatus[39],"milkSuppressantUdder":sstatus[40],"suppHarness":sstatus[41],"fertilityStatueCurse":sstatus[42],"plumpQuats":sstatus[43],"lilaWetStatus":sstatus[44],"cockSnakePreg":sstatus[45],"milkCPoisonNip":sstatus[46],"milkCPoisonUdd":sstatus[47],"cockSnakeVenom":sstatus[48]},"affinity":{"humanAffinity":saffinity[0],"horseAffinity":saffinity[1],"wolfAffinity":saffinity[2],"catAffinity":saffinity[3],"cowAffinity":saffinity[4],"lizardAffinity":saffinity[5],"rabbitAffinity":saffinity[6],"fourBoobAffinity":saffinity[7],"mouseAffinity":saffinity[8],"birdAffinity":saffinity[9],"pigAffinity":saffinity[10],"twoBoobAffinity":saffinity[11],"sixBoobAffinity":saffinity[12],"eightBoobAffinity":saffinity[13],"tenBoobAffinity":saffinity[14],"cowTaurAffinity":saffinity[15],"humanTaurAffinity":saffinity[16],"skunkAffinity":saffinity[17],"bugAffinity":saffinity[18]},"rep":{"lilaRep":srep[0],"lilaVulva":srep[1],"lilaMilk":srep[2],"lilaPreg":srep[3],"malonRep":srep[4],"malonPreg":srep[5],"malonChildren":srep[6],"mistressRep":srep[7],"jamieRep":srep[8],"jamieSize":srep[9],"jamieChildren":srep[10],"silRep":srep[11],"silPreg":srep[12],"silRate":srep[13],"silLay":srep[14],"silGrowthTime":srep[15],"silTied":srep[16],"lilaUB":srep[17],"dairyFarmBrand":srep[18],"lilaWetness":srep[19],"jamieButt":srep[20],"jamieBreasts":srep[21],"jamieHair":srep[22]},"knowledge":{"foundSoftlik":sknowledge[0],"foundFirmshaft":sknowledge[1],"foundTieden":sknowledge[2],"foundSizCalit":sknowledge[3],"foundOviasis":sknowledge[4],"foundValley":sknowledge[5],"foundSanctuary":sknowledge[6],"usedSecretStairs":sknowledge[7] if len(sknowledge) == 8 else False},"boss":{"defeatedMinotaur":sboss[0],"defeatedFreakyGirl":sboss[1],"defeatedSuccubus":sboss[2]},"knowSimpleAlchemy":{"knowLustDraft":sknowSimpleAlchemy[0],"knowRejuvPot":sknowSimpleAlchemy[1],"knowExpPreg":sknowSimpleAlchemy[2],"knowBallSwell":sknowSimpleAlchemy[3],"knowMaleEnhance":sknowSimpleAlchemy[4]},"knowAdvancedAlchemy":{"knowSLustDraft":sknowAdvancedAlchemy[0],"knowSRejuvPot":sknowAdvancedAlchemy[1],"knowSExpPreg":sknowAdvancedAlchemy[2],"knowSBallSwell":sknowAdvancedAlchemy[3],"knowGenSwap":sknowAdvancedAlchemy[4],"knowMasoPot":sknowAdvancedAlchemy[5],"knowBabyFree":sknowAdvancedAlchemy[6],"knowPotPot":sknowAdvancedAlchemy[7],"knowMilkSuppress":sknowAdvancedAlchemy[8]},"knowComplexAlchemy":{"knowSGenSwap":sknowComplexAlchemy[0],"knowSMasoPot":sknowComplexAlchemy[1],"knowSBabyFree":sknowComplexAlchemy[2],"knowSPotPot":sknowComplexAlchemy[3],"knowPussJuice":sknowComplexAlchemy[4],"knowPheromone":sknowComplexAlchemy[5],"knowBazoomba":sknowComplexAlchemy[6]},"majorFetish":{"maleFetish":smajorFetish[0],"femaleFetish":smajorFetish[1],"hermFetish":smajorFetish[2],"narcissistFetish":smajorFetish[3],"dependentFetish":smajorFetish[4]},"moderateFetish":{"dominantFetish":smoderateFetish[0],"submissiveFetish":smoderateFetish[1],"lboobFetish":smoderateFetish[2],"sboobFetish":smoderateFetish[3],"furryFetish":smoderateFetish[4],"scalyFetish":smoderateFetish[5],"smoothyFetish":smoderateFetish[6]},"minorFetish":{"pregnancyFetish":sminorFetish[0],"bestialityFetish":sminorFetish[1],"milkFetish":sminorFetish[2],"sizeFetish":sminorFetish[3],"unbirthingFetish":sminorFetish[4],"ovipositionFetish":sminorFetish[5],"toyFetish":sminorFetish[6],"hyperFetish":sminorFetish[7]},"kid":{"humanChildren":skid[0],"equanChildren":skid[1],"lupanChildren":skid[2],"felinChildren":skid[3],"cowChildren":skid[4],"lizanChildren":skid[5],"lizanEggs":skid[6],"bunnionChildren":skid[7],"wolfPupChildren":skid[8],"miceChildren":skid[9],"birdEggs":skid[10],"birdChildren":skid[11],"pigChildren":skid[12],"calfChildren":skid[13],"bugEggs":skid[14],"bugChildren":skid[15],"skunkChildren":skid[16],"minotaurChildren":skid[17],"freakyGirlChildren":skid[18]},"trav":so["trav"],"bag":sbag,"bagStack":sbagStack,"stash":sstash,"stashStack":sstashStack,"preg":so["pregSave"]}
       except Exception as e:
-         as3.trace("SOL Loader: Error: Malformed save file")
+         as3.trace("SaveLoader Error: Malformed save file")
          raise e
    def loadXML(self, filename, origin:str=None):
       try:
@@ -25730,12 +25589,12 @@ class NiminFetishFantasyv0975o_fla:
       except ValueError as e:
          as3.trace("SaveLoader Error: One or more values has an invalid type.")
          if origin == "doLoad":
-            self.loadGo("Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",True)
+            self.loadGo("XML Loader Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",True)
          raise e
       except Exception as e:
          as3.trace("SaveLoader Error: Malformed save file")
          if origin == "doLoad":
-            self.loadGo("XML Loader: Error: Could not load save file. Reason: Malformed save file",True)
+            self.loadGo("XML Loader Error: Could not load save file. Reason: Malformed save file",True)
          raise e
    def menudwo(self, *e):
       self.openDebugWindow()
@@ -25990,7 +25849,7 @@ class NiminFetishFantasyv0975o_fla:
             "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
             "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
          }
-         if as3state.as3DebugEnable == True:
+         if as3state.as3DebugEnable:
             self.wikimenus["Items"].insert(1,"Debug Items")
          
          self.doWikiMenu("")
