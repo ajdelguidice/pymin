@@ -12,6 +12,7 @@ import as3lib.keyConversions as ckeys
 from as3lib.flash.utils import ByteArray
 from as3lib import cmath, as3state
 from as3lib.config import TOML
+from as3lib.helpers import textObject
 try:
    from warnings import deprecated
 except:
@@ -122,23 +123,6 @@ def CreateToolTip(widget, text):
    widget.bind('<Enter>', enter)
    widget.bind('<Leave>', leave)
 #====================================================================================
-class textObject:
-   def __init__(self):
-      self.text = StringIO()
-   def __iadd__(self,string:str):
-      self.text.write(string)
-      return self
-   def __eq__(self,value):
-      return self.text.getvalue() == value
-   def clear(self):
-      self.text.close()
-      self.text = StringIO()
-   def get(self):
-      return self.text.getvalue()
-   def add(self,value):
-      self.text.write(value)
-   def close(self):
-      self.text.close()
 
 class NiminFetishFantasyv0975o_fla: 
    """
@@ -1964,16 +1948,16 @@ class NiminFetishFantasyv0975o_fla:
    def doMainText(self, texts:str, reset:bool=False, *textCheck):
       if (reset == True):
          self.currentText.clear()
-         self.currentText.add(texts)
+         self.currentText.write(texts)
          self.textCheckArray.clear()
       else:
          if len(textCheck) == 0 or textCheck[0] not in self.textCheckArray:
-            self.currentText.add(texts)
+            self.currentText.write(texts)
             self.textCheckArray.push(*textCheck)
    def outputSideText(self, texts:str, reset:bool):
       if (reset == True):
          self.sideText.clear()
-      self.sideText.add(texts)
+      self.sideText.write(texts)
       self.displaySideText()
    def updateSide(self):
       if self.sideFocus == 1:
