@@ -11347,7 +11347,6 @@ class NiminFetishFantasyv0975o_fla:
             whichCock = "throbbing bunny carrot"
          elif tempInt == 12:
             whichCock = "bumpy-ridged spiked bug wang"
-         tempInt = Math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          getCum = self.cumAmount()
          tempArr = as3.Array(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
@@ -11486,7 +11485,6 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
          self.doEnd()
       else:
-         tempInt = Math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          tempArr = as3.Array(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
          #   tempArr.push(2)
@@ -11599,6 +11597,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
          tempArr.push(2)
       chance = self.randChooseFromArray(tempArr)
+      getMilk = 0
       #!optimize if/else
       if (chance == 1):
          if (self.ment >= self.lib - 10):
@@ -11737,8 +11736,9 @@ class NiminFetishFantasyv0975o_fla:
       if self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0:
          tempArr.push(2)
       chance = self.randChooseFromArray(tempArr)
-      #!optimize if/else
       chance = Math.floor(Math.random() * 2) + 1
+      getMilk = 0
+      #!optimize if/else
       if (chance == 1):
          if (self.ment >= self.lib - 10):
             self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with",True)
