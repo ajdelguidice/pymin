@@ -157,7 +157,7 @@ class NiminFetishFantasyv0975o_fla:
       self.gameTweaksMisc = False
       ##Interface Tab
       self.tempInterfaceToggles = () #Temporary storage for interface toggles while nimin theme type is selected
-      self.oButtonColors = False
+      self.oButtonColors = True
       self.scrolledTextBorders = False
       self.oNewGameButton = False
       self.changeNGButtonOverride = False #Refreshes the newgame button in OWSaveOptions even if conditions aren't met
