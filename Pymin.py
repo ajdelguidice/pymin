@@ -1067,9 +1067,9 @@ class NiminFetishFantasyv0975o_fla:
       Saves all of the options when the "Apply" button is pressed
       """
       if self.optionsWinOpen:
-         self.solonlymode = True if self.optionswindow.children["SOLMode"].getcb() else False
-         self.fixedresolutionmode = True if self.optionswindow.children["FixedRes"].getcb() else False
-         if self.optionswindow.children["Theme"].getcb() == 1:
+         self.solonlymode = self.optionswindow.children["SOLMode"].getcb()
+         self.fixedresolutionmode = self.optionswindow.children["FixedRes"].getcb()
+         if self.optionswindow.children["Theme"].getcb():
             if self.optionswindow.children["Theme"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
                self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
@@ -1087,7 +1087,7 @@ class NiminFetishFantasyv0975o_fla:
             self.customthemecolor = False
             self.theme = self.othemecolor
             self.mo.configureChild("themebutton",state="normal")
-         if self.optionswindow.children["FontColor"].getcb() == 1:
+         if self.optionswindow.children["FontColor"].getcb():
             if self.optionswindow.children["FontColor"].get() == "":
                as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is empty")
                self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
@@ -1119,42 +1119,42 @@ class NiminFetishFantasyv0975o_fla:
                self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
                self.optionswindow.children["SaveLocation"].ue["background"] = "#FFFFFF"
                self.saveInvalid = False
-         self.statusTweaks = True if self.optionswindow.children["StatusTweaks"].getcb() else False
-         self.succubusLeavesOne = True if self.optionswindow.children["SuccubusLeavesOne"].getcb() else False
-         self.useIsBottomOpen = True if self.optionswindow.children["UseIsBottomOpen"].getcb() else False
-         self.lizanDontShowBalls = True if self.optionswindow.children["LizanDontShowBalls"].getcb() else False
-         self.hermGetsBoth = True if self.optionswindow.children["HermGetsBoth"].getcb() else False
-         self.internalBallsEffectBelly = True if self.optionswindow.children["IntBallsEffectBelly"].getcb() else False
-         self.directPathToSanctuary = True if self.optionswindow.children["DirectPathToSanc"].getcb() else False
-         self.correctBeastRaceFeet = True if self.optionswindow.children["CorrectBeastRaceFeet"].getcb() else False
-         self.gameTweaksMisc = True if self.optionswindow.children["MiscChanges"].getcb() else False
-         self.oButtonColors = True if self.optionswindow.children["OBC"].getcb() else False
-         self.scrolledTextBorders = True if self.optionswindow.children["ScrolledTextBorders"].getcb() else False
+         self.statusTweaks = self.optionswindow.children["StatusTweaks"].getcb()
+         self.succubusLeavesOne = self.optionswindow.children["SuccubusLeavesOne"].getcb()
+         self.useIsBottomOpen = self.optionswindow.children["UseIsBottomOpen"].getcb()
+         self.lizanDontShowBalls = self.optionswindow.children["LizanDontShowBalls"].getcb()
+         self.hermGetsBoth = self.optionswindow.children["HermGetsBoth"].getcb()
+         self.internalBallsEffectBelly = self.optionswindow.children["IntBallsEffectBelly"].getcb()
+         self.directPathToSanctuary = self.optionswindow.children["DirectPathToSanc"].getcb()
+         self.correctBeastRaceFeet = self.optionswindow.children["CorrectBeastRaceFeet"].getcb()
+         self.gameTweaksMisc = self.optionswindow.children["MiscChanges"].getcb()
+         self.oButtonColors = self.optionswindow.children["OBC"].getcb()
+         self.scrolledTextBorders = self.optionswindow.children["ScrolledTextBorders"].getcb()
          tempng = self.oNewGameButton
-         self.oNewGameButton = True if self.optionswindow.children["newgameoriginalsize"].getcb() else False
+         self.oNewGameButton = self.optionswindow.children["newgameoriginalsize"].getcb()
          if (tempng != self.oNewGameButton or self.changeNGButtonOverride) and self.shownewgame:
             self.changeNGButtonOverride = False
             self.hideNGButton()
             self.showNGButton()
-         self.staticdoLevelUPButtons = True if self.optionswindow.children["doLevelUPStaticButtons"].getcb() else False
-         self.useNewSaveLoadDialog = True if self.optionswindow.children["UseExpandedSaveDialog"].getcb() else False
-         self.useNewStash = True if self.optionswindow.children["UseNewStash"].getcb() else False
-         self.helpToWiki = True if self.optionswindow.children["helpToWiki"].getcb() else False
-         self.respectShowBalls = True if self.optionswindow.children["showBalls"].getcb() else False
-         self.femmeboyToFemboy = True if self.optionswindow.children["femmeboytofemboy"].getcb() else False
-         self.shemaleToFuta = True if self.optionswindow.children["shemaletofuta"].getcb() else False
-         self.ngrammar = True if self.optionswindow.children["ngrammar"].getcb() else False
+         self.staticdoLevelUPButtons = self.optionswindow.children["doLevelUPStaticButtons"].getcb()
+         self.useNewSaveLoadDialog = self.optionswindow.children["UseExpandedSaveDialog"].getcb()
+         self.useNewStash = self.optionswindow.children["UseNewStash"].getcb()
+         self.helpToWiki = self.optionswindow.children["helpToWiki"].getcb()
+         self.respectShowBalls = self.optionswindow.children["showBalls"].getcb()
+         self.femmeboyToFemboy = self.optionswindow.children["femmeboytofemboy"].getcb()
+         self.shemaleToFuta = self.optionswindow.children["shemaletofuta"].getcb()
+         self.ngrammar = self.optionswindow.children["ngrammar"].getcb()
          #!
          #if self.femmieMaleReplacement:
          #femmiemaletofemininemale
          #femmiemaletofemboy
          #   self.optionswindow.children[""].select()
-         self.femboyishToGirly = True if self.optionswindow.children["femboyishtogirly"].getcb() else False
-         self.snuggleBallTweak = True if self.optionswindow.children["snuggleball"].getcb() else False
-         self.grammarFixes = True if self.optionswindow.children["grammarMisc"].getcb() else False
+         self.femboyishToGirly = self.optionswindow.children["femboyishtogirly"].getcb()
+         self.snuggleBallTweak = self.optionswindow.children["snuggleball"].getcb()
+         self.grammarFixes = self.optionswindow.children["grammarMisc"].getcb()
          if as3state.as3DebugEnable:
-            self.debugChooseSenario = True if self.optionswindow.children["ChooseSenario"].getcb() else False
-            self.debugNoDamage = True if self.optionswindow.children["NoDamage"].getcb() else False
+            self.debugChooseSenario = self.optionswindow.children["ChooseSenario"].getcb()
+            self.debugNoDamage = self.optionswindow.children["NoDamage"].getcb()
          self.savePreferences()
          self.toggleTextboxBorders(self.scrolledTextBorders)
          self.applyFixedResolution()
