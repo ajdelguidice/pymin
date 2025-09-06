@@ -1,8 +1,7 @@
 # (Unofficial) Python port of Nimin Fetish Fantasy
 <h4><i>WARNING: PORN</i></h4>
 | <a href="https://www.furaffinity.net/view/12638483/">Original game (Removed)</a> | <a href="https://github.com/ajdelguidice/nimin-source/blob/main/1391224403.xadera_nimin_fetish_fantasy_v0.975.swf">Backup copy</a> | <a href="https://github.com/ajdelguidice/nimin-source">Decompiled source code</a> |
-
-<b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about. I do not claim any part of the original game as my own, however anything I added to the game is mine.
+<br><br><b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about. I do not claim any part of the original game as my own, however anything I added to the game is mine.
 
 Please read the notes section of the <a href="https://github.com/ajdelguidice/python-as3lib/blob/main/README.md">readme for as3lib</a> as well before using.
 
@@ -13,7 +12,7 @@ All save files made by the original game are compatible with this port, they jus
 1. This port adds some extra data that will be lost if resaved with the original game,
 2. Some settings will make the save files completely incompatible (these are marked in their tooltips).
 
-<b>Use the version of as3lib that is designated in the release notes of the version you are using.</b> The interface portion of as3lib does not retain compatibility between any version because it is just a test interface.
+<br><b>Use the version of as3lib that is designated in the release notes of the version you are using.</b> The interface portion of as3lib does not retain compatibility between any version because it is just a test interface.
 
 If you get stuck somewhere or there are no buttons on screen, please let me know, that is a bug not a feature.
 
