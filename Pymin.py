@@ -5,14 +5,6 @@ from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
 from miniamf import sol, DecodeError
 from functools import partial, cache
-import as3lib as as3
-import as3lib.interface_tk as itk
-import as3lib.flash.ui as fui
-import as3lib.keyConversions as ckeys
-from as3lib.flash.utils import ByteArray
-from as3lib import cmath, as3state, Math
-from as3lib.config import TOML
-from as3lib.helpers import textObject
 try:
    from warnings import deprecated
 except:
@@ -23,7 +15,14 @@ try:
    import tomllib
 except:
    import tomli as tomllib
-from io import StringIO
+import as3lib as as3
+import as3lib.interface_tk as itk
+import as3lib.flash.ui as fui
+import as3lib.keyConversions as ckeys
+from as3lib.flash.utils import ByteArray
+from as3lib import cmath, as3state, Math
+from as3lib.config import TOML
+from as3lib.helpers import textObject
 
 __version__ = "11"
 
@@ -64,14 +63,14 @@ class ButtonList(list):
       if item > 0:
          return super().__getitem__(item-1)
       elif item == 0:
-         as3.RangeError("Index of class ButtonList can not be 0")
+         raise as3.RangeError("ButtonList; Index can not be 0")
       elif item < 0:
          return super().__getitem__(item)
    def __setitem__(self,item,value):
       if item > 0:
          super().__setitem__(item-1,value)
       elif item == 0:
-         as3.RangeError("Index of class 'ButtonList' can not be 0")
+         raise as3.RangeError("ButtonList; Index can not be 0")
       elif item < 0:
          super().__setitem__(item,value)
    def set(self,*args):
@@ -1071,10 +1070,10 @@ class NiminFetishFantasyv0975o_fla:
          self.fixedresolutionmode = self.optionswindow.children["FixedRes"].getcb()
          if self.optionswindow.children["Theme"].getcb():
             if self.optionswindow.children["Theme"].get() == "":
-               as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is empty")
+               as3.Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
                self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
             elif not self.checkValidHex(self.optionswindow.children["Theme"].get()):
-               as3.trace("OptionsWindow: Save Options: Error: CustomThemeColor is not a valid hexadecimal color code")
+               as3.Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
                self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
             else:
                if not self.customthemecolor:
@@ -1089,10 +1088,10 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.configureChild("themebutton",state="normal")
          if self.optionswindow.children["FontColor"].getcb():
             if self.optionswindow.children["FontColor"].get() == "":
-               as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is empty")
+               as3.Error("Pymin.OWSaveOptions; CustomFontColor is empty")
                self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
             elif not self.checkValidHex(self.optionswindow.children["FontColor"].get()):
-               as3.trace("OptionsWindow: Save Options: Error: CustomFontColor is not a valid hexadecimal color code")
+               as3.Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
                self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
             else:
                if not self.customfontcolor:
@@ -1106,10 +1105,10 @@ class NiminFetishFantasyv0975o_fla:
             self.fontColor = self.ofontcolor
             self.mo.configureChild("textcolorbutton",state="normal")
          if self.optionswindow.children["SaveLocation"].uevar.get() == "":
-            as3.trace("OptionsWindow: Save Options: Error: SaveLocation is empty")
+            as3.Error("Pymin.OWSaveOptions; SaveLocation is empty")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          elif not as3.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),as3state.separator):
-            as3.trace("OptionsWindow: Save Options: Error: SaveLocation is not a valid location on the current platform")
+            as3.Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
             self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
          else:
             self.savelocation = Path(self.optionswindow.children["SaveLocation"].uevar.get()).resolve()
@@ -1236,7 +1235,7 @@ class NiminFetishFantasyv0975o_fla:
          return 1
       elif path.exists():
          if silent == False:
-            as3.Error("Path exists but is not a directory.")
+            as3.Error("Pymin.checkExistsMakeDir; Path exists but is not a directory.")
          return -1
       else:
          path.mkdir(parents=True)
@@ -1265,7 +1264,7 @@ class NiminFetishFantasyv0975o_fla:
       Lists all files in directory "dir_" with extension "ext" with custom sort type of "type_"
       """
       if type_ not in {0,1,2}:
-         as3.trace("listFilesInDir_SortCustom: Error: Parameter \"type_\" must be either 0, 1, or 2")
+         as3.Error("Pymin.listFilesInDir_SortCustom; Parameter \"type_\" must be either 0, 1, or 2")
          return
       if type_ == 0:
          l = ("Nimin_Save1.xml","Nimin_Save2.xml","Nimin_Save3.xml","Nimin_Save5.xml","Nimin_Save6.xml","Nimin_Save7.xml","Nimin_Save9.xml","Nimin_Save10.xml","Nimin_Save11.xml","Nimin_Save1.sol","Nimin_Save2.sol","Nimin_Save3.sol","Nimin_Save5.sol","Nimin_Save6.sol","Nimin_Save7.sol","Nimin_Save9.sol","Nimin_Save10.sol","Nimin_Save11.sol")
@@ -1766,7 +1765,7 @@ class NiminFetishFantasyv0975o_fla:
       try:
          TOML.Write(self.dir / "Nimin_Prefs.toml", temp)
       except:
-         as3.trace("savePreferences: Error: Failed to create TOML. Write aborted.")
+         as3.Error("Pymin.savePreferences; Failed to create TOML. Write aborted.")
    def loadPreferences(self):
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():
@@ -1789,7 +1788,7 @@ class NiminFetishFantasyv0975o_fla:
          if as3.isValidDirectory(tempdir):
             self.savelocation = tempdir.resolve()
          else:
-            as3.trace("Preference Loader: Warning: saveLocation is not a valid path. Default value will be used instead.")
+            as3.trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Default value will be used instead.")
             self.savelocation = self.dir / "nimin_saves"
             sp = True
          self.solonlymode = bool(options.get("solMode",False))
@@ -1867,7 +1866,7 @@ class NiminFetishFantasyv0975o_fla:
             if as3.isValidDirectory(prefs.find("saveLocation").text,as3state.separator):
                self.savelocation = Path(prefs.find('saveLocation').text).resolve()
             else:
-               as3.trace("Preference Loader: Warning: saveLocation is not a valid path. Default value will be used instead.")
+               as3.trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Default value will be used instead.")
                self.savelocation = self.dir / "nimin_saves"
                sp = True
          self.solonlymode = False if prefs.find("solMode") == None else strtobool(prefs.find("solMode").text)
@@ -2466,7 +2465,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       if (self.rndArray.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
-         as3.trace(f"chooseFrom: Error: self.rndArray does not contain any items. hour = {self.hour}")
+         as3.Error(f"Pymin.chooseFrom; self.rndArray does not contain any items. hour = {self.hour}")
          self.rndResult = 0
          self.rndArray.clear()
       else:
@@ -2479,7 +2478,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       if (array.length < 1):
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
-         as3.trace(f"randChooseFromArray: Error: array does not contain any items. hour = {self.hour}")
+         as3.Error(f"Pymin.randChooseFromArray; array does not contain any items. hour = {self.hour}")
       else:
          return choice(array)
    def stats(self, stre:int, menta:int, libi:int, sens:int):
@@ -4304,7 +4303,7 @@ class NiminFetishFantasyv0975o_fla:
          elif sfext == ".toml":
             self.saveTOML(data,savefilename)
          else:
-            as3.trace(f"SaveFile Writer: Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext}.")
+            as3.Error(f"Pymin.doSave; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext}.")
    def doLoad(self, slot:int, file:PurePath=None):
       """
       Load game stage 2 (file manipulation)
@@ -4335,7 +4334,7 @@ class NiminFetishFantasyv0975o_fla:
       elif lfext == ".toml":
          data = self.loadTOML(loadfilename)
       else:
-         as3.trace(f"SaveLoader Error: Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
+         as3.Error(f"Pymin.doLoad; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
          self.loadGo("Error: Could not load save file. Reason: Incorrect file format")
          return
       if data == None:
@@ -4647,11 +4646,11 @@ class NiminFetishFantasyv0975o_fla:
          self.stashStackArray = as3.Array(*data['stashStack'])
          self.pregArray = as3.Array(*data['preg'])
       except ValueError as e:
-         as3.trace("SaveLoader Error: Error: One or more values has an invalid type.")
+         as3.Error("Pymin.doLoad; One or more values has an invalid type.")
          self.loadGo("Error: Could not load save file. Reason: One or more saved values are of an unexpected type.",True)
          raise e
       except Exception as e:
-         as3.trace("SaveLoader Error: File failed to load.")
+         as3.Error("Pymin.doLoad; File failed to load.")
          self.loadGo("Error: Could not load save file. Reason: Malformed save file",True)
          raise e
       else:
@@ -4674,7 +4673,7 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("Your file has been successfully loaded.",True)
             self.doReturn()
          except Exception as e:
-            as3.trace("doLoad: Failed after loading file data.")
+            as3.Error("Pymin.doLoad: Failed after loading file data.")
             if not self.showsavegame:
                self.hideOption7()
                self.hideStatsPane()
@@ -24614,7 +24613,7 @@ class NiminFetishFantasyv0975o_fla:
             self.milkEngorgementLevel = 0
             self.boobChange(-3)
          elif self.milkEngorgementLevel > 3:
-            as3.trace(f"milkAmount: Error: self.milkEngorgementLevel is too high. Expected <=3, got {self.milkEngorgementLevel}")
+            as3.Error(f"Pymin.milkAmount; self.milkEngorgementLevel is too high. Expected <=3, got {self.milkEngorgementLevel}")
          self.milkEngorgement = 0
       elif origin == 2:
          if (self.udderEngorgement > (self.udderSize * (self.udderSize + 1) + self.tallness / 4 + self.milkCap) * 2):
@@ -24634,7 +24633,7 @@ class NiminFetishFantasyv0975o_fla:
             self.udderEngorgementLevel = 0
             self.udderChange(-8)
          if self.udderEngorgementLevel > 3:
-            as3.trace(f"milkAmount: Error: self.udderEngorgementLevel is too high. Expected <=3, got {self.udderEngorgementLevel}")
+            as3.Error(f"Pymin.milkAmount; self.udderEngorgementLevel is too high. Expected <=3, got {self.udderEngorgementLevel}")
          self.udderEngorgement = 0
       return Math.floor(tempNum)
    def frame1(self):
@@ -25238,15 +25237,15 @@ class NiminFetishFantasyv0975o_fla:
       self.convertSave(self.sfcwindow.children["inputfilebox"].get(),self.sfcinputfilecombobox.get(),self.sfcwindow.children["outputfilebox"].get(),self.sfcoutputfilecombobox.get())
    def convertSave(self, inputfile, inputfiletype, outputfile, outputfiletype):
       if inputfile in {None,""} or outputfile in {None,""}:
-         as3.trace("SaveConverter: Error: Input/Output file can not be empty")
+         as3.Error("Pymin.convertSave; Input/Output file can not be empty")
          self.sfcwindow.configureChild("message",text="Error: Input/Output file can not be \"None\" or empty")
          return
       if inputfiletype == outputfiletype and inputfiletype != "detect":
-         as3.trace("SaveConverter: Error: Input and Output file types can not be the same.")
+         as3.Error("Pymin.convertSave; Input and Output file types can not be the same.")
          self.sfcwindow.configureChild("message",text="Error: Input and Output file types can not be the same.")
          return
       if inputfile == outputfile:
-         as3.trace("SaveConverter: Error: Input and Output files can not be the same.")
+         as3.Error("Pymin.convertSave; Input and Output files can not be the same.")
          self.sfcwindow.configureChild("message",text="Error: Input and Output files can not be the same.")
          return
       if inputfiletype == "xml":
@@ -25268,11 +25267,11 @@ class NiminFetishFantasyv0975o_fla:
          elif infile.endswith(".toml"):
             data = self.loadTOML(inputfile)
          else:
-            as3.trace(f"SaveConverter: Error: Detected input file type {ext} is not a supported file type")
+            as3.Error(f"Pymin.convertSave; Detected input file type {ext} is not a supported file type")
             self.sfcwindow.configureChild("message",text=f"Error: Detected input file type {ext} is not a supported file type")
             return
       if data == None:
-         as3.trace("SaveConverter: Error: Input save data is null. Try again")
+         as3.Error("Pymin.convertSave; Input save data is null. Try again")
          return
       data = self.dictSAVE(data)
       if outputfiletype == "xml":
@@ -25286,13 +25285,7 @@ class NiminFetishFantasyv0975o_fla:
       elif outputfiletype == "detect":
          outfile = outputfile.lower()
          if outfile.endswith(".xml"):
-            try:
-               self.saveXML(data,outputfile)
-            except:
-               as3.trace("File Saver: Error: Failed to save file")
-               self.sfcwindow.configureChild("message",text="Error: Failed to save file")
-            else:
-               self.sfcwindow.configureChild("message",text="Success")
+            self.saveXML(data,outputfile)
          elif outfile.endswith(".sol"):
             self.saveSOL(data,outputfile)
          elif outfile.endswith(".nim"):
@@ -25300,9 +25293,8 @@ class NiminFetishFantasyv0975o_fla:
          elif outfile.endswith(".toml"):
             self.saveTOML(data,outputfile)
          else:
-            as3.trace(f"SaveConverter: Error: Detected output file type {ext} is not a supported file type")
+            as3.Error(f"Pymin.convertSave; Detected output file type {ext} is not a supported file type")
             self.sfcwindow.configureChild("message",text=f"Error: Detected output file type {ext} is not a supported file type")
-            return
    @staticmethod
    def dictSAVE(dictionary):
       d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate','nipplePlay','udderPlay'),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
@@ -25363,7 +25355,7 @@ class NiminFetishFantasyv0975o_fla:
          data["pregSave"] = dictionary["preg"]
          return data
       except Exception as e:
-         as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
+         as3.Error("Pymin.returnSOL; Failed to convert data")
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
@@ -25372,7 +25364,7 @@ class NiminFetishFantasyv0975o_fla:
       try:
          TOML.Write(outputfile, dictionary)
       except:
-         as3.trace("saveTOML: Error: Failed to create TOML. Write aborted.")
+         as3.Error("Pymin.saveTOML; Failed to create TOML. Write aborted.")
    def saveNIM(self, dictionary:dict, outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
@@ -25385,11 +25377,11 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
       except NullData:
-         as3.trace("File Loader: Error: Nim save file data is null. Try again")
+         as3.Error("Pymin.saveNIM; Nim save file data is null. Try again")
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
       except Exception as e:
-         as3.trace("File Loader: Error: Failed to convert file to type \"nim\"")
+         as3.Error("Pymin.saveNIM; Failed to save file")
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
@@ -25401,9 +25393,9 @@ class NiminFetishFantasyv0975o_fla:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Success")
       except Exception as e:
-         as3.trace("File Loader: Error: Failed to convert file to type \"sol\"")
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
+         as3.Error("Pymin.saveSOL; Failed to save file")
          raise e
       if self.sfcopen:
          self.sfcwindow.toTop()
@@ -25452,8 +25444,7 @@ class NiminFetishFantasyv0975o_fla:
       except Exception as e:
          if self.sfcopen:
             self.sfcwindow.configureChild("message",text="Error")
-         else:
-            as3.trace("File Loader: Error: Can not save file.")
+         as3.Error("Pymin.saveXML: Failed to save file.")
          raise e
       if self.sfcopen:
          self.sfcwindow.toTop()
@@ -25521,7 +25512,7 @@ class NiminFetishFantasyv0975o_fla:
                sstashStack.extend(l)
          return {"track":{"currentState":strack[0],"currentZone":strack[1],"day":strack[2],"hour":strack[3],"currentDayCare":strack[4],"inDungeon":strack[5],"currentDungeon":strack[6],"v7":strack[7]},"version":{"original":so["versionNumber"],"port":ver},"stats":{"strength":sstats[0],"mentality":sstats[1],"libido":sstats[2],"sensitivity":sstats[3],"HP":sstats[4],"lust":sstats[5],"coin":sstats[6],"strMod":sstats[7],"mentMod":sstats[8],"libMod":sstats[9],"senMod":sstats[10],"hunger":sstats[11]},"level":{"SexP":slevel[0],"levelUP":slevel[1],"level":slevel[2],"babyFactLevel":slevel[3],"bodyBuildLevel":slevel[4],"hyperHappyLevel":slevel[5],"alchemistLevel":slevel[6],"fetishMasterLevel":slevel[7],"milkMaidLevel":slevel[8],"shapeshiftyLevel":slevel[9],"shapeshiftyFirst":slevel[10],"shapeshiftySecond":slevel[11]},"mod":{"runMod":smod[0],"rapeMod":smod[1],"cumMod":smod[2],"cockSizeMod":smod[3],"milkMod":smod[4],"carryMod":smod[5],"vagBellyMod":smod[6],"pregChanceMod":smod[7],"extraPregChance":smod[8],"pregTimeMod":smod[9],"enticeMod":smod[10],"milkHPMod":smod[11],"vagSizeMod":smod[12],"vagElastic":smod[13],"changeMod":smod[14],"HPMod":smod[15],"SexPMod":smod[16],"minLust":smod[17],"milkCap":smod[18],"coinMod":smod[19],"hipMod":smod[20],"buttMod":smod[21],"bellyMod":smod[22],"cockMoistMod":smod[23],"vagMoistMod":smod[24],"lockTail":smod[25],"lockFace":smod[26],"lockSkin":smod[27],"lockBreasts":smod[28],"lockEars":smod[29],"lockLegs":smod[30],"lockNipples":smod[31],"lockCock":smod[32]},"quality":{"gender":squality[0],"race":squality[1],"body":squality[2],"dominant":squality[3],"hips":squality[4],"butt":squality[5],"tallness":squality[6],"skinType":squality[7],"tail":squality[8],"ears":squality[9],"hair":squality[10],"hairColor":squality[11],"hairLength":squality[12],"legType":squality[13],"wings":squality[14],"faceType":squality[15],"skinColor":squality[16]},"cock":{"cockTotal":scock[0],"humanCocks":scock[1],"horseCocks":scock[2],"wolfCocks":scock[3],"catCocks":scock[4],"rabbitCocks":scock[5],"lizardCocks":scock[6],"cockSize":scock[7],"cockMoist":scock[8],"balls":scock[9],"ballSize":scock[10],"showBalls":scock[11],"knot":scock[12],"bugCocks":scock[13],"neuterizerHideBalls":scock[14] if len(scock) == 15 else False},"girl":{"breastSize":sgirl[0],"boobTotal":sgirl[1],"nippleSize":sgirl[2],"udders":sgirl[3],"udderSize":sgirl[4],"teatSize":sgirl[5],"clitSize":sgirl[6],"vagTotal":sgirl[7],"vagSize":sgirl[8],"vagMoist":sgirl[9],"vulvaSize":sgirl[10],"nipType":sgirl[11]},"gear":{"attireTop":sgear[0],"attireBot":sgear[1],"weapon":sgear[2]},"status":{"pregRate":sstatus[0],"pregnancyTime":sstatus[1],"pregStatus":sstatus[2],"eggLaying":sstatus[3],"eggMaxTime":sstatus[4],"eggTime":sstatus[4] if sstatus[5] > sstatus[4] and int(ver) < 10 else sstatus[5],"eggRate":sstatus[6],"exhaustion":sstatus[7],"exhaustionPenalty":sstatus[8],"milkEngorgement":sstatus[9],"milkEngorgementLevel":sstatus[10],"udderEngorgement":sstatus[11],"udderEngorgementLevel":sstatus[12],"heat":sstatus[13],"heatTime":sstatus[14],"heatMaxTime":sstatus[15],"lactation":sstatus[16],"udderLactation":sstatus[17],"nipplePlay":sstatus[18],"udderPlay":sstatus[19],"blueBalls":sstatus[20],"teatPump":sstatus[21],"nipPump":sstatus[22],"cockPump":sstatus[23],"clitPump":sstatus[24],"vulvaPump":sstatus[25],"masoPot":sstatus[26],"sMasoPot":sstatus[27],"babyFree":sstatus[28],"charmTime":sstatus[29],"pheromone":sstatus[30],"eggceleratorTime":sstatus[31],"eggceleratorDose":sstatus[32],"bodyOil":sstatus[33],"lustPenalty":sstatus[34],"fertileGel":sstatus[35],"snuggleBall":sstatus[36],"eggType":sstatus[37],"milkSuppressant":sstatus[38],"milkSuppressantLact":sstatus[39],"milkSuppressantUdder":sstatus[40],"suppHarness":sstatus[41],"fertilityStatueCurse":sstatus[42],"plumpQuats":sstatus[43],"lilaWetStatus":sstatus[44],"cockSnakePreg":sstatus[45],"milkCPoisonNip":sstatus[46],"milkCPoisonUdd":sstatus[47],"cockSnakeVenom":sstatus[48]},"affinity":{"humanAffinity":saffinity[0],"horseAffinity":saffinity[1],"wolfAffinity":saffinity[2],"catAffinity":saffinity[3],"cowAffinity":saffinity[4],"lizardAffinity":saffinity[5],"rabbitAffinity":saffinity[6],"fourBoobAffinity":saffinity[7],"mouseAffinity":saffinity[8],"birdAffinity":saffinity[9],"pigAffinity":saffinity[10],"twoBoobAffinity":saffinity[11],"sixBoobAffinity":saffinity[12],"eightBoobAffinity":saffinity[13],"tenBoobAffinity":saffinity[14],"cowTaurAffinity":saffinity[15],"humanTaurAffinity":saffinity[16],"skunkAffinity":saffinity[17],"bugAffinity":saffinity[18]},"rep":{"lilaRep":srep[0],"lilaVulva":srep[1],"lilaMilk":srep[2],"lilaPreg":srep[3],"malonRep":srep[4],"malonPreg":srep[5],"malonChildren":srep[6],"mistressRep":srep[7],"jamieRep":srep[8],"jamieSize":srep[9],"jamieChildren":srep[10],"silRep":srep[11],"silPreg":srep[12],"silRate":srep[13],"silLay":srep[14],"silGrowthTime":srep[15],"silTied":srep[16],"lilaUB":srep[17],"dairyFarmBrand":srep[18],"lilaWetness":srep[19],"jamieButt":srep[20],"jamieBreasts":srep[21],"jamieHair":srep[22]},"knowledge":{"foundSoftlik":sknowledge[0],"foundFirmshaft":sknowledge[1],"foundTieden":sknowledge[2],"foundSizCalit":sknowledge[3],"foundOviasis":sknowledge[4],"foundValley":sknowledge[5],"foundSanctuary":sknowledge[6],"usedSecretStairs":sknowledge[7] if len(sknowledge) == 8 else False},"boss":{"defeatedMinotaur":sboss[0],"defeatedFreakyGirl":sboss[1],"defeatedSuccubus":sboss[2]},"knowSimpleAlchemy":{"knowLustDraft":sknowSimpleAlchemy[0],"knowRejuvPot":sknowSimpleAlchemy[1],"knowExpPreg":sknowSimpleAlchemy[2],"knowBallSwell":sknowSimpleAlchemy[3],"knowMaleEnhance":sknowSimpleAlchemy[4]},"knowAdvancedAlchemy":{"knowSLustDraft":sknowAdvancedAlchemy[0],"knowSRejuvPot":sknowAdvancedAlchemy[1],"knowSExpPreg":sknowAdvancedAlchemy[2],"knowSBallSwell":sknowAdvancedAlchemy[3],"knowGenSwap":sknowAdvancedAlchemy[4],"knowMasoPot":sknowAdvancedAlchemy[5],"knowBabyFree":sknowAdvancedAlchemy[6],"knowPotPot":sknowAdvancedAlchemy[7],"knowMilkSuppress":sknowAdvancedAlchemy[8]},"knowComplexAlchemy":{"knowSGenSwap":sknowComplexAlchemy[0],"knowSMasoPot":sknowComplexAlchemy[1],"knowSBabyFree":sknowComplexAlchemy[2],"knowSPotPot":sknowComplexAlchemy[3],"knowPussJuice":sknowComplexAlchemy[4],"knowPheromone":sknowComplexAlchemy[5],"knowBazoomba":sknowComplexAlchemy[6]},"majorFetish":{"maleFetish":smajorFetish[0],"femaleFetish":smajorFetish[1],"hermFetish":smajorFetish[2],"narcissistFetish":smajorFetish[3],"dependentFetish":smajorFetish[4]},"moderateFetish":{"dominantFetish":smoderateFetish[0],"submissiveFetish":smoderateFetish[1],"lboobFetish":smoderateFetish[2],"sboobFetish":smoderateFetish[3],"furryFetish":smoderateFetish[4],"scalyFetish":smoderateFetish[5],"smoothyFetish":smoderateFetish[6]},"minorFetish":{"pregnancyFetish":sminorFetish[0],"bestialityFetish":sminorFetish[1],"milkFetish":sminorFetish[2],"sizeFetish":sminorFetish[3],"unbirthingFetish":sminorFetish[4],"ovipositionFetish":sminorFetish[5],"toyFetish":sminorFetish[6],"hyperFetish":sminorFetish[7]},"kid":{"humanChildren":skid[0],"equanChildren":skid[1],"lupanChildren":skid[2],"felinChildren":skid[3],"cowChildren":skid[4],"lizanChildren":skid[5],"lizanEggs":skid[6],"bunnionChildren":skid[7],"wolfPupChildren":skid[8],"miceChildren":skid[9],"birdEggs":skid[10],"birdChildren":skid[11],"pigChildren":skid[12],"calfChildren":skid[13],"bugEggs":skid[14],"bugChildren":skid[15],"skunkChildren":skid[16],"minotaurChildren":skid[17],"freakyGirlChildren":skid[18]},"trav":so["trav"],"bag":sbag,"bagStack":sbagStack,"stash":sstash,"stashStack":sstashStack,"preg":so["pregSave"]}
       except Exception as e:
-         as3.trace("SaveLoader Error: Malformed save file")
+         as3.Error("Pymin.loadSOL; Malformed save file")
          raise e
    def loadXML(self, filename, origin:str=None):
       try:
@@ -25571,12 +25562,12 @@ class NiminFetishFantasyv0975o_fla:
             _preg.extend((strtobool(preg.find(f"i{i}").text),int(preg.find(f"i{i+1}").text),int(preg.find(f"i{i+2}").text),int(preg.find(f"i{i+3}").text),int(preg.find(f"i{i+4}").text)))
          return {"track":{"currentState":int(strack.find('currentState').text),"currentZone":int(strack.find('currentZone').text),"day":int(strack.find('day').text),"hour":int(strack.find('hour').text),"currentDayCare":int(strack.find('currentDayCare').text),"inDungeon":strtobool(strack.find('inDungeon').text),"currentDungeon":int(strack.find('currentDungeon').text),"v7":str(strack.find('v7').text)},"version":{"original":sver[0],"port":sver[1]},"stats":{"strength":int(sstats.find('strength').text),"mentality":int(sstats.find('mentality').text),"libido":int(sstats.find('libido').text),"sensitivity":int(sstats.find('sensitivity').text),"HP":int(sstats.find('HP').text),"lust":int(sstats.find('lust').text),"coin":int(sstats.find('coin').text),"strMod":int(sstats.find('strMod').text),"mentMod":int(sstats.find('mentMod').text),"libMod":int(sstats.find('libMod').text),"senMod":int(sstats.find('senMod').text),"hunger":int(sstats.find('hunger').text)},"level":{"SexP":int(slevel.find('SexP').text),"levelUP":int(slevel.find('levelUP').text),"level":int(slevel.find('level').text),"babyFactLevel":int(slevel.find('babyFactLevel').text),"bodyBuildLevel":int(slevel.find('bodyBuildLevel').text),"hyperHappyLevel":int(slevel.find('hyperHappyLevel').text),"alchemistLevel":int(slevel.find('alchemistLevel').text),"fetishMasterLevel":int(slevel.find('fetishMasterLevel').text),"milkMaidLevel":int(slevel.find('milkMaidLevel').text),"shapeshiftyLevel":int(slevel.find('shapeshiftyLevel').text),"shapeshiftyFirst":"" if slevel.find('shapeshiftyFirst').text == None else str(slevel.find('shapeshiftyFirst').text),"shapeshiftySecond":"" if slevel.find('shapeshiftySecond').text == None else str(slevel.find('shapeshiftySecond').text)},"mod":{"runMod":int(smod.find('runMod').text),"rapeMod":int(smod.find('rapeMod').text),"cumMod":float(smod.find('cumMod').text),"cockSizeMod":float(smod.find('cockSizeMod').text),"milkMod":int(smod.find('milkMod').text),"carryMod":int(smod.find('carryMod').text),"vagBellyMod":int(smod.find('vagBellyMod').text),"pregChanceMod":int(smod.find('pregChanceMod').text),"extraPregChance":int(smod.find('extraPregChance').text),"pregTimeMod":int(smod.find('pregTimeMod').text),"enticeMod":int(smod.find('enticeMod').text),"milkHPMod":int(smod.find('milkHPMod').text),"vagSizeMod":float(smod.find('vagSizeMod').text),"vagElastic":float(smod.find('vagElastic').text),"changeMod":float(smod.find('changeMod').text),"HPMod":int(smod.find('HPMod').text),"SexPMod":float(smod.find('SexPMod').text),"minLust":int(smod.find('minLust').text),"milkCap":int(smod.find('milkCap').text),"coinMod":int(smod.find('coinMod').text),"hipMod":float(smod.find('hipMod').text),"buttMod":float(smod.find('buttMod').text),"bellyMod":int(smod.find('bellyMod').text),"cockMoistMod":int(smod.find('cockMoistMod').text),"vagMoistMod":int(smod.find('vagMoistMod').text),"lockTail":int(smod.find('lockTail').text),"lockFace":int(smod.find('lockFace').text),"lockSkin":int(smod.find('lockSkin').text),"lockBreasts":int(smod.find('lockBreasts').text),"lockEars":int(smod.find('lockEars').text),"lockLegs":int(smod.find('lockLegs').text),"lockNipples":int(smod.find('lockNipples').text),"lockCock":int(smod.find('lockCock').text)},"quality":{"gender":int(squality.find('gender').text),"race":int(squality.find('race').text),"body":int(squality.find('body').text),"dominant":int(squality.find('dominant').text),"hips":int(squality.find('hips').text),"butt":int(squality.find('butt').text),"tallness":int(squality.find('tallness').text),"skinType":int(squality.find('skinType').text),"tail":int(squality.find('tail').text),"ears":int(squality.find('ears').text),"hair":int(squality.find('hair').text),"hairColor":int(squality.find('hairColor').text),"hairLength":int(squality.find('hairLength').text),"legType":int(squality.find('legType').text),"wings":int(squality.find('wings').text),"faceType":int(squality.find('faceType').text),"skinColor":int(squality.find('skinColor').text)},"cock":{"cockTotal":int(scock.find('cockTotal').text),"humanCocks":int(scock.find('humanCocks').text),"horseCocks":int(scock.find('horseCocks').text),"wolfCocks":int(scock.find('wolfCocks').text),"catCocks":int(scock.find('catCocks').text),"rabbitCocks":int(scock.find('rabbitCocks').text),"lizardCocks":int(scock.find('lizardCocks').text),"cockSize":int(scock.find('cockSize').text),"cockMoist":int(scock.find('cockMoist').text),"balls":int(scock.find('balls').text),"ballSize":int(scock.find('ballSize').text),"showBalls":strtobool(scock.find('showBalls').text),"knot":strtobool(scock.find('knot').text),"bugCocks":int(scock.find('bugCocks').text),"neuterizerHideBalls":strtobool(scock.find("neuterizerHideBalls").text) if scock.find("nueterizerHideBalls") != None else False},"girl":{"breastSize":int(sgirl.find('breastSize').text),"boobTotal":int(sgirl.find('boobTotal').text),"nippleSize":int(sgirl.find('nippleSize').text),"udders":strtobool(sgirl.find('udders').text),"udderSize":int(sgirl.find('udderSize').text),"teatSize":int(sgirl.find('teatSize').text),"clitSize":int(sgirl.find('clitSize').text),"vagTotal":int(sgirl.find('vagTotal').text),"vagSize":int(sgirl.find('vagSize').text),"vagMoist":int(sgirl.find('vagMoist').text),"vulvaSize":int(sgirl.find('vulvaSize').text),"nipType":int(sgirl.find('nipType').text)},"gear":{"attireTop":int(sgear.find('attireTop').text),"attireBot":int(sgear.find('attireBot').text),"weapon":int(sgear.find('weapon').text)},"status":{"pregRate":float(sstatus.find('pregRate').text),"pregnancyTime":int(sstatus.find('pregnancyTime').text),"pregStatus":int(sstatus.find('pregStatus').text),"eggLaying":int(sstatus.find('eggLaying').text),"eggMaxTime":int(sstatus.find('eggMaxTime').text),"eggTime":int(sstatus.find('eggMaxTime').text) if int(sstatus.find('eggTime').text) > int(sstatus.find('eggMaxTime').text) and int(sver[1]) < 10 else int(sstatus.find('eggTime').text),"eggRate":int(sstatus.find('eggRate').text),"exhaustion":int(sstatus.find('exhaustion').text),"exhaustionPenalty":int(sstatus.find('exhaustionPenalty').text),"milkEngorgement":int(sstatus.find('milkEngorgement').text),"milkEngorgementLevel":int(sstatus.find('milkEngorgementLevel').text),"udderEngorgement":int(sstatus.find('udderEngorgement').text),"udderEngorgementLevel":int(sstatus.find('udderEngorgementLevel').text),"heat":int(sstatus.find('heat').text),"heatTime":int(sstatus.find('heatTime').text),"heatMaxTime":int(sstatus.find('heatMaxTime').text),"lactation":int(sstatus.find('lactation').text),"udderLactation":int(sstatus.find('udderLactation').text),"nipplePlay":float(sstatus.find('nipplePlay').text),"udderPlay":float(sstatus.find('udderPlay').text),"blueBalls":int(sstatus.find('blueBalls').text),"teatPump":int(sstatus.find('teatPump').text),"nipPump":int(sstatus.find('nipPump').text),"cockPump":int(sstatus.find('cockPump').text),"clitPump":int(sstatus.find('clitPump').text),"vulvaPump":int(sstatus.find('vulvaPump').text),"masoPot":int(sstatus.find('masoPot').text),"sMasoPot":int(sstatus.find('sMasoPot').text),"babyFree":int(sstatus.find('babyFree').text),"charmTime":int(sstatus.find('charmTime').text),"pheromone":int(sstatus.find('pheromone').text),"eggceleratorTime":int(sstatus.find('eggceleratorTime').text),"eggceleratorDose":int(sstatus.find('eggceleratorDose').text),"bodyOil":int(sstatus.find('bodyOil').text),"lustPenalty":int(sstatus.find('lustPenalty').text),"fertileGel":int(sstatus.find('fertileGel').text),"snuggleBall":strtobool(sstatus.find('snuggleBall').text),"eggType":int(sstatus.find('eggType').text),"milkSuppressant":int(sstatus.find('milkSuppressant').text),"milkSuppressantLact":int(sstatus.find('milkSuppressantLact').text),"milkSuppressantUdder":int(sstatus.find('milkSuppressantUdder').text),"suppHarness":strtobool(sstatus.find('suppHarness').text),"fertilityStatueCurse":int(sstatus.find('fertilityStatueCurse').text),"plumpQuats":int(sstatus.find('plumpQuats').text),"lilaWetStatus":int(sstatus.find('lilaWetStatus').text),"cockSnakePreg":int(sstatus.find('cockSnakePreg').text),"milkCPoisonNip":int(sstatus.find('milkCPoisonNip').text),"milkCPoisonUdd":int(sstatus.find('milkCPoisonUdd').text),"cockSnakeVenom":int(sstatus.find('cockSnakeVenom').text)},"affinity":{"humanAffinity":int(saffinity.find('humanAffinity').text),"horseAffinity":int(saffinity.find('horseAffinity').text),"wolfAffinity":int(saffinity.find('wolfAffinity').text),"catAffinity":int(saffinity.find('catAffinity').text),"cowAffinity":int(saffinity.find('cowAffinity').text),"lizardAffinity":int(saffinity.find('lizardAffinity').text),"rabbitAffinity":int(saffinity.find('rabbitAffinity').text),"fourBoobAffinity":int(saffinity.find('fourBoobAffinity').text),"mouseAffinity":int(saffinity.find('mouseAffinity').text),"birdAffinity":int(saffinity.find('birdAffinity').text),"pigAffinity":int(saffinity.find('pigAffinity').text),"twoBoobAffinity":int(saffinity.find('twoBoobAffinity').text),"sixBoobAffinity":int(saffinity.find('sixBoobAffinity').text),"eightBoobAffinity":int(saffinity.find('eightBoobAffinity').text),"tenBoobAffinity":int(saffinity.find('tenBoobAffinity').text),"cowTaurAffinity":int(saffinity.find('cowTaurAffinity').text),"humanTaurAffinity":int(saffinity.find('humanTaurAffinity').text),"skunkAffinity":int(saffinity.find('skunkAffinity').text),"bugAffinity":int(saffinity.find('bugAffinity').text)},"rep":{"lilaRep":int(srep.find('lilaRep').text),"lilaVulva":int(srep.find('lilaVulva').text),"lilaMilk":int(srep.find('lilaMilk').text),"lilaPreg":int(srep.find('lilaPreg').text),"malonRep":int(srep.find('malonRep').text),"malonPreg":int(srep.find('malonPreg').text),"malonChildren":int(srep.find('malonChildren').text),"mistressRep":int(srep.find('mistressRep').text),"jamieRep":int(srep.find('jamieRep').text),"jamieSize":int(srep.find('jamieSize').text),"jamieChildren":int(srep.find('jamieChildren').text),"silRep":int(srep.find('silRep').text),"silPreg":int(srep.find('silPreg').text),"silRate":int(srep.find('silRate').text),"silLay":int(srep.find('silLay').text),"silGrowthTime":int(srep.find('silGrowthTime').text),"silTied":strtobool(srep.find('silTied').text),"lilaUB":strtobool(srep.find('lilaUB').text),"dairyFarmBrand":strtobool(srep.find('dairyFarmBrand').text),"lilaWetness":int(srep.find('lilaWetness').text),"jamieButt":strtobool(srep.find('jamieButt').text),"jamieBreasts":strtobool(srep.find('jamieBreasts').text),"jamieHair":strtobool(srep.find('jamieHair').text)},"knowledge":{"foundSoftlik":strtobool(sknowledge.find('foundSoftlik').text),"foundFirmshaft":strtobool(sknowledge.find('foundFirmshaft').text),"foundTieden":strtobool(sknowledge.find('foundTieden').text),"foundSizCalit":strtobool(sknowledge.find('foundSizCalit').text),"foundOviasis":strtobool(sknowledge.find('foundOviasis').text),"foundValley":strtobool(sknowledge.find('foundValley').text),"foundSanctuary":strtobool(sknowledge.find('foundSanctuary').text),"usedSecretStairs":strtobool(sknowledge.find('usedSecretStairs').text) if sknowledge.find('usedSecretStairs') != None else False},"boss":{"defeatedMinotaur":strtobool(sboss.find('defeatedMinotaur').text),"defeatedFreakyGirl":strtobool(sboss.find('defeatedFreakyGirl').text),"defeatedSuccubus":strtobool(sboss.find('defeatedSuccubus').text)},"knowSimpleAlchemy":{"knowLustDraft":strtobool(sknowSimpleAlchemy.find('knowLustDraft').text),"knowRejuvPot":strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text),"knowExpPreg":strtobool(sknowSimpleAlchemy.find('knowExpPreg').text),"knowBallSwell":strtobool(sknowSimpleAlchemy.find('knowBallSwell').text),"knowMaleEnhance":strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)},"knowAdvancedAlchemy":{"knowSLustDraft":strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text),"knowSRejuvPot":strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text),"knowSExpPreg":strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text),"knowSBallSwell":strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text),"knowGenSwap":strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text),"knowMasoPot":strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text),"knowBabyFree":strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text),"knowPotPot":strtobool(sknowAdvancedAlchemy.find('knowPotPot').text),"knowMilkSuppress":strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)},"knowComplexAlchemy":{"knowSGenSwap":strtobool(sknowComplexAlchemy.find('knowSGenSwap').text),"knowSMasoPot":strtobool(sknowComplexAlchemy.find('knowSMasoPot').text),"knowSBabyFree":strtobool(sknowComplexAlchemy.find('knowSBabyFree').text),"knowSPotPot":strtobool(sknowComplexAlchemy.find('knowSPotPot').text),"knowPussJuice":strtobool(sknowComplexAlchemy.find('knowPussJuice').text),"knowPheromone":strtobool(sknowComplexAlchemy.find('knowPheromone').text),"knowBazoomba":strtobool(sknowComplexAlchemy.find('knowBazoomba').text)},"majorFetish":{"maleFetish":float(smajorFetish.find('maleFetish').text),"femaleFetish":float(smajorFetish.find('femaleFetish').text),"hermFetish":float(smajorFetish.find('hermFetish').text),"narcissistFetish":float(smajorFetish.find('narcissistFetish').text),"dependentFetish":float(smajorFetish.find('dependentFetish').text)},"moderateFetish":{"dominantFetish":float(smoderateFetish.find('dominantFetish').text),"submissiveFetish":float(smoderateFetish.find('submissiveFetish').text),"lboobFetish":float(smoderateFetish.find('lboobFetish').text),"sboobFetish":float(smoderateFetish.find('sboobFetish').text),"furryFetish":float(smoderateFetish.find('furryFetish').text),"scalyFetish":float(smoderateFetish.find('scalyFetish').text),"smoothyFetish":float(smoderateFetish.find('smoothyFetish').text)},"minorFetish":{"pregnancyFetish":float(sminorFetish.find('pregnancyFetish').text),"bestialityFetish":float(sminorFetish.find('bestialityFetish').text),"milkFetish":float(sminorFetish.find('milkFetish').text),"sizeFetish":float(sminorFetish.find('sizeFetish').text),"unbirthingFetish":float(sminorFetish.find('unbirthingFetish').text),"ovipositionFetish":float(sminorFetish.find('ovipositionFetish').text),"toyFetish":float(sminorFetish.find('toyFetish').text),"hyperFetish":float(sminorFetish.find('hyperFetish').text)},"kid":{"humanChildren":int(skid.find('humanChildren').text),"equanChildren":int(skid.find('equanChildren').text),"lupanChildren":int(skid.find('lupanChildren').text),"felinChildren":int(skid.find('felinChildren').text),"cowChildren":int(skid.find('cowChildren').text),"lizanChildren":int(skid.find('lizanChildren').text),"lizanEggs":int(skid.find('lizanEggs').text),"bunnionChildren":int(skid.find('bunnionChildren').text),"wolfPupChildren":int(skid.find('wolfPupChildren').text),"miceChildren":int(skid.find('miceChildren').text),"birdEggs":int(skid.find('birdEggs').text),"birdChildren":int(skid.find('birdChildren').text),"pigChildren":int(skid.find('pigChildren').text),"calfChildren":int(skid.find('calfChildren').text),"bugEggs":int(skid.find('bugEggs').text),"bugChildren":int(skid.find('bugChildren').text),"skunkChildren":int(skid.find('skunkChildren').text),"minotaurChildren":int(skid.find('minotaurChildren').text),"freakyGirlChildren":int(skid.find('freakyGirlChildren').text)},"trav":[],"bag":_bagArray,"bagStack":_bagStackArray,"stash":_stashArray,"stashStack":_stashStackArray,"preg":_preg}
       except ValueError as e:
-         as3.trace("SaveLoader Error: One or more values has an invalid type.")
+         as3.Error("Pymin.loadXML; One or more values has an invalid type.")
          if origin == "doLoad":
             self.loadGo("XML Loader Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",True)
          raise e
       except Exception as e:
-         as3.trace("SaveLoader Error: Malformed save file")
+         as3.Error("Pymin.loadXML; Malformed save file")
          if origin == "doLoad":
             self.loadGo("XML Loader Error: Could not load save file. Reason: Malformed save file",True)
          raise e
@@ -25660,11 +25651,11 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
          else:
-            as3.trace(f"Error: Pymin Debug; PlayerAttributeChange Item; {temperr}")
             self.dgiwerrlabel["text"] = temperr
+            as3.Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
       else:
-         as3.trace("Error: Pymin Debug; Player attribute function called when no game is loaded")
          self.dgiwerrlabel["text"] = "Error: Game not loaded"
+         as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
    def closeDGIWindow(self, *e):
       self.debugGIWinOpen = False
       self.dgiwlabel.destroy()
@@ -25778,11 +25769,11 @@ class NiminFetishFantasyv0975o_fla:
                self.doProcess(override="aff")
             self.detailedDebug()
          else:
-            as3.trace(f"Error: Pymin Debug; PlayerAttributeChange Affinity; {err}")
             self.dawerrlabel["text"] = err
+            as3.Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
       else:
-         as3.trace("Error: Pymin Debug; Player attribute function called when no game is loaded")
          self.dawerrlabel["text"] = "Error: Game not loaded"
+         as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
    def closeDAWindow(self, *e):
       self.debugAWinOpen = False
    def openWiki(self):
@@ -25919,7 +25910,7 @@ class NiminFetishFantasyv0975o_fla:
          sel = self.wikiwindow.children["menu"].get(self.wikiwindow.children["menu"].curselection())
       if sel == "Back":
          self.doWikiMenu(".".join(self.currentMenu.split(".")[:-1]))
-         pass
+         return
       match self.currentMenu:
          case "":
             if sel == "Basics":
@@ -26738,10 +26729,10 @@ class NiminFetishFantasyv0975o_fla:
          try:
             Num = int(Num)
          except:
-            as3.trace("Wiki Page Loader: Error: Invalid page number")
+            as3.Error("Pymin.doWikiPage; Invalid page number")
             return
          if Num == None:
-            as3.trace("Wiki Page Loader: Error: Invalid page number")
+            as3.Error("Pymin.doWikiPage; Invalid page number")
             return
       if returning == False:
          temp = len(self.wikipreviouspage) - 1
