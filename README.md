@@ -1,7 +1,9 @@
 # (Unofficial) Python port of Nimin Fetish Fantasy
-<h4><i>WARNING: PORN</i></h4>
-| <a href="https://www.furaffinity.net/view/12638483/">Original game (Removed)</a> | <a href="https://github.com/ajdelguidice/nimin-source/blob/main/1391224403.xadera_nimin_fetish_fantasy_v0.975.swf">Backup copy</a> | <a href="https://github.com/ajdelguidice/nimin-source">Decompiled source code</a> |
-<br><br><b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about. I do not claim any part of the original game as my own, however anything I added to the game is mine.
+<b><i>WARNING: PORN</i></b>
+
+&#124; <a href="https://www.furaffinity.net/view/12638483/">Original game (Removed)</a> &#124; <a href="https://github.com/ajdelguidice/nimin-source/blob/main/1391224403.xadera_nimin_fetish_fantasy_v0.975.swf">Backup copy</a> &#124; <a href="https://github.com/ajdelguidice/nimin-source">Decompiled source code</a> &#124;
+
+<b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about. I do not claim any part of the original game as my own, however anything I added to the game is mine.
 
 Please read the notes section of the <a href="https://github.com/ajdelguidice/python-as3lib/blob/main/README.md">readme for as3lib</a> as well before using.
 
