@@ -2063,10 +2063,10 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = tuple(self.stashArray)
       else:
          tempArray = tuple(self.choiceListArray)
-      if self.buttonChoice not in {12,13}:
-         tempInt = self.buttonChoice - (1+self.buttonChoice//4)
-      else:
+      if self.buttonChoice in {12,13}:
          tempInt = 0
+      else:
+         tempInt = self.buttonChoice - (1+self.buttonChoice//4)
       if self.buttonChoice in {4,8,12}:
          self.choiceListResult[0] = ""
          self.choiceListResult[1] = -1
@@ -6345,8 +6345,6 @@ class NiminFetishFantasyv0975o_fla:
       """
       self.tempNum = 0
       self.dmg = 0
-      tempCockSize = 0
-      tempBallSize = 0
       match ID:
          case 418:
             self.outputMainText("You pour yourself a cup of tea from the strange teapot and drink it. You feel very refreshed.",True)
@@ -6561,9 +6559,6 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText("What would you like to pump?",True)
                self.doButtonChoices(tempDict)
                def doListen():
-                  tempInt = 0
-                  whichCock = ""
-                  getCum = 0
                   if self.buttonChoice == 5:
                      self.rndArray.clear()
                      if (self.humanCocks > 0):
@@ -7639,7 +7634,6 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText("Considering the egg is just about the right size for the hole in your large ovipositor tail, what would you like to do with it?",True)
                self.doButtonChoices({5:"Eat", 7:"Ovipositor", 10:"Do Nothing"})
                def doListen():
-                  chance = 0
                   if self.buttonChoice == 5:
                      self.doMainText("You pop the egg into your mouth and bite down. The gooey stuff splorts about your mouth and... isn't exactly tasty. Even swallowing it makes your belly want to rebel. The act kills off some of your arousal, at least.",True)
                      self.doLust(-3,0)
@@ -7876,7 +7870,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagSize = 0
                self.vagTotal = 0
                i = 0
-               while (i < self.pregArray.length):
+               while (i < self.pregArray.length): #! Try to optimise this
                   if (not self.pregArray[i]):
                      self.pregArray.splice(i,5)
                      i = -5
@@ -7967,7 +7961,7 @@ class NiminFetishFantasyv0975o_fla:
                self.vagSize = 0
                self.vagTotal = 0
                i = 0
-               while (i < self.pregArray.length):
+               while (i < self.pregArray.length): #! Try to optimise this
                   if (not self.pregArray[i]):
                      self.pregArray.splice(i,5)
                      i = -5
@@ -8665,8 +8659,6 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       self.enableAllButtons()
       def doListen():
-         tempNum = 0
-         tempNum2 = 0
          self.choiceListSelect("Stash")
          if (self.buttonChoice == 12):
             self.doStash()
@@ -8698,8 +8690,6 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       self.enableAllButtons()
       def doListen():
-         tempNum = 0
-         tempNum2 = 0
          self.choiceListSelect("Bag")
          if (self.buttonChoice == 12):
             self.doStash()
@@ -8785,10 +8775,10 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonConfirm()
             def doListen():
-               tempInt = 0
                if (self.buttonChoice in {7,12}):
                   self.doShop()
                else:
+                  tempInt = 0
                   if (self.buttonChoice == 1):
                      tempInt = 1
                   elif (self.buttonChoice == 6):
@@ -9106,10 +9096,10 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonConfirm()
             def doListen():
-               tempInt = 0
                if (self.buttonChoice in {7,12}):
                   self.doApothecary()
                else:
+                  tempInt = 0
                   if self.buttonChoice == 1:
                      tempInt = 1
                   elif self.buttonChoice == 2:
@@ -10618,8 +10608,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd(leave=True)
    def doProstitute(self):
       #! Spellcheck
-      tempInt = 0
-      getCum = 0
       if (self.percent() < 33 - self.enticeMod):
          self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.",True)
          self.hrs = 2
@@ -12897,7 +12885,6 @@ class NiminFetishFantasyv0975o_fla:
                      self.outputMainText("Balance will redistribute your primary stats (strength, mentality, libido, and sensitivity) evenly.\n\nAre you sure you want to spend 3 perks to gain Balance?",True)
                      self.buttonConfirm()
                      def doListen():
-                        tempInt = 0
                         if (self.buttonChoice == 6):
                            self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.",True)
                            combinedStats = self.str_ + self.ment + self.lib + self.sen
@@ -14091,7 +14078,6 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs = 1
          self.doEnd()
    def doSizCalit(self):
-      getMilk = 0
       chance = self.eventSelect("Siz'Calit")
       if chance == 1: # Lila Event
          if (self.lilaPreg > 100):
@@ -14210,7 +14196,6 @@ class NiminFetishFantasyv0975o_fla:
                templist.extend((10,"Puss Juice"))
             self.showButtons(buttonlist)
             def doListen():
-               getCum = 0
                if (self.buttonChoice == 1):
                   self.doMainText(f"You make a hint with your fingers that she could use some milking, to which she sticks out her tongue at you. But she nods and agrees nevertheless and follows you back up to your place. You soon pull off her sundress, setting it on out in the heat to dry for now, leaving her quite naked.{self.lilaDesc()}\n\nLila grins as you return, her arms wrapping around her as you help her up onto your bed with you sitting beneath her.",True)
                   if (self.lilaVulva > 12):
@@ -15515,7 +15500,6 @@ class NiminFetishFantasyv0975o_fla:
                      self.outputMainText(f"Her eyes light up, her muzzle rushing in to kiss you. Lips locked for a moment, her eyes spring open as she catches her eagerness early. \"Heh, sorry... Umm... Hope you like flying?\"\n\nHer tail readjusts itself for a better grip around your {self.buttDesc()} rump. And since her winged arms will be occupied with flying, her legs wind up cradling your back as she begins to take off in the middle of the bazaar, positioning you much lower down her body. You get a mighty whiff of arousal as pre drools over your lips, your face mashed up against the tip of the large erection in her loin cloth... Nevertheless, she avoids humping you too much as she focuses on remaining balanced in flight, giving you a chance to twist around and watch the sand fly by below. The two of you go higher and higher, giving you a fantastic view of the desert. You fly out of Oviasis and can soon clearly see the path to your destination: a large dune about 2 hours away on foot. You wouldn't have given much attention to such a dune in your usual exploration, since it looks like many many many of the others, but as you fly over to the opposite side you can make out a large jutting stone overhanging a cave.\n\nThe strange woman takes you down and lands you gently atop the sand, giving you a good view of the outside of 'her place'. A simple tunnel burrowing into the ground beneath the rock, the entrance is decorated with all sorts of crystalline chimes that softly ring out with a slight breeze. There's also some painted barriers to keep the sand out as well as a large barrel of water and towels to allow somebody to remove any sand from themselves as well. Otherwise, you can't quite tell what's in the tunnel.\n\n\"Well, umm... This is my home!\"",True)
                      self.doNext()
                      def doListen():
-                        getCum = 0
                         self.doMainText("Her eagerness kicks in once again as she grabs your hand and pulls you along. Inside numerous torches line the walls and keep it well lit, though that doesn't help give you any idea where you're going. You pass through several forks in the tunnel, this underground network seemingly quite large, with few markings to help guide you through. Nevertheless, you quickly find yourself in what appears to be a bedroom. Various outfits glitter with jewels along one wall while another has a large bed of fluffy sheets and another leads to more tunnels. You don't exactly have time to look around though, as she pulls you right to the bed and gently pushes you onto the plush sheets.\n\nTaking the hint, you work at removing your clothes as she hastily begins to drop her own. Then undone clasp falls away with the rest of her cloak, her average-sized breasts standing perk with nipples standing beyond the soft smooth scales. Her frame is rather small, despite her height, her body being quite thin and lithe, with her lush fur masking the toned muscles underneath. Then her hands fiddle with her loin cloth for a bit, gasping when the air touches her nude genitals as the cloth falls away. Hefty testicles squirm with seed beneath a sheath that hugs around the large erection. Slick and smooth, the shaft runs straight to the rounded rim of a thick head which tapers to a point that drools with pre. And between her thighs more slick lubricant runs down her fur, a distinctly feminine aspect hidden behind the big balls.",True)
                         if (self.cockTotal > 0):
                            self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(1)} own {self.cockDesc()} phallic endowment{self.plural(1)}, making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ")
@@ -21382,8 +21366,6 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
    def doStatus(self, time:int):
       #!Optimize if/else
-      birthCount = 0
-      tempInt = 0
       self.doMainText("Afterwards...",True)
       self.hrs = 0
       self.pregnancyTime = 0
@@ -23014,9 +22996,8 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.showBalls = True
    def vagChange(self, sizeChange:int, totalChange:int):
-      self.birthCount = 0
       if (self.cockSnakePreg > 0):
-         self.birthCount = 0
+         birthCount = 0
          if (sizeChange < 0 or totalChange < 0):
             self.doMainText(f"\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...")
             self.cockSnakePreg = 0
@@ -23024,13 +23005,13 @@ class NiminFetishFantasyv0975o_fla:
                if (self.pregArray[i + 1] == 503):
                   self.pregArray[i] = False
                   self.pregArray[i + 3] = 0
-                  if (self.birthCount == 2):
+                  if (birthCount == 2):
                      self.doMainText(f"\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your {self.clothesBottom()} and down your {self.legDesc(1)}, fleeing like the first.")
-                  if (self.birthCount == 3):
+                  if (birthCount == 3):
                      self.doMainText("\n\nFollowed by another...")
-                  if (self.birthCount > 3):
+                  if (birthCount > 3):
                      self.doMainText("\n\nAnd another...")
-                  self.birthCount += 1
+                  birthCount += 1
                   self.doLust(-(self.sen // 4),2,2)
             self.cockSnakePreg = 0
       if ((self.vagSize + sizeChange <= 0 or self.vagTotal + totalChange < 1) and self.vagSize > 0 and self.vagTotal > 0): #Loose all vag
@@ -23048,7 +23029,7 @@ class NiminFetishFantasyv0975o_fla:
          self.vulvaSize = 0
          self.clitSize = 0
          i = 0
-         while (i < self.pregArray.length):
+         while (i < self.pregArray.length): #! Try to optimise this
             if (not self.pregArray[i]):
                self.pregArray.splice(i,5)
                i = -5
@@ -23301,7 +23282,6 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(amount):
          self.doImpregnate(erace)
    def doImpregnate(self, erace:int):
-      extra = 0
       chance = self.percent()
       tempPregMod = 0
       if (self.babyFree > 0):
@@ -23373,7 +23353,6 @@ class NiminFetishFantasyv0975o_fla:
                self.pregArray[i] = True
                break
    def doBirth(self, pregnancyType:int, extra:int, birthCount:int):
-      birthNumber = 0
       if (self.pregArray.length > self.vagTotal * 5):
          self.vagChange(0,1)
       self.hrs += 1
