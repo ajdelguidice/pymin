@@ -2468,10 +2468,10 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
          as3.trace(f"chooseFrom: Error: self.rndArray does not contain any items. hour = {self.hour}")
          self.rndResult = 0
-         self.rndArray = as3.Array()
+         self.rndArray.clear()
       else:
          self.rndResult = self.rndArray[round(random.random() * (self.rndArray.length - 1))]
-         self.rndArray = as3.Array()
+         self.rndArray.clear()
          return self.rndResult
    def randChooseFromArray(self, array:as3.Array):
       """
@@ -6566,7 +6566,7 @@ class NiminFetishFantasyv0975o_fla:
                   whichCock = ""
                   getCum = 0
                   if self.buttonChoice == 5:
-                     self.rndArray = as3.Array()
+                     self.rndArray.clear()
                      if (self.humanCocks > 0):
                         self.rndArray.push(1)
                      if (self.horseCocks > 0):
@@ -6773,7 +6773,7 @@ class NiminFetishFantasyv0975o_fla:
                self.outputMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.",True)
                self.doEnd()
          case 110:
-            self.choiceListArray = as3.Array()
+            self.choiceListArray.clear()
             if (self.breastSize > 0):
                self.choiceListArray.push("Breasts")
             if (self.nippleSize > 1):
@@ -8222,7 +8222,7 @@ class NiminFetishFantasyv0975o_fla:
                self.pheromone += 30
             self.doEnd()
          case 533:
-            self.choiceListArray = as3.Array()
+            self.choiceListArray.clear()
             if (self.breastSize > 0):
                self.choiceListArray.push("Breasts")
             if (self.nippleSize > 1):
@@ -11317,7 +11317,7 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText(f"You're hardly aroused enough to get your cock{self.plural(1)} standing, let alone masturbate. You'll just have to settle for something else.",True)
          self.doEnd()
       else:
-         self.rndArray = as3.Array()
+         self.rndArray.clear()
          if (self.humanCocks > 0):
             self.rndArray.push(1)
          if (self.horseCocks > 0):
@@ -11872,7 +11872,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def simpleAlchemy(self):
       self.comefromalch = 1
-      self.choiceListArray = as3.Array()
+      self.choiceListArray.clear()
       self.doMainText("Click on an item you would like to create.",True)
       self.choiceListArray.push("Blondie")
       if (self.choiceListCheck("Blondie")):
@@ -11927,7 +11927,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def complexAlchemy(self):
       self.comefromalch = 2
-      self.choiceListArray = as3.Array()
+      self.choiceListArray.clear()
       self.doMainText("Click on an item you would like to create.",True)
       self.choiceListArray.push("Black Dye")
       if (self.choiceListCheck("Black Dye")):
@@ -12001,7 +12001,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def advancedAlchemy(self):
       self.comefromalch = 3
-      self.choiceListArray = as3.Array()
+      self.choiceListArray.clear()
       self.doMainText("Click on an item you would like to create.",True)
       self.choiceListArray.push("Red Dye")
       if (self.choiceListCheck("Red Dye")):
@@ -12557,7 +12557,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.tempBool = False
                      if ((self.shapeshiftyLevel + 1) // 6 > self.shapeshiftyLevel // 6):
                         self.tempBool = True
-                     self.choiceListArray = as3.Array()
+                     self.choiceListArray.clear()
                      self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?",True)
                      if (not self.tempBool):
                         if (self.shapeshiftySecond != "Face"):
@@ -12719,7 +12719,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.doEnd()
                      self.doListen = doListen
                   elif ((self.shapeshiftyLevel + 3) // 3 > self.shapeshiftyLevel // 3):
-                     self.choiceListArray = as3.Array()
+                     self.choiceListArray.clear()
                      self.outputMainText("What blood-type would you like to increase?",True)
                      if (self.humanAffinity > 0):
                         self.choiceListArray.push("Human")
@@ -12808,7 +12808,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.buttonConfirm()
                      def doListen():
                         if (self.buttonChoice == 6):
-                           self.choiceListArray = as3.Array()
+                           self.choiceListArray.clear()
                            if (self.humanAffinity > 50 or self.dominant == 1):
                               self.choiceListArray.push("Human")
                            if (self.horseAffinity > 50 or self.dominant == 2):
@@ -13148,7 +13148,7 @@ class NiminFetishFantasyv0975o_fla:
          temp = self.debugSenarioChooser({"Softlik":[1,4],"Firmshaft":[1,3],"Tieden":[1,3],"Siz'Calit":[1,4],"Oviasis":[1,5],"Sanctuary":[3,3],"Forest":[1,6],"Jungle":[1,7],"Plains":[1,5],"Savanna":[1,5],"Desert":[1,5],"Beach":[1,6],"Lake":[1,3],"Dairy Farm":[1,5],"Old Cave":[1,3],"Den":[1,2],"Valley":[1,5]}[which])
          if temp != None:
             return temp
-      self.rndArray = as3.Array()
+      self.rndArray.clear()
       # Towns
       if which == "Softlik":
          tempArray = (0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0)
@@ -19876,7 +19876,7 @@ class NiminFetishFantasyv0975o_fla:
       self.showPage(True,"Spc Abilities")
       self.fp1 = more
       tempDict = {12:"Return"}
-      self.specialAbilityArray = as3.Array()
+      self.specialAbilityArray.clear()
       if (self.skunkAffinity >= 40):
          self.specialAbilityArray.push(1)
       if (self.specialAbilityArray.length < 1):
