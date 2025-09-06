@@ -1738,12 +1738,11 @@ class NiminFetishFantasyv0975o_fla:
       if (self.showSide):
          self.showSide = False
          self.hideSidePanel()
-         self.swapOption7()
       else:
          self.showSide = True
          self.showSidePanel()
          self.updateSide()
-         self.swapOption7()
+      self.swapOption7()
       if (self.option7Visible):
          self.savePreferences()
    def updateText(self):
@@ -2039,16 +2038,16 @@ class NiminFetishFantasyv0975o_fla:
             if (buttonText[tempI]):
                if which == "Bag":
                   if (self.bagStackArray[tempI] > 1):
-                     self.viewAmount(i,True,temp)
+                     self.showAmount(i,temp)
                      self.writeAmount(i, f"{self.bagStackArray[tempI]}")
                   else:
-                     self.viewAmount(i,False)
+                     self.hideAmount(i)
                elif which == "Stash":
                   if (self.stashStackArray[tempI] > 1):
-                     self.viewAmount(i, True,temp)
+                     self.showAmount(i,temp)
                      self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                   else:
-                     self.viewAmount(i,False)
+                     self.hideAmount(i)
    def choiceListBlanks(self):
       if not (self.inBag or self.inStash):
          #dlist = [1,2,3,5,6,7,9,10,11]
@@ -2076,7 +2075,7 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListResult[0] = tempArray[tempInt + (self.choicePage * 9 - 9)]
          self.choiceListResult[1] = tempInt + (self.choicePage * 9 - 9)
       if which not in {"Bag","Stash"} and hideOverride == False:
-         self.hideAmount()
+         self.hideAmountAll()
       if self.buttonChoice == 4:
          if (self.choicePage > 1):
             self.choicePage -= 1
@@ -2235,7 +2234,7 @@ class NiminFetishFantasyv0975o_fla:
       self.statDisplay()
       if (self.inBag and self.lust > 99 and self.currentState == 2):
          self.inBag = False
-         self.hideAmount()
+         self.hideAmountAll()
          self.doLustForcedMasturbate()
       else:
          if (leave):
@@ -2272,7 +2271,7 @@ class NiminFetishFantasyv0975o_fla:
       self.detailedDebug()
       self.choicePage = 1
       if (not (self.inBag or self.inStash) and self.moveItemID != 0):
-         self.hideAmount()
+         self.hideAmountAll()
          self.doMainText(f"You seem to have not placed your {self.itemName(self.moveItemID)}",True)
          if (self.moveItemStack > 1):
             self.doMainText(f" x{self.moveItemStack}")
@@ -2310,7 +2309,7 @@ class NiminFetishFantasyv0975o_fla:
       if not (self.inBag or self.inStash):
          self.showPage(False,"")
          self.hideDiscard()
-         self.hideAmount()
+         self.hideAmountAll()
       if (self.inBag):
          self.doBag()
       elif (self.inStash):
@@ -5237,7 +5236,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.moveToStash()
             else:
                if (self.moveItemID != 0):
-                  self.hideAmount()
+                  self.hideAmountAll()
                   self.PageHide()
                   self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}",True)
                   if (self.moveItemStack > 1):
@@ -5280,7 +5279,7 @@ class NiminFetishFantasyv0975o_fla:
          self.choicePage = 1
          self.doMainText(self.itemDescription(ID),True)
          if (self.usableItem(ID) or self.conItem(ID)):
-            self.hideAmount()
+            self.hideAmountAll()
             self.doMainText("\n\nAre you sure you want to use this item?")
             if (self.conItem(ID)):
                self.doMainText("\n\nWarning: Using this item will consume it.")
@@ -5315,7 +5314,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Function used to actually give the player items
       """
-      self.hideAmount()
+      self.hideAmountAll()
       tempNum = 0
       openSlot = self.checkOpenSlot(ID)
       if (openSlot >= 0):
@@ -5447,7 +5446,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.useNewStash and (self.inBag or self.inStash):
          if self.moveItemID != 0 and self.buttonsVisible[12]:
             self.buttonWrite(12,"Stash" if (self.inBag) else "Bag")
-      #self.hideAmount()
+      #self.hideAmountAll()
       if (self.inBag):
          self.doBag(True)
       elif (self.inStash):
@@ -8435,16 +8434,16 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.configureChild(f"button{i}",text=tempArray[tempI])
             if which == "Bag":
                if (self.bagStackArray[tempI] > 1):
-                  self.viewAmount(i, True,temp)
+                  self.showAmount(i,temp)
                   self.writeAmount(i, f"{self.bagStackArray[tempI]}")
                else:
-                  self.viewAmount(i,False)
+                  self.hideAmount(i)
             elif which == "Stash":
                if (self.stashStackArray[tempI] > 1):
-                  self.viewAmount(i, True,temp)
+                  self.showAmount(i,temp)
                   self.writeAmount(i, f"{self.stashStackArray[tempI]}")
                else:
-                  self.viewAmount(i,False)
+                  self.hideAmount(i)
    def doButtonDiscard(self, which):
       """
       Discard button action
@@ -8454,7 +8453,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.moveItemStack > 1):
          self.doMainText(f" x{self.moveItemStack}")
       self.outputMainText("?")
-      self.hideAmount()
+      self.hideAmountAll()
       self.buttonConfirm()
       self.buttonShiftOverride = True
       def doListen():
@@ -8515,7 +8514,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.inStash = False
          self.showPage(False,"")
-         self.hideAmount()
+         self.hideAmountAll()
          self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
          self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.",True)
          self.doButtonChoices({4:"Store",8:"Remove",12:"Return"})
@@ -8843,7 +8842,7 @@ class NiminFetishFantasyv0975o_fla:
       def doListen():
          self.choiceListSelect("Bag",True)
          if (self.buttonChoice == 12):
-            self.hideAmount()
+            self.hideAmountAll()
             self.PageHide()
             self.doShop()
          elif (self.buttonChoice in {4,8}):
@@ -8854,7 +8853,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.",True)
                   self.doSell(False)
                else:
-                  self.hideAmount()
+                  self.hideAmountAll()
                   self.PageHide()
                   self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?",True)
                   self.buttonConfirm()
@@ -8866,7 +8865,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doSell()
                   self.doListen = doListen
             else:
-               self.hideAmount()
+               self.hideAmountAll()
                self.PageHide()
                self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?",True)
                buttonlist = ButtonList(1,0,1,0,0,0,0,0,1,0,1,0)
@@ -24645,7 +24644,7 @@ class NiminFetishFantasyv0975o_fla:
       self.loadPreferences()
       self.initinterface = False
       self.hideDiscard()
-      self.hideAmount()
+      self.hideAmountAll()
       self.hideUpDown()
       self.hideStatsPane()
       self.hideSidePanel()
@@ -25056,19 +25055,20 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.configureChild(f"amountlabel{number}",text=amount)
    @staticmethod
    @cache
-   def _viewAmountCalc(buttonNum:int):
+   def _showAmountCalc(buttonNum:int):
       return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
-   def viewAmount(self, buttonNum:int, tempBool:bool, tempColors=None):
-      if tempBool and not self.amountLabelsVisible[buttonNum]:
-         self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._viewAmountCalc(buttonNum),30,15,self.font)
+   def showAmount(self, buttonNum:int, tempColors=None):
+      if not self.amountLabelsVisible[buttonNum]:
+         self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._showAmountCalc(buttonNum),30,15,self.font)
          self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=tempColors[0],foreground=tempColors[1],highlightbackground=tempColors[1],highlightthickness=1)
          self.amountLabelsVisible[buttonNum] = True
-      elif not tempBool and self.amountLabelsVisible[buttonNum]:
+   def hideAmount(self, buttonNum:int):
+      if self.amountLabelsVisible[buttonNum]:
          self.mo.destroyChild(f"amountlabel{buttonNum}")
          self.amountLabelsVisible[buttonNum] = False
-   def hideAmount(self):
+   def hideAmountAll(self):
       for i in range(1,13):
-         self.viewAmount(i,False)
+         self.hideAmount(i)
    @staticmethod
    @cache
    def _showSidePanelCalc(buttonNum:int):
