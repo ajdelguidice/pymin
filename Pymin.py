@@ -23842,48 +23842,48 @@ class NiminFetishFantasyv0975o_fla:
       if (self.percent() <= 50):
          if (self.breastSize <= 0):
             return "flat"
-         elif (self.breastSize <= 2):
+         if (self.breastSize <= 2):
             return "nearly flat"
-         elif (self.breastSize <= 8):
+         if (self.breastSize <= 8):
             return "noticeable"
-         elif (self.breastSize <= 20):
+         if (self.breastSize <= 20):
             return "large"
-         elif (self.breastSize <= 40):
+         if (self.breastSize <= 40):
             return "huge"
-         elif (self.breastSize <= 76):
+         if (self.breastSize <= 76):
             return "humongous"
-         elif (self.breastSize <= 146):
+         if (self.breastSize <= 146):
             return "massive"
-         elif (self.breastSize <= 210):
+         if (self.breastSize <= 210):
             return "gargantuan"
-         elif (self.breastSize <= 280):
+         if (self.breastSize <= 280):
             return "tremendous"
-         elif (self.breastSize <= 560):
+         if (self.breastSize <= 560):
             return "colossal"
-         elif (self.breastSize > 560):
+         if (self.breastSize > 560):
             return "ridiculously huge"
       else:
          if (self.breastSize <= 0):
             return ""
-         elif (self.breastSize <= 2):
+         if (self.breastSize <= 2):
             return "tiny"
-         elif (self.breastSize <= 8):
+         if (self.breastSize <= 8):
             return "palmable"
-         elif (self.breastSize <= 20):
+         if (self.breastSize <= 20):
             return "ample"
-         elif (self.breastSize <= 40):
+         if (self.breastSize <= 40):
             return "head-sized"
-         elif (self.breastSize <= 76):
+         if (self.breastSize <= 76):
             return "hefty"
-         elif (self.breastSize <= 146):
+         if (self.breastSize <= 146):
             return "beachball-sized"
-         elif (self.breastSize <= 210):
+         if (self.breastSize <= 210):
             return "normally back-breaking"
-         elif (self.breastSize <= 280):
+         if (self.breastSize <= 280):
             return "view-obscuring"
-         elif (self.breastSize <= 560):
+         if (self.breastSize <= 560):
             return "bed-sized"
-         elif (self.breastSize > 560):
+         if (self.breastSize > 560):
             return "road-filling"
       return f"BOOB ERROR {self.breastSize}"
    def udderDesc(self):
@@ -23891,84 +23891,84 @@ class NiminFetishFantasyv0975o_fla:
       if (self.percent() <= 50):
          if (tempUdder <= 2):
             return "nearly flat"
-         elif (tempUdder <= 8):
+         if (tempUdder <= 8):
             return "noticeable"
-         elif (tempUdder <= 20):
+         if (tempUdder <= 20):
             return "large"
-         elif (tempUdder <= 40):
+         if (tempUdder <= 40):
             return "huge"
-         elif (tempUdder <= 76):
+         if (tempUdder <= 76):
             return "humongous"
-         elif (tempUdder <= 146):
+         if (tempUdder <= 146):
             return "massive"
-         elif (tempUdder <= 210):
+         if (tempUdder <= 210):
             return "gargantuan"
-         elif (tempUdder <= 280):
+         if (tempUdder <= 280):
             return "tremendous"
-         elif (tempUdder <= 560):
+         if (tempUdder <= 560):
             return "colossal"
-         elif (tempUdder > 560):
+         if (tempUdder > 560):
             return "ridiculously huge"
       else:
          if (tempUdder <= 2):
             return "tiny"
-         elif (tempUdder <= 8):
+         if (tempUdder <= 8):
             return "palmable"
-         elif (tempUdder <= 20):
+         if (tempUdder <= 20):
             return "ample"
-         elif (tempUdder <= 40):
+         if (tempUdder <= 40):
             return "head-sized"
-         elif (tempUdder <= 76):
+         if (tempUdder <= 76):
             return "hefty"
-         elif (tempUdder <= 146):
+         if (tempUdder <= 146):
             return "beachball-sized"
-         elif (tempUdder <= 210):
+         if (tempUdder <= 210):
             return "normally back-breaking"
-         elif (tempUdder <= 280):
+         if (tempUdder <= 280):
             return "view-obscuring"
-         elif (tempUdder <= 560):
+         if (tempUdder <= 560):
             return "bed-sized"
-         elif (tempUdder > 560):
+         if (tempUdder > 560):
             return "road-filling"
       return f"udder ERROR {tempUdder}"
    def teatDesc(self):
       if (self.percent() <= 50):
          if (self.teatSize <= 2):
             return "normal"
-         elif (self.teatSize <= 5):
+         if (self.teatSize <= 5):
             return "noticeable"
-         elif (self.teatSize <= 9):
+         if (self.teatSize <= 9):
             return "blatant"
-         elif (self.teatSize <= 30):
+         if (self.teatSize <= 30):
             return "normal-for-a-cow"
-         elif (self.teatSize <= 50):
+         if (self.teatSize <= 50):
             return "cock-like"
-         elif (self.teatSize <= 100):
+         if (self.teatSize <= 100):
             return "horsecock-like"
-         elif (self.teatSize <= 140):
+         if (self.teatSize <= 140):
             return "arm-length"
-         elif (self.teatSize <= 300):
+         if (self.teatSize <= 300):
             return "street-clearing"
-         elif (self.teatSize > 300):
+         if (self.teatSize > 300):
             return "obscene"
       else:
          if (self.teatSize <= 2):
             return ""
-         elif (self.teatSize <= 5):
+         if (self.teatSize <= 5):
             return "perky"
-         elif (self.teatSize <= 9):
+         if (self.teatSize <= 9):
             return "hypnotizing"
-         elif (self.teatSize <= 30):
+         if (self.teatSize <= 30):
             return "long"
-         elif (self.teatSize <= 50):
+         if (self.teatSize <= 50):
             return "huge"
-         elif (self.teatSize <= 100):
+         if (self.teatSize <= 100):
             return "enormous"
-         elif (self.teatSize <= 140):
+         if (self.teatSize <= 140):
             return "extreme"
-         elif (self.teatSize <= 300):
+         if (self.teatSize <= 300):
             return "ridiculous"
-         elif (self.teatSize > 300):
+         if (self.teatSize > 300):
             return "obscene"
       return f"TEAT ERROR {self.teatSize}"
    def buttDesc(self, ngrammar=False):
@@ -23976,86 +23976,86 @@ class NiminFetishFantasyv0975o_fla:
       if (self.percent() <= 50):
          if (tempButt <= 2):
             return "flat"
-         elif (tempButt <= 5):
+         if (tempButt <= 5):
             return "tight"
-         elif (tempButt <= 15):
+         if (tempButt <= 15):
             if ngrammar == True and self.ngrammar:
                return "\bn ample"
             return "ample"
-         elif (tempButt <= 30):
+         if (tempButt <= 30):
             return "large"
-         elif (tempButt <= 50):
+         if (tempButt <= 50):
             return "huge"
-         elif (tempButt <= 80):
+         if (tempButt <= 80):
             return "grand"
-         elif (tempButt <= 130):
+         if (tempButt <= 130):
             return "jumbo"
-         elif (tempButt <= 175):
+         if (tempButt <= 175):
             return "giant"
-         elif (tempButt > 175):
+         if (tempButt > 175):
             return "ginormous"
       else:
          if (tempButt <= 2):
             return "boney"
-         elif (tempButt <= 5):
+         if (tempButt <= 5):
             return "firm"
-         elif (tempButt <= 15):
+         if (tempButt <= 15):
             return "grope-able"
-         elif (tempButt <= 30):
+         if (tempButt <= 30):
             return "jiggly"
-         elif (tempButt <= 50):
+         if (tempButt <= 50):
             return "pillow-like"
-         elif (tempButt <= 80):
+         if (tempButt <= 80):
             return "wobbling"
-         elif (tempButt <= 130):
+         if (tempButt <= 130):
             return "swaying"
-         elif (tempButt <= 175):
+         if (tempButt <= 175):
             return "bouncing"
-         elif (tempButt > 175):
+         if (tempButt > 175):
             return "constantly quivering"
       return f"BUTT ERROR {self.butt}"
    def vulvaDesc(self):
       if (self.percent() <= 50):
          if (self.vulvaSize <= 2):
             return "tiny"
-         elif (self.vulvaSize <= 8):
+         if (self.vulvaSize <= 8):
             return "plush"
-         elif (self.vulvaSize <= 16):
+         if (self.vulvaSize <= 16):
             return "plump"
-         elif (self.vulvaSize <= 24):
+         if (self.vulvaSize <= 24):
             return "huge"
-         elif (self.vulvaSize <= 36):
+         if (self.vulvaSize <= 36):
             return "enormous"
-         elif (self.vulvaSize <= 54):
+         if (self.vulvaSize <= 54):
             return "gigantic"
-         elif (self.vulvaSize <= 84):
+         if (self.vulvaSize <= 84):
             return "humongous"
-         elif (self.vulvaSize <= 124):
+         if (self.vulvaSize <= 124):
             return "tremendous"
-         elif (self.vulvaSize <= 160):
+         if (self.vulvaSize <= 160):
             return "colossal"
-         elif (self.vulvaSize > 160):
+         if (self.vulvaSize > 160):
             return "ridiculous"
       else:
          if (self.vulvaSize <= 2):
             return "childlike"
-         elif (self.vulvaSize <= 8):
+         if (self.vulvaSize <= 8):
             return "dainty"
-         elif (self.vulvaSize <= 16):
+         if (self.vulvaSize <= 16):
             return "kissable"
-         elif (self.vulvaSize <= 24):
+         if (self.vulvaSize <= 24):
             return "groin-filling"
-         elif (self.vulvaSize <= 36):
+         if (self.vulvaSize <= 36):
             return "thigh-spreading"
-         elif (self.vulvaSize <= 54):
+         if (self.vulvaSize <= 54):
             return f"{self.legDesc(1)}-{self.legVerb(2)}"
-         elif (self.vulvaSize <= 84):
+         if (self.vulvaSize <= 84):
             return "ground-scraping"
-         elif (self.vulvaSize <= 124):
+         if (self.vulvaSize <= 124):
             return "person-sized"
-         elif (self.vulvaSize <= 160):
+         if (self.vulvaSize <= 160):
             return "room-sized"
-         elif (self.vulvaSize > 160):
+         if (self.vulvaSize > 160):
             return "building-sized"
       return f"VULVA ERROR {self.vulvaSize}"
    def cockDesc(self):
@@ -24063,104 +24063,104 @@ class NiminFetishFantasyv0975o_fla:
       if (self.percent() <= 50):
          if (tempCock <= 8):
             return "puny"
-         elif (tempCock <= 12):
+         if (tempCock <= 12):
             return "average-sized"
-         elif (tempCock <= 24):
+         if (tempCock <= 24):
             return "big"
-         elif (tempCock <= 32):
+         if (tempCock <= 32):
             return "large"
-         elif (tempCock <= 56):
+         if (tempCock <= 56):
             return "huge"
-         elif (tempCock <= 72):
+         if (tempCock <= 72):
             return "enormous"
-         elif (tempCock <= 100):
+         if (tempCock <= 100):
             return "gigantic"
-         elif (tempCock <= 152):
+         if (tempCock <= 152):
             return "humongous"
-         elif (tempCock <= 304):
+         if (tempCock <= 304):
             return "tremendous"
-         elif (tempCock <= 608):
+         if (tempCock <= 608):
             return "colossal"
-         elif (tempCock <= 1200):
+         if (tempCock <= 1200):
             return "ridiculous"
-         elif (tempCock > 1200):
+         if (tempCock > 1200):
             return "impossibly-ginormous"
       else:
          if (tempCock <= 8):
             return "infantile"
-         elif (tempCock <= 12):
+         if (tempCock <= 12):
             return "hand-length"
-         elif (tempCock <= 24):
+         if (tempCock <= 24):
             return "larger than normal"
-         elif (tempCock <= 32):
+         if (tempCock <= 32):
             return "foot-long"
-         elif (tempCock <= 56):
+         if (tempCock <= 56):
             return "thigh-slapping"
-         elif (tempCock <= 72):
+         if (tempCock <= 72):
             return "knee-knocking"
-         elif (tempCock <= 100):
+         if (tempCock <= 100):
             return "leg-sized"
-         elif (tempCock <= 152):
+         if (tempCock <= 152):
             return "person-sized"
-         elif (tempCock <= 304):
+         if (tempCock <= 304):
             return "car-sized"
-         elif (tempCock <= 608):
+         if (tempCock <= 608):
             return "bus-sized"
-         elif (tempCock <= 1200):
+         if (tempCock <= 1200):
             return "building-sized"
-         elif (tempCock > 1200):
+         if (tempCock > 1200):
             return "landscape-filling"
       return f"COCK ERROR {tempCock}"
    def ballDesc(self):
       if (self.percent() <= 50):
          if (self.ballSize <= 1):
             return "tiny"
-         elif (self.ballSize <= 3):
+         if (self.ballSize <= 3):
             return "small"
-         elif (self.ballSize <= 5):
+         if (self.ballSize <= 5):
             return "big"
-         elif (self.ballSize <= 8):
+         if (self.ballSize <= 8):
             return "large"
-         elif (self.ballSize <= 13):
+         if (self.ballSize <= 13):
             return "hand-filling"
-         elif (self.ballSize <= 17):
+         if (self.ballSize <= 17):
             return "huge"
-         elif (self.ballSize <= 26):
+         if (self.ballSize <= 26):
             return "barely palmable"
-         elif (self.ballSize <= 40):
+         if (self.ballSize <= 40):
             return "enormous"
-         elif (self.ballSize <= 80):
+         if (self.ballSize <= 80):
             return "tremendous"
-         elif (self.ballSize <= 120):
+         if (self.ballSize <= 120):
             return "huggable"
-         elif (self.ballSize <= 240):
+         if (self.ballSize <= 240):
             return "gargantuan"
-         elif (self.ballSize > 240):
+         if (self.ballSize > 240):
             return "colossal"
       else:
          if (self.ballSize <= 1):
             return "marble-sized"
-         elif (self.ballSize <= 3):
+         if (self.ballSize <= 3):
             return "golfball-sized"
-         elif (self.ballSize <= 5):
+         if (self.ballSize <= 5):
             return "kiwi-sized"
-         elif (self.ballSize <= 8):
+         if (self.ballSize <= 8):
             return "tennisball-sized"
-         elif (self.ballSize <= 13):
+         if (self.ballSize <= 13):
             return "baseball-sized"
-         elif (self.ballSize <= 17):
+         if (self.ballSize <= 17):
             return "softball-sized"
-         elif (self.ballSize <= 26):
+         if (self.ballSize <= 26):
             return "cantaloupe-sized"
-         elif (self.ballSize <= 40):
+         if (self.ballSize <= 40):
             return "basketball-sized"
-         elif (self.ballSize <= 80):
+         if (self.ballSize <= 80):
             return "watermelon-sized"
-         elif (self.ballSize <= 120):
+         if (self.ballSize <= 120):
             return "beachball-sized"
-         elif (self.ballSize <= 240):
+         if (self.ballSize <= 240):
             return "boulder-sized"
-         elif (self.ballSize > 240):
+         if (self.ballSize > 240):
             return "landscape-crushing"
       return f"BALLS ERROR {self.ballSize}"
    def nipDesc(self):
@@ -24219,44 +24219,44 @@ class NiminFetishFantasyv0975o_fla:
       if (self.percent() <= 50):
          if (self.clitSize <= 2):
             return "tiny"
-         elif (self.clitSize <= 3):
+         if (self.clitSize <= 3):
             return "nibble-able"
-         elif (self.clitSize <= 6):
+         if (self.clitSize <= 6):
             return "protruding"
-         elif (self.clitSize <= 12):
+         if (self.clitSize <= 12):
             return "blatant"
-         elif (self.clitSize <= 25):
+         if (self.clitSize <= 25):
             return "suckable"
-         elif (self.clitSize <= 50):
+         if (self.clitSize <= 50):
             return "cock-like"
-         elif (self.clitSize <= 100):
+         if (self.clitSize <= 100):
             return "horsecock-like"
-         elif (self.clitSize <= 140):
+         if (self.clitSize <= 140):
             return "arm-length"
-         elif (self.clitSize <= 300):
+         if (self.clitSize <= 300):
             return "person-sized"
-         elif (self.clitSize > 300):
+         if (self.clitSize > 300):
             return "obscene"
       else:
          if (self.clitSize <= 2):
             return "small"
-         elif (self.clitSize <= 3):
+         if (self.clitSize <= 3):
             return "pinchable"
-         elif (self.clitSize <= 6):
+         if (self.clitSize <= 6):
             return "flickable"
-         elif (self.clitSize <= 12):
+         if (self.clitSize <= 12):
             return "panty-tenting"
-         elif (self.clitSize <= 25):
+         if (self.clitSize <= 25):
             return "stroke-able"
-         elif (self.clitSize <= 50):
+         if (self.clitSize <= 50):
             return "huge"
-         elif (self.clitSize <= 100):
+         if (self.clitSize <= 100):
             return "gigantic"
-         elif (self.clitSize <= 140):
+         if (self.clitSize <= 140):
             return "doorway-smacking"
-         elif (self.clitSize <= 300):
+         if (self.clitSize <= 300):
             return "snuggle-able"
-         elif (self.clitSize > 300):
+         if (self.clitSize > 300):
             return "obscene"
       return f"CLIT ERROR {self.clitSize}"
    def hipDesc(self):
@@ -24264,40 +24264,40 @@ class NiminFetishFantasyv0975o_fla:
       if (self.percent() <= 50):
          if (tempHips <= 3):
             return "narrow"
-         elif (tempHips <= 8):
+         if (tempHips <= 8):
             return "unnoticeable"
-         elif (tempHips <= 16):
+         if (tempHips <= 16):
             return "wide"
-         elif (tempHips <= 28):
+         if (tempHips <= 28):
             return "endowed"
-         elif (tempHips <= 40):
+         if (tempHips <= 40):
             return "protruding"
-         elif (tempHips <= 55):
+         if (tempHips <= 55):
             return "cow-like"
-         elif (tempHips <= 75):
+         if (tempHips <= 75):
             return "shelf-like"
-         elif (tempHips <= 100):
+         if (tempHips <= 100):
             return "doorway-jamming"
-         elif (tempHips > 100):
+         if (tempHips > 100):
             return "perpetually-swaying"
       else:
          if (tempHips <= 3):
             return "prepubescent"
-         elif (tempHips <= 8):
+         if (tempHips <= 8):
             return "average"
-         elif (tempHips <= 16):
+         if (tempHips <= 16):
             return "child-bearing"
-         elif (tempHips <= 28):
+         if (tempHips <= 28):
             return "especially fertile"
-         elif (tempHips <= 40):
+         if (tempHips <= 40):
             return "hypnotizing"
-         elif (tempHips <= 55):
+         if (tempHips <= 55):
             return "blatantly obvious"
-         elif (tempHips <= 75):
+         if (tempHips <= 75):
             return "excessively wide"
-         elif (tempHips <= 100):
+         if (tempHips <= 100):
             return "greatly protruding"
-         elif (tempHips > 100):
+         if (tempHips > 100):
             return "gigantic"
       return f"HIP ERROR {self.hips}"
    def bellyDesc(self):
