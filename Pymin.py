@@ -647,6 +647,9 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.menubar["helpmenu"].add_command(label="Wiki", font=("Terminal",8), command=self.openWiki)
       self.mo.menubar["helpmenu"].add_command(label="About Game", font=("Terminal",8), command=self._aboutwindow)
       self.mo.menubar["root"].add_cascade(label="Help", font=("Terminal",8), menu=self.mo.menubar["helpmenu"])
+      self.mo.menubar["saveutils"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
+      self.mo.menubar["saveutils"].add_command(label="Converter", font=("Terminal",8), command=self.openSFC)
+      self.mo.menubar["root"].add_cascade(label="Save Utils", font=("Terminal",8), menu=self.mo.menubar["saveutils"])
       if as3state.as3DebugEnable:
          self.mo.menubar["root"].add_command(label="Debug Window", font=("Terminal",8), command=self.menudwo)
       
@@ -1568,7 +1571,7 @@ class NiminFetishFantasyv0975o_fla:
          self.toggleNSLDSortOrder()
       elif (keyCode == 96 or keyCode == 66) and special and self.discardbuttonvisible: #numpade0, b
          if self.newSLDialogVisible and not self.nsldblindervisible:
-            self.openSFC()
+            self.toggleNSLDSortOrder()
          elif self.moveItemID != 0 and (self.inBag or self.inStash):
             self.buttonEventDiscard()
       elif self.showSide and self.currentState != 0:
@@ -3930,7 +3933,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAPButton()
       if not self.useNewSaveLoadDialog:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
-         tempDict = {4:"Save as",8:"Convert",12:"Return"}
+         tempDict = {4:"Save as",12:"Return"}
          for i in range(9):
             tempInt = i+1+i//3
             if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() and not self.solonlymode):
@@ -3950,8 +3953,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doReturn()
             elif self.buttonChoice == 12:
                self.doReturn()
-            elif self.buttonChoice == 8:
-               self.openSFC()
             else:
                self.slot = self.buttonChoice
                if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
@@ -4016,7 +4017,7 @@ class NiminFetishFantasyv0975o_fla:
                self.hideDiscard()
                self.doReturn()
             elif self.buttonChoice == 13:
-               self.openSFC()
+               self.toggleNSLDSortOrder()
          self.doListen = doListen
    def loadGo(self, message=None, ret=False):
       """
@@ -4026,7 +4027,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAPButton()
       if not self.useNewSaveLoadDialog:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
-         tempDict = {4:"Load File",8:"Convert"}
+         tempDict = {4:"Load File"}
          if self.currentState != 0:
             tempDict[12] = "Return"
          if self.solonlymode:
@@ -4055,8 +4056,6 @@ class NiminFetishFantasyv0975o_fla:
                self.doLoad(4)
             elif self.buttonChoice == 12 and self.currentState != 0:
                self.doReturn()
-            elif self.buttonChoice == 8:
-               self.openSFC()
             else:
                self.slot = self.buttonChoice
                if self.solonlymode:
@@ -4107,7 +4106,7 @@ class NiminFetishFantasyv0975o_fla:
                self.hideDiscard()
                self.doReturn()
             elif self.buttonChoice == 13:
-               self.openSFC()
+               self.toggleNSLDSortOrder()
          self.doListen = doListen
    def doNewSaveLoadDialog(self, which:str, ret):
       """
@@ -4123,7 +4122,7 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
       self.doButtonChoices(tempDict)
       self.showDiscard()
-      self.mo.configureChild("discardbutton",text="Convert")
+      self.mo.configureChild("discardbutton",text="Sort")
    def nsldGetSorted(self):
       """
       Sorts the save file list in nsld
@@ -4193,8 +4192,6 @@ class NiminFetishFantasyv0975o_fla:
          self.nsldDisplay()
          self.mo.children["savefileselect"].focus_force()
          self.mo.children["savefileselect"].select_set(0)
-         self.mo.addButton("display","savefilesort",840,96,140,46,self.font,"nw")
-         self.mo.configureChild("savefilesort",command=self.toggleNSLDSortOrder,background=temp[0],foreground=temp[1],text="Sort")
          self.newSLDialogVisible = True
    def nsldSetEntryFromListbox(self, *e):
       """
