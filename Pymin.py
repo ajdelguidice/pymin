@@ -1796,7 +1796,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("themebutton",state=self.boolToState(not self.customthemecolor))
          self.othemecolor = str(options.get("oThemeColor","#000000"))
          interface = temp.get("interface",{})
-         self.themeType = interface.get("themeType",0)
+         self.themeType = int(interface.get("themeType",0))
          tempitoggles = [bool(interface.get("originalButtonColors",False)),bool(interface.get("scrolledTextBorders",False)),bool(interface.get("originalNewGameButtonSize",False)),bool(interface.get("staticDoLevelUPButtons",False))]
          if self.themeType == 0:
             self.oButtonColors = tempitoggles[0]
@@ -1850,21 +1850,18 @@ class NiminFetishFantasyv0975o_fla:
          if (self.checkValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and self.checkValidHex(tempfontColor):
             if (temptheme.isdecimal() and len(temptheme) == 1):
                self.theme = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[int(temptheme)]
-               sp = True
             else:
                self.theme = temptheme
             self.fontColor = tempfontColor
          else:
             self.theme = "#FFFFFF"
             self.fontColor = "#000000"
-            sp = True
          if prefs.find("saveLocation") != None:
             if as3.isValidDirectory(prefs.find("saveLocation").text,as3state.separator):
                self.savelocation = Path(prefs.find('saveLocation').text).resolve()
             else:
                as3.trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Default value will be used instead.")
                self.savelocation = self.dir / "nimin_saves"
-               sp = True
          self.solonlymode = False if prefs.find("solMode") == None else strtobool(prefs.find("solMode").text)
          if prefs.find("gameTweaks") != None:
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
@@ -2003,13 +2000,10 @@ class NiminFetishFantasyv0975o_fla:
             buttonlist[tempInt] = 1
             if (tempArray[tempI] != " "):
                tempDict[tempInt] = tempArray[tempI]
-      db = False
       if (which in {"Bag","Stash"}):
-         if (not self.inShop):
-            db = True
-         self.showButtonsBag(tempArray,which,db)
+         self.showButtonsBag(tempArray,which,not self.inShop)
       else:
-         self.showButtons(buttonlist,db)
+         self.showButtons(buttonlist)
       self.doButtonChoices(tempDict)
    @staticmethod
    @cache
@@ -2097,10 +2091,8 @@ class NiminFetishFantasyv0975o_fla:
                self.showPage(False,"")
             self.tempBagPage = self.choicePage
          self.choicePage = 1
-   def choiceListCheck(self, *which):
-      if (self.choiceListArray.indexOf(which[0]) >= self.choicePage * 9 - 9 and self.choiceListArray.indexOf(which[0]) < self.choicePage * 9):
-         return True
-      return False
+   def choiceListCheck(self, which):
+      return (self.choiceListArray.indexOf(which) >= self.choicePage * 9 - 9 and self.choiceListArray.indexOf(which) < self.choicePage * 9)
    def showPage(self, changes:bool, which:str):
       if (changes):
          if (not self.pageShow):
@@ -2237,13 +2229,12 @@ class NiminFetishFantasyv0975o_fla:
             def doListen():
                if (self.buttonChoice == 12):
                   self.doProcess()
-            self.doListen = doListen
          else:
             self.doNext()
             def doListen():
                if (self.buttonChoice == 6):
                   self.doProcess()
-            self.doListen = doListen
+         self.doListen = doListen
    def doButtonChoices(self, buttondict:dict):
       """
       Replacement for viewButtonText
@@ -2413,9 +2404,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Checks if player has item ID in their bag
       """
-      if ID in self.bagArray:
-         return True
-      return False
+      return ID in self.bagArray
    def checkMagicItem(self):
       """
       Checks if player has a magic item in their bag
@@ -2428,9 +2417,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Checks if player has item ID in their stash
       """
-      if ID in self.stashArray:
-         return True
-      return False
+      return ID in self.stashArray
    def countItem(self, ID:int):
       """
       Counts how many of item ID player has in their bag
@@ -4235,7 +4222,7 @@ class NiminFetishFantasyv0975o_fla:
          self.clearTextAllButtons()
          self.newSLDialogVisible = False
          self._enableKeys()
-   def showNSLDBlinder(self, which:bool=False):
+   def showNSLDBlinder(self, which:bool=False): #! split this into two
       """
       Hides nsld temporarily while conformation dialog is shown
       """
@@ -5213,24 +5200,24 @@ class NiminFetishFantasyv0975o_fla:
          self.choicePage = self.bagPage
          if refresh == True:
             self.bsRefresh("Bag")
-      if self.useNewStash and self.moveItemID != 0:
-         self.buttonWrite(12,"Stash")
       if self.moveItemID == 0:
          self.mo.configureChild("discardbutton",state="disabled")
       else:
          self.mo.configureChild("discardbutton",state="normal")
+         if self.useNewStash:
+            self.buttonWrite(12,"Stash")
       def doListen():
          self.choiceListSelect("Bag")
          if self.buttonChoice == 13:
             self.doButtonDiscard("Bag")
          elif self.buttonChoice == 12:
-            if self.useNewStash and self.moveItemID != 0:
-               if (not self.canLoseMoveLocation(self.moveItemID)):
-                  self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
+            if self.moveItemID != 0:
+               if self.useNewStash:
+                  if (not self.canLoseMoveLocation(self.moveItemID)):
+                     self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
+                  else:
+                     self.moveToStash()
                else:
-                  self.moveToStash()
-            else:
-               if (self.moveItemID != 0):
                   self.hideAmountAll()
                   self.PageHide()
                   self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}",True)
@@ -5251,9 +5238,9 @@ class NiminFetishFantasyv0975o_fla:
                      else:
                         self.doBag()
                   self.doListen = doListen
-               else:
-                  self.inBag = False
-                  self.doReturn(nodjp=True)
+            else:
+               self.inBag = False
+               self.doReturn(nodjp=True)
          elif self.buttonChoice in {4,8}:
             self.doBag()
          else:
@@ -6024,9 +6011,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Returns True if item ID can be used
       """
-      if ID in {2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418}:
-         return True
-      return False
+      return ID in {2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418}
    def canLose(self, ID:int):
       """
       Returns True if item ID can be lost
@@ -6046,9 +6031,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Returns True if item ID is consumable
       """
-      if ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
-         return True
-      return False
+      return ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}
    def passiveItemAdd(self, ID:int):
       """
       Applies the passive effect for item ID
@@ -8400,12 +8383,11 @@ class NiminFetishFantasyv0975o_fla:
       """
       Refreshes the bag/stash so doBag and doStash do not need to be called again.
       """
-      tempDict = {12:"Return"}
+      tempDict = {12:"Return",4:"<<",8:">>"}
       if which == "Bag":
          tempArray = as3.Array(*[self.itemName(self.bagArray[i]) for i in range(27)])
       elif which == "Stash":
          tempArray = as3.Array(*[self.itemName(self.stashArray[i]) for i in range(27)])
-      tempDict.update({4:"<<",8:">>"})
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
@@ -8414,23 +8396,17 @@ class NiminFetishFantasyv0975o_fla:
                tempDict[tempInt] = tempArray[tempI]
       self.doButtonChoices(tempDict)
       temp = self.getColours()
+      itemArr = self.bagStackArray if which == "Bag" else self.stashStackArray
       for i in range(1,13):
          self.mo.configureChild(f"button{i}",state="normal")
          if i not in {4,8,12}:
             tempI = (i-(i//4+1)) + (self.choicePage * 9 - 9)
             self.mo.configureChild(f"button{i}",text=tempArray[tempI])
-            if which == "Bag":
-               if (self.bagStackArray[tempI] > 1):
-                  self.showAmount(i,temp)
-                  self.writeAmount(i, f"{self.bagStackArray[tempI]}")
-               else:
-                  self.hideAmount(i)
-            elif which == "Stash":
-               if (self.stashStackArray[tempI] > 1):
-                  self.showAmount(i,temp)
-                  self.writeAmount(i, f"{self.stashStackArray[tempI]}")
-               else:
-                  self.hideAmount(i)
+            if (itemArr[tempI] > 1):
+               self.showAmount(i,temp)
+               self.writeAmount(i, f"{itemArr[tempI]}")
+            else:
+               self.hideAmount(i)
    def doButtonDiscard(self, which):
       """
       Discard button action
@@ -8476,12 +8452,11 @@ class NiminFetishFantasyv0975o_fla:
             self.choiceListButtons("Stash")
             self.choiceListBlanks()
             self.enableAllButtons()
-         if self.moveItemID != 0:
-            self.buttonWrite(12,"Bag")
          if self.moveItemID == 0:
             self.mo.configureChild("discardbutton",state="disabled")
          else:
             self.mo.configureChild("discardbutton",state="normal")
+            self.buttonWrite(12,"Bag")
          def doListen():
             self.choiceListSelect("Stash")
             if self.buttonChoice == 13:
@@ -8769,7 +8744,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonConfirm()
             def doListen():
-               if (self.buttonChoice in {7,12}):
+               if (self.buttonChoice in {7,12}): #! Why 7
                   self.doShop()
                else:
                   tempInt = 0
@@ -9090,7 +9065,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonConfirm()
             def doListen():
-               if (self.buttonChoice in {7,12}):
+               if (self.buttonChoice in {7,12}): #! Why 7
                   self.doApothecary()
                else:
                   tempInt = 0
@@ -11560,20 +11535,17 @@ class NiminFetishFantasyv0975o_fla:
          elif chance == 8:...
          self.displayMainText()
          self.doEnd()
-   def doBothMasturbate(self):
-      self.outputMainText("Not Implemented", True)
-      self.doEnd()
-      pass
-      if (self.ment >= self.lib - 10):
-         self.outputMainText("",True)
-      if (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-         self.outputMainText("",True)
-      if (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-         self.outputMainText("",True)
-      if (self.ment < self.lib - 50):
-         self.outputMainText("",True)
-      if (self.lust > 20):
-         self.doSexP(10)
+   #def doBothMasturbate(self):
+   #   if (self.ment >= self.lib - 10):
+   #      self.outputMainText("",True)
+   #   if (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+   #      self.outputMainText("",True)
+   #   if (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+   #      self.outputMainText("",True)
+   #   if (self.ment < self.lib - 50):
+   #      self.outputMainText("",True)
+   #   if (self.lust > 20):
+   #      self.doSexP(10)
    def doBoobMasturbate(self):
       tempArr = as3.Array(1)
       if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
@@ -24974,15 +24946,12 @@ class NiminFetishFantasyv0975o_fla:
    @cache
    def _showButtonsCalc(buttonNum:int):
       return (200+(160*((buttonNum-1)%4)),30+(66*((buttonNum-1)//4)))
-   def showButtons(self, buttons:ButtonList, discardButton:bool=False):
+   def showButtons(self, buttons:ButtonList):
       """
       Replacement function for viewButtonOutline
       """
       self.bc()
-      if discardButton:
-         self.showDiscard()
-      else:
-         self.hideDiscard()
+      self.hideDiscard()
       temp = self.getColours()
       for i in range(1,13):
          if not buttons[i] and self.buttonsVisible[i]:
