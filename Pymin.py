@@ -799,8 +799,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
          self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
          self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
-         self.optionswindow.children["ThemeType"].radiobuttons[0]["command"] = partial(self.themeTypeSelect,0)
-         self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = partial(self.themeTypeSelect,1)
+         self.optionswindow.children["ThemeType"].radiobuttons[0]["command"] = self.OWThemeType0
+         self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = self.OWThemeType1
          self.optionswindow.children["ThemeType"].selected = 0
          CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
          
@@ -938,27 +938,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionsWinOpen = True
       else:
          self.optionswindow.toTop()
-   def themeTypeSelect(self,type:int):
-      """
-      Changes the game's theme type to the one specified in the "type" arguement
-      """
-      if type == 1 and self.themeType == 0:
-         self.themeType = 1
-         self.tempInterfaceToggles = (self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons)
-         self.oButtonColors = True
-         self.scrolledTextBorders = False
-         self.oNewGameButton = True
-         self.staticdoLevelUPButtons = False
-         self.optionswindow.children["OBC"].select()
-         self.optionswindow.children["OBC"].cb["state"] = "disabled"
-         self.optionswindow.children["ScrolledTextBorders"].deselect()
-         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
-         self.optionswindow.children["newgameoriginalsize"].select()
-         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
-         self.optionswindow.children["doLevelUPStaticButtons"].deselect()
-         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
-         self.changeNGButtonOverride = True
-      elif type == 0 and self.themeType == 1:
+   def OWThemeType0(self):
+      if self.themeType != 0:
          self.themeType = 0
          self.oButtonColors = self.tempInterfaceToggles[0]
          self.scrolledTextBorders = self.tempInterfaceToggles[1]
@@ -985,6 +966,23 @@ class NiminFetishFantasyv0975o_fla:
             self.optionswindow.children["doLevelUPStaticButtons"].select()
          else:
             self.optionswindow.children["doLevelUPStaticButtons"].deselect()
+         self.changeNGButtonOverride = True
+   def OWThemeType1(self):
+      if self.themeType != 1:
+         self.themeType = 1
+         self.tempInterfaceToggles = (self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons)
+         self.oButtonColors = True
+         self.scrolledTextBorders = False
+         self.oNewGameButton = True
+         self.staticdoLevelUPButtons = False
+         self.optionswindow.children["OBC"].select()
+         self.optionswindow.children["OBC"].cb["state"] = "disabled"
+         self.optionswindow.children["ScrolledTextBorders"].deselect()
+         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
+         self.optionswindow.children["newgameoriginalsize"].select()
+         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
+         self.optionswindow.children["doLevelUPStaticButtons"].deselect()
+         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
          self.changeNGButtonOverride = True
    def OWLoadVars(self):
       """
