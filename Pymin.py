@@ -11,10 +11,6 @@ except:
    from as3lib.py_backports import deprecated
 from secrets import choice
 from re import sub
-try:
-   import tomllib
-except:
-   import tomli as tomllib
 import as3lib as as3
 import as3lib.interface_tk as itk
 import as3lib.flash.ui as fui
@@ -1774,14 +1770,14 @@ class NiminFetishFantasyv0975o_fla:
          tempintertoggle = self.tempInterfaceToggles
       temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"themeType":self.themeType,"originalButtonColors":tempintertoggle[0],"scrolledTextBorders":tempintertoggle[1],"originalNewGameButtonSize":tempintertoggle[2],"staticDoLevelUPButtons":tempintertoggle[3],"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
       try:
-         TOML.Write(self.dir / "Nimin_Prefs.toml", temp)
+         TOML.write(self.dir / "Nimin_Prefs.toml", temp)
       except:
          as3.Error("Pymin.savePreferences; Failed to create TOML. Write aborted.")
    def loadPreferences(self):
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():
          with (self.dir / "Nimin_Prefs.toml").open("rb") as f:
-            temp = tomllib.load(f)
+            temp = TOML.readFile(f)
          game = temp.get("game",{})
          self.fontSize = int(game.get("fontSize",11))
          self.fontBold = bool(game.get("fontBold",False))
@@ -3922,7 +3918,7 @@ class NiminFetishFantasyv0975o_fla:
       Gets day and hour from TOML save files to display on the save and load screens
       """
       with open(file,"rb") as f:
-         temp = tomllib.load(f)["track"]
+         temp = TOML.readFile(f)["track"]
          return temp["day"], temp["hour"]
    @staticmethod
    def getdhSOL(file):
@@ -25304,7 +25300,7 @@ class NiminFetishFantasyv0975o_fla:
    def saveTOML(self, dictionary:dict, outputfile):
       #Write file
       try:
-         TOML.Write(outputfile, dictionary)
+         TOML.write(outputfile, dictionary)
       except:
          as3.Error("Pymin.saveTOML; Failed to create TOML. Write aborted.")
    def saveNIM(self, dictionary:dict, outputfile):
@@ -25392,7 +25388,7 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcwindow.toTop()
    def loadTOML(self, filename):
       with open(filename,"rb") as f:
-         return tomllib.load(f)
+         return TOML.readFile(f)
    @staticmethod
    def loadSOL(filename, nim:bool=False):
       try:
