@@ -2813,7 +2813,7 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAPButton()
       self.hideSGButton()
       self.hideNewSaveLoadDialog()
-      self.showNSLDBlinder(False)
+      self.hideNSLDBlinder()
       self.outputMainText("Are you sure you would like to start a new game?",True)
       self.buttonConfirm(b7=False if (self.currentState == 0) else True)
       def doListen():
@@ -3930,7 +3930,53 @@ class NiminFetishFantasyv0975o_fla:
       """
       self.checkExistsMakeDir(self.savelocation)
       self.hideAPButton()
-      if not self.useNewSaveLoadDialog:
+      if self.useNewSaveLoadDialog:
+         self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
+         self.doNewSaveLoadDialog("Save",ret)
+         def doListen():
+            if self.buttonChoice == 4:
+               self.doSave(4)
+            elif self.buttonChoice == 8:
+               temp = self.mo.getChildAttribute("savefileentry","text")
+               if not temp.endswith((".toml",".xml",".sol",".nim")):
+                  temp += ".xml"
+               temp2 = self.savelocation / temp
+               if temp2.is_file():
+                  temp1 = str(temp)
+                  if temp1.endswith(".toml"):
+                     dh = self.getdhTOML(temp2)
+                  elif temp1.endswith(".xml"):
+                     dh = self.getdhXML(temp2)
+                  elif temp1.endswith(".sol"):
+                     dh = self.getdhSOL(temp2)
+                  elif temp1.endswith(".nim"):
+                     dh = self.getdhNIM(temp2)
+                  self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.",True)
+               else:
+                  self.outputMainText(f"This file does not exist.\n\nAre you sure you want to save to {temp}?",True)
+               self.showNSLDBlinder()
+               self.buttonConfirm()
+               def doListen():
+                  temp = self.mo.getChildAttribute("savefileentry","text")
+                  if not temp.endswith((".toml",".xml",".sol",".nim")):
+                     temp += ".xml"
+                  if (self.buttonChoice == 6):
+                     self.doSave(0,self.savelocation / temp)
+                     self.hideNewSaveLoadDialog()
+                     self.hideNSLDBlinder()
+                     self.hideDiscard()
+                     self.doReturn()
+                  else:
+                     self.saveGo(True)
+               self.doListen = doListen
+            elif self.buttonChoice == 12 and self.currentState != 0:
+               self.hideNewSaveLoadDialog()
+               self.hideDiscard()
+               self.doReturn()
+            elif self.buttonChoice == 13:
+               self.toggleNSLDSortOrder()
+         self.doListen = doListen
+      else:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
          tempDict = {4:"Save as",12:"Return"}
          for i in range(9):
@@ -3972,44 +4018,34 @@ class NiminFetishFantasyv0975o_fla:
                      self.saveGo()
                self.doListen = doListen
          self.doListen = doListen
-      else:
-         self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
-         self.doNewSaveLoadDialog("Save",ret)
+   def loadGo(self, message=None, ret=False):
+      """
+      Load game stage 1 (dialog)
+      """
+      self.checkExistsMakeDir(self.savelocation)
+      self.hideAPButton()
+      if self.useNewSaveLoadDialog:
+         if message == None:
+            self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
+         else:
+            self.outputMainText(message,True)
+         self.doNewSaveLoadDialog("Load",ret)
          def doListen():
             if self.buttonChoice == 4:
-               self.doSave(4)
+               self.doLoad(4)
             elif self.buttonChoice == 8:
-               temp = self.mo.getChildAttribute("savefileentry","text")
-               if not temp.endswith((".toml",".xml",".sol",".nim")):
-                  temp += ".xml"
-               temp2 = self.savelocation / temp
-               if temp2.is_file():
-                  temp1 = str(temp)
-                  if temp1.endswith(".toml"):
-                     dh = self.getdhTOML(temp2)
-                  elif temp1.endswith(".xml"):
-                     dh = self.getdhXML(temp2)
-                  elif temp1.endswith(".sol"):
-                     dh = self.getdhSOL(temp2)
-                  elif temp1.endswith(".nim"):
-                     dh = self.getdhNIM(temp2)
-                  self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.",True)
-               else:
-                  self.outputMainText(f"This file does not exist.\n\nAre you sure you want to save to {temp}?",True)
-               self.showNSLDBlinder(True)
+               temp = self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")
+               self.outputMainText(f"{temp[0].replace('D:','Day:').replace('H:','Hour:')}:00\n\nAre you sure you want to load {temp[1]}?",True)
+               if self.currentState != 0:
+                  self.outputMainText("\n\nYou will lose any unsaved data from the current game.")
+               self.showNSLDBlinder()
                self.buttonConfirm()
                def doListen():
                   temp = self.mo.getChildAttribute("savefileentry","text")
-                  if not temp.endswith((".toml",".xml",".sol",".nim")):
-                     temp += ".xml"
-                  if (self.buttonChoice == 6):
-                     self.doSave(0,self.savelocation / temp)
-                     self.hideNewSaveLoadDialog()
-                     self.showNSLDBlinder(False)
-                     self.hideDiscard()
-                     self.doReturn()
+                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))):
+                     self.doLoad(0,self.savelocation / temp)
                   else:
-                     self.saveGo(True)
+                     self.loadGo(ret=True)
                self.doListen = doListen
             elif self.buttonChoice == 12 and self.currentState != 0:
                self.hideNewSaveLoadDialog()
@@ -4018,13 +4054,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.buttonChoice == 13:
                self.toggleNSLDSortOrder()
          self.doListen = doListen
-   def loadGo(self, message=None, ret=False):
-      """
-      Load game stage 1 (dialog)
-      """
-      self.checkExistsMakeDir(self.savelocation)
-      self.hideAPButton()
-      if not self.useNewSaveLoadDialog:
+      else:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
          tempDict = {4:"Load File"}
          if self.currentState != 0:
@@ -4077,48 +4107,18 @@ class NiminFetishFantasyv0975o_fla:
                      self.loadGo()
                self.doListen = doListen
          self.doListen = doListen
-      else:
-         if message == None:
-            self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
-         else:
-            self.outputMainText(message,True)
-         self.doNewSaveLoadDialog("Load",ret)
-         def doListen():
-            if self.buttonChoice == 4:
-               self.doLoad(4)
-            elif self.buttonChoice == 8:
-               temp = self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")
-               self.outputMainText(f"{temp[0].replace('D:','Day:').replace('H:','Hour:')}:00\n\nAre you sure you want to load {temp[1]}?",True)
-               if self.currentState != 0:
-                  self.outputMainText("\n\nYou will lose any unsaved data from the current game.")
-               self.showNSLDBlinder(True)
-               self.buttonConfirm()
-               def doListen():
-                  temp = self.mo.getChildAttribute("savefileentry","text")
-                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))):
-                     self.doLoad(0,self.savelocation / temp)
-                  else:
-                     self.loadGo(ret=True)
-               self.doListen = doListen
-            elif self.buttonChoice == 12 and self.currentState != 0:
-               self.hideNewSaveLoadDialog()
-               self.hideDiscard()
-               self.doReturn()
-            elif self.buttonChoice == 13:
-               self.toggleNSLDSortOrder()
-         self.doListen = doListen
    def doNewSaveLoadDialog(self, which:str, ret):
       """
       New save/load dialog that displays all save files inside of the save directory (referred to as nsld internally)
       """
-      if ret == False:
-         self.showNewSaveLoadDialog()
+      if ret:
+         self.hideNSLDBlinder()
       else:
-         self.showNSLDBlinder(False)
-      tempDict = {4:"Other File",8:f"{which}"}
+         self.showNewSaveLoadDialog()
+      tempDict = {4:"Other File",8:which}
       if self.currentState != 0:
          tempDict[12] = "Return"
-      self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
+      self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1),False)
       self.doButtonChoices(tempDict)
       self.showDiscard()
       self.mo.configureChild("discardbutton",text="Sort")
@@ -4176,7 +4176,6 @@ class NiminFetishFantasyv0975o_fla:
       """
       if not self.newSLDialogVisible:
          temp = self.getColours()
-         self.clearTextAllButtons()
          self.mo.addScrolledListbox("display","savefileselect",200,30,460,154,self.font,"nw",True,12)
          self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
          self.mo.children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
@@ -4214,18 +4213,18 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("savefileselect")
          self.mo.destroyChild("savefilelabel")
          self.mo.destroyChild("savefileentry")
-         self.clearTextAllButtons()
          self.newSLDialogVisible = False
          self._enableKeys()
-   def showNSLDBlinder(self, which:bool=False): #! split this into two
+   def showNSLDBlinder(self):
       """
       Hides nsld temporarily while conformation dialog is shown
       """
-      if which and not self.nsldblindervisible:
+      if not self.nsldblindervisible:
          self.mo.addLabel("display","nsldblinder",200,30,780,184,("TimesNewRoman",12),"nw")
          self.mo.configureChild("nsldblinder",background=self.theme,foreground=self.fontColor)
          self.nsldblindervisible = True
-      elif not which and self.nsldblindervisible:
+   def hideNSLDBlinder(self):
+      if self.nsldblindervisible:
          self.mo.destroyChild("nsldblinder")
          self.nsldblindervisible = False
    def nsldSelectionUp(self):
@@ -4635,7 +4634,7 @@ class NiminFetishFantasyv0975o_fla:
          try:
             self.hideNewSaveLoadDialog()
             self.hideDiscard()
-            self.showNSLDBlinder(False)
+            self.hideNSLDBlinder()
             self.bagPage = 1
             self.stashPage = 1
             self.hideUpDown()
@@ -4662,7 +4661,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.mo.children["textside"].frame.destroy()
                   self.textsidevisible = False
                self.hideAPButton()
-            self.showNSLDBlinder(False)
+            self.hideNSLDBlinder()
             self.loadGo("Error: Failed after loading file data.")
             raise e
    def doRace(self):
@@ -24940,12 +24939,13 @@ class NiminFetishFantasyv0975o_fla:
    @cache
    def _showButtonsCalc(buttonNum:int):
       return (200+(160*((buttonNum-1)%4)),30+(66*((buttonNum-1)//4)))
-   def showButtons(self, buttons:ButtonList):
+   def showButtons(self, buttons:ButtonList, hideDiscard=True):
       """
       Replacement function for viewButtonOutline
       """
       self.bc()
-      self.hideDiscard()
+      if hideDiscard: 
+         self.hideDiscard()
       temp = self.getColours()
       for i in range(1,13):
          if not buttons[i] and self.buttonsVisible[i]:
