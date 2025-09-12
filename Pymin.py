@@ -194,6 +194,7 @@ class NiminFetishFantasyv0975o_fla:
       self.keyboardTypingDisable = False #Used to tell the game to use keyboard as text input device instead of hotkeys
       self.altHeld = False #When alt is held
       self.ctrlHeld = False #When ctrl is held
+      self.bMap = (1,2,3,5,6,7,9,10,11) # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
 
       #interface
       self.theme = "#FFFFFF" #str
@@ -2004,7 +2005,7 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
-            tempInt = i+1+i//3
+            tempInt = self.bMap[i]
             buttonlist[tempInt] = 1
             if (tempArray[tempI] != " "):
                tempDict[tempInt] = tempArray[tempI]
@@ -3980,7 +3981,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
          tempDict = {4:"Save as",12:"Return"}
          for i in range(9):
-            tempInt = i+1+i//3
+            tempInt = self.bMap[i]
             if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() and not self.solonlymode):
                dh = self.getdhXML(self.savelocation / f"Nimin_Save{tempInt}.xml")
                tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
@@ -4061,13 +4062,13 @@ class NiminFetishFantasyv0975o_fla:
             tempDict[12] = "Return"
          if self.solonlymode:
             for i in range(9):
-               tempInt = i+1+i//3
+               tempInt = self.bMap[i]
                if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
                   tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
          else:
             for i in range(9):
-               tempInt = i+1+i//3
+               tempInt = self.bMap[i]
                if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file()):
                   dh = self.getdhXML(self.savelocation / f"Nimin_Save{tempInt}.xml")
                   tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
@@ -8385,9 +8386,8 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
-            tempInt = i+1+i//3
             if (tempArray[tempI] != " "):
-               tempDict[tempInt] = tempArray[tempI]
+               tempDict[self.bMap[i]] = tempArray[tempI]
       self.doButtonChoices(tempDict)
       temp = self.getColours()
       itemArr = self.bagStackArray if which == "Bag" else self.stashStackArray
