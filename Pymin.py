@@ -124,9 +124,6 @@ class NiminFetishFantasyv0975o_fla:
    Main class (originally the "package" for the game)
    """
    def __init__(self):
-      """
-      Initilizes all of the variables needed before new game or load game is done
-      """
       self.versionNumber = "0.975o"
       self.dir = scriptdirectory
 
@@ -3946,7 +3943,7 @@ class NiminFetishFantasyv0975o_fla:
                tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
             else:
                tempDict[tempInt] = "Empty"
-         self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.",True)
+         self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.",True)
          self.doButtonChoices(tempDict)
          def doListen():
             self.slot = 0
@@ -3976,7 +3973,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doListen = doListen
          self.doListen = doListen
       else:
-         self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
+         self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
          self.doNewSaveLoadDialog("Save",ret)
          def doListen():
             if self.buttonChoice == 4:
@@ -24600,7 +24597,7 @@ class NiminFetishFantasyv0975o_fla:
       self.saveinvaliddialog.resizable(False,False)
       self.sidtext = tkinter.Label(self.saveinvaliddialog,wraplength=350)
       self.sidtext.place(x=10,y=24,width=350,height=90,anchor="nw")
-      self.sidtext["text"] = "The Save location specified in Nimin_Prefs.xml is invalid. Please choose how you would like to proceed. (This dialog should not appear unless loadPreferences failed. Please check if everything loaded correctly.)"
+      self.sidtext["text"] = "The Save location specified in Nimin_Prefs.toml is invalid. Please choose how you would like to proceed. (This dialog should not appear unless loadPreferences failed. Please check if everything loaded correctly.)"
       self.sidtitle = tkinter.Label(self.saveinvaliddialog, font=("TkTextFont",18))
       self.sidtitle.place(x=10,y=5,width=350,height=30,anchor="nw")
       self.sidtitle["text"] = "Warning"
