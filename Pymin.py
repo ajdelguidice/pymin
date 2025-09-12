@@ -25657,7 +25657,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.fixedresolutionmode:
             self.daw.resizable(False,False)
          self.dawlabel = tkinter.Label(self.daw,text="Affinity Change",font=("TkTextFont",9))
-         self.dawlabel.place(x=75,y=7,anchor="n")
+         self.dawlabel.place(x=85,y=7,anchor="n")
          self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Type:","Amount:"),"Ok",2,"w")
          self.dawcombo.configure(command=self.debugAffinityChange)
          self.dawerrlabel = tkinter.Label(self.daw,font=("TkTextFont",9))
