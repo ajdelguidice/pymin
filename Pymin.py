@@ -154,7 +154,7 @@ class NiminFetishFantasyv0975o_fla:
       self.gameTweaksMisc = False
 
       ##Interface Tab
-      self.tempInterfaceToggles = () #Temporary storage for interface toggles while nimin theme type is selected
+      self.tempInterfaceToggles = None #Temporary storage for interface toggles while nimin theme type is selected
       self.oButtonColors = True
       self.scrolledTextBorders = False
       self.oNewGameButton = False
@@ -2463,18 +2463,12 @@ class NiminFetishFantasyv0975o_fla:
          self.rndResult = 0
          self.rndArray.clear()
       else:
-         self.rndResult = self.rndArray[round(Math.random() * (self.rndArray.length - 1))]
+         if self.gameTweaksMisc:
+            self.rndResult = choice(self.rndArray)
+         else:
+            self.rndResult = self.rndArray[round(Math.random() * (self.rndArray.length - 1))]
          self.rndArray.clear()
          return self.rndResult
-   def randChooseFromArray(self, array:as3.Array):
-      """
-      Returns a random option from an array. The array must have atleast one item in it "or else you'll get the hose".
-      """
-      if (array.length < 1):
-         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
-         as3.Error(f"Pymin.randChooseFromArray; array does not contain any items. hour = {self.hour}")
-      else:
-         return choice(array)
    def stats(self, stre:int, menta:int, libi:int, sens:int):
       """
       Updates player stats and displays the up/down images
@@ -7349,7 +7343,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doeHP(-self.dmg)
             if (self.percent() <= 25):
                self.outputMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
-               self.rndArray = as3.Array("Desi Sand")
+               self.rndArray.clear()
                if (self.cockSizeMod > 0.5 and self.cockTotal > 0):
                   self.rndArray.push(1)
                if (self.vagSizeMod > 0.5 and self.vagTotal > 0):
@@ -10589,12 +10583,12 @@ class NiminFetishFantasyv0975o_fla:
          tempInt = Math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          self.doMainText("",True)
          if self.currentZone == 1: # Softlik Whoring
-            tempArr = as3.Array(1,4,5)
+            self.rndArray = as3.Array(1,4,5)
             if self.cockTotal > 0:
-               tempArr.push(2,3)
+               self.rndArray.push(2,3)
             if self.gender != 0:
-               tempArr.push(6)
-            chance = self.randChooseFromArray(tempArr)
+               self.rndArray.push(6)
+            chance = self.chooseFrom()
             if chance == 1:
                self.doMainText(f"Checking yourself in a window, you make sure your {self.currentClothes()} are in order. You make sure your {self.boobDesc()} breasts are exposed just enough to entice anyone that sees the lovely flesh of your {self.boobDesc()} bust. You walk with your hips swaying back and forth, trying to bring any watcher to you like a moth to the flame. It's not long before a small group of three human males approach you. Each of them looks like they’ve had a bit to drink and they even try to haggle with you. You manage to agree upon a price for the three of them and they take you back to a seedy bar. The place is bustling, but they have a back room for their dirty exploits.",True)
                if (self.lactation > 0):
@@ -10691,14 +10685,14 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doLust(-(self.sen // 2),2,1,2)
          elif self.currentZone == 2: # Firmshaft Whoring
-            tempArr = as3.Array(1)
+            self.rndArray = as3.Array(1)
             if self.gender == 2:
-               tempArr.push(2)
+               self.rndArray.push(2)
             if (self.gender in {2,3} or self.breastSize > 24):
-               tempArr.push(3)
+               self.rndArray.push(3)
             if self.gender in {1,3}:
-               tempArr.push(4,5)
-            chance = self.randChooseFromArray(tempArr)
+               self.rndArray.push(4,5)
+            chance = self.chooseFrom()
             if chance == 1:
                self.doMainText("Enticing one of the big local males into a nearby tent,",True)
                if (self.ment > 20):
@@ -10787,14 +10781,14 @@ class NiminFetishFantasyv0975o_fla:
                self.cumAmount()
                self.hrs = 2
          elif self.currentZone == 3: # Tieden Whoring
-            tempArr = as3.Array(2,4,6)
+            self.rndArray = as3.Array(2,4,6)
             if self.cockTotal > 0:
-               tempArr.push(1)
+               self.rndArray.push(1)
             if self.gender in {2,3}:
-               tempArr.push(3)
+               self.rndArray.push(3)
             if self.vagTotal > 0 and self.vagTotal < 3:
-               tempArr.push(5)
-            chance = self.randChooseFromArray(tempArr)
+               self.rndArray.push(5)
+            chance = self.chooseFrom()
             if chance == 1:
                self.doMainText(f"A young female rushes down the street, moving with a much more feline quality than the other females of Tieden. She looks to be in a mild panic, scanning the crowds until her eyes lock onto your body. She undresses you with her eyes, lingering on the bulge in your {self.clothesBottom()} until she’s satisfied that you're the one she wants. By the time you notice she’s been teasing her nipples though her blouse, she is already half-way across the street, headed right for you!\n\nBefore you can react she’s already pressing her plush bosom to your body, grinding possessively against you as she coos in a decidedly un-Lupan manner. Preempting anything you might say, she pushes you against the wall, betraying a strength her body wouldn’t show otherwise, and pulls up her skirt just high enough to reveal her sopping slit. She presses it into your {self.clothesBottom()} leaving a warm stain against your cock. She claws hungrily at your chest, revealing ever more of her feline nature as she nips at your neck hoping to entice you while she humps up and down the bulge of your {self.cockDesc()} erection.\n\nDespite the suddenness of it all, you find yourself responding. Her scent makes your head swim as you begin fumbling with your {self.clothesBottom()} until your schlong{self.plural(1)} slap{self.plural(3)} against her drooling pussy with a sloppy slurping noise. She rubs herself against your {self.cockDesc()} member, making you shiver in time with her slow, deep thrusts. She starts to pant heavily and your skin tingles as it rubs against hers. Before either of you can angle {self.oneYour(1)} {self.cockDesc()} erection{self.plural(1)} to penetrate her, her whole body quakes and sprays your loins with hot, slick female cum. It rushes down your {self.legDesc(2)} and down to her feet. The smell reeks of the particular scent which makes it obvious that she is deep in her heat, if her desperation wasn't a big enough hint.",True)
                if (self.cockSize * self.cockSizeMod < self.eVagLimit(24)):
@@ -10896,22 +10890,22 @@ class NiminFetishFantasyv0975o_fla:
                self.doLust(self.lib // 4,0)
                self.hrs = 1
          elif self.currentZone == 4: # Siz'Calit Whoring
-            tempArr = as3.Array(1)
+            self.rndArray = as3.Array(1)
             if self.cockTotal > 0:
-               tempArr.push(2)
+               self.rndArray.push(2)
             if self.gender == 2:
-               tempArr.push(3)
+               self.rndArray.push(3)
             if self.cockTotal > 1:
-               tempArr.push(4)
+               self.rndArray.push(4)
             if self.vagTotal > 0:
-               tempArr.push(5)
+               self.rndArray.push(5)
             if self.cockTotal > 0 and self.showBalls:
-               tempArr.push(6)
+               self.rndArray.push(6)
             if self.gender == 1:
-               tempArr.push(7)
+               self.rndArray.push(7)
             if self.gender != 0:
-               tempArr.push(8)
-            chance = self.randChooseFromArray(tempArr)
+               self.rndArray.push(8)
+            chance = self.chooseFrom()
             if chance == 1:
                self.doMainText("Hanging out at your usual spot, a male Felin saunters up to you. He gives you a silent, appraising look, lingering on your larger curves. \"Not the normal playmate here, are you? Well, you're good enough.\" You give a list of the services you offer but are quickly cut off. \"Whoa! I don't know where you've been or what you've done. I just want you to give me a simple handjob. If you do well, I might pay even pay extra.\" Accepting the offer, he leads you to an open-air lounge located on a sturdy tree. A quick look down says you're about 35 feet up with a nice view. He makes sure the entrance is blocked before approaching you again.\n\nThe Felin man whips out a larger-than-average dick, the tip covered with soft barbs. \"Let's play,\" he commands. Your hands tease at his small thorns which start swelling with arousal. Your fingers play up and down his shaft and a moan escapes both of your mouths. Lust begins to permeate the atmosphere as copious streams of his precum soak into your hands. You pump faster and faster, hands flying on his pulsing member. His thrusts jerk through your palms, sometimes coming close to your face or chest. After a minute of grasping at his large wang, you feel confident enough to take a hand from his cock to massage his churning balls.",True)
                if self.dominant in {2,5}:
@@ -11054,14 +11048,14 @@ class NiminFetishFantasyv0975o_fla:
                self.doLust(-(self.sen // 2),2,1,2)
                self.hrs = 2
          elif self.currentZone == 6: # Oviasis Whoring
-            tempArr = as3.Array()
+            self.rndArray = as3.Array()
             if self.cockTotal == 1:
-               tempArr.push(1)
+               self.rndArray.push(1)
             if self.gender == 1:
-               tempArr.push(2)
+               self.rndArray.push(2)
             if self.cockTotal > 0:
-               tempArr.push(3)
-            chance = self.randChooseFromArray(tempArr)
+               self.rndArray.push(3)
+            chance = self.chooseFrom()
             if chance == 1:
                self.doMainText(f"You look around the desert town and smirk as several male and female Lizans eye you wantonly. Scales of various colors gleam as you walk down the middle of the street, wagging your plump ass at potential clientele. Many of the males watch you with lust clearly shining on their faces. Your eyes catch glimpses of more than a few of them talking to others around them while nodding in your direction; the generous bulge {self.legWhere(1)} your {self.legDesc(2)} puffs up some as you see two Lizan males walk up to you and ask you if you’re selling what they think you are. You nod to them and soon find yourself being pulled away from the growing crowd you have amassed.\n\nThe two males take you to a quiet spot inside of what you assume to be a recreational cave area, the scent of sex drifting strongly along the walls making your nose itch, before asking you to strip for them. You smile amorously at them both, reaching down to rub the lumps of their tenting loincloths before you do as you have been asked. Slowly you strip out of your clothes and present yourself to them.\n\nThe two males circle around you, flicking their tongues out across your body as they survey the goods they have just brought. Hands reach out together for your cock and the two males stroke you gently, ",True)
                if self.grammarFixes:
@@ -11309,22 +11303,22 @@ class NiminFetishFantasyv0975o_fla:
          elif tempInt == 12:
             whichCock = "bumpy-ridged spiked bug wang"
          getCum = self.cumAmount()
-         tempArr = as3.Array(1)
+         self.rndArray = as3.Array(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
-         #   tempArr.push(2)
+         #   self.rndArray.push(2)
          #if getCum > 2000:
-         #   tempArr.push(3)
+         #   self.rndArray.push(3)
          #if self.ment < self.lib - 50:
-         #   tempArr.push(4)
+         #   self.rndArray.push(4)
          #if self.attireBot in {6,17} and self.lust > 80:
-         #   tempArr.push(5)
+         #   self.rndArray.push(5)
          if (not self.useIsBottomOpen and self.attireBot in {5,7,12,13,14,16} or self.useIsBottomOpen and self.isBottomOpen()) and self.lust > 45:
-            tempArr.push(6)
+            self.rndArray.push(6)
          if self.attireBot in {4,15,20}:
-            tempArr.push(7)
+            self.rndArray.push(7)
          #if self.attireBot in {10,11} and lust > 60:
-         #   tempArr.push(8)
-         chance = self.randChooseFromArray(tempArr)
+         #   self.rndArray.push(8)
+         chance = self.chooseFrom()
          #!optimize if/else
          if (chance == 1):
             if (self.ment >= self.lib - 10):
@@ -11446,21 +11440,21 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
          self.doEnd()
       else:
-         tempArr = as3.Array(1)
+         self.rndArray = as3.Array(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
-         #   tempArr.push(2)
+         #   self.rndArray.push(2)
          #tempArr.push(3)
          #if self.ment < self.lib - 50:
-         #   tempArr.push(4)
+         #   self.rndArray.push(4)
          #if (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
-         #   tempArr.push(5)
+         #   self.rndArray.push(5)
          if self.attireBot in {13,14} and self.lust > 80:
-            tempArr.push(6)
+            self.rndArray.push(6)
          #if (self.attireBot == 4 or self.attireBot == 15):
-         #   tempArr.push(7)
+         #   self.rndArray.push(7)
          #if (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
-         #   tempArr.push(8)
-         chance = self.randChooseFromArray(tempArr)
+         #   self.rndArray.push(8)
+         chance = self.chooseFrom()
          #!optimize if/else
          if chance == 1:
             if (self.ment >= self.lib - 10):
@@ -11551,10 +11545,10 @@ class NiminFetishFantasyv0975o_fla:
    #   if (self.lust > 20):
    #      self.doSexP(10)
    def doBoobMasturbate(self):
-      tempArr = as3.Array(1)
+      self.rndArray = as3.Array(1)
       if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
-         tempArr.push(2)
-      chance = self.randChooseFromArray(tempArr)
+         self.rndArray.push(2)
+      chance = self.chooseFrom()
       getMilk = 0
       #!optimize if/else
       if (chance == 1):
@@ -11690,11 +11684,10 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
       self.doEnd()
    def doUdderMasturbate(self):
-      tempArr = as3.Array(1)
+      self.rndArray = as3.Array(1)
       if self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0:
-         tempArr.push(2)
-      chance = self.randChooseFromArray(tempArr)
-      chance = Math.floor(Math.random() * 2) + 1
+         self.rndArray.push(2)
+      chance = self.chooseFrom()
       getMilk = 0
       #!optimize if/else
       if (chance == 1):
@@ -15950,24 +15943,24 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             if (self.buttonChoice == 6):
                self.doMainText("It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that ",True)
-               tempArr = as3.Array(1,2)
+               self.rndArray = as3.Array(1,2)
                if (self.hairstyleLength(self.hair) and self.hairLength < 10):
-                  tempArr.push(3)
+                  self.rndArray.push(3)
                if (self.cockTotal > 0):
-                  tempArr.push(4)
+                  self.rndArray.push(4)
                if (self.balls > 0 and (self.respectShowBalls or self.showBalls)):
-                  tempArr.push(5)
+                  self.rndArray.push(5)
                if (self.cockTotal > 0):
-                  tempArr.push(6)
+                  self.rndArray.push(6)
                if (self.breastSize > 2):
-                  tempArr.push(7)
+                  self.rndArray.push(7)
                if (self.lactation > 0):
-                  tempArr.push(8)
+                  self.rndArray.push(8)
                if (self.vagTotal > 0):
-                  tempArr.push(9)
+                  self.rndArray.push(9)
                if (self.gender != 0):
-                  tempArr.push(10)
-               tempInt = self.randChooseFromArray(tempArr)
+                  self.rndArray.push(10)
+               tempInt = self.chooseFrom()
                if tempInt == 1:
                   self.doMainText("your hips stretch outward, becoming wider.")
                   self.hips += Math.floor(self.percent() / 20 + 1)
