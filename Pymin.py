@@ -7,6 +7,7 @@ from miniamf import sol, DecodeError
 from functools import partial, cache
 from secrets import choice
 from re import sub
+from io import BytesIO
 import as3lib as as3
 import as3lib.interface_tk as itk
 import as3lib.flash.ui as fui
@@ -25230,7 +25231,9 @@ class NiminFetishFantasyv0975o_fla:
       return str(string)
    @staticmethod
    def solGetFileName(path:str|Path):
-      if isinstance(path,str):
+      if path is None:
+         return ''
+      elif isinstance(path,str):
          if as3state.platform == "Windows":
             filename = path.split("\\")[-1].split(".")
          elif as3state.platform in {"Linux","Darwin"}:
@@ -25279,7 +25282,7 @@ class NiminFetishFantasyv0975o_fla:
          as3.Error("Pymin.returnSOL; Failed to convert data")
          if self.sfcOpen:
             self.sfcwindow.configureChild("message",text="Error")
-         raise e
+         raise NullData() from e
    def saveTOML(self, dictionary:dict, outputfile):
       #Write file
       try:
@@ -25289,8 +25292,6 @@ class NiminFetishFantasyv0975o_fla:
    def saveNIM(self, dictionary:dict, outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
-         if so["data"] == None:
-            raise NullData()
          byteData = ByteArray()
          byteData.writeObject(so)
          with open(outputfile,"wb") as f:
@@ -25503,6 +25504,7 @@ class NiminFetishFantasyv0975o_fla:
          self.seloadbutton.place(x=5,y=5,width=50,height=20,anchor="nw")
          self.sesavebutton = tkinter.Button(self.sewindow,text="Save",font=("TkTextFont",9),command=self.SESaveFile)
          self.sesavebutton.place(x=55,y=5,width=50,height=20,anchor="nw")
+         self.sesavebutton['state'] = 'disabled'
          self.sefilelabel = tkinter.Label(self.sewindow,font=("TkTextFont",9))
          self.sefilelabel.place(x=105,y=5,anchor="nw")
          
@@ -25517,7 +25519,7 @@ class NiminFetishFantasyv0975o_fla:
          ```
          
          
-         Scrollable Area with entry boxes for each item in the save file. (Loaded dynamically)
+         Scrollable Area with entry boxes for each item in the save file.
          
          
          
@@ -25525,11 +25527,54 @@ class NiminFetishFantasyv0975o_fla:
          '''
       else:
          self.sewindow.lift()
+   def SELoadFile(self):
+      file = Path(filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim"))))
+      ext = file.suffix.lower()
+      if ext == ".sol":
+         data = self.loadSOL(file)
+      elif ext == ".nim":
+         data = self.loadSOL(file,True)
+      elif ext == ".xml":
+         data = self.loadXML(file)
+      elif ext == ".toml":
+         data = self.loadTOML(file)
+      else:
+         raise as3.Error(f"Pymin.SELoadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.")
+      self.sefilelabel['text'] = file
+      with BytesIO() as lfile:
+         if ext == ".sol":
+            lfile.write(sol.encode(self.solGetFileName(file),self.returnSOL(data,None),encoding=3).getvalue())
+         elif ext == ".nim":
+            byteData = ByteArray()
+            byteData.writeObject({"data":self.returnSOL(data,None)})
+            lfile.write(byteData.getvalue())
+         elif ext == ".xml":
+            self.saveXML(data,lfile)
+         elif ext == ".toml":
+            lfile.write(TOML.Return(data).encode('utf-8'))
+         with file.open('rb') as f:
+            if f.read() != lfile.getvalue():
+               #! Notify user that file has been modified during load
+               ...
+      #! Create entries
+      self.sesavebutton['state'] = 'normal'
+   def SESaveFile(self):
+      if self.sefilelabel['text'] == '': # No file loaded
+         return
+      return # Prevent execution because partial implementation
+      #! Retrieve data from interface
+      #! Use current version number instead of saved one
+      if ext == ".sol":
+         self.saveSOL(data,file)
+      elif ext == ".nim":
+         self.saveNIM(data,file)
+      elif ext == ".xml":
+         self.saveXML(data,file)
+      elif ext == ".toml":
+         self.saveTOML(data,file)
    def closeSE(self, e):
       if e.widget == self.sewindow:
          self.seOpen = False
-   def SELoadFile(self):...
-   def SESaveFile(self):...
    def openDebugVariableDisplay(self, *e):
       if (not self.debugVarOpen):
          self.dvw = itk.window(400,400,"Pymin Debug: Variable Display",self.theme,False,False,True)
