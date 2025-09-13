@@ -126,7 +126,7 @@ class NiminFetishFantasyv0975o_fla:
    # viewButtonOutline -> showButtons
    def __init__(self):
       self.versionNumber = "0.975o"
-      self.dir = scriptdirectory
+      self.dir = as3state.appdatadirectory
 
       #Command line arguement variables
       self.cmdOpenConverter = False #Tracks whether the save file converter has been opened directly from the command line
@@ -27221,8 +27221,6 @@ if __name__ == "__main__":
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
       as3.EnableDebug()
-   scriptdirectory = Path(__file__).resolve().parent
-   as3.setDataDirectory(scriptdirectory)
    mainobject = NiminFetishFantasyv0975o_fla()
    if "-n" in argv or "--nostart" in argv or "/N" in argv:
       mainobject.debugNoStart = True
