@@ -5,10 +5,6 @@ from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
 from miniamf import sol, DecodeError
 from functools import partial, cache
-try:
-   from warnings import deprecated
-except:
-   from as3lib.py_backports import deprecated
 from secrets import choice
 from re import sub
 import as3lib as as3
@@ -123,6 +119,11 @@ class NiminFetishFantasyv0975o_fla:
    """
    Main class (originally the "package" for the game)
    """
+   # These functions have been moved
+   # sideHide -> hideSidePanel
+   # sideShow -> showSidePanel
+   # viewButtonText -> doButtonChoices
+   # viewButtonOutline -> showButtons
    def __init__(self):
       self.versionNumber = "0.975o"
       self.dir = scriptdirectory
@@ -1757,10 +1758,6 @@ class NiminFetishFantasyv0975o_fla:
          self.displaySideText()
       if self.wikiOpen:
          self.displayWikiText()
-   #def sideHide():
-      #hideSidePanel
-   #def sideShow():
-      #showSidePanel
    def savePreferences(self):
       if self.themeType == 0:
          tempintertoggle = (self.oButtonColors,self.scrolledTextBorders,self.oNewGameButton,self.staticdoLevelUPButtons)
@@ -1974,10 +1971,6 @@ class NiminFetishFantasyv0975o_fla:
          self.detailedTitles()
       elif self.sideFocus == 8:
          self.detailedCredits()
-   @deprecated("Use doButtonChoices")
-   def viewButtonText(self):...
-   @deprecated("Use showButtons")
-   def viewButtonOutline(self):...
    def choiceListButtons(self, which:str, page:int=None):
       tempDict = {12:"Return"}
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
@@ -8738,7 +8731,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonConfirm()
             def doListen():
-               if (self.buttonChoice in {7,12}): #! Why 7
+               if (self.buttonChoice in {7,12}):
                   self.doShop()
                else:
                   tempInt = 0
@@ -9059,7 +9052,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.buttonConfirm()
             def doListen():
-               if (self.buttonChoice in {7,12}): #! Why 7
+               if (self.buttonChoice in {7,12}):
                   self.doApothecary()
                else:
                   tempInt = 0
