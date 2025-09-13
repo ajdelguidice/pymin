@@ -25505,8 +25505,10 @@ class NiminFetishFantasyv0975o_fla:
          self.sesavebutton = tkinter.Button(self.sewindow,text="Save",font=("TkTextFont",9),command=self.SESaveFile)
          self.sesavebutton.place(x=55,y=5,width=50,height=20,anchor="nw")
          self.sesavebutton['state'] = 'disabled'
-         self.sefilelabel = tkinter.Label(self.sewindow,font=("TkTextFont",9))
-         self.sefilelabel.place(x=105,y=5,anchor="nw")
+         self.sefilelabelframe = tkinter.Frame(self.sewindow)
+         self.sefilelabelframe.place(x=110,y=5,width=385,height=20)
+         self.sefilelabel = tkinter.Label(self.sefilelabelframe,font=("TkTextFont",9))
+         self.sefilelabel.place(x=385,y=0,anchor="ne")
          
          self.secontainer = tkinter.Frame(self.sewindow) #! Make scrollable
          self.secontainer.place(x=5,y=25,width=490,height=370,anchor="nw")
@@ -25554,8 +25556,16 @@ class NiminFetishFantasyv0975o_fla:
             lfile.write(TOML.Return(data).encode('utf-8'))
          with file.open('rb') as f:
             if f.read() != lfile.getvalue():
-               #! Notify user that file has been modified during load
-               ...
+               changenotify = tkinter.Toplevel()
+               changenotify.title("Warning")
+               changenotify.geometry("350x120")
+               changenotify.resizable(False,False)
+               changenotify.transient(self.sewindow)
+               cnlabel = tkinter.Label(changenotify,font=("TkTextFont",9))
+               cnlabel.place(x=175,y=5,anchor="n")
+               cnlabel['text'] = 'Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.'
+               cnok = tkinter.Button(changenotify,text="Ok",font=("TkTextFont",9),command=changenotify.destroy)
+               cnok.place(x=345,y=115,width=30,height=30,anchor="se")
       #! Create entries
       self.sesavebutton['state'] = 'normal'
    def SESaveFile(self):
