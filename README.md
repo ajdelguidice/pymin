@@ -37,11 +37,11 @@ python pyminvenvscript.py run
 Everything else is explained in the help message.
 
 ## Python Verion Requirements
-Python>=3.10 (Version 1.0.7 - 1.0.11)
-<br>Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a> (Version 12+)
+Python>=3.10 (Pymin 1.0.7 - 1.0.11)
+<br>Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a> (Pymin 12+)
 
 ## Requirements
-<b>Game:</b> pathlib, xml.etree, tkinter, functools, webbrowser, <a href="https://pypi.org/project/as3lib/">as3lib</a>
+<b>Game:</b> pathlib, xml.etree, tkinter, functools, webbrowser, re, secrets, <a href="https://pypi.org/project/as3lib/">as3lib</a>
 <br><b>Venv script:</b> platform, configparser, ssl, tempfile, shutil, sys, subprocess, urllib, io, <a href="https://pypi.org/project/requests/">requests</a>
 
 <b>Note:</b> Any of the built-in modules (the ones that aren't hyperlinks) can not be installed by pip so they must be installed globally. This note is here because some linux distributions package some of python's built-in modules separately.
@@ -64,9 +64,9 @@ This port tries to keep things as close to the original game as possible, howeve
 - The game uses &lt;gamedirectory&gt;/nimin_saves for all saves by default.
 - You can now set custom font and theme color from within the game. (located in File->Options)
 - The game saves to xml files by default but can use any of the supported formats in any dialog (unlike the original game which only allowed .sol files in the "slots" and .nim files everywhere else).
-- The game now has a debug mode that can be toggled by passing the "--debug" arguement when launching the game (opening the debug window will slightly slow down the game because there is more to do).
-- Though not required, a save file converter has been included to convert between save formats. It can be access through the save/load dialog or by passing the "--converter" arguement to the game. A standalone save file converter is also included in this repo but not installed by default and isn't always up to date.
-- (toggleable | default: on) Everything in the game now changes color with the background and foreground color settings.
+- The game now has a debug mode that can be toggled by passing the "--debug" arguement when launching the game. This mode gives access to a couple of debug tools.
+- Two save utilities have been included with this port (accessed through the menu bar), a save converter and a save editor (incomplete). Neither are required to use the game but are nice to have.
+- (toggleable | default: off) All buttons in the game can now change color with the background and foreground.
 - (toggleable | default: off) The game now has a toggle to force the use of save file compatible with the original game.
 - You can now customise the look of the game by going to the "Interface" tab of the options window.
 - The game has a section in the options called "Game Tweaks". This is where most things that significantly alter the game can be toggled.
