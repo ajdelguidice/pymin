@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import tkinter, webbrowser
+import tkinter
 from pathlib import Path, PurePath
 from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
@@ -10,7 +10,6 @@ from re import sub
 from io import BytesIO
 import as3lib as as3
 import as3lib.interface_tk as itk
-import as3lib.flash.ui as fui
 import as3lib.keyConversions as ckeys
 from as3lib.flash.utils import ByteArray
 from as3lib import cmath, as3state, Math
@@ -720,10 +719,6 @@ class NiminFetishFantasyv0975o_fla:
       self.nsldblindervisible = False
       self.frame1()
 
-      self.cm = fui.ContextMenu(self.mo.display)
-      self.cm.removeAllItems()
-      self.vscm = fui.ContextMenuItem("root", "View Source", "vs", type_="Item", command=partial(webbrowser.open,url="https://github.com/ajdelguidice/pymin"))
-      self.cm.addItemAt(self.vscm)
       self.mo.mainloop()
    def _aboutwindow(self):
       """
