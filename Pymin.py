@@ -3972,18 +3972,17 @@ class NiminFetishFantasyv0975o_fla:
                self.toggleNSLDSortOrder()
          self.doListen = doListen
       else:
-         self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
+         self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
          tempDict = {4:"Save as",12:"Return"}
-         for i in range(9):
-            tempInt = self.bMap[i]
-            if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file() and not self.solonlymode):
-               dh = self.getdhXML(self.savelocation / f"Nimin_Save{tempInt}.xml")
-               tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
-            elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
-               dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
-               tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
+         for i in self.bMap:
+            if ((self.savelocation / f"Nimin_Save{i}.xml").is_file() and not self.solonlymode):
+               dh = self.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
+               tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
+            elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
+               dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+               tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             else:
-               tempDict[tempInt] = "Empty"
+               tempDict[i] = "Empty"
          self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.",True)
          self.doButtonChoices(tempDict)
          def doListen():
@@ -4050,25 +4049,23 @@ class NiminFetishFantasyv0975o_fla:
                self.toggleNSLDSortOrder()
          self.doListen = doListen
       else:
-         self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
+         self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
          tempDict = {4:"Load File"}
          if self.currentState != 0:
             tempDict[12] = "Return"
          if self.solonlymode:
-            for i in range(9):
-               tempInt = self.bMap[i]
-               if ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
-                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
-                  tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
+            for i in self.bMap:
+               if ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
+                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                  tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
          else:
-            for i in range(9):
-               tempInt = self.bMap[i]
-               if ((self.savelocation / f"Nimin_Save{tempInt}.xml").is_file()):
-                  dh = self.getdhXML(self.savelocation / f"Nimin_Save{tempInt}.xml")
-                  tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
-               elif ((self.savelocation / f"Nimin_Save{tempInt}.sol").is_file()):
-                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{tempInt}.sol")
-                  tempDict[tempInt] = f"D:{dh[0]} H:{dh[1]}"
+            for i in self.bMap:
+               if ((self.savelocation / f"Nimin_Save{i}.xml").is_file()):
+                  dh = self.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
+                  tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
+               elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
+                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                  tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
          if message == None:
             self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
          else:
