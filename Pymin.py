@@ -498,12 +498,12 @@ class NiminFetishFantasyv0975o_fla:
       #self.jamieRep = 0 #int
       #self.jamieSize = 4 #int
       #self.jamieChildren = 0 #int
-      self.jamieRep1 = 0 #int
-      self.jamieRep2 = 0 #int
-      self.jamieRep3 = 0 #int
-      self.jamieButt = False #bool
-      self.jamieBreasts = False #bool
-      self.jamieHair = False #bool
+      #self.jamieRep1 = 0 #int
+      #self.jamieRep2 = 0 #int
+      #self.jamieRep3 = 0 #int
+      #self.jamieButt = False #bool
+      #self.jamieBreasts = False #bool
+      #self.jamieHair = False #bool
 
       #Silandrias (Oviasis encounter)
       #self.silRep = 0 #int
@@ -3000,6 +3000,9 @@ class NiminFetishFantasyv0975o_fla:
             self.jamieRep1 = 0
             self.jamieRep2 = 0
             self.jamieRep3 = 0
+            self.jamieButt = False
+            self.jamieBreasts = False
+            self.jamieHair = False
             self.lilaWetness = 0
             self.foundSoftlik = False
             self.foundFirmshaft = False
@@ -4516,6 +4519,9 @@ class NiminFetishFantasyv0975o_fla:
          self.lilaUB = bool(srep['lilaUB'])
          self.dairyFarmBrand = bool(srep['dairyFarmBrand']) #!Was originally * for some reason
          self.lilaWetness = int(srep['lilaWetness'])
+         self.jamieRep1 = 0
+         self.jamieRep2 = 0
+         self.jamieRep3 = 0
          self.jamieButt = bool(srep['jamieButt'])
          self.jamieBreasts = bool(srep['jamieBreasts'])
          self.jamieHair = bool(srep['jamieHair'])
