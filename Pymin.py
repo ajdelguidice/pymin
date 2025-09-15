@@ -615,8 +615,6 @@ class NiminFetishFantasyv0975o_fla:
       """
       Sets up the interface, then runs the "frame1" function
       """
-      self.initinterface = True
-
       #window
       self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultmenu=False)
       self.mo.setAboutWindowText(f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}")
@@ -1918,7 +1916,7 @@ class NiminFetishFantasyv0975o_fla:
                self.oNewGameButton = True
                self.staticdoLevelUPButtons = False
                self.tempInterfaceToggles = tempitoggle
-         if (not self.initinterface):
+         if (self.currentState != 0):
             if (strtobool(prefs.find("showSide").text)):
                self.showSidePanel()
             else:
@@ -1926,7 +1924,7 @@ class NiminFetishFantasyv0975o_fla:
          sp = True
       else:
          sp = True
-         if (not self.initinterface):
+         if (self.currentState != 0):
             self.showSidePanel()
       if sp:
          self.savePreferences()
@@ -5040,7 +5038,6 @@ class NiminFetishFantasyv0975o_fla:
                                  self.showSidePanel()
                                  self.updateSide()
                               self.showOption7()
-                              self.currentState = 1
                               self.doGeneral()
                            self.doListen = doListen
                         self.doListen = doListen
@@ -24557,7 +24554,6 @@ class NiminFetishFantasyv0975o_fla:
       self.showPage(False,"")
       self.showMoveItem(False)
       self.loadPreferences()
-      self.initinterface = False
       self.hideDiscard()
       self.hideAmountAll()
       self.hideUpDown()
@@ -27283,7 +27279,6 @@ if __name__ == "__main__":
          def configureChild(*args,**kargs):...
       mainobject.cmdOpenConverter = True
       mainobject.mo = dummyObject()
-      mainobject.initinterface = True
       mainobject.loadPreferences()
       mainobject.openSFC()
    else:
