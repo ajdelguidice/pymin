@@ -2019,12 +2019,12 @@ class NiminFetishFantasyv0975o_fla:
          self.hideDiscard()
       temp = self.getColours()
       for i in range(1,13):
-         if not self.buttonsVisible[i]:
+         if self.buttonsVisible[i]:
+            self.mo.configureChild(f"button{i}",state="normal")
+         else:
             self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
             self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
             self.buttonsVisible[i] = True
-         else:
-            self.mo.configureChild(f"button{i}",state="normal")
          if i not in {4,8,12}:
             tempI = self._showButtonsBagCalc(i,self.choicePage)
             if (buttonText[tempI]):
@@ -7833,11 +7833,11 @@ class NiminFetishFantasyv0975o_fla:
             self.vagSize = 0
             self.vagTotal = 0
             i = 0
-            while (i < self.pregArray.length): #! Try to optimise this
-               if (not self.pregArray[i]):
+            while (i < self.pregArray.length):
+               if (self.pregArray[i]):
+                  i += 5
+               else:
                   self.pregArray.splice(i,5)
-                  i = -5
-               i += 5
             self.vulvaSize = 0
             self.clitSize = 0
             self.gender = 1
@@ -7924,11 +7924,11 @@ class NiminFetishFantasyv0975o_fla:
             self.vagSize = 0
             self.vagTotal = 0
             i = 0
-            while (i < self.pregArray.length): #! Try to optimise this
-               if (not self.pregArray[i]):
+            while (i < self.pregArray.length):
+               if (self.pregArray[i]):
+                  i += 5
+               else:
                   self.pregArray.splice(i,5)
-                  i = -5
-               i += 5
             self.vulvaSize = 0
             self.clitSize = 0
             self.gender = 1
@@ -22972,11 +22972,11 @@ class NiminFetishFantasyv0975o_fla:
          self.vulvaSize = 0
          self.clitSize = 0
          i = 0
-         while (i < self.pregArray.length): #! Try to optimise this
-            if (not self.pregArray[i]):
+         while (i < self.pregArray.length):
+            if (self.pregArray[i]):
+               i += 5
+            else:
                self.pregArray.splice(i,5)
-               i = -5
-            i += 5
       elif (self.vagTotal + totalChange > 0 and self.vagTotal < 1): #Gain vag when have none
          self.doMainText(f"\n\nYour tummy feels weird as your thighs rub against each other. Your {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across the sensitive bump at the front of the crevice, your finger sinking into a hole. The tip brushes against an even more sensitive ring that sinks further into your body - a fresh womb.")
          if (totalChange > 1):
@@ -24943,12 +24943,12 @@ class NiminFetishFantasyv0975o_fla:
             self.mo.destroyChild(f"button{i}")
             self.buttonsVisible[i] = False
          elif buttons[i]:
-            if not self.buttonsVisible[i]:
+            if self.buttonsVisible[i]:
+               self.mo.configureChild(f"button{i}",state="normal")
+            else:
                self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
                self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
                self.buttonsVisible[i] = True
-            else:
-               self.mo.configureChild(f"button{i}",state="normal")
    def buttonWrite(self, buttonNumber:int, buttonText:str):
       self.mo.configureChild(f"button{buttonNumber}",text=buttonText)
    def clearTextAllButtons(self):
