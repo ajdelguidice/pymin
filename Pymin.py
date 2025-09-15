@@ -25515,6 +25515,8 @@ class NiminFetishFantasyv0975o_fla:
          
          self.sewindow.transient(self.mo.children["root"])
          self.sewindow.bind("<Destroy>",self.closeSE)
+         self.seFileChanged = False
+         self.seLoadedData = None
          self.seOpen = True
          ''' Design
          | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
@@ -25543,6 +25545,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          raise as3.Error(f"Pymin.SELoadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.")
       self.sefilelabel['text'] = file
+      self.seLoadedData = data
       with BytesIO() as lfile:
          if ext == ".sol":
             lfile.write(sol.encode(self.solGetFileName(file),self.returnSOL(data,None),encoding=3).getvalue())
@@ -25566,6 +25569,7 @@ class NiminFetishFantasyv0975o_fla:
                cnlabel['text'] = 'Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.'
                cnok = tkinter.Button(changenotify,text="Ok",font=("TkTextFont",9),command=changenotify.destroy)
                cnok.place(x=345,y=115,width=30,height=30,anchor="se")
+               self.seFileChanged = True
       #! Create entries
       self.sesavebutton['state'] = 'normal'
    def SESaveFile(self):
@@ -25573,6 +25577,8 @@ class NiminFetishFantasyv0975o_fla:
          return
       return # Prevent execution because partial implementation
       #! Retrieve data from interface
+      if not self.seFileChanged: #or (self.seLoadedData == <RetrievedData>): # Check if anything has changed
+         ...#! Add a prompt to ask user if they want to save anyway. If no, return.
       data['version']['port'] = __version__
       if ext == ".sol":
          self.saveSOL(data,file)
@@ -25584,6 +25590,7 @@ class NiminFetishFantasyv0975o_fla:
          self.saveTOML(data,file)
    def closeSE(self, e):
       if e.widget == self.sewindow:
+         del self.seLoadedData, self.seFileChanged
          self.seOpen = False
    def openDebugVariableDisplay(self, *e):
       if (not self.debugVarOpen):
