@@ -26761,17 +26761,17 @@ class NiminFetishFantasyv0975o_fla:
       if ID == 2:
          return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
       if ID == 3:
-         return "<h4><u>Teleport Scroll: Any</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+         return "<h4><u>Teleport Scroll: Any (TS Any)</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
       if ID == 404:
          return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
       if ID == 418:
          return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
       if ID == 101:
-         return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+         return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
       if ID == 102:
-         return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+         return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
       if ID == 103:
-         return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+         return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
       if ID == 104:
          return "<h4><u>Milking Machine (Milker)</u></h4>(Item ID 104)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
       if ID == 105:
