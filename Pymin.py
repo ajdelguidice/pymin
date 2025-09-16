@@ -619,7 +619,6 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.setAboutWindowText(f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}")
 
       self.font = ("TimesNewRoman", 12)
-      self.crfont = ("TimesNewRoman", 20, "bold")
       
       self.style = ttk.Style(self.mo.children["root"])
       if (self.dir / "nimintheme").is_dir():
@@ -730,7 +729,9 @@ class NiminFetishFantasyv0975o_fla:
       """
       Opens the options window
       """
-      if not self.optionsWinOpen:
+      if self.optionsWinOpen:
+         self.optionswindow.toTop()
+      else:
          #Window
          self.optionswindow = itk.window(width=420,height=207,title="Options",color=self.theme,mainwindow=False,nomenu=True)
          #self.mo.group(self.optionswindow.children["root"])
@@ -939,8 +940,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.children["root"].transient(self.mo.children["root"])
          self.OWLoadVars()
          self.optionsWinOpen = True
-      else:
-         self.optionswindow.toTop()
    def OWThemeType0(self):
       if self.themeType != 0:
          self.themeType = 0
@@ -1889,10 +1888,10 @@ class NiminFetishFantasyv0975o_fla:
          if prefs.find("nsldSortOrder") != None:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
          if prefs.find("themeType") != None:
-            if int(prefs.find("themeType").text) not in {0,1}:
-               self.themeType = 0
-            else:
+            if int(prefs.find("themeType").text) in {0,1}:
                self.themeType = int(prefs.find("themeType").text)
+            else:
+               self.themeType = 0
          if prefs.find("interfaceToggles") != None:
             tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
             if len(tempitoggle) < 4:
@@ -24758,7 +24757,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("label10",text="Current Region",background=self.theme,foreground=self.fontColor)
          self.label10visible = True
       if not self.currentregionlabelvisible:
-         self.mo.addnwhLabel("display","currentregionlabel",110,300,self.crfont,anchor="n")
+         self.mo.addnwhLabel("display","currentregionlabel",110,300,("TimesNewRoman",20,"bold"),anchor="n")
          self.mo.configureChild("currentregionlabel",text="Region",background=self.theme,foreground=self.fontColor)
          self.currentregionlabelvisible = True
       self.regionChange(self.currentZone)
@@ -25058,7 +25057,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("moveitemamount")
          self.moveitemamountvisible = False
    def openSFC(self):
-      if not self.sfcOpen:
+      if self.sfcOpen:
+         self.sfcwindow.children["root"].lift()
+      else:
          self.sfcwindow = itk.window(500,334,"Pymin: Save Converter",self.theme,self.cmdOpenConverter,False,True)
          self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
@@ -25099,8 +25100,6 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcOpen = True
          if self.cmdOpenConverter:
             self.sfcwindow.mainloop()
-      else:
-         self.sfcwindow.children["root"].lift()
    def closeSFC(self, e):
       if e.widget == self.sfcwindow.children["root"]:
          self.sfcOpen = False
@@ -25443,7 +25442,9 @@ class NiminFetishFantasyv0975o_fla:
             self.loadGo("XML Loader Error: Could not load save file. Reason: Malformed save file",True)
          raise e
    def openSE(self):
-      if not self.seOpen:
+      if self.seOpen:
+         self.sewindow.lift()
+      else:
          self.sewindow = tkinter.Toplevel()
          self.sewindow.title("Pymin: Save Editor")
          self.sewindow.geometry("500x400")
@@ -25478,8 +25479,6 @@ class NiminFetishFantasyv0975o_fla:
          
          ```
          '''
-      else:
-         self.sewindow.lift()
    def SELoadFile(self):
       file = Path(filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim"))))
       ext = file.suffix.lower()
@@ -25542,7 +25541,9 @@ class NiminFetishFantasyv0975o_fla:
          del self.seLoadedData, self.seFileChanged
          self.seOpen = False
    def openDebugVariableDisplay(self, *e):
-      if (not self.debugVarOpen):
+      if (self.debugVarOpen):
+         self.dvw.toTop()
+      else:
          self.dvw = itk.window(400,400,"Pymin Debug: Variable Display",self.theme,False,False,True)
          if self.fixedresolutionmode:
             self.dvw.disableResizing()
@@ -25552,8 +25553,6 @@ class NiminFetishFantasyv0975o_fla:
          self.dvw.toTop()
          self.dvw.bindChild("root","<Destroy>",self.closeDebugWindow)
          self.detailedDebug()
-      else:
-         self.dvw.toTop()
    def detailedDebug(self, *e):
       if (self.debugVarOpen):
          temp = self.dvw.children["text"].yview()
@@ -25572,7 +25571,9 @@ class NiminFetishFantasyv0975o_fla:
       self.debugVarOpen = False
       self.dvw.closeWindow()
    def openDebugGiveItemWindow(self, *e):
-      if not self.debugGIWinOpen:
+      if self.debugGIWinOpen:
+         self.dgiw.lift()
+      else:
          self.dgiw = tkinter.Toplevel()
          self.dgiw.title("Give Item")
          self.dgiw.geometry("150x100")
@@ -25587,8 +25588,6 @@ class NiminFetishFantasyv0975o_fla:
          self.debugGIWinOpen = True
          self.dgiw.transient(self.mo.children["root"])
          self.dgiw.bind("<Destroy>",self.closeDGIWindow)
-      else:
-         self.dgiw.lift()
    def debugGiveItem(self, *e):
       self.debugGITimes = 0
       if self.currentState != 0:
@@ -25640,7 +25639,9 @@ class NiminFetishFantasyv0975o_fla:
       self.buttonShiftOverride = False
       self.statDisplay()
    def openDebugAffinityWindow(self, *e):
-      if not self.debugAWinOpen:
+      if self.debugAWinOpen:
+         self.daw.lift()
+      else:
          self.daw = tkinter.Toplevel()
          self.daw.title("Affinity")
          self.daw.geometry("170x100")
@@ -25655,8 +25656,6 @@ class NiminFetishFantasyv0975o_fla:
          self.debugAWinOpen = True
          self.daw.transient(self.mo.children["root"])
          self.daw.bind("<Destroy>",self.closeDAWindow)
-      else:
-         self.daw.lift()
    def debugAffinityChange(self, *e):
       if self.currentState != 0:
          err = ""
@@ -25741,7 +25740,9 @@ class NiminFetishFantasyv0975o_fla:
    def closeDAWindow(self, *e):
       self.debugAWinOpen = False
    def openWiki(self):
-      if not self.wikiOpen:
+      if self.wikiOpen:
+         self.wikiwindow.toTop()
+      else:
          self.wikiOpen = True
          self.wikiwindow = itk.window(700,500,"Pymin: Wiki","#A0A0A0",False,False,True)
          if self.fixedresolutionmode:
@@ -25802,8 +25803,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doWikiPage("Basic",0)
          self.wikifocus = 1
          self.wikiSwitchSelection("e")
-      else:
-         self.wikiwindow.toTop()
    def wikiKeyPress(self, e):
       if ckeys.tkeventToJavascriptKeycode(e) != None:
          self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e))
