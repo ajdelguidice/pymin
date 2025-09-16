@@ -1385,6 +1385,7 @@ class NiminFetishFantasyv0975o_fla:
    def buttonEventDiscard(self, *e):
       self.detailedDebug()
       self.buttonChoice = 13
+      self.hideUpDown()
       self.doListen()
    def doListen(self):...
    def side1Event(self):
@@ -1538,6 +1539,11 @@ class NiminFetishFantasyv0975o_fla:
             self.buttonChoice = 12
             self.hideUpDown()
             self.doListen()
+      elif (keyCode == 96 or keyCode == 66) and special and self.discardbuttonvisible: #numpade0, b
+         if self.newSLDialogVisible and not self.nsldblindervisible or self.moveItemID != 0 and (self.inBag or self.inStash):
+            self.buttonChoice = 13
+            self.hideUpDown()
+            self.doListen()
       elif (keyCode == 37) and special and not self.customthemecolor: #ArrowLeft
          self.toggleTheme()
       elif (keyCode == 38) and special: #ArrowUp
@@ -1560,13 +1566,6 @@ class NiminFetishFantasyv0975o_fla:
          self.newGameGo()
       elif (keyCode == 192 or keyCode == 111) and special: #~, numpadDivide
          self.openWiki()
-      elif (keyCode == 108 or keyCode == 110 or keyCode == 71) and special and self.newSLDialogVisible and not self.nsldblindervisible: #numpadDecimal, g
-         self.toggleNSLDSortOrder()
-      elif (keyCode == 96 or keyCode == 66) and special and self.discardbuttonvisible: #numpade0, b
-         if self.newSLDialogVisible and not self.nsldblindervisible:
-            self.toggleNSLDSortOrder()
-         elif self.moveItemID != 0 and (self.inBag or self.inStash):
-            self.buttonEventDiscard()
       elif self.showSide and self.currentState != 0:
          if (keyCode == 85) and special: #u
             if (self.appearancebuttonvisible):
