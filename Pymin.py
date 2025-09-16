@@ -238,7 +238,7 @@ class NiminFetishFantasyv0975o_fla:
 
       #game state
       self.shiftHeld = False #bool
-      self.currentState = 0 #int
+      self.currentState = 0 # 0 - Title Screen/New Game, 1 - General, 2 - Battle, 3 - Masturbate
       self.inBag = False #bool
       self.inStash = False #new variable; like inBag but for stash
       self.inShop = False #bool
@@ -5181,7 +5181,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("discardbutton",state="disabled")
       else:
          self.mo.configureChild("discardbutton",state="normal")
-         if self.useNewStash:
+         if self.useNewStash and self.currentState == 1:
             self.buttonWrite(12,"Stash")
       def doListen():
          self.choiceListSelect("Bag")
@@ -5189,7 +5189,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doButtonDiscard("Bag")
          elif self.buttonChoice == 12:
             if self.moveItemID != 0:
-               if self.useNewStash:
+               if self.useNewStash and self.currentState == 1:
                   if (not self.canLoseMoveLocation(self.moveItemID)):
                      self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
                   else:
