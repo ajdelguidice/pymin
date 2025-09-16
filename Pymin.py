@@ -1566,25 +1566,25 @@ class NiminFetishFantasyv0975o_fla:
          self.newGameGo()
       elif (keyCode == 192 or keyCode == 111) and special: #~, numpadDivide
          self.openWiki()
-      elif self.showSide and self.currentState != 0:
-         if (keyCode == 85) and special: #u
+      elif self.showSide and self.currentState != 0 and special:
+         if (keyCode == 85): #u
             if (self.appearancebuttonvisible):
                self.appearanceGo()
             else:
                self.sideEvent(1)
-         elif (keyCode == 73) and special: #i
+         elif (keyCode == 73): #i
             self.sideEvent(2)
-         elif (keyCode == 79) and special: #o
+         elif (keyCode == 79): #o
             self.sideEvent(3)
-         elif (keyCode == 80) and special: #p
+         elif (keyCode == 80): #p
             self.sideEvent(4)
-         elif (keyCode == 72) and special: #h
+         elif (keyCode == 72): #h
             self.sideEvent(5)
-         elif (keyCode == 74) and special: #j
+         elif (keyCode == 74): #j
             self.sideEvent(6)
-         elif (keyCode == 75) and special: #k
+         elif (keyCode == 75): #k
             self.sideEvent(7)
-         elif (keyCode == 76) and special: #l
+         elif (keyCode == 76): #l
             self.sideEvent(8)
    def appearance(self):
       if not (self.inBag or self.inStash or self.inShop):
