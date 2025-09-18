@@ -11382,7 +11382,6 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.ment < self.lib - 50):
                self.doMainText(f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, slick slime dripping down your {self.legDesc(2)} and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...")
             self.doLust(-(self.sen // 2),2,1)
-            self.hrs = 1
          elif chance == 2:...
          elif chance == 3:...
          elif chance == 4:...
@@ -11407,9 +11406,9 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.doMainText("Muffling your moans as you come, you're able to take a few breaths of relief and relaxation as you relish the sensations. Not a soul knows what you have done, allowing you to fully enjoy your orgasm. And when you slip your hand back out from behind the bag, you take a moment to quickly lick off the moistness upon them, your pleasured flavor quite tasty.\n\nAs if nothing had happened at all, you're able to pick up your bag and strut off, your thighs sqeezing the sensitive lips slightly with each step.")
             self.doLust(-(self.sen // 2),2,1)
-            self.hrs = 1
          elif chance == 7:...
          elif chance == 8:...
+      self.hrs = 1
       self.displayMainText()
       self.doEnd()
    #def doBothMasturbate(self):
@@ -13241,6 +13240,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showButtons(ButtonList(1,0,1,0,0,1,0,0,0,0,1,0))
          self.doButtonChoices(tempDict)
          def doListen():
+            self.hrs = 1
             if self.buttonChoice == 1:
                if (self.coin < 20):
                   self.doMainText("\"Err... You don't exactly have enough to buy that... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
@@ -13248,7 +13248,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                   self.doCoin(-20)
                   self.itemAdd(534)
-               self.hrs = 1
                self.displayMainText()
                self.doEnd()
             elif self.buttonChoice == 3:
@@ -13258,7 +13257,6 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                   self.doCoin(-100)
                   self.addManyItem(534, 6)
-               self.hrs = 1
                self.displayMainText()
                self.doEnd()
             elif self.buttonChoice == 6:
@@ -13268,12 +13266,10 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("\"Aha, an entrepreneur yourself, eh? Well, since you've got the coins to invest, here you go.\" He takes your money and hands you the parchment with the recipe. \"Thank you for your business and may we deal again in the future. Good luck to your ventures as well. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                   self.doCoin(-200)
                   self.knowMaleEnhance = True
-               self.hsr = 1
                self.displayMainText()
                self.doEnd()
             elif self.buttonChoice == 11:
                self.outputMainText("\"Alright, maybe next time then.\" And just as quickly as he appeared, he vanishes into the town to sell off his wares.",True)
-               self.hrs = 1
                self.doEnd()
          self.doListen = doListen
       elif chance == 3:
@@ -14516,20 +14512,17 @@ class NiminFetishFantasyv0975o_fla:
                                           self.doMainText(" back to your own place to release what has clogged up inside of you...")
                                        else:
                                           self.doMainText(f" outside to dangle your {self.cockDesc()} thing over the rail of the wooden bridge and blowing your load on whatever ventures down below. You then rush away, just in case...")
-                                       self.hrs = 3
                                     else:
                                        self.doMainText("\n\nSoon finishing up, leaving the two of you clean, Mommy gulps the last of the unexpected taste and smirks at you. \"Alright, that's good enough. Here, take some of this, you might like it some time. Now you should better get going before you make Lila dirty again.\" She sticks out her tongue and hands you some of the concoction.\n\nYou take her advice, clothe yourself, give the naked Lila a hug goodbye, and head off.")
                                        self.itemAdd(227)
-                                       self.hrs = 3
                                  elif (self.vagTotal > 0):
                                     self.doMainText(f" Her tongue slips in and out of your {self.vulvaDesc()} folds, thinking of it no differently than her mother. Which is an odd thought, considering how deftly her tongue lashes around your {self.clitDesc()} clit{self.plural(2)}. Between her efforts and the exreme tingling of the concoction, you soon find your {self.hipDesc()} hips bucking upon the plush carpet as you climax into the girl's mouth.\n\nLila's mother giggles at your reaction. \"Good, isn't she?\"\n\nNot inquiring about the statement, you wait a few moments and you're soon as fresh as a can be. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
                                     self.itemAdd(227)
                                     self.doLust(-(self.sen // 2),2,2)
-                                    self.hrs = 3
                                  else:
                                     self.doMainText(" Though there's no big difference, since you don't have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
                                     self.itemAdd(227)
-                                    self.hrs = 3
+                                 self.hrs = 3
                                  self.displayMainText()
                                  self.doEnd()
                               self.doListen = doListen
