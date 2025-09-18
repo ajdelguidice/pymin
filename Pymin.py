@@ -24999,16 +24999,11 @@ class NiminFetishFantasyv0975o_fla:
             self.sfcwindow.configureChild("message",text=f"Error: Detected output file type {ext} is not a supported file type")
    @staticmethod
    def dictSAVE(dictionary):
-      d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate'),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
+      d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate',),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
       for k,v in d.items():
          for i in v:
             dictionary[k][i] = repintorfloat(dictionary[k][i])
       return dictionary
-   @staticmethod
-   def solString(string):
-      if isinstance(string,as3.allNone) or string in {"None","undefined"}:
-         return ""
-      return str(string)
    @staticmethod
    def solGetFileName(path:str|Path):
       if path is None:
