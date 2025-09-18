@@ -128,19 +128,37 @@ class NiminFetishFantasyv0975o_fla:
       self.versionNumber = "0.975o"
       self.dir = as3state.appdatadirectory
 
-      #Command line arguement variables
-      self.cmdOpenConverter = False #Tracks whether the save file converter has been opened directly from the command line
+      # Command line arguement variables
+      self.cmdOpenConverter = False # Tracks whether the save file converter has been opened directly from the command line
+      
+      # Window open variables
+      self.optionsWinOpen = False # Options
+      self.sfcOpen = False # Save Converter
+      self.seOpen = False # Save Editor
+      self.wikiOpen = False # Wiki
+      self.debugVarOpen = False # Debug Variable Display
+      self.debugGIWinOpen = False # Debug Give Item
+      self.debugAWinOpen = False # Debug Affinity
+      
+      # Misc added variables
+      self.buttonShiftOverride = False # Forces shift to be off. Used for the button panel
+      self.tempBagPage = 1 # Used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
+      self.nsldSortOrder = 0 # The current sort order of save files in the new save/load dialog
+      self.keyboardTypingDisable = False # Used to disable hotkeys when in a text input field
+      self.altHeld = False # When alt is held
+      self.ctrlHeld = False # When ctrl is held
+      self.bMap = (1,2,3,5,6,7,9,10,11) # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
 
-      #Options window variables
-      self.savelocation = self.dir / "nimin_saves" #Location where save files are stored
-      self.solonlymode = False #Toggle to only use sol files in the save/load system (makes save/load functions use sol files instead of xml files. They should be able to be loaded by the original game)
-      self.fixedresolutionmode = False #Toggle for fixed resolution mode
-      self.customfontcolor = False #Toggle for custom font color
-      self.ofontcolor = "#000000" #original font color from before custom font color was applied
-      self.customthemecolor = False #Toggle for custom theme color
-      self.othemecolor = "#FFFFFF" #original theme color from before custom theme color was applied
+      # Options window variables
+      self.savelocation = self.dir / "nimin_saves" # Where save files are stored
+      self.solonlymode = False # Force save files to be compatible with the original game
+      self.fixedresolutionmode = False # Lock window resolution
+      self.customfontcolor = False # Use custom font color
+      self.ofontcolor = "#000000" # Font color from before custom font color was applied
+      self.customthemecolor = False # Use custom theme color
+      self.othemecolor = "#FFFFFF" # Theme color from before custom theme color was applied
 
-      ##Gametweaks Tab
+      ## Gametweaks Tab
       self.statusTweaks = False
       self.succubusLeavesOne = False
       self.useIsBottomOpen = False
@@ -151,464 +169,448 @@ class NiminFetishFantasyv0975o_fla:
       self.correctBeastRaceFeet = False
       self.gameTweaksMisc = False
 
-      ##Interface Tab
-      self.tempInterfaceToggles = None #Temporary storage for interface toggles while nimin theme type is selected
+      ## Interface Tab
+      self.tempInterfaceToggles = None # Temporary storage for interface toggles while nimin theme type is selected
       self.oButtonColors = True
       self.scrolledTextBorders = False
       self.oNewGameButton = False
-      self.changeNGButtonOverride = False #Refreshes the newgame button in OWSaveOptions even if conditions aren't met
+      self.changeNGButtonOverride = False # Refresh the newgame button in OWSaveOptions even if conditions aren't met
       self.staticdoLevelUPButtons = False
-      self.themeType = 0 #Theme type for interfacetoggles
+      self.themeType = 0
       self.useNewSaveLoadDialog = False
       self.useNewStash = False
       self.originalFrame1Message = False
       self.helpToWiki = False
 
-      ##Grammar Tab
+      ## Grammar Tab
       self.respectShowBalls = False
       self.femmeboyToFemboy = False
       self.shemaleToFuta = False
       self.ngrammar = False
-      self.femmieMaleReplacement = 0 #0-None, 1-femininemale, 2-femboy
+      self.femmieMaleReplacement = 0 # 0 - None, 1 - femininemale, 2 - femboy
       self.femboyishToGirly = False
       self.snuggleBallTweak = False
       self.grammarFixes = False
 
-      ##Debugtweaks Tab
+      ## Debugo options Tab
       self.debugChooseSenario = False
       self.debugNoDamage = False
 
-      #Window open variables
-      self.optionsWinOpen = False #Options
-      self.sfcOpen = False #Save Converter
-      self.seOpen = False #Save Editor
-      self.wikiOpen = False #Wiki
-      self.debugVarOpen = False #Debug Variable Display
-      self.debugGIWinOpen = False #Debug Give Item
-      self.debugAWinOpen = False #Debug Affinity
+      # interface
+      self.theme = "#FFFFFF"
+      self.fontSize = 11
+      self.fontBold = False
+      self.fontColor = "#000000"
+      self.showSide = True
+      self.buttonChoice = 0
+      self.currentText = textObject()
+      self.sideText = textObject()
+      self.sideFocus = 1
 
-      #other added variables
-      self.buttonShiftOverride = False #shift override for the button panel. Forces shift to be off
-      self.tempBagPage = 1 #used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
-      self.nsldSortOrder = 0 #Variable used to store the perferred sort order of save files in the new save/load dialog
-      self.keyboardTypingDisable = False #Used to tell the game to use keyboard as text input device instead of hotkeys
-      self.altHeld = False #When alt is held
-      self.ctrlHeld = False #When ctrl is held
-      self.bMap = (1,2,3,5,6,7,9,10,11) # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
-
-      #interface
-      self.theme = "#FFFFFF" #str
-      self.fontSize = 11 #int
-      self.fontBold = False #bool
-      self.fontColor = "#000000" #str
-      self.showSide = True #bool
-      self.buttonChoice = 0 #int
-      self.currentText = textObject() #str
-      self.sideText = textObject() #str
-      self.sideFocus = 1 #int
-
-      #workaround variables. These are to implement things that were a result of actionscript jank (local variables of a function inside of a MovieClip object were treated as variables local to the MovieClip object instead in some circumstances)
+      # workaround variables. These are to implement things that were a result of actionscript jank (local variables of a function inside of a MovieClip object were treated as variables local to the MovieClip object instead in some circumstances)
       self.buy = 0
       self.getCum = 0
       self.dmg = 0
       self.tempID = 0
       self.tempColor = 0
 
-      #bag
-      self.bagPage = 1 #int
-      #self.bagArray = as3.Array() #Array
-      #self.bagStackArray = as3.Array() #Array
-      self.itemGainArray = as3.Array() #Array
+      # bag
+      self.bagPage = 1
+      #self.bagArray = as3.Array()
+      #self.bagStackArray = as3.Array()
+      self.itemGainArray = as3.Array()
       self.mts = False
       self.mtb = False
 
-      #stash
-      self.stashPage = 1 #new variable to track stash page
-      #self.stashArray = as3.Array() #Array
-      #self.stashStackArray = as3.Array() #Array
+      # stash
+      self.stashPage = 1 # Tracks stash page
+      #self.stashArray = as3.Array()
+      #self.stashStackArray = as3.Array()
 
-      #choiceList
-      self.choicePage = 0 #int
-      self.choiceListArray = as3.Array() #Array
-      self.choiceListResult = as3.Array(numElements=2) #Array
+      # choiceList
+      self.choicePage = 0
+      self.choiceListArray = as3.Array()
+      self.choiceListResult = as3.Array(numElements=2)
 
-      #moveItem
-      self.moveItemID = 0 #int
-      self.moveItemStack = 0 #int
+      # moveItem
+      self.moveItemID = 0
+      self.moveItemStack = 0
 
-      #game state
-      self.shiftHeld = False #bool
+      # game state
+      self.shiftHeld = False
       self.currentState = 0 # 0 - Title Screen/New Game, 1 - General, 2 - Battle, 3 - Masturbate
-      self.inBag = False #bool
-      self.inStash = False #new variable; like inBag but for stash
-      self.inShop = False #bool
-      #self.currentZone = 0 #int
-      #self.day = 0 #int
-      #self.hour = 8 #int
-      #self.inDungeon = False #bool
-      #self.currentDungeon = 0 #int
-      self.skipExhaustion = False #bool
-      #self.currentDayCare = 0 #int
-      self.goToInDoProcess = -1 #Go to this location in doProcess (called when button in doEnd is pressed). This is used instead of setting it manually which can lead to the game looking weird
+      self.inBag = False
+      self.inStash = False # Like inBag but for stash
+      self.inShop = False
+      #self.currentZone = 0
+      #self.day = 0
+      #self.hour = 8
+      #self.inDungeon = False
+      #self.currentDungeon = 0
+      self.skipExhaustion = False
+      #self.currentDayCare = 0
+      self.goToInDoProcess = -1 # Go to this location in doProcess. This is used instead of setting it manually which can lead to the game looking weird
 
-      #RND
-      self.rndResult = 0 #int
-      self.rndArray = as3.Array() #Array
+      # RND
+      self.rndResult = 0
+      self.rndArray = as3.Array()
 
-      #Stats variables
-      #self.str = 0 #int
-      #self.ment = 0 #int
-      #self.lib = 0 #int
-      #self.sen = 0 #int
-      #self.HP = 0 #int
-      #self.lust = 0 #int
-      #self.coin = 0 #int
-      #self.strength = 0 #int
-      #self.mentality = 0 #int
-      #self.libido = 0 #int
-      #self.sensitivity = 0 #int
-      #self.hunger = 0 #int
-      self.hrs = 0 #int
-      #self.SexP = 0 #int
-      #self.levelUP = 0 #int
-      #self.level = 0 #int
+      # Stats variables
+      #self.str = 0
+      #self.ment = 0
+      #self.lib = 0
+      #self.sen = 0
+      #self.HP = 0
+      #self.lust = 0
+      #self.coin = 0
+      #self.strength = 0
+      #self.mentality = 0
+      #self.libido = 0
+      #self.sensitivity = 0
+      #self.hunger = 0
+      self.hrs = 0
+      #self.SexP = 0
+      #self.levelUP = 0
+      #self.level = 0
 
-      #Stat modifier variables
-      #self.strMod = 0 #int
-      #self.mentMod = 0 #int
-      #self.libMod = 0 #int
-      #self.senMod = 0 #int
-      #self.HPMod = 0 #int
-      #self.SexPMod = 1 #Number
-      #self.coinMod = 0 #int
+      # Stat modifier variables
+      #self.strMod = 0
+      #self.mentMod = 0
+      #self.libMod = 0
+      #self.senMod = 0
+      #self.HPMod = 0
+      #self.SexPMod = 1.0
+      #self.coinMod = 0
 
-      #Other modifiers
-      #self.runMod = 0 #int
-      #self.rapeMod = 0 #int
-      #self.carryMod = 0 #int
-      #self.pregChanceMod = 0 #int
-      #self.extraPregChance = 0 #int
-      #self.pregTimeMod = 0 #int
-      #self.enticeMod = 0 #int
-      #self.milkHPMod = 0 #int
-      #self.changeMod = 1 #Number
-      #self.minLust = 0 #int
+      # Other modifiers
+      #self.runMod = 0
+      #self.rapeMod = 0
+      #self.carryMod = 0
+      #self.pregChanceMod = 0
+      #self.extraPregChance = 0
+      #self.pregTimeMod = 0
+      #self.enticeMod = 0
+      #self.milkHPMod = 0
+      #self.changeMod = 1.0
+      #self.minLust = 0
 
-      #Affinities
-      self.human = 0 #int
-      self.horse = 0 #int
-      self.wolf = 0 #int
-      self.cat = 0 #int
-      self.cow = 0 #int
-      self.lizard = 0 #int
-      self.rabbit = 0 #int
-      self.mouse = 0 #int
-      self.bird = 0 #int
-      self.pig = 0 #int
-      self.skunk = 0 #int
-      self.bug = 0 #int
-      #self.humanAffinity = 0 #int
-      #self.horseAffinity = 0 #int
-      #self.wolfAffinity = 0 #int
-      #self.catAffinity = 0 #int
-      #self.cowAffinity = 0 #int
-      #self.lizardAffinity = 0 #int
-      #self.rabbitAffinity = 0 #int
-      #self.mouseAffinity = 0 #int
-      #self.birdAffinity = 0 #int
-      #self.pigAffinity = 0 #int
-      #self.cowTaurAffinity = 0 #int
-      #self.humanTaurAffinity = 0 #int
-      #self.skunkAffinity = 0 #int
-      #self.bugAffinity = 0 #int
-      #self.twoBoobAffinity = 0 #int
-      #self.fourBoobAffinity = 0 #int
-      #self.sixBoobAffinity = 0 #int
-      #self.eightBoobAffinity = 0 #int
-      #self.tenBoobAffinity = 0 #int
+      # Temp Affinities
+      self.human = 0
+      self.horse = 0
+      self.wolf = 0
+      self.cat = 0
+      self.cow = 0
+      self.lizard = 0
+      self.rabbit = 0
+      self.mouse = 0
+      self.bird = 0
+      self.pig = 0
+      self.skunk = 0
+      self.bug = 0
 
-      #Feature lock
-      #self.lockTail = 0 #int
-      #self.lockFace = 0 #int
-      #self.lockSkin = 0 #int
-      #self.lockBreasts = 0 #int
-      #self.lockEars = 0 #int
-      #self.lockLegs = 0 #int
-      #self.lockNipples = 0 #int
-      #self.lockCock = 0 #int
+      # Affinities
+      #self.humanAffinity = 0
+      #self.horseAffinity = 0
+      #self.wolfAffinity = 0
+      #self.catAffinity = 0
+      #self.cowAffinity = 0
+      #self.lizardAffinity = 0
+      #self.rabbitAffinity = 0
+      #self.mouseAffinity = 0
+      #self.birdAffinity = 0
+      #self.pigAffinity = 0
+      #self.cowTaurAffinity = 0
+      #self.humanTaurAffinity = 0
+      #self.skunkAffinity = 0
+      #self.bugAffinity = 0
+      #self.twoBoobAffinity = 0
+      #self.fourBoobAffinity = 0
+      #self.sixBoobAffinity = 0
+      #self.eightBoobAffinity = 0
+      #self.tenBoobAffinity = 0
 
-      #Enemy stats
-      self.enemyID = 0 #int
-      self.eHP = 0 #int
-      self.eMaxHP = 0 #int
-      self.eStr = 0 #int
-      self.eMenta = 0 #int
-      self.eSen = 0 #int
-      self.eLib = 0 #int
-      self.eLust = 0 #int
-      self.eGen = 0 #int
-      self.ePref = 0 #int
-      self.eCoin = 0 #int
-      self.eSexP = 0 #int
-      self.eItem = 0 #int
+      # Feature lock
+      #self.lockTail = 0
+      #self.lockFace = 0
+      #self.lockSkin = 0
+      #self.lockBreasts = 0
+      #self.lockEars = 0
+      #self.lockLegs = 0
+      #self.lockNipples = 0
+      #self.lockCock = 0
 
-      #Body features
-      #self.gender = 0 #int
-      #self.race = 0 #int
-      #self.body = 0 #int
-      #self.dominant = 0 #int
-      #self.hips = 0 #int
-      #self.butt = 0 #int
-      #self.tallness = 0 #int
-      #self.skinType = 0 #int
-      #self.tail = 0 #int
-      #self.ears = 0 #int
-      #self.hair = 0 #int
-      #self.hairLength = 0 #int
-      #self.hairColor = 0 #int
-      #self.legType = 0 #int
-      #self.wings = 0 #int
-      #self.faceType = 0 #int
-      #self.skinColor = 0 #int
-      #self.nipType = 0 #int
+      # Enemy stats
+      self.enemyID = 0
+      self.eHP = 0
+      self.eMaxHP = 0
+      self.eStr = 0
+      self.eMenta = 0
+      self.eSen = 0
+      self.eLib = 0
+      self.eLust = 0
+      self.eGen = 0
+      self.ePref = 0
+      self.eCoin = 0
+      self.eSexP = 0
+      self.eItem = 0
 
-      #Body modifiers
-      #self.cumMod = 1 #Number
-      #self.cockSizeMod = 1 #Number
-      #self.vagSizeMod = 1 #Number
-      #self.vagElastic = 1 #Number
-      #self.milkMod = 0 #int
-      #self.vagBellyMod = 0 #int
-      #self.milkCap = 0 #int
-      #self.hipMod = 1 #int
-      #self.buttMod = 1 #int
-      #self.bellyMod = 0 #int
-      #self.cockMoistMod = 0 #int
-      #self.vagMoistMod = 0 #int
+      # Body features
+      #self.gender = 0
+      #self.race = 0
+      #self.body = 0
+      #self.dominant = 0
+      #self.hips = 0
+      #self.butt = 0
+      #self.tallness = 0
+      #self.skinType = 0
+      #self.tail = 0
+      #self.ears = 0
+      #self.hair = 0
+      #self.hairLength = 0
+      #self.hairColor = 0
+      #self.legType = 0
+      #self.wings = 0
+      #self.faceType = 0
+      #self.skinColor = 0
+      #self.nipType = 0
 
-      #Body statuses
-      #self.exhaustion = 0 #int
-      #self.exhaustionPenalty = 0 #int
-      #self.milkEngorgement = 0 #int
-      #self.milkEngorgementLevel = 0 #int
-      #self.udderEngorgement = 0 #int
-      #self.udderEngorgementLevel = 0 #int
-      #self.heat = 0 #int
-      #self.heatTime = 0 #int
-      #self.heatMaxTime = 0 #int
-      #self.lactation = 0 #int
-      #self.udderLactation = 0 #int
-      #self.lustPenalty = 0 #int
-      #self.nipplePlay = 0 #Number
-      #self.udderPlay = 0 #Number
-      #self.blueBalls = 0 #int
+      # Body modifiers
+      #self.cumMod = 1.0
+      #self.cockSizeMod = 1.0
+      #self.vagSizeMod = 1.0
+      #self.vagElastic = 1.0
+      #self.milkMod = 0
+      #self.vagBellyMod = 0
+      #self.milkCap = 0
+      #self.hipMod = 1
+      #self.buttMod = 1
+      #self.bellyMod = 0
+      #self.cockMoistMod = 0
+      #self.vagMoistMod = 0
 
-      #Male parts
-      #self.cockTotal = 0 #int
-      #self.humanCocks = 0 #int
-      #self.horseCocks = 0 #int
-      #self.wolfCocks = 0 #int
-      #self.catCocks = 0 #int
-      #self.lizardCocks = 0 #int
-      #self.rabbitCocks = 0 #int
-      #self.bugCocks = 0 #int
-      #self.cockSize = 0 #int
-      #self.cockMoist = 0 #int
-      #self.balls = 0 #int
-      #self.ballSize = 0 #int
-      #self.showBalls = True #bool
-      #self.knot = False #bool
+      # Body statuses
+      #self.exhaustion = 0
+      #self.exhaustionPenalty = 0
+      #self.milkEngorgement = 0
+      #self.milkEngorgementLevel = 0
+      #self.udderEngorgement = 0
+      #self.udderEngorgementLevel = 0
+      #self.heat = 0
+      #self.heatTime = 0
+      #self.heatMaxTime = 0
+      #self.lactation = 0
+      #self.udderLactation = 0
+      #self.lustPenalty = 0
+      #self.nipplePlay = 0
+      #self.udderPlay = 0
+      #self.blueBalls = 0
+
+      # Male parts
+      #self.cockTotal = 0
+      #self.humanCocks = 0
+      #self.horseCocks = 0
+      #self.wolfCocks = 0
+      #self.catCocks = 0
+      #self.lizardCocks = 0
+      #self.rabbitCocks = 0
+      #self.bugCocks = 0
+      #self.cockSize = 0
+      #self.cockMoist = 0
+      #self.balls = 0
+      #self.ballSize = 0
+      #self.showBalls = True
+      #self.knot = False
       #self.neuterizerHideBalls = False
 
-      #Female parts
-      #self.breastSize = 0 #int
-      #self.boobTotal = 0 #int
-      #self.nippleSize = 1 #int
-      #self.clitSize = 0 #int
-      #self.vagTotal = 0 #int
-      #self.vagSize = 0 #int
-      #self.vagMoist = 0 #int
-      #self.vulvaSize = 0 #int
+      # Female parts
+      #self.breastSize = 0
+      #self.boobTotal = 0
+      #self.nippleSize = 1
+      #self.clitSize = 0
+      #self.vagTotal = 0
+      #self.vagSize = 0
+      #self.vagMoist = 0
+      #self.vulvaSize = 0
 
-      #Udders
-      #self.udders = False #bool
-      #self.udderSize = 0 #int
-      #self.teatSize = 0 #int
+      # Udders
+      #self.udders = False
+      #self.udderSize = 0
+      #self.teatSize = 0
 
-      #Pregnancy
-      #self.pregArray = as3.Array() #Array
-      #self.pregStatus = 0 #int
-      #self.pregnancyTime = 0 #int
-      #self.pregRate = 1 #Number
-      #self.eggLaying = 0 #int
-      #self.eggMaxTime = 0 #int
-      #self.eggTime = 0 #int
-      #self.eggRate = 0 #int
-      #self.eggType = 0 #int
+      # Pregnancy
+      #self.pregArray = as3.Array()
+      #self.pregStatus = 0
+      #self.pregnancyTime = 0
+      #self.pregRate = 1.0
+      #self.eggLaying = 0
+      #self.eggMaxTime = 0
+      #self.eggTime = 0
+      #self.eggRate = 0
+      #self.eggType = 0
 
-      #Weapon and attire
-      #self.attireTop = 1 #int
-      #self.attireBot = 2 #int
-      #self.weapon = 10 #Number
+      # Weapon and attire
+      #self.attireTop = 1
+      #self.attireBot = 2
+      #self.weapon = 10
 
-      #Item effects
-      #self.masoPot = 0 #int
-      #self.sMasoPot = 0 #int
-      #self.babyFree = 0 #int
-      #self.charmTime = 0 #int
-      #self.pheromone = 0 #int
-      #self.eggceleratorTime = 0 #int
-      #self.eggceleratorDose = 0 #int
-      #self.bodyOil = 0 #int
-      #self.snuggleBall = False #bool
-      #self.fertileGel = 0 #int
-      #self.milkSuppressant = 0 #int
-      #self.milkSuppressantLact = 0 #int
-      #self.milkSuppressantUdder = 0 #int
-      #self.suppHarness = False #bool
-      #self.plumpQuats = 0 #int
-      #self.cockSnakePreg = 0 #int
-      #self.milkCPoisonNip = 0 #int
-      #self.milkCPoisonUdd = 0 #int
-      #self.cockSnakeVenom = 0 #int
-      #self.teatPump = 0 #int
-      #self.nipPump = 0 #int
-      #self.cockPump = 0 #int
-      #self.clitPump = 0 #int
-      #self.vulvaPump = 0 #int
+      # Item effects
+      #self.masoPot = 0
+      #self.sMasoPot = 0
+      #self.babyFree = 0
+      #self.charmTime = 0
+      #self.pheromone = 0
+      #self.eggceleratorTime = 0
+      #self.eggceleratorDose = 0
+      #self.bodyOil = 0
+      #self.snuggleBall = False
+      #self.fertileGel = 0
+      #self.milkSuppressant = 0
+      #self.milkSuppressantLact = 0
+      #self.milkSuppressantUdder = 0
+      #self.suppHarness = False
+      #self.plumpQuats = 0
+      #self.cockSnakePreg = 0
+      #self.milkCPoisonNip = 0
+      #self.milkCPoisonUdd = 0
+      #self.cockSnakeVenom = 0
+      #self.teatPump = 0
+      #self.nipPump = 0
+      #self.cockPump = 0
+      #self.clitPump = 0
+      #self.vulvaPump = 0
 
-      #Lila (Tieden encounter)
-      #self.lilaRep = 0 #int
-      #self.lilaVulva = 0 #int
-      #self.lilaMilk = 0 #int
-      #self.lilaPreg = -2 #int
-      #self.lilaUB = False #bool
-      #self.lilaWetness = 0 #int
-      #self.lilaWetStatus = 0 #int
+      # Lila (Tieden encounter)
+      #self.lilaRep = 0
+      #self.lilaVulva = 0
+      #self.lilaMilk = 0
+      #self.lilaPreg = -2
+      #self.lilaUB = False
+      #self.lilaWetness = 0
+      #self.lilaWetStatus = 0
 
-      #Malon (Dairy Farm encounter)
-      #self.malonRep = 0 #int
-      #self.malonPreg = 0 #int
-      #self.malonChildren = 0 #int
+      # Malon (Dairy Farm encounter)
+      #self.malonRep = 0
+      #self.malonPreg = 0
+      #self.malonChildren = 0
 
-      #Mistress (Siz'Calit encounter)
-      #self.mistressRep = 0 #int
+      # Mistress (Siz'Calit encounter)
+      #self.mistressRep = 0
 
-      #Jamie (Firmshaft encounter)
-      #self.jamieRep = 0 #int
-      #self.jamieSize = 4 #int
-      #self.jamieChildren = 0 #int
-      #self.jamieRep1 = 0 #int
-      #self.jamieRep2 = 0 #int
-      #self.jamieRep3 = 0 #int
-      #self.jamieButt = False #bool
-      #self.jamieBreasts = False #bool
-      #self.jamieHair = False #bool
+      # Jamie (Firmshaft encounter)
+      #self.jamieRep = 0
+      #self.jamieSize = 4
+      #self.jamieChildren = 0
+      #self.jamieRep1 = 0
+      #self.jamieRep2 = 0
+      #self.jamieRep3 = 0
+      #self.jamieButt = False
+      #self.jamieBreasts = False
+      #self.jamieHair = False
 
-      #Silandrias (Oviasis encounter)
-      #self.silRep = 0 #int
-      #self.silPreg = 0 #int
-      #self.silRate = 0 #int
-      #self.silLay = 10 #int
-      #self.silTied = False #bool
-      #self.silGrowthTime = 0 #int
+      # Silandrias (Oviasis encounter)
+      #self.silRep = 0
+      #self.silPreg = 0
+      #self.silRate = 0
+      #self.silLay = 10
+      #self.silTied = False
+      #self.silGrowthTime = 0
 
-      #Locations
-      self.firstExplore = False #bool
-      #self.foundSoftlik = False #bool
-      #self.foundFirmshaft = False #bool
-      #self.foundTieden = False #bool
-      #self.foundSizCalit = False #bool
-      #self.foundOviasis = False #bool
-      #self.foundValley = False #bool
-      #self.defeatedMinotaur = False #bool
-      #self.defeatedFreakyGirl = False #bool
-      #self.defeatedSuccubus = False #bool
-      #self.foundSanctuary = False #bool
+      # Locations
+      #self.firstExplore = False
+      #self.foundSoftlik = False
+      #self.foundFirmshaft = False
+      #self.foundTieden = False
+      #self.foundSizCalit = False
+      #self.foundOviasis = False
+      #self.foundValley = False
+      #self.defeatedMinotaur = False
+      #self.defeatedFreakyGirl = False
+      #self.defeatedSuccubus = False
+      #self.foundSanctuary = False
       
-      #Location effects
-      #self.fertilityStatueCurse = 0 #int
-      #self.dairyFarmBrand = False #bool
+      # Location effects
+      #self.fertilityStatueCurse = 0
+      #self.dairyFarmBrand = False
 
-      #Alchemy
-      #self.knowLustDraft = False #bool
-      #self.knowRejuvPot = False #bool
-      #self.knowExpPreg = False #bool
-      #self.knowBallSwell = False #bool
-      #self.knowMaleEnhance = False #bool
-      #self.knowSLustDraft = False #bool
-      #self.knowSRejuvPot = False #bool
-      #self.knowSExpPreg = False #bool
-      #self.knowSBallSwell = False #bool
-      #self.knowBabyFree = False #bool
-      #self.knowPotPot = False #bool
-      #self.knowGenSwap = False #bool
-      #self.knowMasoPot = False #bool
-      #self.knowMilkSuppress = False #bool
-      #self.knowSGenSwap = False #bool
-      #self.knowSMasoPot = False #bool
-      #self.knowSBabyFree = False #bool
-      #self.knowSPotPot = False #bool
-      #self.knowPussJuice = False #bool
-      #self.knowPheromone = False #bool
-      #self.knowBazoomba = False #bool
+      # Alchemy
+      #self.knowLustDraft = False
+      #self.knowRejuvPot = False
+      #self.knowExpPreg = False
+      #self.knowBallSwell = False
+      #self.knowMaleEnhance = False
+      #self.knowSLustDraft = False
+      #self.knowSRejuvPot = False
+      #self.knowSExpPreg = False
+      #self.knowSBallSwell = False
+      #self.knowBabyFree = False
+      #self.knowPotPot = False
+      #self.knowGenSwap = False
+      #self.knowMasoPot = False
+      #self.knowMilkSuppress = False
+      #self.knowSGenSwap = False
+      #self.knowSMasoPot = False
+      #self.knowSBabyFree = False
+      #self.knowSPotPot = False
+      #self.knowPussJuice = False
+      #self.knowPheromone = False
+      #self.knowBazoomba = False
 
-      #Levels
-      #self.babyFactLevel = 0 #int
-      #self.bodyBuildLevel = 0 #int
-      #self.hyperHappyLevel = 0 #int
-      #self.alchemistLevel = 0 #int
-      #self.fetishMasterLevel = 0 #int
-      #self.milkMaidLevel = 0 #int
-      #self.shapeshiftyLevel = 0 #int
-      #self.shapeshiftyFirst = "" #str
-      #self.shapeshiftySecond = "" #str
+      # Levels
+      #self.babyFactLevel = 0
+      #self.bodyBuildLevel = 0
+      #self.hyperHappyLevel = 0
+      #self.alchemistLevel = 0
+      #self.fetishMasterLevel = 0
+      #self.milkMaidLevel = 0
+      #self.shapeshiftyLevel = 0
+      #self.shapeshiftyFirst = ""
+      #self.shapeshiftySecond = ""
 
-      #Fetish (depricated)
-      #self.maleFetish = 1 #Number
-      #self.femaleFetish = 1 #Number
-      #self.hermFetish = 1 #Number
-      #self.narcissistFetish = 1 #Number
-      #self.dependentFetish = 1 #Number
-      #self.dominantFetish = 1 #Number
-      #self.submissiveFetish = 1 #Number
-      #self.lboobFetish = 1 #Number
-      #self.sboobFetish = 1 #Number
-      #self.furryFetish = 1 #Number
-      #self.scalyFetish = 1 #Number
-      #self.smoothyFetish = 1 #Number
-      #self.pregnancyFetish = 1 #Number
-      #self.bestialityFetish = 1 #Number
-      #self.milkFetish = 1 #Number
-      #self.sizeFetish = 1 #Number
-      #self.unbirthingFetish = 1 #Number
-      #self.ovipositionFetish = 1 #Number
-      #self.toyFetish = 1 #Number
-      #self.hyperFetish = 1 #Number
+      # Fetish (depricated)
+      #self.maleFetish = 1.0
+      #self.femaleFetish = 1.0
+      #self.hermFetish = 1.0
+      #self.narcissistFetish = 1.0
+      #self.dependentFetish = 1.0
+      #self.dominantFetish = 1.0
+      #self.submissiveFetish = 1.0
+      #self.lboobFetish = 1.0
+      #self.sboobFetish = 1.0
+      #self.furryFetish = 1.0
+      #self.scalyFetish = 1.0
+      #self.smoothyFetish = 1.0
+      #self.pregnancyFetish = 1.0
+      #self.bestialityFetish = 1.0
+      #self.milkFetish = 1.0
+      #self.sizeFetish = 1.0
+      #self.unbirthingFetish = 1.0
+      #self.ovipositionFetish = 1.0
+      #self.toyFetish = 1.0
+      #self.hyperFetish = 1.0
 
-      #Children
-      #self.humanChildren = 0 #int
-      #self.equanChildren = 0 #int
-      #self.lupanChildren = 0 #int
-      #self.felinChildren = 0 #int
-      #self.cowChildren = 0 #int
-      #self.lizanEggs = 0 #int
-      #self.lizanChildren = 0 #int
-      #self.bunnionChildren = 0 #int
-      #self.wolfPupChildren = 0 #int
-      #self.miceChildren = 0 #int
-      #self.birdEggs = 0 #int
-      #self.birdChildren = 0 #int
-      #self.pigChildren = 0 #int
-      #self.calfChildren = 0 #int
-      #self.bugEggs = 0 #int
-      #self.bugChildren = 0 #int
-      #self.skunkChildren = 0 #int
-      #self.minotaurChildren = 0 #int
-      #self.freakyGirlChildren = 0 #int
+      # Children
+      #self.humanChildren = 0
+      #self.equanChildren = 0
+      #self.lupanChildren = 0
+      #self.felinChildren = 0
+      #self.cowChildren = 0
+      #self.lizanEggs = 0
+      #self.lizanChildren = 0
+      #self.bunnionChildren = 0
+      #self.wolfPupChildren = 0
+      #self.miceChildren = 0
+      #self.birdEggs = 0
+      #self.birdChildren = 0
+      #self.pigChildren = 0
+      #self.calfChildren = 0
+      #self.bugEggs = 0
+      #self.bugChildren = 0
+      #self.skunkChildren = 0
+      #self.minotaurChildren = 0
+      #self.freakyGirlChildren = 0
 
-      #Everything else
-      self.textCheckArray = as3.Array() #Array
+      # Everything else
+      self.textCheckArray = as3.Array()
       self.specialAbilityArray = as3.Array()
    def MainTimeline(self):
       """
@@ -2827,10 +2829,10 @@ class NiminFetishFantasyv0975o_fla:
             self.level = 0
             self.runMod = 0
             self.rapeMod = 0
-            self.cumMod = 1
-            self.cockSizeMod = 1
-            self.vagSizeMod = 1
-            self.vagElastic = 1
+            self.cumMod = 1.0
+            self.cockSizeMod = 1.0
+            self.vagSizeMod = 1.0
+            self.vagElastic = 1.0
             self.milkMod = 0
             self.carryMod = 0
             self.vagBellyMod = 0
@@ -2839,9 +2841,9 @@ class NiminFetishFantasyv0975o_fla:
             self.pregTimeMod = 0
             self.enticeMod = 0
             self.milkHPMod = 0
-            self.changeMod = 1
+            self.changeMod = 1.0
             self.HPMod = 0
-            self.SexPMod = 1
+            self.SexPMod = 1.0
             self.minLust = 0
             self.milkCap = 0
             self.coinMod = 0
@@ -2907,7 +2909,7 @@ class NiminFetishFantasyv0975o_fla:
             self.pregArray = as3.Array()
             self.pregStatus = 0
             self.pregnancyTime = 0
-            self.pregRate = 1
+            self.pregRate = 1.0
             self.eggLaying = 0
             self.eggMaxTime = 0
             self.eggTime = 0
@@ -3041,26 +3043,26 @@ class NiminFetishFantasyv0975o_fla:
             self.shapeshiftyLevel = 0
             self.shapeshiftyFirst = ""
             self.shapeshiftySecond = ""
-            self.maleFetish = 1
-            self.femaleFetish = 1
-            self.hermFetish = 1
-            self.narcissistFetish = 1
-            self.dependentFetish = 1
-            self.dominantFetish = 1
-            self.submissiveFetish = 1
-            self.lboobFetish = 1
-            self.sboobFetish = 1
-            self.furryFetish = 1
-            self.scalyFetish = 1
-            self.smoothyFetish = 1
-            self.pregnancyFetish = 1
-            self.bestialityFetish = 1
-            self.milkFetish = 1
-            self.sizeFetish = 1
-            self.unbirthingFetish = 1
-            self.ovipositionFetish = 1
-            self.toyFetish = 1
-            self.hyperFetish = 1
+            self.maleFetish = 1.0
+            self.femaleFetish = 1.0
+            self.hermFetish = 1.0
+            self.narcissistFetish = 1.0
+            self.dependentFetish = 1.0
+            self.dominantFetish = 1.0
+            self.submissiveFetish = 1.0
+            self.lboobFetish = 1.0
+            self.sboobFetish = 1.0
+            self.furryFetish = 1.0
+            self.scalyFetish = 1.0
+            self.smoothyFetish = 1.0
+            self.pregnancyFetish = 1.0
+            self.bestialityFetish = 1.0
+            self.milkFetish = 1.0
+            self.sizeFetish = 1.0
+            self.unbirthingFetish = 1.0
+            self.ovipositionFetish = 1.0
+            self.toyFetish = 1.0
+            self.hyperFetish = 1.0
             self.currentDayCare = 0
             self.humanChildren = 0
             self.equanChildren = 0
@@ -3213,7 +3215,7 @@ class NiminFetishFantasyv0975o_fla:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
          tempStr += f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath."
       else:
-         if self.internalBallsEffectBelly and not self.showBalls:
+         if False and self.internalBallsEffectBelly and not self.showBalls:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
@@ -3646,21 +3648,21 @@ class NiminFetishFantasyv0975o_fla:
       if (self.pregnancyTime > 36):
          tempStr += "\nPregnant"
       tempStr += "\n"
-      if (self.lockTail > 0):
+      if (self.lockTail):
          tempStr += "\nRacial-locked Tail"
-      if (self.lockFace > 0):
+      if (self.lockFace):
          tempStr += "\nRacial-locked Face"
-      if (self.lockSkin > 0):
+      if (self.lockSkin):
          tempStr += "\nRacial-locked Skin"
-      if (self.lockBreasts > 0):
+      if (self.lockBreasts):
          tempStr += "\nRacial-locked Breasts"
-      if (self.lockEars > 0):
+      if (self.lockEars):
          tempStr += "\nRacial-locked Ears"
-      if (self.lockLegs > 0):
+      if (self.lockLegs):
          tempStr += "\nRacial-locked Legs"
-      if (self.lockNipples > 0):
+      if (self.lockNipples):
          tempStr += "\nRacial-locked Nipples"
-      if (self.lockCock > 0):
+      if (self.lockCock):
          tempStr += "\nRacial-locked Cocks"
       if (self.showSide):
          self.outputSideText(tempStr.get(),True)
@@ -4245,7 +4247,7 @@ class NiminFetishFantasyv0975o_fla:
          self.saveGo()
          return
       else:
-         data = self.dictSAVE({"track":{"currentState":self.currentState,"currentZone":self.currentZone,"day":self.day,"hour":self.hour,"currentDayCare":self.currentDayCare,"inDungeon":self.inDungeon,"currentDungeon":self.currentDungeon,"v7":0.75,"firstExplore":self.firstExplore},"version":{"original":"0.975o","port":__version__},"stats":{"strength":self.strength,"mentality":self.mentality,"libido":self.libido,"sensitivity":self.sensitivity,"HP":self.HP,"lust":self.lust,"coin":self.coin,"strMod":self.strMod,"mentMod":self.mentMod,"libMod":self.libMod,"senMod":self.senMod,"hunger":self.hunger},"level":{"SexP":int(self.SexP),"levelUP":self.levelUP,"level":self.level,"babyFactLevel":self.babyFactLevel,"bodyBuildLevel":self.bodyBuildLevel,"hyperHappyLevel":self.hyperHappyLevel,"alchemistLevel":self.alchemistLevel,"fetishMasterLevel":self.fetishMasterLevel,"milkMaidLevel":self.milkMaidLevel,"shapeshiftyLevel":self.shapeshiftyLevel,"shapeshiftyFirst":self.shapeshiftyFirst,"shapeshiftySecond":self.shapeshiftySecond},"mod":{"runMod":self.runMod,"rapeMod":self.rapeMod,"cumMod":repintorfloat(self.cumMod),"cockSizeMod":repintorfloat(self.cockSizeMod),"milkMod":self.milkMod,"carryMod":self.carryMod,"vagBellyMod":self.vagBellyMod,"pregChanceMod":self.pregChanceMod,"extraPregChance":self.extraPregChance,"pregTimeMod":self.pregTimeMod,"enticeMod":self.enticeMod,"milkHPMod":self.milkHPMod,"vagSizeMod":repintorfloat(self.vagSizeMod),"vagElastic":repintorfloat(self.vagElastic),"changeMod":repintorfloat(self.changeMod),"HPMod":self.HPMod,"SexPMod":repintorfloat(self.SexPMod),"minLust":self.minLust,"milkCap":self.milkCap,"coinMod":self.coinMod,"hipMod":self.hipMod,"buttMod":self.buttMod,"bellyMod":self.bellyMod,"cockMoistMod":self.cockMoistMod,"vagMoistMod":self.vagMoistMod,"lockTail":self.lockTail,"lockFace":self.lockFace,"lockSkin":self.lockSkin,"lockBreasts":self.lockBreasts,"lockEars":self.lockEars,"lockLegs":self.lockLegs,"lockNipples":self.lockNipples,"lockCock":self.lockCock},"quality":{"gender":self.gender,"race":self.race,"body":self.body,"dominant":self.dominant,"hips":self.hips,"butt":self.butt,"tallness":self.tallness,"skinType":self.skinType,"tail":self.tail,"ears":self.ears,"hair":self.hair,"hairColor":self.hairColor,"hairLength":self.hairLength,"legType":self.legType,"wings":self.wings,"faceType":self.faceType,"skinColor":self.skinColor},"cock":{"cockTotal":self.cockTotal,"humanCocks":self.humanCocks,"horseCocks":self.horseCocks,"wolfCocks":self.wolfCocks,"catCocks":self.catCocks,"rabbitCocks":self.rabbitCocks,"lizardCocks":self.lizardCocks,"cockSize":self.cockSize,"cockMoist":self.cockMoist,"balls":self.balls,"ballSize":self.ballSize,"showBalls":self.showBalls,"knot":self.knot,"bugCocks":self.bugCocks,"neuterizerHideBalls":self.neuterizerHideBalls},"girl":{"breastSize":self.breastSize,"boobTotal":self.boobTotal,"nippleSize":self.nippleSize,"udders":self.udders,"udderSize":self.udderSize,"teatSize":self.teatSize,"clitSize":self.clitSize,"vagTotal":self.vagTotal,"vagSize":self.vagSize,"vagMoist":self.vagMoist,"vulvaSize":self.vulvaSize,"nipType":self.nipType},"gear":{"attireTop":self.attireTop,"attireBot":self.attireBot,"weapon":self.weapon},"status":{"pregRate":self.pregRate,"pregnancyTime":self.pregnancyTime,"pregStatus":self.pregStatus,"eggLaying":self.eggLaying,"eggMaxTime":self.eggMaxTime,"eggTime":self.eggTime,"eggRate":self.eggRate,"exhaustion":self.exhaustion,"exhaustionPenalty":self.exhaustionPenalty,"milkEngorgement":self.milkEngorgement,"milkEngorgementLevel":self.milkEngorgementLevel,"udderEngorgement":self.udderEngorgement,"udderEngorgementLevel":self.udderEngorgementLevel,"heat":self.heat,"heatTime":self.heatTime,"heatMaxTime":self.heatMaxTime,"lactation":self.lactation,"udderLactation":self.udderLactation,"nipplePlay":repintorfloat(self.nipplePlay),"udderPlay":repintorfloat(self.udderPlay),"blueBalls":self.blueBalls,"teatPump":self.teatPump,"nipPump":self.nipPump,"cockPump":self.cockPump,"clitPump":self.clitPump,"vulvaPump":self.vulvaPump,"masoPot":self.masoPot,"sMasoPot":self.sMasoPot,"babyFree":self.babyFree,"charmTime":self.charmTime,"pheromone":self.pheromone,"eggceleratorTime":self.eggceleratorTime,"eggceleratorDose":self.eggceleratorDose,"bodyOil":self.bodyOil,"lustPenalty":self.lustPenalty,"fertileGel":self.fertileGel,"snuggleBall":self.snuggleBall,"eggType":self.eggType,"milkSuppressant":self.milkSuppressant,"milkSuppressantLact":self.milkSuppressantLact,"milkSuppressantUdder":self.milkSuppressantUdder,"suppHarness":self.suppHarness,"fertilityStatueCurse":self.fertilityStatueCurse,"plumpQuats":self.plumpQuats,"lilaWetStatus":self.lilaWetStatus,"cockSnakePreg":self.cockSnakePreg,"milkCPoisonNip":self.milkCPoisonNip,"milkCPoisonUdd":self.milkCPoisonUdd,"cockSnakeVenom":self.cockSnakeVenom},"affinity":{"humanAffinity":self.humanAffinity,"horseAffinity":self.horseAffinity,"wolfAffinity":self.wolfAffinity,"catAffinity":self.catAffinity,"cowAffinity":self.cowAffinity,"lizardAffinity":self.lizardAffinity,"rabbitAffinity":self.rabbitAffinity,"fourBoobAffinity":self.fourBoobAffinity,"mouseAffinity":self.mouseAffinity,"birdAffinity":self.birdAffinity,"pigAffinity":self.pigAffinity,"twoBoobAffinity":self.twoBoobAffinity,"sixBoobAffinity":self.sixBoobAffinity,"eightBoobAffinity":self.eightBoobAffinity,"tenBoobAffinity":self.tenBoobAffinity,"cowTaurAffinity":self.cowTaurAffinity,"humanTaurAffinity":self.humanTaurAffinity,"skunkAffinity":self.skunkAffinity,"bugAffinity":self.bugAffinity},"rep":{"lilaRep":self.lilaRep,"lilaVulva":self.lilaVulva,"lilaMilk":self.lilaMilk,"lilaPreg":self.lilaPreg,"malonRep":self.malonRep,"malonPreg":self.malonPreg,"malonChildren":self.malonChildren,"mistressRep":self.mistressRep,"jamieRep":self.jamieRep,"jamieSize":self.jamieSize,"jamieChildren":self.jamieChildren,"silRep":self.silRep,"silPreg":self.silPreg,"silRate":self.silRate,"silLay":self.silLay,"silGrowthTime":self.silGrowthTime,"silTied":self.silTied,"lilaUB":self.lilaUB,"dairyFarmBrand":self.dairyFarmBrand,"lilaWetness":self.lilaWetness,"jamieButt":self.jamieButt,"jamieBreasts":self.jamieBreasts,"jamieHair":self.jamieHair},"knowledge":{"foundSoftlik":self.foundSoftlik,"foundFirmshaft":self.foundFirmshaft,"foundTieden":self.foundTieden,"foundSizCalit":self.foundSizCalit,"foundOviasis":self.foundOviasis,"foundValley":self.foundValley,"foundSanctuary":self.foundSanctuary,"usedSecretStairs":self.usedSecretStairs},"boss":{"defeatedMinotaur":self.defeatedMinotaur,"defeatedFreakyGirl":self.defeatedFreakyGirl,"defeatedSuccubus":self.defeatedSuccubus},"knowSimpleAlchemy":{"knowLustDraft":self.knowLustDraft,"knowRejuvPot":self.knowRejuvPot,"knowExpPreg":self.knowExpPreg,"knowBallSwell":self.knowBallSwell,"knowMaleEnhance":self.knowMaleEnhance},"knowAdvancedAlchemy":{"knowSLustDraft":self.knowSLustDraft,"knowSRejuvPot":self.knowSRejuvPot,"knowSExpPreg":self.knowSExpPreg,"knowSBallSwell":self.knowSBallSwell,"knowGenSwap":self.knowGenSwap,"knowMasoPot":self.knowMasoPot,"knowBabyFree":self.knowBabyFree,"knowPotPot":self.knowPotPot,"knowMilkSuppress":self.knowMilkSuppress},"knowComplexAlchemy":{"knowSGenSwap":self.knowSGenSwap,"knowSMasoPot":self.knowSMasoPot,"knowSBabyFree":self.knowSBabyFree,"knowSPotPot":self.knowSPotPot,"knowPussJuice":self.knowPussJuice,"knowPheromone":self.knowPheromone,"knowBazoomba":self.knowBazoomba},"majorFetish":{"maleFetish":repintorfloat(self.maleFetish),"femaleFetish":repintorfloat(self.femaleFetish),"hermFetish":repintorfloat(self.hermFetish),"narcissistFetish":repintorfloat(self.narcissistFetish),"dependentFetish":repintorfloat(self.dependentFetish)},"moderateFetish":{"dominantFetish":repintorfloat(self.dominantFetish),"submissiveFetish":repintorfloat(self.submissiveFetish),"lboobFetish":repintorfloat(self.lboobFetish),"sboobFetish":repintorfloat(self.sboobFetish),"furryFetish":repintorfloat(self.furryFetish),"scalyFetish":repintorfloat(self.scalyFetish),"smoothyFetish":repintorfloat(self.smoothyFetish)},"minorFetish":{"pregnancyFetish":repintorfloat(self.pregnancyFetish),"bestialityFetish":repintorfloat(self.bestialityFetish),"milkFetish":repintorfloat(self.milkFetish),"sizeFetish":repintorfloat(self.sizeFetish),"unbirthingFetish":repintorfloat(self.unbirthingFetish),"ovipositionFetish":repintorfloat(self.ovipositionFetish),"toyFetish":repintorfloat(self.toyFetish),"hyperFetish":repintorfloat(self.hyperFetish)},"kid":{"humanChildren":self.humanChildren,"equanChildren":self.equanChildren,"lupanChildren":self.lupanChildren,"felinChildren":self.felinChildren,"cowChildren":self.cowChildren,"lizanChildren":self.lizanChildren,"lizanEggs":self.lizanEggs,"bunnionChildren":self.bunnionChildren,"wolfPupChildren":self.wolfPupChildren,"miceChildren":self.miceChildren,"birdEggs":self.birdEggs,"birdChildren":self.birdChildren,"pigChildren":self.pigChildren,"calfChildren":self.calfChildren,"bugEggs":self.bugEggs,"bugChildren":self.bugChildren,"skunkChildren":self.skunkChildren,"minotaurChildren":self.minotaurChildren,"freakyGirlChildren":self.freakyGirlChildren},"trav":[],"bag":list(self.bagArray),"bagStack":list(self.bagStackArray),"stash":list(self.stashArray),"stashStack":list(self.stashStackArray),"preg":list(self.pregArray)})
+         data = self.dictSAVE({"track":{"currentState":self.currentState,"currentZone":self.currentZone,"day":self.day,"hour":self.hour,"currentDayCare":self.currentDayCare,"inDungeon":self.inDungeon,"currentDungeon":self.currentDungeon,"v7":0.75,"firstExplore":self.firstExplore},"version":{"original":"0.975o","port":__version__},"stats":{"strength":self.strength,"mentality":self.mentality,"libido":self.libido,"sensitivity":self.sensitivity,"HP":self.HP,"lust":self.lust,"coin":self.coin,"strMod":self.strMod,"mentMod":self.mentMod,"libMod":self.libMod,"senMod":self.senMod,"hunger":self.hunger},"level":{"SexP":int(self.SexP),"levelUP":self.levelUP,"level":self.level,"babyFactLevel":self.babyFactLevel,"bodyBuildLevel":self.bodyBuildLevel,"hyperHappyLevel":self.hyperHappyLevel,"alchemistLevel":self.alchemistLevel,"fetishMasterLevel":self.fetishMasterLevel,"milkMaidLevel":self.milkMaidLevel,"shapeshiftyLevel":self.shapeshiftyLevel,"shapeshiftyFirst":self.shapeshiftyFirst,"shapeshiftySecond":self.shapeshiftySecond},"mod":{"runMod":self.runMod,"rapeMod":self.rapeMod,"cumMod":self.cumMod,"cockSizeMod":self.cockSizeMod,"milkMod":self.milkMod,"carryMod":self.carryMod,"vagBellyMod":self.vagBellyMod,"pregChanceMod":self.pregChanceMod,"extraPregChance":self.extraPregChance,"pregTimeMod":self.pregTimeMod,"enticeMod":self.enticeMod,"milkHPMod":self.milkHPMod,"vagSizeMod":self.vagSizeMod,"vagElastic":self.vagElastic,"changeMod":self.changeMod,"HPMod":self.HPMod,"SexPMod":self.SexPMod,"minLust":self.minLust,"milkCap":self.milkCap,"coinMod":self.coinMod,"hipMod":self.hipMod,"buttMod":self.buttMod,"bellyMod":self.bellyMod,"cockMoistMod":self.cockMoistMod,"vagMoistMod":self.vagMoistMod,"lockTail":self.lockTail,"lockFace":self.lockFace,"lockSkin":self.lockSkin,"lockBreasts":self.lockBreasts,"lockEars":self.lockEars,"lockLegs":self.lockLegs,"lockNipples":self.lockNipples,"lockCock":self.lockCock},"quality":{"gender":self.gender,"race":self.race,"body":self.body,"dominant":self.dominant,"hips":self.hips,"butt":self.butt,"tallness":self.tallness,"skinType":self.skinType,"tail":self.tail,"ears":self.ears,"hair":self.hair,"hairColor":self.hairColor,"hairLength":self.hairLength,"legType":self.legType,"wings":self.wings,"faceType":self.faceType,"skinColor":self.skinColor},"cock":{"cockTotal":self.cockTotal,"humanCocks":self.humanCocks,"horseCocks":self.horseCocks,"wolfCocks":self.wolfCocks,"catCocks":self.catCocks,"rabbitCocks":self.rabbitCocks,"lizardCocks":self.lizardCocks,"cockSize":self.cockSize,"cockMoist":self.cockMoist,"balls":self.balls,"ballSize":self.ballSize,"showBalls":self.showBalls,"knot":self.knot,"bugCocks":self.bugCocks,"neuterizerHideBalls":self.neuterizerHideBalls},"girl":{"breastSize":self.breastSize,"boobTotal":self.boobTotal,"nippleSize":self.nippleSize,"udders":self.udders,"udderSize":self.udderSize,"teatSize":self.teatSize,"clitSize":self.clitSize,"vagTotal":self.vagTotal,"vagSize":self.vagSize,"vagMoist":self.vagMoist,"vulvaSize":self.vulvaSize,"nipType":self.nipType},"gear":{"attireTop":self.attireTop,"attireBot":self.attireBot,"weapon":self.weapon},"status":{"pregRate":self.pregRate,"pregnancyTime":self.pregnancyTime,"pregStatus":self.pregStatus,"eggLaying":self.eggLaying,"eggMaxTime":self.eggMaxTime,"eggTime":self.eggTime,"eggRate":self.eggRate,"exhaustion":self.exhaustion,"exhaustionPenalty":self.exhaustionPenalty,"milkEngorgement":self.milkEngorgement,"milkEngorgementLevel":self.milkEngorgementLevel,"udderEngorgement":self.udderEngorgement,"udderEngorgementLevel":self.udderEngorgementLevel,"heat":self.heat,"heatTime":self.heatTime,"heatMaxTime":self.heatMaxTime,"lactation":self.lactation,"udderLactation":self.udderLactation,"nipplePlay":int(self.nipplePlay),"udderPlay":int(self.udderPlay),"blueBalls":self.blueBalls,"teatPump":self.teatPump,"nipPump":self.nipPump,"cockPump":self.cockPump,"clitPump":self.clitPump,"vulvaPump":self.vulvaPump,"masoPot":self.masoPot,"sMasoPot":self.sMasoPot,"babyFree":self.babyFree,"charmTime":self.charmTime,"pheromone":self.pheromone,"eggceleratorTime":self.eggceleratorTime,"eggceleratorDose":self.eggceleratorDose,"bodyOil":self.bodyOil,"lustPenalty":self.lustPenalty,"fertileGel":self.fertileGel,"snuggleBall":self.snuggleBall,"eggType":self.eggType,"milkSuppressant":self.milkSuppressant,"milkSuppressantLact":self.milkSuppressantLact,"milkSuppressantUdder":self.milkSuppressantUdder,"suppHarness":self.suppHarness,"fertilityStatueCurse":self.fertilityStatueCurse,"plumpQuats":self.plumpQuats,"lilaWetStatus":self.lilaWetStatus,"cockSnakePreg":self.cockSnakePreg,"milkCPoisonNip":self.milkCPoisonNip,"milkCPoisonUdd":self.milkCPoisonUdd,"cockSnakeVenom":self.cockSnakeVenom},"affinity":{"humanAffinity":self.humanAffinity,"horseAffinity":self.horseAffinity,"wolfAffinity":self.wolfAffinity,"catAffinity":self.catAffinity,"cowAffinity":self.cowAffinity,"lizardAffinity":self.lizardAffinity,"rabbitAffinity":self.rabbitAffinity,"fourBoobAffinity":self.fourBoobAffinity,"mouseAffinity":self.mouseAffinity,"birdAffinity":self.birdAffinity,"pigAffinity":self.pigAffinity,"twoBoobAffinity":self.twoBoobAffinity,"sixBoobAffinity":self.sixBoobAffinity,"eightBoobAffinity":self.eightBoobAffinity,"tenBoobAffinity":self.tenBoobAffinity,"cowTaurAffinity":self.cowTaurAffinity,"humanTaurAffinity":self.humanTaurAffinity,"skunkAffinity":self.skunkAffinity,"bugAffinity":self.bugAffinity},"rep":{"lilaRep":self.lilaRep,"lilaVulva":self.lilaVulva,"lilaMilk":self.lilaMilk,"lilaPreg":self.lilaPreg,"malonRep":self.malonRep,"malonPreg":self.malonPreg,"malonChildren":self.malonChildren,"mistressRep":self.mistressRep,"jamieRep":self.jamieRep,"jamieSize":self.jamieSize,"jamieChildren":self.jamieChildren,"silRep":self.silRep,"silPreg":self.silPreg,"silRate":self.silRate,"silLay":self.silLay,"silGrowthTime":self.silGrowthTime,"silTied":self.silTied,"lilaUB":self.lilaUB,"dairyFarmBrand":self.dairyFarmBrand,"lilaWetness":self.lilaWetness,"jamieButt":self.jamieButt,"jamieBreasts":self.jamieBreasts,"jamieHair":self.jamieHair},"knowledge":{"foundSoftlik":self.foundSoftlik,"foundFirmshaft":self.foundFirmshaft,"foundTieden":self.foundTieden,"foundSizCalit":self.foundSizCalit,"foundOviasis":self.foundOviasis,"foundValley":self.foundValley,"foundSanctuary":self.foundSanctuary,"usedSecretStairs":self.usedSecretStairs},"boss":{"defeatedMinotaur":self.defeatedMinotaur,"defeatedFreakyGirl":self.defeatedFreakyGirl,"defeatedSuccubus":self.defeatedSuccubus},"knowSimpleAlchemy":{"knowLustDraft":self.knowLustDraft,"knowRejuvPot":self.knowRejuvPot,"knowExpPreg":self.knowExpPreg,"knowBallSwell":self.knowBallSwell,"knowMaleEnhance":self.knowMaleEnhance},"knowAdvancedAlchemy":{"knowSLustDraft":self.knowSLustDraft,"knowSRejuvPot":self.knowSRejuvPot,"knowSExpPreg":self.knowSExpPreg,"knowSBallSwell":self.knowSBallSwell,"knowGenSwap":self.knowGenSwap,"knowMasoPot":self.knowMasoPot,"knowBabyFree":self.knowBabyFree,"knowPotPot":self.knowPotPot,"knowMilkSuppress":self.knowMilkSuppress},"knowComplexAlchemy":{"knowSGenSwap":self.knowSGenSwap,"knowSMasoPot":self.knowSMasoPot,"knowSBabyFree":self.knowSBabyFree,"knowSPotPot":self.knowSPotPot,"knowPussJuice":self.knowPussJuice,"knowPheromone":self.knowPheromone,"knowBazoomba":self.knowBazoomba},"majorFetish":{"maleFetish":self.maleFetish,"femaleFetish":self.femaleFetish,"hermFetish":self.hermFetish,"narcissistFetish":self.narcissistFetish,"dependentFetish":self.dependentFetish},"moderateFetish":{"dominantFetish":self.dominantFetish,"submissiveFetish":self.submissiveFetish,"lboobFetish":self.lboobFetish,"sboobFetish":self.sboobFetish,"furryFetish":self.furryFetish,"scalyFetish":self.scalyFetish,"smoothyFetish":self.smoothyFetish},"minorFetish":{"pregnancyFetish":self.pregnancyFetish,"bestialityFetish":self.bestialityFetish,"milkFetish":self.milkFetish,"sizeFetish":self.sizeFetish,"unbirthingFetish":self.unbirthingFetish,"ovipositionFetish":self.ovipositionFetish,"toyFetish":self.toyFetish,"hyperFetish":self.hyperFetish},"kid":{"humanChildren":self.humanChildren,"equanChildren":self.equanChildren,"lupanChildren":self.lupanChildren,"felinChildren":self.felinChildren,"cowChildren":self.cowChildren,"lizanChildren":self.lizanChildren,"lizanEggs":self.lizanEggs,"bunnionChildren":self.bunnionChildren,"wolfPupChildren":self.wolfPupChildren,"miceChildren":self.miceChildren,"birdEggs":self.birdEggs,"birdChildren":self.birdChildren,"pigChildren":self.pigChildren,"calfChildren":self.calfChildren,"bugEggs":self.bugEggs,"bugChildren":self.bugChildren,"skunkChildren":self.skunkChildren,"minotaurChildren":self.minotaurChildren,"freakyGirlChildren":self.freakyGirlChildren},"trav":[],"bag":list(self.bagArray),"bagStack":list(self.bagStackArray),"stash":list(self.stashArray),"stashStack":list(self.stashStackArray),"preg":list(self.pregArray)})
          sfext = savefilename.suffix.lower()
          if sfext == ".sol":
             self.saveSOL(data,savefilename)
@@ -4445,8 +4447,8 @@ class NiminFetishFantasyv0975o_fla:
          self.heatMaxTime = int(sstatus['heatMaxTime'])
          self.lactation = int(sstatus['lactation'])
          self.udderLactation = int(sstatus['udderLactation'])
-         self.nipplePlay = float(sstatus['nipplePlay'])
-         self.udderPlay = float(sstatus['udderPlay'])
+         self.nipplePlay = int(sstatus['nipplePlay'])
+         self.udderPlay = int(sstatus['udderPlay'])
          self.blueBalls = int(sstatus['blueBalls'])
          self.teatPump = int(sstatus['teatPump'])
          self.nipPump = int(sstatus['nipPump'])
@@ -12424,24 +12426,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.choiceListButtons("Shapeshifty")
                      def doListen():
                         self.choiceListSelect("Shapeshifty")
-                        if (not self.tempBool):
-                           if self.shapeshiftyFirst == "Face":
-                              self.lockFace -= 1
-                           elif self.shapeshiftyFirst == "Skin":
-                              self.lockSkin -= 1
-                           elif self.shapeshiftyFirst == "Ears":
-                              self.lockEars -= 1
-                           elif self.shapeshiftyFirst == "Legs":
-                              self.lockLegs -= 1
-                           elif self.shapeshiftyFirst == "Breasts":
-                              self.lockBreasts -= 1
-                           elif self.shapeshiftyFirst == "Nipples":
-                              self.lockNipples -= 1
-                           elif self.shapeshiftyFirst == "Tail":
-                              self.lockTail -= 1
-                           elif self.shapeshiftyFirst == "Cock":
-                              self.lockCock -= 1
-                        else:
+                        if (self.tempBool):
                            if self.shapeshiftySecond == "Face":
                               self.lockFace -= 1
                            elif self.shapeshiftySecond == "Skin":
@@ -12458,53 +12443,70 @@ class NiminFetishFantasyv0975o_fla:
                               self.lockTail -= 1
                            elif self.shapeshiftySecond == "Cock":
                               self.lockCock -= 1
+                        else:
+                           if self.shapeshiftyFirst == "Face":
+                              self.lockFace -= 1
+                           elif self.shapeshiftyFirst == "Skin":
+                              self.lockSkin -= 1
+                           elif self.shapeshiftyFirst == "Ears":
+                              self.lockEars -= 1
+                           elif self.shapeshiftyFirst == "Legs":
+                              self.lockLegs -= 1
+                           elif self.shapeshiftyFirst == "Breasts":
+                              self.lockBreasts -= 1
+                           elif self.shapeshiftyFirst == "Nipples":
+                              self.lockNipples -= 1
+                           elif self.shapeshiftyFirst == "Tail":
+                              self.lockTail -= 1
+                           elif self.shapeshiftyFirst == "Cock":
+                              self.lockCock -= 1
                         if self.choiceListResult[0] == "Face":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Face"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Face"
+                           else:
+                              self.shapeshiftyFirst = "Face"
                            self.lockFace += 1
                         elif self.choiceListResult[0] == "Skin":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Skin"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Skin"
+                           else:
+                              self.shapeshiftyFirst = "Skin"
                            self.lockSkin += 1
                         elif self.choiceListResult[0] == "Ears":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Ears"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Ears"
+                           else:
+                              self.shapeshiftyFirst = "Ears"
                            self.lockEars += 1
                         elif self.choiceListResult[0] == "Legs":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Legs"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Legs"
+                           else:
+                              self.shapeshiftyFirst = "Legs"
                            self.lockLegs += 1
                         elif self.choiceListResult[0] == "Breasts":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Breasts"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Breasts"
+                           else:
+                              self.shapeshiftyFirst = "Breasts"
                            self.lockBreasts += 1
                         elif self.choiceListResult[0] == "Nipples":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Nipples"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Nipples"
+                           else:
+                              self.shapeshiftyFirst = "Nipples"
                            self.lockNipples += 1
                         elif self.choiceListResult[0] == "Tail":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Tail"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Tail"
+                           else:
+                              self.shapeshiftyFirst = "Tail"
                            self.lockTail += 1
                         elif self.choiceListResult[0] == "Cock":
-                           if (not self.tempBool):
-                              self.shapeshiftyFirst = "Cock"
-                           else:
+                           if (self.tempBool):
                               self.shapeshiftySecond = "Cock"
+                           else:
+                              self.shapeshiftyFirst = "Cock"
                            self.lockCock += 1
                         if (self.buttonChoice == 4 or self.buttonChoice == 8):
                            self.choiceListButtons("Shapeshifty")
@@ -22062,7 +22064,7 @@ class NiminFetishFantasyv0975o_fla:
          self.bugAffinity = 100
       else:
          self.bugAffinity += self.bug
-      if (self.lockSkin == 0):
+      if (not self.lockSkin):
          maxSkin = Math.max(self.humanAffinity,self.pigAffinity)
          maxFur = Math.max(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.rabbitAffinity,self.mouseAffinity,self.skunkAffinity)
          maxScale = Math.max(self.lizardAffinity)
@@ -22096,7 +22098,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes.")
             self.skinType = 5
       self.hasMuzzle = False
-      if (self.lockFace == 0):
+      if (not self.lockFace):
          if (self.faceType == 21 or self.faceType == 31 or self.faceType == 61):
             self.hasMuzzle = True
          if (self.dominant == 1 and self.faceType != 10):
@@ -22243,7 +22245,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText("\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.")
                self.faceType = 121
       #as3.trace(f"Face :{self.faceType}")
-      if (self.lockTail == 0):
+      if (not self.lockTail):
          tempTailArray = as3.Array(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity,self.skunkAffinity,self.bugAffinity,self.humanTaurAffinity)
          tempTailArray.sort(16)
          maxTail = tempTailArray[-1]
@@ -22327,7 +22329,7 @@ class NiminFetishFantasyv0975o_fla:
          self.runMod -= 20
          self.wings = 0
       if (self.wings > 0 and self.dominant != self.wings):...
-      if (self.lockEars == 0):
+      if (not self.lockEars):
          if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
             self.ears = 1
             self.doMainText("\n\nYour ears twitch as they become rounded and hug the sides of you head, looking more like a human's.")
@@ -22364,7 +22366,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.dominant == 12 and self.bugAffinity > second + 15 and self.ears != 12):
             self.ears = 12
             self.doMainText("\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.")
-      if (self.lockBreasts == 0):
+      if (not self.lockBreasts):
          twoBoob = Math.max(self.twoBoobAffinity,self.humanAffinity,self.horseAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity)
          sixBoob = Math.max(self.sixBoobAffinity,self.catAffinity,self.wolfAffinity,self.skunkAffinity)
          fourBoob = Math.max(self.fourBoobAffinity)
@@ -22476,7 +22478,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.breastSize > 4):
                   self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
             self.boobTotal = 10
-      if (self.lockLegs == 0):
+      if (not self.lockLegs):
          if self.correctBeastRaceFeet:
             bipedal = Math.max(self.humanAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
             bipedalDigiPaw = Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
@@ -22501,7 +22503,7 @@ class NiminFetishFantasyv0975o_fla:
             self.legChange(1001)
          if (self.humanTaurAffinity > secondLegs + 50 and self.legType != 1002):
             self.legChange(1002)
-      if (self.lockNipples == 0):
+      if (not self.lockNipples):
          nip0 = Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
          nip1 = Math.max(self.cowAffinity)
          nip2 = Math.max(self.bugAffinity)
@@ -22543,7 +22545,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.eggType == 0):
                self.eggMaxTime -= 22
             self.eggType = 1
-      if (self.lockCock == 0):
+      if (not self.lockCock):
          if (self.dominant == 1 and self.humanAffinity > second + 25 and self.human > 0 and self.cockTotal > 0 and self.humanCocks < self.cockTotal):
             self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.")
             self.humanCocks += 1
@@ -24997,7 +24999,7 @@ class NiminFetishFantasyv0975o_fla:
             self.sfcwindow.configureChild("message",text=f"Error: Detected output file type {ext} is not a supported file type")
    @staticmethod
    def dictSAVE(dictionary):
-      d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate','nipplePlay','udderPlay'),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
+      d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate'),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
       for k,v in d.items():
          for i in v:
             dictionary[k][i] = repintorfloat(dictionary[k][i])
