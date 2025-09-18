@@ -450,7 +450,7 @@ class TOML:
             text.write(']')
             return text.getvalue()
 
-def writeTOML(file, valDict, mode='w'):
+def writeTOML(file, valDict):
     nontables = []
     tables = []
     for k,v in valDict.items():
@@ -461,15 +461,14 @@ def writeTOML(file, valDict, mode='w'):
     with StringIO() as text:
         for k in nontables:
             text.write(f'{k} = {TOML.Value(valDict[k])}\n')
-        if len(nontables) > 0:
-            text.write('\n')
         for k in tables:
-            text.write(f'[{k}]\n')
+            text.write('\n')
+            text.write(f'["{k}"]\n' if str(k).find('.') != -1 else f'[{k}]\n')
             for k2,v2 in valDict[k].items():
                 text.write(f'{k2} = {TOML.Value(v2)}\n')
-            text.write('\n')
-        with open(file,mode) as f:
+        with open(file,'w') as f:
             f.write(text.getvalue())
+            
 
 tempnossl = False
 hasVenv = True
