@@ -5186,7 +5186,7 @@ class NiminFetishFantasyv0975o_fla:
          elif self.buttonChoice == 12:
             if self.moveItemID != 0:
                if self.useNewStash and self.currentState == 1:
-                  if (not self.canLoseMoveLocation(self.moveItemID)):
+                  if (not self.canLose(self.moveItemID,0)):
                      self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
                   else:
                      self.moveToStash()
@@ -5985,20 +5985,11 @@ class NiminFetishFantasyv0975o_fla:
       Returns True if item ID can be used
       """
       return ID in {2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418}
-   def canLose(self, ID:int):
+   def canLose(self, ID:int, check:int=1):
       """
       Returns True if item ID can be lost
       """
-      if (ID == 244 and self.countItem(244) == 1 and self.snuggleBall or ID == 247 and self.countItem(247) == 1 and self.suppHarness):
-         return False
-      return True
-   def canLoseMoveLocation(self, ID:int):
-      """
-      This is for when moving items between the bag and stash. Due to the way that moveItem works, the value checked for must be 0 instead of 1 since the item is no longer stored in the checked location.
-      """
-      if (ID == 244 and self.countItem(244) == 0 and self.snuggleBall or ID == 247 and self.countItem(247) == 0 and self.suppHarness):
-         return False
-      return True
+      return not (ID == 244 and self.countItem(244) == check and self.snuggleBall or ID == 247 and self.countItem(247) == check and self.suppHarness)
    @staticmethod
    def conItem(ID:int):
       """
@@ -6185,112 +6176,38 @@ class NiminFetishFantasyv0975o_fla:
       Function which returns the food value of the item ID
       """
       tempNum = 0
-      if ID == 114:
-         tempNum = 5
-      elif ID == 208:
-         tempNum = 8
-      elif ID == 209:
-         tempNum = 10
-      elif ID == 210:
-         tempNum = 20
-      elif ID == 211:
-         tempNum = 5
-      elif ID == 212:
-         tempNum = 15
-      elif ID == 214:
-         tempNum = 30
-      elif ID == 218:
-         tempNum = 10
-      elif ID == 219:
-         tempNum = 15
-      elif ID == 221:
-         tempNum = 15
-      elif ID == 222:
-         tempNum = 10
-      elif ID == 223:
-         tempNum = 25
-      elif ID == 224:
-         tempNum = 20
-      elif ID == 226:
-         tempNum = 10
-      elif ID == 238:
-         tempNum = 20
-      elif ID == 251:
-         tempNum = 40
-      elif ID == 253:
-         tempNum = 4
-      elif ID == 256:
-         tempNum = 15
-      elif ID == 259:
-         tempNum = 25
-      elif ID == 500:
-         tempNum = 30
-      elif ID == 501:
-         tempNum = 70
+      if ID == 529:
+         tempNum = 1
       elif ID == 503:
          tempNum = 3
-      elif ID == 504:
-         tempNum = 5
-      elif ID == 506:
-         tempNum = 5
-      elif ID == 507:
-         tempNum = 7
-      elif ID == 508:
-         tempNum = 7
-      elif ID == 509:
-         tempNum = 8
-      elif ID == 511:
-         tempNum = 10
-      elif ID == 512:
-         tempNum = 10
-      elif ID == 513:
+      elif ID in {513, 514, 253}:
          tempNum = 4
-      elif ID == 514:
-         tempNum = 4
-      elif ID == 516:
-         tempNum = 15
-      elif ID == 517:
-         tempNum = 15
-      elif ID == 518:
+      elif ID in {114, 211, 534, 504, 506}:
+         tempNum = 5
+      elif ID in {507, 508}:
+         tempNum = 7
+      elif ID in {208, 509, 518, 519}:
          tempNum = 8
-      elif ID == 519:
-         tempNum = 8
-      elif ID == 521:
-         tempNum = 20
-      elif ID == 522:
-         tempNum = 20
-      elif ID == 523:
+      elif ID in {512, 226, 523, 209, 535, 218, 540, 222, 511}:
          tempNum = 10
-      elif ID == 524:
+      elif ID in {256, 516, 517, 527, 212, 536, 539, 219, 221}:
+         tempNum = 15
+      elif ID in {224, 521, 522, 238, 210, 530, 538}:
+         tempNum = 20
+      elif ID in {537, 259, 223}:
+         tempNum = 25
+      elif ID in {500, 524, 214}:
          tempNum = 30
-      elif ID == 527:
-         tempNum = 15
-      elif ID == 529:
-         tempNum = 1
-      elif ID == 530:
-         tempNum = 20
+      elif ID == 251:
+         tempNum = 40
       elif ID == 531:
          tempNum = 50
-      elif ID == 534:
-         tempNum = 5
-      elif ID == 535:
-         tempNum = 10
-      elif ID == 536:
-         tempNum = 15
-      elif ID == 537:
-         tempNum = 25
-      elif ID == 538:
-         tempNum = 20
-      elif ID == 539:
-         tempNum = 15
-      elif ID == 540:
-         tempNum = 10
+      elif ID == 501:
+         tempNum = 70
       self.hunger += 2 * tempNum
    @staticmethod
    def useItemHidePage(ID:int):
-      if ID in {101,102,200,206,215,229,233,234,236,237,252,254,404}:
-         return False
-      return True
+      return not ID in {101,102,200,206,215,229,233,234,236,237,252,254,404}
    def doItemUse(self, ID:int): #!optimize
       """
       Does the behaviour of item "ID"
@@ -7314,10 +7231,10 @@ class NiminFetishFantasyv0975o_fla:
             self.doEnd()
          else:
             self.dmg = Math.floor(Math.random() * 21) + 20
-            self.outputMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {self.dmg} damage!",True)
+            self.doMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {self.dmg} damage!",True)
             self.doeHP(-self.dmg)
             if (self.percent() <= 25):
-               self.outputMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
+               self.doMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
                self.rndArray.clear()
                if (self.cockSizeMod > 0.5 and self.cockTotal > 0):
                   self.rndArray.push(1)
@@ -7332,24 +7249,25 @@ class NiminFetishFantasyv0975o_fla:
                self.rndArray.push(6)
                self.chooseFrom()
                if self.rndResult == 1:
-                  self.outputMainText(f"The stuff rushes across your {self.cockDesc()} cock{self.plural(1)}, seeping in deep and causing some permanent shrinkage.")
+                  self.doMainText(f"The stuff rushes across your {self.cockDesc()} cock{self.plural(1)}, seeping in deep and causing some permanent shrinkage.")
                   self.cockSizeMod -= 0.05
                elif self.rndResult == 2:
-                  self.outputMainText(f"The stuff rushes between your legs and you can feel some slip up into your passage{self.plural(2)}, seeping in deep and resulting in some permanent shriveling.")
+                  self.doMainText(f"The stuff rushes between your legs and you can feel some slip up into your passage{self.plural(2)}, seeping in deep and resulting in some permanent shriveling.")
                   self.vagSizeMod -= 0.05
                elif self.rndResult == 3:
-                  self.outputMainText(f"The stuff rushes across your {self.ballDesc()} balls, sinking through the scrotum and causing them to lose some of their efficiency.")
+                  self.doMainText(f"The stuff rushes across your {self.ballDesc()} balls, sinking through the scrotum and causing them to lose some of their efficiency.")
                   self.cumMod -= 0.1
                elif self.rndResult == 4:
-                  self.outputMainText(f"The stuff rushes across your {self.boobDesc()} breasts, sinking into your mammary glands and reducing their power.")
+                  self.doMainText(f"The stuff rushes across your {self.boobDesc()} breasts, sinking into your mammary glands and reducing their power.")
                   self.milkMod -= 5
                elif self.rndResult == 5:
-                  self.outputMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.")
+                  self.doMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.")
                   self.pregRate -= 0.05
                   self.pregChanceMod -= 1
                   self.extraPregChance -= 1
                else:
-                  self.outputMainText("Thankfully, it barely touches you and you're left unaffected.")
+                  self.doMainText("Thankfully, it barely touches you and you're left unaffected.")
+            self.displayMainText()
             if (self.currentState == 2):
                self.doEnd()
       elif ID == 232:
@@ -8477,7 +8395,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Stash")
             self.choiceListBlanks()
-         elif self.canLoseMoveLocation(self.moveItemID):
+         elif self.canLose(self.moveItemID,0):
             tempNum = self.moveItemID
             tempNum2 = self.moveItemStack
             if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
@@ -9598,9 +9516,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Returns whether a specific hairstyle has length options
       """
-      if ID in {1,2,3,4,8,9,10,11,13}:
-         return True
-      return False
+      return ID in {1,2,3,4,8,9,10,11,13}
    @staticmethod
    def hairstyleDescription(ID:int):
       if ID == 0:
@@ -13052,19 +12968,18 @@ class NiminFetishFantasyv0975o_fla:
                self.doSanctuary()
          self.doListen = doListen
    def debugSenarioChooser(self, numbers:tuple):
-      if numbers[0] != numbers[1]:
-         self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.",True)
-         self.bc()
-         self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,0))
-         temp = input(f"Enter a senario between {numbers[0]} and {numbers[1]}: ")
-         try:
-            temp = int(temp)
-         except:
-            return None
-         if temp < numbers[0] or temp > numbers[1]:
-            return None
-         return temp
-      return numbers[0]
+      if numbers[0] == numbers[1]:
+         return numbers[0]
+      self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.",True)
+      self.bc()
+      self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,0))
+      try:
+         temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
+      except:
+         return None
+      if temp < numbers[0] or temp > numbers[1]:
+         return None
+      return temp
    def eventSelect(self, which:str):
       #!Here
       if as3state.as3DebugEnable and self.debugChooseSenario:
@@ -23143,9 +23058,7 @@ class NiminFetishFantasyv0975o_fla:
       self.udderSize += sizeChange
       self.teatSize += sizeChange
    def udderCheck(self, which:int):
-      if (which == 1 and self.legType == 1001 or which == 2 and self.cowAffinity >= 55):
-         return True
-      return False
+      return (which == 1 and self.legType == 1001 or which == 2 and self.cowAffinity >= 55)
    def lactChange(self, which:int, amount:int):
       if (which == 1 and self.lactation + amount >= 1 and self.lactation < 1):
          self.doMainText(f"\n\nBlotches spread across your {self.clothesTop()} around your nipples. Curiously, you dab your finger in the moistness and take a taste. Milk... Your breasts seem to have begun lactating!")
@@ -24437,9 +24350,7 @@ class NiminFetishFantasyv0975o_fla:
    def isBottomOpen(self, ID:int=None):
       if ID == None:
          ID = self.attireBot
-      if ID in {-1,5,7,12,13,14,16,25}: #Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
-         return True
-      return False
+      return ID in {-1,5,7,12,13,14,16,25} # Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
    def genName(self):
       if self.gender == 0:
          return "n androgynous"
@@ -25557,10 +25468,10 @@ class NiminFetishFantasyv0975o_fla:
             temp = 1.0
          else:
             temp = temp[0]
-         if self.currentState != 0:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
-         else:
+         if self.currentState == 0:
             tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
+         else:
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str_}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
          self.dvw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
          self.dvw.children["text"].yview_moveto(temp)
    def closeDebugWindow(self, *e):
@@ -25586,35 +25497,33 @@ class NiminFetishFantasyv0975o_fla:
          self.dgiw.bind("<Destroy>",self.closeDGIWindow)
    def debugGiveItem(self, *e):
       self.debugGITimes = 0
-      if self.currentState != 0:
-         EN = self.dgiwcombo.getEntries()
-         temperr = ""
-         try:
-            ID = int(EN[0],10)
-         except:
-            temperr = "ID must be a number"
-         else:
-            try:
-               QUAN = int(EN[1],10)
-            except:
-               if temperr == "":
-                  temperr = "Quantity must be a number"
-         if temperr == "":
-            if ID not in {2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
-               self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
-            else:
-               if QUAN > 0:
-                  for i in range(QUAN):
-                     self.itemGainArray.append(ID)
-                  self.gainItem(self.itemGainArray.pop())
-               else:
-                  self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
-         else:
-            self.dgiwerrlabel["text"] = temperr
-            as3.Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
-      else:
+      if self.currentState == 0:
          self.dgiwerrlabel["text"] = "Error: Game not loaded"
-         as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
+         raise as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
+      EN = self.dgiwcombo.getEntries()
+      temperr = ""
+      try:
+         ID = int(EN[0],10)
+      except:
+         temperr = "ID must be a number"
+      else:
+         try:
+            QUAN = int(EN[1],10)
+         except:
+            if not temperr:
+               temperr = "Quantity must be a number"
+      if temperr:
+         self.dgiwerrlabel["text"] = temperr
+         raise as3.Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
+      if ID in {2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
+         if QUAN > 0:
+            for i in range(QUAN):
+               self.itemGainArray.append(ID)
+            self.gainItem(self.itemGainArray.pop())
+         else:
+            self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
+      else:
+         self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
    def closeDGIWindow(self, *e):
       self.debugGIWinOpen = False
       self.dgiwlabel.destroy()
@@ -25653,86 +25562,84 @@ class NiminFetishFantasyv0975o_fla:
          self.daw.transient(self.mo.children["root"])
          self.daw.bind("<Destroy>",self.closeDAWindow)
    def debugAffinityChange(self, *e):
-      if self.currentState != 0:
-         err = ""
-         values = self.dawcombo.getEntries()
-         aff = values[0].upper()
-         validAff = {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "L1001",
-            "L1002",
-            "B2",
-            "B4",
-            "B6",
-            "B8",
-            "B10"
-         }
-         if aff not in validAff:
-            err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
-         else:
-            try:
-               amount = int(values[1],10)
-            except:
-               err = "Amount must be an integer"
-         if err == "":
-            if aff == "1":
-               self.human += amount
-            elif aff == "2":
-               self.horse += amount
-            elif aff == "3":
-               self.wolf += amount
-            elif aff == "4":
-               self.cat += amount
-            elif aff == "5":
-               self.cow += amount
-            elif aff == "6":
-               self.lizard += amount
-            elif aff == "7":
-               self.rabbit += amount
-            elif aff == "8":
-               self.mouse += amount
-            elif aff == "9":
-               self.bird += amount
-            elif aff == "10":
-               self.pig += amount
-            elif aff == "11":
-               self.skunk += amount
-            elif aff == "12":
-               self.bug += amount
-            elif aff == "L1001":
-               self.cowTaurAffinity += amount
-            elif aff == "L1002":
-               self.humanTaurAffinity += amount
-            elif aff == "B2":
-               self.twoBoobAffinity += amount
-            elif aff == "B4":
-               self.fourBoobAffinity += amount
-            elif aff == "B6":
-               self.sixBoobAffinity += amount
-            elif aff == "B8":
-               self.eightBoobAffinity += amount
-            elif aff == "B10":
-               self.tenBoobAffinity += amount
-            if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame: #Should only happen when in doGeneral
-               self.doProcess(override="aff")
-            self.detailedDebug()
-         else:
-            self.dawerrlabel["text"] = err
-            as3.Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
-      else:
+      if self.currentState == 0:
          self.dawerrlabel["text"] = "Error: Game not loaded"
-         as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
+         raise as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
+      err = ""
+      values = self.dawcombo.getEntries()
+      aff = values[0].upper()
+      validAff = {
+         "1",
+         "2",
+         "3",
+         "4",
+         "5",
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "11",
+         "12",
+         "L1001",
+         "L1002",
+         "B2",
+         "B4",
+         "B6",
+         "B8",
+         "B10"
+      }
+      if aff not in validAff:
+         err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
+      else:
+         try:
+            amount = int(values[1],10)
+         except:
+            err = "Amount must be an integer"
+      if err:
+         self.dawerrlabel["text"] = err
+         raise as3.Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
+      if aff == "1":
+         self.human += amount
+      elif aff == "2":
+         self.horse += amount
+      elif aff == "3":
+         self.wolf += amount
+      elif aff == "4":
+         self.cat += amount
+      elif aff == "5":
+         self.cow += amount
+      elif aff == "6":
+         self.lizard += amount
+      elif aff == "7":
+         self.rabbit += amount
+      elif aff == "8":
+         self.mouse += amount
+      elif aff == "9":
+         self.bird += amount
+      elif aff == "10":
+         self.pig += amount
+      elif aff == "11":
+         self.skunk += amount
+      elif aff == "12":
+         self.bug += amount
+      elif aff == "L1001":
+         self.cowTaurAffinity += amount
+      elif aff == "L1002":
+         self.humanTaurAffinity += amount
+      elif aff == "B2":
+         self.twoBoobAffinity += amount
+      elif aff == "B4":
+         self.fourBoobAffinity += amount
+      elif aff == "B6":
+         self.sixBoobAffinity += amount
+      elif aff == "B8":
+         self.eightBoobAffinity += amount
+      elif aff == "B10":
+         self.tenBoobAffinity += amount
+      if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame: #Should only happen when in doGeneral
+         self.doProcess(override="aff")
+      self.detailedDebug()
    def closeDAWindow(self, *e):
       self.debugAWinOpen = False
    def openWiki(self):
