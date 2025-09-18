@@ -6466,9 +6466,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.cockPump = 0
                         self.cockSize += 1
                         self.doMainText(f"\n\nAlthough, the swelling from the suction doesn't seem to go down all the way, your cock{self.plural(1)} permanently slightly larger.")
-                     self.displayMainText()
                      self.hrs = 1
-                     self.doEnd()
                   else:
                      getCum = self.cumAmount()
                      if (self.moistCalc(1) <= 3):
@@ -6523,13 +6521,12 @@ class NiminFetishFantasyv0975o_fla:
                         self.doLust(-(self.sen // 4),2,3,57,4)
                      else:
                         self.doLust(-(self.sen // 4),2,1,57,4)
-                     self.displayMainText()
                      self.hrs = 2
-                     self.doEnd()
+                  self.displayMainText()
+                  self.doEnd()
                elif self.buttonChoice == 7:
                   if (self.lust < 20):
-                     self.outputMainText("You're not really in the mood to do it at the moment, opting to put the pump back in your bag for now...",True)
-                     self.doEnd()
+                     self.doMainText("You're not really in the mood to do it at the moment, opting to put the pump back in your bag for now...",True)
                   else:
                      if (self.clitSize <= 20):
                         self.doMainText(f"Feeling a little kinky, you take the smallest available cylinder and push it over {self.oneYour(2)} clit{self.plural(2)}. Turning on the machine, you quickly notice you're still too small, having to manually seal the cylinder against your skin with your fingers. However, that isn't a problem, as you soon begin to enjoy the sucking on your clit, the button swelling from the vacuum while your fingers sliding through your {self.vulvaDesc()} lips and dipping into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
@@ -6557,9 +6554,9 @@ class NiminFetishFantasyv0975o_fla:
                         self.doLust(-(self.sen // 4),2,1)
                      else:
                         self.doLust(-(self.sen // 4),2,1)
-                     self.displayMainText()
                      self.hrs = 2
-                     self.doEnd()
+                  self.displayMainText()
+                  self.doEnd()
                elif self.buttonChoice == 10:
                   self.outputMainText("You realize you didn't actually want to use the pump and put it back in your bag. You fickle bastard.",True)
                   self.doEnd()
@@ -6606,9 +6603,8 @@ class NiminFetishFantasyv0975o_fla:
          if (self.checkItem(219)):
             if (self.knowPheromone and self.silRep < 1 and not (self.checkItem(530) or self.checkStash(530) or self.checkItem(532) or self.checkStash(532)) and self.pheromone < 1):
                self.loseManyItem(219,1)
-               self.outputMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.",True)
+               self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.",True)
                self.itemAdd(530)
-               self.doEnd()
             else:
                chance = self.percent()
                self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\n",True)
@@ -6628,11 +6624,10 @@ class NiminFetishFantasyv0975o_fla:
                elif (chance <= 100):
                   self.doMainText("Into the reception bin rolls a golden-shelled glowing egg.")
                   self.itemAdd(531)
-               self.displayMainText()
-               self.doEnd()
          else:
-            self.outputMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.",True)
-            self.doEnd()
+            self.doMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.",True)
+         self.displayMainText()
+         self.doEnd()
       elif ID == 110:
          self.choiceListArray.clear()
          if (self.breastSize > 0):
@@ -6791,12 +6786,11 @@ class NiminFetishFantasyv0975o_fla:
                if (self.balls > 2):
                   self.outputMainText("You rub the neuterizer into your scrotum. You squirm a bit as one of your testicles wrenches a bit, shrinking down. Once it disappears into nothing, you feel perfectly fine again.",True)
                   self.balls -= 1
-                  self.doEnd()
                else:
                   self.outputMainText("Unfortunately, the neuterizer cannot simply make your testicles disappear while you still have any cocks. It would be... too dangerous. But, rubbing it onto your scrotum, your balls disappear up into your body, hidden from view.",True)
                   self.neuterizerHideBalls = True
                   self.showBalls = False
-                  self.doEnd()
+               self.doEnd()
             elif self.buttonChoice == 12:
                self.itemAdd(120)
                self.doProcess()
@@ -6887,8 +6881,6 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your cock{self.plural(1)}. Within seconds, you begin to shudder erotically as warmth fills your cock{self.plural(1)}, becoming erect. After waiting a few moments, the erection settles somewhat, but the warmth of the venom within persists, as though lying in wait...",True)
             self.doLust(4 * self.cockTotal,0)
             self.cockSnakeVenom += 5
-            self.displayMainText()
-            self.doEnd()
          elif (self.vagTotal > 0):
             self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. Within seconds, you begin to shudder...",True)
             if (self.clitSize > 20 and self.percent() <= 5):
@@ -6900,11 +6892,10 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(f" You feel your {self.clitDesc()} clit{self.plural(2)} grow warm. Within seconds, you begin to shudder erotically as you clit{self.plural(2)} grow hot and erect. After waiting a few moments, the initial intensity passes, but the warmth of the venom within persists, as though lying in wait...")
                self.cockSnakeVenom += 5
                self.doLust(4 * self.vagTotal,0)
-            self.displayMainText()
-            self.doEnd()
          else:
-            self.outputMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. You wait for several seconds and... nothing seems to happen. What a waste.",True)
-            self.doEnd()
+            self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. You wait for several seconds and... nothing seems to happen. What a waste.",True)
+         self.displayMainText()
+         self.doEnd()
       elif ID == 203:
          self.outputMainText(f"You rub the tuft of coarse wolf fur into your {self.skinDesc()}. The roughness desensitizes you a bit.",True)
          self.stats(0,0,0,-3)
@@ -7201,9 +7192,8 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
       elif ID == 230:
          if (self.vagTotal < 1):
-            self.outputMainText("You take out the eggcelerator, realize you don't have an appropriate orifice, and put it back away...",True)
+            self.doMainText("You take out the eggcelerator, realize you don't have an appropriate orifice, and put it back away...",True)
             self.itemAdd(230)
-            self.doEnd()
          else:
             self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} and squat down to help spread your {self.vulvaDesc()} lips. Grabbing the eggcelerator with your fingertips, you slip it into {self.oneYour(2)} slit{self.plural(2)}, pointy end first. It doesn't take much before physics takes over and the suppository slips up into your deeper spaces where you can feel a slight tingle as it dissolves.",True)
             if (self.eggLaying > 0):
@@ -7222,8 +7212,8 @@ class NiminFetishFantasyv0975o_fla:
                   self.eggceleratorDose += 1
             else:
                self.doMainText("\n\nOther than the tingling, it doesn't seem to do much... It would probably be more useful if you could actually lay eggs.")
-            self.displayMainText()
-            self.doEnd()
+         self.displayMainText()
+         self.doEnd()
       elif ID == 231:
          if (self.currentState != 2):
             self.outputMainText("You can only use this dangerous sand in battle. You put the sand back into your bag.",True)
@@ -7638,24 +7628,23 @@ class NiminFetishFantasyv0975o_fla:
             for i in range(0,self.pregArray.length,5):
                if (self.pregArray[i]):
                   self.pregArray[i + 3] += 50
-            self.outputMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size.")
-            self.doEnd()
+            self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size.")
          else:
-            self.outputMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely feel like you have to go to the bathroom all of a sudden...",True)
-            self.doEnd()
+            self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely feel like you have to go to the bathroom all of a sudden...",True)
+         self.displayMainText()
+         self.doEnd()
       elif ID == 507:
          if (self.balls > 0):
             if (self.showBalls):
-               self.outputMainText(f"Downing the potion, you quickly begin to feel a slight ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in a while...",True)
+               self.doMainText(f"Downing the potion, you quickly begin to feel a slight ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in a while...",True)
                self.blueBalls += 30
-               self.doEnd()
             else:
-               self.outputMainText("Downing the potion, you quickly begin to feel a slight ache in your abdomen, like you haven't had an orgasm in a while...",True)
+               self.doMainText("Downing the potion, you quickly begin to feel a slight ache in your abdomen, like you haven't had an orgasm in a while...",True)
                self.blueBalls += 30
-               self.doEnd()
          else:
-            self.outputMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
-            self.doEnd()
+            self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
+         self.displayMainText()
+         self.doEnd()
       elif ID == 508:
          self.doMainText("You take a swig of the draft, your loins burning hot within seconds.",True)
          self.doLust(50,0)
@@ -7683,24 +7672,23 @@ class NiminFetishFantasyv0975o_fla:
             for i in range(0,self.pregArray.length,5):
                if (self.pregArray[i]):
                   self.pregArray[i + 3] += 120
-            self.outputMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size...")
-            self.doEnd()
+            self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size...")
          else:
-            self.outputMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely wish there was a bathroom here all of a sudden...",True)
-            self.doEnd()
+            self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely wish there was a bathroom here all of a sudden...",True)
+         self.displayMainText()
+         self.doEnd()
       elif ID == 512:
          if (self.balls > 0):
             if (self.showBalls):
-               self.outputMainText(f"Downing the potion, you quickly begin to feel a great ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in sooo long!",True)
+               self.doMainText(f"Downing the potion, you quickly begin to feel a great ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in sooo long!",True)
                self.blueBalls += 70
-               self.doEnd()
             else:
-               self.outputMainText("Downing the potion, you quickly begin to feel a great ache in your abdomen, like you haven't had an orgasm in sooo long!",True)
+               self.doMainText("Downing the potion, you quickly begin to feel a great ache in your abdomen, like you haven't had an orgasm in sooo long!",True)
                self.blueBalls += 70
-               self.doEnd()
          else:
-            self.outputMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
-            self.doEnd()
+            self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
+         self.displayMainText()
+         self.doEnd()
       elif ID == 513:
          if self.gender == 1:
             self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside.",True)
@@ -7783,12 +7771,13 @@ class NiminFetishFantasyv0975o_fla:
       elif ID == 517:
          if (self.balls > 0):
             if (self.showBalls):
-               self.outputMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly warmer. You can almost hear them hum as they work harder to produce more fun goop for your cock{self.plural(1)}.",True)
+               self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly warmer. You can almost hear them hum as they work harder to produce more fun goop for your cock{self.plural(1)}.",True)
             else:
-               self.outputMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly warmer. You can almost hear something inside hum as it works harder to produce more fun goop for your cock{self.plural(1)}.",True)
+               self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly warmer. You can almost hear something inside hum as it works harder to produce more fun goop for your cock{self.plural(1)}.",True)
          else:
-            self.outputMainText("If you had balls to be kicked in, they'd probably be feeling more active right now. Not that you would know, you ball-less freak.",True)
+            self.doMainText("If you had balls to be kicked in, they'd probably be feeling more active right now. Not that you would know, you ball-less freak.",True)
          self.cumMod += 0.2
+         self.displayMainText()
          self.doEnd()
       elif ID == 518:
          if self.gender == 1:
@@ -7884,12 +7873,13 @@ class NiminFetishFantasyv0975o_fla:
       elif ID == 522:
          if (self.balls > 0):
             if (self.showBalls):
-               self.outputMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly hotter. You can almost hear them whir as they work harder to produce more fun goop for your cock{self.plural(1)}.",True)
+               self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly hotter. You can almost hear them whir as they work harder to produce more fun goop for your cock{self.plural(1)}.",True)
             else:
-               self.outputMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly hotter. You can almost hear something inside whir as it works harder to produce more fun goop for your cock{self.plural(1)}.",True)
+               self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly hotter. You can almost hear something inside whir as it works harder to produce more fun goop for your cock{self.plural(1)}.",True)
          else:
-            self.outputMainText("If you had balls to be kicked in, they'd probably be feeling much more active right now. Not that you would know, you ball-less freak.",True)
+            self.doMainText("If you had balls to be kicked in, they'd probably be feeling much more active right now. Not that you would know, you ball-less freak.",True)
          self.cumMod += 0.5
+         self.displayMainText()
          self.doEnd()
       elif ID == 523:
          self.doMainText("You pop open the vial of cum and let it ooze down your throat, shivering a bit from the heady taste.",True)
@@ -7909,14 +7899,14 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
       elif ID == 526:
          if (self.currentState == 2):
-            self.outputMainText("You have no use for a barrel full of cum in the midst of battle, so you... tuck it away somewhere in your bag?",True)
+            self.doMainText("You have no use for a barrel full of cum in the midst of battle, so you... tuck it away somewhere in your bag?",True)
             self.itemAdd(526)
-            self.doEnd()
          else:
-            self.outputMainText(f"Without much of a use for it otherwise, you decide to... strip down naked and jump in!\n\nThe cum is nice and warm and feels so good on your {self.skinDesc()}. You scrub yourself nice and thoroughly, making sure to get all the nooks and crannies. And with the slimy goop, you really focus on those crannies~\n\nAfter cleaning yourself up a bit, you sit back and relax, pulling out a toy to play with.\n\n\n'Oh rubber ducky, you're the one. You make bath-time lots of fun~'",True)
+            self.doMainText(f"Without much of a use for it otherwise, you decide to... strip down naked and jump in!\n\nThe cum is nice and warm and feels so good on your {self.skinDesc()}. You scrub yourself nice and thoroughly, making sure to get all the nooks and crannies. And with the slimy goop, you really focus on those crannies~\n\nAfter cleaning yourself up a bit, you sit back and relax, pulling out a toy to play with.\n\n\n'Oh rubber ducky, you're the one. You make bath-time lots of fun~'",True)
             self.stats(0,0,1,1)
             self.hrs += 1
-            self.doEnd()
+         self.displayMainText()
+         self.doEnd()
       elif ID == 527:
          self.doMainText("You crack open the good egg and down its contents, feeling healthier and stronger already.",True)
          self.doHP(15)
@@ -8909,13 +8899,14 @@ class NiminFetishFantasyv0975o_fla:
       def doListen():
          if self.buttonChoice == 5:
             self.hairColor = self.tempColor
-            self.outputMainText(f"You smear the {self.itemName(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.",True)
+            self.doMainText(f"You smear the {self.itemName(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.",True)
          elif self.buttonChoice == 7:
             self.skinColor = self.tempColor
-            self.outputMainText(f"You rub the {self.itemName(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.",True)
+            self.doMainText(f"You rub the {self.itemName(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.",True)
          elif self.buttonChoice == 10:
-            self.outputMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.",True)
+            self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.",True)
             self.itemAdd(self.tempID)
+         self.displayMainText()
          self.doEnd()
       self.doListen = doListen
    def doApothecary(self):
@@ -11158,8 +11149,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
    def doCockMasturbate(self):
       if (self.lust < 20):
-         self.outputMainText(f"You're hardly aroused enough to get your cock{self.plural(1)} standing, let alone masturbate. You'll just have to settle for something else.",True)
-         self.doEnd()
+         self.doMainText(f"You're hardly aroused enough to get your cock{self.plural(1)} standing, let alone masturbate. You'll just have to settle for something else.",True)
       else:
          self.rndArray.clear()
          if (self.humanCocks > 0):
@@ -11323,12 +11313,11 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(f" Your softening member{self.plural(1)} slowly recede back into the {self.clothesBottom()}, leaving a slight slimy trail in the process, but at least allows you to tuck {self.plural(9)} away for now as you proceed to clean up the mess you made.")
             self.doLust(-(self.sen // 2),2,1)
          elif (chance == 8):...
-         self.displayMainText()
-         self.doEnd()
+      self.displayMainText()
+      self.doEnd()
    def doVagMasturbate(self):
       if (self.lust < 20):
-         self.outputMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
-         self.doEnd()
+         self.doMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
       else:
          self.rndArray = as3.Array(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
@@ -11421,8 +11410,8 @@ class NiminFetishFantasyv0975o_fla:
             self.hrs = 1
          elif chance == 7:...
          elif chance == 8:...
-         self.displayMainText()
-         self.doEnd()
+      self.displayMainText()
+      self.doEnd()
    #def doBothMasturbate(self):
    #   if (self.ment >= self.lib - 10):
    #      self.outputMainText("",True)
@@ -13254,37 +13243,34 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             if self.buttonChoice == 1:
                if (self.coin < 20):
-                  self.outputMainText("\"Err... You don't exactly have enough to buy that... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
-                  self.hrs = 1
-                  self.doEnd()
+                  self.doMainText("\"Err... You don't exactly have enough to buy that... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
                else:
-                  self.outputMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
-                  self.hrs = 1
+                  self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                   self.doCoin(-20)
                   self.itemAdd(534)
-                  self.doEnd()
+               self.hrs = 1
+               self.displayMainText()
+               self.doEnd()
             elif self.buttonChoice == 3:
                if (self.coin < 100):
-                  self.outputMainText("\"Err... You don't exactly have enough to buy that many... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
-                  self.hrs = 1
-                  self.doEnd()
+                  self.doMainText("\"Err... You don't exactly have enough to buy that many... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
                else:
-                  self.outputMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
-                  self.hrs = 1
+                  self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                   self.doCoin(-100)
                   self.addManyItem(534, 6)
-                  self.doEnd()
+               self.hrs = 1
+               self.displayMainText()
+               self.doEnd()
             elif self.buttonChoice == 6:
                if (self.coin < 200):
-                  self.outputMainText("\"Sorry, but you don't have enough coins to buy that and I definitely can't afford to give the recipe away for free... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
-                  self.hrs = 1
-                  self.doEnd()
+                  self.doMainText("\"Sorry, but you don't have enough coins to buy that and I definitely can't afford to give the recipe away for free... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.",True)
                else:
-                  self.outputMainText("\"Aha, an entrepreneur yourself, eh? Well, since you've got the coins to invest, here you go.\" He takes your money and hands you the parchment with the recipe. \"Thank you for your business and may we deal again in the future. Good luck to your ventures as well. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
-                  self.hrs = 1
+                  self.doMainText("\"Aha, an entrepreneur yourself, eh? Well, since you've got the coins to invest, here you go.\" He takes your money and hands you the parchment with the recipe. \"Thank you for your business and may we deal again in the future. Good luck to your ventures as well. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.",True)
                   self.doCoin(-200)
                   self.knowMaleEnhance = True
-                  self.doEnd()
+               self.hsr = 1
+               self.displayMainText()
+               self.doEnd()
             elif self.buttonChoice == 11:
                self.outputMainText("\"Alright, maybe next time then.\" And just as quickly as he appeared, he vanishes into the town to sell off his wares.",True)
                self.hrs = 1
@@ -13311,13 +13297,14 @@ class NiminFetishFantasyv0975o_fla:
             self.buttonConfirm(b6=False if (self.coin < 100) else True)
             def doListen():
                if (self.buttonChoice == 6):
-                  self.outputMainText("\"Well, here you go.\" He hands you a vial as he takes your coins. \"Now I've got to get going to catch that rat bastard who's going to rip me off. Good luck to you!\"\n\nHe starts trudging down the street, but turns back for only a moment to shout, \"Oh! And don't forget to read the warning label!\" And with that he's gone.\n\nLooking down at the vial, you can't seem to find any kind of warning... Now that you think about it, wasn't there a label on the crate?",True)
+                  self.doMainText("\"Well, here you go.\" He hands you a vial as he takes your coins. \"Now I've got to get going to catch that rat bastard who's going to rip me off. Good luck to you!\"\n\nHe starts trudging down the street, but turns back for only a moment to shout, \"Oh! And don't forget to read the warning label!\" And with that he's gone.\n\nLooking down at the vial, you can't seem to find any kind of warning... Now that you think about it, wasn't there a label on the crate?",True)
                   self.doCoin(-100)
                   self.itemAdd(257)
                   self.hrs = 2
                else:
-                  self.outputMainText("\"Ahh, that's fine. I just hope you have a better day than I've had...\" He trudges off down the street, grumbling over his continued failures.",True)
+                  self.doMainText("\"Ahh, that's fine. I just hope you have a better day than I've had...\" He trudges off down the street, grumbling over his continued failures.",True)
                   self.hrs = 1
+               self.displayMainText()
                self.doEnd()
             self.doListen = doListen
       elif chance == 4:
@@ -14530,25 +14517,21 @@ class NiminFetishFantasyv0975o_fla:
                                        else:
                                           self.doMainText(f" outside to dangle your {self.cockDesc()} thing over the rail of the wooden bridge and blowing your load on whatever ventures down below. You then rush away, just in case...")
                                        self.hrs = 3
-                                       self.displayMainText()
-                                       self.doEnd()
                                     else:
-                                       self.outputMainText("\n\nSoon finishing up, leaving the two of you clean, Mommy gulps the last of the unexpected taste and smirks at you. \"Alright, that's good enough. Here, take some of this, you might like it some time. Now you should better get going before you make Lila dirty again.\" She sticks out her tongue and hands you some of the concoction.\n\nYou take her advice, clothe yourself, give the naked Lila a hug goodbye, and head off.")
+                                       self.doMainText("\n\nSoon finishing up, leaving the two of you clean, Mommy gulps the last of the unexpected taste and smirks at you. \"Alright, that's good enough. Here, take some of this, you might like it some time. Now you should better get going before you make Lila dirty again.\" She sticks out her tongue and hands you some of the concoction.\n\nYou take her advice, clothe yourself, give the naked Lila a hug goodbye, and head off.")
                                        self.itemAdd(227)
                                        self.hrs = 3
-                                       self.doEnd()
                                  elif (self.vagTotal > 0):
                                     self.doMainText(f" Her tongue slips in and out of your {self.vulvaDesc()} folds, thinking of it no differently than her mother. Which is an odd thought, considering how deftly her tongue lashes around your {self.clitDesc()} clit{self.plural(2)}. Between her efforts and the exreme tingling of the concoction, you soon find your {self.hipDesc()} hips bucking upon the plush carpet as you climax into the girl's mouth.\n\nLila's mother giggles at your reaction. \"Good, isn't she?\"\n\nNot inquiring about the statement, you wait a few moments and you're soon as fresh as a can be. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
                                     self.itemAdd(227)
                                     self.doLust(-(self.sen // 2),2,2)
-                                    self.displayMainText()
                                     self.hrs = 3
-                                    self.doEnd()
                                  else:
-                                    self.outputMainText(" Though there's no big difference, since you don't have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
+                                    self.doMainText(" Though there's no big difference, since you don't have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
                                     self.itemAdd(227)
                                     self.hrs = 3
-                                    self.doEnd()
+                                 self.displayMainText()
+                                 self.doEnd()
                               self.doListen = doListen
                            elif (self.buttonChoice == 3):
                               self.doMainText("\"Oh, ok, so you'd rather just help Lila then? An extra tongue is always welcome!\" Mommy speaks as though you already knew what the job entailed.\n\nYou step inside to spot Lila already removing her sundress, standing there naked with her nipples and dainty slit exposed for you both to see as she waits. Her mother then guides you both along into the bathroom, making sure the girl doesn't dawdle.\n\nThe bathroom is fiarly sparse and actually lacks any sort of tub or main faucet to get water from. It even has a rather plush carpet. Though it's quickly apparent as to why when the two of them sit down upon it. Lila's mother holds a cup she has been carrying up to her mouth and takes a swig, swishing it around before swallowing with a gasp. Lila then does the same and proceeds to begin licking at the fur of her arm. Her mother's tongue, being much larger, assists her daughter and starts licking at the girls back.\n\nWith each lick, Lila's coat seems to shine cleanly and softly, thanks to whatever was in that concoction. Shortly, her mother hands you the cup as well and urges you to take a sip to help with the process. As it goes into your mouth and down your throat, it feels quite tingly and fresh, your mouth feeling both burning and cold at the same time and continuing on down your throat as you swallow. Besides feeling a bit... odd, you otherwise have no problem joining in.\n\nWith her mother on the back, you decide to take the front. The fur is soft and sweet smelling, and actually tastes fairly nice as well. Your tongue laps across Lila's nipples, making them stiffen against your lips. Lila stretches her leg high over her head, curling around to lick along her thigh as you begin to touch down further and further towards her nethers. You can hear her begin to pant, her breathing growing heavy until her tender lips are swollen and red with her heat kicking in once again.\n\nHer mother rolls her eyes and chuckles, nodding for you to take care of her. With another nod, Lila begins to whimper and mewl as you lick and lap at her sensitive sex, making sure to clean every crevice. You continue on, even as honey begins to ooze out and dab your nose and fill your mouth. You gulp down as much as you can, trying to make everything clean, but eventually Lila rolls backwards with a quiver, blushing as she climaxes softly...",True)
@@ -14961,17 +14944,16 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doMainText("You mention that you should take her to the local tailor to get herself a more 'fitting' piece for her outfit that will help her stay dry. She nods and takes your hand, but as you go to the tailor, her face turns pale as she sees what you mean. You grab a diaper from a shelf, with the only variety available being the extra poofy kind, and bring it up to the counter for purchase.",True)
                      if (self.coin < 40):
-                        self.outputMainText(" However, you don't seem to have enough coin on hand to pay for it.\n\nYou break to her the bad news, but for some reason she seems especially joyful. And she's rather quick to get away from you, seemingly in a hurry to do something else...")
+                        self.doMainText(" However, you don't seem to have enough coin on hand to pay for it.\n\nYou break to her the bad news, but for some reason she seems especially joyful. And she's rather quick to get away from you, seemingly in a hurry to do something else...")
                         self.hrs = 2
-                        self.lilaRep = 1
-                        self.doEnd()
                      else:
-                        self.outputMainText(" You pay the 40 coins for the diaper and turn to take her hand once again. Although, she seems rather afraid as you do...\n\nYou lead her back up to your private room and sit her up on the bed. She seems oddly silent, closing her eyes with an intense blush and trying to ignore the fact that you're laying her down and pulling up her sundress, exposing her dribbling nethers. Her lower lips are extra-pink and swollen, signs of her heat. You spread her legs wide and wipe up the mess with a towel, eliciting a small mewl from her, before pulling her feet high and raising her bum so you can wedge the diaper underneath. You place her back down, spreading her legs once more to pull up the flap and then fasten its sides.\n\nLifting her back up to a stand and checking to make sure her tail comfortably fits over the waistband, she doesn't seem particularly pleased. As her dress falls back down, the outline of the thick undergarment is quite obvious, though her wetness seems to have ended.\n\n\"Uhh... Umm... Th-Thank you..\"\n\nShe begins to head back out, waddling slowly. With each step she cringes at the crunch of the padding, her cheeks even redder than when you first met her. Her tail twitches in an annoyed sense and, somehow, you have a feeling she won't be wearing your gift for too long. Nor will she probably wish to remember this experience...")
+                        self.doMainText(" You pay the 40 coins for the diaper and turn to take her hand once again. Although, she seems rather afraid as you do...\n\nYou lead her back up to your private room and sit her up on the bed. She seems oddly silent, closing her eyes with an intense blush and trying to ignore the fact that you're laying her down and pulling up her sundress, exposing her dribbling nethers. Her lower lips are extra-pink and swollen, signs of her heat. You spread her legs wide and wipe up the mess with a towel, eliciting a small mewl from her, before pulling her feet high and raising her bum so you can wedge the diaper underneath. You place her back down, spreading her legs once more to pull up the flap and then fasten its sides.\n\nLifting her back up to a stand and checking to make sure her tail comfortably fits over the waistband, she doesn't seem particularly pleased. As her dress falls back down, the outline of the thick undergarment is quite obvious, though her wetness seems to have ended.\n\n\"Uhh... Umm... Th-Thank you..\"\n\nShe begins to head back out, waddling slowly. With each step she cringes at the crunch of the padding, her cheeks even redder than when you first met her. Her tail twitches in an annoyed sense and, somehow, you have a feeling she won't be wearing your gift for too long. Nor will she probably wish to remember this experience...")
                         self.doCoin(-40)
                         self.hrs = 3
                         self.lilaWetness = 4
-                        self.lilaRep = 1
-                        self.doEnd()
+                     self.lilaRep = 1
+                     self.displayMainText()
+                     self.doEnd()
                elif (self.buttonChoice == 5):
                   self.outputMainText("You offer to help her learn how to take care of it herself, though you mention it might be a bit... intimate. Nervous and unsure, she meekly nods. Taking her hand, you lead her to your private hut high in the trees where you have been sleeping.\n\nSitting beside her on your bed, you tell her that she'll have to reach up to where it feels the hottest. Nodding, and without thinking, she pulls up her dress in front of you before you can turn away. Her little fuzzy nether-lips are pink and swollen, with webs of her feminine arousal splayed throughout her small lap. Blushing heavily, she turns to you and mewls,\n\n\"I-I'm scared... C-Can you show me?\"",True)
                   self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,1,0,0))
@@ -15097,10 +15079,9 @@ class NiminFetishFantasyv0975o_fla:
             def doListen():
                self.doMainText(f"Everything is a blur as you're carried off without any sense of direction. All you can hear the whole way is collective purring and the smacking of lips, though exactly which kind of lips is hard to tell. Eventually, your arms are tied behind your back and the bag slips off, revealing your new surroundings.\n\nIt seems to just be some strange felin's hut, nothing special. However, the three felins before you are much more notable. Three females, barely clothed in torn tops and loincloths, gasping and panting as they rub their thighs desparately and fluff their fur to try and cool off. The holes in their simple shirts match their own claws, having been scratched at in attempts to get cooler. None of them seem terribly concious of their actions, mewling and purring and mrowling at each other, so drowned in their own heat that they probably are running on instinct. Though how that instinct involves you...\n\nBecomes quite clear quite quickly. Two of the felins begin to paw at your chest, pulling {self.pullUD(1)} your {self.clothesTop()} to expose your {self.boobDesc()} mounds, their fingers twirling about your {self.nipDesc()} nipples to stiffen them up. The third felin picks up a handful of vials filled with white liquid, stuff that can easily be brought from the store. She saunters over to you, her tail waving perversely, like she was about to climax from just thinking about what she's going to do. Then, her free hand reaches up to your mouth and pries it open, leaning back your head to make sure you swallow.",True)
                if (self.percent() < self.str_ - 40):
-                  self.outputMainText(" However, the restraints they used on you aren't exactly tough and you manage to pull yourself free.\n\nSo entranced by their own heat, the felins hardly put up much of a fight, falling to the ground with the slightest push. They were so worked up over their plans with you that the falls send them over the edge. Their hands immediately slip under their loincloths and begins to ellicit plenty of wet and lewd sounds as they masturbate, neglecting you completely.\n\nNot really having been harmed, you take the vials that they were going to feed to you as reparations for their assault and go on your way, leaving them to their orgasmic fits.")
+                  self.doMainText(" However, the restraints they used on you aren't exactly tough and you manage to pull yourself free.\n\nSo entranced by their own heat, the felins hardly put up much of a fight, falling to the ground with the slightest push. They were so worked up over their plans with you that the falls send them over the edge. Their hands immediately slip under their loincloths and begins to ellicit plenty of wet and lewd sounds as they masturbate, neglecting you completely.\n\nNot really having been harmed, you take the vials that they were going to feed to you as reparations for their assault and go on your way, leaving them to their orgasmic fits.")
                   self.addManyItem(105, 3)
                   self.hrs = 2
-                  self.doEnd()
                else:
                   self.doMainText(f" She pours the contents of all the vials down your gullet at once, rubbing your throat in a more-erotic-than-necessary fashion to ensure you swallow.\n\nWithin moment after gulping down the sweet fluid, you feel your {self.boobDesc()} breasts begin to grow warm and heavy. Pressure builds up behind your {self.nipDesc()} nipples until you let out a gasp - white drops pool around the tips and splash onto the awaiting tongues of the other two felins.")
                   if (self.lactation > 0):
@@ -15113,10 +15094,10 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText(f"\n\nTheir thirst isn't the only thing that needs satiating though. The more they drink, the more their hands dive into their loincloths, until their purrs become moans and are nearly drowned by the pervese wet schlicking sounds. But that isn't enough. With the milk soothing their stomach cravings, the pleasant tasty warmth is only making their lower cravings more severe.\n\nEventually, one pops off a nipple with one last big suck. The milk sprays freely, showering the front of the felin. The other two catch on, doing the same and letting the liquid splash over their many tits. They rub it in, mrowling in pleasure and digging deeper beneath their loincloths. Their legs soon give in, making them fall to the floor and lift their loincloths in your direction, exposing their swollen reddened pussies to you and your rain of milk. With each splash over their lower lips, the catty girls twitch and shudder, coming to small orgasms from the feeling and thought alone. Then as the white fluids beads into drops that runs down through their labia, slipping into their nooks and crevices and holes, their hands help the stuff along by rubbing it all over their cunts.\n\nThey climax again and again, delighting in the milky goodness, even after your squirting dies down to steady trickles. When that happens, the girls simply curl around each other, licking the milk from each others slits, jerking and rubbing and groping and coming more and more. The room grows so hot that even your bindings begin to sweat and... you slip free.\n\nHolding back the milk with an arm, you put back on your {self.clothesTop()}, where it then begins to blotch. With the felins still having an orgy on your floor, you grab one of the leftover vials and make your escape, though a little milkier than before...")
                   self.lactation += 50
                   self.doLust(10,0)
-                  self.displayMainText()
                   self.itemAdd(105)
                   self.hrs = 3
-                  self.doEnd()
+               self.displayMainText()
+               self.doEnd()
             self.doListen = doListen
          else:
             self.doMainText("A group of felins pass by on one of the wide wooden bridges, some males with some females. They sway a little with each step, their tails oddly swinging the wrong way. Within their hands they have some bottles of milk, though they seem a bit disappointed with how little is left.",True)
@@ -15127,23 +15108,21 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" being tugged and suckled from until milk is spraying from your body.")
                getMilk = Math.max(self.milkAmount(1),self.milkAmount(2))
                if (getMilk <= 1000):
-                  self.outputMainText("\n\nTheir many thirsty mouths quickly drain you dry. Disappointed once more with the lack of delicious motherly goodness, they stumble away from you, leaving you used and half-naked...\n\nAt least they didn't bite.")
+                  self.doMainText("\n\nTheir many thirsty mouths quickly drain you dry. Disappointed once more with the lack of delicious motherly goodness, they stumble away from you, leaving you used and half-naked...\n\nAt least they didn't bite.")
                   self.hrs = 2
-                  self.doEnd()
                elif ((getMilk > 1000) and (getMilk <= 4000)):
-                  self.outputMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. It doesn't take long before they drain you dry, but once they do, they let out little burps of satisfaction. Thoroughly pleased with their bartender, they drop a bunch of coins on you for the drink before stumbling off again, their tails drooping much more lazily than before.")
+                  self.doMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. It doesn't take long before they drain you dry, but once they do, they let out little burps of satisfaction. Thoroughly pleased with their bartender, they drop a bunch of coins on you for the drink before stumbling off again, their tails drooping much more lazily than before.")
                   self.doCoin(self.percent() // 3.3)
                   self.hrs = 2
-                  self.doEnd()
                elif (getMilk > 4000):
-                  self.outputMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. However, you produce so much that they simply can't seem to drain you. Yet that doesn't keep them from trying... The more and more they suck from you, the more lazy their efforts become. Even the tail on your head slows in pace, until it comes to a stop...\n\nStill pinned by the many bodies, you can hear them purr as they have fallen asleep. You take the opportunity to wiggle yourself free, nearly yanking down the girl's panties in the process. Once out, they merely curl up on the bridge, cuddling against each other. Another girl seems to have her skimpy shirt pulled up to her second pair of breasts, while a male has a prickly penis pulled from his pants. Whatever they were planning to do, it obviously didn't get too far.\n\nAs payment for their feast, you grab a couple of their small pouches. It's the least you could do to make up for their rude ambush.")
+                  self.doMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. However, you produce so much that they simply can't seem to drain you. Yet that doesn't keep them from trying... The more and more they suck from you, the more lazy their efforts become. Even the tail on your head slows in pace, until it comes to a stop...\n\nStill pinned by the many bodies, you can hear them purr as they have fallen asleep. You take the opportunity to wiggle yourself free, nearly yanking down the girl's panties in the process. Once out, they merely curl up on the bridge, cuddling against each other. Another girl seems to have her skimpy shirt pulled up to her second pair of breasts, while a male has a prickly penis pulled from his pants. Whatever they were planning to do, it obviously didn't get too far.\n\nAs payment for their feast, you grab a couple of their small pouches. It's the least you could do to make up for their rude ambush.")
                   self.addManyItem(204, 2)
                   self.hrs = 3
-                  self.doEnd()
             else:
-               self.outputMainText(" They ignore you for the mostpart, busy talking and laughing amongst themselves.")
+               self.doMainText(" They ignore you for the mostpart, busy talking and laughing amongst themselves.")
                self.hrs = 1
-               self.doEnd()
+            self.displayMainText()
+            self.doEnd()
       elif chance == 3: # Hyper Mistress
          if (self.mistressRep > 0):
             self.outputMainText("\"H-Hello!\" You hear a familiar voice from behind you.\n\nYou turn to see Fidoris, still in his skimpy outfit and embarrassed look, though his fur is slightly matted with some sort of slick liquid. It would hardly take two guesses to figure out where he has been.\n\n\"M-Mistress would like to invite you over again, if that's alright.\"\n\nWill you go?",True)
@@ -15437,9 +15416,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doEnd()
          elif self.silRep < 6 and self.silRep > 0:
             if (self.silPreg > 360 or self.silRep > 2 and self.silPreg > 300 or self.silRep > 3 and self.silPreg > 200):
-               self.outputMainText("Walking through the Oviasis bazaar, you notice that it's about the time Silandrias usualy does her shopping, but you see no sign of her. There must be some reason she hasn't flown out here...",True)
-               self.hrs = 1
-               self.doEnd()
+               self.doMainText("Walking through the Oviasis bazaar, you notice that it's about the time Silandrias usualy does her shopping, but you see no sign of her. There must be some reason she hasn't flown out here...",True)
             else:
                self.doMainText("Walking through Oviasis' bazaar, you spot Silandrias doing her usual shopping.",True)
                if (self.silPreg > 36):
@@ -15483,9 +15460,10 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText(" And just as before, her breasts have begun to swell already. In anticipation... she didn't even bother latching the clasps. Depending on her large perk nipples and the occasional tug to keep it shut, the cloak manages to cover some of herself. Suffice it to say, there's a lot of exposed belly-scales as the breast flesh stretches them in curvy manners. What's most troublesome, though, is that there is yet another pair beginning to blossom below the third, accentuating the size of her relatively small belly even more. Nearly every lizan face turns to gawk at her as she rushes through to shop, forcing her to blush the whole way.")
                   else:
                      self.doMainText(" With her curves back to a relatively normal state, she seems to be trying to get out and shop again with her cloak. However, her top breasts are already pressing tightly against the upper clasp, despite her reduced sizes from the laying. The lower clasp looks like how the top one used to be when you first met her, which isn't too bad. The bottom pair of decent sized breasts seem to peek out with even the slightest breeze, on the other hand, as she hasn't made a third clasp yet... Thankfully, she can keep those hidden beneath the goods she buys as she travels through.")
-               self.outputMainText("\n\nShe stops for a moment to greet you and give you a hug, but with the crowds bustling around you she merely mentions you're welcome to come by her den to visit with her more privately. Then she jumps back into the crowd, eager to finish her browsing so she can retreat back to her private home soon.")
-               self.hrs = 1
-               self.doEnd()
+               self.doMainText("\n\nShe stops for a moment to greet you and give you a hug, but with the crowds bustling around you she merely mentions you're welcome to come by her den to visit with her more privately. Then she jumps back into the crowd, eager to finish her browsing so she can retreat back to her private home soon.")
+            self.hrs = 1
+            self.displayMainText()
+            self.doEnd()
       elif chance == 2:
          self.doMainText("Walking around the hidden paradise, you come across a rather... shiny area. A nice open beach beside the water is covered with the bodies of lizan people, all sunning themselves in the nice weather. Plenty are covered with oils to help their scales look bright and lush from the incoming rays, and more than a few are covered with nothing else on this private beach...",True)
          if (self.percent() <= 50):
@@ -15702,23 +15680,19 @@ class NiminFetishFantasyv0975o_fla:
                         self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the modified cattail down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. However, her inexperience with her own body proves most troublesome...\n\nFrantic and unwary of how she's directing you to insert the makeshift plug, she accidentally pushes into the wrong hole. She lets out a shriek of surprise and pain, her tail whipping up behind her. Whipping up right into your own groin.\n\nYou double over in pain and splash into the water. The girl hops up, rubbing herself and kicking the pile of eggs about as she dances about. Her bathing suit slips back over her slit and she holds it tenderly while she bends over you, trying to prevent another egg from popping out.\n\n\"I-I'm so sorry!\" Apologizing for your pain, she turns and runs to find another place to hide as she can already feel the next egg pressing against her bathing suit from within, leaving you to groan and writhe for a while alone.\n\nAfter some time passes, you gather yourself and limp away...")
                         self.doHP(-5)
                         self.stats(0,0,-2,0)
-                        self.displayMainText()
                         self.hrs = 3
-                        self.doEnd()
                      elif self.tempInt == 2:
                         self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the makeshift plug into her pussy. Pulling away, she pauses as she feels an egg settle onto the soft fluff but is unable to push further, effectively halting her laying for now. Slipping her bikini back over her exposed nethers, she slowly stands, getting used to the sensation.\n\nThough her belly looks a bit bloated and gradually growing with the buildup, she seems grateful. \"Umm... thanks for that.\" She squirms slightly as her stiff clit presses visibly against the bikini's crotch, becoming more aroused from the swelling sensation. Absent-mindendly, she leans down and gives you a quick kiss, dropping one of her pre-laid eggs into your lap as a gift, before blushing ferociously and running off to find her fiancee.")
                         self.stats(0,0,1,0)
                         self.itemAdd(219)
-                        self.displayMainText()
                         self.hrs = 2
-                        self.doEnd()
                      elif self.tempInt == 3:
                         self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the makeshift plug in between. Her breathing quickens in pace for a few seconds as you soft touch pleases her sensitive loin. As the next egg slowly comes to a stop upon the soft fluff within, she grins at how effective the treatment was.\n\n\"Wow, that is quite a neat trick! You really deserve some compensation for helping me like that.\" She slowly stands, a hand on her belly as she feels it swell slightly from the buildup before turning away towards her shed suit. Bending down before you, her tail flipping up to balance herself and giving you a generous view of her plump rear, she grabs some coins and an egg from the pile before turning to hand them to you. \"Thanks again!\" She smiles and winks. She then squeezes into her bathing suit, letting her curves fill it in dramatically, and picks up the rest of the eggs to get started on that cake.")
                         self.doCoin(30 + Math.ceil(self.percent() / 3))
                         self.itemAdd(219)
-                        self.displayMainText()
                         self.hrs = 2
-                        self.doEnd()
+                     self.displayMainText()
+                     self.doEnd()
                   elif self.buttonChoice == 6:
                      self.doMainText("Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. ",True)
                      if self.tempInt == 1:
@@ -15758,24 +15732,18 @@ class NiminFetishFantasyv0975o_fla:
                         self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the dose of eggcelerator down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. With her experience with the previous doses of eggcelerator, she manages to guide you correctly and lets out a squeak as she feels the suppository slip up into her passage.\n\nThe girl begins to quiver slightly as she feels her womb go into overdrive. A gasp escapes her lips as an egg immediately pushes through her folds, past your combined fingers. Suddenly, she seizes back into you, her back arching, as more eggs spill out of her womb. Her pussy lifts out of the water and into the air as her feet drag and kick through the sand below, tossing the pile about. Her exposed cunt spreads wide as another egg plops out into the water with another one right behind firing further out. She moans and whines as her body thrashes about, staring down at herself with fear as she's practically spreading her legs to anybody else in the lake and spreading her private area wide for them all to see as the eggs fly out of her. Jumping away from you with a sob, she stands up with a couple more eggs dropping between her thighs with thick strands of lubricant trailing. The girl hastily covers the exposed genitals with her one-piece suit, a tear shedding as she sees the crotch bulge with the next egg pushing through. Wholly embarrassed, she runs off into the brush, the eggs already slipping back into the rear of the suit as more collect before she disappears.\n\nLeft alone and feeling a little ashamed of how things progressed, you manage to fish out some eggs that survived and head off.")
                         self.addManyItem(219, 3)
                         self.stats(0,0,0,-1)
-                        self.displayMainText()
-                        self.hrs = 3
-                        self.doEnd()
                      elif self.tempInt == 2:
                         self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way...")
                         self.addManyItem(230, 2)
                         self.doCoin(15 + Math.ceil(self.percent() / 10))
                         self.doLust(self.lib // 2,0)
-                        self.displayMainText()
-                        self.hrs = 3
-                        self.doEnd()
                      elif self.tempInt == 3:
                         self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the eggcelerator into her supple hole, letting it slip up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly progress, then her eyes grow wide as an egg immediately pushes out through her folds. Suddenly, she leans backwards even more, pointing her pussy right at your face as more eggs coming flying out. Her strong motherly hips propel an onslaught of eggs at you, smacking and cracking over your head and body. She eventually crashes back into the water, crushing the pile of eggs she had already laid and firing a couple more past you.\n\nThe splash of water across her face snaps her out of the egg-laying haze and she jumps up, just in time for another egg to shoot down between her thighs. \"Oh no, all the eggs for the cake!\" She cries out in dismay and attempts to block the next with her hand, only to result in a yolky mess. With that failing, she turns away from you and bends down, giving you a perfect view of her round rear as well as another egg that propels straight into your face, while she picks up her bathing suit. Rapidly folding the elastic garment a bit and tucking it between her legs, she manages to improvise a basket. Then she takes off through a nude beach, carrying the suit-basket between her legs as it slowly stretches with the depositing eggs, her hips and tail twitching sporadically with each lay.\n\nLeft covered in yolk and slightly pained from the firing squad, there's not much left to do but wash off in the oasis waters and head off...")
                         self.doHP(-10)
                         self.aff(6,Math.floor(self.percent() / 20 + 4),-3)
-                        self.displayMainText()
-                        self.hrs = 3
-                        self.doEnd()
+                     self.hrs = 3
+                     self.displayMainText()
+                     self.doEnd()
                self.doListen = doListen
             else:
                self.doMainText("Deciding not to interrupt her, you leave whoever it is to their privacy and continue on your relaxing stroll.",True)
@@ -15970,25 +15938,23 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonConfirm()
          def doListen():
             if (self.buttonChoice == 6):
+               self.doMainText("",True)
                if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a sense of exhilaration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n",True)
+                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a sense of exhilaration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               else:
-                  self.doMainText("",True)
                if self.currentZone == 1:
-                  self.outputMainText("Following the path, the trees grow slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                  self.doMainText("Following the path, the trees grow slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                   self.regionChange(3)
                   if (not self.foundTieden):
                      self.foundTieden = True
-                  self.hrs = 4
-                  self.doEnd()
                elif self.currentZone == 3:
-                  self.outputMainText("Following the path, the trees grow much sparser opening up to rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                  self.doMainText("Following the path, the trees grow much sparser opening up to rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                   self.regionChange(1)
                   if (not self.foundSoftlik):
                      self.foundSoftlik = True
-                  self.hrs = 4
-                  self.doEnd()
+               self.hrs = 4
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("You return from whence you came.",True)
                self.hrs = 1
@@ -16141,25 +16107,23 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonConfirm()
          def doListen():
             if (self.buttonChoice == 6):
+               self.doMainText("",True)
                if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n",True)
+                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               else:
-                  self.doMainText("",True)
                if self.currentZone == 3:
-                  self.outputMainText("Following the path, you begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                  self.doMainText("Following the path, you begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                   self.regionChange(4)
                   if (not self.foundSizCalit):
                      self.foundSizCalit = True
-                  self.hrs = 4
-                  self.doEnd()
                elif self.currentZone == 4:
-                  self.outputMainText("Following the path, the vegetation grows slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                  self.doMainText("Following the path, the vegetation grows slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                   self.regionChange(3)
                   if (not self.foundTieden):
                      self.foundTieden = True
-                  self.hrs = 4
-                  self.doEnd()
+               self.hrs = 4
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("You return from whence you came.",True)
                self.hrs = 1
@@ -16215,27 +16179,23 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonConfirm()
          def doListen():
             if (self.buttonChoice == 6):
+               self.doMainText("",True)
                if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n",True)
+                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               else:
-                  self.doMainText("",True)
                if self.currentZone == 1:
                   self.doMainText("Following the road, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...")
                   self.regionChange(2)
                   if (not self.foundFirmshaft):
                      self.foundFirmshaft = True
-                  self.displayMainText()
-                  self.hrs = 4
-                  self.doEnd()
                elif self.currentZone == 2:
                   self.doMainText("Following the road, the level land breaks up into rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...")
                   self.regionChange(1)
                   if (not self.foundSoftlik):
                      self.foundSoftlik = True
-                  self.displayMainText()
-                  self.hrs = 4
-                  self.doEnd()
+               self.hrs = 4
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("You return from whence you came.",True)
                self.hrs = 1
@@ -16279,27 +16239,23 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonConfirm()
          def doListen():
             if (self.buttonChoice == 6):
+               self.doMainText("",True)
                if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n",True)
+                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               else:
-                  self.doMainText("",True)
                if (self.currentZone == 2):
                   self.doMainText("Following the path, the vegetation becomes denser and denser until trees surround you. You begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                   self.regionChange(4)
                   if (not self.foundSizCalit):
                      self.foundSizCalit = True
-                  self.hrs = 4
-                  self.displayMainText()
-                  self.doEnd()
                elif (self.currentZone == 4):
                   self.doMainText("Following the path, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                   self.regionChange(2)
                   if (not self.foundFirmshaft):
                      self.foundFirmshaft = True
-                  self.hrs = 4
-                  self.displayMainText()
-                  self.doEnd()
+               self.hrs = 4
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("You return from whence you came.",True)
                self.hrs = 1
@@ -16332,47 +16288,36 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.breastSize > 4):
                         self.doMainText(", growing much lighter")
                      self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
-                  self.displayMainText()
                   self.boobTotal = 4
                   self.fourBoobAffinity = 100
                   self.hrs = 2
-                  self.doEnd()
                elif (chance <= 35):
                   if (self.cockTotal > 0 and self.vagTotal < self.cockTotal + 1):
                      self.doMainText("You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...",True)
                      self.vagChange(0,self.cockTotal - self.vagTotal + 1)
                      self.doMainText(f"\n\nOne more vagina than you have cock{self.plural(1)}. Why that is will forever be a mystery...\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
                   else:
                      self.doMainText("You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...",True)
                      self.vagChange(0,1)
                      self.doMainText("\n\nMaybe you were enjoying the licking of tasty flaps of meat a little too much?..\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
+                  self.hrs = 2
                elif (chance <= 55):
                   self.doMainText(f"You nibble on the sandvich, the protein so filling. However, your chest quickly begins to feel warm, your {self.nipDesc()}nipples standing erect and burning beneath your {self.clothesTop()}. Your hands quickly reach up to touch them and cup them just in time for milk to begin gushing out across the sand!\n\nThe springs of white fluid spew from your breasts, your {self.clothesTop()} rapidly becoming soaked while small rivers begin to form amongst the sand. You collapse to your {self.legDesc(6)}, pulling {self.pullUD(1)} your {self.clothesTop()} to squeeze and pump your poor nipples as they fill the area with sustenance.\n\nWithin a few minutes, you have made several puddles around the dunes surrounding you, while your mammary glands come to a halt. You rub them gently, feeling their sensitivity arouse you a little, completely confused as to what just happened. The milking has stopped for now, but you still feel a bit... abundant nevertheless. You quickly toss your clothes back on and hurry away from the moist scene, unsure what the sandvich was possibly intended for.",True)
                   self.milkMod += 15
                   self.doLust(20,0)
                   self.stats(0,0,0,2 * self.boobTotal)
-                  self.displayMainText()
                   self.hrs = 3
-                  self.doEnd()
                elif (chance <= 75):
                   self.doMainText("You nom the sandvich to death, feeling it make you strong!",True)
                   self.hrs = 2
                   self.doHP(150)
-                  self.displayMainText()
-                  self.doEnd()
                else:
                   self.doMainText("You take a bit of the sandvich and... urk! You suddenly feel green in the face as you realize a sandvich sitting out in the sun with this kind of heat... wouldn't have worked out very well. Once you finish expelling the rather spoiled goods, you drudge back to town feeling a bit sick.",True)
                   self.HP = 1
                   self.hrs = 4
                   self.doHP(0)
-                  self.displayMainText()
-                  self.doEnd()
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("Thinking it best to leave strange meats to themselves, you turn your back to the sandvich and walk away, feeling it taunting you from behind as you leave.",True)
                self.hrs = 1
@@ -16497,36 +16442,29 @@ class NiminFetishFantasyv0975o_fla:
          self.buttonConfirm()
          def doListen():
             if (self.buttonChoice == 6):
+               self.doMainText("",True)
                if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n",True)
+                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               else:
-                  self.doMainText("",True)
                if self.currentZone == 6:
                   if (self.percent() <= 50):
                      self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert to large fields of swaying grass, free from the storm, and signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                      self.regionChange(2)
                      if (not self.foundFirmshaft):
                         self.foundFirmshaft = True
-                     self.displayMainText()
-                     self.hrs = 4
-                     self.doEnd()
                   else:
                      self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert into a dense vegetation with trees surrounding you, protecting you from the storm. You begin to see various wooden structures built amongst the canopy as you continue. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
                      self.regionChange(4)
                      if (not self.foundSizCalit):
                         self.foundSizCalit = True
-                     self.displayMainText()
-                     self.hrs = 4
-                     self.doEnd()
                elif self.currentZone in {2,4}:
                   self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through into an area sheltered from the wind by large rock formations. As you blink and brush the sand from your eyes, you're left in awe by the paradise before you.\n\nAn oasis somewhere within the desert, hidden within a ring of tall rock formations and mountains, you can see the water sparkle from here and the palm trees sway lazily around it. And all along the rocks, built into caves and sprawled across the beaches, reptillian people have made their home here, relaxing and enjoying their gorgeous habitat.\n\nYou have now entered the Lizan home-city of Oviasis! Though thanks to the storm you have no idea how you got here or how to get back...")
                   self.regionChange(6)
                   if (not self.foundOviasis):
                      self.foundOviasis = True
-                  self.displayMainText()
-                  self.hrs = 4
-                  self.doEnd()
+               self.hrs = 4
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("You return from whence you came, avoiding any unwanted sand in your cracks.",True)
                self.hrs = 1
@@ -16552,9 +16490,6 @@ class NiminFetishFantasyv0975o_fla:
                self.exhaustion += 5
                self.stats(0,0,-1,0)
                self.doHP(-Math.floor((30 + self.str_ // 2 + self.HPMod) / 6))
-            self.displayMainText()
-            self.hrs = 2
-            self.doEnd()
          else:
             self.doMainText("The desert night with the dry air is bitterly cold.",True)
             if (self.skinType == 2):
@@ -16571,9 +16506,9 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" So cold that you nearly freeze, causing some damage and weakening you.")
                self.stats(-1,0,0,0)
                self.doHP(-Math.floor((30 + self.str_ // 2 + self.HPMod) / 3.5))
-            self.displayMainText()
-            self.hrs = 2
-            self.doEnd()
+         self.hrs = 2
+         self.displayMainText()
+         self.doEnd()
    def doBeach(self):
       chance = self.eventSelect("Beach")
       if chance == 1:
@@ -17076,15 +17011,15 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             if (self.buttonChoice == 6):
                if (self.coin < 30):
-                  self.outputMainText("\"Sorry friend, you don't seem to have enough coins. Come back later when you do and we can try to deal again!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
+                  self.doMainText("\"Sorry friend, you don't seem to have enough coins. Come back later when you do and we can try to deal again!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
                   self.hrs = 1
-                  self.doEnd()
                else:
-                  self.outputMainText("\"Alright, here you go friend!\" He rummages through one of his pockets in his overalls and pulls out a large pill, handing it to you. \"Come back later if you need any more!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
+                  self.doMainText("\"Alright, here you go friend!\" He rummages through one of his pockets in his overalls and pulls out a large pill, handing it to you. \"Come back later if you need any more!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
                   self.doCoin(-30)
                   self.itemAdd(211)
                   self.hrs = 2
-                  self.doEnd()
+               self.displayMainText()
+               self.doEnd()
             else:
                self.outputMainText("\"Well, come back again later if you change your mind. And have a nice day!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.",True)
                self.hrs = 1
@@ -17155,20 +17090,17 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doEnd()
                               elif (self.buttonChoice == 7):
                                  if (self.malonRep == 0):
-                                    self.outputMainText("\"Ahh, thank you so much!\" She looks like she wants to hug you, but she's a bit tethered at the moment... and half naked.\n\nShe begins to gather herself, trying to turn away as she removes the milk-cups. You get a short flash of her over-ample chest before she pulls her shirt back into position, rubbing her nipples so they don't show through as well and dabbing the resulting blotch with her shawl.\n\n\"M-My name is Malon. I've been this way most of my life... As a child, I always loved animals. A little too much, you could say... I liked the cows so much that I wanted to be like them. And so, I took one of their DairE Pills... To cut a long story short, I was happy with the results at first, becoming more like my bovine friends. Until eventually I grew up and realized my predicament. And, well, ever since then, I've been like this...\"\n\nShe shuffles uncomfortably in position for a bit, not quite sure what to say. She glances from side to side before deciding to step over to the milk machine, grabbing a bottle that was freshly made. Very freshly.\n\n\"I-I don't know how to thank you for not ruining one of the few pleasures of my life, but at least take this.\" She hands you the bottle as she bows her head.\n\nIn an instant, she turns and hurries out of the barn, her long tail squeezing against her backside and outlining her butt even more.",True)
+                                    self.doMainText("\"Ahh, thank you so much!\" She looks like she wants to hug you, but she's a bit tethered at the moment... and half naked.\n\nShe begins to gather herself, trying to turn away as she removes the milk-cups. You get a short flash of her over-ample chest before she pulls her shirt back into position, rubbing her nipples so they don't show through as well and dabbing the resulting blotch with her shawl.\n\n\"M-My name is Malon. I've been this way most of my life... As a child, I always loved animals. A little too much, you could say... I liked the cows so much that I wanted to be like them. And so, I took one of their DairE Pills... To cut a long story short, I was happy with the results at first, becoming more like my bovine friends. Until eventually I grew up and realized my predicament. And, well, ever since then, I've been like this...\"\n\nShe shuffles uncomfortably in position for a bit, not quite sure what to say. She glances from side to side before deciding to step over to the milk machine, grabbing a bottle that was freshly made. Very freshly.\n\n\"I-I don't know how to thank you for not ruining one of the few pleasures of my life, but at least take this.\" She hands you the bottle as she bows her head.\n\nIn an instant, she turns and hurries out of the barn, her long tail squeezing against her backside and outlining her butt even more.",True)
                                     self.malonRep = 1
                                     self.doSexP(20)
-                                    self.stats(0,1,0,0)
-                                    self.hrs = 2
-                                    self.itemAdd(214)
-                                    self.doEnd()
                                  elif (self.malonRep == 1):
-                                    self.outputMainText("\"Hehe, thanks. Just a bit more to go...\" Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\n\nShe takes a moment before she comes down from her high. \"Mmm... I'm just going to hang out here for a bit. Feel free to take the bottle from the machine. It's really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",True)
-                                    self.hrs = 2
+                                    self.doMainText("\"Hehe, thanks. Just a bit more to go...\" Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\n\nShe takes a moment before she comes down from her high. \"Mmm... I'm just going to hang out here for a bit. Feel free to take the bottle from the machine. It's really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.",True)
                                     self.doSexP(5)
-                                    self.itemAdd(214)
-                                    self.stats(0,1,0,0)
-                                    self.doEnd()
+                                 self.itemAdd(214)
+                                 self.stats(0,1,0,0)
+                                 self.hrs = 2
+                                 self.displayMainText()
+                                 self.doEnd()
                            self.doListen = doListen
                      elif (self.buttonChoice == 5):
                         if (self.malonRep < 1):
@@ -18368,24 +18300,23 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
                self.doListen = doListen
             elif self.buttonChoice == 5:
-               if (not self.silTied):
-                  self.doMainText("Even though she doesn't seem to be constantly laying from her tail now, or at all for that matter, you thinkg it's a good idea to attach the leather strap anyways. Silandrias nods and trusts you, lifting up her tail ",True)
-                  if (self.silPreg / 100 > self.tallness / 12):
-                     self.doMainText("as you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, ")
-                  self.outputMainText("and gives you a nice view of her engorged bits in the process. The leather strap easily slips up the length of her tail and tightens comfortably around the base made perfectly for such a task.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and that even if she were dropping eggs through that passage, they wouldn't be able to push through. Leaving her backside like that, you come around to her face and spend some time with her chit-chatting and petting Naeru and Daeru before you eventually head back out.")
-                  self.silTied = True
-                  self.loseManyItem(229,1)
-                  self.hrs = 3
-                  self.doEnd()
-               else:
+               if (self.silTied):
                   self.doMainText("Deciding to remove the leather strap that is blocking her tail passage, ",True)
                   if (self.silPreg / 100 > self.tallness / 12):
                      self.doMainText("you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, and ")
-                  self.outputMainText("your fingers play with the latch until you can pull it lose and slip it off of her tail. Once removed, you see the base of her tail swell slightly as the eggs inside settle against the passageway. However, none seem to get any further, not exiting her tail at all like her previous pregnancies. You inspect her rump to make sure nothing is wrong, your poking and prodding only making her giggle at the other end, but she seems to be perfectly fine.\n\nAssuming it's natural, you leave her backside and come around to her front to spend some time with her, chit-chatting and petting Naeru and Daeru before you eventually head back out.")
+                  self.doMainText("your fingers play with the latch until you can pull it lose and slip it off of her tail. Once removed, you see the base of her tail swell slightly as the eggs inside settle against the passageway. However, none seem to get any further, not exiting her tail at all like her previous pregnancies. You inspect her rump to make sure nothing is wrong, your poking and prodding only making her giggle at the other end, but she seems to be perfectly fine.\n\nAssuming it's natural, you leave her backside and come around to her front to spend some time with her, chit-chatting and petting Naeru and Daeru before you eventually head back out.")
                   self.silTied = False
                   self.itemAdd(229)
-                  self.hrs = 3
-                  self.doEnd()
+               else:
+                  self.doMainText("Even though she doesn't seem to be constantly laying from her tail now, or at all for that matter, you thinkg it's a good idea to attach the leather strap anyways. Silandrias nods and trusts you, lifting up her tail ",True)
+                  if (self.silPreg / 100 > self.tallness / 12):
+                     self.doMainText("as you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, ")
+                  self.doMainText("and gives you a nice view of her engorged bits in the process. The leather strap easily slips up the length of her tail and tightens comfortably around the base made perfectly for such a task.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and that even if she were dropping eggs through that passage, they wouldn't be able to push through. Leaving her backside like that, you come around to her face and spend some time with her chit-chatting and petting Naeru and Daeru before you eventually head back out.")
+                  self.silTied = True
+                  self.loseManyItem(229,1)
+               self.hrs = 3
+               self.displayMainText()
+               self.doEnd()
             elif self.buttonChoice == 7:
                self.doMainText("To help the pregnancy progress, you take out a dose of eggcelerator. ",True)
                if (self.silPreg / 100 > self.tallness / 12):
@@ -18839,18 +18770,17 @@ class NiminFetishFantasyv0975o_fla:
                   self.doEnd()
                self.doListen = doListen
             elif (self.buttonChoice == 5):
-               if (not self.silTied):
-                  self.outputMainText("You think it's a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn't seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and notice she's starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail's vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen.\n\nAfter a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion.\n\nTying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you're soon on your way.",True)
-                  self.silTied = True
-                  self.loseManyItem(229,1)
-                  self.hrs = 3
-                  self.doEnd()
-               else:
-                  self.outputMainText("You decide to let the eggs flow freely once more. She leans against the wall again to give you easy access, allowing you to quickly untie the leather strap and slip it off. Immediately after you loosen it up, the bulge at the base of her tail shifts, making her gasp and her tail whip to the side as the egg within moves and starts its way out. Silandrias lets out a relaxed sigh as the egg is deposited upon the tunnel floor, her belly already looks a little smaller.\n\nYet, despite how much she has built up, no more eggs attempt to exit right away. Staying with her a bit longer, she does eventually lay more, though at her normal cycle from before rather than trying to catch up, leaving her womb swollen in the meantime. Otherwise, she is doing very well, allowing you to head back out.",True)
+               if (self.silTied):
+                  self.doMainText("You decide to let the eggs flow freely once more. She leans against the wall again to give you easy access, allowing you to quickly untie the leather strap and slip it off. Immediately after you loosen it up, the bulge at the base of her tail shifts, making her gasp and her tail whip to the side as the egg within moves and starts its way out. Silandrias lets out a relaxed sigh as the egg is deposited upon the tunnel floor, her belly already looks a little smaller.\n\nYet, despite how much she has built up, no more eggs attempt to exit right away. Staying with her a bit longer, she does eventually lay more, though at her normal cycle from before rather than trying to catch up, leaving her womb swollen in the meantime. Otherwise, she is doing very well, allowing you to head back out.",True)
                   self.silTied = False
                   self.itemAdd(229)
-                  self.hrs = 3
-                  self.doEnd()
+               else:
+                  self.doMainText("You think it's a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn't seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and notice she's starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail's vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen.\n\nAfter a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion.\n\nTying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you're soon on your way.",True)
+                  self.silTied = True
+                  self.loseManyItem(229,1)
+               self.hrs = 3
+               self.displayMainText()
+               self.doEnd()
             elif (self.buttonChoice == 7):
                self.doMainText("To help her along with her current eggy pregnancy, you consider giving her a dose of eggcelerator. Even though she isn't of lizan descent, the egg-aid may help her somehow.\n\nSilandrias agrees to take it, as long as you help her administer it. Leading you back to her room, ",True)
                if (self.silRate > 2 and not self.silTied):
