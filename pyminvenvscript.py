@@ -468,7 +468,6 @@ def writeTOML(file, valDict):
                 text.write(f'{k2} = {TOML.Value(v2)}\n')
         with open(file,'w') as f:
             f.write(text.getvalue())
-            
 
 tempnossl = False
 hasVenv = True
@@ -476,7 +475,7 @@ tempnohtmlparser = False
 delconf = None
 uninstallMiniAMF = False
 
-runlist = ['pip', 'install', 'tkhtmlview', 'numpy', 'Pillow', 'as3lib']
+runlist = ['pip', 'install', 'tkhtmlview', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
 try:
     import tomllib
 except:
@@ -527,7 +526,7 @@ elif (venvpath / 'pymin.toml').exists():
     }
 else:
     #Use fallback values because config does not exist
-    c1 = {}
+    c1 = None
     c2 = {
         'cfgVersion':1,
         'pyInstalledVersion':None,
@@ -557,15 +556,10 @@ else:
     pythonvenvloc = venvpath / 'bin/python'
 pythonm = [pythonvenvloc, '-m']
 
-pyvertuple = c2['pyInstalledVersion'].split('.')
-if int(pyvertuple[0]) == 3 and int(pyvertuple[1]) >= 11:
-    runlist.append('as3lib-miniAMF')
-    if hasVenv and check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n', '').replace('\r', '') == 'True':
-        uninstallMiniAMF = True
-else:
-    runlist.extend(('setuptools', 'Mini-AMF'))
+if hasVenv and check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n', '').replace('\r', '') == 'True':
+    uninstallMiniAMF = True
 
-if hasVenv and platform.python_version().split('.')[:2] != pyvertuple[:2] and platform.system() != 'Windows':
+if hasVenv and platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
     updatePythonVersion()
 if len(argv) < 2 and c2['defaultToRun']:
     run([pythonvenvloc, venvpath / 'Pymin/Pymin.py'])
