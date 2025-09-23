@@ -667,7 +667,7 @@ class NiminFetishFantasyv0975o_fla:
       self.statpanevisible = False
       self.regionpanevisible = False
       self.levelpanevisible = False
-      self.daypanevisible = False
+      self.timepanevisible = False
       self.hourlabelvisible = False
       self.showsavegame = False
       self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
@@ -2788,7 +2788,7 @@ class NiminFetishFantasyv0975o_fla:
       def doListen():
          if (self.buttonChoice == 6):
             self.showStatPane()
-            self.showDayPane()
+            self.showTimePane()
             self.showLevelPane()
             self.hideSidePanel()
             self.hideAPButton()
@@ -24385,12 +24385,12 @@ class NiminFetishFantasyv0975o_fla:
       self.showStatPane()
       self.showLevelPane()
       self.showRegionPane()
-      self.showDayPane()
+      self.showTimePane()
    def hideStatsPane(self):
       self.hideStatPane()
       self.hideLevelPane()
       self.hideRegionPane()
-      self.hideDayPane()
+      self.hideTimePane()
    def setCStats(self):
       self.mo.configureChild("strvallabel",text=self.str)
       self.mo.configureChild("mentvallabel",text=self.ment)
@@ -24522,8 +24522,8 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("hungercolonlabel")
          self.mo.destroyChild("hungervallabel")
          self.statpanevisible = False
-   def showDayPane(self):
-      if not self.daypanevisible:
+   def showTimePane(self):
+      if not self.timepanevisible:
          # Day Label
          self.mo.addnwhLabel("display","daylabel",20,450,self.font)
          self.mo.configureChild("daylabel",text="Day",background=self.theme,foreground=self.fontColor)
@@ -24538,9 +24538,9 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("hourcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","hourvallabel",130,470,self.font)
          self.mo.configureChild("hourvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.daypanevisible = True
-   def hideDayPane(self):
-      if self.daypanevisible:
+         self.timepanevisible = True
+   def hideTimePane(self):
+      if self.timepanevisible:
          # Day Label
          self.mo.destroyChild("daylabel")
          self.mo.destroyChild("daycolonlabel")
@@ -24549,7 +24549,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("hourlabel")
          self.mo.destroyChild("hourcolonlabel")
          self.mo.destroyChild("hourvallabel")
-         self.daypanevisible = False
+         self.timepanevisible = False
    def showRegionPane(self):
       if not self.regionpanevisible:
          # Pane Title
