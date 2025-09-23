@@ -921,8 +921,9 @@ class NiminFetishFantasyv0975o_fla:
             CreateToolTip(self.optionswindow.children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
 
          #Apply button
+         sp = self.getColours()
          self.optionswindow.addButton("root","ApplyButton",360,172,50,25,("TimesNewRoman",12),"nw")
-         self.optionswindow.configureChild("ApplyButton",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.configureChild("ApplyButton",background=sp[0],foreground=sp[1])
          self.optionswindow.configureChild("ApplyButton",text="Apply",command=self.OWSaveOptions)
 
          self.optionswindow.bindChild("root","<Destroy>",self.closeOptionsWindow)
@@ -1602,6 +1603,7 @@ class NiminFetishFantasyv0975o_fla:
    def changeBackgroundColor(self, color):
       specialcolour = self.getColours()[0]
       items = ["display","textmain"]
+      sitems = []
       if self.statpanevisible:
          items.extend(("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel"))
       if self.regionpanevisible:
@@ -1610,39 +1612,56 @@ class NiminFetishFantasyv0975o_fla:
          items.extend(("levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel"))
       if self.timepanevisible:
          items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
+      if self.showsavegame:
+         sitems.append("savegamebutton")
+      if self.showloadgame:
+         sitems.append("loadgamebutton")
+      if self.shownewgame:
+         sitems.append("newgamebutton")
+      for i in range(1,13):
+         if self.buttonsVisible[i]:
+            sitems.append(f"button{i}")
+            if self.amountLabelsVisible[i]:
+               sitems.append(f"amountlabel{i}")
+      if self.discardbuttonvisible:
+         sitems.append("discardbutton")
+      if self.pageShow:
+         sitems.append("pagelabel")
+      if self.moveitembuttonvisible:
+         sitems.append("moveitembutton")
+         if self.moveitemamountvisible:
+            sitems.append("moveitemamount")
+      if self.appearancebuttonvisible:
+         sitems.append("appearancebutton")
       if self.sidepanelvisible:
          items.append("textside")
+         sitems.extend(("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton"))
       if self.newSLDialogVisible:
          items.extend(("savefileselect","savefileentry","savefilelabel"))
-      for i in items:
-         self.mo.configureChild(i, background=color)
-      for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
-         try:
-            self.mo.configureChild(i, background=specialcolour)
-         except:...
+      sitems.extend(("themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"))
+      self.mo.configureChildren(items, background=color)
+      self.mo.configureChildren(sitems, background=specialcolour)
       if self.mo.aboutwindow[0] == True:
          for i in ("window","label","okbutton"):
             self.mo.aboutwindow[2][i].configure(background=color)
       if self.wikiOpen:
-         for i in ("text","menu"):
-            self.wikiwindow.configureChild(i,background=color)
+         self.wikiwindow.configureChildren(("text","menu"),background=color)
       if self.sfcOpen:
-         for i in ("display","title","message","inputfilebox","outputfilebox","convertbutton"):
-            self.sfcwindow.configureChild(i,background=color)
+         self.sfcwindow.configureChildren(("display","title","message","inputfilebox","outputfilebox","convertbutton"),background=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen:
-         for i in ("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","if","OBC","ScrolledTextBorders","ThemeType","newgameoriginalsize","doLevelUPStaticButtons"):
-            self.optionswindow.configureChild(i,background=color)
+         self.optionswindow.configureChildren(("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","if","OBC","ScrolledTextBorders","ThemeType","newgameoriginalsize","doLevelUPStaticButtons"),background=color)
          self.optionswindow.configureChild("ApplyButton",background=specialcolour)
          if as3state.as3DebugEnable:
-            for i in ("dt","ChooseSenario","NoDamage"):
-               self.optionswindow.configureChild(i,background=color)
+            self.optionswindow.configureChildren(("dt","ChooseSenario","NoDamage"),background=color)
       self.style.configure("TFrame",background=color)
       self.style.configure("TNotebook",background=color)
    def changeTextColor(self, color):
       specialcolour = self.getColours()[1]
       items = ["textmain"]
+      sitems = []
+      hitems = []
       if self.statpanevisible:
          items.extend(("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel"))
       if self.regionpanevisible:
@@ -1651,38 +1670,52 @@ class NiminFetishFantasyv0975o_fla:
          items.extend(("levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel"))
       if self.timepanevisible:
          items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
+      if self.showsavegame:
+         sitems.append("savegamebutton")
+      if self.showloadgame:
+         sitems.append("loadgamebutton")
+      if self.shownewgame:
+         sitems.append("newgamebutton")
+      for i in range(1,13):
+         if self.buttonsVisible[i]:
+            sitems.append(f"button{i}")
+            if self.amountLabelsVisible[i]:
+               sitems.append(f"amountlabel{i}")
+               hitems.append(f"amountlabel{i}")
+      if self.discardbuttonvisible:
+         sitems.append("discardbutton")
+      if self.pageShow:
+         sitems.append("pagelabel")
+      if self.moveitembuttonvisible:
+         sitems.append("moveitembutton")
+         if self.moveitemamountvisible:
+            sitems.append("moveitemamount")
+            hitems.append("moveitemamount")
+      if self.appearancebuttonvisible:
+         sitems.append("appearancebutton")
       if self.sidepanelvisible:
          items.append("textside")
+         sitems.extend(("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton"))
       if self.newSLDialogVisible:
          items.extend(("savefileselect","savefileentry","savefilelabel"))
-      for i in items:
-         self.mo.configureChild(i, foreground=color)
-      for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
-         try:
-            self.mo.configureChild(i, foreground=specialcolour)
-         except:...
-      for i in ("amountlabel1","amountlabel2","amountlabel3","amountlabel4","amountlabel5","amountlabel6","amountlabel7","amountlabel8","amountlabel9","amountlabel10","amountlabel11","amountlabel12","moveitemamount"):
-         try:
-            self.mo.configureChild(i, highlightbackground=specialcolour)
-         except:...
+      sitems.extend(("themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"))
+      self.mo.configureChildren(items, foreground=color)
+      self.mo.configureChildren(sitems, foreground=specialcolour)
+      self.mo.configureChildren(hitems, highlightbackground=specialcolour)
       if self.mo.aboutwindow[0] == True:
          for i in ("label","okbutton"):
             self.mo.aboutwindow[2][i].configure(foreground=color)
       if self.wikiOpen:
-         for i in ("text","menu"):
-            self.wikiwindow.configureChild(i,foreground=color)
+         self.wikiwindow.configureChildren(("text","menu"),foreground=color)
       if self.sfcOpen:
-         for i in ("title","message","inputfilebox","outputfilebox","convertbutton"):
-            self.sfcwindow.configureChild(i,foreground=color)
+         self.sfcwindow.configureChildren(("title","message","inputfilebox","outputfilebox","convertbutton"),foreground=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen:
-         for i in ("SOLMode","FixedRes","Theme","FontColor","SaveLocation","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType","newgameoriginalsize","doLevelUPStaticButtons"):
-            self.optionswindow.configureChild(i,foreground=color)
+         self.optionswindow.configureChildren(("SOLMode","FixedRes","Theme","FontColor","SaveLocation","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","UseExpandedSaveDialog","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","UseNewStash","MiscChanges","OBC","ScrolledTextBorders","ThemeType","newgameoriginalsize","doLevelUPStaticButtons"),foreground=color)
          self.optionswindow.configureChild("ApplyButton",foreground=specialcolour)
          if as3state.as3DebugEnable:
-            for i in ("ChooseSenario","NoDamage"):
-               self.optionswindow.configureChild(i,foreground=color)
+            self.optionswindow.configureChildren(("ChooseSenario","NoDamage"),foreground=color)
    def updateTheme(self):
       self.detailedDebug()
       self.changeBackgroundColor(self.theme)
