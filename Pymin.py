@@ -24385,18 +24385,8 @@ class NiminFetishFantasyv0975o_fla:
          self.udderEngorgement = 0
       return Math.floor(tempNum)
    def frame1(self):
-      self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,0))
-      self.showPage(False,"")
-      self.showMoveItem(False)
       self.loadPreferences()
-      self.hideDiscard()
-      self.hideAmountAll()
-      self.hideUpDown()
-      self.hideStatsPane()
-      self.hideAPButton()
       self.hideOption7()
-      self.hideSGButton()
-      self.updateText()
       if self.originalFrame1Message:
          self.outputMainText(f"Nimin: Fetish Fantasy\n            v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above.",True)
       else:
