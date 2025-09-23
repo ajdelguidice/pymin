@@ -668,7 +668,6 @@ class NiminFetishFantasyv0975o_fla:
       self.regionpanevisible = False
       self.levelpanevisible = False
       self.timepanevisible = False
-      self.hourlabelvisible = False
       self.showsavegame = False
       self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
       self.mo.configureChild("loadgamebutton",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
@@ -1602,10 +1601,21 @@ class NiminFetishFantasyv0975o_fla:
       self.savePreferences()
    def changeBackgroundColor(self, color):
       specialcolour = self.getColours()[0]
-      for i in ("display","label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
-         try:
-            self.mo.configureChild(i, background=color)
-         except:...
+      items = ["display","textmain"]
+      if self.statpanevisible:
+         items.extend(("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel"))
+      if self.regionpanevisible:
+         items.extend(("label10","currentregionlabel"))
+      if self.levelpanevisible:
+         items.extend(("levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel"))
+      if self.timepanevisible:
+         items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
+      if self.sidepanelvisible:
+         items.append("textside")
+      if self.newSLDialogVisible:
+         items.extend(("savefileselect","savefileentry","savefilelabel"))
+      for i in items:
+         self.mo.configureChild(i, background=color)
       for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
          try:
             self.mo.configureChild(i, background=specialcolour)
@@ -1632,10 +1642,21 @@ class NiminFetishFantasyv0975o_fla:
       self.style.configure("TNotebook",background=color)
    def changeTextColor(self, color):
       specialcolour = self.getColours()[1]
-      for i in ("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel","label10","currentregionlabel","levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel","daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel","savefileselect","savefileentry","savefilelabel","textmain","textside"):
-         try:
-            self.mo.configureChild(i, foreground=color)
-         except:...
+      items = ["textmain"]
+      if self.statpanevisible:
+         items.extend(("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel"))
+      if self.regionpanevisible:
+         items.extend(("label10","currentregionlabel"))
+      if self.levelpanevisible:
+         items.extend(("levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel"))
+      if self.timepanevisible:
+         items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
+      if self.sidepanelvisible:
+         items.append("textside")
+      if self.newSLDialogVisible:
+         items.extend(("savefileselect","savefileentry","savefilelabel"))
+      for i in items:
+         self.mo.configureChild(i, foreground=color)
       for i in ("savegamebutton","loadgamebutton","newgamebutton","button1","amountlabel1","button2","amountlabel2","button3","amountlabel3","button4","amountlabel4","button5","amountlabel5","button6","amountlabel6","button7","amountlabel7","button8","amountlabel8","button9","amountlabel9","button10","amountlabel10","button11","amountlabel11","button12","amountlabel12","discardbutton","pagelabel","moveitembutton","moveitemamount","looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton","appearancebutton","themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"):
          try:
             self.mo.configureChild(i, foreground=specialcolour)
