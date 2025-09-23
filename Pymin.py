@@ -4,6 +4,7 @@ from pathlib import Path, PurePath
 from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
 from miniamf import sol, DecodeError
+from miniamf.amf3 import ByteArray
 from functools import partial, cache
 from secrets import choice
 from re import sub
@@ -11,7 +12,6 @@ from io import BytesIO
 import as3lib as as3
 import as3lib.interface_tk as itk
 import as3lib.keyConversions as ckeys
-from as3lib.flash.utils import ByteArray
 from as3lib import cmath, as3state, Math
 from as3lib.config import TOML
 from as3lib.helpers import textObject
@@ -6785,6 +6785,7 @@ class NiminFetishFantasyv0975o_fla:
                self.displayMainText()
                self.doEnd()
             elif self.buttonChoice == 10:
+               #! respect showballs
                if (self.balls > 2):
                   self.outputMainText("You rub the neuterizer into your scrotum. You squirm a bit as one of your testicles wrenches a bit, shrinking down. Once it disappears into nothing, you feel perfectly fine again.",True)
                   self.balls -= 1
@@ -26630,7 +26631,7 @@ class NiminFetishFantasyv0975o_fla:
       if ID == 119:
          return "<h4><u>Whip</u></h4>(Item ID 119)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
       if ID == 120:
-         return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+         return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nDescription.\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
       if ID == 121:
          return "<h4><u>Teleport Scroll: Softlik (TS Soft)</u></h4>(Item ID 121)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
       if ID == 122:
