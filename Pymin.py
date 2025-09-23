@@ -1911,6 +1911,15 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.hideSidePanel()
          sp = True
+      elif (self.dir / "Nimin_Prefs.sol").is_file():
+         so = sol.load(str(self.dir / "Nimin_Prefs.sol"))
+         prefLoad = so["prefs"]
+         self.theme = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[prefLoad[0]]
+         self.fontSize = prefLoad[1]
+         self.fontBold = prefLoad[2]
+         self.fontColor = prefLoad[3]
+         self.showSide = prefLoad[4]
+         sp = True
       else:
          sp = True
          if (self.currentState != 0):
