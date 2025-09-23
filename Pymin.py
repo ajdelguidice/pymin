@@ -664,21 +664,10 @@ class NiminFetishFantasyv0975o_fla:
       self.sidepanelbuttonnames = ("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton")
       self.sidepanelbuttontext = ("Look","Stats","Effects","Help","Levels","Gear","Titles","Credits")
 
-      self.label1visible = False
-      self.strlabelvisible = False
-      self.mentlabelvisible = False
-      self.liblabelvisible = False
-      self.senlabelvisible = False
-      self.label6visible = False
-      self.hplabelvisible = False
-      self.lustlabelvisible = False
-      self.hungerlabelvisible = False
-      self.label10visible = False
-      self.currentregionlabelvisible = False
-      self.levellabelvisible = False
-      self.sexplabelvisible = False
-      self.coinlabelvisible = False
-      self.daylabelvisible = False
+      self.statpanevisible = False
+      self.regionpanevisible = False
+      self.levelpanevisible = False
+      self.daypanevisible = False
       self.hourlabelvisible = False
       self.showsavegame = False
       self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
@@ -695,8 +684,7 @@ class NiminFetishFantasyv0975o_fla:
       self.moveitembuttonvisible = False
       self.moveitemamountvisible = False
       self.discardbuttonvisible = False
-      self.sidepanelbuttonsvisible = [False,False,False,False,False,False,False,False]
-      self.textsidevisible = False
+      self.sidepanelvisible = False
       self.appearancebuttonvisible = False
       self.mo.addButton("display","themebutton",823,595,60,30,self.font)
       self.mo.configureChild("themebutton",text="Theme",background=self.theme,foreground=self.fontColor,command=self.option1Event)
@@ -1157,13 +1145,13 @@ class NiminFetishFantasyv0975o_fla:
       if toggle == True:
          self.mo.children["textmain"].configure(borderwidth=1,highlightthickness=1)
          self.mo.childproperties["textmain"][7][7] = True
-         if self.textsidevisible:
+         if self.sidepanelvisible:
             self.mo.children["textside"].configure(borderwidth=1,highlightthickness=1)
             self.mo.childproperties["textside"][7][7] = True
       else:
          self.mo.children["textmain"].configure(borderwidth=0,highlightthickness=0)
          self.mo.childproperties["textmain"][7][7] = False
-         if self.textsidevisible:
+         if self.sidepanelvisible:
             self.mo.children["textside"].configure(borderwidth=0,highlightthickness=0)
             self.mo.childproperties["textside"][7][7] = False
    @staticmethod
@@ -1738,7 +1726,7 @@ class NiminFetishFantasyv0975o_fla:
       self.detailedDebug()
       self.changeTextColor(self.fontColor)
       self.displayMainText()
-      if self.textsidevisible:
+      if self.sidepanelvisible:
          self.displaySideText()
       if self.wikiOpen:
          self.displayWikiText()
@@ -4641,10 +4629,10 @@ class NiminFetishFantasyv0975o_fla:
                self.hideStatsPane()
                for i in range(8):
                   self.mo.destroyChild(self.sidepanelbuttonnames[i])
-                  self.sidepanelbuttonsvisible[i] = False
-               if self.textsidevisible:
-                  self.mo.children["textside"].frame.destroy()
-                  self.textsidevisible = False
+               temp = self.mo.children.get("textside")
+               if temp != None:
+                  temp.frame.destroy()
+               self.sidepanelvisible = False
                self.hideAPButton()
             self.hideNSLDBlinder()
             self.loadGo("Error: Failed after loading file data.")
@@ -24424,11 +24412,11 @@ class NiminFetishFantasyv0975o_fla:
    def setLevelStat(self):
       self.mo.configureChild("levelvallabel",text=self.level)
    def showStatPane(self):
-      if not self.label1visible:
+      if not self.statpanevisible:
+         # Pane Title
          self.mo.addnwhLabel("display","label1",20,30,self.font)
          self.mo.configureChild("label1",text="Base Stats",background=self.theme,foreground=self.fontColor)
-         self.label1visible = True
-      if not self.strlabelvisible:
+         # Strength Label
          self.mo.addnwhLabel("display","strlabel",20,70,self.font)
          self.mo.configureChild("strlabel",text="Strength",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","strcolonlabel",110,69,self.font,anchor="n")
@@ -24437,8 +24425,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("strvallabel",text="",background=self.theme,foreground=self.fontColor)
          self.mo.addImageLabel("display","strimglabel",174,70,20,20,image_name="valupimg")
          self.mo.configureChild("strimglabel",background=self.theme,foreground=self.fontColor)
-         self.strlabelvisible = True
-      if not self.mentlabelvisible:
+         # Mentality Label
          self.mo.addnwhLabel("display","mentlabel",20,90,self.font)
          self.mo.configureChild("mentlabel",text="Mentality",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","mentcolonlabel",110,89,self.font,anchor="n")
@@ -24447,8 +24434,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("mentvallabel",text="",background=self.theme,foreground=self.fontColor)
          self.mo.addImageLabel("display","mentimglabel",174,90,20,20,image_name="valupimg")
          self.mo.configureChild("mentimglabel",background=self.theme,foreground=self.fontColor)
-         self.mentlabelvisible = True
-      if not self.liblabelvisible:
+         # Libido Label
          self.mo.addnwhLabel("display","liblabel",20,110,self.font)
          self.mo.configureChild("liblabel",text="Libido",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","libcolonlabel",110,109,self.font,anchor="n")
@@ -24457,8 +24443,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("libvallabel",text="",background=self.theme,foreground=self.fontColor)
          self.mo.addImageLabel("display","libimglabel",174,110,20,20,image_name="valupimg")
          self.mo.configureChild("libimglabel",background=self.theme,foreground=self.fontColor)
-         self.liblabelvisible = True
-      if not self.senlabelvisible:
+         # Sensitivity Label
          self.mo.addnwhLabel("display","senlabel",20,130,self.font)
          self.mo.configureChild("senlabel",text="Sensitivity",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","sencolonlabel",110,129,self.font,anchor="n")
@@ -24467,12 +24452,10 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("senvallabel",text="",background=self.theme,foreground=self.fontColor)
          self.mo.addImageLabel("display","senimglabel",174,130,20,20,image_name="valupimg")
          self.mo.configureChild("senimglabel",background=self.theme,foreground=self.fontColor)
-         self.senlabelvisible = True
-      if not self.label6visible:
+         # Combat Stats Section Title
          self.mo.addnwhLabel("display","label6",20,170,self.font)
          self.mo.configureChild("label6",text="Combat Stats",background=self.theme,foreground=self.fontColor)
-         self.label6visible = True
-      if not self.hplabelvisible:
+         # HP Label
          self.mo.addnwhLabel("display","hplabel",20,190,self.font)
          self.mo.configureChild("hplabel",text="HP",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","hpcolonlabel",110,189,self.font,anchor="n")
@@ -24481,8 +24464,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("hpvallabel",text="",background=self.theme,foreground=self.fontColor)
          self.mo.addImageLabel("display","hpimglabel",174,190,20,20,image_name="valupimg")
          self.mo.configureChild("hpimglabel",background=self.theme,foreground=self.fontColor)
-         self.hplabelvisible = True
-      if not self.lustlabelvisible:
+         # Lust Label
          self.mo.addnwhLabel("display","lustlabel",20,210,self.font)
          self.mo.configureChild("lustlabel",text="Lust",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","lustcolonlabel",110,209,self.font,anchor="n")
@@ -24491,149 +24473,139 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.configureChild("lustvallabel",text="",background=self.theme,foreground=self.fontColor)
          self.mo.addImageLabel("display","lustimglabel",174,210,20,20,image_name="valupimg")
          self.mo.configureChild("lustimglabel",background=self.theme,foreground=self.fontColor)
-         self.lustlabelvisible = True
-      if not self.hungerlabelvisible:
+         # Hunger Label
          self.mo.addnwhLabel("display","hungerlabel",20,230,self.font)
          self.mo.configureChild("hungerlabel",text="Hunger",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","hungercolonlabel",110,229,self.font,anchor="n")
          self.mo.configureChild("hungercolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","hungervallabel",130,230,self.font)
          self.mo.configureChild("hungervallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.hungerlabelvisible = True
+         self.statpanevisible = True
    def hideStatPane(self):
-      if self.label1visible:
+      if self.statpanevisible:
+         # Pane Title
          self.mo.destroyChild("label1")
-         self.label1visible = False
-      if self.strlabelvisible:
+         # Strength Label
          self.mo.destroyChild("strlabel")
          self.mo.destroyChild("strcolonlabel")
          self.mo.destroyChild("strvallabel")
          self.mo.destroyChild("strimglabel")
-         self.strlabelvisible = False
-      if self.mentlabelvisible:
+         # Mentality Label
          self.mo.destroyChild("mentlabel")
          self.mo.destroyChild("mentcolonlabel")
          self.mo.destroyChild("mentvallabel")
          self.mo.destroyChild("mentimglabel")
-         self.mentlabelvisible = False
-      if self.liblabelvisible:
+         # Libido Label
          self.mo.destroyChild("liblabel")
          self.mo.destroyChild("libcolonlabel")
          self.mo.destroyChild("libvallabel")
          self.mo.destroyChild("libimglabel")
-         self.liblabelvisible = False
-      if self.senlabelvisible:
+         # Sensitivity Label
          self.mo.destroyChild("senlabel")
          self.mo.destroyChild("sencolonlabel")
          self.mo.destroyChild("senvallabel")
          self.mo.destroyChild("senimglabel")
-         self.senlabelvisible = False
-      if self.label6visible:
+         # Combat Stats Section Title
          self.mo.destroyChild("label6")
-         self.label6visible = False
-      if self.hplabelvisible:
+         # HP Label
          self.mo.destroyChild("hplabel")
          self.mo.destroyChild("hpcolonlabel")
          self.mo.destroyChild("hpvallabel")
          self.mo.destroyChild("hpimglabel")
-         self.hplabelvisible = False
-      if self.lustlabelvisible:
+         # Lust Label
          self.mo.destroyChild("lustlabel")
          self.mo.destroyChild("lustcolonlabel")
          self.mo.destroyChild("lustvallabel")
          self.mo.destroyChild("lustimglabel")
-         self.lustlabelvisible = False
-      if self.hungerlabelvisible:
+         # Hunger Label
          self.mo.destroyChild("hungerlabel")
          self.mo.destroyChild("hungercolonlabel")
          self.mo.destroyChild("hungervallabel")
-         self.hungerlabelvisible = False
+         self.statpanevisible = False
    def showDayPane(self):
-      if not self.daylabelvisible:
+      if not self.daypanevisible:
+         # Day Label
          self.mo.addnwhLabel("display","daylabel",20,450,self.font)
          self.mo.configureChild("daylabel",text="Day",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","daycolonlabel",110,449,self.font,anchor="n")
          self.mo.configureChild("daycolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","dayvallabel",130,450,self.font)
          self.mo.configureChild("dayvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.daylabelvisible = True
-      if not self.hourlabelvisible:
+         # Hour Label
          self.mo.addnwhLabel("display","hourlabel",20,470,self.font)
          self.mo.configureChild("hourlabel",text="Hour",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","hourcolonlabel",110,469,self.font,anchor="n")
          self.mo.configureChild("hourcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","hourvallabel",130,470,self.font)
          self.mo.configureChild("hourvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.hourlabelvisible = True
+         self.daypanevisible = True
    def hideDayPane(self):
-      if self.daylabelvisible:
+      if self.daypanevisible:
+         # Day Label
          self.mo.destroyChild("daylabel")
          self.mo.destroyChild("daycolonlabel")
          self.mo.destroyChild("dayvallabel")
-         self.daylabelvisible = False
-      if self.hourlabelvisible:
+         # Hour Label
          self.mo.destroyChild("hourlabel")
          self.mo.destroyChild("hourcolonlabel")
          self.mo.destroyChild("hourvallabel")
-         self.hourlabelvisible = False
+         self.daypanevisible = False
    def showRegionPane(self):
-      if not self.label10visible:
+      if not self.regionpanevisible:
+         # Pane Title
          self.mo.addnwhLabel("display","label10",110,280,self.font,anchor="n")
          self.mo.configureChild("label10",text="Current Region",background=self.theme,foreground=self.fontColor)
-         self.label10visible = True
-      if not self.currentregionlabelvisible:
+         # Region Label
          self.mo.addnwhLabel("display","currentregionlabel",110,300,("TimesNewRoman",20,"bold"),anchor="n")
          self.mo.configureChild("currentregionlabel",text="Region",background=self.theme,foreground=self.fontColor)
-         self.currentregionlabelvisible = True
+         self.regionpanevisible = True
       self.regionChange(self.currentZone)
    def hideRegionPane(self):
-      if self.label10visible:
+      if self.regionpanevisible:
+         # Pane Title
          self.mo.destroyChild("label10")
-         self.label10visible = False
-      if self.currentregionlabelvisible:
+         # Region Label
          self.mo.destroyChild("currentregionlabel")
-         self.currentregionlabelvisible = False
+         self.regionpanevisible = False
    def showLevelPane(self):
-      if not self.levellabelvisible:
+      if not self.levelpanevisible:
+         # Level Label
          self.mo.addnwhLabel("display","levellabel",20,370,self.font)
          self.mo.configureChild("levellabel",text="Level",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","levelcolonlabel",110,369,self.font,anchor="n")
          self.mo.configureChild("levelcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","levelvallabel",130,370,self.font)
          self.mo.configureChild("levelvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.levellabelvisible = True
-      if not self.sexplabelvisible:
+         # SexP Label
          self.mo.addnwhLabel("display","sexplabel",20,390,self.font)
          self.mo.configureChild("sexplabel",text="SexP",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","sexpcolonlabel",110,389,self.font,anchor="n")
          self.mo.configureChild("sexpcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","sexpvallabel",130,390,self.font)
          self.mo.configureChild("sexpvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.sexplabelvisible = True
-      if not self.coinlabelvisible:
+         # Coin Label
          self.mo.addnwhLabel("display","coinlabel",20,410,self.font)
          self.mo.configureChild("coinlabel",text="Coin",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","coincolonlabel",110,409,self.font,anchor="n")
          self.mo.configureChild("coincolonlabel",text=":",background=self.theme,foreground=self.fontColor)
          self.mo.addnwhLabel("display","coinvallabel",130,410,self.font)
          self.mo.configureChild("coinvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.coinlabelvisible = True
+         self.levelpanevisible = True
    def hideLevelPane(self):
-      if self.levellabelvisible:
+      if self.levelpanevisible:
+         # Level Label
          self.mo.destroyChild("levellabel")
          self.mo.destroyChild("levelcolonlabel")
          self.mo.destroyChild("levelvallabel")
-         self.levellabelvisible = False
-      if self.sexplabelvisible:
+         # SexP Label
          self.mo.destroyChild("sexplabel")
          self.mo.destroyChild("sexpcolonlabel")
          self.mo.destroyChild("sexpvallabel")
-         self.sexplabelvisible = False
-      if self.coinlabelvisible:
+         # Coin Label
          self.mo.destroyChild("coinlabel")
          self.mo.destroyChild("coincolonlabel")
          self.mo.destroyChild("coinvallabel")
-         self.coinlabelvisible = False
+         self.levelpanevisible = False
    def showSGButton(self):
       if (not self.showsavegame):
          temp = self.getColours()
@@ -24769,25 +24741,21 @@ class NiminFetishFantasyv0975o_fla:
       return (823+(83*(buttonNum%4)),210+(30*(buttonNum//4)))
    def showSidePanel(self):
       temp = self.getColours()
-      for i in range(8):
-         if not self.sidepanelbuttonsvisible[i]:
+      if not self.sidepanelvisible:
+         for i in range(8):
             self.mo.addButton("display",self.sidepanelbuttonnames[i],*self._showSidePanelCalc(i),80,30,self.font)
             self.mo.configureChild(self.sidepanelbuttonnames[i],text=self.sidepanelbuttontext[i],background=temp[0],foreground=temp[1],command=partial(self.sideEvent,i+1))
-            self.sidepanelbuttonsvisible[i] = True
-      if not self.textsidevisible:
          self.mo.addHTMLScrolledText("display","textside",823,275,330,315,self.font,border=self.scrolledTextBorders)
          self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word",background=self.theme,foreground=self.fontColor)
-         self.textsidevisible = True
          self.updateText()
+      self.sidepanelvisible = True
       self.hideAPButton()
    def hideSidePanel(self):
-      for i in range(8):
-         if self.sidepanelbuttonsvisible[i]:
+      if self.sidepanelvisible:
+         for i in range(8):
             self.mo.destroyChild(self.sidepanelbuttonnames[i])
-            self.sidepanelbuttonsvisible[i] = False
-      if self.textsidevisible:
          self.mo.children["textside"].frame.destroy()
-         self.textsidevisible = False
+      self.sidepanelvisible = False
       self.showAPButton()
    def showOption7(self):
       if (not self.option7Visible):
@@ -24821,35 +24789,30 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.configureChild("textside",font=("TimesNewRoman",self.fontSize - 2),htmlfontbold=self.fontBold)
       self.mo.configureChild("textside",text=self.sideText.get())
    def hideUpDown(self):
-      if self.strlabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("strimglabel",image="")
-      if self.mentlabelvisible:
          self.mo.configureChild("mentimglabel",image="")
-      if self.liblabelvisible:
          self.mo.configureChild("libimglabel",image="")
-      if self.senlabelvisible:
          self.mo.configureChild("senimglabel",image="")
-      if self.hplabelvisible:
          self.mo.configureChild("hpimglabel",image="")
-      if self.lustlabelvisible:
          self.mo.configureChild("lustimglabel",image="")
    def UpDownStrImg(self, img):
-      if self.strlabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("strimglabel",image=img)
    def UpDownMentImg(self, img):
-      if self.mentlabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("mentimglabel",image=img)
    def UpDownLibImg(self, img):
-      if self.liblabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("libimglabel",image=img)
    def UpDownSenImg(self, img):
-      if self.senlabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("senimglabel",image=img)
    def UpDownhpImg(self, img):
-      if self.hplabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("hpimglabel",image=img)
    def UpDownLustImg(self, img):
-      if self.lustlabelvisible:
+      if self.statpanevisible:
          self.mo.configureChild("lustimglabel",image=img)
    def moveItemShow(self):
       if (not self.moveitembuttonvisible):
