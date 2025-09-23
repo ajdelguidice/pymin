@@ -1845,6 +1845,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.theme = "#FFFFFF"
             self.fontColor = "#000000"
+         self.showSide = strtobool(prefs.find("showSide").text)
          if prefs.find("saveLocation") != None:
             tempdir = Path(prefs.find("saveLocation").text).resolve()
             if as3.isValidDirectory(tempdir):
@@ -1905,11 +1906,6 @@ class NiminFetishFantasyv0975o_fla:
                self.oNewGameButton = True
                self.staticdoLevelUPButtons = False
                self.tempInterfaceToggles = tempitoggle
-         if (self.currentState != 0):
-            if (strtobool(prefs.find("showSide").text)):
-               self.showSidePanel()
-            else:
-               self.hideSidePanel()
          sp = True
       elif (self.dir / "Nimin_Prefs.sol").is_file():
          so = sol.load(str(self.dir / "Nimin_Prefs.sol"))
@@ -1922,8 +1918,6 @@ class NiminFetishFantasyv0975o_fla:
          sp = True
       else:
          sp = True
-         if (self.currentState != 0):
-            self.showSidePanel()
       self.checkExistsMakeDir(self.savelocation,True)
       if sp:
          self.savePreferences()
@@ -24399,7 +24393,6 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAmountAll()
       self.hideUpDown()
       self.hideStatsPane()
-      self.hideSidePanel()
       self.hideAPButton()
       self.hideOption7()
       self.hideSGButton()
