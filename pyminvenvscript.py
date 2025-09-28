@@ -42,7 +42,7 @@ if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
     print('Error: Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
     exit()
 
-def create(script_url, as3libversion, cfgDict:dict=None):
+def create(script_url, as3libversion):
     #Sets up the virtual environment
     if venvpath == venvpath.parent:
         print('Error: venvpath is set to the root directory. You can not create a virtual environment here.')
@@ -68,20 +68,19 @@ def create(script_url, as3libversion, cfgDict:dict=None):
         c2['path'] = ''
         delconf = curdir / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
-    elif cfgloc == None or cfgDict != None:
+    elif cfgloc == None:
         cfgloc = venvpath / 'pymin.toml'
-        if cfgDict == None:
-            cfgDict = {
-                'cfgVersion':1,
-                'path':'',
-                'pyInstalledVersion':platform.python_version(),
-                'uvGlobal':False,
-                'uvLocal':False,
-                'defaultToRun':False,
-                'noSSLVerify':False,
-                'noCustomHTMLParser':False,
-                'isDevEnv':False
-            }
+        cfgDict = {
+            'cfgVersion':1,
+            'path':'',
+            'pyInstalledVersion':platform.python_version(),
+            'uvGlobal':False,
+            'uvLocal':False,
+            'defaultToRun':False,
+            'noSSLVerify':False,
+            'noCustomHTMLParser':False,
+            'isDevEnv':False
+        }
         writeTOML(cfgloc, cfgDict)
     else:
         c2['path'] = str(venvpath)
@@ -161,7 +160,7 @@ def updatemodules(as3libversion):
     print('Done')
     replaceTkhtmlviewParserWithUnsafeOne()
 
-def recreate(url, as3libversion, cfgDict:dict, withsaves, withconf):
+def recreate(url, as3libversion, withconf:dict, withsaves, withgameconf):
     if not venvpath.is_dir():
         print(f'Error: Directory "{venvpath}" either doesn\'t exist or is not a directory. Aborting...')
         return
@@ -172,20 +171,33 @@ def recreate(url, as3libversion, cfgDict:dict, withsaves, withconf):
         print('Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...')
         return
     tempdir = None
+    cfgDict = None
     try:
-        if withsaves or withconf:
+        if withconf:
+            if (curdir / 'pymin.toml').exists():
+                print('--with-config specified but config not in venv. Config skipped.')
+                withconf = False
+            elif (venvpath / 'pymin.toml').exists():
+                with open(venvpath / 'pymin.toml','rb') as f:
+                    cfgDict = tomllib.load(f)
+        if withsaves or withgameconf:
             tempdir = Path(tempfile.mkdtemp())
         if withsaves:
             copytree(venvpath / 'Pymin/nimin_saves', tempdir / 'nimin_saves')
-        if withconf:
+        if withgameconf:
             copyfile(venvpath / 'Pymin/Nimin_Prefs.toml', tempdir / 'Nimin_Prefs.toml')
         rmtree(venvpath)
-        create(url, as3libversion, cfgDict)
+        tempdevenv = c2['isDevEnv']
+        c2['isDevEnv'] = False
+        create(url, as3libversion)
+        c2['isDevEnv'] = tempdevenv
+        if withconf and cfgDict != None:
+            writeTOML(venvpath / 'pymin.toml', cfgDict)
         if withsaves:
             copytree(tempdir / 'nimin_saves', venvpath / 'Pymin/nimin_saves')
-        if withconf:
+        if withgameconf:
             copyfile(tempdir / 'Nimin_Prefs.toml', venvpath / 'Pymin/Nimin_Prefs.toml')
-    except Exception as e:
+    except Exception as e: #! Try to recover
         raise e
     finally:
         if tempdir != None:
@@ -213,7 +225,7 @@ def updatePythonVersion():
         installmodules(overrideDev=True)
         c2['pyInstalledVersion'] = platform.python_version()
 
-def migrateConfig(save:bool=False, getNew:bool=False):
+def migrateConfig():
     tempUV = False
     tempUVI = False
     tempDR = False
@@ -230,12 +242,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
         tempDR = True
         (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
     # Load config
-    if getNew and ((curdir / 'pymin.toml').exists() or (venvpath / 'pymin.toml').exists()):
-        if (curdir / 'pymin.toml').exists():
-            cfgloc = curdir / 'pymin.toml'
-        with open(cfgloc,'rb') as f:
-            conf = tomllib.load(f)
-    elif (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
+    if (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
         if (curdir / 'pymin.cfg').exists():
             temploc = curdir / 'pymin.cfg'
             cfgloc = curdir / 'pymin.toml'
@@ -275,10 +282,8 @@ def migrateConfig(save:bool=False, getNew:bool=False):
         }
     if conf == None:
         print('Nothing to do.')
-    elif save:
-        writeTOML(cfgloc, conf)
     else:
-        return conf
+        writeTOML(cfgloc, conf)
 
 insecure_context = ssl._create_unverified_context()
 
@@ -649,16 +654,16 @@ else:
     elif argv[1] == 'conv':
         run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', '--converter'))
     elif argv[1] == 'recreate' and hasVenv:
-        cfgdict = None
-        withsaves = False
         withconf = False
+        withsaves = False
+        withgameconf = False
         if '--with-config' in argv:
-            cfgdict = migrateConfig(getNew=True)
+            withconf = True
         if '--with-saves' in argv:
             withsaves = True
         if '--with-game-config' in argv:
-            withconf = True
-        recreate(url, as3libversiontag, cfgdict, withsaves, withconf)
+            withgameconf = True
+        recreate(url, as3libversiontag, withconf, withsaves, withgameconf)
     elif argv[1] == 'uv' and hasVenv:
         if len(argv) == 2:
             rl = ['uv','--help']
