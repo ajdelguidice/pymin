@@ -160,7 +160,7 @@ def updatemodules(as3libversion):
     print('Done')
     replaceTkhtmlviewParserWithUnsafeOne()
 
-def recreate(url, as3libversion, withconf:dict, withsaves, withgameconf):
+def recreate(url, as3libversion, withconf, withsaves, withgameconf):
     if not venvpath.is_dir():
         print(f'Error: Directory "{venvpath}" either doesn\'t exist or is not a directory. Aborting...')
         return
