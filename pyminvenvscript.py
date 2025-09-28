@@ -197,9 +197,14 @@ def recreate(url, as3libversion, withconf, withsaves, withgameconf):
             copytree(tempdir / 'nimin_saves', venvpath / 'Pymin/nimin_saves')
         if withgameconf:
             copyfile(tempdir / 'Nimin_Prefs.toml', venvpath / 'Pymin/Nimin_Prefs.toml')
-    except Exception as e: #! Try to recover
+    except Exception as e:
+        msg = 'Warning: Failed to recreate venv. '
+        if tempdir != None:
+            msg += f'Temp directory at {tempdir} that contains files specified with the "--with-*" arguements was not deleted to minimise data loss. '
+        print(msg + 'Manual intervential is likely required.')
+        #! Try to recover
         raise e
-    finally:
+    else:
         if tempdir != None:
             rmtree(tempdir)
 
@@ -654,16 +659,7 @@ else:
     elif argv[1] == 'conv':
         run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', '--converter'))
     elif argv[1] == 'recreate' and hasVenv:
-        withconf = False
-        withsaves = False
-        withgameconf = False
-        if '--with-config' in argv:
-            withconf = True
-        if '--with-saves' in argv:
-            withsaves = True
-        if '--with-game-config' in argv:
-            withgameconf = True
-        recreate(url, as3libversiontag, withconf, withsaves, withgameconf)
+        recreate(url, as3libversiontag, '--with-config' in argv, '--with-saves' in argv, '--with-game-config' in argv)
     elif argv[1] == 'uv' and hasVenv:
         if len(argv) == 2:
             rl = ['uv','--help']
