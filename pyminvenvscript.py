@@ -31,7 +31,7 @@ def checkExistsMakeDir(dir_):
     else:
         dir_.mkdir(parents=True)
 
-curdir = Path(__file__).resolve().parent #This is a workaround for python on Windows
+curdir = Path(__file__).resolve().parent  # This is a workaround for python on Windows
 venvpath = curdir / 'Pymin-venv'
 cfgloc = None
 
@@ -48,24 +48,23 @@ def create(script_url, as3libversion, cfgDict:dict=None):
         print('Error: venvpath is set to the root directory. You can not create a virtual environment here.')
         exit()
     print('Creating the environment...')
-    #create directory
-    checkExistsMakeDir(venvpath)
 
-    #create the virtual environment
+    checkExistsMakeDir(venvpath)  # Create directory
+
+    # Create virtual environment
     if c2['uvGlobal']:
         run(('uv', 'venv', venvpath))
     else:    
         run((f'python', '-m', 'venv', venvpath))
 
-    #Create config
+    # Create config
     move = False
     if (curdir / 'pymin.toml').exists() and venvpath == curdir / 'Pymin-venv':
-        #Ask if user wants to move the config to venv
-        inp = input('Config already exists. Would you like to move it into the venv? (y/N)').lower()
+        inp = input('Would you like to move the existing config into the created venv? (y/N)').lower()
         if inp == 'y':
             move = True
     global cfgloc, delconf
-    if move == True:
+    if move:
         c2['path'] = ''
         delconf = curdir / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
@@ -87,7 +86,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
     else:
         c2['path'] = str(venvpath)
     
-    #create game directory
+    # Create game directory
     checkExistsMakeDir(venvpath / 'Pymin')
     print('Done')
 
@@ -95,7 +94,7 @@ def create(script_url, as3libversion, cfgDict:dict=None):
     installmodules(as3libversion)
 
 def installmodules(as3libversion='latest', overrideDev=False):
-    #installs the required modules using pip inside the virtual environment
+    #Installs the required modules using pip inside the virtual environment
     if c2['uvGlobal']:
         temp = ['uv', 'pip', 'install', '--python', pythonvenvloc] + runlist[2:]
     elif c2['uvLocal']:
@@ -120,16 +119,16 @@ def installmodules(as3libversion='latest', overrideDev=False):
     replaceTkhtmlviewParserWithUnsafeOne()
 
 def downloadgame(url):
-    #downloads the game
+    #Downloads the game
     print('Installing game... Please wait.')
     with urlopen(url,context=getSSLContext()) as urlfile:
         (venvpath / 'Pymin/Pymin.py').write_bytes(urlfile.read())
     print('Done')
 
 def updatemodules(as3libversion):
-    #updates the required modules using pip inside the virtual environment
+    #Updates the required modules using pip inside the virtual environment
     if uninstallMiniAMF:
-        print('Uninstalling old Mini-AMF version...')
+        print('Replacing Mini-AMF with as3lib-miniAMF...')
         rl = ['pip', 'uninstall', 'Mini-AMF']
         if c2['uvGlobal']:
             run(['uv'] + rl + ['--python', pythonvenvloc])
@@ -220,7 +219,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
     tempDR = False
     cfgloc = venvpath / 'pymin.toml'
     conf = None
-    #Get old config values. Check here in case it moves to a different location in the future.
+    # Get config v1 values. Do this here because these don't play nice with the others.
     if (venvpath / '.USEUV').exists():
         tempUV = True
         (venvpath / '.USEUV').unlink(missing_ok=True)
@@ -230,7 +229,7 @@ def migrateConfig(save:bool=False, getNew:bool=False):
     if (venvpath / '.DEFAULTRUN').exists():
         tempDR = True
         (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
-    #load config
+    # Load config
     if getNew and ((curdir / 'pymin.toml').exists() or (venvpath / 'pymin.toml').exists()):
         if (curdir / 'pymin.toml').exists():
             cfgloc = curdir / 'pymin.toml'
@@ -306,7 +305,7 @@ class TextObject:
         self.text.close()
 
 class Args:
-    #These were put into a class to work around an issue with global variables
+    # These were put into a class to work around an issue with global variables
     def ParseInner(value):
         if value.startswith(('"',"'")) and value.endswith(('"',"'")): #string
             return value[1:-1]
@@ -318,11 +317,11 @@ class Args:
             return True
         if value.lower() == 'false':
             return False
-        return value #Unknown
+        return value  # Unknown
     def ValidateKey(key):
         if key.startswith(('"',"'")) and key.endswith(('"',"'")): #!Validate these
             return key
-        #Bare keys
+        # Bare keys
         if len(key) == 0:
             print(f'Error: TOML bare keys can not be empty.')
             exit()
@@ -337,11 +336,11 @@ class Args:
         value = TextObject()
         while True:
             char = strio.read(1)
-            if char == '': #This should only happen at EOF
+            if char == '':  # This should only happen at EOF
                 print('Warning: Table was never closed.')
                 break
             elif char == '}':
-                if value.get() != '': #Accounts for no trailing comma
+                if value.get() != '':  # Accounts for no trailing comma
                     table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
                     key.clear()
                     value.clear()
@@ -359,7 +358,7 @@ class Args:
                 table[Args.ValidateKey(key.get())] = Args.ParseArray(strio)
                 key.clear()
             elif char == ',':
-                if value.get() != '': #Accounts for when tables are parsed
+                if value.get() != '':  # Accounts for when tables are parsed
                     table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
                 value.clear()
                 key.clear()
@@ -378,11 +377,11 @@ class Args:
         value = TextObject()
         while True:
             char = strio.read(1)
-            if char == '': #This should only happen at EOF
+            if char == '':  # This should only happen at EOF
                 print('Warning: Array was never closed.')
                 break
             elif char == ']':
-                if value.get() != '': #Accounts for no trailing comma
+                if value.get() != '':  # Accounts for no trailing comma
                     arr.append(Args.ParseInner(value.get()))
                     value.clear()
                 break
@@ -391,7 +390,7 @@ class Args:
             elif char == '{':
                 arr.append(Args.ParseTable(strio))
             elif char == ',':
-                if value.get() != '': #Accounts for when arrays are parsed
+                if value.get() != '':  # Accounts for when arrays are parsed
                     arr.append(Args.ParseInner(value.get()))
                     value.clear()
             else:
@@ -422,7 +421,7 @@ class Args:
                 return Args.ParseTable(text)
 
 class TOML:
-    #These were put into a class to work around an issue with global variables
+    # These were put into a class to work around an issue with global variables
     def Value(value):
         if isinstance(value,str):
             return f'"{value}"'
@@ -439,7 +438,7 @@ class TOML:
             for k,v in value.items():
                 text.write(f'{k} = {TOML.Value(v)},')
             temp = text.getvalue()
-            if temp.endswith(','): #!Make this better
+            if temp.endswith(','):  #!Make this better
                 return temp[:-1] + '}'
             return temp + '}'
     def Array(value):
@@ -486,8 +485,7 @@ if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpat
     print('Old config detected. Automatically migrating to new one.')
     migrateConfig(True)
     print('Done')
-if (curdir / 'pymin.toml').exists():
-    #load config and set venvpath
+if (curdir / 'pymin.toml').exists():  # load config and set venvpath
     cfgloc = curdir / 'pymin.toml'
     with open(cfgloc, 'rb') as f:
         c1 = tomllib.load(f)
@@ -508,8 +506,7 @@ if (curdir / 'pymin.toml').exists():
     venvpath = Path(c2['path']).resolve()
     if not venvpath.exists():
         hasVenv = False
-elif (venvpath / 'pymin.toml').exists():
-    #load config
+elif (venvpath / 'pymin.toml').exists():  # load config
     cfgloc = venvpath / 'pymin.toml'
     with open(cfgloc, 'rb') as f:
         c1 = tomllib.load(f)
@@ -524,8 +521,7 @@ elif (venvpath / 'pymin.toml').exists():
         'noCustomHTMLParser':c1.get('noCustomHTMLParser',False),
         'isDevEnv':c1.get('isDevEnv',False)
     }
-else:
-    #Use fallback values because config does not exist
+else:  # Use fallback values because config does not exist
     c1 = None
     c2 = {
         'cfgVersion':1,
@@ -544,8 +540,7 @@ else:
             c.read_file(f)
             c2['pyInstalledVersion'] = c[configparser.UNNAMED_SECTION]['version_info']
         c2['path'] = venvpath
-    else:
-        #Fallback
+    else:  # no venv
         c2['pyInstalledVersion'] = platform.python_version()
         hasVenv = False
 
@@ -683,7 +678,7 @@ else:
         else:
             run((*pythonm, 'pip', *argv[2:]))
 
-if c1 != c2: #Check if config was modified
+if c1 != c2:  # Check if config was modified
     writeTOML(cfgloc, c2)
 if delconf != None:
     delconf.unlink(missing_ok=True)
