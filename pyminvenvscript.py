@@ -219,7 +219,7 @@ def recreate(withconf, withsaves, withgameconf):
         msg = 'Warning: Failed to recreate venv. '
         if tempdir != None:
             msg += f'Temp directory at {tempdir} that contains files specified with the "--with-*" arguements was not deleted to minimise data loss. '
-        print(msg + 'Manual intervential is likely required.')
+        print(msg + 'Manual intervential is required.')
         #! Try to recover
         raise e
     else:
