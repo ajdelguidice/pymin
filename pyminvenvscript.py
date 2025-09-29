@@ -42,6 +42,14 @@ if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
     print('Error: Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
     exit()
 
+class OverrideDev:
+    def __init__(self):...
+    def __enter__(self):
+        self.dev = c2['isDevEnv']
+        c2['isDevEnv'] = False
+    def __exit__(self, *args):
+        c2['isDevEnv'] = self.dev
+
 def create():
     #Sets up the virtual environment
     if venvpath == venvpath.parent:
@@ -103,7 +111,7 @@ def set_as3libversion(rl):
         rl.remove('as3lib')
         rl.append(f'as3lib={version}')
 
-def installmodules(overrideDev=False):
+def installmodules():
     #Installs the required modules using pip inside the virtual environment
     if c2['uvGlobal']:
         temp = ['uv', 'pip', 'install', '--python', pythonvenvloc] + runlist[2:]
@@ -115,7 +123,7 @@ def installmodules(overrideDev=False):
     else:
         temp = pythonm + runlist
     print('Installing dependencies...')
-    if c2['isDevEnv'] and not overrideDev:
+    if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
         temp.remove('as3lib')
         temp.remove('tkhtmlview')
@@ -127,6 +135,9 @@ def installmodules(overrideDev=False):
 
 def downloadgame():
     #Downloads the game
+    if c2['isDevEnv']:
+        print('Skipped game download.')
+        return
     print('Installing game... Please wait.')
     if '--version' in argv:
         versiontag = argv[indexOf(argv,'--version') + 1]
@@ -196,10 +207,8 @@ def recreate(withconf, withsaves, withgameconf):
         if withgameconf:
             copyfile(venvpath / 'Pymin/Nimin_Prefs.toml', tempdir / 'Nimin_Prefs.toml')
         rmtree(venvpath)
-        tempdevenv = c2['isDevEnv']
-        c2['isDevEnv'] = False
-        create()
-        c2['isDevEnv'] = tempdevenv
+        with OverrideDev():
+            create()
         if withconf and cfgDict != None:
             writeTOML(venvpath / 'pymin.toml', cfgDict)
         if withsaves:
@@ -221,7 +230,7 @@ def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
     if c2['isDevEnv']:
         print('Skipped custom html_parser.py.')
-    elif not ('--nohtmlparser' in argv or c2['noCustomHTMLParser']):
+    elif not '--nohtmlparser' in argv or c2['noCustomHTMLParser']:
         print('Replacing tkhtmlview html_parser.py...')
         temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').replace('\n', '')
         if platform.system() == 'Windows':
@@ -236,7 +245,8 @@ def updatePythonVersion():
     if False and answer.lower() in {'y',''}:
         rmtree(venvpath / f'lib/python{'.'.join(pyvertuple[:2])}')
         run((*pythonm, 'venv', '--upgrade', venvpath))
-        installmodules(overrideDev=True)
+        with OverrideDev():
+            installmodules()
         c2['pyInstalledVersion'] = platform.python_version()
 
 def migrateConfig():
@@ -643,10 +653,7 @@ elif argv[1] == 'install':
         exit()
     create()
 elif argv[1] == 'update':
-    if c2['isDevEnv']:
-        print('Skipped game download.')
-    else:
-        downloadgame()
+    downloadgame()
     updatemodules()
 elif argv[1] == 'run':
     run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *argv[2:]))
