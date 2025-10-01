@@ -102,7 +102,7 @@ def create():
 
 def set_as3libversion(rl):
     if '--as3libversion' in argv:
-        version = argv[indexOf(argv,'--as3libversion') + 1]
+        version = argv[argv.index('--as3libversion') + 1]
     else:
         version = 'latest'
     if version.lower() == 'none':
@@ -140,7 +140,7 @@ def downloadgame():
         return
     print('Installing game... Please wait.')
     if '--version' in argv:
-        versiontag = argv[indexOf(argv,'--version') + 1]
+        versiontag = argv[argv.index('--version') + 1]
     else:
         versiontag = requests.get('https://github.com/ajdelguidice/pymin/releases/latest').url.split('/')[-1]
     with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=getSSLContext()) as urlfile:
@@ -313,12 +313,6 @@ insecure_context = ssl._create_unverified_context()
 
 def getSSLContext():
     return insecure_context if c2['noSSLVerify'] or '--unverified' in argv else None
-
-def indexOf(l, item):
-    try:
-        return l.index(item)
-    except:
-        return -1
 
 class TextObject:
     def __init__(self):
