@@ -229,11 +229,14 @@ def replaceTkhtmlviewParserWithUnsafeOne():
         print('Done')
 
 def updatePythonVersion():
-    global c2
-    answer = input('(Not Implemented) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)')
-    if False and answer.lower() in {'y',''}:
+    answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)')
+    if c2['isDevEnv'] and answer.lower() in {'y',''}:
         rmtree(venvpath / f'lib/python{'.'.join(pyvertuple[:2])}')
-        run((*pythonm, 'venv', '--upgrade', venvpath))
+        if c2['uvGlobal'] or c2['uvLocal']:
+            #! Test to see if this actually works.
+            run(pipCommand[:-1] + ('venv', '--', '--upgrade', venvpath))
+        else:
+            run(pipCommand[:-1] + ('venv', '--upgrade', venvpath))
         with OverrideDev():
             installmodules()
         c2['pyInstalledVersion'] = platform.python_version()
@@ -561,12 +564,6 @@ else:
     pythonvenvloc = venvpath / 'bin/python'
 pythonm = [pythonvenvloc, '-m']
 
-if hasVenv:
-    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n', '').replace('\r', '') == 'True':
-        uninstallMiniAMF = True
-    if platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
-        updatePythonVersion()
-
 if c2['uvGlobal']:
     pipCommand = ['uv', 'pip']
     modlist.extend(('--python', pythonvenvloc))
@@ -574,6 +571,12 @@ elif c2['uvLocal']:
     pipCommand = pythonm + ['uv', 'pip']
 else:
     pipCommand = pythonm + ['pip']
+
+if hasVenv:
+    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n', '').replace('\r', '') == 'True':
+        uninstallMiniAMF = True
+    if platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
+        updatePythonVersion()
 
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(argv) < 2 or argv[1].startswith(('-','--','/'))):
@@ -615,20 +618,19 @@ elif argv[1] == 'cfg':
                 text.write(f'{k}: {v}\n')
             print(text.getvalue())
         exit()
-    else:
-        tempargs = tuple(tuple(i.split('=')) for i in argv[2:])
-        for key,value in tempargs:
-            if key in {'cfgVersion','pyInstalledVersion'} and not c2['isDevEnv']:
-                print(f'Warning: {key} is restricted and should not be changed. Skipping.')
-                continue
-            if c2.get(key) == None:
-                print(f'Warning: Key {key} does not exist.')
-                continue
-            value = Args.ParseOuter(value, c2[key])
-            if value == None:
-                print(f'Warning: Type of {key} could not be determined. Skipping.')
-                continue
-            c2[key] = value
+    tempargs = tuple(tuple(i.split('=')) for i in argv[2:])
+    for key,value in tempargs:
+        if key in {'cfgVersion','pyInstalledVersion'} and not c2['isDevEnv']:
+            print(f'Warning: {key} is restricted and should not be changed. Skipping.')
+            continue
+        if c2.get(key) == None:
+            print(f'Warning: Key {key} does not exist.')
+            continue
+        value = Args.ParseOuter(value, c2[key])
+        if value == None:
+            print(f'Warning: Type of {key} could not be determined. Skipping.')
+            continue
+        c2[key] = value
 elif argv[1] == 'cfg-game':
     if not (hasVenv and (venvpath / 'Pymin/Nimin_Prefs.toml').exists()):
         print('Error: Can not read game config because it does not exist.')
