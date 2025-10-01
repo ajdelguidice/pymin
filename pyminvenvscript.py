@@ -113,15 +113,11 @@ def set_as3libversion(rl):
 
 def installmodules():
     #Installs the required modules using pip inside the virtual environment
-    if c2['uvGlobal']:
-        temp = ['uv', 'pip', 'install', '--python', pythonvenvloc] + runlist[2:]
-    elif c2['uvLocal']:
+    if c2['uvLocal']:
         print('Installing UV...')
         run((pythonvenvloc, '-m', 'pip', 'install', 'uv'))
         print('Done')
-        temp = pythonm + ['uv'] + runlist
-    else:
-        temp = pythonm + runlist
+    temp = pipCommand + ['install'] + modlist
     print('Installing dependencies...')
     if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
@@ -151,25 +147,18 @@ def updatemodules():
     #Updates the required modules using pip inside the virtual environment
     if uninstallMiniAMF:
         print('Replacing Mini-AMF with as3lib-miniAMF...')
-        rl = ['pip', 'uninstall', 'Mini-AMF']
+        rl = pipCommand + ['uninstall', 'Mini-AMF']
         if c2['uvGlobal']:
-            run(['uv'] + rl + ['--python', pythonvenvloc])
-        elif c2['uvLocal']:
-            run(pythonm + ['uv'] + rl)
+            run(rl + ['--python', pythonvenvloc])
         else:
-            run(pythonm + rl)
+            run(rl)
         print('Done')
-    if c2['uvGlobal']:
-        temp = ['uv', 'pip', 'install', '--python', pythonvenvloc] + runlist[2:]
-    elif c2['uvLocal']:
+    if c2['uvLocal']:
         print('Updating UV...')
-        run((pythonvenvloc, '-m', 'uv', 'pip', 'install', '-U', 'uv'))
+        run((*pipCommand, 'install', '-U', 'uv'))
         print('Done')
-        temp = pythonm + ['uv'] + runlist
-    else:
-        temp = pythonm + runlist
+    temp = pipCommand + ['install', '-U'] + modlist
     print('Updating dependencies...')
-    temp.insert(temp.index('install') + 1, '-U')
     if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
         temp.remove('as3lib')
@@ -494,13 +483,14 @@ def writeTOML(file, valDict):
 hasVenv = True
 delconf = None
 uninstallMiniAMF = False
+pipCommand = None
 
-runlist = ['pip', 'install', 'tkhtmlview', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
+modlist = ['tkhtmlview', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
 try:
     import tomllib
 except:
     import tomli as tomllib
-    runlist.append('tomli')
+    modlist.append('tomli')
 
 if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists() or (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
     print('Old config detected. Automatically migrating to new one.')
@@ -576,6 +566,14 @@ if hasVenv:
         uninstallMiniAMF = True
     if platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
         updatePythonVersion()
+
+if c2['uvGlobal']:
+    pipCommand = ['uv', 'pip']
+    modlist.extend(('--python', pythonvenvloc))
+elif c2['uvLocal']:
+    pipCommand = pythonm + ['uv', 'pip']
+else:
+    pipCommand = pythonm + ['pip']
 
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(argv) < 2 or argv[1].startswith(('-','--','/'))):
@@ -674,23 +672,19 @@ elif argv[1] == 'conv':
 elif argv[1] == 'recreate' and hasVenv:
     recreate('--with-config' in argv, '--with-saves' in argv, '--with-game-config' in argv)
 elif argv[1] == 'uv' and hasVenv:
+    if not (c2['uvGlobal'] or c2['uvLocal']):
+        print('Error: uv is not enabled.')
+        exit()
     if len(argv) == 2:
-        rl = ['uv','--help']
-        if c2['uvGlobal']:
-            run(rl)
-        elif c2['uvLocal']:
-            run(pythonm + rl)
+        run(pipCommand[:-1] + ['help'])
     else:
-        rl = ['uv', *argv[2:], '--python', pythonvenvloc]
-        if c2['uvGlobal']:
-            run(rl)
-        elif c2['uvLocal']:
-            run(pythonm + rl)
+        #! This does not work with commands that do not except the --python arguement
+        run(pipCommand[:-1] + argv[2:] + ['--python', pythonvenvloc])
 elif argv[1] == 'pip' and hasVenv:
     if len(argv) == 2:
-        run((*pythonm, 'pip', '--help'))
+        run((*pipCommand, '--help'))
     else:
-        run((*pythonm, 'pip', *argv[2:]))
+        run((*pipCommand, *argv[2:]))
 
 if c1 != c2:  # Check if config was modified
     writeTOML(cfgloc, c2)
