@@ -617,23 +617,23 @@ class NiminFetishFantasyv0975o_fla:
       Sets up the interface, then runs the "frame1" function
       """
       #window
-      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultmenu=False)
-      self.mo.setAboutWindowText(f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}")
+      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultMenu=False)
+      self.mo.aboutwindow.text = f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}"
 
       self.font = ("TimesNewRoman", 12)
       
-      self.style = ttk.Style(self.mo.children["root"])
+      self.style = ttk.Style(self.mo)
       if (self.dir / "nimintheme").is_dir():
-         #self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/pymin.tcl')
-         self.mo.children["root"].tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
+         #self.mo.tk.call('source', f'{self.dir}/nimintheme/pymin.tcl')
+         self.mo.tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
          self.style.theme_use("nimin")
 
       #key bindings
-      self.mo.children["root"].bind('<KeyPress>',self.key_press)
-      self.mo.children["root"].bind('<KeyRelease>',self.keysUp)
-      self.mo.children["root"].bind("<Escape>",self.mo.outfullscreen)
+      self.mo.bind('<KeyPress>',self.key_press)
+      self.mo.bind('<KeyRelease>',self.keysUp)
+      self.mo.bind("<Escape>",self.mo.outfullscreen)
 
-      self.mo.children["root"].option_add("*tearOff", False)
+      self.mo.option_add("*tearOff", False)
       self.mo.menubar["filemenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
       self.mo.menubar["filemenu"].add_command(label="Options", font=("Terminal",8), command=self.optionsWindow)
       self.mo.menubar["filemenu"].add_separator()
@@ -669,36 +669,28 @@ class NiminFetishFantasyv0975o_fla:
       self.levelpanevisible = False
       self.timepanevisible = False
       self.showsavegame = False
-      self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
-      self.mo.configureChild("loadgamebutton",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
+      self.mo.addButton("display","loadgamebutton",x=110,y=545,width=100,height=30,font=self.font,anchor="n",text="Load Game",background=self.theme,foreground=self.fontColor,command=self.loadG)
       self.showloadgame = True
-      self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
-      self.mo.configureChild("newgamebutton",text="New Game",background=self.theme,foreground=self.fontColor,command=self.newGameStart)
+      self.mo.addButton("display","newgamebutton",x=110,y=580,width=100,height=30,font=self.font,anchor="n",text="New Game",background=self.theme,foreground=self.fontColor,command=self.newGameStart)
       self.shownewgame = True
       self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
       self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
-      self.mo.addHTMLScrolledText("display","textmain",200,210,622,430,self.font,border=False)
-      self.mo.configureChild("textmain",text="Test",cursor="arrow",wrap="word")
+      self.mo.addHTMLScrolledText("display","textmain",x=200,y=210,width=622,height=430,font=self.font,border=False,text="Test",cursor="arrow",wrap="word")
       self.pageShow = False
       self.moveitembuttonvisible = False
       self.moveitemamountvisible = False
       self.discardbuttonvisible = False
       self.sidepanelvisible = False
       self.appearancebuttonvisible = False
-      self.mo.addButton("display","themebutton",823,595,60,30,self.font)
+      self.mo.addButton("display","themebutton",x=823,y=595,width=60,height=30,font=self.font)
       self.mo.configureChild("themebutton",text="Theme",background=self.theme,foreground=self.fontColor,command=self.option1Event)
-      self.mo.addButton("display","textsizedownbutton",906,595,30,30,("Times New Roman", 10))
-      self.mo.configureChild("textsizedownbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option2Event)
-      self.mo.addButton("display","textsizeresetbutton",941,595,30,30,("Times New Roman", 12))
-      self.mo.configureChild("textsizeresetbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option3Event)
-      self.mo.addButton("display","textsizeupbutton",976,595,30,30,("Times New Roman", 14))
-      self.mo.configureChild("textsizeupbutton",text="A",background=self.theme,foreground=self.fontColor,command=self.option4Event)
-      self.mo.addButton("display","textboldbutton",1023,595,30,30,self.font)
-      self.mo.configureChild("textboldbutton",text="B",background=self.theme,foreground=self.fontColor,command=self.option5Event)
-      self.mo.addButton("display","textcolorbutton",1067,595,30,30,self.font)
-      self.mo.configureChild("textcolorbutton",text="C",background=self.theme,foreground=self.fontColor,command=self.option6Event)
-      self.mo.addButton("display","themebutton7",1124,595,30,30,self.font)
-      self.mo.configureChild("themebutton7",text="O",background=self.theme,foreground=self.fontColor,command=self.option7Event)
+      self.mo.addButton("display","textsizedownbutton",x=906,y=595,width=30,height=30,font=("Times New Roman", 10),text="A",background=self.theme,foreground=self.fontColor,command=self.option2Event)
+      self.mo.addButton("display","textsizeresetbutton",x=941,y=595,width=30,height=30,font=("Times New Roman", 12),text="A",background=self.theme,foreground=self.fontColor,command=self.option3Event)
+      self.mo.addButton("display","textsizeupbutton",x=976,y=595,width=30,height=30,font=("Times New Roman", 14),text="A",background=self.theme,foreground=self.fontColor,command=self.option4Event)
+      self.mo.addButton("display","textboldbutton",x=1023,y=595,width=30,height=30,font=self.font,text="B",background=self.theme,foreground=self.fontColor,command=self.option5Event)
+      self.mo.addButton("display","textcolorbutton",x=1067,y=595,width=30,height=30,font=self.font,text="C",background=self.theme,foreground=self.fontColor,command=self.option6Event)
+      self.mo.configureChild("textcolorbutton")
+      self.mo.addButton("display","themebutton7",x=1124,y=595,width=30,height=30,font=self.font,text="O",background=self.theme,foreground=self.fontColor,command=self.option7Event)
       self.option7Visible = True
       self.newSLDialogVisible = False
       self.nsldblindervisible = False
@@ -709,225 +701,189 @@ class NiminFetishFantasyv0975o_fla:
       """
       Opens the about window
       """
-      self.mo.aboutwin()
-      self.mo.aboutwindow[2]["window"].configure(background=self.theme,highlightthickness=1,highlightbackground=self.fontColor)
-      self.mo.aboutwindow[2]["label"].configure(background=self.theme,foreground=self.fontColor)
-      self.mo.aboutwindow[2]["okbutton"].configure(background=self.theme,foreground=self.fontColor)
-      self.mo.aboutwindow[2]["window"].title("About Pymin")
+      self.mo.aboutwindow.open()
+      self.mo.aboutwindow.toplevel.configure(background=self.theme,highlightthickness=1,highlightbackground=self.fontColor)
+      self.mo.aboutwindow.label.configure(background=self.theme,foreground=self.fontColor)
+      self.mo.aboutwindow.okButton.configure(background=self.theme,foreground=self.fontColor)
+      self.mo.aboutwindow.toplevel.title("About Pymin")
    def optionsWindow(self, *args):
       """
       Opens the options window
       """
       if self.optionsWinOpen:
-         self.optionswindow.toTop()
+         self.optionswindow.lift()
       else:
          #Window
-         self.optionswindow = itk.window(width=420,height=207,title="Options",color=self.theme,mainwindow=False,nomenu=True)
-         #self.mo.group(self.optionswindow.children["root"])
+         self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme, main=False, menu=False)
+         #self.mo.group(self.optionswindow)
          if self.fixedresolutionmode:
             self.optionswindow.disableResizing()
-         self.optionswindow.addNotebook("root","nb")
+         self.optionswindow.addNotebook("display","nb")
 
          #Options page
-         self.optionswindow.addNBFrame("nb","options",420,207,"Options")
+         self.optionswindow.addNBFrame("nb","options",width=420,height=207,text="Options")
          self.optionswindow.configureChild("options",background=self.theme)
          
          ##Sol Mode
-         self.optionswindow.addCheckboxWithLabel("options","SOLMode",10,10,152,20,("TimesNewRoman",11),"nw","Strict Save Compat")
-         self.optionswindow.configureChild("SOLMode",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
+         self.optionswindow.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Strict Save Compat",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
          
          ##Fixed Resolution
-         self.optionswindow.addCheckboxWithLabel("options","FixedRes",10,32,132,20,("TimesNewRoman",11),"nw","Fixed Resolution")
-         self.optionswindow.configureChild("FixedRes",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
+         self.optionswindow.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("TimesNewRoman",11),text="Fixed Resolution",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
 
          #x+180,y-97
          ##Custom Theme color
          #  The perfect size for the input field of the entryboxes is 65
-         self.optionswindow.addCheckboxlabelWithEntry("options","Theme",210,10,152,20,("TimesNewRoman",11),"nw","Custom Theme Color",[40,"Color:"],75,38)
-         self.optionswindow.configureChild("Theme",background=self.theme,foreground=self.fontColor)
-         self.optionswindow.children["Theme"].uevar.set(self.theme)
-         self.optionswindow.children["Theme"].setUEBehavior("Restore")
+         self.optionswindow.addCheckboxWithEntry("options","Theme",x=210,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Custom Theme Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
+         self.optionswindow._children["Theme"].set(self.theme)
 
          ##Custom Font color
-         self.optionswindow.addCheckboxlabelWithEntry("options","FontColor",210,54,152,20,("TimesNewRoman",11),"nw","Custom Font Color",[40,"Color:"],75,38)
-         self.optionswindow.configureChild("FontColor",background=self.theme,foreground=self.fontColor)
-         self.optionswindow.children["FontColor"].setUEBehavior("Restore")
-         self.optionswindow.children["FontColor"].uevar.set(self.fontColor)
+         self.optionswindow.addCheckboxWithEntry("options","FontColor",x=210,y=54,width=152,height=20,font=("TimesNewRoman",11),text="Custom Font Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
+         self.optionswindow._children["FontColor"].set(self.fontColor)
 
          ##Save Location
-         self.optionswindow.addFileEntryBox("options","SaveLocation",10,98,400,20,("TimesNewRoman",11),"nw","Save Location",[0,""],400,0,["dir","open"])
-         self.optionswindow.configureChild("SaveLocation",background=self.theme,foreground=self.fontColor)
-         self.optionswindow.children["SaveLocation"].uevar.set(str(self.savelocation.resolve()))
-         self.optionswindow.children["SaveLocation"]._properties["fileboxinitdir"] = str(self.savelocation.resolve())
+         self.optionswindow.addFileEntryBox("options","SaveLocation",x=10,y=98,width=400,height=20,font=("TimesNewRoman",11),text="Save Location",indent=0,filetype="dir",fileaction="open",initdir=str(self.savelocation.resolve()),background=self.theme,foreground=self.fontColor)
+         self.optionswindow._children["SaveLocation"].set(str(self.savelocation.resolve()))
 
 
          #Interface page
-         self.optionswindow.addNBFrame("nb","if",420,207,"Interface")
+         self.optionswindow.addNBFrame("nb","if",width=420,height=207,text="Interface")
          self.optionswindow.configureChild("if",background=self.theme)
          
          ##Original Button Colours
-         self.optionswindow.addCheckboxWithLabel("if","OBC",10,10,164,20,("TimesNewRoman",11),"nw","Original Button Colours")
-         self.optionswindow.configureChild("OBC",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
+         self.optionswindow.addCheckboxWithLabel("if","OBC",x=10,y=10,width=164,height=20,font=("TimesNewRoman",11),text="Original Button Colours",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["OBC"].frame,text="Makes buttons use the colours they did in the original game.")
          
          ##Show scrolledText Borders
-         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",10,32,187,20,("TimesNewRoman",11),"nw","Show ScrolledText Borders")
-         self.optionswindow.configureChild("ScrolledTextBorders",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
+         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("TimesNewRoman",11),text="Show ScrolledText Borders",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
          
          ##Original new game button size
-         self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",10,54,187,20,("TimesNewRoman",11),"nw","Original Size for New Game")
-         self.optionswindow.configureChild("newgameoriginalsize",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
+         self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("TimesNewRoman",11),text="Original Size for New Game",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
          
          ##Static buttons in doLevelUP
-         self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",10,76,187,20,("TimesNewRoman",11),"nw","Static doLevelUP Buttons")
-         self.optionswindow.configureChild("doLevelUPStaticButtons",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
+         self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("TimesNewRoman",11),text="Static doLevelUP Buttons",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
          
          ##Theme selection
-         self.optionswindow.addLabelWithRadioButtons("if","ThemeType",10,98,100,70,("TimesNewRoman",11),"nw",2)
-         self.optionswindow.configureChild("ThemeType",text="Theme",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.addLabelWithRadioButtons("if","ThemeType",numOptions=2,x=10,y=98,width=100,height=70,font=("TimesNewRoman",11),text="Theme",background=self.theme,foreground=self.fontColor)
          self.optionswindow.configureChild("ThemeType",text=(0,"Pymin"))
          self.optionswindow.configureChild("ThemeType",text=(1,"Nimin"))
-         self.optionswindow.children["ThemeType"].radiobuttons[0]["command"] = self.OWThemeType0
-         self.optionswindow.children["ThemeType"].radiobuttons[1]["command"] = self.OWThemeType1
-         self.optionswindow.children["ThemeType"].selected = 0
-         CreateToolTip(self.optionswindow.children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
+         self.optionswindow._children["ThemeType"].radiobuttons[0]["command"] = self.OWThemeType0
+         self.optionswindow._children["ThemeType"].radiobuttons[1]["command"] = self.OWThemeType1
+         self.optionswindow._children["ThemeType"].selected = 0
+         CreateToolTip(self.optionswindow._children["ThemeType"].frame,text="Theme type selector. Choose between:\n The default theme (Pymin)\nThe classic theme (Nimin)\nChoosing the nimin theme will change all of the interface toggles and disable them.")
          
          ##new save dialogue
-         self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",200,10,190,20,("TimesNewRoman",11),"nw","Use Expanded Save Dialog")
-         self.optionswindow.configureChild("UseExpandedSaveDialog",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
+         self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Use Expanded Save Dialog",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
 
          ##New stash
-         self.optionswindow.addCheckboxWithLabel("if","UseNewStash",200,32,210,20,("TimesNewRoman",11),"nw","Use New Stash")
-         self.optionswindow.configureChild("UseNewStash",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
+         self.optionswindow.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Use New Stash",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
          
          ##Help opens wiki
-         self.optionswindow.addCheckboxWithLabel("if","helpToWiki",200,54,210,20,("TimesNewRoman",11),"nw","Help Opens Wiki")
-         self.optionswindow.configureChild("helpToWiki",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
+         self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
 
          #Grammar page
-         self.optionswindow.addNBFrame("nb","gs",420,207,"Grammar")
+         self.optionswindow.addNBFrame("nb","gs",width=420,height=207,text="Grammar")
          self.optionswindow.configureChild("gs",background=self.theme)
          
-         self.optionswindow.addCheckboxWithLabel("gs","showBalls",10,10,144,20,("TimesNewRoman",11),"nw","Respect showBalls")
-         self.optionswindow.configureChild("showBalls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
+         self.optionswindow.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Respect showBalls",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
          
-         self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",10,32,160,20,("TimesNewRoman",11),"nw","Femme-boy -> Femboy")
-         self.optionswindow.configureChild("femmeboytofemboy",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
+         self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=160,height=20,font=("TimesNewRoman",11),text="Femme-boy -> Femboy",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
          
-         self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",10,54,144,20,("TimesNewRoman",11),"nw","Shemale -> Futanari")
-         self.optionswindow.configureChild("shemaletofuta",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
+         self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Shemale -> Futanari",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
          
-         self.optionswindow.addCheckboxWithLabel("gs","ngrammar",10,76,144,20,("TimesNewRoman",11),"nw","Use n-grammar")
-         self.optionswindow.configureChild("ngrammar",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
+         self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("TimesNewRoman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
          
          #!These two should be radiobuttons
          #!Fix the formatting of this one
          #!Add a way to turn this off
          #self.optionswindow.addCheckboxWithLabel("gs","femmiemaletofemininemale",10,98,180,20,("TimesNewRoman",11),"nw","femmie male -> feminine male")
          #self.optionswindow.configureChild("femmiemaletofemininemale",background=self.theme,foreground=self.fontColor)
-         #CreateToolTip(self.optionswindow.children["femmiemaletofemininemale"].frame,text="This should be a radiobutton")
+         #CreateToolTip(self.optionswindow._children["femmiemaletofemininemale"].frame,text="This should be a radiobutton")
          
          #self.optionswindow.addCheckboxWithLabel("gs","femmiemaletofemboy",10,120,164,20,("TimesNewRoman",11),"nw","femmie male -> femboy")
          #self.optionswindow.configureChild("femmiemaletofemboy",background=self.theme,foreground=self.fontColor)
-         #CreateToolTip(self.optionswindow.children["femmiemaletofemboy"].frame,text="This should be a radiobutton")
+         #CreateToolTip(self.optionswindow._children["femmiemaletofemboy"].frame,text="This should be a radiobutton")
          
-         self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",10,142,144,20,("TimesNewRoman",11),"nw","femboyish -> girly")
-         self.optionswindow.configureChild("femboyishtogirly",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
+         self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
          
-         self.optionswindow.addCheckboxWithLabel("gs","snuggleball",200,10,144,20,("TimesNewRoman",11),"nw","Snuggleball Tweak")
-         self.optionswindow.configureChild("snuggleball",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
+         self.optionswindow.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Snuggleball Tweak",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
          
-         self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",200,32,144,20,("TimesNewRoman",11),"nw","Grammar Fixes")
-         self.optionswindow.configureChild("grammarMisc",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
+         self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=144,height=20,font=("TimesNewRoman",11),text="Grammar Fixes",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
 
          #Game Tweaks page
-         self.optionswindow.addNBFrame("nb","gt",420,207,"Game Tweaks")
+         self.optionswindow.addNBFrame("nb","gt",width=420,height=207,text="Game Tweaks")
          self.optionswindow.configureChild("gt",background=self.theme)
 
          ##Status Tweaks
-         self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",10,10,124,20,("TimesNewRoman",11),"nw","Status Tweaks")
-         self.optionswindow.configureChild("StatusTweaks",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
+         self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("TimesNewRoman",11),text="Status Tweaks",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
          
          ##Succubus Leaves One
-         self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",10,32,164,20,("TimesNewRoman",11),"nw","Succubus Leaves One")
-         self.optionswindow.configureChild("SuccubusLeavesOne",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
+         self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("TimesNewRoman",11),text="Succubus Leaves One",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
 
          ##Use isBottomOpen
-         self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",10,54,144,20,("TimesNewRoman",11),"nw","Use isBottomOpen")
-         self.optionswindow.configureChild("UseIsBottomOpen",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
+         self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Use isBottomOpen",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
 
          ##Lizan Don't Show Balls
-         self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",10,76,184,20,("TimesNewRoman",11),"nw","Lizan Don't Show Balls")
-         self.optionswindow.configureChild("LizanDontShowBalls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
+         self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("TimesNewRoman",11),text="Lizan Don't Show Balls",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
          ##Herm Can Has Both
-         self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",10,98,190,20,("TimesNewRoman",11),"nw","Herm Can Has Both")
-         self.optionswindow.configureChild("HermGetsBoth",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
+         self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("TimesNewRoman",11),text="Herm Can Has Both",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
 
          ##Internal ball size affects belly size
-         self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",10,120,190,20,("TimesNewRoman",11),"nw","IntBallsEffectBellySize")
-         self.optionswindow.configureChild("IntBallsEffectBelly",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
+         self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("TimesNewRoman",11),text="IntBallsEffectBellySize",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
 
          ##Add direct path to sanctuary
-         self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",200,10,190,20,("TimesNewRoman",11),"nw","Direct Path to Sanctuary")
-         self.optionswindow.configureChild("DirectPathToSanc",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
+         self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Direct Path to Sanctuary",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
 
          ##Digi beast feet
-         self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",200,32,210,20,("TimesNewRoman",11),"nw","Correct Feet for Some Races")
-         self.optionswindow.configureChild("CorrectBeastRaceFeet",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
+         self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Correct Feet for Some Races",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
 
          ##Misc Changes
-         self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",200,54,210,20,("TimesNewRoman",11),"nw","Misc Changes")
-         self.optionswindow.configureChild("MiscChanges",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow.children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
+         self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Misc Changes",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
          
          
          if as3state.as3DebugEnable:
             #Debug Options page
-            self.optionswindow.addNBFrame("nb","dt",420,207,"Debug Options")
+            self.optionswindow.addNBFrame("nb","dt",width=420,height=207,text="Debug Options")
             self.optionswindow.configureChild("dt",background=self.theme)
 
             ##Always Choose Senario
-            self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",10,10,154,20,("TimesNewRoman",11),"nw","alwaysChooseSenario")
-            self.optionswindow.configureChild("ChooseSenario",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow.children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
+            self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("TimesNewRoman",11),text="alwaysChooseSenario",background=self.theme,foreground=self.fontColor)
+            CreateToolTip(self.optionswindow._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
 
             ##Always Choose Senario
-            self.optionswindow.addCheckboxWithLabel("dt","NoDamage",10,32,154,20,("TimesNewRoman",11),"nw","takeNoDamage")
-            self.optionswindow.configureChild("NoDamage",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow.children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
+            self.optionswindow.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("TimesNewRoman",11),text="takeNoDamage",background=self.theme,foreground=self.fontColor)
+            CreateToolTip(self.optionswindow._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
 
          #Apply button
          sp = self.getColours()
-         self.optionswindow.addButton("root","ApplyButton",360,172,50,25,("TimesNewRoman",12),"nw")
-         self.optionswindow.configureChild("ApplyButton",background=sp[0],foreground=sp[1])
-         self.optionswindow.configureChild("ApplyButton",text="Apply",command=self.OWSaveOptions)
+         self.optionswindow.addButton("display","ApplyButton",x=360,y=172,width=50,height=25,font=("TimesNewRoman",12),background=sp[0],foreground=sp[1],text="Apply",command=self.OWSaveOptions)
 
-         self.optionswindow.bindChild("root","<Destroy>",self.closeOptionsWindow)
-         self.optionswindow.children["root"].transient(self.mo.children["root"])
+         self.optionswindow.bind("<Destroy>",self.closeOptionsWindow)
+         self.optionswindow.transient(self.mo)
          self.OWLoadVars()
          self.optionsWinOpen = True
    def OWThemeType0(self):
@@ -938,26 +894,26 @@ class NiminFetishFantasyv0975o_fla:
          self.oNewGameButton = self.tempInterfaceToggles[2]
          self.staticdoLevelUPButtons = self.tempInterfaceToggles[3]
          self.tempInterfaceToggles = None
-         self.optionswindow.children["OBC"].cb["state"] = "normal"
-         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "normal"
-         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "normal"
-         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "normal"
+         self.optionswindow._children["OBC"].cb["state"] = "normal"
+         self.optionswindow._children["ScrolledTextBorders"].cb["state"] = "normal"
+         self.optionswindow._children["newgameoriginalsize"].cb["state"] = "normal"
+         self.optionswindow._children["doLevelUPStaticButtons"].cb["state"] = "normal"
          if self.oButtonColors:
-            self.optionswindow.children["OBC"].select()
+            self.optionswindow._children["OBC"].select()
          else:
-            self.optionswindow.children["OBC"].deselect()
+            self.optionswindow._children["OBC"].deselect()
          if self.scrolledTextBorders:
-            self.optionswindow.children["ScrolledTextBorders"].select()
+            self.optionswindow._children["ScrolledTextBorders"].select()
          else:
-            self.optionswindow.children["ScrolledTextBorders"].deselect()
+            self.optionswindow._children["ScrolledTextBorders"].deselect()
          if self.oNewGameButton:
-            self.optionswindow.children["newgameoriginalsize"].select()
+            self.optionswindow._children["newgameoriginalsize"].select()
          else:
-            self.optionswindow.children["newgameoriginalsize"].deselect()
+            self.optionswindow._children["newgameoriginalsize"].deselect()
          if self.staticdoLevelUPButtons:
-            self.optionswindow.children["doLevelUPStaticButtons"].select()
+            self.optionswindow._children["doLevelUPStaticButtons"].select()
          else:
-            self.optionswindow.children["doLevelUPStaticButtons"].deselect()
+            self.optionswindow._children["doLevelUPStaticButtons"].deselect()
          self.changeNGButtonOverride = True
    def OWThemeType1(self):
       if self.themeType != 1:
@@ -967,193 +923,190 @@ class NiminFetishFantasyv0975o_fla:
          self.scrolledTextBorders = False
          self.oNewGameButton = True
          self.staticdoLevelUPButtons = False
-         self.optionswindow.children["OBC"].select()
-         self.optionswindow.children["OBC"].cb["state"] = "disabled"
-         self.optionswindow.children["ScrolledTextBorders"].deselect()
-         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
-         self.optionswindow.children["newgameoriginalsize"].select()
-         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
-         self.optionswindow.children["doLevelUPStaticButtons"].deselect()
-         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
+         self.optionswindow._children["OBC"].select()
+         self.optionswindow._children["OBC"].cb["state"] = "disabled"
+         self.optionswindow._children["ScrolledTextBorders"].deselect()
+         self.optionswindow._children["ScrolledTextBorders"].cb["state"] = "disabled"
+         self.optionswindow._children["newgameoriginalsize"].select()
+         self.optionswindow._children["newgameoriginalsize"].cb["state"] = "disabled"
+         self.optionswindow._children["doLevelUPStaticButtons"].deselect()
+         self.optionswindow._children["doLevelUPStaticButtons"].cb["state"] = "disabled"
          self.changeNGButtonOverride = True
    def OWLoadVars(self):
       """
       Loads all of the variables and checks their boxes if they are True
       """
       if self.solonlymode:
-         self.optionswindow.children["SOLMode"].select()
+         self.optionswindow._children["SOLMode"].select()
       if self.fixedresolutionmode:
-         self.optionswindow.children["FixedRes"].select()
+         self.optionswindow._children["FixedRes"].select()
       if self.customfontcolor:
-         self.optionswindow.children["Theme"].select()
+         self.optionswindow._children["Theme"].select()
       if self.customthemecolor:
-         self.optionswindow.children["FontColor"].select()
+         self.optionswindow._children["FontColor"].select()
       if self.statusTweaks:
-         self.optionswindow.children["StatusTweaks"].select()
+         self.optionswindow._children["StatusTweaks"].select()
       if self.succubusLeavesOne:
-         self.optionswindow.children["SuccubusLeavesOne"].select()
+         self.optionswindow._children["SuccubusLeavesOne"].select()
       if self.useIsBottomOpen:
-         self.optionswindow.children["UseIsBottomOpen"].select()
+         self.optionswindow._children["UseIsBottomOpen"].select()
       if self.lizanDontShowBalls:
-         self.optionswindow.children["LizanDontShowBalls"].select()
+         self.optionswindow._children["LizanDontShowBalls"].select()
       if self.hermGetsBoth:
-         self.optionswindow.children["HermGetsBoth"].select()
+         self.optionswindow._children["HermGetsBoth"].select()
       if self.internalBallsEffectBelly:
-         self.optionswindow.children["IntBallsEffectBelly"].select()
+         self.optionswindow._children["IntBallsEffectBelly"].select()
       if self.directPathToSanctuary:
-         self.optionswindow.children["DirectPathToSanc"].select()
+         self.optionswindow._children["DirectPathToSanc"].select()
       if self.correctBeastRaceFeet:
-         self.optionswindow.children["CorrectBeastRaceFeet"].select()
+         self.optionswindow._children["CorrectBeastRaceFeet"].select()
       if self.gameTweaksMisc:
-         self.optionswindow.children["MiscChanges"].select()
+         self.optionswindow._children["MiscChanges"].select()
       if self.oButtonColors:
-         self.optionswindow.children["OBC"].select()
+         self.optionswindow._children["OBC"].select()
       if self.scrolledTextBorders:
-         self.optionswindow.children["ScrolledTextBorders"].select()
+         self.optionswindow._children["ScrolledTextBorders"].select()
       if self.oNewGameButton:
-         self.optionswindow.children["newgameoriginalsize"].select()
+         self.optionswindow._children["newgameoriginalsize"].select()
       if self.staticdoLevelUPButtons:
-         self.optionswindow.children["doLevelUPStaticButtons"].select()
+         self.optionswindow._children["doLevelUPStaticButtons"].select()
       if self.useNewSaveLoadDialog:
-         self.optionswindow.children["UseExpandedSaveDialog"].select()
+         self.optionswindow._children["UseExpandedSaveDialog"].select()
       if self.useNewStash:
-         self.optionswindow.children["UseNewStash"].select()
+         self.optionswindow._children["UseNewStash"].select()
       if self.helpToWiki:
-         self.optionswindow.children["helpToWiki"].select()
+         self.optionswindow._children["helpToWiki"].select()
       if self.respectShowBalls:
-         self.optionswindow.children["showBalls"].select()
+         self.optionswindow._children["showBalls"].select()
       if self.femmeboyToFemboy:
-         self.optionswindow.children["femmeboytofemboy"].select()
+         self.optionswindow._children["femmeboytofemboy"].select()
       if self.shemaleToFuta:
-         self.optionswindow.children["shemaletofuta"].select()
+         self.optionswindow._children["shemaletofuta"].select()
       if self.ngrammar:
-         self.optionswindow.children["ngrammar"].select()
+         self.optionswindow._children["ngrammar"].select()
       #!
       #if self.femmieMaleReplacement:
       #femmiemaletofemininemale
       #femmiemaletofemboy
-      #   self.optionswindow.children[""].select()
+      #   self.optionswindow._children[""].select()
       if self.femboyishToGirly:
-         self.optionswindow.children["femboyishtogirly"].select()
+         self.optionswindow._children["femboyishtogirly"].select()
       if self.snuggleBallTweak:
-         self.optionswindow.children["snuggleball"].select()
+         self.optionswindow._children["snuggleball"].select()
       if self.grammarFixes:
-         self.optionswindow.children["grammarMisc"].select()
+         self.optionswindow._children["grammarMisc"].select()
       if self.themeType == 1:
-         self.optionswindow.children["OBC"].cb["state"] = "disabled"
-         self.optionswindow.children["ScrolledTextBorders"].cb["state"] = "disabled"
-         self.optionswindow.children["newgameoriginalsize"].cb["state"] = "disabled"
-         self.optionswindow.children["doLevelUPStaticButtons"].cb["state"] = "disabled"
+         self.optionswindow._children["OBC"].cb["state"] = "disabled"
+         self.optionswindow._children["ScrolledTextBorders"].cb["state"] = "disabled"
+         self.optionswindow._children["newgameoriginalsize"].cb["state"] = "disabled"
+         self.optionswindow._children["doLevelUPStaticButtons"].cb["state"] = "disabled"
       if as3state.as3DebugEnable:
          if self.debugChooseSenario:
-            self.optionswindow.children["ChooseSenario"].select()
+            self.optionswindow._children["ChooseSenario"].select()
          if self.debugNoDamage:
-            self.optionswindow.children["NoDamage"].select()
+            self.optionswindow._children["NoDamage"].select()
    def OWSaveOptions(self, *args):
       """
       Saves all of the options when the "Apply" button is pressed
       """
       if self.optionsWinOpen:
-         self.solonlymode = self.optionswindow.children["SOLMode"].getcb()
-         self.fixedresolutionmode = self.optionswindow.children["FixedRes"].getcb()
-         if self.optionswindow.children["Theme"].getcb():
-            if self.optionswindow.children["Theme"].get() == "":
+         self.solonlymode = self.optionswindow._children["SOLMode"].getcb()
+         self.fixedresolutionmode = self.optionswindow._children["FixedRes"].getcb()
+         if self.optionswindow._children["Theme"].getcb():
+            if self.optionswindow._children["Theme"].get() == "":
                as3.Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
-               self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
-            elif not self.checkValidHex(self.optionswindow.children["Theme"].get()):
+               self.optionswindow._children["Theme"].ue["background"] = "#FF3333"
+            elif not self.checkValidHex(self.optionswindow._children["Theme"].get()):
                as3.Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
-               self.optionswindow.children["Theme"].ue["background"] = "#FF3333"
+               self.optionswindow._children["Theme"].ue["background"] = "#FF3333"
             else:
+               if self.optionswindow._children["Theme"]["background"] == "#FF3333":
+                  self.optionswindow._children["Theme"]["background"] = "#FFFFFF"
                if not self.customthemecolor:
                   self.othemecolor = self.theme
                self.customthemecolor = True
-               self.theme = self.optionswindow.children["Theme"].get()
+               self.theme = self.optionswindow._children["Theme"].get()
                self.mo.configureChild("themebutton",state="disabled")
-               self.optionswindow.children["Theme"].ue["background"] = "#FFFFFF"
+               self.optionswindow._children["Theme"]["background"] = "#FFFFFF"
          else:
             self.customthemecolor = False
             self.theme = self.othemecolor
             self.mo.configureChild("themebutton",state="normal")
-         if self.optionswindow.children["FontColor"].getcb():
-            if self.optionswindow.children["FontColor"].get() == "":
+         if self.optionswindow._children["FontColor"].getcb():
+            if self.optionswindow._children["FontColor"].get() == "":
                as3.Error("Pymin.OWSaveOptions; CustomFontColor is empty")
-               self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
-            elif not self.checkValidHex(self.optionswindow.children["FontColor"].get()):
+               self.optionswindow._children["FontColor"]["background"] = "#FF3333"
+            elif not self.checkValidHex(self.optionswindow._children["FontColor"].get()):
                as3.Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
-               self.optionswindow.children["FontColor"].ue["background"] = "#FF3333"
+               self.optionswindow._children["FontColor"]["background"] = "#FF3333"
             else:
+               if self.optionswindow._children["FontColor"]["background"] == "#FF3333":
+                  self.optionswindow._children["FontColor"]["background"] = "#FFFFFF"
                if not self.customfontcolor:
                   self.ofontcolor = self.fontColor
                self.customfontcolor = True
-               self.fontColor = self.optionswindow.children["FontColor"].get()
+               self.fontColor = self.optionswindow._children["FontColor"].get()
                self.mo.configureChild("textcolorbutton",state="disabled")
-               self.optionswindow.children["FontColor"].ue["background"] = "#FFFFFF"
+               self.optionswindow._children["FontColor"]["background"] = "#FFFFFF"
          else:
             self.customfontcolor = False
             self.fontColor = self.ofontcolor
             self.mo.configureChild("textcolorbutton",state="normal")
-         if self.optionswindow.children["SaveLocation"].uevar.get() == "":
+         if self.optionswindow._children["SaveLocation"].get() == "":
             as3.Error("Pymin.OWSaveOptions; SaveLocation is empty")
-            self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
-         elif not as3.isValidDirectory(self.optionswindow.children["SaveLocation"].uevar.get(),as3state.separator):
+            self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
+         elif not as3.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
             as3.Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
-            self.optionswindow.children["SaveLocation"].ue["background"] = "#FF3333"
+            self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
          else:
-            self.savelocation = Path(self.optionswindow.children["SaveLocation"].uevar.get()).resolve()
-         self.statusTweaks = self.optionswindow.children["StatusTweaks"].getcb()
-         self.succubusLeavesOne = self.optionswindow.children["SuccubusLeavesOne"].getcb()
-         self.useIsBottomOpen = self.optionswindow.children["UseIsBottomOpen"].getcb()
-         self.lizanDontShowBalls = self.optionswindow.children["LizanDontShowBalls"].getcb()
-         self.hermGetsBoth = self.optionswindow.children["HermGetsBoth"].getcb()
-         self.internalBallsEffectBelly = self.optionswindow.children["IntBallsEffectBelly"].getcb()
-         self.directPathToSanctuary = self.optionswindow.children["DirectPathToSanc"].getcb()
-         self.correctBeastRaceFeet = self.optionswindow.children["CorrectBeastRaceFeet"].getcb()
-         self.gameTweaksMisc = self.optionswindow.children["MiscChanges"].getcb()
-         self.oButtonColors = self.optionswindow.children["OBC"].getcb()
-         self.scrolledTextBorders = self.optionswindow.children["ScrolledTextBorders"].getcb()
+            if self.optionswindow._children["SaveLocation"]["background"] == "#FF3333":
+               self.optionswindow._children["SaveLocation"]["background"] = "#FFFFFF"
+            self.savelocation = Path(self.optionswindow._children["SaveLocation"].get()).resolve()
+         self.statusTweaks = self.optionswindow._children["StatusTweaks"].getcb()
+         self.succubusLeavesOne = self.optionswindow._children["SuccubusLeavesOne"].getcb()
+         self.useIsBottomOpen = self.optionswindow._children["UseIsBottomOpen"].getcb()
+         self.lizanDontShowBalls = self.optionswindow._children["LizanDontShowBalls"].getcb()
+         self.hermGetsBoth = self.optionswindow._children["HermGetsBoth"].getcb()
+         self.internalBallsEffectBelly = self.optionswindow._children["IntBallsEffectBelly"].getcb()
+         self.directPathToSanctuary = self.optionswindow._children["DirectPathToSanc"].getcb()
+         self.correctBeastRaceFeet = self.optionswindow._children["CorrectBeastRaceFeet"].getcb()
+         self.gameTweaksMisc = self.optionswindow._children["MiscChanges"].getcb()
+         self.oButtonColors = self.optionswindow._children["OBC"].getcb()
+         self.scrolledTextBorders = self.optionswindow._children["ScrolledTextBorders"].getcb()
          tempng = self.oNewGameButton
-         self.oNewGameButton = self.optionswindow.children["newgameoriginalsize"].getcb()
+         self.oNewGameButton = self.optionswindow._children["newgameoriginalsize"].getcb()
          if (tempng != self.oNewGameButton or self.changeNGButtonOverride) and self.shownewgame:
             self.changeNGButtonOverride = False
             self.hideNGButton()
             self.showNGButton()
-         self.staticdoLevelUPButtons = self.optionswindow.children["doLevelUPStaticButtons"].getcb()
-         self.useNewSaveLoadDialog = self.optionswindow.children["UseExpandedSaveDialog"].getcb()
-         self.useNewStash = self.optionswindow.children["UseNewStash"].getcb()
-         self.helpToWiki = self.optionswindow.children["helpToWiki"].getcb()
-         self.respectShowBalls = self.optionswindow.children["showBalls"].getcb()
-         self.femmeboyToFemboy = self.optionswindow.children["femmeboytofemboy"].getcb()
-         self.shemaleToFuta = self.optionswindow.children["shemaletofuta"].getcb()
-         self.ngrammar = self.optionswindow.children["ngrammar"].getcb()
+         self.staticdoLevelUPButtons = self.optionswindow._children["doLevelUPStaticButtons"].getcb()
+         self.useNewSaveLoadDialog = self.optionswindow._children["UseExpandedSaveDialog"].getcb()
+         self.useNewStash = self.optionswindow._children["UseNewStash"].getcb()
+         self.helpToWiki = self.optionswindow._children["helpToWiki"].getcb()
+         self.respectShowBalls = self.optionswindow._children["showBalls"].getcb()
+         self.femmeboyToFemboy = self.optionswindow._children["femmeboytofemboy"].getcb()
+         self.shemaleToFuta = self.optionswindow._children["shemaletofuta"].getcb()
+         self.ngrammar = self.optionswindow._children["ngrammar"].getcb()
          #!
          #if self.femmieMaleReplacement:
          #femmiemaletofemininemale
          #femmiemaletofemboy
-         #   self.optionswindow.children[""].select()
-         self.femboyishToGirly = self.optionswindow.children["femboyishtogirly"].getcb()
-         self.snuggleBallTweak = self.optionswindow.children["snuggleball"].getcb()
-         self.grammarFixes = self.optionswindow.children["grammarMisc"].getcb()
+         #   self.optionswindow._children[""].select()
+         self.femboyishToGirly = self.optionswindow._children["femboyishtogirly"].getcb()
+         self.snuggleBallTweak = self.optionswindow._children["snuggleball"].getcb()
+         self.grammarFixes = self.optionswindow._children["grammarMisc"].getcb()
          if as3state.as3DebugEnable:
-            self.debugChooseSenario = self.optionswindow.children["ChooseSenario"].getcb()
-            self.debugNoDamage = self.optionswindow.children["NoDamage"].getcb()
+            self.debugChooseSenario = self.optionswindow._children["ChooseSenario"].getcb()
+            self.debugNoDamage = self.optionswindow._children["NoDamage"].getcb()
          self.savePreferences()
          self.toggleTextboxBorders(self.scrolledTextBorders)
          self.applyFixedResolution()
          self.updateText()
          self.updateTheme()
-   def toggleTextboxBorders(self,toggle):
-      if toggle == True:
-         self.mo.children["textmain"].configure(borderwidth=1,highlightthickness=1)
-         self.mo.childproperties["textmain"][7][7] = True
-         if self.sidepanelvisible:
-            self.mo.children["textside"].configure(borderwidth=1,highlightthickness=1)
-            self.mo.childproperties["textside"][7][7] = True
-      else:
-         self.mo.children["textmain"].configure(borderwidth=0,highlightthickness=0)
-         self.mo.childproperties["textmain"][7][7] = False
-         if self.sidepanelvisible:
-            self.mo.children["textside"].configure(borderwidth=0,highlightthickness=0)
-            self.mo.childproperties["textside"][7][7] = False
+   def toggleTextboxBorders(self, toggle):
+      self.mo._children["textmain"].border = toggle
+      if self.sidepanelvisible:
+         self.mo._children["textside"].border = toggle
    @staticmethod
    def checkValidHex(hexstr:str):
       """
@@ -1168,19 +1121,19 @@ class NiminFetishFantasyv0975o_fla:
    def applyFixedResolution(self):
       if self.fixedresolutionmode:
          #locks resizing of child windows
-         self.mo.children["root"].geometry("1176x662")
+         self.mo.geometry("1176x662")
          self.mo.disableResizing()
          if self.wikiOpen:
-            self.wikiwindow.children["root"].geometry("700x500")
+            self.wikiwindow.geometry("700x500")
             self.wikiwindow.disableResizing()
          if self.optionsWinOpen:
-            self.optionswindow.children["root"].geometry("420x207")
+            self.optionswindow.geometry("420x207")
             self.optionswindow.disableResizing()
          if self.optionsWinOpen:
-            self.optionswindow.children["root"].geometry("420x207")
+            self.optionswindow.geometry("420x207")
             self.optionswindow.disableResizing()
          if self.debugVarOpen:
-            self.dvw.children["root"].geometry("400x400")
+            self.dvw.geometry("400x400")
             self.dvw.disableResizing()
          if self.debugGIWinOpen:
             self.dgiw.geometry("150x100")
@@ -1641,9 +1594,9 @@ class NiminFetishFantasyv0975o_fla:
       sitems.extend(("themebutton","textsizedownbutton","textsizeresetbutton","textsizeupbutton","textboldbutton","textcolorbutton","themebutton7"))
       self.mo.configureChildren(items, background=color)
       self.mo.configureChildren(sitems, background=specialcolour)
-      if self.mo.aboutwindow[0] == True:
-         for i in ("window","label","okbutton"):
-            self.mo.aboutwindow[2][i].configure(background=color)
+      if self.mo.aboutwindow.isOpen:
+         for i in (self.mo.aboutwindow.toplevel,self.mo.aboutwindow.label,self.mo.aboutwindow.okButton):
+            i.configure(background=color)
       if self.wikiOpen:
          self.wikiwindow.configureChildren(("text","menu"),background=color)
       if self.sfcOpen:
@@ -1702,9 +1655,9 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.configureChildren(items, foreground=color)
       self.mo.configureChildren(sitems, foreground=specialcolour)
       self.mo.configureChildren(hitems, highlightbackground=specialcolour)
-      if self.mo.aboutwindow[0] == True:
-         for i in ("label","okbutton"):
-            self.mo.aboutwindow[2][i].configure(foreground=color)
+      if self.mo.aboutwindow.isOpen:
+         for i in (self.mo.aboutwindow.label,self.mo.aboutwindow.okButton):
+            i.configure(foreground=color)
       if self.wikiOpen:
          self.wikiwindow.configureChildren(("text","menu"),foreground=color)
       if self.sfcOpen:
@@ -2050,8 +2003,8 @@ class NiminFetishFantasyv0975o_fla:
          if self.buttonsVisible[i]:
             self.mo.configureChild(f"button{i}",state="normal")
          else:
-            self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-            self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
+            tempcalc = self._showButtonsCalc(i)
+            self.mo.addButton("display",f"button{i}",x=tempcalc[0],y=tempcalc[1],width=140,height=46,font=self.font,text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
             self.buttonsVisible[i] = True
          if i not in {4,8,12}:
             tempI = self._showButtonsBagCalc(i,self.choicePage)
@@ -2128,8 +2081,7 @@ class NiminFetishFantasyv0975o_fla:
       if (changes):
          if (not self.pageShow):
             temp = self.getColours()
-            self.mo.addLabel("display","pagelabel",843,30,100,30,self.font)
-            self.mo.configureChild("pagelabel",text="BAG 1",background=temp[0],foreground=temp[1])
+            self.mo.addLabel("display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text="BAG 1",background=temp[0],foreground=temp[1])
             self.pageShow = True
          self.mo.configureChild("pagelabel",text=f"{which}: {self.choicePage}")
       else:
@@ -4059,7 +4011,7 @@ class NiminFetishFantasyv0975o_fla:
             if self.buttonChoice == 4:
                self.doLoad(4)
             elif self.buttonChoice == 8:
-               temp = self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")
+               temp = self.mo._children["savefileselect"].get(self.mo._children["savefileselect"].curselection()).split(" | ")
                self.outputMainText(f"{temp[0].replace('D:','Day:').replace('H:','Hour:')}:00\n\nAre you sure you want to load {temp[1]}?",True)
                if self.currentState != 0:
                   self.outputMainText("\n\nYou will lose any unsaved data from the current game.")
@@ -4163,7 +4115,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Displays the save file list in nsld
       """
-      self.mo.slb_Delete("savefileselect",0,"end")
+      self.mo._children["savefileselect"].delete(0,"end")
       for i in self.nsldGetSorted():
          temp = i.lower()
          if temp.endswith(".toml"):
@@ -4174,16 +4126,16 @@ class NiminFetishFantasyv0975o_fla:
             dh = self.getdhSOL(self.savelocation / i)
          elif temp.endswith(".nim"):
             dh = self.getdhNIM(self.savelocation / i)
-         self.mo.slb_Insert("savefileselect","end",f"D: {dh[0]}, H: {dh[1]} | {i}")
-      self.mo.children["savefileselect"].activate(0)
-      self.mo.children["savefileselect"].select_set(0)
+         self.mo._children["savefileselect"].insert("end",f"D: {dh[0]}, H: {dh[1]} | {i}")
+      self.mo._children["savefileselect"].activate(0)
+      self.mo._children["savefileselect"].select_set(0)
       self.nsldSetEntryFromListbox()
    def toggleNSLDSortOrder(self):
       """
       Function called when the sort button is pressed in nsld
       """
       if self.newSLDialogVisible:
-         self.mo.slb_Delete("savefileselect",0,"end")
+         self.mo._children["savefileselect"].delete(0,"end")
          self.nsldSortOrder += 1
          if self.nsldSortOrder >= 5:
             self.nsldSortOrder = 0
@@ -4199,32 +4151,28 @@ class NiminFetishFantasyv0975o_fla:
       """
       if not self.newSLDialogVisible:
          temp = self.getColours()
-         self.mo.addScrolledListbox("display","savefileselect",200,30,460,154,self.font,"nw",True,12)
-         self.mo.configureChild("savefileselect",background=self.theme,foreground=self.fontColor)
-         self.mo.children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
-         self.mo.children["savefileselect"].bind("<Double-Button-1>",self.buttonEvent8)
-         self.mo.addLabel("display","savefilelabel",200,192-8,75,24,("TimesNewRoman",12),"nw")
-         self.mo.configureChild("savefilelabel",background=self.theme,foreground=self.fontColor)
-         self.mo.configureChild("savefilelabel",text="File Name:")
-         self.mo.addEntry("display","savefileentry",275,192-8,385,24,("TimesNewRoman",12),"nw")
+         self.mo.addScrolledListbox("display","savefileselect",x=200,y=30,width=460,height=154,font=self.font,sbwidth=12,background=self.theme,foreground=self.fontColor)
+         self.mo._children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
+         self.mo._children["savefileselect"].bind("<Double-Button-1>",self.buttonEvent8)
+         self.mo.addLabel("display","savefilelabel",x=200,y=184,width=75,height=24,font=("TimesNewRoman",12),background=self.theme,foreground=self.fontColor,text="File Name:")
+         self.mo.addEntry("display","savefileentry",x=275,y=184,width=385,height=24,font=("TimesNewRoman",12),background=self.theme,foreground=self.fontColor)
          self.mo.bindChild("savefileentry","<FocusIn>",self._disableKeys)
          self.mo.bindChild("savefileentry","<FocusOut>",self._enableKeys)
-         self.mo.configureChild("savefileentry",background=self.theme,foreground=self.fontColor)
          self.nsldDisplay()
-         self.mo.children["savefileselect"].focus_force()
-         self.mo.children["savefileselect"].select_set(0)
+         self.mo._children["savefileselect"].focus_force()
+         self.mo._children["savefileselect"].select_set(0)
          self.newSLDialogVisible = True
    def nsldSetEntryFromListbox(self, *e):
       """
       Function to set the entry box text of nsld
       """
-      self.mo.configureChild("savefileentry",text=self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection()).split(" | ")[-1])
+      self.mo.configureChild("savefileentry",text=self.mo._children["savefileselect"].get(self.mo._children["savefileselect"].curselection()).split(" | ")[-1])
    def nsldCheckSelection(self):
       """
       Makes sure that an item is selected before trying to load it in nsld
       """
       try:
-         self.mo.children["savefileselect"].get(self.mo.children["savefileselect"].curselection())
+         self.mo._children["savefileselect"].get(self.mo._children["savefileselect"].curselection())
          return True
       except:
          return False
@@ -4243,8 +4191,7 @@ class NiminFetishFantasyv0975o_fla:
       Hides nsld temporarily while conformation dialog is shown
       """
       if not self.nsldblindervisible:
-         self.mo.addLabel("display","nsldblinder",200,30,780,184,("TimesNewRoman",12),"nw")
-         self.mo.configureChild("nsldblinder",background=self.theme,foreground=self.fontColor)
+         self.mo.addLabel("display","nsldblinder",x=200,y=30,width=780,height=184,font=("TimesNewRoman",12),background=self.theme,foreground=self.fontColor)
          self.nsldblindervisible = True
    def hideNSLDBlinder(self):
       if self.nsldblindervisible:
@@ -4254,23 +4201,23 @@ class NiminFetishFantasyv0975o_fla:
       """
       Moves pointer up the list in nsld
       """
-      temp = self.mo.children["savefileselect"].curselection()[0]
+      temp = self.mo._children["savefileselect"].curselection()[0]
       if temp != 0:
-         self.mo.children["savefileselect"].selection_clear(temp)
-         self.mo.children["savefileselect"].select_set(temp - 1)
-         self.mo.children["savefileselect"].activate(temp - 1)
-         self.mo.children["savefileselect"].see(temp - 1)
+         self.mo._children["savefileselect"].selection_clear(temp)
+         self.mo._children["savefileselect"].select_set(temp - 1)
+         self.mo._children["savefileselect"].activate(temp - 1)
+         self.mo._children["savefileselect"].see(temp - 1)
          self.nsldSetEntryFromListbox()
    def nsldSelectionDown(self):
       """
       Moves pointer down the list in nsld
       """
-      temp = self.mo.children["savefileselect"].curselection()[0]
-      if (temp + 1) < len(self.mo.children["savefileselect"].get(0,"end")):
-         self.mo.children["savefileselect"].selection_clear(temp)
-         self.mo.children["savefileselect"].select_set(temp + 1)
-         self.mo.children["savefileselect"].activate(temp + 1)
-         self.mo.children["savefileselect"].see(temp + 1)
+      temp = self.mo._children["savefileselect"].curselection()[0]
+      if (temp + 1) < len(self.mo._children["savefileselect"].get(0,"end")):
+         self.mo._children["savefileselect"].selection_clear(temp)
+         self.mo._children["savefileselect"].select_set(temp + 1)
+         self.mo._children["savefileselect"].activate(temp + 1)
+         self.mo._children["savefileselect"].see(temp + 1)
          self.nsldSetEntryFromListbox()
    def doSave(self, slot:int, file:PurePath=None):
       """
@@ -4683,9 +4630,9 @@ class NiminFetishFantasyv0975o_fla:
                self.hideStatsPane()
                for i in range(8):
                   self.mo.destroyChild(self.sidepanelbuttonnames[i])
-               temp = self.mo.children.get("textside")
+               temp = self.mo._children.get("textside")
                if temp != None:
-                  temp.frame.destroy()
+                  temp.destroy()
                self.sidepanelvisible = False
                self.hideAPButton()
             self.hideNSLDBlinder()
@@ -24468,72 +24415,43 @@ class NiminFetishFantasyv0975o_fla:
    def showStatPane(self):
       if not self.statpanevisible:
          # Pane Title
-         self.mo.addnwhLabel("display","label1",20,30,self.font)
-         self.mo.configureChild("label1",text="Base Stats",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","label1",x=20,y=30,font=self.font,text="Base Stats",background=self.theme,foreground=self.fontColor)
          # Strength Label
-         self.mo.addnwhLabel("display","strlabel",20,70,self.font)
-         self.mo.configureChild("strlabel",text="Strength",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","strcolonlabel",110,69,self.font,anchor="n")
-         self.mo.configureChild("strcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","strvallabel",130,70,self.font)
-         self.mo.configureChild("strvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","strimglabel",174,70,20,20,image_name="")
-         self.mo.configureChild("strimglabel",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","strlabel",x=20,y=70,font=self.font,text="Strength",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","strcolonlabel",x=110,y=69,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","strvallabel",x=130,y=70,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addImageLabel("display","strimglabel",x=174,y=70,width=20,height=20,image_name="",background=self.theme,foreground=self.fontColor)
          # Mentality Label
-         self.mo.addnwhLabel("display","mentlabel",20,90,self.font)
-         self.mo.configureChild("mentlabel",text="Mentality",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","mentcolonlabel",110,89,self.font,anchor="n")
-         self.mo.configureChild("mentcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","mentvallabel",130,90,self.font)
-         self.mo.configureChild("mentvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","mentimglabel",174,90,20,20,image_name="")
-         self.mo.configureChild("mentimglabel",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","mentlabel",x=20,y=90,font=self.font,text="Mentality",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","mentcolonlabel",x=110,y=89,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","mentvallabel",x=130,y=90,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addImageLabel("display","mentimglabel",x=174,y=90,width=20,height=20,image_name="",background=self.theme,foreground=self.fontColor)
          # Libido Label
-         self.mo.addnwhLabel("display","liblabel",20,110,self.font)
-         self.mo.configureChild("liblabel",text="Libido",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","libcolonlabel",110,109,self.font,anchor="n")
-         self.mo.configureChild("libcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","libvallabel",130,110,self.font)
-         self.mo.configureChild("libvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","libimglabel",174,110,20,20,image_name="")
-         self.mo.configureChild("libimglabel",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","liblabel",x=20,y=110,font=self.font,text="Libido",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","libcolonlabel",x=110,y=109,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","libvallabel",x=130,y=110,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addImageLabel("display","libimglabel",x=174,y=110,width=20,height=20,image_name="",background=self.theme,foreground=self.fontColor)
          # Sensitivity Label
-         self.mo.addnwhLabel("display","senlabel",20,130,self.font)
-         self.mo.configureChild("senlabel",text="Sensitivity",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","sencolonlabel",110,129,self.font,anchor="n")
-         self.mo.configureChild("sencolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","senvallabel",130,130,self.font)
-         self.mo.configureChild("senvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","senimglabel",174,130,20,20,image_name="")
-         self.mo.configureChild("senimglabel",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","senlabel",x=20,y=130,font=self.font,text="Sensitivity",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","sencolonlabel",x=110,y=129,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","senvallabel",x=130,y=130,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addImageLabel("display","senimglabel",x=174,y=130,width=20,height=20,image_name="",background=self.theme,foreground=self.fontColor)
          # Combat Stats Section Title
-         self.mo.addnwhLabel("display","label6",20,170,self.font)
-         self.mo.configureChild("label6",text="Combat Stats",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","label6",x=20,y=170,font=self.font,text="Combat Stats",background=self.theme,foreground=self.fontColor)
          # HP Label
-         self.mo.addnwhLabel("display","hplabel",20,190,self.font)
-         self.mo.configureChild("hplabel",text="HP",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hpcolonlabel",110,189,self.font,anchor="n")
-         self.mo.configureChild("hpcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hpvallabel",130,190,self.font)
-         self.mo.configureChild("hpvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","hpimglabel",174,190,20,20,image_name="")
-         self.mo.configureChild("hpimglabel",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hplabel",x=20,y=190,font=self.font,text="HP",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hpcolonlabel",x=110,y=189,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hpvallabel",x=130,y=190,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addImageLabel("display","hpimglabel",x=174,y=190,width=20,height=20,image_name="",background=self.theme,foreground=self.fontColor)
          # Lust Label
-         self.mo.addnwhLabel("display","lustlabel",20,210,self.font)
-         self.mo.configureChild("lustlabel",text="Lust",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","lustcolonlabel",110,209,self.font,anchor="n")
-         self.mo.configureChild("lustcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","lustvallabel",130,210,self.font)
-         self.mo.configureChild("lustvallabel",text="",background=self.theme,foreground=self.fontColor)
-         self.mo.addImageLabel("display","lustimglabel",174,210,20,20,image_name="")
-         self.mo.configureChild("lustimglabel",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","lustlabel",x=20,y=210,font=self.font,text="Lust",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","lustcolonlabel",x=110,y=209,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","lustvallabel",x=130,y=210,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addImageLabel("display","lustimglabel",x=174,y=210,width=20,height=20,image_name="",background=self.theme,foreground=self.fontColor)
          # Hunger Label
-         self.mo.addnwhLabel("display","hungerlabel",20,230,self.font)
-         self.mo.configureChild("hungerlabel",text="Hunger",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hungercolonlabel",110,229,self.font,anchor="n")
-         self.mo.configureChild("hungercolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hungervallabel",130,230,self.font)
-         self.mo.configureChild("hungervallabel",text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hungerlabel",x=20,y=230,font=self.font,text="Hunger",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hungercolonlabel",x=110,y=229,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hungervallabel",x=130,y=230,font=self.font,text="",background=self.theme,foreground=self.fontColor)
          self.statpanevisible = True
    def hideStatPane(self):
       if self.statpanevisible:
@@ -24579,19 +24497,13 @@ class NiminFetishFantasyv0975o_fla:
    def showTimePane(self):
       if not self.timepanevisible:
          # Day Label
-         self.mo.addnwhLabel("display","daylabel",20,450,self.font)
-         self.mo.configureChild("daylabel",text="Day",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","daycolonlabel",110,449,self.font,anchor="n")
-         self.mo.configureChild("daycolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","dayvallabel",130,450,self.font)
-         self.mo.configureChild("dayvallabel",text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","daylabel",x=20,y=450,font=self.font,text="Day",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","daycolonlabel",x=110,y=449,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","dayvallabel",x=130,y=450,font=self.font,text="",background=self.theme,foreground=self.fontColor)
          # Hour Label
-         self.mo.addnwhLabel("display","hourlabel",20,470,self.font)
-         self.mo.configureChild("hourlabel",text="Hour",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hourcolonlabel",110,469,self.font,anchor="n")
-         self.mo.configureChild("hourcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","hourvallabel",130,470,self.font)
-         self.mo.configureChild("hourvallabel",text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hourlabel",x=20,y=470,font=self.font,text="Hour",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hourcolonlabel",x=110,y=469,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","hourvallabel",x=130,y=470,font=self.font,text="",background=self.theme,foreground=self.fontColor)
          self.timepanevisible = True
    def hideTimePane(self):
       if self.timepanevisible:
@@ -24607,11 +24519,9 @@ class NiminFetishFantasyv0975o_fla:
    def showRegionPane(self):
       if not self.regionpanevisible:
          # Pane Title
-         self.mo.addnwhLabel("display","label10",110,280,self.font,anchor="n")
-         self.mo.configureChild("label10",text="Current Region",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","label10",x=110,y=280,font=self.font,anchor="n",text="Current Region",background=self.theme,foreground=self.fontColor)
          # Region Label
-         self.mo.addnwhLabel("display","currentregionlabel",110,300,("TimesNewRoman",20,"bold"),anchor="n")
-         self.mo.configureChild("currentregionlabel",text="Region",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","currentregionlabel",x=110,y=300,font=("TimesNewRoman",20,"bold"),anchor="n",text="Region",background=self.theme,foreground=self.fontColor)
          self.regionpanevisible = True
       self.regionChange(self.currentZone)
    def hideRegionPane(self):
@@ -24624,26 +24534,26 @@ class NiminFetishFantasyv0975o_fla:
    def showLevelPane(self):
       if not self.levelpanevisible:
          # Level Label
-         self.mo.addnwhLabel("display","levellabel",20,370,self.font)
-         self.mo.configureChild("levellabel",text="Level",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","levelcolonlabel",110,369,self.font,anchor="n")
-         self.mo.configureChild("levelcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","levelvallabel",130,370,self.font)
-         self.mo.configureChild("levelvallabel",text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","levellabel",x=20,y=370,font=self.font,text="Level",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("levellabel")
+         self.mo.addnwhLabel("display","levelcolonlabel",x=110,y=369,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("levelcolonlabel")
+         self.mo.addnwhLabel("display","levelvallabel",x=130,y=370,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("levelvallabel")
          # SexP Label
-         self.mo.addnwhLabel("display","sexplabel",20,390,self.font)
-         self.mo.configureChild("sexplabel",text="SexP",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","sexpcolonlabel",110,389,self.font,anchor="n")
-         self.mo.configureChild("sexpcolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","sexpvallabel",130,390,self.font)
-         self.mo.configureChild("sexpvallabel",text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","sexplabel",x=20,y=390,font=self.font,text="SexP",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("sexplabel")
+         self.mo.addnwhLabel("display","sexpcolonlabel",x=110,y=389,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("sexpcolonlabel")
+         self.mo.addnwhLabel("display","sexpvallabel",x=130,y=390,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("sexpvallabel")
          # Coin Label
-         self.mo.addnwhLabel("display","coinlabel",20,410,self.font)
-         self.mo.configureChild("coinlabel",text="Coin",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","coincolonlabel",110,409,self.font,anchor="n")
-         self.mo.configureChild("coincolonlabel",text=":",background=self.theme,foreground=self.fontColor)
-         self.mo.addnwhLabel("display","coinvallabel",130,410,self.font)
-         self.mo.configureChild("coinvallabel",text="",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","coinlabel",x=20,y=410,font=self.font,text="Coin",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("coinlabel")
+         self.mo.addnwhLabel("display","coincolonlabel",x=110,y=409,font=self.font,anchor="n",text=":",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("coincolonlabel")
+         self.mo.addnwhLabel("display","coinvallabel",x=130,y=410,font=self.font,text="",background=self.theme,foreground=self.fontColor)
+         self.mo.configureChild("coinvallabel")
          self.levelpanevisible = True
    def hideLevelPane(self):
       if self.levelpanevisible:
@@ -24663,8 +24573,7 @@ class NiminFetishFantasyv0975o_fla:
    def showSGButton(self):
       if (not self.showsavegame):
          temp = self.getColours()
-         self.mo.addButton("display","savegamebutton",110,510,100,30,self.font,anchor="n")
-         self.mo.configureChild("savegamebutton",text="Save Game",background=temp[0],foreground=temp[1],command=self.saveG)
+         self.mo.addButton("display","savegamebutton",x=110,y=510,width=100,height=30,font=self.font,anchor="n",text="Save Game",background=temp[0],foreground=temp[1],command=self.saveG)
          self.showsavegame = True
    def hideSGButton(self):
       if (self.showsavegame):
@@ -24673,8 +24582,8 @@ class NiminFetishFantasyv0975o_fla:
    def showLGButton(self):
       if (not self.showloadgame):
          temp = self.getColours()
-         self.mo.addButton("display","loadgamebutton",110,545,100,30,self.font,anchor="n")
-         self.mo.configureChild("loadgamebutton",text="Load Game",background=temp[0],foreground=temp[1],command=self.loadG)
+         self.mo.addButton("display","loadgamebutton",x=110,y=545,width=100,height=30,font=self.font,anchor="n",text="Load Game",background=temp[0],foreground=temp[1],command=self.loadG)
+         self.mo.configureChild("loadgamebutton")
          self.showloadgame = True
    def hideLGButton(self):
       if (self.showloadgame):
@@ -24683,11 +24592,9 @@ class NiminFetishFantasyv0975o_fla:
    def showNGButton(self):
       if (not self.shownewgame):
          temp = self.getColours()
-         if self.oNewGameButton:
-            self.mo.addButton("display","newgamebutton",110,610,90,30,self.font,anchor="n")
-         else:
-            self.mo.addButton("display","newgamebutton",110,580,100,30,self.font,anchor="n")
-         self.mo.configureChild("newgamebutton",text="New Game",background=temp[0],foreground=temp[1],command=self.newGameStart)
+         tempcalc = (610,90) if self.oNewGameButton else (580,100)
+         self.mo.addButton("display","newgamebutton",x=110,y=tempcalc[0],width=tempcalc[1],height=30,font=self.font,anchor="n",text="New Game",background=temp[0],foreground=temp[1],command=self.newGameStart)
+         self.mo.configureChild("newgamebutton")
          self.shownewgame = True
    def hideNGButton(self):
       if (self.shownewgame):
@@ -24696,8 +24603,7 @@ class NiminFetishFantasyv0975o_fla:
    def showDiscard(self):
       if not self.discardbuttonvisible:
          temp = self.getColours()
-         self.mo.addButton("display","discardbutton",840,162,140,46,self.font)
-         self.mo.configureChild("discardbutton",text="Discard",background=temp[0],foreground=temp[1],command=self.buttonEventDiscard)
+         self.mo.addButton("display","discardbutton",x=840,y=162,width=140,height=46,font=self.font,text="Discard",background=temp[0],foreground=temp[1],command=self.buttonEventDiscard)
          self.discardbuttonvisible = True
    def hideDiscard(self):
       if self.discardbuttonvisible:
@@ -24748,8 +24654,8 @@ class NiminFetishFantasyv0975o_fla:
             if self.buttonsVisible[i]:
                self.mo.configureChild(f"button{i}",state="normal")
             else:
-               self.mo.addButton("display",f"button{i}",*self._showButtonsCalc(i),140,46,self.font)
-               self.mo.configureChild(f"button{i}",text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
+               tempcalc = self._showButtonsCalc(i)
+               self.mo.addButton("display",f"button{i}",x=tempcalc[0],y=tempcalc[1],width=140,height=46,font=self.font,text="",background=temp[0],foreground=temp[1],command=partial(self.buttonExecProxy,i))
                self.buttonsVisible[i] = True
    def buttonWrite(self, buttonNumber:int, buttonText:str):
       self.mo.configureChild(f"button{buttonNumber}",text=buttonText)
@@ -24779,8 +24685,8 @@ class NiminFetishFantasyv0975o_fla:
       return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
    def showAmount(self, buttonNum:int, tempColors=None):
       if not self.amountLabelsVisible[buttonNum]:
-         self.mo.addLabel("display",f"amountlabel{buttonNum}",*self._showAmountCalc(buttonNum),30,15,self.font)
-         self.mo.configureChild(f"amountlabel{buttonNum}",text="000",background=tempColors[0],foreground=tempColors[1],highlightbackground=tempColors[1],highlightthickness=1)
+         tempcalc = self._showAmountCalc(buttonNum)
+         self.mo.addLabel("display",f"amountlabel{buttonNum}",x=tempcalc[0],y=tempcalc[1],width=30,height=15,font=self.font,text="000",background=tempColors[0],foreground=tempColors[1],highlightbackground=tempColors[1],highlightthickness=1)
          self.amountLabelsVisible[buttonNum] = True
    def hideAmount(self, buttonNum:int):
       if self.amountLabelsVisible[buttonNum]:
@@ -24797,10 +24703,9 @@ class NiminFetishFantasyv0975o_fla:
       temp = self.getColours()
       if not self.sidepanelvisible:
          for i in range(8):
-            self.mo.addButton("display",self.sidepanelbuttonnames[i],*self._showSidePanelCalc(i),80,30,self.font)
-            self.mo.configureChild(self.sidepanelbuttonnames[i],text=self.sidepanelbuttontext[i],background=temp[0],foreground=temp[1],command=partial(self.sideEvent,i+1))
-         self.mo.addHTMLScrolledText("display","textside",823,275,330,315,self.font,border=self.scrolledTextBorders)
-         self.mo.configureChild("textside",text="Test",cursor="arrow",wrap="word",background=self.theme,foreground=self.fontColor)
+            tempcalc = self._showSidePanelCalc(i)
+            self.mo.addButton("display",self.sidepanelbuttonnames[i],x=tempcalc[0],y=tempcalc[1],width=80,height=30,font=self.font,text=self.sidepanelbuttontext[i],background=temp[0],foreground=temp[1],command=partial(self.sideEvent,i+1))
+         self.mo.addHTMLScrolledText("display","textside",x=823,y=275,width=330,height=315,font=self.font,border=self.scrolledTextBorders,text="Test",cursor="arrow",wrap="word",background=self.theme,foreground=self.fontColor)
          self.updateText()
       self.sidepanelvisible = True
       self.hideAPButton()
@@ -24808,7 +24713,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.sidepanelvisible:
          for i in range(8):
             self.mo.destroyChild(self.sidepanelbuttonnames[i])
-         self.mo.children["textside"].frame.destroy()
+         self.mo._children["textside"].destroy()
       self.sidepanelvisible = False
       self.showAPButton()
    def showOption7(self):
@@ -24829,8 +24734,7 @@ class NiminFetishFantasyv0975o_fla:
    def showAPButton(self):
       if not self.appearancebuttonvisible:
          temp = self.getColours()
-         self.mo.addButton("display","appearancebutton",990,426,150,50,self.font,anchor="center")
-         self.mo.configureChild("appearancebutton",text="Appearance",background=temp[0],foreground=temp[1],command=self.appearance)
+         self.mo.addButton("display","appearancebutton",x=990,y=426,width=150,height=50,font=self.font,anchor="center",text="Appearance",background=temp[0],foreground=temp[1],command=self.appearance)
          self.appearancebuttonvisible = True
    def hideAPButton(self):
       if self.appearancebuttonvisible:
@@ -24856,8 +24760,7 @@ class NiminFetishFantasyv0975o_fla:
    def moveItemShow(self):
       if (not self.moveitembuttonvisible):
          temp = self.getColours()
-         self.mo.addButton("display","moveitembutton",920,96,140,46,self.font)
-         self.mo.configureChild("moveitembutton",text="Move Item",background=temp[0],foreground=temp[1])
+         self.mo.addButton("display","moveitembutton",x=920,y=96,width=140,height=46,font=self.font,text="Move Item",background=temp[0],foreground=temp[1])
          if self.moveItemID != 0:
             text = self.itemName(self.moveItemID)
          else:
@@ -24871,8 +24774,7 @@ class NiminFetishFantasyv0975o_fla:
    def moveItemAmountShow(self):
       if (not self.moveitemamountvisible):
          temp = self.getColours()
-         self.mo.addLabel("display","moveitemamount",1030,129,30,15,self.font)
-         self.mo.configureChild("moveitemamount",background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
+         self.mo.addLabel("display","moveitemamount",x=1030,y=129,width=30,height=15,font=self.font,background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
          if self.moveItemStack != 0:
             text = self.moveItemStack
          else:
@@ -24885,53 +24787,46 @@ class NiminFetishFantasyv0975o_fla:
          self.moveitemamountvisible = False
    def openSFC(self):
       if self.sfcOpen:
-         self.sfcwindow.children["root"].lift()
+         self.sfcwindow.lift()
       else:
-         self.sfcwindow = itk.window(500,334,"Pymin: Save Converter",self.theme,self.cmdOpenConverter,False,True)
-         self.sfcwindow.bindChild("root","<Destroy>",self.closeSFC)
+         self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", background=self.theme, main=self.cmdOpenConverter, menu=False)
+         self.sfcwindow.bind("<Destroy>",self.closeSFC)
          self.sfcwindow.disableResizing()
-         self.sfcwindow.addLabel("display","title",250,50,300,32,('TimesNewRoman',20, 'bold'),"n")
-         self.sfcwindow.configureChild("title",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
+         self.sfcwindow.addLabel("display","title",x=250,y=50,width=300,height=32,font=('TimesNewRoman',20, 'bold'),anchor="n",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
          
-         self.sfcwindow.addLabel("display","message",250,100,350,25,('TimesNewRoman',12),"n")
-         self.sfcwindow.configureChild("message",text="",foreground=self.fontColor,background=self.theme)
+         self.sfcwindow.addLabel("display","message",x=250,y=100,width=350,height=25,font=('TimesNewRoman',12),anchor="n",text="",foreground=self.fontColor,background=self.theme)
 
-         self.sfcwindow.addFileEntryBox("display","inputfilebox",50,150,320,24,('TimesNewRoman',12),anchor="nw",text1="Input File",entrywidth=320,filetype=["file","open"])
-         self.sfcwindow.configureChild("inputfilebox",foreground=self.fontColor,background=self.theme)
-         self.sfcwindow.children["inputfilebox"]._properties["fileboxinitdir"] = self.savelocation
+         self.sfcwindow.addFileEntryBox("display","inputfilebox",x=50,y=150,width=320,height=24,font=('TimesNewRoman',12),text="Input File",filetype="file",fileaction="open",initdir=self.savelocation,foreground=self.fontColor,background=self.theme)
 
-         self.sfcinputfilecomboboxtext = tkinter.Label(self.sfcwindow.children["root"],text="Type",font=("TimesNewRoman",12))
+         self.sfcinputfilecomboboxtext = tkinter.Label(self.sfcwindow,text="Type",font=("TimesNewRoman",12))
          self.sfcinputfilecomboboxtext.place(x=390,y=150,width=40,height=24,anchor="nw")
          self.sfcinputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
-         self.sfcinputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
+         self.sfcinputfilecombobox = ttk.Combobox(self.sfcwindow,font=("TimesNewRoman",12))
          self.sfcinputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcinputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
          self.sfcinputfilecombobox.current(0)
 
-         self.sfcwindow.addFileEntryBox("display","outputfilebox",50,210,320,24,('TimesNewRoman',12),anchor="nw",text1="Output File",entrywidth=320,filetype=["file","save"])
-         self.sfcwindow.configureChild("outputfilebox",foreground=self.fontColor,background=self.theme)
-         self.sfcwindow.children["outputfilebox"]._properties["fileboxinitdir"] = self.savelocation
+         self.sfcwindow.addFileEntryBox("display","outputfilebox",x=50,y=210,width=320,height=24,font=('TimesNewRoman',12),text="Output File",filetype="file",fileaction="save",initdir=self.savelocation,foreground=self.fontColor,background=self.theme)
 
-         self.sfcoutputfilecomboboxtext = tkinter.Label(self.sfcwindow.children["root"],text="Type",font=("TimesNewRoman",12))
+         self.sfcoutputfilecomboboxtext = tkinter.Label(self.sfcwindow,text="Type",font=("TimesNewRoman",12))
          self.sfcoutputfilecomboboxtext.place(x=390,y=210,width=40,height=24,anchor="nw")
          self.sfcoutputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
-         self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow.children["root"],font=("TimesNewRoman",12))
+         self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow,font=("TimesNewRoman",12))
          self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
          self.sfcoutputfilecombobox.current(0)
 
          if not self.cmdOpenConverter:
-            self.sfcwindow.children["root"].transient(self.mo.children["root"])
-         self.sfcwindow.addButton("display","convertbutton",386,270,64,24,("TimesNewRoman",12),"nw")
-         self.sfcwindow.configureChild("convertbutton",text="Convert",foreground=self.fontColor,background=self.theme,command=self.convertButton)
+            self.sfcwindow.transient(self.mo)
+         self.sfcwindow.addButton("display","convertbutton",x=386,y=270,width=64,height=24,font=("TimesNewRoman",12),text="Convert",foreground=self.fontColor,background=self.theme,command=self.convertButton)
          self.sfcOpen = True
          if self.cmdOpenConverter:
             self.sfcwindow.mainloop()
    def closeSFC(self, e):
-      if e.widget == self.sfcwindow.children["root"]:
+      if e.widget == self.sfcwindow:
          self.sfcOpen = False
    def convertButton(self, *e):
-      self.convertSave(self.sfcwindow.children["inputfilebox"].get(),self.sfcinputfilecombobox.get(),self.sfcwindow.children["outputfilebox"].get(),self.sfcoutputfilecombobox.get())
+      self.convertSave(self.sfcwindow._children["inputfilebox"].get(),self.sfcinputfilecombobox.get(),self.sfcwindow._children["outputfilebox"].get(),self.sfcoutputfilecombobox.get())
    def convertSave(self, inputfile, inputfiletype, outputfile, outputfiletype):
       if inputfile in {None,""} or outputfile in {None,""}:
          as3.Error("Pymin.convertSave; Input/Output file can not be empty")
@@ -25078,7 +24973,7 @@ class NiminFetishFantasyv0975o_fla:
             self.sfcwindow.configureChild("message",text="Error")
          raise e
       if self.sfcOpen:
-         self.sfcwindow.toTop()
+         self.sfcwindow.lift()
    def saveSOL(self, dictionary:dict, outputfile):
       try:
          sol.save(self.returnSOL(dictionary,outputfile),str(outputfile),3)
@@ -25090,7 +24985,7 @@ class NiminFetishFantasyv0975o_fla:
          as3.Error("Pymin.saveSOL; Failed to save file")
          raise e
       if self.sfcOpen:
-         self.sfcwindow.toTop()
+         self.sfcwindow.lift()
    def saveXML(self, dictionary:dict, outputfile):
       try:
          string = textObject()
@@ -25139,7 +25034,7 @@ class NiminFetishFantasyv0975o_fla:
          as3.Error("Pymin.saveXML: Failed to save file.")
          raise e
       if self.sfcOpen:
-         self.sfcwindow.toTop()
+         self.sfcwindow.lift()
    def loadTOML(self, filename):
       with open(filename,"rb") as f:
          return TOML.readFile(f)
@@ -25285,7 +25180,7 @@ class NiminFetishFantasyv0975o_fla:
          self.secontainer = tkinter.Frame(self.sewindow) #! Make scrollable
          self.secontainer.place(x=5,y=25,width=490,height=370,anchor="nw")
          
-         self.sewindow.transient(self.mo.children["root"])
+         self.sewindow.transient(self.mo)
          self.sewindow.bind("<Destroy>",self.closeSE)
          self.seFileChanged = False
          self.seLoadedData = None
@@ -25364,20 +25259,20 @@ class NiminFetishFantasyv0975o_fla:
          self.seOpen = False
    def openDebugVariableDisplay(self, *e):
       if (self.debugVarOpen):
-         self.dvw.toTop()
+         self.dvw.lift()
       else:
-         self.dvw = itk.window(400,400,"Pymin Debug: Variable Display",self.theme,False,False,True)
+         self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme, main=False, menu=False)
          if self.fixedresolutionmode:
             self.dvw.disableResizing()
-         self.dvw.addHTMLScrolledText("root","text",0,0,400,400,("Terminal",8),"nw",True,10)
+         self.dvw.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10)
          self.debugVarOpen = True
-         self.dvw.children['root'].transient(self.mo.children["root"])
-         self.dvw.toTop()
-         self.dvw.bindChild("root","<Destroy>",self.closeDebugWindow)
+         self.dvw.transient(self.mo)
+         self.dvw.lift()
+         self.dvw.bind("<Destroy>",self.closeDebugWindow)
          self.detailedDebug()
    def detailedDebug(self, *e):
       if (self.debugVarOpen):
-         temp = self.dvw.children["text"].yview()
+         temp = self.dvw._children["text"].yview()
          #!Fix scrollbar positioning
          if temp[1] == 1.0: #temporary workaround so that the scrollbar position stays atleast when it hits the bottom
             temp = 1.0
@@ -25388,7 +25283,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\ncmdOpenConverter: {self.cmdOpenConverter}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\ntempInterfaceToggles: {self.tempInterfaceToggles}\noButtonColors: {self.oButtonColors}\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nthemeType: {self.themeType}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
          self.dvw.configureChild("text",text=tempStr,background=self.theme,foreground=self.fontColor)
-         self.dvw.children["text"].yview_moveto(temp)
+         self.dvw._children["text"].yview_moveto(temp)
    def closeDebugWindow(self, *e):
       self.debugVarOpen = False
       self.dvw.closeWindow()
@@ -25396,26 +25291,21 @@ class NiminFetishFantasyv0975o_fla:
       if self.debugGIWinOpen:
          self.dgiw.lift()
       else:
-         self.dgiw = tkinter.Toplevel()
-         self.dgiw.title("Give Item")
-         self.dgiw.geometry("150x100")
+         self.dgiw = itk.window(width=150, height=100, title="Give Item", main=False, menu=False)
          if self.fixedresolutionmode:
             self.dgiw.resizable(False,False)
-         self.dgiwlabel = tkinter.Label(self.dgiw,text="Give Item",font=("TkTextFont",9))
-         self.dgiwlabel.place(x=75,y=7,anchor="n")
-         self.dgiwcombo = itk.ComboEntryBox(self.dgiw,5,30,140,23,"nw",("TkTextFont",9),55,30,("ID:","Quantity:"),"Ok",2,"w")
-         self.dgiwcombo.configure(command=self.debugGiveItem)
-         self.dgiwerrlabel = tkinter.Label(self.dgiw,font=("TkTextFont",9))
-         self.dgiwerrlabel.place(x=75,y=76,anchor="n")
-         self.debugGIWinOpen = True
-         self.dgiw.transient(self.mo.children["root"])
+         self.dgiw.addnwhLabel("display","label",x=75,y=7,anchor="n",font=("TkTextFont",9),text="Give Item")
+         self.dgiw.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=140,height=23,font=("TkTextFont",9),textwidth=55,buttonwidth=30,text=("ID:","Quantity:"),buttontext="Ok",rows=2,command=self.debugGiveItem)
+         self.dgiw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
+         self.dgiw.transient(self.mo)
          self.dgiw.bind("<Destroy>",self.closeDGIWindow)
+         self.debugGIWinOpen = True
    def debugGiveItem(self, *e):
       self.debugGITimes = 0
       if self.currentState == 0:
-         self.dgiwerrlabel["text"] = "Error: Game not loaded"
+         self.dgiw._children["errlabel"].text = "Error: Game not loaded"
          raise as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
-      EN = self.dgiwcombo.getEntries()
+      EN = self.dgiw._children["combo"].getEntries()
       temperr = ""
       try:
          ID = int(EN[0],10)
@@ -25428,7 +25318,7 @@ class NiminFetishFantasyv0975o_fla:
             if not temperr:
                temperr = "Quantity must be a number"
       if temperr:
-         self.dgiwerrlabel["text"] = temperr
+         self.dgiw._children["errlabel"].text = temperr
          raise as3.Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
       if ID in {2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
          if QUAN > 0:
@@ -25436,14 +25326,11 @@ class NiminFetishFantasyv0975o_fla:
                self.itemGainArray.append(ID)
             self.gainItem(self.itemGainArray.pop())
          else:
-            self.dgiwerrlabel["text"] = f"Invalid Quantity: {QUAN}"
+            self.dgiw._children["errlabel"].text = f"Invalid Quantity: {QUAN}"
       else:
-         self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
+         self.dgiw._children["errlabel"].text = f"Invalid ItemID: {ID}"
    def closeDGIWindow(self, *e):
       self.debugGIWinOpen = False
-      self.dgiwlabel.destroy()
-      self.dgiwcombo.destroy()
-      self.dgiwerrlabel.destroy()
    def openDebugUseItemWindow(self, *e):
       print("useitem")
       """
@@ -25462,26 +25349,21 @@ class NiminFetishFantasyv0975o_fla:
       if self.debugAWinOpen:
          self.daw.lift()
       else:
-         self.daw = tkinter.Toplevel()
-         self.daw.title("Affinity")
-         self.daw.geometry("170x100")
+         self.daw = itk.window(width=170, height=100, title="Affinity", main=False, menu=False)
          if self.fixedresolutionmode:
             self.daw.resizable(False,False)
-         self.dawlabel = tkinter.Label(self.daw,text="Affinity Change",font=("TkTextFont",9))
-         self.dawlabel.place(x=85,y=7,anchor="n")
-         self.dawcombo = itk.ComboEntryBox(self.daw,5,30,160,23,"nw",("TkTextFont",9),65,30,("Type:","Amount:"),"Ok",2,"w")
-         self.dawcombo.configure(command=self.debugAffinityChange)
-         self.dawerrlabel = tkinter.Label(self.daw,font=("TkTextFont",9))
-         self.dawerrlabel.place(x=75,y=76,anchor="n")
-         self.debugAWinOpen = True
-         self.daw.transient(self.mo.children["root"])
+         self.daw.addnwhLabel("display","label",x=85,y=7,anchor="n",font=("TkTextFont",9),text="Affinity Change")
+         self.daw.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=160,height=23,font=("TkTextFont",9),textwidth=65,buttonwidth=30,text=("Type:","Amount:"),buttontext="Ok",rows=2,command=self.debugAffinityChange)
+         self.daw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
+         self.daw.transient(self.mo)
          self.daw.bind("<Destroy>",self.closeDAWindow)
+         self.debugAWinOpen = True
    def debugAffinityChange(self, *e):
       if self.currentState == 0:
          self.dawerrlabel["text"] = "Error: Game not loaded"
          raise as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
       err = ""
-      values = self.dawcombo.getEntries()
+      values = self.daw._children["combo"].getEntries()
       aff = values[0].upper()
       validAff = {
          "1",
@@ -25512,7 +25394,7 @@ class NiminFetishFantasyv0975o_fla:
          except:
             err = "Amount must be an integer"
       if err:
-         self.dawerrlabel["text"] = err
+         self.daw._children["errlabel"].text = err
          raise as3.Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
       if aff == "1":
          self.human += amount
@@ -25559,24 +25441,22 @@ class NiminFetishFantasyv0975o_fla:
       self.debugAWinOpen = False
    def openWiki(self):
       if self.wikiOpen:
-         self.wikiwindow.toTop()
+         self.wikiwindow.lift()
       else:
          self.wikiOpen = True
-         self.wikiwindow = itk.window(700,500,"Pymin: Wiki","#A0A0A0",False,False,True)
+         self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0", main=False, menu=False)
          if self.fixedresolutionmode:
             self.wikiwindow.disableResizing()
-         self.wikiwindow.group(self.mo.children["root"])
-         self.wikiwindow.addScrolledListbox("display","menu",0,0,153,500,("TkTextFont",8),"nw",True,10)
-         self.wikiwindow.configureChild("menu",background=self.theme,foreground=self.fontColor)
-         self.wikiwindow.addHTMLScrolledText("display","text",153,0,547,500,("TkTextFont",self.fontSize - 2),"nw",True,12)
+         self.wikiwindow.group(self.mo)
+         self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
+         self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
          try:
-            self.wikiwindow.children["text"].html_parser.callobject
-            self.wikiwindow.children["text"].html_parser.callobject = self.doWikiPage
+            self.wikiwindow._children["text"].html_parser.callobject
+            self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
             self.customhtmlparser = True
          except:
             self.customhtmlparser = False
             as3.trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
-         self.wikiwindow.configureChild("text",background=self.theme,foreground=self.fontColor)
          self.wikimenus = {
             "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
             "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
@@ -25613,11 +25493,11 @@ class NiminFetishFantasyv0975o_fla:
          
          self.doWikiMenu("")
          self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
-         self.wikiwindow.bindChild("root","<Destroy>",self._wikidestroy)
+         self.wikiwindow.bind("<Destroy>",self._wikidestroy)
 
          self.wikiwindow.bindChild("menu",'<Double-1>', self.selectMenuOption)
-         self.wikiwindow.bindChild("root","<KeyPress>",self.wikiKeyPress)
-         self.wikiwindow.bindChild("root",'<KeyRelease>',self.keysUp)
+         self.wikiwindow.bind("<KeyPress>",self.wikiKeyPress)
+         self.wikiwindow.bind('<KeyRelease>',self.keysUp)
 
          self.doWikiPage("Basic",0)
          self.wikifocus = 1
@@ -25647,25 +25527,25 @@ class NiminFetishFantasyv0975o_fla:
       finally:
          self.wikiOpen = False
    def wikiMenuSelectionUp(self, *e):
-      temp = self.wikiwindow.children["menu"].curselection()[0]
+      temp = self.wikiwindow._children["menu"].curselection()[0]
       if temp != 0:
-         self.wikiwindow.children["menu"].selection_clear(temp)
-         self.wikiwindow.children["menu"].select_set(temp - 1)
-         self.wikiwindow.children["menu"].activate(temp - 1)
-         self.wikiwindow.children["menu"].see(temp - 1)
+         self.wikiwindow._children["menu"].selection_clear(temp)
+         self.wikiwindow._children["menu"].select_set(temp - 1)
+         self.wikiwindow._children["menu"].activate(temp - 1)
+         self.wikiwindow._children["menu"].see(temp - 1)
    def wikiMenuSelectionDown(self, *e):
-      temp = self.wikiwindow.children["menu"].curselection()[0]
-      if (temp + 1) < len(self.wikiwindow.children["menu"].get(0,"end")):
-         self.wikiwindow.children["menu"].selection_clear(temp)
-         self.wikiwindow.children["menu"].select_set(temp + 1)
-         self.wikiwindow.children["menu"].activate(temp + 1)
-         self.wikiwindow.children["menu"].see(temp + 1)
+      temp = self.wikiwindow._children["menu"].curselection()[0]
+      if (temp + 1) < len(self.wikiwindow._children["menu"].get(0,"end")):
+         self.wikiwindow._children["menu"].selection_clear(temp)
+         self.wikiwindow._children["menu"].select_set(temp + 1)
+         self.wikiwindow._children["menu"].activate(temp + 1)
+         self.wikiwindow._children["menu"].see(temp + 1)
    def wikiMenuBack(self, *e):
       if self.currentMenu != "":
          self.selectMenuOption(sel="Back")
    def wikiSwitchSelection(self, *e):
       if self.wikifocus == 0:
-         self.wikiwindow.children["text"].vbar.focus_force()
+         self.wikiwindow._children["text"].vbar.focus_force()
          self.wikifocus = 1
       elif self.wikifocus == 1:
          self.wikiwindow.forceFocus("menu")
@@ -25683,13 +25563,13 @@ class NiminFetishFantasyv0975o_fla:
       self.displayWikiText()
    def doWikiMenu(self, menuName=str):
       self.currentMenu = menuName
-      self.wikiwindow.slb_Delete("menu",0,"end")
-      self.wikiwindow.children["menu"].insert("end",*self.wikimenus[menuName])
-      self.wikiwindow.children["menu"].select_set(0)
-      self.wikiwindow.children["menu"].activate(0)
+      self.wikiwindow._children["menu"].delete(0,"end")
+      self.wikiwindow._children["menu"].insert("end",*self.wikimenus[menuName])
+      self.wikiwindow._children["menu"].select_set(0)
+      self.wikiwindow._children["menu"].activate(0)
    def selectMenuOption(self, e=None, sel=None):
       if sel == None:
-         sel = self.wikiwindow.children["menu"].get(self.wikiwindow.children["menu"].curselection())
+         sel = self.wikiwindow._children["menu"].get(self.wikiwindow._children["menu"].curselection())
       if sel == "Back":
          self.doWikiMenu(".".join(self.currentMenu.split(".")[:-1]))
          return
