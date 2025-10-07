@@ -1592,7 +1592,6 @@ class NiminFetishFantasyv0975o_fla:
          items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
       if self.sidepanelvisible:
          items.append("textside")
-         sitems.extend(("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton"))
       if self.newSLDialogVisible:
          items.extend(("savefileselect","savefileentry","savefilelabel"))
       self.mo.configureChildren(items, foreground=color)
@@ -2015,8 +2014,7 @@ class NiminFetishFantasyv0975o_fla:
    def showPage(self, changes:bool, which:str):
       if (changes):
          if (not self.pageShow):
-            temp = self.getColours()
-            self.mo.addLabel("display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text="BAG 1",background=temp[0],foreground=temp[1])
+            self.mo.addLabel("display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text="BAG 1",background="#FFFFFF",foreground="#000000")
             self.pageShow = True
          self.mo.configureChild("pagelabel",text=f"{which}: {self.choicePage}")
       else:
@@ -4085,7 +4083,6 @@ class NiminFetishFantasyv0975o_fla:
       Displays nsld
       """
       if not self.newSLDialogVisible:
-         temp = self.getColours()
          self.mo.addScrolledListbox("display","savefileselect",x=200,y=30,width=460,height=154,font=self.font,sbwidth=12,background=self.theme,foreground=self.fontColor)
          self.mo._children["savefileselect"].bind("<<ListboxSelect>>",self.nsldSetEntryFromListbox)
          self.mo._children["savefileselect"].bind("<Double-Button-1>",self.buttonEvent8)
@@ -8205,7 +8202,6 @@ class NiminFetishFantasyv0975o_fla:
             if (tempArray[tempI] != " "):
                tempDict[self.bMap[i]] = tempArray[tempI]
       self.doButtonChoices(tempDict)
-      temp = self.getColours()
       itemArr = self.bagStackArray if which == "Bag" else self.stashStackArray
       for i in range(1,13):
          self.mo.configureChild(f"button{i}",state="normal")
@@ -24315,8 +24311,6 @@ class NiminFetishFantasyv0975o_fla:
          self.outputMainText(f"Nimin: Fetish Fantasy\n            v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above.",True)
       else:
          self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{self.versionNumber})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).", True)
-   def getColours(self):
-      return ("#FFFFFF","#000000")
    def showStatsPane(self):
       self.showStatPane()
       self.showLevelPane()
@@ -24698,8 +24692,7 @@ class NiminFetishFantasyv0975o_fla:
          self.moveitembuttonvisible = False
    def moveItemAmountShow(self):
       if (not self.moveitemamountvisible):
-         temp = self.getColours()
-         self.mo.addLabel("display","moveitemamount",x=1030,y=129,width=30,height=15,font=self.font,background=temp[0],foreground=temp[1],highlightbackground=temp[1],highlightthickness=1)
+         self.mo.addLabel("display","moveitemamount",x=1030,y=129,width=30,height=15,font=self.font,background="#FFFFFF",foreground="#000000",highlightbackground="#000000",highlightthickness=1)
          if self.moveItemStack != 0:
             text = self.moveItemStack
          else:
