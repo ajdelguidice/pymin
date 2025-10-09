@@ -223,6 +223,7 @@ class NiminFetishFantasyv0975o_fla:
       self.currentText = textObject()
       self.sideText = textObject()
       self.sideFocus = 1
+      self.font = ("TimesNewRoman", 12)
 
       # workaround variables. These are to implement things that were a result of actionscript jank (local variables of a function inside of a MovieClip object were treated as variables local to the MovieClip object instead in some circumstances)
       self.buy = 0
@@ -636,8 +637,6 @@ class NiminFetishFantasyv0975o_fla:
       #window
       self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultMenu=False)
       self.mo.aboutwindow.text = f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}"
-
-      self.font = ("TimesNewRoman", 12)
       
       self.style = ttk.Style(self.mo)
       if (self.dir / "nimintheme").is_dir():
@@ -5155,6 +5154,26 @@ class NiminFetishFantasyv0975o_fla:
       Function called when giving the player items
       """
       self.itemGainArray.push(ID)
+   def addManyItem(self, ID:int, amount:int):
+      """
+      Function for gaining many items
+      """
+      for i in range(amount):
+         self.itemAdd(ID)
+   def loseManyItem(self, ID:int, amount:int):
+      """
+      Function for losing multiple items
+      """
+      for i in range(26,-1,-1):
+         if (self.bagArray[i] == ID and amount > 0):
+            if (amount >= self.bagStackArray[i]):
+               self.passiveItemRemove(self.bagArray[i])
+               self.bagArray[i] = 0
+               amount -= self.bagStackArray[i]
+               self.bagStackArray[i] = 0
+            else:
+               self.bagStackArray[i] -= amount
+               amount = 0
    def gainItem(self, ID:int):
       """
       Function used to actually give the player items
@@ -5969,26 +5988,6 @@ class NiminFetishFantasyv0975o_fla:
          self.milkHPMod -= 5
          self.carryMod -= 10
          self.milkCap -= 3000
-   def loseManyItem(self, ID:int, amount:int):
-      """
-      Function for losing multiple items
-      """
-      for i in range(26,-1,-1):
-         if (self.bagArray[i] == ID and amount > 0):
-            if (amount >= self.bagStackArray[i]):
-               self.passiveItemRemove(self.bagArray[i])
-               self.bagArray[i] = 0
-               amount -= self.bagStackArray[i]
-               self.bagStackArray[i] = 0
-            else:
-               self.bagStackArray[i] -= amount
-               amount = 0
-   def addManyItem(self, ID:int, amount:int):
-      """
-      Function for gaining many items
-      """
-      for i in range(amount):
-         self.itemAdd(ID)
    @staticmethod
    def itemValue(ID:int):
       """
@@ -26812,8 +26811,6 @@ if __name__ == "__main__":
    if "--debug" in argv or "-d" in argv or "/D" in argv:
       as3.EnableDebug()
    mainobject = NiminFetishFantasyv0975o_fla()
-   if "-n" in argv or "--nostart" in argv or "/N" in argv:
-      mainobject.debugNoStart = True
    if "--converter" in argv or "-C" in argv or "/C" in argv:
       class dummyObject:
          def configureChild(*args,**kargs):...
