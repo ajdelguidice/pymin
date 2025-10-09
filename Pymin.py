@@ -197,6 +197,7 @@ class NiminFetishFantasyv0975o_fla:
       self.useNewStash = False
       self.originalFrame1Message = False
       self.helpToWiki = False
+      self.doShopsReturn = False
 
       ## Grammar Tab
       self.respectShowBalls = False
@@ -795,6 +796,10 @@ class NiminFetishFantasyv0975o_fla:
          ##Help opens wiki
          self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
+         
+         ##Shops Return To doShops
+         self.optionswindow.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("TimesNewRoman",11),text="Shops Return to doShops",background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
 
          #Grammar page
          self.optionswindow.addNBFrame("nb","gs",width=420,height=207,text="Grammar")
@@ -937,6 +942,8 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow._children["UseNewStash"].select()
       if self.helpToWiki:
          self.optionswindow._children["helpToWiki"].select()
+      if self.doShopsReturn:
+         self.optionswindow._children["doShopsReturn"].select()
       if self.respectShowBalls:
          self.optionswindow._children["showBalls"].select()
       if self.femmeboyToFemboy:
@@ -1045,6 +1052,7 @@ class NiminFetishFantasyv0975o_fla:
          self.useNewSaveLoadDialog = self.optionswindow._children["UseExpandedSaveDialog"].getcb()
          self.useNewStash = self.optionswindow._children["UseNewStash"].getcb()
          self.helpToWiki = self.optionswindow._children["helpToWiki"].getcb()
+         self.doShopsReturn = self.optionswindow._children["doShopsReturn"].getcb()
          self.respectShowBalls = self.optionswindow._children["showBalls"].getcb()
          self.femmeboyToFemboy = self.optionswindow._children["femmeboytofemboy"].getcb()
          self.shemaleToFuta = self.optionswindow._children["shemaletofuta"].getcb()
@@ -1541,7 +1549,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen:
-         self.optionswindow.configureChildren(("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","if","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","gs","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","femboyishtogirly","snuggleball","grammarMisc","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),background=color)
+         self.optionswindow.configureChildren(("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","if","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","gs","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","femboyishtogirly","snuggleball","grammarMisc","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),background=color)
          if as3state.as3DebugEnable:
             self.optionswindow.configureChildren(("dt","ChooseSenario","NoDamage"),background=color)
       self.style.configure("TFrame",background=color)
@@ -1571,7 +1579,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen:
-         self.optionswindow.configureChildren(("SOLMode","FixedRes","Theme","FontColor","SaveLocation","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","femboyishtogirly","snuggleball","grammarMisc","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),foreground=color)
+         self.optionswindow.configureChildren(("SOLMode","FixedRes","Theme","FontColor","SaveLocation","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","femboyishtogirly","snuggleball","grammarMisc","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),foreground=color)
          if as3state.as3DebugEnable:
             self.optionswindow.configureChildren(("ChooseSenario","NoDamage"),foreground=color)
    def updateTheme(self):
@@ -1643,7 +1651,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.wikiOpen:
          self.displayWikiText()
    def savePreferences(self):
-      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
+      temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":str(self.savelocation),"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki,"doShopsReturn":self.doShopsReturn},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
       try:
          TOML.write(self.dir / "Nimin_Prefs.toml", temp)
       except:
@@ -1688,6 +1696,7 @@ class NiminFetishFantasyv0975o_fla:
          self.useNewSaveLoadDialog = bool(interface.get("useExpandedSaveDialog",False))
          self.useNewStash = bool(interface.get("useNewStash",False))
          self.helpToWiki = bool(interface.get("helpToWiki",False))
+         self.doShopsReturn = bool(interface.get("doShopsReturn",False))
          grammar = temp.get("grammar",{})
          self.respectShowBalls = bool(grammar.get("respectShowBalls",False))
          self.femmeboyToFemboy = bool(grammar.get("femmeboyToFemboy",False))
@@ -8547,7 +8556,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doSell()
          elif (self.buttonChoice == 12):
             self.inShop = False
-            if (self.shiftHeld):
+            if (self.doShopsReturn and not self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -8752,7 +8761,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doDyeShop()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld):
+            if (self.doShopsReturn and not self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -8869,7 +8878,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doProcess()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld):
+            if (self.doShopsReturn and not self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -9157,7 +9166,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doSalon()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld):
+            if (self.doShopsReturn and not self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
@@ -9456,7 +9465,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doTailor()
             self.doListen = doListen
          elif (self.buttonChoice == 12):
-            if (self.shiftHeld):
+            if (self.doShopsReturn and not self.shiftHeld):
                self.doShops()
             else:
                self.doReturn()
