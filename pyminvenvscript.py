@@ -7,8 +7,6 @@ from subprocess import run, check_output
 from urllib.request import urlopen
 from io import StringIO
 
-env = os.environ.copy()
-
 if platform.system() == 'Darwin':
     print('Warning: This script is untested on darwin (MacOS), things might be broken.')
     '''
@@ -21,8 +19,9 @@ if platform.system() == 'Darwin':
     Set the environment variable no_proxy to * to avoid this problem (e.g.
     os.environ["no_proxy"] = "*"). 
     '''
-    import os
     os.environ['no_proxy'] = '*'
+
+env = os.environ.copy()
 
 def checkExistsMakeDir(dir_):
     if dir_.is_dir():
@@ -436,7 +435,7 @@ class Args:
 class TOML:
     # These were put into a class to work around an issue with global variables
     def Value(value):
-        if isinstance(value,str):
+        if isinstance(value, (str, PurePath)):
             return f'"{value}"'
         if isinstance(value,bool):
             return 'true' if value else 'false'
@@ -552,9 +551,11 @@ else:  # Use fallback values because config does not exist
             c.read_file(f)
             c2['pyInstalledVersion'] = c[configparser.UNNAMED_SECTION]['version_info']
         c2['path'] = venvpath
+        cfgloc = venvpath / 'pymin.toml'
     else:  # no venv
         c2['pyInstalledVersion'] = platform.python_version()
         hasVenv = False
+        cfgloc = curdir / 'pymin.toml'
 
 if platform.system() == 'Windows':
     pythonvenvloc = venvpath / 'Scripts/python.exe'
@@ -681,9 +682,9 @@ elif argv[1] == 'uv' and hasVenv:
         run(pipCommand[:-1] + argv[2:], env=env)
 elif argv[1] == 'pip' and hasVenv:
     if len(argv) == 2:
-        run((*pipCommand, '--help'))
+        run(pipCommand + ['--help'])
     else:
-        run((*pipCommand, *argv[2:]))
+        run(pipCommand + argv[2:])
 
 if c1 != c2:  # Check if config was modified
     writeTOML(cfgloc, c2)
