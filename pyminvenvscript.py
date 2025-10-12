@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-import requests, platform, configparser, ssl, tempfile
+import requests, platform, configparser, ssl, tempfile, os
 from shutil import rmtree, copytree, copyfile
 from pathlib import Path, PurePath
 from sys import argv
 from subprocess import run, check_output
 from urllib.request import urlopen
 from io import StringIO
+
+env = os.environ.copy()
 
 if platform.system() == 'Darwin':
     print('Warning: This script is untested on darwin (MacOS), things might be broken.')
@@ -125,7 +127,7 @@ def installmodules():
         temp.remove('tkhtmlview')
     else:
         set_as3libversion(temp)
-    run(temp)
+    run(temp, env=env)
     print('Done')
     replaceTkhtmlviewParserWithUnsafeOne()
 
@@ -147,11 +149,7 @@ def updatemodules():
     #Updates the required modules using pip inside the virtual environment
     if uninstallMiniAMF:
         print('Replacing Mini-AMF with as3lib-miniAMF...')
-        rl = pipCommand + ['uninstall', 'Mini-AMF']
-        if c2['uvGlobal']:
-            run(rl + ['--python', pythonvenvloc])
-        else:
-            run(rl)
+        run(pipCommand + ['uninstall', 'Mini-AMF'], env=env)
         print('Done')
     if c2['uvLocal']:
         print('Updating UV...')
@@ -165,7 +163,7 @@ def updatemodules():
         temp.remove('tkhtmlview')
     else:
         set_as3libversion(temp)
-    run(temp)
+    run(temp, env=env)
     print('Done')
     replaceTkhtmlviewParserWithUnsafeOne()
 
@@ -198,7 +196,7 @@ def recreate(withconf, withsaves, withgameconf):
         rmtree(venvpath)
         with OverrideDev():
             create()
-        if withconf and cfgDict != None:
+        if cfgDict != None:
             writeTOML(venvpath / 'pymin.toml', cfgDict)
         if withsaves:
             copytree(tempdir / 'nimin_saves', venvpath / 'Pymin/nimin_saves')
@@ -566,7 +564,7 @@ pythonm = [pythonvenvloc, '-m']
 
 if c2['uvGlobal']:
     pipCommand = ['uv', 'pip']
-    modlist.extend(('--python', pythonvenvloc))
+    env['UV_PYTHON'] = pythonvenvloc
 elif c2['uvLocal']:
     pipCommand = pythonm + ['uv', 'pip']
 else:
@@ -678,10 +676,9 @@ elif argv[1] == 'uv' and hasVenv:
         print('Error: uv is not enabled.')
         exit()
     if len(argv) == 2:
-        run(pipCommand[:-1] + ['help'])
+        run(pipCommand[:-1] + ['help'], env=env)
     else:
-        #! This does not work with commands that do not except the --python arguement
-        run(pipCommand[:-1] + argv[2:] + ['--python', pythonvenvloc])
+        run(pipCommand[:-1] + argv[2:], env=env)
 elif argv[1] == 'pip' and hasVenv:
     if len(argv) == 2:
         run((*pipCommand, '--help'))
