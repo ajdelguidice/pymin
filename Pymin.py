@@ -1910,13 +1910,13 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.hideAmount(i)
    def bagDisableEmpty(self):
-      self.disableSelectedButtons([i for i in range(1,12) if self.mo._children[f"button{i}"].text in {""," "}])
+      self.disableSelectedButtons([i for i in self.bMap if self.mo._children[f"button{i}"].text in {""," "}])
    def choiceListBlanks(self):
       #dlist = [1,2,3,5,6,7,9,10,11]
       #for i in range(1,12):
       #   if self.buttonsVisible[i] and i not in (4,8):
       #      dlist.remove(i)
-      self.disableSelectedButtons(i for i in range(1,12) if not self.buttonsVisible[i])
+      self.disableSelectedButtons(i for i in self.bMap if not self.buttonsVisible[i])
    def choiceListSelect(self, which:str, hideOverride:bool=False):
       if which == "Bag":
          tempArray = tuple(self.bagArray)
