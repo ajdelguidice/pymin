@@ -24598,10 +24598,10 @@ class NiminFetishFantasyv0975o_fla:
       self.mo._children["textside"].updateText()
    def hideUpDown(self):
       if self.statpanevisible:
-         self.mo.configureChildren(("strimglabel","mentimglabel","libimglabel","senimglabel","hpimglabel","lustimglabel"),image="")
+         self.mo.configureChildren(("strimglabel","mentimglabel","libimglabel","senimglabel","hpimglabel","lustimglabel"),image_name="")
    def UpDownImage(self, which, img):
       if self.statpanevisible:
-         self.mo.configureChild(f"{which}imglabel",image=img)
+         self.mo.configureChild(f"{which}imglabel",image_name=img)
    def moveItemShow(self):
       text = self.itemName(self.moveItemID)
       if (not self.moveitembuttonvisible):
