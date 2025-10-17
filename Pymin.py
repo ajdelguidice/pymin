@@ -728,7 +728,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme, main=False, menu=False)
          #self.mo.group(self.optionswindow)
          if self.fixedresolutionmode:
-            self.optionswindow.disableResizing()
+            self.optionswindow.resizable = False
          self.optionswindow.addNotebook("display","nb")
 
          #Options page
@@ -1084,19 +1084,19 @@ class NiminFetishFantasyv0975o_fla:
       if self.fixedresolutionmode:
          #locks resizing of child windows
          self.mo.geometry("1176x662")
-         self.mo.disableResizing()
+         self.mo.resizable = False
          if self.wikiOpen:
             self.wikiwindow.geometry("700x500")
-            self.wikiwindow.disableResizing()
+            self.wikiwindow.resizable = False
          if self.optionsWinOpen:
             self.optionswindow.geometry("420x207")
-            self.optionswindow.disableResizing()
+            self.optionswindow.resizable = False
          if self.optionsWinOpen:
             self.optionswindow.geometry("420x207")
-            self.optionswindow.disableResizing()
+            self.optionswindow.resizable = False
          if self.debugVarOpen:
             self.dvw.geometry("400x400")
-            self.dvw.disableResizing()
+            self.dvw.resizable = False
          if self.debugGIWinOpen:
             self.dgiw.geometry("150x100")
             self.dgiw.resizable(False,False)
@@ -1105,13 +1105,13 @@ class NiminFetishFantasyv0975o_fla:
             self.daw.resizable(False,False)
       else:
          #unlocks resizing for all windows
-         self.mo.enableResizing()
+         self.mo.resizable = True
          if self.wikiOpen:
-            self.wikiwindow.enableResizing()
+            self.wikiwindow.resizable = True
          if self.optionsWinOpen:
-            self.optionswindow.enableResizing()
+            self.optionswindow.resizable = True
          if self.debugVarOpen:
-            self.dvw.enableResizing()
+            self.dvw.resizable = True
          if self.debugGIWinOpen:
             self.dgiw.resizable(True,True)
          if self.debugAWinOpen:
@@ -24629,7 +24629,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", background=self.theme, main=self.cmdOpenConverter, menu=False)
          self.sfcwindow.bind("<Destroy>",self.closeSFC)
-         self.sfcwindow.disableResizing()
+         self.sfcwindow.resizable = False
          self.sfcwindow.addLabel("display","title",x=250,y=50,width=300,height=32,font=('TimesNewRoman',20, 'bold'),anchor="n",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
          
          self.sfcwindow.addLabel("display","message",x=250,y=100,width=350,height=25,font=('TimesNewRoman',12),anchor="n",text="",foreground=self.fontColor,background=self.theme)
@@ -25100,7 +25100,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme, main=False, menu=False)
          if self.fixedresolutionmode:
-            self.dvw.disableResizing()
+            self.dvw.resizable = False
          self.dvw.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10)
          self.debugVarOpen = True
          self.dvw.transient(self.mo)
@@ -25284,7 +25284,7 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiOpen = True
          self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0", main=False, menu=False)
          if self.fixedresolutionmode:
-            self.wikiwindow.disableResizing()
+            self.wikiwindow.resizable = False
          self.wikiwindow.group(self.mo)
          self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
          self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
