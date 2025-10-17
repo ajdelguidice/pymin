@@ -2206,63 +2206,61 @@ class NiminFetishFantasyv0975o_fla:
       return tempStr
    def doWeight(self):
       tempBool = False
-      tempStr = textObject()
       tempNum = (self.body * 2 + self.str + self.carryMod) * (self.tallness / 60)
       if (self.cockTotal > 0):
          if (self.cockSize * self.cockSizeMod > tempNum):
-            tempStr += f"\n\nThe weight of your {self.cockDesc()} cock{self.plural(1)} is too much to carry, making it impossible to walk. You're stuck in this town until either you get stronger or the bulge in your {self.clothesBottom()} gets smaller..."
+            self.doMainText(f"\n\nThe weight of your {self.cockDesc()} cock{self.plural(1)} is too much to carry, making it impossible to walk. You're stuck in this town until either you get stronger or the bulge in your {self.clothesBottom()} gets smaller...")
             tempBool = True
          elif (self.cockSize * self.cockSizeMod > tempNum * 5 / 6):
-            tempStr += f"\n\nThe weight of your {self.cockDesc()} cock{self.plural(1)} is almost constantly on your mind... Your walk has a noticeable sway in its step just trying to hold it off the ground while you move. You're cautious when moving, or else you will lose control and slam it into something or someone."
+            self.doMainText(f"\n\nThe weight of your {self.cockDesc()} cock{self.plural(1)} is almost constantly on your mind... Your walk has a noticeable sway in its step just trying to hold it off the ground while you move. You're cautious when moving, or else you will lose control and slam it into something or someone.")
          elif (self.cockSize * self.cockSizeMod > tempNum * 2 / 3):
-            tempStr += f"\n\nThe weight of your {self.cockDesc()} cock{self.plural(1)} is becoming a bit of a nuisance. Whenever you move around, you're subconsciously afraid your bulge will accidentally gain more momentum than intended and potentially hurt someone or break something."
+            self.doMainText(f"\n\nThe weight of your {self.cockDesc()} cock{self.plural(1)} is becoming a bit of a nuisance. Whenever you move around, you're subconsciously afraid your bulge will accidentally gain more momentum than intended and potentially hurt someone or break something.")
          elif (self.cockSize * self.cockSizeMod > tempNum * 1 / 2):
-            tempStr += f"\n\nYou are rather aware of the weight of your {self.cockDesc()} cock{self.plural(1)}. You often find yourself slipping a hand into your {self.clothesBottom()} to readjust your bulge in an attempt to be a little less mindful about it."
+            self.doMainText(f"\n\nYou are rather aware of the weight of your {self.cockDesc()} cock{self.plural(1)}. You often find yourself slipping a hand into your {self.clothesBottom()} to readjust your bulge in an attempt to be a little less mindful about it.")
       if (self.breastSize > tempNum or self.boobTotal == 4 and self.breastSize > 0.5 * tempNum or self.boobTotal == 6 and self.breastSize > 0.66 * tempNum or self.boobTotal == 8 and self.breastSize > 0.33 * tempNum or self.boobTotal == 10 and self.breastSize > 0.25 * tempNum):
-         tempStr += f"\n\nThe weight of your {self.boobDesc()} tits is too much to really carry, making even standing a chore. You're stuck in this town until either you get stronger or they get smaller..."
+         self.doMainText(f"\n\nThe weight of your {self.boobDesc()} tits is too much to really carry, making even standing a chore. You're stuck in this town until either you get stronger or they get smaller...")
          tempBool = True
       elif (self.breastSize > tempNum * 5 / 6 or self.boobTotal == 4 and self.breastSize > 0.5 * tempNum * 5 / 6 or self.boobTotal == 6 and self.breastSize > 0.66 * tempNum * 5 / 6 or self.boobTotal == 8 and self.breastSize > 0.33 * tempNum * 5 / 6 or self.boobTotal == 10 and self.breastSize > 0.25 * tempNum * 5 / 6):
-         tempStr += f"\n\nThe weight of your {self.boobDesc()} tits is rather troubling. Not only does your back ache from trying to keep them aloft, but you're also afraid you won't be able to get back up when you lay down."
+         self.doMainText(f"\n\nThe weight of your {self.boobDesc()} tits is rather troubling. Not only does your back ache from trying to keep them aloft, but you're also afraid you won't be able to get back up when you lay down.")
       elif (self.breastSize > tempNum * 2 / 3 or self.boobTotal == 4 and self.breastSize > 0.5 * tempNum * 2 / 3 or self.boobTotal == 6 and self.breastSize > 0.66 * tempNum * 2 / 3 or self.boobTotal == 8 and self.breastSize > 0.33 * tempNum * 2 / 3 or self.boobTotal == 10 and self.breastSize > 0.25 * tempNum * 2 / 3):
-         tempStr += f"\n\nThe weight of your {self.boobDesc()} tits is becoming worrisome. Your back aches a little from holding them up and you often find yourself resting them on tables whenever you sit down, to keep the load off yourself."
+         self.doMainText(f"\n\nThe weight of your {self.boobDesc()} tits is becoming worrisome. Your back aches a little from holding them up and you often find yourself resting them on tables whenever you sit down, to keep the load off yourself.")
       elif (self.breastSize > tempNum * 1 / 2 or self.boobTotal == 4 and self.breastSize > 0.5 * tempNum * 1 / 2 or self.boobTotal == 6 and self.breastSize > 0.66 * tempNum * 1 / 2 or self.boobTotal == 8 and self.breastSize > 0.33 * tempNum * 1 / 2 or self.boobTotal == 10 and self.breastSize > 0.25 * tempNum * 1 / 2):
-         tempStr += f"\n\nYou are rather aware of the weight of your {self.boobDesc()} tits. Your hands are frequently beneath your {self.clothesTop()}, trying to readjust the things. They're so heavy, you're subconsciouly drawing more attention to them with the way you keep swinging them around and absent-mindedly handling them."
+         self.doMainText(f"\n\nYou are rather aware of the weight of your {self.boobDesc()} tits. Your hands are frequently beneath your {self.clothesTop()}, trying to readjust the things. They're so heavy, you're subconsciouly drawing more attention to them with the way you keep swinging them around and absent-mindedly handling them.")
       if self.showBalls:
          bsMbD2 = self.ballSize * self.balls / 2
          if (bsMbD2 > tempNum):
-            tempStr += f"\n\nThe weight of your {self.ballDesc()} nuts is too much to carry, anchoring you to the ground. You're stuck here until you get strong or your balls get smaller..."
+            self.doMainText(f"\n\nThe weight of your {self.ballDesc()} nuts is too much to carry, anchoring you to the ground. You're stuck here until you get strong or your balls get smaller...")
             tempBool = True
          elif (bsMbD2 > tempNum * 5 / 6):
-            tempStr += f"\n\nThe weight of your {self.ballDesc()} nuts is troublesome. Your {self.legDesc(6)} bend{self.legPlural(1)} with the heaviness and you have difficulty standing up whenever you sit down. And you're afraid of running because once those things start swaying, they're quite difficult to stop."
+            self.doMainText(f"\n\nThe weight of your {self.ballDesc()} nuts is troublesome. Your {self.legDesc(6)} bend{self.legPlural(1)} with the heaviness and you have difficulty standing up whenever you sit down. And you're afraid of running because once those things start swaying, they're quite difficult to stop.")
          elif (bsMbD2 > tempNum * 2 / 3):
-            tempStr += f"\n\nThe weight of your {self.ballDesc()} nuts is becoming annoying. You're walking with your crotch sagging quite often and frequently consider buying a bra for them..."
+            self.doMainText(f"\n\nThe weight of your {self.ballDesc()} nuts is becoming annoying. You're walking with your crotch sagging quite often and frequently consider buying a bra for them...")
          elif (bsMbD2 > tempNum * 1 / 2):
-            tempStr += f"\n\nYou are rather aware of the weight of your {self.ballDesc()} nuts. Even in public, a hand is dipping into your {self.clothesBottom()} to readjust them and massaging your stretched scrotum is quickly becoming a hobby of yours."
+            self.doMainText(f"\n\nYou are rather aware of the weight of your {self.ballDesc()} nuts. Even in public, a hand is dipping into your {self.clothesBottom()} to readjust them and massaging your stretched scrotum is quickly becoming a hobby of yours.")
       if self.udders:
          if (self.udderSize > tempNum):
-            tempStr += f"\n\nThe weight of your {self.udderDesc()} udder is too much to carry, sitting heavily in front of you. You're stuck in this town until either you get stronger or it gets smaller..."
+            self.doMainText(f"\n\nThe weight of your {self.udderDesc()} udder is too much to carry, sitting heavily in front of you. You're stuck in this town until either you get stronger or it gets smaller...")
             tempBool = True
          elif (self.udderSize > tempNum * 5 / 6):
-            tempStr += f"\n\nThe weight of your {self.udderDesc()} udder makes you uneasy. The momentum it gains when you walk makes you fear falling on your face and every now and then your {self.legDesc(2)} go numb while you're sitting or laying down."
+            self.doMainText(f"\n\nThe weight of your {self.udderDesc()} udder makes you uneasy. The momentum it gains when you walk makes you fear falling on your face and every now and then your {self.legDesc(2)} go numb while you're sitting or laying down.")
          elif (self.udderSize > tempNum * 2 / 3):
-            tempStr += f"\n\nThe weight of your {self.udderDesc()} udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop."
+            self.doMainText(f"\n\nThe weight of your {self.udderDesc()} udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop.")
          elif (self.udderSize > tempNum * 1 / 2):
-            tempStr += f"\n\nYou are rather aware of the weight of your {self.udderDesc()} udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing..."
+            self.doMainText(f"\n\nYou are rather aware of the weight of your {self.udderDesc()} udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing...")
       if False and self.internalBallsEffectBelly and not self.showBalls:
          ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2 + self.ballSize * self.balls / 2) / 5
       else:
          ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2) / 5
       if (ptMbmM2 > tempNum):
-         tempStr += f"\n\nThe weight of your {self.bellyDesc()} belly is too much carry, putting your weight more on it than you can yourself. You're stuck in this town until either you get stronger or you lose some of the girth..."
+         self.doMainText(f"\n\nThe weight of your {self.bellyDesc()} belly is too much carry, putting your weight more on it than you can yourself. You're stuck in this town until either you get stronger or you lose some of the girth...")
          tempBool = True
       elif (ptMbmM2 > tempNum * 5 / 6):
-         tempStr += f"\n\nThe weight of your {self.bellyDesc()} belly is rather alarming... You're almost constantly trying to cradle it, subconsciously fearing it will drag you down to the ground if you don't. Whenever you sit down, you always prop it up against a table simply so you don't roll forward."
+         self.doMainText(f"\n\nThe weight of your {self.bellyDesc()} belly is rather alarming... You're almost constantly trying to cradle it, subconsciously fearing it will drag you down to the ground if you don't. Whenever you sit down, you always prop it up against a table simply so you don't roll forward.")
       elif (ptMbmM2 > tempNum * 2 / 3):
-         tempStr += f"\n\nThe weight of your {self.bellyDesc()} belly is becoming irksome. You take a bit more time to come to a halt whenever you move as it retains much of your momentum. And whenever you bend over, it's difficult to rise back up."
+         self.doMainText(f"\n\nThe weight of your {self.bellyDesc()} belly is becoming irksome. You take a bit more time to come to a halt whenever you move as it retains much of your momentum. And whenever you bend over, it's difficult to rise back up.")
       elif (ptMbmM2 > tempNum * 1 / 2):
-         tempStr += f"\n\nYou are rather aware of the weight of your {self.bellyDesc()} belly. You often subconsciously center your weight more by resting your hands on top of it rather than let them hang at your sides."
-      self.doMainText(tempStr.get())
-      tempStr.close()
+         self.doMainText(f"\n\nYou are rather aware of the weight of your {self.bellyDesc()} belly. You often subconsciously center your weight more by resting your hands on top of it rather than let them hang at your sides.")
+      self.displayMainText()
       return tempBool
    def checkItem(self, ID:int):
       """
