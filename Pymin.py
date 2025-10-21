@@ -142,6 +142,7 @@ class NiminFetishFantasyv0975o_fla:
    # sideShow -> showSidePanel
    # viewButtonText -> doButtonChoices
    # viewButtonOutline -> showButtons
+   # showPage -> showPage, hidePage
    def __init__(self):
       self.versionNumber = "0.975o"
       self.dir = as3state.appdatadirectory
@@ -813,7 +814,7 @@ class NiminFetishFantasyv0975o_fla:
          CreateToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
 
          self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")
+         CreateToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")  #! Make a tooltip for this
          
          self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
@@ -1851,7 +1852,7 @@ class NiminFetishFantasyv0975o_fla:
          buttonlist[4] = 1
          buttonlist[8] = 1
          tempDict.update({4:"<<",8:">>"})
-         self.showPage(True,which)
+         self.showPage(which)
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
@@ -1940,21 +1941,22 @@ class NiminFetishFantasyv0975o_fla:
       if (self.buttonChoice != 4 and self.buttonChoice != 8):
          if not (self.inBag or self.inStash):
             if not hideOverride:
-               self.showPage(False)
+               self.hidePage()
             self.tempBagPage = self.choicePage
          self.choicePage = 1
    def choiceListCheck(self, which):
       return (self.choiceListArray.indexOf(which) >= self.choicePage * 9 - 9 and self.choiceListArray.indexOf(which) < self.choicePage * 9)
-   def showPage(self, changes:bool, which:str=''):
-      if (changes):
-         text = f"{which}: {self.choicePage}"
-         if (not self.pageShow):
-            self.mo.addLabel("display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text=text,background="#FFFFFF",foreground="#000000")
-            self.pageShow = True
-         else:
-            self.mo.configureChild("pagelabel",text=text)
+   def showPage(self, which):
+      text = f"{which}: {self.choicePage}"
+      if (self.pageShow):
+         self.mo.configureChild("pagelabel",text=text)
       else:
-         self.PageHide()
+         self.mo.addLabel("display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text=text,background="#FFFFFF",foreground="#000000")
+         self.pageShow = True
+   def hidePage(self):
+      if (self.pageShow):
+         self.mo.destroyChild("pagelabel")
+         self.pageShow = False
    def checkZero(self):
       for i in range(27):
          try:
@@ -2069,7 +2071,7 @@ class NiminFetishFantasyv0975o_fla:
    def doEnd(self, leave:bool=False):
       self.detailedDebug()
       self.choicePage = 1
-      self.showPage(False)
+      self.hidePage()
       self.statDisplay()
       if (self.inBag and self.lust > 99 and self.currentState == 2):
          self.inBag = False
@@ -2145,7 +2147,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.showSide:
          self.updateSide()
       if not (self.inBag or self.inStash):
-         self.showPage(False)
+         self.hidePage()
          self.hideDiscard()
          self.hideAmountAll()
       if (self.inBag):
@@ -5049,7 +5051,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.moveToStash()
                else:
                   self.hideAmountAll()
-                  self.PageHide()
+                  self.hidePage()
                   self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}",True)
                   if (self.moveItemStack > 1):
                      self.doMainText(f" x{self.moveItemStack}")
@@ -5087,7 +5089,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doBag(noclear=True)
       else:
          if self.useItemHidePage(ID):
-            self.showPage(False)
+            self.hidePage()
          self.choicePage = 1
          self.doMainText(self.itemDescription(ID),True)
          if (self.usableItem(ID) or self.conItem(ID)):
@@ -8147,7 +8149,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Discard button action
       """
-      self.PageHide()
+      self.hidePage()
       self.doMainText(f"Are you sure you want to discard {self.itemName(self.moveItemID)}",True)
       if (self.moveItemStack > 1):
          self.doMainText(f" x{self.moveItemStack}")
@@ -8209,7 +8211,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       else:
          self.inStash = False
-         self.showPage(False)
+         self.hidePage()
          self.hideAmountAll()
          self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
          self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.",True)
@@ -8524,7 +8526,7 @@ class NiminFetishFantasyv0975o_fla:
          self.choiceListSelect("Bag",True)
          if (self.buttonChoice == 12):
             self.hideAmountAll()
-            self.PageHide()
+            self.hidePage()
             self.doShop()
          elif (self.buttonChoice in {4,8}):
             self.choiceListButtons("Bag")
@@ -8536,7 +8538,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doSell(False)
                else:
                   self.hideAmountAll()
-                  self.PageHide()
+                  self.hidePage()
                   self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?",True)
                   self.buttonConfirm()
                   def doListen():
@@ -8548,7 +8550,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doListen = doListen
             else:
                self.hideAmountAll()
-               self.PageHide()
+               self.hidePage()
                self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?",True)
                buttonlist = ButtonList(1,0,1,0,0,0,0,0,1,0,1,0)
                tempDict = {1:"1", 3:"2", 9:"All", 11:"None"}
@@ -19471,7 +19473,7 @@ class NiminFetishFantasyv0975o_fla:
    def doSpecialAbility(self, more:int):
       buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
       self.choicePage = more
-      self.showPage(True,"Spc Abilities")
+      self.showPage("Spc Abilities")
       self.fp1 = more
       tempDict = {12:"Return"}
       self.specialAbilityArray.clear()
@@ -19551,7 +19553,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.doSpecialAbility(self.fp1 - 1)
          elif self.buttonChoice == 12:
-            self.showPage(False)
+            self.hidePage()
             self.doReturn()
       self.doListen = doListen
    @staticmethod
@@ -24504,10 +24506,6 @@ class NiminFetishFantasyv0975o_fla:
    def disableSelectedButtons(self, a:list):
       for i in a:
          self.disableOneButton(i)
-   def PageHide(self):
-      if (self.pageShow):
-         self.mo.destroyChild("pagelabel")
-         self.pageShow = False
    def writeAmount(self, number, amount):
       self.mo.configureChild(f"amountlabel{number}",text=amount)
    @staticmethod
