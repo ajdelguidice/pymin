@@ -811,17 +811,9 @@ class NiminFetishFantasyv0975o_fla:
          
          self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("TimesNewRoman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
-         
-         #!These two should be radiobuttons
-         #!Fix the formatting of this one
-         #!Add a way to turn this off
-         #self.optionswindow.addCheckboxWithLabel("gs","femmiemaletofemininemale",10,98,180,20,("TimesNewRoman",11),"nw","femmie male -> feminine male")
-         #self.optionswindow.configureChild("femmiemaletofemininemale",background=self.theme,foreground=self.fontColor)
-         #CreateToolTip(self.optionswindow._children["femmiemaletofemininemale"].frame,text="This should be a radiobutton")
-         
-         #self.optionswindow.addCheckboxWithLabel("gs","femmiemaletofemboy",10,120,164,20,("TimesNewRoman",11),"nw","femmie male -> femboy")
-         #self.optionswindow.configureChild("femmiemaletofemboy",background=self.theme,foreground=self.fontColor)
-         #CreateToolTip(self.optionswindow._children["femmiemaletofemboy"].frame,text="This should be a radiobutton")
+
+         self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
+         CreateToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")
          
          self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
          CreateToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
@@ -945,11 +937,9 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow._children["shemaletofuta"].select()
       if self.ngrammar:
          self.optionswindow._children["ngrammar"].select()
-      #!
-      #if self.femmieMaleReplacement:
-      #femmiemaletofemininemale
-      #femmiemaletofemboy
-      #   self.optionswindow._children[""].select()
+      if self.femmieMaleReplacement:
+         self.optionswindow._children["replacefemmiemale"].select()
+         self.optionswindow._children["replacefemmiemale"].current(self.femmieMaleReplacement - 1)
       if self.femboyishToGirly:
          self.optionswindow._children["femboyishtogirly"].select()
       if self.snuggleBallTweak:
@@ -1050,11 +1040,9 @@ class NiminFetishFantasyv0975o_fla:
          self.femmeboyToFemboy = self.optionswindow._children["femmeboytofemboy"].getcb()
          self.shemaleToFuta = self.optionswindow._children["shemaletofuta"].getcb()
          self.ngrammar = self.optionswindow._children["ngrammar"].getcb()
-         #!
-         #if self.femmieMaleReplacement:
-         #femmiemaletofemininemale
-         #femmiemaletofemboy
-         #   self.optionswindow._children[""].select()
+         if self.optionswindow._children["replacefemmiemale"].getcb():
+            self.femmieMaleReplacement = self.optionswindow._children["replacefemmiemale"].current() + 1
+            #! Update the text based on the value of self.femmeboyToFemboy
          self.femboyishToGirly = self.optionswindow._children["femboyishtogirly"].getcb()
          self.snuggleBallTweak = self.optionswindow._children["snuggleball"].getcb()
          self.grammarFixes = self.optionswindow._children["grammarMisc"].getcb()
@@ -1541,7 +1529,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(background=color)
       if self.optionsWinOpen:
-         self.optionswindow.configureChildren(("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","if","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","gs","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","femboyishtogirly","snuggleball","grammarMisc","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),background=color)
+         self.optionswindow.configureChildren(("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","if","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","gs","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","replacefemmiemale","femboyishtogirly","snuggleball","grammarMisc","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),background=color)
          if as3state.as3DebugEnable:
             self.optionswindow.configureChildren(("dt","ChooseSenario","NoDamage"),background=color)
       self.style.configure("TFrame",background=color)
@@ -1571,7 +1559,7 @@ class NiminFetishFantasyv0975o_fla:
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
             i.configure(foreground=color)
       if self.optionsWinOpen:
-         self.optionswindow.configureChildren(("SOLMode","FixedRes","Theme","FontColor","SaveLocation","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","femboyishtogirly","snuggleball","grammarMisc","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),foreground=color)
+         self.optionswindow.configureChildren(("SOLMode","FixedRes","Theme","FontColor","SaveLocation","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","replacefemmiemale","femboyishtogirly","snuggleball","grammarMisc","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),foreground=color)
          if as3state.as3DebugEnable:
             self.optionswindow.configureChildren(("ChooseSenario","NoDamage"),foreground=color)
    def updateTheme(self):
