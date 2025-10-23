@@ -94,6 +94,28 @@ class PyminButton(itk.itkButton):
       super().destroy()
       self.frame.destroy()
 
+class AboutWindow(itk.itkAboutWindow):
+   def __init__(self, itkWindow):
+      super().__init__(itkWindow)
+      self._text = f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}"
+   def open(self, *e):
+      if self._open:
+         self.toplevel.lift()
+      else:
+         self.toplevel = tkinter.Toplevel()
+         self.toplevel.geometry('350x155')
+         self.toplevel.resizable(False, False)
+         self.toplevel.transient(self._window)
+         self.toplevel.title("About Pymin")
+         self.toplevel.bind('<Destroy>', self.close)
+         self.label = tkinter.Label(self.toplevel, font=('TkTextFont', 9), anchor='w', justify='left', text=self._text)
+         self.label.place(x=7, y=9, anchor='nw')
+         self.buttonFrame = tkinter.Frame(self.toplevel, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000')
+         self.buttonFrame.place(x=299, y=115, width=29, height=29, anchor='nw')
+         self.okButton = tkinter.Button(self.buttonFrame, text='OK', command=self.close, background="#FFFFFF", foreground="#000000", borderwidth=0)
+         self.okButton.pack(fill='both', expand=True)
+         self._open = True
+
 #====================================================================================
 #Create tooltip. Example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
 class ToolTip(object):
@@ -638,7 +660,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       #window
       self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultMenu=False)
-      self.mo.aboutwindow.text = f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}"
+      self.mo.aboutwindow = AboutWindow(self.mo)
       
       self.style = ttk.Style(self.mo)
       if (self.dir / "nimintheme").is_dir():
@@ -715,10 +737,8 @@ class NiminFetishFantasyv0975o_fla:
       Opens the about window
       """
       self.mo.aboutwindow.open()
-      self.mo.aboutwindow.toplevel.configure(background=self.theme,highlightthickness=1,highlightbackground=self.fontColor)
+      self.mo.aboutwindow.toplevel.configure(background=self.theme)
       self.mo.aboutwindow.label.configure(background=self.theme,foreground=self.fontColor)
-      self.mo.aboutwindow.okButton.configure(background=self.theme,foreground=self.fontColor)
-      self.mo.aboutwindow.toplevel.title("About Pymin")
    def optionsWindow(self, *args):
       """
       Opens the options window
@@ -1521,7 +1541,7 @@ class NiminFetishFantasyv0975o_fla:
          items.append("savefilelabel")
       self.mo.configureChildren(items, background=color)
       if self.mo.aboutwindow.isOpen:
-         for i in (self.mo.aboutwindow.toplevel,self.mo.aboutwindow.label,self.mo.aboutwindow.okButton):
+         for i in (self.mo.aboutwindow.toplevel,self.mo.aboutwindow.label):
             i.configure(background=color)
       if self.wikiOpen:
          self.wikiwindow.configureChildren(("text","menu"),background=color)
@@ -1551,8 +1571,7 @@ class NiminFetishFantasyv0975o_fla:
          items.append("savefilelabel")
       self.mo.configureChildren(items, foreground=color)
       if self.mo.aboutwindow.isOpen:
-         for i in (self.mo.aboutwindow.label,self.mo.aboutwindow.okButton):
-            i.configure(foreground=color)
+         self.mo.aboutwindow.label["foreground"] = color
       if self.wikiOpen:
          self.wikiwindow.configureChildren(("text","menu"),foreground=color)
       if self.sfcOpen:
