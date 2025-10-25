@@ -77,6 +77,12 @@ def applyBackspace(string):
       string = sub('[^\x08]\x08', '', string)
    return string
 
+class PyminLabel(itk.itkLabel):
+   _intName = "PyminLabel"
+   def __init__(self, master, **kwargs):
+      kwargs.update({'background':"#FFFFFF","foreground":"#000000","highlightbackground":"#000000","highlightthickness":1})
+      super().__init__(master, **kwargs)
+
 class PyminButton(itk.itkFrame):
    _intName = "PyminButton"
    def _noop(self, *e):...
@@ -1987,7 +1993,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.pageShow):
          self.mo._children["pagelabel"].text = text
       else:
-         self.mo.addLabel("display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text=text,background="#FFFFFF",foreground="#000000")
+         self.mo.addWidget(PyminLabel,"display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text=text)
          self.pageShow = True
    def hidePage(self):
       if (self.pageShow):
@@ -24551,7 +24557,7 @@ class NiminFetishFantasyv0975o_fla:
    def showAmount(self, buttonNum:int):
       if not self.amountLabelsVisible[buttonNum]:
          tempcalc = self._showAmountCalc(buttonNum)
-         self.mo.addLabel("display",f"amountlabel{buttonNum}",x=tempcalc[0],y=tempcalc[1],width=30,height=15,font=self.font,text="000",background="#FFFFFF",foreground="#000000",highlightbackground="#000000",highlightthickness=1)
+         self.mo.addWidget(PyminLabel,"display",f"amountlabel{buttonNum}",x=tempcalc[0],y=tempcalc[1],width=30,height=15,font=self.font,text="000")
          self.amountLabelsVisible[buttonNum] = True
    def hideAmount(self, buttonNum:int):
       if self.amountLabelsVisible[buttonNum]:
@@ -24631,7 +24637,7 @@ class NiminFetishFantasyv0975o_fla:
          self.moveitembuttonvisible = False
    def moveItemAmountShow(self):
       if (not self.moveitemamountvisible):
-         self.mo.addLabel("display","moveitemamount",x=1030,y=129,width=30,height=15,font=self.font,background="#FFFFFF",foreground="#000000",highlightbackground="#000000",highlightthickness=1,text=self.moveItemStack)
+         self.mo.addWidget(PyminLabel,"display","moveitemamount",x=1030,y=129,width=30,height=15,font=self.font,text=self.moveItemStack)
          self.moveitemamountvisible = True
       else:
          self.mo._children["moveitemamount"].text = self.moveItemStack
