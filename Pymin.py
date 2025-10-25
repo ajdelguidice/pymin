@@ -659,8 +659,7 @@ class NiminFetishFantasyv0975o_fla:
       Sets up the interface, then runs the "frame1" function
       """
       #window
-      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", defaultMenu=False)
-      self.mo.aboutwindow = AboutWindow(self.mo)
+      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", main=True, defaultMenu=False, aboutWindow=AboutWindow)
       
       self.style = ttk.Style(self.mo)
       if (self.dir / "nimintheme").is_dir():
@@ -674,7 +673,7 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.menubar["filemenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
       self.mo.menubar["filemenu"].add_command(label="Options", font=("Terminal",8), command=self.optionsWindow)
       self.mo.menubar["filemenu"].add_separator()
-      self.mo.menubar["filemenu"].add_command(label="Quit", font=("Terminal",8), command=self.mo.endProcess)
+      self.mo.menubar["filemenu"].add_command(label="Quit", font=("Terminal",8), command=self.mo.close)
       self.mo.menubar["root"].add_cascade(label="File", font=("Terminal",8), menu=self.mo.menubar["filemenu"])
       self.mo.menubar["viewmenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
       self.mo.menubar["viewmenu"].add_command(label="Full Screen", font=("Terminal",8), command=self.mo.togglefullscreen)
@@ -747,7 +746,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.lift()
       else:
          #Window
-         self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme, main=False, menu=False)
+         self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme, menu=False)
          #self.mo.group(self.optionswindow)
          if self.fixedresolutionmode:
             self.optionswindow.resizable = False
@@ -1359,9 +1358,9 @@ class NiminFetishFantasyv0975o_fla:
          self.altHeld = True
       elif keyCode == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
          if self.cmdOpenConverter:
-            self.sfcwindow.endProcess()
+            self.sfcwindow.close()
          else:
-            self.mo.endProcess()
+            self.mo.close()
    def hotKeys(self, keyCode):
       """
       Executes hotkey behaviour from its actionscript keycode
@@ -25082,7 +25081,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.debugVarOpen):
          self.dvw.lift()
       else:
-         self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme, main=False, menu=False)
+         self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme, menu=False)
          if self.fixedresolutionmode:
             self.dvw.resizable = False
          self.dvw.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10)
@@ -25115,7 +25114,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.debugGIWinOpen:
          self.dgiw.lift()
       else:
-         self.dgiw = itk.window(width=150, height=100, title="Give Item", main=False, menu=False)
+         self.dgiw = itk.window(width=150, height=100, title="Give Item", menu=False)
          if self.fixedresolutionmode:
             self.dgiw.resizable(False,False)
          self.dgiw.addnwhLabel("display","label",x=75,y=7,anchor="n",font=("TkTextFont",9),text="Give Item")
@@ -25173,7 +25172,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.debugAWinOpen:
          self.daw.lift()
       else:
-         self.daw = itk.window(width=170, height=100, title="Affinity", main=False, menu=False)
+         self.daw = itk.window(width=170, height=100, title="Affinity", menu=False)
          if self.fixedresolutionmode:
             self.daw.resizable(False,False)
          self.daw.addnwhLabel("display","label",x=85,y=7,anchor="n",font=("TkTextFont",9),text="Affinity Change")
@@ -25268,10 +25267,10 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.lift()
       else:
          self.wikiOpen = True
-         self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0", main=False, menu=False)
+         self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0", menu=False)
          if self.fixedresolutionmode:
             self.wikiwindow.resizable = False
-         self.wikiwindow.group(self.mo)
+         self.wikiwindow.transient(self.mo)
          self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
          self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
          try:
