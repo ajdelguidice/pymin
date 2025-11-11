@@ -25308,7 +25308,7 @@ class NiminFetishFantasyv0975o_fla:
             "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
             "Basics.MenuBar":("File","View","Save Utils","Debug Utils","Help","Back"),
             "Basics.MenuBar.File":("Options","Quit","Back"),
-            "Items":["All Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"],
+            "Items":("All Items","Debug Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"),
             "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
             "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
             "Items.Equipable":("Weapons","Other Equipables","Back"),
@@ -25334,8 +25334,6 @@ class NiminFetishFantasyv0975o_fla:
             "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
             "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
          }
-         if as3state.as3DebugEnable:
-            self.wikimenus["Items"].insert(1,"Debug Items")
          
          self.doWikiMenu("")
          self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
