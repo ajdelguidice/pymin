@@ -5,7 +5,7 @@
 
 <b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about. I do not claim any part of the original game as my own, however anything I added to the game is mine.
 
-Please read the notes section of the <a href="https://github.com/ajdelguidice/python-as3lib/blob/main/README.md">readme for as3lib</a> as well before using.
+Please read the notes section of the <a href="https://github.com/ajdelguidice/python-as3lib/blob/Development/README.md">readme for as3lib</a> as well before using.
 
 This port was made mostly for personal use. This is mostly a bug fix and quality of life port (I have added some small content but I will not be doing anythin big). I plan on making the interface look more like the original but more on that later.
 
