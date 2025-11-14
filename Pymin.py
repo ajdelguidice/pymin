@@ -16,7 +16,7 @@ from as3lib import cmath, as3state, Math
 from as3lib.config import TOML
 from as3lib.helpers import textObject
 
-__version__ = "11"
+__version__ = "12"
 
 class NullData(as3.Error):
    name = 'NullDataError'

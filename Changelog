@@ -1,4 +1,494 @@
+v12
+Requires as3lib version 12
+
+This release focuses quite a bit on clean up and optimisations but still adds a lot of features. I have gotten rid of parts of the version number because I never plan to change them.
+
+Remove unused checkExtension function
+Remove the unnecessary checks in change(Background/Text)Color that checked whether each item was already that color
+Use about window open variable instead of try/except in change(Background/Text)Color
+Remove the updateText call in updateTheme because it isn't needed
+Remove the unnecessary addition in openSFC
+Fix the first check in convertSave
+Remove a lot of unnecessary stuff from listFilesInDir which made it a bit faster. (most noticable with a large amount of files)
+Remove the str() around the file in getdhNIM and remove the type annotation from all of the getdh functions
+Use str.endswith instead of checking the last 4 characters in filenames or spiting the filename over periods and checking the last section (saveGo, nsldDisplay,doSave,doLoad)
+Use isinstance instead of checking type in doSave and doLoad
+Move the .resolve() call into doSave and make doLoad use .resolve() instead of self.resolveDir
+Get rid of the gaurds for the shapeshifty variables since they shouldn't be loaded wrong anymore
+Make exts in all calls to listFilesInDir have periods before
+Combine isinstance checks in functions and make lists that aren't modified in doGeneral into tuples
+Optimize isValidDirectory with str.endswith and str.startswith
+Slight optimization for (save/load)Preferences and get rid of resolveDir function
+Optimize choiceListBlank, change some checks in shops to sets, change a message for the wiki
+Use isinstance in repintorfloat and get rid of explicit else case (returning does not need that)
+Remove "path = Path(dir_)" in checkExistsMakeDir since it will always be a path object
+Use "'.' not in i" instead of "i.find('.') == -1" in listFilesInDir
+Add ability to load save file converter instead of launching the game
+[venvscript] Make --help not get eaten when run command is used
+[venvscript] Skip updatePythonVersion if on windows
+Separate grammar tweaks toggle and create a new tab for them. Most changes now have their own toggle.
+Switch to TOML for preference file
+[venvscript] Fix checkExistsMakeDir and checks to make sure paths are valid
+[venvscript] Remove the need for the global keyword when using the runlist
+[venvscript] Remove duplicate code in replaceTkhtmlviewParserWithUnsafeOne
+[venvscript] Use c2 everywhere instead of c1 because c1 is used to check if something was modified
+[venvscript] Add support for directly opening save file converter
+Move toggles for new save/load dialog and new stash to the interface page
+Move options window toggles to their own variables instead of indexing a list
+Refactor old preference file loading
+Rewrite the save/load system. Saving and loading is now way faster.
+- Remove functions toNimReturn, toNim, toSOLReturn, toSOL, toXMLReturn, toXMLReturnNIM, and toXML
+- Add functions returnSOL, saveNIM, saveSOL, saveXML, loadSOL, and loadXML
+Use startswith in isValidHex
+Remove unused functions gametweaksToggleAll and gametweaksCheckIfAllIsValue
+Fix a bug saveGo that made sol file text not display correctly.
+Add the original game's load fallbacks in sol/nim files. These look like they were for loading older save files but I do not have any of those so I can not test this.
+Get rid of a couple of unnecessary functions
+Fix about window text colour
+When "Grammar Fixes" is active, make sheath size never display as zero
+When "Grammar Fixes" is active, fix cock pluralisation in appearanceGo
+[venvscript] Add shebang line
+Make moveTo{Bag/Stash} not require you to hold shift
+Remove bagDiscard variables
+Fix item swapping in moveTo{Bag/Stash}
+Rewrite most of the tooltips in options window
+Mark settings that make save files incompatible with the original game in their tooltips
+Don't use str() in listFilesInDir because pathlib.Path.name already returns one
+Remove the dir combination thing in listFilesInDir because iterdir returns a pathlib.Path object
+Only disable hotkeys in nsld when in entry or listbox
+Rework hotKeys function
+Add helpToWiki interface toggle
+Add type gaurds to loading functions
+[original game] Make hotkeys work when shift is held and not in bag
+Remove the "while True" loops
+Remove the unused lustArray variable
+Make bag able to swap items when you aren't holding shift
+Use set instead of lists/tuples in more places because they are faster
+Modify item 529 (toggled with miscGameTweaks) to make some options mutually exclusive because they don't make sense together
+Remove most match/case statements
+Re-raise errors in save/load file functions instead of eating them
+When respectShowBalls is active, add a case for showballs == False in doForest senario 4
+[original game] Use "if ID == self.weapon" instead of check for each one in passiveItemRemove
+Remove the extra hideDiscard call in doReturn
+Reimplement buttonShiftOverride
+Remove most "==" checks for booleans
+Remove unused pregTempBool variable
+Use "walrus" operator in key_press
+Set fontBold to its inverse instead of using an if statement in toggleBold
+Add saveTOML and loadTOML functions to support TOML save files
+Fix broken version loading in loadXML
+Rename "SOLMode" to "Strict Save Compat" in the interface and update its tooltip
+Remove a lot of "not" keyword usage where it isn't needed
+Make converter comboboxes start on "detect"
+[venvscript] Migrate to TOML for the config file
+[venvscript] Overhaul the arguement system
+- Allow passing arguements to the game while defaultToRun is active
+- Add a new cfg command to configure the config and remove the old configuration arguements
+- Add arguements --with-saves, --with-config, and --with-game-config to recreate
+- Make migrate-config a command instead of an arguement
+- Major cleanup
+- Make help arguement detection better
+[venvscript] Move config writing to its own function
+Remove explicit conversion from as3lib Arrays to lists when using with Mini-AMF because as3lib now registers Mini-AMF adapters
+Fix float saving in save files
+Fix nsld keyboard navigation
+Use for loops instead of while loops in loadSOL save fallback
+Clean up comments
+Optimise some of the functions that check IDs
+Use if instead of elif in most cases where the value is returned in each one
+Fix page label flickering in doSell
+Improve the look of the wiki hotkeys page and use isinstance instead of type in doWikiPage
+Make the toggleside hotkey only work when the button does.
+Get rid of an extra frame in the side panel
+Change errors for save loader and make doLoad errors more specific
+Replace the double calls to toggleSide to reduce calls to savePreferences
+Try to correct the interface if doLoad fails after file loading is done
+[venvscript] Use StringIO as context manager instead of doing things manually
+[venvscript] Create config in current directory if venv does not exist
+[venvscript] Ask user if they want to move their config into the venv folder on install
+[venvscript] Remove the "--with-uv" arguement because config can now be created before venv creation
+[venvscript] Use "path == path.parent" to determine root directory instead
+[venvscript] Fix cfgloc not being set when making a new venv without an existing config
+[venvscript] Fix quotation problems on older python versions
+Fix a couple of issues on older python versions
+Minor optimisation for cumAmount
+[venvscript] Add the ability to use pip
+[venvscript] Rename --supersecretdevmode to --activateDevMode and add --deactivateDevMode
+[venvscript] Add a warning when enabling dev mode to tell the user that they probably don't want to enable it
+[venvscript] Fix the --overwrite arguement
+[venvscript] Add support for reading and writing the game's config with "cfg-game" command
+[venvscript] Remove strbool and custom list class
+[venvscript] Use the loaded config directly instead of having extra variables
+[venvscript] Make sure the game's config exists before trying to use it
+[venvscript] Use generic config modification for cfg command
+[venvscript] Remove function createConfigInVenv becuase it is only used once
+[venvscript] Make path loading from file consistent between file locations
+[venvscript] Add a custom TOML writer because the formatting of tomli-w sucks
+[venvscript] Don't delete old config until the end in case of errors
+Add a close hotkey (ctrl+alt+shift+q)
+Add variable ctrlHeld
+Create hotKeysGeneric function and move the shift, alt, and ctrl stuff to it.
+Remove _wikiclose because _wikidestroy does the same thing
+Remove debugNoStart because it no longer functions properly.
+Remove global temp variables i and pregTempInt
+Mostly implement digifeet game tweak
+When correctBeastRaceFeet is active, remove horseAffinity and cowAffinity from bipedal array in affinityChange
+Move the array stuff inside of the lock checks in affinityChange
+Rewrite debugAffinityWindow logic to be able to write to other affinities
+Fix typo in saveXML that broke saving
+Make a custom TOML writer because tomli-w sucks at formatting
+[venvscript] Add support for parsing arrays from command line arguements
+[venvscript] Don't use "shell=True" for check_output
+[venvscript] Remove unimplemented automatic repair stuff because recreate can be used without loosing any game data
+Add in quite a few comments. These are from an older(?) version of the game (https://github.com/XaderaDiddle/Nimin). Some of this is cut content, some of it is just general commenting.
+In eventSelect, use 1 instead of "x" for the values in the tempArray and remove the == part because those are no longer needed
+Refactor the wiki menu logic
+Update the "File->Options" page in the wiki
+Switch to a text display system similar to the original game
+- Switch back to using outputMainText
+- Use as3lib.helpers.textObject for the storage of main and side text (this is a wrapper around io.StringIO)
+- Split outputMainText into two doMainText and displayMainText.
+  - doMainText adds text to stored text
+  - displayMainText displays text to the screen
+  - outputMainText now calls those two functions
+- Remove all of the jank and extra function arguements that I had to add because of what I did before
+Removed a lot of unnecessary variable declarations
+Use dictionaries instead of lists for doButtonChoices
+Combine hidePageOverride and hideAmountOverride arguements in choiceListSelect
+Remove the noClear arguement from stats and statsMod
+Change the nolsc argeuement of statDisplay to lsc. This flips the value
+Rename getdh to getdhXML
+Reorder the arguements of doBag
+Remove the noclear arguement of doStash
+Change the cantsell argeuement of dosell to cansell. This flips the value
+Remove the bc arguement of showButtons
+Remove bagSlotAdd, bahSlotRemove, stashSlotAdd, stashSlotRemove, clearTextOneButton, clearTextSelectedButtons, enableOneButton, enableSelectedButtons, disableAllButtons, PageShow, pageTextChange, pageTextClear, initSidePanel, moveItemChangeItem, moveItemClear, moveItemAmountChange, and moveItemAmountClear
+Rename option7Text to swapOption7
+[venvscript] Order values properly in writeTOML
+[venvscript] Add the ability to parse tables from arguements
+[venvscript] Validate parsed table key
+[venvscript] Slightly improve the TOML.Table function
+[venvscript] Remove venvfolder variable and add another check to set hasVenv
+[venvscript] Use hasVenv instead of venvpath.exists() in more cases
+[venvscript] Add support for as3lib-miniAMF
+[venvscript] Automatically switch to as3lib-miniAMF if Mini-AMF is installed
+[venvscript] Make the check for Mini-AMF faster
+[venvscript] Add EOF condition to Args.Parse{Table,Array}
+[venvscript] Code consistency and better errors
+[venvscript] Remove silent arguement from checkExistsMakeDir
+[venvscript] Use "" instead of" ./" for config path variable when it is inside of the venv
+[venvscript] Remove unused urllib.parse import
+[venvscript] Optimise getSSLContext
+[venvscript] Remove the "cmd" arguement
+Move toml writer to as3lib
+[venvscript] Remove tomli-w from the package list
+Use the as3lib version of isValidDirectory instead of implementing a copy
+Removed the miniamf.AMF3 import
+Changed self.tempInterfaceToggles to a tuple since it is never modified
+Remove inv function
+Remove buttonlist from showButtonsBag since all buttons should always be visible. This speeds it up considerably
+Change buttonConfirm to use booleans instead of ints for its arguements
+Use pathlib.Path.suffix for doSave and doLoad
+Remove the .get calls from doLoad because the file load functions alread do that
+Rename hideAmount to hideAmountAll and split viewAmount into showAmount and hideAmount
+Use Array.clear() instead of defining a new on where it is easy to do so
+Use the as3lib.Math class instead of import math and random
+Unify error formatting and use as3lib.Error
+Set the default value of originalButtonColors to True
+Split themeTypeSelect into two functions
+Remove the extra 'sp = True' when loading old preferences file in loadPreferences
+Remove discard button stuff from regular showButtons
+Remove an extra 'self.doListen = doListen' in doEnd
+Remove an unnecessary dict.update in bsRefresh
+Comment out doBothMasturbate because it isn't used anyways
+Move the savefile convert to the menu bar
+Begin working on a graphical save file editor
+Remove the remains of the savefilesort button
+Move all of the debug menu items to the main window
+Centre the debug affinity window's title text
+Use as3lib.config.TOML for TOML reading as well
+Remove randChooseFromArray and use the rndArray for the stuff that used it
+Split showNSLDBlinder
+Fix nsld sort button flicker
+Use variable bMap instead of doing 'i+1+i//3'
+Don't use as3.setDataDirectory because it is now automatically set
+Fix an issue where loading saves from before I switched single number version could change the version number
+Optimise a thing to do with the preg array
+Remove the right click menu because it wasn't really used for anything
+Remove initinterface variable because currentState can be used instead
+Remove all of the saveInvalid stuff because loadPreferences already does that
+[original game] Fix firstExplore being reset every time you reload the game
+Remove crfont variable
+Exclude new stash stuff from masturbate and battle
+Only check if key can be pressed once for sideEvents
+Change some names and add new menu bar stuff to the wiki
+Move help menu to the end of the menu bar
+Add some item information to the wiki
+Remove canLoseMoveLocation
+Remove unecessary uses of doEnd
+Rename self.str_ back to self.str
+Clean up the stuff in __init__
+Make all variables that are supposed to be floats start out that way
+Remove all calls to repintorfloat in doSave because dictSave already does that
+Make udderPlay and nipplePlay ints instead of floats
+Remove solString
+[venvscript] Remove the python version check for as3lib-miniAMF and start fallback c1 as None
+Add the ability to load the original game's preference file
+Remove the stuff to update the side panel in loadPreferences because it is never called when self.currentState != 0
+Remove all of the stuff that isn't needed in frame1
+Combine all visible variable per pane
+Rename day pane to time pane
+Only use one function for up/down image display and rename images to "up" and "down"
+Use the visible variables instead of try/except for non-buttons in change{Back/Fore}groundColor
+Use interface_tk.window.configureChildren for change{Back/Fore}groundColor
+Fix the options window apply button colours
+[venvscript] Comment formatting
+[venvscript] Clean up functionality related to recreate
+[venvscript] Add a helper to temperarily override devEnv
+[venvscript] Add message on fail in recreate
+[venvscript] Remove the word 'likely' from the error message in recreate
+[venvscript] Add a "docs" command
+[venvscript] Get rid of the indexOf function
+[venvscript] Make a variable to store where the pip command is
+[venvscript] Remove an unnecessary else statement and try to fix updatePythonVersion
+Make a custom widget for buttons that looks more like the original game
+Remove originalButtonColors because it would be to hard to implement with the new widget
+Add a variable to disable specific hotkeys
+Make nsld file list and entry box easier to read by not changing their colour
+Fix error condition when using file picker in doLoad/doSave
+Change themeType to a checkbox, rename it to useNiminTheme and redo its functionality
+- Remove tempInterfaceToggles and themeType variables
+- Only give the user the option to use this when the nimintheme is installed
+- Remove OWThemeType0 and OWThemeType1
+- Add variable useNiminTheme
+- Don't change other variables when this is active
+Add doShopsReturn interface toggle
+Move addManyItem and LoseManyItem next to itemAdd
+Move font declaration to __init__
+[venvscript] Use the environment variable UV_PYTHON instead of the arguement --python
+[venvscript] Use a copy of the environment instead of modifying it directly
+[venvscript] Fix fallback config location
+Add a default value to the which arguement in showPage so it doesn't have to be specified when not needed.
+Specify text when showing buttons/amounts instead of after.
+Don't check if the buttons exist in bsRefresh because they always will.
+Pass the buttonDict to showButtonsBag instead of the name array in choiceListButtons to remove a couple of extra steps. doButtonChoices no longer needs to be called after this which also allows removing choiceListBlanks from most places because it isn't needed.
+Add bagDisableEmpty for where the previous change does not work.
+Use bMap for bagDisableEmpty and choiceListBlanks
+Clean up the interface code
+Use the resizeable property of as3lib.interface_tk.window instead of {enable/disable}Resizing
+Development
+Properly raise errors when using as3lib errors
+Add a toggle for femmieMaleReplacement to options window
+Split showPage into two functions
+Avoid using as3lib.interface_tk.window.configureChild where possible
+Fix about window styling and make a separate class to manage it
+Make PyminButton look more like the original game
+Stop using getChildAttributes
+Make a PyminLabel widget for item amount labels
+[venvscript] Make some command not run if no venv if present
+Make "Debug Items" entry in the wiki always appear
+
+v1.0.11
+Requires as3lib version 0.0.11
+
+All changes made to the game will now be done the right way using git.
+Made entire game use pathlib instead of the assorted jank I was using
+Fixed button text when showing/hiding the new save/load dialog
+Fixed movetobag button being stuck on in stash
+General repositor cleanup
+Moved "Menu Bar" item in wiki to the "Basics" menu and made it a menu
+Updated the "Menu Bar" item descriptions in the wiki
+Minotaur is now fightable again after the first defeat
+Changed pop to get by list index in affinityChange because it does the same thing but doesn't modify the arrays
+Made the save file system more robust. It should now be impossible for the game to save "None" to a file and still say it succeeded.
+Fixed bag page flickering on items that can't be used and don't have a confirmation message
+Added the old stash back as a gametweak
+Fixed page flickering in oldStash
+Removed redundant self.cockTotal < 1 check in doItemUse item 202
+Made solGetFileName able to use pathlib.Path objects
+Fixed sol saving function (Broke because of the switch to pathlib.Path)
+Combined redundant checks for self.knowMaleEnhance in doSoftlik senario 2
+Created function randChooseFromArray to replace some of the game's while loop bs
+Made doForest senario 4 use randChooseFromArray
+Switched to secrets.choice for implementation of randChooseFromArray
+Added more to the wiki
+Replaced group with transient in most of the popup windows since it does a better job. Not sure if I will do the wiki since transient makes the window always on top.
+Made nsld not disable return button when comming from the title screen.
+Fixed a mistake that I made in doGetRaped enemy 202
+Fixed posix version of the is root check in the venvscript
+Removed unnecessary imports in the venvscript
+Made statustweaks (gametweak) work with super perk "Balance"
+Renamed the variables in the nim file functions to be what they were in the original game since they make more sense
+Removed the extra sol object creation in the nim file functionss
+[original game] Fixed tail grammar in appearanceGo
+Fixed negative index for ButtonList.__setitem__
+Fixed most cases where region does not change back when exiting battle from dungeon
+Fixed doSpecialAbility and made it use as3lib.toplevel.Array instead of lists
+Made bagPage label bigger because special ability text didn't fit.
+Fixed digipaw grammar in legChange
+Added gametweak "Misc Changes" to toggle changes that don't fit elsewhere
+Added newer gametweaks to changeBackgroundColor and changeTextColor
+Fixed loading of older save files that didn't have a version number
+Updated the standalone savefile converter to look like the one currently in the game and to support all currently supported file types
+Added a cli to the standalone savefile converter
+Removed the else case where it wasn't needed
+Cleaned up some of the smaller functions
+Made theme type selector in the options window grayed out and set default selection to the current one
+Changed some while loops to for loops in cases where they made more sense because python's for loops are fast than while loops for basic use cases
+Removed the zeros in the first arguement of some of range() calls because they aren't needed
+Directly made use of lists in a couple of functions instead of assigning them to variables first because they were only used once
+Made hairstyleID, clothesID use lists instead of large if/else blocks
+Changed some match case statements back to if/else statements. There where some cases where I thought match/case would be better but after testing, they weren't.
+Removed the rest of the unnecessary match/case statements
+[original game] Fixed a mistake in apothID zone 3; there were two item number 3s
+Fixed an issue in apothName introduced while I was cleaning up that caused there to be no "blank" item.
+Also cleaned up stashSlotRemove slightly
+Changed "for i in range(1,tempInt+1)" to "for i in range(tempInt)" where the value of i does not matter
+Reverted some of the optimizations that use lists instead of a long block of if/else because the minor performance improvements isn't worth the hit to readability (goodsID,apothValue,hairstyleName,hairC,hairStyleID,hairstyleValue,clothesID,clothesValue). The places where it didn't impact readability, like hairstyleLength, were not changed.
+[original game] Add the "zone error" error to other functions that check for it. It was only in goodsID before. (apothID,hairstyleID,clothesID)
+Changed "if array.indexOf(item) != -1" to "if item in array" because it is quite a bit faster.
+Changed the long line of "if value == None" checks in loadPreferences to "if None in (...values)" because it is almost twice as fast
+Added the ability for isValidDirectory to use pathlib.Path objects. It is 10 times slower than using strings however it should be way more accurate and yeild less incorrect results because pathlib does most of the magic.
+Added a check to loadPreferences to prevent loading invalid values for the theme
+Changed a check in loadPreferences to be a lot faster
+Changed fixed resolution toggle to be check box only because I decided to lock the windows to their default resolution instead of letting the user choose
+Removed function "populateOWCombo"
+Removed variable "fixedresolution" and associated preferences entry
+Added check for fixedresolutionmode to every "window open" event
+Added all windows to function "applyFixedResolution"
+Made loadPreferences call "applyFixedResolution"
+Grouped the code for widgets on each page of the notebook widget in the options window together and in order
+Rearranged OWSaveOptions to be in the correct order
+Combined the checks for valid input with the setting of the variables in OWSaveOptions
+OWSaveOptions now no longers passes when there is an invalid value
+Entry boxes in options window now turn red when their contents are invalid
+Maked succubus leave two if succubusLeavesOne game tweak is active, race is lizan and you have more than one lizardcock (cockLoss gets rid of the cock for the race that you have the least affinity for first so this should work)
+Fixed choice 11 in zone 12 (broken due to recent changes)
+[original game] Fixed the game sometimes describing your womb when you don't have one. (added to grammar game tweak)
+[original game] Removed some unnecessary \t's in the affinityChange boob section
+Fixed isValidDirectory when using pathlib.Path objects (one of the conditions didn't use the right variable)
+Fully reimplement textcheck in outputMainText
+Remove the rest of the unnecessary arguements from the range() calls I missed
+Removed an unnecessary if statement in choiceListBlanks
+Changed the if statement formatting in canLoose and canLooseMoveItem
+Made choiceListSelect and bsRefresh use one line for creating tempArray because it is 6 times faster
+Added more to lizanDontShowBalls
+Removed bagSlotAdd and stashSlotAdd calls in newGameGo because they aren't needed
+Added trace messages to chooseFrom and randChooseFromArray
+[original game] Fixed textoutput message in chooseFrom and randChooseFromArray, it asked for a value that wasn't possible to get.
+Changed the long chains of if statements in changeTop and changeBottom to use if/elif instead
+[venv script] Switch from dot files to a single .cfg file for configuration.
+[venv script] Add arguement "--migrate-config" to migrate config between different versions. This should activate automatically if an old version is detected.
+[venv script] Made persistent versions of nohtmlparser and nosslverification
+[venv script] Fixed the option for no ssl verification. Part of this was using urllib.request.urlopen instead of urllib.request.urlretrieve.
+[venv script] Rename some commandline arguements to be more reasonable
+[venv script] Use new config file for version check and fix positioning of check
+[venv script] Moved the creating of the python location variable and the pythonm variable to below the config loading stuff to allow for custom venv paths
+Changed eventSelect tempArrays to tuples because they don't need to be modified
+[original game] Added missing values in tempArrays in eventSelect. This wasn't a problem in actionscript because it is based on javascript and doesn't halt on error unless fatal. Python gives an error and halts so this must be fixed.
+Made doSave, toXmlReturn, toXmlReturnNIM, toXml only use one for loop for bag and stash
+Made toSolReturn, toSol use single line syntax instead of append for bag and stash
+Removed an extra if statement in doLoad
+Removed conversion to as3lib.toplevel.Array in doLust because it is unnecessary
+Fixed lila's first encounter. Broke after removing unnecessary outputMainText calls.
+[venv script] Rewrite arguement checking logic. It now mostly works when it should and doesn't when it's not.
+Directly use list for doButtonChoices where possible
+Use tuples instead of as3lib.toplevel.Array for doButtonChoices where possible
+Fixed gametweak 4 application in cockChange
+[original game] Removed random tabs in the middle of sentences
+Went though the entire game and got rid of extra parenthesis in if statements, checked all if statements against the original game, made all instances of "variable = variable (+/-) value" into "variable (+/-)= value", removed the obuscation things like "1 + 20 - 10", made most grammar tweaks made respect the game tweaks option
+Fixed an issue in doVagMasturbate that caused text to not be displayed
+Fixed an issue with player balls description when gametweak 0 is off
+Added back something to do with jamie in doload
+Made while loops for pregArray into for loops and use range with step arguement instead because it is faster
+Changed while loops in places like doCockMasturbate to while True and use break instead of while i == 0 and i += 1
+Optimized doItemUse item 108 by using tempStr += f"\n\n<race>:{"".join(["|" for i in range(<affinity>)])}" instead of existing solution. It's twice as fast.
+[original game] Fix doItemUse item 210. There was a part of the item that would never be seen due to improper order of if/else if.
+Removed unnecessary checks from doItemUse item 210
+Change tooltips in options window to be more understandable
+Indent a line in detailedGear to fix edge case
+Removed unnecessary if statement in doDen
+Added a missing self. to affinityChange
+Fixed two variables in the save logic that were supposed to be floats but were instead converted to ins
+Fixed error message in hairstyleDescription and changed error message in hairDesc to differentiate between them.
+Rearranged buttonChoice logic in alchemy functions
+Fixed a result in goodsID and apothName
+Swapped the useoldstash game tweak to toggle use of the new stash instead
+Removed the remains of the fetish mechanic
+Moved all hide save/load/new game stuff back into doGeneral
+Applied n-grammar fix to ample in buttDesc
+Fixed a check in appearanceGo. It was supposed to be using udderEngorgementLevel but was instead using milkEngorgementLevel
+Combined checks and use list.extend instead of list.remove in doDen rep 6
+Removed some duplicate code in affinityChange
+[original game] Made udderCheck use == instead of !=
+[original game] Use else instead of elif in plural
+Optimize if/else statements in bodyDesc and change them slightly
+Change start screen message to reflect current state of the game
+Add ascii characters 0-31 to blacklist for windows in isValidDirectory
+Fix final character check for windows in isValidDirectory
+Optimize check in clothesTop for ID 3
+Changed many if statements throughout the game to be if/elif/else chains and optimize them to check less things
+Make use of macro functions where needed
+Added debugAffinityWindow to change player's affinity
+Made debug subwindows transient to the main debug window
+Made snuggle ball pickup message only trigger the special case if you don't already have one equiped but only while "Misc Changes" game tweak is active
+Made last remaining case in cockChange respect showBalls when grammar game tweak is active
+Added various missing self. before variables in affinityChange
+Removed blanksave.xml from the repo because the game can now convert save files for you
+Add interface options tab to the options window for things like toggling the original button colour or the textbox borders
+Fixed moveItem button sometimes becoming the default value after actions
+BagPage label now hides when discarding items like in the original game
+Moved blacklists to variable, use sets instead of tuples, add null byte to the unix blacklist and add blacklisted names on unix, use isinstance instead of checking for type in isValidDirectory
+Fixed bug where side panel buttons could be pressed on the start screen
+Made side panel not flicker when loading a game
+Replaced all instances of the deprecated as3lib.toplevel.typeName with isinstance
+Use tuples instead of Arrays in choiceListSelect
+Discard button in moveTo(Bag/Stash) no longer place items in a slot
+Removed "display" item from lists in changeTextColor
+Removed a useless variable declaration in eventSelect
+Use isinstance alongside existing for solString
+Update the changes and hotkeys page, remove extra newlines where they aren't needed, and add fetish tags to the pages for the named npcs in the wiki
+Use i[0] instead of i[:1] in listFilesInDir
+Optimize solGetFileName
+Use sugar syntax and tuples instead of as3lib.toplevel.Array for tempArray in choiceListButtons
+Combine a check in choiceListButtons
+Remove unnecessary button remove portion of showButtonsBag (all buttons are always visible in the bag)
+Move stuff about this port to the top of the credits tab
+Add back a forgotten newline and use string multiplication instead for doItemUse 108
+Changed ordering of checks in affinityChange to make more sense
+Use text directly in showPage
+Directly return result in getdhSOL and getdhNIM
+Make the check for a bug in doLoad work for versions other than 1.0.x, remove unnecessary .replace and use self.eggMaxTime instead of 36 in the same place
+Where for loops are already used, directly enable buttons instead of using enableAllButtons
+Add a check for list opener ("[" or "(") and add a check to see if the list is empty to strtolistbools
+Remove separator function and replace all instances of sep with as3lib.configmodule.separator
+Made htmlscrolledtext border toggle not require restart
+Made Alt+Shift+Escape the keybind to close the program. You must be focused on the main window for this to work
+Added all new variables to the debug window
+[html_parser] Made get_existing_font actually work
+[html_parser] Directly pass split url to call object
+[html_parser] Directly return result in ListTag._index_to_str and HTMLTextParser_remove_multi_spaces
+[html_parser] Directly use offset in the table tag in HTMLTextParser.handle_stattag
+[html_parser] Directly use index in HTMLTextParser.handle_endtag
+Encase section titles with "|" instead of bolding them in debug window. (This was one of the major slow downs with the debug window)
+Use one line syntax for bag, stash, and preg arrays in toXmlReturn(NIM)
+Improve startup stuff and move sys.argv import into the 'if __name__ == "__main__"' check
+Made shapeshifty(First/Second) no longer load as None if they weren't set previously
+Moved theme type selector to the interface toggles page and implemented its functionality
+Remove some duplicate code
+Added error label to DebugAffinityWindow, make its error messages more descriptive, and use as3lib.toplevel.trace for its console messages instead of print
+[venvscript] Force configparser to be case sensitive and use legacy api instead in order to get the correct types for values (its faster)
+[venvscript] Use isinstance instead of checking type in most cases
+Made discard button in moveTo(Bag/Stash) work like it should
+Remove a hideUpDown call in doBattle that wasn't in the original game
+[venvscript] Implement migrateConfig when the new one already exists
+[venvscript] Unload config files when done
+[venvscript] Add another gaurd to the venv delete function
+Use new combined childproperties variable in as3lib.interface_tk
+Changed some of the tooltips in the options window to better reflect functionality
+
 v1.0.10
+Requires as3lib version 0.0.10
 Set the initial directory of the load/save file dialogs to the save folder
 Fixed a bug on Windows introduced in 1.0.9 that made a folder named Pyminnimin_saves get created in ../ relative to the game or venv_root (it would switch between the two) when nimin_saves was not found
 [original game] Fixed double button press after using items 204 and 205
@@ -115,7 +605,7 @@ Made the status of your balls show when self.showBalls == False and the grammar 
 [original game] Fixed region not changing back after submit and passOut in dungeon
 [original game] Fixed region not changing to Cave Descent when entering the doOldCaveDecent from Firmshaft
 Created a temporary fix to the formatting of the stats page using python's string formatting (it gets a little bit messy towards the bottom). Unfortuantely, this can't not be a perminant fix because tkhtmlview does not render fixed width fonts properly so I have to use normal fonts. This means that this only works when at default font size and is affected by outside factors.
-Added persistant uv settings in the venvscript
+Added persistent uv settings in the venvscript
 Refactored the venvscript to use pathlib everywhere it can
 Made venvscript not eat the help option. It can now pass it to other things
 Removed redundant portions of the if/else statements in boobDesc, udderDesc, teatDesc, buttDesc, vulvaDesc, cockDesc, ballDesc, nipDesc, clitDesc, and hipDesc
