@@ -135,7 +135,7 @@ def downloadgame():
     if c2['isDevEnv']:
         print('Skipped game download.')
         return
-    print('Installing game... Please wait.')
+    print('Installing game...')
     if '--version' in argv:
         versiontag = argv[argv.index('--version') + 1]
     else:
@@ -221,7 +221,7 @@ def replaceTkhtmlviewParserWithUnsafeOne():
         temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').replace('\n', '')
         if platform.system() == 'Windows':
             temp = temp.replace('\\', '/').replace('\r', '')
-        with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/main/pyminlib/html_parser.py', context=getSSLContext()) as urlfile:
+        with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=getSSLContext()) as urlfile:
             Path(temp).write_bytes(urlfile.read())
         print('Done')
 
@@ -588,7 +588,6 @@ elif argv[1] == 'docs':
     parsingRules = 'Custom arguement parsing is used for this command. The rules are as follows:\n  1) Spaces are not ignored, they will always be a part of the result.\n  2) Some terminals use curly brackets as special characters even when inside of\n     quotes. They might have to be escaped using a \\.\n  3) Do not use brackets [ ] or curly brackets { } in table keys, they are not\n     parsed correctly.\n  4) Inline tables must be in the format {key:value,}.\n'
 
     #! Format cfg page better
-    #! Add parsing rules to cfg/cfg-game
     page = {
         'install':       f'Usage: pyminvenvscript.py install [args]\n\nInstalls and sets up the virtual environment for Pymin.\n\nThis command will refuse to do anything if <venvpath> is detected to be the root\ndirectory (using "if venvpath == venvpath.parent") or if it already exists.\n\nSteps followed by this command:\n\t1) Creates the directory <venvpath> if it does not exist\n\t2) Runs the "venv" command in <venvpath>\n\t3a) If the config exists, ask the user if they want to move it into the venv\n\t3b) If not moving the config, set its "path" variable to <venvpath>\n\t3c) If the config does not exist, create one inside the venv\n\t4) Creates the directory for the game (<venvpath>/Pymin)\n\t5) Downloads the game\n\t6) Installs all of the game\'s dependencies\n\n{generalArgs}\n\nThis command takes one special arguement:\n\t--overwrite\tBypasses the overwrite check. This check is in place because this script manages\n\t\t\tthe entire virtual environment which can cause issues if it contains other data.\n\t\t\tUse at your own risk.',
         'update':        f'Usage: pyminvenvscript.py update [args]\n\nUpdates everything in the virtual environment.\n\nPlaceholder (steps)\n\n{generalArgs}',
