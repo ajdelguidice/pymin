@@ -1003,11 +1003,11 @@ class NiminFetishFantasyv0975o_fla:
          self.fixedresolutionmode = self.optionswindow._children["FixedRes"].getcb()
          if self.optionswindow._children["Theme"].getcb():
             if self.optionswindow._children["Theme"].get() == "":
+               self.optionswindow._children["Theme"]["background"] = "#FF3333"
                raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
-               self.optionswindow._children["Theme"]["background"] = "#FF3333"
             elif not self.checkValidHex(self.optionswindow._children["Theme"].get()):
-               raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
                self.optionswindow._children["Theme"]["background"] = "#FF3333"
+               raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
             else:
                if self.optionswindow._children["Theme"]["background"] == "#FF3333":
                   self.optionswindow._children["Theme"]["background"] = "#FFFFFF"
@@ -1023,11 +1023,11 @@ class NiminFetishFantasyv0975o_fla:
             self.mo._children["themebutton"].state = "normal"
          if self.optionswindow._children["FontColor"].getcb():
             if self.optionswindow._children["FontColor"].get() == "":
+               self.optionswindow._children["FontColor"]["background"] = "#FF3333"
                raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is empty")
-               self.optionswindow._children["FontColor"]["background"] = "#FF3333"
             elif not self.checkValidHex(self.optionswindow._children["FontColor"].get()):
-               raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
                self.optionswindow._children["FontColor"]["background"] = "#FF3333"
+               raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
             else:
                if self.optionswindow._children["FontColor"]["background"] == "#FF3333":
                   self.optionswindow._children["FontColor"]["background"] = "#FFFFFF"
@@ -1042,11 +1042,11 @@ class NiminFetishFantasyv0975o_fla:
             self.fontColor = self.ofontcolor
             self.mo._children["textcolorbutton"].state = "normal"
          if self.optionswindow._children["SaveLocation"].get() == "":
+            self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
             raise as3.Error("Pymin.OWSaveOptions; SaveLocation is empty")
-            self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
          elif not as3.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
-            raise as3.Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
+            raise as3.Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
          else:
             if self.optionswindow._children["SaveLocation"]["background"] == "#FF3333":
                self.optionswindow._children["SaveLocation"]["background"] = "#FFFFFF"
