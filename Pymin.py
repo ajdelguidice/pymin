@@ -1705,10 +1705,12 @@ class NiminFetishFantasyv0975o_fla:
          self.solonlymode = bool(options.get("solMode",False))
          self.fixedresolutionmode = bool(options.get("fixedResMode",False))
          self.customfontcolor = bool(options.get("customFontColor",False))
-         self.mo._children["textcolorbutton"].state = self.boolToState(not self.customfontcolor)
+         if not self.cmdOpenConverter:
+            self.mo._children["textcolorbutton"].state = self.boolToState(not self.customfontcolor)
          self.ofontcolor = str(options.get("oFontColor","#FFFFFF"))
          self.customthemecolor = bool(options.get("customThemeColor",False))
-         self.mo._children["themebutton"].state = self.boolToState(not self.customthemecolor)
+         if not self.cmdOpenConverter:
+            self.mo._children["themebutton"].state = self.boolToState(not self.customthemecolor)
          self.othemecolor = str(options.get("oThemeColor","#000000"))
          interface = temp.get("interface",{})
          self.useNiminTheme = bool(interface.get("useNiminTheme",False))
@@ -12849,6 +12851,7 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.",True)
       self.bc()
       self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,0))
+       #! Ask again if value is invalid, make sure that ctrl-c works to exit prompt
       try:
          temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
       except:
@@ -24649,9 +24652,20 @@ class NiminFetishFantasyv0975o_fla:
       if self.sfcOpen:
          self.sfcwindow.lift()
       else:
-         self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", background=self.theme, main=self.cmdOpenConverter, menu=False)
+         self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", main=self.cmdOpenConverter, menu=False)
          self.sfcwindow.bind("<Destroy>",self.closeSFC)
          self.sfcwindow.resizable = False
+
+         if self.cmdOpenConverter:
+            self.style = ttk.Style(self.sfcwindow)
+            if (self.dir / "nimintheme").is_dir():
+               self.sfcwindow.tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
+            self.loadPreferences()
+         else:
+            self.sfcwindow.transient(self.mo)
+
+         self.sfcwindow._children['display'].background = self.theme
+
          self.sfcwindow.addLabel("display","title",x=250,y=50,width=300,height=32,font=('TimesNewRoman',20, 'bold'),anchor="n",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
          
          self.sfcwindow.addLabel("display","message",x=250,y=100,width=350,height=25,font=('TimesNewRoman',12),anchor="n",text="",foreground=self.fontColor,background=self.theme)
@@ -24676,8 +24690,6 @@ class NiminFetishFantasyv0975o_fla:
          self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
          self.sfcoutputfilecombobox.current(0)
 
-         if not self.cmdOpenConverter:
-            self.sfcwindow.transient(self.mo)
          self.sfcwindow.addWidget(PyminButton,"display","convertbutton",x=386,y=270,width=64,height=24,font=("TimesNewRoman",12),text="Convert",command=self.convertButton)
          self.sfcOpen = True
          if self.cmdOpenConverter:
@@ -26774,11 +26786,7 @@ if __name__ == "__main__":
       as3.EnableDebug()
    mainobject = NiminFetishFantasyv0975o_fla()
    if "--converter" in argv or "-C" in argv or "/C" in argv:
-      class dummyObject:
-         def configureChild(*args,**kargs):...
       mainobject.cmdOpenConverter = True
-      mainobject.mo = dummyObject()
-      mainobject.loadPreferences()
       mainobject.openSFC()
    else:
       mainobject.MainTimeline()
