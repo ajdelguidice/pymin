@@ -769,7 +769,7 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.lift()
       else:
          #Window
-         self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme, menu=False)
+         self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme)
          #self.mo.group(self.optionswindow)
          if self.fixedresolutionmode:
             self.optionswindow.resizable = False
@@ -24652,7 +24652,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.sfcOpen:
          self.sfcwindow.lift()
       else:
-         self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", main=self.cmdOpenConverter, menu=False)
+         self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", main=self.cmdOpenConverter)
          self.sfcwindow.bind("<Destroy>",self.closeSFC)
          self.sfcwindow.resizable = False
 
@@ -25116,7 +25116,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.debugVarOpen):
          self.dvw.lift()
       else:
-         self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme, menu=False)
+         self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme)
          if self.fixedresolutionmode:
             self.dvw.resizable = False
          self.dvw.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10)
@@ -25149,7 +25149,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.debugGIWinOpen:
          self.dgiw.lift()
       else:
-         self.dgiw = itk.window(width=150, height=100, title="Give Item", menu=False)
+         self.dgiw = itk.window(width=150, height=100, title="Give Item")
          if self.fixedresolutionmode:
             self.dgiw.resizable(False,False)
          self.dgiw.addnwhLabel("display","label",x=75,y=7,anchor="n",font=("TkTextFont",9),text="Give Item")
@@ -25207,7 +25207,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.debugAWinOpen:
          self.daw.lift()
       else:
-         self.daw = itk.window(width=170, height=100, title="Affinity", menu=False)
+         self.daw = itk.window(width=170, height=100, title="Affinity")
          if self.fixedresolutionmode:
             self.daw.resizable(False,False)
          self.daw.addnwhLabel("display","label",x=85,y=7,anchor="n",font=("TkTextFont",9),text="Affinity Change")
@@ -25302,7 +25302,7 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.lift()
       else:
          self.wikiOpen = True
-         self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0", menu=False)
+         self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0")
          if self.fixedresolutionmode:
             self.wikiwindow.resizable = False
          self.wikiwindow.transient(self.mo)
