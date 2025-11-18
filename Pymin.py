@@ -682,7 +682,7 @@ class NiminFetishFantasyv0975o_fla:
       Sets up the interface, then runs the "frame1" function
       """
       #window
-      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", main=True, defaultMenu=False, aboutWindow=AboutWindow)
+      self.mo = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", main=True, menu=True, defaultMenu=False, aboutWindow=AboutWindow)
       
       self.style = ttk.Style(self.mo)
       if (self.dir / "nimintheme").is_dir():
