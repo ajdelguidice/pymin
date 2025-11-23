@@ -710,7 +710,6 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.menubar['debugutils'] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
          self.mo.menubar["debugutils"].add_command(label="Variable Display", font=("Terminal",8), command=self.openDebugVariableDisplay)
          self.mo.menubar["debugutils"].add_command(label="Give Item", font=("Terminal",8), command=self.openDebugGiveItemWindow)
-         self.mo.menubar["debugutils"].add_command(label="Use Item", font=("Terminal",8), command=self.openDebugUseItemWindow)
          self.mo.menubar["debugutils"].add_command(label="Affinity", font=("Terminal",8), command=self.openDebugAffinityWindow)
          self.mo.menubar["root"].add_cascade(label="Debug Utils", font=("Terminal",8), menu=self.mo.menubar["debugutils"])
       self.mo.menubar["helpmenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
@@ -25189,20 +25188,6 @@ class NiminFetishFantasyv0975o_fla:
          self.dgiw._children["errlabel"].text = f"Invalid ItemID: {ID}"
    def closeDGIWindow(self, *e):
       self.debugGIWinOpen = False
-   def openDebugUseItemWindow(self, *e):
-      print("useitem")
-      """
-      if ID not in (2,404,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540):
-         self.dgiwerrlabel["text"] = f"Invalid ItemID: {ID}"
-      """
-   def debugUseItem(self, *e):
-      #!needs modifications to doitemuse to work with some items
-      #ID = int(self.dgiw.getEntry(),10)
-      self.foodItem(ID)
-      self.buttonShiftOverride = True
-      self.doItemUse(ID)
-      self.buttonShiftOverride = False
-      self.statDisplay()
    def openDebugAffinityWindow(self, *e):
       if self.debugAWinOpen:
          self.daw.lift()
@@ -25244,13 +25229,13 @@ class NiminFetishFantasyv0975o_fla:
          "B8",
          "B10"
       }
-      if aff not in validAff:
-         err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
-      else:
+      if aff in validAff:
          try:
             amount = int(values[1],10)
          except:
             err = "Amount must be an integer"
+      else:
+         err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
       if err:
          self.daw._children["errlabel"].text = err
          raise as3.Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
