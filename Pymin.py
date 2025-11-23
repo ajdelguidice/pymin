@@ -9,6 +9,7 @@ from functools import partial, cache
 from secrets import choice
 from re import sub
 from io import BytesIO
+from dataclasses import dataclass
 import as3lib as as3
 import as3lib.interface_tk as itk
 import as3lib.keyConversions as ckeys
@@ -177,6 +178,11 @@ def CreateToolTip(widget, text):
    widget.bind('<Enter>', enter)
    widget.bind('<Leave>', leave)
 #====================================================================================
+
+@dataclass
+class wikiPage:
+   topic: str
+   num: int
 
 class NiminFetishFantasyv0975o_fla: 
    """
@@ -25293,13 +25299,12 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.transient(self.mo)
          self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
          self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
-         try:
-            self.wikiwindow._children["text"].html_parser.callobject
-            self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
-            self.customhtmlparser = True
-         except:
+         if getattr(self.wikiwindow._children["text"].html_parser, 'callobject', '') == '':
             self.customhtmlparser = False
             as3.trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
+         else:
+            self.customhtmlparser = True
+            self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
          self.wikimenus = {
             "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
             "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
@@ -25365,6 +25370,7 @@ class NiminFetishFantasyv0975o_fla:
    def _wikidestroy(self, *e):
       if self.wikiOpen:
          self.wikiwindow.close()
+         del self.wikipreviouspage
          self.wikiOpen = False
    def wikiMenuSelectionUp(self, *e):
       temp = self.wikiwindow._children["menu"].curselection()[0]
@@ -25393,7 +25399,8 @@ class NiminFetishFantasyv0975o_fla:
    def doWikiPrevious(self, *e):
       if len(self.wikipreviouspage) > 1:
          self.wikipreviouspage.pop()
-         self.doWikiPage(self.wikipreviouspage[-1][0],self.wikipreviouspage[-1][1], returning=True)
+         page = self.wikipreviouspage[-1]
+         self.doWikiPage(page.topic, page.num, returning=True)
    def displayWikiText(self):
       textw = self.wikiwindow._children["text"]
       textw.state = "normal"
@@ -26229,17 +26236,11 @@ class NiminFetishFantasyv0975o_fla:
          elif sel == "Silandrias":
             self.doWikiPage("NPC",5)
    def doWikiPage(self, topic:str, Num, returning=False):
-      if not isinstance(Num,int):
-         try:
-            Num = int(Num)
-         except Exception as e:
-            raise as3.Error("Pymin.doWikiPage; Invalid page number") from e
-         if Num is None:
-            raise as3.Error("Pymin.doWikiPage; Invalid page number")
-      if returning == False:
-         temp = len(self.wikipreviouspage) - 1
-         if temp == -1 or temp > -1 and self.wikipreviouspage[temp] != [topic,Num]:
-            self.wikipreviouspage.append([topic,Num])
+      if not returning:
+         curPage = wikiPage(topic, Num)
+         if len(self.wikipreviouspage) == 0 or self.wikipreviouspage[-1] != curPage:
+            self.wikipreviouspage.append(curPage)
+      text = None
       if topic == "Basic":
          text = self.wikiBasicDescription(Num)
       elif topic == "Item":
@@ -26260,6 +26261,8 @@ class NiminFetishFantasyv0975o_fla:
          text = self.wikiNPCDescription(Num)
       elif topic == "MenuBar":
          text = self.wikiMenuBarDescription(Num)
+      if text is None:
+         raise as3.Error(f'Wiki page lookup for ({topic}, {Num}) returned no text.')
       self.clearAddWikiText(text)
    """
    Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
