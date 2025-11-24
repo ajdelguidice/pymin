@@ -1006,56 +1006,58 @@ class NiminFetishFantasyv0975o_fla:
       if self.optionsWinOpen:
          self.solonlymode = self.optionswindow._children["SOLMode"].getcb()
          self.fixedresolutionmode = self.optionswindow._children["FixedRes"].getcb()
+
+         # Custom Theme Colour
          if self.optionswindow._children["Theme"].getcb():
             if self.optionswindow._children["Theme"].get() == "":
                self.optionswindow._children["Theme"]["background"] = "#FF3333"
                raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
-            elif not self.checkValidHex(self.optionswindow._children["Theme"].get()):
+            if not self.checkValidHex(self.optionswindow._children["Theme"].get()):
                self.optionswindow._children["Theme"]["background"] = "#FF3333"
                raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
-            else:
-               if self.optionswindow._children["Theme"]["background"] == "#FF3333":
-                  self.optionswindow._children["Theme"]["background"] = "#FFFFFF"
-               if not self.customthemecolor:
-                  self.othemecolor = self.theme
-               self.customthemecolor = True
-               self.theme = self.optionswindow._children["Theme"].get()
-               self.mo._children["themebutton"].state = "disabled"
+            if not self.customthemecolor:
+               self.othemecolor = self.theme
+            self.customthemecolor = True
+            if self.optionswindow._children["Theme"]["background"] == "#FF3333":
                self.optionswindow._children["Theme"]["background"] = "#FFFFFF"
+            self.theme = self.optionswindow._children["Theme"].get()
+            self.mo._children["themebutton"].state = "disabled"
          else:
             self.customthemecolor = False
             self.theme = self.othemecolor
             self.mo._children["themebutton"].state = "normal"
+
+         # Custom Font Colour
          if self.optionswindow._children["FontColor"].getcb():
             if self.optionswindow._children["FontColor"].get() == "":
                self.optionswindow._children["FontColor"]["background"] = "#FF3333"
                raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is empty")
-            elif not self.checkValidHex(self.optionswindow._children["FontColor"].get()):
+            if not self.checkValidHex(self.optionswindow._children["FontColor"].get()):
                self.optionswindow._children["FontColor"]["background"] = "#FF3333"
                raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
-            else:
-               if self.optionswindow._children["FontColor"]["background"] == "#FF3333":
-                  self.optionswindow._children["FontColor"]["background"] = "#FFFFFF"
-               if not self.customfontcolor:
-                  self.ofontcolor = self.fontColor
-               self.customfontcolor = True
-               self.fontColor = self.optionswindow._children["FontColor"].get()
-               self.mo._children["textcolorbutton"].state = "disabled"
+            if not self.customfontcolor:
+               self.ofontcolor = self.fontColor
+            self.customfontcolor = True
+            if self.optionswindow._children["FontColor"]["background"] == "#FF3333":
                self.optionswindow._children["FontColor"]["background"] = "#FFFFFF"
+            self.fontColor = self.optionswindow._children["FontColor"].get()
+            self.mo._children["textcolorbutton"].state = "disabled"
          else:
             self.customfontcolor = False
             self.fontColor = self.ofontcolor
             self.mo._children["textcolorbutton"].state = "normal"
+
+         # Save Location
          if self.optionswindow._children["SaveLocation"].get() == "":
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
             raise as3.Error("Pymin.OWSaveOptions; SaveLocation is empty")
-         elif not as3.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
+         if not as3.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
             raise as3.Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
-         else:
-            if self.optionswindow._children["SaveLocation"]["background"] == "#FF3333":
-               self.optionswindow._children["SaveLocation"]["background"] = "#FFFFFF"
-            self.savelocation = Path(self.optionswindow._children["SaveLocation"].get()).resolve()
+         if self.optionswindow._children["SaveLocation"]["background"] == "#FF3333":
+            self.optionswindow._children["SaveLocation"]["background"] = "#FFFFFF"
+         self.savelocation = Path(self.optionswindow._children["SaveLocation"].get()).resolve()
+
          self.statusTweaks = self.optionswindow._children["StatusTweaks"].getcb()
          self.succubusLeavesOne = self.optionswindow._children["SuccubusLeavesOne"].getcb()
          self.useIsBottomOpen = self.optionswindow._children["UseIsBottomOpen"].getcb()
@@ -1795,11 +1797,11 @@ class NiminFetishFantasyv0975o_fla:
             self.useNewStash = tempgametweaks[10]
             self.gameTweaksMisc = tempgametweaks[11]
          self.fixedresolutionmode = False if prefs.find("fixedResMode") == None else strtobool(prefs.find("fixedResMode").text)
-         if prefs.find("customFontColor") != None and prefs.find("customThemeColor") != None:
+         if prefs.find("customFontColor") != None and prefs.find("oFontColor") != None:
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
             self.mo._children["textcolorbutton"].state = self.boolToState(not self.customfontcolor)
             self.ofontcolor = prefs.find('oFontColor').text
-         if prefs.find('oFontColor') != None and prefs.find('oThemeColor') != None:
+         if prefs.find('customThemeColor') != None and prefs.find('oThemeColor') != None:
             self.customthemecolor = strtobool(prefs.find("customThemeColor").text)
             self.mo._children["themebutton"].state = self.boolToState(not self.customthemecolor)
             self.othemecolor = prefs.find('oThemeColor').text
@@ -2007,13 +2009,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.destroyChild("pagelabel")
          self.pageShow = False
    def checkZero(self):
-      for i in range(27):
-         try:
-            if (self.bagStackArray[i] == 0):
-               self.bagArray[i] = 0
-            if (self.stashStackArray[i] == 0):
-               self.stashArray[i] = 0
-         except:...
+      self.clearEmptySlots()
       if (self.cockSize < 0):
          self.cockSize = 0
       if (self.cockTotal < 0):
@@ -2187,7 +2183,7 @@ class NiminFetishFantasyv0975o_fla:
          self.dayTime(self.hrs)
       else:
          self.doReturn()
-   def doReturn(self, nodjp=False):
+   def doReturn(self, djp=True):
       self.mts = False
       self.mtb = False
       self.choicePage = 1
@@ -2212,7 +2208,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.inDungeon):
          self.doDungeon()
       elif (self.currentState == 1):
-         self.doGeneral(nodjp)
+         self.doGeneral(djp)
    def moistCalc(self, which:int):
       if (which == 1):
          tempNum = self.cockMoist + self.cockMoistMod
@@ -3123,7 +3119,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lilaWetStatus > 0 and self.attireBot in {10,11}):
          tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
       if (self.legType >= 1000):
-         if self.internalBallsEffectBelly and not self.showBalls:
+         if False and self.internalBallsEffectBelly and not self.showBalls:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
          else:
             tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
@@ -4952,11 +4948,10 @@ class NiminFetishFantasyv0975o_fla:
             self.doListen = doListen
          self.doListen = doListen
       self.doListen = doListen
-   def doGeneral(self, nodjp=False):
+   def doGeneral(self, djp:bool=True):
       """
       Game's main dialog prompt. This is where you go back to after most actions
       """
-      djp = False
       self.bc()
       self.currentState = 1
       buttonlist = ButtonList(1,1,1,1,1,1,1,1,1,1,0,1)
@@ -4980,15 +4975,13 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(f"\n\nMilk sprays from your belly, shooting through your {self.clothesBottom()} and obscuring your view with a white mist. Adjusting your udder as you may, the teats continue to flail about, gushing with milk, as the fleshy bag is so overly engorged that it can't store as much as it's still producing, making it impossible to do anything without drenching not only yourself but all those around you! The production is so excessive that your body will definitely reduce the rate after this.\n\nYou must milk your udder or wait for the gushing to subside if you wish to continue. Either way, you have already wasted a large amount of milk.")
          self.udderEngorgement -= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5
          self.lactChange(2,-50)
-      if (self.blueBalls >= 120 and self.percent() * self.ment < self.percent() * (self.lib + self.blueBalls - 120) and self.lib > self.ment - 70 and nodjp == False):
-         djp = True
       if (self.lust == 100):
          tempDict = {5:"Masturbate"}
          self.doMainText(f"\n\nYour body quivers and your {self.legDesc(2)} give{self.legPlural(1)} out from under you as your arousal soaks through your clothes. Your mind seems focused only on one thing: SEX!\n\nYou must masturbate if you wish to continue.")
       elif (self.exhaustion > 44):
          tempDict = {6:"Sleep"}
          self.doMainText("\n\nThere's only one thing on your mind right now...")
-      if (djp):
+      if (self.blueBalls >= 120 and self.percent() * self.ment < self.percent() * (self.lib + self.blueBalls - 120) and self.lib > self.ment - 70 and djp):
          self.doJizzPants()
       else:
          self.displayMainText()
@@ -5121,7 +5114,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doListen = doListen
             else:
                self.inBag = False
-               self.doReturn(nodjp=True)
+               self.doReturn(False)
          elif self.buttonChoice in {4,8}:
             self.doBag()
          else:
@@ -8251,7 +8244,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.moveToBag()
                else:
                   self.inStash = False
-                  self.doReturn(nodjp=True)
+                  self.doReturn(False)
             elif self.buttonChoice in {4,8}:
                self.doStash()
             else:
@@ -8485,11 +8478,10 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
       tempDict = {4:"Buy", 8:"Sell", 12:"Return"}
       dlist = []
-      for i in range(1,12):
-         if i not in {4,8}:
-            tempDict[i] = self.itemName(self.goodsID(i))
-            if (self.itemName(self.goodsID(i)) == " "):
-               dlist.append(i)
+      for i in self.bMap:
+         tempDict[i] = self.itemName(self.goodsID(i))
+         if (self.itemName(self.goodsID(i)) == " "):
+            dlist.append(i)
       self.outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.",True)
       self.doButtonChoices(tempDict)
       self.disableSelectedButtons(dlist)
@@ -8735,11 +8727,10 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
       tempDict = {4:"Buy", 12:"Return"}
       dlist = []
-      for i in range(1,12):
-         if i not in {4,8}:
-            tempDict[i] = self.itemName(self.dyeID(i))
-            if (self.itemName(self.dyeID(i)) == " "):
-               dlist.append(i)
+      for i in self.bMap:
+         tempDict[i] = self.itemName(self.dyeID(i))
+         if (self.itemName(self.dyeID(i)) == " "):
+            dlist.append(i)
       self.outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..",True)
       self.doButtonChoices(tempDict)
       self.disableSelectedButtons(dlist)
@@ -8809,11 +8800,10 @@ class NiminFetishFantasyv0975o_fla:
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
       dlist = []
       tempDict = {4:"Buy", 12:"Return"}
-      for i in range(1,12):
-         if i not in {4,8}:
-            tempDict[i] = self.apothName(self.apothID(i))
-            if (self.apothName(self.apothID(i)) == ""):
-               dlist.append(i)
+      for i in self.bMap:
+         tempDict[i] = self.apothName(self.apothID(i))
+         if (self.apothName(self.apothID(i)) == ""):
+            dlist.append(i)
       self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.",True)
       self.doButtonChoices(tempDict)
       self.disableSelectedButtons(dlist)
@@ -9120,13 +9110,11 @@ class NiminFetishFantasyv0975o_fla:
    def doSalon(self):
       self.buy = 0
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
-      dlist = []
+      dlist = [10]
       tempDict = {4:"Buy", 12:"Return"}
-      for i in range(1,12):
-         if i not in {4,8,10}:
+      for i in self.bMap:
+         if i != 10:
             tempDict[i] = self.hairstyleName(self.hairstyleID(i))
-            if (self.hairstyleName(self.hairstyleID(i)) == ""):
-               dlist.append(i)
       self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.",True)
       self.doButtonChoices(tempDict)
       self.disableSelectedButtons(dlist)
@@ -9273,9 +9261,7 @@ class NiminFetishFantasyv0975o_fla:
          return "that reaches down to the ground"
       return f"HAIR LENGTH ERROR {self.hairLength}"
    def hairstyleID(self, choice:int):
-      if choice == 10:
-         self.disableOneButton(10)
-      elif self.currentZone == 1:
+      if self.currentZone == 1:
          if choice == 1:
             return 1
          if choice == 2:
@@ -9440,9 +9426,8 @@ class NiminFetishFantasyv0975o_fla:
       self.buy = 0
       self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
       tempDict = {4:"Buy", 12:"Return"}
-      for i in range(1,12):
-         if i not in {4,8,12}:
-            tempDict[i] = self.clothesName(self.clothesID(i))
+      for i in self.bMap:
+         tempDict[i] = self.clothesName(self.clothesID(i))
       self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.",True)
       self.doButtonChoices(tempDict)
       def doListen():
@@ -11794,6 +11779,7 @@ class NiminFetishFantasyv0975o_fla:
          level = self.tempInt
          tempBool = False
          if (self.buttonChoice == 6):
+            #! Separate this into its own function to remove tempBool
             tempBool = False
             if ID == 220 and self.countItem(209) >= 7:
                tempBool = True
