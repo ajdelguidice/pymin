@@ -173,21 +173,19 @@ def recreate(withconf, withsaves, withgameconf):
     if venvpath == venvpath.parent:
         print('Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...')
         return
-    if not ((venvpath / 'pymin.toml').exists() and (venvpath / 'Pymin/Pymin.py').exists()):
+    if not ((venvpath / 'pymin.toml').exists() and (venvpath / 'Pymin/Pymin.py').exists()): # TODO: Make this work with other config locations
         print('Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...')
         return
     tempdir = None
-    cfgDict = None
     try:
+        if withconf or withsaves or withgameconf:
+            tempdir = Path(tempfile.mkdtemp())
         if withconf:
-            if (curdir / 'pymin.toml').exists():
+            if (venvpath / 'pymin.toml').exists():
+                copyfile(venvpath / 'pymin.toml', tempdir / 'pymin.toml')
+            elif (curdir / 'pymin.toml').exists():
                 print('--with-config specified but config not in venv. Config skipped.')
                 withconf = False
-            elif (venvpath / 'pymin.toml').exists():
-                with open(venvpath / 'pymin.toml','rb') as f:
-                    cfgDict = tomllib.load(f)
-        if withsaves or withgameconf:
-            tempdir = Path(tempfile.mkdtemp())
         if withsaves:
             copytree(venvpath / 'Pymin/nimin_saves', tempdir / 'nimin_saves')
         if withgameconf:
@@ -195,8 +193,8 @@ def recreate(withconf, withsaves, withgameconf):
         rmtree(venvpath)
         with OverrideDev():
             create()
-        if cfgDict != None:
-            writeTOML(venvpath / 'pymin.toml', cfgDict)
+        if withconf:
+            copyfile(tempdir / 'pymin.toml', venvpath / 'pymin.toml')
         if withsaves:
             copytree(tempdir / 'nimin_saves', venvpath / 'Pymin/nimin_saves')
         if withgameconf:
@@ -494,7 +492,7 @@ except:
 
 if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists() or (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
     print('Old config detected. Automatically migrating to new one.')
-    migrateConfig(True)
+    migrateConfig()
     print('Done')
 if (curdir / 'pymin.toml').exists():  # load config and set venvpath
     cfgloc = curdir / 'pymin.toml'
