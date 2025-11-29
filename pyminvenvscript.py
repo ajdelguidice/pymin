@@ -77,7 +77,7 @@ def create():
         c2['path'] = ''
         delconf = curdir / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
-    elif cfgloc == None:
+    elif cfgloc is None:
         cfgloc = venvpath / 'pymin.toml'
         cfgDict = {
             'cfgVersion':1,
@@ -173,7 +173,7 @@ def recreate(withconf, withsaves, withgameconf):
     if venvpath == venvpath.parent:
         print('Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...')
         return
-    if not venvpath / 'Pymin/Pymin.py').exists():
+    if not (venvpath / 'Pymin/Pymin.py').exists():
         print('Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...')
         return
     tempdir = None
@@ -205,13 +205,13 @@ def recreate(withconf, withsaves, withgameconf):
             copyfile(tempdir / 'Nimin_Prefs.toml', venvpath / 'Pymin/Nimin_Prefs.toml')
     except Exception as e:
         msg = 'Warning: Failed to recreate venv. '
-        if tempdir != None:
+        if tempdir is not None:
             msg += f'Temp directory at {tempdir} that contains files specified with the "--with-*" arguements was not deleted to minimise data loss. '
         print(msg + 'Manual intervential is required.')
         # TODO: Try to recover
         raise e
     else:
-        if tempdir != None:
+        if tempdir is not None:
             rmtree(tempdir)
 
 def replaceTkhtmlviewParserWithUnsafeOne():
@@ -295,7 +295,7 @@ def migrateConfig():
             'noCustomHTMLParser':False,
             'isDevEnv':False
         }
-    if conf == None:
+    if conf is None:
         print('Nothing to do.')
     else:
         writeTOML(cfgloc, conf)
@@ -610,7 +610,7 @@ elif argv[1] == 'docs':
 elif argv[1] == 'migrate-config':
     migrateConfig()
 elif argv[1] == 'cfg':
-    if cfgloc == None:
+    if cfgloc is None:
         if not hasVenv:
             cfgloc = curdir / 'pymin.toml'
         else:
@@ -626,11 +626,11 @@ elif argv[1] == 'cfg':
         if key in {'cfgVersion','pyInstalledVersion'} and not c2['isDevEnv']:
             print(f'Warning: {key} is restricted and should not be changed. Skipping.')
             continue
-        if c2.get(key) == None:
+        if c2.get(key) is None:
             print(f'Warning: Key {key} does not exist.')
             continue
         value = Args.ParseOuter(value, c2[key])
-        if value == None:
+        if value is None:
             print(f'Warning: Type of {key} could not be determined. Skipping.')
             continue
         c2[key] = value
@@ -652,11 +652,11 @@ elif argv[1] == 'cfg-game' and hasVenv:
         tempargs = tuple(tuple(i.split('=')) for i in argv[2:])
         for i in tempargs:
             section, key = i[0].split('.')
-            if gameconf.get(section) == None or gameconf.get(section).get(key) == None:
+            if gameconf.get(section) is None or gameconf.get(section).get(key) is None:
                 print(f'Warning: {section}.{key} does not exist.')
                 continue
             value = Args.ParseOuter(i[1], gameconf[section][key])
-            if value == None:
+            if value is None:
                 print(f'Warning: Type of {section}.{key} could not be determined. Skipping.')
                 continue
             gameconf[section][key] = value
@@ -696,5 +696,5 @@ else:
 
 if c1 != c2:  # Check if config was modified
     writeTOML(cfgloc, c2)
-if delconf != None:
+if delconf is not None:
     delconf.unlink(missing_ok=True)
