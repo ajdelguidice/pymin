@@ -173,7 +173,7 @@ def recreate(withconf, withsaves, withgameconf):
     if venvpath == venvpath.parent:
         print('Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...')
         return
-    if not ((venvpath / 'pymin.toml').exists() and (venvpath / 'Pymin/Pymin.py').exists()): # TODO: Make this work with other config locations
+    if not venvpath / 'Pymin/Pymin.py').exists():
         print('Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...')
         return
     tempdir = None
@@ -181,9 +181,13 @@ def recreate(withconf, withsaves, withgameconf):
         if withconf or withsaves or withgameconf:
             tempdir = Path(tempfile.mkdtemp())
         if withconf:
-            if (venvpath / 'pymin.toml').exists():
-                copyfile(venvpath / 'pymin.toml', tempdir / 'pymin.toml')
-            elif (curdir / 'pymin.toml').exists():
+            try:
+                if cfgloc.exists():
+                    cfgloc.relative_to(venvpath)  # Test if relative to venvpath. Will raise ValueError if not.
+                    copyfile(cfgloc, tempdir / 'pymin.toml')
+                else:
+                    withconf = False
+            except ValueError:
                 print('--with-config specified but config not in venv. Config skipped.')
                 withconf = False
         if withsaves:
@@ -194,7 +198,7 @@ def recreate(withconf, withsaves, withgameconf):
         with OverrideDev():
             create()
         if withconf:
-            copyfile(tempdir / 'pymin.toml', venvpath / 'pymin.toml')
+            copyfile(tempdir / 'pymin.toml', cfgloc)
         if withsaves:
             copytree(tempdir / 'nimin_saves', venvpath / 'Pymin/nimin_saves')
         if withgameconf:
@@ -204,7 +208,7 @@ def recreate(withconf, withsaves, withgameconf):
         if tempdir != None:
             msg += f'Temp directory at {tempdir} that contains files specified with the "--with-*" arguements was not deleted to minimise data loss. '
         print(msg + 'Manual intervential is required.')
-        #! Try to recover
+        # TODO: Try to recover
         raise e
     else:
         if tempdir != None:
@@ -228,7 +232,7 @@ def updatePythonVersion():
     if c2['isDevEnv'] and answer.lower() in {'y',''}:
         rmtree(venvpath / f'lib/python{'.'.join(pyvertuple[:2])}')
         if c2['uvGlobal'] or c2['uvLocal']:
-            #! Test to see if this actually works.
+            # TODO: Test to see if this actually works.
             run(pipCommand[:-1] + ('venv', '--', '--upgrade', venvpath))
         else:
             run(pipCommand[:-1] + ('venv', '--upgrade', venvpath))
@@ -329,7 +333,7 @@ class Args:
             return False
         return value  # Unknown
     def ValidateKey(key):
-        if key.startswith(('"',"'")) and key.endswith(('"',"'")): #!Validate these
+        if key.startswith(('"',"'")) and key.endswith(('"',"'")): # TODO: Validate these
             return key
         # Bare keys
         if len(key) == 0:
@@ -448,7 +452,7 @@ class TOML:
             for k,v in value.items():
                 text.write(f'{k} = {TOML.Value(v)},')
             temp = text.getvalue()
-            if temp.endswith(','):  #!Make this better
+            if temp.endswith(','):  # TODO: Make this better
                 return temp[:-1] + '}'
             return temp + '}'
     def Array(value):
@@ -585,7 +589,7 @@ elif argv[1] == 'docs':
     forwardArgs = 'This command forwards all arguements.'
     parsingRules = 'Custom arguement parsing is used for this command. The rules are as follows:\n  1) Spaces are not ignored, they will always be a part of the result.\n  2) Some terminals use curly brackets as special characters even when inside of\n     quotes. They might have to be escaped using a \\.\n  3) Do not use brackets [ ] or curly brackets { } in table keys, they are not\n     parsed correctly.\n  4) Inline tables must be in the format {key:value,}.\n'
 
-    #! Format cfg page better
+    # TODO: Format cfg page better
     page = {
         'install':       f'Usage: pyminvenvscript.py install [args]\n\nInstalls and sets up the virtual environment for Pymin.\n\nThis command will refuse to do anything if <venvpath> is detected to be the root\ndirectory (using "if venvpath == venvpath.parent") or if it already exists.\n\nSteps followed by this command:\n\t1) Creates the directory <venvpath> if it does not exist\n\t2) Runs the "venv" command in <venvpath>\n\t3a) If the config exists, ask the user if they want to move it into the venv\n\t3b) If not moving the config, set its "path" variable to <venvpath>\n\t3c) If the config does not exist, create one inside the venv\n\t4) Creates the directory for the game (<venvpath>/Pymin)\n\t5) Downloads the game\n\t6) Installs all of the game\'s dependencies\n\n{generalArgs}\n\nThis command takes one special arguement:\n\t--overwrite\tBypasses the overwrite check. This check is in place because this script manages\n\t\t\tthe entire virtual environment which can cause issues if it contains other data.\n\t\t\tUse at your own risk.',
         'update':        f'Usage: pyminvenvscript.py update [args]\n\nUpdates everything in the virtual environment.\n\nPlaceholder (steps)\n\n{generalArgs}',
