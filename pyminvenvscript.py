@@ -244,23 +244,13 @@ def migrateConfig():
     tempUV = False
     tempUVI = False
     tempDR = False
-    cfgloc = venvpath / 'pymin.toml'
+    confloc = venvpath / 'pymin.toml'
     conf = None
-    # Get config v1 values. Do this here because these don't play nice with the others.
-    if (venvpath / '.USEUV').exists():
-        tempUV = True
-        (venvpath / '.USEUV').unlink(missing_ok=True)
-    if (venvpath / '.USEUVI').exists():
-        tempUVI = True
-        (venvpath / '.USEUVI').unlink(missing_ok=True)
-    if (venvpath / '.DEFAULTRUN').exists():
-        tempDR = True
-        (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
     # Load config
     if (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
         if (curdir / 'pymin.cfg').exists():
             temploc = curdir / 'pymin.cfg'
-            cfgloc = curdir / 'pymin.toml'
+            confloc = curdir / 'pymin.toml'
         else:
             temploc = venvpath / 'pymin.cfg'
         c = configparser.ConfigParser()
@@ -276,7 +266,16 @@ def migrateConfig():
             conf[i] = c.getboolean('Options', i, fallback=False)
         temploc.unlink(missing_ok=True)
         del c
-    else:
+    elif (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists():
+        if (venvpath / '.USEUV').exists():
+            tempUV = True
+            (venvpath / '.USEUV').unlink(missing_ok=True)
+        if (venvpath / '.USEUVI').exists():
+            tempUVI = True
+            (venvpath / '.USEUVI').unlink(missing_ok=True)
+        if (venvpath / '.DEFAULTRUN').exists():
+            tempDR = True
+            (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
         pyversion = platform.python_version()
         with open(venvpath / 'pyvenv.cfg','r') as f:
             c = configparser.ConfigParser(allow_unnamed_section=True)
@@ -298,7 +297,7 @@ def migrateConfig():
     if conf is None:
         print('Nothing to do.')
     else:
-        writeTOML(cfgloc, conf)
+        writeTOML(confloc, conf)
 
 insecure_context = ssl._create_unverified_context()
 
