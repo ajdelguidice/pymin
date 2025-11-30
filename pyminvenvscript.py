@@ -643,7 +643,7 @@ elif argv[1] == 'cfg-game' and hasVenv:
         writeTOML(venvpath / 'Pymin/Nimin_Prefs.toml', gameconf)
     exit()
 elif argv[1] == 'install':
-    if hasVevn and '--overwrite' not in argv:
+    if hasVenv and '--overwrite' not in argv:
         print('You can not use install in an existing directory. Did you mean "update"?')
         exit()
     create()
