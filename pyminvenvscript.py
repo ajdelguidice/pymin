@@ -240,64 +240,44 @@ def updatePythonVersion():
             installmodules()
         c2['pyInstalledVersion'] = platform.python_version()
 
-def migrateConfig():
-    tempUV = False
-    tempUVI = False
-    tempDR = False
-    confloc = venvpath / 'pymin.toml'
-    conf = None
-    # Load config
+def migrateConfig(write=False):
+    newloc = venvpath / 'pymin.toml'
+    conf = {}
+    # Config v1
+    if (venvpath / '.USEUV').exists():
+        conf['uvGlobal'] = True
+        (venvpath / '.USEUV').unlink(missing_ok=True)
+    if (venvpath / '.USEUVI').exists():
+        conf['uvLocal'] = True
+        (venvpath / '.USEUVI').unlink(missing_ok=True)
+    if (venvpath / '.DEFAULTRUN').exists():
+        conf['defaultToRun'] = True
+        (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
+    # Config v2
     if (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
         if (curdir / 'pymin.cfg').exists():
             temploc = curdir / 'pymin.cfg'
-            confloc = curdir / 'pymin.toml'
+            newloc = curdir / 'pymin.toml'
         else:
             temploc = venvpath / 'pymin.cfg'
         c = configparser.ConfigParser()
         c.optionxform=str
         with open(temploc,'r') as f:
             c.read_file(f)
-        conf = {
-            'cfgVersion':1,
-            'path':c.get('Options','path',fallback=str(venvpath)),
-            'pyInstalledVersion':c['Options']['pyInstalledVersion']
-        }
+        if c.get('Options', 'path') is not None:
+            conf['path'] = c.get('Options', 'path', fallback=str(venvpath))
+        if c.get('Options', 'pyInstalledVersion') is not None:
+            conf['path'] = c['Options']['pyInstalledVersion']
         for i in {'uvGlobal','uvLocal','defaultToRun','noSSLVerify','noCustomHTMLParser','isDevEnv'}:
-            conf[i] = c.getboolean('Options', i, fallback=False)
+            if c.get('Options', i) is not None:
+                conf[i] = c.getboolean('Options', i, fallback=False)
         temploc.unlink(missing_ok=True)
         del c
-    elif (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists():
-        if (venvpath / '.USEUV').exists():
-            tempUV = True
-            (venvpath / '.USEUV').unlink(missing_ok=True)
-        if (venvpath / '.USEUVI').exists():
-            tempUVI = True
-            (venvpath / '.USEUVI').unlink(missing_ok=True)
-        if (venvpath / '.DEFAULTRUN').exists():
-            tempDR = True
-            (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
-        pyversion = platform.python_version()
-        with open(venvpath / 'pyvenv.cfg','r') as f:
-            c = configparser.ConfigParser(allow_unnamed_section=True)
-            c.optionxform=str
-            c.read_file(f)
-            pyversion = c[configparser.UNNAMED_SECTION]['version_info']
-            del c
-        conf = {
-            'cfgVersion':1,
-            'path':'',
-            'pyInstalledVersion':pyversion,
-            'uvGlobal':tempUV,
-            'uvLocal':tempUVI,
-            'defaultToRun':tempDR,
-            'noSSLVerify':False,
-            'noCustomHTMLParser':False,
-            'isDevEnv':False
-        }
-    if conf is None:
+    if not conf:
         print('Nothing to do.')
-    else:
-        writeTOML(confloc, conf)
+    elif write:
+        writeTOML(newloc, conf)
+    return conf
 
 insecure_context = ssl._create_unverified_context()
 
@@ -494,8 +474,9 @@ except:
     modlist.append('tomli')
 
 if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists() or (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
+    # TODO: Make this not overwrite the current config version
     print('Old config detected. Automatically migrating to new one.')
-    migrateConfig()
+    migrateConfig(True)
     print('Done')
 if (curdir / 'pymin.toml').exists():  # load config and set venvpath
     cfgloc = curdir / 'pymin.toml'
@@ -607,7 +588,7 @@ elif argv[1] == 'docs':
         msg = page.get(argv[2], f'Page "{argv[2]}" does not exist.')
     print(msg)
 elif argv[1] == 'migrate-config':
-    migrateConfig()
+    c2.update(migrateConfig())
 elif argv[1] == 'cfg':
     if cfgloc is None:
         if not hasVenv:
