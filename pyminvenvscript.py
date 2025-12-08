@@ -262,7 +262,6 @@ def migrateConfig():
         c.optionxform=str
         with open(temploc,'r') as f:
             c.read_file(f)
-        print()
         if 'path' in c['Options']:
             conf['path'] = c.get('Options', 'path', fallback=str(venvpath))
         if 'pyInstalledVersion' in c['Options']:
