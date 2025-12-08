@@ -240,8 +240,7 @@ def updatePythonVersion():
             installmodules()
         c2['pyInstalledVersion'] = platform.python_version()
 
-def migrateConfig(write=False):
-    newloc = venvpath / 'pymin.toml'
+def migrateConfig():
     conf = {}
     # Config v1
     if (venvpath / '.USEUV').exists():
@@ -257,26 +256,24 @@ def migrateConfig(write=False):
     if (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
         if (curdir / 'pymin.cfg').exists():
             temploc = curdir / 'pymin.cfg'
-            newloc = curdir / 'pymin.toml'
         else:
             temploc = venvpath / 'pymin.cfg'
         c = configparser.ConfigParser()
         c.optionxform=str
         with open(temploc,'r') as f:
             c.read_file(f)
-        if c.get('Options', 'path') is not None:
+        print()
+        if 'path' in c['Options']:
             conf['path'] = c.get('Options', 'path', fallback=str(venvpath))
-        if c.get('Options', 'pyInstalledVersion') is not None:
-            conf['path'] = c['Options']['pyInstalledVersion']
+        if 'pyInstalledVersion' in c['Options']:
+            conf['pyInstalledVersion'] = c['Options']['pyInstalledVersion']
         for i in {'uvGlobal','uvLocal','defaultToRun','noSSLVerify','noCustomHTMLParser','isDevEnv'}:
-            if c.get('Options', i) is not None:
+            if i in c['Options']:
                 conf[i] = c.getboolean('Options', i, fallback=False)
         temploc.unlink(missing_ok=True)
         del c
     if not conf:
         print('Nothing to do.')
-    elif write:
-        writeTOML(newloc, conf)
     return conf
 
 insecure_context = ssl._create_unverified_context()
@@ -473,13 +470,8 @@ except:
     import tomli as tomllib
     modlist.append('tomli')
 
-if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists() or (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
-    # TODO: Make this not overwrite the current config version
-    print('Old config detected. Automatically migrating to new one.')
-    migrateConfig(True)
-    print('Done')
+cfgloc = curdir / 'pymin.toml'
 if (curdir / 'pymin.toml').exists():  # load config and set venvpath
-    cfgloc = curdir / 'pymin.toml'
     with open(cfgloc, 'rb') as f:
         c1 = tomllib.load(f)
     c2 = {
@@ -514,7 +506,7 @@ elif (venvpath / 'pymin.toml').exists():  # load config
         'noCustomHTMLParser':c1.get('noCustomHTMLParser',False),
         'isDevEnv':c1.get('isDevEnv',False)
     }
-else:  # Use fallback values because config does not exist
+else:  # Load older config
     c1 = None
     c2 = {
         'cfgVersion':1,
@@ -526,18 +518,33 @@ else:  # Use fallback values because config does not exist
         'noCustomHTMLParser':False,
         'isDevEnv':False
     }
-    if venvpath.exists():
+    # Load config v2
+    if (curdir / 'pymin.cfg').exists():
+        c2.update(migrateConfig())
+        if c2['path'] == '':
+            print("Error: path in config is empty. This script will break if this is not set when the config is outside of the venv.")
+            exit()
+        venvpath = Path(c2['path']).resolve()
+        if not venvpath.exists():
+            hasVenv = False
+    elif (venvpath / 'pymin.cfg').exists():
+        cfgloc = venvpath / 'pymin.toml'
+        c2.update(migrateConfig())
+    # Fallback
+    elif venvpath.exists():
+        cfgloc = venvpath / 'pymin.toml'
         with open(venvpath / 'pyvenv.cfg', 'r') as f:
             c = configparser.ConfigParser(allow_unnamed_section=True)
             c.optionxform=str
             c.read_file(f)
             c2['pyInstalledVersion'] = c[configparser.UNNAMED_SECTION]['version_info']
         c2['path'] = venvpath
-        cfgloc = venvpath / 'pymin.toml'
+        # Load config v1
+        if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists():
+            c2.update(migrateConfig())
     else:  # no venv
         c2['pyInstalledVersion'] = platform.python_version()
         hasVenv = False
-        cfgloc = curdir / 'pymin.toml'
 
 if platform.system() == 'Windows':
     pythonvenvloc = venvpath / 'Scripts/python.exe'
@@ -563,7 +570,7 @@ if hasVenv:
 if c2['defaultToRun'] and (len(argv) < 2 or argv[1].startswith(('-','--','/'))):
     run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *argv[1:]))
 elif len(argv) < 2 or argv[1] == 'help' or ('--help' in argv or '-h' in argv or '/?' in argv) and argv[1] not in {'uv','pip','run'}:
-    print('venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form "key=value". Use without arguements to list all values.\n\tcfg-game\t\tFor configuring pymin. Works the same as cfg except key/values are in the form "section.key=value". Only works on pymin 12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. If an old version is detected, this runs automatically.\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\ncfg/cfg-game parsing rules:\n\tDo not use spaces unless they are a part of the value, whitespace is not ignored.\n\tMake sure to escape any curly brackets. They are special characters in the terminal (only tested in bash).\n\tDo not use brackets [ ] or curly brackets { } in table keys. They are currently not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML. I was being lazy and didn\'t want to deal it.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\t\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game\'s config.')
+    print('venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form "key=value". Use without arguements to list all values.\n\tcfg-game\t\tFor configuring pymin. Works the same as cfg except key/values are in the form "section.key=value". Only works on pymin 12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. This runs automatically if the current config is not present and an old version is detected.\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\ncfg/cfg-game parsing rules:\n\tDo not use spaces unless they are a part of the value, whitespace is not ignored.\n\tMake sure to escape any curly brackets. They are special characters in the terminal (only tested in bash).\n\tDo not use brackets [ ] or curly brackets { } in table keys. They are currently not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML. I was being lazy and didn\'t want to deal it.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\t\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game\'s config.')
 elif argv[1] == 'docs':
     generalArgs = 'This command takes four general arguements (these only apply for one run):\n\t--unverified\tDisables ssl verification.\n\t--nohtmlparser\tSkips installing the custom html parser.\n\t--version\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]'
     forwardArgs = 'This command forwards all arguements.'
@@ -575,7 +582,7 @@ elif argv[1] == 'docs':
         'update':        f'Usage: pyminvenvscript.py update [args]\n\nUpdates everything in the virtual environment.\n\nPlaceholder (steps)\n\n{generalArgs}',
         'cfg':           f'Usage: pyminvenvscript.py cfg [args]\n\nUsed to display and update the configuration values for this script. These\nvalues are stored in pymin.toml either in the <venvpath> directory or in the\nsame directory as this script. When changing values, they must be in the format\n"key=value". Passing no arguements to this command will display all values.\n\n{parsingRules}\n\nThe config values and their function are as follows:\n\tcfgVersion\n\t\tThe version of config used.\n\n\tpath\n\t\tThe path to the virtual environment. Loaded into <venvpath> after processing.\n\t\tThis will be blank if the virtual environment is in the default location with\n\t\tthe config is inside of it.\n\n\tpyInstalledVersion\n\t\tThe version of python used to install the venv. Used for version checks.\n\n\tuvGlobal\n\t\tToggle to make use of a global installation of uv.\n\n\tuvLocal\n\t\tToggle to use a version of uv installed in the virtual environment.\n\n\tdefaultToRun\n\t\tMakes the default command "run" instead of help.\n\n\tnoSSLVerify\n\t\tTurns off ssl verification for downloads made directly by this script. Does not\n\t\tdo anything to uv or pip.\n\n\tnoCustomHTMLParser\n\t\tDisables the installation of the modified version of tkhtmlview.html_parser\n\t\tthat is required for Pymin\'s wiki to work. Does not delete it if it is already\n\t\tinstalled\n\n\tisDevEnv\n\t\tTurns on developer mode for this script. This prevents the updating of Pymin,\n\t\tas3lib, and tkhtmlview.',
         'cfg-game':      f'Usage: pyminvenvscript.py cfg-game [args]\n\nUsed to display and update the configuration for pymin. Only works on game\nversion 12+. These values are stored in <venvpath>/Pymin/nimin_prefs.toml.\nWhen changing values, they must be in the format "section.key=value". No spaces\nare allowed. Passing no arguements to this command will display all values.\nUnlike with the cfg command, this one can not give you a description of each\nvalue because they are external and might change.\n\n{parsingRules}',
-        'migrate-config': 'Usage: pyminvenvscript.py migrate-config\n\nMigrates an older versions of this script\'s config to the current one. This\ncommand does nothing if only the current config version is present.\n\nThis will automatically run if any of the following files exist:\n\t<venvpath>/.USEUV\n\t<venvpath>/.USEUVI\n\t<venvpath>/pymin.cfg\n\t<venvpath>/.DEFAULTRUN\n\t./pymin.cfg\n\nThis command takes no arguements',
+        'migrate-config': 'Usage: pyminvenvscript.py migrate-config\n\nMigrates an older versions of this script\'s config to the current one. This\ncommand does nothing if only the current config version is present.\n\nThis will automatically run if the current config is missing and any of the\nfollowing files exist:\n\t<venvpath>/.USEUV\n\t<venvpath>/.USEUVI\n\t<venvpath>/pymin.cfg\n\t<venvpath>/.DEFAULTRUN\n\t./pymin.cfg\n\nThis command takes no arguements',
         'run':           f'Usage: pyminvenvscript.py run\n\nRuns the game. The game\'s script must be at <venvpath>/Pymin/Pymin.py.\n\n{forwardArgs}',
         'conv':          f'Usage: pyminvenvscript.py conv\n\nOpens the save file converter included in the game. The game\'s script must be\nat <venvpath>/Pymin/Pymin.py.\n\nThis command takes no arguements',
         'recreate':      f'Usage: pyminvenvscript.py recreate [args]\n\nDeletes everything and starts anew.\n\nPlaceholder (steps)\n\n{generalArgs}\n\nThis arguement takes three special arguements:\n\t--with-config\tTransfers the config for this script to the new virtual environment.\n\t--with-saves\tTransfers the <venvpath>/Pymin/nimin_saves directory to the new virtual environment.\n\t--with-game-config\tTransfers the game\'s config to the new virtual environment. (only works with Nimin_Prefs.toml)',
