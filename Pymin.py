@@ -3390,7 +3390,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       tempStr.close()
    def detailedTitles(self):
-      # TODO: Optimize
       """
       Titles button on the side bar
       """
@@ -3422,11 +3421,12 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\nPussy Galore"
       elif (self.vagTotal > 4):
          tempStr += "\nGreat for Orgies"
-      if (self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2 > 20000):
+      temp = self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2
+      if (temp > 20000):
          tempStr += "\nThe 'Cum Flooder'"
-      elif (self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2 > 5000):
+      elif (temp > 5000):
          tempStr += "\nDangerous When You Come"
-      elif (self.ballSize * (self.ballSize / 2) * self.balls * self.cumMod * 2 > 1000):
+      elif (temp > 1000):
          tempStr += "\nOverflowing With Seed"
       if (self.breastSize > self.tallness * 3):
          tempStr += "\nMissus Tits"
@@ -3444,10 +3444,11 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += "\nA Walking Milk Tank"
       elif (self.lactation + self.milkMod > 500 and self.lactation > 0 or self.udderLactation + self.milkMod > 1000 and self.udderLactation > 0):
          tempStr += "\nA Dairy Cow"
-      if (self.pregnancyTime + self.vagBellyMod > 500 and self.vagTotal > 0):
-         tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
-      elif (self.pregnancyTime + self.vagBellyMod > 300 and self.vagTotal > 0):
-         tempStr += "\nA Fertility Goddess"
+      if (self.vagTotal > 0):
+         if (self.pregnancyTime + self.vagBellyMod > 500):
+            tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
+         elif (self.pregnancyTime + self.vagBellyMod > 300):
+            tempStr += "\nA Fertility Goddess"
       if self.grammarFixes and tempStr == "Around town, you are thought of as being:\n":
          tempStr.clear()
       else:
@@ -11327,13 +11328,14 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.nippleSize > 180):
             self.doMainText(" the nearby wall")
          self.doMainText(" until they begin to feel warm and tingly.")
-         # TODO: Add case for bootTotal == 10
          if (self.boobTotal == 4):
             self.doMainText(" Your hands even double their work as they fondle your second set of breasts as well, molding and massaging them just as much as the first pair, feeling twice as much pleasure.")
          elif (self.boobTotal == 6):
             self.doMainText(" Your hands have their work cut out for them as they attempt to give all 6 of your breasts attention, running up and down, from chest to belly, caressing them restlessly as you heave to control yourself just a little longer.")
          elif (self.boobTotal == 8):
             self.doMainText(" From chest to lower belly, your hands continue to rove to fondle all four sets of tits, fervently groping them all with great pleasure.")
+         elif (self.gameTweaksMisc and self.boobTotal == 10):  # TODO: Make sure this is under the correct toggles
+            self.doMainText("")  # TODO: Add text for this
          if (self.sen <= 30):
             self.doMainText(" Unfortunately, you can't really come as your breasts simply aren't sensitive enough. But, it does feel nice as you continue to play with your nipples.")
             self.doLust(-(self.sen // 5),2,3)
@@ -11970,7 +11972,6 @@ class NiminFetishFantasyv0975o_fla:
                self.advancedAlchemy()
       self.doListen = doListen
    def doLevelUP(self):
-      # TODO: if/else-ify
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
       if self.staticdoLevelUPButtons:
          self.choiceListArray = as3.Array("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
@@ -11989,9 +11990,10 @@ class NiminFetishFantasyv0975o_fla:
       self.choiceListButtons("Level Up")
       def doListen():
          self.choiceListSelect("Level Up")
-         if (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.doLevelUP()
-         elif (self.buttonChoice == 12):
+         # NOTE: Unused
+         #if (self.buttonChoice == 4 or self.buttonChoice == 8):
+         #   self.doLevelUP()
+         if (self.buttonChoice == 12):
             self.doReturn()
          else:
             self.choicePage = 1
@@ -15470,7 +15472,6 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText("\n\nWith the obvious disparity of sexes in the orgy, they could probably use more females. Would you like to lend an extra hole or two?")
             self.buttonConfirm()
             def doListen():
-               # TODO: optimize if/else
                if (self.buttonChoice == 6):
                   tempInt = 0
                   self.doMainText("They welcome you into the group, eager to have some more feminine attributes around. Within moments of joining, ",True)
@@ -16147,7 +16148,6 @@ class NiminFetishFantasyv0975o_fla:
                #!It says "sandvich"
                if (chance <= 15):
                   self.doMainText("You munch on the sandvich, enjoying its meaty goodness, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...",True)
-                  # TODO: Add case for boobTotal == 10
                   if self.boobTotal == 2:
                      self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
                      if (self.breastSize > 4):
@@ -16162,6 +16162,11 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.breastSize > 4):
                         self.doMainText(", growing much lighter")
                      self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
+                  elif self.gameTweaksMisc and self.boobTotal == 10:  # TODO: Make text for this more unique
+                     self.doMainText("\n\nYour belly tickles")
+                     if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                     self.doMainText(f". Checking, you catch your three lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
                   self.boobTotal = 4
                   self.fourBoobAffinity = 100
                   self.hrs = 2
@@ -20517,8 +20522,8 @@ class NiminFetishFantasyv0975o_fla:
                self.doLust(Math.floor(self.cockSize * self.cockSizeMod / 5 + self.percent() / 10),1)
                self.cockChange(1,0)
                self.cockSnakeVenom += 5
-            elif (self.cockTotal < 1 and self.vagTotal > 0):
-               if (self.clitSize > 20 and self.percent() <= 5):
+            elif (self.vagTotal > 0):
+               if (self.percent() <= 5 and self.clitSize > 20):
                   self.doMainText(f" {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)}. You feel it swell and shift within your {self.clothesBottom()}, your lips started to grow quite oddly as well...")
                   self.vagChange(0,-1)
                   self.cockChange(Math.ceil(self.clitSize * 5 / 2),1)
