@@ -11779,7 +11779,6 @@ class NiminFetishFantasyv0975o_fla:
          level = self.tempInt
          tempBool = False
          if (self.buttonChoice == 6):
-            #! Separate this into its own function to remove tempBool
             tempBool = False
             if ID == 220 and self.countItem(209) >= 7:
                tempBool = True
@@ -12842,7 +12841,7 @@ class NiminFetishFantasyv0975o_fla:
       self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.",True)
       self.bc()
       self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,0))
-       #! Ask again if value is invalid, make sure that ctrl-c works to exit prompt
+      #! Ask again if value is invalid, make sure that ctrl-c works to exit prompt
       try:
          temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
       except:
@@ -20557,9 +20556,12 @@ class NiminFetishFantasyv0975o_fla:
          elif (attack <= 90):
             chance = self.percent()
             if (chance < 12 and self.cockTotal > 0):
-               self.doMainText(f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.cockDesc()} masculine length{self.plural(1)}, soaking up some of the moisture from within and causing {self.plural(9)} to shrink a little. The sand then returns to the devil, renewing some of windy essence.")
-               self.cockSize -= 1
-               self.doeHP(2)
+               if (self.gameTweakMisc and self.cockSize < 2):
+                  self.doMainText(f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.cockDesc()} masculine length{self.plural(1)}. However, your cock{self.plural(1)} {self.plural(13)} so puny that there is hardly any moisture for the sand to take, doing nothing for the devil.")
+               else:
+                  self.doMainText(f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.cockDesc()} masculine length{self.plural(1)}, soaking up some of the moisture from within and causing {self.plural(9)} to shrink a little. The sand then returns to the devil, renewing some of windy essence.")
+                  self.cockSize -= 1
+                  self.doeHP(2)
             elif (chance < 23 and self.balls > 0 and self.showBalls):
                if (self.ballSize < 2):
                   self.doMainText(f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.ballDesc()} scrotum. However, your balls are so puny that there is hardly any moisture for the sand to take, doing nothing for the devil.")
@@ -20618,11 +20620,15 @@ class NiminFetishFantasyv0975o_fla:
          elif (attack <= 100):
             chance = self.percent()
             self.doMainText("\n\nA funnal of sand shoots out from the devil's form, whipping out and latching onto your ")
-            #!Add more checks here to make sure things don't get weird
             if (chance < 12 and self.cockTotal > 0):
-               self.doMainText(f"{self.cockDesc()} cock{self.plural(1)}, siphoning out a lot of moisture and causing {self.plural(9)} to shrink dramatically, restoring a good deal of power to the devil's winds.")
-               self.cockSize -= 5
-               self.doeHP(10)
+               if (self.gameTweakMisc and self.cockSize < 2):
+                  self.doMainText(f"cock{self.plural(1)}. However, {self.plural(7)} already so puny that the devil can't siphon any more moisture from {self.plural(9)}, proving a fruitless attack.")
+               else:
+                  self.doMainText(f"{self.cockDesc()} cock{self.plural(1)}, siphoning out a lot of moisture and causing {self.plural(9)} to shrink dramatically, restoring a good deal of power to the devil's winds.")
+                  self.cockSize -= 5
+                  if (self.gameTweakMisc and self.cockSize < 1):
+                     self.cockSize = 1
+                  self.doeHP(10)
             elif (chance < 23 and self.balls > 0 and self.showBalls):
                if (self.ballSize < 1):
                   self.doMainText("balls. However, they're already so puny that the devil can't siphon any more moisture from them, proving a fruitless attack.")
