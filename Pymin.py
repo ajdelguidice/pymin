@@ -301,7 +301,7 @@ class NiminFetishFantasyv0975o_fla:
       # choiceList
       self.choicePage = 0
       self.choiceListArray = as3.Array()
-      self.choiceListResult = as3.Array(numElements=2)
+      self.choiceListResult = as3.Array(2)
 
       # moveItem
       self.moveItemID = 0
@@ -10447,7 +10447,8 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doLust(-(self.sen // 2),2,1,2)
          elif self.currentZone == 2: # Firmshaft Whoring
-            self.rndArray = as3.Array(1)
+            self.rndArray = as3.Array()
+            self.rndArray.push(1)
             if self.gender == 2:
                self.rndArray.push(2)
             if (self.gender in {2,3} or self.breastSize > 24):
@@ -10652,7 +10653,8 @@ class NiminFetishFantasyv0975o_fla:
                self.doLust(self.lib // 4,0)
                self.hrs = 1
          elif self.currentZone == 4: # Siz'Calit Whoring
-            self.rndArray = as3.Array(1)
+            self.rndArray = as3.Array()
+            self.rndArray.push(1)
             if self.cockTotal > 0:
                self.rndArray.push(2)
             if self.gender == 2:
@@ -11064,7 +11066,8 @@ class NiminFetishFantasyv0975o_fla:
          elif tempInt == 12:
             whichCock = "bumpy-ridged spiked bug wang"
          getCum = self.cumAmount()
-         self.rndArray = as3.Array(1)
+         self.rndArray = as3.Array()
+         self.rndArray.push(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
          #   self.rndArray.push(2)
          #if getCum > 2000:
@@ -11200,7 +11203,8 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lust < 20):
          self.doMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
       else:
-         self.rndArray = as3.Array(1)
+         self.rndArray = as3.Array()
+         self.rndArray.push(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
          #   self.rndArray.push(2)
          #tempArr.push(3)
@@ -11304,7 +11308,8 @@ class NiminFetishFantasyv0975o_fla:
    #   if (self.lust > 20):
    #      self.doSexP(10)
    def doBoobMasturbate(self):
-      self.rndArray = as3.Array(1)
+      self.rndArray = as3.Array()
+      self.rndArray.push(1)
       if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
          self.rndArray.push(2)
       chance = self.chooseFrom()
@@ -11444,7 +11449,8 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
       self.doEnd()
    def doUdderMasturbate(self):
-      self.rndArray = as3.Array(1)
+      self.rndArray = as3.Array()
+      self.rndArray.push(1)
       if self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0:
          self.rndArray.push(2)
       chance = self.chooseFrom()
