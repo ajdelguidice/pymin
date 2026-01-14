@@ -227,17 +227,29 @@ def replaceTkhtmlviewParserWithUnsafeOne():
             Path(temp).write_bytes(urlfile.read())
         print('Done')
 
-def updatePythonVersion():
+def updatePythonVersion(version: tuple):
     answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)')
     if c2['isDevEnv'] and answer.lower() in {'y',''}:
-        rmtree(venvpath / f'lib/python{'.'.join(pyvertuple[:2])}')
-        if c2['uvGlobal'] or c2['uvLocal']:
-            # TODO: Test to see if this actually works.
-            run(pipCommand[:-1] + ('venv', '--', '--upgrade', venvpath))
-        else:
-            run(pipCommand[:-1] + ('venv', '--upgrade', venvpath))
-        with OverrideDev():
-            installmodules()
+        tempdir = Path(tempfile.mkdtemp())
+        withconf = True
+        try:
+            if cfgloc.exists():
+                cfgloc.relative_to(venvpath)
+                copyfile(cfgloc, tempdir / 'pymin.toml')
+            else:
+                withconf = False
+        except ValueError:
+            withconf = False
+        copytree(venvpath / 'Pymin', tempdir / 'Pymin')
+        try:
+            recreate(False, False, False)
+        except Exception as e:
+            print(f'Temp directory at {tempdir} that contains backed up game files was not deleted to minimise data loss.')
+            raise e
+        if withconf:
+            copyfile(tempdir / 'pymin.toml', cfgloc)
+        rmtree(venvpath / 'Pymin')
+        copytree(tempdir / 'Pymin', venvpath / 'Pymin')
         c2['pyInstalledVersion'] = platform.python_version()
 
 def migrateConfig():
@@ -553,17 +565,18 @@ pythonm = [pythonvenvloc, '-m']
 
 if c2['uvGlobal']:
     pipCommand = ['uv', 'pip']
-    env['UV_PYTHON'] = pythonvenvloc
+    env['UV_PYTHON'] = str(pythonvenvloc)
 elif c2['uvLocal']:
     pipCommand = pythonm + ['uv', 'pip']
 else:
     pipCommand = pythonm + ['pip']
 
 if hasVenv:
+    pyver = c2['pyInstalledVersion'].split('.')[:2]
+    if platform.python_version().split('.')[:2] != pyver and platform.system() != 'Windows':
+        updatePythonVersion(pyver)
     if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n', '').replace('\r', '') == 'True':
         uninstallMiniAMF = True
-    if platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
-        updatePythonVersion()
 
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(argv) < 2 or argv[1].startswith(('-','--','/'))):
