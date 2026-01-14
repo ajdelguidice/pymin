@@ -220,7 +220,7 @@ DEFAULT_STACK = {
 # functions
 def get_existing_font(font_families):
     # ------------------------------------------------------------------------------------------
-    fflow = tuple(i.lower() for i in font.families())
+    fflow = set(i.lower() for i in font.families())
     for i in font_families:
         if i.lower() in fflow:
             return i
@@ -237,10 +237,7 @@ class HLinkSlot:
         self._w = w
         self.tag_name = tag_name
         self.URL = url
-        if callobject == None:
-            self.callobject = print
-        else:
-            self.callobject = callobject
+        self.callobject = print if callobject is None else callobject
 
     def call(self, event):
         # ------------------------------------------------------------------------------------------
@@ -277,9 +274,9 @@ class ListTag:
             return chr(8226)
         if self.type == HTML.TypeOrderedList._1:
             return str(self.index)
-        elif self.type == HTML.TypeOrderedList.a:
+        if self.type == HTML.TypeOrderedList.a:
             return self._index_to_str(self.index).lower()
-        elif self.type == HTML.TypeOrderedList.A:
+        if self.type == HTML.TypeOrderedList.A:
             return self._index_to_str(self.index).upper()
 
     def _index_to_str(self, index):
@@ -317,18 +314,19 @@ class HTMLTextParser(HTMLParser):
             if k == HTML.Attrs.STYLE:
                 for p in v.split(";"):
                     try:
-                        p_key = p.split(":")[0].strip().lower()
-                        p_value = p.split(":")[1].strip().lower()
+                        pair = p.split(":")
+                        p_key = pair[0].strip().lower()
+                        p_value = pair[1].strip().lower()
                         attrs_dict[HTML.Attrs.STYLE][p_key] = p_value
                     except:
                         pass
-            elif k in (
+            elif k in {
                 HTML.Attrs.HREF,
                 HTML.Attrs.SRC,
                 HTML.Attrs.WIDTH,
                 HTML.Attrs.HEIGHT,
                 HTML.Attrs.TYPE,
-            ):
+            }:
                 attrs_dict[k] = v
         return attrs_dict
 
@@ -336,7 +334,7 @@ class HTMLTextParser(HTMLParser):
         # ------------------------------------------------------------------------------------------
         tag = {WCfg.KEY: {}, Fnt.KEY: {}, Bind.KEY: {}}
 
-        for k1 in (WCfg.KEY, Fnt.KEY, Bind.KEY):
+        for k1 in tag.keys():
             for k2 in DEFAULT_STACK[k1]:
                 tag[k1][k2] = self.stack[k1][k2][-1][1]
 
@@ -345,15 +343,12 @@ class HTMLTextParser(HTMLParser):
     def _stack_get_main_key(self, key):
         # ------------------------------------------------------------------------------------------
         if key in WCfg.__dict__.values():
-            main_key = WCfg.KEY
-        elif key in Fnt.__dict__.values():
-            main_key = Fnt.KEY
-        elif key in Bind.__dict__.values():
-            main_key = Bind.KEY
-        else:
-            raise ValueError(f"key {key} doesn't exists")
-
-        return main_key
+            return WCfg.KEY
+        if key in Fnt.__dict__.values():
+            return Fnt.KEY
+        if key in Bind.__dict__.values():
+            return Bind.KEY
+        raise ValueError(f"key {key} doesn't exists")
 
     def _stack_add(self, tag, key, value=None):
         # ------------------------------------------------------------------------------------------
@@ -593,9 +588,7 @@ class HTMLTextParser(HTMLParser):
                 self._w.image_create(tk.INSERT, image=self.images[-1])
 
         elif tag == HTML.Tag.TABLE:
-            tabs = []
-            for i in range(30): # HF was len(self.list_tags)):
-                tabs += [40 * (i + 1), tk.LEFT ]
+            tabs = [[40 * (i + 1), tk.LEFT] for i in range(30)]
             self._stack_add(tag, WCfg.TABS, tabs)
 
         if self.strip:
@@ -645,7 +638,7 @@ class HTMLTextParser(HTMLParser):
     def _text_rstrip(self):
         # ------------------------------------------------------------------------------------------
         for _ in range(3):
-            if self._w.get("end-2c", "end-1c") in (" ", "\n"):
+            if self._w.get("end-2c", "end-1c") in {" ", "\n"}:
                 self._w.delete("end-2c", "end-1c")
 
     def _remove_last_space(self):
