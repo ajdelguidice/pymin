@@ -123,12 +123,14 @@ def installmodules():
     if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
         temp.remove('as3lib')
-        temp.remove('tkhtmlview')
     else:
         set_as3libversion(temp)
     run(temp, env=env)
+    if not c2['isDevEnv']:
+        # Install tkhtmlview this way because its dependencies are broken
+        run(pipCommand + ['install', '-U', 'tkhtmlview', '--no-deps'], env=env)
+        replaceTkhtmlviewParserWithUnsafeOne()
     print('Done')
-    replaceTkhtmlviewParserWithUnsafeOne()
 
 def downloadgame():
     #Downloads the game
@@ -159,12 +161,14 @@ def updatemodules():
     if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
         temp.remove('as3lib')
-        temp.remove('tkhtmlview')
     else:
         set_as3libversion(temp)
     run(temp, env=env)
+    if not c2['isDevEnv']:
+        # Update tkhtmlview this way because its dependencies are broken
+        run(pipCommand + ['install', '-U', 'tkhtmlview', '--no-deps'], env=env)
+        replaceTkhtmlviewParserWithUnsafeOne()
     print('Done')
-    replaceTkhtmlviewParserWithUnsafeOne()
 
 def recreate(withconf, withsaves, withgameconf):
     if not venvpath.is_dir():
@@ -216,16 +220,13 @@ def recreate(withconf, withsaves, withgameconf):
 
 def replaceTkhtmlviewParserWithUnsafeOne():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
-    if c2['isDevEnv']:
-        print('Skipped custom html_parser.py.')
-    elif not '--nohtmlparser' in argv or c2['noCustomHTMLParser']:
-        print('Replacing tkhtmlview html_parser.py...')
+    if not '--nohtmlparser' in argv or c2['noCustomHTMLParser']:
         temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').replace('\n', '')
         if platform.system() == 'Windows':
             temp = temp.replace('\\', '/').replace('\r', '')
         with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=getSSLContext()) as urlfile:
             Path(temp).write_bytes(urlfile.read())
-        print('Done')
+        print('Patched tkhtmlview html_parser.py')
 
 def updatePythonVersion(version: tuple):
     answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)')
@@ -474,7 +475,7 @@ delconf = None
 uninstallMiniAMF = False
 pipCommand = None
 
-modlist = ['tkhtmlview', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
+modlist = ['requests', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
 try:
     import tomllib
 except:
