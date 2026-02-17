@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-import tkinter
-from pathlib import Path, PurePath
-from tkinter import filedialog, ttk
-import xml.etree.ElementTree as xmletree
-from miniamf import sol, DecodeError
-from miniamf.amf3 import ByteArray
-from functools import partial, cache
-from secrets import choice
-from re import sub
-from io import BytesIO
-from dataclasses import dataclass
-import as3lib as as3
-import as3lib.interface_tk as itk
-import as3lib.keyConversions as ckeys
-from as3lib import cmath, as3state, Math
+import as3lib
+from as3lib import Array, as3state, cmath, Error, Math, RangeError, trace
 from as3lib.config import TOML
 from as3lib.helpers import textObject
+import as3lib.interface_tk as itk
+import as3lib.keyConversions as ckeys
+from dataclasses import dataclass
+from functools import partial, cache
+from io import BytesIO
+from miniamf import sol, DecodeError
+from miniamf.amf3 import ByteArray
+from pathlib import Path, PurePath
+from re import sub
+from secrets import choice
+import tkinter
+from tkinter import filedialog, ttk
+import xml.etree.ElementTree as xmletree
 
 '''
 These variables will need to be checked once as3lib.Array works properly. They might break.
@@ -40,7 +40,7 @@ legArray
 
 __version__ = "12"
 
-class NullData(as3.Error):
+class NullData(Error):
    name = 'NullDataError'
 
 def repintorfloat(number):
@@ -78,14 +78,14 @@ class ButtonList(list):
       if item > 0:
          return super().__getitem__(item-1)
       elif item == 0:
-         raise as3.RangeError("ButtonList; Index can not be 0")
+         raise RangeError("ButtonList; Index can not be 0")
       elif item < 0:
          return super().__getitem__(item)
    def __setitem__(self,item,value):
       if item > 0:
          super().__setitem__(item-1,value)
       elif item == 0:
-         raise as3.RangeError("ButtonList; Index can not be 0")
+         raise RangeError("ButtonList; Index can not be 0")
       elif item < 0:
          super().__setitem__(item,value)
    def set(self,*args):
@@ -308,21 +308,21 @@ class NiminFetishFantasyv0975o_fla:
 
       # bag
       self.bagPage = 1
-      #self.bagArray = as3.Array()
-      #self.bagStackArray = as3.Array()
-      self.itemGainArray = as3.Array()
+      #self.bagArray = Array()
+      #self.bagStackArray = Array()
+      self.itemGainArray = Array()
       self.mts = False
       self.mtb = False
 
       # stash
       self.stashPage = 1 # Tracks stash page
-      #self.stashArray = as3.Array()
-      #self.stashStackArray = as3.Array()
+      #self.stashArray = Array()
+      #self.stashStackArray = Array()
 
       # choiceList
       self.choicePage = 0
-      self.choiceListArray = as3.Array()
-      self.choiceListResult = as3.Array(2)
+      self.choiceListArray = Array()
+      self.choiceListResult = Array(2)
 
       # moveItem
       self.moveItemID = 0
@@ -345,7 +345,7 @@ class NiminFetishFantasyv0975o_fla:
 
       # RND
       self.rndResult = 0
-      self.rndArray = as3.Array()
+      self.rndArray = Array()
 
       # Stats variables
       #self.str = 0
@@ -530,7 +530,7 @@ class NiminFetishFantasyv0975o_fla:
       #self.teatSize = 0
 
       # Pregnancy
-      #self.pregArray = as3.Array()
+      #self.pregArray = Array()
       #self.pregStatus = 0
       #self.pregnancyTime = 0
       #self.pregRate = 1.0
@@ -702,8 +702,8 @@ class NiminFetishFantasyv0975o_fla:
       #self.freakyGirlChildren = 0
 
       # Everything else
-      self.textCheckArray = as3.Array()
-      self.specialAbilityArray = as3.Array()
+      self.textCheckArray = Array()
+      self.specialAbilityArray = Array()
    def MainTimeline(self):
       """
       Sets up the interface, then runs the "frame1" function
@@ -1032,10 +1032,10 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow._children["Theme"].getcb():
             if self.optionswindow._children["Theme"].get() == "":
                self.optionswindow._children["Theme"]["background"] = "#FF3333"
-               raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
+               raise Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
             if not self.checkValidHex(self.optionswindow._children["Theme"].get()):
                self.optionswindow._children["Theme"]["background"] = "#FF3333"
-               raise as3.Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
+               raise Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
             if not self.customthemecolor:
                self.othemecolor = self.theme
             self.customthemecolor = True
@@ -1052,10 +1052,10 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow._children["FontColor"].getcb():
             if self.optionswindow._children["FontColor"].get() == "":
                self.optionswindow._children["FontColor"]["background"] = "#FF3333"
-               raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is empty")
+               raise Error("Pymin.OWSaveOptions; CustomFontColor is empty")
             if not self.checkValidHex(self.optionswindow._children["FontColor"].get()):
                self.optionswindow._children["FontColor"]["background"] = "#FF3333"
-               raise as3.Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
+               raise Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
             if not self.customfontcolor:
                self.ofontcolor = self.fontColor
             self.customfontcolor = True
@@ -1071,10 +1071,10 @@ class NiminFetishFantasyv0975o_fla:
          # Save Location
          if self.optionswindow._children["SaveLocation"].get() == "":
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
-            raise as3.Error("Pymin.OWSaveOptions; SaveLocation is empty")
-         if not as3.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
+            raise Error("Pymin.OWSaveOptions; SaveLocation is empty")
+         if not as3lib.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
-            raise as3.Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
+            raise Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
          if self.optionswindow._children["SaveLocation"]["background"] == "#FF3333":
             self.optionswindow._children["SaveLocation"]["background"] = "#FFFFFF"
          self.savelocation = Path(self.optionswindow._children["SaveLocation"].get()).resolve()
@@ -1192,7 +1192,7 @@ class NiminFetishFantasyv0975o_fla:
          return 1
       elif path.exists():
          if silent == False:
-            raise as3.Error("Pymin.checkExistsMakeDir; Path exists but is not a directory.")
+            raise Error("Pymin.checkExistsMakeDir; Path exists but is not a directory.")
          return -1
       else:
          path.mkdir(parents=True)
@@ -1221,7 +1221,7 @@ class NiminFetishFantasyv0975o_fla:
       Lists all files in directory "dir_" with extension "ext" with custom sort type of "type_"
       """
       if type_ not in {0,1,2}:
-         raise as3.Error("Pymin.listFilesInDir_SortCustom; Parameter \"type_\" must be either 0, 1, or 2")
+         raise Error("Pymin.listFilesInDir_SortCustom; Parameter \"type_\" must be either 0, 1, or 2")
       if type_ == 0:
          l = ("Nimin_Save1.xml","Nimin_Save2.xml","Nimin_Save3.xml","Nimin_Save5.xml","Nimin_Save6.xml","Nimin_Save7.xml","Nimin_Save9.xml","Nimin_Save10.xml","Nimin_Save11.xml","Nimin_Save1.sol","Nimin_Save2.sol","Nimin_Save3.sol","Nimin_Save5.sol","Nimin_Save6.sol","Nimin_Save7.sol","Nimin_Save9.sol","Nimin_Save10.sol","Nimin_Save11.sol")
       elif type_ == 1:
@@ -1705,7 +1705,7 @@ class NiminFetishFantasyv0975o_fla:
       try:
          TOML.write(self.dir / "Nimin_Prefs.toml", temp)
       except Exception as e:
-         raise as3.Error("Pymin.savePreferences; Failed to create TOML. Write aborted.") from e
+         raise Error("Pymin.savePreferences; Failed to create TOML. Write aborted.") from e
    def loadPreferences(self):
       sp = False
       if (self.dir / "Nimin_Prefs.toml").is_file():
@@ -1725,10 +1725,10 @@ class NiminFetishFantasyv0975o_fla:
          self.nsldSortOrder = int(game.get("nsldSortOrder",0))
          options = temp.get("options",{})
          tempdir = Path(options.get("saveLocation",self.savelocation)).resolve()
-         if as3.isValidDirectory(tempdir):
+         if as3lib.isValidDirectory(tempdir):
             self.savelocation = tempdir
          else:
-            as3.trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
+            trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
             sp = True
          self.solonlymode = bool(options.get("solMode",False))
          self.fixedresolutionmode = bool(options.get("fixedResMode",False))
@@ -1796,10 +1796,10 @@ class NiminFetishFantasyv0975o_fla:
          self.showSide = strtobool(prefs.find("showSide").text)
          if prefs.find("saveLocation") != None:
             tempdir = Path(prefs.find("saveLocation").text).resolve()
-            if as3.isValidDirectory(tempdir):
+            if as3lib.isValidDirectory(tempdir):
                self.savelocation = tempdir
             else:
-               as3.trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
+               trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
          self.solonlymode = False if prefs.find("solMode") == None else strtobool(prefs.find("solMode").text)
          if prefs.find("gameTweaks") != None:
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
@@ -1918,7 +1918,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.mts):
             self.choicePage = self.tempBagPage
       else:
-         tempArray = as3.Array(*self.choiceListArray)
+         tempArray = Array(*self.choiceListArray)
       if (len(tempArray) > 9):
          buttonlist[4] = 1
          buttonlist[8] = 1
@@ -2368,7 +2368,7 @@ class NiminFetishFantasyv0975o_fla:
          self.rndResult = 0
          self.rndArray.clear()
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
-         raise as3.Error(f"Pymin.chooseFrom; self.rndArray does not contain any items. hour = {self.hour}")
+         raise Error(f"Pymin.chooseFrom; self.rndArray does not contain any items. hour = {self.hour}")
       if self.gameTweaksMisc:
          self.rndResult = choice(self.rndArray)
       else:
@@ -2837,7 +2837,7 @@ class NiminFetishFantasyv0975o_fla:
             self.attireTop = 1
             self.attireBot = 2
             self.weapon = 10
-            self.pregArray = as3.Array()
+            self.pregArray = Array()
             self.pregStatus = 0
             self.pregnancyTime = 0
             self.pregRate = 1.0
@@ -3017,10 +3017,10 @@ class NiminFetishFantasyv0975o_fla:
             self.bagPage = 1
             self.stashPage = 1
             self.neuterizerHideBalls = False
-            self.bagArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            self.bagStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            self.stashArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-            self.stashStackArray = as3.Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            self.bagArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            self.bagStackArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            self.stashArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+            self.stashStackArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
             self.doRace()
          else:
             self.doReturn()
@@ -4188,7 +4188,7 @@ class NiminFetishFantasyv0975o_fla:
       elif sfext == ".toml":
          self.saveTOML(data,savefilename)
       else:
-         raise as3.Error(f"Pymin.doSave; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext}.")
+         raise Error(f"Pymin.doSave; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext}.")
    def doLoad(self, slot:int, file:PurePath=None):
       """
       Load game stage 2 (file manipulation)
@@ -4220,7 +4220,7 @@ class NiminFetishFantasyv0975o_fla:
          data = self.loadTOML(loadfilename)
       else:
          self.loadGo("Error: Could not load save file. Reason: Incorrect file format")
-         raise as3.Error(f"Pymin.doLoad; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
+         raise Error(f"Pymin.doLoad; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
       if data == None:
          self.loadGo("Error: Could not load save file. Reason: No data was received by doLoad")
          return
@@ -4528,17 +4528,17 @@ class NiminFetishFantasyv0975o_fla:
          self.minotaurChildren = int(skid['minotaurChildren'])
          self.freakyGirlChildren = int(skid['freakyGirlChildren'])
          trav = data['trav']
-         self.bagArray = as3.Array(*data['bag'])
-         self.bagStackArray = as3.Array(*data['bagStack'])
-         self.stashArray = as3.Array(*data['stash'])
-         self.stashStackArray = as3.Array(*data['stashStack'])
-         self.pregArray = as3.Array(*data['preg'])
+         self.bagArray = Array(*data['bag'])
+         self.bagStackArray = Array(*data['bagStack'])
+         self.stashArray = Array(*data['stash'])
+         self.stashStackArray = Array(*data['stashStack'])
+         self.pregArray = Array(*data['preg'])
       except ValueError as e:
          self.loadGo("Error: Could not load save file. Reason: One or more saved values are of an unexpected type.",True)
-         raise as3.Error("Pymin.doLoad; One or more values has an invalid type.") from e
+         raise Error("Pymin.doLoad; One or more values has an invalid type.") from e
       except Exception as e:
          self.loadGo("Error: Could not load save file. Reason: Malformed save file",True)
-         raise as3.Error("Pymin.doLoad; File failed to load.") from e
+         raise Error("Pymin.doLoad; File failed to load.") from e
       else:
          try:
             self.hideNewSaveLoadDialog()
@@ -4571,13 +4571,13 @@ class NiminFetishFantasyv0975o_fla:
                self.hideAPButton()
             self.hideNSLDBlinder()
             self.loadGo("Error: Failed after loading file data.")
-            raise as3.Error("Pymin.doLoad: Failed after loading file data.") from e
+            raise Error("Pymin.doLoad: Failed after loading file data.") from e
    def doRace(self):
       """
       New Game race selection dialog
       """
-      as3.trace("race")
-      as3.trace(self.tallness)
+      trace("race")
+      trace(self.tallness)
       self.showButtons(ButtonList(1,0,1,0,0,1,0,0,1,0,1,0))
       self.outputMainText("Choose which race you want to be:\n\nHuman - A race supposedly descendant of apes, their curious minds are more open to change and their skin is slightly more sensitive.\n\nEquan - A race supposedly descendant of horses, their large genitals make them slightly more sexual and their muscles are more powerful.\n\nLupan - A race supposedly descendant of wolves, their lean bodies are stronger and their minds more quick-witted.\n\nFelin - A race supposedly descendant of cats, their lust-driven society makes them a bit more sexual and sensitive.\n\nLizan - A race supposedly descendant of some kind of reptile, their desert-adapted bodies have made them stronger, but they're still careful as their scales make them somewhat sensitive.",True)
       self.doButtonChoices({1:"Equan",3:"Lupan",6:"Human",9:"Felin",11:"Lizan"})
@@ -4717,7 +4717,7 @@ class NiminFetishFantasyv0975o_fla:
             self.gender = 2
             self.vagSize = 12
             self.vulvaSize = 5
-            self.pregArray = as3.Array(False,0,0,0,0)
+            self.pregArray = Array(False,0,0,0,0)
             self.vagTotal = 1
             self.vagMoist = 1
             self.clitSize = 2
@@ -4729,7 +4729,7 @@ class NiminFetishFantasyv0975o_fla:
             self.balls = 2
             self.cockTotal = 1
             self.cockMoist = 1
-            self.pregArray = as3.Array(False,0,0,0,0)
+            self.pregArray = Array(False,0,0,0,0)
             self.vagTotal = 1
             self.vagMoist = 1
             self.vagSize = 8
@@ -4796,7 +4796,7 @@ class NiminFetishFantasyv0975o_fla:
                self.lizardCocks = 0
                self.vagSize = 8
                self.vulvaSize = 3
-               self.pregArray = as3.Array(False,0,0,0,0)
+               self.pregArray = Array(False,0,0,0,0)
                self.gender = 2
                self.vagTotal = 1
                self.vagMoist = 1
@@ -5317,9 +5317,9 @@ class NiminFetishFantasyv0975o_fla:
             self.moveItemStack = self.bagStackArray[tempI]
             self.bagArray[tempI] = tempInt
             self.bagStackArray[tempI] = tempInt2
-            as3.trace(tempI)
-            as3.trace(self.bagArray)
-            as3.trace(self.bagStackArray)
+            trace(tempI)
+            trace(self.bagArray)
+            trace(self.bagStackArray)
       elif self.inStash:
          if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI])):
             if (self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI])):
@@ -5334,9 +5334,9 @@ class NiminFetishFantasyv0975o_fla:
             self.moveItemStack = self.stashStackArray[tempI]
             self.stashArray[tempI] = tempInt
             self.stashStackArray[tempI] = tempInt2
-            as3.trace(tempI)
-            as3.trace(self.stashArray)
-            as3.trace(self.stashStackArray)
+            trace(tempI)
+            trace(self.stashArray)
+            trace(self.stashStackArray)
       if (self.moveItemID == 0):
          self.showMoveItem(False)
       else:
@@ -7635,7 +7635,7 @@ class NiminFetishFantasyv0975o_fla:
             self.bugCocks = 0
             self.vagBellyChange(1,1)
             self.vagTotal = 1
-            self.pregArray = as3.Array(False,0,0,0,0)
+            self.pregArray = Array(False,0,0,0,0)
             self.vagSize = 1
             self.vulvaSize = 1
             self.clitSize = 1
@@ -7715,7 +7715,7 @@ class NiminFetishFantasyv0975o_fla:
             self.vagTotal = self.cockTotal
             for i in range(self.vagTotal):
                if (self.pregArray.length / 5 < 1):
-                  self.pregArray = as3.Array(False,0,0,0,0)
+                  self.pregArray = Array(False,0,0,0,0)
                elif (self.pregArray.length / 5 < self.vagTotal):
                   self.pregArray.push(False,0,0,0,0)
             self.vagSize = self.cockSize
@@ -8190,9 +8190,9 @@ class NiminFetishFantasyv0975o_fla:
       """
       tempDict = {12:"Return",4:"<<",8:">>"}
       if which == "Bag":
-         tempArray = as3.Array(*[self.itemName(self.bagArray[i]) for i in range(27)])
+         tempArray = Array(*[self.itemName(self.bagArray[i]) for i in range(27)])
       elif which == "Stash":
-         tempArray = as3.Array(*[self.itemName(self.stashArray[i]) for i in range(27)])
+         tempArray = Array(*[self.itemName(self.stashArray[i]) for i in range(27)])
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if (tempArray[tempI] != " "):
@@ -8394,7 +8394,7 @@ class NiminFetishFantasyv0975o_fla:
             self.choiceListButtons("Bag")
             self.bagDisableEmpty()
          else:
-            as3.trace(self.bagArray[self.choiceListResult[1]])
+            trace(self.bagArray[self.choiceListResult[1]])
             if (self.canLose(self.bagArray[self.choiceListResult[1]])):
                self.stashStore(self.choiceListResult[1])
             else:
@@ -10366,7 +10366,7 @@ class NiminFetishFantasyv0975o_fla:
          tempInt = Math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
          self.doMainText("",True)
          if self.currentZone == 1: # Softlik Whoring
-            self.rndArray = as3.Array(1,4,5)
+            self.rndArray = Array(1,4,5)
             if self.cockTotal > 0:
                self.rndArray.push(2,3)
             if self.gender != 0:
@@ -10468,7 +10468,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doLust(-(self.sen // 2),2,1,2)
          elif self.currentZone == 2: # Firmshaft Whoring
-            self.rndArray = as3.Array()
+            self.rndArray = Array()
             self.rndArray.push(1)
             if self.gender == 2:
                self.rndArray.push(2)
@@ -10565,7 +10565,7 @@ class NiminFetishFantasyv0975o_fla:
                self.cumAmount()
                self.hrs = 2
          elif self.currentZone == 3: # Tieden Whoring
-            self.rndArray = as3.Array(2,4,6)
+            self.rndArray = Array(2,4,6)
             if self.cockTotal > 0:
                self.rndArray.push(1)
             if self.gender in {2,3}:
@@ -10674,7 +10674,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doLust(self.lib // 4,0)
                self.hrs = 1
          elif self.currentZone == 4: # Siz'Calit Whoring
-            self.rndArray = as3.Array()
+            self.rndArray = Array()
             self.rndArray.push(1)
             if self.cockTotal > 0:
                self.rndArray.push(2)
@@ -10833,7 +10833,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doLust(-(self.sen // 2),2,1,2)
                self.hrs = 2
          elif self.currentZone == 6: # Oviasis Whoring
-            self.rndArray = as3.Array()
+            self.rndArray = Array()
             if self.cockTotal == 1:
                self.rndArray.push(1)
             if self.gender == 1:
@@ -11087,7 +11087,7 @@ class NiminFetishFantasyv0975o_fla:
          elif tempInt == 12:
             whichCock = "bumpy-ridged spiked bug wang"
          getCum = self.cumAmount()
-         self.rndArray = as3.Array()
+         self.rndArray = Array()
          self.rndArray.push(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
          #   self.rndArray.push(2)
@@ -11224,7 +11224,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.lust < 20):
          self.doMainText("You're not really in the mood to play with yourself. You'll just have to settle for something else.",True)
       else:
-         self.rndArray = as3.Array()
+         self.rndArray = Array()
          self.rndArray.push(1)
          #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
          #   self.rndArray.push(2)
@@ -11329,7 +11329,7 @@ class NiminFetishFantasyv0975o_fla:
    #   if (self.lust > 20):
    #      self.doSexP(10)
    def doBoobMasturbate(self):
-      self.rndArray = as3.Array()
+      self.rndArray = Array()
       self.rndArray.push(1)
       if self.breastSize * 2 + self.nippleSize * 5 > self.tallness / 5 and self.lactation > 0:
          self.rndArray.push(2)
@@ -11470,7 +11470,7 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
       self.doEnd()
    def doUdderMasturbate(self):
-      self.rndArray = as3.Array()
+      self.rndArray = Array()
       self.rndArray.push(1)
       if self.udderSize + self.teatSize * 5 > self.tallness / 2 and self.udderLactation > 0:
          self.rndArray.push(2)
@@ -12001,13 +12001,13 @@ class NiminFetishFantasyv0975o_fla:
    def doLevelUP(self):
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
       if self.staticdoLevelUPButtons:
-         self.choiceListArray = as3.Array("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
+         self.choiceListArray = Array("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
          if (self.vagTotal > 0):
             self.choiceListArray[4] = "Baby Fact"
          if (self.lactation > 0 or self.udderLactation > 0):
             self.choiceListArray[6] = "Milk Maid"
       else:
-         self.choiceListArray = as3.Array("Super Perk","","Body Build","Hyper Happy")
+         self.choiceListArray = Array("Super Perk","","Body Build","Hyper Happy")
          if (self.vagTotal > 0):
             self.choiceListArray.push("Baby Fact")
          self.choiceListArray.push("Alchemist")
@@ -12054,7 +12054,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.buttonChoice == 6):
                   if ((self.hyperHappyLevel + 1) // 5 == self.hyperHappyLevel // 5):
                      self.outputMainText("Choose a body part you would like to increase.",True)
-                     self.choiceListArray = as3.Array("Breasts","Nipples","Butt","Hips")
+                     self.choiceListArray = Array("Breasts","Nipples","Butt","Hips")
                      if (self.vagTotal > 0):
                         self.choiceListArray.push("Pussy","Vulva","Clit")
                      if (self.cockTotal > 0):
@@ -12114,7 +12114,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doListen = doListen
                   if ((self.hyperHappyLevel + 1) // 5 > self.hyperHappyLevel // 5):
                      self.outputMainText("Choose a body part you would like to greatly increase. This will be 10x more effective than a normal level in Hyper Happy, so be careful what you choose.",True)
-                     self.choiceListArray = as3.Array("Breasts","Nipples","Butt","Hips")
+                     self.choiceListArray = Array("Breasts","Nipples","Butt","Hips")
                      if (self.vagTotal > 0):
                         self.choiceListArray.push("Pussy","Vulva","Clit")
                      if (self.cockTotal > 0):
@@ -12210,7 +12210,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.alchemistLevel += 1
                   i = 0
                   while (self.percent() < self.alchemistLevel * (10 + self.percent()) - 20 * (i + 2) * i):
-                     self.rndArray = as3.Array(209,110,203,212)
+                     self.rndArray = Array(209,110,203,212)
                      if (self.knowLustDraft):
                         self.rndArray.push(209,114,523)
                      if (self.knowRejuvPot):
@@ -12536,7 +12536,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doLevelUP()
                self.doListen = doListen
             else:
-               self.choiceListArray = as3.Array("Pure Blood","Regression","Balance","HP Boost","Sex Reset")
+               self.choiceListArray = Array("Pure Blood","Regression","Balance","HP Boost","Sex Reset")
                self.choiceListButtons("Super Perks")
                def doListen():
                   self.choiceListSelect("Super Perks")
@@ -13127,7 +13127,7 @@ class NiminFetishFantasyv0975o_fla:
          tempArray = (0,0,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,1,1)
          if (tempArray[self.hour]): # Slumber
             self.rndArray.push(5)
-      as3.trace(self.rndArray)
+      trace(self.rndArray)
       return self.chooseFrom()
    def doSoftlik(self):
       chance = self.eventSelect("Softlik")
@@ -15566,7 +15566,7 @@ class NiminFetishFantasyv0975o_fla:
                self.tempInt = Math.ceil(self.percent() / 33)
                if (self.tempInt == 4):
                   self.tempInt = 3
-               as3.trace(self.tempInt)
+               trace(self.tempInt)
                if self.tempInt == 1:
                   self.doMainText(" A relatively young girl squats in the water in a one-piece bathing suit, with mild curves on her small frame. She gasps and moans as one hand dwells between her legs, holding the crotch of the suit aside, while the other holds onto the plants to steady herself. Below the surface of the clear waters, you can see her exposed slit stretch wide as a white object slips out into a small pile of more eggs that has settled into the sandy floor beneath her. \"Still?!,\" she groans again.\n\nAs she spots you approaching, she lets out a squeak and turns away, her tail pressing down into the water to hide the rear-view of her nethers. \"Please, don't look!\" She blushes heavily. Her soft voice continues on rapidly, trying to explain herself admist her embarrassment. \"I-I'm supposed to go on a date with my new boyfriend tonight and I didn't want to lay in front of him, so I thought if I took some of that stuff it would come out earlier and I wouldn't have to worry. But it didn't seem to do anything so I took a bunch more and it finally came. B-But it didn't stop, instead they just... they just keep coming!\" She whines a little as she feels another one begin to push through, her hips twitching and her knees shaking as she tries to hide it the best she can from you.")
                elif self.tempInt == 2:
@@ -15702,7 +15702,7 @@ class NiminFetishFantasyv0975o_fla:
          def doListen():
             if (self.buttonChoice == 6):
                self.doMainText("It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that ",True)
-               self.rndArray = as3.Array(1,2)
+               self.rndArray = Array(1,2)
                if (self.hairstyleLength(self.hair) and self.hairLength < 10):
                   self.rndArray.push(3)
                if (self.cockTotal > 0):
@@ -21616,7 +21616,7 @@ class NiminFetishFantasyv0975o_fla:
       # TODO: optimize if/else
       self.doMainText("Something feels odd...",True)
       chance = self.percent()
-      affinityCheckArray = as3.Array(self.humanAffinity + self.human,self.horseAffinity + self.horse,self.wolfAffinity + self.wolf,self.catAffinity + self.cat,self.cowAffinity + self.cow,self.lizardAffinity + self.lizard,self.rabbitAffinity + self.rabbit,self.mouseAffinity + self.mouse,self.birdAffinity + self.bird,self.pigAffinity + self.pig,self.skunkAffinity + self.skunk,self.bugAffinity + self.bug)
+      affinityCheckArray = Array(self.humanAffinity + self.human,self.horseAffinity + self.horse,self.wolfAffinity + self.wolf,self.catAffinity + self.cat,self.cowAffinity + self.cow,self.lizardAffinity + self.lizard,self.rabbitAffinity + self.rabbit,self.mouseAffinity + self.mouse,self.birdAffinity + self.bird,self.pigAffinity + self.pig,self.skunkAffinity + self.skunk,self.bugAffinity + self.bug)
       affinityCheckArray.sort(16)
       domCheck = affinityCheckArray[-1]
       second = affinityCheckArray[-2]
@@ -21692,7 +21692,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.heat >= 2):
             self.heatMaxTime += 12
          self.heat -= 1
-      #as3.trace(self.cowAffinity + self.cow)
+      #trace(self.cowAffinity + self.cow)
       if (self.cowAffinity + self.cow >= 10 and self.cowAffinity < 10):
          self.doMainText(f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude nearly half an inch further than before!")
          self.nippleSize += 2
@@ -22162,9 +22162,9 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.faceType != 121 and self.bugAffinity > 60):
                self.doMainText("\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.")
                self.faceType = 121
-      #as3.trace(f"Face :{self.faceType}")
+      #trace(f"Face :{self.faceType}")
       if (not self.lockTail):
-         tempTailArray = as3.Array(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity,self.skunkAffinity,self.bugAffinity,self.humanTaurAffinity)
+         tempTailArray = Array(self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.pigAffinity,self.skunkAffinity,self.bugAffinity,self.humanTaurAffinity)
          tempTailArray.sort(16)
          maxTail = tempTailArray[-1]
          secondTail = tempTailArray[-2]
@@ -22401,13 +22401,13 @@ class NiminFetishFantasyv0975o_fla:
             bipedal = Math.max(self.humanAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
             bipedalDigiPaw = Math.max(self.wolfAffinity,self.catAffinity,self.skunkAffinity)
             bipedalHooves = Math.max(self.horseAffinity,self.cowAffinity)
-            otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
+            otherLegs = Array(self.cowTaurAffinity,self.humanTaurAffinity)
          else:
             bipedal = Math.max(self.humanAffinity,self.horseAffinity,self.wolfAffinity,self.catAffinity,self.cowAffinity,self.lizardAffinity,self.rabbitAffinity,self.mouseAffinity,self.birdAffinity,self.pigAffinity)
             bipedalDigiPaw = Math.max(self.skunkAffinity)
             bipedalHooves = -1000
-            otherLegs = as3.Array(self.cowTaurAffinity,self.humanTaurAffinity)
-         legArray = as3.Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
+            otherLegs = Array(self.cowTaurAffinity,self.humanTaurAffinity)
+         legArray = Array(bipedal,bipedalDigiPaw,bipedalHooves,0)
          legArray = legArray.concat(otherLegs)
          legArray.sort(16)
          secondLegs = legArray[-2]
@@ -22978,7 +22978,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.cockSnakePreg > 100):
             self.cockSnakePreg = 100
          tempPregMod -= 100000
-      as3.trace(f"{chance} {self.pregChanceMod} {tempPregMod}")
+      trace(f"{chance} {self.pregChanceMod} {tempPregMod}")
       if (self.pregCheck(1) and chance + self.pregChanceMod + tempPregMod >= 90):
          i = 0
          extra = 0
@@ -24275,7 +24275,7 @@ class NiminFetishFantasyv0975o_fla:
             self.milkEngorgementLevel = 0
             self.boobChange(-3)
          elif self.milkEngorgementLevel > 3:
-            as3.Error(f"Pymin.milkAmount; self.milkEngorgementLevel is too high. Expected <=3, got {self.milkEngorgementLevel}")
+            Error(f"Pymin.milkAmount; self.milkEngorgementLevel is too high. Expected <=3, got {self.milkEngorgementLevel}")
          self.milkEngorgement = 0
       elif origin == 2:
          if (self.udderEngorgement > (self.udderSize * (self.udderSize + 1) + self.tallness / 4 + self.milkCap) * 2):
@@ -24295,7 +24295,7 @@ class NiminFetishFantasyv0975o_fla:
             self.udderEngorgementLevel = 0
             self.udderChange(-8)
          if self.udderEngorgementLevel > 3:
-            as3.Error(f"Pymin.milkAmount; self.udderEngorgementLevel is too high. Expected <=3, got {self.udderEngorgementLevel}")
+            Error(f"Pymin.milkAmount; self.udderEngorgementLevel is too high. Expected <=3, got {self.udderEngorgementLevel}")
          self.udderEngorgement = 0
       return Math.floor(tempNum)
    def frame1(self):
@@ -24731,13 +24731,13 @@ class NiminFetishFantasyv0975o_fla:
    def convertSave(self, inputfile, inputfiletype, outputfile, outputfiletype):
       if inputfile in {None,""} or outputfile in {None,""}:
          self.sfcwindow._children["message"].text = "Error: Input/Output file can not be \"None\" or empty"
-         raise as3.Error("Pymin.convertSave; Input/Output file can not be empty")
+         raise Error("Pymin.convertSave; Input/Output file can not be empty")
       if inputfiletype == outputfiletype and inputfiletype != "detect":
          self.sfcwindow._children["message"].text = "Error: Input and Output file types can not be the same."
-         raise as3.Error("Pymin.convertSave; Input and Output file types can not be the same.")
+         raise Error("Pymin.convertSave; Input and Output file types can not be the same.")
       if inputfile == outputfile:
          self.sfcwindow._children["message"].text = "Error: Input and Output files can not be the same."
-         raise as3.Error("Pymin.convertSave; Input and Output files can not be the same.")
+         raise Error("Pymin.convertSave; Input and Output files can not be the same.")
       if inputfiletype == "xml":
          data = self.loadXML(inputfile)
       elif inputfiletype == "sol":
@@ -24759,7 +24759,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             ext = inputfile.split(".")[-1].lower()
             self.sfcwindow._children["message"].text = f"Error: Detected input file type {ext} is not a supported file type"
-            raise as3.Error(f"Pymin.convertSave; Detected input file type {ext} is not a supported file type")
+            raise Error(f"Pymin.convertSave; Detected input file type {ext} is not a supported file type")
       if data == None:
          raise Error("Pymin.convertSave; Input save data is null. Try again")
       data = self.dictSAVE(data)
@@ -24784,7 +24784,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             ext = outputfile.split(".")[-1].lower()
             self.sfcwindow._children["message"].text = f"Error: Detected output file type {ext} is not a supported file type"
-            raise as3.Error(f"Pymin.convertSave; Detected output file type {ext} is not a supported file type")
+            raise Error(f"Pymin.convertSave; Detected output file type {ext} is not a supported file type")
    @staticmethod
    def dictSAVE(dictionary):
       d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate',),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
@@ -24850,7 +24850,7 @@ class NiminFetishFantasyv0975o_fla:
       try:
          TOML.write(outputfile, dictionary)
       except Exception as e:
-         raise as3.Error("Pymin.saveTOML; Failed to create TOML. Write aborted.") from e
+         raise Error("Pymin.saveTOML; Failed to create TOML. Write aborted.") from e
    def saveNIM(self, dictionary:dict, outputfile):
       try:
          so = {"data":self.returnSOL(dictionary,outputfile)}
@@ -24863,7 +24863,7 @@ class NiminFetishFantasyv0975o_fla:
       except Exception as e:
          if self.sfcOpen:
             self.sfcwindow._children["message"].text = "Error"
-         raise as3.Error("Pymin.saveNIM; Failed to save file") from e
+         raise Error("Pymin.saveNIM; Failed to save file") from e
       if self.sfcOpen:
          self.sfcwindow.lift()
    def saveSOL(self, dictionary:dict, outputfile):
@@ -24874,7 +24874,7 @@ class NiminFetishFantasyv0975o_fla:
       except Exception as e:
          if self.sfcOpen:
             self.sfcwindow._children["message"].text = "Error"
-         raise as3.Error("Pymin.saveSOL; Failed to save file") from e
+         raise Error("Pymin.saveSOL; Failed to save file") from e
       if self.sfcOpen:
          self.sfcwindow.lift()
    def saveXML(self, dictionary:dict, outputfile):
@@ -24921,7 +24921,7 @@ class NiminFetishFantasyv0975o_fla:
       except Exception as e:
          if self.sfcOpen:
             self.sfcwindow._children["message"].text = "Error"
-         raise as3.Error("Pymin.saveXML: Failed to save file.") from e
+         raise Error("Pymin.saveXML: Failed to save file.") from e
       if self.sfcOpen:
          self.sfcwindow.lift()
    def loadTOML(self, filename):
@@ -24988,7 +24988,7 @@ class NiminFetishFantasyv0975o_fla:
                sstashStack.extend(l)
          return {"track":{"currentState":strack[0],"currentZone":strack[1],"day":strack[2],"hour":strack[3],"currentDayCare":strack[4],"inDungeon":strack[5],"currentDungeon":strack[6],"v7":strack[7],"firstExplore":strack[8] if len(strack) > 8 else False},"version":{"original":so["versionNumber"],"port":ver},"stats":{"strength":sstats[0],"mentality":sstats[1],"libido":sstats[2],"sensitivity":sstats[3],"HP":sstats[4],"lust":sstats[5],"coin":sstats[6],"strMod":sstats[7],"mentMod":sstats[8],"libMod":sstats[9],"senMod":sstats[10],"hunger":sstats[11]},"level":{"SexP":slevel[0],"levelUP":slevel[1],"level":slevel[2],"babyFactLevel":slevel[3],"bodyBuildLevel":slevel[4],"hyperHappyLevel":slevel[5],"alchemistLevel":slevel[6],"fetishMasterLevel":slevel[7],"milkMaidLevel":slevel[8],"shapeshiftyLevel":slevel[9],"shapeshiftyFirst":slevel[10],"shapeshiftySecond":slevel[11]},"mod":{"runMod":smod[0],"rapeMod":smod[1],"cumMod":smod[2],"cockSizeMod":smod[3],"milkMod":smod[4],"carryMod":smod[5],"vagBellyMod":smod[6],"pregChanceMod":smod[7],"extraPregChance":smod[8],"pregTimeMod":smod[9],"enticeMod":smod[10],"milkHPMod":smod[11],"vagSizeMod":smod[12],"vagElastic":smod[13],"changeMod":smod[14],"HPMod":smod[15],"SexPMod":smod[16],"minLust":smod[17],"milkCap":smod[18],"coinMod":smod[19],"hipMod":smod[20],"buttMod":smod[21],"bellyMod":smod[22],"cockMoistMod":smod[23],"vagMoistMod":smod[24],"lockTail":smod[25],"lockFace":smod[26],"lockSkin":smod[27],"lockBreasts":smod[28],"lockEars":smod[29],"lockLegs":smod[30],"lockNipples":smod[31],"lockCock":smod[32]},"quality":{"gender":squality[0],"race":squality[1],"body":squality[2],"dominant":squality[3],"hips":squality[4],"butt":squality[5],"tallness":squality[6],"skinType":squality[7],"tail":squality[8],"ears":squality[9],"hair":squality[10],"hairColor":squality[11],"hairLength":squality[12],"legType":squality[13],"wings":squality[14],"faceType":squality[15],"skinColor":squality[16]},"cock":{"cockTotal":scock[0],"humanCocks":scock[1],"horseCocks":scock[2],"wolfCocks":scock[3],"catCocks":scock[4],"rabbitCocks":scock[5],"lizardCocks":scock[6],"cockSize":scock[7],"cockMoist":scock[8],"balls":scock[9],"ballSize":scock[10],"showBalls":scock[11],"knot":scock[12],"bugCocks":scock[13],"neuterizerHideBalls":scock[14] if len(scock) == 15 else False},"girl":{"breastSize":sgirl[0],"boobTotal":sgirl[1],"nippleSize":sgirl[2],"udders":sgirl[3],"udderSize":sgirl[4],"teatSize":sgirl[5],"clitSize":sgirl[6],"vagTotal":sgirl[7],"vagSize":sgirl[8],"vagMoist":sgirl[9],"vulvaSize":sgirl[10],"nipType":sgirl[11]},"gear":{"attireTop":sgear[0],"attireBot":sgear[1],"weapon":sgear[2]},"status":{"pregRate":sstatus[0],"pregnancyTime":sstatus[1],"pregStatus":sstatus[2],"eggLaying":sstatus[3],"eggMaxTime":sstatus[4],"eggTime":sstatus[4] if sstatus[5] > sstatus[4] and tempver < 10 else sstatus[5],"eggRate":sstatus[6],"exhaustion":sstatus[7],"exhaustionPenalty":sstatus[8],"milkEngorgement":sstatus[9],"milkEngorgementLevel":sstatus[10],"udderEngorgement":sstatus[11],"udderEngorgementLevel":sstatus[12],"heat":sstatus[13],"heatTime":sstatus[14],"heatMaxTime":sstatus[15],"lactation":sstatus[16],"udderLactation":sstatus[17],"nipplePlay":sstatus[18],"udderPlay":sstatus[19],"blueBalls":sstatus[20],"teatPump":sstatus[21],"nipPump":sstatus[22],"cockPump":sstatus[23],"clitPump":sstatus[24],"vulvaPump":sstatus[25],"masoPot":sstatus[26],"sMasoPot":sstatus[27],"babyFree":sstatus[28],"charmTime":sstatus[29],"pheromone":sstatus[30],"eggceleratorTime":sstatus[31],"eggceleratorDose":sstatus[32],"bodyOil":sstatus[33],"lustPenalty":sstatus[34],"fertileGel":sstatus[35],"snuggleBall":sstatus[36],"eggType":sstatus[37],"milkSuppressant":sstatus[38],"milkSuppressantLact":sstatus[39],"milkSuppressantUdder":sstatus[40],"suppHarness":sstatus[41],"fertilityStatueCurse":sstatus[42],"plumpQuats":sstatus[43],"lilaWetStatus":sstatus[44],"cockSnakePreg":sstatus[45],"milkCPoisonNip":sstatus[46],"milkCPoisonUdd":sstatus[47],"cockSnakeVenom":sstatus[48]},"affinity":{"humanAffinity":saffinity[0],"horseAffinity":saffinity[1],"wolfAffinity":saffinity[2],"catAffinity":saffinity[3],"cowAffinity":saffinity[4],"lizardAffinity":saffinity[5],"rabbitAffinity":saffinity[6],"fourBoobAffinity":saffinity[7],"mouseAffinity":saffinity[8],"birdAffinity":saffinity[9],"pigAffinity":saffinity[10],"twoBoobAffinity":saffinity[11],"sixBoobAffinity":saffinity[12],"eightBoobAffinity":saffinity[13],"tenBoobAffinity":saffinity[14],"cowTaurAffinity":saffinity[15],"humanTaurAffinity":saffinity[16],"skunkAffinity":saffinity[17],"bugAffinity":saffinity[18]},"rep":{"lilaRep":srep[0],"lilaVulva":srep[1],"lilaMilk":srep[2],"lilaPreg":srep[3],"malonRep":srep[4],"malonPreg":srep[5],"malonChildren":srep[6],"mistressRep":srep[7],"jamieRep":srep[8],"jamieSize":srep[9],"jamieChildren":srep[10],"silRep":srep[11],"silPreg":srep[12],"silRate":srep[13],"silLay":srep[14],"silGrowthTime":srep[15],"silTied":srep[16],"lilaUB":srep[17],"dairyFarmBrand":srep[18],"lilaWetness":srep[19],"jamieButt":srep[20],"jamieBreasts":srep[21],"jamieHair":srep[22]},"knowledge":{"foundSoftlik":sknowledge[0],"foundFirmshaft":sknowledge[1],"foundTieden":sknowledge[2],"foundSizCalit":sknowledge[3],"foundOviasis":sknowledge[4],"foundValley":sknowledge[5],"foundSanctuary":sknowledge[6],"usedSecretStairs":sknowledge[7] if len(sknowledge) == 8 else False},"boss":{"defeatedMinotaur":sboss[0],"defeatedFreakyGirl":sboss[1],"defeatedSuccubus":sboss[2]},"knowSimpleAlchemy":{"knowLustDraft":sknowSimpleAlchemy[0],"knowRejuvPot":sknowSimpleAlchemy[1],"knowExpPreg":sknowSimpleAlchemy[2],"knowBallSwell":sknowSimpleAlchemy[3],"knowMaleEnhance":sknowSimpleAlchemy[4]},"knowAdvancedAlchemy":{"knowSLustDraft":sknowAdvancedAlchemy[0],"knowSRejuvPot":sknowAdvancedAlchemy[1],"knowSExpPreg":sknowAdvancedAlchemy[2],"knowSBallSwell":sknowAdvancedAlchemy[3],"knowGenSwap":sknowAdvancedAlchemy[4],"knowMasoPot":sknowAdvancedAlchemy[5],"knowBabyFree":sknowAdvancedAlchemy[6],"knowPotPot":sknowAdvancedAlchemy[7],"knowMilkSuppress":sknowAdvancedAlchemy[8]},"knowComplexAlchemy":{"knowSGenSwap":sknowComplexAlchemy[0],"knowSMasoPot":sknowComplexAlchemy[1],"knowSBabyFree":sknowComplexAlchemy[2],"knowSPotPot":sknowComplexAlchemy[3],"knowPussJuice":sknowComplexAlchemy[4],"knowPheromone":sknowComplexAlchemy[5],"knowBazoomba":sknowComplexAlchemy[6]},"majorFetish":{"maleFetish":smajorFetish[0],"femaleFetish":smajorFetish[1],"hermFetish":smajorFetish[2],"narcissistFetish":smajorFetish[3],"dependentFetish":smajorFetish[4]},"moderateFetish":{"dominantFetish":smoderateFetish[0],"submissiveFetish":smoderateFetish[1],"lboobFetish":smoderateFetish[2],"sboobFetish":smoderateFetish[3],"furryFetish":smoderateFetish[4],"scalyFetish":smoderateFetish[5],"smoothyFetish":smoderateFetish[6]},"minorFetish":{"pregnancyFetish":sminorFetish[0],"bestialityFetish":sminorFetish[1],"milkFetish":sminorFetish[2],"sizeFetish":sminorFetish[3],"unbirthingFetish":sminorFetish[4],"ovipositionFetish":sminorFetish[5],"toyFetish":sminorFetish[6],"hyperFetish":sminorFetish[7]},"kid":{"humanChildren":skid[0],"equanChildren":skid[1],"lupanChildren":skid[2],"felinChildren":skid[3],"cowChildren":skid[4],"lizanChildren":skid[5],"lizanEggs":skid[6],"bunnionChildren":skid[7],"wolfPupChildren":skid[8],"miceChildren":skid[9],"birdEggs":skid[10],"birdChildren":skid[11],"pigChildren":skid[12],"calfChildren":skid[13],"bugEggs":skid[14],"bugChildren":skid[15],"skunkChildren":skid[16],"minotaurChildren":skid[17],"freakyGirlChildren":skid[18]},"trav":so["trav"],"bag":sbag,"bagStack":sbagStack,"stash":sstash,"stashStack":sstashStack,"preg":so["pregSave"]}
       except Exception as e:
-         raise as3.Error("Pymin.loadSOL; Malformed save file") from e
+         raise Error("Pymin.loadSOL; Malformed save file") from e
    def loadXML(self, filename, origin:str=None):
       try:
          data = xmletree.parse(filename).getroot()
@@ -25039,11 +25039,11 @@ class NiminFetishFantasyv0975o_fla:
       except ValueError as e:
          if origin == "doLoad":
             self.loadGo("XML Loader Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",True)
-         raise as3.Error("Pymin.loadXML; One or more values has an invalid type.") from e
+         raise Error("Pymin.loadXML; One or more values has an invalid type.") from e
       except Exception as e:
          if origin == "doLoad":
             self.loadGo("XML Loader Error: Could not load save file. Reason: Malformed save file",True)
-         raise as3.Error("Pymin.loadXML; Malformed save file") from e
+         raise Error("Pymin.loadXML; Malformed save file") from e
    def openSE(self):
       if self.seOpen:
          self.sewindow.lift()
@@ -25094,7 +25094,7 @@ class NiminFetishFantasyv0975o_fla:
       elif ext == ".toml":
          data = self.loadTOML(file)
       else:
-         raise as3.Error(f"Pymin.SELoadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.")
+         raise Error(f"Pymin.SELoadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.")
       self.sefilelabel['text'] = file
       self.seLoadedData = data
       with BytesIO() as lfile:
@@ -25193,7 +25193,7 @@ class NiminFetishFantasyv0975o_fla:
       self.debugGITimes = 0
       if self.currentState == 0:
          self.dgiw._children["errlabel"].text = "Error: Game not loaded"
-         raise as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
+         raise Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
       EN = self.dgiw._children["combo"].getEntries()
       temperr = ""
       try:
@@ -25208,7 +25208,7 @@ class NiminFetishFantasyv0975o_fla:
                temperr = "Quantity must be a number"
       if temperr:
          self.dgiw._children["errlabel"].text = temperr
-         raise as3.Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
+         raise Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
       if ID in {2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
          if QUAN > 0:
             for i in range(QUAN):
@@ -25236,7 +25236,7 @@ class NiminFetishFantasyv0975o_fla:
    def debugAffinityChange(self, *e):
       if self.currentState == 0:
          self.dawerrlabel["text"] = "Error: Game not loaded"
-         raise as3.Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
+         raise Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
       err = ""
       values = self.daw._children["combo"].getEntries()
       aff = values[0].upper()
@@ -25270,7 +25270,7 @@ class NiminFetishFantasyv0975o_fla:
          err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
       if err:
          self.daw._children["errlabel"].text = err
-         raise as3.Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
+         raise Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
       if aff == "1":
          self.human += amount
       elif aff == "2":
@@ -25327,7 +25327,7 @@ class NiminFetishFantasyv0975o_fla:
          self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
          if getattr(self.wikiwindow._children["text"].html_parser, 'callobject', '') == '':
             self.customhtmlparser = False
-            as3.trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
+            trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
          else:
             self.customhtmlparser = True
             self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
@@ -26288,7 +26288,7 @@ class NiminFetishFantasyv0975o_fla:
       elif topic == "MenuBar":
          text = self.wikiMenuBarDescription(Num)
       if text is None:
-         raise as3.Error(f'Wiki page lookup for ({topic}, {Num}) returned no text.')
+         raise Error(f'Wiki page lookup for ({topic}, {Num}) returned no text.')
       self.clearAddWikiText(text)
    """
    Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
@@ -26797,7 +26797,7 @@ if __name__ == "__main__":
       print("Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode. (one time)\n\t-C --convert\tOpens savefile converter instead of the game.")
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
-      as3.EnableDebug()
+      as3lib.EnableDebug()
    mainobject = NiminFetishFantasyv0975o_fla()
    if "--converter" in argv or "-C" in argv or "/C" in argv:
       mainobject.cmdOpenConverter = True
