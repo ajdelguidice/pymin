@@ -55,9 +55,8 @@ def repintorfloat(number):
       return number
    if isinstance(number,str):
       number = float(number)
-   if number.is_integer():
-      return int(number)
-   return number
+   return int(number) if number.is_integer() else number
+
 def strtobool(a:str):
    """
    Converts a string to a boolean
@@ -67,6 +66,7 @@ def strtobool(a:str):
       return True
    if low == "false":
       return False
+
 class ButtonList(list):
    """
    Modified list class for use with pymin's button interface
@@ -106,11 +106,13 @@ class PyminLabel(itk.itkLabel):
       kwargs.update({'background':"#FFFFFF","foreground":"#000000","highlightbackground":"#000000","highlightthickness":1})
       super().__init__(master, **kwargs)
 
+def _noop(*args):
+   ...
+
 class PyminButton(itk.itkFrame):
    _intName = "PyminButton"
-   def _noop(self, *e):...
    def __init__(self, master, **kwargs):
-      self._command = kwargs.pop("command",self._noop)
+      self._command = kwargs.pop("command",_noop)
       text = kwargs.pop("text", '')
       super().__init__(master,highlightthickness=1,background="#FFFFFF",highlightbackground="#000000",**kwargs)
       self.label = tkinter.Label(self,anchor="center",background="#FFFFFF",foreground="#000000")
@@ -130,8 +132,8 @@ class PyminButton(itk.itkFrame):
       self.label['font'] = (self._font, cmath.resizefont(self._fontSize, self._window.fontmult), self._fontStyle)
    def updateState(self):
       self.label["state"] = self._state
-   def updateBackground(self):...
-   def updateForeground(self):...
+   updateBackground = _noop
+   updateForeground = _noop
    @property
    def text(self):
       return self._text
@@ -163,42 +165,33 @@ class AboutWindow(itk.itkAboutWindow):
          self._open = True
 
 #====================================================================================
-#Create tooltip. Example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
+#Create tooltip. Modified example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
 class ToolTip(object):
-   __slots__ = ("widget","tipwindow","id","x","y","text")
-   def __init__(self, widget):
-      self.widget = widget
-      self.tipwindow = None
-      self.id = None
-      self.x = self.y = 0
-   def showtip(self, text):
-      "Display text in tooltip window"
+   def __init__(self, widget, text):
+      self.parent = widget
+      self.window = None
       self.text = text
-      if self.tipwindow or not self.text:
+      widget.bind('<Enter>', self.showtip)
+      widget.bind('<Leave>', self.hidetip)
+   def showtip(self, event):
+      "Display text in tooltip window"
+      if self.window or not self.text:
          return
-      x, y, cx, cy = self.widget.bbox("insert")
-      x = x + self.widget.winfo_rootx() + 57
-      y = y + cy + self.widget.winfo_rooty() +27
-      self.tipwindow = tw = tkinter.Toplevel(self.widget)
+      x, y, cx, cy = self.parent.bbox("insert")
+      x = x + self.parent.winfo_rootx() + 57
+      y = y + cy + self.parent.winfo_rooty() +27
+      self.window = tw = tkinter.Toplevel(self.parent)
       tw.wm_overrideredirect(1)
       tw.wm_geometry("+%d+%d" % (x, y))
       label = tkinter.Label(tw, text=self.text, justify=tkinter.LEFT,
                      background="#ffffe0", relief=tkinter.SOLID, borderwidth=1,
                      font=("tahoma", "8", "normal"))
       label.pack(ipadx=1)
-   def hidetip(self):
-      tw = self.tipwindow
-      self.tipwindow = None
+   def hidetip(self, event):
+      tw = self.window
+      self.window = None
       if tw:
          tw.destroy()
-def CreateToolTip(widget, text):
-   toolTip = ToolTip(widget)
-   def enter(event):
-      toolTip.showtip(text)
-   def leave(event):
-      toolTip.hidetip()
-   widget.bind('<Enter>', enter)
-   widget.bind('<Leave>', leave)
 #====================================================================================
 
 @dataclass
@@ -222,7 +215,7 @@ class NiminFetishFantasyv0975o_fla:
 
       # Command line arguement variables
       self.cmdOpenConverter = False # Tracks whether the save file converter has been opened directly from the command line
-      
+
       # Window open variables
       self.optionsWinOpen = False # Options
       self.sfcOpen = False # Save Converter
@@ -231,7 +224,7 @@ class NiminFetishFantasyv0975o_fla:
       self.debugVarOpen = False # Debug Variable Display
       self.debugGIWinOpen = False # Debug Give Item
       self.debugAWinOpen = False # Debug Affinity
-      
+
       # Misc added variables
       self.buttonShiftOverride = False # Forces shift to be off. Used for the button panel
       self.tempBagPage = 1 # Used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
@@ -620,7 +613,7 @@ class NiminFetishFantasyv0975o_fla:
       #self.defeatedFreakyGirl = False
       #self.defeatedSuccubus = False
       #self.foundSanctuary = False
-      
+
       # Location effects
       #self.fertilityStatueCurse = 0
       #self.dairyFarmBrand = False
@@ -807,11 +800,11 @@ class NiminFetishFantasyv0975o_fla:
          
          ##Sol Mode
          self.optionswindow.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Strict Save Compat",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
+         ToolTip(self.optionswindow._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
          
          ##Fixed Resolution
          self.optionswindow.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("TimesNewRoman",11),text="Fixed Resolution",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
+         ToolTip(self.optionswindow._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
 
          #x+180,y-97
          ##Custom Theme color
@@ -834,104 +827,104 @@ class NiminFetishFantasyv0975o_fla:
          ##Nimin Theme
          self.optionswindow.addCheckboxWithLabel("if","NiminTheme",x=10,y=10,width=187,height=20,font=("TimesNewRoman",11),text="Use Nimin Theme",background=self.theme,foreground=self.fontColor)
          if (self.dir / "nimintheme").is_dir():
-            CreateToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin.")
+            ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin.")
          else:
-            CreateToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin. Unavailable due to missing files.")
+            ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin. Unavailable due to missing files.")
             self.optionswindow._children["NiminTheme"].state = "disabled"
          
          ##Show scrolledText Borders
          self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("TimesNewRoman",11),text="Show ScrolledText Borders",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
+         ToolTip(self.optionswindow._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
          
          ##Original new game button size
          self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("TimesNewRoman",11),text="Original Size for New Game",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
+         ToolTip(self.optionswindow._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
          
          ##Static buttons in doLevelUP
          self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("TimesNewRoman",11),text="Static doLevelUP Buttons",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
+         ToolTip(self.optionswindow._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
          
          ##new save dialogue
          self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Use Expanded Save Dialog",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
+         ToolTip(self.optionswindow._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
 
          ##New stash
          self.optionswindow.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Use New Stash",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
+         ToolTip(self.optionswindow._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
          
          ##Help opens wiki
          self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
+         ToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
          
          ##Shops Return To doShops
          self.optionswindow.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("TimesNewRoman",11),text="Shops Return to doShops",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
+         ToolTip(self.optionswindow._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
 
          #Grammar page
          self.optionswindow.addNBFrame("nb","gs",width=420,height=207,text="Grammar",background=self.theme)
          
          self.optionswindow.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Respect showBalls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
+         ToolTip(self.optionswindow._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
          
          self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=160,height=20,font=("TimesNewRoman",11),text="Femme-boy -> Femboy",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
+         ToolTip(self.optionswindow._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
          
          self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Shemale -> Futanari",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
+         ToolTip(self.optionswindow._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
          
          self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("TimesNewRoman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
+         ToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
 
          self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")  # TODO: Make a tooltip for this
+         ToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")  # TODO: Make a tooltip for this
          
          self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
+         ToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
          
          self.optionswindow.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Snuggleball Tweak",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
+         ToolTip(self.optionswindow._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
          
          self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=144,height=20,font=("TimesNewRoman",11),text="Grammar Fixes",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
+         ToolTip(self.optionswindow._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
 
          #Game Tweaks page
          self.optionswindow.addNBFrame("nb","gt",width=420,height=207,text="Game Tweaks",background=self.theme)
 
          ##Status Tweaks
          self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("TimesNewRoman",11),text="Status Tweaks",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
+         ToolTip(self.optionswindow._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
          
          ##Succubus Leaves One
          self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("TimesNewRoman",11),text="Succubus Leaves One",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
+         ToolTip(self.optionswindow._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
 
          ##Use isBottomOpen
          self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Use isBottomOpen",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
+         ToolTip(self.optionswindow._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
 
          ##Lizan Don't Show Balls
          self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("TimesNewRoman",11),text="Lizan Don't Show Balls",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
+         ToolTip(self.optionswindow._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
          ##Herm Can Has Both
          self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("TimesNewRoman",11),text="Herm Can Has Both",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
+         ToolTip(self.optionswindow._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
 
          ##Internal ball size affects belly size
          self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("TimesNewRoman",11),text="IntBallsEffectBellySize",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
+         ToolTip(self.optionswindow._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
 
          ##Add direct path to sanctuary
          self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Direct Path to Sanctuary",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
+         ToolTip(self.optionswindow._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
 
          ##Digi beast feet
          self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Correct Feet for Some Races",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
+         ToolTip(self.optionswindow._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
 
          ##Misc Changes
          self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Misc Changes",background=self.theme,foreground=self.fontColor)
-         CreateToolTip(self.optionswindow._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
+         ToolTip(self.optionswindow._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
          
          
          if as3state.as3DebugEnable:
@@ -940,11 +933,11 @@ class NiminFetishFantasyv0975o_fla:
 
             ##Always Choose Senario
             self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("TimesNewRoman",11),text="alwaysChooseSenario",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
+            ToolTip(self.optionswindow._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
 
             ##Always Choose Senario
             self.optionswindow.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("TimesNewRoman",11),text="takeNoDamage",background=self.theme,foreground=self.fontColor)
-            CreateToolTip(self.optionswindow._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
+            ToolTip(self.optionswindow._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
 
          #Apply button
          self.optionswindow.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("TimesNewRoman",12),text="Apply",command=self.OWSaveOptions)
