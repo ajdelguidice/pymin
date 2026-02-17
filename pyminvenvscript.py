@@ -545,11 +545,20 @@ else:  # Load older config
     # Fallback
     elif venvpath.exists():
         cfgloc = venvpath / 'pymin.toml'
-        with open(venvpath / 'pyvenv.cfg', 'r') as f:
-            c = configparser.ConfigParser(allow_unnamed_section=True)
-            c.optionxform=str
-            c.read_file(f)
-            c2['pyInstalledVersion'] = c[configparser.UNNAMED_SECTION]['version_info']
+        try:
+            UNNAMED_SECTION = configparser.UNNAMED_SECTION
+            with open(venvpath / 'pyvenv.cfg', 'r') as f:
+                c = configparser.ConfigParser(allow_unnamed_section=True)
+                c.optionxform=str
+                c.read_file(f)
+                c2['pyInstalledVersion'] = c[configparser.UNNAMED_SECTION]['version_info']
+        except AttributeError:  # Python < 3.13
+            UNNAMED_SECTION = 'UNNAMED_SECTION'
+            with open(venvpath / 'pyvenv.cfg', 'r') as f:
+                c = configparser.ConfigParser()
+                c.optionxform=str
+                c.read_string('[UNNAMED_SECTION]\n' + f.read())
+                c2['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
         c2['path'] = venvpath
         # Load config v1
         if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists():
