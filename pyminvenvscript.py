@@ -37,14 +37,13 @@ venvpath = curdir / 'Pymin-venv'
 cfgloc = None
 
 if None in {curdir,venvpath} or '' in {str(curdir),str(venvpath)}:
-    print('Error: Path is empty. Exiting to avoid problems.')
-    exit()
+    raise Exception('Path is empty. Exiting to avoid problems.')
 if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
-    print('Error: Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
-    exit()
+    raise Exception('Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
 
 class OverrideDev:
-    def __init__(self):...
+    def __init__(self):
+        ...
     def __enter__(self):
         self.dev = c2['isDevEnv']
         c2['isDevEnv'] = False
@@ -54,8 +53,7 @@ class OverrideDev:
 def create():
     #Sets up the virtual environment
     if venvpath == venvpath.parent:
-        print('Error: venvpath is set to the root directory. You can not create a virtual environment here.')
-        exit()
+        raise Exception('Root directory can not be used for venvpath.')
     print('Creating the environment...')
 
     checkExistsMakeDir(venvpath)  # Create directory
@@ -172,14 +170,11 @@ def updatemodules():
 
 def recreate(withconf, withsaves, withgameconf):
     if not venvpath.is_dir():
-        print(f'Error: Directory "{venvpath}" either doesn\'t exist or is not a directory. Aborting...')
-        return
+        raise Exception(f'Directory "{venvpath}" either doesn\'t exist or is not a directory.')
     if venvpath == venvpath.parent:
-        print('Error: venvpath is set to the root directory, this operation will harm the system if completed. Aborting...')
-        return
+        raise Exception('Root directory can not be used for venvpath.')
     if not (venvpath / 'Pymin/Pymin.py').exists():
-        print('Error: venvpath does not look like it contains a valid Pymin virtual environment. Aborting...')
-        return
+        raise Exception('venvpath does not look like it contains a valid Pymin virtual environment.')
     tempdir = None
     try:
         if withconf or withsaves or withgameconf:
@@ -325,11 +320,9 @@ class Args:
             return key
         # Bare keys
         if len(key) == 0:
-            print(f'Error: TOML bare keys can not be empty.')
-            exit()
+            raise Exception('TOML bare keys can not be empty.')
         if set(key.lower()) - {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','_','-'} != set():
-            print('Error: TOML bare keys can only contain ASCII letters, ASCII digits, underscores, and dashes.')
-            exit()
+            raise Exception('TOML bare keys can only contain ASCII letters, ASCII digits, underscores, and dashes.')
         return key
     def ParseTable(strio):
         table = {}
@@ -349,14 +342,12 @@ class Args:
                 break
             elif char == '{':
                 if ParseKey:
-                    print('Error: Tables can not used as keys as they can not be parsed. Aborting.')
-                    exit()
+                    raise Exception('Tables can not used as keys as they can not be parsed.')
                 table[Args.ValidateKey(key.get())] = Args.ParseTable(strio)
                 key.clear()
             elif char == '[':
                 if ParseKey:
-                    print('Error: Arrays can not used as keys as they can not be parsed. Aborting.')
-                    exit()
+                    raise Exception('Arrays can not used as keys as they can not be parsed.')
                 table[Args.ValidateKey(key.get())] = Args.ParseArray(strio)
                 key.clear()
             elif char == ',':
@@ -463,8 +454,7 @@ def writeTOML(file, valDict):
         for k in nontables:
             text.write(f'{k} = {TOML.Value(valDict[k])}\n')
         for k in tables:
-            text.write('\n')
-            text.write(f'["{k}"]\n' if str(k).find('.') != -1 else f'[{k}]\n')
+            text.write(f'\n["{k}"]\n' if str(k).find('.') != -1 else f'\n[{k}]\n')
             for k2,v2 in valDict[k].items():
                 text.write(f'{k2} = {TOML.Value(v2)}\n')
         with open(file,'w') as f:
@@ -498,8 +488,7 @@ if (curdir / 'pymin.toml').exists():  # load config and set venvpath
         'isDevEnv':c1.get('isDevEnv',False)
     }
     if c2['path'] == '':
-        print("Error: path in config is empty. This script will break if this is not set when the config is outside of the venv.")
-        exit()
+        raise Exception('Config is not in the default venv location and venvpath is empty.')
     venvpath = Path(c2['path']).resolve()
     if not venvpath.exists():
         hasVenv = False
@@ -534,8 +523,7 @@ else:  # Load older config
     if (curdir / 'pymin.cfg').exists():
         c2.update(migrateConfig())
         if c2['path'] == '':
-            print("Error: path in config is empty. This script will break if this is not set when the config is outside of the venv.")
-            exit()
+            raise Exception('Config is not in the default venv location and venvpath is empty.')
         venvpath = Path(c2['path']).resolve()
         if not venvpath.exists():
             hasVenv = False
@@ -645,8 +633,7 @@ elif argv[1] == 'cfg':
         c2[key] = value
 elif argv[1] == 'cfg-game' and hasVenv:
     if not (venvpath / 'Pymin/Nimin_Prefs.toml').exists():
-        print('Error: Can not read game config because it does not exist.')
-        exit()
+        raise Exception('Game config does not exist.')
     with open(venvpath / 'Pymin/Nimin_Prefs.toml','rb') as f:
         gameconf = tomllib.load(f)
     if len(argv) == 2:
@@ -673,8 +660,7 @@ elif argv[1] == 'cfg-game' and hasVenv:
     exit()
 elif argv[1] == 'install':
     if hasVenv and '--overwrite' not in argv:
-        print('You can not use install in an existing directory. Did you mean "update"?')
-        exit()
+        raise Exception('"install" can not be used in an existing directory. Did you mean "update"?')
     create()
 elif argv[1] == 'update' and hasVenv:
     downloadgame()
@@ -687,8 +673,7 @@ elif argv[1] == 'recreate' and hasVenv:
     recreate('--with-config' in argv, '--with-saves' in argv, '--with-game-config' in argv)
 elif argv[1] == 'uv' and hasVenv:
     if not (c2['uvGlobal'] or c2['uvLocal']):
-        print('Error: uv is not enabled.')
-        exit()
+        raise Exception('uv is not enabled.')
     if len(argv) == 2:
         run(pipCommand[:-1] + ['help'], env=env)
     else:
@@ -699,9 +684,9 @@ elif argv[1] == 'pip' and hasVenv:
     else:
         run(pipCommand + argv[2:])
 elif argv[1] in {'cfg-game','update','run','conv','recreate','uv','pip'}:
-    print(f'{argv[1]} requires a valid virtual environment.')
+    raise Exception(f'"{argv[1]}" requires a valid virtual environment.')
 else:
-    print(f'Invalid command {argv[1]}')
+    raise Exception(f'Invalid command "{argv[1]}"')
 
 if c1 != c2:  # Check if config was modified
     writeTOML(cfgloc, c2)
