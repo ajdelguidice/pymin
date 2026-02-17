@@ -129,7 +129,7 @@ def installmodules():
     if not c2['isDevEnv']:
         # Install tkhtmlview this way because its dependencies are broken
         run(pipCommand + ['install', '-U', 'tkhtmlview', '--no-deps'], env=env)
-        replaceTkhtmlviewParserWithUnsafeOne()
+        patchTkhtmlviewParser()
     print('Done')
 
 def downloadgame():
@@ -167,7 +167,7 @@ def updatemodules():
     if not c2['isDevEnv']:
         # Update tkhtmlview this way because its dependencies are broken
         run(pipCommand + ['install', '-U', 'tkhtmlview', '--no-deps'], env=env)
-        replaceTkhtmlviewParserWithUnsafeOne()
+        patchTkhtmlviewParser()
     print('Done')
 
 def recreate(withconf, withsaves, withgameconf):
@@ -218,7 +218,7 @@ def recreate(withconf, withsaves, withgameconf):
         if tempdir is not None:
             rmtree(tempdir)
 
-def replaceTkhtmlviewParserWithUnsafeOne():
+def patchTkhtmlviewParser():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
     if not '--nohtmlparser' in argv or c2['noCustomHTMLParser']:
         temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').replace('\n', '')
