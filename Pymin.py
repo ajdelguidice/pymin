@@ -792,165 +792,166 @@ class NiminFetishFantasyv0975o_fla:
       """
       if self.optionsWinOpen:
          self.optionswindow.lift()
+         return
+
+      #Window
+      self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme)
+      #self.mo.group(self.optionswindow)
+      if self.fixedresolutionmode:
+         self.optionswindow.resizable = False
+      self.optionswindow.addNotebook("display","nb")
+
+      #Options page
+      self.optionswindow.addNBFrame("nb","options",width=420,height=207,text="Options",background=self.theme)
+
+      ##Sol Mode
+      self.optionswindow.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Strict Save Compat",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
+
+      ##Fixed Resolution
+      self.optionswindow.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("TimesNewRoman",11),text="Fixed Resolution",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
+
+      #x+180,y-97
+      ##Custom Theme color
+      #  The perfect size for the input field of the entryboxes is 65
+      self.optionswindow.addCheckboxWithEntry("options","Theme",x=210,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Custom Theme Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
+      self.optionswindow._children["Theme"].set(self.theme)
+
+      ##Custom Font color
+      self.optionswindow.addCheckboxWithEntry("options","FontColor",x=210,y=54,width=152,height=20,font=("TimesNewRoman",11),text="Custom Font Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
+      self.optionswindow._children["FontColor"].set(self.fontColor)
+
+      ##Save Location
+      self.optionswindow.addFileEntryBox("options","SaveLocation",x=10,y=98,width=400,height=20,font=("TimesNewRoman",11),text="Save Location",indent=0,filetype="dir",fileaction="open",initdir=str(self.savelocation.resolve()),background=self.theme,foreground=self.fontColor)
+      self.optionswindow._children["SaveLocation"].set(str(self.savelocation.resolve()))
+
+
+      #Interface page
+      self.optionswindow.addNBFrame("nb","if",width=420,height=207,text="Interface",background=self.theme)
+
+      ##Nimin Theme
+      self.optionswindow.addCheckboxWithLabel("if","NiminTheme",x=10,y=10,width=187,height=20,font=("TimesNewRoman",11),text="Use Nimin Theme",background=self.theme,foreground=self.fontColor)
+      if (self.dir / "nimintheme").is_dir():
+         ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin.")
       else:
-         #Window
-         self.optionswindow = itk.window(width=420, height=207, title="Options", background=self.theme)
-         #self.mo.group(self.optionswindow)
-         if self.fixedresolutionmode:
-            self.optionswindow.resizable = False
-         self.optionswindow.addNotebook("display","nb")
+         ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin. Unavailable due to missing files.")
+         self.optionswindow._children["NiminTheme"].state = "disabled"
 
-         #Options page
-         self.optionswindow.addNBFrame("nb","options",width=420,height=207,text="Options",background=self.theme)
-         
-         ##Sol Mode
-         self.optionswindow.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Strict Save Compat",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
-         
-         ##Fixed Resolution
-         self.optionswindow.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("TimesNewRoman",11),text="Fixed Resolution",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
+      ##Show scrolledText Borders
+      self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("TimesNewRoman",11),text="Show ScrolledText Borders",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
 
-         #x+180,y-97
-         ##Custom Theme color
-         #  The perfect size for the input field of the entryboxes is 65
-         self.optionswindow.addCheckboxWithEntry("options","Theme",x=210,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Custom Theme Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
-         self.optionswindow._children["Theme"].set(self.theme)
+      ##Original new game button size
+      self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("TimesNewRoman",11),text="Original Size for New Game",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
 
-         ##Custom Font color
-         self.optionswindow.addCheckboxWithEntry("options","FontColor",x=210,y=54,width=152,height=20,font=("TimesNewRoman",11),text="Custom Font Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
-         self.optionswindow._children["FontColor"].set(self.fontColor)
+      ##Static buttons in doLevelUP
+      self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("TimesNewRoman",11),text="Static doLevelUP Buttons",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
 
-         ##Save Location
-         self.optionswindow.addFileEntryBox("options","SaveLocation",x=10,y=98,width=400,height=20,font=("TimesNewRoman",11),text="Save Location",indent=0,filetype="dir",fileaction="open",initdir=str(self.savelocation.resolve()),background=self.theme,foreground=self.fontColor)
-         self.optionswindow._children["SaveLocation"].set(str(self.savelocation.resolve()))
+      ##new save dialogue
+      self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Use Expanded Save Dialog",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
+
+      ##New stash
+      self.optionswindow.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Use New Stash",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
+
+      ##Help opens wiki
+      self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
+
+      ##Shops Return To doShops
+      self.optionswindow.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("TimesNewRoman",11),text="Shops Return to doShops",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
+
+      #Grammar page
+      self.optionswindow.addNBFrame("nb","gs",width=420,height=207,text="Grammar",background=self.theme)
+
+      self.optionswindow.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Respect showBalls",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
+
+      self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=160,height=20,font=("TimesNewRoman",11),text="Femme-boy -> Femboy",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
+
+      self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Shemale -> Futanari",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
+
+      self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("TimesNewRoman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
+
+      self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")  # TODO: Make a tooltip for this
+
+      self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
+
+      self.optionswindow.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Snuggleball Tweak",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
+
+      self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=144,height=20,font=("TimesNewRoman",11),text="Grammar Fixes",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
+
+      #Game Tweaks page
+      self.optionswindow.addNBFrame("nb","gt",width=420,height=207,text="Game Tweaks",background=self.theme)
+
+      ##Status Tweaks
+      self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("TimesNewRoman",11),text="Status Tweaks",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
+
+      ##Succubus Leaves One
+      self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("TimesNewRoman",11),text="Succubus Leaves One",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
+
+      ##Use isBottomOpen
+      self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Use isBottomOpen",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
+
+      ##Lizan Don't Show Balls
+      self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("TimesNewRoman",11),text="Lizan Don't Show Balls",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
+
+      ##Herm Can Has Both
+      self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("TimesNewRoman",11),text="Herm Can Has Both",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
+
+      ##Internal ball size affects belly size
+      self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("TimesNewRoman",11),text="IntBallsEffectBellySize",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
+
+      ##Add direct path to sanctuary
+      self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Direct Path to Sanctuary",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
+
+      ##Digi beast feet
+      self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Correct Feet for Some Races",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
+
+      ##Misc Changes
+      self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Misc Changes",background=self.theme,foreground=self.fontColor)
+      ToolTip(self.optionswindow._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
 
 
-         #Interface page
-         self.optionswindow.addNBFrame("nb","if",width=420,height=207,text="Interface",background=self.theme)
-         
-         ##Nimin Theme
-         self.optionswindow.addCheckboxWithLabel("if","NiminTheme",x=10,y=10,width=187,height=20,font=("TimesNewRoman",11),text="Use Nimin Theme",background=self.theme,foreground=self.fontColor)
-         if (self.dir / "nimintheme").is_dir():
-            ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin.")
-         else:
-            ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin. Unavailable due to missing files.")
-            self.optionswindow._children["NiminTheme"].state = "disabled"
-         
-         ##Show scrolledText Borders
-         self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("TimesNewRoman",11),text="Show ScrolledText Borders",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
-         
-         ##Original new game button size
-         self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("TimesNewRoman",11),text="Original Size for New Game",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
-         
-         ##Static buttons in doLevelUP
-         self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("TimesNewRoman",11),text="Static doLevelUP Buttons",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
-         
-         ##new save dialogue
-         self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Use Expanded Save Dialog",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
+      if as3state.as3DebugEnable:
+         #Debug Options page
+         self.optionswindow.addNBFrame("nb","dt",width=420,height=207,text="Debug Options",background=self.theme)
 
-         ##New stash
-         self.optionswindow.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Use New Stash",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
-         
-         ##Help opens wiki
-         self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
-         
-         ##Shops Return To doShops
-         self.optionswindow.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("TimesNewRoman",11),text="Shops Return to doShops",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
+         ##Always Choose Senario
+         self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("TimesNewRoman",11),text="alwaysChooseSenario",background=self.theme,foreground=self.fontColor)
+         ToolTip(self.optionswindow._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
 
-         #Grammar page
-         self.optionswindow.addNBFrame("nb","gs",width=420,height=207,text="Grammar",background=self.theme)
-         
-         self.optionswindow.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Respect showBalls",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
-         
-         self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=160,height=20,font=("TimesNewRoman",11),text="Femme-boy -> Femboy",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
-         
-         self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Shemale -> Futanari",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
-         
-         self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("TimesNewRoman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
+         ##Always Choose Senario
+         self.optionswindow.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("TimesNewRoman",11),text="takeNoDamage",background=self.theme,foreground=self.fontColor)
+         ToolTip(self.optionswindow._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
 
-         self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")  # TODO: Make a tooltip for this
-         
-         self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
-         
-         self.optionswindow.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Snuggleball Tweak",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
-         
-         self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=144,height=20,font=("TimesNewRoman",11),text="Grammar Fixes",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
+      #Apply button
+      self.optionswindow.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("TimesNewRoman",12),text="Apply",command=self.OWSaveOptions)
 
-         #Game Tweaks page
-         self.optionswindow.addNBFrame("nb","gt",width=420,height=207,text="Game Tweaks",background=self.theme)
-
-         ##Status Tweaks
-         self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("TimesNewRoman",11),text="Status Tweaks",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
-         
-         ##Succubus Leaves One
-         self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("TimesNewRoman",11),text="Succubus Leaves One",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
-
-         ##Use isBottomOpen
-         self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Use isBottomOpen",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
-
-         ##Lizan Don't Show Balls
-         self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("TimesNewRoman",11),text="Lizan Don't Show Balls",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
-
-         ##Herm Can Has Both
-         self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("TimesNewRoman",11),text="Herm Can Has Both",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
-
-         ##Internal ball size affects belly size
-         self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("TimesNewRoman",11),text="IntBallsEffectBellySize",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
-
-         ##Add direct path to sanctuary
-         self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Direct Path to Sanctuary",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
-
-         ##Digi beast feet
-         self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Correct Feet for Some Races",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
-
-         ##Misc Changes
-         self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Misc Changes",background=self.theme,foreground=self.fontColor)
-         ToolTip(self.optionswindow._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
-         
-         
-         if as3state.as3DebugEnable:
-            #Debug Options page
-            self.optionswindow.addNBFrame("nb","dt",width=420,height=207,text="Debug Options",background=self.theme)
-
-            ##Always Choose Senario
-            self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("TimesNewRoman",11),text="alwaysChooseSenario",background=self.theme,foreground=self.fontColor)
-            ToolTip(self.optionswindow._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
-
-            ##Always Choose Senario
-            self.optionswindow.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("TimesNewRoman",11),text="takeNoDamage",background=self.theme,foreground=self.fontColor)
-            ToolTip(self.optionswindow._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
-
-         #Apply button
-         self.optionswindow.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("TimesNewRoman",12),text="Apply",command=self.OWSaveOptions)
-
-         self.optionswindow.bind("<Destroy>",self.closeOptionsWindow)
-         self.optionswindow.transient(self.mo)
-         self.OWLoadVars()
-         self.optionsWinOpen = True
+      self.optionswindow.bind("<Destroy>",self.closeOptionsWindow)
+      self.optionswindow.transient(self.mo)
+      self.OWLoadVars()
+      self.optionsWinOpen = True
    def OWLoadVars(self):
       """
       Loads all of the variables and checks their boxes if they are True
@@ -1193,8 +1194,7 @@ class NiminFetishFantasyv0975o_fla:
          if silent == False:
             raise Error("Pymin.checkExistsMakeDir; Path exists but is not a directory.")
          return -1
-      else:
-         path.mkdir(parents=True)
+      path.mkdir(parents=True)
    @staticmethod
    def listFilesInDir(dir_, ext:tuple=None, sort=None):
       """
@@ -1204,10 +1204,10 @@ class NiminFetishFantasyv0975o_fla:
       """
       files = [f.name for f in dir_.iterdir() if f.is_file()]
       #if extension is specified, remove extension that aren't included
-      if ext != None:
+      if ext is not None:
          files = [i for i in files if ("." not in i and "" in ext) or i.endswith(ext)]
       #if sort order is specified, use it
-      if sort != None:
+      if sort is not None:
          return sorted(files, key=sort)
       return files
    def listFilesInDir_SortAlpha(self, dir_, ext:list=None):
@@ -1245,7 +1245,7 @@ class NiminFetishFantasyv0975o_fla:
       Function activated on key press
       """
       self.detailedDebug()
-      if (key := ckeys.tkeventToJavascriptKeycode(e)) != None:
+      if (key := ckeys.tkeventToJavascriptKeycode(e)) is not None:
          self.hotKeys(key)
    def keysUp(self, e):
       """
@@ -1793,14 +1793,14 @@ class NiminFetishFantasyv0975o_fla:
             self.theme = "#FFFFFF"
             self.fontColor = "#000000"
          self.showSide = strtobool(prefs.find("showSide").text)
-         if prefs.find("saveLocation") != None:
+         if prefs.find("saveLocation") is not None:
             tempdir = Path(prefs.find("saveLocation").text).resolve()
             if as3lib.isValidDirectory(tempdir):
                self.savelocation = tempdir
             else:
                trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
-         self.solonlymode = False if prefs.find("solMode") == None else strtobool(prefs.find("solMode").text)
-         if prefs.find("gameTweaks") != None:
+         self.solonlymode = False if prefs.find("solMode") is None else strtobool(prefs.find("solMode").text)
+         if prefs.find("gameTweaks") is not None:
             tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
             if len(tempgametweaks) < 12:
                tempgametweaks.extend((False for i in range(12-len(tempgametweaks))))
@@ -1816,29 +1816,29 @@ class NiminFetishFantasyv0975o_fla:
             self.correctBeastRaceFeet = tempgametweaks[9]
             self.useNewStash = tempgametweaks[10]
             self.gameTweaksMisc = tempgametweaks[11]
-         self.fixedresolutionmode = False if prefs.find("fixedResMode") == None else strtobool(prefs.find("fixedResMode").text)
-         if prefs.find("customFontColor") != None and prefs.find("oFontColor") != None:
+         self.fixedresolutionmode = False if prefs.find("fixedResMode") is None else strtobool(prefs.find("fixedResMode").text)
+         if prefs.find("customFontColor") is not None and prefs.find("oFontColor") is not None:
             self.customfontcolor = strtobool(prefs.find("customFontColor").text)
             self.mo._children["textcolorbutton"].state = self.boolToState(not self.customfontcolor)
             self.ofontcolor = prefs.find('oFontColor').text
-         if prefs.find('customThemeColor') != None and prefs.find('oThemeColor') != None:
+         if prefs.find('customThemeColor') is not None and prefs.find('oThemeColor') is not None:
             self.customthemecolor = strtobool(prefs.find("customThemeColor").text)
             self.mo._children["themebutton"].state = self.boolToState(not self.customthemecolor)
             self.othemecolor = prefs.find('oThemeColor').text
-         if prefs.find("debugTweaks") != None:
+         if prefs.find("debugTweaks") is not None:
             tempdebugtweaks = strtolistbools(prefs.find("debugTweaks").text)
             if len(tempdebugtweaks) < 2:
                tempdebugtweaks.extend((False for i in range(2-len(tempdebugtweaks))))
             self.debugChooseSenario = tempdebugtweaks[0]
             self.debugNoDamage = tempdebugtweaks[1]
-         if prefs.find("nsldSortOrder") != None:
+         if prefs.find("nsldSortOrder") is not None:
             self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
-         if prefs.find("themeType") != None:
+         if prefs.find("themeType") is not None:
             if int(prefs.find("themeType").text) in {0,1}:
                self.useNiminTheme = bool(prefs.find("themeType").text)
             else:
                self.useNiminTheme = False
-         if prefs.find("interfaceToggles") != None:
+         if prefs.find("interfaceToggles") is not None:
             tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
             if len(tempitoggle) < 4:
                tempitoggle.extend((False for i in range(4-len(tempitoggle))))
@@ -1871,16 +1871,15 @@ class NiminFetishFantasyv0975o_fla:
       self.doMainText(texts,reset,*textCheck)
       self.displayMainText()
    def doMainText(self, texts:str, reset:bool=False, *textCheck):
-      if (reset == True):
+      if (reset):
          self.currentText.clear()
          self.currentText.write(texts)
          self.textCheckArray.clear()
-      else:
-         if len(textCheck) == 0 or textCheck[0] not in self.textCheckArray:
-            self.currentText.write(texts)
-            self.textCheckArray.push(*textCheck)
+      elif not len(textCheck) or textCheck[0] not in self.textCheckArray:
+         self.currentText.write(texts)
+         self.textCheckArray.push(*textCheck)
    def outputSideText(self, texts:str, reset:bool):
-      if (reset == True):
+      if (reset):
          self.sideText.clear()
       self.sideText.write(texts)
       self.displaySideText()
@@ -1908,7 +1907,7 @@ class NiminFetishFantasyv0975o_fla:
             self.choicePage = self.bagPage
          elif (self.mtb):
             self.choicePage = self.tempBagPage
-         elif (page != None):
+         elif (page is not None):
             self.choicePage = page
       elif (which == "Stash"):
          tempArray = tuple(self.itemName(i) if i else " " for i in each(self.stashArray))
@@ -1972,11 +1971,11 @@ class NiminFetishFantasyv0975o_fla:
       self.disableSelectedButtons(i for i in self.bMap if not self.buttonsVisible[i])
    def choiceListSelect(self, which:str, hideOverride:bool=False):
       if which == "Bag":
-         tempArray = tuple(each(self.bagArray))
+         tempArray = self.bagArray
       elif which == "Stash":
-         tempArray = tuple(each(self.stashArray))
+         tempArray = self.stashArray
       else:
-         tempArray = tuple(each(self.choiceListArray))
+         tempArray = self.choiceListArray
       if self.buttonChoice in {12,13}:
          tempInt = 0
       else:
@@ -2117,14 +2116,8 @@ class NiminFetishFantasyv0975o_fla:
    def buttonConfirm(self, b6:bool=True, b7:bool=True):
       self.detailedDebug()
       self.showButtons(ButtonList(0,0,0,0,0,1,1,0,0,0,0,0))
-      if (b6):
-         self.buttonWrite(6,"Yes")
-      else:
-         self.disableOneButton(6)
-      if (b7):
-         self.buttonWrite(7,"No")
-      else:
-         self.disableOneButton(7)
+      self.buttonWrite(6,"Yes") if b6 else self.disableOneButton(6)
+      self.buttonWrite(7,"No") if b7 else self.disableOneButton(7)
    def doNext(self):
       self.detailedDebug()
       self.showButtons(ButtonList(0,0,0,0,0,1,0,0,0,0,0,0))
@@ -2142,6 +2135,7 @@ class NiminFetishFantasyv0975o_fla:
          self.inBag = False
          self.hideAmountAll()
          self.doLustForcedMasturbate()
+         return
       else:
          if (leave):
             self.doLeave()
@@ -2191,7 +2185,7 @@ class NiminFetishFantasyv0975o_fla:
                self.moveItemStack = 0
                self.showMoveItem(False)
          self.doListen = doListen
-      if override != None:
+      if override is not None:
          if override == "aff":
             self.affinityChange()
       elif (self.itemGainArray.length):
@@ -2454,7 +2448,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (sens < 0):
          self.UpDownImage("sen","down")
       self.statDisplay()
-   def statDisplay(self, lsc=True):
+   def statDisplay(self, lsc:bool=True):
       """
       Updates the displayed player's stats values
       """
@@ -2465,7 +2459,7 @@ class NiminFetishFantasyv0975o_fla:
       self.setCStats()
       self.setHPStat()
       self.setLustStat()
-      if lsc == True:
+      if lsc:
          self.setLevelStat()
          self.setSCStats()
    def doSexP(self, changes:int):
@@ -3936,7 +3930,7 @@ class NiminFetishFantasyv0975o_fla:
       self.checkExistsMakeDir(self.savelocation)
       self.hideAPButton()
       if self.useNewSaveLoadDialog:
-         if message == None:
+         if message is None:
             self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
          else:
             self.outputMainText(message,True)
@@ -3983,7 +3977,7 @@ class NiminFetishFantasyv0975o_fla:
                elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
                   dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
                   tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
-         if message == None:
+         if message is None:
             self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
          else:
             self.outputMainText(message,True)
@@ -4220,7 +4214,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.loadGo("Error: Could not load save file. Reason: Incorrect file format")
          raise Error(f"Pymin.doLoad; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
-      if data == None:
+      if data is None:
          self.loadGo("Error: Could not load save file. Reason: No data was received by doLoad")
          return
       try:
@@ -4564,7 +4558,7 @@ class NiminFetishFantasyv0975o_fla:
                for i in range(8):
                   self.mo.destroyChild(self.sidepanelbuttonnames[i])
                temp = self.mo._children.get("textside")
-               if temp != None:
+               if temp is not None:
                   temp.destroy()
                self.sidepanelvisible = False
                self.hideAPButton()
@@ -5081,7 +5075,7 @@ class NiminFetishFantasyv0975o_fla:
       self.doLust(-(self.lib // 4),2,1)
       self.displayMainText()
       self.doEnd()
-   def doBag(self, refresh=False, noclear=False):
+   def doBag(self, refresh:bool=False, noclear:bool=False):
       """
       Bag dialog
       """
@@ -5089,12 +5083,12 @@ class NiminFetishFantasyv0975o_fla:
       self.inBag = True
       self.tempBagPage = 1
       self.showMoveItem(True)
-      if noclear == False and refresh == False:
-         self.choiceListButtons("Bag")
-      else:
+      if noclear or refresh:
          self.choicePage = self.bagPage
-         if refresh == True:
+         if refresh:
             self.bsRefresh("Bag")
+      else:
+         self.choiceListButtons("Bag")
       if self.moveItemID == 0:
          self.mo._children["discardbutton"].state = "disabled"
       else:
@@ -5150,38 +5144,38 @@ class NiminFetishFantasyv0975o_fla:
       if (ID == 0):
          self.outputMainText("This slot is empty.",True)
          self.doBag(noclear=True)
-      else:
-         if self.useItemHidePage(ID):
-            self.hidePage()
-         self.choicePage = 1
-         self.doMainText(self.itemDescription(ID),True)
-         if (self.usableItem(ID) or self.conItem(ID)):
-            self.hideAmountAll()
-            self.doMainText("\n\nAre you sure you want to use this item?")
-            if (self.conItem(ID)):
-               self.doMainText("\n\nWarning: Using this item will consume it.")
-            self.displayMainText()
-            self.buttonConfirm()
-            self.buttonShiftOverride = True
-            def doListen():
+         return
+      if self.useItemHidePage(ID):
+         self.hidePage()
+      self.choicePage = 1
+      self.doMainText(self.itemDescription(ID),True)
+      if (self.usableItem(ID) or self.conItem(ID)):
+         self.hideAmountAll()
+         self.doMainText("\n\nAre you sure you want to use this item?")
+         if (self.conItem(ID)):
+            self.doMainText("\n\nWarning: Using this item will consume it.")
+         self.displayMainText()
+         self.buttonConfirm()
+         self.buttonShiftOverride = True
+         def doListen():
+            self.buttonShiftOverride = False
+            if (self.buttonChoice == 6):
+               if (self.conItem(ID)):
+                  if (self.bagStackArray[self.choiceListResult[1]] <= 1):
+                     self.bagSlotClear(self.choiceListResult[1])
+                  else:
+                     self.bagStackArray[self.choiceListResult[1]] = self.bagStackArray[self.choiceListResult[1]] - 1
+               self.foodItem(ID)
+               self.buttonShiftOverride = True
+               self.doItemUse(ID)
                self.buttonShiftOverride = False
-               if (self.buttonChoice == 6):
-                  if (self.conItem(ID)):
-                     if (self.bagStackArray[self.choiceListResult[1]] <= 1):
-                        self.bagSlotClear(self.choiceListResult[1])
-                     else:
-                        self.bagStackArray[self.choiceListResult[1]] = self.bagStackArray[self.choiceListResult[1]] - 1
-                  self.foodItem(ID)
-                  self.buttonShiftOverride = True
-                  self.doItemUse(ID)
-                  self.buttonShiftOverride = False
-                  self.statDisplay()
-               else:
-                  self.doBag()
-            self.doListen = doListen
-         else:
-            self.displayMainText()
-            self.doBag()
+               self.statDisplay()
+            else:
+               self.doBag()
+         self.doListen = doListen
+      else:
+         self.displayMainText()
+         self.doBag()
    def itemAdd(self, ID:int):
       """
       Function called when giving the player items
@@ -5214,31 +5208,31 @@ class NiminFetishFantasyv0975o_fla:
       self.hideAmountAll()
       tempNum = 0
       openSlot = self.checkOpenSlot(ID)
-      if (openSlot >= 0):
-         if (self.bagArray[openSlot] == 0):
-            self.bagArray[openSlot] = ID
-            self.bagStackArray[openSlot] = 1
-            self.passiveItemAdd(ID)
-            tempNum += 1
-            while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
-               self.itemGainArray.pop()
-               self.bagStackArray[openSlot] += 1
-               tempNum += 1
-         else:
-            tempNum += 1
-            self.bagStackArray[openSlot] += 1
-            while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
-               self.itemGainArray.pop()
-               self.bagStackArray[openSlot] += 1
-               tempNum += 1
-         if (tempNum < 2):
-            self.outputMainText(f"You have obtained a {self.itemName(ID)}!",True)
-         else:
-            self.outputMainText(f"You have obtained {tempNum}x {self.itemName(ID)}!",True)
-         self.doEnd()
-      else:
+      if openSlot < 0:
          self.outputMainText(f"You have obtained a {self.itemName(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.",True)
          self.doDiscard(ID)
+         return
+      if (self.bagArray[openSlot] == 0):
+         self.bagArray[openSlot] = ID
+         self.bagStackArray[openSlot] = 1
+         self.passiveItemAdd(ID)
+         tempNum += 1
+         while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
+            self.itemGainArray.pop()
+            self.bagStackArray[openSlot] += 1
+            tempNum += 1
+      else:
+         tempNum += 1
+         self.bagStackArray[openSlot] += 1
+         while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
+            self.itemGainArray.pop()
+            self.bagStackArray[openSlot] += 1
+            tempNum += 1
+      if (tempNum < 2):
+         self.outputMainText(f"You have obtained a {self.itemName(ID)}!",True)
+      else:
+         self.outputMainText(f"You have obtained {tempNum}x {self.itemName(ID)}!",True)
+      self.doEnd()
    def checkOpenSlot(self, ID:int):
       for i in range(27):
          if (self.bagStackArray[i] < self.itemStackMax(ID) and self.bagArray[i] == ID):
@@ -8189,9 +8183,9 @@ class NiminFetishFantasyv0975o_fla:
       """
       tempDict = {12:"Return",4:"<<",8:">>"}
       if which == "Bag":
-         tempArray = Array(*[self.itemName(i) for i in each(self.bagArray)])
+         tempArray = tuple(self.itemName(i) for i in each(self.bagArray))
       elif which == "Stash":
-         tempArray = Array(*[self.itemName(i) for i in each(self.stashArray)])
+         tempArray = tuple(self.itemName(i) for i in each(self.stashArray))
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if (tempArray[tempI] != " "):
@@ -8577,10 +8571,10 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.doReturn()
       self.doListen = doListen
-   def doSell(self, cansell=True):
+   def doSell(self, cansell:bool=True):
       self.choiceListButtons("Bag",page=self.tempBagPage)
       self.bagDisableEmpty()
-      if cansell == True:
+      if cansell:
          self.outputMainText("Click on an item you would like to sell.",True)
       else:
          self.outputMainText("\n\nClick on a different item you would like to sell.")
@@ -12881,7 +12875,7 @@ class NiminFetishFantasyv0975o_fla:
       #!Here
       if as3state.as3DebugEnable and self.debugChooseSenario:
          temp = self.debugSenarioChooser({"Softlik":[1,4],"Firmshaft":[1,3],"Tieden":[1,3],"Siz'Calit":[1,4],"Oviasis":[1,5],"Sanctuary":[3,3],"Forest":[1,6],"Jungle":[1,7],"Plains":[1,5],"Savanna":[1,5],"Desert":[1,5],"Beach":[1,6],"Lake":[1,3],"Dairy Farm":[1,5],"Old Cave":[1,3],"Den":[1,2],"Valley":[1,5]}[which])
-         if temp != None:
+         if temp is not None:
             return temp
       self.rndArray.clear()
       # Towns
@@ -23199,15 +23193,15 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
    def ptweaksGrammar(self, topic:int, capital:bool=False):
       if topic == 1: #femme-boy/femboy
-         if capital == True:
+         if capital:
             return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
          return "femboy" if self.femmeboyToFemboy else "femme-boy"
       if topic == 2: #shemale/futanari
-         if capital == True:
+         if capital:
             return "Futanari" if self.shemaleToFuta else "Shemale"
          return "futanari" if self.shemaleToFuta else "shemale"
       if topic == 3: #Femme boy/Femboy
-         if capital == True:
+         if capital:
             return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
          return "femboy" if self.femmeboyToFemboy else "femme boy"
    def plural(self, topic:int):
@@ -24190,7 +24184,7 @@ class NiminFetishFantasyv0975o_fla:
          return "bug"
       return f"DOMINANT ERROR {self.dominant}"
    def isBottomOpen(self, ID:int=None):
-      if ID == None:
+      if ID is None:
          ID = self.attireBot
       return ID in {-1,5,7,12,13,14,16,25} # Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
    def genName(self):
@@ -24301,9 +24295,11 @@ class NiminFetishFantasyv0975o_fla:
       self.loadPreferences()
       self.hideOption7()
       if self.originalFrame1Message:
-         self.outputMainText(f"Nimin: Fetish Fantasy\n            v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above.",True)
+         out = f"Nimin: Fetish Fantasy\n            v{self.versionNumber}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above."
+
       else:
-         self.outputMainText(f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{self.versionNumber})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).", True)
+         out = f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{self.versionNumber})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab)."
+      self.outputMainText(out,True)
    def showStatsPane(self):
       self.showStatPane()
       self.showLevelPane()
@@ -24759,7 +24755,7 @@ class NiminFetishFantasyv0975o_fla:
             ext = inputfile.split(".")[-1].lower()
             self.sfcwindow._children["message"].text = f"Error: Detected input file type {ext} is not a supported file type"
             raise Error(f"Pymin.convertSave; Detected input file type {ext} is not a supported file type")
-      if data == None:
+      if data is None:
          raise Error("Pymin.convertSave; Input save data is null. Try again")
       data = self.dictSAVE(data)
       if outputfiletype == "xml":
@@ -24817,7 +24813,7 @@ class NiminFetishFantasyv0975o_fla:
          data["mod"] = list(dictionary["mod"].values())
          data["quality"] = list(dictionary["quality"].values())
          data["cock"] = list(dictionary["cock"].values())
-         if dictionary["cock"].get("neuterizerHideBalls") != None:
+         if dictionary["cock"].get("neuterizerHideBalls") is not None:
             data["cock"].append(dictionary["cock"].get("neuterizerHideBalls"))
          data["girl"] = list(dictionary["girl"].values())
          data["gear"] = list(dictionary["gear"].values())
@@ -24960,7 +24956,7 @@ class NiminFetishFantasyv0975o_fla:
          sbagStack = so.get("bagStackSave")
          sstash = so.get("stashSave")
          sstashStack = so.get("stashStackSave")
-         if (sbag == None):
+         if (sbag is None):
             sbag = []
             sbagStack = []
             sstash = []
@@ -24991,11 +24987,11 @@ class NiminFetishFantasyv0975o_fla:
    def loadXML(self, filename, origin:str=None):
       try:
          data = xmletree.parse(filename).getroot()
-         if data == None:
+         if data is None:
             return
          strack = data.find('track')
          sver = data.find('version')
-         sver = ("0.975o","1") if sver == None else (sver.find("original").text,sver.find("port").text)
+         sver = ("0.975o","1") if sver is None else (sver.find("original").text,sver.find("port").text)
          tempver = int(sver[1] if sver[1].find(".") == -1 else sver[1].split(".")[-1])
          sstats = data.find('stats')
          slevel = data.find('level')
@@ -25034,7 +25030,7 @@ class NiminFetishFantasyv0975o_fla:
             _stashStackArray[i] = int(stashStack.find(tempstr).text)
          for i in range(0,len(preg),5):
             _preg.extend((strtobool(preg.find(f"i{i}").text),int(preg.find(f"i{i+1}").text),int(preg.find(f"i{i+2}").text),int(preg.find(f"i{i+3}").text),int(preg.find(f"i{i+4}").text)))
-         return {"track":{"currentState":int(strack.find('currentState').text),"currentZone":int(strack.find('currentZone').text),"day":int(strack.find('day').text),"hour":int(strack.find('hour').text),"currentDayCare":int(strack.find('currentDayCare').text),"inDungeon":strtobool(strack.find('inDungeon').text),"currentDungeon":int(strack.find('currentDungeon').text),"v7":str(strack.find('v7').text),"firstExplore":strtobool(strack.find('firstExplore').text) if strack.find('firstExplore') != None else False},"version":{"original":sver[0],"port":sver[1]},"stats":{"strength":int(sstats.find('strength').text),"mentality":int(sstats.find('mentality').text),"libido":int(sstats.find('libido').text),"sensitivity":int(sstats.find('sensitivity').text),"HP":int(sstats.find('HP').text),"lust":int(sstats.find('lust').text),"coin":int(sstats.find('coin').text),"strMod":int(sstats.find('strMod').text),"mentMod":int(sstats.find('mentMod').text),"libMod":int(sstats.find('libMod').text),"senMod":int(sstats.find('senMod').text),"hunger":int(sstats.find('hunger').text)},"level":{"SexP":int(slevel.find('SexP').text),"levelUP":int(slevel.find('levelUP').text),"level":int(slevel.find('level').text),"babyFactLevel":int(slevel.find('babyFactLevel').text),"bodyBuildLevel":int(slevel.find('bodyBuildLevel').text),"hyperHappyLevel":int(slevel.find('hyperHappyLevel').text),"alchemistLevel":int(slevel.find('alchemistLevel').text),"fetishMasterLevel":int(slevel.find('fetishMasterLevel').text),"milkMaidLevel":int(slevel.find('milkMaidLevel').text),"shapeshiftyLevel":int(slevel.find('shapeshiftyLevel').text),"shapeshiftyFirst":"" if slevel.find('shapeshiftyFirst').text == None else str(slevel.find('shapeshiftyFirst').text),"shapeshiftySecond":"" if slevel.find('shapeshiftySecond').text == None else str(slevel.find('shapeshiftySecond').text)},"mod":{"runMod":int(smod.find('runMod').text),"rapeMod":int(smod.find('rapeMod').text),"cumMod":float(smod.find('cumMod').text),"cockSizeMod":float(smod.find('cockSizeMod').text),"milkMod":int(smod.find('milkMod').text),"carryMod":int(smod.find('carryMod').text),"vagBellyMod":int(smod.find('vagBellyMod').text),"pregChanceMod":int(smod.find('pregChanceMod').text),"extraPregChance":int(smod.find('extraPregChance').text),"pregTimeMod":int(smod.find('pregTimeMod').text),"enticeMod":int(smod.find('enticeMod').text),"milkHPMod":int(smod.find('milkHPMod').text),"vagSizeMod":float(smod.find('vagSizeMod').text),"vagElastic":float(smod.find('vagElastic').text),"changeMod":float(smod.find('changeMod').text),"HPMod":int(smod.find('HPMod').text),"SexPMod":float(smod.find('SexPMod').text),"minLust":int(smod.find('minLust').text),"milkCap":int(smod.find('milkCap').text),"coinMod":int(smod.find('coinMod').text),"hipMod":float(smod.find('hipMod').text),"buttMod":float(smod.find('buttMod').text),"bellyMod":int(smod.find('bellyMod').text),"cockMoistMod":int(smod.find('cockMoistMod').text),"vagMoistMod":int(smod.find('vagMoistMod').text),"lockTail":int(smod.find('lockTail').text),"lockFace":int(smod.find('lockFace').text),"lockSkin":int(smod.find('lockSkin').text),"lockBreasts":int(smod.find('lockBreasts').text),"lockEars":int(smod.find('lockEars').text),"lockLegs":int(smod.find('lockLegs').text),"lockNipples":int(smod.find('lockNipples').text),"lockCock":int(smod.find('lockCock').text)},"quality":{"gender":int(squality.find('gender').text),"race":int(squality.find('race').text),"body":int(squality.find('body').text),"dominant":int(squality.find('dominant').text),"hips":int(squality.find('hips').text),"butt":int(squality.find('butt').text),"tallness":int(squality.find('tallness').text),"skinType":int(squality.find('skinType').text),"tail":int(squality.find('tail').text),"ears":int(squality.find('ears').text),"hair":int(squality.find('hair').text),"hairColor":int(squality.find('hairColor').text),"hairLength":int(squality.find('hairLength').text),"legType":int(squality.find('legType').text),"wings":int(squality.find('wings').text),"faceType":int(squality.find('faceType').text),"skinColor":int(squality.find('skinColor').text)},"cock":{"cockTotal":int(scock.find('cockTotal').text),"humanCocks":int(scock.find('humanCocks').text),"horseCocks":int(scock.find('horseCocks').text),"wolfCocks":int(scock.find('wolfCocks').text),"catCocks":int(scock.find('catCocks').text),"rabbitCocks":int(scock.find('rabbitCocks').text),"lizardCocks":int(scock.find('lizardCocks').text),"cockSize":int(scock.find('cockSize').text),"cockMoist":int(scock.find('cockMoist').text),"balls":int(scock.find('balls').text),"ballSize":int(scock.find('ballSize').text),"showBalls":strtobool(scock.find('showBalls').text),"knot":strtobool(scock.find('knot').text),"bugCocks":int(scock.find('bugCocks').text),"neuterizerHideBalls":strtobool(scock.find("neuterizerHideBalls").text) if scock.find("nueterizerHideBalls") != None else False},"girl":{"breastSize":int(sgirl.find('breastSize').text),"boobTotal":int(sgirl.find('boobTotal').text),"nippleSize":int(sgirl.find('nippleSize').text),"udders":strtobool(sgirl.find('udders').text),"udderSize":int(sgirl.find('udderSize').text),"teatSize":int(sgirl.find('teatSize').text),"clitSize":int(sgirl.find('clitSize').text),"vagTotal":int(sgirl.find('vagTotal').text),"vagSize":int(sgirl.find('vagSize').text),"vagMoist":int(sgirl.find('vagMoist').text),"vulvaSize":int(sgirl.find('vulvaSize').text),"nipType":int(sgirl.find('nipType').text)},"gear":{"attireTop":int(sgear.find('attireTop').text),"attireBot":int(sgear.find('attireBot').text),"weapon":int(sgear.find('weapon').text)},"status":{"pregRate":float(sstatus.find('pregRate').text),"pregnancyTime":int(sstatus.find('pregnancyTime').text),"pregStatus":int(sstatus.find('pregStatus').text),"eggLaying":int(sstatus.find('eggLaying').text),"eggMaxTime":int(sstatus.find('eggMaxTime').text),"eggTime":int(sstatus.find('eggMaxTime').text) if int(sstatus.find('eggTime').text) > int(sstatus.find('eggMaxTime').text) and tempver < 10 else int(sstatus.find('eggTime').text),"eggRate":int(sstatus.find('eggRate').text),"exhaustion":int(sstatus.find('exhaustion').text),"exhaustionPenalty":int(sstatus.find('exhaustionPenalty').text),"milkEngorgement":int(sstatus.find('milkEngorgement').text),"milkEngorgementLevel":int(sstatus.find('milkEngorgementLevel').text),"udderEngorgement":int(sstatus.find('udderEngorgement').text),"udderEngorgementLevel":int(sstatus.find('udderEngorgementLevel').text),"heat":int(sstatus.find('heat').text),"heatTime":int(sstatus.find('heatTime').text),"heatMaxTime":int(sstatus.find('heatMaxTime').text),"lactation":int(sstatus.find('lactation').text),"udderLactation":int(sstatus.find('udderLactation').text),"nipplePlay":float(sstatus.find('nipplePlay').text),"udderPlay":float(sstatus.find('udderPlay').text),"blueBalls":int(sstatus.find('blueBalls').text),"teatPump":int(sstatus.find('teatPump').text),"nipPump":int(sstatus.find('nipPump').text),"cockPump":int(sstatus.find('cockPump').text),"clitPump":int(sstatus.find('clitPump').text),"vulvaPump":int(sstatus.find('vulvaPump').text),"masoPot":int(sstatus.find('masoPot').text),"sMasoPot":int(sstatus.find('sMasoPot').text),"babyFree":int(sstatus.find('babyFree').text),"charmTime":int(sstatus.find('charmTime').text),"pheromone":int(sstatus.find('pheromone').text),"eggceleratorTime":int(sstatus.find('eggceleratorTime').text),"eggceleratorDose":int(sstatus.find('eggceleratorDose').text),"bodyOil":int(sstatus.find('bodyOil').text),"lustPenalty":int(sstatus.find('lustPenalty').text),"fertileGel":int(sstatus.find('fertileGel').text),"snuggleBall":strtobool(sstatus.find('snuggleBall').text),"eggType":int(sstatus.find('eggType').text),"milkSuppressant":int(sstatus.find('milkSuppressant').text),"milkSuppressantLact":int(sstatus.find('milkSuppressantLact').text),"milkSuppressantUdder":int(sstatus.find('milkSuppressantUdder').text),"suppHarness":strtobool(sstatus.find('suppHarness').text),"fertilityStatueCurse":int(sstatus.find('fertilityStatueCurse').text),"plumpQuats":int(sstatus.find('plumpQuats').text),"lilaWetStatus":int(sstatus.find('lilaWetStatus').text),"cockSnakePreg":int(sstatus.find('cockSnakePreg').text),"milkCPoisonNip":int(sstatus.find('milkCPoisonNip').text),"milkCPoisonUdd":int(sstatus.find('milkCPoisonUdd').text),"cockSnakeVenom":int(sstatus.find('cockSnakeVenom').text)},"affinity":{"humanAffinity":int(saffinity.find('humanAffinity').text),"horseAffinity":int(saffinity.find('horseAffinity').text),"wolfAffinity":int(saffinity.find('wolfAffinity').text),"catAffinity":int(saffinity.find('catAffinity').text),"cowAffinity":int(saffinity.find('cowAffinity').text),"lizardAffinity":int(saffinity.find('lizardAffinity').text),"rabbitAffinity":int(saffinity.find('rabbitAffinity').text),"fourBoobAffinity":int(saffinity.find('fourBoobAffinity').text),"mouseAffinity":int(saffinity.find('mouseAffinity').text),"birdAffinity":int(saffinity.find('birdAffinity').text),"pigAffinity":int(saffinity.find('pigAffinity').text),"twoBoobAffinity":int(saffinity.find('twoBoobAffinity').text),"sixBoobAffinity":int(saffinity.find('sixBoobAffinity').text),"eightBoobAffinity":int(saffinity.find('eightBoobAffinity').text),"tenBoobAffinity":int(saffinity.find('tenBoobAffinity').text),"cowTaurAffinity":int(saffinity.find('cowTaurAffinity').text),"humanTaurAffinity":int(saffinity.find('humanTaurAffinity').text),"skunkAffinity":int(saffinity.find('skunkAffinity').text),"bugAffinity":int(saffinity.find('bugAffinity').text)},"rep":{"lilaRep":int(srep.find('lilaRep').text),"lilaVulva":int(srep.find('lilaVulva').text),"lilaMilk":int(srep.find('lilaMilk').text),"lilaPreg":int(srep.find('lilaPreg').text),"malonRep":int(srep.find('malonRep').text),"malonPreg":int(srep.find('malonPreg').text),"malonChildren":int(srep.find('malonChildren').text),"mistressRep":int(srep.find('mistressRep').text),"jamieRep":int(srep.find('jamieRep').text),"jamieSize":int(srep.find('jamieSize').text),"jamieChildren":int(srep.find('jamieChildren').text),"silRep":int(srep.find('silRep').text),"silPreg":int(srep.find('silPreg').text),"silRate":int(srep.find('silRate').text),"silLay":int(srep.find('silLay').text),"silGrowthTime":int(srep.find('silGrowthTime').text),"silTied":strtobool(srep.find('silTied').text),"lilaUB":strtobool(srep.find('lilaUB').text),"dairyFarmBrand":strtobool(srep.find('dairyFarmBrand').text),"lilaWetness":int(srep.find('lilaWetness').text),"jamieButt":strtobool(srep.find('jamieButt').text),"jamieBreasts":strtobool(srep.find('jamieBreasts').text),"jamieHair":strtobool(srep.find('jamieHair').text)},"knowledge":{"foundSoftlik":strtobool(sknowledge.find('foundSoftlik').text),"foundFirmshaft":strtobool(sknowledge.find('foundFirmshaft').text),"foundTieden":strtobool(sknowledge.find('foundTieden').text),"foundSizCalit":strtobool(sknowledge.find('foundSizCalit').text),"foundOviasis":strtobool(sknowledge.find('foundOviasis').text),"foundValley":strtobool(sknowledge.find('foundValley').text),"foundSanctuary":strtobool(sknowledge.find('foundSanctuary').text),"usedSecretStairs":strtobool(sknowledge.find('usedSecretStairs').text) if sknowledge.find('usedSecretStairs') != None else False},"boss":{"defeatedMinotaur":strtobool(sboss.find('defeatedMinotaur').text),"defeatedFreakyGirl":strtobool(sboss.find('defeatedFreakyGirl').text),"defeatedSuccubus":strtobool(sboss.find('defeatedSuccubus').text)},"knowSimpleAlchemy":{"knowLustDraft":strtobool(sknowSimpleAlchemy.find('knowLustDraft').text),"knowRejuvPot":strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text),"knowExpPreg":strtobool(sknowSimpleAlchemy.find('knowExpPreg').text),"knowBallSwell":strtobool(sknowSimpleAlchemy.find('knowBallSwell').text),"knowMaleEnhance":strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)},"knowAdvancedAlchemy":{"knowSLustDraft":strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text),"knowSRejuvPot":strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text),"knowSExpPreg":strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text),"knowSBallSwell":strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text),"knowGenSwap":strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text),"knowMasoPot":strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text),"knowBabyFree":strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text),"knowPotPot":strtobool(sknowAdvancedAlchemy.find('knowPotPot').text),"knowMilkSuppress":strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)},"knowComplexAlchemy":{"knowSGenSwap":strtobool(sknowComplexAlchemy.find('knowSGenSwap').text),"knowSMasoPot":strtobool(sknowComplexAlchemy.find('knowSMasoPot').text),"knowSBabyFree":strtobool(sknowComplexAlchemy.find('knowSBabyFree').text),"knowSPotPot":strtobool(sknowComplexAlchemy.find('knowSPotPot').text),"knowPussJuice":strtobool(sknowComplexAlchemy.find('knowPussJuice').text),"knowPheromone":strtobool(sknowComplexAlchemy.find('knowPheromone').text),"knowBazoomba":strtobool(sknowComplexAlchemy.find('knowBazoomba').text)},"majorFetish":{"maleFetish":float(smajorFetish.find('maleFetish').text),"femaleFetish":float(smajorFetish.find('femaleFetish').text),"hermFetish":float(smajorFetish.find('hermFetish').text),"narcissistFetish":float(smajorFetish.find('narcissistFetish').text),"dependentFetish":float(smajorFetish.find('dependentFetish').text)},"moderateFetish":{"dominantFetish":float(smoderateFetish.find('dominantFetish').text),"submissiveFetish":float(smoderateFetish.find('submissiveFetish').text),"lboobFetish":float(smoderateFetish.find('lboobFetish').text),"sboobFetish":float(smoderateFetish.find('sboobFetish').text),"furryFetish":float(smoderateFetish.find('furryFetish').text),"scalyFetish":float(smoderateFetish.find('scalyFetish').text),"smoothyFetish":float(smoderateFetish.find('smoothyFetish').text)},"minorFetish":{"pregnancyFetish":float(sminorFetish.find('pregnancyFetish').text),"bestialityFetish":float(sminorFetish.find('bestialityFetish').text),"milkFetish":float(sminorFetish.find('milkFetish').text),"sizeFetish":float(sminorFetish.find('sizeFetish').text),"unbirthingFetish":float(sminorFetish.find('unbirthingFetish').text),"ovipositionFetish":float(sminorFetish.find('ovipositionFetish').text),"toyFetish":float(sminorFetish.find('toyFetish').text),"hyperFetish":float(sminorFetish.find('hyperFetish').text)},"kid":{"humanChildren":int(skid.find('humanChildren').text),"equanChildren":int(skid.find('equanChildren').text),"lupanChildren":int(skid.find('lupanChildren').text),"felinChildren":int(skid.find('felinChildren').text),"cowChildren":int(skid.find('cowChildren').text),"lizanChildren":int(skid.find('lizanChildren').text),"lizanEggs":int(skid.find('lizanEggs').text),"bunnionChildren":int(skid.find('bunnionChildren').text),"wolfPupChildren":int(skid.find('wolfPupChildren').text),"miceChildren":int(skid.find('miceChildren').text),"birdEggs":int(skid.find('birdEggs').text),"birdChildren":int(skid.find('birdChildren').text),"pigChildren":int(skid.find('pigChildren').text),"calfChildren":int(skid.find('calfChildren').text),"bugEggs":int(skid.find('bugEggs').text),"bugChildren":int(skid.find('bugChildren').text),"skunkChildren":int(skid.find('skunkChildren').text),"minotaurChildren":int(skid.find('minotaurChildren').text),"freakyGirlChildren":int(skid.find('freakyGirlChildren').text)},"trav":[],"bag":_bagArray,"bagStack":_bagStackArray,"stash":_stashArray,"stashStack":_stashStackArray,"preg":_preg}
+         return {"track":{"currentState":int(strack.find('currentState').text),"currentZone":int(strack.find('currentZone').text),"day":int(strack.find('day').text),"hour":int(strack.find('hour').text),"currentDayCare":int(strack.find('currentDayCare').text),"inDungeon":strtobool(strack.find('inDungeon').text),"currentDungeon":int(strack.find('currentDungeon').text),"v7":str(strack.find('v7').text),"firstExplore":False if strack.find('firstExplore') is None else strtobool(strack.find('firstExplore').text)},"version":{"original":sver[0],"port":sver[1]},"stats":{"strength":int(sstats.find('strength').text),"mentality":int(sstats.find('mentality').text),"libido":int(sstats.find('libido').text),"sensitivity":int(sstats.find('sensitivity').text),"HP":int(sstats.find('HP').text),"lust":int(sstats.find('lust').text),"coin":int(sstats.find('coin').text),"strMod":int(sstats.find('strMod').text),"mentMod":int(sstats.find('mentMod').text),"libMod":int(sstats.find('libMod').text),"senMod":int(sstats.find('senMod').text),"hunger":int(sstats.find('hunger').text)},"level":{"SexP":int(slevel.find('SexP').text),"levelUP":int(slevel.find('levelUP').text),"level":int(slevel.find('level').text),"babyFactLevel":int(slevel.find('babyFactLevel').text),"bodyBuildLevel":int(slevel.find('bodyBuildLevel').text),"hyperHappyLevel":int(slevel.find('hyperHappyLevel').text),"alchemistLevel":int(slevel.find('alchemistLevel').text),"fetishMasterLevel":int(slevel.find('fetishMasterLevel').text),"milkMaidLevel":int(slevel.find('milkMaidLevel').text),"shapeshiftyLevel":int(slevel.find('shapeshiftyLevel').text),"shapeshiftyFirst":"" if slevel.find('shapeshiftyFirst').text is None else str(slevel.find('shapeshiftyFirst').text),"shapeshiftySecond":"" if slevel.find('shapeshiftySecond').text is None else str(slevel.find('shapeshiftySecond').text)},"mod":{"runMod":int(smod.find('runMod').text),"rapeMod":int(smod.find('rapeMod').text),"cumMod":float(smod.find('cumMod').text),"cockSizeMod":float(smod.find('cockSizeMod').text),"milkMod":int(smod.find('milkMod').text),"carryMod":int(smod.find('carryMod').text),"vagBellyMod":int(smod.find('vagBellyMod').text),"pregChanceMod":int(smod.find('pregChanceMod').text),"extraPregChance":int(smod.find('extraPregChance').text),"pregTimeMod":int(smod.find('pregTimeMod').text),"enticeMod":int(smod.find('enticeMod').text),"milkHPMod":int(smod.find('milkHPMod').text),"vagSizeMod":float(smod.find('vagSizeMod').text),"vagElastic":float(smod.find('vagElastic').text),"changeMod":float(smod.find('changeMod').text),"HPMod":int(smod.find('HPMod').text),"SexPMod":float(smod.find('SexPMod').text),"minLust":int(smod.find('minLust').text),"milkCap":int(smod.find('milkCap').text),"coinMod":int(smod.find('coinMod').text),"hipMod":float(smod.find('hipMod').text),"buttMod":float(smod.find('buttMod').text),"bellyMod":int(smod.find('bellyMod').text),"cockMoistMod":int(smod.find('cockMoistMod').text),"vagMoistMod":int(smod.find('vagMoistMod').text),"lockTail":int(smod.find('lockTail').text),"lockFace":int(smod.find('lockFace').text),"lockSkin":int(smod.find('lockSkin').text),"lockBreasts":int(smod.find('lockBreasts').text),"lockEars":int(smod.find('lockEars').text),"lockLegs":int(smod.find('lockLegs').text),"lockNipples":int(smod.find('lockNipples').text),"lockCock":int(smod.find('lockCock').text)},"quality":{"gender":int(squality.find('gender').text),"race":int(squality.find('race').text),"body":int(squality.find('body').text),"dominant":int(squality.find('dominant').text),"hips":int(squality.find('hips').text),"butt":int(squality.find('butt').text),"tallness":int(squality.find('tallness').text),"skinType":int(squality.find('skinType').text),"tail":int(squality.find('tail').text),"ears":int(squality.find('ears').text),"hair":int(squality.find('hair').text),"hairColor":int(squality.find('hairColor').text),"hairLength":int(squality.find('hairLength').text),"legType":int(squality.find('legType').text),"wings":int(squality.find('wings').text),"faceType":int(squality.find('faceType').text),"skinColor":int(squality.find('skinColor').text)},"cock":{"cockTotal":int(scock.find('cockTotal').text),"humanCocks":int(scock.find('humanCocks').text),"horseCocks":int(scock.find('horseCocks').text),"wolfCocks":int(scock.find('wolfCocks').text),"catCocks":int(scock.find('catCocks').text),"rabbitCocks":int(scock.find('rabbitCocks').text),"lizardCocks":int(scock.find('lizardCocks').text),"cockSize":int(scock.find('cockSize').text),"cockMoist":int(scock.find('cockMoist').text),"balls":int(scock.find('balls').text),"ballSize":int(scock.find('ballSize').text),"showBalls":strtobool(scock.find('showBalls').text),"knot":strtobool(scock.find('knot').text),"bugCocks":int(scock.find('bugCocks').text),"neuterizerHideBalls":False if scock.find("nueterizerHideBalls") is None else strtobool(scock.find("neuterizerHideBalls").text)},"girl":{"breastSize":int(sgirl.find('breastSize').text),"boobTotal":int(sgirl.find('boobTotal').text),"nippleSize":int(sgirl.find('nippleSize').text),"udders":strtobool(sgirl.find('udders').text),"udderSize":int(sgirl.find('udderSize').text),"teatSize":int(sgirl.find('teatSize').text),"clitSize":int(sgirl.find('clitSize').text),"vagTotal":int(sgirl.find('vagTotal').text),"vagSize":int(sgirl.find('vagSize').text),"vagMoist":int(sgirl.find('vagMoist').text),"vulvaSize":int(sgirl.find('vulvaSize').text),"nipType":int(sgirl.find('nipType').text)},"gear":{"attireTop":int(sgear.find('attireTop').text),"attireBot":int(sgear.find('attireBot').text),"weapon":int(sgear.find('weapon').text)},"status":{"pregRate":float(sstatus.find('pregRate').text),"pregnancyTime":int(sstatus.find('pregnancyTime').text),"pregStatus":int(sstatus.find('pregStatus').text),"eggLaying":int(sstatus.find('eggLaying').text),"eggMaxTime":int(sstatus.find('eggMaxTime').text),"eggTime":int(sstatus.find('eggMaxTime').text) if int(sstatus.find('eggTime').text) > int(sstatus.find('eggMaxTime').text) and tempver < 10 else int(sstatus.find('eggTime').text),"eggRate":int(sstatus.find('eggRate').text),"exhaustion":int(sstatus.find('exhaustion').text),"exhaustionPenalty":int(sstatus.find('exhaustionPenalty').text),"milkEngorgement":int(sstatus.find('milkEngorgement').text),"milkEngorgementLevel":int(sstatus.find('milkEngorgementLevel').text),"udderEngorgement":int(sstatus.find('udderEngorgement').text),"udderEngorgementLevel":int(sstatus.find('udderEngorgementLevel').text),"heat":int(sstatus.find('heat').text),"heatTime":int(sstatus.find('heatTime').text),"heatMaxTime":int(sstatus.find('heatMaxTime').text),"lactation":int(sstatus.find('lactation').text),"udderLactation":int(sstatus.find('udderLactation').text),"nipplePlay":float(sstatus.find('nipplePlay').text),"udderPlay":float(sstatus.find('udderPlay').text),"blueBalls":int(sstatus.find('blueBalls').text),"teatPump":int(sstatus.find('teatPump').text),"nipPump":int(sstatus.find('nipPump').text),"cockPump":int(sstatus.find('cockPump').text),"clitPump":int(sstatus.find('clitPump').text),"vulvaPump":int(sstatus.find('vulvaPump').text),"masoPot":int(sstatus.find('masoPot').text),"sMasoPot":int(sstatus.find('sMasoPot').text),"babyFree":int(sstatus.find('babyFree').text),"charmTime":int(sstatus.find('charmTime').text),"pheromone":int(sstatus.find('pheromone').text),"eggceleratorTime":int(sstatus.find('eggceleratorTime').text),"eggceleratorDose":int(sstatus.find('eggceleratorDose').text),"bodyOil":int(sstatus.find('bodyOil').text),"lustPenalty":int(sstatus.find('lustPenalty').text),"fertileGel":int(sstatus.find('fertileGel').text),"snuggleBall":strtobool(sstatus.find('snuggleBall').text),"eggType":int(sstatus.find('eggType').text),"milkSuppressant":int(sstatus.find('milkSuppressant').text),"milkSuppressantLact":int(sstatus.find('milkSuppressantLact').text),"milkSuppressantUdder":int(sstatus.find('milkSuppressantUdder').text),"suppHarness":strtobool(sstatus.find('suppHarness').text),"fertilityStatueCurse":int(sstatus.find('fertilityStatueCurse').text),"plumpQuats":int(sstatus.find('plumpQuats').text),"lilaWetStatus":int(sstatus.find('lilaWetStatus').text),"cockSnakePreg":int(sstatus.find('cockSnakePreg').text),"milkCPoisonNip":int(sstatus.find('milkCPoisonNip').text),"milkCPoisonUdd":int(sstatus.find('milkCPoisonUdd').text),"cockSnakeVenom":int(sstatus.find('cockSnakeVenom').text)},"affinity":{"humanAffinity":int(saffinity.find('humanAffinity').text),"horseAffinity":int(saffinity.find('horseAffinity').text),"wolfAffinity":int(saffinity.find('wolfAffinity').text),"catAffinity":int(saffinity.find('catAffinity').text),"cowAffinity":int(saffinity.find('cowAffinity').text),"lizardAffinity":int(saffinity.find('lizardAffinity').text),"rabbitAffinity":int(saffinity.find('rabbitAffinity').text),"fourBoobAffinity":int(saffinity.find('fourBoobAffinity').text),"mouseAffinity":int(saffinity.find('mouseAffinity').text),"birdAffinity":int(saffinity.find('birdAffinity').text),"pigAffinity":int(saffinity.find('pigAffinity').text),"twoBoobAffinity":int(saffinity.find('twoBoobAffinity').text),"sixBoobAffinity":int(saffinity.find('sixBoobAffinity').text),"eightBoobAffinity":int(saffinity.find('eightBoobAffinity').text),"tenBoobAffinity":int(saffinity.find('tenBoobAffinity').text),"cowTaurAffinity":int(saffinity.find('cowTaurAffinity').text),"humanTaurAffinity":int(saffinity.find('humanTaurAffinity').text),"skunkAffinity":int(saffinity.find('skunkAffinity').text),"bugAffinity":int(saffinity.find('bugAffinity').text)},"rep":{"lilaRep":int(srep.find('lilaRep').text),"lilaVulva":int(srep.find('lilaVulva').text),"lilaMilk":int(srep.find('lilaMilk').text),"lilaPreg":int(srep.find('lilaPreg').text),"malonRep":int(srep.find('malonRep').text),"malonPreg":int(srep.find('malonPreg').text),"malonChildren":int(srep.find('malonChildren').text),"mistressRep":int(srep.find('mistressRep').text),"jamieRep":int(srep.find('jamieRep').text),"jamieSize":int(srep.find('jamieSize').text),"jamieChildren":int(srep.find('jamieChildren').text),"silRep":int(srep.find('silRep').text),"silPreg":int(srep.find('silPreg').text),"silRate":int(srep.find('silRate').text),"silLay":int(srep.find('silLay').text),"silGrowthTime":int(srep.find('silGrowthTime').text),"silTied":strtobool(srep.find('silTied').text),"lilaUB":strtobool(srep.find('lilaUB').text),"dairyFarmBrand":strtobool(srep.find('dairyFarmBrand').text),"lilaWetness":int(srep.find('lilaWetness').text),"jamieButt":strtobool(srep.find('jamieButt').text),"jamieBreasts":strtobool(srep.find('jamieBreasts').text),"jamieHair":strtobool(srep.find('jamieHair').text)},"knowledge":{"foundSoftlik":strtobool(sknowledge.find('foundSoftlik').text),"foundFirmshaft":strtobool(sknowledge.find('foundFirmshaft').text),"foundTieden":strtobool(sknowledge.find('foundTieden').text),"foundSizCalit":strtobool(sknowledge.find('foundSizCalit').text),"foundOviasis":strtobool(sknowledge.find('foundOviasis').text),"foundValley":strtobool(sknowledge.find('foundValley').text),"foundSanctuary":strtobool(sknowledge.find('foundSanctuary').text),"usedSecretStairs":False if sknowledge.find('usedSecretStairs') is None else strtobool(sknowledge.find('usedSecretStairs').text)},"boss":{"defeatedMinotaur":strtobool(sboss.find('defeatedMinotaur').text),"defeatedFreakyGirl":strtobool(sboss.find('defeatedFreakyGirl').text),"defeatedSuccubus":strtobool(sboss.find('defeatedSuccubus').text)},"knowSimpleAlchemy":{"knowLustDraft":strtobool(sknowSimpleAlchemy.find('knowLustDraft').text),"knowRejuvPot":strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text),"knowExpPreg":strtobool(sknowSimpleAlchemy.find('knowExpPreg').text),"knowBallSwell":strtobool(sknowSimpleAlchemy.find('knowBallSwell').text),"knowMaleEnhance":strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)},"knowAdvancedAlchemy":{"knowSLustDraft":strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text),"knowSRejuvPot":strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text),"knowSExpPreg":strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text),"knowSBallSwell":strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text),"knowGenSwap":strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text),"knowMasoPot":strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text),"knowBabyFree":strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text),"knowPotPot":strtobool(sknowAdvancedAlchemy.find('knowPotPot').text),"knowMilkSuppress":strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)},"knowComplexAlchemy":{"knowSGenSwap":strtobool(sknowComplexAlchemy.find('knowSGenSwap').text),"knowSMasoPot":strtobool(sknowComplexAlchemy.find('knowSMasoPot').text),"knowSBabyFree":strtobool(sknowComplexAlchemy.find('knowSBabyFree').text),"knowSPotPot":strtobool(sknowComplexAlchemy.find('knowSPotPot').text),"knowPussJuice":strtobool(sknowComplexAlchemy.find('knowPussJuice').text),"knowPheromone":strtobool(sknowComplexAlchemy.find('knowPheromone').text),"knowBazoomba":strtobool(sknowComplexAlchemy.find('knowBazoomba').text)},"majorFetish":{"maleFetish":float(smajorFetish.find('maleFetish').text),"femaleFetish":float(smajorFetish.find('femaleFetish').text),"hermFetish":float(smajorFetish.find('hermFetish').text),"narcissistFetish":float(smajorFetish.find('narcissistFetish').text),"dependentFetish":float(smajorFetish.find('dependentFetish').text)},"moderateFetish":{"dominantFetish":float(smoderateFetish.find('dominantFetish').text),"submissiveFetish":float(smoderateFetish.find('submissiveFetish').text),"lboobFetish":float(smoderateFetish.find('lboobFetish').text),"sboobFetish":float(smoderateFetish.find('sboobFetish').text),"furryFetish":float(smoderateFetish.find('furryFetish').text),"scalyFetish":float(smoderateFetish.find('scalyFetish').text),"smoothyFetish":float(smoderateFetish.find('smoothyFetish').text)},"minorFetish":{"pregnancyFetish":float(sminorFetish.find('pregnancyFetish').text),"bestialityFetish":float(sminorFetish.find('bestialityFetish').text),"milkFetish":float(sminorFetish.find('milkFetish').text),"sizeFetish":float(sminorFetish.find('sizeFetish').text),"unbirthingFetish":float(sminorFetish.find('unbirthingFetish').text),"ovipositionFetish":float(sminorFetish.find('ovipositionFetish').text),"toyFetish":float(sminorFetish.find('toyFetish').text),"hyperFetish":float(sminorFetish.find('hyperFetish').text)},"kid":{"humanChildren":int(skid.find('humanChildren').text),"equanChildren":int(skid.find('equanChildren').text),"lupanChildren":int(skid.find('lupanChildren').text),"felinChildren":int(skid.find('felinChildren').text),"cowChildren":int(skid.find('cowChildren').text),"lizanChildren":int(skid.find('lizanChildren').text),"lizanEggs":int(skid.find('lizanEggs').text),"bunnionChildren":int(skid.find('bunnionChildren').text),"wolfPupChildren":int(skid.find('wolfPupChildren').text),"miceChildren":int(skid.find('miceChildren').text),"birdEggs":int(skid.find('birdEggs').text),"birdChildren":int(skid.find('birdChildren').text),"pigChildren":int(skid.find('pigChildren').text),"calfChildren":int(skid.find('calfChildren').text),"bugEggs":int(skid.find('bugEggs').text),"bugChildren":int(skid.find('bugChildren').text),"skunkChildren":int(skid.find('skunkChildren').text),"minotaurChildren":int(skid.find('minotaurChildren').text),"freakyGirlChildren":int(skid.find('freakyGirlChildren').text)},"trav":[],"bag":_bagArray,"bagStack":_bagStackArray,"stash":_stashArray,"stashStack":_stashStackArray,"preg":_preg}
       except ValueError as e:
          if origin == "doLoad":
             self.loadGo("XML Loader Error: Could not load save file. Reason: One or more saved values is of an unexpected type.",True)
@@ -25046,41 +25042,41 @@ class NiminFetishFantasyv0975o_fla:
    def openSE(self):
       if self.seOpen:
          self.sewindow.lift()
-      else:
-         self.sewindow = tkinter.Toplevel()
-         self.sewindow.title("Pymin: Save Editor")
-         self.sewindow.geometry("500x400")
-         self.sewindow.resizable(False,False)
-         
-         self.seloadbutton = tkinter.Button(self.sewindow,text="Load",font=("TkTextFont",9),command=self.SELoadFile)
-         self.seloadbutton.place(x=5,y=5,width=50,height=20,anchor="nw")
-         self.sesavebutton = tkinter.Button(self.sewindow,text="Save",font=("TkTextFont",9),command=self.SESaveFile)
-         self.sesavebutton.place(x=55,y=5,width=50,height=20,anchor="nw")
-         self.sesavebutton['state'] = 'disabled'
-         self.sefilelabelframe = tkinter.Frame(self.sewindow)
-         self.sefilelabelframe.place(x=110,y=5,width=385,height=20)
-         self.sefilelabel = tkinter.Label(self.sefilelabelframe,font=("TkTextFont",9))
-         self.sefilelabel.place(x=385,y=0,anchor="ne")
-         
-         self.secontainer = tkinter.Frame(self.sewindow) # TODO: Make scrollable
-         self.secontainer.place(x=5,y=25,width=490,height=370,anchor="nw")
-         
-         self.sewindow.transient(self.mo)
-         self.sewindow.bind("<Destroy>",self.closeSE)
-         self.seFileChanged = False
-         self.seLoadedData = None
-         self.seOpen = True
-         ''' Design
-         | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
-         ```
-         
-         
-         Scrollable Area with entry boxes for each item in the save file.
-         
-         
-         
-         ```
-         '''
+         return
+      self.sewindow = tkinter.Toplevel()
+      self.sewindow.title("Pymin: Save Editor")
+      self.sewindow.geometry("500x400")
+      self.sewindow.resizable(False,False)
+
+      self.seloadbutton = tkinter.Button(self.sewindow,text="Load",font=("TkTextFont",9),command=self.SELoadFile)
+      self.seloadbutton.place(x=5,y=5,width=50,height=20,anchor="nw")
+      self.sesavebutton = tkinter.Button(self.sewindow,text="Save",font=("TkTextFont",9),command=self.SESaveFile)
+      self.sesavebutton.place(x=55,y=5,width=50,height=20,anchor="nw")
+      self.sesavebutton['state'] = 'disabled'
+      self.sefilelabelframe = tkinter.Frame(self.sewindow)
+      self.sefilelabelframe.place(x=110,y=5,width=385,height=20)
+      self.sefilelabel = tkinter.Label(self.sefilelabelframe,font=("TkTextFont",9))
+      self.sefilelabel.place(x=385,y=0,anchor="ne")
+
+      self.secontainer = tkinter.Frame(self.sewindow) # TODO: Make scrollable
+      self.secontainer.place(x=5,y=25,width=490,height=370,anchor="nw")
+
+      self.sewindow.transient(self.mo)
+      self.sewindow.bind("<Destroy>",self.closeSE)
+      self.seFileChanged = False
+      self.seLoadedData = None
+      self.seOpen = True
+      ''' Design
+      | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
+      ```
+
+
+      Scrollable Area with entry boxes for each item in the save file.
+
+
+
+      ```
+      '''
    def SELoadFile(self):
       file = Path(filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim"))))
       ext = file.suffix.lower()
@@ -25145,16 +25141,16 @@ class NiminFetishFantasyv0975o_fla:
    def openDebugVariableDisplay(self, *e):
       if (self.debugVarOpen):
          self.dvw.lift()
-      else:
-         self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme)
-         if self.fixedresolutionmode:
-            self.dvw.resizable = False
-         self.dvw.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10)
-         self.debugVarOpen = True
-         self.dvw.transient(self.mo)
-         self.dvw.lift()
-         self.dvw.bind("<Destroy>",self.closeDebugWindow)
-         self.detailedDebug()
+         return
+      self.dvw = itk.window(width=400, height=400, title="Pymin Debug: Variable Display", background=self.theme)
+      if self.fixedresolutionmode:
+         self.dvw.resizable = False
+      self.dvw.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10)
+      self.debugVarOpen = True
+      self.dvw.transient(self.mo)
+      self.dvw.lift()
+      self.dvw.bind("<Destroy>",self.closeDebugWindow)
+      self.detailedDebug()
    def detailedDebug(self, *e):
       if (self.debugVarOpen):
          sbpos = self.dvw._children["text"].yview()
@@ -25178,16 +25174,16 @@ class NiminFetishFantasyv0975o_fla:
    def openDebugGiveItemWindow(self, *e):
       if self.debugGIWinOpen:
          self.dgiw.lift()
-      else:
-         self.dgiw = itk.window(width=150, height=100, title="Give Item")
-         if self.fixedresolutionmode:
-            self.dgiw.resizable(False,False)
-         self.dgiw.addnwhLabel("display","label",x=75,y=7,anchor="n",font=("TkTextFont",9),text="Give Item")
-         self.dgiw.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=140,height=23,font=("TkTextFont",9),textwidth=55,buttonwidth=30,text=("ID:","Quantity:"),buttontext="Ok",rows=2,command=self.debugGiveItem)
-         self.dgiw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
-         self.dgiw.transient(self.mo)
-         self.dgiw.bind("<Destroy>",self.closeDGIWindow)
-         self.debugGIWinOpen = True
+         return
+      self.dgiw = itk.window(width=150, height=100, title="Give Item")
+      if self.fixedresolutionmode:
+         self.dgiw.resizable(False,False)
+      self.dgiw.addnwhLabel("display","label",x=75,y=7,anchor="n",font=("TkTextFont",9),text="Give Item")
+      self.dgiw.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=140,height=23,font=("TkTextFont",9),textwidth=55,buttonwidth=30,text=("ID:","Quantity:"),buttontext="Ok",rows=2,command=self.debugGiveItem)
+      self.dgiw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
+      self.dgiw.transient(self.mo)
+      self.dgiw.bind("<Destroy>",self.closeDGIWindow)
+      self.debugGIWinOpen = True
    def debugGiveItem(self, *e):
       self.debugGITimes = 0
       if self.currentState == 0:
@@ -25222,16 +25218,16 @@ class NiminFetishFantasyv0975o_fla:
    def openDebugAffinityWindow(self, *e):
       if self.debugAWinOpen:
          self.daw.lift()
-      else:
-         self.daw = itk.window(width=170, height=100, title="Affinity")
-         if self.fixedresolutionmode:
-            self.daw.resizable(False,False)
-         self.daw.addnwhLabel("display","label",x=85,y=7,anchor="n",font=("TkTextFont",9),text="Affinity Change")
-         self.daw.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=160,height=23,font=("TkTextFont",9),textwidth=65,buttonwidth=30,text=("Type:","Amount:"),buttontext="Ok",rows=2,command=self.debugAffinityChange)
-         self.daw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
-         self.daw.transient(self.mo)
-         self.daw.bind("<Destroy>",self.closeDAWindow)
-         self.debugAWinOpen = True
+         return
+      self.daw = itk.window(width=170, height=100, title="Affinity")
+      if self.fixedresolutionmode:
+         self.daw.resizable(False,False)
+      self.daw.addnwhLabel("display","label",x=85,y=7,anchor="n",font=("TkTextFont",9),text="Affinity Change")
+      self.daw.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=160,height=23,font=("TkTextFont",9),textwidth=65,buttonwidth=30,text=("Type:","Amount:"),buttontext="Ok",rows=2,command=self.debugAffinityChange)
+      self.daw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
+      self.daw.transient(self.mo)
+      self.daw.bind("<Destroy>",self.closeDAWindow)
+      self.debugAWinOpen = True
    def debugAffinityChange(self, *e):
       if self.currentState == 0:
          self.dawerrlabel["text"] = "Error: Game not loaded"
@@ -25316,65 +25312,65 @@ class NiminFetishFantasyv0975o_fla:
    def openWiki(self):
       if self.wikiOpen:
          self.wikiwindow.lift()
+         return
+      self.wikiOpen = True
+      self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0")
+      if self.fixedresolutionmode:
+         self.wikiwindow.resizable = False
+      self.wikiwindow.transient(self.mo)
+      self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
+      self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
+      if getattr(self.wikiwindow._children["text"].html_parser, 'callobject', '') == '':
+         self.customhtmlparser = False
+         trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
       else:
-         self.wikiOpen = True
-         self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0")
-         if self.fixedresolutionmode:
-            self.wikiwindow.resizable = False
-         self.wikiwindow.transient(self.mo)
-         self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
-         self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
-         if getattr(self.wikiwindow._children["text"].html_parser, 'callobject', '') == '':
-            self.customhtmlparser = False
-            trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
-         else:
-            self.customhtmlparser = True
-            self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
-         self.wikimenus = {
-            "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
-            "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
-            "Basics.MenuBar":("File","View","Save Utils","Debug Utils","Help","Back"),
-            "Basics.MenuBar.File":("Options","Quit","Back"),
-            "Items":("All Items","Debug Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"),
-            "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
-            "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
-            "Items.Equipable":("Weapons","Other Equipables","Back"),
-            "Items.Equipable.Weapons":("Dagger","Hammer","Saber","Whip","Tail Spike","Back"),
-            "Items.Equipable.Other":("Snuggle Ball","Supp Harness","Back"),
-            "Items.Passive":("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back"),
-            "Items.Consumables":("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back"),
-            "Items.Consumables.Affinity":("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back"),
-            "Items.Consumables.Alchemy":("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back"),
-            "Items.Consumables.Dyes":("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back"),
-            "Items.Consumables.TScrolls":("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back"),
-            "Items.Consumables.Eggs":("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
-            "Items.Consumables.Other":("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back"),
-            "Items.Silandrias":("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back"),
-            "Items.Special":("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back"),
-            "Items.Other":("Test","Back"),
-            "Clothes":("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back"),
-            "Enemies":("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back"),
-            "Races":("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back"),
-            "Locations":("Towns","Other Locations","Back"),
-            "Locations.Towns":("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back"),
-            "Locations.Other":("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back"),
-            "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
-            "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
-         }
-         
-         self.doWikiMenu("")
-         self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
-         self.wikiwindow.bind("<Destroy>",self._wikidestroy)
+         self.customhtmlparser = True
+         self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
+      self.wikimenus = {
+         "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
+         "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
+         "Basics.MenuBar":("File","View","Save Utils","Debug Utils","Help","Back"),
+         "Basics.MenuBar.File":("Options","Quit","Back"),
+         "Items":("All Items","Debug Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"),
+         "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
+         "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
+         "Items.Equipable":("Weapons","Other Equipables","Back"),
+         "Items.Equipable.Weapons":("Dagger","Hammer","Saber","Whip","Tail Spike","Back"),
+         "Items.Equipable.Other":("Snuggle Ball","Supp Harness","Back"),
+         "Items.Passive":("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back"),
+         "Items.Consumables":("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back"),
+         "Items.Consumables.Affinity":("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back"),
+         "Items.Consumables.Alchemy":("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back"),
+         "Items.Consumables.Dyes":("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back"),
+         "Items.Consumables.TScrolls":("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back"),
+         "Items.Consumables.Eggs":("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
+         "Items.Consumables.Other":("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back"),
+         "Items.Silandrias":("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back"),
+         "Items.Special":("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back"),
+         "Items.Other":("Test","Back"),
+         "Clothes":("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back"),
+         "Enemies":("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back"),
+         "Races":("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back"),
+         "Locations":("Towns","Other Locations","Back"),
+         "Locations.Towns":("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back"),
+         "Locations.Other":("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back"),
+         "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
+         "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
+      }
 
-         self.wikiwindow.bindChild("menu",'<Double-1>', self.selectMenuOption)
-         self.wikiwindow.bind("<KeyPress>",self.wikiKeyPress)
-         self.wikiwindow.bind('<KeyRelease>',self.keysUp)
+      self.doWikiMenu("")
+      self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
+      self.wikiwindow.bind("<Destroy>",self._wikidestroy)
 
-         self.doWikiPage("Basic",0)
-         self.wikifocus = 1
-         self.wikiSwitchSelection()
+      self.wikiwindow.bindChild("menu",'<Double-1>', self.selectMenuOption)
+      self.wikiwindow.bind("<KeyPress>",self.wikiKeyPress)
+      self.wikiwindow.bind('<KeyRelease>',self.keysUp)
+
+      self.doWikiPage("Basic",0)
+      self.wikifocus = 1
+      self.wikiSwitchSelection()
    def wikiKeyPress(self, e):
-      if ckeys.tkeventToJavascriptKeycode(e) != None:
+      if ckeys.tkeventToJavascriptKeycode(e) is not None:
          self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e))
    def wikiHotkeys(self, keyCode):
       self.hotKeysGeneric(keyCode)
@@ -25442,7 +25438,7 @@ class NiminFetishFantasyv0975o_fla:
       self.wikiwindow._children["menu"].select_set(0)
       self.wikiwindow._children["menu"].activate(0)
    def selectMenuOption(self, e=None, sel=None):
-      if sel == None:
+      if sel is None:
          sel = self.wikiwindow._children["menu"].get(self.wikiwindow._children["menu"].curselection())
       if sel == "Back":
          self.doWikiMenu(".".join(self.currentMenu.split(".")[:-1]))
