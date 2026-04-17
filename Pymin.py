@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-import as3lib
 from as3lib import (Array, as3state, cmath, each, Error, Math, RangeError,
                     trace, uint)
 from as3lib.config import TOML
-from as3lib.helpers import textObject
+from as3lib.helpers import isValidDirectory, textObject
 import as3lib.interface_tk as itk
 import as3lib.keyConversions as ckeys
 from dataclasses import dataclass
@@ -101,7 +100,6 @@ def applyBackspace(string):
    return string
 
 class PyminLabel(itk.itkLabel):
-   _intName = "PyminLabel"
    def __init__(self, master, **kwargs):
       kwargs.update({'background':"#FFFFFF","foreground":"#000000","highlightbackground":"#000000","highlightthickness":1})
       super().__init__(master, **kwargs)
@@ -110,7 +108,6 @@ def _noop(*args):
    ...
 
 class PyminButton(itk.itkFrame):
-   _intName = "PyminButton"
    def __init__(self, master, **kwargs):
       self._command = kwargs.pop("command",_noop)
       text = kwargs.pop("text", '')
@@ -1072,7 +1069,7 @@ class NiminFetishFantasyv0975o_fla:
          if self.optionswindow._children["SaveLocation"].get() == "":
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
             raise Error("Pymin.OWSaveOptions; SaveLocation is empty")
-         if not as3lib.isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
+         if not isValidDirectory(self.optionswindow._children["SaveLocation"].get(),as3state.separator):
             self.optionswindow._children["SaveLocation"]["background"] = "#FF3333"
             raise Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
          if self.optionswindow._children["SaveLocation"]["background"] == "#FF3333":
@@ -1724,7 +1721,7 @@ class NiminFetishFantasyv0975o_fla:
          self.nsldSortOrder = int(game.get("nsldSortOrder",0))
          options = temp.get("options",{})
          tempdir = Path(options.get("saveLocation",self.savelocation)).resolve()
-         if as3lib.isValidDirectory(tempdir):
+         if isValidDirectory(tempdir):
             self.savelocation = tempdir
          else:
             trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
@@ -1795,7 +1792,7 @@ class NiminFetishFantasyv0975o_fla:
          self.showSide = strtobool(prefs.find("showSide").text)
          if prefs.find("saveLocation") is not None:
             tempdir = Path(prefs.find("saveLocation").text).resolve()
-            if as3lib.isValidDirectory(tempdir):
+            if isValidDirectory(tempdir):
                self.savelocation = tempdir
             else:
                trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
@@ -2135,7 +2132,6 @@ class NiminFetishFantasyv0975o_fla:
          self.inBag = False
          self.hideAmountAll()
          self.doLustForcedMasturbate()
-         return
       else:
          if (leave):
             self.doLeave()
@@ -26792,7 +26788,7 @@ if __name__ == "__main__":
       print("Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode. (one time)\n\t-C --convert\tOpens savefile converter instead of the game.")
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
-      as3lib.EnableDebug()
+      as3state.as3DebugEnable = True
    startType = 0
    if "--converter" in argv or "-C" in argv or "/C" in argv:
       startType = 1
