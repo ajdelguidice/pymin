@@ -1,3 +1,39 @@
+v13
+Requires as3lib version 13
+
+[venvscript] Fix htmlparser download
+Fix option window colour chage feature
+Remove debugUseItemWindow
+Use dataclass for wikipreviouspage because it is faster
+Fix custom colour loading from old xml config file
+Use clearEmptySlot function in checkZero
+Flip nodjp variable in doReturn and doGeneral. It is now named djp
+Use bMap variable in shops
+[venvscript] Copy config instead of reading/writing it in recreate
+[venvscript] Use cfgloc in recreate
+[venvscript] Use 'is' and 'is not' for None checks
+[venvscript] Fix migrateConfig when there's nothing to do and make sure it doesn't shadow global variables
+[venvscript] Clean up migrateConfig and make it return the loaded values by default
+[venvscript] Make migrateConfig only run when the current one is missing
+When gameTweaksMisc is active, add gaurds to enemy 102's attacks to make sure that cockSize can not end up negative
+Properly format todo comments
+Deal with a couple of TODOs
+[saveconverter] Rewrite the entire thing
+[venvscript] Attempt to fix the venv python update functionality and fix UV_PYTHON env variable setting
+[venvscript] Fix installing tkhtmlview
+[pyminlib/html_parser] Apply upstream change
+[pyminlib/html_parser] Slight optimisations
+[venvscript] Rename replaceTkhtmlviewParserWithUnsafeOne to patchTkhtmlviewParser
+[venvscript] Fix python < 3.13 configparser compatibility
+Clean up imports a little bit
+Attemp to future proof as3lib.Array use
+Clean up some of the global functions
+Better implement alternate UI start conditions
+[venvscript] Raise exceptions instead of using print + exit
+[pyminlib.imagetobytes] Rewrite
+[venvscript] Move writeTOML into the TOML class
+
+
 v12
 Requires as3lib version 12
 
