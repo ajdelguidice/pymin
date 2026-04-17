@@ -42,8 +42,6 @@ if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
     raise Exception('Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
 
 class OverrideDev:
-    def __init__(self):
-        ...
     def __enter__(self):
         self.dev = c2['isDevEnv']
         c2['isDevEnv'] = False
@@ -88,7 +86,7 @@ def create():
             'noCustomHTMLParser':False,
             'isDevEnv':False
         }
-        writeTOML(cfgloc, cfgDict)
+        TOML.write(cfgloc, cfgDict)
     else:
         c2['path'] = str(venvpath)
     
@@ -441,29 +439,31 @@ class TOML:
                 text.write(f'{TOML.Value(i)},')
             text.write(']')
             return text.getvalue()
-
-def writeTOML(file, valDict):
-    nontables = []
-    tables = []
-    for k,v in valDict.items():
-        if isinstance(v,dict):
-            tables.append(k)
-        else:
-            nontables.append(k)
-    with StringIO() as text:
-        for k in nontables:
-            text.write(f'{k} = {TOML.Value(valDict[k])}\n')
-        for k in tables:
-            text.write(f'\n["{k}"]\n' if str(k).find('.') != -1 else f'\n[{k}]\n')
-            for k2,v2 in valDict[k].items():
-                text.write(f'{k2} = {TOML.Value(v2)}\n')
+    def Return(valDict):
+        nontables = []
+        tables = []
+        for k,v in valDict.items():
+            if isinstance(v,dict):
+                tables.append(k)
+            else:
+                nontables.append(k)
+        with StringIO() as text:
+            for k in nontables:
+                text.write(f'{k} = {TOML.Value(valDict[k])}\n')
+            for k in tables:
+                text.write(f'\n["{k}"]\n' if str(k).find('.') != -1 else f'\n[{k}]\n')
+                for k2,v2 in valDict[k].items():
+                    text.write(f'{k2} = {TOML.Value(v2)}\n')
+            return text.getvalue()
+    def write(file, valDict):
         with open(file,'w') as f:
-            f.write(text.getvalue())
+            f.write(TOML.Return(valDict))
+    def read(file):
+        return tomllib.load(file)
 
 hasVenv = True
 delconf = None
 uninstallMiniAMF = False
-pipCommand = None
 
 modlist = ['requests', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
 try:
@@ -475,7 +475,7 @@ except:
 cfgloc = curdir / 'pymin.toml'
 if (curdir / 'pymin.toml').exists():  # load config and set venvpath
     with open(cfgloc, 'rb') as f:
-        c1 = tomllib.load(f)
+        c1 = TOML.read(f)
     c2 = {
         'cfgVersion':c1.get('cfgVersion',1),
         'path':c1.get('path',venvpath),
@@ -495,7 +495,7 @@ if (curdir / 'pymin.toml').exists():  # load config and set venvpath
 elif (venvpath / 'pymin.toml').exists():  # load config
     cfgloc = venvpath / 'pymin.toml'
     with open(cfgloc, 'rb') as f:
-        c1 = tomllib.load(f)
+        c1 = TOML.read(f)
     c2 = {
         'cfgVersion':c1.get('cfgVersion',1),
         'path':c1.get('path',''),
@@ -635,7 +635,7 @@ elif argv[1] == 'cfg-game' and hasVenv:
     if not (venvpath / 'Pymin/Nimin_Prefs.toml').exists():
         raise Exception('Game config does not exist.')
     with open(venvpath / 'Pymin/Nimin_Prefs.toml','rb') as f:
-        gameconf = tomllib.load(f)
+        gameconf = TOML.read(f)
     if len(argv) == 2:
         with StringIO() as text:
             for k1,v1 in gameconf.items():
@@ -656,7 +656,7 @@ elif argv[1] == 'cfg-game' and hasVenv:
                 print(f'Warning: Type of {section}.{key} could not be determined. Skipping.')
                 continue
             gameconf[section][key] = value
-        writeTOML(venvpath / 'Pymin/Nimin_Prefs.toml', gameconf)
+        TOML.write(venvpath / 'Pymin/Nimin_Prefs.toml', gameconf)
     exit()
 elif argv[1] == 'install':
     if hasVenv and '--overwrite' not in argv:
@@ -689,6 +689,6 @@ else:
     raise Exception(f'Invalid command "{argv[1]}"')
 
 if c1 != c2:  # Check if config was modified
-    writeTOML(cfgloc, c2)
+    TOML.write(cfgloc, c2)
 if delconf is not None:
     delconf.unlink(missing_ok=True)
