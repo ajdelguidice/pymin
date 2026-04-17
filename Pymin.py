@@ -38,7 +38,7 @@ otherLegs
 legArray
 '''
 
-__version__ = "12"
+__version__ = "13"
 
 class NullData(Error):
    name = 'NullDataError'
