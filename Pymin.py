@@ -735,8 +735,8 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
 
       #key bindings
-      self.mo.bind('<KeyPress>',self.key_press)
-      self.mo.bind('<KeyRelease>',self.keysUp)
+      self.mo.bind('<KeyPress>', partial(self.keyPress, self.hotKeys))
+      self.mo.bind('<KeyRelease>', self.keysUp)
 
       self.mo.option_add("*tearOff", False)
       self.mo.menubar["filemenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
@@ -971,6 +971,8 @@ class NiminFetishFantasyv0975o_fla:
       self.optionswindow.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("TimesNewRoman",12),text="Apply",command=self.OWSaveOptions)
 
       self.optionswindow.bind("<Destroy>",self.closeOptionsWindow)
+      self.optionswindow.bind('<KeyPress>', partial(self.keyPress, None))
+      self.optionswindow.bind('<KeyRelease>', self.keysUp)
       self.optionswindow.transient(self.mo)
       self.OWLoadVars()
       self.optionsWinOpen = True
@@ -1274,13 +1276,25 @@ class NiminFetishFantasyv0975o_fla:
       """
       return "normal" if boolean else "disabled"
 
-   def key_press(self, e):
+   def keyPress(self, func, e):
       """
       Function activated on key press
       """
       self.detailedDebug()
       if (key := ckeys.tkeventToJavascriptKeycode(e)) is not None:
-         self.hotKeys(key)
+         if key == 16: #Shift
+            self.shiftHeld = True
+         elif key == 17: #Ctrl
+            self.ctrlHeld = True
+         elif key == 18: #Alt
+            self.altHeld = True
+         elif key == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
+            if self.startType == 1:
+               self.sfcwindow.close()
+            else:
+               self.mo.close()
+         elif func is not None:
+            func(key)
 
    def keysUp(self, e):
       """
@@ -1465,25 +1479,11 @@ class NiminFetishFantasyv0975o_fla:
    def option7Event(self):
       self.toggleSide()
 
-   def hotKeysGeneric(self, keyCode):
-      if keyCode == 16: #Shift
-         self.shiftHeld = True
-      elif keyCode == 17: #Ctrl
-         self.ctrlHeld = True
-      elif keyCode == 18: #Alt
-         self.altHeld = True
-      elif keyCode == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
-         if self.startType == 1:
-            self.sfcwindow.close()
-         else:
-            self.mo.close()
-
    def hotKeys(self, keyCode):
       """
       Executes hotkey behaviour from its actionscript keycode
       """
       self.detailedDebug()
-      self.hotKeysGeneric(keyCode)
       keyDisabled = not self.keyboardTypingDisable and keyCode in self.hotkeysDisabled or self.keyboardTypingDisable and keyCode not in self.hotkeysDisabled
       special = not (keyDisabled) or self.altHeld
       if (keyCode == 103 or keyCode == 81) and special and self.buttonsVisible[1]: #q, numpad7
@@ -1784,10 +1784,7 @@ class NiminFetishFantasyv0975o_fla:
 
    def savePreferences(self):
       temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":self.savelocation,"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki,"doShopsReturn":self.doShopsReturn},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
-      try:
-         TOML.write(self.dir / "Nimin_Prefs.toml", temp)
-      except Exception as e:
-         raise Error("Pymin.savePreferences; Failed to create TOML. Write aborted.") from e
+      TOML.write(self.dir / "Nimin_Prefs.toml", temp)
 
    def loadPreferences(self):
       sp = False
@@ -25083,6 +25080,8 @@ class NiminFetishFantasyv0975o_fla:
       else:
          self.sfcwindow = itk.window(width=500, height=334, title="Pymin: Save Converter", main=(self.startType != 0))
          self.sfcwindow.bind("<Destroy>",self.closeSFC)
+         self.sfcwindow.bind('<KeyPress>', partial(self.keyPress, None))
+         self.sfcwindow.bind('<KeyRelease>', self.keysUp)
          self.sfcwindow.resizable = False
 
          if self.startType == 1:
@@ -25446,6 +25445,8 @@ class NiminFetishFantasyv0975o_fla:
 
       self.sewindow.transient(self.mo)
       self.sewindow.bind("<Destroy>",self.closeSE)
+      self.sewindow.bind('<KeyPress>', partial(self.keyPress, None))
+      self.sewindow.bind('<KeyRelease>', self.keysUp)
       self.seFileChanged = False
       self.seLoadedData = None
       self.seOpen = True
@@ -25537,6 +25538,8 @@ class NiminFetishFantasyv0975o_fla:
       self.dvw.transient(self.mo)
       self.dvw.lift()
       self.dvw.bind("<Destroy>",self.closeDebugWindow)
+      self.dvw.bind('<KeyPress>', partial(self.keyPress, None))
+      self.dvw.bind('<KeyRelease>', self.keysUp)
       self.detailedDebug()
 
    def detailedDebug(self, *e):
@@ -25573,6 +25576,8 @@ class NiminFetishFantasyv0975o_fla:
       self.dgiw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
       self.dgiw.transient(self.mo)
       self.dgiw.bind("<Destroy>",self.closeDGIWindow)
+      self.dgiw.bind('<KeyPress>', partial(self.keyPress, None))
+      self.dgiw.bind('<KeyRelease>', self.keysUp)
       self.debugGIWinOpen = True
 
    def debugGiveItem(self, *e):
@@ -25620,6 +25625,8 @@ class NiminFetishFantasyv0975o_fla:
       self.daw.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
       self.daw.transient(self.mo)
       self.daw.bind("<Destroy>",self.closeDAWindow)
+      self.daw.bind('<KeyPress>', partial(self.keyPress, None))
+      self.daw.bind('<KeyRelease>', self.keysUp)
       self.debugAWinOpen = True
 
    def debugAffinityChange(self, *e):
@@ -25759,19 +25766,14 @@ class NiminFetishFantasyv0975o_fla:
       self.wikiwindow.bind("<Destroy>",self._wikidestroy)
 
       self.wikiwindow.bindChild("menu",'<Double-1>', self.selectMenuOption)
-      self.wikiwindow.bind("<KeyPress>",self.wikiKeyPress)
-      self.wikiwindow.bind('<KeyRelease>',self.keysUp)
+      self.wikiwindow.bind("<KeyPress>", partial(self.keyPress, self.wikiHotkeys))
+      self.wikiwindow.bind('<KeyRelease>', self.keysUp)
 
       self.doWikiPage("Basic",0)
       self.wikifocus = 1
       self.wikiSwitchSelection()
 
-   def wikiKeyPress(self, e):
-      if ckeys.tkeventToJavascriptKeycode(e) is not None:
-         self.wikiHotkeys(ckeys.tkeventToJavascriptKeycode(e))
-
    def wikiHotkeys(self, keyCode):
-      self.hotKeysGeneric(keyCode)
       if keyCode in {81,8,103} and self.wikiOpen: #q,backspace,numPad7
          self._wikidestroy()
       elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
