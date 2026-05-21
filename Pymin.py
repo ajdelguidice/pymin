@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from as3lib import (Array, as3state, cmath, each, Error, Math, RangeError,
-                    trace, uint)
+from as3lib import (Array, as3state, cmath, each, Error, RangeError,
+                    trace, uint)  # Math
 from as3lib.config import TOML
 from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.text import Font
@@ -17,6 +17,7 @@ from secrets import choice
 import tkinter
 from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
+import math, random
 
 '''
 These variables will need to be checked once as3lib.Array works properly. They might break.
@@ -180,6 +181,23 @@ class AboutWindow(itk.itkAboutWindow):
          self.okButton = tkinter.Button(self.buttonFrame, text='OK', command=self.close, background="#FFFFFF", foreground="#000000", borderwidth=0)
          self.okButton.pack(fill='both', expand=True)
          self._open = True
+
+class Math:
+   # Temporary class to use until this entire program uses as3lib types
+   def ceil(val):
+      return math.ceil(val)
+
+   def floor(val):
+      return math.floor(val)
+
+   def random():
+      return random.random()
+
+   def max(*values):
+      return max(values)
+
+   def min(*values):
+      return min(values)
 
 #====================================================================================
 #Create tooltip. Modified example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
@@ -2024,7 +2042,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    @cache
    def _showButtonsBagCalc(buttonNum:int,choicePage:int):
-      return (buttonNum-(buttonNum//4+1))+(choicePage*9-9)
+      return (buttonNum - (Math.floor(buttonNum / 4) + 1)) + (choicePage * 9 - 9)
 
    def showButtonsBag(self,buttonText,which:str,discardButton:bool):
       self.detailedDebug()
@@ -2070,7 +2088,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.buttonChoice in {12,13}:
          tempInt = 0
       else:
-         tempInt = self.buttonChoice - (1+self.buttonChoice//4)
+         tempInt = self.buttonChoice - (1+Math.floor(self.buttonChoice/4))
       if self.buttonChoice in {4,8,12}:
          self.choiceListResult[0] = ""
          self.choiceListResult[1] = -1
@@ -2083,9 +2101,9 @@ class NiminFetishFantasyv0975o_fla:
          if (self.choicePage > 1):
             self.choicePage -= 1
          elif (self.choicePage == 1):
-            self.choicePage = Math.ceil(len(tempArray) / 9)
+            self.choicePage = Math.ceil(tempArray.length / 9)
       elif self.buttonChoice == 8:
-         if (self.choicePage < Math.ceil(len(tempArray) / 9)):
+         if (self.choicePage < Math.ceil(tempArray.length / 9)):
             self.choicePage += 1
          else:
             self.choicePage = 1
@@ -2624,7 +2642,7 @@ class NiminFetishFantasyv0975o_fla:
       Adds "Time" hours to the current time, calculates the new day and hour values, then calls doStatus
       """
       addTime = int(Time) + self.hour
-      self.day += addTime//24
+      self.day += Math.floor(addTime/24)
       self.hour = addTime%24
       self.setDHStats()
       self.doStatus(Time)
@@ -2648,7 +2666,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       if (changes < 0):
          if (self.masoPot > 0 and self.sMasoPot <= 0):
-            self.doLust(-changes // 2,0)
+            self.doLust(Math.floor(-changes / 2),0)
             changes -= Math.ceil(changes / 2)
          if (self.sMasoPot > 0):
             if (self.lust < 100):
@@ -2665,8 +2683,8 @@ class NiminFetishFantasyv0975o_fla:
          self.HP = 1
          changes = 0
          self.doPassOut()
-      if self.HP + changes > 30 + self.str // 2 + self.HPMod:
-         self.HP = 30 + self.str // 2 + self.HPMod
+      if self.HP + changes > 30 + Math.floor(self.str / 2) + self.HPMod:
+         self.HP = 30 + Math.floor(self.str / 2) + self.HPMod
       else:
          self.HP += changes
       self.statDisplay()
@@ -2686,9 +2704,9 @@ class NiminFetishFantasyv0975o_fla:
          self.goToInDoProcess = self.currentZone
          self.inDungeon = False
       self.doCoin(-tempNum)
-      self.exhaustion -= self.percent() // 20
+      self.exhaustion -= Math.floor(self.percent() / 20)
       self.skipExhaustion = True
-      self.hrs = 2 + self.percent() // 20
+      self.hrs = 2 + Math.floor(self.percent() / 20)
       self.displayMainText()
       self.doEnd()
 
@@ -3209,7 +3227,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       # TODO: optimize
       tempStr = textObject()
-      tempStr += applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{self.tallness // 12} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
+      tempStr += applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{Math.floor(self.tallness / 12)} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
       if (self.hair > 0):
          tempStr += f" With {self.hairC()}{self.hairDesc()}"
          if (self.hairstyleLength(self.hair)):
@@ -4928,19 +4946,19 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 29
                self.hips = 4
                self.butt = 4
-               self.tallness += 70 + self.percent() // 10
+               self.tallness += 70 + Math.floor(self.percent() / 10)
                self.strength += 1
             elif self.buttonChoice == 3:
                self.body = 20
                self.hips = 3
                self.butt = 3
-               self.tallness += 68 + self.percent() // 10
+               self.tallness += 68 + Math.floor(self.percent() / 10)
                self.libido += 1
             elif self.buttonChoice == 5:
                self.body = 20
                self.hips = 3
                self.butt = 3
-               self.tallness += 68 + self.percent() // 10
+               self.tallness += 68 + Math.floor(self.percent() / 10)
                self.libido += 1
                self.cockSize = 0
                self.ballSize = 0
@@ -4965,7 +4983,7 @@ class NiminFetishFantasyv0975o_fla:
                self.butt = 6
                self.breastSize = 2
                self.nippleSize = 2
-               self.tallness += 60 + self.percent() // 10
+               self.tallness += 60 + Math.floor(self.percent() / 10)
                self.sensitivity += 1
                if self.statusTweaks:
                   self.hips += 3
@@ -4978,7 +4996,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 7
                self.hips = 1
                self.butt = 2
-               self.tallness += 42 + self.percent() // 10
+               self.tallness += 42 + Math.floor(self.percent() / 10)
                self.sensitivity += 2
                self.mentality -= 2
                self.strength -= 4
@@ -4991,7 +5009,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 29
                self.hips = 5
                self.butt = 4
-               self.tallness += 68 + self.percent() // 10
+               self.tallness += 68 + Math.floor(self.percent() / 10)
                self.breastSize = 4
                self.nippleSize = 4
                self.strength += 1
@@ -4999,7 +5017,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 16
                self.hips = 9
                self.butt = 6
-               self.tallness += 60 + self.percent() // 10
+               self.tallness += 60 + Math.floor(self.percent() / 10)
                self.breastSize = 10
                self.nippleSize = 10
                self.libido += 2
@@ -5007,7 +5025,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 13
                self.hips = 6
                self.butt = 5
-               self.tallness += 60 + self.percent() // 10
+               self.tallness += 60 + Math.floor(self.percent() / 10)
                self.breastSize = 6
                self.nippleSize = 6
                self.mentality += 1
@@ -5015,7 +5033,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 7
                self.hips = 2
                self.butt = 2
-               self.tallness += 41 + self.percent() // 10
+               self.tallness += 41 + Math.floor(self.percent() / 10)
                self.sensitivity += 2
                self.mentality -= 2
                self.strength -= 4
@@ -5031,7 +5049,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 29
                self.hips = 4
                self.butt = 4
-               self.tallness += 68 + self.percent() // 10
+               self.tallness += 68 + Math.floor(self.percent() / 10)
                self.breastSize = 6
                self.nippleSize = 6
                self.strength += 1
@@ -5039,7 +5057,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 19
                self.hips = 3
                self.butt = 3
-               self.tallness += 62 + self.percent() // 10
+               self.tallness += 62 + Math.floor(self.percent() / 10)
                self.breastSize = 2
                self.nippleSize = 2
                self.libido += 1
@@ -5047,7 +5065,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 14
                self.hips = 5
                self.butt = 4
-               self.tallness += 58 + self.percent() // 10
+               self.tallness += 58 + Math.floor(self.percent() / 10)
                self.breastSize = 6
                self.nippleSize = 6
                self.mentality += 1
@@ -5055,7 +5073,7 @@ class NiminFetishFantasyv0975o_fla:
                self.body = 7
                self.hips = 2
                self.butt = 2
-               self.tallness += 42 + self.percent() // 10
+               self.tallness += 42 + Math.floor(self.percent() / 10)
                self.sensitivity += 2
                self.mentality -= 2
                self.strength -= 4
@@ -5240,7 +5258,7 @@ class NiminFetishFantasyv0975o_fla:
          self.hrs += 10
          self.stats(0,-5,2,0)
          self.exhaustion += 20
-      self.doLust(-(self.lib // 4),2,1)
+      self.doLust(-Math.floor(self.lib / 4),2,1)
       self.displayMainText()
       self.doEnd()
 
@@ -5474,7 +5492,7 @@ class NiminFetishFantasyv0975o_fla:
       tempInt2 = self.moveItemStack
       tempI = slot + self.choicePage * 9 - 9
       if slot < 12:
-         tempI -= slot//4+1
+         tempI -= Math.floor(slot / 4) + 1
       if self.inBag:
          if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI])):
             if (self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI])):
@@ -6495,12 +6513,12 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText(f"You have produced {self.decGet(self.getMilk / 1000,1)} liters of milk!",True)
                   if (self.tempNum == 1):
                      if (self.breastSize > 14):
-                        self.doLust(-(self.sen // 4),2,3)
+                        self.doLust(-Math.floor(self.sen / 4),2,3)
                      elif (self.breastSize < 4):
-                        self.doLust(-(self.sen // 4),2,3)
+                        self.doLust(-Math.floor(self.sen / 4),2,3)
                      self.nipplePlay += 10
                   elif (self.tempNum == 2):
-                     self.doLust(-(self.sen // 4),2,4)
+                     self.doLust(-Math.floor(self.sen / 4),2,4)
                      self.udderPlay += 10
                   if self.getMilk < 1000:
                      self.doMainText("\n\nUnfortunately, you haven't produced enough milk to fill a full bottle yet.")
@@ -6622,13 +6640,13 @@ class NiminFetishFantasyv0975o_fla:
                         self.cockSize += 1
                         self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your cock{self.plural(1)} permanently slightly larger...")
                      if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == 3):
-                        self.doLust(-(self.sen // 4),2,58,3,57,4)
+                        self.doLust(-Math.floor(self.sen / 4),2,58,3,57,4)
                      elif (self.cockSize * self.cockSizeMod * 4 > self.tallness):
-                        self.doLust(-(self.sen // 4),2,58,1,57,4)
+                        self.doLust(-Math.floor(self.sen / 4),2,58,1,57,4)
                      elif (self.gender == 3):
-                        self.doLust(-(self.sen // 4),2,3,57,4)
+                        self.doLust(-Math.floor(self.sen / 4),2,3,57,4)
                      else:
-                        self.doLust(-(self.sen // 4),2,1,57,4)
+                        self.doLust(-Math.floor(self.sen / 4),2,1,57,4)
                      self.hrs = 2
                   self.displayMainText()
                   self.doEnd()
@@ -6655,13 +6673,13 @@ class NiminFetishFantasyv0975o_fla:
                         self.clitSize += 1
                         self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your clit{self.plural(1)} permanently slightly larger...")
                      if (self.clitSize * 24 > self.tallness and self.gender == 3):
-                        self.doLust(-(self.sen // 4),2,1)
+                        self.doLust(-Math.floor(self.sen / 4),2,1)
                      elif (self.clitSize * 24 > self.tallness):
-                        self.doLust(-(self.sen // 4),2,1)
+                        self.doLust(-Math.floor(self.sen / 4),2,1)
                      elif (self.gender == 3):
-                        self.doLust(-(self.sen // 4),2,1)
+                        self.doLust(-Math.floor(self.sen / 4),2,1)
                      else:
-                        self.doLust(-(self.sen // 4),2,1)
+                        self.doLust(-Math.floor(self.sen / 4),2,1)
                      self.hrs = 2
                   self.displayMainText()
                   self.doEnd()
@@ -6774,44 +6792,44 @@ class NiminFetishFantasyv0975o_fla:
                self.cockChange(-Math.ceil(self.cockSize / 2),0)
             elif temp == "Balls":
                self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink, becoming ")
-               self.ballSize -= self.ballSize // 2
+               self.ballSize -= Math.floor(self.ballSize / 2)
                self.doMainText(f"{self.ballDesc()}.")
             elif temp == "Pussy":
                self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
-               self.vagChange(-self.vagSize // 2,0)
+               self.vagChange(Math.floor(-self.vagSize / 2),0)
             elif temp == "Vulva":
                self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
-               self.vulvaSize -= self.vulvaSize // 2
+               self.vulvaSize -= Math.floor(self.vulvaSize / 2)
                self.doMainText(f"{self.vulvaDesc()}.")
             elif temp == "Clit":
                self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
-               self.clitSize -= self.clitSize // 2
+               self.clitSize -= Math.floor(self.clitSize / 2)
                self.doMainText(f"{self.clitDesc()}.")
             elif temp == "Breasts":
                self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink.")
-               self.breastSize -= self.breastSize // 2
+               self.breastSize -= Math.floor(self.breastSize / 2)
             elif temp == "Nipples":
                self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts.")
-               self.nippleSize -= self.nippleSize // 2
+               self.nippleSize -= Math.floor(self.nippleSize / 2)
             elif temp == "Udder":
                self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
-               self.udderSize -= self.udderSize // 2
+               self.udderSize -= Math.floor(self.udderSize / 2)
                self.doMainText(f"{self.udderDesc()}.")
             elif temp == "Teats":
                self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
-               self.teatSize -= self.teatSize // 2
+               self.teatSize -= Math.floor(self.teatSize / 2)
                self.doMainText(f"{self.teatDesc()}.")
             elif temp == "Butt":
                self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
-               self.butt -= self.butt // 2
+               self.butt -= Math.floor(self.butt / 2)
                self.doMainText(f"{self.buttDesc()}.")
             elif temp == "Hips":
                self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
-               self.hips -= self.hips // 2
+               self.hips -= Math.floor(self.hips / 2)
                self.doMainText(f"{self.hipDesc()}.")
             elif temp == "Belly":
                self.doMainText(f"{self.bellyDesc()} belly and feel lighter as the chubbiness burns off, becoming ")
-               self.bellyMod -= self.bellyMod // 2
+               self.bellyMod -= Math.floor(self.bellyMod / 2)
                self.doMainText(f"{self.bellyDesc()}.")
             self.displayMainText()
             if self.buttonChoice in {4,8}:
@@ -7013,7 +7031,7 @@ class NiminFetishFantasyv0975o_fla:
          chance = self.percent()
          if (chance <= 30):
             self.outputMainText("You find some coins inside!",True)
-            self.doCoin(self.percent() // 5)
+            self.doCoin(Math.floor(self.percent() / 5))
          elif (chance <= 40):
             self.itemAdd(246)
          elif (chance <= 55):
@@ -7032,7 +7050,7 @@ class NiminFetishFantasyv0975o_fla:
          chance = self.percent()
          if (chance <= 50):
             self.outputMainText("You find some coins inside!",True)
-            self.doCoin(self.percent() // 5 + 5)
+            self.doCoin(Math.floor(self.percent() / 5 + 5))
          elif (chance <= 65):
             self.itemAdd(112)
          elif (chance <= 85):
@@ -7063,11 +7081,11 @@ class NiminFetishFantasyv0975o_fla:
          if (self.balls > 0 and self.ballSize > 0 and self.hunger >= 60):
             if (self.showBalls):
                self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your testicles swell within their scrotum, growing hot with seed... Seems as though this berry has increased the size of your balls, somehow, and now you feel a little hungry again.")
-               self.ballSize += self.percent() // 33
+               self.ballSize += Math.floor(self.percent() / 33)
                self.hunger -= 20
             else:
                self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your cum churning within your body, something swelling within... Seems as though this berry has increased the size of your non-visible balls, somehow, and now you feel a little hungry again.")
-               self.ballSize += self.percent() // 33
+               self.ballSize += Math.floor(self.percent() / 33)
                self.doLust(self.percent() / 10,0)
                self.hunger -= 20
          else:
@@ -7079,7 +7097,7 @@ class NiminFetishFantasyv0975o_fla:
          self.exhaustion -= 4
          if (self.hunger >= 80):
             self.doMainText(f"\n\nUnfortunately, it seems the food you have been eating has gone straight to your {self.buttDesc()} ass, making your {self.clothesBottom()} feel slightly tight around it as it swells.")
-            self.butt += self.percent() // 33
+            self.butt += Math.floor(self.percent() / 33)
             self.hunger -= 20
          self.displayMainText()
          self.doEnd()
@@ -7090,19 +7108,19 @@ class NiminFetishFantasyv0975o_fla:
          if (self.vagTotal > 0):
             if (self.hunger >= 90):
                self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nThe cramping shortly passes, but you walk awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
-               self.vulvaSize += self.percent() // 20
-               self.vagChange(self.percent() // 20,0)
+               self.vulvaSize += Math.floor(self.percent() / 20)
+               self.vagChange(Math.floor(self.percent() / 20),0)
                self.doLust(self.percent() / 5,0)
                self.hunger -= 30
             elif (self.hunger >= 70):
                if (chance <= 50):
                   self.doMainText(f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
-                  self.vulvaSize += self.percent() // 20
+                  self.vulvaSize += Math.floor(self.percent() / 20)
                   self.doLust(self.percent() / 10,0)
                   self.hunger -= 20
                else:
                   self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again...")
-                  self.vagChange(self.percent() // 20,0)
+                  self.vagChange(Math.floor(self.percent() / 20),0)
                   self.doLust(self.percent() / 10,0)
                   self.hunger -= 20
          self.doLust(self.percent() / 10,0)
@@ -7173,7 +7191,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText("You down the bottle of milk and feel refreshed!",True)
          self.doHP(15 + self.milkHPMod)
          self.displayMainText()
-         self.aff(5,self.percent() // 10,0)
+         self.aff(5,Math.floor(self.percent() / 10),0)
          self.exhaustion -= 3
          self.doEnd()
       elif ID == 216:
@@ -7204,7 +7222,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doHP(5)
          if (self.hunger >= 70):
             self.doMainText("\n\nHowever, the fertile nature of the egg (and lots of protein) seem to go straight to your hips, making them grow wider.")
-            self.hips += self.percent() // 50
+            self.hips += Math.floor(self.percent() / 50)
             self.hunger -= 25
          self.displayMainText()
          self.doEnd()
@@ -7214,9 +7232,9 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText("You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat.",True)
          if (self.vagTotal > 0):
             self.doMainText(f"\n\nYour loins begin to grow hot. Your hand jerks down to your crotch, rubbing yourself feverishly through your {self.clothesBottom()}. The garment quickly grows moist, your arousal spreading {self.legWhere(1)} your {self.legDesc(2)}. You can feel your labia swell beneath your grip, your lips bulging out of your grasp, while your belly aches slightly with a bloating sensation. Your clit{self.plural(2)} squeeze{self.plural(4)} between your fingers.\n\nThe change soon passes, but the changing in the size of your nethers is easily noticeable, making you walk awkwardly at first as you become accustomed.")
-            self.vagChange(self.percent() // 20 + 2,0)
-            self.vulvaSize += self.percent() // 20 + 2
-            self.clitSize += self.percent() // 20 + 2
+            self.vagChange(Math.floor(self.percent() / 20) + 2,0)
+            self.vulvaSize += Math.floor(self.percent() / 20) + 2
+            self.clitSize += Math.floor(self.percent() / 20) + 2
             self.vagMoist += 1
          else:
             self.doMainText("\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth.")
@@ -7309,7 +7327,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.eggceleratorDose > 6 + Math.ceil(self.percent() / 20)):
                   self.doMainText(f"\n\nYou can feel your next egg starting to come along more quickly than before... but it continues to build. Your {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. You fall back onto your hands, your {self.legDesc(6)} in the air as you lay it with such expediency that your thighs quiver and your pussy gasps in surprise. Yet, the sensation doesn't end, as more eggs begin to develop almost instantly inside your womb, one by one forcing their way through your passageway. Your {self.hipDesc()} hips jerk and your {self.clitDesc()} clit{self.plural(2)} stand{self.plural(4)} tall with a strange arousal as you thrust into the air again and again to plop out egg after egg. Part of you wants to furiously rub yourself as the eggs nearly launch from your spread cunt, but the rapid pace of the laying makes your body a twitching, seizing mess as you cry out in desparation. So many eggs fly out of you into a pile that you can hardly save them all; quite a few crack and ooze over the others. The round, smooth, slick object having their way with your sensitive flesh eventually makes you quake with an odd orgasm, somewhat powerful but not quite fulfilling, making you collapse back onto the ground as your womb pops out the rest...\n\nOver half an hour passes after your egg-laying extravaganza before you can collect yourself. You sit up to wipe the slime from your pussy, gazing upon the pile of eggs you have laid until you finally go through and pull out the good ones. You also notice that your womb seems to have completely calmed down afterwards, the eggcelerator having been purged from your system. It seems you had taken so many doses that your body could no longer handle it...")
                   self.addManyItem(219,self.eggceleratorDose)
-                  self.doLust(-self.sen // 3,2,2)
+                  self.doLust(Math.floor(-self.sen / 3),2,2)
                   self.eggceleratorTime = 0
                   self.eggRate -= self.eggceleratorDose
                   self.eggceleratorDose = 0
@@ -8388,7 +8406,7 @@ class NiminFetishFantasyv0975o_fla:
       for i in range(1,13):
          self.mo._children[f"button{i}"].state = "normal"
          if i not in {4,8,12}:
-            tempI = (i-(i//4+1)) + (self.choicePage * 9 - 9)
+            tempI = (i - (Math.floor(i / 4) + 1)) + (self.choicePage * 9 - 9)
             self.mo._children[f"button{i}"].text = tempArray[tempI]
             if (itemArr[tempI] > 1):
                self.showAmount(i)
@@ -10610,12 +10628,12 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText(f"\n\nYour {self.legDesc(10)} swing awkwardly as you hang impaled on his manhood. Your hands leave the men’s members, but they do not stop milking your tits harshly. You look back over your shoulder and see the man’s smug grin as he leans against a table to support himself. Your attention gets pulled back to one of the men as he pulls hard on your breast to force more milk into his mouth. You wonder what's going to happen next as you slowly get used to the uncomfortable feeling of being held aloft on the man's thick cock. His strong hands grip you tightly around the waist and he begins to pull himself from you. He pulls almost all the way out, barely leaving the head of his member inside. A surprised moan escapes your lips when he suddenly thrusts back into you. You feel a slight bit of pain and your stomach has a noticeable bulge, but you are paying too much attention to your breasts to notice it. As the man begins his thrusting, you can’t help but feel even more turned on. Your tits feel like they're on fire as they are suckled constantly and your nipples are so hard that it's almost painful. With all the focus the men give your body, you can’t fight against the orgasm that turns your bones to jelly and makes your eyes roll back into your head. All your muscles spasm and the man behind you gives a grunt as you clench mercilessly on his shaft. His orgasm has yet to come, but you’re sure that it won’t be long now. There’s not much to do as you let the men suck your tits dry and fuck your ass raw until at last you feel the heat of the man's seed spilling within you. You sigh in pleasure from both the warmth inside you and relief as he pulls himself free of your ass before lowering you to the ground. As good as it felt, you just know it’s gonna be hard to sit for at least a week.")
                   self.doMainText(f"\n\nThe men paying attention to your chest finally let go. You sink to your {self.legDesc(6)} as they grab their stiff members and begin to stroke themselves quickly. You close your eyes and open your mouth, knowing that it won't be long until they finish as well. Their breathing gets heavier and heavier until you hear the strangled sounds of their climax. A heated moan escapes your mouth as you feel the hot strands of thick liquid splash over your face and in your mouth. You’re surprised by the amount as you feel the hot surges of their seed continuing to spill onto your face over and over again. Their climaxes do eventually come to an end and you gather up the cum on your face, scooping it into your mouth and licking your fingers hungrily.\n\nWith all the men spent, you get dressed and hobble from the seedy bar. With each step, the pain in your ass is still quite apparent.")
                   self.milkAmount(1)
-                  self.doLust(-(self.sen // 2),2,3,5)
+                  self.doLust(-Math.floor(self.sen / 2),2,3,5)
                else:
                   self.doMainText(f"\n\nThe three men eagerly began to strip, each appears to be a fine example of human endowment. You almost wonder if these men had deliberately lost to cock-snakes at some point... though that seems a little ridiculous... who would do that after all? You remove your {self.currentClothes()} for them in a sexy striptease, their fat cocks already engorging with blood.\n\nYou smile seductively as the bravest man approaches. He leads you to a table and has you to bend over as he sits upon it, the table creaking slightly under his weight. His hot meat throbs inches from your face and you use your tongue to gently lick the head. He lets out a small moan as you try to take the head into your mouth, your lips stretching around it's impressive girth before it finally pops in.\n\nYou feel something pushing on the tight pucker of your ass, it feels strange as it begins to go inside. You feel your hole stretching around the intruder, but you manage to take the thick member. You smile around the first man's shaft slightly as your tongue begins to lick and circle around the man’s cock, pleasuring him further. You aren’t sure if you’ll be able to take much more of him. You place your hands around the thick shaft and slowly begin to stroke it. The man inside your ass begins to thrust, grabbing you by the hips to get himself deeper into you. The feeling is exquisite and the position helps to rub that little spot inside you. The man’s pace quickens into a relentless pounding of your ass. It distracts you from the job in your mouth and hands, but your moans help with the member in your mouth a little bit. The hard thrusts into your ass fall into a steady pace. The feeling causes your eyes to close as waves of ecstasy race through you.")
                   self.doMainText(f"\n\nHowever, it's not long until that pace breaks. His thrusts get faster and rougher as the man gets closer and closer. There’s a faint twinge of pain as the man buries himself as far as he can go. A strangled noise escapes his lips as his shoots his load into you. Your ass clenches tightly, milking him for as much of his cum as possible. With a pleasured sigh, he pulls himself from your ass and lets go of your waist.\n\nThe emptiness in your ass is soon filled with another stiff cock, but... this time it’s different. You aren’t sure what’s going on. The man inside your mouth wants you to go deeper. It's not easy, but you oblige with a few more inches. With his cock entering your throat, you idly wonder if this man might be part horse. The true fucking begins now as both men begin to thrust. The one on the table stands and holds onto your head as he keeps himself buried deep. As one man pulls out, the other thrusts in deep, causing you to jiggle back and forth. Your breasts flop to and fro with their motion. There’s nothing you can do except grab the table and hold on as best you can as the vicious cycle continues. There’s a primal urgency in the men’s thrusts. They’re not there to pleasure you, this is all about them. The man behind you gives your {self.buttDesc()} rump a sharp slap, causing you to squeal around the cock in your mouth. You start timing your breathing round the thrusts in your mouth and you can taste his salty pre occasionally whenever he pulls his head back out of your throat. The man pounding your ass continues to ride you as roughly as possible. You start moving with him, forcing your hips back onto his thick meat.\n\nYou can feel the members starting to get thicker. The hands behind your head force you deep onto his cock, mashing your face into the man’s pubic hair.")
                   self.doMainText(" As you feel the cock in your ass explode and flood your body with seed, you’re pretty sure the one in your mouth has begun to flood your stomach with cum as well. Just before you choke, the member is pulled from your mouth. You cough a little before finally taking a deep breath of fresh air. The deflating cock in your behind is slowly pulled from you with a loud pop.\n\nExhausted, you pull your clothes on and wander out of the seedy tavern, holding your slightly inflated belly. As you head back to your street, you wonder if the seed of all three men will meet in your stomach. The very thought arouses you...")
-                  self.doLust(-(self.sen // 2),2,5)
+                  self.doLust(-Math.floor(self.sen / 2),2,5)
                if (self.cockTotal > 0):
                   self.cumAmount()
                self.hrs = 2
@@ -10645,7 +10663,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText("stops playing with your balls and ")
                   self.doMainText("moves his finger over your ass. Pushing one in your asshole, he sends you over the edge and you flood his mouth with cum in return.")
                self.doMainText("\n\n\nAs you pull your cock out of his mouth, the last spurt of cum hits his face, marking him. He blushes again, licking his lips and savoring the flavor. He looks around again, still finding no one who could have seen you. He sighs in relief and hands you some coins. He then gets up quickly, and moves away...")
-               self.doLust(-(self.sen // 3),2,1)
+               self.doLust(-Math.floor(self.sen / 3),2,1)
                self.hrs = 1
                self.cumAmount()
             elif chance == 3:
@@ -10656,7 +10674,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText("\n\nWhen your orgasm settles down, you ease your member out of her slit with a thick trickle of your seed dribbling out of her hole and coating your cock.\n\nYou go into the bathroom and bathe and, when you return, you find that your client has left some coins on the table.")
                self.hrs = 2
                self.cumAmount()
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
             elif chance == 4:
                self.doMainText(f"You've been standing on the corner for a couple of hours now, trying to tempt someone into spending some coin in exchange for some pleasure. So far all you've gotten are dirty looks from several of the town matrons, making you even more embarrassed that you've had to resort to this desperate measure. Luckily for you, a group of farmhands from one of the surrounding farms have come into town on their day off. Several of the burly, sunburnt men cast appreciative glances at you but most of them seem eager to drown their thirst at the nearby tavern. As the boisterous group moves off, one of the younger men pauses, glancing at your {self.boobDesc()} breasts. He watches the men as they make their way into the tavern, grinning to himself when they fail to notice his absence. He continues to gaze at your chest as he makes his way over to you, giving you a chance to study him. His straight brown hair is a bit on the shaggy side, almost concealing his warm, chocolate brown eyes. The downy beginning of a moustache and beard surround his mouth. He's wearing a pair of coveralls over a fairly clean flannel shirt and he doesn't smell too strongly of manure. He quickly agrees to part with some coin to have a bit of fun with you. You lead him a short way down the alley to a spot behind some empty beer crates. His eyes go wide as you slip out of your {self.currentClothes()} letting him get a good look at you.",True)
                self.doMainText("\n\nHe fumbles with the buttons of his coveralls and finally manages to undo them. He hastily tugs them down, letting his erection spring from its confinement. His cock isn't the biggest you've seen, but it certainly isn't the smallest either. He blushes a bit as he explains he'd like to use your tits. It isn't quite what you've envisioned, but the customer is always right so you quickly work out the logistics. You have him sit down on one of the empty crates, then lean over him so his erection is nestled between your breasts. He moans softly as you capture his hard, hot length between your tits and soon begins to rock his hips. There's a bit of friction at first, but soon his slick pre is smeared in your cleavage and he begins to thrust his hips even more vigorously.")
@@ -10668,12 +10686,12 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText(" His entire length is lost in the warm, pillowy mass of your tits and he couldn't be happier!")
                self.doMainText("\n\nAfter a surprisingly short time, the young man begins to pant raggedly, his eyes clenched tightly shut as he humps into your breasts hard and fast. He cries out softly as you feel the hot gush of his seed spray into your cleavage, painting your breasts as he quivers beneath you. He gives you a rather dazed looking smile and is just about to say something when the two of you hear several men calling out.\n\n\"Bran! Bran where are you boy?\"\n\nHis eyes widen in alarm. \"Th..That's the foreman! I...I've got to go!\"\n\nHe reaches into his belt pouch and hurriedly gives you some coins. \"Th...Thanks a lot! Maybe I'll see you again the next time I'm in town!\" He waves to you, then hurries down the alley while simultaneously trying to pull his overalls up. He manages to trip himself once, but quickly gets to his feet as his tugs his clothing back into place before scurrying out of the alley and hurrying to find his friends.\n\nYou shake your head in bemusement as you gather up the coins and clean yourself off.")
                self.hrs = 2
-               self.doLust(self.lib // 4,0,3)
+               self.doLust(Math.floor(self.lib / 4),0,3)
             elif chance == 5:
                self.doMainText(f"A rough-looking human eyes you from the alleyway. There's a glint in his eyes as he approaches. \"Y'wanna earn a few extra coins?\" he asks after he steps into the light, his tan flesh scarred and his eyes looking over your body. \"Step into my office, and let's have a talk.\"\n\nYou nod and walk into the dark alley, the rogue soon following. You begin to turn, your mouth opening to speak only to have one of his hands clasp over it while the other slams your body against the wall. \"Been a while since I fucked an ass. Just shut up and take it.\" he commands while pulling your {self.clothesBottom()} out of his way. It isn't long before his fleshy shaft presses up against your ass. You can feel the warmth of the man's chest against your back as the throbbing cock slides between your cheeks. He grips your {self.buttDesc()} ass hard, holding it against his cock as he rubs his length between your cheeks. Before long, there's a dribble of his pre drooling down your crack. A gasp escapes your lips as the slime-covered tip nudges against your ring. The bandit teases your fleshy hole for a moment. He lets out a few low grunts as he presses forward, not quite penetrating your tight sphincter. \"You want it, slut? I can see it in your eyes. You're begging for it.\"\n\nWith no further warning, he plunges in. The fat human cock spreads your walls apart as he slides in the hole below. He moans deeply as his hands latch onto your hips, the man pushing his remaining length into you. \"Fuck, you're hot... Worth every gold piece.\" His grip on your hips tightens, almost painfully so, as he rocks your body back and forth with every thrust. The unlubricated cock digs painfully into your flesh with every movement as the man fucks you without care. He roughly pounds your flesh, panting into your ear as he fucks you with quick, short movements.\n\nIt's not that long before he reaches orgasm and he shoves himself completely into your rear. With another grunt, the man's dick twitches inside your warm depths and you feel the sticky seed burst within you. You pant while he fills your ass so full that it begins to overflow, thick streams of cum rolling down your thighs as it slips through the tight seal.",True)
                self.doMainText(" Just as you begin to feel completely full, he tugs free and lets the last few strands shoot over your back. He lets out a pleased sigh before throwing a small sack down beside you, hitting the ground with a quiet jingle. He vanishes as quickly as he appeared, slipping his dick back into his armor before turning a corner and leaving you a slimy mess.")
                self.hrs = 1
-               self.doLust(self.lib // 4,0,6)
+               self.doLust(Math.floor(self.lib / 4),0,6)
             elif chance == 6:
                self.doMainText("Standing on the corner, attempting to look your sexiest, you manage to attract the attention of two young women who almost look identical. They smell strongly of alcohol, leading you to assume that they have recently left a tavern to seek other pleasures. Walking up to you, one shoves a small bag of coins into your hands, too intoxicated to negotiate or really care about your racial makeup, while the other stumblingly starts to frog-march you to an alleyway a few meters distant.\n\nPocketing the coins, you size up the two young women. Both are rather skinny with ample breasts and the beginnings of womanly hips and thighs visible through the form-fitting trousers they wear. You begin to think it's a bit odd for women in Softlik to be wearing pants when you notice two rather large bulges beginning to tent the length of the women's pant-legs. The two undress and it is soon evident the two women have been the unfortunate (or fortunate) victims of cock-snakes. The two sport identical foot-long erections, hardened and bobbing while dribbling pre-cum over a slightly gaping pair of feminine nether-lips.\n\nYou hurriedly undress, becoming quite aroused at the sight of the two's audacious display of unrestrained sexuality.\n\nThe two gaze over your body, hungrily drinking in your attributes.",True)
                if (self.cockTotal > 1 and self.cockTotal >= self.vagTotal):
@@ -10695,9 +10713,9 @@ class NiminFetishFantasyv0975o_fla:
                self.hrs = 2
                self.cumAmount()
                if (self.cockTotal > 1 and self.cockTotal >= self.vagTotal):
-                  self.doLust(-(self.sen // 2),2,1)
+                  self.doLust(-Math.floor(self.sen / 2),2,1)
                else:
-                  self.doLust(-(self.sen // 2),2,1,2)
+                  self.doLust(-Math.floor(self.sen / 2),2,1,2)
          elif self.currentZone == 2: # Firmshaft Whoring
             self.rndArray = Array()
             self.rndArray.push(1)
@@ -10726,28 +10744,28 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("the back of your head")
                self.doMainText(" with both of his huge, powerful hands. Your find your jaws stretched to their very limits as he forcefully pulls your head down upon his throbbing erection. He forces inch after thick, throbbing inch deep down your throat. You shudder and convulse in shock as your warm, wet throat grips and strokes every inch of his huge maleness. The sensations cause your partner to moan aloud in uncontrollable bliss. Your writhing tongue is pressed flush against the bottom of your mouth as the first gush of cum further bloats his already huge cock. You can only struggle futilely as you feel the blast of hot, thick cream shoot inward and coat your hungering belly. His powerful hands hold your lips flush against his velvet-furred sheath and you can only shiver with lust while you’re flooded with his essence. Your distended, cum-bloated belly gurgles in discomfort when he finally pulls his massive endowment free. You fall to the ground limply, panting as you're finally able to breathe again. With his thanks and a mumbled compliment, the equan stumbles out of the tent in a hazy afterglow, leaving you with his payment and a warm, sticky meal...")
                self.aff(2,Math.floor(self.percent() / 20 + 2),-2)
-               self.doLust(self.lib // 4,0,6)
+               self.doLust(Math.floor(self.lib / 4),0,6)
                self.hrs = 2
             elif chance == 2:
                self.doMainText("The sounds of raised voices catch your ear as you pass one of Firmshaft's canvas dwellings. Curiosity about the event gives you pause while you try to make out the words. Without warning, the quarrel erupts out onto the path before the tent and out come a pair of nude Equan males. They are fleeing from a short and rather angry-looking Equan woman wielding a large hammer. The two men nearly trip over you as they beat a hasty retreat, leaving their pursuer behind. She shakes her head, tossing her mane about in agitation as she stares after the fleeing pair.\n\nSeeming not to notice you, the woman mutters to herself while rubbing the crotch of her loincloth. You notice that the cloth is very wet. Sensing an opportunity, you draw her attention with a small wave. As she looks you over, you blow her a kiss. A knowing smile softens her features. She motions toward her hut and you follow silently, enjoying the view of her toned ass as the two of you enter.\n\nThe woman's home is lightly furnished, but you find your attention wholly consumed by the large pile of cushions spread out in the center, upon which the slim Equan woman rests in a seductive pose. She crooks one finger in your direction and pats the cushions beside her. You obey, scarcely able to take your seat before she pulls you into a deep, somewhat awkward kiss. It ends almost as suddenly as it began, the woman remembering what you are. \"Here,\" she pants, shoving a pouch of coins into your hands. \"I'm done with men. Show me what a girl can do.\"\n\nWith that she grabs your hair and shoves your head down between her legs. Her other hand has tugged her loincloth aside to give you clear access to her sloppy cunt. Left with little say in the matter you begin doing your best to service the lusty Equan, lapping the slick juices from her dripping slit with long, slow licks.",True)
                self.doMainText(f" She lets loose a whinny of pleasure as your tongue darts between her folds to caress her hard clit. You keep it up for several moments before you suddenly find yourself lifted over her into a sixty-nine position, her hungry muzzle presses against your {self.vulvaDesc()} cunt. Her surprisingly large tongue fills you nicely, sending waves of ecstasy through your body as the two of you suckle and lick each other to orgasm.")
                self.doMainText(f"\n\nYou lose track of the climaxes as time goes on, only stopping when you collapse from exhaustion. The Equan woman gives you a kiss on the cheek and a pat on the rear before motioning toward the exit and picking up her hammer. She strokes the thick shaft as she prepares to pick up where you left off. Your {self.legDesc(2)} wobbling, you leave the dwelling while counting your coins and humming.")
                self.exhaustion += 4
-               self.doLust(-(self.sen // 2),2,2)
+               self.doLust(-Math.floor(self.sen / 2),2,2)
                self.hrs = 1
             elif chance == 3:
                self.doMainText(f"Taking to the streets of Firmshaft in your {self.currentClothes()}, you head to a less populated part of town to make a quick coin or two. After loitering about for an hour, an Equan finally approaches you. He’s slightly sweaty and appears rather nervous, though you're not surprised due to how young he appears. After some casual small talk, mostly about the weather and the grains in the plains, he gets up the courage to buy you.\n\nJudging by the large twitching bulge in his pant-leg, you can already sense that he might be a handful. He takes you back to a large tent. Nobody seems to be home even though he clearly doesn't live alone. The Equan slides his pants off quickly, showing you a rather impressive rod dangling freely between his legs. It’s almost certain that if he fell over, that thing would be there to catch him. You remove your {self.currentClothes()} as well, his manhood twitching as he sees your naked body.",True)
                if (self.breastSize > 24):
                   self.doMainText(f"\n\nNoting his constant gaze at your {self.boobDesc()} breasts, you grin wickedly at him as you push him back onto the couch. You begin to rub your {self.boobDesc()} breasts with your hands, moaning in delight as you play with your nipples in a teasing manner. When they’re finally erect and he is sufficiently blue-balled, you approach him, straddling his legs and enveloping his massive member with your breasts. You slowly move up and down with them, your mouth opening to accept the flared head of his cock into your mouth.\n\nIt takes some doing, but soon you’re in a good rhythm. You run your tongue all over his cock before you greedily slide it into your throat. The boy’s face is in ecstasy as you continue your expert skills on him. The hot flesh of his member warms your entire body. Your heart beats likes a drum in your ears as you bounce up and down, swallowing him as far as you can. Fighting off the desire to gag, you devour him until his manhood bashes somewhere in your stomach. Your eyes bulge open in surprise as the young male's climax hits unexpectedly. His cock explodes with a river of spooge and rapidly begins to fill your stomach with his seed. You can feel the constant stream as his cock twitches and he whinnies loudly. Even as you pull out, he still hasn’t finished. Your throat and mouth are filled to overflowing with the thick liquid. As you pull him from your mouth, a few jets of stray cum strike you across your face and breasts. Despite your outrageously full belly, you scoop some from your bust and lick it off of your fingers.\n\nYour clothes may not fit as well now, but you head out of the tent to leave the Equan to recover.")
-                  self.doLust(self.lib // 4,0,3)
-                  self.aff(2,self.percent() // 8,0)
+                  self.doLust(Math.floor(self.lib / 4),0,3)
+                  self.aff(2,Math.floor(self.percent() / 8),0)
                else:
                   if (self.vagLimit() > 60):
                      self.doMainText(f"\n\nYou straddle his lap after he lays down on the bed. For a moment, you toy with the tip of his erection before slowly lowering yourself onto it. The feeling is intense as you proceed to take his cock all the way to the hilt. His hands grip your hips and he slowly begins to lift you up, shuddering slightly as your inner walls massage his incredible length. He pulls you back down after only half of his impressive tool is exposed to the air between you. You use your {self.legDesc(2)} to take your weight off of his arms and help guide him into a steady rhythm. Eventually the two of you are in sync while one of your hands moves to your breasts to feel them and play with your sensitive nipples. Your other has gone to your cunt to stroke and rub your clit. It's only a few minutes before the Equan begins to breathe hard. It's pretty obvious to you that this is probably his first time. You speed up your own actions, wanting to give him his money’s worth. Each time your fingers dart across your clit, you feel a pleasurable wave creep up your spine. Moans escape your mouth as your fingers work fast on your sensitive body. Soon your pussy begins to contract and clench as your toes curl. The boy lets out a loud whinny, the new feelings too great for him as he erupts into you pussy like a firehose. The constant gushing begins to distort your stomach. By the time you feel he’s stopped, it almost looks like a basketball has been shoved inside your womb. You wait for a moment before carefully lifting yourself off of him. His cock falls to the bed with a wet slap. You giggle softly as you notice he’s fallen asleep.\n\nSmiling proudly, you get dressed and see yourself out, though you feel quite full.")
                      self.doImpregnate(2)
                   else:
                      self.doMainText("\n\nYou're a bit worried as you begin to sink his massive cock into your pussy. Only part of the way in, you know it won’t fit, but the boy has paid for the full service. You suggest trying something else and sigh with relief as he nods in agreement. You quickly get into a doggy style position and pat your ass. He catches on quickly and prods at your asshole with his very large member. Why you thought this might be a good idea is beyond you, but as the flared head sinks in and the rest follows, you can only grin and bear it. To both his surprise and yours, his balls touch your pussy with a slap.\n\nGrabbing you carefully around the waist, the Equan begins to pull himself out, only to thrust himself back in after a few inches. Once the initial pain fades, pleasure begins to fill your body. You move forward and backwards on his shaft to further encourage him. Soon his erratic pace evens out and the only sound is the tell-tale slap of his large balls hitting against your now wet pussy. Before you can find real pleasure in the act though, the Equan begins to whinny in warning of his coming climax. His frantic thrusts become more apparent as you feel the thick cock pulse and grow slightly. He bottoms out one last time and a waterfall of Equan seed erupts from his flared head, which you are now painfully aware of deep inside you. You don’t even notice that your belly has started to grow, getting bigger and bigger until it almost touches the bed. You feel nauseous for a moment and cough a little, the surprising taste of semen fills your mouth. Just as he pulls free from your backside, you swallow it back down with all your willpower. \n\nSlowly, you get up and proceed to get dressed. You're rather satisfied with yourself and decide to keep your belly as it is, a trophy of sorts.")
-                  self.doLust(-(self.sen // 2),2,2)
+                  self.doLust(-Math.floor(self.sen / 2),2,2)
                self.hrs = 1
             elif chance == 4:
                self.doMainText(f"You begin wandering around the equan village of Firmshaft, looking for ways to gain some coin. As you wander you notice that you've captured the attention of a few horny women with 'attributes' such as yours, so you find the best option would be to sell yourself for sex.\n\nYou begin your search for someone to fuck, giving an array of horny looks to every female that passes you by. It doesn't take long for one to take notice of you and your 'package'. She starts to walk slowly towards you, swaying her ample hips, curvy body and huge tits. Her face full of lust and her loins hungry for your cock{self.plural(1)}. You feel your {self.cockDesc()} thing{self.plural(1)} harden to full size, which only draws the woman in faster, You can only stand still and do nothing, as you are dazed by her amazing body.\n\nNot caring about the setting you are in, she lunges at you. and forces you down to the ground. Without even pausing, she starts tearing away your {self.clothesBottom()}",True)
@@ -10760,7 +10778,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("abdomen")
                # NOTE: This line describes equan as having hooves as feet
                self.doMainText(f" begin to shudder furiously after only a few minutes of the intense fucking, a warning to both you and her that you're about to blow. You hold tightly to her hips as you peak and thick ropes of your {self.domName()} cum paint her inner walls. After several, almost painful, minutes, you finally release all of your sperm into her womb. You breathe a small sigh of relief as you gather your thoughts. Your gaze falls to the equan woman and you can see her lying face first on the floor, barely conscious from her intense orgasm. She lets out a small moan as you gently pull your cock from her netherlips. In almost no time, it returns to its flaccid state.\n\nAfter a minute or two, she manages to recover from her climax and get back on her hooves. She stumbles, bow-legged towards you, still recovering from the stretching her nethers received from your {self.cockDesc()} cock. She slowly leans over you and gives you a kiss. You grin as you feel her press something against your stomach. A something that makes a faint metallic noise as its weight shifts in your hands. Without another word, she stands and walks away. You look down and smile as you confirm that she has given you a purse full of coins.\n\nYou get to your {self.legDesc(10)} and, as you are pulling {self.pullUD(2)} your {self.clothesBottom()}, you notice you have drawn a rather large crowd. It consists mainly of women, thirsting for sex. There are also several families with mothers and fathers covering their children's' eyes. You quickly leave the area, carrying on with your journey.")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.cumAmount()
                self.hrs = 2
             elif chance == 5:
@@ -10792,7 +10810,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.vagTotal > 0):
                   self.doMainText("Your pussy slams down on the Equan male’s tongue minutes later as he continues to flick over the inside of your cervix with merciless force. Gently nibbling at your female lips with his blunt teeth, he causes you to gasp out a bitten off yelp as shivers rack your spine.\n\nToes curling and hands almost giving out, you press back into the Equan with your gropable rump trying to make sure that he gets that talented tongue up inside of you as deeply as possible. You try to warm him of the coming storm almost upon him but the Equan pays no mind and stands before it like a champion, taking the full breadth of your climax as if he were born to do so.")
                self.doMainText("With an orgasm pumping through you, you take a moment to note your back is very warm and sticky before realizing the Equan’s cock has let loose its torrent onto your backside. Grunting and reigning in your excitement you turn your head to look at the Equan who is just pulling his tongue out of you and nod to him to let you up once the tidal wave had subsided. He seems somewhat disappointed but does so without a hassle. His previously fat nuts seem to almost look deflated and judging by the paint you feel dripping off of you it doesn’t take a genius to figure out why.\n\nYour ass glowing like the sun, you know that sitting down for at least an hour will be out of the question. Even with the discomfort, you feel like this entire experience was well worth it. A towel is thrown over your back and without being asked the overly tall male starts wiping you down, cleaning his mess while nudging a satchel of coins over to you with the tip of a hoof. Knowing you’ve done a job well you let the Equan male take care of you before getting up and putting your clothing back on to leave.")
-               self.doLust(-(self.sen // 2),2,1,2)
+               self.doLust(-Math.floor(self.sen / 2),2,1,2)
                self.cumAmount()
                self.hrs = 2
          elif self.currentZone == 3: # Tieden Whoring
@@ -10815,7 +10833,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doMainText("\n\nShe looks down at you as you keep filling her, bewildered but growing very fond of the constant flow of seed into her belly. She moans softly as her body swells with your rich essence. Her whimpers grow louder and louder until she squeals with a third orgasm, this time flushing out some of your spunk onto your lap with her juices.\n\nOnce you’re finished, she climbs gingerly off your dick and massages her sore lips with an exhausted smile. \"Thank you so much,\" she whispers, pulling her clothes back into place as best she can around her now bulging belly, so stuffed with your baby batter that she looks pregnant already. \"It's been so hard to adjust to becoming a Lupan. I'm still not changed enough that my heat will go away.\"\n\nAgain hurrying to beat your response, she fishes some coins out of her pouch as well as a sizeable vial of some kind. \"Take this with my gratitude.\" With that she hurries off again clumsily, cum very plainly cascading down her legs and leaving you alone, surrounded by the smell of sex and a trail of your cum leading out of the alleyway.")
                   self.itemAdd(114)
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 3
             elif chance == 2:
                self.doMainText("You wander around Tieden, putting yourself on display and making sure your ",True)
@@ -10851,7 +10869,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("All of the priests fuck you in rhythm with the chanting, changing places in turn, fucking all of your needy holes. You writhe in ecstasy as your whole body is used, giving in to your baser instincts, straining at the cuffs which limit how much you can move in rhythm with their tempo. You start climaxing uncontrollably, over and over, too overcome by your lust to bother counting them, for what seems like an eternity. The chanting takes on more desperate note and then, on one final word, all four of them cum simultaneously, filling your every hole to overflowing, with the rest spraying on your body, ripping one final climax out of you, more powerful than the rest, before you pass out in a haze of sheer bliss.")
                   if (self.vagTotal > 0):
                      self.doImpregnate(3)
-                  self.doLust(-(self.sen // 1.5),2,1,2)
+                  self.doLust(-Math.floor(self.sen / 1.5),2,1,2)
                else:
                   self.milkAmount(1)
                   self.doMainText(f"\n\nYou can feel a single drop landing on each of your nipples. The liquid instantly mixes with your milk, causing your {self.boobDesc()} breasts to become even more sensitive, increasing their flow. The young priest continues to cover your nipples in the red liquid, drop by drop, watching how the they mix with your milk. He then turns the chalice further, letting the liquid flow over your breats covering them in pinkish mix of your milk and the red fluid.\n\nThe other priests start to fondle your breasts, causing you to moan as the sensitized flesh was further teased by their caresses, their chant mingling with your moans as they milk you. The other priest holds the chalice close to one of your nipples and you watch as they top off the half-full gem-encrusted container of the ruby red liquid with your milk, turning it a pinkish color as well.\n\nThe priests seems pleased, and each one takes a deep gulp of the mixture in turn before passing it to the next. They start praying after drinking the milk mix, and you feel somehow sleepy.")
@@ -10867,16 +10885,16 @@ class NiminFetishFantasyv0975o_fla:
                if (self.attireTop == 6):
                   self.doMainText(f"explore your body with his hands. Through the latex, you can feel his attentions. His hands pay especially close attention to your breasts. You support yourself against a nearby bin, his muzzle going to your neck as he licks and tastes the sweat from your body. You can feel yourself getting damp, your pussy tingling in eager desire. You wait for anything, but, with a hint of disappointment in the back of your mind, he continues to feel his way across your body.\n\nFinally, he lets go of you and turns you around as you tempt him some with a wiggle of your ass. A grin spreads across his face as he pulls his cock out of his pants, the large tool having come from the sheath long ago. With your back turned, you wonder what he’ll do. The wait isn't long before he pushes the pointed tip against your latex covered pussy, making you moan in delight. After a few more seconds of rubbing up and down, he lowers himself slowly and begins to thrust back and forth against your pussy. You {self.legVerb(4)} your {self.legDesc(2)}, giving him a fake pussy to fuck below yours. One which he begins to happily use. You can feel the large member against your thighs and rubbing your pussy, every so often hitting your clit which causes a shiver of electric pleasure to race up your spine. His thrusts began to increase, each time he almost pushes his knot through but stops himself. For you, time is lost as an orgasm rocks through your body. During this time, while the latex around your crotch begins to fill with your pussy juice, you feel his thrusts have gotten faster. There is a look of intense desire on his face, his tongue lolling out the side of his muzzle as he grips your waist tighter.\n\nYou can feel him getting close. With some effort, you manage to pry yourself away from his iron grip and get to your {self.legDesc(6)}. You deftly begin to jerk his cock, using both hands to try and draw him to orgasm. It only takes moment, but soon you can feel his cock pulsing in your hands as he sprays you with his cum. At first it’s overwhelming, but you smile as you bathe in the creamy Lupan seed, letting it wash over you and your latex suit.")
                   self.doMainText(" His cock twitches a few times at the end before he puts it away. Satisfied, he leaves you in the alley, the thick scent still heavy in the air.")
-                  self.doLust(self.lib // 4,0,2)
+                  self.doLust(Math.floor(self.lib / 4),0,2)
                else:
                   self.doMainText(f"pull your {self.clothesBottom()} {self.pullUD(2)} out of his way before pushing you against a wall. You barely have time to put your hands out in front of you and steady yourself, your {self.legDesc(2)} {self.legVerb(2)} a bit as you realize his intentions. One of his rough hands moves along your waist for a moment as he manages to keep your {self.clothesBottom()} where he wants it while he pulls the waistband of his pants down. You smile knowingly at his rather impressive tool, which is already hard as a rock. His large knot is much bigger than a fist and it makes you squirm a little as you wonder if he’ll make you take that too. With no real warning he suddenly plunges himself into your already wet pussy, brutally shoving himself into you.")
                   if (self.vagLimit() > 24):
                      self.doMainText("\n\nYou were prepared for this. Your hungry cunt eagerly envelops and squeezes him. He grabs you by the waist now and begins to pound away into you with a great deal of force. You have been fucked like this before, but it still makes you bite your lip as you feel him push onto your back while his hands move to your breasts. He kneads and squishes them in his hands without remorse while his hips jack-hammer his thick cock into your depths. Very few times can you remember a fuck as great as this. Powerful waves of pleasure run through your body as you feel his hot breath on your neck.\n\nA sharp cry leaves your mouth as you feel something all too familiar... the strain of his knot as it pushes into you. It's then that the fast strokes of the Lupan become even faster and more powerful. You can barely contain yourself as plunges into you over and over again, his claws raking harshly over your skin; tomorrow's reminder of this encounter being etched into your skin brings you only more pleasure. You pant heavily, half in fear that this experienced lover is going to actually give you an orgasm, which only seconds later, hits like a rock. Your muscles tense up around him and you let out a small cry of pleasure as your eyes roll into the back of your head, but he does not stop or even slow down.\n\nEven after recovering from your climax, even after your pussy stops pulsing and trying to milk him, he continues on with his vigorous assault. It's only a front however. It is not long before his breath quickens and his pace becomes a bit more erratic. Just as he hits your buttons for one more climax, he plunges into you and you feel him reach his own. His cum fires into you like a hot stream and soon you find your belly distending a little bit as your pussy fills with his Lupan seed.\n\nIt takes him a few minutes to recover, catching his breath while waiting for his knot to deflate, but soon he pulls from you with a slurping noise and shoves his manhood back into his pants before leaving you in the alley.")
-                     self.doLust(-(self.sen // 2),2,2)
+                     self.doLust(-Math.floor(self.sen / 2),2,2)
                      self.doImpregnate(3)
                   else:
                      self.doMainText(f"\n\nWith a squeal of pain, you feel as he pushes against the entrance of your womb, your pussy stretches beyond anything you’ve ever experienced before. You look back and in the dim light, you realize that he’s not even fully in yet! Some still remains, as well as the painful looking knot. He mutters as he slowly pulls out of you. You turn around to face him, only to find that he is forcing you on your {self.legDesc(6)}.\n\nSuddenly his cock is in your mouth, his hands grab you roughly around the back of the head! He thrusts hard and strong, the pointed tip of his cock assaults your poor mouth mercilessly. Even if you try to fight, you are no match for the Lupan as he manages to continue his relentless charge down your throat. You feel a strange pain in your jaw and realize that he’s forcing his knot into your maw as well! You struggle and protest, but eventually the large bulb jams into your mouth. It’s hard to breathe, but you quickly fall into a rhythm, breathing through your nose when you can to grab fresh air. Your hands lower to your snatch, which you begin to rub furiously as the intruder in your mouth continues to ram down your throat. It doesn’t take long for the Lupan to near his end. You feel him tense up and you gag horrendously as he shoves himself as far down your throat as possible. You can feel every pulsing vein of his cock on your tongue as you try to push him out, but to no avail. You can feel something hot spray down your throat and a somewhat powerful wave of nausea trembles over you. Once his knot deflates, he pulls from your mouth, pulses of his seed still spray from his cock, filling your mouth as it goes. You swallow it all quickly, if only to get some air.\n\nPanting harshly, you stagger to your {self.legDesc(10)} while he leaves.")
-                     self.doLust(self.lib // 8,0,2)
+                     self.doLust(Math.floor(self.lib / 8),0,2)
                      self.vagSize += 1
                self.hrs = 1
             elif chance == 4:
@@ -10896,13 +10914,13 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText(" as his fingers aggressively fondle your second cunt")
                   self.doMainText(", relishing in the mindless screams of sex you keep making.")
                self.doMainText("\n\nYou lost track of how many orgasms you had, but at last he withdraws, satisfied. “That was beautiful.” He kisses your snatch before helping you up, handing you back your clothes. “Thank you for your service. I trust you enjoyed mine, so I will also give you this.” He hands you a bag of coins and helps you out the door after you are redressed. You sigh happily, realizing that he was one of the best customers you may ever have.")
-               self.doLust(-(self.sen // 2),2,2)
+               self.doLust(-Math.floor(self.sen / 2),2,2)
                self.hrs = 2
             elif chance == 6:
                self.doMainText("After a short time of presenting yourself on the corner, a prospective client approaches. The appearance of the Lupan before you is quite enticing, the ruffled coat of her pure white fur nearly glowing. Why she would need someone of your skill is beyond you, as she would have no problems finding a male to satisfy her. The only thing out of the ordinary is she carries a large padded pouch with several lumps protruding from its opening. A quick exchange about the nature of her need lets you know why she has solicited your assistance, her lust making her giddy as she wags her puffy tail happily when you tell her that you agree.\n\nTaking your hand in hers, she guides it to her crotch and you notice something else which makes her quite unique. A smile spreads wide on your face as you knead her masculine bits and slide in close, taking one of her firm breasts and massaging it sensually through her clothes.\n\nThrough the groping and rubbing, you both strip each other of your clothing, leaving you both naked and pressed in close to one another. Once again, her giddiness takes over and she hands you the padded bag. Turning around and lifting her tail up high, she exposes herself to you. The warm slit of the eager Lupan glistens in the light and slowly begins to drip down to the street below. Her sac seems to pulse in anticipation of what is about to transpire as she yips out, massaging her breasts and looking at you with begging eyes.",True)
                self.doMainText("\n\nThe clasp of the padded pouch unlocks easily and as you open it, you can see there is a plethora of fresh eggs within. All of the eggs are fully intact and fairly large. She giggles, seeing your gaze wander over the mass of white shells and she speaks softly to reassure you, \"Don't worry dear. I pay well for those from the Lizans. They all have thicker than normal shells so they won't break as easily. They are also all unfertilized.... at least so far.\" A soft giggle escapes from her as you move in close to her, gently rubbing her hot sex.\n\nIt's strange that someone would want the eggs put into them. You have the urge to inform her hard-shelled eggs can't be fertilized after they're already laid, but the customer is always right and so you press the pointed end of the egg against her sex.\n\nWith gentle pressure, you slowly push the egg inside her. The Lupan howls in pleasure as the egg spreads her cunt and she seems to grow hotter the wider she is opened up around it. Picking up another egg, you repeat the process of slowly shoving the eggs into her sex one after another. Her cock stiffens and the knot quickly swells under her as she moans out from the feeling of the white objects sliding up into her womb. The process gradually swells her stomach as more and more eggs join the rest. All your efforts make her even more aroused as her sex nearly squirts her dripping juices over you and a puddle forms underneath her spread legs.\n\nYou slow for a bit as her stomach looks as though it is going to weigh her down, but her strained voice cries out to you with a heated moan.")
                self.doMainText("\n\n\"Keep going... ahnnn… put them all in me!\"\n\nYou are only to happy to oblige seeing her in such pleasure.\n\nFinally, after several minutes of pushing the eggs up into her, you slide the very last one inside and see a small object in the bottom of the bag. It seems to be a small dish with a spout on it. As her womb clenches down an all the eggs inside her, she tells you to pick it up and hold it under her dangling cock. As you do so, she arches her back and releases her load into the small dish with a lustful howl. Apparently, it wasn't meant for someone this productive. The dish quickly overflows with her hot cum and it pours out over your hands.\n\nShe pants as her cock still drips with spooge as she roughly massages her breasts. Feeling the afterglow set in after her powerful climax, the Lupan herm manages a single sentence through her moans. \"P...pour it into me...\"\n\nIn one final lewd act, you bring the dish from under her and spread her cunt with your fingers before pushing the small spout into her sex. She twitches and gasps as you tip it and pour her own hot seed into her womb. You notice a wide smile on her face as she imagines her thick load coating the eggs and hoping at least one gets fertilized.\n\nShe thanks you while trying to put on her clothes and gather up her things, her now very swollen belly making things all the more difficult. She hands you your payment before giving you a wink and a smile and before walking away, she says that she may have to seek you out to do this again sometime soon.")
-               self.doLust(self.lib // 4,0)
+               self.doLust(Math.floor(self.lib / 4),0)
                self.hrs = 1
          elif self.currentZone == 4: # Siz'Calit Whoring
             self.rndArray = Array()
@@ -10939,35 +10957,35 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText("\n\nThe stream of jizz dies down but the Felin is just standing there, caught in the aftershocks of an ultra-intense orgasm. Both of you back off to the center of the lounge when he comes to his senses once again. Luckily, no one noticed or came to scold you for the exhibition. That brazen display of primal lust has aroused you quite a bit!")
                if ((self.enticeMod + self.lib + self.ment) / 5 > self.percent()):
                   self.doMainText("\n\n\"Damn, you DID do good. Amazing, in fact. Payment is in those drawers. Like I said there's some extra underneath the cushions over there.\" He replaces his loincloth and walks out like a man on top of the world. He calls back, \"I'll try to remember you for next time, but no promises.\"")
-                  tempInt += self.percent() // 5
+                  tempInt += Math.floor(self.percent() / 5)
                else:
                   self.doMainText("\n\n\"Well that was good. Payment is in the drawers there.\" He covers himself and saunters out just as he did before.")
-               self.doLust(self.lib // 4,0)
+               self.doLust(Math.floor(self.lib / 4),0)
                self.hrs = 2
             elif chance == 2:
                self.doMainText(f"As you wait on the corner of a bridge in a somewhat less-traveled area of Siz'Calit, a woman catches your eye. She walks with an awkward step... and she's already half naked! She spots you and instantly rushes up to you. The woman grabs you by the shoulders and nearly screams, \"You! Fuck me! I need to be filled NOW!\"\n\nBefore you can even attempt to negotiate a price, she's pulling you onto the floor and pulling your {self.clothesBottom()} off. You've heard that Felin women were forward... but you were never expecting this! As she pulls {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)} up and pulls her thong to the side, you realize why. Her puffy red nethers are a tell-tale sign that she's in heat.\n\nFeminine juices drip from the Felin's cunt onto your {self.cockDesc()} erection as she slides herself on you. You wince and grunt a bit as her pussy is surprisingly tight and she wastes no time before starting to bounce herself up and down on you. Her loud moans echo throughout the area as she finally has what she desires. The heat-driven Felin pounds herself against you repeatedly, using you as a living sex toy.\n\nIt doesn't take her long to drive you, and herself, over the edge and her nethers clasp over your {self.cockDesc()} member tightly, coaxing out your climax. You groan loudly as you buck up into her, shooting your seed deep inside of her and pushing her to another climax. She claws your shoulder and holds onto you tightly, letting out a feral growl as her heat is finally satisfied.\n\nYou both lay there panting heavily, drenched in your own fluids and sweat, as she pulls herself off of you. Cum and juices drip on the street as she throws some coins into your lap. You watch as she staggers off in an almost drunken looking state, her groin covered in fem cum and a small amount of your seed runs down her thigh.\n\nYou can't help but smirk as you notice that her thong is still out of place.",True)
                self.hrs = 1
                self.cumAmount()
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
             elif chance == 3:
                self.doMainText("Walking along the bridges, you are stopped by a gorgeous felin woman. She looks you up and down and gives a nod, saying only, \"Come with me\".\n\nShe leads you to a small cabin on the outskirts of the city. She walks at a quick pace and you have to hurry to keep up with the woman as she doesn’t respond to anything you say. When you reach the cabin, she opens the door and gestures you in first.\n\nAlthough you suspect something is going on here, you decide to go on in. The instant you cross the threshold of the cabin, you feel a quick jolt of pain on the back of your head, and you fall with a thump.\n\nWhen you wake up, you find yourself in what can best be described as a dungeon. There are chains, ropes, and every kind of toy you could possibly imagine... even some you couldn’t!\n\nYou believe you are lying down, and you try to stand up. It is then that you realize that you aren’t lying down. You are chained to an X-cross and completely naked. You squirm in the bindings, only able to rattle the chains a little before you hear a door open.",True)
                if (self.ment < 65):
                   self.doMainText(f"The instant you hear a door open, you begin trying to call for help, quickly realizing you are muzzled, but that doesn’t stop you from making muffled noises. You rattle the chains holding you fiercely, determined to let whoever has you know that you are fully awake.\n\nAs you continue your futile struggle, the woman who brought you here steps into your line of sight, a smile on her face. \"Oh good, you're awake. I was afraid I would have to begin without you.\" Her smile turns evil as she walks up to you. She grabs hold of your nipples and tweaks them painfully. A muffled whine escapes through the gag, one of both pleasure and pain. She continues to play with your nipples, massaging your breasts as well for a few minutes before putting a hand {self.legWhere(1)} your {self.legDesc(2)} and feeling how moist you are.\n\nYou squeak as she does this, squirming uncomfortably as she tortures your breasts. You give a short gasp when she feels {self.legWhere(1)} your {self.legDesc(2)} and you shake your head softly. This is met with a laugh and then the woman leaves your sight. You hear things being moved around. When she walks back into your vision, you simply stare at her.\n\nShe is wearing a strange suit, with feathers on the outside, and she has a strap-on too. She walks right up to you, hugging herself against your bound body. You realize, with a whine, that the feathers were placed in just the right positions that anytime you or she moved, they would tickle you.\n\nShe wastes no time in lining the strap-on up and then thrusting in hard. You are powerless as she pulls out, then slams it back in, over and over in a strong rhythm. It doesn’t take long for you to cum, the only thing faster were your tears of laughter.")
                   self.doMainText("\n\nYou have no idea how long she rode you or how many times you came as you lost count after the first few. You do know that she rode and tickled you until you passed out. You wake up back in town, neatly tucked behind one of the treetop stores. You are confused at first, but you gasp softly as the memories come back. Instinctively, You look down at yourself, seeing if anything unexpected had been done while you were unconscious.\n\nThe only thing that seems to have changed is that you have been redressed. There's also an additional weight in your pockets, someone has put a fair number of coins in them. Shaking your head, you make your way back to the main part of town, walking a little awkwardly to deal with the unexpected soreness you're suffering.")
-                  self.doLust(-(self.sen // 2),2,2)
-                  self.doLust(-(self.sen // 2),2,2)
-                  self.doLust(-(self.sen // 2),2,2)
+                  self.doLust(-Math.floor(self.sen / 2),2,2)
+                  self.doLust(-Math.floor(self.sen / 2),2,2)
+                  self.doLust(-Math.floor(self.sen / 2),2,2)
                else:
                   self.doMainText(f"\n\n\nThe instant you hear the door open, you stop squirming and concentrate on slowing down your breathing as someone comes down the stairs. You hear someone walking towards you, stalking almost. Before that person touches you, lightly tracing over your chest with a single sharp claw.\n\n\"Mmmm, you certainly were a good catch...\" she mutters as she traces her claw down your body, stopping right above your vagina{self.plural(2)}. You hear her giggle and then feel her breath dance across your pleasure spots. You gasp, unable to keep your guise up but she doesn’t seem to care as her rough tongue begins to run over your wet slit{self.plural(2)}. She giggles as you start to squirm and just when you are about to cum, she stops. She backs up and watches you for a moment.\n\nYou whine, trying to rub your {self.legDesc(2)} together. She's left you at the brink and you are unable to do anything. You look at the felin with pleading eyes, your gaze begging her to finish. You also try to ask with your voice, but it comes out as nothing more than \"Mph mm mphhh!!\" due to the muzzle secured tightly to your face.\n\nThe felin gives you a toothy grin, her eyes full of mischief as she walks out of your line of sight. You hear her going through her things for several moments, sometimes swearing lightly before she let's out a very restrained squeal of excitement. She must have found what she was looking for. When she returns, you see that she is holding two things, each covered by a small piece of cloth.\n\n\"Which do you want toy? Number one, or number two?\" she asks as she holds up each of the cloth covered objects. \"Nod once if you want number one, twice if you want number two,\" she then adds, after you fail to speak again.",True)
-                  self.doLust(self.lib // 4,0,2)
+                  self.doLust(Math.floor(self.lib / 4),0,2)
                   if (self.lust < 60):
                      self.doMainText(f"\n\nShe gives a grin, pulling the cover from the first item to reveal a box full of white feathers. Your eyes go wide as you realize what she intends to do. You shake your head desperately as she walks towards you with two feathers, one in each hand. Your futile struggles do nothing but make her grin more. She laughs as she begins stroking the feathers all over your body. It doesn't take her long to find where you are most ticklish and assault those areas. You have no way of telling how long the tickling has gone on, hours maybe days for all you know. By the time she is done, your body is soaked with sweat and tears have left trails down your cheeks. Her occasional teasing of your vagina{self.plural(2)} causes thick streams of your sweet nectar to run down your thighs.\n\nShe takes a step back, smiling evilly as she looks at you before she vanishes from your sight again. You don’t see her come back, though you do hear her coming up from behind. In an instant, your face is covered with an odd smelling cloth. You're too tired to struggle and black out in seconds.\n\nYou wake up in a in a shaded part of town. At first, you are dazed and confused. The light streaming through the leaves stings for a moment before your eyes adjust. You blush heavily as the memories of your encounter return. You look down at yourself and find you are unhurt and dressed in your own clothes. You also notice that your wallet is a bit heavier. As you head back out into the light, you walk with a slight limp. Your body is a little sore from the feather treatment.")
-                     self.doLust(self.lib // 4,0,2)
+                     self.doLust(Math.floor(self.lib / 4),0,2)
                   else:
                      self.doMainText("\n\nShe giggles softly, pulling the cloth off of the second item, revealing a lovely, thick strap-on. You gaze at the thing longingly. A whimper of desire manages to squeak past the gag. With an ecstatic grin, she pushes one end into herself before securing the harness around her waist and thighs. She rubs the tip of the thing as if it were a real cock, moaning softly before walking up to you and thrusting the the artificial penis deep into you. You explode at the first thrust, your juices flowing and oozing all over the toy. She continues to thrust long and hard into you, paying no heed to what she knows is only the first of many orgasms to come. You have no idea how long she fucked you. At some point, your mind simply could not handle the pleasure any longer, causing you to pass out.\n\nWhen you wake up, you find yourself back in town, tucked behind a small shop. You are dazed and confused at first, you feel like you've just woken from a nightmare you can't remember. You blush fiercely as the memories of your bound fucking begin flooding back. Looking down at yourself, you see that you are still quite wet, but you are dressed as well. As another surprise, you realize that your wallet is much heavier than before. With a sigh and a shake of your head, you continue with your day.")
-                     self.doLust(-(self.sen // 4),2,2)
-                     self.doLust(-(self.sen // 4),2,2)
-                     self.doLust(-(self.sen // 4),2,2)
+                     self.doLust(-Math.floor(self.sen / 4),2,2)
+                     self.doLust(-Math.floor(self.sen / 4),2,2)
+                     self.doLust(-Math.floor(self.sen / 4),2,2)
                self.hrs = 5
             elif chance == 4:
                self.doMainText(f"You stand at the corner of a highly populated area of town, making sure your {self.cockDesc()} dicks are tight against the fabric of your {self.currentClothes()}. You hope that any of the female Felins in the area will notice your 'qualities' and that they're also in need of your services.\n\nAfter hanging around for an hour or so, a petite young girl walks to you and says, \"I have a bag of coins with your name on it if you can give me a night that will make me forget my now EX-boyfriend...\" The smell of her heat hits your sensitive nostrils, making you slightly more aroused. Without questioning anything related to her ex, you agree on a price and head to a hotel, which the client gladly pays.\n\nUpon reaching the room, she gets rid of her clothes, showing her young, but not quite childish body.\n\nShe pushes you onto the bed and gets on top of you, kissing you desperately. It's as if she's possessed by a feral need of having someone fuck her brains out. Her fondling doesn't last long though, as the itch in her cunt starts becoming unbearable. She pulls open your {self.currentClothes()} and gasps in amazement when she sees your {self.cockTotal} {self.cockDesc()} cocks.\n\n\"You're CERTAINLY going to make me forget that jackass, AND my heat!\", she says, aroused even further by the discovery of your special anatomy.",True)
@@ -10982,7 +11000,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doMainText("She desperately tries to take you in, but your incredible size makes it impossible. She growls in frustration as she climbs off of you. \"Hmm... I can't say I didn't see this coming. After all, I NEED someone as endowed as you are.\" From her pocket, she pulls a small vial of a strange liquid, some of which she applies on her folds and butthole. She gets back on top of you and, this time, she slides your manhoods in with ease. Her anatomy is somehow now more elastic than before. The vial must have contained octopus jelly in it. After slowly inserting half of your lengths in her, she forces herself the rest of the way down and screams in pain as you see a bulge in the shape of your rod come out of the front of her belly. She puts her hands over the bulge and starts moving up and down in a hypnotizing rhythm. She screams in ecstasy as she has orgasm after orgasm. Her orgasmic contractions pull a number on you too. Your climax is soon to come.")
                self.doMainText(f"Up until now, the girl was the only one making any efforts, jumping up and down on your dicks. Nearing your climax, you firmly grab her hips and bring her to a sudden stop. Before she has a chance to say anything about your sudden actions, you stand with her still mounted on your {self.cockDesc()} cocks and slam her into the wall. Despite her complaints, you slam your hips against hers again and again, going faster every time. You both scream in exquisite pleasure as your muscles contract and you both reach an explosive climax. Your {self.balls} cum factories shake and quiver as the girl's holes suck them dry, your cocks gushing your {self.domName()} sperm inside of her. Her belly inflates as your cum pools in her womb and stomach, putting out the fire of her intense heat.\n\nAfter a few minutes of standing there, your anatomy deflates and after two audible pops, you hear splashing sounds as the combination of your fluids starts making a puddle at your {self.legDesc(10)}. Carrying her in your arms, you lay her down on the bed.\n\nBefore leaving, you get dressed and grab your payment from her clothing.")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 2
             elif chance == 5:
                self.doMainText(f"Your day has been passing very slowly as you try out a new spot. Some passerby have given you strange looks, but so far none have asked for your services. You smile as you look at a group of small children playing on the ground below. Watching them has you so distracted that you don't notice someone behind you until their hand grabs your butt.\n\n\"E-ex-excuse me.\" The hand's owner stammers out as you quickly turn around to see a young Felin male. He isn't very tall or broad shouldered, but he is still attractive in his own way.\n\nYou smile at him and grab his shoulder before he can try to run away. There's a group of three more young males at the far end of the bridge watching carefully. It's easy to see that this boy was being picked on by his friends. You ask about the other boys and he gets even more nervous.\n\nHe very rapidly explains that his friends dared him to do it. From his nervous blush you can almost see why. You giggle softly and give him a brief hug. Your gentle laugh continues as you feel his erect member pushing against your thigh. While he is still in your arms, you offer to help him with the problem that he has just developed. Your fingers close his mouth before he can even try to speak. You happily kiss his nose as he nods in agreement.\n\nYou offer your arm and allow him to escort you past the now dumbstruck trio of young felins as you head toward what is apparently his hut in the canopy. The inside is the usual disorganized mess of a bachelor. You don't notice anything too gross as you walk to his bed and sit down. You raise your {self.boobDesc()} breasts and ask him what kind of fun he wants to have.\n\nNot sure how to answer, he asks for you to tell him what you offer. He is almost dumbstruck as you begin to explicitly describe some of your favorite acts and positions while slowly shedding your {self.currentClothes()}. You're naked long before you finish, but instead of stopping, you continue while helping him strip down as well.",True)
@@ -10992,7 +11010,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.cockTotal > 0):
                   self.doMainText(" Streams of your own semen fly into the air and land mostly on your chest.")
                self.doMainText("You've broken in plenty of beginners, but this is one you probably won't be forgetting any time soon.\n\nTired from his exertions, you help him lay down and he pulls a bag of coins from beneath the bed.\n\n\"That was fun.\" He purrs softly as he puts the whole bag in your hands.")
-               self.doLust(-(self.sen // 2),2,2)
+               self.doLust(-Math.floor(self.sen / 2),2,2)
                self.doImpregnate(4)
                self.hrs = 2
             elif chance == 6:
@@ -11012,7 +11030,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.vagTotal > 0):
                   self.doMainText("\n\nDown below your pussy clenches around his fingers as you have the most intense orgasm you have experienced so far. Your juices squelch out onto the Felin’s hand and tongue as you cum and cum for several seconds under the skilled teasing of your Felin client. The Felin seems not to be bothered as he slurps up your juice while grinning inside of your folds like a kid at a candy store. He presses his nose into you more and you cry out as his finger teases you through your climax, making you involuntarily shudder and cum again.")
                self.doMainText(f"\n\nYour {self.legDesc(6)} quake as your breathing becomes erratic before you slump back onto the ground in complete exhaustion. When you are able to get some measure of control over your body, you open your eyes and look up at the Felin adoringly as he pulls off of you to lick the mess on his lips. He smirks and wipes the side of his muzzle, some wetness still gleaming under the wake of your climax, before reaching into his pocket and handing you some coins.\n\n\"Thanks\", is the last thing he says before getting up and walking away, though not without his tail swaying at your tauntingly. You sit there for a second in awe but decide it’s too much of a bother to try and question things. Instead you look up at the sky with a smirk on your face.")
-               self.doLust(-(self.sen // 2),2,2)
+               self.doLust(-Math.floor(self.sen / 2),2,2)
                self.hrs = 2
             elif chance == 7:
                getCum = self.cumAmount()
@@ -11031,7 +11049,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doMainText("Hesitantly stroking his stuffed and distended belly with so much molten cum, he trembles slightly as more of it seeps back out onto the floor. He merely thumps his forehead against the wall, unable to lay down with his bloated state, and blissfully pants for air.")
                self.doMainText(" He meekly points up to a shelf with a bag on it. \"That is yours. Thank you... I'm just gonna rest here a bit~\"\n\nWiping yourself off and dressing back up, you thank him in turn, retrieving the bag of coins and taking your leave.")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 2
             elif chance == 8:
                self.doMainText(f"You walk the swaying rope bridge around town, hoping to catch a customer. It doesn't take long before you are approached by a lean male feline. He's got the markings of a siamese cat and bright blue eyes that regard your {self.bodyDesc()} form with approval. Coins quickly change hands and he leads you into a dimly light house.\n\nHe begins kissing your form, his crotch grind against yours. You feel his erection against your ",True)
@@ -11061,7 +11079,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doImpregnate(4)
                if (self.cockTotal > 0):
                   self.cumAmount()
-               self.doLust(-(self.sen // 2),2,1,2)
+               self.doLust(-Math.floor(self.sen / 2),2,1,2)
                self.hrs = 2
          elif self.currentZone == 6: # Oviasis Whoring
             self.rndArray = Array()
@@ -11101,7 +11119,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.vagTotal > 0):
                   self.doMainText(f"\n\nYour cunt is forced to spread wide as the Lizan behind you suddenly slips one of his cocks from your ass and takes your feminine sex at the same time as your ass. He pauses for a moment to groan at the two different sensations and then begins to pump into you with mighty strokes of his hips. His thighs flutter like a moth's wings against your rear as the Lizan uses every one of your rear orifices thoroughly. His cocks seems to find all the right spots inside of you, pressing up against you as your juices leak out from {self.legWhere(1)} your {self.legDesc(2)}. The passion is so strong it pours around his shaft like a fountain as your pussy grips him oh so tightly, your ass clenching around his other cock.")
                self.doMainText(f"\n\nThe heat from your combined bodies draws out the scent of the frenzied lustful arousal between the three of you and it quickly reaches the point where it feels like a drug making you almost dizzy. Your rock-hard cock {self.legWhere(1)} your {self.legDesc(2)}, dripping pre down onto the cave floor, seems to almost swell to the point of bursting as the cocks inside of you grow quicker in their ministrations and harder in their forcefulness. Your nose almost hurts from being mashed so tightly into the Lizan’s groin in front of you and your ass starts to feel bruised as by the relentless smacks of the rutting male behind you. You decide to speed this up and put all your skills to the test to bring these two off.\n\nA couple of shouts later, you grin in triumph as warm male cum slips inside of your holes and you drink the frothy spooge down hungrily as the two Lizans offer you their thanks for all your hard work.\n\nThe males breathe deeply as they come down from their mutual orgasms together and pull away from you so quickly their cum trails from both your orifices like white ribbons.\n\nWhen the moment between the three of you settles, the two Lizans help you up from the ground before all of you find your respective clothing. One of the Lizans offers you some coins for your efforts and to thank him you politely lick your lips, making a show of tasting the leftover cum from on the side of your face in gratitude. The two males run off together back out into the desert town, leaving you alone and somewhat cold as a draft enters the cave. Hotfooting it out of the cave a few seconds later, you gleefully count your coins up and grin to yourself for a job well done.")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 2
             elif chance == 2:
                self.doMainText(f"Either feeling a little short of cash, or because it's a way to have fun and make some gold, you have decided to sell your body. Donning your {self.currentClothes()}, you stand on a corner of the hot streets of Oviasis, presenting your form for all to admire. Your {self.cockDesc()} package attracts many lustful gazes, however it seems today's whoring will not pay off.\n\nAs you are about to give up for a while and go find something more interesting to do, like eating, a young ",True)
@@ -11137,7 +11155,7 @@ class NiminFetishFantasyv0975o_fla:
                else:
                   self.doMainText("insides")
                self.doMainText(" tightening up as you prepare to deposit a massive load in his ass. With one last gasp you thrust all the way into him and spurt several ropes of jizz into his grasping hole. As you unleash your cum into him, his eyes roll back in pleasure, both his lizard cocks shoot several ropey strings of cum into the air.\n\nThe cute male grunts in pleasure as you pull your schlong out of his petite ass, leaving his asshole gaping wide. The lizan moans as your cum spills out, pouring from his ass. He turns back to you with a satisfied look on his face, then kneels and begins to lick the mess of cum off your softening member. Once you're clean, he stands up and presses some coins into your hand. \"Thanks, that's the best fuck I've had in a while, baby, \" He tells you with a wink. \"Totally worth it.\"\n\nYou notice that as he walks off he's moving in a rather dainty manner as a result of your reaming of his cute ass.")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 2
             elif chance == 3:
                self.doMainText(f"You wait around behind the bazaar, hoping to earn some coin, when the distinct feeling of eyes upon you takes over your mind. Scanning the area around you, you notice a young Lizan woman looking directly at you with desire in her shining yellow eyes. She walks towards you, her mesmerizing hips swaying about with each step.\n\nShe doesn’t have to say anything, and it is apparent you both know what she wants. She draws closer to you, immediately becoming intimate with your body and rubbing the base of your cock{self.plural(1)}. Luckily it’s not a very busy night for the bazaar, so it’s unlikely that anyone will be around to catch you doing anything so lewd in public. She crouches down to take care of your {self.clothesBottom()} and pulls out your member{self.plural(1)}, already growing erect. With a few strokes, {self.plural(7)} ‘up’ to any task you care to give to {self.plural(9)}. She gently shoves you down onto your back and prepares herself, smiling down at you as she straddles herself over your waiting dick.\n\n",True)
@@ -11153,7 +11171,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.cockTotal > 1):
                      self.doMainText("\n\nAs she rides one of your cocks, she wraps her tail around the rest to make sure that you’re as satisfied as she is. Unfortunately for her, your dicks are too large to fit inside any of her orifices so she’s stuck rubbing between your throbbing members.")
                   self.doMainText("\n\nAs soon as she realizes that you’re about to cum, she fits as much of your penis into her mouth as she can and lets you spray load after load into her mouth. She isn’t able to swallow all of it, but she’s satisfied enough to pay you for all your hard work.\n\n\"Mmm, that was a lot of fun. I’ll have to tell my friends about you!\"")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 2
             else:
                self.doMainText("You walk around, hoping to catch someone's eye. A nondescript figure eventually approaches you, takes you out as an escort, and spends a few hours with you, resulting in nothing worth mentioning save your payment.",True)
@@ -11237,7 +11255,7 @@ class NiminFetishFantasyv0975o_fla:
          elif (self.pregnancyTime > 18):
             self.doMainText("\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely.")
          temp1 = self.body + self.str / 2 + self.carryMod
-         temp2 = self.pregnancyTime // 10
+         temp2 = Math.floor(self.pregnancyTime / 10)
          if (temp1 < temp2):
             self.doMainText(" However, none of that really matters as you can no longer carry the weight of your hefty belly. You're stuck in this town, dragging your belly across the ground, with padding beneath to protect it. There's going to be no more exploring until you either get stronger or give birth to this massive nuisance...")
          elif (temp1 * 2 < temp2):
@@ -11397,7 +11415,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" gallons upon gallons of it spewing and spraying out, nearly nonstop. If you had a tub with you, you could have taken a bath in it all!")
             if (getCum > 20000):
                self.doMainText(" so much, so strong, it keeps on spewing out! Gallons and gallons, your body is wracked by the long ejaculation. After a while, your mind can't take any more and you pass out, only to wake up in a pool of cum and no way to take care of it all... You sneak away.")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 5
                self.exhaustion -= 2
             else:
@@ -11413,7 +11431,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText(f"\n\n\nYou have produced {getCum} ml of spooge!")
                elif (getCum >= 1000):
                   self.doMainText(f"\n\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.hrs = 1
          elif (chance == 2):...
          elif (chance == 3):...
@@ -11433,7 +11451,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.doMainText(" Pre blotching the fabric with a large moist spot")
             self.doMainText(f", you have no choice but to pull the clothing up, letting your wang{self.plural(1)} bounce out. Grabbing {self.plural(9)} the best you can in your impetuous state, you stroke strongly and swiftly. You lean back against the structure, with people openly walking and talking just on the other side, as you masturbate fervently.\n\nThe fear of being caught only makes your heart beat faster, quickly producing results in your loins. You hardly hold back for a second to let the pressure build, before you release it in a spurting torrent of white fluid. You continue to pet yourself, squeezing out the leftover cum, while your mind savors the dwindling orgasm.\n\nHalf-aware of what you had just done, your mind still in a fuzz, you simply catch your cock{self.plural(1)} within your {self.clothesBottom()} once more, staining it slightly with the gobs of seed at your tip{self.plural(1)}, and leave your secluded area to head back into the public, leaving behind your puddle of lewd mess for someone else to stumble across...")
-            self.doLust(-(self.sen // 2),2,1)
+            self.doLust(-Math.floor(self.sen / 2),2,1)
          elif (chance == 7):
             self.doMainText(f"With the thought of masturbating on your mind, you can feel your cock{self.plural(1)} begin to swell in anticipation. The tight confines of your {self.clothesBottom()} rapidly growing tighter, you hurry on home.\n\nJust as you step through the doorway to your private abode, the waistband of your {self.clothesBottom()} can no longer contain the {self.cockDesc()} bulge. Your length{self.plural(1)} leap{self.plural(3)} out, flinging ",True)
             if (self.moistCalc(1) > 8):
@@ -11450,7 +11468,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(f" Despite being done, your swollen knot{self.plural(1)} refuse to allow your member{self.plural(1)} to slip back into the {self.clothesBottom()}, standing defiantly against the waistband. The most you can do for now is stuff the knot{self.plural(1)} into the crotch of the piece and hope you soften up later as you proceed to clean up your mess.")
             else:
                self.doMainText(f" Your softening member{self.plural(1)} slowly recede back into the {self.clothesBottom()}, leaving a slight slimy trail in the process, but at least allows you to tuck {self.plural(9)} away for now as you proceed to clean up the mess you made.")
-            self.doLust(-(self.sen // 2),2,1)
+            self.doLust(-Math.floor(self.sen / 2),2,1)
          elif (chance == 8):...
       self.displayMainText()
       self.doEnd()
@@ -11522,7 +11540,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(f"\n\nYou realize your hiding place probably echoed your moans as you come to your senses. Before you're caught, you quickly don your {self.clothesBottom()} again, even though fem-cum is still slathered about and making your {self.clothesBottom()} blotch. As you attempt to casually walk away, some nearby strangers blink at you curiously, not quite sure what they just heard. With an awkward flutter in your step, you dash off, your body still slightly in mid-orgasm.")
             elif (self.ment < self.lib - 50):
                self.doMainText(f"\n\nGasping, you blink and look around you. You've gathered quite the crowd, especially some men, and they all gaze out you in amazement. A few tug at their own groins, ducking away from the rest, while others don't look so happy at what you have done, especially the ones with children beside them. You pull {self.pullUD(2)} your {self.clothesBottom()}, slick slime dripping down your {self.legDesc(2)} and smearing about within, and you slink away, trying to avoid any more stares. Although, your heart pounds within your chest at the thought of what you had just done...")
-            self.doLust(-(self.sen // 2),2,1)
+            self.doLust(-Math.floor(self.sen / 2),2,1)
          elif chance == 2:...
          elif chance == 3:...
          elif chance == 4:...
@@ -11546,7 +11564,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(f"Muffling most of the moan that builds with your climax, you can feel your fluids spill down to your {self.legDesc(6)}. The audible squishing and slurping of the spilling lubrication quickly cut your orgasm short, bringing your attention to the few eyes that have turned toward you. Blush warming your face and the tinges of climax still lingering, you do your best to act as casually as possible.\n\nLowering the bag even further to disguise the fem-cum that drizzles lightly down your {self.legDesc(2)}, you turn and rush away, hoping nobody notices the shimmering strands that reach back to your sensitive bits as the drops slowly spill to the ground beneath you...")
             else:
                self.doMainText("Muffling your moans as you come, you're able to take a few breaths of relief and relaxation as you relish the sensations. Not a soul knows what you have done, allowing you to fully enjoy your orgasm. And when you slip your hand back out from behind the bag, you take a moment to quickly lick off the moistness upon them, your pleasured flavor quite tasty.\n\nAs if nothing had happened at all, you're able to pick up your bag and strut off, your thighs sqeezing the sensitive lips slightly with each step.")
-            self.doLust(-(self.sen // 2),2,1)
+            self.doLust(-Math.floor(self.sen / 2),2,1)
          elif chance == 7:...
          elif chance == 8:...
       self.hrs = 1
@@ -11601,7 +11619,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText("")  # TODO: Add text for this
          if (self.sen <= 30):
             self.doMainText(" Unfortunately, you can't really come as your breasts simply aren't sensitive enough. But, it does feel nice as you continue to play with your nipples.")
-            self.doLust(-(self.sen // 5),2,3)
+            self.doLust(-Math.floor(self.sen / 5),2,3)
          else:
             if (self.lust <= 30):
                self.doMainText("\n\nSlowly,")
@@ -11619,7 +11637,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
                self.doMainText(f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,")
             self.doMainText(" being wracked by a boobgasm.")
-            self.doLust(-(self.sen // 2),2,3)
+            self.doLust(-Math.floor(self.sen / 2),2,3)
          if (self.lactation > 0):
             self.hrs += 1
             getMilk = self.milkAmount(1)
@@ -11690,18 +11708,18 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(" do the same as you grope about with your other hand. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\n\nA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own nipple in ecstasy. You open wide and gasp as the nipple washes your mouth, with saliva and milk spilling out as you moan blissfully.\n\nYou then collapse back into your bed, continuing to suckle from yourself slowly and express what is left in your breasts.")
          if (getMilk < 300):
             self.doMainText(" With the nice drink ")
-            self.doHP(2 + self.milkHPMod // 2)
+            self.doHP(2 + Math.floor(self.milkHPMod / 2))
          elif (getMilk < 1500):
             self.doMainText(" With the small meal ")
-            self.doHP(8 + self.milkHPMod // 2)
+            self.doHP(8 + Math.floor(self.milkHPMod / 2))
          elif (getMilk < 3000):
             self.doMainText(" With the abundant nourishment and slight bloating of your belly ")
             self.doHP(10 + self.milkHPMod)
          else:
             self.doMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ")
-            self.doHP(Math.ceil((30 + self.str // 2 + self.HPMod) / 4) + self.milkHPMod)
+            self.doHP(Math.ceil((30 + Math.floor(self.str / 2) + self.HPMod) / 4) + self.milkHPMod)
          self.doMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~")
-         self.doLust(-(self.sen // 2),2,3)
+         self.doLust(-Math.floor(self.sen / 2),2,3)
          self.hrs += 2
       self.hrs += 1
       self.displayMainText()
@@ -11735,7 +11753,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(" until they begin to feel warm and tingly.")
          if (self.sen <= 30):
             self.doMainText(" Unfortunately, you can't really come as your udder simply isn't sensitive enough. But, it does feel nice as you continue to play with your teats.")
-            self.doLust(-(self.sen // 5),2,4)
+            self.doLust(-Math.floor(self.sen / 5),2,4)
          else:
             if (self.lust <= 30):
                self.doMainText("\n\nSlowly,")
@@ -11753,7 +11771,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.moistCalc(1) > 11 or self.moistCalc(2) > 11):
                self.doMainText(f" your {self.clothesBottom()} becoming drenched, your {self.buttDesc()} bum absolutely swamped,")
             self.doMainText(" being wracked by an udder orgasm.")
-            self.doLust(-(self.sen // 2),2,4)
+            self.doLust(-Math.floor(self.sen / 2),2,4)
          if (self.udderLactation > 0):
             self.hrs += 1
             getMilk = self.milkAmount(2)
@@ -11815,18 +11833,18 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(f" teats do the same as you grope about with your other hand, your arm bending around to keep the udder elevated. Fluids splatter about, carelessly falling where they may with the warmth of climax casting over your mind.\n\nA sudden spike in the flow accompanies a shudder through your body, nearly biting down on your own teat in ecstasy. You open wide and gasp as the {self.teatDesc()} teat washes your mouth, with saliva and milk spilling out as you moan blissfully.\n\nYou then collapse back into your bed, curled around and continuing to suckle from yourself slowly, gently milking what is left in your udder.")
          if (getMilk < 300):
             self.doMainText(" With the nice drink ")
-            self.doHP(2 + self.milkHPMod // 2)
+            self.doHP(2 + Math.floor(self.milkHPMod / 2))
          elif (getMilk < 1500):
             self.doMainText(" With the small meal ")
-            self.doHP(8 + self.milkHPMod // 2)
+            self.doHP(8 + Math.floor(self.milkHPMod / 2))
          elif (getMilk < 3000):
             self.doMainText(" With the abundant nourishment and slight bloating of your belly ")
             self.doHP(10 + self.milkHPMod)
          else:
             self.doMainText(" With the grand feast leaving you with a hefty swelling of your abdomen and impromptu bath ")
-            self.doHP(Math.ceil((30 + self.str // 2 + self.HPMod) / 4) + self.milkHPMod)
+            self.doHP(Math.ceil((30 + Math.floor(self.str / 2) + self.HPMod) / 4) + self.milkHPMod)
          self.doMainText(", you settle in for a short nap to help with the digestion, feeling quite pleased with yourself~")
-         self.doLust(-(self.sen // 2),2,4)
+         self.doLust(-Math.floor(self.sen / 2),2,4)
          self.hrs += 2
       self.displayMainText()
       self.hrs += 1
@@ -12276,10 +12294,10 @@ class NiminFetishFantasyv0975o_fla:
                   self.HPMod += 2
                   self.doHP(2)
                   self.doMainText("The exercise makes you healthier.",True)
-                  if ((self.bodyBuildLevel + 1) // 2 > self.bodyBuildLevel // 2):
+                  if (Math.floor((self.bodyBuildLevel + 1) / 2) > Math.floor(self.bodyBuildLevel / 2)):
                      self.stats(2,0,0,0)
                      self.doMainText(" You flex your muscles, feeling stronger already!")
-                  if ((self.bodyBuildLevel + 1) // 3 > self.bodyBuildLevel // 3):
+                  if (Math.floor((self.bodyBuildLevel + 1) / 3) > Math.floor(self.bodyBuildLevel / 3)):
                      self.body += 2
                      self.doMainText("\n\nEven your body feels more developed and you measure 2 inches taller than you were before.")
                      self.tallness += 2
@@ -12296,7 +12314,7 @@ class NiminFetishFantasyv0975o_fla:
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
-                  if ((self.hyperHappyLevel + 1) // 5 == self.hyperHappyLevel // 5):
+                  if (Math.floor((self.hyperHappyLevel + 1) / 5) == Math.floor(self.hyperHappyLevel / 5)):
                      self.outputMainText("Choose a body part you would like to increase.",True)
                      self.choiceListArray = Array("Breasts","Nipples","Butt","Hips")
                      if (self.vagTotal > 0):
@@ -12356,7 +12374,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.hyperHappyLevel += 1
                            self.doEnd()
                      self.doListen = doListen
-                  if ((self.hyperHappyLevel + 1) // 5 > self.hyperHappyLevel // 5):
+                  if (Math.floor((self.hyperHappyLevel + 1) / 5) > Math.floor(self.hyperHappyLevel / 5)):
                      self.outputMainText("Choose a body part you would like to greatly increase. This will be 10x more effective than a normal level in Hyper Happy, so be careful what you choose.",True)
                      self.choiceListArray = Array("Breasts","Nipples","Butt","Hips")
                      if (self.vagTotal > 0):
@@ -12417,7 +12435,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.hyperHappyLevel += 1
                            self.doEnd()
                      self.doListen = doListen
-                  if ((self.hyperHappyLevel + 1) // 3 > self.hyperHappyLevel // 3):
+                  if (Math.floor((self.hyperHappyLevel + 1) / 3) > Math.floor(self.hyperHappyLevel / 3)):
                      self.outputMainText("\n\nYou also become a bit more accustomed to your attributes, learning how to carry them more efficiently.")
                      self.carryMod += 10
                else:
@@ -12430,10 +12448,10 @@ class NiminFetishFantasyv0975o_fla:
                if (self.buttonChoice == 6):
                   self.pregChanceMod += 4
                   self.doMainText("There's an odd feeling like you... 'need' to get pregnant? Like you could really enjoy some hot come inside of you...",True)
-                  if ((self.babyFactLevel + 1) // 2 > self.babyFactLevel // 2):
+                  if (Math.floor((self.babyFactLevel + 1) / 2) > Math.floor(self.babyFactLevel / 2)):
                      self.extraPregChance += 5
                      self.doMainText("\n\nYour ovaries kinda tickle a little, a tad more likely to pop out more eggs when you ovulate.")
-                  if ((self.babyFactLevel + 1) // 4 > self.babyFactLevel // 4):
+                  if (Math.floor((self.babyFactLevel + 1) / 4) > Math.floor(self.babyFactLevel / 4)):
                      self.hips += 3
                      self.butt += 3
                      self.doMainText("\n\nWith all of the fertile preparation, your hips widen and your ass swells, giving you a more fecund appearance.")
@@ -12512,13 +12530,13 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.udders):
                      self.lactChange(2,100)
                   self.doMainText("Your mammaries feel warm and you can already feel them begin to swell with the sudden increase in production.",True)
-                  if ((self.milkMaidLevel + 1) // 2 > self.milkMaidLevel // 2):
+                  if (Math.floor((self.milkMaidLevel + 1) / 2) > Math.floor(self.milkMaidLevel / 2)):
                      self.milkMod += 50
                      self.doMainText(" So much so that you'll always be prone to large amounts of milking...")
-                  if ((self.milkMaidLevel + 1) // 4 > self.milkMaidLevel // 4):
+                  if (Math.floor((self.milkMaidLevel + 1) / 4) > Math.floor(self.milkMaidLevel / 4)):
                      self.milkCap += 300
                      self.doMainText("\n\nIt's surprising how much you've grown accustomed to storing milk, your body much more efficient at the task.")
-                  if ((self.milkMaidLevel + 1) // 5 > self.milkMaidLevel // 5):
+                  if (Math.floor((self.milkMaidLevel + 1) / 5) > Math.floor(self.milkMaidLevel / 5)):
                      self.milkHPMod += 2
                      self.doMainText("\n\nAnd with all this milk flowing within your body, drinking the stuff would make you feel even better.")
                   self.displayMainText()
@@ -12532,11 +12550,11 @@ class NiminFetishFantasyv0975o_fla:
             self.outputMainText(f"While it is rather difficult to remain in control of one's form in the world of Nimin, some can be a little shifty about it and maintain slight shape-discipline.\n\nAt the first level and every three levels after, you may increase the amount of blood of a race that already exists in your system by a decent amount.\n\nAt the second level and every three levels after, you can choose to increase or decrease your sensitivity to blood changes, making you change more or less frequently.\n\nAt the third level and every six levels after, you can choose to lock a single racial trait, preventing it from being removed or replaced by blood changes. However, this does not prevent your blood from changing, nor does it prevent direct changes to these features, should they occur. Subsequent selections change what you choose to be locked.\n\nAt the sixth level and every six levels after, you may choose a second feature to lock, independent of the first. Subsequent selections change what second feature is locked.\n\nYou have {self.shapeshiftyLevel} levels in Shapeshifty.\n\n\nAre you sure you want to spend a Perk on Shapeshifty?",True)
             self.buttonConfirm()
             def doListen():
-               self.tempBool = False
+               self.tempBool = False  # TODO: See if this can be removed
                if (self.buttonChoice == 6):
-                  if ((self.shapeshiftyLevel + 1) // 3 > self.shapeshiftyLevel // 3):
+                  if (Math.floor((self.shapeshiftyLevel + 1) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
                      self.tempBool = False
-                     if ((self.shapeshiftyLevel + 1) // 6 > self.shapeshiftyLevel // 6):
+                     if (Math.floor((self.shapeshiftyLevel + 1) / 6) > Math.floor(self.shapeshiftyLevel / 6)):
                         self.tempBool = True
                      self.choiceListArray.clear()
                      self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?",True)
@@ -12671,7 +12689,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.shapeshiftyLevel += 1
                            self.doEnd()
                      self.doListen = doListen
-                  elif ((self.shapeshiftyLevel + 2) // 3 > self.shapeshiftyLevel // 3):
+                  elif (Math.floor((self.shapeshiftyLevel + 2) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
                      self.showButtons(ButtonList(1,0,1,0,0,0,0,0,0,1,0,1))
                      tempDict = {1:"Increase", 3:"Decrease", 10:"Lay Egg", 12:"Cancel"}
                      self.doMainText("Would you like to increase or decrease your racial susceptibility by 10%?",True)
@@ -12699,7 +12717,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.shapeshiftyLevel += 1
                            self.doEnd()
                      self.doListen = doListen
-                  elif ((self.shapeshiftyLevel + 3) // 3 > self.shapeshiftyLevel // 3):
+                  elif (Math.floor((self.shapeshiftyLevel + 3) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
                      self.choiceListArray.clear()
                      self.outputMainText("What blood-type would you like to increase?",True)
                      if (self.humanAffinity > 0):
@@ -12866,7 +12884,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doMainText("\n\nThere's also the slight problem of your clothes barely hanging onto you, much of your body being exposed from the overly loose garments. You quickly grab the fabric before it can completely fall away, holding it the best you can to cover yourself as you quickly dash away to the tailor for a quick re-fitting.")
                               self.hrs += 1
                            self.displayMainText()
-                           self.tallness -= self.tallness // 2
+                           self.tallness -= Math.floor(self.tallness / 2)
                            self.body = 5
                            self.stats(-3,-3,5,5)
                            self.levelUP -= 3
@@ -13574,7 +13592,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.jamieRep = 2
                   self.hrs = 2
                   self.doSexP(20)
-                  self.doLust(self.lib // 4,0)
+                  self.doLust(Math.floor(self.lib / 4),0)
                   self.displayMainText()
                   self.doEnd()
                elif (self.buttonChoice == 10):
@@ -13643,7 +13661,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                   self.doSexP(5)
                   self.doCoin(30)
-                  self.doLust(self.lib // 5,0)
+                  self.doLust(Math.floor(self.lib / 5),0)
                   self.displayMainText()
                   self.doEnd()
                elif (self.buttonChoice == 3):
@@ -13653,7 +13671,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doSexP(5)
                   self.doCoin(40)
                   self.aff(2,Math.floor(self.percent() / 20 + 4),-1)
-                  self.doLust(self.lib // 5,0)
+                  self.doLust(Math.floor(self.lib / 5),0)
                   self.displayMainText()
                   self.doEnd()
                elif (self.buttonChoice == 10):
@@ -13985,9 +14003,9 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText("After a few hours, you find yourself being awoken to the feeling of warm wet sponges. The girls that have recovered smile and gently clean you with a nice sponge-bath. They seemed to have already cleaned and clothed themselves, though a couple still have hands lingering in their loins.\n\nOnce most of the mess has been cleaned up, you get a round of thanks, with some voices a bit warbly from the experience. You're also presented with a fair sum for your efforts, as well as a couple parting gifts to help clean you up in case another mess occurs.",True)
                   self.doSexP(2 * self.cockTotal)
                   self.doCoin(5 * self.cockTotal)
-                  self.doLust(-(self.sen // 3),2,1)
-                  self.doLust(-(self.sen // 3),2,1)
-                  self.doLust(-(self.sen // 3),2,1)
+                  self.doLust(-Math.floor(self.sen / 3),2,1)
+                  self.doLust(-Math.floor(self.sen / 3),2,1)
+                  self.doLust(-Math.floor(self.sen / 3),2,1)
                   self.displayMainText()
                   self.addManyItem(225, 2)
                   self.hrs = 5
@@ -14040,7 +14058,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.milkAmount(1)
                      self.doMainText(f". Feeling your peaks grow aroused and stiff beneath her tongue, she gradually descends away from them, licking down your breast and onto the {self.bellyDesc()} mound. Nuzzling and lapping at it, you can't help but shiver from her sensitive care upon your taut {self.skinDesc()}. She doesn't fare much better either, the act itself sending her rump into a swinging tizzy. Just as she finally makes her way down to your {self.vulvaDesc()} lips and takes a few licks at the honey that flows, she springs upright with frustration.\n\n\"I can't take this anymore!\" She attempts to undo her short shorts, but after only a few seconds she gives up and tears them free from her crotch. A torrent of drooling lubricant splashes down over her thighs and the sheets below.\n\nOnce freed, she immediately rolls onto her back like yourself, her legs wrapping around your {self.bellyDesc()} womb the best they can and pulling her heated pussy right up against the stretched {self.skinDesc()}. The plumped labia of her aroused crotch grinds over your belly again and again, feeling even more lewd and erotic than her previous licking, and much more messy as a slick layer of feminine arousal coats the underside of your swollen gut. However, such strenuous activity while balancing her own engorged weight quickly sends her sliding down your belly until her butt touches down against the sheets. Her plush lower lips kiss your own {self.vulvaDesc()} labia, mashing into them and slipping in between each other sloppily with the salivated-arousal making things plenty wet. And the trail she left down your underbelly perfectly lubes up the rubbing from her own, your two girths pressing against each other as your hips gyrate with squishy kissing below.\n\nThe foxy woman quickly begins to howl long and wonderful orgasms, her whole body shuddering and bringing you to your own. Your bellies quake with the children inside, amplifying the electrifying orgasms further...")
                      self.nipplePlay += 6
-                     self.doLust(-(self.lib // 2),2,2)
+                     self.doLust(-Math.floor(self.lib / 2),2,2)
                      self.displayMainText()
                      self.doNext()
                      def doListen():
@@ -14220,7 +14238,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText("\n\nHowever, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well.")
                      self.itemAdd(224)
                   self.hrs = 3
-                  self.doLust(self.lib // 3,0)
+                  self.doLust(Math.floor(self.lib / 3),0)
                   self.displayMainText()
                   self.doEnd()
                elif (self.buttonChoice == 3):
@@ -14243,10 +14261,10 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.lilaMilk > 8):
                      self.doMainText("\n\nAll that milk does sit quite well in your stomach, however, and leaves you feeling rather good.")
                      self.doHP(self.lilaMilk * 2)
-                     self.exhaustion -= self.lilaMilk // 2
+                     self.exhaustion -= Math.floor(self.lilaMilk / 2)
                      self.skipExhaustion = True
                   self.hrs = 3
-                  self.doLust(self.lib // 2,0)
+                  self.doLust(Math.floor(self.lib / 2),0)
                   self.displayMainText()
                   self.doEnd()
                elif (self.buttonChoice == 5):
@@ -14273,9 +14291,9 @@ class NiminFetishFantasyv0975o_fla:
                   elif (self.lilaVulva >= 5):
                      self.doMainText(" However, she doesn't seem to be finished quite yet, as her legs maintain their hold. You lick and lick, hearing her breathing harder and harder and rapidly approaching yet another orgasmic cry.")
                   self.doMainText(f"\n\nTired, her breath slowly coming to a gentle purr, she curls around to look at you. Silently urging you up onto the bed, she licks across your dampened face as you climb up with her. She cuddles into your {self.boobDesc()} chest and quickly slips into sweet dreams while you follow behind.")
-                  self.doLust(self.lilaVulva + self.lib // 3,0)
+                  self.doLust(self.lilaVulva + Math.floor(self.lib / 3),0)
                   if (self.lilaPreg > 35):
-                     self.doLust(self.lib // 6,0)
+                     self.doLust(Math.floor(self.lib / 6),0)
                   self.displayMainText()
                   self.doNext()
                   def doListen():
@@ -14334,7 +14352,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.hrs = 4
                         self.aff(4,Math.floor(self.percent() / 10 + 4),-3)
                         self.doHP(10)
-                        self.doLust(self.lib // 1.5,0)
+                        self.doLust(Math.floor(self.lib / 1.5),0)
                         self.displayMainText()
                         self.doEnd()
                      self.doListen = doListen
@@ -14431,7 +14449,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.hrs = 4
                            self.aff(4,Math.floor(self.percent() / 10 + 4),-3)
                            self.lilaUB = True
-                           self.doLust(self.lib // 2,0,2)
+                           self.doLust(Math.floor(self.lib / 2),0,2)
                            self.displayMainText()
                            self.doEnd()
                         self.doListen = doListen
@@ -14524,9 +14542,9 @@ class NiminFetishFantasyv0975o_fla:
                            self.doMainText("\n\nYou manage your best to twist around her greatly protruding baby, trying to avoid squishing the child within too much as you hug Lila tight, feeling her begin to quake with a powerful orgasm and shout out into the room.")
                         self.doMainText(f" You shiver against her as well, your {self.legDesc(2)} growing numb from the lightning storm that envelops your whole self, centered on your gargantuan feminine member. She clenches onto you with all her might, trying to mewl and wince through the climaxes that wrack her body, panting until her felin instincts take over and she passes out within your arms, napping with a soft purr. You giggle a little and shrug, curling up around her and falling asleep with her, letting your anatomy remove itself naturally.")
                      if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva)):
-                        self.doLust(-(self.sen // 2),2,1)
+                        self.doLust(-Math.floor(self.sen / 2),2,1)
                      else:
-                        self.doLust(-(self.sen // 2),2,2)
+                        self.doLust(-Math.floor(self.sen / 2),2,2)
                      self.displayMainText()
                      self.doNext()
                      def doListen():
@@ -14666,7 +14684,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doMainText("\n\nLila soon recovers from her bit of fun with red cheeks and tries to jump right in as well. Without thinking too well, she takes a swig and immediately falls forward into your body, unintentionally starting at your lap. Trying to play it off as part of the plan, the small girl begins to lick away at your groin, making you begin to really squirm.")
                                  if (self.cockTotal > 0):
                                     self.doMainText(f" Her tongue climbs higher and higher along {self.oneYour(1)} growing length{self.plural(1)}, not really looking at what it could possibly be. All that she does know is that once she reaches the tip, a bit of pre keeps seeping from a hole and her tongue keeps lapping up all she can to keep it clean, until strands of it stretch between you and her mouth and dribble down her chin.\n\nWhatever is in the stuff she used, it tingles tremendously and causes you to quickly buck and spurt all over the little girl's face. Caught by surprise, Lila jumps backward and wipes the stuff off with an arm, then proceeds to clean her arm off as well, making strange faces as she tastes the stuff.\n\nHer mother much more wary, the woman moves in to take care of the rest of the mess. Although, afraid to explain to her daughter what really just happened, she's left licking it up herself as though it was a normal occurence, giving you quite the evil eye. Though she can't help but giggle at the humor in the situation as her daughter continues to lick up the white spunk oblivious to its lewdness.")
-                                    self.doLust(-(self.sen // 2),2,1)
+                                    self.doLust(-Math.floor(self.sen / 2),2,1)
                                     if (self.cumAmount() > 2000):
                                        self.doMainText("\n\nOn the other hand, she herself is having trouble keeping up with your enormous load, gulping down more and more despartely. Eventually, however, she gives up. Grabbing a bowl, she pushes it over the tip of your cock and presses it firmly against your urethra until the ejaculation comes to an abrupt halt, backing up inside of you.\n\nShe leans in and whispers in your ear. \"Could you please take care of that elsewhere? I'm afraid you're a bit too... messy to finish here, so if you don't mind...\"\n\nYou nod, understandingly. With Lila still busy, you hold the bowl tightly against your erection while you attempt to put on your clothes. Then you run out of the hut with a meager goodbye, rushing")
                                        if (self.ment > self.lib + 5):
@@ -14679,7 +14697,7 @@ class NiminFetishFantasyv0975o_fla:
                                  elif (self.vagTotal > 0):
                                     self.doMainText(f" Her tongue slips in and out of your {self.vulvaDesc()} folds, thinking of it no differently than her mother. Which is an odd thought, considering how deftly her tongue lashes around your {self.clitDesc()} clit{self.plural(2)}. Between her efforts and the exreme tingling of the concoction, you soon find your {self.hipDesc()} hips bucking upon the plush carpet as you climax into the girl's mouth.\n\nLila's mother giggles at your reaction. \"Good, isn't she?\"\n\nNot inquiring about the statement, you wait a few moments and you're soon as fresh as a can be. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
                                     self.itemAdd(227)
-                                    self.doLust(-(self.sen // 2),2,2)
+                                    self.doLust(-Math.floor(self.sen / 2),2,2)
                                  else:
                                     self.doMainText(" Though there's no big difference, since you don't have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
                                     self.itemAdd(227)
@@ -14776,7 +14794,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doNext()
                         def doListen():
                            self.doMainText("It takes several minutes before she lets out a contented sigh with feeling returning to her legs. Her feet slip in her mess as she attempts to stand, leaving you to grab her nude hips and lift to help her stand. She removes her claws from the wall, allowing her sundress to fall down. Once she's able to stand on her own, you let go and let the dress complete the descent and cling to the soaked fur of her lower body.\n\nShe turns to you, oblivious to the fact that her claws had torn a hole right over her swollen crotch, and proceeds to wrap her arms around you in a warm wet embrace. \"Th-Thank yew so much...\"\n\nA little too dazed from the experience, she's unable to say much more and gives you an awkward peck on the cheek. She then lets go, wobbling slightly as she supports herself, and stumbles out of the hut, tail dripping and mostly confused as to what to do now.\n\nBeing rather confused yourself, you merely brush the thick fluids through the doorway to the bridge outside and feel better about yourself, knowing you REALLY helped a friend in need.",True)
-                           self.doLust(self.lib // 2,0)
+                           self.doLust(Math.floor(self.lib / 2),0)
                            self.displayMainText()
                            self.stats(0,2,0,0)
                            self.hrs += 2
@@ -14893,7 +14911,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doNext()
                   def doListen():
                      self.outputMainText("Nodding, you wait outside the doorway as the felin woman takes her daughter's other hand and the two disappear into the hut.\n\nYou hear them talking within, though it's too faint to make out. But, several minutes later, it's hard to miss the high-pitched mewling, followed by loud moans that echo back out. A few minutes more, and some shuffling can be heard as the mother returns to the doorway.\n\n\"Thank you once more. Please, take these coins as a small repayment for being so gentle with her. If she comes to you for help again, I'll gladly pay you more for assisting!\"\n\nShe hands you a bunch of coins. She then blushes heavily as a strand of a clear slick fluid splashes down into her cleavage, having missed wiping it from the fur on her chin. She nods in thanks again before ducking inside, trying to hide the wet fur...",True)
-                     self.doCoin(self.percent() // 4 + 3)
+                     self.doCoin(Math.floor(self.percent() / 4) + 3)
                      self.doSexP(5)
                      self.hrs = 3
                      self.doEnd()
@@ -14971,7 +14989,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText(" Though the sand didn't do much, she's still quite satisfied and her tail dances behind her happily.")
                   self.doMainText(" Then she feels safe to walk back outside, not as concerned about concealing the puffy padding beneath her sundress.")
                   self.loseManyItem(103,1)
-                  self.doLust(self.lib // 6,0)
+                  self.doLust(Math.floor(self.lib / 6),0)
                   self.hrs = 3
                   self.displayMainText()
                   self.doEnd()
@@ -14995,7 +15013,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doMainText(" This time, however, she doesn't stop or notice an increased moistness after using the cloth. Considering how much she's flowing, the cloth probably doesn't make a difference anymore.")
                   self.loseManyItem(213,1)
-                  self.doLust(self.lib // 5,0)
+                  self.doLust(Math.floor(self.lib / 5),0)
                   self.hrs = 3
                   self.displayMainText()
                   self.doEnd()
@@ -15042,7 +15060,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.minLust += 5
                      self.lilaWetStatus = 72
                   self.hrs = 4
-                  self.doLust(self.lib // 4,0)
+                  self.doLust(Math.floor(self.lib / 4),0)
                   self.aff(4,Math.floor(self.percent() / 20 + self.lilaWetness / 2),-3)
                   self.displayMainText()
                   self.doEnd()
@@ -15141,7 +15159,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doNext()
                               def doListen():
                                  self.doMainText(f"Some hours later, she rustles awake within your arms, rousing you as well. She nuzzles into your {self.boobDesc()} chest, purring softly. A few sweet moments pass and she mews, slipping a hand between her legs.\n\n\"Thank yew so much! It woked!\" She grins happily. Then she blushes, \"And thank yew for teaching me... I'll neva forget it!\"\n\nKissing you on the cheek, she pushes something into your belly before hopping off the bed and running out of the hut, her tail swishing high behind her ...And her butt in plain view as she forgot to string the perky tail through its hole, leaving it to pull the dress up from underneath.",True)
-                                 self.doLust(-(self.sen // 4),0,2)
+                                 self.doLust(-Math.floor(self.sen / 4),0,2)
                                  self.displayMainText()
                                  self.exhaustion = 0
                                  self.skipExhaustion = True
@@ -15180,7 +15198,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.buttonChoice == 5):
                         self.doMainText("Carefully, you slurp the stuff up from her fur. Slowly going up her thighs, her hips twitch, her tail flailing wildly behind her. Her eyes clench as you come closer to her naughty bits, her hands clenching the bedsheets with anxiety.\n\nNot wanting to go too far, you gently lap at her swollen nether-lips, the soft, delicate folds like flower petals. Flower petals completely drenched in dew. Quickly and cautiously, you take care of what you can before she lets out a soft moan.\n\nEyes still clenched shut, you nudge her and tell her you're finished. Her eyes blink open and she looks down at herself. She looks a bit happier, noticing she's relatively dry, but a shiver shoots through her small body and she clenches her thighs.\n\nIn an instant, she flips her dress down and hops from the bed, running out of the hut, calling back, \"Th-Thank you!\"\n\nAs she darts through the doorway, you hear a splash. A large gob of feminine honey marks the floor, just before the exit, trailing along her path. You wipe the massive amount of slick fluids from your own face, feeling a bit tingly yourself, and go on your way.",True)
                         self.lilaRep = 1
-                        self.doLust(self.lib // 4,0)
+                        self.doLust(Math.floor(self.lib / 4),0)
                         self.displayMainText()
                         self.aff(4,Math.floor(self.percent() / 20 + 4),-1)
                         self.hrs = 3
@@ -15191,7 +15209,7 @@ class NiminFetishFantasyv0975o_fla:
                         def doListen():
                            self.doMainText(f"Some hours later, she rustles awake within your arms, rousing you as well. She nuzzles into your {self.boobDesc()} chest, purring softly. A few sweet moments pass and she mews, slipping a hand between her legs.\n\n\"Thank yew so much! It woked!\" She grins happily. Then she blushes, \"And thank yew for cleaning me so well, I really liked it... I'll neva forget it!\"\n\nKissing you on the cheek, she pushes something into your belly before hopping off the bed and running out of the hut, her tail swishing high behind her ...And her butt in plain view as she forgot to string the perky tail through its hole, leaving it to pull the dress up from underneath.",True)
                            self.stats(0,0,2,2)
-                           self.doLust(self.lib // 4,0)
+                           self.doLust(Math.floor(self.lib / 4),0)
                            self.displayMainText()
                            self.itemAdd(200)
                            self.lilaRep = 3
@@ -15266,7 +15284,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.hrs = 2
                elif ((getMilk > 1000) and (getMilk <= 4000)):
                   self.doMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. It doesn't take long before they drain you dry, but once they do, they let out little burps of satisfaction. Thoroughly pleased with their bartender, they drop a bunch of coins on you for the drink before stumbling off again, their tails drooping much more lazily than before.")
-                  self.doCoin(self.percent() // 3.3)
+                  self.doCoin(Math.floor(self.percent() / 3.3))
                   self.hrs = 2
                elif (getMilk > 4000):
                   self.doMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. However, you produce so much that they simply can't seem to drain you. Yet that doesn't keep them from trying... The more and more they suck from you, the more lazy their efforts become. Even the tail on your head slows in pace, until it comes to a stop...\n\nStill pinned by the many bodies, you can hear them purr as they have fallen asleep. You take the opportunity to wiggle yourself free, nearly yanking down the girl's panties in the process. Once out, they merely curl up on the bridge, cuddling against each other. Another girl seems to have her skimpy shirt pulled up to her second pair of breasts, while a male has a prickly penis pulled from his pants. Whatever they were planning to do, it obviously didn't get too far.\n\nAs payment for their feast, you grab a couple of their small pouches. It's the least you could do to make up for their rude ambush.")
@@ -15347,12 +15365,12 @@ class NiminFetishFantasyv0975o_fla:
                               def doListen():
                                  self.doMainText("You eventually wake back up, though you don't know how long you've been asleep. All that you know is that you had some of the most restful sleep you've ever had. And as you begin to rustle around in the darkness, the soft walls shudder around you.\n\n\"Oh my, are you finally awake in there?\" The mistress pats her belly from the outside with a giggle, the sound echoing around in a low beat. \"Mmm... That was a lot of fun. I hope you slept well, I know I had a nice nap~ Well then, I suppose you'd like to be moving on. Just go out the way that feels most natural~!\"\n\nBefore you can respond, you can feel the walls press down around you. The suction that you felt before when entering now seems to be pulling the other way. You slip about inside her belly, quickly finding your way through her enormous passage. The next thing you know, you're body is being gently squeezed all around you, the slickness propelling you out into the cold air.\n\nFidoris catches you as you slip out of her cunt, well prepared with a thick towel to wrap you up in. Your teeth jitter at first, the coolness of the air against your wet skin chilling you to the bone. Drawn back towards the massive vulva, you hover nearby to bask in the heat while you dry yourself off and don your clothes.\n\n\"Take your time. You're not as used to this as Fidoris is\" She winks. \"And here, here's your payment for the fruit, with a little something extra for the fun.\"\n\nShe hands you some coins and lets you sit on her bed next to her for a bit while you readjust to the warmth of the jungle. It takes a bit of getting used to, but once you finally leave, you feel quite rejuvenated!",True)
                                  self.doCoin(40)
-                                 self.doLust(self.lib // 5,0)
-                                 self.hrs = 2 + self.percent() // 20
+                                 self.doLust(Math.floor(self.lib / 5),0)
+                                 self.hrs = 2 + Math.floor(self.percent() / 20)
                                  self.exhaustion = 0
                                  self.skipExhaustion = True
                                  self.doHP(50)
-                                 self.aff(4,self.percent() // 10,-1)
+                                 self.aff(4,Math.floor(self.percent() / 10),-1)
                                  self.doSexP(5)
                                  self.mistressRep += 1
                                  self.displayMainText()
@@ -15370,7 +15388,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.doMainText(f", your cock{self.plural(1)} exploding over the Mistress' womb,")
                                  self.doMainText(" and you drench Fidoris in your fem-cum.\n\nYour intense climax reverberates through the other two, causing the Mistress to writhe upon her bed and Fidoris to spray his seed against your own womb. The hot spunk coats your inner walls, being smeared about by his fur and mixed with your juices. The high energy permeates all three of you, quickly exhausting your muscles and minds.\n\nYou all soon pass out blissfully in your cozy states...")
                                  self.doImpregnate(4)
-                                 self.doLust(-(self.sen // 2),2,2)
+                                 self.doLust(-Math.floor(self.sen / 2),2,2)
                                  self.displayMainText()
                                  self.doNext()
                                  def doListen():
@@ -15379,12 +15397,12 @@ class NiminFetishFantasyv0975o_fla:
                                        self.doMainText(", sending another bout of semen over the Mistress,")
                                     self.doMainText(" and leaves you panting for air as the other body hits the floor with a large splash.\n\nFidoris fumbles about, trying to understand his surroundings after being so abruptly wakened and birthed. \"Fidoris, be a dear and help our guest clean up. Things may have gone a little... different, but that's still no reason to be rude.\"\n\n\"Y-Yes Mistress!\"\n\nThe Mistress chuckles as he scrambles to his feet, slinging your fluids about.\n\n\"I must admit deary, that was quite the enjoyable experience. I'll be sure Fidoris gives you something extra for the confusion and pleasure.\" She gives you a wink.\n\nIt doesn't take you long before you're cleaned up and clothed. Along with the coins for the fruit, Fidoris hands you a free batch of the Mistress' juice. You thank them both before heading on your way, stepping back out into the world feeling quite rejuvenated.")
                                     self.doCoin(30)
-                                    self.doLust(-(self.sen // 3),2,2)
-                                    self.hrs = 4 + self.percent() // 20
+                                    self.doLust(-Math.floor(self.sen / 3),2,2)
+                                    self.hrs = 4 + Math.floor(self.percent() / 20)
                                     self.exhaustion = 0
                                     self.skipExhaustion = True
                                     self.doHP(50)
-                                    self.aff(4,self.percent() // 10,-1)
+                                    self.aff(4,Math.floor(self.percent() / 10),-1)
                                     self.itemAdd(221)
                                     self.doSexP(15)
                                     self.mistressRep += 1
@@ -15407,12 +15425,12 @@ class NiminFetishFantasyv0975o_fla:
                                  def doListen():
                                     self.doMainText(f"You eventually wake back up, though you don't know how long you've been asleep. All that you know is that you had some of the most restful sleep you've ever had. And it seems that Fidoris' cock had eventually withdrawn back into its sheath, no longer penetrating you. As you begin to rustle around in the darkness, waking up the {self.ptweaksGrammar(1)} beside you, the soft walls shudder around you.\n\n\"Oh my, are you two finally awake in there?\" The mistress pats her belly from the outside with a giggle, the sound echoing around in a low beat. \"Mmm... That was a lot of fun. I hope you two slept well, I know I had a nice nap~ The thought of you two having sex within me... Mmm~\" The womb shudders once more. \"Well then, I suppose you'd like to be moving on. Just go out the way that feels most natural~!\"\n\nBefore you can respond, you can feel the walls press down around you. The suction that you felt before when entering now seems to be pulling the other way. Fidoris' body moves past you, leaving you alone in her belly for a moment before you begin to slide out as well, quickly finding your way through her enormous passage. The next thing you know, you're body is being gently squeezed all around you, the slickness propelling you out into the cold air.\n\nFidoris catches you as you slip out of her cunt, well prepared with a thick towel to wrap you up in just as he already is. Your teeth jitter at first, the coolness of the air against your wet skin chilling you to the bone. Drawn back towards the massive vulva, you hover nearby to bask in the heat while you dry yourself off and don your clothes.\n\n\"I hope you had fun.\" She winks. \"Though I wonder if I'll be getting pregnant from all that...\" She giggles at the thought. \"And here, here's your payment for the fruit, with a little something extra for the fun.\"\n\nShe hands you some coins and lets you sit on her bed next to her for a bit while you readjust to the warmth of the jungle. It takes a bit of getting used to, but once you finally leave, you feel quite rejuvenated!",True)
                                     self.doCoin(45)
-                                    self.doLust(-(self.sen // 2),2,2,5)
-                                    self.hrs = 2 + self.percent() // 20
+                                    self.doLust(-Math.floor(self.sen / 2),2,2,5)
+                                    self.hrs = 2 + Math.floor(self.percent() / 20)
                                     self.exhaustion = 0
                                     self.skipExhaustion = True
                                     self.doHP(50)
-                                    self.aff(4,self.percent() // 10,-1)
+                                    self.aff(4,Math.floor(self.percent() / 10),-1)
                                     self.doSexP(10)
                                     self.mistressRep += 1
                                     self.displayMainText()
@@ -15430,7 +15448,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.doMainText(" You cum so much that a portion of her belly hangs from the tip of your member, absolutely bloated with spunk as though she were some giant condom, before the rest begins to flood its way back through her vaginal passage and joins the rest of the fem-cum in drowning you.")
                                  self.doMainText(f" You spill your seed with great force, your abdomen aching as it works to shoot it all through your length. Then you both collapse onto the bed with a huff...\n\nShe lays sprawled upon her bed, idly licking at the fur of her belly once more. She hugs and squeezes at the bulge as you begin to grow flaccid and deflate her form. Though her pussy may make for a nice pillow, you soon find yourself being pushed away as her vagina begins to grow flaccid itself, the internal blood shrinking the passage and pushing your cock back out. It doesn't take long before before she gives birth to your {self.cockDesc()} member, letting it flop onto the bed.\n\n\"Mmmmm~\" With a purr, her legs wrap around her pussy, kneading it in satisfaction. \"I don't think anybody can satisfy me like you just did... I might even get pregnant!\" She chuckles. \"Oh my, for service like that... I should really pay you more for bringing me the fruit.\"\n\nAs she winks, she motions Fidoris over. In addition to giving him some coin, she also hands him a vial to give to you.\n\n\"This vial contains some rather... concentrated juices from the kinds of fruit you bring me. I drink it myself, on occasion. But too much... well, you know.\" Her foot pats her plush pussy. \"You might be able to find a use for it on somebody else, to help you fit a bit better. I figure it might come in handy for you. If not, it should still fetch a decent price. Either way, thank you for a great time, love~\" She winks once more before returning her attention to coming down from her high.\n\nFidoris hands you the coins and vial and escorts you to the exit. Though, just as you're about to leave, you can hear the mistress call out \"Fidoris, sweetie, I think I'd like to feel full for a bit longer. Would you be a dear?\" To which Fidoris replies \"Yes Mistress!\"")
                                  self.doCoin(45)
-                                 self.doLust(-(self.sen // 2),2,1)
+                                 self.doLust(-Math.floor(self.sen / 2),2,1)
                                  self.hrs = 4
                                  self.itemAdd(221)
                                  self.doSexP(13)
@@ -15444,7 +15462,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doNext()
                         def doListen():
                            self.doMainText("Several times you wind up alternating between the two tasks. The only time you get a break is when she asks for some water, in which case it takes her nearly five minutes to down several liters. With all the fluid she loses otherwise, it's not terribly surprising. She manages to come again and again, whereas you're only teased constantly... Just as you're about to masturbate within her folds and out of her sight, Fidoris manages to return.\n\n\"The process is finished. Here is the batch you requested.\"\n\nYou move out from the mistress' slit, futily attempting to hide your arousal. Fidoris blushes as he spots your condition as well and how drenched you are in his mistress' honey. He thrusts a vial into your hand, trying to avert his eyes.\n\n\"U-Umm... Th-Thank you for doing my job with mistress while I was busy. I'm s-sure she's warmed up for a nice nap now.\"\n\nHe quickly nudges you towards the exit, as if in a hurry. It makes you begin to wonder what a 'nap' might actually entail? Either way, you've got what you asked for and then some...",True)
-                           self.doLust(self.lib // 6,0)
+                           self.doLust(Math.floor(self.lib / 6),0)
                            self.displayMainText()
                            self.loseManyItem(210,3)
                            self.itemAdd(221)
@@ -15514,7 +15532,7 @@ class NiminFetishFantasyv0975o_fla:
                            if (self.knot):
                               self.doMainText(", making her yelp in suprise as your swollen knot stretches her for a moment and pops out.")
                            self.doMainText(". She continues to spurt a bit of cum between the two of you, the smell of sex rapidly intensifying within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...")
-                           self.doLust(-(self.sen // 2),2,1)
+                           self.doLust(-Math.floor(self.sen / 2),2,1)
                            self.silPreg = 1
                         elif (self.vagTotal > 0 and self.vagLimit() > 28):
                            self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(2)} own {self.vulvaDesc()} slit{self.plural(2)}, making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ")
@@ -15556,7 +15574,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doNext()
                def doListen():
                   self.doMainText(f"Wads of white spunk spew through this strange woman's loin cloth. It smatters across your body and paints her thighs as much runs down the inside of the cloth. Plenty of it washes up through her cleavage, finally undoing the clasp with the slick lubrication and making her nipples shine with the moisture as they're freed. She coos and shudders for a few more moments, the cum running out as it continues to pump, her other genitals making a mess upon your {self.legDesc(1)}. Her head hangs low as she tries to regain her breathing, her mind slowly returning.\n\nThe smell of her own naughtiness fills her nose. Realizing what she had just dowe, she looks up at you with eyes wide in fear. Stricken with embarrassment, her normally shy demeanor takes charge as she jumps back from you, her wings flapping around you as they let go and snap back around herself to cover the mess she's made of herself.\n\n\"I-I'm so sorry!\" She turns away and begins to run through the crowd, trying to avoid being caught by anybody, her tail slinking between her legs. Once she's out of the bazaar and in a more open location, she kicks up into the air, her wings unfurling and taking her to the air for a speedier retreat. Wads of gooey stuff spills where she takes off, with more being flung around by the flapping of her wings, leaving a short trail before she disappears into the distance. None of the locals were close enough to be caught up in the mess and none seemed to have paid her much mind anyways.\n\n\nLeft in the middle of a crowd and covered in a stranger's lewd fluids, you're not quite sure how to react... You wipe some of it off, but the hot air quickly takes care of the rest. A little dazed, you ask around about this strange woman and find that she's a frequent visitor to Oviasis. Although nobody really knows who she is, she has been coming by for years to trade for supplies or to pick up magical goods, which she is quite fond of. You don't quite mention the extra bit about her... mess and the situation behind it, on the other hand, as the locals never mentioned any form of sexual assaults. It seems she is quite a shy person, so they don't know much more beyond her market habits and friendly demeanor.",True)
-                  self.doLust(self.lib // 3,0)
+                  self.doLust(Math.floor(self.lib / 3),0)
                   self.displayMainText()
                   self.hrs = 2
                   self.doEnd()
@@ -15757,7 +15775,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.vagTotal > 2):
                      self.doMainText(f" multiple males approach you, noticing your rather generous amount of available pussies and beginning to stroke their stiffening appendages. They crowd around you, pulling {self.pullUD(2)} your {self.clothesBottom()} for easier access as they lift you up amongst them, {self.legVerb(2)} your {self.legDesc(2)} wide while their many cocks swarm about beneath you. Each of your holes soon finds a guest burrowing inside, stretching your {self.vulvaDesc()} lips all the way to accomodate the many invaders. The men all grunt and groan as they toss you about, jiggling you up and down in the air and thrusting in different rhythms. The whole situation is difficult to track, yet soon enough you can feel a flood of fluid spray about beneath you as they go off one after the other, each feeling the churning of cum through the walls of your separate cunts. Your own orgasm forces the semen to squirt about your thighs and drench their legs, with even more leaking out in collective gobs as the guys slowly bring you back down to the ground, your {self.legDesc(2)} a bit bowed from the experience.")
                      self.doMultiImpregnate(6,self.vagTotal)
-                     self.doLust(-self.sen // 1.5,2,2)
+                     self.doLust(Math.floor(-self.sen / 1.5),2,2)
                      tempInt += 1
                      self.hrs += 1
                   if (tempInt > 0 and self.vagTotal > 1):
@@ -15770,7 +15788,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doMainText("thighs")
                      self.doMainText(". He nuzzles into your neck, grunting loudly as both things jerk inside of you, pounding both holes in unison until painting them with spunk. You can feel both wombs filling at almost the same time, bringing you to quite a high. The experience was so powerful that when he eventually pulls out, he's as limp as a noodle and can hardly participate in the orgy anymore...")
                      self.doMultiImpregnate(6,2)
-                     self.doLust(-self.sen // 2,2,2)
+                     self.doLust(Math.floor(-self.sen / 2),2,2)
                      tempInt += 1
                      self.hrs += 1
                   if (tempInt > 0 and self.vagSize * self.vagSizeMod > 30):
@@ -15778,7 +15796,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.vagSize * self.vagSizeMod > 30):
                      self.doMainText(f"one of the males approaches you, stroking his double dongs as they point towards you. He nudges you towards a wall until you lean back up against it and he lifts your {self.legDesc(2)} for easier access to your slit{self.plural(2)}. Smiling at how large {self.oneYour(2)} hole{self.plural(2)} is, just from glancing at it, he grabs his two cocks together and inserts them both slowly into your entrance, letting you stretch and easily gobble them both up. Delighted with how well he was able to get both into your passageway, he immediately begins to thrust, bouncing you up and down the side of the wall, letting your body toss about with it. You brace yourself, biting your lip as he thoroughly fucks you, his cocks slipping past each other and twisting about inside of you. The feel of your walls with the thumping of his wangs together quickly makes his tail curl around behind him, flexing as he pumps two large loads into you at the same time. You climax soon after, squeezing his cocks back out as they soften, spunk spilling from your {self.vulvaDesc()} pussy, the hole still gaping after he releases your {self.legDesc(2)}.")
                      self.doImpregnate(6)
-                     self.doLust(-self.sen // 2,2,2)
+                     self.doLust(Math.floor(-self.sen / 2),2,2)
                      tempInt += 1
                      self.hrs += 1
                   if (tempInt > 0):
@@ -15789,7 +15807,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doMainText("own")
                   self.doMainText(f". She leans up to kiss you, pressing your {self.buttDesc()} rump down so the man can slip his other schlong into you while your own {self.clitDesc()} clit grinds against hers. A few seconds pass as the three of you gain momentum and soon you become a writhing mass, humping against each other with the twin pistons plunging into the shared cunts. The girl's tongue swirls around yours and her hands reach between to pinch each your nipples together. The man quickly begins to seize, greatly enjoying the taste of pussies from two different girls, and gushes within. A slight harmony of vibrations can be felt between your two bellies, causing both of your to cry out into each others mouths in orgasm. Eventually, the guy can't stand it anymore and has to pull out to collapse in bliss, letting his spunk drip down from your pussy onto hers and down her crack to her tail. The girl, however, remains latched on for a couple minutes longer before letting go with an enthused gasp, rolling you off to catch her breath.")
-                  self.doLust(-self.sen // 2,2,2)
+                  self.doLust(Math.floor(-self.sen / 2),2,2)
                   self.doImpregnate(6)
                   tempInt += 1
                   self.hrs += 2
@@ -15852,7 +15870,7 @@ class NiminFetishFantasyv0975o_fla:
                      if self.tempInt == 1:
                         self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs.")
                         self.addManyItem(219,6 + Math.ceil(self.percent() / 20))
-                        self.doLust(self.lib // 2,0)
+                        self.doLust(Math.floor(self.lib / 2),0)
                         self.stats(0,1,1,0)
                         self.displayMainText()
                         self.hrs = 3
@@ -15867,7 +15885,7 @@ class NiminFetishFantasyv0975o_fla:
                            self.stats(-1,0,0,0)
                            self.doHP(-15)
                            self.aff(6,Math.floor(self.percent() / 20 + 2),-1)
-                           self.doLust(self.lib // 4,0)
+                           self.doLust(Math.floor(self.lib / 4),0)
                            self.displayMainText()
                            self.doEnd()
                         self.doListen = doListen
@@ -15890,7 +15908,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way...")
                         self.addManyItem(230, 2)
                         self.doCoin(15 + Math.ceil(self.percent() / 10))
-                        self.doLust(self.lib // 2,0)
+                        self.doLust(Math.floor(self.lib / 2),0)
                      elif self.tempInt == 3:
                         self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the eggcelerator into her supple hole, letting it slip up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly progress, then her eyes grow wide as an egg immediately pushes out through her folds. Suddenly, she leans backwards even more, pointing her pussy right at your face as more eggs coming flying out. Her strong motherly hips propel an onslaught of eggs at you, smacking and cracking over your head and body. She eventually crashes back into the water, crushing the pile of eggs she had already laid and firing a couple more past you.\n\nThe splash of water across her face snaps her out of the egg-laying haze and she jumps up, just in time for another egg to shoot down between her thighs. \"Oh no, all the eggs for the cake!\" She cries out in dismay and attempts to block the next with her hand, only to result in a yolky mess. With that failing, she turns away from you and bends down, giving you a perfect view of her round rear as well as another egg that propels straight into your face, while she picks up her bathing suit. Rapidly folding the elastic garment a bit and tucking it between her legs, she manages to improvise a basket. Then she takes off through a nude beach, carrying the suit-basket between her legs as it slowly stretches with the depositing eggs, her hips and tail twitching sporadically with each lay.\n\nLeft covered in yolk and slightly pained from the firing squad, there's not much left to do but wash off in the oasis waters and head off...")
                         self.doHP(-10)
@@ -16007,7 +16025,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.vulvaSize += Math.floor(self.percent() / 20 + 1)
                elif tempInt == 10:
                   self.doMainText("your blood floods to your genitals, suddenly arousing you.")
-                  self.doLust(self.percent() // 5,0)
+                  self.doLust(Math.floor(self.percent() / 5),0)
                self.outputMainText(" You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.")
                self.hrs += 2
                self.doEnd()
@@ -16083,7 +16101,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.milkCPoisonNip += 5
                   self.doSexP(10)
                   self.doLust(-Math.floor(self.breastSize * self.sen / 20),0,3)
-                  self.doHP(-(self.percent() // 10))
+                  self.doHP(-Math.floor(self.percent() / 10))
                   self.displayMainText()
                   self.hrs = 2
                   self.doEnd()
@@ -16223,7 +16241,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.milkCPoisonNip += 5
                   self.doSexP(10)
                   self.doLust(-Math.floor(self.breastSize * self.sen / 20),0,3)
-                  self.doHP(-(self.percent() // 10))
+                  self.doHP(-Math.floor(self.percent() / 10))
                   self.hrs = 2
                   self.displayMainText()
                   self.doEnd()
@@ -16384,7 +16402,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doListen = doListen
       elif chance == 3:
          self.doMainText("You roam about the savanna, not really finding anything interesting. However, the warm weather kinda makes you wanna take off your clothes...",True)
-         self.doLust(self.lib // 4,1)
+         self.doLust(Math.floor(self.lib / 4),1)
          self.hrs = 1
          self.displayMainText()
          self.doEnd()
@@ -16525,7 +16543,7 @@ class NiminFetishFantasyv0975o_fla:
                         if (self.knot):
                            self.doMainText(", making her yelp in suprise as your swollen knot stretches her for a moment and pops out.")
                         self.doMainText(". She continues to spurt a bit of cum between the two of you, the smell of sex rapidly intensifying within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...")
-                        self.doLust(-(self.sen // 2),2,1)
+                        self.doLust(-Math.floor(self.sen / 2),2,1)
                         self.silPreg = 1
                      elif (self.vagTotal > 0 and self.vagLimit() > 28):
                         self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(2)} own {self.vulvaDesc()} slit{self.plural(2)}, making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ")
@@ -16568,7 +16586,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doNext()
             def doListen():
                self.doMainText(f"Wads of white spunk spew through this strange woman's loin cloth. It smatters across your body and paints her thighs as much runs down the inside of the cloth. Plenty of it washes up through her cleavage, finally undoing the clasp with the slick lubrication and making her nipples shine with the moisture as they're freed. She coos and shudders for a few more moments, the cum running out as it continues to pump, her other genitals making a mess upon your {self.legDesc(1)}. Her head hangs low as she tries to regain her breathing, her mind slowly returning.\n\nThe smell of her own naughtiness fills her nose. Realizing what she had just dowe, she looks up at you with eyes wide in fear. Stricken with embarrassment, her normally shy demeanor takes charge as she jumps back from you, her wings flapping around you as they let go and snap back around herself to cover the mess she's made of herself.\n\n\"I-I'm so sorry!\" She turns away and begins to run across the sand, her tail slinking between her legs. Just a few yards away, she kicks up into the air, her wings unfurling and taking her to the air for a speedier retreat. Wads of gooey stuff spills across the desert where she takes off, with more being flung around by the flapping of her wings, leaving a short trail before she disappears into the distance.\n\n\nLeft alone and covered in a stranger's lewd fluids, you're not quite sure how to react... You wipe some of it off, but the hot air quickly takes care of the rest. A little dazed, you turn and head back to town for now.",True)
-               self.doLust(self.lib // 4,0)
+               self.doLust(Math.floor(self.lib / 4),0)
                self.displayMainText()
                self.hrs = 2
                self.doEnd()
@@ -16653,7 +16671,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" So much so that you wind up with a touch of heat exhaustion, making you tired and aching.")
                self.exhaustion += 5
                self.stats(0,0,-1,0)
-               self.doHP(-Math.floor((30 + self.str // 2 + self.HPMod) / 6))
+               self.doHP(-Math.floor((30 + Math.floor(self.str / 2) + self.HPMod) / 6))
          else:
             self.doMainText("The desert night with the dry air is bitterly cold.",True)
             if (self.skinType == 2):
@@ -16669,7 +16687,7 @@ class NiminFetishFantasyv0975o_fla:
             else:
                self.doMainText(" So cold that you nearly freeze, causing some damage and weakening you.")
                self.stats(-1,0,0,0)
-               self.doHP(-Math.floor((30 + self.str // 2 + self.HPMod) / 3.5))
+               self.doHP(-Math.floor((30 + Math.floor(self.str / 2) + self.HPMod) / 3.5))
          self.hrs = 2
          self.displayMainText()
          self.doEnd()
@@ -16750,7 +16768,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
       elif chance == 5:
          self.doMainText(f"Strolling along the beach, you suddenly begin to hop up and down, your {self.legDesc(9)} aching painfully as you step on an urchin!",True)
-         self.doHP(-(self.percent() // 10))
+         self.doHP(-Math.floor(self.percent() / 10))
          self.displayMainText()
          self.hrs = 2
          self.doEnd()
@@ -16859,7 +16877,7 @@ class NiminFetishFantasyv0975o_fla:
                         self.doMainText("you blow a load across the back of your udder, painting it in your seed.")
                      else:
                         self.doMainText("your pussy gapes and contracts in stuttered climax, drooling fluids down the back of your udder.")
-                     self.doLust(-(self.sen // 2),2,1,2,4)
+                     self.doLust(-Math.floor(self.sen / 2),2,1,2,4)
                      if (self.percent() < 50):
                         self.outputMainText("\n\nYou come so hard that you don't even notice as you accidentally mash the buttons of the control board...\n\nWhich side of the control board did you 'accidentally' mash?")
                         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
@@ -16901,9 +16919,9 @@ class NiminFetishFantasyv0975o_fla:
                                           break
                                  elif (self.vagTotal > 0):
                                     self.doMultiImpregnate(101,12)
-                                 self.doLust(-(self.sen // 1.5),2,2,4)
-                                 self.doLust(-(self.sen // 1.5),2,2,4)
-                                 self.doLust(-(self.sen // 1.5),2,2,4)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,2,4)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,2,4)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,2,4)
                                  self.milkAmount(2)
                                  self.lactChange(2,50)
                                  self.displayMainText()
@@ -16921,15 +16939,15 @@ class NiminFetishFantasyv0975o_fla:
                               self.doMainText(f"In the midst of your reflection, the sounds of gears grinding and doors opening goes unheeded. It's not until you feel padded mechanical arms clamp around your {self.hipDesc()} hips and hold your backend still that you realize something has gone wrong. Looking back, not only has the machine taken your {self.buttDesc()} rear hostage, but  another cylindar is rising behind your udder. This one looks quite different from the ones on your teats. It's much wider and deeper, with a lot more adjusting straps to take on things much larger than normal teats... It twists and turns from side to side, seemingly searching for something in particular. ",True)
                               if (self.cockTotal > 0):
                                  self.getCum = self.cumAmount()
-                                 self.doLust(-(self.sen // 1.5),2,1)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,1)
                                  self.doMainText(f" After a few seconds of scanning, however, it seems to have found a target.\n\nYou let out a loud gasp as the thing engulfs {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}, gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your shlong. The new cylindar slowly starts up, a subtle suction gripping your penis and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You quickly learn what its purpose is...\n\nYour hips held hostage by the rest of the machine, you can do nothing but moan and pant as the cock-milker sucks you off, even while the other milkers suckle from your teats. The machine obviously wasn't built to account for one over the other. The intense sensations quickly build heat within your body and soon you're blasting your hot spunk into the guzzling machine. Your hips twitch within its grip, your cock bucking against the padding within, and all of your seed drains down into some tanks below. Even after the main spurts have finished, the machine continues to suck out your cum, draining you dry and leaving you feeling numb from the waist down...\n\nOnce you've been fully 'milked' from that appendage, the machine relinquishes its grip on your cock and descends back into the floor, leaving your with a limp dick and some time to catch your breath. ")
                               elif (self.clitSize > 15 and self.vagTotal > 0):
                                  self.doMainText(f" After a few seconds of scanning, however, it seems to have found a target.\n\nYou let out a loud moan as the thing engulfs {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)}, gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your long button. The new cylindar slowly starts up, a subtle suction gripping your clit and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You have a pretty good idea of what it is trying to do. It's trying to pump out something you don't have... That doesn't hinder its attempts though, as it vigorously masturbates your clit, tugging and sucking away at its tender meat. Your hips try to buck in turn, but they're still held hostage by the rest of the machine, leaving you to be sucked off at the mercy of the 'milker' below, even while the other milkers suck away at your udders. The machine obviously wasn't built to account for one over the other!\n\nYou come again and again, melting across the bar, unable to do a thing about it... It takes nearly twenty minutes before the machine finally seems to give up, beeping in error as it releases your clit and sinks back into the ground. Taking the chance to breath, your clit feels rather plumped up after that ordeal, even bigger than before...")
                                  self.clitSize += 5
                                  self.clitPump += 20
-                                 self.doLust(-(self.sen // 1.5),2,2)
-                                 self.doLust(-(self.sen // 1.5),2,2)
-                                 self.doLust(-(self.sen // 1.5),2,2)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,2)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,2)
+                                 self.doLust(-Math.floor(self.sen / 1.5),2,2)
                               else:
                                  self.doMainText(f" Yet, after several minutes of scanning, it doesn't seem to find its target. A loud beep signals an error and the cylindar descends back into the floor. Rather strange, but you can't complain.")
                               self.doMainText("\n\nYou don't seem to get much time to relax, however. The machine clangs and cranks, sounding like it is getting confused by the fact the udder milker is still going. Rather than releasing your hips, it assumes you must be a female cow, and proceeds to start another task. Behind you, the machine shifts and whirs, opening yet another window, this time on the wall, and a long thick phallic tube begins to extend out, aiming right for")
@@ -17002,9 +17020,9 @@ class NiminFetishFantasyv0975o_fla:
                         self.doNext()
                         def doListen():
                            self.doMainText("You awaken when the machine finally releases you, making you fall to the floor. You udder feels swollen and your teats feel stretched again, but overall the multiple orgasms and extended milking make you feel rather blissful. You take several moments to clean up the mess you've made, hoping nobody will notice your presence here, and head off the farm happy.",True)
-                           self.doLust(-(self.sen // 2),2,4)
-                           self.doLust(-(self.sen // 2),2,4)
-                           self.doLust(-(self.sen // 2),2,4)
+                           self.doLust(-Math.floor(self.sen / 2),2,4)
+                           self.doLust(-Math.floor(self.sen / 2),2,4)
+                           self.doLust(-Math.floor(self.sen / 2),2,4)
                            self.milkAmount(2)
                            self.lactChange(2,50)
                            self.displayMainText()
@@ -17019,9 +17037,9 @@ class NiminFetishFantasyv0975o_fla:
                         self.doListen = doListen
                   else:
                      self.doMainText("\n\nHours and hours of squirting and dripping passes with the occassional uddergasm. You eventually take a nap for the rest of the 12 hours, awakening only to the sound of the machine releasing you and shutting down. Your udder swollen and your teats stretched, you happily take your leave, pleased with the effective milking.")
-                     self.doLust(-(self.sen // 3),2,4)
-                     self.doLust(-(self.sen // 3),2,4)
-                     self.doLust(-(self.sen // 3),2,4)
+                     self.doLust(-Math.floor(self.sen / 3),2,4)
+                     self.doLust(-Math.floor(self.sen / 3),2,4)
+                     self.doLust(-Math.floor(self.sen / 3),2,4)
                      self.milkAmount(2)
                      self.lactChange(2,50)
                      self.displayMainText()
@@ -17149,7 +17167,7 @@ class NiminFetishFantasyv0975o_fla:
                         if (self.dairyFarmBrand):
                            self.doMainText(" Thanks so much for doing this again too, I'm <i>sure</i> I'll have this fixed next time.")
                         self.doMainText(f"\". He hands you your payment and helps you up to your {self.legDesc(10)}. You udder hangs down, larger and heavier than before... It takes several steps for you to get into the 'swing' of things, but you cover it back up with your {self.clothesBottom()} and leave the farm, eager to do something else...")
-                        self.doLust(-(self.sen // 2) * 3,2,4)
+                        self.doLust(-Math.floor(self.sen / 2) * 3,2,4)
                         self.doCoin(70)
                         self.milkAmount(2)
                         self.lactChange(2,50)
@@ -17358,7 +17376,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and runs away. With a kink in her step and her breasts swaying from side to side, she disappears with her tail between her legs, pushing the skirt in until it blotches with her feminine mess.\n\nNot quite sure what she was thinking, you decide it best to disappear yourself.",True)
                                  self.stats(0,-1,1,0)
                                  self.doSexP(5)
-                                 self.doLust(self.lib // 5,1)
+                                 self.doLust(Math.floor(self.lib / 5),1)
                                  self.displayMainText()
                                  self.hrs = 2
                                  self.doEnd()
@@ -17393,7 +17411,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doMainText("As you pull your face from her cunt, you find yourself temporarily wedged between her cheeks as she abruptly stands. With a whimper and her ears drooping in embarrassment, she yanks herself from the milker and turns towards you.\n\n\"P-Please! I don't want to be that kind of girl!\" She fretfully tries to cover her naked, milky chest with her shawl before turning to run away in silence, her tail pushing the skirt between her legs in until it blotches with her feminine mess.\n\nThe way she said it didn't seem to regard the sexual aspect of what just happened... Unsure of what to do, you turn and head away from the farm.",True)
                                  self.stats(0,-1,1,0)
                                  self.doSexP(5)
-                                 self.doLust(self.lib // 5,1)
+                                 self.doLust(Math.floor(self.lib / 5),1)
                                  self.displayMainText()
                                  self.hrs = 2
                                  self.doEnd()
@@ -17417,7 +17435,7 @@ class NiminFetishFantasyv0975o_fla:
                                     self.doMainText("waiting for your knot to deflate before ")
                                  self.doMainText("cleaning up all the cum and milk you left everywhere... But you're quite happy nevertheless.\n\nEventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she's caught with her little pleasure.")
                                  self.stats(0,2,2,2)
-                                 self.doLust(-(self.sen // 2),2,1)
+                                 self.doLust(-Math.floor(self.sen / 2),2,1)
                                  self.displayMainText()
                                  self.doSexP(20)
                                  if (self.malonRep == 3):
@@ -17434,7 +17452,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doSexP(20)
                                  if (self.malonRep == 3):
                                     self.malonRep = 5
-                                 self.doLust(self.lib // 4,0)
+                                 self.doLust(Math.floor(self.lib / 4),0)
                                  self.displayMainText()
                                  self.hrs = 2
                                  self.doEnd()
@@ -17472,7 +17490,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doMainText("You both stand there for a few moments, gasping for breath. She slumps backward, pinning you against the wall behind you and she turns to stroke your face.\n\n\"Thank you~\" She kisses you...\n\n\nThoroughly satisfied, the two of you spend the next hour cleaning up all the cum and milk you left everywhere... But you're quite happy nevertheless.\n\nEventually you kiss her goodbye and leave her to quickly return to her work as a farm-hand before she's caught with her little pleasure.",True)
                                  self.stats(0,2,2,2)
                                  self.doSexP(2)
-                                 self.doLust(-(self.sen // 2),2,1)
+                                 self.doLust(-Math.floor(self.sen / 2),2,1)
                                  self.displayMainText()
                                  self.hrs = 3
                                  self.doEnd()
@@ -17484,7 +17502,7 @@ class NiminFetishFantasyv0975o_fla:
                                  self.doMainText("As you pull your face from her cunt, her legs give out as she slumps back into you, pinning you between her fat pussy and the wall behind. Her ears twitching at the sides of her head, she stands up and turns to you, allowing the cups to pop from her nipples and milk cascade down your body. She kneels down beside you, kissing you through her own slickness that covers your face.\n\n\"Thank you~\"\n\nHaving to get back to her duties, however, she pulls her skirt back down and her shirt back up, giving you a wink as both pieces blotch a little from various fluids. She turns away and heads out with some extra sway in her step and her tail flicking high.",True)
                                  self.stats(0,2,2,2)
                                  self.doSexP(2)
-                                 self.doLust(self.lib // 4,0)
+                                 self.doLust(Math.floor(self.lib / 4),0)
                                  self.displayMainText()
                                  self.hrs = 2
                                  self.doEnd()
@@ -17670,7 +17688,7 @@ class NiminFetishFantasyv0975o_fla:
                                           self.doMainText(f"\n\nFlipping back her long red hair, she grinds down your {self.legDesc(2)} and across the bed to pull {self.pullUD(2)} your {self.clothesBottom()}. Seeing your lack of any genitalia, she kisses your crotch softly several times anyways, before crawling back up your body She licks up your milk up as she goes, while her own breasts dribble over you until it runs off your sides and soaks into the fluffy blanket. Then, she pulls the blankets open, letting you both slip into the water-resistant sheets, where she humps your empty crotch.\n\nOver and over, she grinds her wide hips. She leans down to kiss you some more, her tongue driving into your mouth. You thrust back in turn, making her moan into your throat.\n\nQuickly, her body begins to quiver once again, milk spraying about beneath the sheets. So hot is her body that you can feel yourself climax as well! She keeps her mouth shut at first, but as you thrust back with the phantom orgasm, she can no longer resist, allowing her mouth stretch wide.\n\n\"MOOOOOOO!\"")
                                           self.malonRep = 5
                                        self.doMainText("\n\n\nThe two of you soon pass out beneath the blankets, trapped within the sea of milk and sensual fluids...")
-                                       self.doLust(-(self.sen // 2),2,1,2)
+                                       self.doLust(-Math.floor(self.sen / 2),2,1,2)
                                        self.displayMainText()
                                        self.hrs = 9
                                        self.exhaustion = 0
@@ -17741,7 +17759,7 @@ class NiminFetishFantasyv0975o_fla:
                elif (self.malonChildren > 1):
                   self.doMainText("\n\nYour children also spot you and run up with their own hugs, shouting \"Daddy!\"")
                self.outputMainText("\n\nYou visit for a while and help Malon with a bit of work, earning you some coin. You spend the time chatting and enjoying yourselves, but eventually Malon gives you a wink.\n\n\"Would you like to do something?\"")
-               self.doCoin(self.percent() // 20)
+               self.doCoin(Math.floor(self.percent() / 20))
                self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
                tempDict = {7:"Sex"}
                if (self.lactation < 1 and self.udderLactation < 1):
@@ -17843,7 +17861,7 @@ class NiminFetishFantasyv0975o_fla:
                      if (self.knot):
                         self.doMainText(", your knot still tied to her")
                      self.doMainText("...")
-                     self.doLust(-(self.sen // 2),2,1,2)
+                     self.doLust(-Math.floor(self.sen / 2),2,1,2)
                      self.displayMainText()
                      self.hrs = 9
                      self.exhaustion = 0
@@ -17979,7 +17997,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doMainText(" The gushing persists and even increases in power as the two of you make love beneath the torrent of milk. In between each kiss is a gulp of the sweet fluid, in between each grope and grind flows some of the warm fluids across your sensitive bits. Milk spreads throughout the barn, a near-river of the stuff that flows out under the doorway while the floor grows soaked.")
                   self.doMainText(" It doesn't take long before you're both letting out a long \"Moooooo\" of ecstacy in unison, gasping into each other's mouths as you climax and lactate. It takes several minutes before you come to your senses...")
-                  self.doLust(-(self.sen // 2),2,3)
+                  self.doLust(-Math.floor(self.sen / 2),2,3)
                   self.displayMainText()
                   self.doNext()
                   def doListen():
@@ -18052,7 +18070,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
                               if (self.ment >= 30):
                                  self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
-                              self.doLust(-(self.sen // 2),2,1)
+                              self.doLust(-Math.floor(self.sen / 2),2,1)
                               self.displayMainText()
                               self.hrs = 3
                               self.doEnd()
@@ -18070,7 +18088,7 @@ class NiminFetishFantasyv0975o_fla:
                               self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
                               if (self.ment >= 30):
                                  self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
-                              self.doLust(-(self.sen // 2),2,1)
+                              self.doLust(-Math.floor(self.sen / 2),2,1)
                               self.displayMainText()
                               self.hrs = 3
                               self.doEnd()
@@ -18096,9 +18114,9 @@ class NiminFetishFantasyv0975o_fla:
                                     self.pregArray[i + 2] = 230
                                     self.pregArray[i + 3] = 220
                                     break
-                              self.doLust(-(self.sen // 2),2,1,2)
+                              self.doLust(-Math.floor(self.sen / 2),2,1,2)
                            else:
-                              self.doLust(-(self.sen // 2),2,1,2)
+                              self.doLust(-Math.floor(self.sen / 2),2,1,2)
                            self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
                            if (self.ment >= 30):
                               self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
@@ -18134,7 +18152,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText(f" Your {self.clothesTop()} plummets down your {self.boobDesc()} chest. You catch it with your hands, but soon the material bundles over your arms that you can no longer maintain your hold. When you let go, the {self.clothesTop()} simply sits there, piled around you.")
                   else:
                      self.doMainText(f" Your {self.clothesTop()} begins to plummet down your {self.boobDesc()} chest, while your {self.clothesBottom()} slips from your {self.hipDesc()} hips. One hand flails to catch your {self.clothesTop()} while the other heads for the {self.clothesBottom()}, but neither is successful. For a moment your {self.boobDesc()} chest and your nether region are both exposed to the fresh air as your outfit falls around you, but you quickly find yourself falling back into the fabric, a pile around you.")
-                  self.doMainText(f"\n\nYou climb out from your overgrown clothes, completely nude. Though you doubt anybody could see you if they passed by, considering you're now a fraction of the height you were before, maybe a whole {self.tallness // 12} inches tall.")
+                  self.doMainText(f"\n\nYou climb out from your overgrown clothes, completely nude. Though you doubt anybody could see you if they passed by, considering you're now a fraction of the height you were before, maybe a whole {Math.floor(self.tallness / 12)} inches tall.")
                   self.displayMainText()
                   self.tallness -= 2
                   self.doNext()
@@ -18215,11 +18233,11 @@ class NiminFetishFantasyv0975o_fla:
       elif (self.silRep == 6):
          self.doMainText("Knowing your way through the tunnels well enough by now, you don't bother to ring the chimes. You head inside, finding your way through to the birthing chamber where Silandrias still resides, carefully watching over her ",True)
          if (self.silPreg <= 1000):
-            self.doMainText(f"{self.silPreg // 100}")
+            self.doMainText(f"{Math.floor(self.silPreg / 100)}")
          elif (self.silPreg <= 5000):
-            self.doMainText(f"{self.silPreg // 75}")
+            self.doMainText(f"{Math.floor(self.silPreg / 75)}")
          else:
-            self.doMainText(f"{self.silPreg // 50}")
+            self.doMainText(f"{Math.floor(self.silPreg / 50)}")
          self.outputMainText(" giant eggs with Naeru and Daeru.\n\nThe two caretakers, born to help both the their siblings and mother as well as provide loyal company, trot around and roll the eggs from bedding to bedding to make sure they're all clean and warm. They also snuggle up with their mother when they aren't busy, suckling from her for sustenance or bringing her food and other interests from Oviasis. When they spot you coming they start yipping happily, wagging their lizard-like tails while their large vulpine ear bounce about, running in circles around you as you approach.\n\nSilandrias hasn't quite returned to her original height yet, still a few feet taller from the massive birth with plenty of breasts running down her front, the topmost pair threatening to tip her over with their milk-laden size and weight. Staying down here to watch over her children, waiting for the day they'll hatch so she'll be there for them, has left her without need for clothes, letting her naked body rub against you as she gives you a welcoming hug.\n\n\"Welcome back, honey~\" She gives you a kiss and motions for you to cuddle up with her.\n\nThe two of you lovingly entwined about each other with Naeru and Daeru curled up upon you, you talk about everything. Even though she's not in the mood for sex, as she spends more time milking herself than getting aroused, she still makes for some good company.\n\nAfter a few hours together, the pups really need to get back to their duties and Silandrias could use a nap from her exhausting form, she offers to share her now-secondary hobby with you. \"Would you like to borrow one of my treasures before you go?\"")
          self.hrs = 4
          self.doNext()
@@ -18348,18 +18366,18 @@ class NiminFetishFantasyv0975o_fla:
                def doListen():
                   self.doMainText("The next day, after plenty of cleaning of spunk and slime and milk, and especially sleep, the four of you can finally breath. Silandrias, though a bit taller from being stretched by her belly and carrying a massive amount of boob-flesh, is able to walk with the aid of a carpet thanks to much of her body having deflated along with her belly. Eager to overlook her eggs, the four of you gather around and begin counting as you set up individual beddings for each egg, just like the kind Silandrias was hatched from.\n\n",True)
                   if (self.silPreg <= 1000):
-                     self.doMainText(f"A whole {self.silPreg // 100} eggs. Around the same size as the clutch she grew up with, she's quite satisfied. \"I'm sure it'll be a good 'start' in building a new family\" She winks with a giggle.")
+                     self.doMainText(f"A whole {Math.floor(self.silPreg / 100)} eggs. Around the same size as the clutch she grew up with, she's quite satisfied. \"I'm sure it'll be a good 'start' in building a new family\" She winks with a giggle.")
                   elif (self.silPreg <= 5000):
-                     self.doMainText(f"A total of {self.silPreg // 75}, spread across the lower balconies of the birthing chamber, its far more than the clutch she grew up with. \"I didn't know I could make so many... And it'll be such a big family!\" She looks around in awe.")
+                     self.doMainText(f"A total of {Math.floor(self.silPreg / 75)}, spread across the lower balconies of the birthing chamber, its far more than the clutch she grew up with. \"I didn't know I could make so many... And it'll be such a big family!\" She looks around in awe.")
                   else:
-                     self.doMainText(f"A massive {self.silPreg // 50}, spread across all of the balconies of the birthing chamber, you wonder if the clutch she grew up with was just a fraction of a bigger bunch. \"Wow... I-I didn't think this was even possible. From up there, I couldn't really tell but... Wow... I. I think we have just restarted my race\" Her eyes are wide as the number finally sinks in. Oh how her breasts are going to hurt...")
+                     self.doMainText(f"A massive {Math.floor(self.silPreg / 50)}, spread across all of the balconies of the birthing chamber, you wonder if the clutch she grew up with was just a fraction of a bigger bunch. \"Wow... I-I didn't think this was even possible. From up there, I couldn't really tell but... Wow... I. I think we have just restarted my race\" Her eyes are wide as the number finally sinks in. Oh how her breasts are going to hurt...")
                   self.outputMainText("\n\n\"Although, I have no idea how long it will take them to hatch. I mean, I don't know how long we were down in that room before we hatched. And I definitely don't want them to hatch without parents, I'm going to stay here and wait for them, no matter how long it takes. While I'm sure Naeru and Daeru would do well, I want to be there for my children when they hatch. And I hope you will be there too, when it eventually starts.\" She turns and embraces you, putting much of her weight into you for support but also nearly crushing you with her loving hug in the meantime. \"It may be years from now, but I will definitely try to let you know when it happens, since I'm sure you won't be able to stay here. And I could even send out letters to my sisters as well, make a great big family reunion! But... that's really getting ahead of myself. Thank you, honey.\" She hugs you again, kissing you gently.")
                   self.doNext()
                   def doListen():
                      self.outputMainText("Spending a few more hours with the family, everything settles down and there really isn't much to do anymore except to wait. With not a problem to be had, Silandrias and the pups nuzzle you goodbye, since there's things you could actually be doing in the meantime.\n\nOh, and I can't believe I've forgotten about it until now, maybe because of the, umm...\" Her face blushes at what she had been distracted with this whole time. \"But you're welcome to borrow any of the magical treasures I've found as part of my hobby. Although only a few are actually worth using, you can pick one up whenever you're here.\" She smiles and gives you another hug, gushing milk across your front, and finally lets you leave.",True)
-                     self.hrs = 30 + self.silPreg // 1000
+                     self.hrs = 30 + Math.floor(self.silPreg / 1000)
                      self.silRep = 6
-                     self.doSexP(50 + self.silPreg // 100)
+                     self.doSexP(50 + Math.floor(self.silPreg / 100))
                      self.doEnd()
                   self.doListen = doListen
                self.doListen = doListen
@@ -18425,7 +18443,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.showBalls):
                   self.doMainText(f", the slapping of your {self.ballDesc()} against her scrotum not helping any")
                self.doMainText(".\n\nIt isn't until you explode within, your seed churning about her velvety walls, that the downward-pointing member erupts with hot spunk all over the belly-scales and floor. You plunge and pump all of your spunk inside of her, letting her soak it all in without a drop going to waste. The cum-hungry womb immediately grows larger, sucking in every milliliter for its fertile production. The poor girl is weighted down even more by your efforts, yet the erotic cries echoing around the room would hardly suggest that she objects...")
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                if (Math.ceil(getCum / 50) > 100 and self.silPreg > 0):
                   self.silPreg += 100
                elif (self.silPreg > 0):
@@ -18460,7 +18478,7 @@ class NiminFetishFantasyv0975o_fla:
                if (self.cockTotal > 0):
                   self.cumAmount()
                else:
-                  self.doLust(-(self.sen // 2),2,2,5)
+                  self.doLust(-Math.floor(self.sen / 2),2,2,5)
                self.displayMainText()
                self.doNext()
                def doListen():
@@ -18550,7 +18568,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.silPreg += Math.ceil(getCum / 50)
                else:
                   self.silPreg = 1
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.displatMainText()
                self.doNext()
                def doListen():
@@ -18579,7 +18597,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doImpregnate(self.dominant)
                if (self.cockTotal > 0):
                   self.cumAmount()
-               self.doLust(-(self.sen // 2),2,2,5)
+               self.doLust(-Math.floor(self.sen / 2),2,2,5)
                self.displayMainText()
                self.doNext()
                def doListen():
@@ -18837,7 +18855,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doMainText(" You manage to reach beneath her grand girth, maneuvering around the round form to reach her genitals.")
                   self.doMainText(" Then you have to pull the large package out of your way, both her cock and balls swollen from her engorged pregnancy and blocking the desired entrance.")
-                  if (self.tallness < self.silPreg // 9):
+                  if (self.tallness < Math.floor(self.silPreg / 9)):
                      self.doMainText(f" Lifting them up, you droop her large shaft over your shoulder, pinning the lower portion between your {self.boobDesc()} chest and her belly while drooping the scrotum over your own length.")
                   else:
                      self.doMainText(f" Lifting them up, you trap her appendage between your {self.boobDesc()} chest and her belly and droop her scrotum over your own length.")
@@ -18852,7 +18870,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (self.silRep > 4):
                      self.doMainText(", jets of milk squirting out everywhere,")
                   self.doMainText(f" as you pound into her again and again. She moans and howls, her wings groping over her massive form and her tail wrapping up through your {self.legDesc(2)} and wedging into your {self.buttDesc()} rump to pull you closer. It doesn't take long before the extra-pregnant girl to cry out.")
-                  if (self.tallness < self.silPreg // 9):
+                  if (self.tallness < Math.floor(self.silPreg / 9)):
                      self.doMainText("\n\nHot spunk sprays behind you, coating your back and painting the floor white.")
                   else:
                      self.doMainText("\n\nHot spunk gushes between you, splattering all over her body and painting your face white.")
@@ -18865,7 +18883,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.silPreg += Math.ceil(getCum / 50)
                else:
                   self.silPreg = 1
-               self.doLust(-(self.sen // 2),2,1)
+               self.doLust(-Math.floor(self.sen / 2),2,1)
                self.displayMainText()
                self.doNext()
                def doListen():
@@ -18930,7 +18948,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doImpregnate(self.dominant)
                if (self.cockTotal > 0):
                   self.cumAmount()
-               self.doLust(-(self.sen // 2),2,2,5)
+               self.doLust(-Math.floor(self.sen / 2),2,2,5)
                self.displayMainText()
                self.doNext()
                def doListen():
@@ -18970,7 +18988,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doMainText(" She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles.")
                self.doMainText("\n\nThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I'm sure this will make the process move along faster...\"\n\nYou stay with her another couple of hours to make sure she's alright and to spend some time together, then you head back out to continue on.")
                self.silRate += 1
-               self.doLust(self.lib // 5,0)
+               self.doLust(Math.floor(self.lib / 5),0)
                self.loseManyItem(230,1)
                self.displayMainText()
                self.hrs = 3
@@ -19620,10 +19638,10 @@ class NiminFetishFantasyv0975o_fla:
                if (self.buttonChoice == 6):
                   if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
                      self.doMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.",True)
-                     self.doLust(self.lib // 4,0)
+                     self.doLust(Math.floor(self.lib / 4),0)
                   else:
                      self.doMainText(f"The female Lupan with a collar before you nods and slowly comes to a stand, keeping her head down. With the stand, you have a wondrous view of her supple bosom and damp pussy.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan female before you counts herself down, then starts with a spin, and slide, giving you a very nice view of her soft and firm furred ass.\n\nThe dance quickly turns erotic, her hands sliding over her breasts and slender belly as her torso weaves in concert, putting on a rather arousing display for her audience. Her fluffy tail sways with her motions, in rhythm to the drumbeat.\n\nThe collar she wears has a slight jingle of an oval, golden tag bearing her name. With how she moves, you don't get a good view of it, but you don't believe she is available for an owner anyway. Instead, you enjoy her erotic display, watching the slender figure move and twist, showing off her firm slim ass and damp cunny.\n\nAfter a couple hours of watching her dance almost nonstop to the ever-changing rhythm of the drum-house below, she is called by another female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be her owner and you watch as she obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to her collar.\n\nSeeing as you became rather aroused by her performance, you decide to leave the Knothole for now, leaving the female Lupan to her Mistress.",True)
-                     self.doLust(self.lib // 4,0)
+                     self.doLust(Math.floor(self.lib / 4),0)
                   self.hrs += 3
                else:
                   self.doMainText("Dismissing the submissive Lupan before you, you lay your head back and relax, listening to the dulled beat of the drum-house below and the mixed sounds of pleasure, conversation, and ecstasy around the large room.\n\nSometime later, you don't know how long, you take a heavy yawn and stretch, having your rest filled with wet dreams and imaginings of the events around you. Seeing not much else to do, you take your leave of the Knothole.",True)
@@ -19651,7 +19669,7 @@ class NiminFetishFantasyv0975o_fla:
                   else:
                      self.doMainText("ass")
                   self.doMainText(" dripping a bit from the cum still filling it as you -slowly- take your leave of the knothole.")
-                  self.doLust(-(self.sen // 2),2,2,5)
+                  self.doLust(-Math.floor(self.sen / 2),2,2,5)
                   self.displayMainText()
                   self.hrs += 2
                   self.doEnd()
@@ -19891,7 +19909,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doSpecialAbility(self.fp1 + 1)
          elif self.buttonChoice == 8:
             if (self.fp1 == 1):
-               self.doSpecialAbility(self.specialAbilityArray.length // 9)
+               self.doSpecialAbility(Math.floor(self.specialAbilityArray.length / 9))
             else:
                self.doSpecialAbility(self.fp1 - 1)
          elif self.buttonChoice == 12:
@@ -20171,7 +20189,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText("satiated cunt,")
          self.doMainText(f" the cock sliding out with cum dripping down {self.legWhere(1)} your {self.legDesc(2)}.")
          self.doImpregnate(self.enemyBaby())
-         self.doLust(-(self.sen // 2),2,2)
+         self.doLust(-Math.floor(self.sen / 2),2,2)
       elif self.enemyID == 202: # Gay Wolf
          self.doMainText(f"You easily roll the wolf onto his back. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you squat your {self.buttDesc()} ass over the pointy prick. You grab the hard, meaty rod and gently squeeze out some of the pre, slipping it about between your cheeks to make things nice and slick. Slowly sitting down, you wince as the narrow tip kisses your tight hole and moan as it slides in, easily stretching your ass around its curvy girth.",True)
          if (self.showBalls):
@@ -20179,7 +20197,7 @@ class NiminFetishFantasyv0975o_fla:
          else:
             self.doMainText(f" Your own {self.cockDesc()} cock{self.plural(1)} eventually come to a rest upon the wolf's belly, slightly tickled by his course fur.")
          self.doMainText(f"\n\nAfter a couple breaths from taking in the warm intruder, you begin to bounce your hips upon the animal. It howls back up at you in pleasure, your own gasps matching as your erection{self.plural(1)} drum{self.plural(3)} the fur. The wolf's tongue lolls out of the side of its mouth, allowing you to do all the work as its hind legs twitch in the air and its tail swishes over the ground. It seems to be quite happy with the result of this ordeal, so much so that it begins to spurt into your rectum rather quickly, coating your insides with hot sticky spunk.\n\nHowever, you're not left out of the fun as you feel something swell within the entrance to your ass. The wolf's knot expanding, the prick grinds against your inner walls more and more as it sprays about. You can't last any longer and explode above the wolf, drenching its fur in strand after strand of fresh steamy semen. More soon begins to spew back out your ass as the pent-up wolf overflows your cavity, forming sticky webs about the cheeks of your rump.\n\nFur is eventually completely matted, dripping with wads of white, while your own {self.skinDesc()} is sufficiently gunked up around your bottom and thighs. The wolf pants below you, tired and elated. With an attempt to stand, you lift the hind legs with you, still tied to your backside. But, with all the mess that has been made, the cock slips out with a wet pop and sends the animal back into the puddle below with a splash.")
-         self.doLust(-(self.sen // 2),2,5)
+         self.doLust(-Math.floor(self.sen / 2),2,5)
       elif self.enemyID == 301: # Horny Felin
          chance = self.percent()
          if (self.gender == 1 or self.percent() <= 50 and self.gender == 3):
@@ -20203,7 +20221,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.cockTotal > 0 and self.cumAmount() > 0):
                self.doMainText(f" You pull your {self.cockDesc()} cock{self.plural(1)}, letting the engorged length{self.plural(1)} bounce against her belly and hump through her many breasts.")
             self.doMainText(f" You grind, cunt to cunt{self.plural(2)}, until you both let out a yowl as you climax together.\n\nYou're quick to gather your wits and clean yourself up, standing before her pussy even stops gushing with honey.")
-         self.doLust(-(self.sen // 2),2,1)
+         self.doLust(-Math.floor(self.sen / 2),2,1)
       elif self.enemyID == 302: # Drunken Equan
          if (self.gender == 2 or self.percent() <= 50 and self.gender == 3):
             self.doMainText(f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and showing him your own hungry flesh. You {self.legVerb(1)} your {self.legDesc(2)} over his twitchy rod, kissing the flat head of the horsy member with your {self.vulvaDesc()} lips.",True)
@@ -20229,7 +20247,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.cumAmount() > 0):
                self.doMainText(" while yours erupts into his ass, churning his insides,")
             self.doMainText(" until you've both had a heady orgasm. You pull out quickly, fluids still dripping from your cock, while he heaves upon the ground.")
-         self.doLust(-(self.sen // 2),2,1,5)
+         self.doLust(-Math.floor(self.sen / 2),2,1,5)
       elif self.enemyID == 303: # Octopus Girl
          if self.gender in {1,3}: # TODO: Add a percent chance to 3
             self.doMainText(f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} erection{self.plural(2)} wobble out. Aligning yourself, you thrust ",True)
@@ -20255,7 +20273,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.vagTotal > 8):
                self.doMainText("\n\nTaking turns at each of your pussies, the tentacles softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.")
             self.doMainText(f" You can soon feel her shudder {self.legWhere(1)} your {self.legDesc(2)}, her large belly jiggling as milk drizzles past the feeding starfish and down her large breasts. The tentacles leave your slit{self.plural(2)} as you finish with your own orgasm...")
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 304: # Little Big Bunny-Man
          if (self.vagTotal > 0 and self.vagLimit() > 80):
             self.doMainText(f"Somehow managing to push the little big bunny-man onto his tail, you pull {self.pullUD(2)} your {self.clothesBottom()}, climb up through his thighs, and plant your {self.legDesc(10)} on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, {self.legVerb(5)} it at the top with your {self.legDesc(2)}. The narrow tip easily fits between your thighs and slips into {self.oneYour(2)} {self.vulvaDesc()} vagina{self.plural(4)} as you descend upon it.\n\nHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.",True)
@@ -20273,7 +20291,7 @@ class NiminFetishFantasyv0975o_fla:
             elif self.gender == 3:
                self.doMainText(f" {self.cockDesc()} cock{self.plural(1)} and {self.vulvaDesc()} cunt{self.plural(2)}")
             self.doMainText(f", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your {self.legDesc(10)} as well.\n\nYou both soon back away from each other, spent from the connection.")
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 305: # Little Big Bunny-Girl
          if (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280):
             self.doMainText(f"Somehow managing to push the little big bunny-girl onto her tail, you pull {self.pullUD(2)} your {self.clothesBottom()} and step in between her thighs. Her pussy is already aroused and gaping, drooling with her feminine lubrication and forming webs from her large clit down through her inner labia. Hefting up your {self.cockDesc()} erection{self.plural(1)}, you aim for the sweet spot, spreading her even wider as you push yourself in, feeling her folds hug around you.",True)
@@ -20304,7 +20322,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText(f", expertly sucking and nibbling at your genitals. Her hands reach to her underside and begins to audibly slurp in her crotch and rub at her bosom. She quickly drives you to orgasm and as her mouth fills with your fluids, you soon find a puddle of clear slime oozing its way about your {self.legDesc(10)} as well.\n\nYou both soon back away from each other, spent from the connection.")
             if (self.cockTotal > 0):
                self.cumAmount()
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 306: # Fierce Naga
          self.doMainText("Conceding to your assault rather willingly, she actually bends back over her tail and pulls up her sash, exposing herself to you. A supple slit amidst her belly-scales, the green of her scales part with a delicious and moist pink tunnel. Her fingers even roam down to part herself for you, waiting for you to please yourself with her.",True)
          if (self.cockTotal > 0):
@@ -20317,7 +20335,7 @@ class NiminFetishFantasyv0975o_fla:
             self.cumAmount()
          else:
             self.doMainText(f"\n\nYou pull {self.pullUD(2)} your own {self.clothesBottom()} to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your {self.vulvaDesc()} lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh.\n\nYou grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don't see the tip of her tail sneaking up behind you. It's not until you pleasantly find the thick thing pressing itself into {self.oneYour(2)} hole{self.plural(2)} that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're bucking your hips and she's bucking back in orgasm.\n\nAfter an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.")
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 307: # Minotaur
          self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} and push the Minotaur down onto his ",True)
          if (self.vagTotal > 0):
@@ -20333,7 +20351,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(f" while your {self.ballDesc()} balls slap against his head-sized testicles")
             self.doMainText(" and you're both quick to start spraying your loads. Yours gurgles down deeper into his body while his nearly knocks himself out with the blast, plenty of semen volleying into his face and pooling below him.\n\nOnce you're satisfied, you have this nagging feeling like he might have enjoyed it more. Whatever the case may be, you got what you wanted.")
             self.cumAmount()
-         self.doLust(-(self.sen // 2),2,2,5)
+         self.doLust(-Math.floor(self.sen / 2),2,2,5)
       elif self.enemyID == 308: # Freaky Little Girl
          self.doMainText("The freaky little girl melts into your embrace rather readily, suddenly becoming more frail and acting more like she appears, holding Mr. Snuggles tight across her chest. \"Be gentle, please?\"\n\nCatching you slightly off guard, you comply and proceed a little less roughly. You take her from behind, sitting down to the ground and pulling her into your lap with you. You kiss her cheek and nibble on her long elven ears, making her squirm in your arms as your hand reaches down beneath her skirt. Her panties are rather moist, slick with her honey, and the tender region twitches as you start to massage it. However, you soon feel something bumping against your palm.\n\nPulling her undergarments down further, you can see her pink flesh protruding out past her crotch slightly. A clitoris as big as her thumb pokes out from her folds, stiff and twitching with arousal. Not quite as little as the rest of her...\n\nSeeing as though she's rather aroused, you take the liberty of pushing things a step further. ",True)
          if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(24) or self.vagTotal > 0 and self.clitSize < 60):
@@ -20353,7 +20371,7 @@ class NiminFetishFantasyv0975o_fla:
             self.cumAmount()
          else:
             self.doMainText(f"Turning the girl around, you land her back upon the floor. She looks up at you over the head of the doll, fearful of your menace as you press your {self.hipDesc()} hips down against her. Your {self.vulvaDesc()} nether-lips engulf her standing erection. Not enough to actually penetrate, you merely use the stiff button as a grinding post, slipping it through your labia again and again, banging it against your own {self.clitDesc()} clit{self.plural(2)}.\n\nThe sensation sends the girl into a tizzy, her rump wiggling against the floor as her hips squirm from your succulent flesh. She bites down on one of Mr. Snuggle's horn, muffling her moans as she approaches orgasm. You make up for her with your own cries of climax, shivering and spilling your honey across her dainty sex while her own pools beneath her.\n\nA few more moments of the blissful high passes before the girl inches her way out from under you, spreading her legs to air out her heated crotch while she pulls up her panties, the undergarments becoming wet with her honey and outlining her sex, especially the button that continues to poke out...")
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 309: # Succubus
          self.doMainText("\"Mmm, so you want to take the lead, huh?\" The succubus concedes to your advances, bending over and putting her hands up against the wall, even going so far as to unzip her panties down the middle, exposing her engorged plump lips. The meaty things are plush and look like they're made for being fucked hard, luring you in more as you press in behind her.",True)
          if (self.cockTotal > 0 or self.vagTotal > 0 and self.clitSize > 20):
@@ -20377,7 +20395,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(" Yet, the climax feels a bit more draining than you might have expected. You feel slightly weaker, your body seemingly slimming down a bit, as the vials around the woman's belt glow slightly.\n\n\"Mmmm~\" She moans in concert with the glow. \"Tastes sooo good~\"\n\nJust as you thought you had been the one in charge the whole time, the succubus pulls away from you and comes to a stand while zipping herself up. \"That was a nice snack~\"")
          self.stats(-1,0,0,0)
          self.body -= 1
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       self.displayMainText()
 
    def doGetRaped(self):
@@ -20397,7 +20415,7 @@ class NiminFetishFantasyv0975o_fla:
             if (self.cumAmount() > 2300):
                self.doMainText(", its belly obviously distended from your massive load")
             self.doMainText(".")
-            self.doLust(-(self.sen // 2),2,1)
+            self.doLust(-Math.floor(self.sen / 2),2,1)
          elif (self.vagTotal > 0):
             self.doMainText(f"Feeling the warmth emanating from beneath your {self.clothesBottom()}, the cock-snake slithers in {self.legWhere(1)} your {self.legDesc(2)}. The phallic head nuzzles up against your {self.vulvaDesc()} lips, smearing around some of your lubricant. Its nose bumps against your {self.clitDesc()} clit{self.plural(2)}, testing your arousal until you quiver beneath.",True)
             if (self.pregCheck(1)):
@@ -20410,7 +20428,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.pregArray[i + 3] = 150
                      break
                self.cockSnakePreg += 50
-               self.doLust(-(self.sen // 2),2,2)
+               self.doLust(-Math.floor(self.sen / 2),2,2)
             else:
                self.doMainText("\n\nHowever, it seems to not be satisfied with what it has found. Barely sating any of your desire, the snake turns around and slithers off, completely losing interest...")
                self.doLust(-5,0)
@@ -20429,12 +20447,12 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText("but your gaping cunt is more than enough to handle it,")
          self.doMainText(" until it finally pulls free and he runs back off into the forest.")
          self.doImpregnate(self.enemyBaby())
-         self.doLust(-(self.sen // 2),2,1)
+         self.doLust(-Math.floor(self.sen / 2),2,1)
       elif self.enemyID == 202: # Gay Wolf
          self.doMainText(f"The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your {self.buttDesc()} rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your {self.clothesBottom()} to shreds until your {self.buttDesc()} ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff. \n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own {self.cockDesc()} erection{self.plural(1)} burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...",True)
          self.changeBot(-1)
          self.doMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated ass in an attempt to get away, gush after gush of spent spunk blowing out each time. Still tied by his knot, his cock now slowly squirting away within, you can't help but get yanked backwards several feet as he drags you over the ground by your sensitive hole. Eventually, you manage to grab at the ground and hold yourself firm, allowing the knot to pop out from your ass, the member spraying across your cheeks with more rushing out about your thighs. Freed of your ass, the wolf takes off into the forest, satisfied, leaving you to lay in the white mess below. ")
-         self.doLust(-(self.sen // 2),2,5)
+         self.doLust(-Math.floor(self.sen / 2),2,5)
       elif self.enemyID == 301: # Horny Felin
          self.doMainText(f"Finally having someone as horny as she is, she pounces onto you. She presses your face against her exposed nipples, forcing you to lick the soreness that had been caused by her own rubbing. She grinds up and down your belly, tearing your {self.clothesTop()} to tattered shreds with her claws while biting and suckling from your own {self.nipDesc()}nipples",True)
          self.changeTop(-1)
@@ -20475,7 +20493,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText("Dazed and high with her climax, having finally overcome her heat a little, she stumbles away, her loin cloth pushed so far to the side that her lips shine between her legs for all to see.")
          if (self.percent() < 40 and self.ballSize > 1 and self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
             self.doMainText(" And she seems oddly content, as though her heat had passed with that romp for some reason...")
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 302: # Drunken Equan
          self.doMainText("Seeing you laying defenseless and utterly aroused before him, the drunken equan falls to the ground. With a grunt and a grope, he pulls his huge cock from his pants, his erection barely 2/3 its full potential. Considering how drunk he is, it probably won't get much larger.",True)
          if (self.gender == 1 or self.gender == 3 and self.percent() <= 50):
@@ -20488,7 +20506,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.vagLimit() < 28):
                self.doMainText(" With a cry, the large horse-cock proves too big for your relatively small pussy, stretching it dramatically and causing you some pain.")
                self.vagChange(3,0)
-               self.doHP(-(self.eStr // 2))
+               self.doHP(-Math.floor(self.eStr / 2))
                self.doImpregnate(self.enemyBaby())
             elif (self.vagLimit() < 52):
                self.doMainText(" You wince as it pushes in too far, pounding your cervix further and further into your belly, permanently stretching you a bit.")
@@ -20501,7 +20519,7 @@ class NiminFetishFantasyv0975o_fla:
          if (self.cumAmount() > 0):
             self.doMainText(f" Your cock{self.plural(1)} explode{self.plural(3)} across the ground just before you collapse, forming a nice puddle to splash in.")
          self.doMainText("\n\nAs drunk as he is, the large equan doesn't take long to pull out, cum dribbling in long strands from his huge cock and splattering across his pants, as he sways back towards Firmshaft.")
-         self.doLust(-(self.sen // 2),2,2,5)
+         self.doLust(-Math.floor(self.sen / 2),2,2,5)
       elif self.enemyID == 303: # Octopus Girl
          if (self.gender == 1):
             self.doMainText(f"With a giggle at your vulnerable state, her tentacles wrap about your {self.buttDesc()} butt, weaving into your {self.clothesBottom()} and pulling out your {self.cockDesc()} erection{self.plural(1)}. She takes {self.oneYour(1)} cock{self.plural(1)} and fondles it with the slimy appendages, making sure it's nice and hard.",True)
@@ -20558,9 +20576,9 @@ class NiminFetishFantasyv0975o_fla:
                self.clitSize += 4
                self.vulvaSize += 2
          if ((self.gender == 2 or self.gender == 3) and self.pregCheck(1)):
-            self.doLust(-(self.sen // 2),2,2)
+            self.doLust(-Math.floor(self.sen / 2),2,2)
          else:
-            self.doLust(-(self.sen // 2),2,1)
+            self.doLust(-Math.floor(self.sen / 2),2,1)
       elif self.enemyID == 304: # Little Big Bunny-Man
          if (self.vagTotal > 0 and self.vagLimit() > 80):
             self.doMainText(f"A smirk crosses the bunny-man's face as you fall before him, your cunt{self.plural(2)} dripping with arousal. His own conical prick twitches in his sheath at the size of you gaping maw, even in your reduced state, eager to hop in and make you his new bunny-hole. He falls to his knees and wraps his arms around your body, his hips quickly closing the gap between your heights. You can hardly tell at first that {self.oneYour(2)} slit{self.plural(2)} is being penetrated, the narrow tip relatively small. But as he quickly plows the rest of his length in, your eyes nearly cross from the rapid change in girth.",True)
@@ -20575,7 +20593,7 @@ class NiminFetishFantasyv0975o_fla:
             self.doImpregnate(self.enemyBaby())
          else:
             self.doMainText(f"A smirk crosses the bunny-man's face as you fall to your {self.legDesc(6)}. He lunges forward to hold you up, his conical prick bobbing before your face. So lost in lust, your mouth subconsciously opens as you feel a supple tip press against it, sucking it in until you quickly find your jaw wedged open by the increasing girth. Just the tip of his penis is all that manages to fit inside, but he doesn't seem to care. He twirls what little there is around the inside of your mouth, pressing it down against your tongue. Your tongue lashes back, your throat sucking it in as it tries to gulp down the pre that leaks.\n\nThough he can't face-fuck you too well, he seems perfectly happy pleasuring the rest of his shaft with a hand. With each stroke of his length, your whole body bobs to keep up with the stiffness that holds your mouth agape. Until he comes to an abrupt halt...\n\nYour throat goes numb as hot seed gushes down it. You don't even have time to swallow, it's so forceful and so plentiful. Some sprays back out from your nose and even your eyes feel wet and slightly sticky from something that isn't tears. Your stomach quickly fills and you feel oh so full... For a moment, your hands can wrap around your belly as it distends to obscene sizes.\n\nHowever, oddly, you soon find yourself sucking in more and more of his length. Your extended belly shrinks as it's able to contain more of the stuff, your throat regaining composure. As your body grows out from his hands, he suddenly pulls out from you, spraying the last bit from your face. He quickly hops away as you begin to nearly grow to your normal size, though your head is still oversexed.",True)
-         self.doLust(-(self.sen // 2),2,1,5)
+         self.doLust(-Math.floor(self.sen / 2),2,1,5)
       elif self.enemyID == 305: # Little Big Bunny-Girl
          if ((self.gender == 1 or self.gender == 3 and self.percent() > 50) and (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280)):
             self.doMainText(f"A smile crosses the bunny-girl's face as you fall before her, your cock{self.plural(1)} pushing at your {self.clothesBottom()}. She ducks down and releases your member{self.plural(1)} with one hand while her other disappears between her legs. It quickly reappears as she stands up and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your cock{self.plural(1)} with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your length{self.plural(1)}. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your cock{self.plural(1)} can't tell if {self.plural(7)} inside or not, only feeling a constant rubbing against {self.plural(5)} sensitive skin. And despite the fervent efforts on your manhood, the bunny-girl still manages to climax first, as she lets out a succulent shout of ecstasy. Her walls clamp around your appendage{self.plural(1)}, sucking {self.plural(9)} in and tugging {self.plural(9)} along with her as her bouncing only grows more enthused.\n\nIt doesn't take long until your own arousal begins to build pressure, though you find that pressure to grow much greater than you would have expected. The bunny-girl's pussy seems to only be growing tighter and tighter, lifting her from your body as your cock{self.plural(1)} push her away. When you finally reach orgasm, she groans loudly as her belly fills and swells. Opening your eyes, you realize you're growing larger, almost your full size! She flies off your erection{self.plural(1)} with a slick pop before she is really harmed and hops away, leaving you to finish gushing outside of the cave...",True)
@@ -20599,7 +20617,7 @@ class NiminFetishFantasyv0975o_fla:
                self.doMainText(" She humps you furiously, her speed and strength quickly bringing herself to her first orgasm. Yet, that doesn't stop her as she continues to jerk across your body, with even more enthusiasm than before. All the rubbing of soft supple flesh against your genitals every pass makes you begin to feel a little tingly as well.\n\nHowever, just as you're coming close to orgasm, you can feel her legs spread more and more, her efforts no longer making it across your entire body. Nearly growing to your full size as you climax, the bunny-girl comes to a halt and dashes away while continuing to jerk her erect clit, her advantage over you lost.")
             if (self.cockTotal > 0):
                self.cumAmount()
-         self.doLust(-(self.sen // 2),2,1,3,4)
+         self.doLust(-Math.floor(self.sen / 2),2,1,3,4)
       elif self.enemyID == 306: # Fierce Naga
          self.doMainText(f"Pleased with your less-threatening state, she takes her time to tower over your prone body and wraps her tail around your {self.hipDesc()} hips and {self.legDesc(2)}, holding you still with her strength and leans in to taste her prey...\n\nPulling {self.pullUD(1)} your {self.clothesTop()}, she licks over the {self.skinDesc()} of your belly with her long serpentine tongue. She glides down, constricting her tail in an oscillating fashion to help pull your {self.clothesBottom()} {self.pullUD(2)} enough to access your",True)
          if (self.cockTotal > 0):
@@ -20612,7 +20630,7 @@ class NiminFetishFantasyv0975o_fla:
             self.cumAmount()
          else:
             self.doMainText(f" {self.vulvaDesc()} cunt{self.plural(2)}. Happy with what she finds, she slips a few fingers through your lips, followed by the long tongue.\n\nSatisfied with how swollen and aroused you are, she lifts the sash around her waist to expose her own bulbous vulva. A hungry pink amidst the green scales, she promptly thrusts it against your crotch, mashing your sexes together. Holding you tightly with her tail, she grinds against you, pushing you up from underneath to force you against her even more. Her arms wrap around your neck as she leans down, surrounding your face with her silk-covered bosom and pressing your {self.skinDesc()} to her scales.\n\nWith a whole tail of muscle the help her move, her hips gyrate so powerfully against you that it doesn't take long before you both reach climax. A concerted moan fills the air while her claws dig into you, her tail 'hugging' you even more.\n\nHowever, after a few moments of bliss, you're allowed to breath. The naga's tail unwinds, stretching out as she relishes in the last few moments of orgasm, her wings fanning out and back arching high. Then, she drops her sash with a pleased smile and slithers away over the dunes.")
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       elif self.enemyID == 307: # Minotaur
          self.doMainText(f"The Minotaur grunts. \"Good. Could use a fuck!\"\n\nNot exactly a romantic, he lifts you by your {self.legDesc(8)} and pulls off your {self.clothesBottom()} so it's out of the way. He continues to {self.legVerb(3)} your {self.legDesc(2)}, inspecting what you have before he goes further. Shrugging at what he finds, he waggles his hips so that his big fat bulky cock flops out from behind his loin cloth. Already stiff and willing to go, pre dribbles down from the tip and lubes up your entire crotch, running into all your cracks and crevices.",True)
          if (self.vagTotal > 0 and self.vagLimit() > 72):
@@ -20628,7 +20646,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(".\n\nWith all the flurry of the abrupt orgasm, the Minotaur then lets go of you, making you shiver as you slide down his shaft and plop onto the floor, seed pooling out of your orifice...")
          if (self.vagTotal > 0 and self.vagLimit() > 72):
             self.doImpregnate(self.enemyBaby())
-         self.doLust(-(self.sen // 2),2,2)
+         self.doLust(-Math.floor(self.sen / 2),2,2)
       elif self.enemyID == 308: # Freaky Little Girl
          self.doMainText(f"Seeing you in your helpless state, the girl growls in delight. \"MMM... PREY~,\" Mr. Snuggles drops to the floor as her attention grows more focused upon you. Only then do you notice the large hole between the doll's legs, looking a bit moist as though it had been used many times and never able to dry. The reason for its existence also begins to grow quite clear while the freaky little girl paws at her own crotch.\n\nEach time she lifts her skirt with her fondling, you can see a bulge growing and pressing at her small panties. At first it looks like a rather large clitoris, but it continues to sweel rapidly. It bows outward, a meaty length of flesh bunching up within. Eventually, the waistband of the panties gives way, letting the phallic monster loose and lifting her skirt altogether. It coninues to grow all the way up to the little girl's chest, thick and throbbing and eager for a good meal. The cock is large and seems even larger compared to the rest of her small body, growing upward from her dripping feminine sex that is exposed from the fallen undies.\n\nShe rubs herself a bit, pleased to have it big and horny again, perfect for impaling you~ She bends down to the floor, scratching at the ground with her nails. Walking on all fours like and animal, her cock thumps up and down against her chest as she creeps toward you, sniffing at you to make sure you're ready. She crawls up between your legs, nipping here and there at your {self.currentClothes()}, until she finally reaches your chest. She pulls {self.pullUD(1)} your {self.clothesTop()} with her teeth, exposing your {self.nipDesc()} nipples which she promptly bites down upon. Hearing you gasp in slight pain and pleasure, ",True)
          if (self.lactation > 0):
@@ -20652,7 +20670,7 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(".\n\nThe little girl quickly begins to thrust her small hips, powerfully drilling into you again and again as she keeps her jaw clamped around your nipple, not letting go as she fucks your brains out. Each thrust makes your whole body jerk, her strength far more formidable than her figure might let on. It doesn't take long before you feel her spraying her seed inside of you, but that doesn't stop her. She continues on and on, bringing you to your own high from the rough treatment, and she doesn't stop there...")
          if (self.vagTotal > 0):
             self.doMultiImpregnate(self.enemyBaby(),2)
-         self.doLust(-(self.sen // 2),2,2)
+         self.doLust(-Math.floor(self.sen / 2),2,2)
       elif self.enemyID == 309: # Succubus
          self.doMainText(f"The succubus grins as you give yourself to her. \"That's right, you know what's best for you~\"\n\nHigh-heels click on either side of you as the she-devil positions herself over you. She zips her red panties right down the center, making them part to expose her engorged large feminine lips. The things look plump and practically made for intense fucking, which only leads you to be even more anxious for her to take you. However, before you can attempt to lunge at her, she squats down and sits upon your {self.bellyDesc()} belly and leans forward to grab your arms up above your head. Pinning you to the floor, her ample bosom engulfs your face, burrowing you inside her cleavage while her hips grind against you, her plush pussy slickening up your {self.skinDesc()}.",True)
          if (self.cockTotal > 0 or self.vagTotal > 0 and self.clitSize > 20):
@@ -20676,14 +20694,14 @@ class NiminFetishFantasyv0975o_fla:
          self.stats(-2,-1,2,0)
          self.tallness -= 2
          self.body -= 2
-         self.doLust(-(self.sen // 2),2,1,2)
+         self.doLust(-Math.floor(self.sen / 2),2,1,2)
       self.outputMainText("\n\nYou pass out in a puddle of mixed sensual fluids...")
       if (self.inDungeon):
          self.regionChange(self.currentZone)
          self.inDungeon = False
       self.currentState = 1
-      self.hrs = 2 + self.percent() // 20
-      self.exhaustion -= self.percent() // 20
+      self.hrs = 2 + Math.floor(self.percent() / 20)
+      self.exhaustion -= Math.floor(self.percent() / 20)
       self.skipExhaustion = True
       self.doEnd()
 
@@ -20750,7 +20768,7 @@ class NiminFetishFantasyv0975o_fla:
       self.dmgRed = 0
       self.dmg = 0
       if (self.sen > 0):
-         self.dmgRed = (100 - self.sen) // 2
+         self.dmgRed = Math.floor((100 - self.sen) / 2)
       if (self.dmgRed > self.level):
          self.dmgRed = self.level
       self.dmg = Math.floor(self.percent() / eweapon + self.eStr / 2 - self.dmgRed)
@@ -20797,17 +20815,17 @@ class NiminFetishFantasyv0975o_fla:
       elif self.enemyID == 202:
          self.setEnemystats(45,26,16,20,11,40,1,1,0,20,203)
       elif self.enemyID == 301:
-         self.setEnemystats(50,12,10,24,30,40,2,4,self.percent() // 10,25,204)
+         self.setEnemystats(50,12,10,24,30,40,2,4,Math.floor(self.percent() / 10),25,204)
       elif self.enemyID == 302:
-         self.setEnemystats(60,28,9,18,14,30,1,4,self.percent() // 10,25,205)
+         self.setEnemystats(60,28,9,18,14,30,1,4,Math.floor(self.percent() / 10),25,205)
       elif self.enemyID == 303:
          self.setEnemystats(150,45,30,25,35,20,2,4,0,50,216)
       elif self.enemyID == 304:
-         self.setEnemystats(55,35,30,35,45,10,1,4,self.percent() // 10,30,222)
+         self.setEnemystats(55,35,30,35,45,10,1,4,Math.floor(self.percent() / 10),30,222)
       elif self.enemyID == 305:
-         self.setEnemystats(50,35,30,45,35,10,2,4,self.percent() // 10,30,222)
+         self.setEnemystats(50,35,30,45,35,10,2,4,Math.floor(self.percent() / 10),30,222)
       elif self.enemyID == 306:
-         self.setEnemystats(100,50,20,40,2,40,2,4,self.percent() // 5,55,230)
+         self.setEnemystats(100,50,20,40,2,40,2,4,Math.floor(self.percent() / 5),55,230)
       elif self.enemyID == 307:
          self.setEnemystats(250,70,20,50,20,10,1,4,Math.floor(self.percent() / 4 + 5),50,525)
       elif self.enemyID == 308:
@@ -20856,10 +20874,10 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.percent() <= 40):
                self.doMainText(" your groin. It doesn't hurt much, but you feel a little odd...")
                self.cockChange(1,0)
-               self.doLust(self.percent() // 10,1)
+               self.doLust(Math.floor(self.percent() / 10),1)
             else:
                self.doMainText(" your groin. Though the endeavor proves fruitless, as all its venom manages to do is arouse you a little.")
-               self.doLust(self.percent() // 20,1)
+               self.doLust(Math.floor(self.percent() / 20),1)
       elif self.enemyID == 102: # Desiccating Dust Devil
          if (attack <= 30):
             self.doMainText(f"\n\nThe sentient dust devil overcomes you and whooshes about your body, getting sand all over your {self.skinDesc()} and into some crevices you'd rather not think of, making you very uncomfortable and wearing away some of your sensitivity.")
@@ -20868,16 +20886,16 @@ class NiminFetishFantasyv0975o_fla:
          elif (attack <= 60 and (self.moistCalc(1) > 11 and self.cockTotal > 0 or self.moistCalc(2) > 11 and self.vagTotal > 0 or self.milkEngorgement > 200 and self.milkEngorgementLevel > 1 or self.udderEngorgement > 200 and self.udderEngorgementLevel > 1 and self.udders)):
             if (self.milkEngorgement > 200 and self.milkEngorgementLevel > 1):
                self.doMainText(f"\n\nThe whirling sand leaps out at your {self.boobDesc()} chest and laps up some of the milk that spills from it, sucking it back in and strengthening the devil's endurance.")
-               self.doeHP(5 + self.percent() // 20)
+               self.doeHP(5 + Math.floor(self.percent() / 20))
             elif (self.udderEngorgement > 200 and self.udderEngorgementLevel > 1 and self.udders):
                self.doMainText(f"\n\nThe whirling sand leaps out at your {self.udderDesc()} udder and laps up some of the milk that spills from it, sucking it back in and strengthening the devil's endurance.")
-               self.doeHP(5 + self.percent() // 20)
+               self.doeHP(5 + Math.floor(self.percent() / 20))
             elif (self.moistCalc(1) > 11 and self.cockTotal > 0):
                self.doMainText(f"\n\nThe whirling sand across the {self.cockDesc()} bulge in your {self.clothesBottom()} and laps up some of the slick lubrication that spills from it, sucking the stuff back in and strengthening the devil's endurance.")
-               self.doeHP(5 + self.percent() // 20)
+               self.doeHP(5 + Math.floor(self.percent() / 20))
             elif (self.moistCalc(2) > 11 and self.vagTotal > 0):
                self.doMainText(f"\n\nThe whirling sand licks up {self.legWhere(1)} your {self.legDesc(2)}, across your {self.vulvaDesc()} groin, and laps up some of the slick lubrication that spills from it, sucking the stuff back in and strengthening the devil's endurance.")
-               self.doeHP(5 + self.percent() // 20)
+               self.doeHP(5 + Math.floor(self.percent() / 20))
          elif (attack <= 90):
             chance = self.percent()
             if (chance < 12 and self.cockTotal > 0):
@@ -21064,14 +21082,14 @@ class NiminFetishFantasyv0975o_fla:
          elif (attack > 85):
             self.doMainText("\n\nPlayfully, she lunges forward and bites you... hard. The pain is quite noticeable, but her giggling afterwards might also arouse you slightly, if you didn't know better...")
             self.doHP(-self.eDmg(7))
-            self.doLust(self.lib // 6,1)
+            self.doLust(Math.floor(self.lib / 6),1)
          else:
             self.doMainText("\n\nIn her frustration, she claws at you.")
             self.doHP(-self.eDmg(10))
       elif self.enemyID == 302: # Drunken Equan
          if (attack > 30 and attack <= 60 and self.eLust >= 20):
             self.doMainText("\n\nThe drunken equan adjusts the giant bulge in his pants, grunting as a large gob of pre smears across his knee and blotches his pants. While not the most erotic display, whatever he's drinking makes the stuff smell extremely enticing...")
-            self.doLust(self.lib // 5,1)
+            self.doLust(Math.floor(self.lib / 5),1)
          elif (attack > 60 and attack <= 80):
             self.doMainText("\n\nHe lifts his large mug up to his lips, taking a big swig. He burps after downing it, his wounds seemingly less severe than before.")
             self.doeHP(Math.floor(self.percent() / 10 + 5))
@@ -21106,10 +21124,10 @@ class NiminFetishFantasyv0975o_fla:
                if (self.vagLimit() < 20):
                   self.doMainText(f" Not quite satisfied, the tentacle{self.plural(2)} plunge{self.plural(4)} in deep, stretching you wider than before.")
                   self.vagChange(2,0)
-               self.doLust(self.lib // 3,1)
+               self.doLust(Math.floor(self.lib / 3),1)
             if (self.cockTotal > 0):
                self.doMainText(f" A few wrap around your {self.hipDesc()} hips and pull out your {self.cockDesc()} erection{self.plural(1)} from your {self.clothesBottom()}. Your hips buck as she wraps her tentacle{self.plural(1)} around your shaft{self.plural(1)}, the slick skin seemingly gauging your girth more by touch than sight.")
-               self.doLust(self.lib // 3,1)
+               self.doLust(Math.floor(self.lib / 3),1)
             self.doMainText(f" Her tentacles then wrap around your {self.buttDesc()} bum with a hug as she leans in, her breasts pressing against your {self.boobDesc()} chest. She kisses you lightly on the lips, slipping her tongue into your mouth. The sweet taste lingers for a moment, making you shiver in pleasure, before she moves back. Her tentacles then slime through your {self.clothesBottom()}, leaving your {self.buttDesc()} ass nice and wet before she gives it a light smack.")
             self.doLust(Math.floor(10),1)
             self.doHP(-2)
@@ -21232,13 +21250,13 @@ class NiminFetishFantasyv0975o_fla:
             self.doMainText("\n\nWith his cock growing erect out the side of his loin cloth, he pauses his assault for a moment to take care of himself... right in front of you. His large hand wraps around his thick cock and furiously begins to masturbate, the skin from his shaft dragging over the wide head again and again so quickly that it looks like it's winking. Then, with a grunt, a geyser of spunk sprays in your direction like a firehose.")
             if (self.percent() > self.str):
                self.doMainText(" It hits you with such force that you're blasted back against the wall and lose your breath for a moment, giving the Minotaur a chance for a followup attack while you catch your breath and wipe off some of the heady thick spooge.")
-               self.doLust(self.eLust // 2,1)
+               self.doLust(Math.floor(self.eLust / 2),1)
                self.eLust -= 20
                if (self.currentState == 2):
                   self.enemyAttack()
             else:
                self.doMainText(" The spooge splatters all over you and the heady scent fills your nostrils...")
-               self.doLust(self.eLust // 2,1)
+               self.doLust(Math.floor(self.eLust / 2),1)
                self.eLust -= 20
          else:
             self.doMainText("\n\nPOW! He punches you right in the kisser.")
@@ -21337,7 +21355,7 @@ class NiminFetishFantasyv0975o_fla:
                   self.doLust(15,1)
          elif (attack <= 65):
             self.doMainText("\n\nShe stops for a moment and one hand dips into her cleavage while the other slinks between her thighs. Her tail curls like a finger hithering you closer as she rocks her hips and jounces her bosom. \"This is so much fun, don't you think~?\" She tries to tempt you with a rather sensual tone.")
-            self.doLust(self.lib // 3,1)
+            self.doLust(Math.floor(self.lib / 3),1)
          elif (attack <= 85 and self.eHP < 80):
             self.doMainText("\n\nFeeling a bit winded from your attacks, she plucks a vial from her belt and brings it to her lips. As she drinks from it, she seems to be reinvigorated.")
             self.doeHP(Math.floor(self.percent() / 5 + 10))
@@ -21439,7 +21457,7 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText("\n\nFollowed by another...")
                   if (birthCount > 3):
                      self.doMainText("\n\nAnd another...")
-                  self.doLust(-(self.sen // 4),2,2)
+                  self.doLust(-Math.floor(self.sen / 4),2,2)
                   birthCount += 1
          elif (self.cockSnakePreg - time <= 10):
             self.doMainText(f"\n\nYour {self.bellyDesc()} belly twists and jiggles about as the snake inside boinks about your womb. It seems to know all the best places to touch, greatly arousing you over time with its squirming, teasing you much more vigorously to make you thirst for cum down below...")
@@ -21651,7 +21669,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4):
                self.doMainText(f"\n\nYou suddenly can't breath as your chest tenses up. For an instant, you feel your {self.nipDesc()} nipples soften.\n\nMilk sprays with fervor all around you, spewing from your nipples like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your {self.clothesTop()} from the pressure of the gushing. But thankfully, the fabric survives and your nipples die back down, allowing you to see again... So much milk lost, but your breasts have returned to normal in those few moments...")
                self.milkAmount(1)
-               self.doLust(-(self.sen // 2),2,3)
+               self.doLust(-Math.floor(self.sen / 2),2,3)
             elif (self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2):
                self.doMainText(f"\n\nJets of milk spray from beneath your {self.clothesTop()} as the milk suppressant wears off. It quickly dies down without losing much milk, but you're now leaking again.")
                self.milkEngorgement = ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2
@@ -21668,7 +21686,7 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.udders):
                self.doMainText(f"\n\nYou suddenly feel sick as your belly tenses up. For an instant, you feel your {self.teatDesc()} teats soften.\n\nMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your {self.clothesBottom()} from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...")
                self.milkAmount(1)
-               self.doLust(-(self.sen // 2),2,4)
+               self.doLust(-Math.floor(self.sen / 2),2,4)
             elif (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2 and self.udders):
                self.doMainText(f"\n\nJets of milk spray from beneath your {self.clothesBottom()} as the milk suppressant wears off. It quickly dies down without losing much milk, but you're now leaking again.")
                self.udderEngorgement = ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 2
@@ -23000,7 +23018,7 @@ class NiminFetishFantasyv0975o_fla:
                   if (birthCount > 3):
                      self.doMainText("\n\nAnd another...")
                   birthCount += 1
-                  self.doLust(-(self.sen // 4),2,2)
+                  self.doLust(-Math.floor(self.sen / 4),2,2)
             self.cockSnakePreg = 0
       if ((self.vagSize + sizeChange <= 0 or self.vagTotal + totalChange < 1) and self.vagSize > 0 and self.vagTotal > 0): #Loose all vag
          self.doMainText(f"\n\nSudden intense cramping makes you double over. A slight moistness in your {self.clothesBottom()} causes your hand to inspect the situation. It reaches your once {self.vulvaDesc()} vulva just in time to feel it shrink to nothing, sealing over with {self.skinDesc()}. It seems you have lost your vagina{self.plural(2)}, ")
@@ -23297,52 +23315,52 @@ class NiminFetishFantasyv0975o_fla:
          for i in range(0,self.pregArray.length,5):
             if (not self.pregArray[i]):
                if erace == 1:
-                  self.pregArray[i + 2] = 140 + self.percent() // 5 + extra * 70
+                  self.pregArray[i + 2] = 140 + Math.floor(self.percent() / 5) + extra * 70
                   self.pregArray[i + 4] = extra
                elif erace == 2:
-                  self.pregArray[i + 2] = 210 + self.percent() // 5 + extra * 100
+                  self.pregArray[i + 2] = 210 + Math.floor(self.percent() / 5) + extra * 100
                   self.pregArray[i + 4] = extra
                elif erace == 3:
-                  self.pregArray[i + 2] = 110 + self.percent() // 5 + extra * 40
+                  self.pregArray[i + 2] = 110 + Math.floor(self.percent() / 5) + extra * 40
                   self.pregArray[i + 4] = extra * 2
                elif erace == 4:
-                  self.pregArray[i + 2] = 90 + self.percent() // 5 + extra * 35
+                  self.pregArray[i + 2] = 90 + Math.floor(self.percent() / 5) + extra * 35
                   self.pregArray[i + 4] = extra * 2
                elif erace == 5:
-                  self.pregArray[i + 2] = 240 + self.percent() // 5 + extra * 120
+                  self.pregArray[i + 2] = 240 + Math.floor(self.percent() / 5) + extra * 120
                   self.pregArray[i + 4] = extra
                elif erace == 6:
-                  self.pregArray[i + 2] = 80 + self.percent() // 10 + extra * 60
+                  self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 10) + extra * 60
                   self.pregArray[i + 4] = extra * 3
                elif erace == 7:
-                  self.pregArray[i + 2] = 50 + self.percent() // 10 + extra * 40
+                  self.pregArray[i + 2] = 50 + Math.floor(self.percent() / 10) + extra * 40
                   self.pregArray[i + 4] = extra * 3
                elif erace == 8:
-                  self.pregArray[i + 2] = 40 + self.percent() // 10 + extra * 60
+                  self.pregArray[i + 2] = 40 + Math.floor(self.percent() / 10) + extra * 60
                   self.pregArray[i + 4] = extra * 5
                elif erace == 9:
-                  self.pregArray[i + 2] = 90 + self.percent() // 10 + extra * 40
+                  self.pregArray[i + 2] = 90 + Math.floor(self.percent() / 10) + extra * 40
                   self.pregArray[i + 4] = extra
                elif erace == 10:
-                  self.pregArray[i + 2] = 180 + self.percent() // 10 + extra * 70
+                  self.pregArray[i + 2] = 180 + Math.floor(self.percent() / 10) + extra * 70
                   self.pregArray[i + 4] = extra * 2
                elif erace == 11:
-                  self.pregArray[i + 2] = 120 + self.percent() // 10 + extra * 50
+                  self.pregArray[i + 2] = 120 + Math.floor(self.percent() / 10) + extra * 50
                   self.pregArray[i + 4] = extra * 2
                elif erace == 12:
-                  self.pregArray[i + 2] = 50 + self.percent() // 10 + extra * 40
+                  self.pregArray[i + 2] = 50 + Math.floor(self.percent() / 10) + extra * 40
                   self.pregArray[i + 4] = extra * 4
                elif erace == 100:
-                  self.pregArray[i + 2] = 80 + self.percent() // 10 + extra * 30
+                  self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 10) + extra * 30
                   self.pregArray[i + 4] = extra * 2
                elif erace == 101:
-                  self.pregArray[i + 2] = 220 + self.percent() // 5 + extra * 110
+                  self.pregArray[i + 2] = 220 + Math.floor(self.percent() / 5) + extra * 110
                   self.pregArray[i + 4] = extra
                elif erace == 307:
-                  self.pregArray[i + 2] = 280 + self.percent() // 5 + extra * 140
+                  self.pregArray[i + 2] = 280 + Math.floor(self.percent() / 5) + extra * 140
                   self.pregArray[i + 4] = extra
                elif erace == 308:
-                  self.pregArray[i + 2] = 80 + self.percent() // 5 + extra * 30
+                  self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 5) + extra * 30
                   self.pregArray[i + 4] = extra * 2
                self.pregArray[i + 1] = erace
                self.pregArray[i] = True
@@ -23501,11 +23519,11 @@ class NiminFetishFantasyv0975o_fla:
       elif pregnancyType == 501:
          self.doMainText(f" Thick bull-cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...")
          self.doMultiImpregnate(101,5)
-         self.doLust(-(self.sen // 4),2,2)
+         self.doLust(-Math.floor(self.sen / 4),2,2)
       elif pregnancyType == 502:
          self.doMainText(f" Your own thick cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...")
          self.doMultiImpregnate(self.dominant,3)
-         self.doLust(-(self.sen // 4),2,2)
+         self.doLust(-Math.floor(self.sen / 4),2,2)
       elif pregnancyType == 504:
          self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
 
@@ -24914,7 +24932,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    @cache
    def _showButtonsCalc(buttonNum:int):
-      return (200+(160*((buttonNum-1)%4)),30+(66*((buttonNum-1)//4)))
+      return (200 + (160 * ((buttonNum - 1) % 4)), 30 + (66 * Math.floor((buttonNum - 1) / 4)))
 
    def showButtons(self, buttons:ButtonList, hideDiscard=True):
       """
@@ -24962,7 +24980,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    @cache
    def _showAmountCalc(buttonNum:int):
-      return (310+(160*((buttonNum-1)%4)),63+(66*((buttonNum-1)//4)))
+      return (310 + (160 * ((buttonNum - 1) % 4)), 63 + (66 * Math.floor((buttonNum - 1) / 4)))
 
    def showAmount(self, buttonNum:int):
       if not self.amountLabelsVisible[buttonNum]:
@@ -24982,7 +25000,7 @@ class NiminFetishFantasyv0975o_fla:
    @staticmethod
    @cache
    def _showSidePanelCalc(buttonNum:int):
-      return (823+(83*(buttonNum%4)),210+(32*(buttonNum//4)))
+      return (823 + (83 * (buttonNum % 4)), 210 + (32 * Math.floor(buttonNum / 4)))
 
    def showSidePanel(self):
       if not self.sidepanelvisible:
