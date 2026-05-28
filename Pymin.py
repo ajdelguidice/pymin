@@ -62,9 +62,9 @@ def repintorfloat(number):
       1.05 should be displayed as a float
       1.00 should be displayed as an integer
    """
-   if isinstance(number,int):
+   if isinstance(number, int):
       return number
-   if isinstance(number,str):
+   if isinstance(number, str):
       number = float(number)
    return int(number) if number.is_integer() else number
 
@@ -84,23 +84,26 @@ class ButtonList(list):
    Base index is 1, 0 is invalid
    Starts out with 12 items all set to 0
    """
-   def __init__(self,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0,b8=0,b9=0,b10=0,b11=0,b12=0):
+   def __init__(self, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0, b7=0, b8=0, b9=0, b10=0, b11=0, b12=0):
       super().__init__((b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12))
-   def __getitem__(self,item:int):
+
+   def __getitem__(self, item:int):
       if item > 0:
          return super().__getitem__(item-1)
       elif item == 0:
          raise RangeError("ButtonList; Index can not be 0")
       elif item < 0:
          return super().__getitem__(item)
-   def __setitem__(self,item,value):
+
+   def __setitem__(self, item, value):
       if item > 0:
          super().__setitem__(item-1,value)
       elif item == 0:
          raise RangeError("ButtonList; Index can not be 0")
       elif item < 0:
          super().__setitem__(item,value)
-   def set(self,*args):
+
+   def set(self, *args):
       if len(args) == 12:
          for i in range(12):
             self[i+1] = args[i]
@@ -123,14 +126,14 @@ class PyminButton(itk.itkFrame):
    def __init__(self, master, **kwargs):
       self._command = kwargs.pop("command",_noop)
       text = kwargs.pop("text", '')
-      super().__init__(master,highlightthickness=1,background="#FFFFFF",highlightbackground="#000000",**kwargs)
-      self.label = tkinter.Label(self,anchor="center",background="#FFFFFF",foreground="#000000")
-      self.bind(ckeys.mouseButtonNameToTkname("Left"),self.press)
+      super().__init__(master, highlightthickness=1, background="#FFFFFF", highlightbackground="#000000", **kwargs)
+      self.label = tkinter.Label(self, anchor="center", background="#FFFFFF", foreground="#000000")
+      self.bind(ckeys.mouseButtonNameToTkname("Left"), self.press)
       self.text = text
 
    def bind(self, key, func):
-      super().bind(key,func)
-      self.label.bind(key,func)
+      super().bind(key, func)
+      self.label.bind(key, func)
 
    def press(self, *e):
       if self._state != "disabled":
@@ -138,8 +141,8 @@ class PyminButton(itk.itkFrame):
 
    def update(self):
       nm = self._window.mult
-      self.place(x=self._x*nm,y=self._y*nm,width=self._width*nm,height=self._height*nm,anchor=self._anchor)
-      self.label.pack(fill="both",expand=True)
+      self.place(x=self._x*nm, y=self._y*nm, width=self._width*nm, height=self._height*nm, anchor=self._anchor)
+      self.label.pack(fill="both", expand=True)
 
    def updateText(self):
       self.label['font'] = (self._font, cmath.resizefont(self._fontSize, self._window.fontmult), self._fontStyle)
@@ -1267,7 +1270,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       return self.listFilesInDir(dir_,ext,str.lower)
 
-   def listFilesInDir_SortCustom(self,dir_,ext:list=None,type_:int=0):
+   def listFilesInDir_SortCustom(self, dir_, ext:list=None, type_:int=0):
       """
       Lists all files in directory "dir_" with extension "ext" with custom sort type of "type_"
       """
@@ -2041,10 +2044,10 @@ class NiminFetishFantasyv0975o_fla:
 
    @staticmethod
    @cache
-   def _showButtonsBagCalc(buttonNum:int,choicePage:int):
+   def _showButtonsBagCalc(buttonNum:int, choicePage:int):
       return (buttonNum - (Math.floor(buttonNum / 4) + 1)) + (choicePage * 9 - 9)
 
-   def showButtonsBag(self,buttonText,which:str,discardButton:bool):
+   def showButtonsBag(self, buttonText, which:str, discardButton:bool):
       self.detailedDebug()
       if discardButton:
          self.showDiscard()
@@ -3164,13 +3167,13 @@ class NiminFetishFantasyv0975o_fla:
             self.doReturn()
       self.doListen = doListen
 
-   def sheathSize(self,div):
+   def sheathSize(self, div):
       temp = repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / div,1))
       if self.grammarFixes and temp == 0:
          return 0.1
       return temp
 
-   def cockPlural(self,typeCock,plural):
+   def cockPlural(self, typeCock, plural):
       """
       Determines the correct plurality of a given cock based on "type" and "plural".
       """
@@ -6295,7 +6298,7 @@ class NiminFetishFantasyv0975o_fla:
          return 15
       return 0
 
-   def foodItem(self,ID:int):
+   def foodItem(self, ID:int):
       """
       Function which returns the food value of the item ID
       """
