@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from as3lib import (Array, as3state, cmath, each, Error, RangeError,
+from as3lib import (Array, as3state, cmath, each, Error, Number, RangeError,
                     trace, uint)  # Math
 from as3lib.config import TOML
 from as3lib.helpers import isValidDirectory, textObject
@@ -64,8 +64,6 @@ def repintorfloat(number):
    """
    if isinstance(number, int):
       return number
-   if isinstance(number, str):
-      number = float(number)
    return int(number) if number.is_integer() else number
 
 def strtobool(a:str):
@@ -2369,12 +2367,12 @@ class NiminFetishFantasyv0975o_fla:
    def eVagLimit(self, limit:int):
       return limit + limit * self.moistCalc(1) / 10
 
-   def decGet(self, number:int|float, places:int):
+   def decGet(self, number:Number, places:int):
       """
       Function to return a number as a string with the selectected number of decimal places intact.
       Does not add more if the amount of places is greater than it already has.
       """
-      tempStr = f"{number}"
+      tempStr = str(Number(number))
       tempInt = tempStr.find(".")
       if (tempInt > 0):
          if (places == 0):
@@ -3168,9 +3166,15 @@ class NiminFetishFantasyv0975o_fla:
       self.doListen = doListen
 
    def sheathSize(self, div):
-      temp = repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / div,1))
-      if self.grammarFixes and temp == 0:
-         return 0.1
+      temp = self.decGet(self.cockSize * self.cockSizeMod / div,1)
+      if self.grammarFixes and Number(temp) == 0:
+         return "0.1"
+      return temp
+
+   def sheathSize2(self, div):
+      temp = self.decGet(self.cockSize * self.cockSizeMod / div,1)
+      if self.grammarFixes and Number(temp) == 0:
+         return "less than 0.1"
       return temp
 
    def cockPlural(self, typeCock, plural):
@@ -3285,15 +3289,15 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
       if (self.legType >= 1000):
          if False and self.internalBallsEffectBelly and not self.showBalls:
-            tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
+            tempBellySize = self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1)
          else:
-            tempBellySize = repintorfloat(self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
+            tempBellySize = self.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1)
          tempStr += f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath."
       else:
          if False and self.internalBallsEffectBelly and not self.showBalls:
-            tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1))
+            tempBellySize = self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5,1)
          else:
-            tempBellySize = repintorfloat(self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1))
+            tempBellySize = self.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10,1)
          tempStr += f" Your waist measures {tempBellySize} inches around, sporting a {self.bellyDesc()} belly beneath your {self.clothesTop()}."
       if (self.dominant == 10):
          tempStr += " There's also a bit of extra pudge around your waist, some chubbiness to add to your pig-like nature."
@@ -3306,15 +3310,15 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f" Beneath your {self.clothesBottom()}, the shape of a bucket with milk splashing out over the edges is forever imprinted upon your {self.buttDesc()} hind, marking you as property of the Softlik Dairy Farm."
       if (self.breastSize > 0):
          if self.boobTotal == 2:
-            tempStr += f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, with {self.nipDesc()}"
+            tempStr += f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts. Your bust measures {self.decGet(self.breastSize * 0.5,1)} inches in circumference beyond that of your chest, with {self.nipDesc()}"
          elif self.boobTotal == 4:
-            tempStr += f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts; two pairs of equal size, one close below the other. Your dual busts each measure {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, with {self.nipDesc()}"
+            tempStr += f"\n\nUpon your chest heaves {self.boobTotal} {self.boobDesc()} breasts; two pairs of equal size, one close below the other. Your dual busts each measure {self.decGet(self.breastSize * 0.5,1)} inches in circumference beyond that of your chest, with {self.nipDesc()}"
          elif self.boobTotal == 6:
-            tempStr += f"\n\nUpon your chest and down to your belly heaves {self.boobTotal} {self.boobDesc()} breasts; three pairs diminishing in size the lower they go. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.5,1))} inches in circumference beyond that of your chest, the next pair measuring {repintorfloat(self.decGet(self.breastSize * 0.25,2))} inches and the next measuring {repintorfloat(self.decGet(self.breastSize * 0.15,2))} inches; each with {self.nipDesc()}"
+            tempStr += f"\n\nUpon your chest and down to your belly heaves {self.boobTotal} {self.boobDesc()} breasts; three pairs diminishing in size the lower they go. Your bust measures {self.decGet(self.breastSize * 0.5,1)} inches in circumference beyond that of your chest, the next pair measuring {self.decGet(self.breastSize * 0.25,2)} inches and the next measuring {self.decGet(self.breastSize * 0.15,2)} inches; each with {self.nipDesc()}"
          elif self.boobTotal == 8:
-            tempStr += f"\n\nUpon your chest and down to your lower belly heaves {self.boobTotal} {self.boobDesc()} breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.38,1))} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
+            tempStr += f"\n\nUpon your chest and down to your lower belly heaves {self.boobTotal} {self.boobDesc()} breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures {self.decGet(self.breastSize * 0.38,1)} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
          elif self.boobTotal == 10:
-            tempStr += f"\n\nUpon your chest and down to just above your crotch heaves {self.boobTotal} {self.boobDesc()} breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures {repintorfloat(self.decGet(self.breastSize * 0.4,1))} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
+            tempStr += f"\n\nUpon your chest and down to just above your crotch heaves {self.boobTotal} {self.boobDesc()} breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures {self.decGet(self.breastSize * 0.4,1)} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
          if (self.dominant == 5):
             tempStr += "teats"
          else:
@@ -3322,11 +3326,11 @@ class NiminFetishFantasyv0975o_fla:
          if (self.nipType == 2):
             tempStr += " hidden within slits in your areola."
          elif (self.lust < 50):
-            tempStr += f" softly bulging {repintorfloat(self.decGet(self.nippleSize * 0.1,1))} inches beyond that."
+            tempStr += f" softly bulging {self.decGet(self.nippleSize * 0.1,1)} inches beyond that."
          elif (self.lust < 75):
-            tempStr += f" stiffly standing {repintorfloat(self.decGet(self.nippleSize * 0.2,1))} inches beyond that."
+            tempStr += f" stiffly standing {self.decGet(self.nippleSize * 0.2,1)} inches beyond that."
          else:
-            tempStr += f" achingly hard and reaching {repintorfloat(self.decGet(self.nippleSize * 0.25,1))} inches beyond that."
+            tempStr += f" achingly hard and reaching {self.decGet(self.nippleSize * 0.25,1)} inches beyond that."
          if (self.nipType == 1):
             tempStr += " With four nubs each, your breasts look quite similar to cows' udders."
          if (self.lactation > 0):
@@ -3344,7 +3348,7 @@ class NiminFetishFantasyv0975o_fla:
             tempStr += f"\n\nJust behind your tauric belly, squishing between your rear legs, hangs a {self.udderDesc()} udder "
          elif (self.cowAffinity >= 55):
             tempStr += f"\n\nJust below your belly hangs a {self.udderDesc()} udder "
-         tempStr += f"with 4 {self.teatDesc()} teats, each {repintorfloat(self.decGet(self.teatSize * 0.2,1))} inches long"
+         tempStr += f"with 4 {self.teatDesc()} teats, each {self.decGet(self.teatSize * 0.2,1)} inches long"
          if (self.udderLactation > 0):
             if self.udderEngorgementLevel == 2:
                tempStr += " and dribbling milk from your engorgement"
@@ -3360,25 +3364,15 @@ class NiminFetishFantasyv0975o_fla:
          tempStr += f"\n\nAbove your groin rests {self.cockTotal} {self.cockDesc()} wang{self.plural(1)}."
          if (self.lust <= 30):
             if (self.humanCocks > 0):
-               tempStr += f" {self.humanCocks} dangle{self.cockPlural(1,3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, with smooth skin and a mushroom-like glans, just like a human's."
+               tempStr += f" {self.humanCocks} dangle{self.cockPlural(1,3)} flaccidly from your groin, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.25,2)} inches down, with smooth skin and a mushroom-like glans, just like a human's."
             if (self.horseCocks > 0):
-               temp = repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 12,1))
-               if self.grammarFixes and temp == 0:
-                  temp = "less than 0.1"
-               else:
-                  temp = f"around {temp}"
-               tempStr += f" {self.horseCocks} hide{self.cockPlural(2,3)} within a fuzzy sheath that protrudes from your groin, {temp} inches in thickness."
+               tempStr += f" {self.horseCocks} hide{self.cockPlural(2,3)} within a fuzzy sheath that protrudes from your groin, {self.sheathSize2(12)} inches in thickness."
             if (self.wolfCocks > 0 or self.catCocks > 0 or self.rabbitCocks > 0):
-               temp = repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 16,1))
-               if self.grammarFixes and temp == 0:
-                  temp = "less than 0.1"
-               else:
-                  temp = f"around {temp}"
-               tempStr += f" {self.wolfCocks + self.catCocks + self.rabbitCocks} hide{self.cockPlural(3,3)} within a fuzzy sheath that protrudes from your groin, {temp} inches in thickness."
+               tempStr += f" {self.wolfCocks + self.catCocks + self.rabbitCocks} hide{self.cockPlural(3,3)} within a fuzzy sheath that protrudes from your groin, {self.sheathSize2(16)} inches in thickness."
             if (self.lizardCocks > 0):
                tempStr += f" {self.lizardCocks} hide{self.cockPlural(6,3)} in a slit, flush against your body."
             if (self.bugCocks > 0):
-               tempStr += f" {self.bugCocks} dangle{self.cockPlural(12,3)} flaccidly from your groin, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.25,2))} inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
+               tempStr += f" {self.bugCocks} dangle{self.cockPlural(12,3)} flaccidly from your groin, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.25,2)} inches down, its four spikes around glans soft and blunt at the moment, the bumpy ridge underneath soft, almost like a bug's."
             if (self.moistCalc(1) > 2):
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, "
                if (self.horseCocks > 0 or self.wolfCocks > 0 or self.catCocks > 0 or self.rabbitCocks > 0):
@@ -3386,19 +3380,19 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" running down your thighs as it continually blotches your {self.clothesBottom()}, even though you're barely aroused at all. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
          elif (self.lust <= 70):
             if (self.humanCocks > 0):
-               tempStr += f" {self.humanCocks} stand{self.cockPlural(1,3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with smooth skin and a mushroom-like glans, just like a human's."
+               tempStr += f" {self.humanCocks} stand{self.cockPlural(1,3)} erect, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches up, with smooth skin and a mushroom-like glans, just like a human's."
             if (self.horseCocks > 0):
-               tempStr += f" {self.horseCocks} droop{self.cockPlural(2,3)} out of a {self.sheathSize(12)}-inch thick smooth sheath, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
+               tempStr += f" {self.horseCocks} droop{self.cockPlural(2,3)} out of a {self.sheathSize(12)}-inch thick smooth sheath, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches down your thigh with a ring of prepuce halfway down its length and a flat head at the end, just like a horse's."
             if (self.wolfCocks > 0):
-               tempStr += f" {self.wolfCocks} poke{self.cockPlural(3,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip{self.cockPlural(3,1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a wolf's."
+               tempStr += f" {self.wolfCocks} poke{self.cockPlural(3,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and hard, smooth and covered in veins with a narrowing tip{self.cockPlural(3,1)}, standing {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, just like a wolf's."
             if (self.catCocks > 0):
-               tempStr += f" {self.catCocks} poke{self.cockPlural(4,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip{self.cockPlural(4,1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a cat's."
+               tempStr += f" {self.catCocks} poke{self.cockPlural(4,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, pink and soft, with tender barbs near the narrowing tip{self.cockPlural(4,1)}, standing {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, just like a cat's."
             if (self.lizardCocks > 0):
-               tempStr += f" {self.lizardCocks} poke{self.cockPlural(6,3)} through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, probably like a reptile's."
+               tempStr += f" {self.lizardCocks} poke{self.cockPlural(6,3)} through the slit, stretching it wide as the purple flesh pulses with the ribbing along the top slightly stiff and the bulbous head feeling squishy to the touch, the narrow tip reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, probably like a reptile's."
             if (self.rabbitCocks > 0):
-               tempStr += f" {self.rabbitCocks} poke{self.cockPlural(7,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip{self.cockPlural(7,1)}, somewhat like a carrot, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a rabbit's."
+               tempStr += f" {self.rabbitCocks} poke{self.cockPlural(7,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and pointy, gently narrowing to their tip{self.cockPlural(7,1)}, somewhat like a carrot, standing {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, just like a rabbit's."
             if (self.bugCocks > 0):
-               tempStr += f" {self.bugCocks} stand{self.cockPlural(12,3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
+               tempStr += f" {self.bugCocks} stand{self.cockPlural(12,3)} erect, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches up, with four fleshy spikes poking out from the rim of the glans and a sturdy bumpy ridge lining the underside, almost like a bug's."
             if (self.knot):
                tempStr += f" Your cock{self.plural(1)} swell{self.plural(3)} a little near the base, preparing for a chance for the knot{self.plural(1)} to expand."
             if (self.moistCalc(1) > 5):
@@ -3407,21 +3401,21 @@ class NiminFetishFantasyv0975o_fla:
                tempStr += f" Drops of pre slowly bead at the tip of your cock{self.plural(1)}, running down your thighs as it blotches your {self.clothesBottom()}. The slime is enough to slip yourself into a pussy smaller than you are long, at least."
          else:
             if (self.humanCocks > 0):
-               tempStr += f" {self.humanCocks} stand{self.cockPlural(1,3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
+               tempStr += f" {self.humanCocks} stand{self.cockPlural(1,3)} erect, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches up, throbbing strongly with smooth skin and a mushroom-like glans that is nearly purple in color, just like a human's."
             if (self.horseCocks > 0):
-               tempStr += f" {self.horseCocks} twitch{self.cockPlural(2,2)} out of a {self.sheathSize(12)}-inch thick smooth sheath, trying to stand {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
+               tempStr += f" {self.horseCocks} twitch{self.cockPlural(2,2)} out of a {self.sheathSize(12)}-inch thick smooth sheath, trying to stand {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches from your body with a ring of prepuce halfway down its length and a flaring flat head at the end, just like a horse's."
             if (self.wolfCocks > 0):
-               tempStr += f" {self.wolfCocks} throb{self.cockPlural(3,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look{self.cockPlural(3,4)} purple, they're so full of blood, with a narrowing tip{self.cockPlural(3,1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a wolf's."
+               tempStr += f" {self.wolfCocks} throb{self.cockPlural(3,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and hard, smooth and covered in veins that almost look{self.cockPlural(3,4)} purple, they're so full of blood, with a narrowing tip{self.cockPlural(3,1)}, standing {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, just like a wolf's."
             if (self.catCocks > 0):
-               tempStr += f" {self.catCocks} stiffly stand{self.cockPlural(4,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip{self.cockPlural(4,1)}, standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a cat's."
+               tempStr += f" {self.catCocks} stiffly stand{self.cockPlural(4,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, pink and nearly hard, with tender barbs bristling out near the narrowing tip{self.cockPlural(4,1)}, standing {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, just like a cat's."
             if (self.lizardCocks > 0):
-               tempStr += f" {self.lizardCocks} harden{self.cockPlural(6,3)} through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, probably like a reptile's."
+               tempStr += f" {self.lizardCocks} harden{self.cockPlural(6,3)} through the slit, stretching it wide as the purple flesh throbs with the ribbing along the top nearly like actual bone and the bulbous head feeling quite swollen, the narrow tip reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, probably like a reptile's."
             if (self.rabbitCocks > 0):
-               tempStr += f" {self.rabbitCocks} stiffly stand{self.cockPlural(7,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches high, just like a rabbit's."
+               tempStr += f" {self.rabbitCocks} stiffly stand{self.cockPlural(7,3)} out of a {self.sheathSize(16)}-inch thick fuzzy sheath, red and throbbing, almost breaking the conical shape with the pulsing, and standing {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches high, just like a rabbit's."
             if (self.bugCocks > 0):
-               tempStr += f" {self.bugCocks} stand{self.cockPlural(12,3)} erect, reaching {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod * 0.5,1))} inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
+               tempStr += f" {self.bugCocks} stand{self.cockPlural(12,3)} erect, reaching {self.decGet(self.cockSize * self.cockSizeMod * 0.5,1)} inches up, throbbing strongly with four spikes jutting out around the glans, hard and pointy, and a bumpy ridge lining the underside that presses outward, almost like a bug's."
             if (self.knot):
-               tempStr += f" Your cock{self.plural(1)} bulge{self.plural(3)} tremendously at {self.plural(5)} base{self.plural(1)}, the knot{self.plural(1)} completely expecting to come at any moment and nearly {repintorfloat(self.decGet(self.cockSize * self.cockSizeMod / 4,1))} inches thick."
+               tempStr += f" Your cock{self.plural(1)} bulge{self.plural(3)} tremendously at {self.plural(5)} base{self.plural(1)}, the knot{self.plural(1)} completely expecting to come at any moment and nearly {self.decGet(self.cockSize * self.cockSizeMod / 4,1)} inches thick."
             if (self.moistCalc(1) > 10):
                tempStr += f" Your {self.clothesBottom()} feels completely swamped as pre flies from your lower half as you move about. Standing still for too long, you quickly form a small puddle of the slick stuff. You could probably stuff {self.oneYour(1)} cock{self.plural(1)} into a pussy half your size without any difficulty, you're so slimy!"
             elif (self.moistCalc(1) > 5):
@@ -3441,22 +3435,22 @@ class NiminFetishFantasyv0975o_fla:
             elif (self.blueBalls > 84):
                tempStr += " groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
       if (self.vagTotal > 0):
-         tempStr += f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {repintorfloat(self.decGet(self.vagSize * self.vagSizeMod * 0.5,1))} inches deep, when aroused."
+         tempStr += f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {self.decGet(self.vagSize * self.vagSizeMod * 0.5,1)} inches deep, when aroused."
          if (self.vagSize * self.vagSizeMod * self.vagTotal > self.tallness / 2):
             tempStr += " So deep, in fact, that your belly bulges more because of the excess vaginal flesh."
          if (self.lust <= 30):
             if (self.clitSize > self.vulvaSize * 3):
-               tempStr += f" Although you're hardly aroused, your {self.clitDesc()} clit{self.plural(2)} dangle{self.plural(4)} softly from the front of your slit{self.plural(2)}, measuring nearly {repintorfloat(self.decGet(self.clitSize * 0.1,1))} inches in length."
+               tempStr += f" Although you're hardly aroused, your {self.clitDesc()} clit{self.plural(2)} dangle{self.plural(4)} softly from the front of your slit{self.plural(2)}, measuring nearly {self.decGet(self.clitSize * 0.1,1)} inches in length."
             if (self.moistCalc(2) > 2):
                tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
          elif (self.lust <= 70):
-            tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.2,1))} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs."
+            tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {self.decGet(self.clitSize * 0.2,1)} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs."
             if (self.moistCalc(2) > 2 and self.moistCalc(2) <= 5):
                tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
             elif (self.moistCalc(2) > 5):
                tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
          else:
-            tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {repintorfloat(self.decGet(self.clitSize * 0.25,2))} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
+            tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {self.decGet(self.clitSize * 0.25,2)} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
             if (self.moistCalc(2) > 10):
                tempStr += f" A slow waterfall of feminine honey drips from your crotch, your {self.clothesBottom()} completely soaked. If you stand for too long, you worry your {self.legDesc(10)} will slip in the puddle you quickly make beneath you. It's so much that you could probably take a cock twice as large as you are deep!"
             elif (self.moistCalc(2) > 5):
