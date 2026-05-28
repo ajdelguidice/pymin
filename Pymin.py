@@ -95,16 +95,11 @@ class ButtonList(list):
 
    def __setitem__(self, item, value):
       if item > 0:
-         super().__setitem__(item-1,value)
+         super().__setitem__(item-1, value)
       elif item == 0:
          raise RangeError("ButtonList; Index can not be 0")
       elif item < 0:
-         super().__setitem__(item,value)
-
-   def set(self, *args):
-      if len(args) == 12:
-         for i in range(12):
-            self[i+1] = args[i]
+         super().__setitem__(item, value)
 
 def applyBackspace(string):
    #From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
@@ -216,7 +211,7 @@ class ToolTip(object):
          return
       x, y, cx, cy = self.parent.bbox("insert")
       x = x + self.parent.winfo_rootx() + 57
-      y = y + cy + self.parent.winfo_rooty() +27
+      y = y + cy + self.parent.winfo_rooty() + 27
       self.window = tw = tkinter.Toplevel(self.parent)
       tw.wm_overrideredirect(1)
       tw.wm_geometry("+%d+%d" % (x, y))
@@ -248,8 +243,9 @@ class NiminFetishFantasyv0975o_fla:
    # viewButtonOutline -> showButtons
    # showPage -> showPage, hidePage
 
+   versionNumber = "0.975o"
+
    def __init__(self, startType:uint = 0):
-      self.versionNumber = "0.975o"
       self.dir = as3state.appdatadirectory
       self.startType = uint(startType)  # How to start the ui. 0 - normal, 1 - converter
 
@@ -24938,7 +24934,7 @@ class NiminFetishFantasyv0975o_fla:
       self.bc()
       if hideDiscard: 
          self.hideDiscard()
-      for i in range(1,13):
+      for i in range(1, 13):
          if not buttons[i] and self.buttonsVisible[i]:
             self.mo.destroyChild(f"button{i}")
             self.buttonsVisible[i] = False
