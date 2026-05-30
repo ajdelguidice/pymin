@@ -919,7 +919,7 @@ class NiminFetishFantasyv0975o_fla:
       ToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
 
       self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
-      ToolTip(self.optionswindow._children["replacefemmiemale"].frame,text="")  # TODO: Make a tooltip for this
+      ToolTip(self.optionswindow._children["replacefemmiemale"].frame,text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
 
       self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
@@ -3484,6 +3484,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Stats button on the side bar
       """
+      # TODO: Fix formatting
       tempStr = textObject()
       tempStr += "These are the modifiers and multipliers for more detailed stats beyond your base stats:\n"
       tempStr += f"\n{'Strength Modifier:':<36}{self.strMod}"
@@ -3505,7 +3506,6 @@ class NiminFetishFantasyv0975o_fla:
       tempPregMod = 0
       if (self.babyFree > 0):
          tempPregMod -= 50
-      # TODO: Fix the formatting past here
       tempStr += f"\n{'Pregnancy Chance:':<32}{10 + self.pregChanceMod + tempPregMod}%"
       tempStr += f"\n{'Extra Baby Chance Mod:':<32}+{self.extraPregChance}%"
       tempStr += f"\n{'Pregnancy Time Mod:':<32}{self.pregTimeMod}hrs"
@@ -11180,8 +11180,6 @@ class NiminFetishFantasyv0975o_fla:
          self.exhaustionPenalty = 0
          self.statsMod(11,11,0,0)
       self.doHP(20)
-      # TODO: if/else-ify
-      # TODO: optimize if/else
       if (self.lust <= 30):
          self.doMainText("\n\nDespite everything, your body is calm and sleeps rather soundly.")
          if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
@@ -11341,7 +11339,6 @@ class NiminFetishFantasyv0975o_fla:
          #if self.attireBot in {10,11} and lust > 60:
          #   self.rndArray.push(8)
          chance = self.chooseFrom()
-         # TODO: optimize if/else
          if (chance == 1):
             if (self.ment >= self.lib - 10):
                self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your ",True)
@@ -11478,7 +11475,6 @@ class NiminFetishFantasyv0975o_fla:
          #if (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
          #   self.rndArray.push(8)
          chance = self.chooseFrom()
-         # TODO: optimize if/else
          if chance == 1:
             if (self.ment >= self.lib - 10):
                self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub ",True)
@@ -11575,7 +11571,6 @@ class NiminFetishFantasyv0975o_fla:
          self.rndArray.push(2)
       chance = self.chooseFrom()
       getMilk = 0
-      # TODO: optimize if/else
       if (chance == 1):
          if (self.ment >= self.lib - 10):
             self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with",True)
@@ -11717,7 +11712,6 @@ class NiminFetishFantasyv0975o_fla:
          self.rndArray.push(2)
       chance = self.chooseFrom()
       getMilk = 0
-      # TODO: optimize if/else
       if (chance == 1):
          if (self.ment >= self.lib - 10):
             self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with",True)
@@ -16800,7 +16794,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doEnd()
 
    def doDairyFarm(self):
-      # TODO: optimize if/else
       chance = self.eventSelect("Dairy Farm")
       if (self.malonRep == 4 and self.malonPreg > 216):
          self.doMainText("As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly.\n\n\"Hurry! Malon's gone into labor!!\"\n\nThe farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction.\n\n\"Here it comes!\", one of the farmhands announces as the baby begins to crown.\n\nAn eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl",True)
@@ -18259,7 +18252,6 @@ class NiminFetishFantasyv0975o_fla:
                      self.doMainText("You are, in fact, interested in something. ",True)
                      if (self.checkItem(232) or self.checkItem(233) or self.checkItem(234) or self.checkItem(235) or self.checkItem(236)):
                         self.doMainText("Handing back the ",True)
-                        # TODO: if/else-ify
                         if (self.checkItem(232)):
                            self.doMainText("Flying Carpet")
                            self.loseManyItem(232,1)
@@ -20832,7 +20824,6 @@ class NiminFetishFantasyv0975o_fla:
       return 0
 
    def enemyAttack(self):
-      # TODO: Optimize if/else
       attack = self.percent()
       if self.enemyID == 101: # Cock-Snake
          if (attack <= 50):
@@ -21350,7 +21341,6 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
 
    def doStatus(self, time:int):
-      # TODO: Optimize if/else
       self.doMainText("Afterwards...",True)
       self.hrs = 0
       self.pregnancyTime = 0
@@ -21913,7 +21903,6 @@ class NiminFetishFantasyv0975o_fla:
          self.bug += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
 
    def affinityChange(self):
-      # TODO: optimize if/else
       self.doMainText("Something feels odd...",True)
       chance = self.percent()
       affinityCheckArray = Array(self.humanAffinity + self.human,self.horseAffinity + self.horse,self.wolfAffinity + self.wolf,self.catAffinity + self.cat,self.cowAffinity + self.cow,self.lizardAffinity + self.lizard,self.rabbitAffinity + self.rabbit,self.mouseAffinity + self.mouse,self.birdAffinity + self.bird,self.pigAffinity + self.pig,self.skunkAffinity + self.skunk,self.bugAffinity + self.bug)
@@ -23090,7 +23079,6 @@ class NiminFetishFantasyv0975o_fla:
          self.vagBellyMod = 0
 
    def legChange(self, which:int):
-      # TODO: Optimize if/else
       if (self.legType > 1000 and which < 1000):
          self.doMainText(f"\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your {self.buttDesc()} ass while your crotch shifts forward to nestle between your front legs.")
          if (self.legType == 1001):
@@ -23359,7 +23347,6 @@ class NiminFetishFantasyv0975o_fla:
          self.doMainText(f"\n\nSuddenly, you feel water splash across your thighs, flooding from {self.oneYour(2)} cunt{self.plural(2)}. You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!")
       elif (birthCount > 0):
          self.doMainText("\n\nYet, you're still not quite done with the birthing process as fluid splashes out of another one of your vaginas. You tense yourself, already on the ground, and your breathing progresses rapidly as your nearly crush your belly, trying to get more of your babies out!")
-      # TODO: If/else-ify
       if pregnancyType == 1:
          birthNumber = 1 + extra
          self.doMainText(f" Slowly, a large round head pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a cry as it breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your {self.boobDesc()} chest. With a round face and soft skin, it's easy to tell you've given birth to a human child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
