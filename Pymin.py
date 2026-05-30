@@ -324,7 +324,7 @@ class NiminFetishFantasyv0975o_fla:
       self.currentText = textObject()
       self.sideText = textObject()
       self.sideFocus = 1
-      self.font = ("TimesNewRoman", 12)
+      self.font = ("Times New Roman", 12)
 
       # workaround variables. These are to implement things that were a result of actionscript jank (local variables of a function inside of a MovieClip object were treated as variables local to the MovieClip object instead in some circumstances)
       self.buy = 0
@@ -842,25 +842,25 @@ class NiminFetishFantasyv0975o_fla:
       self.optionswindow.addNBFrame("nb","options",width=420,height=207,text="Options",background=self.theme)
 
       ##Sol Mode
-      self.optionswindow.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Strict Save Compat",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("Times New Roman",11),text="Strict Save Compat",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
 
       ##Fixed Resolution
-      self.optionswindow.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("TimesNewRoman",11),text="Fixed Resolution",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("Times New Roman",11),text="Fixed Resolution",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
 
       #x+180,y-97
       ##Custom Theme color
       #  The perfect size for the input field of the entryboxes is 65
-      self.optionswindow.addCheckboxWithEntry("options","Theme",x=210,y=10,width=152,height=20,font=("TimesNewRoman",11),text="Custom Theme Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithEntry("options","Theme",x=210,y=10,width=152,height=20,font=("Times New Roman",11),text="Custom Theme Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
       self.optionswindow._children["Theme"].set(self.theme)
 
       ##Custom Font color
-      self.optionswindow.addCheckboxWithEntry("options","FontColor",x=210,y=54,width=152,height=20,font=("TimesNewRoman",11),text="Custom Font Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithEntry("options","FontColor",x=210,y=54,width=152,height=20,font=("Times New Roman",11),text="Custom Font Color",entrytext=(40,"Color:"),indent=38,background=self.theme,foreground=self.fontColor)
       self.optionswindow._children["FontColor"].set(self.fontColor)
 
       ##Save Location
-      self.optionswindow.addFileEntryBox("options","SaveLocation",x=10,y=98,width=400,height=20,font=("TimesNewRoman",11),text="Save Location",indent=0,filetype="dir",fileaction="open",initdir=str(self.savelocation.resolve()),background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addFileEntryBox("options","SaveLocation",x=10,y=98,width=400,height=20,font=("Times New Roman",11),text="Save Location",indent=0,filetype="dir",fileaction="open",initdir=str(self.savelocation.resolve()),background=self.theme,foreground=self.fontColor)
       self.optionswindow._children["SaveLocation"].set(str(self.savelocation.resolve()))
 
 
@@ -868,7 +868,7 @@ class NiminFetishFantasyv0975o_fla:
       self.optionswindow.addNBFrame("nb","if",width=420,height=207,text="Interface",background=self.theme)
 
       ##Nimin Theme
-      self.optionswindow.addCheckboxWithLabel("if","NiminTheme",x=10,y=10,width=187,height=20,font=("TimesNewRoman",11),text="Use Nimin Theme",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","NiminTheme",x=10,y=10,width=187,height=20,font=("Times New Roman",11),text="Use Nimin Theme",background=self.theme,foreground=self.fontColor)
       if (self.dir / "nimintheme").is_dir():
          ToolTip(self.optionswindow._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin.")
       else:
@@ -876,97 +876,97 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow._children["NiminTheme"].state = "disabled"
 
       ##Show scrolledText Borders
-      self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("TimesNewRoman",11),text="Show ScrolledText Borders",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("Times New Roman",11),text="Show ScrolledText Borders",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
 
       ##Original new game button size
-      self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("TimesNewRoman",11),text="Original Size for New Game",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("Times New Roman",11),text="Original Size for New Game",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
 
       ##Static buttons in doLevelUP
-      self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("TimesNewRoman",11),text="Static doLevelUP Buttons",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("Times New Roman",11),text="Static doLevelUP Buttons",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
 
       ##new save dialogue
-      self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Use Expanded Save Dialog",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("Times New Roman",11),text="Use Expanded Save Dialog",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
 
       ##New stash
-      self.optionswindow.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Use New Stash",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("Times New Roman",11),text="Use New Stash",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
 
       ##Help opens wiki
-      self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("Times New Roman",11),text="Help Opens Wiki",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
 
       ##Shops Return To doShops
-      self.optionswindow.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("TimesNewRoman",11),text="Shops Return to doShops",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("Times New Roman",11),text="Shops Return to doShops",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
 
       #Grammar page
       self.optionswindow.addNBFrame("nb","gs",width=420,height=207,text="Grammar",background=self.theme)
 
-      self.optionswindow.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Respect showBalls",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=144,height=20,font=("Times New Roman",11),text="Respect showBalls",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
 
-      self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=160,height=20,font=("TimesNewRoman",11),text="Femme-boy -> Femboy",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=160,height=20,font=("Times New Roman",11),text="Femme-boy -> Femboy",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
 
-      self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Shemale -> Futanari",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=144,height=20,font=("Times New Roman",11),text="Shemale -> Futanari",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
 
-      self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("TimesNewRoman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=144,height=20,font=("Times New Roman",11),text="Use n-grammar",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
 
-      self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("TimesNewRoman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("Times New Roman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["replacefemmiemale"].frame,text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
 
-      self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("TimesNewRoman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=144,height=20,font=("Times New Roman",11),text="femboyish -> girly",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
 
-      self.optionswindow.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=144,height=20,font=("TimesNewRoman",11),text="Snuggleball Tweak",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=144,height=20,font=("Times New Roman",11),text="Snuggleball Tweak",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
 
-      self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=144,height=20,font=("TimesNewRoman",11),text="Grammar Fixes",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=144,height=20,font=("Times New Roman",11),text="Grammar Fixes",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
 
       #Game Tweaks page
       self.optionswindow.addNBFrame("nb","gt",width=420,height=207,text="Game Tweaks",background=self.theme)
 
       ##Status Tweaks
-      self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("TimesNewRoman",11),text="Status Tweaks",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("Times New Roman",11),text="Status Tweaks",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
 
       ##Succubus Leaves One
-      self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("TimesNewRoman",11),text="Succubus Leaves One",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("Times New Roman",11),text="Succubus Leaves One",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
 
       ##Use isBottomOpen
-      self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("TimesNewRoman",11),text="Use isBottomOpen",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("Times New Roman",11),text="Use isBottomOpen",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
 
       ##Lizan Don't Show Balls
-      self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("TimesNewRoman",11),text="Lizan Don't Show Balls",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("Times New Roman",11),text="Lizan Don't Show Balls",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
 
       ##Herm Can Has Both
-      self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("TimesNewRoman",11),text="Herm Can Has Both",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("Times New Roman",11),text="Herm Can Has Both",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
 
       ##Internal ball size affects belly size
-      self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("TimesNewRoman",11),text="IntBallsEffectBellySize",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("Times New Roman",11),text="IntBallsEffectBellySize",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
 
       ##Add direct path to sanctuary
-      self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("TimesNewRoman",11),text="Direct Path to Sanctuary",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("Times New Roman",11),text="Direct Path to Sanctuary",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
 
       ##Digi beast feet
-      self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("TimesNewRoman",11),text="Correct Feet for Some Races",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("Times New Roman",11),text="Correct Feet for Some Races",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
 
       ##Misc Changes
-      self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("TimesNewRoman",11),text="Misc Changes",background=self.theme,foreground=self.fontColor)
+      self.optionswindow.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("Times New Roman",11),text="Misc Changes",background=self.theme,foreground=self.fontColor)
       ToolTip(self.optionswindow._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
 
 
@@ -975,15 +975,15 @@ class NiminFetishFantasyv0975o_fla:
          self.optionswindow.addNBFrame("nb","dt",width=420,height=207,text="Debug Options",background=self.theme)
 
          ##Always Choose Senario
-         self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("TimesNewRoman",11),text="alwaysChooseSenario",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("Times New Roman",11),text="alwaysChooseSenario",background=self.theme,foreground=self.fontColor)
          ToolTip(self.optionswindow._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
 
          ##Always Choose Senario
-         self.optionswindow.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("TimesNewRoman",11),text="takeNoDamage",background=self.theme,foreground=self.fontColor)
+         self.optionswindow.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("Times New Roman",11),text="takeNoDamage",background=self.theme,foreground=self.fontColor)
          ToolTip(self.optionswindow._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
 
       #Apply button
-      self.optionswindow.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("TimesNewRoman",12),text="Apply",command=self.OWSaveOptions)
+      self.optionswindow.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("Times New Roman",12),text="Apply",command=self.OWSaveOptions)
 
       self.optionswindow.bind("<Destroy>",self.closeOptionsWindow)
       self.optionswindow.bind('<KeyPress>', partial(self.keyPress, None))
@@ -4245,8 +4245,8 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.bindChild("savefileselect","<Double-Button-1>",self.buttonEvent8)
          self.mo.bindChild("savefileselect","<FocusIn>",partial(self._disableKeys,keys=[109, 82, 107, 70, 13, 86, 96, 66, 104, 87, 101, 83, 102, 68]))
          self.mo.bindChild("savefileselect","<FocusOut>",self._enableKeys)
-         self.mo.addLabel("display","savefilelabel",x=200,y=184,width=75,height=24,font=("TimesNewRoman",12),background=self.theme,foreground=self.fontColor,text="File Name:")
-         self.mo.addEntry("display","savefileentry",x=275,y=184,width=385,height=24,font=("TimesNewRoman",12),background="#FFFFFF",foreground="#000000")
+         self.mo.addLabel("display","savefilelabel",x=200,y=184,width=75,height=24,font=("Times New Roman",12),background=self.theme,foreground=self.fontColor,text="File Name:")
+         self.mo.addEntry("display","savefileentry",x=275,y=184,width=385,height=24,font=("Times New Roman",12),background="#FFFFFF",foreground="#000000")
          self.mo.bindChild("savefileentry","<FocusIn>",self._disableKeys)
          self.mo.bindChild("savefileentry","<FocusOut>",self._enableKeys)
          self.nsldDisplay()
@@ -4279,7 +4279,7 @@ class NiminFetishFantasyv0975o_fla:
       Hides nsld temporarily while conformation dialog is shown
       """
       if not self.nsldblindervisible:
-         self.mo.addLabel("display","nsldblinder",x=200,y=30,width=780,height=184,font=("TimesNewRoman",12),background=self.theme,foreground=self.fontColor)
+         self.mo.addLabel("display","nsldblinder",x=200,y=30,width=780,height=184,font=("Times New Roman",12),background=self.theme,foreground=self.fontColor)
          self.nsldblindervisible = True
 
    def hideNSLDBlinder(self):
@@ -24790,7 +24790,7 @@ class NiminFetishFantasyv0975o_fla:
          # Pane Title
          self.mo.addnwhLabel("display","label10",x=110,y=280,font=self.font,anchor="n",text="Current Region",background=self.theme,foreground=self.fontColor)
          # Region Label
-         self.mo.addnwhLabel("display","currentregionlabel",x=110,y=300,font=("TimesNewRoman",20,"bold"),anchor="n",text="Region",background=self.theme,foreground=self.fontColor)
+         self.mo.addnwhLabel("display","currentregionlabel",x=110,y=300,font=("Times New Roman",20,"bold"),anchor="n",text="Region",background=self.theme,foreground=self.fontColor)
          self.regionpanevisible = True
       self.regionChange(self.currentZone)
 
@@ -25084,31 +25084,31 @@ class NiminFetishFantasyv0975o_fla:
 
          self.sfcwindow._children['display'].background = self.theme
 
-         self.sfcwindow.addLabel("display","title",x=250,y=50,width=300,height=32,font=('TimesNewRoman',20, 'bold'),anchor="n",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
+         self.sfcwindow.addLabel("display","title",x=250,y=50,width=300,height=32,font=('Times New Roman',20, 'bold'),anchor="n",text="Pymin Savefile Converter",foreground=self.fontColor,background=self.theme)
          
-         self.sfcwindow.addLabel("display","message",x=250,y=100,width=350,height=25,font=('TimesNewRoman',12),anchor="n",text="",foreground=self.fontColor,background=self.theme)
+         self.sfcwindow.addLabel("display","message",x=250,y=100,width=350,height=25,font=('Times New Roman',12),anchor="n",text="",foreground=self.fontColor,background=self.theme)
 
-         self.sfcwindow.addFileEntryBox("display","inputfilebox",x=50,y=150,width=320,height=24,font=('TimesNewRoman',12),text="Input File",filetype="file",fileaction="open",initdir=self.savelocation,foreground=self.fontColor,background=self.theme)
+         self.sfcwindow.addFileEntryBox("display","inputfilebox",x=50,y=150,width=320,height=24,font=('Times New Roman',12),text="Input File",filetype="file",fileaction="open",initdir=self.savelocation,foreground=self.fontColor,background=self.theme)
 
-         self.sfcinputfilecomboboxtext = tkinter.Label(self.sfcwindow,text="Type",font=("TimesNewRoman",12))
+         self.sfcinputfilecomboboxtext = tkinter.Label(self.sfcwindow,text="Type",font=("Times New Roman",12))
          self.sfcinputfilecomboboxtext.place(x=390,y=150,width=40,height=24,anchor="nw")
          self.sfcinputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
-         self.sfcinputfilecombobox = ttk.Combobox(self.sfcwindow,font=("TimesNewRoman",12))
+         self.sfcinputfilecombobox = ttk.Combobox(self.sfcwindow,font=("Times New Roman",12))
          self.sfcinputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcinputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
          self.sfcinputfilecombobox.current(0)
 
-         self.sfcwindow.addFileEntryBox("display","outputfilebox",x=50,y=210,width=320,height=24,font=('TimesNewRoman',12),text="Output File",filetype="file",fileaction="save",initdir=self.savelocation,foreground=self.fontColor,background=self.theme)
+         self.sfcwindow.addFileEntryBox("display","outputfilebox",x=50,y=210,width=320,height=24,font=('Times New Roman',12),text="Output File",filetype="file",fileaction="save",initdir=self.savelocation,foreground=self.fontColor,background=self.theme)
 
-         self.sfcoutputfilecomboboxtext = tkinter.Label(self.sfcwindow,text="Type",font=("TimesNewRoman",12))
+         self.sfcoutputfilecomboboxtext = tkinter.Label(self.sfcwindow,text="Type",font=("Times New Roman",12))
          self.sfcoutputfilecomboboxtext.place(x=390,y=210,width=40,height=24,anchor="nw")
          self.sfcoutputfilecomboboxtext.configure(foreground=self.fontColor,background=self.theme)
-         self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow,font=("TimesNewRoman",12))
+         self.sfcoutputfilecombobox = ttk.Combobox(self.sfcwindow,font=("Times New Roman",12))
          self.sfcoutputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
          self.sfcoutputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
          self.sfcoutputfilecombobox.current(0)
 
-         self.sfcwindow.addWidget(PyminButton,"display","convertbutton",x=386,y=270,width=64,height=24,font=("TimesNewRoman",12),text="Convert",command=self.convertButton)
+         self.sfcwindow.addWidget(PyminButton,"display","convertbutton",x=386,y=270,width=64,height=24,font=("Times New Roman",12),text="Convert",command=self.convertButton)
          self.sfcOpen = True
          if self.startType == 1:
             self.sfcwindow.mainloop()
