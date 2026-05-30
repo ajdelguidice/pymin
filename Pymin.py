@@ -2128,7 +2128,7 @@ class NiminFetishFantasyv0975o_fla:
       if (self.pageShow):
          self.mo._children["pagelabel"].text = text
       else:
-         self.mo.addWidget(PyminLabel,"display","pagelabel",x=843,y=30,width=100,height=30,font=self.font,text=text)
+         self.mo.addWidget(PyminLabel,"display","pagelabel",x=843,y=30,width=120,height=30,font=self.font,text=text)
          self.pageShow = True
 
    def hidePage(self):
