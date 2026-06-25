@@ -4722,9 +4722,8 @@ class NiminFetishFantasyv0975o_fla:
                self.hideStatsPane()
                for i in range(8):
                   self.mo.destroyChild(self.sidepanelbuttonnames[i])
-               temp = self.mo._children.get("textside")
-               if temp is not None:
-                  temp.destroy()
+               if self.mo._children.get("textside") is not None:
+                  self.mo.destroyChild("textside")
                self.sidepanelvisible = False
                self.hideAPButton()
             self.hideNSLDBlinder()
