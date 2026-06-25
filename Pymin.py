@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from as3lib import (Array, as3state, cmath, each, Error, Number, RangeError,
-                    trace, uint)  # Math
+from as3lib import (Array, as3state, cmath, each, EnableDebug, Error, Number,
+                    RangeError, setHeaderInfo, trace, uint)  # Math
 from as3lib.config import TOML
 from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.text import Font
@@ -24988,7 +24988,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.sidepanelvisible:
          for i in range(8):
             self.mo.destroyChild(self.sidepanelbuttonnames[i])
-         self.mo._children["textside"].destroy()
+         self.mo.destroyChild("textside")
       self.sidepanelvisible = False
       self.showAPButton()
 
@@ -27199,12 +27199,13 @@ class NiminFetishFantasyv0975o_fla:
 
 
 if __name__ == "__main__":
+   setHeaderInfo(10, 24, 1176, 662)
    from sys import argv
    if "-h" in argv or "--help" in argv or "/?" in argv:
       print("Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode. (one time)\n\t-C --convert\tOpens savefile converter instead of the game.")
       exit()
    if "--debug" in argv or "-d" in argv or "/D" in argv:
-      as3state.as3DebugEnable = True
+      EnableDebug()
    startType = 0
    if "--converter" in argv or "-C" in argv or "/C" in argv:
       startType = 1
