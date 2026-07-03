@@ -6,6 +6,9 @@ from sys import argv
 from subprocess import run, check_output
 from urllib.request import urlopen
 from io import StringIO
+from importlib.util import find_spec
+
+# TODO: Improve compatibility with non-uv setups
 
 if platform.system() == 'Darwin':
     print('Warning: This script is untested on darwin (MacOS), things might be broken.')
@@ -36,9 +39,9 @@ curdir = Path(__file__).resolve().parent  # This is a workaround for python on W
 venvpath = curdir / 'Pymin-venv'
 cfgloc = None
 
-if None in {curdir,venvpath} or '' in {str(curdir),str(venvpath)}:
+if not curdir or not venvpath:
     raise Exception('Path is empty. Exiting to avoid problems.')
-if not (isinstance(curdir,PurePath) and isinstance(venvpath,PurePath)):
+if not (isinstance(curdir, PurePath) and isinstance(venvpath, PurePath)):
     raise Exception('Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
 
 class OverrideDev:
@@ -414,7 +417,9 @@ class Args:
 class TOML:
     # These were put into a class to work around an issue with global variables
     def Value(value):
-        if isinstance(value, (str, PurePath)):
+        if isinstance(value, PurePath):
+            value = str(value).replace('\\', '/')
+        if isinstance(value, str):
             return f'"{value}"'
         if isinstance(value,bool):
             return 'true' if value else 'false'
@@ -465,10 +470,10 @@ hasVenv = True
 delconf = None
 uninstallMiniAMF = False
 
-modlist = ['requests', 'numpy', 'Pillow', 'as3lib', 'as3lib-miniAMF']
-try:
+modlist = ['requests', 'numpy', 'Pillow', 'as3lib']
+if find_spec('tomllib'):
     import tomllib
-except:
+else:
     import tomli as tomllib
     modlist.append('tomli')
 
@@ -477,15 +482,15 @@ if (curdir / 'pymin.toml').exists():  # load config and set venvpath
     with open(cfgloc, 'rb') as f:
         c1 = TOML.read(f)
     c2 = {
-        'cfgVersion':c1.get('cfgVersion',1),
-        'path':c1.get('path',venvpath),
-        'pyInstalledVersion':c1.get('pyInstalledVersion'),
-        'uvGlobal':c1.get('uvGlobal',False),
-        'uvLocal':c1.get('uvLocal',False),
-        'defaultToRun':c1.get('defaultToRun',False),
-        'noSSLVerify':c1.get('noSSLVerify',False),
-        'noCustomHTMLParser':c1.get('noCustomHTMLParser',False),
-        'isDevEnv':c1.get('isDevEnv',False)
+        'cfgVersion': c1.get('cfgVersion', 1),
+        'path': c1.get('path', venvpath),
+        'pyInstalledVersion': c1.get('pyInstalledVersion'),
+        'uvGlobal': c1.get('uvGlobal', False),
+        'uvLocal': c1.get('uvLocal', False),
+        'defaultToRun': c1.get('defaultToRun', False),
+        'noSSLVerify': c1.get('noSSLVerify', False),
+        'noCustomHTMLParser': c1.get('noCustomHTMLParser', False),
+        'isDevEnv': c1.get('isDevEnv', False)
     }
     if c2['path'] == '':
         raise Exception('Config is not in the default venv location and venvpath is empty.')
@@ -497,27 +502,27 @@ elif (venvpath / 'pymin.toml').exists():  # load config
     with open(cfgloc, 'rb') as f:
         c1 = TOML.read(f)
     c2 = {
-        'cfgVersion':c1.get('cfgVersion',1),
-        'path':c1.get('path',''),
-        'pyInstalledVersion':c1.get('pyInstalledVersion'),
-        'uvGlobal':c1.get('uvGlobal',False),
-        'uvLocal':c1.get('uvLocal',False),
-        'defaultToRun':c1.get('defaultToRun',False),
-        'noSSLVerify':c1.get('noSSLVerify',False),
-        'noCustomHTMLParser':c1.get('noCustomHTMLParser',False),
-        'isDevEnv':c1.get('isDevEnv',False)
+        'cfgVersion': c1.get('cfgVersion', 1),
+        'path': c1.get('path', ''),
+        'pyInstalledVersion': c1.get('pyInstalledVersion'),
+        'uvGlobal': c1.get('uvGlobal', False),
+        'uvLocal': c1.get('uvLocal', False),
+        'defaultToRun': c1.get('defaultToRun', False),
+        'noSSLVerify': c1.get('noSSLVerify', False),
+        'noCustomHTMLParser': c1.get('noCustomHTMLParser', False),
+        'isDevEnv': c1.get('isDevEnv', False)
     }
 else:  # Load older config
     c1 = None
     c2 = {
-        'cfgVersion':1,
-        'pyInstalledVersion':None,
-        'uvGlobal':False,
-        'uvLocal':False,
-        'defaultToRun':False,
-        'noSSLVerify':False,
-        'noCustomHTMLParser':False,
-        'isDevEnv':False
+        'cfgVersion': 1,
+        'pyInstalledVersion': None,
+        'uvGlobal': False,
+        'uvLocal': False,
+        'defaultToRun': False,
+        'noSSLVerify': False,
+        'noCustomHTMLParser': False,
+        'isDevEnv': False
     }
     # Load config v2
     if (curdir / 'pymin.cfg').exists():
@@ -533,20 +538,18 @@ else:  # Load older config
     # Fallback
     elif venvpath.exists():
         cfgloc = venvpath / 'pymin.toml'
-        try:
-            UNNAMED_SECTION = configparser.UNNAMED_SECTION
-            with open(venvpath / 'pyvenv.cfg', 'r') as f:
+        with open(venvpath / 'pyvenv.cfg', 'r') as f:
+            if hasattr(configparser, 'UNNAMED_SECTION'):
+                UNNAMED_SECTION = configparser.UNNAMED_SECTION
                 c = configparser.ConfigParser(allow_unnamed_section=True)
                 c.optionxform=str
                 c.read_file(f)
-                c2['pyInstalledVersion'] = c[configparser.UNNAMED_SECTION]['version_info']
-        except AttributeError:  # Python < 3.13
-            UNNAMED_SECTION = 'UNNAMED_SECTION'
-            with open(venvpath / 'pyvenv.cfg', 'r') as f:
+            else:  # Python < 3.13
+                UNNAMED_SECTION = 'UNNAMED_SECTION'
                 c = configparser.ConfigParser()
                 c.optionxform=str
                 c.read_string('[UNNAMED_SECTION]\n' + f.read())
-                c2['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
+            c2['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
         c2['path'] = venvpath
         # Load config v1
         if (venvpath / '.USEUV').exists() or (venvpath / '.USEUVI').exists() or (venvpath / '.DEFAULTRUN').exists():
@@ -608,25 +611,24 @@ elif argv[1] == 'migrate-config':
     c2.update(migrateConfig())
 elif argv[1] == 'cfg':
     if cfgloc is None:
-        if not hasVenv:
-            cfgloc = curdir / 'pymin.toml'
-        else:
+        if hasVenv:
             cfgloc = venvpath / 'pymin.toml'
+        else:
+            cfgloc = curdir / 'pymin.toml'
     if len(argv) == 2:
         with StringIO() as text:
             for k,v in c2.items():
                 text.write(f'{k}: {v}\n')
             print(text.getvalue())
         exit()
-    tempargs = tuple(tuple(i.split('=')) for i in argv[2:])
-    for key,value in tempargs:
-        if key in {'cfgVersion','pyInstalledVersion'} and not c2['isDevEnv']:
+    for key, raw_value in (i.split('=') for i in argv[2:]):
+        if key in {'cfgVersion', 'pyInstalledVersion'} and not c2['isDevEnv']:
             print(f'Warning: {key} is restricted and should not be changed. Skipping.')
             continue
-        if c2.get(key) is None:
+        if key not in c2:
             print(f'Warning: Key {key} does not exist.')
             continue
-        value = Args.ParseOuter(value, c2[key])
+        value = Args.ParseOuter(raw_value, c2[key])
         if value is None:
             print(f'Warning: Type of {key} could not be determined. Skipping.')
             continue
@@ -634,24 +636,23 @@ elif argv[1] == 'cfg':
 elif argv[1] == 'cfg-game' and hasVenv:
     if not (venvpath / 'Pymin/Nimin_Prefs.toml').exists():
         raise Exception('Game config does not exist.')
-    with open(venvpath / 'Pymin/Nimin_Prefs.toml','rb') as f:
+    with open(venvpath / 'Pymin/Nimin_Prefs.toml', 'rb') as f:
         gameconf = TOML.read(f)
     if len(argv) == 2:
         with StringIO() as text:
-            for k1,v1 in gameconf.items():
+            for k1, v1 in gameconf.items():
                 text.write(f'[{k1}]\n')
-                for k2,v2 in v1.items():
+                for k2, v2 in v1.items():
                     text.write(f'{k2}: {v2}\n')
                 text.write('\n')
             print(text.getvalue())
     else:
-        tempargs = tuple(tuple(i.split('=')) for i in argv[2:])
-        for i in tempargs:
-            section, key = i[0].split('.')
-            if gameconf.get(section) is None or gameconf.get(section).get(key) is None:
+        for variable, raw_value in (i.split('=') for i in argv[2:]):
+            section, key = variable.split('.')
+            if section not in gameconf or key not in gameconf[section]:
                 print(f'Warning: {section}.{key} does not exist.')
                 continue
-            value = Args.ParseOuter(i[1], gameconf[section][key])
+            value = Args.ParseOuter(raw_value, gameconf[section][key])
             if value is None:
                 print(f'Warning: Type of {section}.{key} could not be determined. Skipping.')
                 continue
