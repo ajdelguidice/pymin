@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from as3lib import (Array, as3state, cmath, each, EnableDebug, Error, Number,
-                    RangeError, setHeaderInfo, trace, uint)  # Math
-from as3lib.config import TOML
+                    RangeError, setHeaderInfo, TOML, trace, uint)  # Math
 from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.text import Font
 import as3lib.interface_tk as itk
