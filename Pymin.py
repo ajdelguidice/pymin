@@ -226,14 +226,38 @@ class ToolTip(object):
          tw.destroy()
 #====================================================================================
 
+class PyminWindow:
+   @property
+   def isOpen(self):
+      return self._isOpen
+
+   @isOpen.setter
+   def isOpen(self, value):
+      value = bool(value)
+      if self._isOpen and not value:
+         self.close()
+      elif not self._isOpen and value:
+         self.open()
+
+   @property
+   def window(self):
+      return self._window
+
+   def __init__(self, callback):
+      self._isOpen = False
+      self._window = None
+      self._backgroundColor = "#FFFFFF"
+      self._textColor = "#000000"
+      self.callback = callback
+
 @dataclass
 class WikiPage:
    topic: str
    num: int
 
-class PyminWiki:
+class PyminWiki(PyminWindow):
    # TODO: Add indication for submenus
-   # TODO: Add forcedResolution property
+   # TODO: Fix fontSize
    MENUS = {
       "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
       "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
@@ -265,6 +289,37 @@ class PyminWiki:
       "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
       "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
    }
+   @property
+   def backgroundColor(self):
+      return self._backgroundColor
+
+   @backgroundColor.setter
+   def backgroundColor(self, value):
+      self._backgroundColor = value
+      if self.isOpen:
+         self.window.configureChildren(("text", "menu"), background=value)
+
+   @property
+   def textColor(self):
+      return self._textColor
+
+   @textColor.setter
+   def textColor(self, value):
+      self._textColor = value
+      if self.isOpen:
+         self.window.configureChildren(("text", "menu"), foreground=value)
+
+   @property
+   def fontSize(self):
+      return self._fontSize
+
+   @fontSize.setter
+   def fontSize(self, value):
+      self._fontSize = value
+      if self.isOpen:
+         self.window._children["text"]._fontSize = value - 2
+         self.displayText()
+
    @property
    def enforceSize(self):
       return self._enforceSize
@@ -300,18 +355,6 @@ class PyminWiki:
       return self._hasCustomHTMLParser
 
    @property
-   def isOpen(self):
-      return self._isOpen
-
-   @isOpen.setter
-   def isOpen(self, value):
-      value = bool(value)
-      if self._isOpen and not value:
-         self.close()
-      elif not self._isOpen and value:
-         self.open()
-
-   @property
    def menu(self):
       return self._currentMenu
 
@@ -328,17 +371,13 @@ class PyminWiki:
       self.window._children["menu"].select_set(0)
       self.window._children["menu"].activate(0)
 
-   @property
-   def window(self):
-      return self._window
-
    def __init__(self, callback):
+      super().__init__(callback)
       self._focus = 1
-      self._isOpen = False
-      self._window = None
       self._currentMenu = None
+      self._fontSize = 12
       self.pageHistory = Array()
-      self.callback = callback
+      self.text = ''
       temp = itk.itkHTMLScrolledText(itkWindow=self.callback.mo)
       if getattr(temp.html_parser, 'callobject', '') == '':
          self._hasCustomHTMLParser = False
@@ -363,15 +402,15 @@ class PyminWiki:
          self.window.resizable = False
 
       # Set up widgets
-      self.window.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.callback.theme,foreground=self.callback.fontColor)
-      self.window.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.callback.fontSize - 2),sbwidth=12,background=self.callback.theme,foreground=self.callback.fontColor)
+      self.window.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.backgroundColor,foreground=self.textColor)
+      self.window.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.backgroundColor,foreground=self.textColor)
       if self.hasCustomHTMLParser:
          self.window._children["text"].html_parser.callobject = self.toPage
       self.window.bindChild("menu",'<Double-1>', self.selectOption)
 
       # Initialise menu and page
       self.menu = ''
-      self.toPage("Basic",0)
+      self.toPage("Basic", 0)
       self.focus = 0
       self._isOpen = True
 
@@ -385,14 +424,10 @@ class PyminWiki:
          self._currentMenu = None
 
    def displayText(self):
-      textw = self.window._children["text"]
-      textw.state = "normal"
-      textw._fontSize = self.callback.fontSize - 2
-      textw.text = self.textwiki
-      textw.state = "disabled"
+      self.window._children["text"].text = self.text
 
    def clearAddText(self, text):
-      self.textwiki = text
+      self.text = text
       self.displayText()
 
    def hotKeys(self, keyCode):
@@ -3249,8 +3284,7 @@ class NiminFetishFantasyv0975o_fla:
       if self.mo.aboutwindow.isOpen:
          for i in (self.mo.aboutwindow.toplevel,self.mo.aboutwindow.label):
             i.configure(background=color)
-      if self.wiki.isOpen:
-         self.wiki.window.configureChildren(("text","menu"),background=color)
+      self.wiki.backgroundColor = color
       if self.sfcOpen:
          self.sfcwindow.configureChildren(("display","title","message","inputfilebox","outputfilebox","convertbutton"),background=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
@@ -3279,8 +3313,7 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.configureChildren(items, foreground=color)
       if self.mo.aboutwindow.isOpen:
          self.mo.aboutwindow.label["foreground"] = color
-      if self.wiki.isOpen:
-         self.wiki.window.configureChildren(("text","menu"),foreground=color)
+      self.wiki.textColor = color
       if self.sfcOpen:
          self.sfcwindow.configureChildren(("title","message","inputfilebox","outputfilebox","convertbutton"),foreground=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
@@ -3298,17 +3331,20 @@ class NiminFetishFantasyv0975o_fla:
       if (self.fontSize > 3): #originally 4
          self.fontSize -= 2
       self.updateText()
+      self.wiki.fontSize = self.fontSize
       self.savePreferences()
 
    def fontSizeReset(self):
       self.fontSize = 11 #originally 14
       self.updateText()
+      self.wiki.fontSize = self.fontSize
       self.savePreferences()
 
    def fontSizeUp(self):
       if (self.fontSize < 25): #originally 26
          self.fontSize += 2
       self.updateText()
+      self.wiki.fontSize = self.fontSize
       self.savePreferences()
 
    def toggleBold(self):
@@ -3363,8 +3399,6 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
       if self.sidepanelvisible:
          self.displaySideText()
-      if self.wiki.isOpen:
-         self.wiki.displayText()
 
    def savePreferences(self):
       temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":self.savelocation,"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki,"doShopsReturn":self.doShopsReturn},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
