@@ -227,9 +227,1578 @@ class ToolTip(object):
 #====================================================================================
 
 @dataclass
-class wikiPage:
+class WikiPage:
    topic: str
    num: int
+
+class PyminWiki:
+   # TODO: Add indication for submenus
+   # TODO: Add forcedResolution property
+   MENUS = {
+      "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
+      "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
+      "Basics.MenuBar":("File","View","Save Utils","Debug Utils","Help","Back"),
+      "Basics.MenuBar.File":("Options","Quit","Back"),
+      "Items":("All Items","Debug Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"),
+      "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
+      "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
+      "Items.Equipable":("Weapons","Other Equipables","Back"),
+      "Items.Equipable.Weapons":("Dagger","Hammer","Saber","Whip","Tail Spike","Back"),
+      "Items.Equipable.Other":("Snuggle Ball","Supp Harness","Back"),
+      "Items.Passive":("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back"),
+      "Items.Consumables":("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back"),
+      "Items.Consumables.Affinity":("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back"),
+      "Items.Consumables.Alchemy":("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back"),
+      "Items.Consumables.Dyes":("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back"),
+      "Items.Consumables.TScrolls":("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back"),
+      "Items.Consumables.Eggs":("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
+      "Items.Consumables.Other":("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back"),
+      "Items.Silandrias":("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back"),
+      "Items.Special":("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back"),
+      "Items.Other":("Test","Back"),
+      "Clothes":("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back"),
+      "Enemies":("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back"),
+      "Races":("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back"),
+      "Locations":("Towns","Other Locations","Back"),
+      "Locations.Towns":("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back"),
+      "Locations.Other":("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back"),
+      "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
+      "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
+   }
+   @property
+   def enforceSize(self):
+      return self._enforceSize
+
+   @enforceSize.setter
+   def enforceSize(self, value):
+      value = bool(value)
+      if self.isOpen:
+         if value:
+            self.window.geometry("700x500")
+            self.window.resizable = False
+         else:
+            self.window.resizable = True
+      self._enforceSize = value
+
+   @property
+   def focus(self):
+      return self._focus
+
+   @focus.setter
+   def focus(self, value):
+      value = int(value)
+      if value != 0 and value != 1:
+         raise
+      if value == 0:
+         self.window.forceFocus("menu")
+      elif value == 1:
+         self.window._children["text"].vbar.focus_force()
+      self._focus = value
+
+   @property
+   def hasCustomHTMLParser(self):
+      return self._hasCustomHTMLParser
+
+   @property
+   def isOpen(self):
+      return self._isOpen
+
+   @isOpen.setter
+   def isOpen(self, value):
+      value = bool(value)
+      if self._isOpen and not value:
+         self.close()
+      elif not self._isOpen and value:
+         self.open()
+
+   @property
+   def menu(self):
+      return self._currentMenu
+
+   @menu.setter
+   def menu(self, value):
+      value = str(value)
+      if value == 'Back':
+         if self.menu != "":
+            self._currentMenu = ".".join(self.menu.split(".")[:-1])
+      else:
+         self._currentMenu = value
+      self.window._children["menu"].delete(0, "end")
+      self.window._children["menu"].insert("end", *PyminWiki.MENUS[self._currentMenu])
+      self.window._children["menu"].select_set(0)
+      self.window._children["menu"].activate(0)
+
+   @property
+   def window(self):
+      return self._window
+
+   def __init__(self, callback):
+      self._focus = 1
+      self._isOpen = False
+      self._window = None
+      self._currentMenu = None
+      self.pageHistory = Array()
+      self.callback = callback
+      temp = itk.itkHTMLScrolledText(itkWindow=self.callback.mo)
+      if getattr(temp.html_parser, 'callobject', '') == '':
+         self._hasCustomHTMLParser = False
+         trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
+      else:
+         self._hasCustomHTMLParser = True
+      temp.destroy()
+
+   def open(self):
+      if self.isOpen:
+         self.window.lift()
+         return
+      # Set up window
+      self._window = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0")
+      self.window.transient(self.callback.mo)
+
+      self.window.bind("<Destroy>", self._close)
+      self.window.bind("<KeyPress>", partial(self.callback.keyPress, self.hotKeys))
+      self.window.bind('<KeyRelease>', self.callback.keysUp)
+
+      if self.enforceSize:
+         self.window.resizable = False
+
+      # Set up widgets
+      self.window.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.callback.theme,foreground=self.callback.fontColor)
+      self.window.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.callback.fontSize - 2),sbwidth=12,background=self.callback.theme,foreground=self.callback.fontColor)
+      if self.hasCustomHTMLParser:
+         self.window._children["text"].html_parser.callobject = self.toPage
+      self.window.bindChild("menu",'<Double-1>', self.selectOption)
+
+      # Initialise menu and page
+      self.menu = ''
+      self.toPage("Basic",0)
+      self.focus = 0
+      self._isOpen = True
+
+   def _close(self, *e):
+      self._isOpen = False
+
+   def close(self):
+      if self.isOpen:
+         self.window.close()
+         self._close()
+         self._currentMenu = None
+
+   def displayText(self):
+      textw = self.window._children["text"]
+      textw.state = "normal"
+      textw._fontSize = self.callback.fontSize - 2
+      textw.text = self.textwiki
+      textw.state = "disabled"
+
+   def clearAddText(self, text):
+      self.textwiki = text
+      self.displayText()
+
+   def hotKeys(self, keyCode):
+      if keyCode in {81,8,103} and self.isOpen: #q,backspace,numPad7
+         self.close()
+      elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
+         self.selectionUp()
+      elif keyCode in {69,190,105}: #e,.,numPad9
+         self.toPreviousPage()
+      elif keyCode in {82,191,109}: #r,/,numPadMinus
+         self.switchFocus()
+      elif keyCode in {65,37,100}: #a,←,numPad4
+         self.menu = "Back"
+      elif keyCode in {83,"midKeyS",101}: #s,<>,numPad5
+         self.selectionDown()
+      elif keyCode in {68,39,102,13}: #d,→,numPad6,enter
+         self.selectOption()
+
+   def selectionUp(self, *e):
+      temp = self.window._children["menu"].curselection()[0]
+      if temp != 0:
+         self.window._children["menu"].selection_clear(temp)
+         self.window._children["menu"].select_set(temp - 1)
+         self.window._children["menu"].activate(temp - 1)
+         self.window._children["menu"].see(temp - 1)
+
+   def selectionDown(self, *e):
+      temp = self.window._children["menu"].curselection()[0]
+      if (temp + 1) < len(self.window._children["menu"].get(0,"end")):
+         self.window._children["menu"].selection_clear(temp)
+         self.window._children["menu"].select_set(temp + 1)
+         self.window._children["menu"].activate(temp + 1)
+         self.window._children["menu"].see(temp + 1)
+
+   def switchFocus(self):
+      if self.focus == 0:
+         self.focus = 1
+      elif self.focus == 1:
+         self.focus = 0
+
+   def toPreviousPage(self):
+      if self.pageHistory.length > 1:
+         self.pageHistory.pop()
+         page = self.pageHistory[-1]
+         self.doPage(page)
+
+   def toPage(self, topic: str, num: int):
+      curPage = WikiPage(topic, int(num))
+      if self.pageHistory.length or self.pageHistory[-1] != curPage:
+         self.pageHistory.append(curPage)
+      self.doPage(curPage)
+
+   def selectOption(self, e=None):
+      sel = self.window._children["menu"].get(self.window._children["menu"].curselection())
+      if sel == "Back":
+         self.menu = "Back"
+      elif self.menu == "":
+         if sel == "Basics":
+            self.menu = "Basics"
+         elif sel == "Items":
+            self.menu = "Items"
+         elif sel == "Clothes":
+            self.menu = "Clothes"
+         elif sel == "Enemies":
+            self.menu = "Enemies"
+         elif sel == "Races":
+            self.menu = "Races"
+         elif sel == "Locations":
+            self.menu = "Locations"
+         elif sel == "Shops":
+            self.menu = "Shops"
+         elif sel == "Named Characters":
+            self.menu = "NPCs"
+         elif sel == "Close":
+            self.close()
+      elif self.menu == "Basics":
+         if sel == "Welcome Screen":
+            self.toPage("Basic",0)
+         elif sel == "Wiki Key":
+            self.toPage("Basic",5)
+         elif sel == "Stats":
+            self.toPage("Basic",1)
+         elif sel == "Actions":
+            self.toPage("Basic",2)
+         elif sel == "Tips":
+            self.toPage("Basic",3)
+         elif sel == "Hotkeys":
+            self.toPage("Basic",4)
+         elif sel == "Changes":
+            self.toPage("Basic",6)
+         elif sel == "Menu Bar":
+            self.menu = "Basics.MenuBar"
+      elif self.menu == "Basics.MenuBar":
+         if sel == "File":
+            self.menu = "Basics.MenuBar.File"
+         elif sel == "View":
+            self.toPage("MenuBar",3)
+         elif sel == "Save Utils":
+            self.toPage("MenuBar",4)
+         elif sel == "Debug Utils":
+            self.toPage("MenuBar",5)
+         elif sel == "Help":
+            self.toPage("MenuBar",6)
+      elif self.menu == "Basics.MenuBar.File":
+         if sel == "Options":
+            self.toPage("MenuBar",1)
+         elif sel == "Quit":
+            self.toPage("MenuBar",2)
+      elif self.menu == "Items":
+         if sel == "All Items": #menunum 3
+            self.menu = "Items.All"
+         elif sel == "Debug Items":
+            self.menu = "Items.Debug"
+         elif sel == "Equipable Items": #menunum 4
+            self.menu = "Items.Equipable"
+         elif sel == "Passive Items":
+            self.menu = "Items.Passive"
+         elif sel == "Consumables": #menunum 7
+            self.menu = "Items.Consumables"
+         elif sel == "Silandrias' Magic Items": #menunum 14
+            self.menu = "Items.Silandrias"
+         elif sel == "Special Items": #menunum 15
+            self.menu = "Items.Special"
+         elif sel == "Other Items": #menunum 16
+            self.menu = "Items.Other"
+      elif self.menu == "Items.All":
+         if sel == "Test":
+            self.toPage("Item",1)
+         elif sel == "Anc Claws":
+            self.toPage("Item",101)
+         elif sel == "Imb Shoes":
+            self.toPage("Item",102)
+         elif sel == "Dry Sand":
+            self.toPage("Item",103)
+         elif sel == "Milker":
+            self.toPage("Item",104)
+         elif sel == "Cat's Meow":
+            self.toPage("Item",105)
+         elif sel == "Penis Pump":
+            self.toPage("Item",106)
+         elif sel == "Blood Gge":
+            self.toPage("Item",108)
+         elif sel == "Edu Egg":
+            self.toPage("Item",109)
+         elif sel == "Reduction":
+            self.toPage("Item",110)
+         elif sel == "Skin Balm":
+            self.toPage("Item",111)
+         elif sel == "Bol Juice":
+            self.toPage("Item",112)
+         elif sel == "Taint Leaf":
+            self.toPage("Item",113)
+         elif sel == "Sweet Sap":
+            self.toPage("Item",114)
+         elif sel == "Poultice":
+            self.toPage("Item",115)
+         elif sel == "Dagger":
+            self.toPage("Item",116)
+         elif sel == "Hammer":
+            self.toPage("Item",117)
+         elif sel == "Saber":
+            self.toPage("Item",118)
+         elif sel == "Whip":
+            self.toPage("Item",119)
+         elif sel == "Neuter":
+            self.toPage("Item",120)
+         elif sel == "TS Soft":
+            self.toPage("Item",121)
+         elif sel == "TS Firm":
+            self.toPage("Item",122)
+         elif sel == "TS Tied":
+            self.toPage("Item",123)
+         elif sel == "TS Siz":
+            self.toPage("Item",124)
+         elif sel == "TS Ovi":
+            self.toPage("Item",125)
+         elif sel == "Oas Water":
+            self.toPage("Item",126)
+         elif sel == "Tail Spike":
+            self.toPage("Item",127)
+         elif sel == "TS Sanct":
+            self.toPage("Item",128)
+         elif sel == "Lila's Gift":
+            self.toPage("Item",200)
+         elif sel == "Milk C Pois":
+            self.toPage("Item",201)
+         elif sel == "Co-Snak Ven":
+            self.toPage("Item",202)
+         elif sel == "Wolf Fur":
+            self.toPage("Item",203)
+         elif sel == "Sm Pouch (ItemID 204)":
+            self.toPage("Item",204)
+         elif sel == "Sm Pouch (ItemID 205)":
+            self.toPage("Item",205)
+         elif sel == "Trinket":
+            self.toPage("Item",206)
+         elif sel == "Cock Carv":
+            self.toPage("Item",207)
+         elif sel == "Blo Berry":
+            self.toPage("Item",208)
+         elif sel == "Grain":
+            self.toPage("Item",209)
+         elif sel == "Puss Fruit":
+            self.toPage("Item",210)
+         elif sel == "DairE Pill":
+            self.toPage("Item",211)
+         elif sel == "Red Mush":
+            self.toPage("Item",212)
+         elif sel == "Wet Cloth":
+            self.toPage("Item",213)
+         elif sel == "Lon Milk":
+            self.toPage("Item",214)
+         elif sel == "Lon Pendant":
+            self.toPage("Item",215)
+         elif sel == "Pink Ink":
+            self.toPage("Item",216)
+         elif sel == "Egg Jelly":
+            self.toPage("Item",217)
+         elif sel == "Bul Berry":
+            self.toPage("Item",218)
+         elif sel == "Fresh Egg":
+            self.toPage("Item",219)
+         elif sel == "Blondie":
+            self.toPage("Item",220)
+         elif sel == "Puss Juice":
+            self.toPage("Item",221)
+         elif sel == "Kinky Carr":
+            self.toPage("Item",222)
+         elif sel == "Eq Snack":
+            self.toPage("Item",223)
+         elif sel == "Lila's Milk":
+            self.toPage("Item",224)
+         elif sel == "Body Wash":
+            self.toPage("Item",225)
+         elif sel == "Felin Tea":
+            self.toPage("Item",226)
+         elif sel == "Oral Wash":
+            self.toPage("Item",227)
+         elif sel == "Body Oil":
+            self.toPage("Item",228)
+         elif sel == "Leath Strap":
+            self.toPage("Item",229)
+         elif sel == "Eggcelerator":
+            self.toPage("Item",230)
+         elif sel == "Desi Sand":
+            self.toPage("Item",231)
+         elif sel == "Flying Carp":
+            self.toPage("Item",232)
+         elif sel == "A-Grav Rock":
+            self.toPage("Item",233)
+         elif sel == "Rein Charm":
+            self.toPage("Item",234)
+         elif sel == "Fell Rod":
+            self.toPage("Item",235)
+         elif sel == "Recept Bell":
+            self.toPage("Item",236)
+         elif sel == "Dewy Gift":
+            self.toPage("Item",237)
+         elif sel == "Squ Cheese":
+            self.toPage("Item",238)
+         elif sel == "Shiny Rock":
+            self.toPage("Item",239)
+         elif sel == "Auburn Dye":
+            self.toPage("Item",240)
+         elif sel == "Brown Dye":
+            self.toPage("Item",241)
+         elif sel == "Grey Dye":
+            self.toPage("Item",242)
+         elif sel == "White Dye":
+            self.toPage("Item",243)
+         elif sel == "Snuggle Ball":
+            self.toPage("Item",244)
+         elif sel == "Facial Mud":
+            self.toPage("Item",245)
+         elif sel == "Fertile Gel":
+            self.toPage("Item",246)
+         elif sel == "Supp Harness":
+            self.toPage("Item",247)
+         elif sel == "Breeder Pot":
+            self.toPage("Item",248)
+         elif sel == "Treant's Tear":
+            self.toPage("Item",249)
+         elif sel == "Foomp Bomb":
+            self.toPage("Item",250)
+         elif sel == "Plump Quat":
+            self.toPage("Item",251)
+         elif sel == "Milky Pend":
+            self.toPage("Item",252)
+         elif sel == "Bug Egg":
+            self.toPage("Item",253)
+         elif sel == "Lantern":
+            self.toPage("Item",254)
+         elif sel == "Frag Flower":
+            self.toPage("Item",255)
+         elif sel == "Nectar Candy":
+            self.toPage("Item",256)
+         elif sel == "Too Human":
+            self.toPage("Item",257)
+         elif sel == "Tainted Pot":
+            self.toPage("Item",258)
+         elif sel == "Sweet&Sour":
+            self.toPage("Item",259)
+         elif sel == "Succ Draft":
+            self.toPage("Item",260)
+         elif sel == "Milk Bottle":
+            self.toPage("Item",500)
+         elif sel == "Milk Jug":
+            self.toPage("Item",501)
+         elif sel == "Milk Barrel":
+            self.toPage("Item",502)
+         elif sel == "Lust Draft":
+            self.toPage("Item",503)
+         elif sel == "Rejuv Pot":
+            self.toPage("Item",504)
+         elif sel == "Bad Exper":
+            self.toPage("Item",505)
+         elif sel == "Exp Preg":
+            self.toPage("Item",506)
+         elif sel == "Ball Sweller":
+            self.toPage("Item",507)
+         elif sel == "S Lust Draft":
+            self.toPage("Item",508)
+         elif sel == "S Rejuv Pot":
+            self.toPage("Item",509)
+         elif sel == "S Bad Exper":
+            self.toPage("Item",510)
+         elif sel == "S Exp Preg":
+            self.toPage("Item",511)
+         elif sel == "S Ball Sweller":
+            self.toPage("Item",512)
+         elif sel == "Gen Swap":
+            self.toPage("Item",513)
+         elif sel == "Maso Pot":
+            self.toPage("Item",514)
+         elif sel == "Black Dye":
+            self.toPage("Item",515)
+         elif sel == "Baby Free":
+            self.toPage("Item",516)
+         elif sel == "Pot Pot":
+            self.toPage("Item",517)
+         elif sel == "S Gen Swap":
+            self.toPage("Item",518)
+         elif sel == "S Maso Pot":
+            self.toPage("Item",519)
+         elif sel == "Red Dye":
+            self.toPage("Item",520)
+         elif sel == "S Baby Free":
+            self.toPage("Item",521)
+         elif sel == "S Pot Pot":
+            self.toPage("Item",522)
+         elif sel == "Cum Vial":
+            self.toPage("Item",523)
+         elif sel == "Cum Bottle":
+            self.toPage("Item",524)
+         elif sel == "Cum Jug":
+            self.toPage("Item",525)
+         elif sel == "Cum Barrel":
+            self.toPage("Item",526)
+         elif sel == "Good Egg":
+            self.toPage("Item",527)
+         elif sel == "Bad Egg":
+            self.toPage("Item",528)
+         elif sel == "Strange Egg":
+            self.toPage("Item",529)
+         elif sel == "Charmed Egg":
+            self.toPage("Item",530)
+         elif sel == "Divine Egg":
+            self.toPage("Item",531)
+         elif sel == "Pheromone":
+            self.toPage("Item",532)
+         elif sel == "Reduc Reduc":
+            self.toPage("Item",533)
+         elif sel == "Male Enhance":
+            self.toPage("Item",534)
+         elif sel == "Milk Suppress":
+            self.toPage("Item",535)
+         elif sel == "Bazoomba!":
+            self.toPage("Item",536)
+         elif sel == "Queen Egg":
+            self.toPage("Item",537)
+         elif sel == "Soldier Egg":
+            self.toPage("Item",538)
+         elif sel == "Drone Egg":
+            self.toPage("Item",539)
+         elif sel == "Worker Egg":
+            self.toPage("Item",540)
+      elif self.menu == "Items.Debug":
+         if sel == "Debug Stick":
+            self.toPage("Item",2)
+         elif sel == "Item Not Found":
+            self.toPage("Item",404)
+         elif sel == "Teapot":
+            self.toPage("Item",418)
+      elif self.menu == "Items.Equipable":
+         if sel == "Weapons":
+            self.menu = "Items.Equipable.Weapons"
+         elif sel == "Other Equipables":
+            self.menu = "Items.Equipable.Other"
+      elif self.menu == "Items.Equipable.Weapons":
+         if sel == "Dagger":
+            self.toPage("Item",116)
+         elif sel == "Hammer":
+            self.toPage("Item",117)
+         elif sel == "Saber":
+            self.toPage("Item",118)
+         elif sel == "Whip":
+            self.toPage("Item",119)
+         elif sel == "Tail Spike":
+            self.toPage("Item",127)
+      elif self.menu == "Items.Equipable.Other":
+         if sel == "Snuggle Ball":
+            self.toPage("Item",244)
+         elif sel == "Supp Harness":
+            self.toPage("Item",247)
+      elif self.menu == "Items.Passive":
+         if sel == "Anc Claws":
+            self.toPage("Item",101)
+         elif sel == "Imb Shoes":
+            self.toPage("Item",102)
+         elif sel == "Lila's Gift":
+            self.toPage("Item",200)
+         elif sel == "Lon Pendant":
+            self.toPage("Item",215)
+         elif sel == "Dewy Gift":
+            self.toPage("Item",237)
+         elif sel == "Milky Pend":
+            self.toPage("Item",252)
+      elif self.menu == "Items.Consumables":
+         if sel == "Affinity Items":
+            self.menu = "Items.Consumables.Affinity"
+         elif sel == "Alchemy Items":
+            self.menu = "Items.Consumables.Alchemy"
+         elif sel == "Dyes":
+            self.menu = "Items.Consumables.Dyes"
+         elif sel == "Teleport Scrolls":
+            self.menu = "Items.Consumables.TScrolls"
+         elif sel == "Eggs":
+            self.menu = "Items.Consumables.Eggs"
+         elif sel == "Other Consumables":
+            self.menu = "Items.Consumables.Other"
+      elif self.menu == "Items.Consumables.Affinity":
+         if sel == "Skin Balm":
+            self.toPage("Item",111)
+         elif sel == "Bol Juice":
+            self.toPage("Item",112)
+         elif sel == "Taint Leaf":
+            self.toPage("Item",113)
+         elif sel == "Sweet Sap":
+            self.toPage("Item",114)
+         elif sel == "Oas Water":
+            self.toPage("Item",126)
+         elif sel == "DairE Pill":
+            self.toPage("Item",211)
+         elif sel == "Lon Milk":
+            self.toPage("Item",214)
+         elif sel == "Kinky Carr":
+            self.toPage("Item",222)
+         elif sel == "Squ Cheese":
+            self.toPage("Item",238)
+         elif sel == "Shiny Rock":
+            self.toPage("Item",239)
+         elif sel == "Facial Mud":
+            self.toPage("Item",245)
+         elif sel == "Frag Flower":
+            self.toPage("Item",255)
+         elif sel == "Nectar Candy":
+            self.toPage("Item",256)
+         elif sel == "Too Human":
+            self.toPage("Item",257)
+         elif sel == "Tainted Pot":
+            self.toPage("Item",258)
+      elif self.menu == "Items.Consumables.Alchemy":
+         if sel == "Blondie":
+            self.toPage("Item",220)
+         elif sel == "Puss Juice":
+            self.toPage("Item",221)
+         elif sel == "Lust Draft":
+            self.toPage("Item",503)
+         elif sel == "Rejuv Pot":
+            self.toPage("Item",504)
+         elif sel == "Exp Preg":
+            self.toPage("Item",506)
+         elif sel == "Ball Sweller":
+            self.toPage("Item",507)
+         elif sel == "S Lust Draft":
+            self.toPage("Item",508)
+         elif sel == "S Rejuv Pot":
+            self.toPage("Item",509)
+         elif sel == "S Exp Preg":
+            self.toPage("Item",511)
+         elif sel == "S Ball Sweller":
+            self.toPage("Item",512)
+         elif sel == "Gen Swap":
+            self.toPage("Item",513)
+         elif sel == "Maso Pot":
+            self.toPage("Item",514)
+         elif sel == "Baby Free":
+            self.toPage("Item",516)
+         elif sel == "Pot Pot":
+            self.toPage("Item",517)
+         elif sel == "S Gen Swap":
+            self.toPage("Item",518)
+         elif sel == "S Maso Pot":
+            self.toPage("Item",519)
+         elif sel == "S Baby Free":
+            self.toPage("Item",521)
+         elif sel == "S Pot Pot":
+            self.toPage("Item",522)
+         elif sel == "Pheromone":
+            self.toPage("Item",532)
+         elif sel == "Reduc Reduc":
+            self.toPage("Item",533)
+         elif sel == "Male Enhance":
+            self.toPage("Item",534)
+         elif sel == "Milk Suppress":
+            self.toPage("Item",535)
+         elif sel == "Bazoomba!":
+            self.toPage("Item",536)
+      elif self.menu == "Items.Consumables.Dyes":
+         if sel == "Pink Ink":
+            self.toPage("Item",216)
+         elif sel == "Auburn Dye":
+            self.toPage("Item",240)
+         elif sel == "Brown Dye":
+            self.toPage("Item",241)
+         elif sel == "Grey Dye":
+            self.toPage("Item",242)
+         elif sel == "White Dye":
+            self.toPage("Item",243)
+         elif sel == "Black Dye":
+            self.toPage("Item",515)
+         elif sel == "Red Dye":
+            self.toPage("Item",520)
+      elif self.menu == "Items.Consumables.TScrolls":
+         if sel == "TS Soft":
+            self.toPage("Item",121)
+         elif sel == "TS Firm":
+            self.toPage("Item",122)
+         elif sel == "TS Tied":
+            self.toPage("Item",123)
+         elif sel == "TS Siz":
+            self.toPage("Item",124)
+         elif sel == "TS Ovi":
+            self.toPage("Item",125)
+         elif sel == "TS Sanct":
+            self.toPage("Item",128)
+      elif self.menu == "Items.Consumables.Eggs":
+         if sel == "Fresh Egg":
+            self.toPage("Item",219)
+         elif sel == "Bug Egg":
+            self.toPage("Item",253)
+         elif sel == "Good Egg":
+            self.toPage("Item",527)
+         elif sel == "Bag Egg":
+            self.toPage("Item",528)
+         elif sel == "Strange Egg":
+            self.toPage("Item",529)
+         elif sel == "Charmed Egg":
+            self.toPage("Item",530)
+         elif sel == "Divine Egg":
+            self.toPage("Item",531)
+         elif sel == "Queen Egg":
+            self.toPage("Item",537)
+         elif sel == "Soldier Egg":
+            self.toPage("Item",538)
+         elif sel == "Drone Egg":
+            self.toPage("Item",539)
+         elif sel == "Worker Egg":
+            self.toPage("Item",540)
+      elif self.menu == "Items.Consumables.Other":
+         if sel == "Dry Sand":
+            self.toPage("Item",103)
+         elif sel == "Cat's Meow":
+            self.toPage("Item",105)
+         elif sel == "Reduction":
+            self.toPage("Item",110)
+         elif sel == "Poultice":
+            self.toPage("Item",115)
+         elif sel == "Neuter":
+            self.toPage("Item",120)
+         elif sel == "Milk C Pois":
+            self.toPage("Item",201)
+         elif sel == "Co-Snak Ven":
+            self.toPage("Item",202)
+         elif sel == "Wolf Fur":
+            self.toPage("Item",203)
+         elif sel == "Sm Pouch (ItemID 204)":
+            self.toPage("Item",204)
+         elif sel == "Sm Pouch (ItemID 205)":
+            self.toPage("Item",205)
+         elif sel == "Cock Carv":
+            self.toPage("Item",207)
+         elif sel == "Blo Berry":
+            self.toPage("Item",208)
+         elif sel == "Grain":
+            self.toPage("Item",209)
+         elif sel == "Puss Fruit":
+            self.toPage("Item",210)
+         elif sel == "Red Mush":
+            self.toPage("Item",212)
+         elif sel == "Wet Cloth":
+            self.toPage("Item",213)
+         elif sel == "Egg Jelly":
+            self.toPage("Item",217)
+         elif sel == "Bul Berry":
+            self.toPage("Item",218)
+         elif sel == "Eq Snack":
+            self.toPage("Item",223)
+         elif sel == "Lila's Milk":
+            self.toPage("Item",224)
+         elif sel == "Body Wash":
+            self.toPage("Item",225)
+         elif sel == "Felin Tea":
+            self.toPage("Item",226)
+         elif sel == "Oral Wash":
+            self.toPage("Item",227)
+         elif sel == "Body Oil":
+            self.toPage("Item",228)
+         elif sel == "Eggcelerator":
+            self.toPage("Item",230)
+         elif sel == "Desi Sand":
+            self.toPage("Item",231)
+         elif sel == "Fertile Gel":
+            self.toPage("Item",246)
+         elif sel == "Breeder Pot":
+            self.toPage("Item",248)
+         elif sel == "Treant's Tear":
+            self.toPage("Item",249)
+         elif sel == "Foomp Bomb":
+            self.toPage("Item",250)
+         elif sel == "Plump Quat":
+            self.toPage("Item",251)
+         elif sel == "Sweet&Sour":
+            self.toPage("Item",259)
+         elif sel == "Succ Draft":
+            self.toPage("Item",260)
+         elif sel == "Milk Bottle":
+            self.toPage("Item",500)
+         elif sel == "Milk Jug":
+            self.toPage("Item",501)
+         elif sel == "Milk Barrel":
+            self.toPage("Item",502)
+         elif sel == "Bad Exper":
+            self.toPage("Item",505)
+         elif sel == "S Bad Exper":
+            self.toPage("Item",510)
+         elif sel == "Cum Vial":
+            self.toPage("Item",523)
+         elif sel == "Cum Bottle":
+            self.toPage("Item",524)
+         elif sel == "Cum Jug":
+            self.toPage("Item",525)
+         elif sel == "Cum Barrel":
+            self.toPage("Item",526)
+      elif self.menu == "Items.Silandrias":
+         if sel == "Leath Strap":
+            self.toPage("Item",229)
+         elif sel == "Flying Carp":
+            self.toPage("Item",232)
+         elif sel == "A-Grav Rock":
+            self.toPage("Item",233)
+         elif sel == "Rein Charm":
+            self.toPage("Item",234)
+         elif sel == "Fell Rod":
+            self.toPage("Item",235)
+         elif sel == "Recept Bell":
+            self.toPage("Item",236)
+      elif self.menu == "Items.Special":
+         if sel == "Milker":
+            self.toPage("Item",104)
+         elif sel == "Penis Pump":
+            self.toPage("Item",106)
+         elif sel == "Blood Gge":
+            self.toPage("Item",108)
+         elif sel == "Edu Egg":
+            self.toPage("Item",109)
+         elif sel == "Trinket":
+            self.toPage("Item",206)
+         elif sel == "Lantern":
+            self.toPage("Item",254)
+      elif self.menu == "Items.Other":
+         if sel == "Test":
+            self.toPage("Item",1)
+      elif self.menu == "Clothes":
+         if sel == "Tattered Shreds":
+            self.toPage("Clothes",-1)
+         elif sel == "Invisible Underwear":
+            self.toPage("Clothes",0)
+         elif sel == "Shirt":
+            self.toPage("Clothes",1)
+         elif sel == "Pants":
+            self.toPage("Clothes",2)
+         elif sel == "Bikini Top":
+            self.toPage("Clothes",3)
+         elif sel == "Bikini Bottom":
+            self.toPage("Clothes",4)
+         elif sel == "Elegant Dress":
+            self.toPage("Clothes",5)
+         elif sel == "Latex Suit":
+            self.toPage("Clothes",6)
+         elif sel == "Skirt":
+            self.toPage("Clothes",7)
+         elif sel == "Shorts":
+            self.toPage("Clothes",8)
+         elif sel == "Blouse":
+            self.toPage("Clothes",9)
+         elif sel == "Diaper":
+            self.toPage("Clothes",10)
+         elif sel == "Poofy Diaper":
+            self.toPage("Clothes",11)
+         elif sel == "Sundress":
+            self.toPage("Clothes",12)
+         elif sel == "Skimpy Dress":
+            self.toPage("Clothes",13)
+         elif sel == "Short Skirt":
+            self.toPage("Clothes",14)
+         elif sel == "Short Shorts":
+            self.toPage("Clothes",15)
+         elif sel == "Loin Cloth":
+            self.toPage("Clothes",16)
+         elif sel == "Bathing Suit":
+            self.toPage("Clothes",17)
+         elif sel == "Muscle Shirt":
+            self.toPage("Clothes",18)
+         elif sel == "Corset":
+            self.toPage("Clothes",19)
+         elif sel == "Silk Panties":
+            self.toPage("Clothes",20)
+         elif sel == "Slingkini":
+            self.toPage("Clothes",21)
+         elif sel == "Thong":
+            self.toPage("Clothes",22)
+         elif sel == "Bloomers":
+            self.toPage("Clothes",23)
+         elif sel == "Tights":
+            self.toPage("Clothes",24)
+         elif sel == "Gothic Dress":
+            self.toPage("Clothes",25)
+         elif sel == "Tube Top":
+            self.toPage("Clothes",26)
+         elif sel == "Nipple Pasties":
+            self.toPage("Clothes",27)
+         elif sel == "Camisole":
+            self.toPage("Clothes",28)
+         elif sel == "Training Suit":
+            self.toPage("Clothes",29)
+         elif sel == "Bouncy Bra":
+            self.toPage("Clothes",30)
+      elif self.menu == "Enemies":
+         if sel == "Test Enemy":
+            self.toPage("Enemy",1)
+         elif sel == "Cock-snake":
+            self.toPage("Enemy",101)
+         elif sel == "Desiccating Dust Devil":
+            self.toPage("Enemy",102)
+         elif sel == "Lone Male Wolf":
+            self.toPage("Enemy",201)
+         elif sel == "Gay Wolf":
+            self.toPage("Enemy",202)
+         elif sel == "Felin in Heat":
+            self.toPage("Enemy",301)
+         elif sel == "Drunken Equan":
+            self.toPage("Enemy",302)
+         elif sel == "Octopus Girl":
+            self.toPage("Enemy",303)
+         elif sel == "Little Big Bunny-man":
+            self.toPage("Enemy",304)
+         elif sel == "Little Big Bunny-girl":
+            self.toPage("Enemy",305)
+         elif sel == "Fierce Naga":
+            self.toPage("Enemy",306)
+         elif sel == "Minotaur":
+            self.toPage("Enemy",307)
+         elif sel == "Freaky Little Girl":
+            self.toPage("Enemy",308)
+         elif sel == "Succubus":
+            self.toPage("Enemy",309)
+      elif self.menu == "Races":
+         if sel == "Human":
+            self.toPage("Race",1)
+         elif sel == "Equan":
+            self.toPage("Race",2)
+         elif sel == "Lupan":
+            self.toPage("Race",3)
+         elif sel == "Felin":
+            self.toPage("Race",4)
+         elif sel == "Cow":
+            self.toPage("Race",5)
+         elif sel == "Lizan":
+            self.toPage("Race",6)
+         elif sel == "Bunny":
+            self.toPage("Race",7)
+         elif sel == "Mouse":
+            self.toPage("Race",8)
+         elif sel == "Bird":
+            self.toPage("Race",9)
+         elif sel == "Pig":
+            self.toPage("Race",10)
+         elif sel == "Skunk":
+            self.toPage("Race",11)
+         elif sel == "Bug":
+            self.toPage("Race",12)
+      elif self.menu == "Locations":
+         if sel == "Towns":
+            self.menu = "Locations.Towns"
+         elif sel == "Other Locations":
+            self.menu = "Locations.Other"
+      elif self.menu == "Locations.Towns":
+         if sel == "Softlik":
+            self.toPage("Town",1)
+         elif sel == "Firmshaft":
+            self.toPage("Town",2)
+         elif sel == "Tieden":
+            self.toPage("Town",3)
+         elif sel == "Siz'Calit":
+            self.toPage("Town",4)
+         elif sel == "Oviasis":
+            self.toPage("Town",6)
+         elif sel == "Sanctuary":
+            self.toPage("Town",12)
+      elif self.menu == "Locations.Other":
+         if sel == "Forest":
+            self.toPage("Location",1)
+         elif sel == "Jungle":
+            self.toPage("Location",2)
+         elif sel == "Plains":
+            self.toPage("Location",3)
+         elif sel == "Savanna":
+            self.toPage("Location",4)
+         elif sel == "Desert":
+            self.toPage("Location",5)
+         elif sel == "Beach":
+            self.toPage("Location",6)
+         elif sel == "Lake":
+            self.toPage("Location",7)
+         elif sel == "Dairy Farm":
+            self.toPage("Location",8)
+         elif sel == "Old Cave":
+            self.toPage("Location",9)
+         elif sel == "Old Cave Descent":
+            self.toPage("Location",10)
+         elif sel == "Den":
+            self.toPage("Location",11)
+         elif sel == "Valley":
+            self.toPage("Location",12)
+         elif sel == "Knothole":
+            self.toPage("Location",13)
+      elif self.menu == "Shops":
+         if sel == "General Shop":
+            self.toPage("Shop",1)
+         elif sel == "Dye Shop":
+            self.toPage("Shop",2)
+         elif sel == "Apothecary":
+            self.toPage("Shop",3)
+         elif sel == "Salon":
+            self.toPage("Shop",4)
+         elif sel == "Tailor":
+            self.toPage("Shop",5)
+      elif self.menu == "NPCs":
+         if sel == "Fidoris":
+            self.toPage("NPC",1)
+         elif sel == "Jamie":
+            self.toPage("NPC",2)
+         elif sel == "Lila":
+            self.toPage("NPC",3)
+         elif sel == "Malon":
+            self.toPage("NPC",4)
+         elif sel == "Silandrias":
+            self.toPage("NPC",5)
+
+   def doPage(self, page: WikiPage):
+      text = None
+      if page.topic == "Basic":
+         text = self.basicDescription(page.num)
+      elif page.topic == "Item":
+         text = self.itemDescription(page.num)
+      elif page.topic == "Clothes":
+         text = self.clothesDescription(page.num)
+      elif page.topic == "Enemy":
+         text = self.enemyDescription(page.num)
+      elif page.topic == "Race":
+         text = self.raceDescription(page.num)
+      elif page.topic == "Town":
+         text = self.townDescription(page.num)
+      elif page.topic == "Location":
+         text = self.locationDescription(page.num)
+      elif page.topic == "Shop":
+         text = self.shopDescription(page.num)
+      elif page.topic == "NPC":
+         text = self.NPCDescription(page.num)
+      elif page.topic == "MenuBar":
+         text = self.menuBarDescription(page.num)
+      if text is None:
+         raise Error(f'Wiki page lookup for ({page.topic}, {page.num}) returned no text.')
+      self.clearAddText(text)
+
+   """
+   Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
+   """
+
+   def basicDescription(self, Num:int):
+      if Num == 0:
+         tempStr = f"<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
+         if not self.hasCustomHTMLParser:
+            tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
+         return tempStr
+      if Num == 1:
+         return "<h4><u>Stats</u></h4><u>Strength</u>\nAdds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation.\n\n<u>Mentality</u>\nFights hostile lust gain, improves helpful lust loss.\n\n<u>Libido</u>\nIncreases lust gain, can hinder mentality in events.\n\n<u>Sensitivity</u>\nIncreases damage taken and increases lust loss.\n\n<u>HP</u>\nYour Hit Points. Lose too much and you'll pass out.\n\n<u>Lust</u>\nCan overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP."
+      if Num == 2:
+         return "<h4><u>Actions</u></h4><u>Stash</u>\nExtra inventory space that you cannot carry, but moves with you from town to town.\n\n<u>Prostitute</u>\nWhen desparate for money, you can resort to prostitution. Remember, beggars can't be choosers and you may not like the company.\n\n<u>Alchemy</u>\nMix items together to get other items. Learn recipes around the world.\n\n<u>Bag</u>\nWhere you hold all your items. Shift+Click will allow you to select an item to move, Shift+Click a slot to move it to.\n\n<u>Rape</u>\nA combat action to attempt to overpower your opponent and sex their brains out. An aroused opponent is easier to rape.\n\n<u>Entice</u>\nA combat action to raise opponent's lust (if they find you attractive).\n\n<u>Run</u>\nA combat action to flee from battle. Running in a dungeon will leave the dungeon.\n\n<u>Submit</u>\nBecause some people can't wait to be king- I mean raped."
+      if Num == 3:
+         return "<h4><u>Tips</u></h4><u>Carry Capacity</u>\nDetermined by strength, height, body type, and modifiers. Determines how much of yourself you can carry.\n\n<u>Shops</u>\nEach town has unique wares in many of their shops, so it's good to look around.\n\n<u>Race</u>\nSome racial features are based on whatever blood is most dominant. Some features can be shared.\n\n<u>Bust Size</u>\n1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup.\n\n<u>Breasts</u>\nEverybody has breasts. Yes, even males. How many is determined by your race.\n\n<u>Empty Button</u>\nOutside of inventories, these mean you have access to something, but do not currently have the correct item/requirements."
+      if Num == 4:
+         return "<h4><u>Hotkeys</u></h4>Hotkeys for each window will only work when their window is focused.\n\n<b>Panic button:</b> Ctrl + Shift + Alt + Q\nCloses everything immediately. All unsaved progress will be lost.\n\n<u>Game</u>\nHotkeys in this section only function when their buttons are shown.\n<b>Save:</b> F2 | <b>Load:</b> F4 | <b>New Game:</b> Backspace | <b>Appearance:</b> U\n<b>Font Size+:</b> Up | <b>Font Size-:</b> Down | <b>Theme:</b> Left | <b>Font Color:</b> Right\n<b>Reset Font Size:</b> Ctrl | <b>Font Bold:</b> /? | <b>Toggle Side Window:</b> .\n<b>Side window buttons (in order):</b>\n\tUIOP\n\tHJKL\n<b>Main choice buttons (both keyboard and NumPad in order):</b>\n\tQWER\t789-\n\tASDFG\t456+.\n\tZXCVB\t123Enter0\n\n<u>Wiki</u>\n<b>Open the wiki:</b> Tilde, numPadDivide\n<b>Close the wiki:</b> q, backspace, numPad7\n<b>Move selection up:</b> w, ↑, numPad8\n<b>Move selection down:</b> s, ↓, numPad6\n<b>Previous menu:</b> a, ←, numPad4\n<b>Select option:</b> d, →, numPad6, enter\n<b>Previous page:</b> e, ., numPad9\n<b>Switch selection between menu and text:</b> r, /, numPadMinus"
+      if Num == 5:
+         return "<h4><u>Wiki Key</u></h4>This page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<h6><u>General Notations</u></h6><b><u>Header 4 with underline</u></b>: page title\n<u>Header 6 with underline</u>: section title\n<u>Underline</u>: Subsection title\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
+      if Num == 6:
+         return "<h4><u>Changes (Outdated)</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exit.\ndoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='\uFFFFMenuBar\uFFFF1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
+
+   def menuBarDescription(self, Num:int):
+      if Num == 1: # File->Options
+         return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to display them. Their functions and containing tabs are described below:\n\n\n<b><u>Options Tab</u></b>\nThis tab contains basic configuration options.\n\n<u>Strict Save Compat</u>\n(Partially Implemented) Forces the use of save files compatible with the original game and disables any configuration options that interfere with that. Even without this active, the game can still save and load the original formats, the new format just takes priority.\n\n<u>Fixed Resolution</u>\nForces all windows to be at their default resolution.\n\n<u>Custom Theme Color</u>\nAllows you to set a custom theme color.\n\n<u>Custom Font Color</u>\nAllows you to set a custom font color.\n\n<u>Save Location</u>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n\n<b><u>Interface Tab</u></b>\nThis tab contains toggles that alter the game's interface.\n\n<u>Original Button Colours</u>\n(Partially Implemented) Makes the buttons in the game window have their original colours instead of the new ones. This currently does not add borders to the buttons because that causes visual artifacts when resizing.\n\n<u>Show ScrolledText Borders</u>\nToggles the borders on the scrollable text areas. They come with borders so I thought it would be nice to allow people to re-enable them if they wanted to.\n\n<u>Original Size For New Game</u>\nUses the original size and location of the new game button.\n\n<u>Static doLevelUP Buttons</u>\nForces the buttons in the level up screen to stay in the same place no matter what is being displayed.\n\n<u>Theme Type Selector</u>\nSelects the theme you want to go with. The 'Pymin' theme is the default and allows more customization. The 'Nimin' theme sticks more strictly to the original game's style where possible and limits your customization options.\n\n<u>Use Expanded Save Dialog</u>\nToggles the use of the new save/load dialog. This new dialog uses a scrollable listbox to allow the selection of any save file in the save folder. You can also enter the file name in the entry box if you wish.\n\n<u>Use New Stash</u>\nMakes the stash work like the bag instead of the limited mess that it was originally. When moving an item in either the bag or stash, the return button switches to a button which allows you to move between them with the item. Item discarding has been moved to its own button located to the right of the return button.\n\n<u>Help Opens Wiki</u>\nMakes the 'Help' button on the side bar open the wiki instead of displaying the help text.\n\n\n<b><u>Grammar Tab</u></b>\nThis tab contains the grammar related toggles. Some are based on personal preference, some are fixes.\n\n<u>Respect showBalls</u>\nMakes the game always respect the visibility status of your balls. There were a lot of places where this was not the case before.\n\n<u>Femme-boy -> Femboy</u>\nChanges 'Femme-boy' to 'Femboy'.\n\n<u>Shemale -> Futanari</u>\nChanges 'Shemale' to 'Futanari'.\n\n<u>Use n-grammar</u>\nMakes the game use 'an' instead of just 'a' where needed. I'm pretty sure this differs between different versions of english, so it may not be 'correct' in yours.\n\n<u>Femme Male Replacement</u>\n(No toggle yet)This replaces 'femmie male' with your choice of either 'feminine male' or 'femme-boy'/'femboy'.\n\n<u>femboyish -> girly</u>\nChanges 'femboyish' to 'girly'.\n\n<u>Snuggleball Tweak</u>\nRemoves the redundant description text for the snuggleball in the appearance text.\n\n<u>Grammar Fixes</u>\nThis toggle is for the other grammar fixes that don't get their own toggle.\n\nChanges cock plurality to be based on the type of cock if senarios are too\nMakes sheath size not able to display as 0\nFixes formatting in detailedTitles when you do not have titles any yet\nMakes the game check if the player has a womb before describing it\nChanges various places where the used words don't makes sense ex: 'urging get you' -> 'trying to get you', 'Eventually, you quickly' -> 'You quickly'\nMakes the game describe the player as flat if their breasts are small in some senarios\n\n\n<b><u>Game Tweaks Tab</u></b>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<u>Status Tweaks</u>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<u>Succubus Leaves One</u>\nMakes the succubus leave one cock (or 2 if you are a Lizan and have at least two lizard cocks) instead of taking all of them.\n\n<u>Use isBottomOpen</u>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming this was an oversight due to how the game was developed).\n\n<u>Lizan Don't Show Balls</u>\n(Partially Implemented) (Most) Lizards don't come with external nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<u>Herm Can Has Both</u>\n(Not implemented) Makes herms able to experience both male and female senarios where it makes sense.\n\n<u>Internal Balls Effect Belly Size</u>\n(Partially Implemented) When showBalls is False, makes ballSize effect belly size in the calculation the game does for weight and size.\n\n<u>Direct Path to Sanctuary</u>\nAdds an explore option that appears once you defeat the final boss in Old Cave Descent which allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<u>Correct Feet for Some Races</u>\n(Partially Implemented) Gives some races (felin, lupan, equan, bovine) the correct feet based on the information present in the game. Felin and lupan get digipaws (I'm not entirely sure about this one), equan and bovine get hooves.\n\n\n<b><u>Debug Options Tab</u></b>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<u>alwaysChooseSenario</u>\nAllows you to choose the senario you want when exploring. Requires user input in the terminal every time.\n\n<u>takeNoDamage</u>\nMakes enemies deal no damage. (currently only applies to eDmg)\n"
+      if Num == 2: # File->Quit
+         return "<h4><u>File->Quit</u></h4>Close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed from the game window if you have a mouse."
+      if Num == 3: # View
+         return "<h4><u>View Menu</u></h4>This menu contains things related to the window mode.\n\n\n<b><u>Full Screen</u></b>\nMaximizes the window.\n\n<b><u>View->Reset Size</u></b>\nResets the main window's size.\n"
+      if Num == 4: # Save Utils
+         return "<h4><u>Save Utils</u></h4>This menu contains utilities for interacting with save files.\n\n\n<b><u>Converter</u></b>\nOpens a window containing a simple save file converter.\n\n<b><u>Editor</u></b> (Incomplete)\nOpens a window containing a simple graphical save file editor.\n"
+      if Num == 5: # Debug Utils
+         return "<h4><u>Debug Utils</u></h4>This menu contains utilities useful for debugging (some could be considered cheats). It will only shows up when debug mode is active.\n\n\n<b><u>Variable Display</u></b>\nOpens a popup window which displays all of the relavant variables in the game and their state.\n\n<b><u>Give Item</u></b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and amount.\n\n<b><u>Use Item</u></b>\n(Not implemented yet) Opens a popup window to activate an item's useItem event without consuming the item or checking if the player has it.\n\n<b><u>Affinity</u></b>\nOpens a popup window that allows the player to modify their affinities. The IDs for affinities are listed below:\n1 - humanAffinity\n2 - horseAffinity\n3 - wolfAffinity\n4 - catAffinity\n5 - cowAffinity\n6 - lizardAffinity\n7 - rabbitAffinity\n8 - mouseAffinity\n9 - birdAffinity\n10 - pigAffinity11 - skunkAffinity\n12 - bugAffinity\nL1001 - cowTaurAffinity\nL1002 - humanTaurAffinity\nB2 - twoBoobAffinity\nB4 - fourBoobAffinity\nB6 - sixBoobAffinity\nB8 - eightBoobAffinity\nB10 - tenBoobAffinity\n"
+      if Num == 6: # Help
+         return "<h4><u>Help</u></h4>This menu contains things that you might want to know about the game.\n\n\n<b><u>Wiki</u></b>\nOpens the wiki.\n\n<b><u>About Game</u></b>\nOpens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window.\n"
+
+   def itemDescription(self, ID:int):
+      if ID == -10:
+         return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 1:
+         return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
+      if ID == 2:
+         return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 3:
+         return "<h4><u>Teleport Scroll: Any (TS Any)</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 404:
+         return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 418:
+         return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+      if ID == 101:
+         return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
+      if ID == 102:
+         return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
+      if ID == 103:
+         return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 104:
+         return "<h4><u>Milking Machine (Milker)</u></h4>(Item ID 104)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 105:
+         return "<h4><u>'Cat's Meow' Potion (Cat's Meow)</u></h4>(Item ID 105)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 106:
+         return "<h4><u>Penis Pump</u></h4>(Item ID 106)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 108:
+         return "<h4><u>Blood Gauge (Blood Gge)</u></h4>(Item ID 108)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 109:
+         return "<h4><u>Educated Eddicator (Edu Egg)</u></h4>(Item ID 109)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 110:
+         return "<h4><u>A Reduction of Reducer Agents (Reduction)</u></h4>(Item ID 110)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 111:
+         return "<h4><u>Skin Balm</u></h4>(Item ID 111)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 112:
+         return "<h4><u>Bolstering Juice (Bol Juice)</u></h4>(Item ID 112)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 113:
+         return "<h4><u>Tainted Leaf (Taint Leaf)</u></h4>(Item ID 113)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 114:
+         return "<h4><u>Sweet Sap</u></h4>(Item ID 114)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 115:
+         return "<h4><u>Poultice</u></h4>(Item ID 115)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 116:
+         return "<h4><u>Dagger</u></h4>(Item ID 116)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 117:
+         return "<h4><u>Warhammer (Hammer)</u></h4>(Item ID 117)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 118:
+         return "<h4><u>Saber</u></h4>(Item ID 118)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 119:
+         return "<h4><u>Whip</u></h4>(Item ID 119)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 120:
+         return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nDescription.\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 121:
+         return "<h4><u>Teleport Scroll: Softlik (TS Soft)</u></h4>(Item ID 121)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 122:
+         return "<h4><u>Teleport Scroll: Firmshaft (TS Firm)</u></h4>(Item ID 122)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 123:
+         return "<h4><u>Teleport Scroll: Tieden (TS Tied)</u></h4>(Item ID 123)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 124:
+         return "<h4><u>Teleport Scroll: Siz'Calit (TS Siz)</u></h4>(Item ID 124)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 125:
+         return "<h4><u>Teleport Scroll: Oviasis (TS Ovi)</u></h4>(Item ID 125)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 126:
+         return "<h4><u>Oasis Water (Oas Water)</u></h4>(Item ID 126)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 127:
+         return "<h4><u>Tail Spike</u></h4>(Item ID 127)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 128:
+         return "<h4><u>Teleport Scroll: Sanctuary (TS Sanct)</u></h4>(Item ID 128)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 200:
+         return "<h4><u>Lila's Gift</u></h4>(Item ID 200)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 201:
+         return "<h4><u>Milk Creeper Poison (Milk C Pois)</u></h4>(Item ID 201)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 202:
+         return "<h4><u>Cock-Snake Venom (Co-Snak Ven)</u></h4>(Item ID 202)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 203:
+         return "<h4><u>Tuft of Wolf Fur (Wolf Fur)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 204:
+         return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 204)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 205:
+         return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 205)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 206:
+         return "<h4><u>Shiny Trinket (Trinket)</u></h4>(Item ID 206)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 207:
+         return "<h4><u>Wooden Cock Carving (Cock Carv)</u></h4>(Item ID 207)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 208:
+         return "<h4><u>Bloated Berry (Blo Berry)</u></h4>(Item ID 208)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 209:
+         return "<h4><u>Handful of Grain (Grain)</u></h4>(Item ID 209)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 210:
+         return "<h4><u>Pussy Fruit (Puss Fruit)</u></h4>(Item ID 210)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 211:
+         return "<h4><u>DairE Pill</u></h4>(Item ID 211)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 212:
+         return "<h4><u>Red Mushroom (Red Mush)</u></h4>(Item ID 212)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 213:
+         return "<h4><u>Wet, Slimy Cloth (Wet Cloth)</u></h4>(Item ID 213)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 214:
+         return "<h4><u>Malon's Milk (Lon Milk)</u></h4>(Item ID 214)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 215:
+         return "<h4><u>Malon's Pendant (Lon Pendant)</u></h4>(Item ID 215)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 216:
+         return "<h4><u>Pink Ink</u></h4>(Item ID 216)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 217:
+         return "<h4><u>Octopus Egg Jelly (Egg Jelly)</u></h4>(Item ID 217)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 218:
+         return "<h4><u>Bulging Berry (Bul Berry)</u></h4>(Item ID 218)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 219:
+         return "<h4><u>Fresh Egg</u></h4>(Item ID 219)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 220:
+         return "<h4><u>Blonde Dye (Blondie)</u></h4>(Item ID 220)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 221:
+         return "<h4><u>Concentrated Pussy Fruit Juice (Puss Juice)</u></h4>(Item ID 221)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 222:
+         return "<h4><u>Kinky Carrot (Kinky Carr)</u></h4>(Item ID 222)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 223:
+         return "<h4><u>Equan Snack (Eq Snack)</u></h4>(Item ID 223)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 224:
+         return "<h4><u>Lila's Milk</u></h4>(Item ID 224)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 225:
+         return "<h4><u>Body Wash</u></h4>(Item ID 225)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 226:
+         return "<h4><u>Felin Tea Mix (Felin Tea)</u></h4>(Item ID 226)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 227:
+         return "<h4><u>Felin Oral Wash (Oral Wash)</u></h4>(Item ID 227)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 228:
+         return "<h4><u>Body Oil</u></h4>(Item ID 228)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 229:
+         return "<h4><u>Leather Strap (Leath Strap)</u></h4>(Item ID 229)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 230:
+         return "<h4><u>Eggcelerator</u></h4>(Item ID 230)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 231:
+         return "<h4><u>Desiccating Sand (Desi Sand)</u></h4>(Item ID 231)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 232:
+         return "<h4><u>Flying Carpet (Flying Carp)</u></h4>(Item ID 232)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 233:
+         return "<h4><u>Anti-Gravity Rock (A-Grav Rock)</u></h4>(Item ID 233)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 234:
+         return "<h4><u>Reindeer Charm (Rein Charm)</u></h4>(Item ID 234)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 235:
+         return "<h4><u>Fellatio Rod (Fell Rod)</u></h4>(Item ID 235)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 236:
+         return "<h4><u>Reception Bell (Recept Bell)</u></h4>(Item ID 236)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 237:
+         return "<h4><u>Lila's Dewy Gift (Dewy Gift)</u></h4>(Item ID 237)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 238:
+         return "<h4><u>Squeaky Cheese (Squ Cheese)</u></h4>(Item ID 238)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 239:
+         return "<h4><u>Shiny Rock</u></h4>(Item ID 239)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 240:
+         return "<h4><u>Auburn Dye</u></h4>(Item ID 240)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 241:
+         return "<h4><u>Brown Dye</u></h4>(Item ID 241)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 242:
+         return "<h4><u>Grey Dye</u></h4>(Item ID 242)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 243:
+         return "<h4><u>White Dye</u></h4>(Item ID 243)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 244:
+         return "<h4><u>Snuggle Ball</u></h4>(Item ID 244)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 245:
+         return "<h4><u>Facial Mud</u></h4>(Item ID 245)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 246:
+         return "<h4><u>Fertile Gel</u></h4>(Item ID 246)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 247:
+         return "<h4><u>Support Harness (Supp Harness)</u></h4>(Item ID 247)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 248:
+         return "<h4><u>Breeder Potion (Breeder Pot)</u></h4>(Item ID 248)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 249:
+         return "<h4><u>Treant's Tear</u></h4>(Item ID 249)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 250:
+         return "<h4><u>Foomp Bomb</u></h4>(Item ID 250)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 251:
+         return "<h4><u>Plump Quat</u></h4>(Item ID 251)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 252:
+         return "<h4><u>Malon's Milky Pendant (Milky Pend)</u></h4>(Item ID 252)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 253:
+         return "<h4><u>Bug Egg</u></h4>(Item ID 253)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 254:
+         return "<h4><u>Lantern</u></h4>(Item ID 254)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 255:
+         return "<h4><u>Fragrant Flower (Frag Flower)</u></h4>(Item ID 255)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 256:
+         return "<h4><u>Nectar Candy</u></h4>(Item ID 256)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 257:
+         return "<h4><u>Too Human Potion (Too Human)</u></h4>(Item ID 257)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 258:
+         return "<h4><u>Tainted Potion (Tainted Pot)</u></h4>(Item ID 258)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 259:
+         return "<h4><u>Sweet & Sour Candy (Sweet&Sour)</u></h4>(Item ID 259)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 260:
+         return "<h4><u>Succubus Draft (Succ Draft)</u></h4>(Item ID 260)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 500:
+         return "<h4><u>Bottle of Milk (Milk Bottle)</u></h4>(Item ID 500)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 501:
+         return "<h4><u>Jug of Milk (Milk Jug)</u></h4>(Item ID 501)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 502:
+         return "<h4><u>Barrel of Milk (Milk Barrel)</u></h4>(Item ID 502)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 503:
+         return "<h4><u>Lust Draft</u></h4>(Item ID 503)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 504:
+         return "<h4><u>Rejuvenating Potion (Rejuv Pot)</u></h4>(Item ID 504)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 505:
+         return "<h4><u>Bad Experiment (Bad Exper)</u></h4>(Item ID 505)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 506:
+         return "<h4><u>Express Pregnancy Potion (Exp Preg)</u></h4>(Item ID 506)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 507:
+         return "<h4><u>Ball Sweller</u></h4>(Item ID 507)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 508:
+         return "<h4><u>Superior Lust Draft (S Lust Draft)</u></h4>(Item ID 508)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 509:
+         return "<h4><u>Superior Rejuvenating Potion (S Rejuv Pot)</u></h4>(Item ID 509)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 510:
+         return "<h4><u>Superior Bad Experiment (S Bad Exper)</u></h4>(Item ID 510)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 511:
+         return "<h4><u>Superior Express Pregnancy Potion (S Exp Preg)</u></h4>(Item ID 511)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 512:
+         return "<h4><u>Superior Ball Sweller (S Ball Sweller)</u></h4>(Item ID 512)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 513:
+         return "<h4><u>Gender Swap Potion (Gen Swap)</u></h4>(Item ID 513)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 514:
+         return "<h4><u>Masochism Potion (Maso Pot)</u></h4>(Item ID 514)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 515:
+         return "<h4><u>Black Dye</u></h4>(Item ID 515)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 516:
+         return "<h4><u>Baby Free Potion (Baby Free)</u></h4>(Item ID 516)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 517:
+         return "<h4><u>Potency Potion (Pot Pot)</u></h4>(Item ID 517)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 518:
+         return "<h4><u>Superior Gender Swap Potion (S Gen Swap)</u></h4>(Item ID 518)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 519:
+         return "<h4><u>Superior Masochism Potion (S Maso Pot)</u></h4>(Item ID 519)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 520:
+         return "<h4><u>Red Dye</u></h4>(Item ID 520)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 521:
+         return "<h4><u>Superior Baby Free Potion (S Baby Free)</u></h4>(Item ID 521)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 522:
+         return "<h4><u>Superior Potency Potion (S Pot Pot)</u></h4>(Item ID 522)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 523:
+         return "<h4><u>Vial of Cum (Cum Vial)</u></h4>(Item ID 523)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 524:
+         return "<h4><u>Bottle of Cum (Cum Bottle)</u></h4>(Item ID 524)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 525:
+         return "<h4><u>Jug of Cum (Cum Jug)</u></h4>(Item ID 525)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 526:
+         return "<h4><u>Barrel of Cum (Cum Barrel)</u></h4>(Item ID 526)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 527:
+         return "<h4><u>Good Egg</u></h4>(Item ID 527)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 528:
+         return "<h4><u>Bad Egg</u></h4>(Item ID 528)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 529:
+         return "<h4><u>Strange Egg</u></h4>(Item ID 529)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 530:
+         return "<h4><u>Charmed Egg</u></h4>(Item ID 530)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 531:
+         return "<h4><u>Divine Egg</u></h4>(Item ID 531)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 532:
+         return "<h4><u>Strong Pheromone (Pheromone)</u></h4>(Item ID 532)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 533:
+         return "<h4><u>Reduced Reduction (Reduc Reduc)</u></h4>(Item ID 533)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 534:
+         return "<h4><u>Male Enhancement Drug (Male Enhance)</u></h4>(Item ID 534)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 535:
+         return "<h4><u>Milk Suppressant (Milk Suppress)</u></h4>(Item ID 535)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 536:
+         return "<h4><u>Bazoomba!</u></h4>(Item ID 536)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 537:
+         return "<h4><u>Queen Egg</u></h4>(Item ID 537)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 538:
+         return "<h4><u>Soldier Egg</u></h4>(Item ID 538)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 539:
+         return "<h4><u>Drone Egg</u></h4>(Item ID 539)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 540:
+         return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+
+   def clothesDescription(self, ID:int):
+      if ID == -10:
+         return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == -1:
+         return "<h4><u>Tattered Shreds</u></h4>(Clothes ID -1)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nWhen worn\n\t-4 strMod (strength modifier)\n\t-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
+      if ID == 0:
+         return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
+      if ID == 1:
+         return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+      if ID == 2:
+         return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+      if ID == 3:
+         return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 4:
+         return "<h4><u>Bikini Bottom</u></h4>(Clothes ID 4)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 5:
+         return "<h4><u>Elegant Dress</u></h4>(Clothes ID 5)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 6:
+         return "<h4><u>Latex Suit</u></h4>(Clothes ID 6)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 7:
+         return "<h4><u>Skirt</u></h4>(Clothes ID 7)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 8:
+         return "<h4><u>Shorts</u></h4>(Clothes ID 8)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 9:
+         return "<h4><u>Blouse</u></h4>(Clothes ID 9)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 10:
+         return "<h4><u>Diaper</u></h4>(Clothes ID 10)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 11:
+         return "<h4><u>Poofy Diaper</u></h4>(Clothes ID 11)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 12:
+         return "<h4><u>Sundress</u></h4>(Clothes ID 12)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 13:
+         return "<h4><u>Skimpy Dress</u></h4>(Clothes ID 13)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 14:
+         return "<h4><u>Short Skirt</u></h4>(Clothes ID 14)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 15:
+         return "<h4><u>Short Shorts</u></h4>(Clothes ID 15)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 16:
+         return "<h4><u>Loin Cloth</u></h4>(Clothes ID 16)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 17:
+         return "<h4><u>Bathing Suite</u></h4>(Clothes ID 17)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 18:
+         return "<h4><u>Muscle Shirt</u></h4>(Clothes ID 18)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 19:
+         return "<h4><u>Corset</u></h4>(Clothes ID 19)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 20:
+         return "<h4><u>Silk Panties</u></h4>(Clothes ID 20)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 21:
+         return "<h4><u>Slingkini</u></h4>(Clothes ID 21)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 22:
+         return "<h4><u>Thong</u></h4>(Clothes ID 22)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 23:
+         return "<h4><u>Bloomers</u></h4>(Clothes ID 23)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 24:
+         return "<h4><u>Tights</u></h4>(Clothes ID 24)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 25:
+         return "<h4><u>Gothic Dress</u></h4>(Clothes ID 25)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 26:
+         return "<h4><u>Tube Top</u></h4>(Clothes ID 26)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 27:
+         return "<h4><u>Nipple Pasties</u></h4>(Clothes ID 27)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 28:
+         return "<h4><u>Camisole</u></h4>(Clothes ID 28)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 29:
+         return "<h4><u>Training Suit</u></h4>(Clothes ID 29)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+      if ID == 30:
+         return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+
+   def enemyDescription(self, ID:int):
+      if ID == -10:
+         return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 1:
+         return "<h4><u>Test Enemy</u></h4>(Enemy ID 1)\n\n<u>Enemy Description</u>\nThis enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs.\n\n<u>Base Stats</u>\nThis enemy has no stats.\n\n<u>Attacks</u>\nThis enemy has no attacks.\n\n<u>Locations</u>\nThis enemy is not encounterable.\n\n<u>Encounter Conditions</u>\nThis enemy is not encounterable."
+      if ID == 101:
+         return "<h4><u>Cock-snake</u></h4>(Enemy ID 101)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:30\nStrength:16\nMentality:4\nSensitivity:8\nLibido:0\nLust:0\nGender:0\nPreference:4\nCoin:0\nSexp:15\nItem:202\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 102:
+         return "<h4><u>Desiccating Dust Devil</u></h4>(Enemy ID 102)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:25\nStrength:0\nMentality:20\nSensitivity:0\nLibido:50\nLust:0\nGender:0\nPreference:0\nCoin:0\nSexp:10\nItem:231\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 201:
+         return "<h4><u>Lone Male Wolf</u></h4>(Enemy ID 201)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:22\nMentality:16\nSensitivity:13\nLibido:11\nLust:30\nGender:1\nPreference:2\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 202:
+         return "<h4><u>Gay Wolf</u></h4>(Enemy ID 202)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:26\nMentality:16\nSensitivity:20\nLibido:11\nLust:40\nGender:1\nPreference:1\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 301:
+         return "<h4><u>Felin in Heat</u></h4>(Enemy ID 301)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:12\nMentality:10\nSensitivity:24\nLibido:30\nLust:40\nGender:2\nPreference:4\nCoin:0-10\nSexp:25\nItem:204\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 302:
+         return "<h4><u>Drunken Equan</u></h4>(Enemy ID 302)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:60\nStrength:28\nMentality:9\nSensitivity:18\nLibido:14\nLust:30\nGender:1\nPreference:4\nCoin:0-10\nSexp:25\nItem:205\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 303:
+         return "<h4><u>Octopus Girl</u></h4>(Enemy ID 303)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:45\nMentality:30\nSensitivity:25\nLibido:35\nLust:20\nGender:2\nPreference:4\nCoin:0\nSexp:50\nItem:216\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 304:
+         return "<h4><u>Little Big Bunny-man</u></h4>(Enemy ID 304)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:55\nStrength:35\nMentality:30\nSensitivity:35\nLibido:45\nLust:10\nGender:1\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 305:
+         return "<h4><u>Little Big Bunny-girl</u></h4>(Enemy ID 305)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:35\nMentality:30\nSensitivity:45\nLibido:35\nLust:10\nGender:2\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 306:
+         return "<h4><u>Fierce Naga</u></h4>(Enemy ID 306)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:100\nStrength:50\nMentality:20\nSensitivity:40\nLibido:2\nLust:40\nGender:2\nPreference:4\nCoin:0-20\nSexp:55\nItem:230\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+      if ID == 307:
+         return "<h4><u>Minotaur</u></h4>(Enemy ID 307)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:250\nStrength:70\nMentality:20\nSensitivity:50\nLibido:20\nLust:10\nGender:1\nPreference:4\nCoin:5-30\nSexp:50\nItem:525\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
+      if ID == 308:
+         return "<h4><u>Freaky Little Girl</u></h4>(Enemy ID 308)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:175\nStrength:80\nMentality:40\nSensitivity:70\nLibido:60\nLust:10\nGender:2\nPreference:4\nCoin:5-30\nSexp:55\nItem:559\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
+      if ID == 309:
+         return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
+
+   def raceDescription(self, ID:int):
+      if ID == -10:
+         return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
+      if ID == 1:
+         return "<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Skin Balm</i> (Item ID 111)"
+      if ID == 2:
+         return "<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Bolstering Juice</i> (Item ID 112)"
+      if ID == 3:
+         return "<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Tainted Leaf</i> (Item ID 113)"
+      if ID == 4:
+         return "<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Sweet Sap</i> (Item ID 114)"
+      if ID == 5:
+         return "<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>DairE Pill</i> (Item ID 211)\n<i>Malon's Milk</i> (Item ID 214)"
+      if ID == 6:
+         return "<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Oasis Water</i> (Item ID 126)"
+      if ID == 7:
+         return "<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Kinky Carrot</i> (Item ID 222)"
+      if ID == 8:
+         return "<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Squeaky Cheese</i> (Item ID 238)"
+      if ID == 9:
+         return "<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Shiny Rock</i> (Item ID 239)"
+      if ID == 10:
+         return "<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Facial Mud</i> (Item ID 245)"
+      if ID == 11:
+         return "<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Fragrant Flower</i> (Item ID 255)"
+      if ID == 12:
+         return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
+
+   def townDescription(self, Num:int):
+      if Num == -10:
+         return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+      if Num == 1:
+         return "<h4><u>Softlik</u></h4>(Zone ID 1)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2193"
+      if Num == 2:
+         return "<h4><u>Firmshaft</u></h4>(Zone ID 2)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u2198"
+      if Num == 3:
+         return "<h4><u>Tieden</u></h4>(Zone ID 3)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF7\"><i>Lake</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2193\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2198"
+      if Num == 4:
+         return "<h4><u>Siz'Calit</u></h4>(Zone ID 4)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF6\"><i>Beach</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2198"
+      if Num == 6:
+         return "<h4><u>Oviasis</u></h4>(Zone ID 6)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF11\"><i>Den</i></a> \u2197 \u25CE"
+      if Num == 12:
+         return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u2190"
+
+   def locationDescription(self, Num:int):
+      if Num == -10:
+         return "<h4><u>Location Name</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+      if Num == 1:
+         return "<h4><u>Forest</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)"
+      if Num == 2:
+         return "<h4><u>Jungle</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u25CE"
+      if Num == 3:
+         return "<h4><u>Plains</u></h4>"
+      if Num == 4:
+         return "<h4><u>Savanna</u></h4>"
+      if Num == 5:
+         return "<h4><u>Desert</u></h4>"
+      if Num == 6:
+         return "<h4><u>Beach</u></h4>"
+      if Num == 7:
+         return "<h4><u>Lake</u></h4>"
+      if Num == 8:
+         return "<h4><u>Dairy Farm</u></h4>"
+      if Num == 9:
+         return "<h4><u>Old Cave</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u29BF"
+      if Num == 10:
+         return "<h4><u>Old Cave Descent</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u29BF\n<a href=\"\uFFFFTown\uFFFF12\"><i>Sanctuary</i></a> (Zone ID 12)"
+      if Num == 11:
+         return "<h4><u>Den</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF6\"><i>Oviasis</i></a> (Zone ID 6)"
+      if Num == 12:
+         return "<h4><u>Valley</u></h4><u>Description</u>\nDescription\n\n<u>Discovery</u>\n\nYou have a small random chance of discovering the valley when going into the jungle from hours 10 to 15 (inclusive) as long as it isn't your first time exploring.\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u29BF"
+      if Num == 13:
+         return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
+
+   def shopDescription(self, Num:int):
+      if Num == -10:
+         return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+      if Num == 1:
+         return "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow.\n\n<u>Softlik</u>\n<i>Milking Machine</i>\n<i>Skin Balm</i>\n<i>Dagger</i>\n<i>Bottle of Milk</i>\n<i>Jug of Milk</i>\n<i>Blood Gauge</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Softlik</i>\n\n<u>Firmshaft</u>\n<i>Imbued Horseshoes</i>\n<i>Bolstering Juice</i>\n<i>Warhammer</i>\n<i>Penis Pump</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Firmshaft</i>\n\n<u>Tieden</u>\n<i>Claws of the Lupine Ancestors</i>\n<i>Tainted Leaf</i>\n<i>Saber</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Tieden</i>\n\n<u>Siz'Calit</u>\n<i>Sweet Sap</i>\n<i>Whip</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Cat's Meow' Potion</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Siz'Calit</i>\n\n<u>Oviasis</u>\n<i>Educated Eggdicator</i>\n<i>Oasis Water</i>\n<i>Tail Spike</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Eggcelerator</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Oviasis</i>\n\n<u>Sanctuary</u>\n<i>Support Harness</i>\n<i>Foomp Bomb</i>\n<i>Nectar Candy</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Sanctuary</i>"
+      if Num == 2:
+         return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
+      if Num == 3:
+         return "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them.\n\n<u>Softlik</u>\n<i>Tuft of Wolf Fur</i>\n<i>Handful of Grain</i>\n<i>Vial of Cum</i>\n<i>Recipe: Lust Draft</i>\n<i>Recipe: Superior Rejuvenating Potion</i>\n<i>Recipe: Masochism Potion</i>\n<i>Recipe: Baby Free Potion</i>\n\n<u>Firmshaft</u>\n<i>Handful of Grain</i>\n<i>Cock-Snake Venom</i>\n<i>Shiny Trinket</i>\n<i>Red Mushroom</i>\n<i>Bottle of Cum</i>\n<i>Recipe: Rejuvenating Potion</i>\n<i>Recipe: Superior Lust Draft</i>\n<i>Recipe: Superior Masochism Potion</i>\n\n<u>Tieden</u>\n<i>Milk Creeper Poison</i>\n<i>Cock-Snake Venom</i>\n<i>Wet, Slimy Cloth</i>\n<i>Tuft of Wolf Fur</i>\n<i>Recipe: Ball Sweller</i>\n<i>Recipe: Potency Potion</i>\n<i>Recipe: Superior Gender Swap Potion</i>\n\n<u>Siz'Calit</u>\n<i>Pussy Fruit</i>\n<i>Milk Creeper Poison</i>\n<i>Bulging Berry</i>\n<i>Recipe: Express Pregnancy Potion</i>\n<i>Recipe: Gender Swap Potion</i>\n<i>Recipe: Superior Baby Free Potion</i>\n\n<u>Oviasis</u>\n<i>Wooden Cock Carving</i>\n<i>Wet, Slimy Cloth</i>\n<i>Bloated Berry</i>\n<i>Body Oil</i>\n<i>Recipe: Superior Express Pregnancy Potion</i>\n<i>Recipe: Superior Ball Sweller</i>\n<i>Recipe: Superior Potency Potion</i>\n\n<u>Sanctuary</u>\n<i>Recipe: Milk Suppressant</i>"
+      if Num == 4:
+         return "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+      if Num == 5:
+         return "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+
+   def NPCDescription(self, Num:int):
+      if Num == -10:
+         return "<h4><u>Name</u></h4><u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+      if Num == 1:
+         return "<h4><u>Fidoris</u></h4><b><i>Fetish Content:</i></b> Size difference"
+      if Num == 2:
+         return "<h4><u>Jamie</u></h4><b><i>Fetish Content:</i></b> Femboy, Large genitalia\n\n<u>Character Description</u>\nJamie is an equine male who has an extra large \"package\". He is introduced as a femboy however, in the parts of his encounter that wheren't implemented, it is implied that he is either a trans woman or a sissy (can't tell in this context because of the fetish aspect). If you dont believe me, here's the line that is written after you give him Red Mushrooms: '\"I... I\'ve got... Boobs!\" He shouts a little too excitedly, both in confusion and joy.'. This is only one of many examples of this type of thing.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+      if Num == 3:
+         return "<h4><u>Lila</u></h4><b><i>Fetish Content:</i></b> Unbirth, Cub (I think), Diapers"
+      if Num == 4:
+         return "<h4><u>Malon</u></h4><b><i>Fetish Content:</i></b> Cow, Udders, Milking\n\n<u>Character Description</u>\nMalon is the \"Cow girl on the farm\" (the space between cow and girl is intentional). She lives on the Softlik Dairy Farm and became a humanoid cow by eating too many DairE Pills.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+      if Num == 5:
+         return "<h4><u>Silandrias</u></h4><b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
 
 class NiminFetishFantasyv0975o_fla: 
    """
@@ -248,11 +1817,13 @@ class NiminFetishFantasyv0975o_fla:
       self.dir = as3state.appdatadirectory
       self.startType = uint(startType)  # How to start the ui. 0 - normal, 1 - converter
 
+      # Windows
+      self.wiki = None
+
       # Window open variables
       self.optionsWinOpen = False # Options
       self.sfcOpen = False # Save Converter
       self.seOpen = False # Save Editor
-      self.wikiOpen = False # Wiki
       self.debugVarOpen = False # Debug Variable Display
       self.debugGIWinOpen = False # Debug Give Item
       self.debugAWinOpen = False # Debug Affinity
@@ -748,6 +2319,9 @@ class NiminFetishFantasyv0975o_fla:
       if (self.dir / "nimintheme").is_dir():
          self.mo.tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
 
+      # Set up wiki
+      self.wiki = PyminWiki(self)
+
       #key bindings
       self.mo.bind('<KeyPress>', partial(self.keyPress, self.hotKeys))
       self.mo.bind('<KeyRelease>', self.keysUp)
@@ -773,7 +2347,7 @@ class NiminFetishFantasyv0975o_fla:
          self.mo.menubar["debugutils"].add_command(label="Affinity", font=("Terminal",8), command=self.openDebugAffinityWindow)
          self.mo.menubar["root"].add_cascade(label="Debug Utils", font=("Terminal",8), menu=self.mo.menubar["debugutils"])
       self.mo.menubar["helpmenu"] = tkinter.Menu(self.mo.menubar["root"], tearoff=0)
-      self.mo.menubar["helpmenu"].add_command(label="Wiki", font=("Terminal",8), command=self.openWiki)
+      self.mo.menubar["helpmenu"].add_command(label="Wiki", font=("Terminal",8), command=self.wiki.open)
       self.mo.menubar["helpmenu"].add_command(label="About Game", font=("Terminal",8), command=self._aboutwindow)
       self.mo.menubar["root"].add_cascade(label="Help", font=("Terminal",8), menu=self.mo.menubar["helpmenu"])
       self.mo.addImage("up",b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e\x81IDATx\xda\xed]{pS\xd7\x99\xff}\xf7^]I\x96\xe5\xa7\xfc\xc0\xc6\x06\x1bH\xf0\x0b0`\xde\x85P\xc0\r!$4\x0f&I\x97\x04h\xbb\x9b\xcdl\'\x99\xe9\xcc\xee\xce\xeev\xebl\xb3;\x99\xe9dv\xb7\xdb4\x0cI\n!\rdp\x98\xd0@C\x9a\x84\xd6\r\x10\xd88\x80\x01;\x06B\xb0\xc16\xb2\x8d_ [\x92%\xdd\xf3\xed\x1f<\x16\x821\xb6\xac{\xafl\xf3\xd3\x9c\x19Y\x96\xee\xb9\xdf\xf9\x9d\xefq\x1e\xdf=\x84(\xc7Q\xf7Q\x17\xd9\xed\x85\x92,\xe7\x01\xc8\x93\x08c\x01\xa4\x01\x94\x0e\xe2D\x00\x04P\xc2\x95os\x17\x00\x06S\'\xc0\xcd\x00Z\x04\xa3\x11@\xad\xd0\xb4Z\xf6\xf9\xaa\x8b\xc7\x14\xb7E\xb3\xbc\x14m7T\xd9u<\xc7"\xdb\x96\x01X@\xa0\xf9D\xc8\x8d\xe4\xf5\x99q\x96\xc1\x07\x00\xec\x0fj\xfeOJ\x12\xa6\xd4\xdd%\xe4[\xa8\xea\xaa\x99\nIZ\rH+\x89Pdd\xdd\xcc8\x01\x88]\x10b\xfb\xb4\x84\x82c\xa3\x96\x90/\x9a\xbeH\x92\x1d\xb1k\x88h-\x11M\x8b\x86\x8e\xc1\xccU\xcc\xbcY\xeb\xe9~{V\xe6\xac\x8eQAHe\xcb\xf1\x1c\xc9*\xbf\xc0D?$\xc0\x11\x95\x86\x9c\xd9\xcf@y $\xfe}\x9e\xab\xe8\xd4\x88$\xe4\x7f\x9b\x8f\x8d\x97m\xf2\xbf\x01x\nD2\x86\x03\x985\x00[5\xbf\xf6\xaf\xb3\xd3\xa7\xd6\x8f\x08B>m\xfa"\xc9i\xb7\xfd\x1c\x84g\x89H\xc50\x043\x07\xc0\xd8\xe0\xf1\xf9_\\\xaa\xb3)\xd3\xb5\xa7\x1e\xec\xa8z\xdcj\xb1|\x08\xc2w\x01\xc8\x0c`8\x16\x002\x08\xb3UE\xfe\xf1\xfa\x7fx\xb6+\xcb\x9e~\xa4\xa2\xa2b\xf8h\xc8^\xf7\xe7\xd91\xaa\xfd\xb7 Z\x82\x91\x08\xe6\xbd\xde\x80o\xfd\x921\xf3\xceG=!\xfbZ\xbf|\x94di#\x11%a\x04\x83\x81\xcbB\x88\xe7\x16\xbaf\xbc\x13\x95\x84l\xae\xaf\xb0\xe6\xc6\xc6\xfe\x0f\x11\xfd\x18\xa3\x08\xcc\xfc\xfa\xd9\xee\xee\x9f\xac\x1d\x7f_o\xd4\x10\xf2\xa1{\x9f\xcba\xb1\xbfG\xc0"\x8cF0\x1f\xf4z}\x8f\xdc?na\xb3\xe9\x84|\xdc|\xa0\xc0"){\x88(\x0b\xa3\x18\xcc\xdc\x10\x14\xa1\xe5\xa5\xe9\xf3kL#\xe4\x13\xf7\xfe\x19\x92\xac|D \x97Y\xa3\xdax5\x0e\t\x8a\x13\x04\xa03\xe4\xc1\xa5\xc0\xe5k\x91\x91\t\xa4\xa03\x14\xd2V|/s\xdeA\xc3\t\xf9\xd8\xbdo\xa1$)\xbb\x89\xe04C\xf8\xb1\xf6td\xda\xd3\xe0\x90\xed7}\xde\xa3\xf9\xd0\xe4kA\xa3\xaf\xd9,R<`m\xe5\xd2\xf4\x05\x7f1\x8c\x90\x8f\x1a>+\x91,\xca^3\xc8\xb0IV\xe4\xc5\xe5"YM\xe8\xf7{\xed\x81.\xd4^>\x0b\xbf\xe85\x83\x16oH\xe3\xd2\xe5\x19\x0b\x0e\xe8N\xc8\xee\xf3\x15\x05\x8a*\xff\x85@\xc9F\x8b\xe9T\x1c\x98\x92p\x0f\x1cr\xcc\x80\xbe\xdf\xa3yq\xbc\xeb4<\xa1\x1e34\xa5K\x08m\xf1\x03\x99\x8b\xaat#\xe4\x0f\xf5\x15i\x92U\xae$\xc0p\x07n\x97m\x98\x91\x98\x0f\x87\x123\xa8\xdfyC>\x1c\xee\xfa\n\xde\x90\xcf\x0cG\x7fA\xd3\x82%\x0ff-\xb9\x10qB\xb6\xd7l\xb7\xc4&\xa6~\n\xa2\x85F\x0bf\x91\x14\x94$\x16!\xde\x12\x9e\x85\xbc\x1c\xf4\xa0\xb2\xf3\x04\x02"d\x06)\x07/\x9e\xae_\xbc\xf6\xbe\xb5\x03\xb2\x9d\xca\x80{h\x82\xeb5\x01,\x04\x1b\x1f\xc3\xe4;\'\x86M\x06\x00\xc4Y\x9c(\x88\xbb\x07\x87;k`\x02\xe6&O\xca~\x15\xc0\x8f"\xa6!\xbf?\xb7\xf71I\xa1r3\xa4\x99\x18;\x0e\x93\xe3"\xb3\x8a{\xcas\x16_{\xce\x99\x12}iB{jU\xd6\xb2mC&d\xfb7\xbb\xb2\xac\xd6\x98*\x00\x86\xcfM\xa5X\x13Q\x92<\x05J\x84\x96O4\x168\xdcQ\x83f\xffE38\xb9\xd4\x1b\xd2\xa6\xad\x1e_Z\xdf\xdf\x97\xfa\x95\xb4\xac\xac\x8c\xc6\xcc\xccy\x1f@>\xc3\xd8\x97M\xb6\xa2$\xb9\x086\xd9\x1a\xb1\x16\x91\x88\x90\xa8\xc6\xc1\xed\xbf\x88\x80\x08\x1a,\x11\xdb$\xc2\xd4\xbc\xf8\t[\xfa\x9b\xba\x97\xfa\x13\xa0h\xfd\x9c\xa7AXl4\x19\x00P\x9c\x947\xe8\x88j \x88Q\xec(N\xcc\x07\x11\xc1p\xb9\x08\x8b\x0b\xd7\xcf]\x13\x96\xc9z\xab\xf6\xfd\xa4\x18\x87\xad\x96@\xa9F\xeb\xf6\xd4\x84\xc9\x98\xe8\x1c\xa7k\x1d_{\xeaq\xbc\xeb\x94\xe1v\x8b\x99\xdb=\x01\xcf\xe4\xf5\x93V\xb7\r*\xca\xb2\xda\xd52fNe\x83g\x86\xb2\x1cc\x90\x1b\xab\xff0g\xa2s\x1c:z/\xe1\xbc\xf7\x82\xd1\x9c$\xc7Zb~\x06\xe0\xf9\x01k\xc8\x96S\x1f\x8cW\xad\xd2I\x02Y\x8d\xbc\xd3\x045\x0e\x0bSK"\xea7\xfaC\xaf\x16\xc0g\xad\x95\xe8\x0c\\2VK\x80@0\x14\xca_3\xf1\xe1o\x06\xe4C\x14\x15/1\xd8*`\xdcK"\xc2\x8c\xa4B\xc3\xc8\x00\x00\xab\xacbfr\x11\x14I\x86\x91\xb22\x84*\xcb\xf4\xe2\x804\xe4\xb7\xa7w\xe4\xa8\x8a\xe5k"\x18\xbaUg\xaek\x1arb\xcdYR\xa9\xefi\xc2\xe7\x17\x8f\x18\xecL \x02\xfe\xc0\xbd\xeb\xf2\x1f;\xd3\xaf\x0f\xb1\xc8\xd2O\x01!\x1b9 \xcf\x8b\x9f`\x1a\x19\x000\xde\x91\x89\x8e\xde.\xd4^:cd\xb5\x92\xc5*=\x0f\xe0\'\xb7\xd5\x90_\xd7\xbe\x95\xe4\xb48\xcf\x13\x91a;\n\xd3\xec)X\x9c6\x0b\x16\xc9\x023\x11\x12!T\xb4~\x01\xb7\xb7\xd5\xc8\x88\xab\xc7\x13\xf4d\xff]\xde3\x1d}\xfa\x90\x18\xc5\xf14\x83\x1d\x82\x05\x8c(\xaad\xc1\xac\xe4)\xa6\x93\x01\x00\x8a\xa4`\xb6k*bd\x1b\x8c\x92\x9f\xc1\x8eX%f\xcd\xed\x9d:\xe1\x19#\x07\x7fsS\x8a\x91\xa0:\x11-p*\x0e\xccI)\xbej\xe2\x8dy\t\xc23}\x9a\xac7\xbe\xda6\x8d,\xf2Q\xa3\x84/I\x9e\x82\xa2\xc4{\x11\x8d8\xd1y\x12\x95\xed\'\x8c3]A\xad\xf8G\xf9OV\xdd\xe4\xd45\x85VK\x06y\xf2\x9c\xd8\xb1\xc8O\x98\x84hEA\xc2=h\xef\xed\xc2\x19\xcfyc\x08\x91\xe9q\x007\x13\x02\xc1\x0f1\xe9OH\xbc\xea\xc4\x9c\x94i\x90I\x8aZB$\x920\xdb5\r\xed\xbd\x9d\xe8\xe8\xd5\x7f\xd0\xc8\xe0\x87\x00\xfc\xf3u\x93\xf5\xab\xea\xcd\xb9\xaaE\xfdFw\xc7I\nV\x8c\xbd\x0f\xe9\xf6\x14\x0c\x07\xb4\xfa\xdb\xb1\xbb\xe1O\x08\xb2\xfe+\x8d\xbdZ\xef\xa4\xe7\xf3\xd7\x9dQ\xaeD\x18\xd22\xc1B\xf7J\xe7\xa5M\x1f6d\x00@\xaa-\x19\xf3R\xa7\xe3\xcf\xcd\x87t\xaf\xcb\x02y\t\x803\xd2\x15k\x85\x05\xcc\x0c=\xcb\xe4\xb8\t\x98\x1c\x9f\x8b\xe1\x86\xc9\xf1\x13P\x10?\tz\xb7\x0f\x13\xcd\xbf\xeeC\x04\xc4|b\xd2\xbd\xa7Q\xf4%\xfd\x0e\x08\xb3S\xa6\xa1\xd5\xdf\x86f\x9f~\x19\xd5\xcc\x98\x0f\x00\xf4\xcbc\xaf\xa5\xa8\x8a]\xb7\xe1\xa9*[\xf0\xc8\xb8\xef!\xd5\x96\x8c\xe1\x8c6\x7f\'v\x9c\xfb\x08\xbdZ@\xb7:\x02!_\xaa$\xb1Z\xc0Wf u)\x8b\xd2K\x86=\x19\x00\xe0\xb2%bQ\xfa,\xe8\xd9V\x16\xd9\x92\xaf@\x12\xf9\x82\xf5\tA\xa7&\xe5!/~\x12F\n&\xc7O\x80\xdb\xdb\x8a\xaa\x8eZ]\xae/\x04\xf2\x15\x06\xdf\xcb:DX\xe9v\x17\xe6\xa5N\xc7H\xc3\xbc\xd4\x19p\xfb\xda\xe0\xf6\xb6\xe8\xe1I&KB\xf0\xd8HG\x0c\xaad\xc1\xd2\xcc\xef\x18\xba\xd8d\x14\xac\xb2\x8aec\xe6\xc3*\xa9\x91\x8f\xb4\xc0\x99\x92 \xce\x88\xf4\x8a\xd8w3\xe6"m\x04\xf8\x8d\xdb!\xc5\x9e\x84\xc5\x19s#\xbe\x92\xa8\xb1\xc8P\x98E\x1aG0\x1c\x9d\xee*DA\xc2=\x18\xe9(H\x98\x84&o\x0b\x8e\xb4UG2\xf6MW\x04\x843Rc\x90\x14[2\x16\xa4\xce\xc0h\xc1\xa2\xb4Yp\xf74\xe3B\x84\x16\xb5\x18\x88\x95X\xb0M0c\xa8E\x82\x8c\xfb\xc7.B\x8cb\x1f5\x84Xe\x15\xa5\x99\x0b!K\n"\xd1\x86,\x84]\x11`[$v\xb4/\xce\x9c\x83\xb1\x8et\x8c6\x8c\x89I\xc5}\xe9\xb3\xf1\xc7\xc6\xcf"\xa0!l\x97"\xb1\xeauoB.f\xb8\n1Z1\xd3U\x84\xfc\xc4\x89\x11YAT4\xa1\xf9\x89(6\xdc\x9bq(v,\xcb\\\x00y\x98<\xe0G\x0fH$aI\xc6|\x9c\xf54\xa0\'\xe8\x1d\x82Og\x9f$\x18\xfe\xa1\xd8\xbd\xef\xa4\xcfF\xa2\x1a\x8f\xd1\x8e\x045\x0e\x0b\xd3g\r\xcd\x870\xfb$\x86\xf00\x0b\x84S\xd2\xec.Lw\x15\xe0.\xae\xa08\xb9\x00\xe9v\x17\xc2mO\x01\xee\x96X\x88\xe6p\x19\x9d\xee*\x80\x1a\x05[x\xa2\x05\xaadA\xb1\xab |-\x11\xc2\xadh\x10\xeep\xd7)r\x9cYwY\xf8\x16r\x9dY\x10\x08on\x90\xc1n\x85\x99\x9b\xc2sd\x84x5\xf6.\x03\xdfB\x9c\xea\x04\x81\x10\xce\x9283_P\x04k\xa7\x08\x83\x9f~\xbf\xb2\x17\x9b\xee2pK\xbb\\i\x93\xb0\xf6(\x08>\xa9\x08M\xab!\x99\xc2\xf8m\x08M=-\x98\x187\xb4L\xa7\x90\x08\xa1\xd5\xd7\x8ef_\x1bTIAa\x92\xb1\x9b\xe7j:N\xa3W\x04\x91nw!\xd5\x9e\x0cER\x86t\xbd\xc6\x9ef\x04\xb4`X\xbf\xd5\x04\xd7(^/\xd7\xc48\xc3\xb3yG\xda\xaa\x07MH\xbb\xbf\x13\r=\x17\xd0\xd8\xd3\x82V_\x1b\xea<\xe7\xe1\r\xf9\x01\x00sR\x8b\r\'\xa4\xb6\xeb\x0c\x0e\xb6^IE\x88Ql\x18\xef\xccB\x9a=\x05c\x1di\xc8rd \xd9\x968\xe86\xe10}\x88\xdf\xab}\xa5l(-\xbb\xf8\xc2\x81\x17\xeb@\x943\xd8\x0b\x1cj9\x82\\g6f\xa6\x14\xdd\x81\x007\xce{.\xe0\xac\xa7\x01\xe7\xbb\x1bo\x9b$\'Lx(\x01\xdfPow\xd0\x87\xea\x8e\xd3\xa8\xc6\xe9\xab\xe6\x07\xc8\x8e\xcdD\xae3\x1bY\xce\x0cd;\xc6\xf4K\xd0\x97\x17O\xe0P\xcbQ\x84\x93\x06\xc8\xc0\xd9\r\xa5e\x17\x15\x00\xd0X\xec\'\x0c\x9e\x10\x00x\xe7\xcc\xfb\xa8\xf3\x9c\xc7tW!\x12\xac\xf1\xf0\x87\xfch\xf5\xb5\xe3\\w\x13\xea.7\xe0\\?\x04\xf4\x11e\x18O\xc8\xd5\x9d\xe8\xb7C\x9d\xa7\x01u\x9e\x86\x9b\t\x8a\xcbFvl&\xd2\xec\xc9\xb0)6t\xf5^\xc2\x91\xb6j|\xder8\xecN\xc5\x02\xfb\x81\xab\xdb\x80X\x88\x03\x90\xa45a\xd9=f\xecsWb\x9f\xbb2\x12\x93k\xa6h\x08\x0f\xb0\x11\x19@\xbd\xa7\x11\xf5\x9eF=:\xc6\xe7\xd7\t\xf1\xfb\xf9\x8fV\xbb\x80\xe9`3\xaa\x140b\xd7\xe6\x1d\x83\xa4@\xf0c\xe0j~\xc8\x1b\xa5/\xd5\x0b\xe6j\xa1\xeb&\x97\x81\x15S|\x88\xc92k\x10\'^[\xfar\xddu\r\x01\x00!\xc4\x07$\xc1\xdc9t3\x9c:3\xd8d\ra\xc1\x1f\\{\x7f\x9d\x90PH\x94\xcb\x16\xfa\'S\xd5\x16\xe6\x10bFtw\x93\x1f\x0e\xf1{\xd7g@\xae\xbdys\xe9\xcbU\x82\xb5cF\xe5\xd7\xf5\x99sgBOe0\xcc\x94Y\x13\xda\x897\x97\xbe\\u\x8b\x86\\\x1d)n\x96$\xfc\xe7h\x9a\xea\xb81\xe7\xd1\x94\xfaI\xbcy\xe3\xdf7\x11\xe2\xef\x11o\xdbb\xf1\x12@\xa6\x1c\xb4\xc2l\x96\xc92\xcb\x87p\x8f\xbf\x1b\xbf\xbb\xf1\x93\x9bf\x15\xb7\xad|\xa5]\xd3\xb09\x12;(\xc2+\xe6\xc4\x11\xe6\xc9\xcb\x9b\xb6\xad|\xa5\xfd\xb6\x1a\x02\x00!\xbf\xf6\x8ab\xa7g\x01\xc8\xc6\x9b\x0fa\x8a\x86\x98\xe4\xbbDH\x13\xff\xfd\xed\xcfo\x99w\xdf\xfa\xe0\x7f\xd5iB\xbckF\x8f1g\xa4n\x92v\x08\xde\xb6\xad\xf4W\xb7<\xcb\xa3\xcf\xb9\xe6\x00k\xffb!\xe91\x00V\xa3\x9b\xc7\x14B\x0c\xd7L\x0e\x045\xed\xe7}\xfd\xa7\xcf\x95\xa9\xf2\xd2_\xd7\x0b\xa1m\xd4=\xaf\xae\x8fbJ\x94e\xb4\x9c\x1ao(\xbf\xff7}f=\xdfv5\xc6\xdf\x832\xabC{\x02 \xc3\xd2f\xcdq\xea\x06GY\xcc\xedB\xf3\xfd\xe2v\xff\xbe\xed\xda\xed\xce\xef\xbf\xda\xa1\t\xfe{C\x07\x86\x18\x15\x03\xc3\x9f\x96?\xb0\xa9m\xd0\x84\x00\xc0{\x87^{\x8b\xc1\x15\xc6>\x8f\xd4\x9c\x81\xa1A\xaf\x8a\xf2C\x1b\xb6\xf4w?\xfd/ \x97\x81\xfd\xbb\xc4\xd3\xaa\x85\x8f\x01\x94\xa8\xbf6\x8b\x11k\xb2\x98\xf9R(\xc8\xebP\xd6\x7f\xbf\xbb\xe3v\x93\xdd+76\x08\r\x7fcH\xd8k\x82S7*\xcc\xd5\x18\xcf\xedz\xe8\x8d\xfa;\xdd\xcf\x80\xf6\xff\xec\\\xf1z\xb9\x10\xda\xa6p\xb7H\x0e\xb4\x985\xe5\xaf\xb7\\Bh\x9b>x\xe0\xf5\xad\x03\xb9\x9d\x01\xefy\t~\xe3~V\xceM\x9f@:\x1eW!\xd8\xbc\x81\xa1\x8e5\x1c\xf4\\\xe4\xbf\x1d\xe8\xb7\x07\xb5!\xeb\x81\xedk\xd3\x10\xc3\x95z\x9d\xc8\x96`\x8dCvl\x86\xa1\x844t\xbb\xd1\xa9\xd3#\x98\x18|\x81\xfd\xa1Y{\x1e}\xa7I\x17B\x00`\xf9\xce\x1f\x14BQ*\x08\x18\xb9i\xb6\x91!\xa3\x0b\x1a\x16\xefyx\x8b~G\x1e]\xc3\xb2\x9dkfI2\x7fJ \xe7\xdd\xa6\xef3\xa2\xf2R\x88J?z\xe4m\xfd\x0f\x05\xbb\x86\xa5;\xffj\x11I\xbc\xeb.)\xb7\xa0\x1b,V~\xfc\xf0\xd6\x8ap~<\xa4\xdd\xd2Kv\xac\x9e))\xca\x1e\x10\\wy\x00\x98\xb9S0\xaf\xf8\xd3\xaaw\x8d?X\xf2\xff5\xe5\xf1B&y\x0f@cG9\x1d\x8d\xc4\xda\xf2OW\x95\x0f\xe9I\x02\x11\xc9\'\x98\xb7\xe5\xfb)j\x9cZ>Z\x0f\'f\xe0`\xd0G\x8f\x1ex\xf2]\xf7P\xaf\x15\x91U\xc1\x86\xf7Oz\xc7\xdf\x9f\xb2\x8dU\xc7\x18\x00\xd3G\x15\x19\x8c7\xe9R\xeb\xea}kvwE\xe2z\x11\xcf\xb8Y\xb0\xe3\x91G%\xa2\x8d\xc0\xc8>\xe0\x1e\xcc\x97\x99\xf1\xdc\xbe\xc7vD\xe7\x01\xf77b\xce\xbb\xab\xc6)\xaa\xbc\t\xc0\xe2\x11J\xc7\x9fC\x01m\xdd\xa1\'vF\xfc\x0c>]s\xd2\xe6\xbf\xb7\xeaq&\xbcJ\x06.r\xe9l\x9e:\x89\xc5?\x1e\xa8\xf9\xfd\xebw\x9a\xb5\x8dJB\x00`\xc6\xd6\x07\x93U\x8b\\\x06\xc2_\x03\xa4\x0eS*\x02`l\x0c\x04\xb5\xb2\xc3O\xedn\xd7\xb3&\xc3\xb26g\xbe\xb3"G\xb2H\xbf \xc2\x93@\x14?g\xfcf"\x043\xb6\x89\xa0\xf8\xd9\x97?\xf8C\x9d\x115\x1a\x9eF{\x95\x98\x17@\xf8!\x00Gt\xf2\x80^&\xde\x1e\xd2\xc4\x7f\x1c}\xe2\xc3\x93FVmZ^s\xc9[K\x92\xd8f[\xc3\xc4\xeb\x0845:x\xe0c\xc4\xb4\x89\xfc\xfe\xb7+\x9f\xd9\xdba\xc6=DE\xa2\xf9\xd4m\xcb\xa7I\x84\xd5 \xac$P\xa1\xc1$T\x83\xb1K0\xb6\x1f{rO\x95\xd9m\x11u\x99\xff36/\xcf\x15V\xb1\x8c\x89\xe6\x13c\x01\x089\x11f\xa0\x8e\t\xfb\x89\xf9\x80\xd4+}rx\xed\x9e\xb3\xd1$\x7f\xd4?\x8aa\xca\x96e)PPH,\xe5A\xc2d\x06\xb2\x00N\x03\x90A@\x1c\x032\x81\xe2\xae\xf6\xf6\xcb\x04h\x0c\\\x06p\x01\xa0\x16\x02\x1a p\x92I\xd4"\x84\xea\xe3O\x7fr1\x9a\xe5\xfd?\xf2\xd7\xef$\x9eeD\xd5\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
@@ -1188,9 +2762,7 @@ class NiminFetishFantasyv0975o_fla:
          #locks resizing of child windows
          self.mo.geometry("1176x662")
          self.mo.resizable = False
-         if self.wikiOpen:
-            self.wikiwindow.geometry("700x500")
-            self.wikiwindow.resizable = False
+         self.wiki.enforceSize = True
          if self.optionsWinOpen:
             self.optionswindow.geometry("420x207")
             self.optionswindow.resizable = False
@@ -1209,8 +2781,7 @@ class NiminFetishFantasyv0975o_fla:
       else:
          #unlocks resizing for all windows
          self.mo.resizable = True
-         if self.wikiOpen:
-            self.wikiwindow.resizable = True
+         self.wiki.enforceSize = False
          if self.optionsWinOpen:
             self.optionswindow.resizable = True
          if self.debugVarOpen:
@@ -1609,7 +3180,7 @@ class NiminFetishFantasyv0975o_fla:
       elif (keyCode == 8) and keyEnabled and self.shownewgame: #Backspace
          self.newGameGo()
       elif (keyCode == 192 or keyCode == 111) and keyEnabled: #~, numpadDivide
-         self.openWiki()
+         self.wiki.open()
       elif (keyCode == 85 and self.currentState != 0 and keyEnabled): #u
          self.sideEvent(1)
       elif self.showSide and self.currentState != 0 and keyEnabled:
@@ -1678,8 +3249,8 @@ class NiminFetishFantasyv0975o_fla:
       if self.mo.aboutwindow.isOpen:
          for i in (self.mo.aboutwindow.toplevel,self.mo.aboutwindow.label):
             i.configure(background=color)
-      if self.wikiOpen:
-         self.wikiwindow.configureChildren(("text","menu"),background=color)
+      if self.wiki.isOpen:
+         self.wiki.window.configureChildren(("text","menu"),background=color)
       if self.sfcOpen:
          self.sfcwindow.configureChildren(("display","title","message","inputfilebox","outputfilebox","convertbutton"),background=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
@@ -1708,8 +3279,8 @@ class NiminFetishFantasyv0975o_fla:
       self.mo.configureChildren(items, foreground=color)
       if self.mo.aboutwindow.isOpen:
          self.mo.aboutwindow.label["foreground"] = color
-      if self.wikiOpen:
-         self.wikiwindow.configureChildren(("text","menu"),foreground=color)
+      if self.wiki.isOpen:
+         self.wiki.window.configureChildren(("text","menu"),foreground=color)
       if self.sfcOpen:
          self.sfcwindow.configureChildren(("title","message","inputfilebox","outputfilebox","convertbutton"),foreground=color)
          for i in (self.sfcinputfilecomboboxtext,self.sfcoutputfilecomboboxtext):
@@ -1792,8 +3363,8 @@ class NiminFetishFantasyv0975o_fla:
       self.displayMainText()
       if self.sidepanelvisible:
          self.displaySideText()
-      if self.wikiOpen:
-         self.displayWikiText()
+      if self.wiki.isOpen:
+         self.wiki.displayText()
 
    def savePreferences(self):
       temp = {"game":{"theme":self.theme,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.fontColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":self.savelocation,"solMode":self.solonlymode,"fixedResMode":self.fixedresolutionmode,"customFontColor":self.customfontcolor,"oFontColor":self.ofontcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.othemecolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki,"doShopsReturn":self.doShopsReturn},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
@@ -3844,7 +5415,7 @@ class NiminFetishFantasyv0975o_fla:
       Help button in the side bar
       """
       if self.helpToWiki:
-         self.openWiki()
+         self.wiki.open()
          return
       tempStr = textObject()
       tempStr += "<b><u>Stats</u></b>\n"
@@ -25534,9 +27105,9 @@ class NiminFetishFantasyv0975o_fla:
       if (self.debugVarOpen):
          sbpos = self.dvw._children["text"].yview()
          if self.currentState == 0:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\nstartType: {self.startType}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\nstartType: {self.startType}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
          else:
-            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\nstartType: {self.startType}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wikiOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
+            tempStr = f"|Version Info|\nversionNumber: {self.versionNumber}\nportVersion: {__version__}\n\n|Command Line Arguements|\nstartType: {self.startType}\n\n|Window Open|\ndebugVarOpen: {self.debugVarOpen}\ndebugGIWinOpen: {self.debugGIWinOpen}\ndebugAWinOpen: {self.debugAWinOpen}\noptionsWinOpen: {self.optionsWinOpen}\nsfcOpen: {self.sfcOpen}\nseOpen: {self.seOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\ngameDirectory: {self.dir}\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.fixedresolutionmode}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.ofontcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.othemecolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nchangeNGButtonOverride: {self.changeNGButtonOverride}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.theme}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.fontColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
          # Avoid updating text multiple times by setting the internal variables and then setting text
          textw = self.dvw._children["text"]
          textw._bg = self.theme
@@ -25699,1501 +27270,6 @@ class NiminFetishFantasyv0975o_fla:
 
    def closeDAWindow(self, *e):
       self.debugAWinOpen = False
-
-   def openWiki(self):
-      if self.wikiOpen:
-         self.wikiwindow.lift()
-         return
-      self.wikiOpen = True
-      self.wikiwindow = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0")
-      if self.fixedresolutionmode:
-         self.wikiwindow.resizable = False
-      self.wikiwindow.transient(self.mo)
-      self.wikiwindow.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.theme,foreground=self.fontColor)
-      self.wikiwindow.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.theme,foreground=self.fontColor)
-      if getattr(self.wikiwindow._children["text"].html_parser, 'callobject', '') == '':
-         self.customhtmlparser = False
-         trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
-      else:
-         self.customhtmlparser = True
-         self.wikiwindow._children["text"].html_parser.callobject = self.doWikiPage
-      self.wikimenus = {
-         "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
-         "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
-         "Basics.MenuBar":("File","View","Save Utils","Debug Utils","Help","Back"),
-         "Basics.MenuBar.File":("Options","Quit","Back"),
-         "Items":("All Items","Debug Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"),
-         "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
-         "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
-         "Items.Equipable":("Weapons","Other Equipables","Back"),
-         "Items.Equipable.Weapons":("Dagger","Hammer","Saber","Whip","Tail Spike","Back"),
-         "Items.Equipable.Other":("Snuggle Ball","Supp Harness","Back"),
-         "Items.Passive":("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back"),
-         "Items.Consumables":("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back"),
-         "Items.Consumables.Affinity":("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back"),
-         "Items.Consumables.Alchemy":("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back"),
-         "Items.Consumables.Dyes":("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back"),
-         "Items.Consumables.TScrolls":("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back"),
-         "Items.Consumables.Eggs":("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
-         "Items.Consumables.Other":("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back"),
-         "Items.Silandrias":("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back"),
-         "Items.Special":("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back"),
-         "Items.Other":("Test","Back"),
-         "Clothes":("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back"),
-         "Enemies":("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back"),
-         "Races":("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back"),
-         "Locations":("Towns","Other Locations","Back"),
-         "Locations.Towns":("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back"),
-         "Locations.Other":("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back"),
-         "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
-         "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
-      }
-
-      self.doWikiMenu("")
-      self.wikipreviouspage = [] #each value is a list/tuple [menu item type, menu item number], the last one is the current page
-      self.wikiwindow.bind("<Destroy>",self._wikidestroy)
-
-      self.wikiwindow.bindChild("menu",'<Double-1>', self.selectMenuOption)
-      self.wikiwindow.bind("<KeyPress>", partial(self.keyPress, self.wikiHotkeys))
-      self.wikiwindow.bind('<KeyRelease>', self.keysUp)
-
-      self.doWikiPage("Basic",0)
-      self.wikifocus = 1
-      self.wikiSwitchSelection()
-
-   def wikiHotkeys(self, keyCode):
-      if keyCode in {81,8,103} and self.wikiOpen: #q,backspace,numPad7
-         self._wikidestroy()
-      elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
-         self.wikiMenuSelectionUp()
-      elif keyCode in {69,190,105}: #e,.,numPad9
-         self.doWikiPrevious()
-      elif keyCode in {82,191,109}: #r,/,numPadMinus
-         self.wikiSwitchSelection()
-      elif keyCode in {65,37,100}: #a,←,numPad4
-         self.wikiMenuBack()
-      elif keyCode in {83,"midKeyS",101}: #s,<>,numPad5
-         self.wikiMenuSelectionDown()
-      elif keyCode in {68,39,102,13}: #d,→,numPad6,enter
-         self.selectMenuOption()
-
-   def _wikidestroy(self, *e):
-      if self.wikiOpen:
-         self.wikiwindow.close()
-         del self.wikipreviouspage
-         self.wikiOpen = False
-
-   def wikiMenuSelectionUp(self, *e):
-      temp = self.wikiwindow._children["menu"].curselection()[0]
-      if temp != 0:
-         self.wikiwindow._children["menu"].selection_clear(temp)
-         self.wikiwindow._children["menu"].select_set(temp - 1)
-         self.wikiwindow._children["menu"].activate(temp - 1)
-         self.wikiwindow._children["menu"].see(temp - 1)
-
-   def wikiMenuSelectionDown(self, *e):
-      temp = self.wikiwindow._children["menu"].curselection()[0]
-      if (temp + 1) < len(self.wikiwindow._children["menu"].get(0,"end")):
-         self.wikiwindow._children["menu"].selection_clear(temp)
-         self.wikiwindow._children["menu"].select_set(temp + 1)
-         self.wikiwindow._children["menu"].activate(temp + 1)
-         self.wikiwindow._children["menu"].see(temp + 1)
-
-   def wikiMenuBack(self, *e):
-      if self.currentMenu != "":
-         self.selectMenuOption(sel="Back")
-
-   def wikiSwitchSelection(self, *e):
-      if self.wikifocus == 0:
-         self.wikiwindow._children["text"].vbar.focus_force()
-         self.wikifocus = 1
-      elif self.wikifocus == 1:
-         self.wikiwindow.forceFocus("menu")
-         self.wikifocus = 0
-
-   def doWikiPrevious(self, *e):
-      if len(self.wikipreviouspage) > 1:
-         self.wikipreviouspage.pop()
-         page = self.wikipreviouspage[-1]
-         self.doWikiPage(page.topic, page.num, returning=True)
-
-   def displayWikiText(self):
-      textw = self.wikiwindow._children["text"]
-      textw.state = "normal"
-      textw._fontSize = self.fontSize - 2
-      textw.text = self.textwiki
-      textw.state = "disabled"
-
-   def clearAddWikiText(self, text):
-      self.textwiki = text
-      self.displayWikiText()
-
-   def doWikiMenu(self, menuName=str):
-      self.currentMenu = menuName
-      self.wikiwindow._children["menu"].delete(0,"end")
-      self.wikiwindow._children["menu"].insert("end",*self.wikimenus[menuName])
-      self.wikiwindow._children["menu"].select_set(0)
-      self.wikiwindow._children["menu"].activate(0)
-
-   def selectMenuOption(self, e=None, sel=None):
-      if sel is None:
-         sel = self.wikiwindow._children["menu"].get(self.wikiwindow._children["menu"].curselection())
-      if sel == "Back":
-         self.doWikiMenu(".".join(self.currentMenu.split(".")[:-1]))
-         return
-      if self.currentMenu == "":
-         if sel == "Basics":
-            self.doWikiMenu("Basics")
-         elif sel == "Items":
-            self.doWikiMenu("Items")
-         elif sel == "Clothes":
-            self.doWikiMenu("Clothes")
-         elif sel == "Enemies":
-            self.doWikiMenu("Enemies")
-         elif sel == "Races":
-            self.doWikiMenu("Races")
-         elif sel == "Locations":
-            self.doWikiMenu("Locations")
-         elif sel == "Shops":
-            self.doWikiMenu("Shops")
-         elif sel == "Named Characters":
-            self.doWikiMenu("NPCs")
-         elif sel == "Close":
-            self._wikidestroy()
-      elif self.currentMenu == "Basics":
-         if sel == "Welcome Screen":
-            self.doWikiPage("Basic",0)
-         elif sel == "Wiki Key":
-            self.doWikiPage("Basic",5)
-         elif sel == "Stats":
-            self.doWikiPage("Basic",1)
-         elif sel == "Actions":
-            self.doWikiPage("Basic",2)
-         elif sel == "Tips":
-            self.doWikiPage("Basic",3)
-         elif sel == "Hotkeys":
-            self.doWikiPage("Basic",4)
-         elif sel == "Changes":
-            self.doWikiPage("Basic",6)
-         elif sel == "Menu Bar":
-            self.doWikiMenu("Basics.MenuBar")
-      elif self.currentMenu == "Basics.MenuBar":
-         if sel == "File":
-            self.doWikiMenu("Basics.MenuBar.File")
-         elif sel == "View":
-            self.doWikiPage("MenuBar",3)
-         elif sel == "Save Utils":
-            self.doWikiPage("MenuBar",4)
-         elif sel == "Debug Utils":
-            self.doWikiPage("MenuBar",5)
-         elif sel == "Help":
-            self.doWikiPage("MenuBar",6)
-      elif self.currentMenu == "Basics.MenuBar.File":
-         if sel == "Options":
-            self.doWikiPage("MenuBar",1)
-         elif sel == "Quit":
-            self.doWikiPage("MenuBar",2)
-      elif self.currentMenu == "Items":
-         if sel == "All Items": #menunum 3
-            self.doWikiMenu("Items.All")
-         elif sel == "Debug Items":
-            self.doWikiMenu("Items.Debug")
-         elif sel == "Equipable Items": #menunum 4
-            self.doWikiMenu("Items.Equipable")
-         elif sel == "Passive Items":
-            self.doWikiMenu("Items.Passive")
-         elif sel == "Consumables": #menunum 7
-            self.doWikiMenu("Items.Consumables")
-         elif sel == "Silandrias' Magic Items": #menunum 14
-            self.doWikiMenu("Items.Silandrias")
-         elif sel == "Special Items": #menunum 15
-            self.doWikiMenu("Items.Special")
-         elif sel == "Other Items": #menunum 16
-            self.doWikiMenu("Items.Other")
-      elif self.currentMenu == "Items.All":
-         if sel == "Test":
-            self.doWikiPage("Item",1)
-         elif sel == "Anc Claws":
-            self.doWikiPage("Item",101)
-         elif sel == "Imb Shoes":
-            self.doWikiPage("Item",102)
-         elif sel == "Dry Sand":
-            self.doWikiPage("Item",103)
-         elif sel == "Milker":
-            self.doWikiPage("Item",104)
-         elif sel == "Cat's Meow":
-            self.doWikiPage("Item",105)
-         elif sel == "Penis Pump":
-            self.doWikiPage("Item",106)
-         elif sel == "Blood Gge":
-            self.doWikiPage("Item",108)
-         elif sel == "Edu Egg":
-            self.doWikiPage("Item",109)
-         elif sel == "Reduction":
-            self.doWikiPage("Item",110)
-         elif sel == "Skin Balm":
-            self.doWikiPage("Item",111)
-         elif sel == "Bol Juice":
-            self.doWikiPage("Item",112)
-         elif sel == "Taint Leaf":
-            self.doWikiPage("Item",113)
-         elif sel == "Sweet Sap":
-            self.doWikiPage("Item",114)
-         elif sel == "Poultice":
-            self.doWikiPage("Item",115)
-         elif sel == "Dagger":
-            self.doWikiPage("Item",116)
-         elif sel == "Hammer":
-            self.doWikiPage("Item",117)
-         elif sel == "Saber":
-            self.doWikiPage("Item",118)
-         elif sel == "Whip":
-            self.doWikiPage("Item",119)
-         elif sel == "Neuter":
-            self.doWikiPage("Item",120)
-         elif sel == "TS Soft":
-            self.doWikiPage("Item",121)
-         elif sel == "TS Firm":
-            self.doWikiPage("Item",122)
-         elif sel == "TS Tied":
-            self.doWikiPage("Item",123)
-         elif sel == "TS Siz":
-            self.doWikiPage("Item",124)
-         elif sel == "TS Ovi":
-            self.doWikiPage("Item",125)
-         elif sel == "Oas Water":
-            self.doWikiPage("Item",126)
-         elif sel == "Tail Spike":
-            self.doWikiPage("Item",127)
-         elif sel == "TS Sanct":
-            self.doWikiPage("Item",128)
-         elif sel == "Lila's Gift":
-            self.doWikiPage("Item",200)
-         elif sel == "Milk C Pois":
-            self.doWikiPage("Item",201)
-         elif sel == "Co-Snak Ven":
-            self.doWikiPage("Item",202)
-         elif sel == "Wolf Fur":
-            self.doWikiPage("Item",203)
-         elif sel == "Sm Pouch (ItemID 204)":
-            self.doWikiPage("Item",204)
-         elif sel == "Sm Pouch (ItemID 205)":
-            self.doWikiPage("Item",205)
-         elif sel == "Trinket":
-            self.doWikiPage("Item",206)
-         elif sel == "Cock Carv":
-            self.doWikiPage("Item",207)
-         elif sel == "Blo Berry":
-            self.doWikiPage("Item",208)
-         elif sel == "Grain":
-            self.doWikiPage("Item",209)
-         elif sel == "Puss Fruit":
-            self.doWikiPage("Item",210)
-         elif sel == "DairE Pill":
-            self.doWikiPage("Item",211)
-         elif sel == "Red Mush":
-            self.doWikiPage("Item",212)
-         elif sel == "Wet Cloth":
-            self.doWikiPage("Item",213)
-         elif sel == "Lon Milk":
-            self.doWikiPage("Item",214)
-         elif sel == "Lon Pendant":
-            self.doWikiPage("Item",215)
-         elif sel == "Pink Ink":
-            self.doWikiPage("Item",216)
-         elif sel == "Egg Jelly":
-            self.doWikiPage("Item",217)
-         elif sel == "Bul Berry":
-            self.doWikiPage("Item",218)
-         elif sel == "Fresh Egg":
-            self.doWikiPage("Item",219)
-         elif sel == "Blondie":
-            self.doWikiPage("Item",220)
-         elif sel == "Puss Juice":
-            self.doWikiPage("Item",221)
-         elif sel == "Kinky Carr":
-            self.doWikiPage("Item",222)
-         elif sel == "Eq Snack":
-            self.doWikiPage("Item",223)
-         elif sel == "Lila's Milk":
-            self.doWikiPage("Item",224)
-         elif sel == "Body Wash":
-            self.doWikiPage("Item",225)
-         elif sel == "Felin Tea":
-            self.doWikiPage("Item",226)
-         elif sel == "Oral Wash":
-            self.doWikiPage("Item",227)
-         elif sel == "Body Oil":
-            self.doWikiPage("Item",228)
-         elif sel == "Leath Strap":
-            self.doWikiPage("Item",229)
-         elif sel == "Eggcelerator":
-            self.doWikiPage("Item",230)
-         elif sel == "Desi Sand":
-            self.doWikiPage("Item",231)
-         elif sel == "Flying Carp":
-            self.doWikiPage("Item",232)
-         elif sel == "A-Grav Rock":
-            self.doWikiPage("Item",233)
-         elif sel == "Rein Charm":
-            self.doWikiPage("Item",234)
-         elif sel == "Fell Rod":
-            self.doWikiPage("Item",235)
-         elif sel == "Recept Bell":
-            self.doWikiPage("Item",236)
-         elif sel == "Dewy Gift":
-            self.doWikiPage("Item",237)
-         elif sel == "Squ Cheese":
-            self.doWikiPage("Item",238)
-         elif sel == "Shiny Rock":
-            self.doWikiPage("Item",239)
-         elif sel == "Auburn Dye":
-            self.doWikiPage("Item",240)
-         elif sel == "Brown Dye":
-            self.doWikiPage("Item",241)
-         elif sel == "Grey Dye":
-            self.doWikiPage("Item",242)
-         elif sel == "White Dye":
-            self.doWikiPage("Item",243)
-         elif sel == "Snuggle Ball":
-            self.doWikiPage("Item",244)
-         elif sel == "Facial Mud":
-            self.doWikiPage("Item",245)
-         elif sel == "Fertile Gel":
-            self.doWikiPage("Item",246)
-         elif sel == "Supp Harness":
-            self.doWikiPage("Item",247)
-         elif sel == "Breeder Pot":
-            self.doWikiPage("Item",248)
-         elif sel == "Treant's Tear":
-            self.doWikiPage("Item",249)
-         elif sel == "Foomp Bomb":
-            self.doWikiPage("Item",250)
-         elif sel == "Plump Quat":
-            self.doWikiPage("Item",251)
-         elif sel == "Milky Pend":
-            self.doWikiPage("Item",252)
-         elif sel == "Bug Egg":
-            self.doWikiPage("Item",253)
-         elif sel == "Lantern":
-            self.doWikiPage("Item",254)
-         elif sel == "Frag Flower":
-            self.doWikiPage("Item",255)
-         elif sel == "Nectar Candy":
-            self.doWikiPage("Item",256)
-         elif sel == "Too Human":
-            self.doWikiPage("Item",257)
-         elif sel == "Tainted Pot":
-            self.doWikiPage("Item",258)
-         elif sel == "Sweet&Sour":
-            self.doWikiPage("Item",259)
-         elif sel == "Succ Draft":
-            self.doWikiPage("Item",260)
-         elif sel == "Milk Bottle":
-            self.doWikiPage("Item",500)
-         elif sel == "Milk Jug":
-            self.doWikiPage("Item",501)
-         elif sel == "Milk Barrel":
-            self.doWikiPage("Item",502)
-         elif sel == "Lust Draft":
-            self.doWikiPage("Item",503)
-         elif sel == "Rejuv Pot":
-            self.doWikiPage("Item",504)
-         elif sel == "Bad Exper":
-            self.doWikiPage("Item",505)
-         elif sel == "Exp Preg":
-            self.doWikiPage("Item",506)
-         elif sel == "Ball Sweller":
-            self.doWikiPage("Item",507)
-         elif sel == "S Lust Draft":
-            self.doWikiPage("Item",508)
-         elif sel == "S Rejuv Pot":
-            self.doWikiPage("Item",509)
-         elif sel == "S Bad Exper":
-            self.doWikiPage("Item",510)
-         elif sel == "S Exp Preg":
-            self.doWikiPage("Item",511)
-         elif sel == "S Ball Sweller":
-            self.doWikiPage("Item",512)
-         elif sel == "Gen Swap":
-            self.doWikiPage("Item",513)
-         elif sel == "Maso Pot":
-            self.doWikiPage("Item",514)
-         elif sel == "Black Dye":
-            self.doWikiPage("Item",515)
-         elif sel == "Baby Free":
-            self.doWikiPage("Item",516)
-         elif sel == "Pot Pot":
-            self.doWikiPage("Item",517)
-         elif sel == "S Gen Swap":
-            self.doWikiPage("Item",518)
-         elif sel == "S Maso Pot":
-            self.doWikiPage("Item",519)
-         elif sel == "Red Dye":
-            self.doWikiPage("Item",520)
-         elif sel == "S Baby Free":
-            self.doWikiPage("Item",521)
-         elif sel == "S Pot Pot":
-            self.doWikiPage("Item",522)
-         elif sel == "Cum Vial":
-            self.doWikiPage("Item",523)
-         elif sel == "Cum Bottle":
-            self.doWikiPage("Item",524)
-         elif sel == "Cum Jug":
-            self.doWikiPage("Item",525)
-         elif sel == "Cum Barrel":
-            self.doWikiPage("Item",526)
-         elif sel == "Good Egg":
-            self.doWikiPage("Item",527)
-         elif sel == "Bad Egg":
-            self.doWikiPage("Item",528)
-         elif sel == "Strange Egg":
-            self.doWikiPage("Item",529)
-         elif sel == "Charmed Egg":
-            self.doWikiPage("Item",530)
-         elif sel == "Divine Egg":
-            self.doWikiPage("Item",531)
-         elif sel == "Pheromone":
-            self.doWikiPage("Item",532)
-         elif sel == "Reduc Reduc":
-            self.doWikiPage("Item",533)
-         elif sel == "Male Enhance":
-            self.doWikiPage("Item",534)
-         elif sel == "Milk Suppress":
-            self.doWikiPage("Item",535)
-         elif sel == "Bazoomba!":
-            self.doWikiPage("Item",536)
-         elif sel == "Queen Egg":
-            self.doWikiPage("Item",537)
-         elif sel == "Soldier Egg":
-            self.doWikiPage("Item",538)
-         elif sel == "Drone Egg":
-            self.doWikiPage("Item",539)
-         elif sel == "Worker Egg":
-            self.doWikiPage("Item",540)
-      elif self.currentMenu == "Items.Debug":
-         if sel == "Debug Stick":
-            self.doWikiPage("Item",2)
-         elif sel == "Item Not Found":
-            self.doWikiPage("Item",404)
-         elif sel == "Teapot":
-            self.doWikiPage("Item",418)
-      elif self.currentMenu == "Items.Equipable":
-         if sel == "Weapons":
-            self.doWikiMenu("Items.Equipable.Weapons")
-         elif sel == "Other Equipables":
-            self.doWikiMenu("Items.Equipable.Other")
-      elif self.currentMenu == "Items.Equipable.Weapons":
-         if sel == "Dagger":
-            self.doWikiPage("Item",116)
-         elif sel == "Hammer":
-            self.doWikiPage("Item",117)
-         elif sel == "Saber":
-            self.doWikiPage("Item",118)
-         elif sel == "Whip":
-            self.doWikiPage("Item",119)
-         elif sel == "Tail Spike":
-            self.doWikiPage("Item",127)
-      elif self.currentMenu == "Items.Equipable.Other":
-         if sel == "Snuggle Ball":
-            self.doWikiPage("Item",244)
-         elif sel == "Supp Harness":
-            self.doWikiPage("Item",247)
-      elif self.currentMenu == "Items.Passive":
-         if sel == "Anc Claws":
-            self.doWikiPage("Item",101)
-         elif sel == "Imb Shoes":
-            self.doWikiPage("Item",102)
-         elif sel == "Lila's Gift":
-            self.doWikiPage("Item",200)
-         elif sel == "Lon Pendant":
-            self.doWikiPage("Item",215)
-         elif sel == "Dewy Gift":
-            self.doWikiPage("Item",237)
-         elif sel == "Milky Pend":
-            self.doWikiPage("Item",252)
-      elif self.currentMenu == "Items.Consumables":
-         if sel == "Affinity Items":
-            self.doWikiMenu("Items.Consumables.Affinity")
-         elif sel == "Alchemy Items":
-            self.doWikiMenu("Items.Consumables.Alchemy")
-         elif sel == "Dyes":
-            self.doWikiMenu("Items.Consumables.Dyes")
-         elif sel == "Teleport Scrolls":
-            self.doWikiMenu("Items.Consumables.TScrolls")
-         elif sel == "Eggs":
-            self.doWikiMenu("Items.Consumables.Eggs")
-         elif sel == "Other Consumables":
-            self.doWikiMenu("Items.Consumables.Other")
-      elif self.currentMenu == "Items.Consumables.Affinity":
-         if sel == "Skin Balm":
-            self.doWikiPage("Item",111)
-         elif sel == "Bol Juice":
-            self.doWikiPage("Item",112)
-         elif sel == "Taint Leaf":
-            self.doWikiPage("Item",113)
-         elif sel == "Sweet Sap":
-            self.doWikiPage("Item",114)
-         elif sel == "Oas Water":
-            self.doWikiPage("Item",126)
-         elif sel == "DairE Pill":
-            self.doWikiPage("Item",211)
-         elif sel == "Lon Milk":
-            self.doWikiPage("Item",214)
-         elif sel == "Kinky Carr":
-            self.doWikiPage("Item",222)
-         elif sel == "Squ Cheese":
-            self.doWikiPage("Item",238)
-         elif sel == "Shiny Rock":
-            self.doWikiPage("Item",239)
-         elif sel == "Facial Mud":
-            self.doWikiPage("Item",245)
-         elif sel == "Frag Flower":
-            self.doWikiPage("Item",255)
-         elif sel == "Nectar Candy":
-            self.doWikiPage("Item",256)
-         elif sel == "Too Human":
-            self.doWikiPage("Item",257)
-         elif sel == "Tainted Pot":
-            self.doWikiPage("Item",258)
-      elif self.currentMenu == "Items.Consumables.Alchemy":
-         if sel == "Blondie":
-            self.doWikiPage("Item",220)
-         elif sel == "Puss Juice":
-            self.doWikiPage("Item",221)
-         elif sel == "Lust Draft":
-            self.doWikiPage("Item",503)
-         elif sel == "Rejuv Pot":
-            self.doWikiPage("Item",504)
-         elif sel == "Exp Preg":
-            self.doWikiPage("Item",506)
-         elif sel == "Ball Sweller":
-            self.doWikiPage("Item",507)
-         elif sel == "S Lust Draft":
-            self.doWikiPage("Item",508)
-         elif sel == "S Rejuv Pot":
-            self.doWikiPage("Item",509)
-         elif sel == "S Exp Preg":
-            self.doWikiPage("Item",511)
-         elif sel == "S Ball Sweller":
-            self.doWikiPage("Item",512)
-         elif sel == "Gen Swap":
-            self.doWikiPage("Item",513)
-         elif sel == "Maso Pot":
-            self.doWikiPage("Item",514)
-         elif sel == "Baby Free":
-            self.doWikiPage("Item",516)
-         elif sel == "Pot Pot":
-            self.doWikiPage("Item",517)
-         elif sel == "S Gen Swap":
-            self.doWikiPage("Item",518)
-         elif sel == "S Maso Pot":
-            self.doWikiPage("Item",519)
-         elif sel == "S Baby Free":
-            self.doWikiPage("Item",521)
-         elif sel == "S Pot Pot":
-            self.doWikiPage("Item",522)
-         elif sel == "Pheromone":
-            self.doWikiPage("Item",532)
-         elif sel == "Reduc Reduc":
-            self.doWikiPage("Item",533)
-         elif sel == "Male Enhance":
-            self.doWikiPage("Item",534)
-         elif sel == "Milk Suppress":
-            self.doWikiPage("Item",535)
-         elif sel == "Bazoomba!":
-            self.doWikiPage("Item",536)
-      elif self.currentMenu == "Items.Consumables.Dyes":
-         if sel == "Pink Ink":
-            self.doWikiPage("Item",216)
-         elif sel == "Auburn Dye":
-            self.doWikiPage("Item",240)
-         elif sel == "Brown Dye":
-            self.doWikiPage("Item",241)
-         elif sel == "Grey Dye":
-            self.doWikiPage("Item",242)
-         elif sel == "White Dye":
-            self.doWikiPage("Item",243)
-         elif sel == "Black Dye":
-            self.doWikiPage("Item",515)
-         elif sel == "Red Dye":
-            self.doWikiPage("Item",520)
-      elif self.currentMenu == "Items.Consumables.TScrolls":
-         if sel == "TS Soft":
-            self.doWikiPage("Item",121)
-         elif sel == "TS Firm":
-            self.doWikiPage("Item",122)
-         elif sel == "TS Tied":
-            self.doWikiPage("Item",123)
-         elif sel == "TS Siz":
-            self.doWikiPage("Item",124)
-         elif sel == "TS Ovi":
-            self.doWikiPage("Item",125)
-         elif sel == "TS Sanct":
-            self.doWikiPage("Item",128)
-      elif self.currentMenu == "Items.Consumables.Eggs":
-         if sel == "Fresh Egg":
-            self.doWikiPage("Item",219)
-         elif sel == "Bug Egg":
-            self.doWikiPage("Item",253)
-         elif sel == "Good Egg":
-            self.doWikiPage("Item",527)
-         elif sel == "Bag Egg":
-            self.doWikiPage("Item",528)
-         elif sel == "Strange Egg":
-            self.doWikiPage("Item",529)
-         elif sel == "Charmed Egg":
-            self.doWikiPage("Item",530)
-         elif sel == "Divine Egg":
-            self.doWikiPage("Item",531)
-         elif sel == "Queen Egg":
-            self.doWikiPage("Item",537)
-         elif sel == "Soldier Egg":
-            self.doWikiPage("Item",538)
-         elif sel == "Drone Egg":
-            self.doWikiPage("Item",539)
-         elif sel == "Worker Egg":
-            self.doWikiPage("Item",540)
-      elif self.currentMenu == "Items.Consumables.Other":
-         if sel == "Dry Sand":
-            self.doWikiPage("Item",103)
-         elif sel == "Cat's Meow":
-            self.doWikiPage("Item",105)
-         elif sel == "Reduction":
-            self.doWikiPage("Item",110)
-         elif sel == "Poultice":
-            self.doWikiPage("Item",115)
-         elif sel == "Neuter":
-            self.doWikiPage("Item",120)
-         elif sel == "Milk C Pois":
-            self.doWikiPage("Item",201)
-         elif sel == "Co-Snak Ven":
-            self.doWikiPage("Item",202)
-         elif sel == "Wolf Fur":
-            self.doWikiPage("Item",203)
-         elif sel == "Sm Pouch (ItemID 204)":
-            self.doWikiPage("Item",204)
-         elif sel == "Sm Pouch (ItemID 205)":
-            self.doWikiPage("Item",205)
-         elif sel == "Cock Carv":
-            self.doWikiPage("Item",207)
-         elif sel == "Blo Berry":
-            self.doWikiPage("Item",208)
-         elif sel == "Grain":
-            self.doWikiPage("Item",209)
-         elif sel == "Puss Fruit":
-            self.doWikiPage("Item",210)
-         elif sel == "Red Mush":
-            self.doWikiPage("Item",212)
-         elif sel == "Wet Cloth":
-            self.doWikiPage("Item",213)
-         elif sel == "Egg Jelly":
-            self.doWikiPage("Item",217)
-         elif sel == "Bul Berry":
-            self.doWikiPage("Item",218)
-         elif sel == "Eq Snack":
-            self.doWikiPage("Item",223)
-         elif sel == "Lila's Milk":
-            self.doWikiPage("Item",224)
-         elif sel == "Body Wash":
-            self.doWikiPage("Item",225)
-         elif sel == "Felin Tea":
-            self.doWikiPage("Item",226)
-         elif sel == "Oral Wash":
-            self.doWikiPage("Item",227)
-         elif sel == "Body Oil":
-            self.doWikiPage("Item",228)
-         elif sel == "Eggcelerator":
-            self.doWikiPage("Item",230)
-         elif sel == "Desi Sand":
-            self.doWikiPage("Item",231)
-         elif sel == "Fertile Gel":
-            self.doWikiPage("Item",246)
-         elif sel == "Breeder Pot":
-            self.doWikiPage("Item",248)
-         elif sel == "Treant's Tear":
-            self.doWikiPage("Item",249)
-         elif sel == "Foomp Bomb":
-            self.doWikiPage("Item",250)
-         elif sel == "Plump Quat":
-            self.doWikiPage("Item",251)
-         elif sel == "Sweet&Sour":
-            self.doWikiPage("Item",259)
-         elif sel == "Succ Draft":
-            self.doWikiPage("Item",260)
-         elif sel == "Milk Bottle":
-            self.doWikiPage("Item",500)
-         elif sel == "Milk Jug":
-            self.doWikiPage("Item",501)
-         elif sel == "Milk Barrel":
-            self.doWikiPage("Item",502)
-         elif sel == "Bad Exper":
-            self.doWikiPage("Item",505)
-         elif sel == "S Bad Exper":
-            self.doWikiPage("Item",510)
-         elif sel == "Cum Vial":
-            self.doWikiPage("Item",523)
-         elif sel == "Cum Bottle":
-            self.doWikiPage("Item",524)
-         elif sel == "Cum Jug":
-            self.doWikiPage("Item",525)
-         elif sel == "Cum Barrel":
-            self.doWikiPage("Item",526)
-      elif self.currentMenu == "Items.Silandrias":
-         if sel == "Leath Strap":
-            self.doWikiPage("Item",229)
-         elif sel == "Flying Carp":
-            self.doWikiPage("Item",232)
-         elif sel == "A-Grav Rock":
-            self.doWikiPage("Item",233)
-         elif sel == "Rein Charm":
-            self.doWikiPage("Item",234)
-         elif sel == "Fell Rod":
-            self.doWikiPage("Item",235)
-         elif sel == "Recept Bell":
-            self.doWikiPage("Item",236)
-      elif self.currentMenu == "Items.Special":
-         if sel == "Milker":
-            self.doWikiPage("Item",104)
-         elif sel == "Penis Pump":
-            self.doWikiPage("Item",106)
-         elif sel == "Blood Gge":
-            self.doWikiPage("Item",108)
-         elif sel == "Edu Egg":
-            self.doWikiPage("Item",109)
-         elif sel == "Trinket":
-            self.doWikiPage("Item",206)
-         elif sel == "Lantern":
-            self.doWikiPage("Item",254)
-      elif self.currentMenu == "Items.Other":
-         if sel == "Test":
-            self.doWikiPage("Item",1)
-      elif self.currentMenu == "Clothes":
-         if sel == "Tattered Shreds":
-            self.doWikiPage("Clothes",-1)
-         elif sel == "Invisible Underwear":
-            self.doWikiPage("Clothes",0)
-         elif sel == "Shirt":
-            self.doWikiPage("Clothes",1)
-         elif sel == "Pants":
-            self.doWikiPage("Clothes",2)
-         elif sel == "Bikini Top":
-            self.doWikiPage("Clothes",3)
-         elif sel == "Bikini Bottom":
-            self.doWikiPage("Clothes",4)
-         elif sel == "Elegant Dress":
-            self.doWikiPage("Clothes",5)
-         elif sel == "Latex Suit":
-            self.doWikiPage("Clothes",6)
-         elif sel == "Skirt":
-            self.doWikiPage("Clothes",7)
-         elif sel == "Shorts":
-            self.doWikiPage("Clothes",8)
-         elif sel == "Blouse":
-            self.doWikiPage("Clothes",9)
-         elif sel == "Diaper":
-            self.doWikiPage("Clothes",10)
-         elif sel == "Poofy Diaper":
-            self.doWikiPage("Clothes",11)
-         elif sel == "Sundress":
-            self.doWikiPage("Clothes",12)
-         elif sel == "Skimpy Dress":
-            self.doWikiPage("Clothes",13)
-         elif sel == "Short Skirt":
-            self.doWikiPage("Clothes",14)
-         elif sel == "Short Shorts":
-            self.doWikiPage("Clothes",15)
-         elif sel == "Loin Cloth":
-            self.doWikiPage("Clothes",16)
-         elif sel == "Bathing Suit":
-            self.doWikiPage("Clothes",17)
-         elif sel == "Muscle Shirt":
-            self.doWikiPage("Clothes",18)
-         elif sel == "Corset":
-            self.doWikiPage("Clothes",19)
-         elif sel == "Silk Panties":
-            self.doWikiPage("Clothes",20)
-         elif sel == "Slingkini":
-            self.doWikiPage("Clothes",21)
-         elif sel == "Thong":
-            self.doWikiPage("Clothes",22)
-         elif sel == "Bloomers":
-            self.doWikiPage("Clothes",23)
-         elif sel == "Tights":
-            self.doWikiPage("Clothes",24)
-         elif sel == "Gothic Dress":
-            self.doWikiPage("Clothes",25)
-         elif sel == "Tube Top":
-            self.doWikiPage("Clothes",26)
-         elif sel == "Nipple Pasties":
-            self.doWikiPage("Clothes",27)
-         elif sel == "Camisole":
-            self.doWikiPage("Clothes",28)
-         elif sel == "Training Suit":
-            self.doWikiPage("Clothes",29)
-         elif sel == "Bouncy Bra":
-            self.doWikiPage("Clothes",30)
-      elif self.currentMenu == "Enemies":
-         if sel == "Test Enemy":
-            self.doWikiPage("Enemy",1)
-         elif sel == "Cock-snake":
-            self.doWikiPage("Enemy",101)
-         elif sel == "Desiccating Dust Devil":
-            self.doWikiPage("Enemy",102)
-         elif sel == "Lone Male Wolf":
-            self.doWikiPage("Enemy",201)
-         elif sel == "Gay Wolf":
-            self.doWikiPage("Enemy",202)
-         elif sel == "Felin in Heat":
-            self.doWikiPage("Enemy",301)
-         elif sel == "Drunken Equan":
-            self.doWikiPage("Enemy",302)
-         elif sel == "Octopus Girl":
-            self.doWikiPage("Enemy",303)
-         elif sel == "Little Big Bunny-man":
-            self.doWikiPage("Enemy",304)
-         elif sel == "Little Big Bunny-girl":
-            self.doWikiPage("Enemy",305)
-         elif sel == "Fierce Naga":
-            self.doWikiPage("Enemy",306)
-         elif sel == "Minotaur":
-            self.doWikiPage("Enemy",307)
-         elif sel == "Freaky Little Girl":
-            self.doWikiPage("Enemy",308)
-         elif sel == "Succubus":
-            self.doWikiPage("Enemy",309)
-      elif self.currentMenu == "Races":
-         if sel == "Human":
-            self.doWikiPage("Race",1)
-         elif sel == "Equan":
-            self.doWikiPage("Race",2)
-         elif sel == "Lupan":
-            self.doWikiPage("Race",3)
-         elif sel == "Felin":
-            self.doWikiPage("Race",4)
-         elif sel == "Cow":
-            self.doWikiPage("Race",5)
-         elif sel == "Lizan":
-            self.doWikiPage("Race",6)
-         elif sel == "Bunny":
-            self.doWikiPage("Race",7)
-         elif sel == "Mouse":
-            self.doWikiPage("Race",8)
-         elif sel == "Bird":
-            self.doWikiPage("Race",9)
-         elif sel == "Pig":
-            self.doWikiPage("Race",10)
-         elif sel == "Skunk":
-            self.doWikiPage("Race",11)
-         elif sel == "Bug":
-            self.doWikiPage("Race",12)
-      elif self.currentMenu == "Locations":
-         if sel == "Towns":
-            self.doWikiMenu("Locations.Towns")
-         elif sel == "Other Locations":
-            self.doWikiMenu("Locations.Other")
-      elif self.currentMenu == "Locations.Towns":
-         if sel == "Softlik":
-            self.doWikiPage("Town",1)
-         elif sel == "Firmshaft":
-            self.doWikiPage("Town",2)
-         elif sel == "Tieden":
-            self.doWikiPage("Town",3)
-         elif sel == "Siz'Calit":
-            self.doWikiPage("Town",4)
-         elif sel == "Oviasis":
-            self.doWikiPage("Town",6)
-         elif sel == "Sanctuary":
-            self.doWikiPage("Town",12)
-      elif self.currentMenu == "Locations.Other":
-         if sel == "Forest":
-            self.doWikiPage("Location",1)
-         elif sel == "Jungle":
-            self.doWikiPage("Location",2)
-         elif sel == "Plains":
-            self.doWikiPage("Location",3)
-         elif sel == "Savanna":
-            self.doWikiPage("Location",4)
-         elif sel == "Desert":
-            self.doWikiPage("Location",5)
-         elif sel == "Beach":
-            self.doWikiPage("Location",6)
-         elif sel == "Lake":
-            self.doWikiPage("Location",7)
-         elif sel == "Dairy Farm":
-            self.doWikiPage("Location",8)
-         elif sel == "Old Cave":
-            self.doWikiPage("Location",9)
-         elif sel == "Old Cave Descent":
-            self.doWikiPage("Location",10)
-         elif sel == "Den":
-            self.doWikiPage("Location",11)
-         elif sel == "Valley":
-            self.doWikiPage("Location",12)
-         elif sel == "Knothole":
-            self.doWikiPage("Location",13)
-      elif self.currentMenu == "Shops":
-         if sel == "General Shop":
-            self.doWikiPage("Shop",1)
-         elif sel == "Dye Shop":
-            self.doWikiPage("Shop",2)
-         elif sel == "Apothecary":
-            self.doWikiPage("Shop",3)
-         elif sel == "Salon":
-            self.doWikiPage("Shop",4)
-         elif sel == "Tailor":
-            self.doWikiPage("Shop",5)
-      elif self.currentMenu == "NPCs":
-         if sel == "Fidoris":
-            self.doWikiPage("NPC",1)
-         elif sel == "Jamie":
-            self.doWikiPage("NPC",2)
-         elif sel == "Lila":
-            self.doWikiPage("NPC",3)
-         elif sel == "Malon":
-            self.doWikiPage("NPC",4)
-         elif sel == "Silandrias":
-            self.doWikiPage("NPC",5)
-
-   def doWikiPage(self, topic:str, Num, returning=False):
-      if not returning:
-         curPage = wikiPage(topic, Num)
-         if len(self.wikipreviouspage) == 0 or self.wikipreviouspage[-1] != curPage:
-            self.wikipreviouspage.append(curPage)
-      text = None
-      if topic == "Basic":
-         text = self.wikiBasicDescription(Num)
-      elif topic == "Item":
-         text = self.wikiItemDescription(Num)
-      elif topic == "Clothes":
-         text = self.wikiClothesDescription(Num)
-      elif topic == "Enemy":
-         text = self.wikiEnemyDescription(Num)
-      elif topic == "Race":
-         text = self.wikiRaceDescription(Num)
-      elif topic == "Town":
-         text = self.wikiTownDescription(Num)
-      elif topic == "Location":
-         text = self.wikiLocationDescription(Num)
-      elif topic == "Shop":
-         text = self.wikiShopDescription(Num)
-      elif topic == "NPC":
-         text = self.wikiNPCDescription(Num)
-      elif topic == "MenuBar":
-         text = self.wikiMenuBarDescription(Num)
-      if text is None:
-         raise Error(f'Wiki page lookup for ({topic}, {Num}) returned no text.')
-      self.clearAddWikiText(text)
-   """
-   Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
-   """
-
-   def wikiBasicDescription(self, Num:int):
-      if Num == 0:
-         tempStr = f"<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
-         if not self.customhtmlparser:
-            tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
-         return tempStr
-      if Num == 1:
-         return "<h4><u>Stats</u></h4><u>Strength</u>\nAdds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation.\n\n<u>Mentality</u>\nFights hostile lust gain, improves helpful lust loss.\n\n<u>Libido</u>\nIncreases lust gain, can hinder mentality in events.\n\n<u>Sensitivity</u>\nIncreases damage taken and increases lust loss.\n\n<u>HP</u>\nYour Hit Points. Lose too much and you'll pass out.\n\n<u>Lust</u>\nCan overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP."
-      if Num == 2:
-         return "<h4><u>Actions</u></h4><u>Stash</u>\nExtra inventory space that you cannot carry, but moves with you from town to town.\n\n<u>Prostitute</u>\nWhen desparate for money, you can resort to prostitution. Remember, beggars can't be choosers and you may not like the company.\n\n<u>Alchemy</u>\nMix items together to get other items. Learn recipes around the world.\n\n<u>Bag</u>\nWhere you hold all your items. Shift+Click will allow you to select an item to move, Shift+Click a slot to move it to.\n\n<u>Rape</u>\nA combat action to attempt to overpower your opponent and sex their brains out. An aroused opponent is easier to rape.\n\n<u>Entice</u>\nA combat action to raise opponent's lust (if they find you attractive).\n\n<u>Run</u>\nA combat action to flee from battle. Running in a dungeon will leave the dungeon.\n\n<u>Submit</u>\nBecause some people can't wait to be king- I mean raped."
-      if Num == 3:
-         return "<h4><u>Tips</u></h4><u>Carry Capacity</u>\nDetermined by strength, height, body type, and modifiers. Determines how much of yourself you can carry.\n\n<u>Shops</u>\nEach town has unique wares in many of their shops, so it's good to look around.\n\n<u>Race</u>\nSome racial features are based on whatever blood is most dominant. Some features can be shared.\n\n<u>Bust Size</u>\n1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup.\n\n<u>Breasts</u>\nEverybody has breasts. Yes, even males. How many is determined by your race.\n\n<u>Empty Button</u>\nOutside of inventories, these mean you have access to something, but do not currently have the correct item/requirements."
-      if Num == 4:
-         return "<h4><u>Hotkeys</u></h4>Hotkeys for each window will only work when their window is focused.\n\n<b>Panic button:</b> Ctrl + Shift + Alt + Q\nCloses everything immediately. All unsaved progress will be lost.\n\n<u>Game</u>\nHotkeys in this section only function when their buttons are shown.\n<b>Save:</b> F2 | <b>Load:</b> F4 | <b>New Game:</b> Backspace | <b>Appearance:</b> U\n<b>Font Size+:</b> Up | <b>Font Size-:</b> Down | <b>Theme:</b> Left | <b>Font Color:</b> Right\n<b>Reset Font Size:</b> Ctrl | <b>Font Bold:</b> /? | <b>Toggle Side Window:</b> .\n<b>Side window buttons (in order):</b>\n\tUIOP\n\tHJKL\n<b>Main choice buttons (both keyboard and NumPad in order):</b>\n\tQWER\t789-\n\tASDFG\t456+.\n\tZXCVB\t123Enter0\n\n<u>Wiki</u>\n<b>Open the wiki:</b> Tilde, numPadDivide\n<b>Close the wiki:</b> q, backspace, numPad7\n<b>Move selection up:</b> w, ↑, numPad8\n<b>Move selection down:</b> s, ↓, numPad6\n<b>Previous menu:</b> a, ←, numPad4\n<b>Select option:</b> d, →, numPad6, enter\n<b>Previous page:</b> e, ., numPad9\n<b>Switch selection between menu and text:</b> r, /, numPadMinus"
-      if Num == 5:
-         return "<h4><u>Wiki Key</u></h4>This page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<h6><u>General Notations</u></h6><b><u>Header 4 with underline</u></b>: page title\n<u>Header 6 with underline</u>: section title\n<u>Underline</u>: Subsection title\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
-      if Num == 6:
-         return "<h4><u>Changes (Outdated)</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exit.\ndoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='\uFFFFMenuBar\uFFFF1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
-
-   def wikiMenuBarDescription(self, Num:int):
-      if Num == 1: # File->Options
-         return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to display them. Their functions and containing tabs are described below:\n\n\n<b><u>Options Tab</u></b>\nThis tab contains basic configuration options.\n\n<u>Strict Save Compat</u>\n(Partially Implemented) Forces the use of save files compatible with the original game and disables any configuration options that interfere with that. Even without this active, the game can still save and load the original formats, the new format just takes priority.\n\n<u>Fixed Resolution</u>\nForces all windows to be at their default resolution.\n\n<u>Custom Theme Color</u>\nAllows you to set a custom theme color.\n\n<u>Custom Font Color</u>\nAllows you to set a custom font color.\n\n<u>Save Location</u>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n\n<b><u>Interface Tab</u></b>\nThis tab contains toggles that alter the game's interface.\n\n<u>Original Button Colours</u>\n(Partially Implemented) Makes the buttons in the game window have their original colours instead of the new ones. This currently does not add borders to the buttons because that causes visual artifacts when resizing.\n\n<u>Show ScrolledText Borders</u>\nToggles the borders on the scrollable text areas. They come with borders so I thought it would be nice to allow people to re-enable them if they wanted to.\n\n<u>Original Size For New Game</u>\nUses the original size and location of the new game button.\n\n<u>Static doLevelUP Buttons</u>\nForces the buttons in the level up screen to stay in the same place no matter what is being displayed.\n\n<u>Theme Type Selector</u>\nSelects the theme you want to go with. The 'Pymin' theme is the default and allows more customization. The 'Nimin' theme sticks more strictly to the original game's style where possible and limits your customization options.\n\n<u>Use Expanded Save Dialog</u>\nToggles the use of the new save/load dialog. This new dialog uses a scrollable listbox to allow the selection of any save file in the save folder. You can also enter the file name in the entry box if you wish.\n\n<u>Use New Stash</u>\nMakes the stash work like the bag instead of the limited mess that it was originally. When moving an item in either the bag or stash, the return button switches to a button which allows you to move between them with the item. Item discarding has been moved to its own button located to the right of the return button.\n\n<u>Help Opens Wiki</u>\nMakes the 'Help' button on the side bar open the wiki instead of displaying the help text.\n\n\n<b><u>Grammar Tab</u></b>\nThis tab contains the grammar related toggles. Some are based on personal preference, some are fixes.\n\n<u>Respect showBalls</u>\nMakes the game always respect the visibility status of your balls. There were a lot of places where this was not the case before.\n\n<u>Femme-boy -> Femboy</u>\nChanges 'Femme-boy' to 'Femboy'.\n\n<u>Shemale -> Futanari</u>\nChanges 'Shemale' to 'Futanari'.\n\n<u>Use n-grammar</u>\nMakes the game use 'an' instead of just 'a' where needed. I'm pretty sure this differs between different versions of english, so it may not be 'correct' in yours.\n\n<u>Femme Male Replacement</u>\n(No toggle yet)This replaces 'femmie male' with your choice of either 'feminine male' or 'femme-boy'/'femboy'.\n\n<u>femboyish -> girly</u>\nChanges 'femboyish' to 'girly'.\n\n<u>Snuggleball Tweak</u>\nRemoves the redundant description text for the snuggleball in the appearance text.\n\n<u>Grammar Fixes</u>\nThis toggle is for the other grammar fixes that don't get their own toggle.\n\nChanges cock plurality to be based on the type of cock if senarios are too\nMakes sheath size not able to display as 0\nFixes formatting in detailedTitles when you do not have titles any yet\nMakes the game check if the player has a womb before describing it\nChanges various places where the used words don't makes sense ex: 'urging get you' -> 'trying to get you', 'Eventually, you quickly' -> 'You quickly'\nMakes the game describe the player as flat if their breasts are small in some senarios\n\n\n<b><u>Game Tweaks Tab</u></b>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<u>Status Tweaks</u>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<u>Succubus Leaves One</u>\nMakes the succubus leave one cock (or 2 if you are a Lizan and have at least two lizard cocks) instead of taking all of them.\n\n<u>Use isBottomOpen</u>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming this was an oversight due to how the game was developed).\n\n<u>Lizan Don't Show Balls</u>\n(Partially Implemented) (Most) Lizards don't come with external nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<u>Herm Can Has Both</u>\n(Not implemented) Makes herms able to experience both male and female senarios where it makes sense.\n\n<u>Internal Balls Effect Belly Size</u>\n(Partially Implemented) When showBalls is False, makes ballSize effect belly size in the calculation the game does for weight and size.\n\n<u>Direct Path to Sanctuary</u>\nAdds an explore option that appears once you defeat the final boss in Old Cave Descent which allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<u>Correct Feet for Some Races</u>\n(Partially Implemented) Gives some races (felin, lupan, equan, bovine) the correct feet based on the information present in the game. Felin and lupan get digipaws (I'm not entirely sure about this one), equan and bovine get hooves.\n\n\n<b><u>Debug Options Tab</u></b>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<u>alwaysChooseSenario</u>\nAllows you to choose the senario you want when exploring. Requires user input in the terminal every time.\n\n<u>takeNoDamage</u>\nMakes enemies deal no damage. (currently only applies to eDmg)\n"
-      if Num == 2: # File->Quit
-         return "<h4><u>File->Quit</u></h4>Close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed from the game window if you have a mouse."
-      if Num == 3: # View
-         return "<h4><u>View Menu</u></h4>This menu contains things related to the window mode.\n\n\n<b><u>Full Screen</u></b>\nMaximizes the window.\n\n<b><u>View->Reset Size</u></b>\nResets the main window's size.\n"
-      if Num == 4: # Save Utils
-         return "<h4><u>Save Utils</u></h4>This menu contains utilities for interacting with save files.\n\n\n<b><u>Converter</u></b>\nOpens a window containing a simple save file converter.\n\n<b><u>Editor</u></b> (Incomplete)\nOpens a window containing a simple graphical save file editor.\n"
-      if Num == 5: # Debug Utils
-         return "<h4><u>Debug Utils</u></h4>This menu contains utilities useful for debugging (some could be considered cheats). It will only shows up when debug mode is active.\n\n\n<b><u>Variable Display</u></b>\nOpens a popup window which displays all of the relavant variables in the game and their state.\n\n<b><u>Give Item</u></b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and amount.\n\n<b><u>Use Item</u></b>\n(Not implemented yet) Opens a popup window to activate an item's useItem event without consuming the item or checking if the player has it.\n\n<b><u>Affinity</u></b>\nOpens a popup window that allows the player to modify their affinities. The IDs for affinities are listed below:\n1 - humanAffinity\n2 - horseAffinity\n3 - wolfAffinity\n4 - catAffinity\n5 - cowAffinity\n6 - lizardAffinity\n7 - rabbitAffinity\n8 - mouseAffinity\n9 - birdAffinity\n10 - pigAffinity11 - skunkAffinity\n12 - bugAffinity\nL1001 - cowTaurAffinity\nL1002 - humanTaurAffinity\nB2 - twoBoobAffinity\nB4 - fourBoobAffinity\nB6 - sixBoobAffinity\nB8 - eightBoobAffinity\nB10 - tenBoobAffinity\n"
-      if Num == 6: # Help
-         return "<h4><u>Help</u></h4>This menu contains things that you might want to know about the game.\n\n\n<b><u>Wiki</u></b>\nOpens the wiki.\n\n<b><u>About Game</u></b>\nOpens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window.\n"
-
-   def wikiItemDescription(self, ID:int):
-      if ID == -10:
-         return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 1:
-         return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
-      if ID == 2:
-         return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-      if ID == 3:
-         return "<h4><u>Teleport Scroll: Any (TS Any)</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-      if ID == 404:
-         return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-      if ID == 418:
-         return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-      if ID == 101:
-         return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
-      if ID == 102:
-         return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
-      if ID == 103:
-         return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 104:
-         return "<h4><u>Milking Machine (Milker)</u></h4>(Item ID 104)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 105:
-         return "<h4><u>'Cat's Meow' Potion (Cat's Meow)</u></h4>(Item ID 105)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 106:
-         return "<h4><u>Penis Pump</u></h4>(Item ID 106)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 108:
-         return "<h4><u>Blood Gauge (Blood Gge)</u></h4>(Item ID 108)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 109:
-         return "<h4><u>Educated Eddicator (Edu Egg)</u></h4>(Item ID 109)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 110:
-         return "<h4><u>A Reduction of Reducer Agents (Reduction)</u></h4>(Item ID 110)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 111:
-         return "<h4><u>Skin Balm</u></h4>(Item ID 111)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 112:
-         return "<h4><u>Bolstering Juice (Bol Juice)</u></h4>(Item ID 112)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 113:
-         return "<h4><u>Tainted Leaf (Taint Leaf)</u></h4>(Item ID 113)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 114:
-         return "<h4><u>Sweet Sap</u></h4>(Item ID 114)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 115:
-         return "<h4><u>Poultice</u></h4>(Item ID 115)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 116:
-         return "<h4><u>Dagger</u></h4>(Item ID 116)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 117:
-         return "<h4><u>Warhammer (Hammer)</u></h4>(Item ID 117)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 118:
-         return "<h4><u>Saber</u></h4>(Item ID 118)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 119:
-         return "<h4><u>Whip</u></h4>(Item ID 119)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 120:
-         return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nDescription.\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 121:
-         return "<h4><u>Teleport Scroll: Softlik (TS Soft)</u></h4>(Item ID 121)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 122:
-         return "<h4><u>Teleport Scroll: Firmshaft (TS Firm)</u></h4>(Item ID 122)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 123:
-         return "<h4><u>Teleport Scroll: Tieden (TS Tied)</u></h4>(Item ID 123)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 124:
-         return "<h4><u>Teleport Scroll: Siz'Calit (TS Siz)</u></h4>(Item ID 124)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 125:
-         return "<h4><u>Teleport Scroll: Oviasis (TS Ovi)</u></h4>(Item ID 125)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 126:
-         return "<h4><u>Oasis Water (Oas Water)</u></h4>(Item ID 126)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 127:
-         return "<h4><u>Tail Spike</u></h4>(Item ID 127)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 128:
-         return "<h4><u>Teleport Scroll: Sanctuary (TS Sanct)</u></h4>(Item ID 128)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 200:
-         return "<h4><u>Lila's Gift</u></h4>(Item ID 200)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 201:
-         return "<h4><u>Milk Creeper Poison (Milk C Pois)</u></h4>(Item ID 201)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 202:
-         return "<h4><u>Cock-Snake Venom (Co-Snak Ven)</u></h4>(Item ID 202)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 203:
-         return "<h4><u>Tuft of Wolf Fur (Wolf Fur)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 204:
-         return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 204)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 205:
-         return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 205)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 206:
-         return "<h4><u>Shiny Trinket (Trinket)</u></h4>(Item ID 206)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 207:
-         return "<h4><u>Wooden Cock Carving (Cock Carv)</u></h4>(Item ID 207)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 208:
-         return "<h4><u>Bloated Berry (Blo Berry)</u></h4>(Item ID 208)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 209:
-         return "<h4><u>Handful of Grain (Grain)</u></h4>(Item ID 209)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 210:
-         return "<h4><u>Pussy Fruit (Puss Fruit)</u></h4>(Item ID 210)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 211:
-         return "<h4><u>DairE Pill</u></h4>(Item ID 211)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 212:
-         return "<h4><u>Red Mushroom (Red Mush)</u></h4>(Item ID 212)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 213:
-         return "<h4><u>Wet, Slimy Cloth (Wet Cloth)</u></h4>(Item ID 213)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 214:
-         return "<h4><u>Malon's Milk (Lon Milk)</u></h4>(Item ID 214)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 215:
-         return "<h4><u>Malon's Pendant (Lon Pendant)</u></h4>(Item ID 215)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 216:
-         return "<h4><u>Pink Ink</u></h4>(Item ID 216)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 217:
-         return "<h4><u>Octopus Egg Jelly (Egg Jelly)</u></h4>(Item ID 217)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 218:
-         return "<h4><u>Bulging Berry (Bul Berry)</u></h4>(Item ID 218)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 219:
-         return "<h4><u>Fresh Egg</u></h4>(Item ID 219)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 220:
-         return "<h4><u>Blonde Dye (Blondie)</u></h4>(Item ID 220)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 221:
-         return "<h4><u>Concentrated Pussy Fruit Juice (Puss Juice)</u></h4>(Item ID 221)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 222:
-         return "<h4><u>Kinky Carrot (Kinky Carr)</u></h4>(Item ID 222)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 223:
-         return "<h4><u>Equan Snack (Eq Snack)</u></h4>(Item ID 223)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 224:
-         return "<h4><u>Lila's Milk</u></h4>(Item ID 224)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 225:
-         return "<h4><u>Body Wash</u></h4>(Item ID 225)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 226:
-         return "<h4><u>Felin Tea Mix (Felin Tea)</u></h4>(Item ID 226)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 227:
-         return "<h4><u>Felin Oral Wash (Oral Wash)</u></h4>(Item ID 227)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 228:
-         return "<h4><u>Body Oil</u></h4>(Item ID 228)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 229:
-         return "<h4><u>Leather Strap (Leath Strap)</u></h4>(Item ID 229)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 230:
-         return "<h4><u>Eggcelerator</u></h4>(Item ID 230)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 231:
-         return "<h4><u>Desiccating Sand (Desi Sand)</u></h4>(Item ID 231)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 232:
-         return "<h4><u>Flying Carpet (Flying Carp)</u></h4>(Item ID 232)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 233:
-         return "<h4><u>Anti-Gravity Rock (A-Grav Rock)</u></h4>(Item ID 233)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 234:
-         return "<h4><u>Reindeer Charm (Rein Charm)</u></h4>(Item ID 234)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 235:
-         return "<h4><u>Fellatio Rod (Fell Rod)</u></h4>(Item ID 235)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 236:
-         return "<h4><u>Reception Bell (Recept Bell)</u></h4>(Item ID 236)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 237:
-         return "<h4><u>Lila's Dewy Gift (Dewy Gift)</u></h4>(Item ID 237)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 238:
-         return "<h4><u>Squeaky Cheese (Squ Cheese)</u></h4>(Item ID 238)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 239:
-         return "<h4><u>Shiny Rock</u></h4>(Item ID 239)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 240:
-         return "<h4><u>Auburn Dye</u></h4>(Item ID 240)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 241:
-         return "<h4><u>Brown Dye</u></h4>(Item ID 241)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 242:
-         return "<h4><u>Grey Dye</u></h4>(Item ID 242)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 243:
-         return "<h4><u>White Dye</u></h4>(Item ID 243)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 244:
-         return "<h4><u>Snuggle Ball</u></h4>(Item ID 244)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 245:
-         return "<h4><u>Facial Mud</u></h4>(Item ID 245)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 246:
-         return "<h4><u>Fertile Gel</u></h4>(Item ID 246)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 247:
-         return "<h4><u>Support Harness (Supp Harness)</u></h4>(Item ID 247)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 248:
-         return "<h4><u>Breeder Potion (Breeder Pot)</u></h4>(Item ID 248)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 249:
-         return "<h4><u>Treant's Tear</u></h4>(Item ID 249)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 250:
-         return "<h4><u>Foomp Bomb</u></h4>(Item ID 250)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 251:
-         return "<h4><u>Plump Quat</u></h4>(Item ID 251)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 252:
-         return "<h4><u>Malon's Milky Pendant (Milky Pend)</u></h4>(Item ID 252)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 253:
-         return "<h4><u>Bug Egg</u></h4>(Item ID 253)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 254:
-         return "<h4><u>Lantern</u></h4>(Item ID 254)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 255:
-         return "<h4><u>Fragrant Flower (Frag Flower)</u></h4>(Item ID 255)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 256:
-         return "<h4><u>Nectar Candy</u></h4>(Item ID 256)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 257:
-         return "<h4><u>Too Human Potion (Too Human)</u></h4>(Item ID 257)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 258:
-         return "<h4><u>Tainted Potion (Tainted Pot)</u></h4>(Item ID 258)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 259:
-         return "<h4><u>Sweet & Sour Candy (Sweet&Sour)</u></h4>(Item ID 259)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 260:
-         return "<h4><u>Succubus Draft (Succ Draft)</u></h4>(Item ID 260)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 500:
-         return "<h4><u>Bottle of Milk (Milk Bottle)</u></h4>(Item ID 500)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 501:
-         return "<h4><u>Jug of Milk (Milk Jug)</u></h4>(Item ID 501)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 502:
-         return "<h4><u>Barrel of Milk (Milk Barrel)</u></h4>(Item ID 502)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 503:
-         return "<h4><u>Lust Draft</u></h4>(Item ID 503)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 504:
-         return "<h4><u>Rejuvenating Potion (Rejuv Pot)</u></h4>(Item ID 504)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 505:
-         return "<h4><u>Bad Experiment (Bad Exper)</u></h4>(Item ID 505)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 506:
-         return "<h4><u>Express Pregnancy Potion (Exp Preg)</u></h4>(Item ID 506)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 507:
-         return "<h4><u>Ball Sweller</u></h4>(Item ID 507)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 508:
-         return "<h4><u>Superior Lust Draft (S Lust Draft)</u></h4>(Item ID 508)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 509:
-         return "<h4><u>Superior Rejuvenating Potion (S Rejuv Pot)</u></h4>(Item ID 509)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 510:
-         return "<h4><u>Superior Bad Experiment (S Bad Exper)</u></h4>(Item ID 510)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 511:
-         return "<h4><u>Superior Express Pregnancy Potion (S Exp Preg)</u></h4>(Item ID 511)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 512:
-         return "<h4><u>Superior Ball Sweller (S Ball Sweller)</u></h4>(Item ID 512)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 513:
-         return "<h4><u>Gender Swap Potion (Gen Swap)</u></h4>(Item ID 513)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 514:
-         return "<h4><u>Masochism Potion (Maso Pot)</u></h4>(Item ID 514)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 515:
-         return "<h4><u>Black Dye</u></h4>(Item ID 515)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 516:
-         return "<h4><u>Baby Free Potion (Baby Free)</u></h4>(Item ID 516)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 517:
-         return "<h4><u>Potency Potion (Pot Pot)</u></h4>(Item ID 517)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 518:
-         return "<h4><u>Superior Gender Swap Potion (S Gen Swap)</u></h4>(Item ID 518)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 519:
-         return "<h4><u>Superior Masochism Potion (S Maso Pot)</u></h4>(Item ID 519)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 520:
-         return "<h4><u>Red Dye</u></h4>(Item ID 520)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 521:
-         return "<h4><u>Superior Baby Free Potion (S Baby Free)</u></h4>(Item ID 521)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 522:
-         return "<h4><u>Superior Potency Potion (S Pot Pot)</u></h4>(Item ID 522)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 523:
-         return "<h4><u>Vial of Cum (Cum Vial)</u></h4>(Item ID 523)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 524:
-         return "<h4><u>Bottle of Cum (Cum Bottle)</u></h4>(Item ID 524)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 525:
-         return "<h4><u>Jug of Cum (Cum Jug)</u></h4>(Item ID 525)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 526:
-         return "<h4><u>Barrel of Cum (Cum Barrel)</u></h4>(Item ID 526)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 527:
-         return "<h4><u>Good Egg</u></h4>(Item ID 527)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 528:
-         return "<h4><u>Bad Egg</u></h4>(Item ID 528)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 529:
-         return "<h4><u>Strange Egg</u></h4>(Item ID 529)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 530:
-         return "<h4><u>Charmed Egg</u></h4>(Item ID 530)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 531:
-         return "<h4><u>Divine Egg</u></h4>(Item ID 531)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 532:
-         return "<h4><u>Strong Pheromone (Pheromone)</u></h4>(Item ID 532)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 533:
-         return "<h4><u>Reduced Reduction (Reduc Reduc)</u></h4>(Item ID 533)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 534:
-         return "<h4><u>Male Enhancement Drug (Male Enhance)</u></h4>(Item ID 534)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 535:
-         return "<h4><u>Milk Suppressant (Milk Suppress)</u></h4>(Item ID 535)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 536:
-         return "<h4><u>Bazoomba!</u></h4>(Item ID 536)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 537:
-         return "<h4><u>Queen Egg</u></h4>(Item ID 537)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 538:
-         return "<h4><u>Soldier Egg</u></h4>(Item ID 538)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 539:
-         return "<h4><u>Drone Egg</u></h4>(Item ID 539)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 540:
-         return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-
-   def wikiClothesDescription(self, ID:int):
-      if ID == -10:
-         return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == -1:
-         return "<h4><u>Tattered Shreds</u></h4>(Clothes ID -1)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nWhen worn\n\t-4 strMod (strength modifier)\n\t-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
-      if ID == 0:
-         return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
-      if ID == 1:
-         return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
-      if ID == 2:
-         return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
-      if ID == 3:
-         return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 4:
-         return "<h4><u>Bikini Bottom</u></h4>(Clothes ID 4)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 5:
-         return "<h4><u>Elegant Dress</u></h4>(Clothes ID 5)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 6:
-         return "<h4><u>Latex Suit</u></h4>(Clothes ID 6)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 7:
-         return "<h4><u>Skirt</u></h4>(Clothes ID 7)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 8:
-         return "<h4><u>Shorts</u></h4>(Clothes ID 8)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 9:
-         return "<h4><u>Blouse</u></h4>(Clothes ID 9)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 10:
-         return "<h4><u>Diaper</u></h4>(Clothes ID 10)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 11:
-         return "<h4><u>Poofy Diaper</u></h4>(Clothes ID 11)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 12:
-         return "<h4><u>Sundress</u></h4>(Clothes ID 12)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 13:
-         return "<h4><u>Skimpy Dress</u></h4>(Clothes ID 13)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 14:
-         return "<h4><u>Short Skirt</u></h4>(Clothes ID 14)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 15:
-         return "<h4><u>Short Shorts</u></h4>(Clothes ID 15)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 16:
-         return "<h4><u>Loin Cloth</u></h4>(Clothes ID 16)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 17:
-         return "<h4><u>Bathing Suite</u></h4>(Clothes ID 17)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 18:
-         return "<h4><u>Muscle Shirt</u></h4>(Clothes ID 18)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 19:
-         return "<h4><u>Corset</u></h4>(Clothes ID 19)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 20:
-         return "<h4><u>Silk Panties</u></h4>(Clothes ID 20)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 21:
-         return "<h4><u>Slingkini</u></h4>(Clothes ID 21)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 22:
-         return "<h4><u>Thong</u></h4>(Clothes ID 22)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 23:
-         return "<h4><u>Bloomers</u></h4>(Clothes ID 23)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 24:
-         return "<h4><u>Tights</u></h4>(Clothes ID 24)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 25:
-         return "<h4><u>Gothic Dress</u></h4>(Clothes ID 25)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 26:
-         return "<h4><u>Tube Top</u></h4>(Clothes ID 26)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 27:
-         return "<h4><u>Nipple Pasties</u></h4>(Clothes ID 27)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 28:
-         return "<h4><u>Camisole</u></h4>(Clothes ID 28)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 29:
-         return "<h4><u>Training Suit</u></h4>(Clothes ID 29)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-      if ID == 30:
-         return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-
-   def wikiEnemyDescription(self, ID:int):
-      if ID == -10:
-         return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 1:
-         return "<h4><u>Test Enemy</u></h4>(Enemy ID 1)\n\n<u>Enemy Description</u>\nThis enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs.\n\n<u>Base Stats</u>\nThis enemy has no stats.\n\n<u>Attacks</u>\nThis enemy has no attacks.\n\n<u>Locations</u>\nThis enemy is not encounterable.\n\n<u>Encounter Conditions</u>\nThis enemy is not encounterable."
-      if ID == 101:
-         return "<h4><u>Cock-snake</u></h4>(Enemy ID 101)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:30\nStrength:16\nMentality:4\nSensitivity:8\nLibido:0\nLust:0\nGender:0\nPreference:4\nCoin:0\nSexp:15\nItem:202\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 102:
-         return "<h4><u>Desiccating Dust Devil</u></h4>(Enemy ID 102)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:25\nStrength:0\nMentality:20\nSensitivity:0\nLibido:50\nLust:0\nGender:0\nPreference:0\nCoin:0\nSexp:10\nItem:231\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 201:
-         return "<h4><u>Lone Male Wolf</u></h4>(Enemy ID 201)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:22\nMentality:16\nSensitivity:13\nLibido:11\nLust:30\nGender:1\nPreference:2\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 202:
-         return "<h4><u>Gay Wolf</u></h4>(Enemy ID 202)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:26\nMentality:16\nSensitivity:20\nLibido:11\nLust:40\nGender:1\nPreference:1\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 301:
-         return "<h4><u>Felin in Heat</u></h4>(Enemy ID 301)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:12\nMentality:10\nSensitivity:24\nLibido:30\nLust:40\nGender:2\nPreference:4\nCoin:0-10\nSexp:25\nItem:204\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 302:
-         return "<h4><u>Drunken Equan</u></h4>(Enemy ID 302)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:60\nStrength:28\nMentality:9\nSensitivity:18\nLibido:14\nLust:30\nGender:1\nPreference:4\nCoin:0-10\nSexp:25\nItem:205\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 303:
-         return "<h4><u>Octopus Girl</u></h4>(Enemy ID 303)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:45\nMentality:30\nSensitivity:25\nLibido:35\nLust:20\nGender:2\nPreference:4\nCoin:0\nSexp:50\nItem:216\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 304:
-         return "<h4><u>Little Big Bunny-man</u></h4>(Enemy ID 304)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:55\nStrength:35\nMentality:30\nSensitivity:35\nLibido:45\nLust:10\nGender:1\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 305:
-         return "<h4><u>Little Big Bunny-girl</u></h4>(Enemy ID 305)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:35\nMentality:30\nSensitivity:45\nLibido:35\nLust:10\nGender:2\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 306:
-         return "<h4><u>Fierce Naga</u></h4>(Enemy ID 306)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:100\nStrength:50\nMentality:20\nSensitivity:40\nLibido:2\nLust:40\nGender:2\nPreference:4\nCoin:0-20\nSexp:55\nItem:230\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-      if ID == 307:
-         return "<h4><u>Minotaur</u></h4>(Enemy ID 307)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:250\nStrength:70\nMentality:20\nSensitivity:50\nLibido:20\nLust:10\nGender:1\nPreference:4\nCoin:5-30\nSexp:50\nItem:525\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
-      if ID == 308:
-         return "<h4><u>Freaky Little Girl</u></h4>(Enemy ID 308)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:175\nStrength:80\nMentality:40\nSensitivity:70\nLibido:60\nLust:10\nGender:2\nPreference:4\nCoin:5-30\nSexp:55\nItem:559\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
-      if ID == 309:
-         return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
-
-   def wikiRaceDescription(self, ID:int):
-      if ID == -10:
-         return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
-      if ID == 1:
-         return "<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Skin Balm</i> (Item ID 111)"
-      if ID == 2:
-         return "<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Bolstering Juice</i> (Item ID 112)"
-      if ID == 3:
-         return "<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Tainted Leaf</i> (Item ID 113)"
-      if ID == 4:
-         return "<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Sweet Sap</i> (Item ID 114)"
-      if ID == 5:
-         return "<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>DairE Pill</i> (Item ID 211)\n<i>Malon's Milk</i> (Item ID 214)"
-      if ID == 6:
-         return "<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Oasis Water</i> (Item ID 126)"
-      if ID == 7:
-         return "<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Kinky Carrot</i> (Item ID 222)"
-      if ID == 8:
-         return "<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Squeaky Cheese</i> (Item ID 238)"
-      if ID == 9:
-         return "<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Shiny Rock</i> (Item ID 239)"
-      if ID == 10:
-         return "<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Facial Mud</i> (Item ID 245)"
-      if ID == 11:
-         return "<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Fragrant Flower</i> (Item ID 255)"
-      if ID == 12:
-         return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
-
-   def wikiTownDescription(self, Num:int):
-      if Num == -10:
-         return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
-      if Num == 1:
-         return "<h4><u>Softlik</u></h4>(Zone ID 1)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2193"
-      if Num == 2:
-         return "<h4><u>Firmshaft</u></h4>(Zone ID 2)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2196\n<a href=\"\uFFFFLocation\uFFFF3\"><i>Plains</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u2198"
-      if Num == 3:
-         return "<h4><u>Tieden</u></h4>(Zone ID 3)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF7\"><i>Lake</i></a> \u2190\n<a href=\"\uFFFFLocation\uFFFF1\"><i>Forest</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2193\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2198"
-      if Num == 4:
-         return "<h4><u>Siz'Calit</u></h4>(Zone ID 4)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u2197\n<a href=\"\uFFFFLocation\uFFFF4\"><i>Savanna</i></a> \u2192\n<a href=\"\uFFFFLocation\uFFFF6\"><i>Beach</i></a> \u2199\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2198"
-      if Num == 6:
-         return "<h4><u>Oviasis</u></h4>(Zone ID 6)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF5\"><i>Desert</i></a> \u2191\n<a href=\"\uFFFFLocation\uFFFF11\"><i>Den</i></a> \u2197 \u25CE"
-      if Num == 12:
-         return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u2190"
-
-   def wikiLocationDescription(self, Num:int):
-      if Num == -10:
-         return "<h4><u>Location Name</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
-      if Num == 1:
-         return "<h4><u>Forest</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)"
-      if Num == 2:
-         return "<h4><u>Jungle</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF12\"><i>Valley</i></a> \u25CE"
-      if Num == 3:
-         return "<h4><u>Plains</u></h4>"
-      if Num == 4:
-         return "<h4><u>Savanna</u></h4>"
-      if Num == 5:
-         return "<h4><u>Desert</u></h4>"
-      if Num == 6:
-         return "<h4><u>Beach</u></h4>"
-      if Num == 7:
-         return "<h4><u>Lake</u></h4>"
-      if Num == 8:
-         return "<h4><u>Dairy Farm</u></h4>"
-      if Num == 9:
-         return "<h4><u>Old Cave</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u29BF"
-      if Num == 10:
-         return "<h4><u>Old Cave Descent</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF9\"><i>Old Cave</i></a> \u29BF\n<a href=\"\uFFFFTown\uFFFF12\"><i>Sanctuary</i></a> (Zone ID 12)"
-      if Num == 11:
-         return "<h4><u>Den</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF6\"><i>Oviasis</i></a> (Zone ID 6)"
-      if Num == 12:
-         return "<h4><u>Valley</u></h4><u>Description</u>\nDescription\n\n<u>Discovery</u>\n\nYou have a small random chance of discovering the valley when going into the jungle from hours 10 to 15 (inclusive) as long as it isn't your first time exploring.\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"\uFFFFTown\uFFFF2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"\uFFFFTown\uFFFF4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"\uFFFFLocation\uFFFF2\"><i>Jungle</i></a> \u29BF"
-      if Num == 13:
-         return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
-
-   def wikiShopDescription(self, Num:int):
-      if Num == -10:
-         return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
-      if Num == 1:
-         return "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow.\n\n<u>Softlik</u>\n<i>Milking Machine</i>\n<i>Skin Balm</i>\n<i>Dagger</i>\n<i>Bottle of Milk</i>\n<i>Jug of Milk</i>\n<i>Blood Gauge</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Softlik</i>\n\n<u>Firmshaft</u>\n<i>Imbued Horseshoes</i>\n<i>Bolstering Juice</i>\n<i>Warhammer</i>\n<i>Penis Pump</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Firmshaft</i>\n\n<u>Tieden</u>\n<i>Claws of the Lupine Ancestors</i>\n<i>Tainted Leaf</i>\n<i>Saber</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Tieden</i>\n\n<u>Siz'Calit</u>\n<i>Sweet Sap</i>\n<i>Whip</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Cat's Meow' Potion</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Siz'Calit</i>\n\n<u>Oviasis</u>\n<i>Educated Eggdicator</i>\n<i>Oasis Water</i>\n<i>Tail Spike</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Eggcelerator</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Oviasis</i>\n\n<u>Sanctuary</u>\n<i>Support Harness</i>\n<i>Foomp Bomb</i>\n<i>Nectar Candy</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Sanctuary</i>"
-      if Num == 2:
-         return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
-      if Num == 3:
-         return "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them.\n\n<u>Softlik</u>\n<i>Tuft of Wolf Fur</i>\n<i>Handful of Grain</i>\n<i>Vial of Cum</i>\n<i>Recipe: Lust Draft</i>\n<i>Recipe: Superior Rejuvenating Potion</i>\n<i>Recipe: Masochism Potion</i>\n<i>Recipe: Baby Free Potion</i>\n\n<u>Firmshaft</u>\n<i>Handful of Grain</i>\n<i>Cock-Snake Venom</i>\n<i>Shiny Trinket</i>\n<i>Red Mushroom</i>\n<i>Bottle of Cum</i>\n<i>Recipe: Rejuvenating Potion</i>\n<i>Recipe: Superior Lust Draft</i>\n<i>Recipe: Superior Masochism Potion</i>\n\n<u>Tieden</u>\n<i>Milk Creeper Poison</i>\n<i>Cock-Snake Venom</i>\n<i>Wet, Slimy Cloth</i>\n<i>Tuft of Wolf Fur</i>\n<i>Recipe: Ball Sweller</i>\n<i>Recipe: Potency Potion</i>\n<i>Recipe: Superior Gender Swap Potion</i>\n\n<u>Siz'Calit</u>\n<i>Pussy Fruit</i>\n<i>Milk Creeper Poison</i>\n<i>Bulging Berry</i>\n<i>Recipe: Express Pregnancy Potion</i>\n<i>Recipe: Gender Swap Potion</i>\n<i>Recipe: Superior Baby Free Potion</i>\n\n<u>Oviasis</u>\n<i>Wooden Cock Carving</i>\n<i>Wet, Slimy Cloth</i>\n<i>Bloated Berry</i>\n<i>Body Oil</i>\n<i>Recipe: Superior Express Pregnancy Potion</i>\n<i>Recipe: Superior Ball Sweller</i>\n<i>Recipe: Superior Potency Potion</i>\n\n<u>Sanctuary</u>\n<i>Recipe: Milk Suppressant</i>"
-      if Num == 4:
-         return "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
-      if Num == 5:
-         return "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
-
-   def wikiNPCDescription(self, Num:int):
-      if Num == -10:
-         return "<h4><u>Name</u></h4><u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
-      if Num == 1:
-         return "<h4><u>Fidoris</u></h4><b><i>Fetish Content:</i></b> Size difference"
-      if Num == 2:
-         return "<h4><u>Jamie</u></h4><b><i>Fetish Content:</i></b> Femboy, Large genitalia\n\n<u>Character Description</u>\nJamie is an equine male who has an extra large \"package\". He is introduced as a femboy however, in the parts of his encounter that wheren't implemented, it is implied that he is either a trans woman or a sissy (can't tell in this context because of the fetish aspect). If you dont believe me, here's the line that is written after you give him Red Mushrooms: '\"I... I\'ve got... Boobs!\" He shouts a little too excitedly, both in confusion and joy.'. This is only one of many examples of this type of thing.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
-      if Num == 3:
-         return "<h4><u>Lila</u></h4><b><i>Fetish Content:</i></b> Unbirth, Cub (I think), Diapers"
-      if Num == 4:
-         return "<h4><u>Malon</u></h4><b><i>Fetish Content:</i></b> Cow, Udders, Milking\n\n<u>Character Description</u>\nMalon is the \"Cow girl on the farm\" (the space between cow and girl is intentional). She lives on the Softlik Dairy Farm and became a humanoid cow by eating too many DairE Pills.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
-      if Num == 5:
-         return "<h4><u>Silandrias</u></h4><b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
 
 
 if __name__ == "__main__":
