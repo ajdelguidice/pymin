@@ -41,13 +41,10 @@ Python>=3.10 (Pymin 1.0.7 - 1.0.11)
 <br>Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a> (Pymin 12+)
 
 ## Requirements
-<b>Game:</b> pathlib, xml.etree, tkinter, functools, webbrowser, re, secrets, <a href="https://pypi.org/project/as3lib/">as3lib</a>
-<br><b>Venv script:</b> platform, configparser, ssl, tempfile, shutil, sys, subprocess, urllib, io, <a href="https://pypi.org/project/requests/">requests</a>
-
-<b>Note:</b> Any of the built-in modules (the ones that aren't hyperlinks) can not be installed by pip so they must be installed globally. This note is here because some linux distributions package some of python's built-in modules separately.
+<b>Game:</b> tkinter, <a href="https://pypi.org/project/as3lib/">as3lib</a>
+<br><b>Venv script:</b> <a href="https://pypi.org/project/requests/">requests</a>
 
 <b>Unix (including MacOS) requirements:</b>
-<br>&emsp;A bash compatible shell
 <br>&emsp;A C compiler recognised by setuptools (ex: gcc, clang)
 
 <b>Windows requirements:</b>
