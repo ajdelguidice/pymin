@@ -2439,8 +2439,8 @@ class NiminFetishFantasyv0975o_fla:
 
       # Windows
       self.wiki = None
-      self.saveconverter = None
-      self.saveeditor = None
+      self.saveconverter = SaveConverter(self)
+      self.saveeditor = SaveEditor(self)
 
       # Window open variables
       self.optionsWinOpen = False # Options
@@ -2923,10 +2923,6 @@ class NiminFetishFantasyv0975o_fla:
       self.specialAbilityArray = Array()
 
    def MainTimeline(self):
-      self.saveconverter = SaveConverter(self)
-      self.openGame()
-
-   def openGame(self):
       """
       Sets up the interface, then runs the "frame1" function
       """
@@ -2937,9 +2933,8 @@ class NiminFetishFantasyv0975o_fla:
       if (self.dir / "nimintheme").is_dir():
          self.mo.tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
 
-      # Set up windows
+      # Set up wiki
       self.wiki = PyminWiki(self)
-      self.saveeditor = SaveEditor(self)
 
       #key bindings
       self.mo.bind('<KeyPress>', partial(self.keyPress, self.hotKeys))
@@ -3365,14 +3360,13 @@ class NiminFetishFantasyv0975o_fla:
          self.mo._children["textside"].border = toggle
 
    def applyFixedResolution(self):
+      self.wiki.enforceSize = self.fixedresolutionmode
+      # self.saveconverter.enforceSize = self.fixedresolutionmode
+      # self.saveeditor.enforceSize = self.fixedresolutionmode
       if self.fixedresolutionmode:
          #locks resizing of child windows
          self.mo.geometry("1176x662")
          self.mo.resizable = False
-         self.wiki.enforceSize = True
-         if self.optionsWinOpen:
-            self.optionswindow.geometry("420x207")
-            self.optionswindow.resizable = False
          if self.optionsWinOpen:
             self.optionswindow.geometry("420x207")
             self.optionswindow.resizable = False
@@ -3388,7 +3382,6 @@ class NiminFetishFantasyv0975o_fla:
       else:
          #unlocks resizing for all windows
          self.mo.resizable = True
-         self.wiki.enforceSize = False
          if self.optionsWinOpen:
             self.optionswindow.resizable = True
          if self.debugVarOpen:
