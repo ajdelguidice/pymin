@@ -226,29 +226,77 @@ class ToolTip(object):
          tw.destroy()
 #====================================================================================
 
-class SaveUtils:
-   def checkValidHex(hexstr:str):
-      """
-      Checks if a given string is a valid (6 digit) hexadecimal colour code
-      """
-      if len(hexstr) == 7 and hexstr.startswith("#"):
-         for i in hexstr[1:]:
-            if i not in "0123456789ABCDEFabcdef":
-               return False
-         return True
-      return False
-
-   def checkExistsMakeDir(path, silent=False):
+class DirUtils:
+   def makeDir(path, silent=False):
       """
       Checks if a directory exists, creates it if not
       """
       if path.is_dir():
          return 1
       elif path.exists():
-         if silent == False:
-            raise Error("Pymin.checkExistsMakeDir; Path exists but is not a directory.")
+         if not silent:
+            raise Error('DirUtils.makeDir; Path exists but is not a directory.')
          return -1
       path.mkdir(parents=True)
+
+   def listFiles(directory, ext:tuple=None, sort=None):
+      """
+      Lists all files with extension "ext" in directory "directory" with the sorting of "sort"
+      If ext is None, all files are shown
+      If sort is None, no sorting will be done. sort must be a valid sorted() key
+      """
+      files = [f.name for f in directory.iterdir() if f.is_file()]
+      #if extension is specified, remove extension that aren't included
+      if ext is not None:
+         files = [i for i in files if ("." not in i and "" in ext) or i.endswith(ext)]
+      #if sort order is specified, use it
+      if sort is None:
+         return files
+      return sorted(files, key=sort)
+
+   # listFiles but sorted alphabetically
+   listFiles_SortAlpha = partial(listFiles, sort=str.lower)
+
+   def listFiles_SortCustomExt(directory, extensions: tuple, reverse=False):
+      """
+      listFiles but sort Nimin_Save files first by extension
+      """
+      temp = DirUtils.listFiles_SortAlpha(directory, extensions)
+      temp2 = []
+      exts = reversed(extensions) if reverse else extensions
+      for ext in exts:
+         for num in (1, 2, 3, 5, 6, 7, 9, 10, 11):
+            name = f'Nimin_Save{num}{ext}'
+            if name in temp:
+               temp2.append(name)
+               temp.remove(name)
+      return temp2 + temp
+
+   def listFiles_SortCustomNum(directory, extensions: tuple):
+      """
+      listFiles but sort Nimin_Save files first by slot number
+      """
+      temp = DirUtils.listFiles_SortAlpha(directory, extensions)
+      temp2 = []
+      for num in (1, 2, 3, 5, 6, 7, 9, 10, 11):
+         for ext in extensions:
+            name = f'Nimin_Save{num}{ext}'
+            if name in temp:
+               temp2.append(name)
+               temp.remove(name)
+      return temp2 + temp
+
+class SaveUtils:
+   def checkValidHex(hexstr:str):
+      """
+      Checks if a given string is a valid (6 digit) hexadecimal colour code
+      """
+      if len(hexstr) == 7 and hexstr[0] == "#":
+         for i in hexstr[1:]:
+            if i not in "0123456789ABCDEFabcdef":
+               return False
+         return True
+      return False
 
    def dictSAVE(dictionary):
       d = {"mod":('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),"status":('pregRate',),"majorFetish":('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),"moderateFetish":('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),"minorFetish":('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
@@ -3255,48 +3303,6 @@ class NiminFetishFantasyv0975o_fla:
          self.optionsWinOpen = False
 
    @staticmethod
-   def listFilesInDir(dir_, ext:tuple=None, sort=None):
-      """
-      Lists all files with extension "ext" in directory "dir_" with the sorting of "sort"
-      If ext is None, all files are shown
-      If sort is None, no sorting will be done. sort must be a valid sorted() key
-      """
-      files = [f.name for f in dir_.iterdir() if f.is_file()]
-      #if extension is specified, remove extension that aren't included
-      if ext is not None:
-         files = [i for i in files if ("." not in i and "" in ext) or i.endswith(ext)]
-      #if sort order is specified, use it
-      if sort is not None:
-         return sorted(files, key=sort)
-      return files
-
-   def listFilesInDir_SortAlpha(self, dir_, ext:list=None):
-      """
-      Lists all files in directory "dir_" with extension "ext" and sorted case-insensitive, alphabetically
-      """
-      return self.listFilesInDir(dir_,ext,str.lower)
-
-   def listFilesInDir_SortCustom(self, dir_, ext:list=None, type_:int=0):
-      """
-      Lists all files in directory "dir_" with extension "ext" with custom sort type of "type_"
-      """
-      if type_ not in {0,1,2}:
-         raise Error("Pymin.listFilesInDir_SortCustom; Parameter \"type_\" must be either 0, 1, or 2")
-      if type_ == 0:
-         l = ("Nimin_Save1.xml","Nimin_Save2.xml","Nimin_Save3.xml","Nimin_Save5.xml","Nimin_Save6.xml","Nimin_Save7.xml","Nimin_Save9.xml","Nimin_Save10.xml","Nimin_Save11.xml","Nimin_Save1.sol","Nimin_Save2.sol","Nimin_Save3.sol","Nimin_Save5.sol","Nimin_Save6.sol","Nimin_Save7.sol","Nimin_Save9.sol","Nimin_Save10.sol","Nimin_Save11.sol")
-      elif type_ == 1:
-         l = ("Nimin_Save1.xml","Nimin_Save1.sol","Nimin_Save2.xml","Nimin_Save2.sol","Nimin_Save3.xml","Nimin_Save3.sol","Nimin_Save5.xml","Nimin_Save5.sol","Nimin_Save6.xml","Nimin_Save6.sol","Nimin_Save7.xml","Nimin_Save7.sol","Nimin_Save9.xml","Nimin_Save9.sol","Nimin_Save10.xml","Nimin_Save10.sol","Nimin_Save11.xml","Nimin_Save11.sol")
-      else:
-         l = ("Nimin_Save1.sol","Nimin_Save2.sol","Nimin_Save3.sol","Nimin_Save5.sol","Nimin_Save6.sol","Nimin_Save7.sol","Nimin_Save9.sol","Nimin_Save10.sol","Nimin_Save11.sol","Nimin_Save1.xml","Nimin_Save2.xml","Nimin_Save3.xml","Nimin_Save5.xml","Nimin_Save6.xml","Nimin_Save7.xml","Nimin_Save9.xml","Nimin_Save10.xml","Nimin_Save11.xml")
-      temp = self.listFilesInDir(dir_,ext)
-      temp2 = []
-      for i in l:
-         if i in temp:
-            temp2.append(i)
-            temp.remove(i)
-      return temp2 + sorted(temp,key=str.lower)
-
-   @staticmethod
    def boolToState(boolean:bool):
       """
       Converts a boolean to a tkinter state. True -> normal. False -> disabled
@@ -3964,7 +3970,7 @@ class NiminFetishFantasyv0975o_fla:
          sp = True
       else:
          sp = True
-      SaveUtils.checkExistsMakeDir(self.savelocation,True)
+      DirUtils.makeDir(self.savelocation,True)
       if sp:
          self.savePreferences()
       if self.useNiminTheme and (self.dir / "nimintheme").is_dir():
@@ -5998,7 +6004,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Save game stage 1 (dialog)
       """
-      SaveUtils.checkExistsMakeDir(self.savelocation)
+      DirUtils.makeDir(self.savelocation)
       self.hideAPButton()
       if self.useNewSaveLoadDialog:
          self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
@@ -6092,7 +6098,7 @@ class NiminFetishFantasyv0975o_fla:
       """
       Load game stage 1 (dialog)
       """
-      SaveUtils.checkExistsMakeDir(self.savelocation)
+      DirUtils.makeDir(self.savelocation)
       self.hideAPButton()
       if self.useNewSaveLoadDialog:
          if message is None:
@@ -6112,7 +6118,7 @@ class NiminFetishFantasyv0975o_fla:
                self.buttonConfirm()
                def doListen():
                   temp = self.mo._children["savefileentry"].text
-                  if (self.buttonChoice == 6 and temp in self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))):
+                  if (self.buttonChoice == 6 and temp in DirUtils.listFiles(self.savelocation,(".toml",".xml",".sol",".nim"))):
                      self.doLoad(0,self.savelocation / temp)
                   else:
                      self.loadGo(ret=True)
@@ -6197,15 +6203,15 @@ class NiminFetishFantasyv0975o_fla:
       Sorts the save file list in nsld
       """
       if self.nsldSortOrder == 0:
-         return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),0)
+         return DirUtils.listFiles_SortCustomExt(self.savelocation,(".toml",".xml",".sol",".nim"))
       if self.nsldSortOrder == 1:
-         return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),1)
+         return DirUtils.listFiles_SortCustomNum(self.savelocation,(".toml",".xml",".sol",".nim"))
       if self.nsldSortOrder == 2:
-         return self.listFilesInDir_SortCustom(self.savelocation,(".toml",".xml",".sol",".nim"),2)
+         return DirUtils.listFiles_SortCustomExt(self.savelocation,(".toml",".xml",".sol",".nim"),True)
       if self.nsldSortOrder == 3:
-         return self.listFilesInDir_SortAlpha(self.savelocation,(".toml",".xml",".sol",".nim"))
+         return DirUtils.listFiles_SortAlpha(self.savelocation,(".toml",".xml",".sol",".nim"))
       if self.nsldSortOrder == 4:
-         return self.listFilesInDir(self.savelocation,(".toml",".xml",".sol",".nim"))
+         return DirUtils.listFiles(self.savelocation,(".toml",".xml",".sol",".nim"))
 
    def nsldDisplay(self):
       """
