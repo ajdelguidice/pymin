@@ -3088,7 +3088,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.tempBagPage = 1 # Used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
       self.nsldSortOrder = 0 # The current sort order of save files in the new save/load dialog
       self.keyboardTypingDisable = False # Used to disable hotkeys when in a text input field
-      self.hotkeysDisabled = [] #List of disabled hotkeys by keycode. If self.keyboardTypingDisable is True, this will be used as a whitelist instead.
+      self.hotkeysDisabled = set() #Set of disabled hotkeys by keycode. If self.keyboardTypingDisable is True, this will be used as a whitelist instead.
       self.altHeld = False # When alt is held
       self.ctrlHeld = False # When ctrl is held
       self.bMap = (1,2,3,5,6,7,9,10,11) # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
@@ -6511,11 +6511,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def _disableKeys(self, *e, **kwargs):
       self.keyboardTypingDisable = True
-      self.hotkeysDisabled = kwargs.pop('keys',[])
+      self.hotkeysDisabled = kwargs.pop('keys',set())
 
    def _enableKeys(self, *e):
       self.keyboardTypingDisable = False
-      self.hotkeysDisabled = []
+      self.hotkeysDisabled = set()
 
    def showNewSaveLoadDialog(self):
       """
@@ -6525,7 +6525,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.window.addScrolledListbox("display","savefileselect",x=200,y=30,width=460,height=154,font=self.font,sbwidth=12,background="#FFFFFF",foreground="#000000")
          self.window.bindChild("savefileselect","<<ListboxSelect>>",self.nsldSetEntryFromListbox)
          self.window.bindChild("savefileselect","<Double-Button-1>",self.buttonEvent8)
-         self.window.bindChild("savefileselect","<FocusIn>",partial(self._disableKeys,keys=[109, 82, 107, 70, 13, 86, 96, 66, 104, 87, 101, 83, 102, 68]))
+         self.window.bindChild("savefileselect","<FocusIn>",partial(self._disableKeys,keys={109, 82, 107, 70, 13, 86, 96, 66, 104, 87, 101, 83, 102, 68}))
          self.window.bindChild("savefileselect","<FocusOut>",self._enableKeys)
          self.window.addLabel("display","savefilelabel",x=200,y=184,width=75,height=24,font=("Times New Roman",12),background=self.backgroundColor,foreground=self.textColor,text="File Name:")
          self.window.addEntry("display","savefileentry",x=275,y=184,width=385,height=24,font=("Times New Roman",12),background="#FFFFFF",foreground="#000000")
