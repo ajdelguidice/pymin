@@ -652,9 +652,9 @@ class PyminWiki(PyminWindow):
         'Basics': ('Welcome Screen', 'Wiki Key', 'Stats', 'Actions', 'Tips', 'Hotkeys', 'Changes', 'Menu Bar', 'Back'),
         'Basics.MenuBar': ('File', 'View', 'Save Utils', 'Debug Utils', 'Help', 'Back'),
         'Basics.MenuBar.File': ('Options', 'Quit', 'Back'),
-        'Items': ('All Items', 'Debug Items', 'Equipable Items', 'Passive Items', 'Consumables', 'Silandrias\' Magic Items', 'Special Items', 'Other Items', 'Back'),
+        'Items': ('All Items', 'Debug Items', 'Equipable Items', 'Passive Items', 'Consumables', 'Silandrias\' Magic Items', 'Special Items', 'Back'),
         'Items.All': ('Test', 'Anc Claws', 'Imb Shoes', 'Dry Sand', 'Milker', 'Cat\'s Meow', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Reduction', 'Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Poultice', 'Dagger', 'Hammer', 'Saber', 'Whip', 'Neuter', 'TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'Oas Water', 'Tail Spike', 'TS Sanct', 'Lila\'s Gift', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Trinket', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'DairE Pill', 'Red Mush', 'Wet Cloth', 'Lon Milk', 'Lon Pendant', 'Pink Ink', 'Egg Jelly', 'Bul Berry', 'Fresh Egg', 'Blondie', 'Puss Juice', 'Kinky Carr', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Leath Strap', 'Eggcelerator', 'Desi Sand', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Dewy Gift', 'Squ Cheese', 'Shiny Rock', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Snuggle Ball', 'Facial Mud', 'Fertile Gel', 'Supp Harness', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Milky Pend', 'Bug Egg', 'Lantern', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Lust Draft', 'Rejuv Pot', 'Bad Exper', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Bad Exper', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Black Dye', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'Red Dye', 'S Baby Free', 'S Pot Pot', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg', 'Back'),
-        'Items.Debug': ('Debug Stick', 'Item Not Found', 'Teapot', 'Back'),
+        'Items.Debug': ('Debug Stick', 'Item Not Found', 'Teapot', 'Test', 'Back'),
         'Items.Equipable': ('Weapons', 'Other Equipables', 'Back'),
         'Items.Equipable.Weapons': ('Dagger', 'Hammer', 'Saber', 'Whip', 'Tail Spike', 'Back'),
         'Items.Equipable.Other': ('Snuggle Ball', 'Supp Harness', 'Back'),
@@ -668,7 +668,6 @@ class PyminWiki(PyminWindow):
         'Items.Consumables.Other': ('Dry Sand', 'Cat\'s Meow', 'Reduction', 'Poultice', 'Neuter', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'Red Mush', 'Wet Cloth', 'Egg Jelly', 'Bul Berry', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Eggcelerator', 'Desi Sand', 'Fertile Gel', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Bad Exper', 'S Bad Exper', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Back'),
         'Items.Silandrias': ('Leath Strap', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Back'),
         'Items.Special': ('Milker', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Trinket', 'Lantern', 'Back'),
-        'Items.Other': ('Test', 'Back'),  # TODO: Move 'Test' to 'Items.Debug'
         'Clothes': ('Tattered Shreds', 'Invisible Underwear', 'Shirt', 'Pants', 'Bikini Top', 'Bikini Bottom', 'Elegant Dress', 'Latex Suit', 'Skirt', 'Shorts', 'Blouse', 'Diaper', 'Poofy Diaper', 'Sundress', 'Skimpy Dress', 'Short Skirt', 'Short Shorts', 'Loin Cloth', 'Bathing Suit', 'Muscle Shirt', 'Corset', 'Silk Panties', 'Slingkini', 'Thong', 'Bloomers', 'Tights', 'Gothic Dress', 'Tube Top', 'Nipple Pasties', 'Camisole', 'Training Suit', 'Bouncy Bra', 'Back'),
         'Enemies': ('Test Enemy', 'Cock-snake', 'Desiccating Dust Devil', 'Lone Male Wolf', 'Gay Wolf', 'Felin in Heat', 'Drunken Equan', 'Octopus Girl', 'Little Big Bunny-man', 'Little Big Bunny-girl', 'Fierce Naga', 'Minotaur', 'Freaky Little Girl', 'Succubus', 'Back'),
         'Races': ('Human', 'Equan', 'Lupan', 'Felin', 'Cow', 'Lizan', 'Bunny', 'Mouse', 'Bird', 'Pig', 'Skunk', 'Bug', 'Back'),
@@ -913,22 +912,20 @@ class PyminWiki(PyminWindow):
             elif sel == 'Quit':
                 self.toPage('MenuBar', 2)
         elif self.menu == 'Items':
-            if sel == 'All Items': #menunum 3
+            if sel == 'All Items':
                 self.menu = 'Items.All'
             elif sel == 'Debug Items':
                 self.menu = 'Items.Debug'
-            elif sel == 'Equipable Items': #menunum 4
+            elif sel == 'Equipable Items':
                 self.menu = 'Items.Equipable'
             elif sel == 'Passive Items':
                 self.menu = 'Items.Passive'
-            elif sel == 'Consumables': #menunum 7
+            elif sel == 'Consumables':
                 self.menu = 'Items.Consumables'
-            elif sel == 'Silandrias\' Magic Items': #menunum 14
+            elif sel == 'Silandrias\' Magic Items':
                 self.menu = 'Items.Silandrias'
-            elif sel == 'Special Items': #menunum 15
+            elif sel == 'Special Items':
                 self.menu = 'Items.Special'
-            elif sel == 'Other Items': #menunum 16
-                self.menu = 'Items.Other'
         elif self.menu == 'Items.All':
             if sel == 'Test':
                 self.toPage('Item', 1)
@@ -1197,6 +1194,8 @@ class PyminWiki(PyminWindow):
                 self.toPage('Item', 404)
             elif sel == 'Teapot':
                 self.toPage('Item', 418)
+            elif sel == 'Test':
+                self.toPage('Item', 1)
         elif self.menu == 'Items.Equipable':
             if sel == 'Weapons':
                 self.menu = 'Items.Equipable.Weapons'
@@ -1484,9 +1483,6 @@ class PyminWiki(PyminWindow):
                 self.toPage('Item', 206)
             elif sel == 'Lantern':
                 self.toPage('Item', 254)
-        elif self.menu == 'Items.Other':
-            if sel == 'Test':
-                self.toPage('Item', 1)
         elif self.menu == 'Clothes':
             if sel == 'Tattered Shreds':
                 self.toPage('Clothes', -1)
