@@ -20,7 +20,8 @@ import math
 import random
 
 '''
-These variables will need to be checked once as3lib.Array works properly. They might break.
+These variables will need to be checked once as3lib.Array works properly.
+They might break.
 
 bagArray
 bagStackArray
@@ -53,6 +54,7 @@ class TimesFont(Font):
     unicodeRange = ''
     advancedAntiAliasing = 'true'
     embedAsCFF = 'false'
+
     def __init__(self):
         super().__init__()
 
@@ -60,7 +62,9 @@ class TimesFont(Font):
 def repintorfloat(number):
     # TODO: Remove once as3lib.Number is used
     """
-    Determines whether a number should be displayed as an integer or float based on its value and returns the corrected value. This is a substitute for the way ActionScript 3 displayed numbers as strings.
+    Determines whether a number should be displayed as an integer or float
+    based on its value and returns the corrected value. This is a substitute
+    for the way ActionScript 3 displayed numbers as strings.
     EX:
         1.05 should be displayed as a float
         1.00 should be displayed as an integer
@@ -70,7 +74,7 @@ def repintorfloat(number):
     return int(number) if number.is_integer() else number
 
 
-def strtobool(a:str):
+def strtobool(a: str):
     """
     Converts a string to a boolean
     """
@@ -87,12 +91,13 @@ class ButtonList(list):
     Base index is 1, 0 is invalid
     Starts out with 12 items all set to 0
     """
-    def __init__(self, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0, b7=0, b8=0, b9=0, b10=0, b11=0, b12=0):
-        super().__init__((b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12))
+    def __init__(self, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0,
+                 b7=0, b8=0, b9=0, b10=0, b11=0, b12=0):
+        super().__init__((b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12))
 
-    def __getitem__(self, item:int):
+    def __getitem__(self, item: int):
         if item > 0:
-            return super().__getitem__(item-1)
+            return super().__getitem__(item - 1)
         elif item == 0:
             raise RangeError('ButtonList; Index can not be 0')
         elif item < 0:
@@ -100,7 +105,7 @@ class ButtonList(list):
 
     def __setitem__(self, item, value):
         if item > 0:
-            super().__setitem__(item-1, value)
+            super().__setitem__(item - 1, value)
         elif item == 0:
             raise RangeError('ButtonList; Index can not be 0')
         elif item < 0:
@@ -108,7 +113,7 @@ class ButtonList(list):
 
 
 def applyBackspace(string):
-    #From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
+    # From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
     while '\x08' in string:
         string = sub('[^\x08]\x08', '', string)
     return string
@@ -129,7 +134,7 @@ class PyminButton(itk.itkFrame):
         text = kwargs.pop('text', '')
         super().__init__(master, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000', **kwargs)
         self.label = tkinter.Label(self, anchor='center', background='#FFFFFF', foreground='#000000')
-        self.bind(ckeys.mouseButtonNameToTkname("Left"), self.press)
+        self.bind(ckeys.mouseButtonNameToTkname('Left'), self.press)
         self.text = text
 
     def bind(self, key, func):
@@ -183,7 +188,7 @@ class Math:
 
 
 #====================================================================================
-#Create tooltip. Modified example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
+# Create tooltip. Modified example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
 class ToolTip(object):
     def __init__(self, widget, text):
         self.parent = widget
@@ -228,7 +233,7 @@ class DirUtils:
             return -1
         path.mkdir(parents=True)
 
-    def listFiles(directory, ext:tuple=None, sort=None):
+    def listFiles(directory, ext: tuple = None, sort=None):
         """
         Lists all files with extension "ext" in directory "directory" with the sorting of "sort"
         If ext is None, all files are shown
@@ -340,130 +345,130 @@ class SaveUtils:
 
     def returnSOL(dictionary:dict, outputfile):
         data = sol.SOL(SaveUtils.solGetFileName(outputfile))
-        data["track"] = list(dictionary["track"].values())
-        data["versionNumber"] = dictionary["version"]["original"]
-        data["versionNumberPymin"] = dictionary["version"]["port"]
-        data["stats"] = list(dictionary["stats"].values())
-        data["level"] = list(dictionary["level"].values())
-        data["mod"] = list(dictionary["mod"].values())
-        data["quality"] = list(dictionary["quality"].values())
-        data["cock"] = list(dictionary["cock"].values())
-        if dictionary["cock"].get("neuterizerHideBalls") is not None:
-            data["cock"].append(dictionary["cock"].get("neuterizerHideBalls"))
-        data["girl"] = list(dictionary["girl"].values())
-        data["gear"] = list(dictionary["gear"].values())
-        data["status"] = list(dictionary["status"].values())
-        data["affinity"] = list(dictionary["affinity"].values())
-        data["rep"] = list(dictionary["rep"].values())
-        data["knowledge"] = list(dictionary["knowledge"].values())
-        data["boss"] = list(dictionary["boss"].values())
-        data["knowSimpleAlchemy"] = list(dictionary["knowSimpleAlchemy"].values())
-        data["knowAdvancedAlchemy"] = list(dictionary["knowAdvancedAlchemy"].values())
-        data["knowComplexAlchemy"] = list(dictionary["knowComplexAlchemy"].values())
-        data["majorFetish"] = list(dictionary["majorFetish"].values())
-        data["moderateFetish"] = list(dictionary["moderateFetish"].values())
-        data["minorFetish"] = list(dictionary["minorFetish"].values())
-        data["kid"] = list(dictionary["kid"].values())
-        data["trav"] = []
-        data["bagSave"] = dictionary["bag"]
-        data["bagStackSave"] = dictionary["bagStack"]
-        data["stashSave"] = dictionary["stash"]
-        data["stashStackSave"] = dictionary["stashStack"]
-        data["pregSave"] = dictionary["preg"]
+        data['track'] = list(dictionary['track'].values())
+        data['versionNumber'] = dictionary['version']['original']
+        data['versionNumberPymin'] = dictionary['version']['port']
+        data['stats'] = list(dictionary['stats'].values())
+        data['level'] = list(dictionary['level'].values())
+        data['mod'] = list(dictionary['mod'].values())
+        data['quality'] = list(dictionary['quality'].values())
+        data['cock'] = list(dictionary['cock'].values())
+        if dictionary['cock'].get('neuterizerHideBalls') is not None:
+            data['cock'].append(dictionary['cock'].get('neuterizerHideBalls'))
+        data['girl'] = list(dictionary['girl'].values())
+        data['gear'] = list(dictionary['gear'].values())
+        data['status'] = list(dictionary['status'].values())
+        data['affinity'] = list(dictionary['affinity'].values())
+        data['rep'] = list(dictionary['rep'].values())
+        data['knowledge'] = list(dictionary['knowledge'].values())
+        data['boss'] = list(dictionary['boss'].values())
+        data['knowSimpleAlchemy'] = list(dictionary['knowSimpleAlchemy'].values())
+        data['knowAdvancedAlchemy'] = list(dictionary['knowAdvancedAlchemy'].values())
+        data['knowComplexAlchemy'] = list(dictionary['knowComplexAlchemy'].values())
+        data['majorFetish'] = list(dictionary['majorFetish'].values())
+        data['moderateFetish'] = list(dictionary['moderateFetish'].values())
+        data['minorFetish'] = list(dictionary['minorFetish'].values())
+        data['kid'] = list(dictionary['kid'].values())
+        data['trav'] = []
+        data['bagSave'] = dictionary['bag']
+        data['bagStackSave'] = dictionary['bagStack']
+        data['stashSave'] = dictionary['stash']
+        data['stashStackSave'] = dictionary['stashStack']
+        data['pregSave'] = dictionary['preg']
         return data
 
     def saveTOML(dictionary:dict, outputfile):
         TOML.write(outputfile, dictionary)
 
     def saveNIM(dictionary:dict, outputfile):
-        so = {"data":SaveUtils.returnSOL(dictionary,outputfile)}
+        so = {'data':SaveUtils.returnSOL(dictionary,outputfile)}
         byteData = ByteArray()
         byteData.writeObject(so)
-        with open(outputfile,"wb") as f:
+        with open(outputfile,'wb') as f:
             f.write(byteData.getvalue())
 
     def saveSOL(dictionary:dict, outputfile):
         sol.save(SaveUtils.returnSOL(dictionary,outputfile),str(outputfile),3)
 
     def saveXML(dictionary:dict, outputfile):
-        strack = list(dictionary["track"].values())
-        sver = list(dictionary["version"].values())
-        sstats = list(dictionary["stats"].values())
-        slevel = list(dictionary["level"].values())
-        smod = list(dictionary["mod"].values())
-        squality = list(dictionary["quality"].values())
-        scock = list(dictionary["cock"].values())
-        sgirl = list(dictionary["girl"].values())
-        sgear = list(dictionary["gear"].values())
-        sstatus = list(dictionary["status"].values())
-        saffinity = list(dictionary["affinity"].values())
-        srep = list(dictionary["rep"].values())
-        sknowledge = list(dictionary["knowledge"].values())
-        sboss = list(dictionary["boss"].values())
-        sknowSimpleAlchemy = list(dictionary["knowSimpleAlchemy"].values())
-        sknowAdvancedAlchemy = list(dictionary["knowAdvancedAlchemy"].values())
-        sknowComplexAlchemy = list(dictionary["knowComplexAlchemy"].values())
-        smajorFetish = list(dictionary["majorFetish"].values())
-        smoderateFetish = list(dictionary["moderateFetish"].values())
-        sminorFetish = list(dictionary["minorFetish"].values())
-        skid = list(dictionary["kid"].values())
-        trav = dictionary["trav"]
-        _bagArray = dictionary["bag"]
-        _bagStackArray = dictionary["bagStack"]
-        _stashArray = dictionary["stash"]
-        _stashStackArray = dictionary["stashStack"]
-        _pregArray = dictionary["preg"]
+        strack = list(dictionary['track'].values())
+        sver = list(dictionary['version'].values())
+        sstats = list(dictionary['stats'].values())
+        slevel = list(dictionary['level'].values())
+        smod = list(dictionary['mod'].values())
+        squality = list(dictionary['quality'].values())
+        scock = list(dictionary['cock'].values())
+        sgirl = list(dictionary['girl'].values())
+        sgear = list(dictionary['gear'].values())
+        sstatus = list(dictionary['status'].values())
+        saffinity = list(dictionary['affinity'].values())
+        srep = list(dictionary['rep'].values())
+        sknowledge = list(dictionary['knowledge'].values())
+        sboss = list(dictionary['boss'].values())
+        sknowSimpleAlchemy = list(dictionary['knowSimpleAlchemy'].values())
+        sknowAdvancedAlchemy = list(dictionary['knowAdvancedAlchemy'].values())
+        sknowComplexAlchemy = list(dictionary['knowComplexAlchemy'].values())
+        smajorFetish = list(dictionary['majorFetish'].values())
+        smoderateFetish = list(dictionary['moderateFetish'].values())
+        sminorFetish = list(dictionary['minorFetish'].values())
+        skid = list(dictionary['kid'].values())
+        trav = dictionary['trav']
+        _bagArray = dictionary['bag']
+        _bagStackArray = dictionary['bagStack']
+        _stashArray = dictionary['stash']
+        _stashStackArray = dictionary['stashStack']
+        _pregArray = dictionary['preg']
         with textObject() as text:
-            text += f"<data><track><currentState>{strack[0]}</currentState><currentZone>{strack[1]}</currentZone><day>{strack[2]}</day><hour>{strack[3]}</hour><currentDayCare>{strack[4]}</currentDayCare><inDungeon>{strack[5]}</inDungeon><currentDungeon>{strack[6]}</currentDungeon><v7>{strack[7]}</v7><firstExplore>{strack[8]}</firstExplore></track><version><original>{sver[0]}</original><port>{sver[1]}</port></version><stats><strength>{sstats[0]}</strength><mentality>{sstats[1]}</mentality><libido>{sstats[2]}</libido><sensitivity>{sstats[3]}</sensitivity><HP>{sstats[4]}</HP><lust>{sstats[5]}</lust><coin>{sstats[6]}</coin><strMod>{sstats[7]}</strMod><mentMod>{sstats[8]}</mentMod><libMod>{sstats[9]}</libMod><senMod>{sstats[10]}</senMod><hunger>{sstats[11]}</hunger></stats><level><SexP>{slevel[0]}</SexP><levelUP>{slevel[1]}</levelUP><level>{slevel[2]}</level><babyFactLevel>{slevel[3]}</babyFactLevel><bodyBuildLevel>{slevel[4]}</bodyBuildLevel><hyperHappyLevel>{slevel[5]}</hyperHappyLevel><alchemistLevel>{slevel[6]}</alchemistLevel><fetishMasterLevel>{slevel[7]}</fetishMasterLevel><milkMaidLevel>{slevel[8]}</milkMaidLevel><shapeshiftyLevel>{slevel[9]}</shapeshiftyLevel><shapeshiftyFirst>{slevel[10]}</shapeshiftyFirst><shapeshiftySecond>{slevel[11]}</shapeshiftySecond></level><mod><runMod>{smod[0]}</runMod><rapeMod>{smod[1]}</rapeMod><cumMod>{smod[2]}</cumMod><cockSizeMod>{smod[3]}</cockSizeMod><milkMod>{smod[4]}</milkMod><carryMod>{smod[5]}</carryMod><vagBellyMod>{smod[6]}</vagBellyMod><pregChanceMod>{smod[7]}</pregChanceMod><extraPregChance>{smod[8]}</extraPregChance><pregTimeMod>{smod[9]}</pregTimeMod><enticeMod>{smod[10]}</enticeMod><milkHPMod>{smod[11]}</milkHPMod><vagSizeMod>{smod[12]}</vagSizeMod><vagElastic>{smod[13]}</vagElastic><changeMod>{smod[14]}</changeMod><HPMod>{smod[15]}</HPMod><SexPMod>{smod[16]}</SexPMod><minLust>{smod[17]}</minLust><milkCap>{smod[18]}</milkCap><coinMod>{smod[19]}</coinMod><hipMod>{smod[20]}</hipMod><buttMod>{smod[21]}</buttMod><bellyMod>{smod[22]}</bellyMod><cockMoistMod>{smod[23]}</cockMoistMod><vagMoistMod>{smod[24]}</vagMoistMod><lockTail>{smod[25]}</lockTail><lockFace>{smod[26]}</lockFace><lockSkin>{smod[27]}</lockSkin><lockBreasts>{smod[28]}</lockBreasts><lockEars>{smod[29]}</lockEars><lockLegs>{smod[30]}</lockLegs><lockNipples>{smod[31]}</lockNipples><lockCock>{smod[32]}</lockCock></mod><quality><gender>{squality[0]}</gender><race>{squality[1]}</race><body>{squality[2]}</body><dominant>{squality[3]}</dominant><hips>{squality[4]}</hips><butt>{squality[5]}</butt><tallness>{squality[6]}</tallness><skinType>{squality[7]}</skinType><tail>{squality[8]}</tail><ears>{squality[9]}</ears><hair>{squality[10]}</hair><hairColor>{squality[11]}</hairColor><hairLength>{squality[12]}</hairLength><legType>{squality[13]}</legType><wings>{squality[14]}</wings><faceType>{squality[15]}</faceType><skinColor>{squality[16]}</skinColor></quality><cock><cockTotal>{scock[0]}</cockTotal><humanCocks>{scock[1]}</humanCocks><horseCocks>{scock[2]}</horseCocks><wolfCocks>{scock[3]}</wolfCocks><catCocks>{scock[4]}</catCocks><rabbitCocks>{scock[5]}</rabbitCocks><lizardCocks>{scock[6]}</lizardCocks><cockSize>{scock[7]}</cockSize><cockMoist>{scock[8]}</cockMoist><balls>{scock[9]}</balls><ballSize>{scock[10]}</ballSize><showBalls>{scock[11]}</showBalls><knot>{scock[12]}</knot><bugCocks>{scock[13]}</bugCocks>"
+            text += f'<data><track><currentState>{strack[0]}</currentState><currentZone>{strack[1]}</currentZone><day>{strack[2]}</day><hour>{strack[3]}</hour><currentDayCare>{strack[4]}</currentDayCare><inDungeon>{strack[5]}</inDungeon><currentDungeon>{strack[6]}</currentDungeon><v7>{strack[7]}</v7><firstExplore>{strack[8]}</firstExplore></track><version><original>{sver[0]}</original><port>{sver[1]}</port></version><stats><strength>{sstats[0]}</strength><mentality>{sstats[1]}</mentality><libido>{sstats[2]}</libido><sensitivity>{sstats[3]}</sensitivity><HP>{sstats[4]}</HP><lust>{sstats[5]}</lust><coin>{sstats[6]}</coin><strMod>{sstats[7]}</strMod><mentMod>{sstats[8]}</mentMod><libMod>{sstats[9]}</libMod><senMod>{sstats[10]}</senMod><hunger>{sstats[11]}</hunger></stats><level><SexP>{slevel[0]}</SexP><levelUP>{slevel[1]}</levelUP><level>{slevel[2]}</level><babyFactLevel>{slevel[3]}</babyFactLevel><bodyBuildLevel>{slevel[4]}</bodyBuildLevel><hyperHappyLevel>{slevel[5]}</hyperHappyLevel><alchemistLevel>{slevel[6]}</alchemistLevel><fetishMasterLevel>{slevel[7]}</fetishMasterLevel><milkMaidLevel>{slevel[8]}</milkMaidLevel><shapeshiftyLevel>{slevel[9]}</shapeshiftyLevel><shapeshiftyFirst>{slevel[10]}</shapeshiftyFirst><shapeshiftySecond>{slevel[11]}</shapeshiftySecond></level><mod><runMod>{smod[0]}</runMod><rapeMod>{smod[1]}</rapeMod><cumMod>{smod[2]}</cumMod><cockSizeMod>{smod[3]}</cockSizeMod><milkMod>{smod[4]}</milkMod><carryMod>{smod[5]}</carryMod><vagBellyMod>{smod[6]}</vagBellyMod><pregChanceMod>{smod[7]}</pregChanceMod><extraPregChance>{smod[8]}</extraPregChance><pregTimeMod>{smod[9]}</pregTimeMod><enticeMod>{smod[10]}</enticeMod><milkHPMod>{smod[11]}</milkHPMod><vagSizeMod>{smod[12]}</vagSizeMod><vagElastic>{smod[13]}</vagElastic><changeMod>{smod[14]}</changeMod><HPMod>{smod[15]}</HPMod><SexPMod>{smod[16]}</SexPMod><minLust>{smod[17]}</minLust><milkCap>{smod[18]}</milkCap><coinMod>{smod[19]}</coinMod><hipMod>{smod[20]}</hipMod><buttMod>{smod[21]}</buttMod><bellyMod>{smod[22]}</bellyMod><cockMoistMod>{smod[23]}</cockMoistMod><vagMoistMod>{smod[24]}</vagMoistMod><lockTail>{smod[25]}</lockTail><lockFace>{smod[26]}</lockFace><lockSkin>{smod[27]}</lockSkin><lockBreasts>{smod[28]}</lockBreasts><lockEars>{smod[29]}</lockEars><lockLegs>{smod[30]}</lockLegs><lockNipples>{smod[31]}</lockNipples><lockCock>{smod[32]}</lockCock></mod><quality><gender>{squality[0]}</gender><race>{squality[1]}</race><body>{squality[2]}</body><dominant>{squality[3]}</dominant><hips>{squality[4]}</hips><butt>{squality[5]}</butt><tallness>{squality[6]}</tallness><skinType>{squality[7]}</skinType><tail>{squality[8]}</tail><ears>{squality[9]}</ears><hair>{squality[10]}</hair><hairColor>{squality[11]}</hairColor><hairLength>{squality[12]}</hairLength><legType>{squality[13]}</legType><wings>{squality[14]}</wings><faceType>{squality[15]}</faceType><skinColor>{squality[16]}</skinColor></quality><cock><cockTotal>{scock[0]}</cockTotal><humanCocks>{scock[1]}</humanCocks><horseCocks>{scock[2]}</horseCocks><wolfCocks>{scock[3]}</wolfCocks><catCocks>{scock[4]}</catCocks><rabbitCocks>{scock[5]}</rabbitCocks><lizardCocks>{scock[6]}</lizardCocks><cockSize>{scock[7]}</cockSize><cockMoist>{scock[8]}</cockMoist><balls>{scock[9]}</balls><ballSize>{scock[10]}</ballSize><showBalls>{scock[11]}</showBalls><knot>{scock[12]}</knot><bugCocks>{scock[13]}</bugCocks>'
             if len(scock) == 15:
-                text += f"<neuterizerHideBalls>{scock[14]}</neuterizerHideBalls>"
-            text += f"</cock><girl><breastSize>{sgirl[0]}</breastSize><boobTotal>{sgirl[1]}</boobTotal><nippleSize>{sgirl[2]}</nippleSize><udders>{sgirl[3]}</udders><udderSize>{sgirl[4]}</udderSize><teatSize>{sgirl[5]}</teatSize><clitSize>{sgirl[6]}</clitSize><vagTotal>{sgirl[7]}</vagTotal><vagSize>{sgirl[8]}</vagSize><vagMoist>{sgirl[9]}</vagMoist><vulvaSize>{sgirl[10]}</vulvaSize><nipType>{sgirl[11]}</nipType></girl><gear><attireTop>{sgear[0]}</attireTop><attireBot>{sgear[1]}</attireBot><weapon>{sgear[2]}</weapon></gear><status><pregRate>{sstatus[0]}</pregRate><pregnancyTime>{sstatus[1]}</pregnancyTime><pregStatus>{sstatus[2]}</pregStatus><eggLaying>{sstatus[3]}</eggLaying><eggMaxTime>{sstatus[4]}</eggMaxTime><eggTime>{sstatus[5]}</eggTime><eggRate>{sstatus[6]}</eggRate><exhaustion>{sstatus[7]}</exhaustion><exhaustionPenalty>{sstatus[8]}</exhaustionPenalty><milkEngorgement>{sstatus[9]}</milkEngorgement><milkEngorgementLevel>{sstatus[10]}</milkEngorgementLevel><udderEngorgement>{sstatus[11]}</udderEngorgement><udderEngorgementLevel>{sstatus[12]}</udderEngorgementLevel><heat>{sstatus[13]}</heat><heatTime>{sstatus[14]}</heatTime><heatMaxTime>{sstatus[15]}</heatMaxTime><lactation>{sstatus[16]}</lactation><udderLactation>{sstatus[17]}</udderLactation><nipplePlay>{sstatus[18]}</nipplePlay><udderPlay>{sstatus[19]}</udderPlay><blueBalls>{sstatus[20]}</blueBalls><teatPump>{sstatus[21]}</teatPump><nipPump>{sstatus[22]}</nipPump><cockPump>{sstatus[23]}</cockPump><clitPump>{sstatus[24]}</clitPump><vulvaPump>{sstatus[25]}</vulvaPump><masoPot>{sstatus[26]}</masoPot><sMasoPot>{sstatus[27]}</sMasoPot><babyFree>{sstatus[28]}</babyFree><charmTime>{sstatus[29]}</charmTime><pheromone>{sstatus[30]}</pheromone><eggceleratorTime>{sstatus[31]}</eggceleratorTime><eggceleratorDose>{sstatus[32]}</eggceleratorDose><bodyOil>{sstatus[33]}</bodyOil><lustPenalty>{sstatus[34]}</lustPenalty><fertileGel>{sstatus[35]}</fertileGel><snuggleBall>{sstatus[36]}</snuggleBall><eggType>{sstatus[37]}</eggType><milkSuppressant>{sstatus[38]}</milkSuppressant><milkSuppressantLact>{sstatus[39]}</milkSuppressantLact><milkSuppressantUdder>{sstatus[40]}</milkSuppressantUdder><suppHarness>{sstatus[41]}</suppHarness><fertilityStatueCurse>{sstatus[42]}</fertilityStatueCurse><plumpQuats>{sstatus[43]}</plumpQuats><lilaWetStatus>{sstatus[44]}</lilaWetStatus><cockSnakePreg>{sstatus[45]}</cockSnakePreg><milkCPoisonNip>{sstatus[46]}</milkCPoisonNip><milkCPoisonUdd>{sstatus[47]}</milkCPoisonUdd><cockSnakeVenom>{sstatus[48]}</cockSnakeVenom></status><affinity><humanAffinity>{saffinity[0]}</humanAffinity><horseAffinity>{saffinity[1]}</horseAffinity><wolfAffinity>{saffinity[2]}</wolfAffinity><catAffinity>{saffinity[3]}</catAffinity><cowAffinity>{saffinity[4]}</cowAffinity><lizardAffinity>{saffinity[5]}</lizardAffinity><rabbitAffinity>{saffinity[6]}</rabbitAffinity><fourBoobAffinity>{saffinity[7]}</fourBoobAffinity><mouseAffinity>{saffinity[8]}</mouseAffinity><birdAffinity>{saffinity[9]}</birdAffinity><pigAffinity>{saffinity[10]}</pigAffinity><twoBoobAffinity>{saffinity[11]}</twoBoobAffinity><sixBoobAffinity>{saffinity[12]}</sixBoobAffinity><eightBoobAffinity>{saffinity[13]}</eightBoobAffinity><tenBoobAffinity>{saffinity[14]}</tenBoobAffinity><cowTaurAffinity>{saffinity[15]}</cowTaurAffinity><humanTaurAffinity>{saffinity[16]}</humanTaurAffinity><skunkAffinity>{saffinity[17]}</skunkAffinity><bugAffinity>{saffinity[18]}</bugAffinity></affinity><rep><lilaRep>{srep[0]}</lilaRep><lilaVulva>{srep[1]}</lilaVulva><lilaMilk>{srep[2]}</lilaMilk><lilaPreg>{srep[3]}</lilaPreg><malonRep>{srep[4]}</malonRep><malonPreg>{srep[5]}</malonPreg><malonChildren>{srep[6]}</malonChildren><mistressRep>{srep[7]}</mistressRep><jamieRep>{srep[8]}</jamieRep><jamieSize>{srep[9]}</jamieSize><jamieChildren>{srep[10]}</jamieChildren><silRep>{srep[11]}</silRep><silPreg>{srep[12]}</silPreg><silRate>{srep[13]}</silRate><silLay>{srep[14]}</silLay><silGrowthTime>{srep[15]}</silGrowthTime><silTied>{srep[16]}</silTied><lilaUB>{srep[17]}</lilaUB><dairyFarmBrand>{srep[18]}</dairyFarmBrand><lilaWetness>{srep[19]}</lilaWetness><jamieButt>{srep[20]}</jamieButt><jamieBreasts>{srep[21]}</jamieBreasts><jamieHair>{srep[22]}</jamieHair></rep><knowledge><foundSoftlik>{sknowledge[0]}</foundSoftlik><foundFirmshaft>{sknowledge[1]}</foundFirmshaft><foundTieden>{sknowledge[2]}</foundTieden><foundSizCalit>{sknowledge[3]}</foundSizCalit><foundOviasis>{sknowledge[4]}</foundOviasis><foundValley>{sknowledge[5]}</foundValley><foundSanctuary>{sknowledge[6]}</foundSanctuary></knowledge><boss><defeatedMinotaur>{sboss[0]}</defeatedMinotaur><defeatedFreakyGirl>{sboss[1]}</defeatedFreakyGirl><defeatedSuccubus>{sboss[2]}</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>{sknowSimpleAlchemy[0]}</knowLustDraft><knowRejuvPot>{sknowSimpleAlchemy[1]}</knowRejuvPot><knowExpPreg>{sknowSimpleAlchemy[2]}</knowExpPreg><knowBallSwell>{sknowSimpleAlchemy[3]}</knowBallSwell><knowMaleEnhance>{sknowSimpleAlchemy[4]}</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>{sknowAdvancedAlchemy[0]}</knowSLustDraft><knowSRejuvPot>{sknowAdvancedAlchemy[1]}</knowSRejuvPot><knowSExpPreg>{sknowAdvancedAlchemy[2]}</knowSExpPreg><knowSBallSwell>{sknowAdvancedAlchemy[3]}</knowSBallSwell><knowGenSwap>{sknowAdvancedAlchemy[4]}</knowGenSwap><knowMasoPot>{sknowAdvancedAlchemy[5]}</knowMasoPot><knowBabyFree>{sknowAdvancedAlchemy[6]}</knowBabyFree><knowPotPot>{sknowAdvancedAlchemy[7]}</knowPotPot><knowMilkSuppress>{sknowAdvancedAlchemy[8]}</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>{sknowComplexAlchemy[0]}</knowSGenSwap><knowSMasoPot>{sknowComplexAlchemy[1]}</knowSMasoPot><knowSBabyFree>{sknowComplexAlchemy[2]}</knowSBabyFree><knowSPotPot>{sknowComplexAlchemy[3]}</knowSPotPot><knowPussJuice>{sknowComplexAlchemy[4]}</knowPussJuice><knowPheromone>{sknowComplexAlchemy[5]}</knowPheromone><knowBazoomba>{sknowComplexAlchemy[6]}</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>{smajorFetish[0]}</maleFetish><femaleFetish>{smajorFetish[1]}</femaleFetish><hermFetish>{smajorFetish[2]}</hermFetish><narcissistFetish>{smajorFetish[3]}</narcissistFetish><dependentFetish>{smajorFetish[4]}</dependentFetish></majorFetish><moderateFetish><dominantFetish>{smoderateFetish[0]}</dominantFetish><submissiveFetish>{smoderateFetish[1]}</submissiveFetish><lboobFetish>{smoderateFetish[2]}</lboobFetish><sboobFetish>{smoderateFetish[3]}</sboobFetish><furryFetish>{smoderateFetish[4]}</furryFetish><scalyFetish>{smoderateFetish[5]}</scalyFetish><smoothyFetish>{smoderateFetish[6]}</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>{sminorFetish[0]}</pregnancyFetish><bestialityFetish>{sminorFetish[1]}</bestialityFetish><milkFetish>{sminorFetish[2]}</milkFetish><sizeFetish>{sminorFetish[3]}</sizeFetish><unbirthingFetish>{sminorFetish[4]}</unbirthingFetish><ovipositionFetish>{sminorFetish[5]}</ovipositionFetish><toyFetish>{sminorFetish[6]}</toyFetish><hyperFetish>{sminorFetish[7]}</hyperFetish></minorFetish><kid><humanChildren>{skid[0]}</humanChildren><equanChildren>{skid[1]}</equanChildren><lupanChildren>{skid[2]}</lupanChildren><felinChildren>{skid[3]}</felinChildren><cowChildren>{skid[4]}</cowChildren><lizanChildren>{skid[5]}</lizanChildren><lizanEggs>{skid[6]}</lizanEggs><bunnionChildren>{skid[7]}</bunnionChildren><wolfPupChildren>{skid[8]}</wolfPupChildren><miceChildren>{skid[9]}</miceChildren><birdEggs>{skid[10]}</birdEggs><birdChildren>{skid[11]}</birdChildren><pigChildren>{skid[12]}</pigChildren><calfChildren>{skid[13]}</calfChildren><bugEggs>{skid[14]}</bugEggs><bugChildren>{skid[15]}</bugChildren><skunkChildren>{skid[16]}</skunkChildren><minotaurChildren>{skid[17]}</minotaurChildren><freakyGirlChildren>{skid[18]}</freakyGirlChildren></kid><trav></trav><bag>"
+                text += f'<neuterizerHideBalls>{scock[14]}</neuterizerHideBalls>'
+            text += f'</cock><girl><breastSize>{sgirl[0]}</breastSize><boobTotal>{sgirl[1]}</boobTotal><nippleSize>{sgirl[2]}</nippleSize><udders>{sgirl[3]}</udders><udderSize>{sgirl[4]}</udderSize><teatSize>{sgirl[5]}</teatSize><clitSize>{sgirl[6]}</clitSize><vagTotal>{sgirl[7]}</vagTotal><vagSize>{sgirl[8]}</vagSize><vagMoist>{sgirl[9]}</vagMoist><vulvaSize>{sgirl[10]}</vulvaSize><nipType>{sgirl[11]}</nipType></girl><gear><attireTop>{sgear[0]}</attireTop><attireBot>{sgear[1]}</attireBot><weapon>{sgear[2]}</weapon></gear><status><pregRate>{sstatus[0]}</pregRate><pregnancyTime>{sstatus[1]}</pregnancyTime><pregStatus>{sstatus[2]}</pregStatus><eggLaying>{sstatus[3]}</eggLaying><eggMaxTime>{sstatus[4]}</eggMaxTime><eggTime>{sstatus[5]}</eggTime><eggRate>{sstatus[6]}</eggRate><exhaustion>{sstatus[7]}</exhaustion><exhaustionPenalty>{sstatus[8]}</exhaustionPenalty><milkEngorgement>{sstatus[9]}</milkEngorgement><milkEngorgementLevel>{sstatus[10]}</milkEngorgementLevel><udderEngorgement>{sstatus[11]}</udderEngorgement><udderEngorgementLevel>{sstatus[12]}</udderEngorgementLevel><heat>{sstatus[13]}</heat><heatTime>{sstatus[14]}</heatTime><heatMaxTime>{sstatus[15]}</heatMaxTime><lactation>{sstatus[16]}</lactation><udderLactation>{sstatus[17]}</udderLactation><nipplePlay>{sstatus[18]}</nipplePlay><udderPlay>{sstatus[19]}</udderPlay><blueBalls>{sstatus[20]}</blueBalls><teatPump>{sstatus[21]}</teatPump><nipPump>{sstatus[22]}</nipPump><cockPump>{sstatus[23]}</cockPump><clitPump>{sstatus[24]}</clitPump><vulvaPump>{sstatus[25]}</vulvaPump><masoPot>{sstatus[26]}</masoPot><sMasoPot>{sstatus[27]}</sMasoPot><babyFree>{sstatus[28]}</babyFree><charmTime>{sstatus[29]}</charmTime><pheromone>{sstatus[30]}</pheromone><eggceleratorTime>{sstatus[31]}</eggceleratorTime><eggceleratorDose>{sstatus[32]}</eggceleratorDose><bodyOil>{sstatus[33]}</bodyOil><lustPenalty>{sstatus[34]}</lustPenalty><fertileGel>{sstatus[35]}</fertileGel><snuggleBall>{sstatus[36]}</snuggleBall><eggType>{sstatus[37]}</eggType><milkSuppressant>{sstatus[38]}</milkSuppressant><milkSuppressantLact>{sstatus[39]}</milkSuppressantLact><milkSuppressantUdder>{sstatus[40]}</milkSuppressantUdder><suppHarness>{sstatus[41]}</suppHarness><fertilityStatueCurse>{sstatus[42]}</fertilityStatueCurse><plumpQuats>{sstatus[43]}</plumpQuats><lilaWetStatus>{sstatus[44]}</lilaWetStatus><cockSnakePreg>{sstatus[45]}</cockSnakePreg><milkCPoisonNip>{sstatus[46]}</milkCPoisonNip><milkCPoisonUdd>{sstatus[47]}</milkCPoisonUdd><cockSnakeVenom>{sstatus[48]}</cockSnakeVenom></status><affinity><humanAffinity>{saffinity[0]}</humanAffinity><horseAffinity>{saffinity[1]}</horseAffinity><wolfAffinity>{saffinity[2]}</wolfAffinity><catAffinity>{saffinity[3]}</catAffinity><cowAffinity>{saffinity[4]}</cowAffinity><lizardAffinity>{saffinity[5]}</lizardAffinity><rabbitAffinity>{saffinity[6]}</rabbitAffinity><fourBoobAffinity>{saffinity[7]}</fourBoobAffinity><mouseAffinity>{saffinity[8]}</mouseAffinity><birdAffinity>{saffinity[9]}</birdAffinity><pigAffinity>{saffinity[10]}</pigAffinity><twoBoobAffinity>{saffinity[11]}</twoBoobAffinity><sixBoobAffinity>{saffinity[12]}</sixBoobAffinity><eightBoobAffinity>{saffinity[13]}</eightBoobAffinity><tenBoobAffinity>{saffinity[14]}</tenBoobAffinity><cowTaurAffinity>{saffinity[15]}</cowTaurAffinity><humanTaurAffinity>{saffinity[16]}</humanTaurAffinity><skunkAffinity>{saffinity[17]}</skunkAffinity><bugAffinity>{saffinity[18]}</bugAffinity></affinity><rep><lilaRep>{srep[0]}</lilaRep><lilaVulva>{srep[1]}</lilaVulva><lilaMilk>{srep[2]}</lilaMilk><lilaPreg>{srep[3]}</lilaPreg><malonRep>{srep[4]}</malonRep><malonPreg>{srep[5]}</malonPreg><malonChildren>{srep[6]}</malonChildren><mistressRep>{srep[7]}</mistressRep><jamieRep>{srep[8]}</jamieRep><jamieSize>{srep[9]}</jamieSize><jamieChildren>{srep[10]}</jamieChildren><silRep>{srep[11]}</silRep><silPreg>{srep[12]}</silPreg><silRate>{srep[13]}</silRate><silLay>{srep[14]}</silLay><silGrowthTime>{srep[15]}</silGrowthTime><silTied>{srep[16]}</silTied><lilaUB>{srep[17]}</lilaUB><dairyFarmBrand>{srep[18]}</dairyFarmBrand><lilaWetness>{srep[19]}</lilaWetness><jamieButt>{srep[20]}</jamieButt><jamieBreasts>{srep[21]}</jamieBreasts><jamieHair>{srep[22]}</jamieHair></rep><knowledge><foundSoftlik>{sknowledge[0]}</foundSoftlik><foundFirmshaft>{sknowledge[1]}</foundFirmshaft><foundTieden>{sknowledge[2]}</foundTieden><foundSizCalit>{sknowledge[3]}</foundSizCalit><foundOviasis>{sknowledge[4]}</foundOviasis><foundValley>{sknowledge[5]}</foundValley><foundSanctuary>{sknowledge[6]}</foundSanctuary></knowledge><boss><defeatedMinotaur>{sboss[0]}</defeatedMinotaur><defeatedFreakyGirl>{sboss[1]}</defeatedFreakyGirl><defeatedSuccubus>{sboss[2]}</defeatedSuccubus></boss><knowSimpleAlchemy><knowLustDraft>{sknowSimpleAlchemy[0]}</knowLustDraft><knowRejuvPot>{sknowSimpleAlchemy[1]}</knowRejuvPot><knowExpPreg>{sknowSimpleAlchemy[2]}</knowExpPreg><knowBallSwell>{sknowSimpleAlchemy[3]}</knowBallSwell><knowMaleEnhance>{sknowSimpleAlchemy[4]}</knowMaleEnhance></knowSimpleAlchemy><knowAdvancedAlchemy><knowSLustDraft>{sknowAdvancedAlchemy[0]}</knowSLustDraft><knowSRejuvPot>{sknowAdvancedAlchemy[1]}</knowSRejuvPot><knowSExpPreg>{sknowAdvancedAlchemy[2]}</knowSExpPreg><knowSBallSwell>{sknowAdvancedAlchemy[3]}</knowSBallSwell><knowGenSwap>{sknowAdvancedAlchemy[4]}</knowGenSwap><knowMasoPot>{sknowAdvancedAlchemy[5]}</knowMasoPot><knowBabyFree>{sknowAdvancedAlchemy[6]}</knowBabyFree><knowPotPot>{sknowAdvancedAlchemy[7]}</knowPotPot><knowMilkSuppress>{sknowAdvancedAlchemy[8]}</knowMilkSuppress></knowAdvancedAlchemy><knowComplexAlchemy><knowSGenSwap>{sknowComplexAlchemy[0]}</knowSGenSwap><knowSMasoPot>{sknowComplexAlchemy[1]}</knowSMasoPot><knowSBabyFree>{sknowComplexAlchemy[2]}</knowSBabyFree><knowSPotPot>{sknowComplexAlchemy[3]}</knowSPotPot><knowPussJuice>{sknowComplexAlchemy[4]}</knowPussJuice><knowPheromone>{sknowComplexAlchemy[5]}</knowPheromone><knowBazoomba>{sknowComplexAlchemy[6]}</knowBazoomba></knowComplexAlchemy><majorFetish><maleFetish>{smajorFetish[0]}</maleFetish><femaleFetish>{smajorFetish[1]}</femaleFetish><hermFetish>{smajorFetish[2]}</hermFetish><narcissistFetish>{smajorFetish[3]}</narcissistFetish><dependentFetish>{smajorFetish[4]}</dependentFetish></majorFetish><moderateFetish><dominantFetish>{smoderateFetish[0]}</dominantFetish><submissiveFetish>{smoderateFetish[1]}</submissiveFetish><lboobFetish>{smoderateFetish[2]}</lboobFetish><sboobFetish>{smoderateFetish[3]}</sboobFetish><furryFetish>{smoderateFetish[4]}</furryFetish><scalyFetish>{smoderateFetish[5]}</scalyFetish><smoothyFetish>{smoderateFetish[6]}</smoothyFetish></moderateFetish><minorFetish><pregnancyFetish>{sminorFetish[0]}</pregnancyFetish><bestialityFetish>{sminorFetish[1]}</bestialityFetish><milkFetish>{sminorFetish[2]}</milkFetish><sizeFetish>{sminorFetish[3]}</sizeFetish><unbirthingFetish>{sminorFetish[4]}</unbirthingFetish><ovipositionFetish>{sminorFetish[5]}</ovipositionFetish><toyFetish>{sminorFetish[6]}</toyFetish><hyperFetish>{sminorFetish[7]}</hyperFetish></minorFetish><kid><humanChildren>{skid[0]}</humanChildren><equanChildren>{skid[1]}</equanChildren><lupanChildren>{skid[2]}</lupanChildren><felinChildren>{skid[3]}</felinChildren><cowChildren>{skid[4]}</cowChildren><lizanChildren>{skid[5]}</lizanChildren><lizanEggs>{skid[6]}</lizanEggs><bunnionChildren>{skid[7]}</bunnionChildren><wolfPupChildren>{skid[8]}</wolfPupChildren><miceChildren>{skid[9]}</miceChildren><birdEggs>{skid[10]}</birdEggs><birdChildren>{skid[11]}</birdChildren><pigChildren>{skid[12]}</pigChildren><calfChildren>{skid[13]}</calfChildren><bugEggs>{skid[14]}</bugEggs><bugChildren>{skid[15]}</bugChildren><skunkChildren>{skid[16]}</skunkChildren><minotaurChildren>{skid[17]}</minotaurChildren><freakyGirlChildren>{skid[18]}</freakyGirlChildren></kid><trav></trav><bag>'
             text += f"{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagArray)])}</bag><bagStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_bagStackArray)])}</bagStack><stash>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashArray)])}</stash><stashStack>{''.join([f'<slot{i}>{j}</slot{i}>' for i,j in enumerate(_stashStackArray)])}</stashStack><preg>{''.join([f'<i{i}>{j}</i{i}>' for i,j in enumerate(_pregArray)])}</preg></data>"
             data = xmletree.fromstring(text.get())
         xml = xmletree.ElementTree(element=data)
-        xmletree.indent(xml,space="\t")
-        xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
+        xmletree.indent(xml, space='\t')
+        xml.write(outputfile, encoding='UTF-8', xml_declaration=True)
 
     def loadTOML(filename):
         with open(filename, 'rb') as f:
             return TOML.readFile(f)
 
     def _loadSharedObject(so):
-        strack = so["track"]
-        sstats = so["stats"]
-        slevel = so["level"]
-        smod = so["mod"]
-        squality = so["quality"]
-        scock = so["cock"]
-        sgirl = so["girl"]
-        sgear = so["gear"]
-        sstatus = so["status"]
-        saffinity = so["affinity"]
-        srep = so["rep"]
-        sknowledge = so["knowledge"]
-        sboss = so.get("boss",[False,False,False])
-        sknowSimpleAlchemy = so.get("knowSimpleAlchemy",[False,False,False,False,False])
-        sknowAdvancedAlchemy = so.get("knowAdvancedAlchemy",[False,False,False,False,False,False,False,False,False])
-        sknowComplexAlchemy = so.get("knowComplexAlchemy",[False,False,False,False,False,False,False])
-        smajorFetish = so["majorFetish"]
-        smoderateFetish = so["moderateFetish"]
-        sminorFetish = so["minorFetish"]
-        skid = so["kid"]
-        ver = so.get("versionNumberPymin","1")
+        strack = so['track']
+        sstats = so['stats']
+        slevel = so['level']
+        smod = so['mod']
+        squality = so['quality']
+        scock = so['cock']
+        sgirl = so['girl']
+        sgear = so['gear']
+        sstatus = so['status']
+        saffinity = so['affinity']
+        srep = so['rep']
+        sknowledge = so['knowledge']
+        sboss = so.get('boss',[False,False,False])
+        sknowSimpleAlchemy = so.get('knowSimpleAlchemy',[False,False,False,False,False])
+        sknowAdvancedAlchemy = so.get('knowAdvancedAlchemy',[False,False,False,False,False,False,False,False,False])
+        sknowComplexAlchemy = so.get('knowComplexAlchemy',[False,False,False,False,False,False,False])
+        smajorFetish = so['majorFetish']
+        smoderateFetish = so['moderateFetish']
+        sminorFetish = so['minorFetish']
+        skid = so['kid']
+        ver = so.get('versionNumberPymin','1')
         tempver = int(ver if ver.find('.') == -1 else ver.split('.')[-1])
-        sbag = so.get("bagSave")
-        sbagStack = so.get("bagStackSave")
-        sstash = so.get("stashSave")
-        sstashStack = so.get("stashStackSave")
+        sbag = so.get('bagSave')
+        sbagStack = so.get('bagStackSave')
+        sstash = so.get('stashSave')
+        sstashStack = so.get('stashStackSave')
         if (sbag is None):
             sbag = []
             sbagStack = []
             sstash = []
             sstashStack = []
-            itemLoadFix = so["itemSave"]
-            stashLoadFix = so["stashSave"]
-            stackLoadFix = so["stackSave"]
-            stashStackLoadFix = so["stashStackSave"]
+            itemLoadFix = so['itemSave']
+            stashLoadFix = so['stashSave']
+            stackLoadFix = so['stackSave']
+            stashStackLoadFix = so['stashStackSave']
             for i in range(1,len(itemLoadFix)):
                 if (itemLoadFix[i] > 10):
                     sbag.append(itemLoadFix[i])
@@ -480,7 +485,7 @@ class SaveUtils:
                 l = [0 for i in range(27-len(sstash))]
                 sstash.extend(l)
                 sstashStack.extend(l)
-        return {"track":{"currentState":strack[0],"currentZone":strack[1],"day":strack[2],"hour":strack[3],"currentDayCare":strack[4],"inDungeon":strack[5],"currentDungeon":strack[6],"v7":strack[7],"firstExplore":strack[8] if len(strack) > 8 else False},"version":{"original":so["versionNumber"],"port":ver},"stats":{"strength":sstats[0],"mentality":sstats[1],"libido":sstats[2],"sensitivity":sstats[3],"HP":sstats[4],"lust":sstats[5],"coin":sstats[6],"strMod":sstats[7],"mentMod":sstats[8],"libMod":sstats[9],"senMod":sstats[10],"hunger":sstats[11]},"level":{"SexP":slevel[0],"levelUP":slevel[1],"level":slevel[2],"babyFactLevel":slevel[3],"bodyBuildLevel":slevel[4],"hyperHappyLevel":slevel[5],"alchemistLevel":slevel[6],"fetishMasterLevel":slevel[7],"milkMaidLevel":slevel[8],"shapeshiftyLevel":slevel[9],"shapeshiftyFirst":slevel[10],"shapeshiftySecond":slevel[11]},"mod":{"runMod":smod[0],"rapeMod":smod[1],"cumMod":smod[2],"cockSizeMod":smod[3],"milkMod":smod[4],"carryMod":smod[5],"vagBellyMod":smod[6],"pregChanceMod":smod[7],"extraPregChance":smod[8],"pregTimeMod":smod[9],"enticeMod":smod[10],"milkHPMod":smod[11],"vagSizeMod":smod[12],"vagElastic":smod[13],"changeMod":smod[14],"HPMod":smod[15],"SexPMod":smod[16],"minLust":smod[17],"milkCap":smod[18],"coinMod":smod[19],"hipMod":smod[20],"buttMod":smod[21],"bellyMod":smod[22],"cockMoistMod":smod[23],"vagMoistMod":smod[24],"lockTail":smod[25],"lockFace":smod[26],"lockSkin":smod[27],"lockBreasts":smod[28],"lockEars":smod[29],"lockLegs":smod[30],"lockNipples":smod[31],"lockCock":smod[32]},"quality":{"gender":squality[0],"race":squality[1],"body":squality[2],"dominant":squality[3],"hips":squality[4],"butt":squality[5],"tallness":squality[6],"skinType":squality[7],"tail":squality[8],"ears":squality[9],"hair":squality[10],"hairColor":squality[11],"hairLength":squality[12],"legType":squality[13],"wings":squality[14],"faceType":squality[15],"skinColor":squality[16]},"cock":{"cockTotal":scock[0],"humanCocks":scock[1],"horseCocks":scock[2],"wolfCocks":scock[3],"catCocks":scock[4],"rabbitCocks":scock[5],"lizardCocks":scock[6],"cockSize":scock[7],"cockMoist":scock[8],"balls":scock[9],"ballSize":scock[10],"showBalls":scock[11],"knot":scock[12],"bugCocks":scock[13],"neuterizerHideBalls":scock[14] if len(scock) == 15 else False},"girl":{"breastSize":sgirl[0],"boobTotal":sgirl[1],"nippleSize":sgirl[2],"udders":sgirl[3],"udderSize":sgirl[4],"teatSize":sgirl[5],"clitSize":sgirl[6],"vagTotal":sgirl[7],"vagSize":sgirl[8],"vagMoist":sgirl[9],"vulvaSize":sgirl[10],"nipType":sgirl[11]},"gear":{"attireTop":sgear[0],"attireBot":sgear[1],"weapon":sgear[2]},"status":{"pregRate":sstatus[0],"pregnancyTime":sstatus[1],"pregStatus":sstatus[2],"eggLaying":sstatus[3],"eggMaxTime":sstatus[4],"eggTime":sstatus[4] if sstatus[5] > sstatus[4] and tempver < 10 else sstatus[5],"eggRate":sstatus[6],"exhaustion":sstatus[7],"exhaustionPenalty":sstatus[8],"milkEngorgement":sstatus[9],"milkEngorgementLevel":sstatus[10],"udderEngorgement":sstatus[11],"udderEngorgementLevel":sstatus[12],"heat":sstatus[13],"heatTime":sstatus[14],"heatMaxTime":sstatus[15],"lactation":sstatus[16],"udderLactation":sstatus[17],"nipplePlay":sstatus[18],"udderPlay":sstatus[19],"blueBalls":sstatus[20],"teatPump":sstatus[21],"nipPump":sstatus[22],"cockPump":sstatus[23],"clitPump":sstatus[24],"vulvaPump":sstatus[25],"masoPot":sstatus[26],"sMasoPot":sstatus[27],"babyFree":sstatus[28],"charmTime":sstatus[29],"pheromone":sstatus[30],"eggceleratorTime":sstatus[31],"eggceleratorDose":sstatus[32],"bodyOil":sstatus[33],"lustPenalty":sstatus[34],"fertileGel":sstatus[35],"snuggleBall":sstatus[36],"eggType":sstatus[37],"milkSuppressant":sstatus[38],"milkSuppressantLact":sstatus[39],"milkSuppressantUdder":sstatus[40],"suppHarness":sstatus[41],"fertilityStatueCurse":sstatus[42],"plumpQuats":sstatus[43],"lilaWetStatus":sstatus[44],"cockSnakePreg":sstatus[45],"milkCPoisonNip":sstatus[46],"milkCPoisonUdd":sstatus[47],"cockSnakeVenom":sstatus[48]},"affinity":{"humanAffinity":saffinity[0],"horseAffinity":saffinity[1],"wolfAffinity":saffinity[2],"catAffinity":saffinity[3],"cowAffinity":saffinity[4],"lizardAffinity":saffinity[5],"rabbitAffinity":saffinity[6],"fourBoobAffinity":saffinity[7],"mouseAffinity":saffinity[8],"birdAffinity":saffinity[9],"pigAffinity":saffinity[10],"twoBoobAffinity":saffinity[11],"sixBoobAffinity":saffinity[12],"eightBoobAffinity":saffinity[13],"tenBoobAffinity":saffinity[14],"cowTaurAffinity":saffinity[15],"humanTaurAffinity":saffinity[16],"skunkAffinity":saffinity[17],"bugAffinity":saffinity[18]},"rep":{"lilaRep":srep[0],"lilaVulva":srep[1],"lilaMilk":srep[2],"lilaPreg":srep[3],"malonRep":srep[4],"malonPreg":srep[5],"malonChildren":srep[6],"mistressRep":srep[7],"jamieRep":srep[8],"jamieSize":srep[9],"jamieChildren":srep[10],"silRep":srep[11],"silPreg":srep[12],"silRate":srep[13],"silLay":srep[14],"silGrowthTime":srep[15],"silTied":srep[16],"lilaUB":srep[17],"dairyFarmBrand":srep[18],"lilaWetness":srep[19],"jamieButt":srep[20],"jamieBreasts":srep[21],"jamieHair":srep[22]},"knowledge":{"foundSoftlik":sknowledge[0],"foundFirmshaft":sknowledge[1],"foundTieden":sknowledge[2],"foundSizCalit":sknowledge[3],"foundOviasis":sknowledge[4],"foundValley":sknowledge[5],"foundSanctuary":sknowledge[6],"usedSecretStairs":sknowledge[7] if len(sknowledge) == 8 else False},"boss":{"defeatedMinotaur":sboss[0],"defeatedFreakyGirl":sboss[1],"defeatedSuccubus":sboss[2]},"knowSimpleAlchemy":{"knowLustDraft":sknowSimpleAlchemy[0],"knowRejuvPot":sknowSimpleAlchemy[1],"knowExpPreg":sknowSimpleAlchemy[2],"knowBallSwell":sknowSimpleAlchemy[3],"knowMaleEnhance":sknowSimpleAlchemy[4]},"knowAdvancedAlchemy":{"knowSLustDraft":sknowAdvancedAlchemy[0],"knowSRejuvPot":sknowAdvancedAlchemy[1],"knowSExpPreg":sknowAdvancedAlchemy[2],"knowSBallSwell":sknowAdvancedAlchemy[3],"knowGenSwap":sknowAdvancedAlchemy[4],"knowMasoPot":sknowAdvancedAlchemy[5],"knowBabyFree":sknowAdvancedAlchemy[6],"knowPotPot":sknowAdvancedAlchemy[7],"knowMilkSuppress":sknowAdvancedAlchemy[8]},"knowComplexAlchemy":{"knowSGenSwap":sknowComplexAlchemy[0],"knowSMasoPot":sknowComplexAlchemy[1],"knowSBabyFree":sknowComplexAlchemy[2],"knowSPotPot":sknowComplexAlchemy[3],"knowPussJuice":sknowComplexAlchemy[4],"knowPheromone":sknowComplexAlchemy[5],"knowBazoomba":sknowComplexAlchemy[6]},"majorFetish":{"maleFetish":smajorFetish[0],"femaleFetish":smajorFetish[1],"hermFetish":smajorFetish[2],"narcissistFetish":smajorFetish[3],"dependentFetish":smajorFetish[4]},"moderateFetish":{"dominantFetish":smoderateFetish[0],"submissiveFetish":smoderateFetish[1],"lboobFetish":smoderateFetish[2],"sboobFetish":smoderateFetish[3],"furryFetish":smoderateFetish[4],"scalyFetish":smoderateFetish[5],"smoothyFetish":smoderateFetish[6]},"minorFetish":{"pregnancyFetish":sminorFetish[0],"bestialityFetish":sminorFetish[1],"milkFetish":sminorFetish[2],"sizeFetish":sminorFetish[3],"unbirthingFetish":sminorFetish[4],"ovipositionFetish":sminorFetish[5],"toyFetish":sminorFetish[6],"hyperFetish":sminorFetish[7]},"kid":{"humanChildren":skid[0],"equanChildren":skid[1],"lupanChildren":skid[2],"felinChildren":skid[3],"cowChildren":skid[4],"lizanChildren":skid[5],"lizanEggs":skid[6],"bunnionChildren":skid[7],"wolfPupChildren":skid[8],"miceChildren":skid[9],"birdEggs":skid[10],"birdChildren":skid[11],"pigChildren":skid[12],"calfChildren":skid[13],"bugEggs":skid[14],"bugChildren":skid[15],"skunkChildren":skid[16],"minotaurChildren":skid[17],"freakyGirlChildren":skid[18]},"trav":so["trav"],"bag":sbag,"bagStack":sbagStack,"stash":sstash,"stashStack":sstashStack,"preg":so["pregSave"]}
+        return {'track':{'currentState':strack[0],'currentZone':strack[1],'day':strack[2],'hour':strack[3],'currentDayCare':strack[4],'inDungeon':strack[5],'currentDungeon':strack[6],'v7':strack[7],'firstExplore':strack[8] if len(strack) > 8 else False},'version':{'original':so['versionNumber'],'port':ver},'stats':{'strength':sstats[0],'mentality':sstats[1],'libido':sstats[2],'sensitivity':sstats[3],'HP':sstats[4],'lust':sstats[5],'coin':sstats[6],'strMod':sstats[7],'mentMod':sstats[8],'libMod':sstats[9],'senMod':sstats[10],'hunger':sstats[11]},'level':{'SexP':slevel[0],'levelUP':slevel[1],'level':slevel[2],'babyFactLevel':slevel[3],'bodyBuildLevel':slevel[4],'hyperHappyLevel':slevel[5],'alchemistLevel':slevel[6],'fetishMasterLevel':slevel[7],'milkMaidLevel':slevel[8],'shapeshiftyLevel':slevel[9],'shapeshiftyFirst':slevel[10],'shapeshiftySecond':slevel[11]},'mod':{'runMod':smod[0],'rapeMod':smod[1],'cumMod':smod[2],'cockSizeMod':smod[3],'milkMod':smod[4],'carryMod':smod[5],'vagBellyMod':smod[6],'pregChanceMod':smod[7],'extraPregChance':smod[8],'pregTimeMod':smod[9],'enticeMod':smod[10],'milkHPMod':smod[11],'vagSizeMod':smod[12],'vagElastic':smod[13],'changeMod':smod[14],'HPMod':smod[15],'SexPMod':smod[16],'minLust':smod[17],'milkCap':smod[18],'coinMod':smod[19],'hipMod':smod[20],'buttMod':smod[21],'bellyMod':smod[22],'cockMoistMod':smod[23],'vagMoistMod':smod[24],'lockTail':smod[25],'lockFace':smod[26],'lockSkin':smod[27],'lockBreasts':smod[28],'lockEars':smod[29],'lockLegs':smod[30],'lockNipples':smod[31],'lockCock':smod[32]},'quality':{'gender':squality[0],'race':squality[1],'body':squality[2],'dominant':squality[3],'hips':squality[4],'butt':squality[5],'tallness':squality[6],'skinType':squality[7],'tail':squality[8],'ears':squality[9],'hair':squality[10],'hairColor':squality[11],'hairLength':squality[12],'legType':squality[13],'wings':squality[14],'faceType':squality[15],'skinColor':squality[16]},'cock':{'cockTotal':scock[0],'humanCocks':scock[1],'horseCocks':scock[2],'wolfCocks':scock[3],'catCocks':scock[4],'rabbitCocks':scock[5],'lizardCocks':scock[6],'cockSize':scock[7],'cockMoist':scock[8],'balls':scock[9],'ballSize':scock[10],'showBalls':scock[11],'knot':scock[12],'bugCocks':scock[13],'neuterizerHideBalls':scock[14] if len(scock) == 15 else False},'girl':{'breastSize':sgirl[0],'boobTotal':sgirl[1],'nippleSize':sgirl[2],'udders':sgirl[3],'udderSize':sgirl[4],'teatSize':sgirl[5],'clitSize':sgirl[6],'vagTotal':sgirl[7],'vagSize':sgirl[8],'vagMoist':sgirl[9],'vulvaSize':sgirl[10],'nipType':sgirl[11]},'gear':{'attireTop':sgear[0],'attireBot':sgear[1],'weapon':sgear[2]},'status':{'pregRate':sstatus[0],'pregnancyTime':sstatus[1],'pregStatus':sstatus[2],'eggLaying':sstatus[3],'eggMaxTime':sstatus[4],'eggTime':sstatus[4] if sstatus[5] > sstatus[4] and tempver < 10 else sstatus[5],'eggRate':sstatus[6],'exhaustion':sstatus[7],'exhaustionPenalty':sstatus[8],'milkEngorgement':sstatus[9],'milkEngorgementLevel':sstatus[10],'udderEngorgement':sstatus[11],'udderEngorgementLevel':sstatus[12],'heat':sstatus[13],'heatTime':sstatus[14],'heatMaxTime':sstatus[15],'lactation':sstatus[16],'udderLactation':sstatus[17],'nipplePlay':sstatus[18],'udderPlay':sstatus[19],'blueBalls':sstatus[20],'teatPump':sstatus[21],'nipPump':sstatus[22],'cockPump':sstatus[23],'clitPump':sstatus[24],'vulvaPump':sstatus[25],'masoPot':sstatus[26],'sMasoPot':sstatus[27],'babyFree':sstatus[28],'charmTime':sstatus[29],'pheromone':sstatus[30],'eggceleratorTime':sstatus[31],'eggceleratorDose':sstatus[32],'bodyOil':sstatus[33],'lustPenalty':sstatus[34],'fertileGel':sstatus[35],'snuggleBall':sstatus[36],'eggType':sstatus[37],'milkSuppressant':sstatus[38],'milkSuppressantLact':sstatus[39],'milkSuppressantUdder':sstatus[40],'suppHarness':sstatus[41],'fertilityStatueCurse':sstatus[42],'plumpQuats':sstatus[43],'lilaWetStatus':sstatus[44],'cockSnakePreg':sstatus[45],'milkCPoisonNip':sstatus[46],'milkCPoisonUdd':sstatus[47],'cockSnakeVenom':sstatus[48]},'affinity':{'humanAffinity':saffinity[0],'horseAffinity':saffinity[1],'wolfAffinity':saffinity[2],'catAffinity':saffinity[3],'cowAffinity':saffinity[4],'lizardAffinity':saffinity[5],'rabbitAffinity':saffinity[6],'fourBoobAffinity':saffinity[7],'mouseAffinity':saffinity[8],'birdAffinity':saffinity[9],'pigAffinity':saffinity[10],'twoBoobAffinity':saffinity[11],'sixBoobAffinity':saffinity[12],'eightBoobAffinity':saffinity[13],'tenBoobAffinity':saffinity[14],'cowTaurAffinity':saffinity[15],'humanTaurAffinity':saffinity[16],'skunkAffinity':saffinity[17],'bugAffinity':saffinity[18]},'rep':{'lilaRep':srep[0],'lilaVulva':srep[1],'lilaMilk':srep[2],'lilaPreg':srep[3],'malonRep':srep[4],'malonPreg':srep[5],'malonChildren':srep[6],'mistressRep':srep[7],'jamieRep':srep[8],'jamieSize':srep[9],'jamieChildren':srep[10],'silRep':srep[11],'silPreg':srep[12],'silRate':srep[13],'silLay':srep[14],'silGrowthTime':srep[15],'silTied':srep[16],'lilaUB':srep[17],'dairyFarmBrand':srep[18],'lilaWetness':srep[19],'jamieButt':srep[20],'jamieBreasts':srep[21],'jamieHair':srep[22]},'knowledge':{'foundSoftlik':sknowledge[0],'foundFirmshaft':sknowledge[1],'foundTieden':sknowledge[2],'foundSizCalit':sknowledge[3],'foundOviasis':sknowledge[4],'foundValley':sknowledge[5],'foundSanctuary':sknowledge[6],'usedSecretStairs':sknowledge[7] if len(sknowledge) == 8 else False},'boss':{'defeatedMinotaur':sboss[0],'defeatedFreakyGirl':sboss[1],'defeatedSuccubus':sboss[2]},'knowSimpleAlchemy':{'knowLustDraft':sknowSimpleAlchemy[0],'knowRejuvPot':sknowSimpleAlchemy[1],'knowExpPreg':sknowSimpleAlchemy[2],'knowBallSwell':sknowSimpleAlchemy[3],'knowMaleEnhance':sknowSimpleAlchemy[4]},'knowAdvancedAlchemy':{'knowSLustDraft':sknowAdvancedAlchemy[0],'knowSRejuvPot':sknowAdvancedAlchemy[1],'knowSExpPreg':sknowAdvancedAlchemy[2],'knowSBallSwell':sknowAdvancedAlchemy[3],'knowGenSwap':sknowAdvancedAlchemy[4],'knowMasoPot':sknowAdvancedAlchemy[5],'knowBabyFree':sknowAdvancedAlchemy[6],'knowPotPot':sknowAdvancedAlchemy[7],'knowMilkSuppress':sknowAdvancedAlchemy[8]},'knowComplexAlchemy':{'knowSGenSwap':sknowComplexAlchemy[0],'knowSMasoPot':sknowComplexAlchemy[1],'knowSBabyFree':sknowComplexAlchemy[2],'knowSPotPot':sknowComplexAlchemy[3],'knowPussJuice':sknowComplexAlchemy[4],'knowPheromone':sknowComplexAlchemy[5],'knowBazoomba':sknowComplexAlchemy[6]},'majorFetish':{'maleFetish':smajorFetish[0],'femaleFetish':smajorFetish[1],'hermFetish':smajorFetish[2],'narcissistFetish':smajorFetish[3],'dependentFetish':smajorFetish[4]},'moderateFetish':{'dominantFetish':smoderateFetish[0],'submissiveFetish':smoderateFetish[1],'lboobFetish':smoderateFetish[2],'sboobFetish':smoderateFetish[3],'furryFetish':smoderateFetish[4],'scalyFetish':smoderateFetish[5],'smoothyFetish':smoderateFetish[6]},'minorFetish':{'pregnancyFetish':sminorFetish[0],'bestialityFetish':sminorFetish[1],'milkFetish':sminorFetish[2],'sizeFetish':sminorFetish[3],'unbirthingFetish':sminorFetish[4],'ovipositionFetish':sminorFetish[5],'toyFetish':sminorFetish[6],'hyperFetish':sminorFetish[7]},'kid':{'humanChildren':skid[0],'equanChildren':skid[1],'lupanChildren':skid[2],'felinChildren':skid[3],'cowChildren':skid[4],'lizanChildren':skid[5],'lizanEggs':skid[6],'bunnionChildren':skid[7],'wolfPupChildren':skid[8],'miceChildren':skid[9],'birdEggs':skid[10],'birdChildren':skid[11],'pigChildren':skid[12],'calfChildren':skid[13],'bugEggs':skid[14],'bugChildren':skid[15],'skunkChildren':skid[16],'minotaurChildren':skid[17],'freakyGirlChildren':skid[18]},'trav':so['trav'],'bag':sbag,'bagStack':sbagStack,'stash':sstash,'stashStack':sstashStack,'preg':so['pregSave']}
 
     def loadNIM(filename):
         with open(filename, 'rb') as file:
@@ -643,35 +648,35 @@ class PyminWiki(PyminWindow):
     # TODO: Add indication for submenus
     # TODO: Fix fontSize
     MENUS = {
-        "":("Basics","Items","Clothes","Enemies","Races","Locations","Shops","Named Characters","Close"),
-        "Basics":("Welcome Screen","Wiki Key","Stats","Actions","Tips","Hotkeys","Changes","Menu Bar","Back"),
-        "Basics.MenuBar":("File","View","Save Utils","Debug Utils","Help","Back"),
-        "Basics.MenuBar.File":("Options","Quit","Back"),
-        "Items":("All Items","Debug Items","Equipable Items","Passive Items","Consumables","Silandrias' Magic Items","Special Items","Other Items","Back"),
-        "Items.All":("Test","Anc Claws","Imb Shoes","Dry Sand","Milker","Cat's Meow","Penis Pump","Blood Gge","Edu Egg","Reduction","Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Poultice","Dagger","Hammer","Saber","Whip","Neuter","TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","Oas Water","Tail Spike","TS Sanct","Lila's Gift","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Trinket","Cock Carv","Blo Berry","Grain","Puss Fruit","DairE Pill","Red Mush","Wet Cloth","Lon Milk","Lon Pendant","Pink Ink","Egg Jelly","Bul Berry","Fresh Egg","Blondie","Puss Juice","Kinky Carr","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Leath Strap","Eggcelerator","Desi Sand","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Dewy Gift","Squ Cheese","Shiny Rock","Auburn Dye","Brown Dye","Grey Dye","White Dye","Snuggle Ball","Facial Mud","Fertile Gel","Supp Harness","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Milky Pend","Bug Egg","Lantern","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Lust Draft","Rejuv Pot","Bad Exper","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Bad Exper","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Black Dye","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","Red Dye","S Baby Free","S Pot Pot","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
-        "Items.Debug":("Debug Stick","Item Not Found","Teapot","Back"),
-        "Items.Equipable":("Weapons","Other Equipables","Back"),
-        "Items.Equipable.Weapons":("Dagger","Hammer","Saber","Whip","Tail Spike","Back"),
-        "Items.Equipable.Other":("Snuggle Ball","Supp Harness","Back"),
-        "Items.Passive":("Anc Claws","Imb Shoes","Lila's Gift","Lon Pendant","Dewy Gift","Milky Pend","Back"),
-        "Items.Consumables":("Affinity Items","Alchemy Items","Dyes","Teleport Scrolls","Eggs","Other Consumables","Back"),
-        "Items.Consumables.Affinity":("Skin Balm","Bol Juice","Taint Leaf","Sweet Sap","Oas Water","DairE Pill","Lon Milk","Kinky Carr","Squ Cheese","Shiny Rock","Facial Mud","Frag Flower","Nectar Candy","Too Human","Tainted Pot","Back"),
-        "Items.Consumables.Alchemy":("Blondie","Puss Juice","Lust Draft","Rejuv Pot","Exp Preg","Ball Sweller","S Lust Draft","S Rejuv Pot","S Exp Preg","S Ball Sweller","Gen Swap","Maso Pot","Baby Free","Pot Pot","S Gen Swap","S Maso Pot","S Baby Free","S Pot Pot","Pheromone","Reduc Reduc","Male Enhance","Milk Suppress","Bazoomba!","Back"),
-        "Items.Consumables.Dyes":("Pink Ink","Auburn Dye","Brown Dye","Grey Dye","White Dye","Black Dye","Red Dye","Back"),
-        "Items.Consumables.TScrolls":("TS Soft","TS Firm","TS Tied","TS Siz","TS Ovi","TS Sanct","Back"),
-        "Items.Consumables.Eggs":("Fresh Egg","Bug Egg","Good Egg","Bad Egg","Strange Egg","Charmed Egg","Divine Egg","Queen Egg","Soldier Egg","Drone Egg","Worker Egg","Back"),
-        "Items.Consumables.Other":("Dry Sand","Cat's Meow","Reduction","Poultice","Neuter","Milk C Pois","Co-Snak Ven","Wolf Fur","Sm Pouch (ItemID 204)","Sm Pouch (ItemID 205)","Cock Carv","Blo Berry","Grain","Puss Fruit","Red Mush","Wet Cloth","Egg Jelly","Bul Berry","Eq Snack","Lila's Milk","Body Wash","Felin Tea","Oral Wash","Body Oil","Eggcelerator","Desi Sand","Fertile Gel","Breeder Pot","Treant's Tear","Foomp Bomb","Plump Quat","Sweet&Sour","Succ Draft","Milk Bottle","Milk Jug","Milk Barrel","Bad Exper","S Bad Exper","Cum Vial","Cum Bottle","Cum Jug","Cum Barrel","Back"),
-        "Items.Silandrias":("Leath Strap","Flying Carp","A-Grav Rock","Rein Charm","Fell Rod","Recept Bell","Back"),
-        "Items.Special":("Milker","Penis Pump","Blood Gge","Edu Egg","Trinket","Lantern","Back"),
-        "Items.Other":("Test","Back"),
-        "Clothes":("Tattered Shreds","Invisible Underwear","Shirt","Pants","Bikini Top","Bikini Bottom","Elegant Dress","Latex Suit","Skirt","Shorts","Blouse","Diaper","Poofy Diaper","Sundress","Skimpy Dress","Short Skirt","Short Shorts","Loin Cloth","Bathing Suit","Muscle Shirt","Corset","Silk Panties","Slingkini","Thong","Bloomers","Tights","Gothic Dress","Tube Top","Nipple Pasties","Camisole","Training Suit","Bouncy Bra","Back"),
-        "Enemies":("Test Enemy","Cock-snake","Desiccating Dust Devil","Lone Male Wolf","Gay Wolf","Felin in Heat","Drunken Equan","Octopus Girl","Little Big Bunny-man","Little Big Bunny-girl","Fierce Naga","Minotaur","Freaky Little Girl","Succubus","Back"),
-        "Races":("Human","Equan","Lupan","Felin","Cow","Lizan","Bunny","Mouse","Bird","Pig","Skunk","Bug","Back"),
-        "Locations":("Towns","Other Locations","Back"),
-        "Locations.Towns":("Softlik","Firmshaft","Tieden","Siz'Calit","Oviasis","Sanctuary","Back"),
-        "Locations.Other":("Forest","Jungle","Plains","Savanna","Desert","Beach","Lake","Dairy Farm","Old Cave","Old Cave Descent","Den","Valley","Knothole","Back"),
-        "Shops":("General Shop","Dye Shop","Apothecary","Salon","Tailor","Back"),
-        "NPCs":("Fidoris","Jamie","Lila","Malon","Silandrias","Back")
+        '': ('Basics', 'Items', 'Clothes', 'Enemies', 'Races', 'Locations', 'Shops', 'Named Characters', 'Close'),
+        'Basics': ('Welcome Screen', 'Wiki Key', 'Stats', 'Actions', 'Tips', 'Hotkeys', 'Changes', 'Menu Bar', 'Back'),
+        'Basics.MenuBar': ('File', 'View', 'Save Utils', 'Debug Utils', 'Help', 'Back'),
+        'Basics.MenuBar.File': ('Options', 'Quit', 'Back'),
+        'Items': ('All Items', 'Debug Items', 'Equipable Items', 'Passive Items', 'Consumables', 'Silandrias\' Magic Items', 'Special Items', 'Other Items', 'Back'),
+        'Items.All': ('Test', 'Anc Claws', 'Imb Shoes', 'Dry Sand', 'Milker', 'Cat\'s Meow', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Reduction', 'Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Poultice', 'Dagger', 'Hammer', 'Saber', 'Whip', 'Neuter', 'TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'Oas Water', 'Tail Spike', 'TS Sanct', 'Lila\'s Gift', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Trinket', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'DairE Pill', 'Red Mush', 'Wet Cloth', 'Lon Milk', 'Lon Pendant', 'Pink Ink', 'Egg Jelly', 'Bul Berry', 'Fresh Egg', 'Blondie', 'Puss Juice', 'Kinky Carr', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Leath Strap', 'Eggcelerator', 'Desi Sand', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Dewy Gift', 'Squ Cheese', 'Shiny Rock', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Snuggle Ball', 'Facial Mud', 'Fertile Gel', 'Supp Harness', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Milky Pend', 'Bug Egg', 'Lantern', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Lust Draft', 'Rejuv Pot', 'Bad Exper', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Bad Exper', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Black Dye', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'Red Dye', 'S Baby Free', 'S Pot Pot', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg', 'Back'),
+        'Items.Debug': ('Debug Stick', 'Item Not Found', 'Teapot', 'Back'),
+        'Items.Equipable': ('Weapons', 'Other Equipables', 'Back'),
+        'Items.Equipable.Weapons': ('Dagger', 'Hammer', 'Saber', 'Whip', 'Tail Spike', 'Back'),
+        'Items.Equipable.Other': ('Snuggle Ball', 'Supp Harness', 'Back'),
+        'Items.Passive': ('Anc Claws', 'Imb Shoes', 'Lila\'s Gift', 'Lon Pendant', 'Dewy Gift', 'Milky Pend', 'Back'),
+        'Items.Consumables': ('Affinity Items', 'Alchemy Items', 'Dyes', 'Teleport Scrolls', 'Eggs', 'Other Consumables', 'Back'),
+        'Items.Consumables.Affinity': ('Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Oas Water', 'DairE Pill', 'Lon Milk', 'Kinky Carr', 'Squ Cheese', 'Shiny Rock', 'Facial Mud', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Back'),
+        'Items.Consumables.Alchemy': ('Blondie', 'Puss Juice', 'Lust Draft', 'Rejuv Pot', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'S Baby Free', 'S Pot Pot', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Back'),
+        'Items.Consumables.Dyes': ('Pink Ink', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Black Dye', 'Red Dye', 'Back'),
+        'Items.Consumables.TScrolls': ('TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'TS Sanct', 'Back'),
+        'Items.Consumables.Eggs': ('Fresh Egg', 'Bug Egg', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg', 'Back'),
+        'Items.Consumables.Other': ('Dry Sand', 'Cat\'s Meow', 'Reduction', 'Poultice', 'Neuter', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'Red Mush', 'Wet Cloth', 'Egg Jelly', 'Bul Berry', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Eggcelerator', 'Desi Sand', 'Fertile Gel', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Bad Exper', 'S Bad Exper', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Back'),
+        'Items.Silandrias': ('Leath Strap', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Back'),
+        'Items.Special': ('Milker', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Trinket', 'Lantern', 'Back'),
+        'Items.Other': ('Test', 'Back'),  # TODO: Move 'Test' to 'Items.Debug'
+        'Clothes': ('Tattered Shreds', 'Invisible Underwear', 'Shirt', 'Pants', 'Bikini Top', 'Bikini Bottom', 'Elegant Dress', 'Latex Suit', 'Skirt', 'Shorts', 'Blouse', 'Diaper', 'Poofy Diaper', 'Sundress', 'Skimpy Dress', 'Short Skirt', 'Short Shorts', 'Loin Cloth', 'Bathing Suit', 'Muscle Shirt', 'Corset', 'Silk Panties', 'Slingkini', 'Thong', 'Bloomers', 'Tights', 'Gothic Dress', 'Tube Top', 'Nipple Pasties', 'Camisole', 'Training Suit', 'Bouncy Bra', 'Back'),
+        'Enemies': ('Test Enemy', 'Cock-snake', 'Desiccating Dust Devil', 'Lone Male Wolf', 'Gay Wolf', 'Felin in Heat', 'Drunken Equan', 'Octopus Girl', 'Little Big Bunny-man', 'Little Big Bunny-girl', 'Fierce Naga', 'Minotaur', 'Freaky Little Girl', 'Succubus', 'Back'),
+        'Races': ('Human', 'Equan', 'Lupan', 'Felin', 'Cow', 'Lizan', 'Bunny', 'Mouse', 'Bird', 'Pig', 'Skunk', 'Bug', 'Back'),
+        'Locations': ('Towns', 'Other Locations', 'Back'),
+        'Locations.Towns': ('Softlik', 'Firmshaft', 'Tieden', 'Siz\'Calit', 'Oviasis', 'Sanctuary', 'Back'),
+        'Locations.Other': ('Forest', 'Jungle', 'Plains', 'Savanna', 'Desert', 'Beach', 'Lake', 'Dairy Farm', 'Old Cave', 'Old Cave Descent', 'Den', 'Valley', 'Knothole', 'Back'),
+        'Shops': ('General Shop', 'Dye Shop', 'Apothecary', 'Salon', 'Tailor', 'Back'),
+        'NPCs': ('Fidoris', 'Jamie', 'Lila', 'Malon', 'Silandrias', 'Back')
     }
     @property
     def backgroundColor(self):
@@ -802,19 +807,19 @@ class PyminWiki(PyminWindow):
         self.displayText()
 
     def hotKeys(self, keyCode):
-        if keyCode in {81,8,103} and self.isOpen: #q,backspace,numPad7
+        if keyCode in {81, 8, 103} and self.isOpen: #q,backspace,numPad7
             self.close()
-        elif keyCode in {87,'midKeyW',104}: #w,<>,numPad8
+        elif keyCode in {87, 'midKeyW', 104}: #w,<>,numPad8
             self.selectionUp()
-        elif keyCode in {69,190,105}: #e,.,numPad9
+        elif keyCode in {69, 190, 105}: #e,.,numPad9
             self.toPreviousPage()
-        elif keyCode in {82,191,109}: #r,/,numPadMinus
+        elif keyCode in {82, 191, 109}: #r,/,numPadMinus
             self.switchFocus()
-        elif keyCode in {65,37,100}: #a,←,numPad4
+        elif keyCode in {65, 37, 100}: #a,←,numPad4
             self.menu = 'Back'
-        elif keyCode in {83,'midKeyS',101}: #s,<>,numPad5
+        elif keyCode in {83, 'midKeyS', 101}: #s,<>,numPad5
             self.selectionDown()
-        elif keyCode in {68,39,102,13}: #d,→,numPad6,enter
+        elif keyCode in {68, 39, 102, 13}: #d,→,numPad6,enter
             self.selectOption()
 
     def selectionUp(self, *e):
@@ -853,821 +858,821 @@ class PyminWiki(PyminWindow):
 
     def selectOption(self, e=None):
         sel = self.window._children['menu'].get(self.window._children['menu'].curselection())
-        if sel == "Back":
-            self.menu = "Back"
-        elif self.menu == "":
-            if sel == "Basics":
-                self.menu = "Basics"
-            elif sel == "Items":
-                self.menu = "Items"
-            elif sel == "Clothes":
-                self.menu = "Clothes"
-            elif sel == "Enemies":
-                self.menu = "Enemies"
-            elif sel == "Races":
-                self.menu = "Races"
-            elif sel == "Locations":
-                self.menu = "Locations"
-            elif sel == "Shops":
-                self.menu = "Shops"
-            elif sel == "Named Characters":
-                self.menu = "NPCs"
-            elif sel == "Close":
+        if sel == 'Back':
+            self.menu = 'Back'
+        elif self.menu == '':
+            if sel == 'Basics':
+                self.menu = 'Basics'
+            elif sel == 'Items':
+                self.menu = 'Items'
+            elif sel == 'Clothes':
+                self.menu = 'Clothes'
+            elif sel == 'Enemies':
+                self.menu = 'Enemies'
+            elif sel == 'Races':
+                self.menu = 'Races'
+            elif sel == 'Locations':
+                self.menu = 'Locations'
+            elif sel == 'Shops':
+                self.menu = 'Shops'
+            elif sel == 'Named Characters':
+                self.menu = 'NPCs'
+            elif sel == 'Close':
                 self.close()
-        elif self.menu == "Basics":
-            if sel == "Welcome Screen":
-                self.toPage("Basic",0)
-            elif sel == "Wiki Key":
-                self.toPage("Basic",5)
-            elif sel == "Stats":
-                self.toPage("Basic",1)
-            elif sel == "Actions":
-                self.toPage("Basic",2)
-            elif sel == "Tips":
-                self.toPage("Basic",3)
-            elif sel == "Hotkeys":
-                self.toPage("Basic",4)
-            elif sel == "Changes":
-                self.toPage("Basic",6)
-            elif sel == "Menu Bar":
-                self.menu = "Basics.MenuBar"
-        elif self.menu == "Basics.MenuBar":
-            if sel == "File":
-                self.menu = "Basics.MenuBar.File"
-            elif sel == "View":
-                self.toPage("MenuBar",3)
-            elif sel == "Save Utils":
-                self.toPage("MenuBar",4)
-            elif sel == "Debug Utils":
-                self.toPage("MenuBar",5)
-            elif sel == "Help":
-                self.toPage("MenuBar",6)
-        elif self.menu == "Basics.MenuBar.File":
-            if sel == "Options":
-                self.toPage("MenuBar",1)
-            elif sel == "Quit":
-                self.toPage("MenuBar",2)
-        elif self.menu == "Items":
-            if sel == "All Items": #menunum 3
-                self.menu = "Items.All"
-            elif sel == "Debug Items":
-                self.menu = "Items.Debug"
-            elif sel == "Equipable Items": #menunum 4
-                self.menu = "Items.Equipable"
-            elif sel == "Passive Items":
-                self.menu = "Items.Passive"
-            elif sel == "Consumables": #menunum 7
-                self.menu = "Items.Consumables"
-            elif sel == "Silandrias' Magic Items": #menunum 14
-                self.menu = "Items.Silandrias"
-            elif sel == "Special Items": #menunum 15
-                self.menu = "Items.Special"
-            elif sel == "Other Items": #menunum 16
-                self.menu = "Items.Other"
-        elif self.menu == "Items.All":
-            if sel == "Test":
-                self.toPage("Item",1)
-            elif sel == "Anc Claws":
-                self.toPage("Item",101)
-            elif sel == "Imb Shoes":
-                self.toPage("Item",102)
-            elif sel == "Dry Sand":
-                self.toPage("Item",103)
-            elif sel == "Milker":
-                self.toPage("Item",104)
-            elif sel == "Cat's Meow":
-                self.toPage("Item",105)
-            elif sel == "Penis Pump":
-                self.toPage("Item",106)
-            elif sel == "Blood Gge":
-                self.toPage("Item",108)
-            elif sel == "Edu Egg":
-                self.toPage("Item",109)
-            elif sel == "Reduction":
-                self.toPage("Item",110)
-            elif sel == "Skin Balm":
-                self.toPage("Item",111)
-            elif sel == "Bol Juice":
-                self.toPage("Item",112)
-            elif sel == "Taint Leaf":
-                self.toPage("Item",113)
-            elif sel == "Sweet Sap":
-                self.toPage("Item",114)
-            elif sel == "Poultice":
-                self.toPage("Item",115)
-            elif sel == "Dagger":
-                self.toPage("Item",116)
-            elif sel == "Hammer":
-                self.toPage("Item",117)
-            elif sel == "Saber":
-                self.toPage("Item",118)
-            elif sel == "Whip":
-                self.toPage("Item",119)
-            elif sel == "Neuter":
-                self.toPage("Item",120)
-            elif sel == "TS Soft":
-                self.toPage("Item",121)
-            elif sel == "TS Firm":
-                self.toPage("Item",122)
-            elif sel == "TS Tied":
-                self.toPage("Item",123)
-            elif sel == "TS Siz":
-                self.toPage("Item",124)
-            elif sel == "TS Ovi":
-                self.toPage("Item",125)
-            elif sel == "Oas Water":
-                self.toPage("Item",126)
-            elif sel == "Tail Spike":
-                self.toPage("Item",127)
-            elif sel == "TS Sanct":
-                self.toPage("Item",128)
-            elif sel == "Lila's Gift":
-                self.toPage("Item",200)
-            elif sel == "Milk C Pois":
-                self.toPage("Item",201)
-            elif sel == "Co-Snak Ven":
-                self.toPage("Item",202)
-            elif sel == "Wolf Fur":
-                self.toPage("Item",203)
-            elif sel == "Sm Pouch (ItemID 204)":
-                self.toPage("Item",204)
-            elif sel == "Sm Pouch (ItemID 205)":
-                self.toPage("Item",205)
-            elif sel == "Trinket":
-                self.toPage("Item",206)
-            elif sel == "Cock Carv":
-                self.toPage("Item",207)
-            elif sel == "Blo Berry":
-                self.toPage("Item",208)
-            elif sel == "Grain":
-                self.toPage("Item",209)
-            elif sel == "Puss Fruit":
-                self.toPage("Item",210)
-            elif sel == "DairE Pill":
-                self.toPage("Item",211)
-            elif sel == "Red Mush":
-                self.toPage("Item",212)
-            elif sel == "Wet Cloth":
-                self.toPage("Item",213)
-            elif sel == "Lon Milk":
-                self.toPage("Item",214)
-            elif sel == "Lon Pendant":
-                self.toPage("Item",215)
-            elif sel == "Pink Ink":
-                self.toPage("Item",216)
-            elif sel == "Egg Jelly":
-                self.toPage("Item",217)
-            elif sel == "Bul Berry":
-                self.toPage("Item",218)
-            elif sel == "Fresh Egg":
-                self.toPage("Item",219)
-            elif sel == "Blondie":
-                self.toPage("Item",220)
-            elif sel == "Puss Juice":
-                self.toPage("Item",221)
-            elif sel == "Kinky Carr":
-                self.toPage("Item",222)
-            elif sel == "Eq Snack":
-                self.toPage("Item",223)
-            elif sel == "Lila's Milk":
-                self.toPage("Item",224)
-            elif sel == "Body Wash":
-                self.toPage("Item",225)
-            elif sel == "Felin Tea":
-                self.toPage("Item",226)
-            elif sel == "Oral Wash":
-                self.toPage("Item",227)
-            elif sel == "Body Oil":
-                self.toPage("Item",228)
-            elif sel == "Leath Strap":
-                self.toPage("Item",229)
-            elif sel == "Eggcelerator":
-                self.toPage("Item",230)
-            elif sel == "Desi Sand":
-                self.toPage("Item",231)
-            elif sel == "Flying Carp":
-                self.toPage("Item",232)
-            elif sel == "A-Grav Rock":
-                self.toPage("Item",233)
-            elif sel == "Rein Charm":
-                self.toPage("Item",234)
-            elif sel == "Fell Rod":
-                self.toPage("Item",235)
-            elif sel == "Recept Bell":
-                self.toPage("Item",236)
-            elif sel == "Dewy Gift":
-                self.toPage("Item",237)
-            elif sel == "Squ Cheese":
-                self.toPage("Item",238)
-            elif sel == "Shiny Rock":
-                self.toPage("Item",239)
-            elif sel == "Auburn Dye":
-                self.toPage("Item",240)
-            elif sel == "Brown Dye":
-                self.toPage("Item",241)
-            elif sel == "Grey Dye":
-                self.toPage("Item",242)
-            elif sel == "White Dye":
-                self.toPage("Item",243)
-            elif sel == "Snuggle Ball":
-                self.toPage("Item",244)
-            elif sel == "Facial Mud":
-                self.toPage("Item",245)
-            elif sel == "Fertile Gel":
-                self.toPage("Item",246)
-            elif sel == "Supp Harness":
-                self.toPage("Item",247)
-            elif sel == "Breeder Pot":
-                self.toPage("Item",248)
-            elif sel == "Treant's Tear":
-                self.toPage("Item",249)
-            elif sel == "Foomp Bomb":
-                self.toPage("Item",250)
-            elif sel == "Plump Quat":
-                self.toPage("Item",251)
-            elif sel == "Milky Pend":
-                self.toPage("Item",252)
-            elif sel == "Bug Egg":
-                self.toPage("Item",253)
-            elif sel == "Lantern":
-                self.toPage("Item",254)
-            elif sel == "Frag Flower":
-                self.toPage("Item",255)
-            elif sel == "Nectar Candy":
-                self.toPage("Item",256)
-            elif sel == "Too Human":
-                self.toPage("Item",257)
-            elif sel == "Tainted Pot":
-                self.toPage("Item",258)
-            elif sel == "Sweet&Sour":
-                self.toPage("Item",259)
-            elif sel == "Succ Draft":
-                self.toPage("Item",260)
-            elif sel == "Milk Bottle":
-                self.toPage("Item",500)
-            elif sel == "Milk Jug":
-                self.toPage("Item",501)
-            elif sel == "Milk Barrel":
-                self.toPage("Item",502)
-            elif sel == "Lust Draft":
-                self.toPage("Item",503)
-            elif sel == "Rejuv Pot":
-                self.toPage("Item",504)
-            elif sel == "Bad Exper":
-                self.toPage("Item",505)
-            elif sel == "Exp Preg":
-                self.toPage("Item",506)
-            elif sel == "Ball Sweller":
-                self.toPage("Item",507)
-            elif sel == "S Lust Draft":
-                self.toPage("Item",508)
-            elif sel == "S Rejuv Pot":
-                self.toPage("Item",509)
-            elif sel == "S Bad Exper":
-                self.toPage("Item",510)
-            elif sel == "S Exp Preg":
-                self.toPage("Item",511)
-            elif sel == "S Ball Sweller":
-                self.toPage("Item",512)
-            elif sel == "Gen Swap":
-                self.toPage("Item",513)
-            elif sel == "Maso Pot":
-                self.toPage("Item",514)
-            elif sel == "Black Dye":
-                self.toPage("Item",515)
-            elif sel == "Baby Free":
-                self.toPage("Item",516)
-            elif sel == "Pot Pot":
-                self.toPage("Item",517)
-            elif sel == "S Gen Swap":
-                self.toPage("Item",518)
-            elif sel == "S Maso Pot":
-                self.toPage("Item",519)
-            elif sel == "Red Dye":
-                self.toPage("Item",520)
-            elif sel == "S Baby Free":
-                self.toPage("Item",521)
-            elif sel == "S Pot Pot":
-                self.toPage("Item",522)
-            elif sel == "Cum Vial":
-                self.toPage("Item",523)
-            elif sel == "Cum Bottle":
-                self.toPage("Item",524)
-            elif sel == "Cum Jug":
-                self.toPage("Item",525)
-            elif sel == "Cum Barrel":
-                self.toPage("Item",526)
-            elif sel == "Good Egg":
-                self.toPage("Item",527)
-            elif sel == "Bad Egg":
-                self.toPage("Item",528)
-            elif sel == "Strange Egg":
-                self.toPage("Item",529)
-            elif sel == "Charmed Egg":
-                self.toPage("Item",530)
-            elif sel == "Divine Egg":
-                self.toPage("Item",531)
-            elif sel == "Pheromone":
-                self.toPage("Item",532)
-            elif sel == "Reduc Reduc":
-                self.toPage("Item",533)
-            elif sel == "Male Enhance":
-                self.toPage("Item",534)
-            elif sel == "Milk Suppress":
-                self.toPage("Item",535)
-            elif sel == "Bazoomba!":
-                self.toPage("Item",536)
-            elif sel == "Queen Egg":
-                self.toPage("Item",537)
-            elif sel == "Soldier Egg":
-                self.toPage("Item",538)
-            elif sel == "Drone Egg":
-                self.toPage("Item",539)
-            elif sel == "Worker Egg":
-                self.toPage("Item",540)
-        elif self.menu == "Items.Debug":
-            if sel == "Debug Stick":
-                self.toPage("Item",2)
-            elif sel == "Item Not Found":
-                self.toPage("Item",404)
-            elif sel == "Teapot":
-                self.toPage("Item",418)
-        elif self.menu == "Items.Equipable":
-            if sel == "Weapons":
-                self.menu = "Items.Equipable.Weapons"
-            elif sel == "Other Equipables":
-                self.menu = "Items.Equipable.Other"
-        elif self.menu == "Items.Equipable.Weapons":
-            if sel == "Dagger":
-                self.toPage("Item",116)
-            elif sel == "Hammer":
-                self.toPage("Item",117)
-            elif sel == "Saber":
-                self.toPage("Item",118)
-            elif sel == "Whip":
-                self.toPage("Item",119)
-            elif sel == "Tail Spike":
-                self.toPage("Item",127)
-        elif self.menu == "Items.Equipable.Other":
-            if sel == "Snuggle Ball":
-                self.toPage("Item",244)
-            elif sel == "Supp Harness":
-                self.toPage("Item",247)
-        elif self.menu == "Items.Passive":
-            if sel == "Anc Claws":
-                self.toPage("Item",101)
-            elif sel == "Imb Shoes":
-                self.toPage("Item",102)
-            elif sel == "Lila's Gift":
-                self.toPage("Item",200)
-            elif sel == "Lon Pendant":
-                self.toPage("Item",215)
-            elif sel == "Dewy Gift":
-                self.toPage("Item",237)
-            elif sel == "Milky Pend":
-                self.toPage("Item",252)
-        elif self.menu == "Items.Consumables":
-            if sel == "Affinity Items":
-                self.menu = "Items.Consumables.Affinity"
-            elif sel == "Alchemy Items":
-                self.menu = "Items.Consumables.Alchemy"
-            elif sel == "Dyes":
-                self.menu = "Items.Consumables.Dyes"
-            elif sel == "Teleport Scrolls":
-                self.menu = "Items.Consumables.TScrolls"
-            elif sel == "Eggs":
-                self.menu = "Items.Consumables.Eggs"
-            elif sel == "Other Consumables":
-                self.menu = "Items.Consumables.Other"
-        elif self.menu == "Items.Consumables.Affinity":
-            if sel == "Skin Balm":
-                self.toPage("Item",111)
-            elif sel == "Bol Juice":
-                self.toPage("Item",112)
-            elif sel == "Taint Leaf":
-                self.toPage("Item",113)
-            elif sel == "Sweet Sap":
-                self.toPage("Item",114)
-            elif sel == "Oas Water":
-                self.toPage("Item",126)
-            elif sel == "DairE Pill":
-                self.toPage("Item",211)
-            elif sel == "Lon Milk":
-                self.toPage("Item",214)
-            elif sel == "Kinky Carr":
-                self.toPage("Item",222)
-            elif sel == "Squ Cheese":
-                self.toPage("Item",238)
-            elif sel == "Shiny Rock":
-                self.toPage("Item",239)
-            elif sel == "Facial Mud":
-                self.toPage("Item",245)
-            elif sel == "Frag Flower":
-                self.toPage("Item",255)
-            elif sel == "Nectar Candy":
-                self.toPage("Item",256)
-            elif sel == "Too Human":
-                self.toPage("Item",257)
-            elif sel == "Tainted Pot":
-                self.toPage("Item",258)
-        elif self.menu == "Items.Consumables.Alchemy":
-            if sel == "Blondie":
-                self.toPage("Item",220)
-            elif sel == "Puss Juice":
-                self.toPage("Item",221)
-            elif sel == "Lust Draft":
-                self.toPage("Item",503)
-            elif sel == "Rejuv Pot":
-                self.toPage("Item",504)
-            elif sel == "Exp Preg":
-                self.toPage("Item",506)
-            elif sel == "Ball Sweller":
-                self.toPage("Item",507)
-            elif sel == "S Lust Draft":
-                self.toPage("Item",508)
-            elif sel == "S Rejuv Pot":
-                self.toPage("Item",509)
-            elif sel == "S Exp Preg":
-                self.toPage("Item",511)
-            elif sel == "S Ball Sweller":
-                self.toPage("Item",512)
-            elif sel == "Gen Swap":
-                self.toPage("Item",513)
-            elif sel == "Maso Pot":
-                self.toPage("Item",514)
-            elif sel == "Baby Free":
-                self.toPage("Item",516)
-            elif sel == "Pot Pot":
-                self.toPage("Item",517)
-            elif sel == "S Gen Swap":
-                self.toPage("Item",518)
-            elif sel == "S Maso Pot":
-                self.toPage("Item",519)
-            elif sel == "S Baby Free":
-                self.toPage("Item",521)
-            elif sel == "S Pot Pot":
-                self.toPage("Item",522)
-            elif sel == "Pheromone":
-                self.toPage("Item",532)
-            elif sel == "Reduc Reduc":
-                self.toPage("Item",533)
-            elif sel == "Male Enhance":
-                self.toPage("Item",534)
-            elif sel == "Milk Suppress":
-                self.toPage("Item",535)
-            elif sel == "Bazoomba!":
-                self.toPage("Item",536)
-        elif self.menu == "Items.Consumables.Dyes":
-            if sel == "Pink Ink":
-                self.toPage("Item",216)
-            elif sel == "Auburn Dye":
-                self.toPage("Item",240)
-            elif sel == "Brown Dye":
-                self.toPage("Item",241)
-            elif sel == "Grey Dye":
-                self.toPage("Item",242)
-            elif sel == "White Dye":
-                self.toPage("Item",243)
-            elif sel == "Black Dye":
-                self.toPage("Item",515)
-            elif sel == "Red Dye":
-                self.toPage("Item",520)
-        elif self.menu == "Items.Consumables.TScrolls":
-            if sel == "TS Soft":
-                self.toPage("Item",121)
-            elif sel == "TS Firm":
-                self.toPage("Item",122)
-            elif sel == "TS Tied":
-                self.toPage("Item",123)
-            elif sel == "TS Siz":
-                self.toPage("Item",124)
-            elif sel == "TS Ovi":
-                self.toPage("Item",125)
-            elif sel == "TS Sanct":
-                self.toPage("Item",128)
-        elif self.menu == "Items.Consumables.Eggs":
-            if sel == "Fresh Egg":
-                self.toPage("Item",219)
-            elif sel == "Bug Egg":
-                self.toPage("Item",253)
-            elif sel == "Good Egg":
-                self.toPage("Item",527)
-            elif sel == "Bag Egg":
-                self.toPage("Item",528)
-            elif sel == "Strange Egg":
-                self.toPage("Item",529)
-            elif sel == "Charmed Egg":
-                self.toPage("Item",530)
-            elif sel == "Divine Egg":
-                self.toPage("Item",531)
-            elif sel == "Queen Egg":
-                self.toPage("Item",537)
-            elif sel == "Soldier Egg":
-                self.toPage("Item",538)
-            elif sel == "Drone Egg":
-                self.toPage("Item",539)
-            elif sel == "Worker Egg":
-                self.toPage("Item",540)
-        elif self.menu == "Items.Consumables.Other":
-            if sel == "Dry Sand":
-                self.toPage("Item",103)
-            elif sel == "Cat's Meow":
-                self.toPage("Item",105)
-            elif sel == "Reduction":
-                self.toPage("Item",110)
-            elif sel == "Poultice":
-                self.toPage("Item",115)
-            elif sel == "Neuter":
-                self.toPage("Item",120)
-            elif sel == "Milk C Pois":
-                self.toPage("Item",201)
-            elif sel == "Co-Snak Ven":
-                self.toPage("Item",202)
-            elif sel == "Wolf Fur":
-                self.toPage("Item",203)
-            elif sel == "Sm Pouch (ItemID 204)":
-                self.toPage("Item",204)
-            elif sel == "Sm Pouch (ItemID 205)":
-                self.toPage("Item",205)
-            elif sel == "Cock Carv":
-                self.toPage("Item",207)
-            elif sel == "Blo Berry":
-                self.toPage("Item",208)
-            elif sel == "Grain":
-                self.toPage("Item",209)
-            elif sel == "Puss Fruit":
-                self.toPage("Item",210)
-            elif sel == "Red Mush":
-                self.toPage("Item",212)
-            elif sel == "Wet Cloth":
-                self.toPage("Item",213)
-            elif sel == "Egg Jelly":
-                self.toPage("Item",217)
-            elif sel == "Bul Berry":
-                self.toPage("Item",218)
-            elif sel == "Eq Snack":
-                self.toPage("Item",223)
-            elif sel == "Lila's Milk":
-                self.toPage("Item",224)
-            elif sel == "Body Wash":
-                self.toPage("Item",225)
-            elif sel == "Felin Tea":
-                self.toPage("Item",226)
-            elif sel == "Oral Wash":
-                self.toPage("Item",227)
-            elif sel == "Body Oil":
-                self.toPage("Item",228)
-            elif sel == "Eggcelerator":
-                self.toPage("Item",230)
-            elif sel == "Desi Sand":
-                self.toPage("Item",231)
-            elif sel == "Fertile Gel":
-                self.toPage("Item",246)
-            elif sel == "Breeder Pot":
-                self.toPage("Item",248)
-            elif sel == "Treant's Tear":
-                self.toPage("Item",249)
-            elif sel == "Foomp Bomb":
-                self.toPage("Item",250)
-            elif sel == "Plump Quat":
-                self.toPage("Item",251)
-            elif sel == "Sweet&Sour":
-                self.toPage("Item",259)
-            elif sel == "Succ Draft":
-                self.toPage("Item",260)
-            elif sel == "Milk Bottle":
-                self.toPage("Item",500)
-            elif sel == "Milk Jug":
-                self.toPage("Item",501)
-            elif sel == "Milk Barrel":
-                self.toPage("Item",502)
-            elif sel == "Bad Exper":
-                self.toPage("Item",505)
-            elif sel == "S Bad Exper":
-                self.toPage("Item",510)
-            elif sel == "Cum Vial":
-                self.toPage("Item",523)
-            elif sel == "Cum Bottle":
-                self.toPage("Item",524)
-            elif sel == "Cum Jug":
-                self.toPage("Item",525)
-            elif sel == "Cum Barrel":
-                self.toPage("Item",526)
-        elif self.menu == "Items.Silandrias":
-            if sel == "Leath Strap":
-                self.toPage("Item",229)
-            elif sel == "Flying Carp":
-                self.toPage("Item",232)
-            elif sel == "A-Grav Rock":
-                self.toPage("Item",233)
-            elif sel == "Rein Charm":
-                self.toPage("Item",234)
-            elif sel == "Fell Rod":
-                self.toPage("Item",235)
-            elif sel == "Recept Bell":
-                self.toPage("Item",236)
-        elif self.menu == "Items.Special":
-            if sel == "Milker":
-                self.toPage("Item",104)
-            elif sel == "Penis Pump":
-                self.toPage("Item",106)
-            elif sel == "Blood Gge":
-                self.toPage("Item",108)
-            elif sel == "Edu Egg":
-                self.toPage("Item",109)
-            elif sel == "Trinket":
-                self.toPage("Item",206)
-            elif sel == "Lantern":
-                self.toPage("Item",254)
-        elif self.menu == "Items.Other":
-            if sel == "Test":
-                self.toPage("Item",1)
-        elif self.menu == "Clothes":
-            if sel == "Tattered Shreds":
-                self.toPage("Clothes",-1)
-            elif sel == "Invisible Underwear":
-                self.toPage("Clothes",0)
-            elif sel == "Shirt":
-                self.toPage("Clothes",1)
-            elif sel == "Pants":
-                self.toPage("Clothes",2)
-            elif sel == "Bikini Top":
-                self.toPage("Clothes",3)
-            elif sel == "Bikini Bottom":
-                self.toPage("Clothes",4)
-            elif sel == "Elegant Dress":
-                self.toPage("Clothes",5)
-            elif sel == "Latex Suit":
-                self.toPage("Clothes",6)
-            elif sel == "Skirt":
-                self.toPage("Clothes",7)
-            elif sel == "Shorts":
-                self.toPage("Clothes",8)
-            elif sel == "Blouse":
-                self.toPage("Clothes",9)
-            elif sel == "Diaper":
-                self.toPage("Clothes",10)
-            elif sel == "Poofy Diaper":
-                self.toPage("Clothes",11)
-            elif sel == "Sundress":
-                self.toPage("Clothes",12)
-            elif sel == "Skimpy Dress":
-                self.toPage("Clothes",13)
-            elif sel == "Short Skirt":
-                self.toPage("Clothes",14)
-            elif sel == "Short Shorts":
-                self.toPage("Clothes",15)
-            elif sel == "Loin Cloth":
-                self.toPage("Clothes",16)
-            elif sel == "Bathing Suit":
-                self.toPage("Clothes",17)
-            elif sel == "Muscle Shirt":
-                self.toPage("Clothes",18)
-            elif sel == "Corset":
-                self.toPage("Clothes",19)
-            elif sel == "Silk Panties":
-                self.toPage("Clothes",20)
-            elif sel == "Slingkini":
-                self.toPage("Clothes",21)
-            elif sel == "Thong":
-                self.toPage("Clothes",22)
-            elif sel == "Bloomers":
-                self.toPage("Clothes",23)
-            elif sel == "Tights":
-                self.toPage("Clothes",24)
-            elif sel == "Gothic Dress":
-                self.toPage("Clothes",25)
-            elif sel == "Tube Top":
-                self.toPage("Clothes",26)
-            elif sel == "Nipple Pasties":
-                self.toPage("Clothes",27)
-            elif sel == "Camisole":
-                self.toPage("Clothes",28)
-            elif sel == "Training Suit":
-                self.toPage("Clothes",29)
-            elif sel == "Bouncy Bra":
-                self.toPage("Clothes",30)
-        elif self.menu == "Enemies":
-            if sel == "Test Enemy":
-                self.toPage("Enemy",1)
-            elif sel == "Cock-snake":
-                self.toPage("Enemy",101)
-            elif sel == "Desiccating Dust Devil":
-                self.toPage("Enemy",102)
-            elif sel == "Lone Male Wolf":
-                self.toPage("Enemy",201)
-            elif sel == "Gay Wolf":
-                self.toPage("Enemy",202)
-            elif sel == "Felin in Heat":
-                self.toPage("Enemy",301)
-            elif sel == "Drunken Equan":
-                self.toPage("Enemy",302)
-            elif sel == "Octopus Girl":
-                self.toPage("Enemy",303)
-            elif sel == "Little Big Bunny-man":
-                self.toPage("Enemy",304)
-            elif sel == "Little Big Bunny-girl":
-                self.toPage("Enemy",305)
-            elif sel == "Fierce Naga":
-                self.toPage("Enemy",306)
-            elif sel == "Minotaur":
-                self.toPage("Enemy",307)
-            elif sel == "Freaky Little Girl":
-                self.toPage("Enemy",308)
-            elif sel == "Succubus":
-                self.toPage("Enemy",309)
-        elif self.menu == "Races":
-            if sel == "Human":
-                self.toPage("Race",1)
-            elif sel == "Equan":
-                self.toPage("Race",2)
-            elif sel == "Lupan":
-                self.toPage("Race",3)
-            elif sel == "Felin":
-                self.toPage("Race",4)
-            elif sel == "Cow":
-                self.toPage("Race",5)
-            elif sel == "Lizan":
-                self.toPage("Race",6)
-            elif sel == "Bunny":
-                self.toPage("Race",7)
-            elif sel == "Mouse":
-                self.toPage("Race",8)
-            elif sel == "Bird":
-                self.toPage("Race",9)
-            elif sel == "Pig":
-                self.toPage("Race",10)
-            elif sel == "Skunk":
-                self.toPage("Race",11)
-            elif sel == "Bug":
-                self.toPage("Race",12)
-        elif self.menu == "Locations":
-            if sel == "Towns":
-                self.menu = "Locations.Towns"
-            elif sel == "Other Locations":
-                self.menu = "Locations.Other"
-        elif self.menu == "Locations.Towns":
-            if sel == "Softlik":
-                self.toPage("Town",1)
-            elif sel == "Firmshaft":
-                self.toPage("Town",2)
-            elif sel == "Tieden":
-                self.toPage("Town",3)
-            elif sel == "Siz'Calit":
-                self.toPage("Town",4)
-            elif sel == "Oviasis":
-                self.toPage("Town",6)
-            elif sel == "Sanctuary":
-                self.toPage("Town",12)
-        elif self.menu == "Locations.Other":
-            if sel == "Forest":
-                self.toPage("Location",1)
-            elif sel == "Jungle":
-                self.toPage("Location",2)
-            elif sel == "Plains":
-                self.toPage("Location",3)
-            elif sel == "Savanna":
-                self.toPage("Location",4)
-            elif sel == "Desert":
-                self.toPage("Location",5)
-            elif sel == "Beach":
-                self.toPage("Location",6)
-            elif sel == "Lake":
-                self.toPage("Location",7)
-            elif sel == "Dairy Farm":
-                self.toPage("Location",8)
-            elif sel == "Old Cave":
-                self.toPage("Location",9)
-            elif sel == "Old Cave Descent":
-                self.toPage("Location",10)
-            elif sel == "Den":
-                self.toPage("Location",11)
-            elif sel == "Valley":
-                self.toPage("Location",12)
-            elif sel == "Knothole":
-                self.toPage("Location",13)
-        elif self.menu == "Shops":
-            if sel == "General Shop":
-                self.toPage("Shop",1)
-            elif sel == "Dye Shop":
-                self.toPage("Shop",2)
-            elif sel == "Apothecary":
-                self.toPage("Shop",3)
-            elif sel == "Salon":
-                self.toPage("Shop",4)
-            elif sel == "Tailor":
-                self.toPage("Shop",5)
-        elif self.menu == "NPCs":
-            if sel == "Fidoris":
-                self.toPage("NPC",1)
-            elif sel == "Jamie":
-                self.toPage("NPC",2)
-            elif sel == "Lila":
-                self.toPage("NPC",3)
-            elif sel == "Malon":
-                self.toPage("NPC",4)
-            elif sel == "Silandrias":
-                self.toPage("NPC",5)
+        elif self.menu == 'Basics':
+            if sel == 'Welcome Screen':
+                self.toPage('Basic', 0)
+            elif sel == 'Wiki Key':
+                self.toPage('Basic', 5)
+            elif sel == 'Stats':
+                self.toPage('Basic', 1)
+            elif sel == 'Actions':
+                self.toPage('Basic', 2)
+            elif sel == 'Tips':
+                self.toPage('Basic', 3)
+            elif sel == 'Hotkeys':
+                self.toPage('Basic', 4)
+            elif sel == 'Changes':
+                self.toPage('Basic', 6)
+            elif sel == 'Menu Bar':
+                self.menu = 'Basics.MenuBar'
+        elif self.menu == 'Basics.MenuBar':
+            if sel == 'File':
+                self.menu = 'Basics.MenuBar.File'
+            elif sel == 'View':
+                self.toPage('MenuBar', 3)
+            elif sel == 'Save Utils':
+                self.toPage('MenuBar', 4)
+            elif sel == 'Debug Utils':
+                self.toPage('MenuBar', 5)
+            elif sel == 'Help':
+                self.toPage('MenuBar', 6)
+        elif self.menu == 'Basics.MenuBar.File':
+            if sel == 'Options':
+                self.toPage('MenuBar', 1)
+            elif sel == 'Quit':
+                self.toPage('MenuBar', 2)
+        elif self.menu == 'Items':
+            if sel == 'All Items': #menunum 3
+                self.menu = 'Items.All'
+            elif sel == 'Debug Items':
+                self.menu = 'Items.Debug'
+            elif sel == 'Equipable Items': #menunum 4
+                self.menu = 'Items.Equipable'
+            elif sel == 'Passive Items':
+                self.menu = 'Items.Passive'
+            elif sel == 'Consumables': #menunum 7
+                self.menu = 'Items.Consumables'
+            elif sel == 'Silandrias\' Magic Items': #menunum 14
+                self.menu = 'Items.Silandrias'
+            elif sel == 'Special Items': #menunum 15
+                self.menu = 'Items.Special'
+            elif sel == 'Other Items': #menunum 16
+                self.menu = 'Items.Other'
+        elif self.menu == 'Items.All':
+            if sel == 'Test':
+                self.toPage('Item', 1)
+            elif sel == 'Anc Claws':
+                self.toPage('Item', 101)
+            elif sel == 'Imb Shoes':
+                self.toPage('Item', 102)
+            elif sel == 'Dry Sand':
+                self.toPage('Item', 103)
+            elif sel == 'Milker':
+                self.toPage('Item', 104)
+            elif sel == 'Cat\'s Meow':
+                self.toPage('Item', 105)
+            elif sel == 'Penis Pump':
+                self.toPage('Item', 106)
+            elif sel == 'Blood Gge':
+                self.toPage('Item', 108)
+            elif sel == 'Edu Egg':
+                self.toPage('Item', 109)
+            elif sel == 'Reduction':
+                self.toPage('Item', 110)
+            elif sel == 'Skin Balm':
+                self.toPage('Item', 111)
+            elif sel == 'Bol Juice':
+                self.toPage('Item', 112)
+            elif sel == 'Taint Leaf':
+                self.toPage('Item', 113)
+            elif sel == 'Sweet Sap':
+                self.toPage('Item', 114)
+            elif sel == 'Poultice':
+                self.toPage('Item', 115)
+            elif sel == 'Dagger':
+                self.toPage('Item', 116)
+            elif sel == 'Hammer':
+                self.toPage('Item', 117)
+            elif sel == 'Saber':
+                self.toPage('Item', 118)
+            elif sel == 'Whip':
+                self.toPage('Item', 119)
+            elif sel == 'Neuter':
+                self.toPage('Item', 120)
+            elif sel == 'TS Soft':
+                self.toPage('Item', 121)
+            elif sel == 'TS Firm':
+                self.toPage('Item', 122)
+            elif sel == 'TS Tied':
+                self.toPage('Item', 123)
+            elif sel == 'TS Siz':
+                self.toPage('Item', 124)
+            elif sel == 'TS Ovi':
+                self.toPage('Item', 125)
+            elif sel == 'Oas Water':
+                self.toPage('Item', 126)
+            elif sel == 'Tail Spike':
+                self.toPage('Item', 127)
+            elif sel == 'TS Sanct':
+                self.toPage('Item', 128)
+            elif sel == 'Lila\'s Gift':
+                self.toPage('Item', 200)
+            elif sel == 'Milk C Pois':
+                self.toPage('Item', 201)
+            elif sel == 'Co-Snak Ven':
+                self.toPage('Item', 202)
+            elif sel == 'Wolf Fur':
+                self.toPage('Item', 203)
+            elif sel == 'Sm Pouch (ItemID 204)':
+                self.toPage('Item', 204)
+            elif sel == 'Sm Pouch (ItemID 205)':
+                self.toPage('Item', 205)
+            elif sel == 'Trinket':
+                self.toPage('Item', 206)
+            elif sel == 'Cock Carv':
+                self.toPage('Item', 207)
+            elif sel == 'Blo Berry':
+                self.toPage('Item', 208)
+            elif sel == 'Grain':
+                self.toPage('Item', 209)
+            elif sel == 'Puss Fruit':
+                self.toPage('Item', 210)
+            elif sel == 'DairE Pill':
+                self.toPage('Item', 211)
+            elif sel == 'Red Mush':
+                self.toPage('Item', 212)
+            elif sel == 'Wet Cloth':
+                self.toPage('Item', 213)
+            elif sel == 'Lon Milk':
+                self.toPage('Item', 214)
+            elif sel == 'Lon Pendant':
+                self.toPage('Item', 215)
+            elif sel == 'Pink Ink':
+                self.toPage('Item', 216)
+            elif sel == 'Egg Jelly':
+                self.toPage('Item', 217)
+            elif sel == 'Bul Berry':
+                self.toPage('Item', 218)
+            elif sel == 'Fresh Egg':
+                self.toPage('Item', 219)
+            elif sel == 'Blondie':
+                self.toPage('Item', 220)
+            elif sel == 'Puss Juice':
+                self.toPage('Item', 221)
+            elif sel == 'Kinky Carr':
+                self.toPage('Item', 222)
+            elif sel == 'Eq Snack':
+                self.toPage('Item', 223)
+            elif sel == 'Lila\'s Milk':
+                self.toPage('Item', 224)
+            elif sel == 'Body Wash':
+                self.toPage('Item', 225)
+            elif sel == 'Felin Tea':
+                self.toPage('Item', 226)
+            elif sel == 'Oral Wash':
+                self.toPage('Item', 227)
+            elif sel == 'Body Oil':
+                self.toPage('Item', 228)
+            elif sel == 'Leath Strap':
+                self.toPage('Item', 229)
+            elif sel == 'Eggcelerator':
+                self.toPage('Item', 230)
+            elif sel == 'Desi Sand':
+                self.toPage('Item', 231)
+            elif sel == 'Flying Carp':
+                self.toPage('Item', 232)
+            elif sel == 'A-Grav Rock':
+                self.toPage('Item', 233)
+            elif sel == 'Rein Charm':
+                self.toPage('Item', 234)
+            elif sel == 'Fell Rod':
+                self.toPage('Item', 235)
+            elif sel == 'Recept Bell':
+                self.toPage('Item', 236)
+            elif sel == 'Dewy Gift':
+                self.toPage('Item', 237)
+            elif sel == 'Squ Cheese':
+                self.toPage('Item', 238)
+            elif sel == 'Shiny Rock':
+                self.toPage('Item', 239)
+            elif sel == 'Auburn Dye':
+                self.toPage('Item', 240)
+            elif sel == 'Brown Dye':
+                self.toPage('Item', 241)
+            elif sel == 'Grey Dye':
+                self.toPage('Item', 242)
+            elif sel == 'White Dye':
+                self.toPage('Item', 243)
+            elif sel == 'Snuggle Ball':
+                self.toPage('Item', 244)
+            elif sel == 'Facial Mud':
+                self.toPage('Item', 245)
+            elif sel == 'Fertile Gel':
+                self.toPage('Item', 246)
+            elif sel == 'Supp Harness':
+                self.toPage('Item', 247)
+            elif sel == 'Breeder Pot':
+                self.toPage('Item', 248)
+            elif sel == 'Treant\'s Tear':
+                self.toPage('Item', 249)
+            elif sel == 'Foomp Bomb':
+                self.toPage('Item', 250)
+            elif sel == 'Plump Quat':
+                self.toPage('Item', 251)
+            elif sel == 'Milky Pend':
+                self.toPage('Item', 252)
+            elif sel == 'Bug Egg':
+                self.toPage('Item', 253)
+            elif sel == 'Lantern':
+                self.toPage('Item', 254)
+            elif sel == 'Frag Flower':
+                self.toPage('Item', 255)
+            elif sel == 'Nectar Candy':
+                self.toPage('Item', 256)
+            elif sel == 'Too Human':
+                self.toPage('Item', 257)
+            elif sel == 'Tainted Pot':
+                self.toPage('Item', 258)
+            elif sel == 'Sweet&Sour':
+                self.toPage('Item', 259)
+            elif sel == 'Succ Draft':
+                self.toPage('Item', 260)
+            elif sel == 'Milk Bottle':
+                self.toPage('Item', 500)
+            elif sel == 'Milk Jug':
+                self.toPage('Item', 501)
+            elif sel == 'Milk Barrel':
+                self.toPage('Item', 502)
+            elif sel == 'Lust Draft':
+                self.toPage('Item', 503)
+            elif sel == 'Rejuv Pot':
+                self.toPage('Item', 504)
+            elif sel == 'Bad Exper':
+                self.toPage('Item', 505)
+            elif sel == 'Exp Preg':
+                self.toPage('Item', 506)
+            elif sel == 'Ball Sweller':
+                self.toPage('Item', 507)
+            elif sel == 'S Lust Draft':
+                self.toPage('Item', 508)
+            elif sel == 'S Rejuv Pot':
+                self.toPage('Item', 509)
+            elif sel == 'S Bad Exper':
+                self.toPage('Item', 510)
+            elif sel == 'S Exp Preg':
+                self.toPage('Item', 511)
+            elif sel == 'S Ball Sweller':
+                self.toPage('Item', 512)
+            elif sel == 'Gen Swap':
+                self.toPage('Item', 513)
+            elif sel == 'Maso Pot':
+                self.toPage('Item', 514)
+            elif sel == 'Black Dye':
+                self.toPage('Item', 515)
+            elif sel == 'Baby Free':
+                self.toPage('Item', 516)
+            elif sel == 'Pot Pot':
+                self.toPage('Item', 517)
+            elif sel == 'S Gen Swap':
+                self.toPage('Item', 518)
+            elif sel == 'S Maso Pot':
+                self.toPage('Item', 519)
+            elif sel == 'Red Dye':
+                self.toPage('Item', 520)
+            elif sel == 'S Baby Free':
+                self.toPage('Item', 521)
+            elif sel == 'S Pot Pot':
+                self.toPage('Item', 522)
+            elif sel == 'Cum Vial':
+                self.toPage('Item', 523)
+            elif sel == 'Cum Bottle':
+                self.toPage('Item', 524)
+            elif sel == 'Cum Jug':
+                self.toPage('Item', 525)
+            elif sel == 'Cum Barrel':
+                self.toPage('Item', 526)
+            elif sel == 'Good Egg':
+                self.toPage('Item', 527)
+            elif sel == 'Bad Egg':
+                self.toPage('Item', 528)
+            elif sel == 'Strange Egg':
+                self.toPage('Item', 529)
+            elif sel == 'Charmed Egg':
+                self.toPage('Item', 530)
+            elif sel == 'Divine Egg':
+                self.toPage('Item', 531)
+            elif sel == 'Pheromone':
+                self.toPage('Item', 532)
+            elif sel == 'Reduc Reduc':
+                self.toPage('Item', 533)
+            elif sel == 'Male Enhance':
+                self.toPage('Item', 534)
+            elif sel == 'Milk Suppress':
+                self.toPage('Item', 535)
+            elif sel == 'Bazoomba!':
+                self.toPage('Item', 536)
+            elif sel == 'Queen Egg':
+                self.toPage('Item', 537)
+            elif sel == 'Soldier Egg':
+                self.toPage('Item', 538)
+            elif sel == 'Drone Egg':
+                self.toPage('Item', 539)
+            elif sel == 'Worker Egg':
+                self.toPage('Item', 540)
+        elif self.menu == 'Items.Debug':
+            if sel == 'Debug Stick':
+                self.toPage('Item', 2)
+            elif sel == 'Item Not Found':
+                self.toPage('Item', 404)
+            elif sel == 'Teapot':
+                self.toPage('Item', 418)
+        elif self.menu == 'Items.Equipable':
+            if sel == 'Weapons':
+                self.menu = 'Items.Equipable.Weapons'
+            elif sel == 'Other Equipables':
+                self.menu = 'Items.Equipable.Other'
+        elif self.menu == 'Items.Equipable.Weapons':
+            if sel == 'Dagger':
+                self.toPage('Item', 116)
+            elif sel == 'Hammer':
+                self.toPage('Item', 117)
+            elif sel == 'Saber':
+                self.toPage('Item', 118)
+            elif sel == 'Whip':
+                self.toPage('Item', 119)
+            elif sel == 'Tail Spike':
+                self.toPage('Item', 127)
+        elif self.menu == 'Items.Equipable.Other':
+            if sel == 'Snuggle Ball':
+                self.toPage('Item', 244)
+            elif sel == 'Supp Harness':
+                self.toPage('Item', 247)
+        elif self.menu == 'Items.Passive':
+            if sel == 'Anc Claws':
+                self.toPage('Item', 101)
+            elif sel == 'Imb Shoes':
+                self.toPage('Item', 102)
+            elif sel == 'Lila\'s Gift':
+                self.toPage('Item', 200)
+            elif sel == 'Lon Pendant':
+                self.toPage('Item', 215)
+            elif sel == 'Dewy Gift':
+                self.toPage('Item', 237)
+            elif sel == 'Milky Pend':
+                self.toPage('Item', 252)
+        elif self.menu == 'Items.Consumables':
+            if sel == 'Affinity Items':
+                self.menu = 'Items.Consumables.Affinity'
+            elif sel == 'Alchemy Items':
+                self.menu = 'Items.Consumables.Alchemy'
+            elif sel == 'Dyes':
+                self.menu = 'Items.Consumables.Dyes'
+            elif sel == 'Teleport Scrolls':
+                self.menu = 'Items.Consumables.TScrolls'
+            elif sel == 'Eggs':
+                self.menu = 'Items.Consumables.Eggs'
+            elif sel == 'Other Consumables':
+                self.menu = 'Items.Consumables.Other'
+        elif self.menu == 'Items.Consumables.Affinity':
+            if sel == 'Skin Balm':
+                self.toPage('Item', 111)
+            elif sel == 'Bol Juice':
+                self.toPage('Item', 112)
+            elif sel == 'Taint Leaf':
+                self.toPage('Item', 113)
+            elif sel == 'Sweet Sap':
+                self.toPage('Item', 114)
+            elif sel == 'Oas Water':
+                self.toPage('Item', 126)
+            elif sel == 'DairE Pill':
+                self.toPage('Item', 211)
+            elif sel == 'Lon Milk':
+                self.toPage('Item', 214)
+            elif sel == 'Kinky Carr':
+                self.toPage('Item', 222)
+            elif sel == 'Squ Cheese':
+                self.toPage('Item', 238)
+            elif sel == 'Shiny Rock':
+                self.toPage('Item', 239)
+            elif sel == 'Facial Mud':
+                self.toPage('Item', 245)
+            elif sel == 'Frag Flower':
+                self.toPage('Item', 255)
+            elif sel == 'Nectar Candy':
+                self.toPage('Item', 256)
+            elif sel == 'Too Human':
+                self.toPage('Item', 257)
+            elif sel == 'Tainted Pot':
+                self.toPage('Item', 258)
+        elif self.menu == 'Items.Consumables.Alchemy':
+            if sel == 'Blondie':
+                self.toPage('Item', 220)
+            elif sel == 'Puss Juice':
+                self.toPage('Item', 221)
+            elif sel == 'Lust Draft':
+                self.toPage('Item', 503)
+            elif sel == 'Rejuv Pot':
+                self.toPage('Item', 504)
+            elif sel == 'Exp Preg':
+                self.toPage('Item', 506)
+            elif sel == 'Ball Sweller':
+                self.toPage('Item', 507)
+            elif sel == 'S Lust Draft':
+                self.toPage('Item', 508)
+            elif sel == 'S Rejuv Pot':
+                self.toPage('Item', 509)
+            elif sel == 'S Exp Preg':
+                self.toPage('Item', 511)
+            elif sel == 'S Ball Sweller':
+                self.toPage('Item', 512)
+            elif sel == 'Gen Swap':
+                self.toPage('Item', 513)
+            elif sel == 'Maso Pot':
+                self.toPage('Item', 514)
+            elif sel == 'Baby Free':
+                self.toPage('Item', 516)
+            elif sel == 'Pot Pot':
+                self.toPage('Item', 517)
+            elif sel == 'S Gen Swap':
+                self.toPage('Item', 518)
+            elif sel == 'S Maso Pot':
+                self.toPage('Item', 519)
+            elif sel == 'S Baby Free':
+                self.toPage('Item', 521)
+            elif sel == 'S Pot Pot':
+                self.toPage('Item', 522)
+            elif sel == 'Pheromone':
+                self.toPage('Item', 532)
+            elif sel == 'Reduc Reduc':
+                self.toPage('Item', 533)
+            elif sel == 'Male Enhance':
+                self.toPage('Item', 534)
+            elif sel == 'Milk Suppress':
+                self.toPage('Item', 535)
+            elif sel == 'Bazoomba!':
+                self.toPage('Item', 536)
+        elif self.menu == 'Items.Consumables.Dyes':
+            if sel == 'Pink Ink':
+                self.toPage('Item', 216)
+            elif sel == 'Auburn Dye':
+                self.toPage('Item', 240)
+            elif sel == 'Brown Dye':
+                self.toPage('Item', 241)
+            elif sel == 'Grey Dye':
+                self.toPage('Item', 242)
+            elif sel == 'White Dye':
+                self.toPage('Item', 243)
+            elif sel == 'Black Dye':
+                self.toPage('Item', 515)
+            elif sel == 'Red Dye':
+                self.toPage('Item', 520)
+        elif self.menu == 'Items.Consumables.TScrolls':
+            if sel == 'TS Soft':
+                self.toPage('Item', 121)
+            elif sel == 'TS Firm':
+                self.toPage('Item', 122)
+            elif sel == 'TS Tied':
+                self.toPage('Item', 123)
+            elif sel == 'TS Siz':
+                self.toPage('Item', 124)
+            elif sel == 'TS Ovi':
+                self.toPage('Item', 125)
+            elif sel == 'TS Sanct':
+                self.toPage('Item', 128)
+        elif self.menu == 'Items.Consumables.Eggs':
+            if sel == 'Fresh Egg':
+                self.toPage('Item', 219)
+            elif sel == 'Bug Egg':
+                self.toPage('Item', 253)
+            elif sel == 'Good Egg':
+                self.toPage('Item', 527)
+            elif sel == 'Bag Egg':
+                self.toPage('Item', 528)
+            elif sel == 'Strange Egg':
+                self.toPage('Item', 529)
+            elif sel == 'Charmed Egg':
+                self.toPage('Item', 530)
+            elif sel == 'Divine Egg':
+                self.toPage('Item', 531)
+            elif sel == 'Queen Egg':
+                self.toPage('Item', 537)
+            elif sel == 'Soldier Egg':
+                self.toPage('Item', 538)
+            elif sel == 'Drone Egg':
+                self.toPage('Item', 539)
+            elif sel == 'Worker Egg':
+                self.toPage('Item', 540)
+        elif self.menu == 'Items.Consumables.Other':
+            if sel == 'Dry Sand':
+                self.toPage('Item', 103)
+            elif sel == 'Cat\'s Meow':
+                self.toPage('Item', 105)
+            elif sel == 'Reduction':
+                self.toPage('Item', 110)
+            elif sel == 'Poultice':
+                self.toPage('Item', 115)
+            elif sel == 'Neuter':
+                self.toPage('Item', 120)
+            elif sel == 'Milk C Pois':
+                self.toPage('Item', 201)
+            elif sel == 'Co-Snak Ven':
+                self.toPage('Item', 202)
+            elif sel == 'Wolf Fur':
+                self.toPage('Item', 203)
+            elif sel == 'Sm Pouch (ItemID 204)':
+                self.toPage('Item', 204)
+            elif sel == 'Sm Pouch (ItemID 205)':
+                self.toPage('Item', 205)
+            elif sel == 'Cock Carv':
+                self.toPage('Item', 207)
+            elif sel == 'Blo Berry':
+                self.toPage('Item', 208)
+            elif sel == 'Grain':
+                self.toPage('Item', 209)
+            elif sel == 'Puss Fruit':
+                self.toPage('Item', 210)
+            elif sel == 'Red Mush':
+                self.toPage('Item', 212)
+            elif sel == 'Wet Cloth':
+                self.toPage('Item', 213)
+            elif sel == 'Egg Jelly':
+                self.toPage('Item', 217)
+            elif sel == 'Bul Berry':
+                self.toPage('Item', 218)
+            elif sel == 'Eq Snack':
+                self.toPage('Item', 223)
+            elif sel == 'Lila\'s Milk':
+                self.toPage('Item', 224)
+            elif sel == 'Body Wash':
+                self.toPage('Item', 225)
+            elif sel == 'Felin Tea':
+                self.toPage('Item', 226)
+            elif sel == 'Oral Wash':
+                self.toPage('Item', 227)
+            elif sel == 'Body Oil':
+                self.toPage('Item', 228)
+            elif sel == 'Eggcelerator':
+                self.toPage('Item', 230)
+            elif sel == 'Desi Sand':
+                self.toPage('Item', 231)
+            elif sel == 'Fertile Gel':
+                self.toPage('Item', 246)
+            elif sel == 'Breeder Pot':
+                self.toPage('Item', 248)
+            elif sel == 'Treant\'s Tear':
+                self.toPage('Item', 249)
+            elif sel == 'Foomp Bomb':
+                self.toPage('Item', 250)
+            elif sel == 'Plump Quat':
+                self.toPage('Item', 251)
+            elif sel == 'Sweet&Sour':
+                self.toPage('Item', 259)
+            elif sel == 'Succ Draft':
+                self.toPage('Item', 260)
+            elif sel == 'Milk Bottle':
+                self.toPage('Item', 500)
+            elif sel == 'Milk Jug':
+                self.toPage('Item', 501)
+            elif sel == 'Milk Barrel':
+                self.toPage('Item', 502)
+            elif sel == 'Bad Exper':
+                self.toPage('Item', 505)
+            elif sel == 'S Bad Exper':
+                self.toPage('Item', 510)
+            elif sel == 'Cum Vial':
+                self.toPage('Item', 523)
+            elif sel == 'Cum Bottle':
+                self.toPage('Item', 524)
+            elif sel == 'Cum Jug':
+                self.toPage('Item', 525)
+            elif sel == 'Cum Barrel':
+                self.toPage('Item', 526)
+        elif self.menu == 'Items.Silandrias':
+            if sel == 'Leath Strap':
+                self.toPage('Item', 229)
+            elif sel == 'Flying Carp':
+                self.toPage('Item', 232)
+            elif sel == 'A-Grav Rock':
+                self.toPage('Item', 233)
+            elif sel == 'Rein Charm':
+                self.toPage('Item', 234)
+            elif sel == 'Fell Rod':
+                self.toPage('Item', 235)
+            elif sel == 'Recept Bell':
+                self.toPage('Item', 236)
+        elif self.menu == 'Items.Special':
+            if sel == 'Milker':
+                self.toPage('Item', 104)
+            elif sel == 'Penis Pump':
+                self.toPage('Item', 106)
+            elif sel == 'Blood Gge':
+                self.toPage('Item', 108)
+            elif sel == 'Edu Egg':
+                self.toPage('Item', 109)
+            elif sel == 'Trinket':
+                self.toPage('Item', 206)
+            elif sel == 'Lantern':
+                self.toPage('Item', 254)
+        elif self.menu == 'Items.Other':
+            if sel == 'Test':
+                self.toPage('Item', 1)
+        elif self.menu == 'Clothes':
+            if sel == 'Tattered Shreds':
+                self.toPage('Clothes', -1)
+            elif sel == 'Invisible Underwear':
+                self.toPage('Clothes', 0)
+            elif sel == 'Shirt':
+                self.toPage('Clothes', 1)
+            elif sel == 'Pants':
+                self.toPage('Clothes', 2)
+            elif sel == 'Bikini Top':
+                self.toPage('Clothes', 3)
+            elif sel == 'Bikini Bottom':
+                self.toPage('Clothes', 4)
+            elif sel == 'Elegant Dress':
+                self.toPage('Clothes', 5)
+            elif sel == 'Latex Suit':
+                self.toPage('Clothes', 6)
+            elif sel == 'Skirt':
+                self.toPage('Clothes', 7)
+            elif sel == 'Shorts':
+                self.toPage('Clothes', 8)
+            elif sel == 'Blouse':
+                self.toPage('Clothes', 9)
+            elif sel == 'Diaper':
+                self.toPage('Clothes', 10)
+            elif sel == 'Poofy Diaper':
+                self.toPage('Clothes', 11)
+            elif sel == 'Sundress':
+                self.toPage('Clothes', 12)
+            elif sel == 'Skimpy Dress':
+                self.toPage('Clothes', 13)
+            elif sel == 'Short Skirt':
+                self.toPage('Clothes', 14)
+            elif sel == 'Short Shorts':
+                self.toPage('Clothes', 15)
+            elif sel == 'Loin Cloth':
+                self.toPage('Clothes', 16)
+            elif sel == 'Bathing Suit':
+                self.toPage('Clothes', 17)
+            elif sel == 'Muscle Shirt':
+                self.toPage('Clothes', 18)
+            elif sel == 'Corset':
+                self.toPage('Clothes', 19)
+            elif sel == 'Silk Panties':
+                self.toPage('Clothes', 20)
+            elif sel == 'Slingkini':
+                self.toPage('Clothes', 21)
+            elif sel == 'Thong':
+                self.toPage('Clothes', 22)
+            elif sel == 'Bloomers':
+                self.toPage('Clothes', 23)
+            elif sel == 'Tights':
+                self.toPage('Clothes', 24)
+            elif sel == 'Gothic Dress':
+                self.toPage('Clothes', 25)
+            elif sel == 'Tube Top':
+                self.toPage('Clothes', 26)
+            elif sel == 'Nipple Pasties':
+                self.toPage('Clothes', 27)
+            elif sel == 'Camisole':
+                self.toPage('Clothes', 28)
+            elif sel == 'Training Suit':
+                self.toPage('Clothes', 29)
+            elif sel == 'Bouncy Bra':
+                self.toPage('Clothes', 30)
+        elif self.menu == 'Enemies':
+            if sel == 'Test Enemy':
+                self.toPage('Enemy', 1)
+            elif sel == 'Cock-snake':
+                self.toPage('Enemy', 101)
+            elif sel == 'Desiccating Dust Devil':
+                self.toPage('Enemy', 102)
+            elif sel == 'Lone Male Wolf':
+                self.toPage('Enemy', 201)
+            elif sel == 'Gay Wolf':
+                self.toPage('Enemy', 202)
+            elif sel == 'Felin in Heat':
+                self.toPage('Enemy', 301)
+            elif sel == 'Drunken Equan':
+                self.toPage('Enemy', 302)
+            elif sel == 'Octopus Girl':
+                self.toPage('Enemy', 303)
+            elif sel == 'Little Big Bunny-man':
+                self.toPage('Enemy', 304)
+            elif sel == 'Little Big Bunny-girl':
+                self.toPage('Enemy', 305)
+            elif sel == 'Fierce Naga':
+                self.toPage('Enemy', 306)
+            elif sel == 'Minotaur':
+                self.toPage('Enemy', 307)
+            elif sel == 'Freaky Little Girl':
+                self.toPage('Enemy', 308)
+            elif sel == 'Succubus':
+                self.toPage('Enemy', 309)
+        elif self.menu == 'Races':
+            if sel == 'Human':
+                self.toPage('Race', 1)
+            elif sel == 'Equan':
+                self.toPage('Race', 2)
+            elif sel == 'Lupan':
+                self.toPage('Race', 3)
+            elif sel == 'Felin':
+                self.toPage('Race', 4)
+            elif sel == 'Cow':
+                self.toPage('Race', 5)
+            elif sel == 'Lizan':
+                self.toPage('Race', 6)
+            elif sel == 'Bunny':
+                self.toPage('Race', 7)
+            elif sel == 'Mouse':
+                self.toPage('Race', 8)
+            elif sel == 'Bird':
+                self.toPage('Race', 9)
+            elif sel == 'Pig':
+                self.toPage('Race', 10)
+            elif sel == 'Skunk':
+                self.toPage('Race', 11)
+            elif sel == 'Bug':
+                self.toPage('Race', 12)
+        elif self.menu == 'Locations':
+            if sel == 'Towns':
+                self.menu = 'Locations.Towns'
+            elif sel == 'Other Locations':
+                self.menu = 'Locations.Other'
+        elif self.menu == 'Locations.Towns':
+            if sel == 'Softlik':
+                self.toPage('Town', 1)
+            elif sel == 'Firmshaft':
+                self.toPage('Town', 2)
+            elif sel == 'Tieden':
+                self.toPage('Town', 3)
+            elif sel == 'Siz\'Calit':
+                self.toPage('Town', 4)
+            elif sel == 'Oviasis':
+                self.toPage('Town', 6)
+            elif sel == 'Sanctuary':
+                self.toPage('Town', 12)
+        elif self.menu == 'Locations.Other':
+            if sel == 'Forest':
+                self.toPage('Location', 1)
+            elif sel == 'Jungle':
+                self.toPage('Location', 2)
+            elif sel == 'Plains':
+                self.toPage('Location', 3)
+            elif sel == 'Savanna':
+                self.toPage('Location', 4)
+            elif sel == 'Desert':
+                self.toPage('Location', 5)
+            elif sel == 'Beach':
+                self.toPage('Location', 6)
+            elif sel == 'Lake':
+                self.toPage('Location', 7)
+            elif sel == 'Dairy Farm':
+                self.toPage('Location', 8)
+            elif sel == 'Old Cave':
+                self.toPage('Location', 9)
+            elif sel == 'Old Cave Descent':
+                self.toPage('Location', 10)
+            elif sel == 'Den':
+                self.toPage('Location', 11)
+            elif sel == 'Valley':
+                self.toPage('Location', 12)
+            elif sel == 'Knothole':
+                self.toPage('Location', 13)
+        elif self.menu == 'Shops':
+            if sel == 'General Shop':
+                self.toPage('Shop', 1)
+            elif sel == 'Dye Shop':
+                self.toPage('Shop', 2)
+            elif sel == 'Apothecary':
+                self.toPage('Shop', 3)
+            elif sel == 'Salon':
+                self.toPage('Shop', 4)
+            elif sel == 'Tailor':
+                self.toPage('Shop', 5)
+        elif self.menu == 'NPCs':
+            if sel == 'Fidoris':
+                self.toPage('NPC', 1)
+            elif sel == 'Jamie':
+                self.toPage('NPC', 2)
+            elif sel == 'Lila':
+                self.toPage('NPC', 3)
+            elif sel == 'Malon':
+                self.toPage('NPC', 4)
+            elif sel == 'Silandrias':
+                self.toPage('NPC', 5)
 
     def doPage(self, page: WikiPage):
         text = None
@@ -1699,9 +1704,9 @@ class PyminWiki(PyminWindow):
     Wiki links should be in the format href='\uFFFF<topic>\uFFFF<pagenumber>'
     """
 
-    def basicDescription(self, Num:int):
+    def basicDescription(self, Num: int):
         if Num == 0:
-            tempStr = f"<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
+            tempStr = "<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='\uFFFFBasic\uFFFF4'>Basics-&gt;Hotkeys</a>."
             if not self.hasCustomHTMLParser:
                 tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
             return tempStr
@@ -1718,21 +1723,21 @@ class PyminWiki(PyminWindow):
         if Num == 6:
             return "<h4><u>Changes (Outdated)</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exit.\ndoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='\uFFFFMenuBar\uFFFF1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
 
-    def menuBarDescription(self, Num:int):
-        if Num == 1: # File->Options
+    def menuBarDescription(self, Num: int):
+        if Num == 1:  # File->Options
             return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to display them. Their functions and containing tabs are described below:\n\n\n<b><u>Options Tab</u></b>\nThis tab contains basic configuration options.\n\n<u>Strict Save Compat</u>\n(Partially Implemented) Forces the use of save files compatible with the original game and disables any configuration options that interfere with that. Even without this active, the game can still save and load the original formats, the new format just takes priority.\n\n<u>Fixed Resolution</u>\nForces all windows to be at their default resolution.\n\n<u>Custom Theme Color</u>\nAllows you to set a custom theme color.\n\n<u>Custom Font Color</u>\nAllows you to set a custom font color.\n\n<u>Save Location</u>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n\n<b><u>Interface Tab</u></b>\nThis tab contains toggles that alter the game's interface.\n\n<u>Original Button Colours</u>\n(Partially Implemented) Makes the buttons in the game window have their original colours instead of the new ones. This currently does not add borders to the buttons because that causes visual artifacts when resizing.\n\n<u>Show ScrolledText Borders</u>\nToggles the borders on the scrollable text areas. They come with borders so I thought it would be nice to allow people to re-enable them if they wanted to.\n\n<u>Original Size For New Game</u>\nUses the original size and location of the new game button.\n\n<u>Static doLevelUP Buttons</u>\nForces the buttons in the level up screen to stay in the same place no matter what is being displayed.\n\n<u>Theme Type Selector</u>\nSelects the theme you want to go with. The 'Pymin' theme is the default and allows more customization. The 'Nimin' theme sticks more strictly to the original game's style where possible and limits your customization options.\n\n<u>Use Expanded Save Dialog</u>\nToggles the use of the new save/load dialog. This new dialog uses a scrollable listbox to allow the selection of any save file in the save folder. You can also enter the file name in the entry box if you wish.\n\n<u>Use New Stash</u>\nMakes the stash work like the bag instead of the limited mess that it was originally. When moving an item in either the bag or stash, the return button switches to a button which allows you to move between them with the item. Item discarding has been moved to its own button located to the right of the return button.\n\n<u>Help Opens Wiki</u>\nMakes the 'Help' button on the side bar open the wiki instead of displaying the help text.\n\n\n<b><u>Grammar Tab</u></b>\nThis tab contains the grammar related toggles. Some are based on personal preference, some are fixes.\n\n<u>Respect showBalls</u>\nMakes the game always respect the visibility status of your balls. There were a lot of places where this was not the case before.\n\n<u>Femme-boy -> Femboy</u>\nChanges 'Femme-boy' to 'Femboy'.\n\n<u>Shemale -> Futanari</u>\nChanges 'Shemale' to 'Futanari'.\n\n<u>Use n-grammar</u>\nMakes the game use 'an' instead of just 'a' where needed. I'm pretty sure this differs between different versions of english, so it may not be 'correct' in yours.\n\n<u>Femme Male Replacement</u>\n(No toggle yet)This replaces 'femmie male' with your choice of either 'feminine male' or 'femme-boy'/'femboy'.\n\n<u>femboyish -> girly</u>\nChanges 'femboyish' to 'girly'.\n\n<u>Snuggleball Tweak</u>\nRemoves the redundant description text for the snuggleball in the appearance text.\n\n<u>Grammar Fixes</u>\nThis toggle is for the other grammar fixes that don't get their own toggle.\n\nChanges cock plurality to be based on the type of cock if senarios are too\nMakes sheath size not able to display as 0\nFixes formatting in detailedTitles when you do not have titles any yet\nMakes the game check if the player has a womb before describing it\nChanges various places where the used words don't makes sense ex: 'urging get you' -> 'trying to get you', 'Eventually, you quickly' -> 'You quickly'\nMakes the game describe the player as flat if their breasts are small in some senarios\n\n\n<b><u>Game Tweaks Tab</u></b>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<u>Status Tweaks</u>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<u>Succubus Leaves One</u>\nMakes the succubus leave one cock (or 2 if you are a Lizan and have at least two lizard cocks) instead of taking all of them.\n\n<u>Use isBottomOpen</u>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming this was an oversight due to how the game was developed).\n\n<u>Lizan Don't Show Balls</u>\n(Partially Implemented) (Most) Lizards don't come with external nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<u>Herm Can Has Both</u>\n(Not implemented) Makes herms able to experience both male and female senarios where it makes sense.\n\n<u>Internal Balls Effect Belly Size</u>\n(Partially Implemented) When showBalls is False, makes ballSize effect belly size in the calculation the game does for weight and size.\n\n<u>Direct Path to Sanctuary</u>\nAdds an explore option that appears once you defeat the final boss in Old Cave Descent which allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<u>Correct Feet for Some Races</u>\n(Partially Implemented) Gives some races (felin, lupan, equan, bovine) the correct feet based on the information present in the game. Felin and lupan get digipaws (I'm not entirely sure about this one), equan and bovine get hooves.\n\n\n<b><u>Debug Options Tab</u></b>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<u>alwaysChooseSenario</u>\nAllows you to choose the senario you want when exploring. Requires user input in the terminal every time.\n\n<u>takeNoDamage</u>\nMakes enemies deal no damage. (currently only applies to eDmg)\n"
-        if Num == 2: # File->Quit
+        if Num == 2:  # File->Quit
             return "<h4><u>File->Quit</u></h4>Close the game. This is only here because sometimes windows don't have close buttons (ex: tilling window managers on linux). This button is to ensure that the application can be closed from the game window if you have a mouse."
-        if Num == 3: # View
+        if Num == 3:  # View
             return "<h4><u>View Menu</u></h4>This menu contains things related to the window mode.\n\n\n<b><u>Full Screen</u></b>\nMaximizes the window.\n\n<b><u>View->Reset Size</u></b>\nResets the main window's size.\n"
-        if Num == 4: # Save Utils
+        if Num == 4:  # Save Utils
             return "<h4><u>Save Utils</u></h4>This menu contains utilities for interacting with save files.\n\n\n<b><u>Converter</u></b>\nOpens a window containing a simple save file converter.\n\n<b><u>Editor</u></b> (Incomplete)\nOpens a window containing a simple graphical save file editor.\n"
-        if Num == 5: # Debug Utils
+        if Num == 5:  # Debug Utils
             return "<h4><u>Debug Utils</u></h4>This menu contains utilities useful for debugging (some could be considered cheats). It will only shows up when debug mode is active.\n\n\n<b><u>Variable Display</u></b>\nOpens a popup window which displays all of the relavant variables in the game and their state.\n\n<b><u>Give Item</u></b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and amount.\n\n<b><u>Use Item</u></b>\n(Not implemented yet) Opens a popup window to activate an item's useItem event without consuming the item or checking if the player has it.\n\n<b><u>Affinity</u></b>\nOpens a popup window that allows the player to modify their affinities. The IDs for affinities are listed below:\n1 - humanAffinity\n2 - horseAffinity\n3 - wolfAffinity\n4 - catAffinity\n5 - cowAffinity\n6 - lizardAffinity\n7 - rabbitAffinity\n8 - mouseAffinity\n9 - birdAffinity\n10 - pigAffinity11 - skunkAffinity\n12 - bugAffinity\nL1001 - cowTaurAffinity\nL1002 - humanTaurAffinity\nB2 - twoBoobAffinity\nB4 - fourBoobAffinity\nB6 - sixBoobAffinity\nB8 - eightBoobAffinity\nB10 - tenBoobAffinity\n"
-        if Num == 6: # Help
+        if Num == 6:  # Help
             return "<h4><u>Help</u></h4>This menu contains things that you might want to know about the game.\n\n\n<b><u>Wiki</u></b>\nOpens the wiki.\n\n<b><u>About Game</u></b>\nOpens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window.\n"
 
-    def itemDescription(self, ID:int):
+    def itemDescription(self, ID: int):
         if ID == -10:
             return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 1:
@@ -2004,7 +2009,7 @@ class PyminWiki(PyminWindow):
         if ID == 540:
             return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
-    def clothesDescription(self, ID:int):
+    def clothesDescription(self, ID: int):
         if ID == -10:
             return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == -1:
@@ -2072,7 +2077,7 @@ class PyminWiki(PyminWindow):
         if ID == 30:
             return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
-    def enemyDescription(self, ID:int):
+    def enemyDescription(self, ID: int):
         if ID == -10:
             return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == 1:
@@ -2104,7 +2109,7 @@ class PyminWiki(PyminWindow):
         if ID == 309:
             return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
 
-    def raceDescription(self, ID:int):
+    def raceDescription(self, ID: int):
         if ID == -10:
             return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
         if ID == 1:
@@ -2132,7 +2137,7 @@ class PyminWiki(PyminWindow):
         if ID == 12:
             return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
 
-    def townDescription(self, Num:int):
+    def townDescription(self, Num: int):
         if Num == -10:
             return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
         if Num == 1:
@@ -2148,7 +2153,7 @@ class PyminWiki(PyminWindow):
         if Num == 12:
             return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFLocation\uFFFF10\"><i>Old Cave Descent</i></a> \u2190"
 
-    def locationDescription(self, Num:int):
+    def locationDescription(self, Num: int):
         if Num == -10:
             return "<h4><u>Location Name</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
         if Num == 1:
@@ -2178,7 +2183,7 @@ class PyminWiki(PyminWindow):
         if Num == 13:
             return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"\uFFFFTown\uFFFF3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
 
-    def shopDescription(self, Num:int):
+    def shopDescription(self, Num: int):
         if Num == -10:
             return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
         if Num == 1:
@@ -2192,7 +2197,7 @@ class PyminWiki(PyminWindow):
         if Num == 5:
             return "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
 
-    def NPCDescription(self, Num:int):
+    def NPCDescription(self, Num: int):
         if Num == -10:
             return "<h4><u>Name</u></h4><u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
         if Num == 1:
@@ -2217,7 +2222,7 @@ class SaveConverter(PyminWindow):
     def backgroundColor(self, value):
         self._backgroundColor = value
         if self.isOpen:
-            self.window.configureChildren(("display","title","message","inputfilebox","inputfilecombotext","outputfilebox","outputfilecomboboxtext","convertbutton"), background=value)
+            self.window.configureChildren(('display', 'title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), background=value)
 
     @property
     def textColor(self):
@@ -2227,19 +2232,19 @@ class SaveConverter(PyminWindow):
     def textColor(self, value):
         self._textColor = value
         if self.isOpen:
-            self.window.configureChildren(("title","message","inputfilebox","inputfilecombotext","outputfilebox","outputfilecomboboxtext","convertbutton"), foreground=value)
+            self.window.configureChildren(('title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), foreground=value)
 
     @property
     def message(self):
-        return self.window._children["message"].text
+        return self.window._children['message'].text
 
     @message.setter
     def message(self, value):
-        self.window._children["message"].text = value
+        self.window._children['message'].text = value
 
     def _set_enforceSize(self, value):
         if value:
-            self.window.geometry("500x334")
+            self.window.geometry('500x334')
             self.window.resizable = False
         else:
             self.window.resizable = True
@@ -2254,17 +2259,17 @@ class SaveConverter(PyminWindow):
             return
 
         # Set up window
-        self._window = itk.window(width=500, height=334, title="Pymin: Save Converter", main=startType)
-        self.window.bind("<Destroy>", self._close)
+        self._window = itk.window(width=500, height=334, title='Pymin: Save Converter', main=startType)
+        self.window.bind('<Destroy>', self._close)
         self.window.resizable = False
 
         if startType:
             self.dir = as3state.appdatadirectory
-            self.savelocation = self.dir / "nimin_saves"
+            self.savelocation = self.dir / 'nimin_saves'
             self.window.bind('<KeyPress>', partial(PyminMain.keyPress, self, None))
             self.window.bind('<KeyRelease>', partial(PyminMain.keysUp, self))
             self.style = ttk.Style(self.window)
-            if (self.dir / "nimintheme").is_dir():
+            if (self.dir / 'nimintheme').is_dir():
                 self.window.tk.call('source', f'{self.dir}/nimintheme/nimin.tcl')
             PyminMain.loadPreferences(self)
         else:
@@ -2274,29 +2279,31 @@ class SaveConverter(PyminWindow):
             self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
             self.window.bind('<KeyRelease>', self.callback.keysUp)
 
+        labelFont = ('Times New Roman', 12)
+
         self.window._children['display'].background = self.backgroundColor
 
-        self.window.addLabel("display","title",x=250,y=50,width=300,height=32,font=('Times New Roman',20, 'bold'),anchor="n",text="Pymin Savefile Converter",foreground=self.textColor,background=self.backgroundColor)
+        self.window.addLabel('display', 'title', x=250, y=50, width=300, height=32, font=('Times New Roman', 20, 'bold'), anchor='n', text='Pymin Savefile Converter', foreground=self.textColor, background=self.backgroundColor)
 
-        self.window.addLabel("display","message",x=250,y=100,width=350,height=25,font=('Times New Roman',12),anchor="n",text="",foreground=self.textColor,background=self.backgroundColor)
+        self.window.addLabel('display', 'message', x=250, y=100, width=350, height=25, font=labelFont, anchor='n', text='', foreground=self.textColor, background=self.backgroundColor)
 
-        self.window.addFileEntryBox("display","inputfilebox",x=50,y=150,width=320,height=24,font=('Times New Roman',12),text="Input File",filetype="file",fileaction="open",initdir=self.savelocation,foreground=self.textColor,background=self.backgroundColor)
-        self.window.addLabel("display","inputfilecombotext",x=390,y=150,width=40,height=24,font=("Times New Roman",12),anchor="nw",text="Type",foreground=self.textColor,background=self.backgroundColor)
+        self.window.addFileEntryBox('display', 'inputfilebox', x=50, y=150, width=320, height=24, font=labelFont, text='Input File', filetype='file', fileaction='open', initdir=self.savelocation, foreground=self.textColor, background=self.backgroundColor)
+        self.window.addLabel('display', 'inputfilecombotext', x=390, y=150, width=40, height=24, font=labelFont, anchor='nw', text='Type', foreground=self.textColor, background=self.backgroundColor)
 
-        self.inputfilecombobox = ttk.Combobox(self.window,font=("Times New Roman",12))
-        self.inputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
-        self.inputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
+        self.inputfilecombobox = ttk.Combobox(self.window, font=labelFont)
+        self.inputfilecombobox['values'] = ('detect', 'xml', 'sol', 'nim', 'toml')
+        self.inputfilecombobox.place(x=390, y=174, width=60, height=24, anchor='nw')
         self.inputfilecombobox.current(0)
 
-        self.window.addFileEntryBox("display","outputfilebox",x=50,y=210,width=320,height=24,font=('Times New Roman',12),text="Output File",filetype="file",fileaction="save",initdir=self.savelocation,foreground=self.textColor,background=self.backgroundColor)
-        self.window.addLabel("display","outputfilecomboboxtext",x=390,y=210,width=40,height=24,font=("Times New Roman",12),anchor="nw",text="Type",foreground=self.textColor,background=self.backgroundColor)
+        self.window.addFileEntryBox('display', 'outputfilebox', x=50, y=210, width=320, height=24, font=labelFont, text='Output File', filetype='file', fileaction='save', initdir=self.savelocation, foreground=self.textColor, background=self.backgroundColor)
+        self.window.addLabel('display', 'outputfilecomboboxtext', x=390, y=210, width=40, height=24, font=labelFont, anchor='nw', text='Type', foreground=self.textColor, background=self.backgroundColor)
 
-        self.outputfilecombobox = ttk.Combobox(self.window,font=("Times New Roman",12))
-        self.outputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
-        self.outputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
+        self.outputfilecombobox = ttk.Combobox(self.window, font=labelFont)
+        self.outputfilecombobox['values'] = ('detect', 'xml', 'sol', 'nim', 'toml')
+        self.outputfilecombobox.place(x=390, y=234, width=60, height=24, anchor='nw')
         self.outputfilecombobox.current(0)
 
-        self.window.addWidget(PyminButton,"display","convertbutton",x=386,y=270,width=64,height=24,font=("Times New Roman",12),text="Convert",command=self.convertButton)
+        self.window.addWidget(PyminButton, 'display', 'convertbutton', x=386, y=270, width=64, height=24, font=labelFont, text='Convert', command=self.convertButton)
 
         self._isOpen = True
 
@@ -2304,70 +2311,70 @@ class SaveConverter(PyminWindow):
             self.window.mainloop()
 
     def convertButton(self, *e):
-        self.convertSave(self.window._children["inputfilebox"].get(),self.inputfilecombobox.get(),self.window._children["outputfilebox"].get(),self.outputfilecombobox.get())
+        self.convertSave(self.window._children['inputfilebox'].get(), self.inputfilecombobox.get(), self.window._children['outputfilebox'].get(), self.outputfilecombobox.get())
 
     def convertSave(self, inputfile, inputfiletype, outputfile, outputfiletype):
         try:
-            if inputfile in {None,""} or outputfile in {None,""}:
-                self.message = "Error: Input/Output file can not be \"None\" or empty"
-                raise Error("Pymin.convertSave; Input/Output file can not be empty")
+            if inputfile in {None, ''} or outputfile in {None, ''}:
+                self.message = 'Error: Input/Output file can not be "None" or empty'
+                raise Error('Pymin.convertSave; Input/Output file can not be empty')
             if inputfiletype == outputfiletype and inputfiletype != "detect":
-                self.message = "Error: Input and Output file types can not be the same."
-                raise Error("Pymin.convertSave; Input and Output file types can not be the same.")
+                self.message = 'Error: Input and Output file types can not be the same.'
+                raise Error('Pymin.convertSave; Input and Output file types can not be the same.')
             if inputfile == outputfile:
-                self.message = "Error: Input and Output files can not be the same."
-                raise Error("Pymin.convertSave; Input and Output files can not be the same.")
-            if inputfiletype == "xml":
+                self.message = 'Error: Input and Output files can not be the same.'
+                raise Error('Pymin.convertSave; Input and Output files can not be the same.')
+            if inputfiletype == 'xml':
                 data = SaveUtils.loadXML(inputfile)
-            elif inputfiletype == "sol":
+            elif inputfiletype == 'sol':
                 data = SaveUtils.loadSOL(inputfile)
-            elif inputfiletype == "nim":
+            elif inputfiletype == 'nim':
                 data = SaveUtils.loadNIM(inputfile)
-            elif inputfiletype == "toml":
+            elif inputfiletype == 'toml':
                 data = SaveUtils.loadTOML(inputfile)
-            elif inputfiletype == "detect":
+            elif inputfiletype == 'detect':
                 infile = inputfile.lower()
-                if infile.endswith(".xml"):
+                if infile.endswith('.xml'):
                     data = SaveUtils.loadXML(inputfile)
-                elif infile.endswith(".sol"):
+                elif infile.endswith('.sol'):
                     data = SaveUtils.loadSOL(inputfile)
-                elif infile.endswith(".nim"):
+                elif infile.endswith('.nim'):
                     data = SaveUtils.loadNIM(inputfile)
-                elif infile.endswith(".toml"):
+                elif infile.endswith('.toml'):
                     data = SaveUtils.loadTOML(inputfile)
                 else:
-                    ext = inputfile.split(".")[-1].lower()
-                    self.message = f"Error: Detected input file type {ext} is not a supported file type"
-                    raise Error(f"Pymin.convertSave; Detected input file type {ext} is not a supported file type")
+                    ext = inputfile.split('.')[-1].lower()
+                    self.message = f'Error: Detected input file type {ext} is not a supported file type'
+                    raise Error(f'Pymin.convertSave; Detected input file type {ext} is not a supported file type')
             if data is None:
-                raise Error("Pymin.convertSave; Input save data is null. Try again")
+                raise Error('Pymin.convertSave; Input save data is null. Try again')
             data = SaveUtils.dictSAVE(data)
-            if outputfiletype == "xml":
-                SaveUtils.saveXML(data,outputfile)
-            elif outputfiletype == "sol":
-                SaveUtils.saveSOL(data,outputfile)
-            elif outputfiletype == "nim":
-                SaveUtils.saveNIM(data,outputfile)
-            elif inputfiletype == "toml":
-                SaveUtils.saveTOML(data,outputfile)
-            elif outputfiletype == "detect":
+            if outputfiletype == 'xml':
+                SaveUtils.saveXML(data, outputfile)
+            elif outputfiletype == 'sol':
+                SaveUtils.saveSOL(data, outputfile)
+            elif outputfiletype == 'nim':
+                SaveUtils.saveNIM(data, outputfile)
+            elif inputfiletype == 'toml':
+                SaveUtils.saveTOML(data, outputfile)
+            elif outputfiletype == 'detect':
                 outfile = outputfile.lower()
-                if outfile.endswith(".xml"):
-                    SaveUtils.saveXML(data,outputfile)
-                elif outfile.endswith(".sol"):
-                    SaveUtils.saveSOL(data,outputfile)
-                elif outfile.endswith(".nim"):
-                    SaveUtils.saveNIM(data,outputfile)
-                elif outfile.endswith(".toml"):
-                    SaveUtils.saveTOML(data,outputfile)
+                if outfile.endswith('.xml'):
+                    SaveUtils.saveXML(data, outputfile)
+                elif outfile.endswith('.sol'):
+                    SaveUtils.saveSOL(data, outputfile)
+                elif outfile.endswith('.nim'):
+                    SaveUtils.saveNIM(data, outputfile)
+                elif outfile.endswith('.toml'):
+                    SaveUtils.saveTOML(data, outputfile)
                 else:
-                    ext = outputfile.split(".")[-1].lower()
-                    self.message = f"Error: Detected output file type {ext} is not a supported file type"
-                    raise Error(f"Pymin.convertSave; Detected output file type {ext} is not a supported file type")
-            self.message = "Success"
+                    ext = outputfile.split('.')[-1].lower()
+                    self.message = f'Error: Detected output file type {ext} is not a supported file type'
+                    raise Error(f'Pymin.convertSave; Detected output file type {ext} is not a supported file type')
+            self.message = 'Success'
         except Exception as e:
-            if self.message == "":
-                self.message = "Error"
+            if self.message == '':
+                self.message = 'Error'
             raise e
         finally:
             self.window.lift()
@@ -2380,28 +2387,29 @@ class SaveEditor(PyminWindow):
             return
 
         self._window = tkinter.Toplevel()
-        self.window.title("Pymin: Save Editor")
-        self.window.geometry("500x400")
+        self.window.title('Pymin: Save Editor')
+        self.window.geometry('500x400')
         self.window.resizable(False, False)
         self.window.transient(self.callback.window)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
 
-        self.loadbutton = tkinter.Button(self.window,text="Load",font=("TkTextFont",9),command=self.loadFile)
-        self.loadbutton.place(x=5,y=5,width=50,height=20,anchor="nw")
-        self.savebutton = tkinter.Button(self.window,text="Save",font=("TkTextFont",9),command=self.saveFile)
-        self.savebutton.place(x=55,y=5,width=50,height=20,anchor="nw")
+        self.loadbutton = tkinter.Button(self.window, text='Load', font=('TkTextFont', 9), command=self.loadFile)
+        self.loadbutton.place(x=5, y=5, width=50, height=20, anchor='nw')
+        self.savebutton = tkinter.Button(self.window, text='Save', font=('TkTextFont', 9), command=self.saveFile)
+        self.savebutton.place(x=55, y=5, width=50, height=20, anchor='nw')
         self.savebutton['state'] = 'disabled'
         self.filelabelframe = tkinter.Frame(self.window)
-        self.filelabelframe.place(x=110,y=5,width=385,height=20)
-        self.filelabel = tkinter.Label(self.filelabelframe,font=("TkTextFont",9))
-        self.filelabel.place(x=385,y=0,anchor="ne")
+        self.filelabelframe.place(x=110, y=5, width=385, height=20)
+        self.filelabel = tkinter.Label(self.filelabelframe, font=('TkTextFont', 9))
+        self.filelabel.place(x=385, y=0, anchor='ne')
 
         self.container = tkinter.Frame(self.window)  # TODO: Make scrollable
-        self.container.place(x=5,y=25,width=490,height=370,anchor="nw")
+        self.container.place(x=5, y=25, width=490, height=370, anchor='nw')
 
         self.fileChanged = False
+        self.loadedFile = None
         self.loadedData = None
         ''' Design
         | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
@@ -2417,63 +2425,65 @@ class SaveEditor(PyminWindow):
         self._isOpen = True
 
     def loadFile(self):
-        file = Path(filedialog.askopenfilename(initialdir=self.callback.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim"))))
+        file = Path(filedialog.askopenfilename(initialdir=self.callback.savelocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
+        self.filelabel['text'] = str(file)
         ext = file.suffix.lower()
-        if ext == ".sol":
+        if ext == '.sol':
             data = SaveUtils.loadSOL(file)
-        elif ext == ".nim":
+        elif ext == '.nim':
             data = SaveUtils.loadNIM(file)
-        elif ext == ".xml":
+        elif ext == '.xml':
             data = SaveUtils.loadXML(file)
-        elif ext == ".toml":
+        elif ext == '.toml':
             data = SaveUtils.loadTOML(file)
         else:
-            raise Error(f"SaveEditor.loadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.")
-        self.filelabel['text'] = file
+            raise Error(f'SaveEditor.loadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.')
+        self.loadedFile = file
         self.loadedData = data
         with BytesIO() as lfile:
-            if ext == ".sol":
-                lfile.write(sol.encode(SaveUtils.solGetFileName(file),SaveUtils.returnSOL(data,None),encoding=3).getvalue())
-            elif ext == ".nim":
+            if ext == '.sol':
+                lfile.write(sol.encode(SaveUtils.solGetFileName(file), SaveUtils.returnSOL(data, None), encoding=3).getvalue())
+            elif ext == '.nim':
                 byteData = ByteArray()
-                byteData.writeObject({"data":SaveUtils.returnSOL(data,None)})
+                byteData.writeObject({'data': SaveUtils.returnSOL(data, None)})
                 lfile.write(byteData.getvalue())
-            elif ext == ".xml":
-                SaveUtils.saveXML(data,lfile)
-            elif ext == ".toml":
+            elif ext == '.xml':
+                SaveUtils.saveXML(data, lfile)
+            elif ext == '.toml':
                 lfile.write(TOML.Return(data).encode('utf-8'))
             with file.open('rb') as f:
                 if f.read() != lfile.getvalue():
                     changenotify = tkinter.Toplevel()
-                    changenotify.title("Warning")
-                    changenotify.geometry("350x120")
-                    changenotify.resizable(False,False)
+                    changenotify.title('Warning')
+                    changenotify.geometry('350x120')
+                    changenotify.resizable(False, False)
                     changenotify.transient(self.window)
-                    cnlabel = tkinter.Label(changenotify,font=("TkTextFont",9))
-                    cnlabel.place(x=175,y=5,anchor="n")
+                    cnlabel = tkinter.Label(changenotify, font=('TkTextFont', 9))
+                    cnlabel.place(x=175, y=5, anchor='n')
                     cnlabel['text'] = 'Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.'
-                    cnok = tkinter.Button(changenotify,text="Ok",font=("TkTextFont",9),command=changenotify.destroy)
-                    cnok.place(x=345,y=115,width=30,height=30,anchor="se")
+                    cnok = tkinter.Button(changenotify, text='Ok', font=('TkTextFont', 9), command=changenotify.destroy)
+                    cnok.place(x=345, y=115, width=30, height=30, anchor='se')
                     self.fileChanged = True
         # TODO: Create entries
         self.savebutton['state'] = 'normal'
 
     def saveFile(self):
-        if self.filelabel['text'] == '': # No file loaded
+        if self.loadedFile is None:  # No file loaded
             return
-        return # Prevent execution because partial implementation
+        return  # Prevent execution because partial implementation
         # TODO: Retrieve data from interface
         if not self.fileChanged: #or (self.seLoadedData == <RetrievedData>): # Check if anything has changed
-            ...# TODO: Add a prompt to ask user if they want to save anyway. If no, return.
-        data['version']['port'] = __version__
-        if ext == ".sol":
-            SaveUtils.saveSOL(data,file)
-        elif ext == ".nim":
-            SaveUtils.saveNIM(data,file)
-        elif ext == ".xml":
-            SaveUtils.saveXML(data,file)
-        elif ext == ".toml":
-            SaveUtils.saveTOML(data,file)
+            ...  # TODO: Add a prompt to ask user if they want to save anyway. If no, return.
+        self.loadedData['version']['port'] = __version__
+        ext = self.loadedFile.suffix.lower()
+        if ext == '.sol':
+            SaveUtils.saveSOL(self.loadedData, self.loadedFile)
+        elif ext == '.nim':
+            SaveUtils.saveNIM(self.loadedData, self.loadedFile)
+        elif ext == '.xml':
+            SaveUtils.saveXML(self.loadedData, self.loadedFile)
+        elif ext == '.toml':
+            SaveUtils.saveTOML(self.loadedData, self.loadedFile)
 
 
 class DebugVariableDisplay(PyminWindow):
@@ -2499,10 +2509,8 @@ class DebugVariableDisplay(PyminWindow):
 
     def _set_enforceSize(self, value):
         if value:
-            self.window.geometry("400x400")
-            self.window.resizable = False
-        else:
-            self.window.resizable = True
+            self.window.geometry('400x400')
+        self.window.resizable = not value
 
     def open(self):
         if self.isOpen:
@@ -2518,7 +2526,7 @@ class DebugVariableDisplay(PyminWindow):
         if self.enforceSize:
             self.window.resizable = False
 
-        self.window.addHTMLScrolledText("display","text",x=0,y=0,width=400,height=400,font=("Terminal",8),sbwidth=10,background=self.backgroundColor,foreground=self.textColor)
+        self.window.addHTMLScrolledText('display', 'text', x=0, y=0, width=400, height=400, font=('Terminal', 8), sbwidth=10, background=self.backgroundColor, foreground=self.textColor)
 
         self._isOpen = True
 
@@ -2526,28 +2534,26 @@ class DebugVariableDisplay(PyminWindow):
 
     def updateText(self, *e):
         if self.isOpen:
-            sbpos = self.window._children["text"].yview()
-            self.window._children["text"].text = self.callback.debugVariableDisplayText()
+            sbpos = self.window._children['text'].yview()
+            self.window._children['text'].text = self.callback.debugVariableDisplayText()
             # Workaround to try to correct scrollbar position (only works sometimes)
             sbpos = 1.0 if sbpos[1] == 1.0 else sbpos[0] # TODO: Fix this
             # Keep scrollbar position after text update
-            self.window._children["text"].yview_moveto(sbpos)
+            self.window._children['text'].yview_moveto(sbpos)
 
 
 class DebugAffinityChange(PyminWindow):
     def _set_enforceSize(self, value):
         if value:
-            self.window.geometry("170x100")
-            self.window.resizable = False
-        else:
-            self.window.resizable = True
+            self.window.geometry('170x100')
+        self.window.resizable = not value
 
     def open(self):
         if self.isOpen:
             self.window.lift()
             return
 
-        self._window = itk.window(width=170, height=100, title="Affinity")
+        self._window = itk.window(width=170, height=100, title='Affinity')
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -2556,18 +2562,18 @@ class DebugAffinityChange(PyminWindow):
         if self.enforceSize:
             self.window.resizable = False
 
-        self.window.addnwhLabel("display","label",x=85,y=7,anchor="n",font=("TkTextFont",9),text="Affinity Change")
-        self.window.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=160,height=23,font=("TkTextFont",9),textwidth=65,buttonwidth=30,text=("Type:","Amount:"),buttontext="Ok",rows=2,command=self.changeAffinity)
-        self.window.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
+        self.window.addnwhLabel('display', 'label', x=85, y=7, anchor='n', font=('TkTextFont', 9), text='Affinity Change')
+        self.window.addWidget(itk.ComboEntryBox, 'display', 'combo', x=5, y=30, width=160, height=23, font=('TkTextFont', 9), textwidth=65, buttonwidth=30, text=('Type:', 'Amount:'), buttontext='Ok', rows=2, command=self.changeAffinity)
+        self.window.addnwhLabel('display', 'errlabel', x=75, y=76, anchor='n', font=('TkTextFont', 9))
 
         self._isOpen = True
 
     def changeAffinity(self):
         if self.callback.currentState == 0:
-            self.window.configureChild('errlabel', text="Error: Game not loaded")
-            raise Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
-        err = ""
-        values = self.window._children["combo"].getEntries()
+            self.window.configureChild('errlabel', text='Error: Game not loaded')
+            raise Error('Pymin Debug; Attempted player attribute modification when no game is loaded.')
+        err = None
+        values = self.window._children['combo'].getEntries()
         aff = values[0].upper()
         validAff = {
             "1",
@@ -2592,32 +2598,30 @@ class DebugAffinityChange(PyminWindow):
         }
         if aff in validAff:
             try:
-                amount = int(values[1],10)
+                amount = int(values[1], 10)
             except:
-                err = "Amount must be an integer"
+                err = 'Amount must be an integer'
         else:
-            err = "Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10"
+            err = 'Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10'
         if err:
-            self.window._children["errlabel"].text = err
-            raise Error(f"Pymin Debug; PlayerAttributeChange Affinity; {err}.")
+            self.window._children['errlabel'].text = err
+            raise Error(f'Pymin Debug; PlayerAttributeChange Affinity; {err}.')
         self.callback.debugChangeAffinity(aff, amount)
 
 
 class DebugGiveItem(PyminWindow):
     def _set_enforceSize(self, value):
         if value:
-            self.window.geometry("150x100")
-            self.window.resizable = False
-        else:
-            self.window.resizable = True
+            self.window.geometry('150x100')
+        self.window.resizable = not value
 
     def open(self):
         if self.isOpen:
             self.window.lift()
             return
 
-        self._window = itk.window(width=150, height=100, title="Give Item")
-        self.window.bind("<Destroy>", self._close)
+        self._window = itk.window(width=150, height=100, title='Give Item')
+        self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
         self.window.transient(self.callback.window)
@@ -2625,40 +2629,40 @@ class DebugGiveItem(PyminWindow):
         if self.enforceSize:
             self.window.resizable = False
 
-        self.window.addnwhLabel("display","label",x=75,y=7,anchor="n",font=("TkTextFont",9),text="Give Item")
-        self.window.addWidget(itk.ComboEntryBox,"display","combo",x=5,y=30,width=140,height=23,font=("TkTextFont",9),textwidth=55,buttonwidth=30,text=("ID:","Quantity:"),buttontext="Ok",rows=2,command=self.giveItem)
-        self.window.addnwhLabel("display","errlabel",x=75,y=76,anchor="n",font=("TkTextFont",9))
+        self.window.addnwhLabel('display', 'label', x=75, y=7, anchor='n', font=('TkTextFont', 9), text='Give Item')
+        self.window.addWidget(itk.ComboEntryBox, 'display', 'combo', x=5, y=30, width=140, height=23, font=('TkTextFont', 9), textwidth=55, buttonwidth=30, text=('ID:', 'Quantity:'), buttontext='Ok', rows=2, command=self.giveItem)
+        self.window.addnwhLabel('display', 'errlabel', x=75, y=76, anchor='n', font=('TkTextFont', 9))
 
         self._isOpen = True
 
     def giveItem(self):
         if self.callback.currentState == 0:
-            self.window._children["errlabel"].text = "Error: Game not loaded"
-            raise Error("Pymin Debug; Attempted player attribute modification when no game is loaded.")
-        EN = self.window._children["combo"].getEntries()
-        temperr = ""
+            self.window._children['errlabel'].text = 'Error: Game not loaded'
+            raise Error('Pymin Debug; Attempted player attribute modification when no game is loaded.')
+        EN = self.window._children['combo'].getEntries()
+        temperr = ''
         try:
-            ID = int(EN[0],10)
+            ID = int(EN[0], 10)
         except:
-            temperr = "ID must be a number"
+            temperr = 'ID must be a number'
         else:
             try:
-                QUAN = int(EN[1],10)
+                QUAN = int(EN[1], 10)
             except:
                 if not temperr:
-                    temperr = "Quantity must be a number"
+                    temperr = 'Quantity must be a number'
         if temperr:
-            self.window._children["errlabel"].text = temperr
-            raise Error(f"Pymin Debug; PlayerAttributeChange Item; {temperr}")
+            self.window._children['errlabel'].text = temperr
+            raise Error(f'Pymin Debug; PlayerAttributeChange Item; {temperr}')
         if ID in {2,3,404,418,101,102,103,104,105,106,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}:
             if QUAN > 0:
                 for i in range(QUAN):
                     self.callback.itemGainArray.push(ID)
                 self.callback.gainItem(self.callback.itemGainArray.pop())
             else:
-                self.window._children["errlabel"].text = f"Invalid Quantity: {QUAN}"
+                self.window._children['errlabel'].text = f'Invalid Quantity: {QUAN}'
         else:
-            self.window._children["errlabel"].text = f"Invalid ItemID: {ID}"
+            self.window._children['errlabel'].text = f'Invalid ItemID: {ID}'
 
 
 class OptionsWindow(PyminWindow):
@@ -2671,9 +2675,9 @@ class OptionsWindow(PyminWindow):
     def backgroundColor(self, value):
         self._backgroundColor = value
         if self.isOpen:
-            self.window.configureChildren(("display","options","SOLMode","FixedRes","Theme","FontColor","SaveLocation","if","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","gs","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","replacefemmiemale","femboyishtogirly","snuggleball","grammarMisc","gt","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),background=value)
+            self.window.configureChildren(('display', 'options', 'SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'if', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'gs', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'gt', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), background=value)
             if as3state.as3DebugEnable:
-                self.window.configureChildren(("dt","ChooseSenario","NoDamage"),background=value)
+                self.window.configureChildren(('dt', 'ChooseSenario', 'NoDamage'), background=value)
 
     @property
     def textColor(self):
@@ -2683,15 +2687,14 @@ class OptionsWindow(PyminWindow):
     def textColor(self, value):
         self._textColor = value
         if self.isOpen:
-            self.window.configureChildren(("SOLMode","FixedRes","Theme","FontColor","SaveLocation","ScrolledTextBorders","newgameoriginalsize","doLevelUPStaticButtons","NiminTheme","UseExpandedSaveDialog","UseNewStash","helpToWiki","doShopsReturn","showBalls","femmeboytofemboy","shemaletofuta","ngrammar","replacefemmiemale","femboyishtogirly","snuggleball","grammarMisc","StatusTweaks","SuccubusLeavesOne","UseIsBottomOpen","LizanDontShowBalls","HermGetsBoth","IntBallsEffectBelly","DirectPathToSanc","CorrectBeastRaceFeet","MiscChanges"),foreground=value)
+            self.window.configureChildren(('SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), foreground=value)
             if as3state.as3DebugEnable:
-                self.window.configureChildren(("ChooseSenario","NoDamage"),foreground=value)
+                self.window.configureChildren(('ChooseSenario', 'NoDamage'), foreground=value)
 
     def _set_enforceSize(self, value):
-        if self.isOpen:
-            if value:
-                self.window.geometry("420x207")
-            self.window.resizable = not value
+        if value:
+            self.window.geometry('420x207')
+        self.window.resizable = not value
 
     def open(self):
         if self.isOpen:
@@ -2699,8 +2702,8 @@ class OptionsWindow(PyminWindow):
             return
 
         #Window
-        self._window = itk.window(width=420, height=207, title="Options", background=self.backgroundColor)
-        self.window.bind("<Destroy>",self._close)
+        self._window = itk.window(width=420, height=207, title='Options', background=self.backgroundColor)
+        self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
         self.window.transient(self.callback.window)
@@ -2708,318 +2711,323 @@ class OptionsWindow(PyminWindow):
         if self.enforceSize:
             self.window.resizable = False
 
-        self.window.addNotebook("display","nb")
+        self.window.addNotebook('display', 'nb')
+
+        labelFont = ('Times New Roman', 11)
 
         #Options page
-        self.window.addNBFrame("nb","options",width=420,height=207,text="Options",background=self.backgroundColor)
+        self.window.addNBFrame('nb', 'options', width=420, height=207, text='Options', background=self.backgroundColor)
 
         ##Sol Mode
-        self.window.addCheckboxWithLabel("options","SOLMode",x=10,y=10,width=152,height=20,font=("Times New Roman",11),text="Strict Save Compat",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["SOLMode"].frame,text="This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).")
+        self.window.addCheckboxWithLabel('options', 'SOLMode', x=10, y=10, width=152, height=20, font=labelFont, text='Strict Save Compat', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['SOLMode'].frame, text='This does two things, 1) forces the original save dialog to only use the formats\nthat the original game used (.sol for slots and .nim everywhere else) and 2)\n(not implemented) turns off any option that makes save files incompatible with\nthe original game (these are marked in their tooltips).')
 
         ##Fixed Resolution
-        self.window.addCheckboxWithLabel("options","FixedRes",x=10,y=32,width=132,height=20,font=("Times New Roman",11),text="Fixed Resolution",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["FixedRes"].frame,text="Sets the size of all windows to their default values and disables resizing.")
+        self.window.addCheckboxWithLabel('options', 'FixedRes', x=10, y=32, width=132, height=20, font=labelFont, text='Fixed Resolution', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['FixedRes'].frame, text='Sets the size of all windows to their default values and disables resizing.')
 
         #x+180,y-97
         ##Custom Theme color
         #  The perfect size for the input field of the entryboxes is 65
-        self.window.addCheckboxWithEntry("options","Theme",x=210,y=10,width=152,height=20,font=("Times New Roman",11),text="Custom Theme Color",entrytext=(40,"Color:"),indent=38,background=self.backgroundColor,foreground=self.textColor)
+        self.window.addCheckboxWithEntry('options', 'Theme', x=210, y=10, width=152, height=20, font=labelFont, text='Custom Theme Color', entrytext=(40, 'Color:'), indent=38, background=self.backgroundColor, foreground=self.textColor)
 
         ##Custom Font color
-        self.window.addCheckboxWithEntry("options","FontColor",x=210,y=54,width=152,height=20,font=("Times New Roman",11),text="Custom Font Color",entrytext=(40,"Color:"),indent=38,background=self.backgroundColor,foreground=self.textColor)
+        self.window.addCheckboxWithEntry('options', 'FontColor', x=210, y=54, width=152, height=20, font=labelFont, text='Custom Font Color', entrytext=(40, 'Color:'), indent=38, background=self.backgroundColor, foreground=self.textColor)
 
         ##Save Location
-        self.window.addFileEntryBox("options","SaveLocation",x=10,y=98,width=400,height=20,font=("Times New Roman",11),text="Save Location",indent=0,filetype="dir",fileaction="open",initdir=str(self.callback.savelocation.resolve()),background=self.backgroundColor,foreground=self.textColor)
+        self.window.addFileEntryBox('options', 'SaveLocation', x=10, y=98, width=400, height=20, font=labelFont, text='Save Location', indent=0, filetype='dir', fileaction='open', initdir=str(self.callback.savelocation.resolve()), background=self.backgroundColor, foreground=self.textColor)
 
         #Interface page
-        self.window.addNBFrame("nb","if",width=420,height=207,text="Interface",background=self.backgroundColor)
+        self.window.addNBFrame('nb', 'if', width=420, height=207, text='Interface', background=self.backgroundColor)
 
         ##Nimin Theme
-        self.window.addCheckboxWithLabel("if","NiminTheme",x=10,y=10,width=187,height=20,font=("Times New Roman",11),text="Nimin Theme (WIP)",background=self.backgroundColor,foreground=self.textColor)
-        if (self.callback.dir / "nimintheme").is_dir():
-            ToolTip(self.window._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin.")
+        self.window.addCheckboxWithLabel('if', 'NiminTheme', x=10, y=10, width=187, height=20, font=labelFont, text='Nimin Theme (WIP)', background=self.backgroundColor, foreground=self.textColor)
+        if (self.callback.dir / 'nimintheme').is_dir():
+            ToolTip(self.window._children['NiminTheme'].frame, text='Makes widgets look more like Nimin.')
         else:
-            ToolTip(self.window._children["NiminTheme"].frame,text="(Incomplete) Makes widgets look more like Nimin. Unavailable due to missing files.")
-            self.window._children["NiminTheme"].state = "disabled"
+            ToolTip(self.window._children['NiminTheme'].frame, text='Makes widgets look more like Nimin. Unavailable due to missing files.')
+            self.window._children['NiminTheme'].state = 'disabled'
 
         ##Show scrolledText Borders
-        self.window.addCheckboxWithLabel("if","ScrolledTextBorders",x=10,y=32,width=187,height=20,font=("Times New Roman",11),text="Show ScrolledText Borders",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["ScrolledTextBorders"].frame,text="Toggles the borders on the scrollable text areas.")
+        self.window.addCheckboxWithLabel('if', 'ScrolledTextBorders', x=10, y=32, width=187, height=20, font=labelFont, text='Show ScrolledText Borders', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['ScrolledTextBorders'].frame, text='Toggles the borders on the scrollable text areas.')
 
         ##Original new game button size
-        self.window.addCheckboxWithLabel("if","newgameoriginalsize",x=10,y=54,width=187,height=20,font=("Times New Roman",11),text="Original Size for New Game",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["newgameoriginalsize"].frame,text="Makes the new game button use it's original size.")
+        self.window.addCheckboxWithLabel('if', 'newgameoriginalsize', x=10, y=54, width=187, height=20, font=labelFont, text='Original Size for New Game', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['newgameoriginalsize'].frame, text='Makes the new game button use it\'s original size.')
 
         ##Static buttons in doLevelUP
-        self.window.addCheckboxWithLabel("if","doLevelUPStaticButtons",x=10,y=76,width=187,height=20,font=("Times New Roman",11),text="Static doLevelUP Buttons",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["doLevelUPStaticButtons"].frame,text="Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.")
+        self.window.addCheckboxWithLabel('if', 'doLevelUPStaticButtons', x=10, y=76, width=187, height=20, font=labelFont, text='Static doLevelUP Buttons', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['doLevelUPStaticButtons'].frame, text='Makes each button in doLevelUP stay in the same place no matter what is\ndisplayed.')
 
         ##new save dialogue
-        self.window.addCheckboxWithLabel("if","UseExpandedSaveDialog",x=200,y=10,width=190,height=20,font=("Times New Roman",11),text="Expanded Save Dialog",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["UseExpandedSaveDialog"].frame,text="Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.")
+        self.window.addCheckboxWithLabel('if', 'UseExpandedSaveDialog', x=200, y=10, width=190, height=20, font=labelFont, text='Expanded Save Dialog', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['UseExpandedSaveDialog'].frame, text='Enables the new expanded save dialog which allows you to save to and load from\nany file of a supported format inside of the save folder.')
 
         ##New stash
-        self.window.addCheckboxWithLabel("if","UseNewStash",x=200,y=32,width=210,height=20,font=("Times New Roman",11),text="Use New Stash",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["UseNewStash"].frame,text="Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.")
+        self.window.addCheckboxWithLabel('if', 'UseNewStash', x=200, y=32, width=210, height=20, font=labelFont, text='Use New Stash', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['UseNewStash'].frame, text='Makes stash work like the bag instead. Press button 12 while moving an item to\nmove it between the bag and stash.')
 
         ##Help opens wiki
-        self.window.addCheckboxWithLabel("if","helpToWiki",x=200,y=54,width=210,height=20,font=("Times New Roman",11),text="Help Opens Wiki",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["helpToWiki"].frame,text="Makes the ingame help button open the wiki instead of displaying the original\nhelp page.")
+        self.window.addCheckboxWithLabel('if', 'helpToWiki', x=200, y=54, width=210, height=20, font=labelFont, text='Help Opens Wiki', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['helpToWiki'].frame, text='Makes the ingame help button open the wiki instead of displaying the original\nhelp page.')
 
         ##Shops Return To doShops
-        self.window.addCheckboxWithLabel("if","doShopsReturn",x=200,y=76,width=210,height=20,font=("Times New Roman",11),text="Shops Return to doShops",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["doShopsReturn"].frame,text="Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.")
+        self.window.addCheckboxWithLabel('if', 'doShopsReturn', x=200, y=76, width=210, height=20, font=labelFont, text='Shops Return to doShops', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['doShopsReturn'].frame, text='Makes the return button in all shops go back to the shop selection screen\n(doShops) instead of the general actions screen (doGeneral). You can still\noverride this by holding shift while pressing return.')
 
         #Grammar page
-        self.window.addNBFrame("nb","gs",width=420,height=207,text="Grammar",background=self.backgroundColor)
+        self.window.addNBFrame('nb', 'gs', width=420, height=207, text='Grammar', background=self.backgroundColor)
 
-        self.window.addCheckboxWithLabel("gs","showBalls",x=10,y=10,width=180,height=20,font=("Times New Roman",11),text="Respect showBalls",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["showBalls"].frame,text="Makes the game respect the showBalls variable in almost all places where the\nplayer's balls are described.")
+        self.window.addCheckboxWithLabel('gs', 'showBalls', x=10, y=10, width=180, height=20, font=labelFont, text='Respect showBalls', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['showBalls'].frame, text='Makes the game respect the showBalls variable in almost all places where the\nplayer\'s balls are described.')
 
-        self.window.addCheckboxWithLabel("gs","femmeboytofemboy",x=10,y=32,width=180,height=20,font=("Times New Roman",11),text="Femme-boy -> Femboy",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["femmeboytofemboy"].frame,text="Replaces Femme-boy with Femboy")
+        self.window.addCheckboxWithLabel('gs', 'femmeboytofemboy', x=10, y=32, width=180, height=20, font=labelFont, text='Femme-boy -> Femboy', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['femmeboytofemboy'].frame, text='Replaces Femme-boy with Femboy')
 
-        self.window.addCheckboxWithLabel("gs","shemaletofuta",x=10,y=54,width=180,height=20,font=("Times New Roman",11),text="Shemale -> Futanari",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["shemaletofuta"].frame,text="Replaces Shemale with Futanari")
+        self.window.addCheckboxWithLabel('gs', 'shemaletofuta', x=10, y=54, width=180, height=20, font=labelFont, text='Shemale -> Futanari', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['shemaletofuta'].frame, text='Replaces Shemale with Futanari')
 
-        self.window.addCheckboxWithLabel("gs","ngrammar",x=10,y=76,width=180,height=20,font=("Times New Roman",11),text="Use n-grammar",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["ngrammar"].frame,text="There are places in the game where it uses 'a' but should use 'an'. This really\nbugged me so I fixed it.")
+        self.window.addCheckboxWithLabel('gs', 'ngrammar', x=10, y=76, width=180, height=20, font=labelFont, text='Use n-grammar', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['ngrammar'].frame, text='There are places in the game where it uses "a" but should use "an". This really\nbugged me so I fixed it. (The use of "an" is different between all of the\nflavours of english so it might not look right for you)')
 
-        self.window.addCheckboxWithCombobox("gs","replacefemmiemale",x=10,y=98,width=180,height=20,font=("Times New Roman",11),text='Replace "femmie male"',indent=70,values=("feminine male", self.callback.ptweaksGrammar(3)),exportselection=0,readonly=True,background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["replacefemmiemale"].frame,text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
+        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', self.callback.ptweaksGrammar(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['replacefemmiemale'].frame, text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
 
-        self.window.addCheckboxWithLabel("gs","femboyishtogirly",x=10,y=142,width=180,height=20,font=("Times New Roman",11),text="femboyish -> girly",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["femboyishtogirly"].frame,text="Replaces femboyish with girly")
+        self.window.addCheckboxWithLabel('gs', 'femboyishtogirly', x=10, y=142, width=180, height=20, font=labelFont, text='femboyish -> girly', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['femboyishtogirly'].frame, text='Replaces femboyish with girly')
 
-        self.window.addCheckboxWithLabel("gs","snuggleball",x=200,y=10,width=180,height=20,font=("Times New Roman",11),text="Snuggleball Tweak",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["snuggleball"].frame,text="Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.")
+        self.window.addCheckboxWithLabel('gs', 'snuggleball', x=200, y=10, width=180, height=20, font=labelFont, text='Snuggleball Tweak', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['snuggleball'].frame, text='Removes the redundant text in the appearance text when the Snuggle Ball is\nequiped.')
 
-        self.window.addCheckboxWithLabel("gs","grammarMisc",x=200,y=32,width=180,height=20,font=("Times New Roman",11),text="Grammar Fixes",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["grammarMisc"].frame,text="This toggles grammar fixes throughout the game.")
+        self.window.addCheckboxWithLabel('gs', 'grammarMisc', x=200, y=32, width=180, height=20, font=labelFont, text='Grammar Fixes', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['grammarMisc'].frame, text='This toggles grammar fixes throughout the game.')
 
         #Game Tweaks page
-        self.window.addNBFrame("nb","gt",width=420,height=207,text="Game Tweaks",background=self.backgroundColor)
+        self.window.addNBFrame('nb', 'gt', width=420, height=207, text='Game Tweaks', background=self.backgroundColor)
 
         ##Status Tweaks
-        self.window.addCheckboxWithLabel("gt","StatusTweaks",x=10,y=10,width=124,height=20,font=("Times New Roman",11),text="Status Tweaks",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["StatusTweaks"].frame,text="Tweaks specific status things (Incompatible with the original game)")
+        self.window.addCheckboxWithLabel('gt', 'StatusTweaks', x=10, y=10, width=124, height=20, font=labelFont, text='Status Tweaks', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['StatusTweaks'].frame, text='Tweaks specific status things (Incompatible with the original game)')
 
         ##Succubus Leaves One
-        self.window.addCheckboxWithLabel("gt","SuccubusLeavesOne",x=10,y=32,width=164,height=20,font=("Times New Roman",11),text="Succubus Leaves One",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["SuccubusLeavesOne"].frame,text="Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.")
+        self.window.addCheckboxWithLabel('gt', 'SuccubusLeavesOne', x=10, y=32, width=164, height=20, font=labelFont, text='Succubus Leaves One', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['SuccubusLeavesOne'].frame, text='Succubus leaves 1 cock (or 2 if you are a lizan and have least 2 lizardCocks)\ninstead of taking all of them.')
 
         ##Use isBottomOpen
-        self.window.addCheckboxWithLabel("gt","UseIsBottomOpen",x=10,y=54,width=144,height=20,font=("Times New Roman",11),text="Use isBottomOpen",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["UseIsBottomOpen"].frame,text="Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).")
+        self.window.addCheckboxWithLabel('gt', 'UseIsBottomOpen', x=10, y=54, width=144, height=20, font=labelFont, text='Use isBottomOpen', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['UseIsBottomOpen'].frame, text='Makes use of the new function isBottomOpen. I added this function to check\nwhether you are wearing clothes on your bottom half that are significantly open\n(ex: skirt, sundress).')
 
         ##Lizan Don't Show Balls
-        self.window.addCheckboxWithLabel("gt","LizanDontShowBalls",x=10,y=76,width=184,height=20,font=("Times New Roman",11),text="Lizan Don't Show Balls",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["LizanDontShowBalls"].frame,text="Lizan have slit schlongs which don't normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)")
+        self.window.addCheckboxWithLabel('gt', 'LizanDontShowBalls', x=10, y=76, width=184, height=20, font=labelFont, text='Lizan Don\'t Show Balls', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['LizanDontShowBalls'].frame, text='Lizan have slit schlongs which don\'t normally have external balls. This changes\nthe game to reflect this. This also makes use of a variable that I added to keep\ntrack of when the Neuterizer was used to hide balls. (Incomplete)')
 
         ##Herm Can Has Both
-        self.window.addCheckboxWithLabel("gt","HermGetsBoth",x=10,y=98,width=190,height=20,font=("Times New Roman",11),text="Herm Can Has Both",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["HermGetsBoth"].frame,text="Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn't before and it makes sense. (Incomplete)")
+        self.window.addCheckboxWithLabel('gt', 'HermGetsBoth', x=10, y=98, width=190, height=20, font=labelFont, text='Herm Can Has Both', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['HermGetsBoth'].frame, text='Hermaphrodites have both male and female genitals so they should be able to\nexperience both male and female senarios or have their own. This\ntoggle makes that happen where it didn\'t before and it makes sense. (Incomplete)')
 
         ##Internal ball size affects belly size
-        self.window.addCheckboxWithLabel("gt","IntBallsEffectBelly",x=10,y=120,width=190,height=20,font=("Times New Roman",11),text="IntBallsEffectBellySize",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["IntBallsEffectBelly"].frame,text="When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)")
+        self.window.addCheckboxWithLabel('gt', 'IntBallsEffectBelly', x=10, y=120, width=190, height=20, font=labelFont, text='IntBallsEffectBellySize', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['IntBallsEffectBelly'].frame, text='When your balls are internal, makes their size effect your belly size instead\nof going into a magical space where they weigh nothing. (Incomplete)')
 
         ##Add direct path to sanctuary
-        self.window.addCheckboxWithLabel("gt","DirectPathToSanc",x=200,y=10,width=190,height=20,font=("Times New Roman",11),text="Direct Path to Sanctuary",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["DirectPathToSanc"].frame,text="Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.")
+        self.window.addCheckboxWithLabel('gt', 'DirectPathToSanc', x=200, y=10, width=190, height=20, font=labelFont, text='Direct Path to Sanctuary', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['DirectPathToSanc'].frame, text='Adds a way to travel directly to/from sanctuary without going through the cave\nevery time. Only available once you defeat all of the bosses in the cave.')
 
         ##Digi beast feet
-        self.window.addCheckboxWithLabel("gt","CorrectBeastRaceFeet",x=200,y=32,width=210,height=20,font=("Times New Roman",11),text="Correct Feet for Some Races",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["CorrectBeastRaceFeet"].frame,text="Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don't have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)")
+        self.window.addCheckboxWithLabel('gt', 'CorrectBeastRaceFeet', x=200, y=32, width=210, height=20, font=labelFont, text='Correct Feet for Some Races', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['CorrectBeastRaceFeet'].frame, text='Makes applicable races (lupan, felin, equan, bovine) have the correct feet.\nBefore they had human feet, now they have paws and hooves. The lupan and felin\nraces don\'t have much about feet in the game but the equine and bovine races are\nexplicitly stated to have hooves in various parts of the game. (Mostly implemented)\n(Incompatible with the original game)')
 
         ##Misc Changes
-        self.window.addCheckboxWithLabel("gt","MiscChanges",x=200,y=54,width=210,height=20,font=("Times New Roman",11),text="Misc Changes",background=self.backgroundColor,foreground=self.textColor)
-        ToolTip(self.window._children["MiscChanges"].frame,text="Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.")
+        self.window.addCheckboxWithLabel('gt', 'MiscChanges', x=200, y=54, width=210, height=20, font=labelFont, text='Misc Changes', background=self.backgroundColor, foreground=self.textColor)
+        ToolTip(self.window._children['MiscChanges'].frame, text='Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.')
 
         if as3state.as3DebugEnable:
             #Debug Options page
-            self.window.addNBFrame("nb","dt",width=420,height=207,text="Debug Options",background=self.backgroundColor)
+            self.window.addNBFrame('nb', 'dt', width=420, height=207, text='Debug Options', background=self.backgroundColor)
 
             ##Always Choose Senario
-            self.window.addCheckboxWithLabel("dt","ChooseSenario",x=10,y=10,width=154,height=20,font=("Times New Roman",11),text="alwaysChooseSenario",background=self.backgroundColor,foreground=self.textColor)
-            ToolTip(self.window._children["ChooseSenario"].frame,text="Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.")
+            self.window.addCheckboxWithLabel('dt', 'ChooseSenario', x=10, y=10, width=154, height=20, font=labelFont, text='alwaysChooseSenario', background=self.backgroundColor, foreground=self.textColor)
+            ToolTip(self.window._children['ChooseSenario'].frame, text='Requires user to input a senario of their choosing into the terminal every time\ninstead of choosing randomly.')
 
             ##Always Choose Senario
-            self.window.addCheckboxWithLabel("dt","NoDamage",x=10,y=32,width=154,height=20,font=("Times New Roman",11),text="takeNoDamage",background=self.backgroundColor,foreground=self.textColor)
-            ToolTip(self.window._children["NoDamage"].frame,text="Makes the player take no damage from enemies. Currently only works when eDmg is called.")
+            self.window.addCheckboxWithLabel('dt', 'NoDamage', x=10, y=32, width=154, height=20, font=labelFont, text='takeNoDamage', background=self.backgroundColor, foreground=self.textColor)
+            ToolTip(self.window._children['NoDamage'].frame, text='Makes the player take no damage from enemies. Currently only works when eDmg is called.')
 
         #Apply button
-        self.window.addWidget(PyminButton,"display","ApplyButton",x=360,y=172,width=50,height=25,font=("Times New Roman",12),text="Apply",command=partial(self.save, self.callback))
+        self.window.addWidget(PyminButton, 'display', 'ApplyButton', x=360, y=172, width=50, height=25, font=('Times New Roman', 12), text='Apply', command=partial(self.save, self.callback))
 
         self.load(self.callback)
         self._isOpen = True
 
     def load(self, main):
-        self.window._children["Theme"].set(main.backgroundColor)
-        self.window._children["FontColor"].set(main.textColor)
-        self.window._children["SaveLocation"].set(str(main.savelocation.resolve()))
+        self.window._children['Theme'].set(main.backgroundColor)
+        self.window._children['FontColor'].set(main.textColor)
+        self.window._children['SaveLocation'].set(str(main.savelocation.resolve()))
         if main.solonlymode:
-            self.window._children["SOLMode"].select()
+            self.window._children['SOLMode'].select()
         if main.enforceSize:
-            self.window._children["FixedRes"].select()
+            self.window._children['FixedRes'].select()
         if main.customfontcolor:
-            self.window._children["Theme"].select()
+            self.window._children['Theme'].select()
         if main.customthemecolor:
-            self.window._children["FontColor"].select()
+            self.window._children['FontColor'].select()
         if main.statusTweaks:
-            self.window._children["StatusTweaks"].select()
+            self.window._children['StatusTweaks'].select()
         if main.succubusLeavesOne:
-            self.window._children["SuccubusLeavesOne"].select()
+            self.window._children['SuccubusLeavesOne'].select()
         if main.useIsBottomOpen:
-            self.window._children["UseIsBottomOpen"].select()
+            self.window._children['UseIsBottomOpen'].select()
         if main.lizanDontShowBalls:
-            self.window._children["LizanDontShowBalls"].select()
+            self.window._children['LizanDontShowBalls'].select()
         if main.hermGetsBoth:
-            self.window._children["HermGetsBoth"].select()
+            self.window._children['HermGetsBoth'].select()
         if main.internalBallsEffectBelly:
-            self.window._children["IntBallsEffectBelly"].select()
+            self.window._children['IntBallsEffectBelly'].select()
         if main.directPathToSanctuary:
-            self.window._children["DirectPathToSanc"].select()
+            self.window._children['DirectPathToSanc'].select()
         if main.correctBeastRaceFeet:
-            self.window._children["CorrectBeastRaceFeet"].select()
+            self.window._children['CorrectBeastRaceFeet'].select()
         if main.gameTweaksMisc:
-            self.window._children["MiscChanges"].select()
+            self.window._children['MiscChanges'].select()
         if main.useNiminTheme:
-            self.window._children["NiminTheme"].select()
+            self.window._children['NiminTheme'].select()
         if main.scrolledTextBorders:
-            self.window._children["ScrolledTextBorders"].select()
+            self.window._children['ScrolledTextBorders'].select()
         if main.oNewGameButton:
-            self.window._children["newgameoriginalsize"].select()
+            self.window._children['newgameoriginalsize'].select()
         if main.staticdoLevelUPButtons:
-            self.window._children["doLevelUPStaticButtons"].select()
+            self.window._children['doLevelUPStaticButtons'].select()
         if main.useNewSaveLoadDialog:
-            self.window._children["UseExpandedSaveDialog"].select()
+            self.window._children['UseExpandedSaveDialog'].select()
         if main.useNewStash:
-            self.window._children["UseNewStash"].select()
+            self.window._children['UseNewStash'].select()
         if main.helpToWiki:
-            self.window._children["helpToWiki"].select()
+            self.window._children['helpToWiki'].select()
         if main.doShopsReturn:
-            self.window._children["doShopsReturn"].select()
+            self.window._children['doShopsReturn'].select()
         if main.respectShowBalls:
-            self.window._children["showBalls"].select()
+            self.window._children['showBalls'].select()
         if main.femmeboyToFemboy:
-            self.window._children["femmeboytofemboy"].select()
+            self.window._children['femmeboytofemboy'].select()
         if main.shemaleToFuta:
-            self.window._children["shemaletofuta"].select()
+            self.window._children['shemaletofuta'].select()
         if main.ngrammar:
-            self.window._children["ngrammar"].select()
+            self.window._children['ngrammar'].select()
         if main.femmieMaleReplacement:
-            self.window._children["replacefemmiemale"].select()
-            self.window._children["replacefemmiemale"].current(main.femmieMaleReplacement - 1)
+            self.window._children['replacefemmiemale'].select()
+            self.window._children['replacefemmiemale'].current(main.femmieMaleReplacement - 1)
         if main.femboyishToGirly:
-            self.window._children["femboyishtogirly"].select()
+            self.window._children['femboyishtogirly'].select()
         if main.snuggleBallTweak:
-            self.window._children["snuggleball"].select()
+            self.window._children['snuggleball'].select()
         if main.grammarFixes:
-            self.window._children["grammarMisc"].select()
+            self.window._children['grammarMisc'].select()
         if as3state.as3DebugEnable:
             if main.debugChooseSenario:
-                self.window._children["ChooseSenario"].select()
+                self.window._children['ChooseSenario'].select()
             if main.debugNoDamage:
-                self.window._children["NoDamage"].select()
+                self.window._children['NoDamage'].select()
 
     def save(self, main):
         if self.isOpen:
-            main.solonlymode = self.window._children["SOLMode"].getcb()
-            main.enforceSize = self.window._children["FixedRes"].getcb()
+            main.solonlymode = self.window._children['SOLMode'].getcb()
+            main.enforceSize = self.window._children['FixedRes'].getcb()
 
             # Custom Theme Colour
-            if self.window._children["Theme"].getcb():
-                if self.window._children["Theme"].get() == "":
-                    self.window._children["Theme"]["background"] = "#FF3333"
-                    raise Error("Pymin.OWSaveOptions; CustomThemeColor is empty")
-                if not SaveUtils.checkValidHex(self.window._children["Theme"].get()):
-                    self.window._children["Theme"]["background"] = "#FF3333"
-                    raise Error("Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code")
+            if self.window._children['Theme'].getcb():
+                if self.window._children['Theme'].get() == '':
+                    self.window._children['Theme']['background'] = '#FF3333'
+                    raise Error('Pymin.OWSaveOptions; CustomThemeColor is empty')
+                if not SaveUtils.checkValidHex(self.window._children['Theme'].get()):
+                    self.window._children['Theme']['background'] = '#FF3333'
+                    raise Error('Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code')
                 if not main.customthemecolor:
                     main.obackgroundcolor = main.backgroundColor
                 main.customthemecolor = True
-                if self.window._children["Theme"]["background"] == "#FF3333":
-                    self.window._children["Theme"]["background"] = "#FFFFFF"
-                main.backgroundColor = self.window._children["Theme"].get()
-                main.window._children["themebutton"].state = "disabled"
+                if self.window._children['Theme']["background"] == '#FF3333':
+                    self.window._children['Theme']["background"] = '#FFFFFF'
+                main.backgroundColor = self.window._children['Theme'].get()
+                main.window._children['themebutton'].state = 'disabled'
             else:
                 main.customthemecolor = False
                 main.backgroundColor = main.obackgroundcolor
-                main.window._children["themebutton"].state = "normal"
+                main.window._children['themebutton'].state = 'normal'
 
             # Custom Font Colour
-            if self.window._children["FontColor"].getcb():
-                if self.window._children["FontColor"].get() == "":
-                    self.window._children["FontColor"]["background"] = "#FF3333"
-                    raise Error("Pymin.OWSaveOptions; CustomFontColor is empty")
-                if not SaveUtils.checkValidHex(self.window._children["FontColor"].get()):
-                    self.window._children["FontColor"]["background"] = "#FF3333"
-                    raise Error("Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code")
+            if self.window._children['FontColor'].getcb():
+                if self.window._children['FontColor'].get() == '':
+                    self.window._children['FontColor']['background'] = '#FF3333'
+                    raise Error('Pymin.OWSaveOptions; CustomFontColor is empty')
+                if not SaveUtils.checkValidHex(self.window._children['FontColor'].get()):
+                    self.window._children['FontColor']['background'] = '#FF3333'
+                    raise Error('Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code')
                 if not main.customfontcolor:
                     main.otextcolor = main.textColor
                 main.customfontcolor = True
-                if self.window._children["FontColor"]["background"] == "#FF3333":
-                    self.window._children["FontColor"]["background"] = "#FFFFFF"
-                main.textColor = self.window._children["FontColor"].get()
-                main.window._children["textcolorbutton"].state = "disabled"
+                if self.window._children['FontColor']['background'] == '#FF3333':
+                    self.window._children['FontColor']['background'] = '#FFFFFF'
+                main.textColor = self.window._children['FontColor'].get()
+                main.window._children['textcolorbutton'].state = 'disabled'
             else:
                 main.customfontcolor = False
                 main.textColor = main.otextcolor
-                main.window._children["textcolorbutton"].state = "normal"
+                main.window._children['textcolorbutton'].state = 'normal'
 
             # Save Location
-            if self.window._children["SaveLocation"].get() == "":
-                self.window._children["SaveLocation"]["background"] = "#FF3333"
-                raise Error("Pymin.OWSaveOptions; SaveLocation is empty")
-            if not isValidDirectory(self.window._children["SaveLocation"].get(),as3state.separator):
-                self.window._children["SaveLocation"]["background"] = "#FF3333"
-                raise Error("Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform")
-            if self.window._children["SaveLocation"]["background"] == "#FF3333":
-                self.window._children["SaveLocation"]["background"] = "#FFFFFF"
-            main.savelocation = Path(self.window._children["SaveLocation"].get()).resolve()
+            if self.window._children['SaveLocation'].get() == '':
+                self.window._children['SaveLocation']['background'] = '#FF3333'
+                raise Error('Pymin.OWSaveOptions; SaveLocation is empty')
+            # TODO: Make this check platform agnostic
+            if not isValidDirectory(self.window._children['SaveLocation'].get(), as3state.separator):
+                self.window._children['SaveLocation']['background'] = '#FF3333'
+                raise Error('Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform')
+            if self.window._children['SaveLocation']['background'] == '#FF3333':
+                self.window._children['SaveLocation']['background'] = '#FFFFFF'
+            main.savelocation = Path(self.window._children['SaveLocation'].get()).resolve()
 
-            main.statusTweaks = self.window._children["StatusTweaks"].getcb()
-            main.succubusLeavesOne = self.window._children["SuccubusLeavesOne"].getcb()
-            main.useIsBottomOpen = self.window._children["UseIsBottomOpen"].getcb()
-            main.lizanDontShowBalls = self.window._children["LizanDontShowBalls"].getcb()
-            main.hermGetsBoth = self.window._children["HermGetsBoth"].getcb()
-            main.internalBallsEffectBelly = self.window._children["IntBallsEffectBelly"].getcb()
-            main.directPathToSanctuary = self.window._children["DirectPathToSanc"].getcb()
-            main.correctBeastRaceFeet = self.window._children["CorrectBeastRaceFeet"].getcb()
-            main.gameTweaksMisc = self.window._children["MiscChanges"].getcb()
-            if (main.dir / "nimintheme").is_dir():
-                if self.window._children["NiminTheme"].getcb():
+            main.statusTweaks = self.window._children['StatusTweaks'].getcb()
+            main.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
+            main.useIsBottomOpen = self.window._children['UseIsBottomOpen'].getcb()
+            main.lizanDontShowBalls = self.window._children['LizanDontShowBalls'].getcb()
+            main.hermGetsBoth = self.window._children['HermGetsBoth'].getcb()
+            main.internalBallsEffectBelly = self.window._children['IntBallsEffectBelly'].getcb()
+            main.directPathToSanctuary = self.window._children['DirectPathToSanc'].getcb()
+            main.correctBeastRaceFeet = self.window._children['CorrectBeastRaceFeet'].getcb()
+            main.gameTweaksMisc = self.window._children['MiscChanges'].getcb()
+
+            if (main.dir / 'nimintheme').is_dir():
+                if self.window._children['NiminTheme'].getcb():
                     main.useNiminTheme = True
-                    main.style.theme_use("nimin")
+                    main.style.theme_use('nimin')
                 else:
                     main.useNiminTheme = False
-                    main.style.theme_use("default")
-            main.scrolledTextBorders = self.window._children["ScrolledTextBorders"].getcb()
+                    main.style.theme_use('default')
+            main.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
             tempng = main.oNewGameButton
-            main.oNewGameButton = self.window._children["newgameoriginalsize"].getcb()
+            main.oNewGameButton = self.window._children['newgameoriginalsize'].getcb()
             if tempng != main.oNewGameButton and main.shownewgame:
                 main.hideNGButton()
                 main.showNGButton()
-            main.staticdoLevelUPButtons = self.window._children["doLevelUPStaticButtons"].getcb()
-            main.useNewSaveLoadDialog = self.window._children["UseExpandedSaveDialog"].getcb()
-            main.useNewStash = self.window._children["UseNewStash"].getcb()
-            main.helpToWiki = self.window._children["helpToWiki"].getcb()
-            main.doShopsReturn = self.window._children["doShopsReturn"].getcb()
-            main.respectShowBalls = self.window._children["showBalls"].getcb()
-            main.femmeboyToFemboy = self.window._children["femmeboytofemboy"].getcb()
-            main.shemaleToFuta = self.window._children["shemaletofuta"].getcb()
-            main.ngrammar = self.window._children["ngrammar"].getcb()
-            if self.window._children["replacefemmiemale"].getcb():
-                main.femmieMaleReplacement = self.window._children["replacefemmiemale"].current() + 1
+            main.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
+            main.useNewSaveLoadDialog = self.window._children['UseExpandedSaveDialog'].getcb()
+            main.useNewStash = self.window._children['UseNewStash'].getcb()
+            main.helpToWiki = self.window._children['helpToWiki'].getcb()
+            main.doShopsReturn = self.window._children['doShopsReturn'].getcb()
+
+            main.respectShowBalls = self.window._children['showBalls'].getcb()
+            main.femmeboyToFemboy = self.window._children['femmeboytofemboy'].getcb()
+            main.shemaleToFuta = self.window._children['shemaletofuta'].getcb()
+            main.ngrammar = self.window._children['ngrammar'].getcb()
+            if self.window._children['replacefemmiemale'].getcb():
+                main.femmieMaleReplacement = self.window._children['replacefemmiemale'].current() + 1
                 # TODO: Update the text based on the value of self.femmeboyToFemboy
-            main.femboyishToGirly = self.window._children["femboyishtogirly"].getcb()
-            main.snuggleBallTweak = self.window._children["snuggleball"].getcb()
-            main.grammarFixes = self.window._children["grammarMisc"].getcb()
+            main.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
+            main.snuggleBallTweak = self.window._children['snuggleball'].getcb()
+            main.grammarFixes = self.window._children['grammarMisc'].getcb()
             if as3state.as3DebugEnable:
-                main.debugChooseSenario = self.window._children["ChooseSenario"].getcb()
-                main.debugNoDamage = self.window._children["NoDamage"].getcb()
+                main.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
+                main.debugNoDamage = self.window._children['NoDamage'].getcb()
             main.savePreferences()
 
 
