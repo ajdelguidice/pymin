@@ -39,18 +39,18 @@ otherLegs
 legArray
 '''
 
-__version__ = "13"
+__version__ = '13'
 
 class TimesFont(Font):
-   source = "assets/fonts/Times New Roman.ttf"
-   fontName = "Times New Roman"
-   fontFamily = "Times New Roman"
-   mimeType = "application/x-font"
-   fontWeight = "normal"
-   fontStyle = "normal"
-   unicodeRange = ""
-   advancedAntiAliasing = "true"
-   embedAsCFF = "false"
+   source = 'assets/fonts/Times New Roman.ttf'
+   fontName = 'Times New Roman'
+   fontFamily = 'Times New Roman'
+   mimeType = 'application/x-font'
+   fontWeight = 'normal'
+   fontStyle = 'normal'
+   unicodeRange = ''
+   advancedAntiAliasing = 'true'
+   embedAsCFF = 'false'
    def __init__(self):
       super().__init__()
 
@@ -71,9 +71,9 @@ def strtobool(a:str):
    Converts a string to a boolean
    """
    low = a.lower()
-   if low == "true":
+   if low == 'true':
       return True
-   if low == "false":
+   if low == 'false':
       return False
 
 class ButtonList(list):
@@ -89,7 +89,7 @@ class ButtonList(list):
       if item > 0:
          return super().__getitem__(item-1)
       elif item == 0:
-         raise RangeError("ButtonList; Index can not be 0")
+         raise RangeError('ButtonList; Index can not be 0')
       elif item < 0:
          return super().__getitem__(item)
 
@@ -97,7 +97,7 @@ class ButtonList(list):
       if item > 0:
          super().__setitem__(item-1, value)
       elif item == 0:
-         raise RangeError("ButtonList; Index can not be 0")
+         raise RangeError('ButtonList; Index can not be 0')
       elif item < 0:
          super().__setitem__(item, value)
 
@@ -109,18 +109,17 @@ def applyBackspace(string):
 
 class PyminLabel(itk.itkLabel):
    def __init__(self, master, **kwargs):
-      kwargs.update({'background':"#FFFFFF","foreground":"#000000","highlightbackground":"#000000","highlightthickness":1})
-      super().__init__(master, **kwargs)
+      super().__init__(master, background='#FFFFFF', foreground='#000000', highlightbackground='#000000', highlightthickness=1, **kwargs)
 
 def _noop(*args):
    ...
 
 class PyminButton(itk.itkFrame):
    def __init__(self, master, **kwargs):
-      self._command = kwargs.pop("command",_noop)
-      text = kwargs.pop("text", '')
-      super().__init__(master, highlightthickness=1, background="#FFFFFF", highlightbackground="#000000", **kwargs)
-      self.label = tkinter.Label(self, anchor="center", background="#FFFFFF", foreground="#000000")
+      self._command = kwargs.pop('command', _noop)
+      text = kwargs.pop('text', '')
+      super().__init__(master, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000', **kwargs)
+      self.label = tkinter.Label(self, anchor='center', background='#FFFFFF', foreground='#000000')
       self.bind(ckeys.mouseButtonNameToTkname("Left"), self.press)
       self.text = text
 
@@ -129,19 +128,19 @@ class PyminButton(itk.itkFrame):
       self.label.bind(key, func)
 
    def press(self, *e):
-      if self._state != "disabled":
+      if self._state != 'disabled':
          self._command()
 
    def update(self):
       nm = self._window.mult
       self.place(x=self._x*nm, y=self._y*nm, width=self._width*nm, height=self._height*nm, anchor=self._anchor)
-      self.label.pack(fill="both", expand=True)
+      self.label.pack(fill='both', expand=True)
 
    def updateText(self):
       self.label['font'] = (self._font, cmath.resizefont(self._fontSize, self._window.fontmult), self._fontStyle)
 
    def updateState(self):
-      self.label["state"] = self._state
+      self.label['state'] = self._state
 
    updateBackground = _noop
    updateForeground = _noop
@@ -183,18 +182,18 @@ class ToolTip(object):
       widget.bind('<Leave>', self.hidetip)
 
    def showtip(self, event):
-      "Display text in tooltip window"
+      # Display text in tooltip window
       if self.window or not self.text:
          return
-      x, y, cx, cy = self.parent.bbox("insert")
+      x, y, cx, cy = self.parent.bbox('insert')
       x = x + self.parent.winfo_rootx() + 57
       y = y + cy + self.parent.winfo_rooty() + 27
       self.window = tw = tkinter.Toplevel(self.parent)
       tw.wm_overrideredirect(1)
-      tw.wm_geometry("+%d+%d" % (x, y))
+      tw.wm_geometry('+%d+%d' % (x, y))
       label = tkinter.Label(tw, text=self.text, justify=tkinter.LEFT,
-                     background="#ffffe0", relief=tkinter.SOLID, borderwidth=1,
-                     font=("tahoma", "8", "normal"))
+                     background='#ffffe0', relief=tkinter.SOLID, borderwidth=1,
+                     font=('tahoma', '8', 'normal'))
       label.pack(ipadx=1)
 
    def hidetip(self, event):
@@ -226,7 +225,7 @@ class DirUtils:
       files = [f.name for f in directory.iterdir() if f.is_file()]
       #if extension is specified, remove extension that aren't included
       if ext is not None:
-         files = [i for i in files if ("." not in i and "" in ext) or i.endswith(ext)]
+         files = [i for i in files if ('.' not in i and '' in ext) or i.endswith(ext)]
       #if sort order is specified, use it
       if sort is None:
          return files
@@ -275,6 +274,34 @@ class SaveUtils:
                return False
          return True
       return False
+
+   def getdhXML(file):
+      """
+      Gets day and hour from a XML save file
+      """
+      track = xmletree.parse(file).getroot().find('track')
+      return (track.find('day').text, track.find('hour').text)
+
+   def getdhTOML(file):
+      """
+      Gets day and hour from a TOML save file
+      """
+      with open(file, 'rb') as f:
+         temp = TOML.readFile(f)['track']
+         return temp['day'], temp['hour']
+
+   def getdhSOL(file):
+      """
+      Gets day and hour from an SOL save file
+      """
+      return sol.load(str(file))['track'][2:4]
+
+   def getdhNIM(file):
+      """
+      Gets day and hour from a NIM save file
+      """
+      with open(file, 'rb') as f:
+         return ByteArray(f).readObject()['data']['track'][2:4]
 
    def dictSAVE(dictionary):
       d = {'mod':('cumMod','cockSizeMod','vagSizeMod','vagElastic','changeMod','SexPMod'),'status':('pregRate',),'majorFetish':('maleFetish','femaleFetish','hermFetish','narcissistFetish','dependentFetish'),'moderateFetish':('dominantFetish','submissiveFetish','lboobFetish','sboobFetish','furryFetish','scalyFetish','smoothyFetish'),'minorFetish':('pregnancyFetish','bestialityFetish','milkFetish','sizeFetish','unbirthingFetish','ovipositionFetish','toyFetish','hyperFetish')}
@@ -385,7 +412,7 @@ class SaveUtils:
       xml.write(outputfile,encoding="UTF-8",xml_declaration=True)
 
    def loadTOML(filename):
-      with open(filename,"rb") as f:
+      with open(filename, 'rb') as f:
          return TOML.readFile(f)
 
    def _loadSharedObject(so):
@@ -443,8 +470,8 @@ class SaveUtils:
       return {"track":{"currentState":strack[0],"currentZone":strack[1],"day":strack[2],"hour":strack[3],"currentDayCare":strack[4],"inDungeon":strack[5],"currentDungeon":strack[6],"v7":strack[7],"firstExplore":strack[8] if len(strack) > 8 else False},"version":{"original":so["versionNumber"],"port":ver},"stats":{"strength":sstats[0],"mentality":sstats[1],"libido":sstats[2],"sensitivity":sstats[3],"HP":sstats[4],"lust":sstats[5],"coin":sstats[6],"strMod":sstats[7],"mentMod":sstats[8],"libMod":sstats[9],"senMod":sstats[10],"hunger":sstats[11]},"level":{"SexP":slevel[0],"levelUP":slevel[1],"level":slevel[2],"babyFactLevel":slevel[3],"bodyBuildLevel":slevel[4],"hyperHappyLevel":slevel[5],"alchemistLevel":slevel[6],"fetishMasterLevel":slevel[7],"milkMaidLevel":slevel[8],"shapeshiftyLevel":slevel[9],"shapeshiftyFirst":slevel[10],"shapeshiftySecond":slevel[11]},"mod":{"runMod":smod[0],"rapeMod":smod[1],"cumMod":smod[2],"cockSizeMod":smod[3],"milkMod":smod[4],"carryMod":smod[5],"vagBellyMod":smod[6],"pregChanceMod":smod[7],"extraPregChance":smod[8],"pregTimeMod":smod[9],"enticeMod":smod[10],"milkHPMod":smod[11],"vagSizeMod":smod[12],"vagElastic":smod[13],"changeMod":smod[14],"HPMod":smod[15],"SexPMod":smod[16],"minLust":smod[17],"milkCap":smod[18],"coinMod":smod[19],"hipMod":smod[20],"buttMod":smod[21],"bellyMod":smod[22],"cockMoistMod":smod[23],"vagMoistMod":smod[24],"lockTail":smod[25],"lockFace":smod[26],"lockSkin":smod[27],"lockBreasts":smod[28],"lockEars":smod[29],"lockLegs":smod[30],"lockNipples":smod[31],"lockCock":smod[32]},"quality":{"gender":squality[0],"race":squality[1],"body":squality[2],"dominant":squality[3],"hips":squality[4],"butt":squality[5],"tallness":squality[6],"skinType":squality[7],"tail":squality[8],"ears":squality[9],"hair":squality[10],"hairColor":squality[11],"hairLength":squality[12],"legType":squality[13],"wings":squality[14],"faceType":squality[15],"skinColor":squality[16]},"cock":{"cockTotal":scock[0],"humanCocks":scock[1],"horseCocks":scock[2],"wolfCocks":scock[3],"catCocks":scock[4],"rabbitCocks":scock[5],"lizardCocks":scock[6],"cockSize":scock[7],"cockMoist":scock[8],"balls":scock[9],"ballSize":scock[10],"showBalls":scock[11],"knot":scock[12],"bugCocks":scock[13],"neuterizerHideBalls":scock[14] if len(scock) == 15 else False},"girl":{"breastSize":sgirl[0],"boobTotal":sgirl[1],"nippleSize":sgirl[2],"udders":sgirl[3],"udderSize":sgirl[4],"teatSize":sgirl[5],"clitSize":sgirl[6],"vagTotal":sgirl[7],"vagSize":sgirl[8],"vagMoist":sgirl[9],"vulvaSize":sgirl[10],"nipType":sgirl[11]},"gear":{"attireTop":sgear[0],"attireBot":sgear[1],"weapon":sgear[2]},"status":{"pregRate":sstatus[0],"pregnancyTime":sstatus[1],"pregStatus":sstatus[2],"eggLaying":sstatus[3],"eggMaxTime":sstatus[4],"eggTime":sstatus[4] if sstatus[5] > sstatus[4] and tempver < 10 else sstatus[5],"eggRate":sstatus[6],"exhaustion":sstatus[7],"exhaustionPenalty":sstatus[8],"milkEngorgement":sstatus[9],"milkEngorgementLevel":sstatus[10],"udderEngorgement":sstatus[11],"udderEngorgementLevel":sstatus[12],"heat":sstatus[13],"heatTime":sstatus[14],"heatMaxTime":sstatus[15],"lactation":sstatus[16],"udderLactation":sstatus[17],"nipplePlay":sstatus[18],"udderPlay":sstatus[19],"blueBalls":sstatus[20],"teatPump":sstatus[21],"nipPump":sstatus[22],"cockPump":sstatus[23],"clitPump":sstatus[24],"vulvaPump":sstatus[25],"masoPot":sstatus[26],"sMasoPot":sstatus[27],"babyFree":sstatus[28],"charmTime":sstatus[29],"pheromone":sstatus[30],"eggceleratorTime":sstatus[31],"eggceleratorDose":sstatus[32],"bodyOil":sstatus[33],"lustPenalty":sstatus[34],"fertileGel":sstatus[35],"snuggleBall":sstatus[36],"eggType":sstatus[37],"milkSuppressant":sstatus[38],"milkSuppressantLact":sstatus[39],"milkSuppressantUdder":sstatus[40],"suppHarness":sstatus[41],"fertilityStatueCurse":sstatus[42],"plumpQuats":sstatus[43],"lilaWetStatus":sstatus[44],"cockSnakePreg":sstatus[45],"milkCPoisonNip":sstatus[46],"milkCPoisonUdd":sstatus[47],"cockSnakeVenom":sstatus[48]},"affinity":{"humanAffinity":saffinity[0],"horseAffinity":saffinity[1],"wolfAffinity":saffinity[2],"catAffinity":saffinity[3],"cowAffinity":saffinity[4],"lizardAffinity":saffinity[5],"rabbitAffinity":saffinity[6],"fourBoobAffinity":saffinity[7],"mouseAffinity":saffinity[8],"birdAffinity":saffinity[9],"pigAffinity":saffinity[10],"twoBoobAffinity":saffinity[11],"sixBoobAffinity":saffinity[12],"eightBoobAffinity":saffinity[13],"tenBoobAffinity":saffinity[14],"cowTaurAffinity":saffinity[15],"humanTaurAffinity":saffinity[16],"skunkAffinity":saffinity[17],"bugAffinity":saffinity[18]},"rep":{"lilaRep":srep[0],"lilaVulva":srep[1],"lilaMilk":srep[2],"lilaPreg":srep[3],"malonRep":srep[4],"malonPreg":srep[5],"malonChildren":srep[6],"mistressRep":srep[7],"jamieRep":srep[8],"jamieSize":srep[9],"jamieChildren":srep[10],"silRep":srep[11],"silPreg":srep[12],"silRate":srep[13],"silLay":srep[14],"silGrowthTime":srep[15],"silTied":srep[16],"lilaUB":srep[17],"dairyFarmBrand":srep[18],"lilaWetness":srep[19],"jamieButt":srep[20],"jamieBreasts":srep[21],"jamieHair":srep[22]},"knowledge":{"foundSoftlik":sknowledge[0],"foundFirmshaft":sknowledge[1],"foundTieden":sknowledge[2],"foundSizCalit":sknowledge[3],"foundOviasis":sknowledge[4],"foundValley":sknowledge[5],"foundSanctuary":sknowledge[6],"usedSecretStairs":sknowledge[7] if len(sknowledge) == 8 else False},"boss":{"defeatedMinotaur":sboss[0],"defeatedFreakyGirl":sboss[1],"defeatedSuccubus":sboss[2]},"knowSimpleAlchemy":{"knowLustDraft":sknowSimpleAlchemy[0],"knowRejuvPot":sknowSimpleAlchemy[1],"knowExpPreg":sknowSimpleAlchemy[2],"knowBallSwell":sknowSimpleAlchemy[3],"knowMaleEnhance":sknowSimpleAlchemy[4]},"knowAdvancedAlchemy":{"knowSLustDraft":sknowAdvancedAlchemy[0],"knowSRejuvPot":sknowAdvancedAlchemy[1],"knowSExpPreg":sknowAdvancedAlchemy[2],"knowSBallSwell":sknowAdvancedAlchemy[3],"knowGenSwap":sknowAdvancedAlchemy[4],"knowMasoPot":sknowAdvancedAlchemy[5],"knowBabyFree":sknowAdvancedAlchemy[6],"knowPotPot":sknowAdvancedAlchemy[7],"knowMilkSuppress":sknowAdvancedAlchemy[8]},"knowComplexAlchemy":{"knowSGenSwap":sknowComplexAlchemy[0],"knowSMasoPot":sknowComplexAlchemy[1],"knowSBabyFree":sknowComplexAlchemy[2],"knowSPotPot":sknowComplexAlchemy[3],"knowPussJuice":sknowComplexAlchemy[4],"knowPheromone":sknowComplexAlchemy[5],"knowBazoomba":sknowComplexAlchemy[6]},"majorFetish":{"maleFetish":smajorFetish[0],"femaleFetish":smajorFetish[1],"hermFetish":smajorFetish[2],"narcissistFetish":smajorFetish[3],"dependentFetish":smajorFetish[4]},"moderateFetish":{"dominantFetish":smoderateFetish[0],"submissiveFetish":smoderateFetish[1],"lboobFetish":smoderateFetish[2],"sboobFetish":smoderateFetish[3],"furryFetish":smoderateFetish[4],"scalyFetish":smoderateFetish[5],"smoothyFetish":smoderateFetish[6]},"minorFetish":{"pregnancyFetish":sminorFetish[0],"bestialityFetish":sminorFetish[1],"milkFetish":sminorFetish[2],"sizeFetish":sminorFetish[3],"unbirthingFetish":sminorFetish[4],"ovipositionFetish":sminorFetish[5],"toyFetish":sminorFetish[6],"hyperFetish":sminorFetish[7]},"kid":{"humanChildren":skid[0],"equanChildren":skid[1],"lupanChildren":skid[2],"felinChildren":skid[3],"cowChildren":skid[4],"lizanChildren":skid[5],"lizanEggs":skid[6],"bunnionChildren":skid[7],"wolfPupChildren":skid[8],"miceChildren":skid[9],"birdEggs":skid[10],"birdChildren":skid[11],"pigChildren":skid[12],"calfChildren":skid[13],"bugEggs":skid[14],"bugChildren":skid[15],"skunkChildren":skid[16],"minotaurChildren":skid[17],"freakyGirlChildren":skid[18]},"trav":so["trav"],"bag":sbag,"bagStack":sbagStack,"stash":sstash,"stashStack":sstashStack,"preg":so["pregSave"]}
 
    def loadNIM(filename):
-      with open(filename, "rb") as file:
-         return SaveUtils._loadSharedObject(ByteArray(file).readObject()["data"])
+      with open(filename, 'rb') as file:
+         return SaveUtils._loadSharedObject(ByteArray(file).readObject()['data'])
 
    def loadSOL(filename):
       return SaveUtils._loadSharedObject(sol.load(str(filename)))
@@ -455,8 +482,8 @@ class SaveUtils:
          return
       strack = data.find('track')
       sver = data.find('version')
-      sver = ("0.975o","1") if sver is None else (sver.find("original").text,sver.find("port").text)
-      tempver = int(sver[1] if sver[1].find(".") == -1 else sver[1].split(".")[-1])
+      sver = ('0.975o', '1') if sver is None else (sver.find('original').text, sver.find('port').text)
+      tempver = int(sver[1] if sver[1].find('.') == -1 else sver[1].split('.')[-1])
       sstats = data.find('stats')
       slevel = data.find('level')
       smod = data.find('mod')
@@ -487,13 +514,13 @@ class SaveUtils:
       _stashStackArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
       _preg = []
       for i in range(27):
-         tempstr = f"slot{i}"
+         tempstr = f'slot{i}'
          _bagArray[i] = int(bag.find(tempstr).text)
          _bagStackArray[i] = int(bagStack.find(tempstr).text)
          _stashArray[i] = int(stash.find(tempstr).text)
          _stashStackArray[i] = int(stashStack.find(tempstr).text)
       for i in range(0,len(preg),5):
-         _preg.extend((strtobool(preg.find(f"i{i}").text),int(preg.find(f"i{i+1}").text),int(preg.find(f"i{i+2}").text),int(preg.find(f"i{i+3}").text),int(preg.find(f"i{i+4}").text)))
+         _preg.extend((strtobool(preg.find(f'i{i}').text), int(preg.find(f'i{i+1}').text), int(preg.find(f'i{i+2}').text), int(preg.find(f'i{i+3}').text), int(preg.find(f'i{i+4}').text)))
       return {"track":{"currentState":int(strack.find('currentState').text),"currentZone":int(strack.find('currentZone').text),"day":int(strack.find('day').text),"hour":int(strack.find('hour').text),"currentDayCare":int(strack.find('currentDayCare').text),"inDungeon":strtobool(strack.find('inDungeon').text),"currentDungeon":int(strack.find('currentDungeon').text),"v7":str(strack.find('v7').text),"firstExplore":False if strack.find('firstExplore') is None else strtobool(strack.find('firstExplore').text)},"version":{"original":sver[0],"port":sver[1]},"stats":{"strength":int(sstats.find('strength').text),"mentality":int(sstats.find('mentality').text),"libido":int(sstats.find('libido').text),"sensitivity":int(sstats.find('sensitivity').text),"HP":int(sstats.find('HP').text),"lust":int(sstats.find('lust').text),"coin":int(sstats.find('coin').text),"strMod":int(sstats.find('strMod').text),"mentMod":int(sstats.find('mentMod').text),"libMod":int(sstats.find('libMod').text),"senMod":int(sstats.find('senMod').text),"hunger":int(sstats.find('hunger').text)},"level":{"SexP":int(slevel.find('SexP').text),"levelUP":int(slevel.find('levelUP').text),"level":int(slevel.find('level').text),"babyFactLevel":int(slevel.find('babyFactLevel').text),"bodyBuildLevel":int(slevel.find('bodyBuildLevel').text),"hyperHappyLevel":int(slevel.find('hyperHappyLevel').text),"alchemistLevel":int(slevel.find('alchemistLevel').text),"fetishMasterLevel":int(slevel.find('fetishMasterLevel').text),"milkMaidLevel":int(slevel.find('milkMaidLevel').text),"shapeshiftyLevel":int(slevel.find('shapeshiftyLevel').text),"shapeshiftyFirst":"" if slevel.find('shapeshiftyFirst').text is None else str(slevel.find('shapeshiftyFirst').text),"shapeshiftySecond":"" if slevel.find('shapeshiftySecond').text is None else str(slevel.find('shapeshiftySecond').text)},"mod":{"runMod":int(smod.find('runMod').text),"rapeMod":int(smod.find('rapeMod').text),"cumMod":float(smod.find('cumMod').text),"cockSizeMod":float(smod.find('cockSizeMod').text),"milkMod":int(smod.find('milkMod').text),"carryMod":int(smod.find('carryMod').text),"vagBellyMod":int(smod.find('vagBellyMod').text),"pregChanceMod":int(smod.find('pregChanceMod').text),"extraPregChance":int(smod.find('extraPregChance').text),"pregTimeMod":int(smod.find('pregTimeMod').text),"enticeMod":int(smod.find('enticeMod').text),"milkHPMod":int(smod.find('milkHPMod').text),"vagSizeMod":float(smod.find('vagSizeMod').text),"vagElastic":float(smod.find('vagElastic').text),"changeMod":float(smod.find('changeMod').text),"HPMod":int(smod.find('HPMod').text),"SexPMod":float(smod.find('SexPMod').text),"minLust":int(smod.find('minLust').text),"milkCap":int(smod.find('milkCap').text),"coinMod":int(smod.find('coinMod').text),"hipMod":float(smod.find('hipMod').text),"buttMod":float(smod.find('buttMod').text),"bellyMod":int(smod.find('bellyMod').text),"cockMoistMod":int(smod.find('cockMoistMod').text),"vagMoistMod":int(smod.find('vagMoistMod').text),"lockTail":int(smod.find('lockTail').text),"lockFace":int(smod.find('lockFace').text),"lockSkin":int(smod.find('lockSkin').text),"lockBreasts":int(smod.find('lockBreasts').text),"lockEars":int(smod.find('lockEars').text),"lockLegs":int(smod.find('lockLegs').text),"lockNipples":int(smod.find('lockNipples').text),"lockCock":int(smod.find('lockCock').text)},"quality":{"gender":int(squality.find('gender').text),"race":int(squality.find('race').text),"body":int(squality.find('body').text),"dominant":int(squality.find('dominant').text),"hips":int(squality.find('hips').text),"butt":int(squality.find('butt').text),"tallness":int(squality.find('tallness').text),"skinType":int(squality.find('skinType').text),"tail":int(squality.find('tail').text),"ears":int(squality.find('ears').text),"hair":int(squality.find('hair').text),"hairColor":int(squality.find('hairColor').text),"hairLength":int(squality.find('hairLength').text),"legType":int(squality.find('legType').text),"wings":int(squality.find('wings').text),"faceType":int(squality.find('faceType').text),"skinColor":int(squality.find('skinColor').text)},"cock":{"cockTotal":int(scock.find('cockTotal').text),"humanCocks":int(scock.find('humanCocks').text),"horseCocks":int(scock.find('horseCocks').text),"wolfCocks":int(scock.find('wolfCocks').text),"catCocks":int(scock.find('catCocks').text),"rabbitCocks":int(scock.find('rabbitCocks').text),"lizardCocks":int(scock.find('lizardCocks').text),"cockSize":int(scock.find('cockSize').text),"cockMoist":int(scock.find('cockMoist').text),"balls":int(scock.find('balls').text),"ballSize":int(scock.find('ballSize').text),"showBalls":strtobool(scock.find('showBalls').text),"knot":strtobool(scock.find('knot').text),"bugCocks":int(scock.find('bugCocks').text),"neuterizerHideBalls":False if scock.find("nueterizerHideBalls") is None else strtobool(scock.find("neuterizerHideBalls").text)},"girl":{"breastSize":int(sgirl.find('breastSize').text),"boobTotal":int(sgirl.find('boobTotal').text),"nippleSize":int(sgirl.find('nippleSize').text),"udders":strtobool(sgirl.find('udders').text),"udderSize":int(sgirl.find('udderSize').text),"teatSize":int(sgirl.find('teatSize').text),"clitSize":int(sgirl.find('clitSize').text),"vagTotal":int(sgirl.find('vagTotal').text),"vagSize":int(sgirl.find('vagSize').text),"vagMoist":int(sgirl.find('vagMoist').text),"vulvaSize":int(sgirl.find('vulvaSize').text),"nipType":int(sgirl.find('nipType').text)},"gear":{"attireTop":int(sgear.find('attireTop').text),"attireBot":int(sgear.find('attireBot').text),"weapon":int(sgear.find('weapon').text)},"status":{"pregRate":float(sstatus.find('pregRate').text),"pregnancyTime":int(sstatus.find('pregnancyTime').text),"pregStatus":int(sstatus.find('pregStatus').text),"eggLaying":int(sstatus.find('eggLaying').text),"eggMaxTime":int(sstatus.find('eggMaxTime').text),"eggTime":int(sstatus.find('eggMaxTime').text) if int(sstatus.find('eggTime').text) > int(sstatus.find('eggMaxTime').text) and tempver < 10 else int(sstatus.find('eggTime').text),"eggRate":int(sstatus.find('eggRate').text),"exhaustion":int(sstatus.find('exhaustion').text),"exhaustionPenalty":int(sstatus.find('exhaustionPenalty').text),"milkEngorgement":int(sstatus.find('milkEngorgement').text),"milkEngorgementLevel":int(sstatus.find('milkEngorgementLevel').text),"udderEngorgement":int(sstatus.find('udderEngorgement').text),"udderEngorgementLevel":int(sstatus.find('udderEngorgementLevel').text),"heat":int(sstatus.find('heat').text),"heatTime":int(sstatus.find('heatTime').text),"heatMaxTime":int(sstatus.find('heatMaxTime').text),"lactation":int(sstatus.find('lactation').text),"udderLactation":int(sstatus.find('udderLactation').text),"nipplePlay":float(sstatus.find('nipplePlay').text),"udderPlay":float(sstatus.find('udderPlay').text),"blueBalls":int(sstatus.find('blueBalls').text),"teatPump":int(sstatus.find('teatPump').text),"nipPump":int(sstatus.find('nipPump').text),"cockPump":int(sstatus.find('cockPump').text),"clitPump":int(sstatus.find('clitPump').text),"vulvaPump":int(sstatus.find('vulvaPump').text),"masoPot":int(sstatus.find('masoPot').text),"sMasoPot":int(sstatus.find('sMasoPot').text),"babyFree":int(sstatus.find('babyFree').text),"charmTime":int(sstatus.find('charmTime').text),"pheromone":int(sstatus.find('pheromone').text),"eggceleratorTime":int(sstatus.find('eggceleratorTime').text),"eggceleratorDose":int(sstatus.find('eggceleratorDose').text),"bodyOil":int(sstatus.find('bodyOil').text),"lustPenalty":int(sstatus.find('lustPenalty').text),"fertileGel":int(sstatus.find('fertileGel').text),"snuggleBall":strtobool(sstatus.find('snuggleBall').text),"eggType":int(sstatus.find('eggType').text),"milkSuppressant":int(sstatus.find('milkSuppressant').text),"milkSuppressantLact":int(sstatus.find('milkSuppressantLact').text),"milkSuppressantUdder":int(sstatus.find('milkSuppressantUdder').text),"suppHarness":strtobool(sstatus.find('suppHarness').text),"fertilityStatueCurse":int(sstatus.find('fertilityStatueCurse').text),"plumpQuats":int(sstatus.find('plumpQuats').text),"lilaWetStatus":int(sstatus.find('lilaWetStatus').text),"cockSnakePreg":int(sstatus.find('cockSnakePreg').text),"milkCPoisonNip":int(sstatus.find('milkCPoisonNip').text),"milkCPoisonUdd":int(sstatus.find('milkCPoisonUdd').text),"cockSnakeVenom":int(sstatus.find('cockSnakeVenom').text)},"affinity":{"humanAffinity":int(saffinity.find('humanAffinity').text),"horseAffinity":int(saffinity.find('horseAffinity').text),"wolfAffinity":int(saffinity.find('wolfAffinity').text),"catAffinity":int(saffinity.find('catAffinity').text),"cowAffinity":int(saffinity.find('cowAffinity').text),"lizardAffinity":int(saffinity.find('lizardAffinity').text),"rabbitAffinity":int(saffinity.find('rabbitAffinity').text),"fourBoobAffinity":int(saffinity.find('fourBoobAffinity').text),"mouseAffinity":int(saffinity.find('mouseAffinity').text),"birdAffinity":int(saffinity.find('birdAffinity').text),"pigAffinity":int(saffinity.find('pigAffinity').text),"twoBoobAffinity":int(saffinity.find('twoBoobAffinity').text),"sixBoobAffinity":int(saffinity.find('sixBoobAffinity').text),"eightBoobAffinity":int(saffinity.find('eightBoobAffinity').text),"tenBoobAffinity":int(saffinity.find('tenBoobAffinity').text),"cowTaurAffinity":int(saffinity.find('cowTaurAffinity').text),"humanTaurAffinity":int(saffinity.find('humanTaurAffinity').text),"skunkAffinity":int(saffinity.find('skunkAffinity').text),"bugAffinity":int(saffinity.find('bugAffinity').text)},"rep":{"lilaRep":int(srep.find('lilaRep').text),"lilaVulva":int(srep.find('lilaVulva').text),"lilaMilk":int(srep.find('lilaMilk').text),"lilaPreg":int(srep.find('lilaPreg').text),"malonRep":int(srep.find('malonRep').text),"malonPreg":int(srep.find('malonPreg').text),"malonChildren":int(srep.find('malonChildren').text),"mistressRep":int(srep.find('mistressRep').text),"jamieRep":int(srep.find('jamieRep').text),"jamieSize":int(srep.find('jamieSize').text),"jamieChildren":int(srep.find('jamieChildren').text),"silRep":int(srep.find('silRep').text),"silPreg":int(srep.find('silPreg').text),"silRate":int(srep.find('silRate').text),"silLay":int(srep.find('silLay').text),"silGrowthTime":int(srep.find('silGrowthTime').text),"silTied":strtobool(srep.find('silTied').text),"lilaUB":strtobool(srep.find('lilaUB').text),"dairyFarmBrand":strtobool(srep.find('dairyFarmBrand').text),"lilaWetness":int(srep.find('lilaWetness').text),"jamieButt":strtobool(srep.find('jamieButt').text),"jamieBreasts":strtobool(srep.find('jamieBreasts').text),"jamieHair":strtobool(srep.find('jamieHair').text)},"knowledge":{"foundSoftlik":strtobool(sknowledge.find('foundSoftlik').text),"foundFirmshaft":strtobool(sknowledge.find('foundFirmshaft').text),"foundTieden":strtobool(sknowledge.find('foundTieden').text),"foundSizCalit":strtobool(sknowledge.find('foundSizCalit').text),"foundOviasis":strtobool(sknowledge.find('foundOviasis').text),"foundValley":strtobool(sknowledge.find('foundValley').text),"foundSanctuary":strtobool(sknowledge.find('foundSanctuary').text),"usedSecretStairs":False if sknowledge.find('usedSecretStairs') is None else strtobool(sknowledge.find('usedSecretStairs').text)},"boss":{"defeatedMinotaur":strtobool(sboss.find('defeatedMinotaur').text),"defeatedFreakyGirl":strtobool(sboss.find('defeatedFreakyGirl').text),"defeatedSuccubus":strtobool(sboss.find('defeatedSuccubus').text)},"knowSimpleAlchemy":{"knowLustDraft":strtobool(sknowSimpleAlchemy.find('knowLustDraft').text),"knowRejuvPot":strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text),"knowExpPreg":strtobool(sknowSimpleAlchemy.find('knowExpPreg').text),"knowBallSwell":strtobool(sknowSimpleAlchemy.find('knowBallSwell').text),"knowMaleEnhance":strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)},"knowAdvancedAlchemy":{"knowSLustDraft":strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text),"knowSRejuvPot":strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text),"knowSExpPreg":strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text),"knowSBallSwell":strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text),"knowGenSwap":strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text),"knowMasoPot":strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text),"knowBabyFree":strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text),"knowPotPot":strtobool(sknowAdvancedAlchemy.find('knowPotPot').text),"knowMilkSuppress":strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)},"knowComplexAlchemy":{"knowSGenSwap":strtobool(sknowComplexAlchemy.find('knowSGenSwap').text),"knowSMasoPot":strtobool(sknowComplexAlchemy.find('knowSMasoPot').text),"knowSBabyFree":strtobool(sknowComplexAlchemy.find('knowSBabyFree').text),"knowSPotPot":strtobool(sknowComplexAlchemy.find('knowSPotPot').text),"knowPussJuice":strtobool(sknowComplexAlchemy.find('knowPussJuice').text),"knowPheromone":strtobool(sknowComplexAlchemy.find('knowPheromone').text),"knowBazoomba":strtobool(sknowComplexAlchemy.find('knowBazoomba').text)},"majorFetish":{"maleFetish":float(smajorFetish.find('maleFetish').text),"femaleFetish":float(smajorFetish.find('femaleFetish').text),"hermFetish":float(smajorFetish.find('hermFetish').text),"narcissistFetish":float(smajorFetish.find('narcissistFetish').text),"dependentFetish":float(smajorFetish.find('dependentFetish').text)},"moderateFetish":{"dominantFetish":float(smoderateFetish.find('dominantFetish').text),"submissiveFetish":float(smoderateFetish.find('submissiveFetish').text),"lboobFetish":float(smoderateFetish.find('lboobFetish').text),"sboobFetish":float(smoderateFetish.find('sboobFetish').text),"furryFetish":float(smoderateFetish.find('furryFetish').text),"scalyFetish":float(smoderateFetish.find('scalyFetish').text),"smoothyFetish":float(smoderateFetish.find('smoothyFetish').text)},"minorFetish":{"pregnancyFetish":float(sminorFetish.find('pregnancyFetish').text),"bestialityFetish":float(sminorFetish.find('bestialityFetish').text),"milkFetish":float(sminorFetish.find('milkFetish').text),"sizeFetish":float(sminorFetish.find('sizeFetish').text),"unbirthingFetish":float(sminorFetish.find('unbirthingFetish').text),"ovipositionFetish":float(sminorFetish.find('ovipositionFetish').text),"toyFetish":float(sminorFetish.find('toyFetish').text),"hyperFetish":float(sminorFetish.find('hyperFetish').text)},"kid":{"humanChildren":int(skid.find('humanChildren').text),"equanChildren":int(skid.find('equanChildren').text),"lupanChildren":int(skid.find('lupanChildren').text),"felinChildren":int(skid.find('felinChildren').text),"cowChildren":int(skid.find('cowChildren').text),"lizanChildren":int(skid.find('lizanChildren').text),"lizanEggs":int(skid.find('lizanEggs').text),"bunnionChildren":int(skid.find('bunnionChildren').text),"wolfPupChildren":int(skid.find('wolfPupChildren').text),"miceChildren":int(skid.find('miceChildren').text),"birdEggs":int(skid.find('birdEggs').text),"birdChildren":int(skid.find('birdChildren').text),"pigChildren":int(skid.find('pigChildren').text),"calfChildren":int(skid.find('calfChildren').text),"bugEggs":int(skid.find('bugEggs').text),"bugChildren":int(skid.find('bugChildren').text),"skunkChildren":int(skid.find('skunkChildren').text),"minotaurChildren":int(skid.find('minotaurChildren').text),"freakyGirlChildren":int(skid.find('freakyGirlChildren').text)},"trav":[],"bag":_bagArray,"bagStack":_bagStackArray,"stash":_stashArray,"stashStack":_stashStackArray,"preg":_preg}
 
 class PyminWindow:
@@ -552,7 +579,7 @@ class AboutWindow(PyminWindow):
    def backgroundColor(self, value):
       self._backgroundColor = value
       if self.isOpen:
-         self.window.configureChildren(("display", "label"), background=value)
+         self.window.configureChildren(('display', 'label'), background=value)
 
    @property
    def textColor(self):
@@ -566,16 +593,16 @@ class AboutWindow(PyminWindow):
 
    def __init__(self, callback):
       super().__init__(callback)
-      self._text = f"Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}"
+      self._text = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}'
 
    def open(self, *e):
       if self._isOpen:
          self.window.lift()
          return
 
-      self._window = itk.window(width=350, height=155, title="About Pymin", background=self.backgroundColor)
+      self._window = itk.window(width=350, height=155, title='About Pymin', background=self.backgroundColor)
       self.window.bind('<Destroy>', self._close)
-      self.window.bind("<KeyPress>", partial(self.callback.keyPress, None))
+      self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
       self.window.bind('<KeyRelease>', self.callback.keysUp)
       self.window.transient(self.callback.window)
       self.window.resizable = False
@@ -586,7 +613,7 @@ class AboutWindow(PyminWindow):
       # TODO
       self.buttonFrame = tkinter.Frame(self.window, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000')
       self.buttonFrame.place(x=299, y=115, width=29, height=29, anchor='nw')
-      self.okButton = tkinter.Button(self.buttonFrame, text='OK', command=self.close, background="#FFFFFF", foreground="#000000", borderwidth=0)
+      self.okButton = tkinter.Button(self.buttonFrame, text='OK', command=self.close, background='#FFFFFF', foreground='#000000', borderwidth=0)
       self.okButton.pack(fill='both', expand=True)
       self._isOpen = True
 
@@ -637,7 +664,7 @@ class PyminWiki(PyminWindow):
    def backgroundColor(self, value):
       self._backgroundColor = value
       if self.isOpen:
-         self.window.configureChildren(("text", "menu"), background=value)
+         self.window.configureChildren(('text', 'menu'), background=value)
 
    @property
    def textColor(self):
@@ -647,7 +674,7 @@ class PyminWiki(PyminWindow):
    def textColor(self, value):
       self._textColor = value
       if self.isOpen:
-         self.window.configureChildren(("text", "menu"), foreground=value)
+         self.window.configureChildren(('text', 'menu'), foreground=value)
 
    @property
    def fontSize(self):
@@ -657,7 +684,7 @@ class PyminWiki(PyminWindow):
    def fontSize(self, value):
       self._fontSize = value
       if self.isOpen:
-         self.window._children["text"]._fontSize = value - 2
+         self.window._children['text']._fontSize = value - 2
          self.displayText()
 
    @property
@@ -670,9 +697,9 @@ class PyminWiki(PyminWindow):
       if value != 0 and value != 1:
          raise
       if value == 0:
-         self.window.forceFocus("menu")
+         self.window.forceFocus('menu')
       elif value == 1:
-         self.window._children["text"].vbar.focus_force()
+         self.window._children['text'].vbar.focus_force()
       self._focus = value
 
    @property
@@ -687,18 +714,18 @@ class PyminWiki(PyminWindow):
    def menu(self, value):
       value = str(value)
       if value == 'Back':
-         if self.menu != "":
-            self._currentMenu = ".".join(self.menu.split(".")[:-1])
+         if self.menu != '':
+            self._currentMenu = '.'.join(self.menu.split('.')[:-1])
       else:
          self._currentMenu = value
-      self.window._children["menu"].delete(0, "end")
-      self.window._children["menu"].insert("end", *PyminWiki.MENUS[self._currentMenu])
-      self.window._children["menu"].select_set(0)
-      self.window._children["menu"].activate(0)
+      self.window._children['menu'].delete(0, 'end')
+      self.window._children['menu'].insert('end', *PyminWiki.MENUS[self._currentMenu])
+      self.window._children['menu'].select_set(0)
+      self.window._children['menu'].activate(0)
 
    def _set_enforceSize(self, value):
       if value:
-         self.window.geometry("700x500")
+         self.window.geometry('700x500')
          self.window.resizable = False
       else:
          self.window.resizable = True
@@ -713,7 +740,7 @@ class PyminWiki(PyminWindow):
       temp = itk.itkHTMLScrolledText(itkWindow=self.callback.window)
       if getattr(temp.html_parser, 'callobject', '') == '':
          self._hasCustomHTMLParser = False
-         trace("Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work")
+         trace('Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work')
       else:
          self._hasCustomHTMLParser = True
       temp.destroy()
@@ -724,9 +751,9 @@ class PyminWiki(PyminWindow):
          return
 
       # Set up window
-      self._window = itk.window(width=700, height=500, title="Pymin: Wiki", background="#A0A0A0")
+      self._window = itk.window(width=700, height=500, title='Pymin: Wiki', background='#A0A0A0')
       self.window.bind('<Destroy>', self._close)
-      self.window.bind("<KeyPress>", partial(self.callback.keyPress, self.hotKeys))
+      self.window.bind('<KeyPress>', partial(self.callback.keyPress, self.hotKeys))
       self.window.bind('<KeyRelease>', self.callback.keysUp)
       self.window.transient(self.callback.window)
 
@@ -734,15 +761,15 @@ class PyminWiki(PyminWindow):
          self.window.resizable = False
 
       # Set up widgets
-      self.window.addScrolledListbox("display","menu",x=0,y=0,width=153,height=500,font=("TkTextFont",8),sbwidth=10,background=self.backgroundColor,foreground=self.textColor)
-      self.window.addHTMLScrolledText("display","text",x=153,y=0,width=547,height=500,font=("TkTextFont",self.fontSize - 2),sbwidth=12,background=self.backgroundColor,foreground=self.textColor)
+      self.window.addScrolledListbox('display', 'menu', x=0, y=0, width=153, height=500, font=('TkTextFont', 8), sbwidth=10, background=self.backgroundColor, foreground=self.textColor)
+      self.window.addHTMLScrolledText('display', 'text', x=153, y=0, width=547, height=500, font=('TkTextFont', self.fontSize - 2), sbwidth=12, background=self.backgroundColor, foreground=self.textColor)
       if self.hasCustomHTMLParser:
-         self.window._children["text"].html_parser.callobject = self.toPage
-      self.window.bindChild("menu",'<Double-1>', self.selectOption)
+         self.window._children['text'].html_parser.callobject = self.toPage
+      self.window.bindChild('menu', '<Double-1>', self.selectOption)
 
       # Initialise menu and page
       self.menu = ''
-      self.toPage("Basic", 0)
+      self.toPage('Basic', 0)
       self.focus = 0
       self._isOpen = True
 
@@ -751,7 +778,7 @@ class PyminWiki(PyminWindow):
       self._isOpen = False
 
    def displayText(self):
-      self.window._children["text"].text = self.text
+      self.window._children['text'].text = self.text
 
    def clearAddText(self, text):
       self.text = text
@@ -760,34 +787,34 @@ class PyminWiki(PyminWindow):
    def hotKeys(self, keyCode):
       if keyCode in {81,8,103} and self.isOpen: #q,backspace,numPad7
          self.close()
-      elif keyCode in {87,"midKeyW",104}: #w,<>,numPad8
+      elif keyCode in {87,'midKeyW',104}: #w,<>,numPad8
          self.selectionUp()
       elif keyCode in {69,190,105}: #e,.,numPad9
          self.toPreviousPage()
       elif keyCode in {82,191,109}: #r,/,numPadMinus
          self.switchFocus()
       elif keyCode in {65,37,100}: #a,←,numPad4
-         self.menu = "Back"
-      elif keyCode in {83,"midKeyS",101}: #s,<>,numPad5
+         self.menu = 'Back'
+      elif keyCode in {83,'midKeyS',101}: #s,<>,numPad5
          self.selectionDown()
       elif keyCode in {68,39,102,13}: #d,→,numPad6,enter
          self.selectOption()
 
    def selectionUp(self, *e):
-      temp = self.window._children["menu"].curselection()[0]
+      temp = self.window._children['menu'].curselection()[0]
       if temp != 0:
-         self.window._children["menu"].selection_clear(temp)
-         self.window._children["menu"].select_set(temp - 1)
-         self.window._children["menu"].activate(temp - 1)
-         self.window._children["menu"].see(temp - 1)
+         self.window._children['menu'].selection_clear(temp)
+         self.window._children['menu'].select_set(temp - 1)
+         self.window._children['menu'].activate(temp - 1)
+         self.window._children['menu'].see(temp - 1)
 
    def selectionDown(self, *e):
-      temp = self.window._children["menu"].curselection()[0]
-      if (temp + 1) < len(self.window._children["menu"].get(0,"end")):
-         self.window._children["menu"].selection_clear(temp)
-         self.window._children["menu"].select_set(temp + 1)
-         self.window._children["menu"].activate(temp + 1)
-         self.window._children["menu"].see(temp + 1)
+      temp = self.window._children['menu'].curselection()[0]
+      if (temp + 1) < len(self.window._children['menu'].get(0, 'end')):
+         self.window._children['menu'].selection_clear(temp)
+         self.window._children['menu'].select_set(temp + 1)
+         self.window._children['menu'].activate(temp + 1)
+         self.window._children['menu'].see(temp + 1)
 
    def switchFocus(self):
       if self.focus == 0:
@@ -808,7 +835,7 @@ class PyminWiki(PyminWindow):
       self.doPage(curPage)
 
    def selectOption(self, e=None):
-      sel = self.window._children["menu"].get(self.window._children["menu"].curselection())
+      sel = self.window._children['menu'].get(self.window._children['menu'].curselection())
       if sel == "Back":
          self.menu = "Back"
       elif self.menu == "":
@@ -1627,28 +1654,28 @@ class PyminWiki(PyminWindow):
 
    def doPage(self, page: WikiPage):
       text = None
-      if page.topic == "Basic":
+      if page.topic == 'Basic':
          text = self.basicDescription(page.num)
-      elif page.topic == "Item":
+      elif page.topic == 'Item':
          text = self.itemDescription(page.num)
-      elif page.topic == "Clothes":
+      elif page.topic == 'Clothes':
          text = self.clothesDescription(page.num)
-      elif page.topic == "Enemy":
+      elif page.topic == 'Enemy':
          text = self.enemyDescription(page.num)
-      elif page.topic == "Race":
+      elif page.topic == 'Race':
          text = self.raceDescription(page.num)
-      elif page.topic == "Town":
+      elif page.topic == 'Town':
          text = self.townDescription(page.num)
-      elif page.topic == "Location":
+      elif page.topic == 'Location':
          text = self.locationDescription(page.num)
-      elif page.topic == "Shop":
+      elif page.topic == 'Shop':
          text = self.shopDescription(page.num)
-      elif page.topic == "NPC":
+      elif page.topic == 'NPC':
          text = self.NPCDescription(page.num)
-      elif page.topic == "MenuBar":
+      elif page.topic == 'MenuBar':
          text = self.menuBarDescription(page.num)
       if text is None:
-         raise Error(f'Wiki page lookup for ({page.topic}, {page.num}) returned no text.')
+         raise Error(f'Wiki page ({page.topic}, {page.num}) does not exist.')
       self.clearAddText(text)
 
    """
@@ -2172,9 +2199,7 @@ class SaveConverter(PyminWindow):
    def backgroundColor(self, value):
       self._backgroundColor = value
       if self.isOpen:
-         self.window.configureChildren(("display","title","message","inputfilebox","outputfilebox","convertbutton"), background=value)
-         for i in (self.inputfilecomboboxtext, self.outputfilecomboboxtext):
-            i.configure(background=value)
+         self.window.configureChildren(("display","title","message","inputfilebox","inputfilecombotext","outputfilebox","outputfilecomboboxtext","convertbutton"), background=value)
 
    @property
    def textColor(self):
@@ -2184,9 +2209,7 @@ class SaveConverter(PyminWindow):
    def textColor(self, value):
       self._textColor = value
       if self.isOpen:
-         self.window.configureChildren(("title","message","inputfilebox","outputfilebox","convertbutton"), foreground=value)
-         for i in (self.inputfilecomboboxtext, self.outputfilecomboboxtext):
-            i.configure(foreground=value)
+         self.window.configureChildren(("title","message","inputfilebox","inputfilecombotext","outputfilebox","outputfilecomboboxtext","convertbutton"), foreground=value)
 
    @property
    def message(self):
@@ -2240,20 +2263,16 @@ class SaveConverter(PyminWindow):
       self.window.addLabel("display","message",x=250,y=100,width=350,height=25,font=('Times New Roman',12),anchor="n",text="",foreground=self.textColor,background=self.backgroundColor)
 
       self.window.addFileEntryBox("display","inputfilebox",x=50,y=150,width=320,height=24,font=('Times New Roman',12),text="Input File",filetype="file",fileaction="open",initdir=self.savelocation,foreground=self.textColor,background=self.backgroundColor)
+      self.window.addLabel("display","inputfilecombotext",x=390,y=150,width=40,height=24,font=("Times New Roman",12),anchor="nw",text="Type",foreground=self.textColor,background=self.backgroundColor)
 
-      self.inputfilecomboboxtext = tkinter.Label(self.window,text="Type",font=("Times New Roman",12))
-      self.inputfilecomboboxtext.place(x=390,y=150,width=40,height=24,anchor="nw")
-      self.inputfilecomboboxtext.configure(foreground=self.textColor,background=self.backgroundColor)
       self.inputfilecombobox = ttk.Combobox(self.window,font=("Times New Roman",12))
       self.inputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
       self.inputfilecombobox.place(x=390,y=174,width=60,height=24,anchor="nw")
       self.inputfilecombobox.current(0)
 
       self.window.addFileEntryBox("display","outputfilebox",x=50,y=210,width=320,height=24,font=('Times New Roman',12),text="Output File",filetype="file",fileaction="save",initdir=self.savelocation,foreground=self.textColor,background=self.backgroundColor)
+      self.window.addLabel("display","outputfilecomboboxtext",x=390,y=210,width=40,height=24,font=("Times New Roman",12),anchor="nw",text="Type",foreground=self.textColor,background=self.backgroundColor)
 
-      self.outputfilecomboboxtext = tkinter.Label(self.window,text="Type",font=("Times New Roman",12))
-      self.outputfilecomboboxtext.place(x=390,y=210,width=40,height=24,anchor="nw")
-      self.outputfilecomboboxtext.configure(foreground=self.textColor,background=self.backgroundColor)
       self.outputfilecombobox = ttk.Combobox(self.window,font=("Times New Roman",12))
       self.outputfilecombobox["values"] = ("detect","xml","sol","nim","toml")
       self.outputfilecombobox.place(x=390,y=234,width=60,height=24,anchor="nw")
@@ -2993,6 +3012,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    versionNumber = "0.975o"
 
+   bMap = (1,2,3,5,6,7,9,10,11)  # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
+   sidepanelbuttonnames = ("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton")
+   sidepanelbuttontext = ("Look","Stats","Effects","Help","Levels","Gear","Titles","Credits")
+
    @property
    def backgroundColor(self):
       return self._backgroundColor
@@ -3113,7 +3136,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.hotkeysDisabled = set() #Set of disabled hotkeys by keycode. If self.keyboardTypingDisable is True, this will be used as a whitelist instead.
       self.altHeld = False # When alt is held
       self.ctrlHeld = False # When ctrl is held
-      self.bMap = (1,2,3,5,6,7,9,10,11) # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
 
       # Options window variables
       self.savelocation = self.dir / "nimin_saves" # Where save files are stored
@@ -3618,9 +3640,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.window.menubar["root"].add_cascade(label="Help", font=("Terminal",8), menu=self.window.menubar["helpmenu"])
       self.window.addImage("up",b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e\x81IDATx\xda\xed]{pS\xd7\x99\xff}\xf7^]I\x96\xe5\xa7\xfc\xc0\xc6\x06\x1bH\xf0\x0b0`\xde\x85P\xc0\r!$4\x0f&I\x97\x04h\xbb\x9b\xcdl\'\x99\xe9\xcc\xee\xce\xeev\xebl\xb3;\x99\xe9dv\xb7\xdb4\x0cI\n!\rdp\x98\xd0@C\x9a\x84\xd6\r\x10\xd88\x80\x01;\x06B\xb0\xc16\xb2\x8d_ [\x92%\xdd\xf3\xed\x1f<\x16\x821\xb6\xac{\xafl\xf3\xd3\x9c\x19Y\x96\xee\xb9\xdf\xf9\x9d\xefq\x1e\xdf=\x84(\xc7Q\xf7Q\x17\xd9\xed\x85\x92,\xe7\x01\xc8\x93\x08c\x01\xa4\x01\x94\x0e\xe2D\x00\x04P\xc2\x95os\x17\x00\x06S\'\xc0\xcd\x00Z\x04\xa3\x11@\xad\xd0\xb4Z\xf6\xf9\xaa\x8b\xc7\x14\xb7E\xb3\xbc\x14m7T\xd9u<\xc7"\xdb\x96\x01X@\xa0\xf9D\xc8\x8d\xe4\xf5\x99q\x96\xc1\x07\x00\xec\x0fj\xfeOJ\x12\xa6\xd4\xdd%\xe4[\xa8\xea\xaa\x99\nIZ\rH+\x89Pdd\xdd\xcc8\x01\x88]\x10b\xfb\xb4\x84\x82c\xa3\x96\x90/\x9a\xbeH\x92\x1d\xb1k\x88h-\x11M\x8b\x86\x8e\xc1\xccU\xcc\xbcY\xeb\xe9~{V\xe6\xac\x8eQAHe\xcb\xf1\x1c\xc9*\xbf\xc0D?$\xc0\x11\x95\x86\x9c\xd9\xcf@y $\xfe}\x9e\xab\xe8\xd4\x88$\xe4\x7f\x9b\x8f\x8d\x97m\xf2\xbf\x01x\nD2\x86\x03\x985\x00[5\xbf\xf6\xaf\xb3\xd3\xa7\xd6\x8f\x08B>m\xfa"\xc9i\xb7\xfd\x1c\x84g\x89H\xc50\x043\x07\xc0\xd8\xe0\xf1\xf9_\\\xaa\xb3)\xd3\xb5\xa7\x1e\xec\xa8z\xdcj\xb1|\x08\xc2w\x01\xc8\x0c`8\x16\x002\x08\xb3UE\xfe\xf1\xfa\x7fx\xb6+\xcb\x9e~\xa4\xa2\xa2b\xf8h\xc8^\xf7\xe7\xd91\xaa\xfd\xb7 Z\x82\x91\x08\xe6\xbd\xde\x80o\xfd\x921\xf3\xceG=!\xfbZ\xbf|\x94di#\x11%a\x04\x83\x81\xcbB\x88\xe7\x16\xbaf\xbc\x13\x95\x84l\xae\xaf\xb0\xe6\xc6\xc6\xfe\x0f\x11\xfd\x18\xa3\x08\xcc\xfc\xfa\xd9\xee\xee\x9f\xac\x1d\x7f_o\xd4\x10\xf2\xa1{\x9f\xcba\xb1\xbfG\xc0"\x8cF0\x1f\xf4z}\x8f\xdc?na\xb3\xe9\x84|\xdc|\xa0\xc0"){\x88(\x0b\xa3\x18\xcc\xdc\x10\x14\xa1\xe5\xa5\xe9\xf3kL#\xe4\x13\xf7\xfe\x19\x92\xac|D \x97Y\xa3\xdax5\x0e\t\x8a\x13\x04\xa03\xe4\xc1\xa5\xc0\xe5k\x91\x91\t\xa4\xa03\x14\xd2V|/s\xdeA\xc3\t\xf9\xd8\xbdo\xa1$)\xbb\x89\xe04C\xf8\xb1\xf6td\xda\xd3\xe0\x90\xed7}\xde\xa3\xf9\xd0\xe4kA\xa3\xaf\xd9,R<`m\xe5\xd2\xf4\x05\x7f1\x8c\x90\x8f\x1a>+\x91,\xca^3\xc8\xb0IV\xe4\xc5\xe5"YM\xe8\xf7{\xed\x81.\xd4^>\x0b\xbf\xe85\x83\x16oH\xe3\xd2\xe5\x19\x0b\x0e\xe8N\xc8\xee\xf3\x15\x05\x8a*\xff\x85@\xc9F\x8b\xe9T\x1c\x98\x92p\x0f\x1cr\xcc\x80\xbe\xdf\xa3yq\xbc\xeb4<\xa1\x1e34\xa5K\x08m\xf1\x03\x99\x8b\xaat#\xe4\x0f\xf5\x15i\x92U\xae$\xc0p\x07n\x97m\x98\x91\x98\x0f\x87\x123\xa8\xdfyC>\x1c\xee\xfa\n\xde\x90\xcf\x0cG\x7fA\xd3\x82%\x0ff-\xb9\x10qB\xb6\xd7l\xb7\xc4&\xa6~\n\xa2\x85F\x0bf\x91\x14\x94$\x16!\xde\x12\x9e\x85\xbc\x1c\xf4\xa0\xb2\xf3\x04\x02"d\x06)\x07/\x9e\xae_\xbc\xf6\xbe\xb5\x03\xb2\x9d\xca\x80{h\x82\xeb5\x01,\x04\x1b\x1f\xc3\xe4;\'\x86M\x06\x00\xc4Y\x9c(\x88\xbb\x07\x87;k`\x02\xe6&O\xca~\x15\xc0\x8f"\xa6!\xbf?\xb7\xf71I\xa1r3\xa4\x99\x18;\x0e\x93\xe3"\xb3\x8a{\xcas\x16_{\xce\x99\x12}iB{jU\xd6\xb2mC&d\xfb7\xbb\xb2\xac\xd6\x98*\x00\x86\xcfM\xa5X\x13Q\x92<\x05J\x84\x96O4\x168\xdcQ\x83f\xffE38\xb9\xd4\x1b\xd2\xa6\xad\x1e_Z\xdf\xdf\x97\xfa\x95\xb4\xac\xac\x8c\xc6\xcc\xccy\x1f@>\xc3\xd8\x97M\xb6\xa2$\xb9\x086\xd9\x1a\xb1\x16\x91\x88\x90\xa8\xc6\xc1\xed\xbf\x88\x80\x08\x1a,\x11\xdb$\xc2\xd4\xbc\xf8\t[\xfa\x9b\xba\x97\xfa\x13\xa0h\xfd\x9c\xa7AXl4\x19\x00P\x9c\x947\xe8\x88j \x88Q\xec(N\xcc\x07\x11\xc1p\xb9\x08\x8b\x0b\xd7\xcf]\x13\x96\xc9z\xab\xf6\xfd\xa4\x18\x87\xad\x96@\xa9F\xeb\xf6\xd4\x84\xc9\x98\xe8\x1c\xa7k\x1d_{\xeaq\xbc\xeb\x94\xe1v\x8b\x99\xdb=\x01\xcf\xe4\xf5\x93V\xb7\r*\xca\xb2\xda\xd52fNe\x83g\x86\xb2\x1cc\x90\x1b\xab\xff0g\xa2s\x1c:z/\xe1\xbc\xf7\x82\xd1\x9c$\xc7Zb~\x06\xe0\xf9\x01k\xc8\x96S\x1f\x8cW\xad\xd2I\x02Y\x8d\xbc\xd3\x045\x0e\x0bSK"\xea7\xfaC\xaf\x16\xc0g\xad\x95\xe8\x0c\\2VK\x80@0\x14\xca_3\xf1\xe1o\x06\xe4C\x14\x15/1\xd8*`\xdcK"\xc2\x8c\xa4B\xc3\xc8\x00\x00\xab\xacbfr\x11\x14I\x86\x91\xb22\x84*\xcb\xf4\xe2\x804\xe4\xb7\xa7w\xe4\xa8\x8a\xe5k"\x18\xbaUg\xaek\x1arb\xcdYR\xa9\xefi\xc2\xe7\x17\x8f\x18\xecL \x02\xfe\xc0\xbd\xeb\xf2\x1f;\xd3\xaf\x0f\xb1\xc8\xd2O\x01!\x1b9 \xcf\x8b\x9f`\x1a\x19\x000\xde\x91\x89\x8e\xde.\xd4^:cd\xb5\x92\xc5*=\x0f\xe0\'\xb7\xd5\x90_\xd7\xbe\x95\xe4\xb48\xcf\x13\x91a;\n\xd3\xec)X\x9c6\x0b\x16\xc9\x023\x11\x12!T\xb4~\x01\xb7\xb7\xd5\xc8\x88\xab\xc7\x13\xf4d\xff]\xde3\x1d}\xfa\x90\x18\xc5\xf14\x83\x1d\x82\x05\x8c(\xaad\xc1\xac\xe4)\xa6\x93\x01\x00\x8a\xa4`\xb6k*bd\x1b\x8c\x92\x9f\xc1\x8eX%f\xcd\xed\x9d:\xe1\x19#\x07\x7fsS\x8a\x91\xa0:\x11-p*\x0e\xccI)\xbej\xe2\x8dy\t\xc23}\x9a\xac7\xbe\xda6\x8d,\xf2Q\xa3\x84/I\x9e\x82\xa2\xc4{\x11\x8d8\xd1y\x12\x95\xed\'\x8c3]A\xad\xf8G\xf9OV\xdd\xe4\xd45\x85VK\x06y\xf2\x9c\xd8\xb1\xc8O\x98\x84hEA\xc2=h\xef\xed\xc2\x19\xcfyc\x08\x91\xe9q\x007\x13\x02\xc1\x0f1\xe9OH\xbc\xea\xc4\x9c\x94i\x90I\x8aZB$\x920\xdb5\r\xed\xbd\x9d\xe8\xe8\xd5\x7f\xd0\xc8\xe0\x87\x00\xfc\xf3u\x93\xf5\xab\xea\xcd\xb9\xaaE\xfdFw\xc7I\nV\x8c\xbd\x0f\xe9\xf6\x14\x0c\x07\xb4\xfa\xdb\xb1\xbb\xe1O\x08\xb2\xfe+\x8d\xbdZ\xef\xa4\xe7\xf3\xd7\x9dQ\xaeD\x18\xd22\xc1B\xf7J\xe7\xa5M\x1f6d\x00@\xaa-\x19\xf3R\xa7\xe3\xcf\xcd\x87t\xaf\xcb\x02y\t\x803\xd2\x15k\x85\x05\xcc\x0c=\xcb\xe4\xb8\t\x98\x1c\x9f\x8b\xe1\x86\xc9\xf1\x13P\x10?\tz\xb7\x0f\x13\xcd\xbf\xeeC\x04\xc4|b\xd2\xbd\xa7Q\xf4%\xfd\x0e\x08\xb3S\xa6\xa1\xd5\xdf\x86f\x9f~\x19\xd5\xcc\x98\x0f\x00\xf4\xcbc\xaf\xa5\xa8\x8a]\xb7\xe1\xa9*[\xf0\xc8\xb8\xef!\xd5\x96\x8c\xe1\x8c6\x7f\'v\x9c\xfb\x08\xbdZ@\xb7:\x02!_\xaa$\xb1Z\xc0Wf u)\x8b\xd2K\x86=\x19\x00\xe0\xb2%bQ\xfa,\xe8\xd9V\x16\xd9\x92\xaf@\x12\xf9\x82\xf5\tA\xa7&\xe5!/~\x12F\n&\xc7O\x80\xdb\xdb\x8a\xaa\x8eZ]\xae/\x04\xf2\x15\x06\xdf\xcb:DX\xe9v\x17\xe6\xa5N\xc7H\xc3\xbc\xd4\x19p\xfb\xda\xe0\xf6\xb6\xe8\xe1I&KB\xf0\xd8HG\x0c\xaad\xc1\xd2\xcc\xef\x18\xba\xd8d\x14\xac\xb2\x8aec\xe6\xc3*\xa9\x91\x8f\xb4\xc0\x99\x92 \xce\x88\xf4\x8a\xd8w3\xe6"m\x04\xf8\x8d\xdb!\xc5\x9e\x84\xc5\x19s#\xbe\x92\xa8\xb1\xc8P\x98E\x1aG0\x1c\x9d\xee*DA\xc2=\x18\xe9(H\x98\x84&o\x0b\x8e\xb4UG2\xf6MW\x04\x843Rc\x90\x14[2\x16\xa4\xce\xc0h\xc1\xa2\xb4Yp\xf74\xe3B\x84\x16\xb5\x18\x88\x95X\xb0M0c\xa8E\x82\x8c\xfb\xc7.B\x8cb\x1f5\x84Xe\x15\xa5\x99\x0b!K\n"\xd1\x86,\x84]\x11`[$v\xb4/\xce\x9c\x83\xb1\x8et\x8c6\x8c\x89I\xc5}\xe9\xb3\xf1\xc7\xc6\xcf"\xa0!l\x97"\xb1\xeauoB.f\xb8\n1Z1\xd3U\x84\xfc\xc4\x89\x11YAT4\xa1\xf9\x89(6\xdc\x9bq(v,\xcb\\\x00y\x98<\xe0G\x0fH$aI\xc6|\x9c\xf54\xa0\'\xe8\x1d\x82Og\x9f$\x18\xfe\xa1\xd8\xbd\xef\xa4\xcfF\xa2\x1a\x8f\xd1\x8e\x045\x0e\x0b\xd3g\r\xcd\x870\xfb$\x86\xf00\x0b\x84S\xd2\xec.Lw\x15\xe0.\xae\xa08\xb9\x00\xe9v\x17\xc2mO\x01\xee\x96X\x88\xe6p\x19\x9d\xee*\x80\x1a\x05[x\xa2\x05\xaadA\xb1\xab |-\x11\xc2\xadh\x10\xeep\xd7)r\x9cYwY\xf8\x16r\x9dY\x10\x08on\x90\xc1n\x85\x99\x9b\xc2sd\x84x5\xf6.\x03\xdfB\x9c\xea\x04\x81\x10\xce\x9283_P\x04k\xa7\x08\x83\x9f~\xbf\xb2\x17\x9b\xee2pK\xbb\\i\x93\xb0\xf6(\x08>\xa9\x08M\xab!\x99\xc2\xf8m\x08M=-\x98\x187\xb4L\xa7\x90\x08\xa1\xd5\xd7\x8ef_\x1bTIAa\x92\xb1\x9b\xe7j:N\xa3W\x04\x91nw!\xd5\x9e\x0cER\x86t\xbd\xc6\x9ef\x04\xb4`X\xbf\xd5\x04\xd7(^/\xd7\xc48\xc3\xb3yG\xda\xaa\x07MH\xbb\xbf\x13\r=\x17\xd0\xd8\xd3\x82V_\x1b\xea<\xe7\xe1\r\xf9\x01\x00sR\x8b\r\'\xa4\xb6\xeb\x0c\x0e\xb6^IE\x88Ql\x18\xef\xccB\x9a=\x05c\x1di\xc8rd \xd9\x968\xe86\xe10}\x88\xdf\xab}\xa5l(-\xbb\xf8\xc2\x81\x17\xeb@\x943\xd8\x0b\x1cj9\x82\\g6f\xa6\x14\xdd\x81\x007\xce{.\xe0\xac\xa7\x01\xe7\xbb\x1bo\x9b$\'Lx(\x01\xdfPow\xd0\x87\xea\x8e\xd3\xa8\xc6\xe9\xab\xe6\x07\xc8\x8e\xcdD\xae3\x1bY\xce\x0cd;\xc6\xf4K\xd0\x97\x17O\xe0P\xcbQ\x84\x93\x06\xc8\xc0\xd9\r\xa5e\x17\x15\x00\xd0X\xec\'\x0c\x9e\x10\x00x\xe7\xcc\xfb\xa8\xf3\x9c\xc7tW!\x12\xac\xf1\xf0\x87\xfch\xf5\xb5\xe3\\w\x13\xea.7\xe0\\?\x04\xf4\x11e\x18O\xc8\xd5\x9d\xe8\xb7C\x9d\xa7\x01u\x9e\x86\x9b\t\x8a\xcbFvl&\xd2\xec\xc9\xb0)6t\xf5^\xc2\x91\xb6j|\xder8\xecN\xc5\x02\xfb\x81\xab\xdb\x80X\x88\x03\x90\xa45a\xd9=f\xecsWb\x9f\xbb2\x12\x93k\xa6h\x08\x0f\xb0\x11\x19@\xbd\xa7\x11\xf5\x9eF=:\xc6\xe7\xd7\t\xf1\xfb\xf9\x8fV\xbb\x80\xe9`3\xaa\x140b\xd7\xe6\x1d\x83\xa4@\xf0c\xe0j~\xc8\x1b\xa5/\xd5\x0b\xe6j\xa1\xeb&\x97\x81\x15S|\x88\xc92k\x10\'^[\xfar\xddu\r\x01\x00!\xc4\x07$\xc1\xdc9t3\x9c:3\xd8d\ra\xc1\x1f\\{\x7f\x9d\x90PH\x94\xcb\x16\xfa\'S\xd5\x16\xe6\x10bFtw\x93\x1f\x0e\xf1{\xd7g@\xae\xbdys\xe9\xcbU\x82\xb5cF\xe5\xd7\xf5\x99sgBOe0\xcc\x94Y\x13\xda\x897\x97\xbe\\u\x8b\x86\\\x1d)n\x96$\xfc\xe7h\x9a\xea\xb81\xe7\xd1\x94\xfaI\xbcy\xe3\xdf7\x11\xe2\xef\x11o\xdbb\xf1\x12@\xa6\x1c\xb4\xc2l\x96\xc92\xcb\x87p\x8f\xbf\x1b\xbf\xbb\xf1\x93\x9bf\x15\xb7\xad|\xa5]\xd3\xb09\x12;(\xc2+\xe6\xc4\x11\xe6\xc9\xcb\x9b\xb6\xad|\xa5\xfd\xb6\x1a\x02\x00!\xbf\xf6\x8ab\xa7g\x01\xc8\xc6\x9b\x0fa\x8a\x86\x98\xe4\xbbDH\x13\xff\xfd\xed\xcfo\x99w\xdf\xfa\xe0\x7f\xd5iB\xbckF\x8f1g\xa4n\x92v\x08\xde\xb6\xad\xf4W\xb7<\xcb\xa3\xcf\xb9\xe6\x00k\xffb!\xe91\x00V\xa3\x9b\xc7\x14B\x0c\xd7L\x0e\x045\xed\xe7}\xfd\xa7\xcf\x95\xa9\xf2\xd2_\xd7\x0b\xa1m\xd4=\xaf\xae\x8fbJ\x94e\xb4\x9c\x1ao(\xbf\xff7}f=\xdfv5\xc6\xdf\x832\xabC{\x02 \xc3\xd2f\xcdq\xea\x06GY\xcc\xedB\xf3\xfd\xe2v\xff\xbe\xed\xda\xed\xce\xef\xbf\xda\xa1\t\xfe{C\x07\x86\x18\x15\x03\xc3\x9f\x96?\xb0\xa9m\xd0\x84\x00\xc0{\x87^{\x8b\xc1\x15\xc6>\x8f\xd4\x9c\x81\xa1A\xaf\x8a\xf2C\x1b\xb6\xf4w?\xfd/ \x97\x81\xfd\xbb\xc4\xd3\xaa\x85\x8f\x01\x94\xa8\xbf6\x8b\x11k\xb2\x98\xf9R(\xc8\xebP\xd6\x7f\xbf\xbb\xe3v\x93\xdd+76\x08\r\x7fcH\xd8k\x82S7*\xcc\xd5\x18\xcf\xedz\xe8\x8d\xfa;\xdd\xcf\x80\xf6\xff\xec\\\xf1z\xb9\x10\xda\xa6p\xb7H\x0e\xb4\x985\xe5\xaf\xb7\\Bh\x9b>x\xe0\xf5\xad\x03\xb9\x9d\x01\xefy\t~\xe3~V\xceM\x9f@:\x1eW!\xd8\xbc\x81\xa1\x8e5\x1c\xf4\\\xe4\xbf\x1d\xe8\xb7\x07\xb5!\xeb\x81\xedk\xd3\x10\xc3\x95z\x9d\xc8\x96`\x8dCvl\x86\xa1\x844t\xbb\xd1\xa9\xd3#\x98\x18|\x81\xfd\xa1Y{\x1e}\xa7I\x17B\x00`\xf9\xce\x1f\x14BQ*\x08\x18\xb9i\xb6\x91!\xa3\x0b\x1a\x16\xefyx\x8b~G\x1e]\xc3\xb2\x9dkfI2\x7fJ \xe7\xdd\xa6\xef3\xa2\xf2R\x88J?z\xe4m\xfd\x0f\x05\xbb\x86\xa5;\xffj\x11I\xbc\xeb.)\xb7\xa0\x1b,V~\xfc\xf0\xd6\x8ap~<\xa4\xdd\xd2Kv\xac\x9e))\xca\x1e\x10\\wy\x00\x98\xb9S0\xaf\xf8\xd3\xaaw\x8d?X\xf2\xff5\xe5\xf1B&y\x0f@cG9\x1d\x8d\xc4\xda\xf2OW\x95\x0f\xe9I\x02\x11\xc9\'\x98\xb7\xe5\xfb)j\x9cZ>Z\x0f\'f\xe0`\xd0G\x8f\x1ex\xf2]\xf7P\xaf\x15\x91U\xc1\x86\xf7Oz\xc7\xdf\x9f\xb2\x8dU\xc7\x18\x00\xd3G\x15\x19\x8c7\xe9R\xeb\xea}kvwE\xe2z\x11\xcf\xb8Y\xb0\xe3\x91G%\xa2\x8d\xc0\xc8>\xe0\x1e\xcc\x97\x99\xf1\xdc\xbe\xc7vD\xe7\x01\xf77b\xce\xbb\xab\xc6)\xaa\xbc\t\xc0\xe2\x11J\xc7\x9fC\x01m\xdd\xa1\'vF\xfc\x0c>]s\xd2\xe6\xbf\xb7\xeaq&\xbcJ\x06.r\xe9l\x9e:\x89\xc5?\x1e\xa8\xf9\xfd\xebw\x9a\xb5\x8dJB\x00`\xc6\xd6\x07\x93U\x8b\\\x06\xc2_\x03\xa4\x0eS*\x02`l\x0c\x04\xb5\xb2\xc3O\xedn\xd7\xb3&\xc3\xb26g\xbe\xb3"G\xb2H\xbf \xc2\x93@\x14?g\xfcf"\x043\xb6\x89\xa0\xf8\xd9\x97?\xf8C\x9d\x115\x1a\x9eF{\x95\x98\x17@\xf8!\x00Gt\xf2\x80^&\xde\x1e\xd2\xc4\x7f\x1c}\xe2\xc3\x93FVmZ^s\xc9[K\x92\xd8f[\xc3\xc4\xeb\x0845:x\xe0c\xc4\xb4\x89\xfc\xfe\xb7+\x9f\xd9\xdba\xc6=DE\xa2\xf9\xd4m\xcb\xa7I\x84\xd5 \xac$P\xa1\xc1$T\x83\xb1K0\xb6\x1f{rO\x95\xd9m\x11u\x99\xff36/\xcf\x15V\xb1\x8c\x89\xe6\x13c\x01\x089\x11f\xa0\x8e\t\xfb\x89\xf9\x80\xd4+}rx\xed\x9e\xb3\xd1$\x7f\xd4?\x8aa\xca\x96e)PPH,\xe5A\xc2d\x06\xb2\x00N\x03\x90A@\x1c\x032\x81\xe2\xae\xf6\xf6\xcb\x04h\x0c\\\x06p\x01\xa0\x16\x02\x1a p\x92I\xd4"\x84\xea\xe3O\x7fr1\x9a\xe5\xfd?\xf2\xd7\xef$\x9eeD\xd5\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
       self.window.addImage("down",b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e;IDATx\xda\xed]kpU\xd7u\xfe\xd6\xde\xe7\xde\xab\xab\xf7[\x08$\x90\x84\x08`\t#\xdb\x80!(X\x98\xe0\x8c\x1b \xae\x1f\xc4v\xa2b\xe2\xd28u\xddq\xdb\x99\x8e\xdb\xb4\x8e\xa8;i\'\x9ef\xc6u\x13\xc7\xa6\xa9m\xa8\xe3\x0c\xe0\xb8\x01\x1c0\x8f\x08\xccC<\x1c@\x16 \xc0\xe8\x01X\x0f\x84\xac\xe7\xd5\x95t\xcf={\xf5\x87\x88\x8cd\x01\xe2\xde{\xce\xb9z\xac\x99\xf3\xe7\xe8\xea\xec\xbd\xf6\xb7\xd7Z{\xad\xbd\xd6\xde\x840\'\x0f\xd2R \xfd\xf9\x1a\x8b\x99D<\x83\x19\x99\x00\xd2\x880\x91A\xb1\x00$\x01\xb1\x00\xc0@\x07\x00\x83\xc0\x1d\xcc\xa8\x07p\x85\x08\x97\x99\xe9\xac\x9fT%\x0c\xedT4\xae\\\rg~)\xdc:\xd4\xeeJ\xc9q\x19\xb4\x14\x82\x16\x12s!\x88\xb2C\xda\x00s\r\x13\x1d\x80\xe2\x83\xbd\x92w\xc5\xf5^\xad\x1e\x07d\x10uEN,\x90\x86Z\t\xc2r\x02\xf2\xadl\x9b\x81S`l5\xa4\xd8\x18\xe5\xad?9f\x01\xe9\x88\x99\x98\xa8\xf9\xb9X\x00\xab\x89hv8L\x0cf.W\xc0\x9b~\x8d6\xc4v\xd6\xb7\x8c\t@\xda\xe2&gG\x18\xeay\x00O\x13!*\x1c\xf58\x83{\xc1\xb4Q\x87\xff\xc71\x9e\xc6\xb3\xa3\x12\x90\xb6\xb8\xc9\xd9\x11\xe0\x97\x00z\x82\x00\x81\x11@\x0c(\x80\xdf\xed\x01\xfds|\xfb\xa5\x9aQ\x01Hgtz\x92\xd3\xe1,a\xc2_\x10\xc8\x89\x11H\x0c\xf6\x11\xe3\r\x9f\xee+\x89\xf14|>b\x01\xe9N\xcez\x8c\x18?#\xa2\x14\x8c\x02b\xa0\x15\xcc/\xfc\xfb\xe7\xb5\xebJ\x00\x1e1\x80\xb4M\xc8\x9a\xe26\xc4\x9b Z\x8c\xd1H\xcc\xa5\xddR\xad\x8eo\xac\xbd\x18\xf6\x80x\'\xe4>*@o\x10!\x01\xa3\x98\x18\xe8`V\xcf\xba\x1b\xab\xfe7,\x01\xa9\xcd\xcar\xa5\xe9\xae\x9f\t\xe0i\x8c!R\xc0/\xaf8z\x9f\xcd\xaa\xad\xed\r\x1b@<i9)\x9a\xcb\xb1\x89@\xf7a\x0c\x123\x97y\x80G\x92/\x9fk\xb0\x1d\x10O\xce\xf4|\x87!\xb6\x83(\x03c\x99\x98?\xd3\xa5z0\xba\xfa\xdc)\xdb\x00\xf1f\xe7\xcd\x11\xa0\xedDH\xc68\x81\xc1\xadL\xf4Mw\xd5\xa92\xcb\x01\xe9\xc9\xcd\xbf\x0f\x10[\x89\x103\x0e\xc5\xf5\x82\x02\x8f\x9fiytU\xf9^\xcb\x00\xf1N\xbbs\x9e \xda=\x0e\xc6\rm\x8a\x97\x81\x07\xdc\xe7?9h: \x9e\xe9\xb3\xf25!\xf7\x12(i|\xe8o*)m\x06\xa9\xc5Q\x95\xe5\'M\x03\xa4\xe9\x8e\xb9iqd\x1c\x03Q\xa6)\\$%A\xe4\xe6X\xbbl\xad\xaa\x01\x9a\x9b\xcd\xfa|\xbd\x87|\xf3\x92**\xeaB\x0e\xc8\xa7\xb9\xb9\xce\xcc\xc8\xf8]\x04ZdV\xef\xe5#\x0fA\xbe\xf8\x8f\x96\x02b\xbc\xf4o06\xbfo\xa6\xa1/k\xech^<\\?E\x1b\xee\x873\xa2\x13\x7fAd\x1e\x18}\xd3\xc3\x86\xed\x19)\xfa\x1e\xb3X\x02\x16\xa4\xc5\xa7\xbe\x06\xd4~o8\xbf\x1fVO\xba\xef\x9e\xff\x98\x90b5\x04\xc1\xdc\xc7\x06eOf\xf3D\x10R\xac\xee\xbe{\xfe\x93!\x91\x90\x96{\x16f\x12\xa9\xd7-\x99\xbdd\x0b"\x80\x10V\xb4\xf2\xf3\xb6y\xf3\x0e\xc5\x1f=Z\x1b0 %\x00E9h= \x13,\x9b\xad\x96\xab,2Ue]\x07H\x9c\x1b\xce7K\x80\xfbKn\x12\xba\xbfiO^\xf8j\xe1*\x08Q\x04!`\xcdC6\xa9,\xab\xf8\x13E/|\xf5k\x7f\x16\x90\x84t\xcc\x9d\x9b\x08)\x7fb\xe9\xe0\xd8\x02\xc85)\xb1.\xbe\xf2\x1f\x9d\x85\x85\x1f\xc4\x1c8\xd0|[\x80\xb8\xdcQka\xf5N\x9f\x1d*\x8b\x84%6\xe4:\xfc\x93\x9c,^\x04\xf0\xd7\xc3VYm\x85K\xb2Y\x885\x16\x8ar\xdfc\x07 \x82`5\x9f,\xe53\xedEES\x87-!\x11\x11\xf4\x12A\xb8\xac\x1f\x1c\x1bVYBXb\xd4\x07I\x89\xc3\x05Z\x0b\xe0\xbb\xb7\x94\x90\xf6\xc5\x8bs@\xf4\xb8\xf9>\xc7\x10\x8f\x1di{\x04\xd8\xc3+=\xd1\xb1ti\xee-%\xc4\x19\xe1\xfc;\x02I["r\xb6H\x08Y.!\x7f\xf4~\\\x8c\xe7\x01\xfc\xd5\r%\xa4s\xd9\xb2$\x12r\x95\xe5\xb6\xa3\xdf\x86\xd8\xe5\xa9\xdb\xc3/K\xf1T\xe7\xb2eI7\x94\x10I\xaa\x98H\xd8\x97\xdei\x87\xa7n\xf1*k\x90\x94DI\xf0w\x01\xbc2$ BhO\xd9\x9a\x0fo\x97c(\xed\xcbl\x15\xe0\xa7\xaf\x07\xa4\xbf\']+V\x14\x90\xa4\xd9\xb6\x18\xb8/\x0c\x9d\x1d#\x02;y&!fu\xadXQ\xf0%\t\x91\x0e\xb9\xd2\xf6j\x11\xb21tb#I\'?\x06\xe0\xe4@\x95%i\x85-\x03b\xb7\xca\xb2\xc1\x0f\x19"\x9c\xb2\x02\xc0\x0f\xfb\x01i\xff\xf6C9$d\x1e\xec&16%\x84\x80\xfc\x8e\'\x1e\xc9\x8d}\xf7\xbd\x0b\x1a\x00\xb84\xe7\xd2\xb0(n\xb3+t"\xedg\xde\xc9r\t\x80>@ \xa80\xe0\xc1\xd04\xc8\xa2%\xa0{\x17\x80\x92\x93\x01\xaf\x17\\_\x07\xae\xae\x02\x9f?\x07U}\x01`\x0e_@nGB\x88 rrA_\x99\x0e\xca\x99\n\x9a8\t\x88\x8c\x0477\x83\x8f\x94\xc1(\xdd\r\x18F\xa0zk!\x80\xd75\x00 )\x0b\x03eF[\xf3\x0c\xc4\xfc\x85_\xbcKL\x02ed\x02\xf3\xe6\xf75s\xb5\t\\[\r\xae\xa9\x06\x7fz\x1e\xaa\xea&\x00\xd9\xe5\xa9\xdf\xa8]"\x88\x9c\xa9}\x00d\xe5\x80\xb2\xb2A\xa9i_\xfeYb\x12\xf0\x95\xe9\xa0i\xd3\xe0\x7f\xe3\xb5\xe1O\xc0\x01j\x8b\x0b\x01@\xf3\x14\x17\xa7@rV@\xab\x83EE\x03\xc1\x18\xaa\xa1\x94TPJ*0\xf7\x1a@\xcdW\xfb\x00\xbat\x11\\_\x07u\xe1S\xc0\xd3y\x83\xc8\x9a\xc5~Ht\x0cD\xee4\xd0\xc4I\xa0\xc9S\xfa\x00HN\x1d>\xb6\xf3\x17B\x9e?\x07\xe3\xa3\xd2@z\x92\xed).N\xd1\xe00\xf2 \x02\x0b]\xd1\xbd\x0bn\xff\x7f\x92S@\xc9)\xc0\x9c{\xfb^\xf8upc#\xb8\xa1\x0epX_\xf1Fw\x16@\x9b>\x13\x94>\x11\x94\x9e\x0eh\x8e\xe0\xbew\xef\x02\xe0\xc0\xde\xc0\xb4\xbf\x8b\xef\xd0\x84S\xcb\x0b(\x88\xa4i\x10\x99Y\xc1\x8f\x88\xe6\x00ed\xf6\xa99;\x16v\xb3\xef\n\xed\xf7\xa6d\x01\x11.@\xd7o\xff\x9f\x95\xca\xd3\xa4\x90\xd3\x83Y@\x8f\xd3\xe0A\xe5>\x1b\x12\x80=$!fh,DF\xa0k\x1bnk\x05EF\x8d\x830`LZ\x02^\xa00\xf3$\rR\xa4\x07\xdc\xf8\x85s\xa0\x89\x19\xe3(\x0c\x1a\x93\x80=\x7f\xe6tADi\x81\x06\xc6\xd4\xd1C\x80\xafw\x1c\x85?\x92\xcf\x07u\xac,\x98@\xe3\x04\x8d5\x11\x13\xa8\xcaRW\xea\xa1\x8e\x1e\x82(\\<\x0e\x06\x00u\xf4 Tc]\xc0\x12\xc2\xcc\xd1\x1a\x88"\x82\xf1\x90\xfd\xa5\x1f\xc2\x91w\'(al\x97\x8bpk\x0b\xfc\xa5\x1f\x06\xe7\xdc2\xbb\x05\x84\x88\x08j+\xd2\xdb\x05\xe3\x83\xdf\x04\x112\x18\r\xa2\xa1`\xec\xf8-\xe0\xed\nn[WJ\xb7\xc62\xf8\x8d!\xe3l\x05\xe8\xe8\x01\xc8\x05c\xb2*\x1a\xc6\x91\xfd0N\x9f\x08:H\xc9\x004\x08\xd9\x03Bt\xb0\x9d\xf2\xef\xde\x06\xca\x98\x12\x1agq$\tG\xdd%\xf8\xf7|\x10\x9a8\x1c\xa3[\x90\xa0\x9e\x90dQ\x18\x06\x8cm\x9b\xc1]\x9e\xb1c7\xbc]0\xb6m\x02\xfc\xfe\x90d\xa1\x90\x14\xdd\x82\xa5\xe8\xec\xaf"\n\xf2Q\xcd\x8d0>\xda9F<x\x86\xb1\xefC\xa8\xa6\x06\x84j\xfcX\x90G#A\x8d\xa1<h\xd28^\x06\x911\x19b\xd6\x9c\xd1\xad\xaa*N\xc08^\x16\xd2]Nbj\xd0X\xca\xfaP\xef\x0b\xe9\xbb\xb7\xc2\x91\x92\x0e1a\xd2\xe8\x04\xa3\xa9\x1e\xfa\x9e-!\xdf\x8bgp\xbd\x80\xa0\xba\x90g\xe5\xe9>\x18;\xff\x0f\xdc\xe3\x1d}h\xf4v\xc3\xd8\xf9\xdb\xbe\x08E\xc837E\xbd\xc6B\x9e3c\xe7T5\xd5\xc38\xb0\x1b\xda\x92\xe5\xb0=\x9b%\x84s\xd8\xbf\x7f\x17T\xe3g\xa6\xecn\xb2Rg5%qF\x98\x94\xc2iT\x1c\x83H\xcf\x80\xc8\xbb{t\xa8\xaa\xcar\x18\x15\xc7LK\x1bR$\xceh\x1e\xe5;\x1d\xefp\x9b\xc6\x84\xbe\xefwp$\xa7A\xa4\x8dl{\xa2\x9a\x1b\xa0\xef\xdbnj\xaa\x92\xc7\xe8>C\x00\xd0\xfd\x9f/V\x11\x91igZ\x88\xa4Th\x0f\xad\x02\xb9G\xe8\xdeIo\x0f\xf4\xad\xef@5^6Q\x19\xa2\xca\xfd\xdc\xda\\\x01\x00$\xc5A3\xd3\xeeUk3\x8c\xb2=\x01ec\x84\x03\xf9\x0f\xff\x1e\xaa\xa9\xce\xd4\xd2\x04":\x08\\\xcb\\T$\x0e\n\xa2bS\xe3=\xe7?\x81H\xcf\x84\x98y\xd7\xc8RUgO\xc2\xa8<nz\x8a\x92b>\xd4\x0f\x88O\xa8\x1d\x11B3\x9d9\xfd\xf0N8\x12\x92!&d\x8e\x0c0\x9a\xea\xa0\x1f\xdeiIf\xa3\xcfo\xec\x04\xaeK7\xe9^\xf7\xe3\n"\xf3o&\xa0\xb8$8\x1e|\x1c\x14\x15\x1b\xe6q*\x0f\xfc;\xde\x85jm6\xbf-\xe6\n\xf7\x9a\x1f\xde\xd9/!\x00\xc0\x92\xb6\x10\x91\xe9\x80\xb0\xa7\x15\xfe#\xbb\xe1\xb8\xef[\x80\x94a*\x1a\n\xc6\xc7\xa5P\x1d-\x96d\xc6\xb3R[\xfa\x17@_\xbc\xc4&\xabj\xeb\xd4gU0*?\x0e[\xe90N\x1f\x83Q{\xd6\xbaZC\xa6\xcd\xfd\x1a\xe4\xfa\x8et\xaf\x7f\xf9\x04\x11\n,\xe1\x9a\x08\x8eE\xdf\x82\xc8\xcc\r/\xe1\xa8\xaf\x85^\xfa\x9ee+B\x06\x9fp\x17\xff}\xbf\xe7<\xc0\x92\xb3\xa4\xb7\x89\xa8\xc0*\xe6\xf5\x8fw\xc3\x19\x9b\x00\x8a\x0b\x8f\xfdx\xeel\x81~t\xe75\xe7\xcf\x9ap\x0f+\xf5\xf6\x00\x9fm\xc0z\xdb\xef[\xcfBtYV\x1a\xec\xeb\x81\xff\x0f\xa5\x80\xee\x0b\x03gC\x87\xff\xf8>\xa0\xd7k\x9d\xaa\x12\xa2\xcbo\xe8\x1b\x06(\x8e\xc1\xfd\xea\xde\xf4\xca\xab4\xa8\x98\xddl\x92\xb9\x05\xd0\n\x16\xd9\x8b\xc7\'\xfba\x9c?a\xadD2\xbf\xea^\xf9\xfc\x80Ch\xbe\xe4|\xf4\xfa\xd4O]\x11\xf2\x07V\x9e\xe6`T\x7f\x02\x91\x90\x021e\xa6=v\xe3\xf29\x18\x17\xca-\xadOa\xb0\xe13\x8cW\xbe\x14f\x1a\xfc"\xfe;\x7fS\xc3\x82~muy\xb0^\xb1\x1f\xaa\xa5\xd1z0\xda\x9b\xa1W\xec\xb7\xbc\x1c\x9a\x05\xfd:n\xe5\xdfV\r\xee\xcf\x90\xee\xb9O\xc7?\xb9\\\xe2Q"Xw"\x10\x1b0*\xf6\x81\xe6/\x07\xb9"\xadi\xd2\xd7\x03\xa3|/`\xe8\x96V\xe22\xd8\xa7\xf7\xd0\x8f\x86\x0c\xc4\x0e\xf52~\xe5s\xb5 \xbcn\xf5\xd9\x1f\xca\xd3\x06\xe3\xcc!@)+\x9670\xce\x94Au~n\xc79\'\xaf\xc5\xad|\xb6j\xa8n\xdd0\x80\xa5\x1bj\xadSj\x8f\x83\x90j\xa5\n1\x1ak@\xf1\xa7!\xb3g\x99\xdbN\xedi\x18\r\x17\xac\xafkd|\xde\xd6\xd5\xf3\xaf7t\xcfn\xf6\xbf];\xdeX%\x89\xde\xb2\\\xb1\x13\xc1q\xd77 \x92\xcd)uP-\r\xd0\x8fo\xb7F\x12\x07O\x04\xa5VE=\xf8\xfd\xf57\xfa\xfbM\xa7\xc7\xcb\x87\xeb\xd73Q\xa9\x1dG\xfd\xe9g\x0f\x81\xbd\x1d\xa1\x9f\xa0\xdd\x1e\xf8+\x0f\\\xe3\xde\xe2\xe3\x98\x88J_>\xd2\xb0\xe1\xa6s\xf1V\x0c\xb4\xecz=\xd3-\x9d\'\tH\xb4z6\x89\x84t8\xf2\xef\x0f\xba\x10\xf3\x0b\xd10\xa0W\xfc\x1e\xaa\xa5\xcer\xc9`\xa0\xbd\xd7\xef/\x88\x7f`MmP\x80\x00\x80w\xcf\x9b\x8f\n)6\xd9\xe1#\xc8\xcc|h9\xa1I\x920jN\xc0\x7f\xa9\xc2\x9e\xb0\x8cRO\xba\xef_\xfd\xee-\xb5\xf5p?\xd8\xfd\xd1\xdb\xffM [n`s\xcc\xf8\x1aDJVp\xc2\xd1|\x11z\xe5G\xf6\x80\x01\xfe\xa5{\xd1\xaa?\x1f\xceo\x87\xbdMX\xddX\xf3\x83\xa9\x13\xa7N\x83\xd97$\x0c\xb5\xe2\xab9\x06\x87;\x16":0\xad\xa9<-\xd0\xab\x8f\xd9s\xea\x0fs\xd9\x95\x0b\xea\xd9a\xafgn\xe7\xdbM{\xdfJ\x8bu:\xcc\xbb\xd0\xe5f\x1duE\xc31\xe3>\x90\xfb\xf6v\x1a\xb9\xa7\x13\xfa\xd9}\xe0\x9eN;d\xa3\xbe\xcb\xeb\x9f\x9b\xb4dU\xbd)\x80\x00\x80\xe7\xe0\xfa<Ms\xec\x03Y\x7f\xe5\x91\x88\x8c\x87\x963\x1f\xe4\x8e\x1b\xe6\x8a\xaa\x1d\xfe\xea\xc3P\xde6\x1b\x04\x83\xdb\x94_\x15E-\xfcN\xf9mM\xbc@\x1a\xf3\x96\xbd3\x97\x1c\xda\x1e\x02Y\x7f)\x98#\x12\x8e)\xf7@\xc4M\xb8E\x8c\xaa\x11\xfa\xc5?\x00\xba\xd7\x060\xd0\xa5\xfb\xf9\x81\xd8\x05\xdf>t\xdb\x9a \xd0F;\x8fm\\\xa4\tl#"[nj\x93\xc9S!Sr@\x11q\x83TT;\x8c\xabU0\x9a\xab\xed1\xe0\xcc\x9d\x06\xab\xe5\xd1s\x1e\xdf\x17\x90j\x0e\xa6q\xef\xf1\xcd\xf7\x08\x89\x1d\x00\xd9v\xb1\xa4\x88N\x86\x88\xea\xbb3@u]\x85\xf24\xdb\xd5\x150s\xab\xce\xf8f\xec]\x8fZ\x7f\xb1d\xbfM)\xffM\x9eF\xd8n\x87\xa1\x0f+b\xbe\xecg<\x18=\xfb\xe1\xd3A-^B\xd1\x97\x86\x13\x1b\x93\x13\x9c\xce\xcd\xa0\xb1y91\x98\xcb:\xbb\xd5\xc3)s\x1e\x0ezC\'t\xd7w\xef}\xcb\x95\x96\x1a\xff*\t\xb1fLa\xa1\xd4\xba+Mm\xcfe\x15=\x15>\xd7w\x0f\xb0+\x95[\x1e&I\xeb\x08\x948\xba\x85\x82\xdb\xc1\xf4\x97\xee\x19\xcb~\x15R\x7f\xcb\x8c\xce\xb6\x9eyor\x843\xe2\x7f\x88h\xc9(\x05cO\x8f\xaf\xe7{\tw<r)\xe4\x0e\xb0\x99\x1d\xef\xbe\xf0\xc1c$\xc5\x7f\x01\x94:J\x80ha\xc6?\xfcd\xc3\x91u%%%\xa6d\xd2\x99\x9e\r\xd6Q\xf9~\xa2\xc3\x1d\xf9#\x10=C\x80sD\x02\x01\xf8\xc0\xfc\x0b\xbd\xdb\xbb6v\xe6\x9f\xb6\x98\xd9\x96e\xd5\x98m\xb5[\xb2"d\xc4\xbf0\xe8I"\xc8\x91!\x110\x08\xfc\xab\x1e\xa3\xe7\xc5\xf8\xac\x15\xb5V\xb4iyyl\xdb\xc5m\xd9N-\xe2\xfb\x04z\x86\x08qa\nD\x17\xa0\xde\xf1\xeb\xea\xa71Y\xdf8ge\xdb\xb6\xd5+wT\xbe\x9f\xa8\xc5\xc5\x16\x93\xa0\xa7\xac\xcc\'\xbe\x85\x8d8\xc9\x8a\xdf\xf2\xb7wl0[5\x85\x1d \xd7SW\xdd\xde\xd9\xe4\xc0J",\'\xd0,KA\x00W0c+\xeb\xd8\x185\xa9\xa8\xdc\xee\xb1\x08\xbb\x8a\xfe\xb6+\xbb\xb3\x9d\xd2\xb1T\x10\n\x99\xb10\xd4\xd5\xc1\xcc\\M\x84\x83\x8aq\xc0g\xe8\xbb\xe2\xd3\xbe^\x13N\xfc\x87\xfd\x11\x0b\r\r\xbfK\x8eqD\xe6\x0b)g\x12c&\x882\x08\x9c\xc6\xa0\t\x00\x12@ \x02\xe2\xaf\xad\x86\xda\xc0`\x00\xad\x04nd\xd0\x150\x7f\xc6\x84Je\x18\x95\x9d\xba\xf7Tz\xfa\x9f4\x873\xbf\xff\x0f\xc1\x8d\x16\xfaVK\x86Y\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
-      
-      self.sidepanelbuttonnames = ("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton")
-      self.sidepanelbuttontext = ("Look","Stats","Effects","Help","Levels","Gear","Titles","Credits")
 
       self.statpanevisible = False
       self.regionpanevisible = False
@@ -4093,10 +4112,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.savePreferences()
 
    def updateText(self):
-      self.detailedDebug()
       self.displayMainText()
       if self.sidepanelvisible:
          self.displaySideText()
+      self.detailedDebug()
 
    def savePreferences(self):
       temp = {"game":{"theme":self.backgroundColor,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.textColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":self.savelocation,"solMode":self.solonlymode,"fixedResMode":self.enforceSize,"customFontColor":self.customfontcolor,"oFontColor":self.otextcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.obackgroundcolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki,"doShopsReturn":self.doShopsReturn},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
@@ -6246,38 +6265,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
       tempStr.close()
 
-   @staticmethod
-   def getdhXML(file):
-      """
-      Gets day and hour from XML save files to display on the save and load screens
-      """
-      track = xmletree.parse(file).getroot().find('track')
-      return (track.find('day').text, track.find('hour').text)
-
-   @staticmethod
-   def getdhTOML(file):
-      """
-      Gets day and hour from TOML save files to display on the save and load screens
-      """
-      with open(file,"rb") as f:
-         temp = TOML.readFile(f)["track"]
-         return temp["day"], temp["hour"]
-
-   @staticmethod
-   def getdhSOL(file):
-      """
-      Gets day and hour from SOL save files to display on the save and load screens
-      """
-      return sol.load(str(file))["track"][2:4] 
-
-   @staticmethod
-   def getdhNIM(file):
-      """
-      Gets day and hour from NIM save files to display on the save and load screens
-      """
-      with open(file, "rb") as f:
-         return ByteArray(f).readObject()["data"]["track"][2:4]
-
    def saveGo(self, ret=False):
       """
       Save game stage 1 (dialog)
@@ -6298,13 +6285,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                if temp2.is_file():
                   temp1 = str(temp)
                   if temp1.endswith(".toml"):
-                     dh = self.getdhTOML(temp2)
+                     dh = SaveUtils.getdhTOML(temp2)
                   elif temp1.endswith(".xml"):
-                     dh = self.getdhXML(temp2)
+                     dh = SaveUtils.getdhXML(temp2)
                   elif temp1.endswith(".sol"):
-                     dh = self.getdhSOL(temp2)
+                     dh = SaveUtils.getdhSOL(temp2)
                   elif temp1.endswith(".nim"):
-                     dh = self.getdhNIM(temp2)
+                     dh = SaveUtils.getdhNIM(temp2)
                   self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.",True)
                else:
                   self.outputMainText(f"This file does not exist.\n\nAre you sure you want to save to {temp}?",True)
@@ -6335,10 +6322,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          tempDict = {4:"Save as",12:"Return"}
          for i in self.bMap:
             if ((self.savelocation / f"Nimin_Save{i}.xml").is_file() and not self.solonlymode):
-               dh = self.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
+               dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
                tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
-               dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+               dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
                tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             else:
                tempDict[i] = "Empty"
@@ -6354,10 +6341,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                self.slot = self.buttonChoice
                if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
-                  dh = self.getdhXML(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
+                  dh = SaveUtils.getdhXML(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
                   self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file()):
-                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
+                  dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                   self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                else:
                   self.doMainText("The chosen slot is empty",True)
@@ -6416,15 +6403,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          if self.solonlymode:
             for i in self.bMap:
                if ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
-                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                  dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
                   tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
          else:
             for i in self.bMap:
                if ((self.savelocation / f"Nimin_Save{i}.xml").is_file()):
-                  dh = self.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
+                  dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
                   tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
                elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
-                  dh = self.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                  dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
                   tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
          if message is None:
             self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
@@ -6441,14 +6428,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.slot = self.buttonChoice
                if self.solonlymode:
                   if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
-                     dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
+                     dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                      self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                else:
                   if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
-                     dh = self.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
+                     dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
                      self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                   elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
-                     dh = self.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
+                     dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
                      self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
                self.outputMainText(f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.")
                self.buttonConfirm()
@@ -6499,13 +6486,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       for i in self.nsldGetSorted():
          temp = i.lower()
          if temp.endswith(".toml"):
-            dh = self.getdhTOML(self.savelocation / i)
+            dh = SaveUtils.getdhTOML(self.savelocation / i)
          elif temp.endswith(".xml"):
-            dh = self.getdhXML(self.savelocation / i)
+            dh = SaveUtils.getdhXML(self.savelocation / i)
          elif temp.endswith(".sol"):
-            dh = self.getdhSOL(self.savelocation / i)
+            dh = SaveUtils.getdhSOL(self.savelocation / i)
          elif temp.endswith(".nim"):
-            dh = self.getdhNIM(self.savelocation / i)
+            dh = SaveUtils.getdhNIM(self.savelocation / i)
          self.window._children["savefileselect"].insert("end",f"D: {dh[0]}, H: {dh[1]} | {i}")
       self.window._children["savefileselect"].activate(0)
       self.window._children["savefileselect"].select_set(0)
