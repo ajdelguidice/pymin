@@ -42,6 +42,7 @@ legArray
 '''
 
 __version__ = '13'
+OBJECT_NOT_FOUND = object()
 
 
 class TimesFont(Font):
@@ -99,7 +100,7 @@ class ButtonList(list):
         if item > 0:
             return super().__getitem__(item - 1)
         elif item == 0:
-            raise RangeError('ButtonList; Index can not be 0')
+            raise RangeError('[ButtonList] Index can not be 0')
         elif item < 0:
             return super().__getitem__(item)
 
@@ -107,7 +108,7 @@ class ButtonList(list):
         if item > 0:
             super().__setitem__(item - 1, value)
         elif item == 0:
-            raise RangeError('ButtonList; Index can not be 0')
+            raise RangeError('[ButtonList] Index can not be 0')
         elif item < 0:
             super().__setitem__(item, value)
 
@@ -229,7 +230,7 @@ class DirUtils:
             return 1
         elif path.exists():
             if not silent:
-                raise Error('DirUtils.makeDir; Path exists but is not a directory.')
+                raise Error('[DirUtils.makeDir] Path exists but is not a directory.')
             return -1
         path.mkdir(parents=True)
 
@@ -639,7 +640,7 @@ class AboutWindow(PyminWindow):
         self._text = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on nimin version 0.975o\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}'
 
     def open(self, *e):
-        if self._isOpen:
+        if self.isOpen:
             self.window.lift()
             return
 
@@ -740,7 +741,7 @@ class PyminWiki(PyminWindow):
     def focus(self, value):
         value = int(value)
         if value != 0 and value != 1:
-            raise
+            raise Error('[PyminWiki.focus] Invalid focus')
         if value == 0:
             self.window.forceFocus('menu')
         elif value == 1:
@@ -771,9 +772,7 @@ class PyminWiki(PyminWindow):
     def _set_enforceSize(self, value):
         if value:
             self.window.geometry('700x500')
-            self.window.resizable = False
-        else:
-            self.window.resizable = True
+        self.window.resizable = not value
 
     def __init__(self, callback):
         super().__init__(callback)
@@ -783,9 +782,9 @@ class PyminWiki(PyminWindow):
         self.pageHistory = Array()
         self.text = ''
         temp = itk.itkHTMLScrolledText(itkWindow=self.callback.window)
-        if getattr(temp.html_parser, 'callobject', '') == '':
+        if getattr(temp.html_parser, 'callobject', OBJECT_NOT_FOUND) is OBJECT_NOT_FOUND:
             self._hasCustomHTMLParser = False
-            trace('Wiki: Warning: Custom tkhtmlview html_parser is not installed. Wiki links will not work')
+            trace('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
         else:
             self._hasCustomHTMLParser = True
         temp.destroy()
@@ -1717,7 +1716,7 @@ class PyminWiki(PyminWindow):
         elif page.topic == 'MenuBar':
             text = self.menuBarDescription(page.num)
         if text is None:
-            raise Error(f'Wiki page ({page.topic}, {page.num}) does not exist.')
+            raise Error(f'[PyminWiki.doPage] Page ({page.topic}, {page.num}) does not exist.')
         self.clearAddText(text)
 
     '''
@@ -2265,18 +2264,16 @@ class SaveConverter(PyminWindow):
     def _set_enforceSize(self, value):
         if value:
             self.window.geometry('500x334')
-            self.window.resizable = False
-        else:
-            self.window.resizable = True
+        self.window.resizable = not value
 
     detailedDebug = _noop
 
     def open(self):
-        startType = self.callback is None
-
         if self.isOpen:
             self.window.lift()
             return
+
+        startType = self.callback is None
 
         # Set up window
         self._window = itk.window(width=500, height=334, title='Pymin: Save Converter', main=startType)
@@ -2334,70 +2331,65 @@ class SaveConverter(PyminWindow):
         self.convertSave(self.window._children['inputfilebox'].get(), self.inputfilecombobox.get(), self.window._children['outputfilebox'].get(), self.outputfilecombobox.get())
 
     def convertSave(self, inputfile, inputfiletype, outputfile, outputfiletype):
-        try:
-            if inputfile in {None, ''} or outputfile in {None, ''}:
-                self.message = 'Error: Input/Output file can not be "None" or empty'
-                raise Error('Pymin.convertSave; Input/Output file can not be empty')
-            if inputfiletype == outputfiletype and inputfiletype != "detect":
-                self.message = 'Error: Input and Output file types can not be the same.'
-                raise Error('Pymin.convertSave; Input and Output file types can not be the same.')
-            if inputfile == outputfile:
-                self.message = 'Error: Input and Output files can not be the same.'
-                raise Error('Pymin.convertSave; Input and Output files can not be the same.')
-            if inputfiletype == 'xml':
+        if inputfile in {None, ''} or outputfile in {None, ''}:
+            self.message = 'Error: Input/Output file can not be "None" or empty'
+            raise Error('[SaveConverter.convertSave] Input/Output file can not be empty')
+        if inputfiletype == outputfiletype and inputfiletype != "detect":
+            self.message = 'Error: Input and Output file types can not be the same.'
+            raise Error('[SaveConverter.convertSave] Input and Output file types can not be the same.')
+        if inputfile == outputfile:
+            self.message = 'Error: Input and Output files can not be the same.'
+            raise Error('[SaveConverter.convertSave] Input and Output files can not be the same.')
+        if inputfiletype == 'xml':
+            data = SaveUtils.loadXML(inputfile)
+        elif inputfiletype == 'sol':
+            data = SaveUtils.loadSOL(inputfile)
+        elif inputfiletype == 'nim':
+            data = SaveUtils.loadNIM(inputfile)
+        elif inputfiletype == 'toml':
+            data = SaveUtils.loadTOML(inputfile)
+        elif inputfiletype == 'detect':
+            infile = inputfile.lower()
+            if infile.endswith('.xml'):
                 data = SaveUtils.loadXML(inputfile)
-            elif inputfiletype == 'sol':
+            elif infile.endswith('.sol'):
                 data = SaveUtils.loadSOL(inputfile)
-            elif inputfiletype == 'nim':
+            elif infile.endswith('.nim'):
                 data = SaveUtils.loadNIM(inputfile)
-            elif inputfiletype == 'toml':
+            elif infile.endswith('.toml'):
                 data = SaveUtils.loadTOML(inputfile)
-            elif inputfiletype == 'detect':
-                infile = inputfile.lower()
-                if infile.endswith('.xml'):
-                    data = SaveUtils.loadXML(inputfile)
-                elif infile.endswith('.sol'):
-                    data = SaveUtils.loadSOL(inputfile)
-                elif infile.endswith('.nim'):
-                    data = SaveUtils.loadNIM(inputfile)
-                elif infile.endswith('.toml'):
-                    data = SaveUtils.loadTOML(inputfile)
-                else:
-                    ext = inputfile.split('.')[-1].lower()
-                    self.message = f'Error: Detected input file type {ext} is not a supported file type'
-                    raise Error(f'Pymin.convertSave; Detected input file type {ext} is not a supported file type')
-            if data is None:
-                raise Error('Pymin.convertSave; Input save data is null. Try again')
-            data = SaveUtils.dictSAVE(data)
-            if outputfiletype == 'xml':
+            else:
+                ext = inputfile.split('.')[-1].lower()
+                self.message = f'Error: Detected input file type {ext} is not a supported file type'
+                raise Error(f'[SaveConverter.convertSave] Detected input file type {ext} is not a supported file type')
+        if data is None:
+            self.message = 'Error'
+            raise Error('[SaveConverter.convertSave] Input save data is null. Try again')
+        data = SaveUtils.dictSAVE(data)
+        if outputfiletype == 'xml':
+            SaveUtils.saveXML(data, outputfile)
+        elif outputfiletype == 'sol':
+            SaveUtils.saveSOL(data, outputfile)
+        elif outputfiletype == 'nim':
+            SaveUtils.saveNIM(data, outputfile)
+        elif inputfiletype == 'toml':
+            SaveUtils.saveTOML(data, outputfile)
+        elif outputfiletype == 'detect':
+            outfile = outputfile.lower()
+            if outfile.endswith('.xml'):
                 SaveUtils.saveXML(data, outputfile)
-            elif outputfiletype == 'sol':
+            elif outfile.endswith('.sol'):
                 SaveUtils.saveSOL(data, outputfile)
-            elif outputfiletype == 'nim':
+            elif outfile.endswith('.nim'):
                 SaveUtils.saveNIM(data, outputfile)
-            elif inputfiletype == 'toml':
+            elif outfile.endswith('.toml'):
                 SaveUtils.saveTOML(data, outputfile)
-            elif outputfiletype == 'detect':
-                outfile = outputfile.lower()
-                if outfile.endswith('.xml'):
-                    SaveUtils.saveXML(data, outputfile)
-                elif outfile.endswith('.sol'):
-                    SaveUtils.saveSOL(data, outputfile)
-                elif outfile.endswith('.nim'):
-                    SaveUtils.saveNIM(data, outputfile)
-                elif outfile.endswith('.toml'):
-                    SaveUtils.saveTOML(data, outputfile)
-                else:
-                    ext = outputfile.split('.')[-1].lower()
-                    self.message = f'Error: Detected output file type {ext} is not a supported file type'
-                    raise Error(f'Pymin.convertSave; Detected output file type {ext} is not a supported file type')
-            self.message = 'Success'
-        except Exception as e:
-            if self.message == '':
-                self.message = 'Error'
-            raise e
-        finally:
-            self.window.lift()
+            else:
+                ext = outputfile.split('.')[-1].lower()
+                self.message = f'Error: Detected output file type {ext} is not a supported file type'
+                raise Error(f'[SaveConverter.convertSave] Detected output file type {ext} is not a supported file type')
+        self.message = 'Success'
+        self.window.lift()
 
 
 class SaveEditor(PyminWindow):
@@ -2457,7 +2449,7 @@ class SaveEditor(PyminWindow):
         elif ext == '.toml':
             data = SaveUtils.loadTOML(file)
         else:
-            raise Error(f'SaveEditor.loadFile; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.')
+            raise Error(f'[SaveEditor.loadFile] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.')
         self.loadedFile = file
         self.loadedData = data
         with BytesIO() as lfile:
@@ -2591,8 +2583,7 @@ class DebugAffinityChange(PyminWindow):
     def changeAffinity(self):
         if self.callback.currentState == 0:
             self.window.configureChild('errlabel', text='Error: Game not loaded')
-            raise Error('Pymin Debug; Attempted player attribute modification when no game is loaded.')
-        err = None
+            raise Error('[DebugAffinityChange.changeAffinity] Game not loaded.')
         values = self.window._children['combo'].getEntries()
         aff = values[0].upper()
         validAff = {
@@ -2616,16 +2607,14 @@ class DebugAffinityChange(PyminWindow):
             "B8",
             "B10"
         }
-        if aff in validAff:
-            try:
-                amount = int(values[1], 10)
-            except:
-                err = 'Amount must be an integer'
-        else:
-            err = 'Type is not a valid type. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10'
-        if err:
-            self.window._children['errlabel'].text = err
-            raise Error(f'Pymin Debug; PlayerAttributeChange Affinity; {err}.')
+        if aff not in validAff:
+            self.window._children['errlabel'].text = f'Type {aff} is invalid.'
+            raise Error(f'[DebugAffinityChange.changeAffinity] Type {aff} is invalid. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10.')
+        try:
+            amount = int(values[1], 10)
+        except:
+            self.window._children['errlabel'].text = 'Amount must be an integer'
+            raise Error('[DebugAffinityChange.changeAffinity] Amount must be an integer.')
         self.callback.debugChangeAffinity(aff, amount)
 
 
@@ -2660,31 +2649,27 @@ class DebugGiveItem(PyminWindow):
     def giveItem(self):
         if self.callback.currentState == 0:
             self.window._children['errlabel'].text = 'Error: Game not loaded'
-            raise Error('Pymin Debug; Attempted player attribute modification when no game is loaded.')
+            raise Error('[DebugGiveItem.giveItem] Game not loaded.')
         EN = self.window._children['combo'].getEntries()
-        temperr = ''
         try:
             ID = int(EN[0], 10)
         except:
-            temperr = 'ID must be a number'
-        else:
-            try:
-                QUAN = int(EN[1], 10)
-            except:
-                if not temperr:
-                    temperr = 'Quantity must be a number'
-        if temperr:
-            self.window._children['errlabel'].text = temperr
-            raise Error(f'Pymin Debug; PlayerAttributeChange Item; {temperr}')
-        if ID in DebugGiveItem.VALID_ITEMS:
-            if QUAN > 0:
-                for i in range(QUAN):
-                    self.callback.itemGainArray.push(ID)
-                self.callback.gainItem(self.callback.itemGainArray.pop())
-            else:
-                self.window._children['errlabel'].text = f'Invalid Quantity: {QUAN}'
-        else:
+            self.window._children['errlabel'].text = 'ID must be an integer'
+            raise Error(f'[DebugGiveItem.giveItem] ID must be an integer.')
+        try:
+            QUAN = int(EN[1], 10)
+        except:
+            self.window._children['errlabel'].text = 'Quantity must be an integer'
+            raise Error(f'[DebugGiveItem.giveItem] Quantity must be an integer.')
+        if ID not in DebugGiveItem.VALID_ITEMS:
             self.window._children['errlabel'].text = f'Invalid ItemID: {ID}'
+            raise Error('[DebugGiveItem.giveItem] ID must be a valid ItemID.')
+        if QUAN <= 0:
+            self.window._children['errlabel'].text = f'Invalid Quantity: {QUAN}'
+            raise Error('[DebugGiveItem.giveItem] Quantity must be greater than zero.')
+        for i in range(QUAN):
+            self.callback.itemGainArray.push(ID)
+        self.callback.gainItem(self.callback.itemGainArray.pop())
 
 
 class OptionsWindow(PyminWindow):
@@ -2879,10 +2864,14 @@ class OptionsWindow(PyminWindow):
         #Apply button
         self.window.addWidget(PyminButton, 'display', 'ApplyButton', x=360, y=172, width=50, height=25, font=('Times New Roman', 12), text='Apply', command=partial(self.save, self.callback))
 
-        self.load(self.callback)
         self._isOpen = True
 
+        self.load(self.callback)
+
     def load(self, main):
+        if not self.isOpen:
+            raise Exception('[OptionsWindow.load] Method can not be used when window is not open.')
+
         self.window._children['Theme'].set(main.backgroundColor)
         self.window._children['FontColor'].set(main.textColor)
         self.window._children['SaveLocation'].set(str(main.savelocation.resolve()))
@@ -2952,105 +2941,107 @@ class OptionsWindow(PyminWindow):
                 self.window._children['NoDamage'].select()
 
     def save(self, main):
-        if self.isOpen:
-            main.solonlymode = self.window._children['SOLMode'].getcb()
-            main.enforceSize = self.window._children['FixedRes'].getcb()
+        if not self.isOpen:
+            raise Exception('[OptionsWindow.save] Method can not be used when window is not open.')
 
-            # Custom Theme Colour
-            if self.window._children['Theme'].getcb():
-                if self.window._children['Theme'].get() == '':
-                    self.window._children['Theme']['background'] = '#FF3333'
-                    raise Error('Pymin.OWSaveOptions; CustomThemeColor is empty')
-                if not SaveUtils.checkValidHex(self.window._children['Theme'].get()):
-                    self.window._children['Theme']['background'] = '#FF3333'
-                    raise Error('Pymin.OWSaveOptions; CustomThemeColor is not a valid hexadecimal color code')
-                if not main.customthemecolor:
-                    main.obackgroundcolor = main.backgroundColor
-                main.customthemecolor = True
-                if self.window._children['Theme']["background"] == '#FF3333':
-                    self.window._children['Theme']["background"] = '#FFFFFF'
-                main.backgroundColor = self.window._children['Theme'].get()
-                main.window._children['themebutton'].state = 'disabled'
+        main.solonlymode = self.window._children['SOLMode'].getcb()
+        main.enforceSize = self.window._children['FixedRes'].getcb()
+
+        # Custom Theme Colour
+        if self.window._children['Theme'].getcb():
+            if self.window._children['Theme'].get() == '':
+                self.window._children['Theme']['background'] = '#FF3333'
+                raise Error('[OptionsWindow.save] CustomThemeColor is empty')
+            if not SaveUtils.checkValidHex(self.window._children['Theme'].get()):
+                self.window._children['Theme']['background'] = '#FF3333'
+                raise Error('[OptionsWindow.save] CustomThemeColor is not a valid hexadecimal color code')
+            if not main.customthemecolor:
+                main.obackgroundcolor = main.backgroundColor
+            main.customthemecolor = True
+            if self.window._children['Theme']["background"] == '#FF3333':
+                self.window._children['Theme']["background"] = '#FFFFFF'
+            main.backgroundColor = self.window._children['Theme'].get()
+            main.window._children['themebutton'].state = 'disabled'
+        else:
+            main.customthemecolor = False
+            main.backgroundColor = main.obackgroundcolor
+            main.window._children['themebutton'].state = 'normal'
+
+        # Custom Font Colour
+        if self.window._children['FontColor'].getcb():
+            if self.window._children['FontColor'].get() == '':
+                self.window._children['FontColor']['background'] = '#FF3333'
+                raise Error('[OptionsWindow.save] CustomFontColor is empty')
+            if not SaveUtils.checkValidHex(self.window._children['FontColor'].get()):
+                self.window._children['FontColor']['background'] = '#FF3333'
+                raise Error('[OptionsWindow.save] CustomFontColor is not a valid hexadecimal color code')
+            if not main.customfontcolor:
+                main.otextcolor = main.textColor
+            main.customfontcolor = True
+            if self.window._children['FontColor']['background'] == '#FF3333':
+                self.window._children['FontColor']['background'] = '#FFFFFF'
+            main.textColor = self.window._children['FontColor'].get()
+            main.window._children['textcolorbutton'].state = 'disabled'
+        else:
+            main.customfontcolor = False
+            main.textColor = main.otextcolor
+            main.window._children['textcolorbutton'].state = 'normal'
+
+        # Save Location
+        if self.window._children['SaveLocation'].get() == '':
+            self.window._children['SaveLocation']['background'] = '#FF3333'
+            raise Error('[OptionsWindow.save] SaveLocation is empty')
+        # TODO: Make this check platform agnostic
+        if not isValidDirectory(self.window._children['SaveLocation'].get(), as3state.separator):
+            self.window._children['SaveLocation']['background'] = '#FF3333'
+            raise Error('[OptionsWindow.save] SaveLocation is not a valid location on the current platform')
+        if self.window._children['SaveLocation']['background'] == '#FF3333':
+            self.window._children['SaveLocation']['background'] = '#FFFFFF'
+        main.savelocation = Path(self.window._children['SaveLocation'].get()).resolve()
+
+        main.statusTweaks = self.window._children['StatusTweaks'].getcb()
+        main.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
+        main.useIsBottomOpen = self.window._children['UseIsBottomOpen'].getcb()
+        main.lizanDontShowBalls = self.window._children['LizanDontShowBalls'].getcb()
+        main.hermGetsBoth = self.window._children['HermGetsBoth'].getcb()
+        main.internalBallsEffectBelly = self.window._children['IntBallsEffectBelly'].getcb()
+        main.directPathToSanctuary = self.window._children['DirectPathToSanc'].getcb()
+        main.correctBeastRaceFeet = self.window._children['CorrectBeastRaceFeet'].getcb()
+        main.gameTweaksMisc = self.window._children['MiscChanges'].getcb()
+
+        if (main.dir / 'nimintheme').is_dir():
+            if self.window._children['NiminTheme'].getcb():
+                main.useNiminTheme = True
+                main.style.theme_use('nimin')
             else:
-                main.customthemecolor = False
-                main.backgroundColor = main.obackgroundcolor
-                main.window._children['themebutton'].state = 'normal'
+                main.useNiminTheme = False
+                main.style.theme_use('default')
+        main.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
+        tempng = main.oNewGameButton
+        main.oNewGameButton = self.window._children['newgameoriginalsize'].getcb()
+        if tempng != main.oNewGameButton and main.shownewgame:
+            main.hideNGButton()
+            main.showNGButton()
+        main.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
+        main.useNewSaveLoadDialog = self.window._children['UseExpandedSaveDialog'].getcb()
+        main.useNewStash = self.window._children['UseNewStash'].getcb()
+        main.helpToWiki = self.window._children['helpToWiki'].getcb()
+        main.doShopsReturn = self.window._children['doShopsReturn'].getcb()
 
-            # Custom Font Colour
-            if self.window._children['FontColor'].getcb():
-                if self.window._children['FontColor'].get() == '':
-                    self.window._children['FontColor']['background'] = '#FF3333'
-                    raise Error('Pymin.OWSaveOptions; CustomFontColor is empty')
-                if not SaveUtils.checkValidHex(self.window._children['FontColor'].get()):
-                    self.window._children['FontColor']['background'] = '#FF3333'
-                    raise Error('Pymin.OWSaveOptions; CustomFontColor is not a valid hexadecimal color code')
-                if not main.customfontcolor:
-                    main.otextcolor = main.textColor
-                main.customfontcolor = True
-                if self.window._children['FontColor']['background'] == '#FF3333':
-                    self.window._children['FontColor']['background'] = '#FFFFFF'
-                main.textColor = self.window._children['FontColor'].get()
-                main.window._children['textcolorbutton'].state = 'disabled'
-            else:
-                main.customfontcolor = False
-                main.textColor = main.otextcolor
-                main.window._children['textcolorbutton'].state = 'normal'
-
-            # Save Location
-            if self.window._children['SaveLocation'].get() == '':
-                self.window._children['SaveLocation']['background'] = '#FF3333'
-                raise Error('Pymin.OWSaveOptions; SaveLocation is empty')
-            # TODO: Make this check platform agnostic
-            if not isValidDirectory(self.window._children['SaveLocation'].get(), as3state.separator):
-                self.window._children['SaveLocation']['background'] = '#FF3333'
-                raise Error('Pymin.OWSaveOptions; SaveLocation is not a valid location on the current platform')
-            if self.window._children['SaveLocation']['background'] == '#FF3333':
-                self.window._children['SaveLocation']['background'] = '#FFFFFF'
-            main.savelocation = Path(self.window._children['SaveLocation'].get()).resolve()
-
-            main.statusTweaks = self.window._children['StatusTweaks'].getcb()
-            main.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
-            main.useIsBottomOpen = self.window._children['UseIsBottomOpen'].getcb()
-            main.lizanDontShowBalls = self.window._children['LizanDontShowBalls'].getcb()
-            main.hermGetsBoth = self.window._children['HermGetsBoth'].getcb()
-            main.internalBallsEffectBelly = self.window._children['IntBallsEffectBelly'].getcb()
-            main.directPathToSanctuary = self.window._children['DirectPathToSanc'].getcb()
-            main.correctBeastRaceFeet = self.window._children['CorrectBeastRaceFeet'].getcb()
-            main.gameTweaksMisc = self.window._children['MiscChanges'].getcb()
-
-            if (main.dir / 'nimintheme').is_dir():
-                if self.window._children['NiminTheme'].getcb():
-                    main.useNiminTheme = True
-                    main.style.theme_use('nimin')
-                else:
-                    main.useNiminTheme = False
-                    main.style.theme_use('default')
-            main.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
-            tempng = main.oNewGameButton
-            main.oNewGameButton = self.window._children['newgameoriginalsize'].getcb()
-            if tempng != main.oNewGameButton and main.shownewgame:
-                main.hideNGButton()
-                main.showNGButton()
-            main.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
-            main.useNewSaveLoadDialog = self.window._children['UseExpandedSaveDialog'].getcb()
-            main.useNewStash = self.window._children['UseNewStash'].getcb()
-            main.helpToWiki = self.window._children['helpToWiki'].getcb()
-            main.doShopsReturn = self.window._children['doShopsReturn'].getcb()
-
-            main.respectShowBalls = self.window._children['showBalls'].getcb()
-            main.femmeboyToFemboy = self.window._children['femmeboytofemboy'].getcb()
-            main.shemaleToFuta = self.window._children['shemaletofuta'].getcb()
-            main.ngrammar = self.window._children['ngrammar'].getcb()
-            if self.window._children['replacefemmiemale'].getcb():
-                main.femmieMaleReplacement = self.window._children['replacefemmiemale'].current() + 1
-                # TODO: Update the text based on the value of self.femmeboyToFemboy
-            main.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
-            main.snuggleBallTweak = self.window._children['snuggleball'].getcb()
-            main.grammarFixes = self.window._children['grammarMisc'].getcb()
-            if as3state.as3DebugEnable:
-                main.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
-                main.debugNoDamage = self.window._children['NoDamage'].getcb()
-            main.savePreferences()
+        main.respectShowBalls = self.window._children['showBalls'].getcb()
+        main.femmeboyToFemboy = self.window._children['femmeboytofemboy'].getcb()
+        main.shemaleToFuta = self.window._children['shemaletofuta'].getcb()
+        main.ngrammar = self.window._children['ngrammar'].getcb()
+        if self.window._children['replacefemmiemale'].getcb():
+            main.femmieMaleReplacement = self.window._children['replacefemmiemale'].current() + 1
+            # TODO: Update the text based on the value of self.femmeboyToFemboy
+        main.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
+        main.snuggleBallTweak = self.window._children['snuggleball'].getcb()
+        main.grammarFixes = self.window._children['grammarMisc'].getcb()
+        if as3state.as3DebugEnable:
+            main.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
+            main.debugNoDamage = self.window._children['NoDamage'].getcb()
+        main.savePreferences()
 
 
 class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
@@ -3066,9 +3057,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    versionNumber = "0.975o"
 
-   bMap = (1,2,3,5,6,7,9,10,11)  # Returns button numbers. Meant to be used with 'range(9)' instead of i+1+i//3
-   sidepanelbuttonnames = ("looksbutton","statsbutton","effectsbutton","helpbutton","levelsbutton","gearbutton","titlesbutton","creditsbutton")
-   sidepanelbuttontext = ("Look","Stats","Effects","Help","Levels","Gear","Titles","Credits")
+   bMap = (1, 2, 3, 5, 6, 7, 9, 10, 11)  # Maps button numbers to range(9)
+   sidepanelbuttonnames = ("looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton")
+   sidepanelbuttontext = ("Look", "Stats", "Effects", "Help", "Levels", "Gear", "Titles", "Credits")
 
    @property
    def backgroundColor(self):
@@ -7671,7 +7662,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.bagSlotClear(self.choiceListResult[1])
                   else:
                      self.bagStackArray[self.choiceListResult[1]] = self.bagStackArray[self.choiceListResult[1]] - 1
-               self.foodItem(ID)
+               self.hunger += self.itemFoodValue(ID)
                self.buttonShiftOverride = True
                self.doItemUse(ID)
                self.buttonShiftOverride = False
@@ -8613,7 +8604,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          return 15
       return 0
 
-   def foodItem(self, ID:int):
+   @staticmethod
+   def itemFoodValue(ID:int):
       '''
       Function which returns the food value of the item ID
       '''
@@ -8646,7 +8638,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          tempNum = 50
       elif ID == 501:
          tempNum = 70
-      self.hunger += 2 * tempNum
+      return tempNum * 2
 
    @staticmethod
    def useItemHidePage(ID:int):
