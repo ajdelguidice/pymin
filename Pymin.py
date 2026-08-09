@@ -4847,7 +4847,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.rndResult = 0
          self.rndArray.clear()
          self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
-         raise Error(f"Pymin.chooseFrom; self.rndArray does not contain any items. hour = {self.hour}")
+         raise Error(f"[PyminMain.chooseFrom] self.rndArray is empty. hour = {self.hour}")
       if self.gameTweaksMisc:
          self.rndResult = choice(self.rndArray)
       else:
@@ -6307,15 +6307,18 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
       tempStr.close()
 
-   def saveGo(self, ret=False):
+   def saveGo(self, message=None):
       '''
       Save game stage 1 (dialog)
       '''
       DirUtils.makeDir(self.savelocation)
       self.hideAPButton()
       if self.useNewSaveLoadDialog:
-         self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
-         self.doNewSaveLoadDialog("Save",ret)
+         if message is None:
+            self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
+         else:
+            self.outputMainText(message,True)
+         self.doNewSaveLoadDialog("Save")
          def doListen():
             if self.buttonChoice == 4:
                self.doSave(4)
@@ -6345,12 +6348,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      temp += ".xml"
                   if (self.buttonChoice == 6):
                      self.doSave(0,self.savelocation / temp)
-                     self.hideNewSaveLoadDialog()
-                     self.hideNSLDBlinder()
-                     self.hideDiscard()
-                     self.doReturn()
                   else:
-                     self.saveGo(True)
+                     self.saveGo()
                self.doListen = doListen
             elif self.buttonChoice == 12 and self.currentState != 0:
                self.hideNewSaveLoadDialog()
@@ -6371,13 +6370,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             else:
                tempDict[i] = "Empty"
-         self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.",True)
+         if message is None:
+            self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.",True)
+         else:
+            self.outputMainText(message,True)
          self.doButtonChoices(tempDict)
          def doListen():
             self.slot = 0
             if self.buttonChoice == 4:
                self.doSave(4)
-               self.doReturn()
             elif self.buttonChoice == 12:
                self.doReturn()
             else:
@@ -6395,13 +6396,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                def doListen():
                   if (self.buttonChoice == 6):
                      self.doSave(self.slot)
-                     self.doReturn()
                   else:
                      self.saveGo()
                self.doListen = doListen
          self.doListen = doListen
 
-   def loadGo(self, message=None, ret=False):
+   def loadGo(self, message=None):
       '''
       Load game stage 1 (dialog)
       '''
@@ -6412,7 +6412,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
          else:
             self.outputMainText(message,True)
-         self.doNewSaveLoadDialog("Load",ret)
+         self.doNewSaveLoadDialog("Load")
          def doListen():
             if self.buttonChoice == 4:
                self.doLoad(4)
@@ -6428,7 +6428,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   if (self.buttonChoice == 6 and temp in DirUtils.listFiles(self.savelocation,(".toml",".xml",".sol",".nim"))):
                      self.doLoad(0,self.savelocation / temp)
                   else:
-                     self.loadGo(ret=True)
+                     self.loadGo()
                self.doListen = doListen
             elif self.buttonChoice == 12 and self.currentState != 0:
                self.hideNewSaveLoadDialog()
@@ -6489,14 +6489,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doListen = doListen
          self.doListen = doListen
 
-   def doNewSaveLoadDialog(self, which:str, ret):
+   def doNewSaveLoadDialog(self, which:str):
       '''
       New save/load dialog that displays all save files inside of the save directory (referred to as nsld internally)
       '''
-      if ret:
-         self.hideNSLDBlinder()
-      else:
-         self.showNewSaveLoadDialog()
+      self.showNewSaveLoadDialog()
       tempDict = {4:"Other File",8:which}
       if self.currentState != 0:
          tempDict[12] = "Return"
@@ -6577,6 +6574,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.nsldDisplay()
          self.window._children["savefileselect"].focus_force()
          self.newSLDialogVisible = True
+      if self.nsldblindervisible:
+         self.hideNSLDBlinder()
 
    def nsldSetEntryFromListbox(self, *e):
       '''
@@ -6667,7 +6666,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif sfext == ".toml":
          SaveUtils.saveTOML(data,savefilename)
       else:
-         raise Error(f"Pymin.doSave; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{sfext}.")
+         self.saveGo("Error: Could not load save file. Reason: Incorrect file format")
+         return
+      self.hideNewSaveLoadDialog()
+      self.hideNSLDBlinder()
+      self.hideDiscard()
+      self.doReturn()
 
    def doLoad(self, slot:int, file:PurePath=None):
       '''
@@ -6695,365 +6699,341 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif lfext == ".nim":
          data = SaveUtils.loadNIM(loadfilename)
       elif lfext == ".xml":
-         try:
-            data = SaveUtils.loadXML(loadfilename)
-         except Exception as e:
-            self.loadGo("XML Loader Error: Could not load save file.", True)
+         data = SaveUtils.loadXML(loadfilename)
       elif lfext == ".toml":
          data = SaveUtils.loadTOML(loadfilename)
       else:
          self.loadGo("Error: Could not load save file. Reason: Incorrect file format")
-         raise Error(f"Pymin.doLoad; Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{lfext}.")
-      if data is None:
-         self.loadGo("Error: Could not load save file. Reason: No data was received by doLoad")
          return
-      try:
-         strack = data['track']
-         sstats = data['stats']
-         slevel = data['level']
-         smod = data['mod']
-         squality = data['quality']
-         scock = data['cock']
-         sgirl = data['girl']
-         sgear = data['gear']
-         sstatus = data['status']
-         saffinity = data['affinity']
-         srep = data['rep']
-         sknowledge = data['knowledge']
-         sboss = data['boss']
-         sknowSimpleAlchemy = data['knowSimpleAlchemy']
-         sknowAdvancedAlchemy = data['knowAdvancedAlchemy']
-         sknowComplexAlchemy = data['knowComplexAlchemy']
-         smajorFetish = data['majorFetish']
-         smoderateFetish = data['moderateFetish']
-         sminorFetish = data['minorFetish']
-         skid = data['kid']
-         self.currentState = int(strack['currentState'])
-         self.currentZone = int(strack['currentZone'])
-         self.day = int(strack['day'])
-         self.hour = int(strack['hour'])
-         self.currentDayCare = int(strack['currentDayCare'])
-         self.inDungeon = bool(strack['inDungeon'])
-         self.currentDungeon = int(strack['currentDungeon'])
-         self.v7 = str(strack['v7'])
-         self.firstExplore = bool(strack.get('firstExplore',False))
-         self.strength = int(sstats['strength'])
-         self.mentality = int(sstats['mentality'])
-         self.libido = int(sstats['libido'])
-         self.sensitivity = int(sstats['sensitivity'])
-         self.HP = int(sstats['HP'])
-         self.lust = int(sstats['lust'])
-         self.coin = int(sstats['coin'])
-         self.strMod = int(sstats['strMod'])
-         self.mentMod = int(sstats['mentMod'])
-         self.libMod = int(sstats['libMod'])
-         self.senMod = int(sstats['senMod'])
-         self.hunger = int(sstats['hunger'])
-         self.SexP = int(slevel['SexP'])
-         self.levelUP = int(slevel['levelUP'])
-         self.level = int(slevel['level'])
-         self.babyFactLevel = int(slevel['babyFactLevel'])
-         self.bodyBuildLevel = int(slevel['bodyBuildLevel'])
-         self.hyperHappyLevel = int(slevel['hyperHappyLevel'])
-         self.alchemistLevel = int(slevel['alchemistLevel'])
-         self.fetishMasterLevel = int(slevel['fetishMasterLevel'])
-         self.milkMaidLevel = int(slevel['milkMaidLevel'])
-         self.shapeshiftyLevel = int(slevel['shapeshiftyLevel'])
-         self.shapeshiftyFirst = str(slevel.get('shapeshiftyFirst',''))
-         self.shapeshiftySecond = str(slevel.get('shapeshiftySecond',''))
-         self.runMod = int(smod['runMod'])
-         self.rapeMod = int(smod['rapeMod'])
-         self.cumMod = float(smod['cumMod'])
-         self.cockSizeMod = float(smod['cockSizeMod'])
-         self.milkMod = int(smod['milkMod'])
-         self.carryMod = int(smod['carryMod'])
-         self.vagBellyMod = int(smod['vagBellyMod'])
-         self.pregChanceMod = int(smod['pregChanceMod'])
-         self.extraPregChance = int(smod['extraPregChance'])
-         self.pregTimeMod = int(smod['pregTimeMod'])
-         self.enticeMod = int(smod['enticeMod'])
-         self.milkHPMod = int(smod['milkHPMod'])
-         self.vagSizeMod = float(smod['vagSizeMod'])
-         self.vagElastic = float(smod['vagElastic'])
-         self.changeMod = float(smod['changeMod'])
-         self.HPMod = int(smod['HPMod'])
-         self.SexPMod = float(smod['SexPMod'])
-         self.minLust = int(smod['minLust'])
-         self.milkCap = int(smod['milkCap'])
-         self.coinMod = int(smod['coinMod'])
-         self.hipMod = int(smod['hipMod'])
-         self.buttMod = int(smod['buttMod'])
-         self.bellyMod = int(smod['bellyMod'])
-         self.cockMoistMod = int(smod['cockMoistMod'])
-         self.vagMoistMod = int(smod['vagMoistMod'])
-         self.lockTail = int(smod['lockTail'])
-         self.lockFace = int(smod['lockFace'])
-         self.lockSkin = int(smod['lockSkin'])
-         self.lockBreasts = int(smod['lockBreasts'])
-         self.lockEars = int(smod['lockEars'])
-         self.lockLegs = int(smod['lockLegs'])
-         self.lockNipples = int(smod['lockNipples'])
-         self.lockCock = int(smod['lockCock'])
-         self.gender = int(squality['gender'])
-         self.race = int(squality['race'])
-         self.body = int(squality['body'])
-         self.dominant = int(squality['dominant'])
-         self.hips = int(squality['hips'])
-         self.butt = int(squality['butt'])
-         self.tallness = int(squality['tallness'])
-         self.skinType = int(squality['skinType'])
-         self.tail = int(squality['tail'])
-         self.ears = int(squality['ears'])
-         self.hair = int(squality['hair'])
-         self.hairColor = int(squality['hairColor'])
-         self.hairLength = int(squality['hairLength'])
-         self.legType = int(squality['legType'])
-         self.wings = int(squality['wings'])
-         self.faceType = int(squality['faceType'])
-         self.skinColor = int(squality['skinColor'])
-         self.cockTotal = int(scock['cockTotal'])
-         self.humanCocks = int(scock['humanCocks'])
-         self.horseCocks = int(scock['horseCocks'])
-         self.wolfCocks = int(scock['wolfCocks'])
-         self.catCocks = int(scock['catCocks'])
-         self.rabbitCocks = int(scock['rabbitCocks'])
-         self.lizardCocks = int(scock['lizardCocks'])
-         self.cockSize = int(scock['cockSize'])
-         self.cockMoist = int(scock['cockMoist'])
-         self.balls = int(scock['balls'])
-         self.ballSize = int(scock['ballSize'])
-         self.showBalls = bool(scock['showBalls'])
-         self.knot = bool(scock['knot'])
-         self.bugCocks = int(scock['bugCocks'])
-         self.neuterizerHideBalls = bool(scock["neuterizerHideBalls"])
-         self.breastSize = int(sgirl['breastSize'])
-         self.boobTotal = int(sgirl['boobTotal'])
-         self.nippleSize = int(sgirl['nippleSize'])
-         self.udders = bool(sgirl['udders'])
-         self.udderSize = int(sgirl['udderSize'])
-         self.teatSize = int(sgirl['teatSize'])
-         self.clitSize = int(sgirl['clitSize'])
-         self.vagTotal = int(sgirl['vagTotal'])
-         self.vagSize = int(sgirl['vagSize'])
-         self.vagMoist = int(sgirl['vagMoist'])
-         self.vulvaSize = int(sgirl['vulvaSize'])
-         self.nipType = int(sgirl['nipType'])
-         self.attireTop = int(sgear['attireTop'])
-         self.attireBot = int(sgear['attireBot'])
-         self.weapon = int(sgear['weapon']) #This was originally a float because, at some point, this was meant to be a damage divisor (Lower value -> Higher damage) rather than a weapon ID
-         self.pregRate = float(sstatus['pregRate'])
-         self.pregnancyTime = int(sstatus['pregnancyTime'])
-         self.pregStatus = int(sstatus['pregStatus'])
-         self.eggLaying = int(sstatus['eggLaying'])
-         self.eggMaxTime = int(sstatus['eggMaxTime'])
-         self.eggTime = int(sstatus['eggTime'])
-         self.eggRate = int(sstatus['eggRate'])
-         self.exhaustion = int(sstatus['exhaustion'])
-         self.exhaustionPenalty = int(sstatus['exhaustionPenalty'])
-         self.milkEngorgement = int(sstatus['milkEngorgement'])
-         self.milkEngorgementLevel = int(sstatus['milkEngorgementLevel'])
-         self.udderEngorgement = int(sstatus['udderEngorgement'])
-         self.udderEngorgementLevel = int(sstatus['udderEngorgementLevel'])
-         self.heat = int(sstatus['heat'])
-         self.heatTime = int(sstatus['heatTime'])
-         self.heatMaxTime = int(sstatus['heatMaxTime'])
-         self.lactation = int(sstatus['lactation'])
-         self.udderLactation = int(sstatus['udderLactation'])
-         self.nipplePlay = int(sstatus['nipplePlay'])
-         self.udderPlay = int(sstatus['udderPlay'])
-         self.blueBalls = int(sstatus['blueBalls'])
-         self.teatPump = int(sstatus['teatPump'])
-         self.nipPump = int(sstatus['nipPump'])
-         self.cockPump = int(sstatus['cockPump'])
-         self.clitPump = int(sstatus['clitPump'])
-         self.vulvaPump = int(sstatus['vulvaPump'])
-         self.masoPot = int(sstatus['masoPot'])
-         self.sMasoPot = int(sstatus['sMasoPot'])
-         self.babyFree = int(sstatus['babyFree'])
-         self.charmTime = int(sstatus['charmTime'])
-         self.pheromone = int(sstatus['pheromone'])
-         self.eggceleratorTime = int(sstatus['eggceleratorTime'])
-         self.eggceleratorDose = int(sstatus['eggceleratorDose'])
-         self.bodyOil = int(sstatus['bodyOil'])
-         self.lustPenalty = int(sstatus['lustPenalty'])
-         self.fertileGel = int(sstatus['fertileGel'])
-         self.snuggleBall = bool(sstatus['snuggleBall'])
-         self.eggType = int(sstatus['eggType'])
-         self.milkSuppressant = int(sstatus['milkSuppressant'])
-         self.milkSuppressantLact = int(sstatus['milkSuppressantLact'])
-         self.milkSuppressantUdder = int(sstatus['milkSuppressantUdder'])
-         self.suppHarness = bool(sstatus['suppHarness'])
-         self.fertilityStatueCurse = int(sstatus['fertilityStatueCurse'])
-         self.plumpQuats = int(sstatus['plumpQuats'])
-         self.lilaWetStatus = int(sstatus['lilaWetStatus'])
-         self.cockSnakePreg = int(sstatus['cockSnakePreg'])
-         self.milkCPoisonNip = int(sstatus['milkCPoisonNip'])
-         self.milkCPoisonUdd = int(sstatus['milkCPoisonUdd'])
-         self.cockSnakeVenom = int(sstatus['cockSnakeVenom'])
-         self.humanAffinity = int(saffinity['humanAffinity'])
-         self.horseAffinity = int(saffinity['horseAffinity'])
-         self.wolfAffinity = int(saffinity['wolfAffinity'])
-         self.catAffinity = int(saffinity['catAffinity'])
-         self.cowAffinity = int(saffinity['cowAffinity'])
-         self.lizardAffinity = int(saffinity['lizardAffinity'])
-         self.rabbitAffinity = int(saffinity['rabbitAffinity'])
-         self.fourBoobAffinity = int(saffinity['fourBoobAffinity'])
-         self.mouseAffinity = int(saffinity['mouseAffinity'])
-         self.birdAffinity = int(saffinity['birdAffinity'])
-         self.pigAffinity = int(saffinity['pigAffinity'])
-         self.twoBoobAffinity = int(saffinity['twoBoobAffinity'])
-         self.sixBoobAffinity = int(saffinity['sixBoobAffinity'])
-         self.eightBoobAffinity = int(saffinity['eightBoobAffinity'])
-         self.tenBoobAffinity = int(saffinity['tenBoobAffinity'])
-         self.cowTaurAffinity = int(saffinity['cowTaurAffinity'])
-         self.humanTaurAffinity = int(saffinity['humanTaurAffinity'])
-         self.skunkAffinity = int(saffinity['skunkAffinity'])
-         self.bugAffinity = int(saffinity['bugAffinity'])
-         self.lilaRep = int(srep['lilaRep'])
-         self.lilaVulva = int(srep['lilaVulva'])
-         self.lilaMilk = int(srep['lilaMilk'])
-         self.lilaPreg = int(srep['lilaPreg'])
-         self.malonRep = int(srep['malonRep'])
-         self.malonPreg = int(srep['malonPreg'])
-         self.malonChildren = int(srep['malonChildren'])
-         self.mistressRep = int(srep['mistressRep'])
-         self.jamieRep = int(srep['jamieRep'])
-         self.jamieSize = int(srep['jamieSize'])
-         self.jamieChildren = int(srep['jamieChildren'])
-         self.silRep = int(srep['silRep'])
-         self.silPreg = int(srep['silPreg'])
-         self.silRate = int(srep['silRate'])
-         self.silLay = int(srep['silLay'])
-         self.silGrowthTime = int(srep['silGrowthTime'])
-         self.silTied = bool(srep['silTied'])
-         self.lilaUB = bool(srep['lilaUB'])
-         self.dairyFarmBrand = bool(srep['dairyFarmBrand']) # NOTE: Was originally * for some reason
-         self.lilaWetness = int(srep['lilaWetness'])
-         self.jamieRep1 = 0
-         self.jamieRep2 = 0
-         self.jamieRep3 = 0
-         self.jamieButt = bool(srep['jamieButt'])
-         self.jamieBreasts = bool(srep['jamieBreasts'])
-         self.jamieHair = bool(srep['jamieHair'])
-         if (self.jamieSize == 0 and self.jamieRep > 5):
-            self.jamieRep = 3
-         if (self.jamieSize == 0):
-            self.jamieSize = 4
-         self.foundSoftlik = bool(sknowledge['foundSoftlik'])
-         self.foundFirmshaft = bool(sknowledge['foundFirmshaft'])
-         self.foundTieden = bool(sknowledge['foundTieden'])
-         self.foundSizCalit = bool(sknowledge['foundSizCalit'])
-         self.foundOviasis = bool(sknowledge['foundOviasis'])
-         self.foundValley = bool(sknowledge['foundValley'])
-         self.foundSanctuary = bool(sknowledge['foundSanctuary'])
-         self.usedSecretStairs = bool(sknowledge['usedSecretStairs'])
-         self.defeatedMinotaur = bool(sboss['defeatedMinotaur'])
-         self.defeatedFreakyGirl = bool(sboss['defeatedFreakyGirl'])
-         self.defeatedSuccubus = bool(sboss['defeatedSuccubus'])
-         self.knowLustDraft = bool(sknowSimpleAlchemy['knowLustDraft'])
-         self.knowRejuvPot = bool(sknowSimpleAlchemy['knowRejuvPot'])
-         self.knowExpPreg = bool(sknowSimpleAlchemy['knowExpPreg'])
-         self.knowBallSwell = bool(sknowSimpleAlchemy['knowBallSwell'])
-         self.knowMaleEnhance = bool(sknowSimpleAlchemy['knowMaleEnhance'])
-         self.knowSLustDraft = bool(sknowAdvancedAlchemy['knowSLustDraft'])
-         self.knowSRejuvPot = bool(sknowAdvancedAlchemy['knowSRejuvPot'])
-         self.knowSExpPreg = bool(sknowAdvancedAlchemy['knowSExpPreg'])
-         self.knowSBallSwell = bool(sknowAdvancedAlchemy['knowSBallSwell'])
-         self.knowGenSwap = bool(sknowAdvancedAlchemy['knowGenSwap'])
-         self.knowMasoPot = bool(sknowAdvancedAlchemy['knowMasoPot'])
-         self.knowBabyFree = bool(sknowAdvancedAlchemy['knowBabyFree'])
-         self.knowPotPot = bool(sknowAdvancedAlchemy['knowPotPot'])
-         self.knowMilkSuppress = bool(sknowAdvancedAlchemy['knowMilkSuppress'])
-         self.knowSGenSwap = bool(sknowComplexAlchemy['knowSGenSwap'])
-         self.knowSMasoPot = bool(sknowComplexAlchemy['knowSMasoPot'])
-         self.knowSBabyFree = bool(sknowComplexAlchemy['knowSBabyFree'])
-         self.knowSPotPot = bool(sknowComplexAlchemy['knowSPotPot'])
-         self.knowPussJuice = bool(sknowComplexAlchemy['knowPussJuice'])
-         self.knowPheromone = bool(sknowComplexAlchemy['knowPheromone'])
-         self.knowBazoomba = bool(sknowComplexAlchemy['knowBazoomba'])
-         self.maleFetish = float(smajorFetish['maleFetish'])
-         self.femaleFetish = float(smajorFetish['femaleFetish'])
-         self.hermFetish = float(smajorFetish['hermFetish'])
-         self.narcissistFetish = float(smajorFetish['narcissistFetish'])
-         self.dependentFetish = float(smajorFetish['dependentFetish'])
-         self.dominantFetish = float(smoderateFetish['dominantFetish'])
-         self.submissiveFetish = float(smoderateFetish['submissiveFetish'])
-         self.lboobFetish = float(smoderateFetish['lboobFetish'])
-         self.sboobFetish = float(smoderateFetish['sboobFetish'])
-         self.furryFetish = float(smoderateFetish['furryFetish'])
-         self.scalyFetish = float(smoderateFetish['scalyFetish'])
-         self.smoothyFetish = float(smoderateFetish['smoothyFetish'])
-         self.pregnancyFetish = float(sminorFetish['pregnancyFetish'])
-         self.bestialityFetish = float(sminorFetish['bestialityFetish'])
-         self.milkFetish = float(sminorFetish['milkFetish'])
-         self.sizeFetish = float(sminorFetish['sizeFetish'])
-         self.unbirthingFetish = float(sminorFetish['unbirthingFetish'])
-         self.ovipositionFetish = float(sminorFetish['ovipositionFetish'])
-         self.toyFetish = float(sminorFetish['toyFetish'])
-         self.hyperFetish = float(sminorFetish['hyperFetish'])
-         self.humanChildren = int(skid['humanChildren'])
-         self.equanChildren = int(skid['equanChildren'])
-         self.lupanChildren = int(skid['lupanChildren'])
-         self.felinChildren = int(skid['felinChildren'])
-         self.cowChildren = int(skid['cowChildren'])
-         self.lizanChildren = int(skid['lizanChildren'])
-         self.lizanEggs = int(skid['lizanEggs'])
-         self.bunnionChildren = int(skid['bunnionChildren'])
-         self.wolfPupChildren = int(skid['wolfPupChildren'])
-         self.miceChildren = int(skid['miceChildren'])
-         self.birdEggs = int(skid['birdEggs'])
-         self.birdChildren = int(skid['birdChildren'])
-         self.pigChildren = int(skid['pigChildren'])
-         self.calfChildren = int(skid['calfChildren'])
-         self.bugEggs = int(skid['bugEggs'])
-         self.bugChildren = int(skid['bugChildren'])
-         self.skunkChildren = int(skid['skunkChildren'])
-         self.minotaurChildren = int(skid['minotaurChildren'])
-         self.freakyGirlChildren = int(skid['freakyGirlChildren'])
-         trav = data['trav']
-         self.bagArray = Array(*data['bag'])
-         self.bagStackArray = Array(*data['bagStack'])
-         self.stashArray = Array(*data['stash'])
-         self.stashStackArray = Array(*data['stashStack'])
-         self.pregArray = Array(*data['preg'])
-      except ValueError as e:
-         self.loadGo("Error: Could not load save file. Reason: One or more saved values are of an unexpected type.",True)
-         raise Error("Pymin.doLoad; One or more values has an invalid type.") from e
-      except Exception as e:
-         self.loadGo("Error: Could not load save file. Reason: Malformed save file",True)
-         raise Error("Pymin.doLoad; File failed to load.") from e
-      else:
-         try:
-            self.hideNewSaveLoadDialog()
-            self.hideDiscard()
-            self.hideNSLDBlinder()
-            self.bagPage = 1
-            self.stashPage = 1
-            self.hideUpDown()
-            self.showStatsPane()
-            self.regionChange(self.currentZone)
-            self.stats(0,0,0,0)
-            self.setDHStats()
-            self.setSCStats()
-            self.showOption7()
-            if (self.showSide):
-               self.showSidePanel()
-               self.updateSide()
-            self.outputMainText("Your file has been successfully loaded.",True)
-            self.doReturn()
-         except Exception as e:
-            if not self.showsavegame:
-               self.hideOption7()
-               self.hideStatsPane()
-               for i in range(8):
-                  self.window.destroyChild(self.sidepanelbuttonnames[i])
-               if self.window._children.get("textside") is not None:
-                  self.window.destroyChild("textside")
-               self.sidepanelvisible = False
-               self.hideAPButton()
-            self.hideNSLDBlinder()
-            self.loadGo("Error: Failed after loading file data.")
-            raise Error("Pymin.doLoad: Failed after loading file data.") from e
+      if data is None:
+         self.loadGo("Error: Could not load save file because the loader backend returned nothing.")
+         return
+      strack = data['track']
+      sstats = data['stats']
+      slevel = data['level']
+      smod = data['mod']
+      squality = data['quality']
+      scock = data['cock']
+      sgirl = data['girl']
+      sgear = data['gear']
+      sstatus = data['status']
+      saffinity = data['affinity']
+      srep = data['rep']
+      sknowledge = data['knowledge']
+      sboss = data['boss']
+      sknowSimpleAlchemy = data['knowSimpleAlchemy']
+      sknowAdvancedAlchemy = data['knowAdvancedAlchemy']
+      sknowComplexAlchemy = data['knowComplexAlchemy']
+      smajorFetish = data['majorFetish']
+      smoderateFetish = data['moderateFetish']
+      sminorFetish = data['minorFetish']
+      skid = data['kid']
+      self.currentState = int(strack['currentState'])
+      self.currentZone = int(strack['currentZone'])
+      self.day = int(strack['day'])
+      self.hour = int(strack['hour'])
+      self.currentDayCare = int(strack['currentDayCare'])
+      self.inDungeon = bool(strack['inDungeon'])
+      self.currentDungeon = int(strack['currentDungeon'])
+      # self.v7 = str(strack['v7'])
+      self.firstExplore = bool(strack.get('firstExplore',False))
+      self.strength = int(sstats['strength'])
+      self.mentality = int(sstats['mentality'])
+      self.libido = int(sstats['libido'])
+      self.sensitivity = int(sstats['sensitivity'])
+      self.HP = int(sstats['HP'])
+      self.lust = int(sstats['lust'])
+      self.coin = int(sstats['coin'])
+      self.strMod = int(sstats['strMod'])
+      self.mentMod = int(sstats['mentMod'])
+      self.libMod = int(sstats['libMod'])
+      self.senMod = int(sstats['senMod'])
+      self.hunger = int(sstats['hunger'])
+      self.SexP = int(slevel['SexP'])
+      self.levelUP = int(slevel['levelUP'])
+      self.level = int(slevel['level'])
+      self.babyFactLevel = int(slevel['babyFactLevel'])
+      self.bodyBuildLevel = int(slevel['bodyBuildLevel'])
+      self.hyperHappyLevel = int(slevel['hyperHappyLevel'])
+      self.alchemistLevel = int(slevel['alchemistLevel'])
+      self.fetishMasterLevel = int(slevel['fetishMasterLevel'])
+      self.milkMaidLevel = int(slevel['milkMaidLevel'])
+      self.shapeshiftyLevel = int(slevel['shapeshiftyLevel'])
+      self.shapeshiftyFirst = str(slevel.get('shapeshiftyFirst',''))
+      self.shapeshiftySecond = str(slevel.get('shapeshiftySecond',''))
+      self.runMod = int(smod['runMod'])
+      self.rapeMod = int(smod['rapeMod'])
+      self.cumMod = float(smod['cumMod'])
+      self.cockSizeMod = float(smod['cockSizeMod'])
+      self.milkMod = int(smod['milkMod'])
+      self.carryMod = int(smod['carryMod'])
+      self.vagBellyMod = int(smod['vagBellyMod'])
+      self.pregChanceMod = int(smod['pregChanceMod'])
+      self.extraPregChance = int(smod['extraPregChance'])
+      self.pregTimeMod = int(smod['pregTimeMod'])
+      self.enticeMod = int(smod['enticeMod'])
+      self.milkHPMod = int(smod['milkHPMod'])
+      self.vagSizeMod = float(smod['vagSizeMod'])
+      self.vagElastic = float(smod['vagElastic'])
+      self.changeMod = float(smod['changeMod'])
+      self.HPMod = int(smod['HPMod'])
+      self.SexPMod = float(smod['SexPMod'])
+      self.minLust = int(smod['minLust'])
+      self.milkCap = int(smod['milkCap'])
+      self.coinMod = int(smod['coinMod'])
+      self.hipMod = int(smod['hipMod'])
+      self.buttMod = int(smod['buttMod'])
+      self.bellyMod = int(smod['bellyMod'])
+      self.cockMoistMod = int(smod['cockMoistMod'])
+      self.vagMoistMod = int(smod['vagMoistMod'])
+      self.lockTail = int(smod['lockTail'])
+      self.lockFace = int(smod['lockFace'])
+      self.lockSkin = int(smod['lockSkin'])
+      self.lockBreasts = int(smod['lockBreasts'])
+      self.lockEars = int(smod['lockEars'])
+      self.lockLegs = int(smod['lockLegs'])
+      self.lockNipples = int(smod['lockNipples'])
+      self.lockCock = int(smod['lockCock'])
+      self.gender = int(squality['gender'])
+      self.race = int(squality['race'])
+      self.body = int(squality['body'])
+      self.dominant = int(squality['dominant'])
+      self.hips = int(squality['hips'])
+      self.butt = int(squality['butt'])
+      self.tallness = int(squality['tallness'])
+      self.skinType = int(squality['skinType'])
+      self.tail = int(squality['tail'])
+      self.ears = int(squality['ears'])
+      self.hair = int(squality['hair'])
+      self.hairColor = int(squality['hairColor'])
+      self.hairLength = int(squality['hairLength'])
+      self.legType = int(squality['legType'])
+      self.wings = int(squality['wings'])
+      self.faceType = int(squality['faceType'])
+      self.skinColor = int(squality['skinColor'])
+      self.cockTotal = int(scock['cockTotal'])
+      self.humanCocks = int(scock['humanCocks'])
+      self.horseCocks = int(scock['horseCocks'])
+      self.wolfCocks = int(scock['wolfCocks'])
+      self.catCocks = int(scock['catCocks'])
+      self.rabbitCocks = int(scock['rabbitCocks'])
+      self.lizardCocks = int(scock['lizardCocks'])
+      self.cockSize = int(scock['cockSize'])
+      self.cockMoist = int(scock['cockMoist'])
+      self.balls = int(scock['balls'])
+      self.ballSize = int(scock['ballSize'])
+      self.showBalls = bool(scock['showBalls'])
+      self.knot = bool(scock['knot'])
+      self.bugCocks = int(scock['bugCocks'])
+      self.neuterizerHideBalls = bool(scock["neuterizerHideBalls"])
+      self.breastSize = int(sgirl['breastSize'])
+      self.boobTotal = int(sgirl['boobTotal'])
+      self.nippleSize = int(sgirl['nippleSize'])
+      self.udders = bool(sgirl['udders'])
+      self.udderSize = int(sgirl['udderSize'])
+      self.teatSize = int(sgirl['teatSize'])
+      self.clitSize = int(sgirl['clitSize'])
+      self.vagTotal = int(sgirl['vagTotal'])
+      self.vagSize = int(sgirl['vagSize'])
+      self.vagMoist = int(sgirl['vagMoist'])
+      self.vulvaSize = int(sgirl['vulvaSize'])
+      self.nipType = int(sgirl['nipType'])
+      self.attireTop = int(sgear['attireTop'])
+      self.attireBot = int(sgear['attireBot'])
+      self.weapon = int(sgear['weapon']) #This was originally a float because, at some point, this was meant to be a damage divisor (Lower value -> Higher damage) rather than a weapon ID
+      self.pregRate = float(sstatus['pregRate'])
+      self.pregnancyTime = int(sstatus['pregnancyTime'])
+      self.pregStatus = int(sstatus['pregStatus'])
+      self.eggLaying = int(sstatus['eggLaying'])
+      self.eggMaxTime = int(sstatus['eggMaxTime'])
+      self.eggTime = int(sstatus['eggTime'])
+      self.eggRate = int(sstatus['eggRate'])
+      self.exhaustion = int(sstatus['exhaustion'])
+      self.exhaustionPenalty = int(sstatus['exhaustionPenalty'])
+      self.milkEngorgement = int(sstatus['milkEngorgement'])
+      self.milkEngorgementLevel = int(sstatus['milkEngorgementLevel'])
+      self.udderEngorgement = int(sstatus['udderEngorgement'])
+      self.udderEngorgementLevel = int(sstatus['udderEngorgementLevel'])
+      self.heat = int(sstatus['heat'])
+      self.heatTime = int(sstatus['heatTime'])
+      self.heatMaxTime = int(sstatus['heatMaxTime'])
+      self.lactation = int(sstatus['lactation'])
+      self.udderLactation = int(sstatus['udderLactation'])
+      self.nipplePlay = int(sstatus['nipplePlay'])
+      self.udderPlay = int(sstatus['udderPlay'])
+      self.blueBalls = int(sstatus['blueBalls'])
+      self.teatPump = int(sstatus['teatPump'])
+      self.nipPump = int(sstatus['nipPump'])
+      self.cockPump = int(sstatus['cockPump'])
+      self.clitPump = int(sstatus['clitPump'])
+      self.vulvaPump = int(sstatus['vulvaPump'])
+      self.masoPot = int(sstatus['masoPot'])
+      self.sMasoPot = int(sstatus['sMasoPot'])
+      self.babyFree = int(sstatus['babyFree'])
+      self.charmTime = int(sstatus['charmTime'])
+      self.pheromone = int(sstatus['pheromone'])
+      self.eggceleratorTime = int(sstatus['eggceleratorTime'])
+      self.eggceleratorDose = int(sstatus['eggceleratorDose'])
+      self.bodyOil = int(sstatus['bodyOil'])
+      self.lustPenalty = int(sstatus['lustPenalty'])
+      self.fertileGel = int(sstatus['fertileGel'])
+      self.snuggleBall = bool(sstatus['snuggleBall'])
+      self.eggType = int(sstatus['eggType'])
+      self.milkSuppressant = int(sstatus['milkSuppressant'])
+      self.milkSuppressantLact = int(sstatus['milkSuppressantLact'])
+      self.milkSuppressantUdder = int(sstatus['milkSuppressantUdder'])
+      self.suppHarness = bool(sstatus['suppHarness'])
+      self.fertilityStatueCurse = int(sstatus['fertilityStatueCurse'])
+      self.plumpQuats = int(sstatus['plumpQuats'])
+      self.lilaWetStatus = int(sstatus['lilaWetStatus'])
+      self.cockSnakePreg = int(sstatus['cockSnakePreg'])
+      self.milkCPoisonNip = int(sstatus['milkCPoisonNip'])
+      self.milkCPoisonUdd = int(sstatus['milkCPoisonUdd'])
+      self.cockSnakeVenom = int(sstatus['cockSnakeVenom'])
+      self.humanAffinity = int(saffinity['humanAffinity'])
+      self.horseAffinity = int(saffinity['horseAffinity'])
+      self.wolfAffinity = int(saffinity['wolfAffinity'])
+      self.catAffinity = int(saffinity['catAffinity'])
+      self.cowAffinity = int(saffinity['cowAffinity'])
+      self.lizardAffinity = int(saffinity['lizardAffinity'])
+      self.rabbitAffinity = int(saffinity['rabbitAffinity'])
+      self.fourBoobAffinity = int(saffinity['fourBoobAffinity'])
+      self.mouseAffinity = int(saffinity['mouseAffinity'])
+      self.birdAffinity = int(saffinity['birdAffinity'])
+      self.pigAffinity = int(saffinity['pigAffinity'])
+      self.twoBoobAffinity = int(saffinity['twoBoobAffinity'])
+      self.sixBoobAffinity = int(saffinity['sixBoobAffinity'])
+      self.eightBoobAffinity = int(saffinity['eightBoobAffinity'])
+      self.tenBoobAffinity = int(saffinity['tenBoobAffinity'])
+      self.cowTaurAffinity = int(saffinity['cowTaurAffinity'])
+      self.humanTaurAffinity = int(saffinity['humanTaurAffinity'])
+      self.skunkAffinity = int(saffinity['skunkAffinity'])
+      self.bugAffinity = int(saffinity['bugAffinity'])
+      self.lilaRep = int(srep['lilaRep'])
+      self.lilaVulva = int(srep['lilaVulva'])
+      self.lilaMilk = int(srep['lilaMilk'])
+      self.lilaPreg = int(srep['lilaPreg'])
+      self.malonRep = int(srep['malonRep'])
+      self.malonPreg = int(srep['malonPreg'])
+      self.malonChildren = int(srep['malonChildren'])
+      self.mistressRep = int(srep['mistressRep'])
+      self.jamieRep = int(srep['jamieRep'])
+      self.jamieSize = int(srep['jamieSize'])
+      self.jamieChildren = int(srep['jamieChildren'])
+      self.silRep = int(srep['silRep'])
+      self.silPreg = int(srep['silPreg'])
+      self.silRate = int(srep['silRate'])
+      self.silLay = int(srep['silLay'])
+      self.silGrowthTime = int(srep['silGrowthTime'])
+      self.silTied = bool(srep['silTied'])
+      self.lilaUB = bool(srep['lilaUB'])
+      self.dairyFarmBrand = bool(srep['dairyFarmBrand']) # NOTE: Was originally * for some reason
+      self.lilaWetness = int(srep['lilaWetness'])
+      self.jamieRep1 = 0
+      self.jamieRep2 = 0
+      self.jamieRep3 = 0
+      self.jamieButt = bool(srep['jamieButt'])
+      self.jamieBreasts = bool(srep['jamieBreasts'])
+      self.jamieHair = bool(srep['jamieHair'])
+      if (self.jamieSize == 0 and self.jamieRep > 5):
+         self.jamieRep = 3
+      if (self.jamieSize == 0):
+         self.jamieSize = 4
+      self.foundSoftlik = bool(sknowledge['foundSoftlik'])
+      self.foundFirmshaft = bool(sknowledge['foundFirmshaft'])
+      self.foundTieden = bool(sknowledge['foundTieden'])
+      self.foundSizCalit = bool(sknowledge['foundSizCalit'])
+      self.foundOviasis = bool(sknowledge['foundOviasis'])
+      self.foundValley = bool(sknowledge['foundValley'])
+      self.foundSanctuary = bool(sknowledge['foundSanctuary'])
+      self.usedSecretStairs = bool(sknowledge['usedSecretStairs'])
+      self.defeatedMinotaur = bool(sboss['defeatedMinotaur'])
+      self.defeatedFreakyGirl = bool(sboss['defeatedFreakyGirl'])
+      self.defeatedSuccubus = bool(sboss['defeatedSuccubus'])
+      self.knowLustDraft = bool(sknowSimpleAlchemy['knowLustDraft'])
+      self.knowRejuvPot = bool(sknowSimpleAlchemy['knowRejuvPot'])
+      self.knowExpPreg = bool(sknowSimpleAlchemy['knowExpPreg'])
+      self.knowBallSwell = bool(sknowSimpleAlchemy['knowBallSwell'])
+      self.knowMaleEnhance = bool(sknowSimpleAlchemy['knowMaleEnhance'])
+      self.knowSLustDraft = bool(sknowAdvancedAlchemy['knowSLustDraft'])
+      self.knowSRejuvPot = bool(sknowAdvancedAlchemy['knowSRejuvPot'])
+      self.knowSExpPreg = bool(sknowAdvancedAlchemy['knowSExpPreg'])
+      self.knowSBallSwell = bool(sknowAdvancedAlchemy['knowSBallSwell'])
+      self.knowGenSwap = bool(sknowAdvancedAlchemy['knowGenSwap'])
+      self.knowMasoPot = bool(sknowAdvancedAlchemy['knowMasoPot'])
+      self.knowBabyFree = bool(sknowAdvancedAlchemy['knowBabyFree'])
+      self.knowPotPot = bool(sknowAdvancedAlchemy['knowPotPot'])
+      self.knowMilkSuppress = bool(sknowAdvancedAlchemy['knowMilkSuppress'])
+      self.knowSGenSwap = bool(sknowComplexAlchemy['knowSGenSwap'])
+      self.knowSMasoPot = bool(sknowComplexAlchemy['knowSMasoPot'])
+      self.knowSBabyFree = bool(sknowComplexAlchemy['knowSBabyFree'])
+      self.knowSPotPot = bool(sknowComplexAlchemy['knowSPotPot'])
+      self.knowPussJuice = bool(sknowComplexAlchemy['knowPussJuice'])
+      self.knowPheromone = bool(sknowComplexAlchemy['knowPheromone'])
+      self.knowBazoomba = bool(sknowComplexAlchemy['knowBazoomba'])
+      self.maleFetish = float(smajorFetish['maleFetish'])
+      self.femaleFetish = float(smajorFetish['femaleFetish'])
+      self.hermFetish = float(smajorFetish['hermFetish'])
+      self.narcissistFetish = float(smajorFetish['narcissistFetish'])
+      self.dependentFetish = float(smajorFetish['dependentFetish'])
+      self.dominantFetish = float(smoderateFetish['dominantFetish'])
+      self.submissiveFetish = float(smoderateFetish['submissiveFetish'])
+      self.lboobFetish = float(smoderateFetish['lboobFetish'])
+      self.sboobFetish = float(smoderateFetish['sboobFetish'])
+      self.furryFetish = float(smoderateFetish['furryFetish'])
+      self.scalyFetish = float(smoderateFetish['scalyFetish'])
+      self.smoothyFetish = float(smoderateFetish['smoothyFetish'])
+      self.pregnancyFetish = float(sminorFetish['pregnancyFetish'])
+      self.bestialityFetish = float(sminorFetish['bestialityFetish'])
+      self.milkFetish = float(sminorFetish['milkFetish'])
+      self.sizeFetish = float(sminorFetish['sizeFetish'])
+      self.unbirthingFetish = float(sminorFetish['unbirthingFetish'])
+      self.ovipositionFetish = float(sminorFetish['ovipositionFetish'])
+      self.toyFetish = float(sminorFetish['toyFetish'])
+      self.hyperFetish = float(sminorFetish['hyperFetish'])
+      self.humanChildren = int(skid['humanChildren'])
+      self.equanChildren = int(skid['equanChildren'])
+      self.lupanChildren = int(skid['lupanChildren'])
+      self.felinChildren = int(skid['felinChildren'])
+      self.cowChildren = int(skid['cowChildren'])
+      self.lizanChildren = int(skid['lizanChildren'])
+      self.lizanEggs = int(skid['lizanEggs'])
+      self.bunnionChildren = int(skid['bunnionChildren'])
+      self.wolfPupChildren = int(skid['wolfPupChildren'])
+      self.miceChildren = int(skid['miceChildren'])
+      self.birdEggs = int(skid['birdEggs'])
+      self.birdChildren = int(skid['birdChildren'])
+      self.pigChildren = int(skid['pigChildren'])
+      self.calfChildren = int(skid['calfChildren'])
+      self.bugEggs = int(skid['bugEggs'])
+      self.bugChildren = int(skid['bugChildren'])
+      self.skunkChildren = int(skid['skunkChildren'])
+      self.minotaurChildren = int(skid['minotaurChildren'])
+      self.freakyGirlChildren = int(skid['freakyGirlChildren'])
+      trav = data['trav']
+      self.bagArray = Array(*data['bag'])
+      self.bagStackArray = Array(*data['bagStack'])
+      self.stashArray = Array(*data['stash'])
+      self.stashStackArray = Array(*data['stashStack'])
+      self.pregArray = Array(*data['preg'])
+
+      self.outputMainText("Your file has been successfully loaded.",True)
+      self.hideNewSaveLoadDialog()
+      self.hideDiscard()
+      self.hideNSLDBlinder()
+      self.bagPage = 1
+      self.stashPage = 1
+      self.hideUpDown()
+      self.showStatsPane()
+      self.regionChange(self.currentZone)
+      self.stats(0,0,0,0)
+      self.setDHStats()
+      self.setSCStats()
+      self.showOption7()
+      if (self.showSide):
+         self.showSidePanel()
+         self.updateSide()
+      self.doReturn()
 
    def doRace(self):
       '''
