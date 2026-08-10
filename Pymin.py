@@ -188,6 +188,9 @@ class Math:
     def random():
         return random.random()
 
+    def round(val):
+        return round(val)
+
     def max(*values):
         return max(values)
 
@@ -3061,9 +3064,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    # showPage -> showPage, hidePage
 
    bMap = (1, 2, 3, 5, 6, 7, 9, 10, 11)  # Maps button numbers to range(9)
-   sidepanelbuttonnames = ("looksbutton", "statsbutton", "effectsbutton", "helpbutton", "levelsbutton", "gearbutton", "titlesbutton", "creditsbutton")
-   sidepanelbuttontext = ("Look", "Stats", "Effects", "Help", "Levels", "Gear", "Titles", "Credits")
-   validsaveformats = (".xml", ".toml", ".sol", ".nim")
+   sidepanelbuttonnames = ('looksbutton', 'statsbutton', 'effectsbutton', 'helpbutton', 'levelsbutton', 'gearbutton', 'titlesbutton', 'creditsbutton')
+   sidepanelbuttontext = ('Look', 'Stats', 'Effects', 'Help', 'Levels', 'Gear', 'Titles', 'Credits')
+   validsaveformats = ('.xml', '.toml', '.sol', '.nim')
 
    @property
    def backgroundColor(self):
@@ -3072,27 +3075,27 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    @backgroundColor.setter
    def backgroundColor(self, value):
       self._backgroundColor = value
-      items = ["display","textmain"]
+      items = ['display', 'textmain']
       if self.statpanevisible:
-         items.extend(("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel"))
+         items.extend(('label1', 'strlabel', 'strcolonlabel', 'strvallabel', 'strimglabel', 'mentlabel', 'mentcolonlabel', 'mentvallabel', 'mentimglabel', 'liblabel', 'libcolonlabel', 'libvallabel', 'libimglabel', 'senlabel', 'sencolonlabel', 'senvallabel', 'senimglabel', 'label6', 'hplabel', 'hpcolonlabel', 'hpvallabel', 'hpimglabel', 'lustlabel', 'lustcolonlabel', 'lustvallabel', 'lustimglabel', 'hungerlabel', 'hungercolonlabel', 'hungervallabel'))
       if self.regionpanevisible:
-         items.extend(("label10","currentregionlabel"))
+         items.extend(('label10', 'currentregionlabel'))
       if self.levelpanevisible:
-         items.extend(("levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel"))
+         items.extend(('levellabel', 'levelcolonlabel', 'levelvallabel', 'sexplabel', 'sexpcolonlabel', 'sexpvallabel', 'coinlabel', 'coincolonlabel', 'coinvallabel'))
       if self.timepanevisible:
-         items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
+         items.extend(('daylabel', 'daycolonlabel', 'dayvallabel', 'hourlabel', 'hourcolonlabel', 'hourvallabel'))
       if self.sidepanelvisible:
-         items.append("textside")
+         items.append('textside')
       if self.newSLDialogVisible:
-         items.append("savefilelabel")
+         items.append('savefilelabel')
       self.window.configureChildren(items, background=value)
       self.aboutwindow.backgroundColor = value
       self.wiki.backgroundColor = value
       self.saveconverter.backgroundColor = value
       self.debugvarwindow.backgroundColor = value
       self.options.backgroundColor = value
-      self.style.configure("TFrame",background=value)
-      self.style.configure("TNotebook",background=value)
+      self.style.configure('TFrame', background=value)
+      self.style.configure('TNotebook', background=value)
       self.detailedDebug()
 
    @property
@@ -3103,7 +3106,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    def enforceSize(self, value):
       value = bool(value)
       if value:
-         self.window.geometry("1176x662")
+         self.window.geometry('1176x662')
       self.window.resizable = not value
       self.options.enforceSize = value
       self.wiki.enforceSize = value
@@ -3130,9 +3133,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    @scrolledTextBorders.setter
    def scrolledTextBorders(self, value):
       self._scrolledTextBorders = value
-      self.window._children["textmain"].border = value
+      self.window._children['textmain'].border = value
       if self.sidepanelvisible:
-         self.window._children["textside"].border = value
+         self.window._children['textside'].border = value
 
    @property
    def textColor(self):
@@ -3141,19 +3144,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    @textColor.setter
    def textColor(self, value):
       self._textColor = value
-      items = ["textmain"]
+      items = ['textmain']
       if self.statpanevisible:
-         items.extend(("label1","strlabel","strcolonlabel","strvallabel","strimglabel","mentlabel","mentcolonlabel","mentvallabel","mentimglabel","liblabel","libcolonlabel","libvallabel","libimglabel","senlabel","sencolonlabel","senvallabel","senimglabel","label6","hplabel","hpcolonlabel","hpvallabel","hpimglabel","lustlabel","lustcolonlabel","lustvallabel","lustimglabel","hungerlabel","hungercolonlabel","hungervallabel"))
+         items.extend(('label1', 'strlabel', 'strcolonlabel', 'strvallabel', 'strimglabel', 'mentlabel', 'mentcolonlabel', 'mentvallabel', 'mentimglabel', 'liblabel', 'libcolonlabel', 'libvallabel', 'libimglabel', 'senlabel', 'sencolonlabel', 'senvallabel', 'senimglabel', 'label6', 'hplabel', 'hpcolonlabel', 'hpvallabel', 'hpimglabel', 'lustlabel', 'lustcolonlabel', 'lustvallabel', 'lustimglabel', 'hungerlabel', 'hungercolonlabel', 'hungervallabel'))
       if self.regionpanevisible:
-         items.extend(("label10","currentregionlabel"))
+         items.extend(('label10', 'currentregionlabel'))
       if self.levelpanevisible:
-         items.extend(("levellabel","levelcolonlabel","levelvallabel","sexplabel","sexpcolonlabel","sexpvallabel","coinlabel","coincolonlabel","coinvallabel"))
+         items.extend(('levellabel', 'levelcolonlabel', 'levelvallabel', 'sexplabel', 'sexpcolonlabel', 'sexpvallabel', 'coinlabel', 'coincolonlabel', 'coinvallabel'))
       if self.timepanevisible:
-         items.extend(("daylabel","daycolonlabel","dayvallabel","hourlabel","hourcolonlabel","hourvallabel"))
+         items.extend(('daylabel', 'daycolonlabel', 'dayvallabel', 'hourlabel', 'hourcolonlabel', 'hourvallabel'))
       if self.sidepanelvisible:
-         items.append("textside")
+         items.append('textside')
       if self.newSLDialogVisible:
-         items.append("savefilelabel")
+         items.append('savefilelabel')
       self.window.configureChildren(items, foreground=value)
       self.aboutwindow.textColor = value
       self.wiki.textColor = value
@@ -3650,7 +3653,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       Sets up the interface, then runs the "frame1" function
       '''
       #window
-      self._window = itk.window(width=1176, height=662, title="Nimin: Fetish Fantasy (Python port)", main=True, menu=True, defaultMenu=False)
+      self._window = itk.window(width=1176, height=662, title='Nimin: Fetish Fantasy (Python port)', main=True, menu=True, defaultMenu=False)
       self.window.bind('<KeyPress>', partial(self.keyPress, self.hotKeys))
       self.window.bind('<KeyRelease>', self.keysUp)
       
@@ -3661,57 +3664,71 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       # Set up wiki
       self.wiki = PyminWiki(self)
 
-      self.window.option_add("*tearOff", False)
-      self.window.menubar["filemenu"] = tkinter.Menu(self.window.menubar["root"], tearoff=0)
-      self.window.menubar["filemenu"].add_command(label="Options", font=("Terminal",8), command=self.options.open)
-      self.window.menubar["filemenu"].add_separator()
-      self.window.menubar["filemenu"].add_command(label="Quit", font=("Terminal",8), command=self.window.close)  # TODO: Using this crashes for some reason.
-      self.window.menubar["root"].add_cascade(label="File", font=("Terminal",8), menu=self.window.menubar["filemenu"])
-      self.window.menubar["viewmenu"] = tkinter.Menu(self.window.menubar["root"], tearoff=0)
-      self.window.menubar["viewmenu"].add_command(label="Full Screen", font=("Terminal",8), command=self.window.togglefullscreen)
-      self.window.menubar["viewmenu"].add_command(label="Reset Size", font=("Terminal",8), command=self.window.resetSize)
-      self.window.menubar["root"].add_cascade(label="View", font=("Terminal",8), menu=self.window.menubar["viewmenu"])
-      self.window.menubar["saveutils"] = tkinter.Menu(self.window.menubar["root"], tearoff=0)
-      self.window.menubar["saveutils"].add_command(label="Converter", font=("Terminal",8), command=self.saveconverter.open)
-      self.window.menubar["saveutils"].add_command(label="Editor", font=("Terminal",8), command=self.saveeditor.open)
-      self.window.menubar["root"].add_cascade(label="Save Utils", font=("Terminal",8), menu=self.window.menubar["saveutils"])
+      menuFont = ('Terminal', 8)
+
+      # Menubar
+      self.window.option_add('*tearOff', False)
+
+      # File Menu
+      self.window.menubar['filemenu'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
+      self.window.menubar['filemenu'].add_command(label='Options', font=menuFont, command=self.options.open)
+      self.window.menubar['filemenu'].add_separator()
+      self.window.menubar['filemenu'].add_command(label='Quit', font=menuFont, command=self.window.close)  # TODO: Using this crashes for some reason.
+      self.window.menubar['root'].add_cascade(label='File', font=menuFont, menu=self.window.menubar['filemenu'])
+
+      # View Menu
+      self.window.menubar['viewmenu'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
+      self.window.menubar['viewmenu'].add_command(label='Full Screen', font=menuFont, command=self.window.togglefullscreen)
+      self.window.menubar['viewmenu'].add_command(label='Reset Size', font=menuFont, command=self.window.resetSize)
+      self.window.menubar['root'].add_cascade(label='View', font=menuFont, menu=self.window.menubar['viewmenu'])
+
+      # Save Utilities Menu
+      self.window.menubar['saveutils'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
+      self.window.menubar['saveutils'].add_command(label='Converter', font=menuFont, command=self.saveconverter.open)
+      self.window.menubar['saveutils'].add_command(label='Editor', font=menuFont, command=self.saveeditor.open)
+      self.window.menubar['root'].add_cascade(label='Save Utils', font=menuFont, menu=self.window.menubar['saveutils'])
+
+      # Debug Menu
       if as3state.as3DebugEnable:
-         self.window.menubar['debugutils'] = tkinter.Menu(self.window.menubar["root"], tearoff=0)
-         self.window.menubar["debugutils"].add_command(label="Variable Display", font=("Terminal",8), command=self.debugvarwindow.open)
-         self.window.menubar["debugutils"].add_command(label="Give Item", font=("Terminal",8), command=self.debuggiveitemwindow.open)
-         self.window.menubar["debugutils"].add_command(label="Affinity", font=("Terminal",8), command=self.debugaffwindow.open)
-         self.window.menubar["root"].add_cascade(label="Debug Utils", font=("Terminal",8), menu=self.window.menubar["debugutils"])
-      self.window.menubar["helpmenu"] = tkinter.Menu(self.window.menubar["root"], tearoff=0)
-      self.window.menubar["helpmenu"].add_command(label="Wiki", font=("Terminal",8), command=self.wiki.open)
-      self.window.menubar["helpmenu"].add_command(label="About Game", font=("Terminal",8), command=self.aboutwindow.open)
-      self.window.menubar["root"].add_cascade(label="Help", font=("Terminal",8), menu=self.window.menubar["helpmenu"])
-      self.window.addImage("up",b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e\x81IDATx\xda\xed]{pS\xd7\x99\xff}\xf7^]I\x96\xe5\xa7\xfc\xc0\xc6\x06\x1bH\xf0\x0b0`\xde\x85P\xc0\r!$4\x0f&I\x97\x04h\xbb\x9b\xcdl\'\x99\xe9\xcc\xee\xce\xeev\xebl\xb3;\x99\xe9dv\xb7\xdb4\x0cI\n!\rdp\x98\xd0@C\x9a\x84\xd6\r\x10\xd88\x80\x01;\x06B\xb0\xc16\xb2\x8d_ [\x92%\xdd\xf3\xed\x1f<\x16\x821\xb6\xac{\xafl\xf3\xd3\x9c\x19Y\x96\xee\xb9\xdf\xf9\x9d\xefq\x1e\xdf=\x84(\xc7Q\xf7Q\x17\xd9\xed\x85\x92,\xe7\x01\xc8\x93\x08c\x01\xa4\x01\x94\x0e\xe2D\x00\x04P\xc2\x95os\x17\x00\x06S\'\xc0\xcd\x00Z\x04\xa3\x11@\xad\xd0\xb4Z\xf6\xf9\xaa\x8b\xc7\x14\xb7E\xb3\xbc\x14m7T\xd9u<\xc7"\xdb\x96\x01X@\xa0\xf9D\xc8\x8d\xe4\xf5\x99q\x96\xc1\x07\x00\xec\x0fj\xfeOJ\x12\xa6\xd4\xdd%\xe4[\xa8\xea\xaa\x99\nIZ\rH+\x89Pdd\xdd\xcc8\x01\x88]\x10b\xfb\xb4\x84\x82c\xa3\x96\x90/\x9a\xbeH\x92\x1d\xb1k\x88h-\x11M\x8b\x86\x8e\xc1\xccU\xcc\xbcY\xeb\xe9~{V\xe6\xac\x8eQAHe\xcb\xf1\x1c\xc9*\xbf\xc0D?$\xc0\x11\x95\x86\x9c\xd9\xcf@y $\xfe}\x9e\xab\xe8\xd4\x88$\xe4\x7f\x9b\x8f\x8d\x97m\xf2\xbf\x01x\nD2\x86\x03\x985\x00[5\xbf\xf6\xaf\xb3\xd3\xa7\xd6\x8f\x08B>m\xfa"\xc9i\xb7\xfd\x1c\x84g\x89H\xc50\x043\x07\xc0\xd8\xe0\xf1\xf9_\\\xaa\xb3)\xd3\xb5\xa7\x1e\xec\xa8z\xdcj\xb1|\x08\xc2w\x01\xc8\x0c`8\x16\x002\x08\xb3UE\xfe\xf1\xfa\x7fx\xb6+\xcb\x9e~\xa4\xa2\xa2b\xf8h\xc8^\xf7\xe7\xd91\xaa\xfd\xb7 Z\x82\x91\x08\xe6\xbd\xde\x80o\xfd\x921\xf3\xceG=!\xfbZ\xbf|\x94di#\x11%a\x04\x83\x81\xcbB\x88\xe7\x16\xbaf\xbc\x13\x95\x84l\xae\xaf\xb0\xe6\xc6\xc6\xfe\x0f\x11\xfd\x18\xa3\x08\xcc\xfc\xfa\xd9\xee\xee\x9f\xac\x1d\x7f_o\xd4\x10\xf2\xa1{\x9f\xcba\xb1\xbfG\xc0"\x8cF0\x1f\xf4z}\x8f\xdc?na\xb3\xe9\x84|\xdc|\xa0\xc0"){\x88(\x0b\xa3\x18\xcc\xdc\x10\x14\xa1\xe5\xa5\xe9\xf3kL#\xe4\x13\xf7\xfe\x19\x92\xac|D \x97Y\xa3\xdax5\x0e\t\x8a\x13\x04\xa03\xe4\xc1\xa5\xc0\xe5k\x91\x91\t\xa4\xa03\x14\xd2V|/s\xdeA\xc3\t\xf9\xd8\xbdo\xa1$)\xbb\x89\xe04C\xf8\xb1\xf6td\xda\xd3\xe0\x90\xed7}\xde\xa3\xf9\xd0\xe4kA\xa3\xaf\xd9,R<`m\xe5\xd2\xf4\x05\x7f1\x8c\x90\x8f\x1a>+\x91,\xca^3\xc8\xb0IV\xe4\xc5\xe5"YM\xe8\xf7{\xed\x81.\xd4^>\x0b\xbf\xe85\x83\x16oH\xe3\xd2\xe5\x19\x0b\x0e\xe8N\xc8\xee\xf3\x15\x05\x8a*\xff\x85@\xc9F\x8b\xe9T\x1c\x98\x92p\x0f\x1cr\xcc\x80\xbe\xdf\xa3yq\xbc\xeb4<\xa1\x1e34\xa5K\x08m\xf1\x03\x99\x8b\xaat#\xe4\x0f\xf5\x15i\x92U\xae$\xc0p\x07n\x97m\x98\x91\x98\x0f\x87\x123\xa8\xdfyC>\x1c\xee\xfa\n\xde\x90\xcf\x0cG\x7fA\xd3\x82%\x0ff-\xb9\x10qB\xb6\xd7l\xb7\xc4&\xa6~\n\xa2\x85F\x0bf\x91\x14\x94$\x16!\xde\x12\x9e\x85\xbc\x1c\xf4\xa0\xb2\xf3\x04\x02"d\x06)\x07/\x9e\xae_\xbc\xf6\xbe\xb5\x03\xb2\x9d\xca\x80{h\x82\xeb5\x01,\x04\x1b\x1f\xc3\xe4;\'\x86M\x06\x00\xc4Y\x9c(\x88\xbb\x07\x87;k`\x02\xe6&O\xca~\x15\xc0\x8f"\xa6!\xbf?\xb7\xf71I\xa1r3\xa4\x99\x18;\x0e\x93\xe3"\xb3\x8a{\xcas\x16_{\xce\x99\x12}iB{jU\xd6\xb2mC&d\xfb7\xbb\xb2\xac\xd6\x98*\x00\x86\xcfM\xa5X\x13Q\x92<\x05J\x84\x96O4\x168\xdcQ\x83f\xffE38\xb9\xd4\x1b\xd2\xa6\xad\x1e_Z\xdf\xdf\x97\xfa\x95\xb4\xac\xac\x8c\xc6\xcc\xccy\x1f@>\xc3\xd8\x97M\xb6\xa2$\xb9\x086\xd9\x1a\xb1\x16\x91\x88\x90\xa8\xc6\xc1\xed\xbf\x88\x80\x08\x1a,\x11\xdb$\xc2\xd4\xbc\xf8\t[\xfa\x9b\xba\x97\xfa\x13\xa0h\xfd\x9c\xa7AXl4\x19\x00P\x9c\x947\xe8\x88j \x88Q\xec(N\xcc\x07\x11\xc1p\xb9\x08\x8b\x0b\xd7\xcf]\x13\x96\xc9z\xab\xf6\xfd\xa4\x18\x87\xad\x96@\xa9F\xeb\xf6\xd4\x84\xc9\x98\xe8\x1c\xa7k\x1d_{\xeaq\xbc\xeb\x94\xe1v\x8b\x99\xdb=\x01\xcf\xe4\xf5\x93V\xb7\r*\xca\xb2\xda\xd52fNe\x83g\x86\xb2\x1cc\x90\x1b\xab\xff0g\xa2s\x1c:z/\xe1\xbc\xf7\x82\xd1\x9c$\xc7Zb~\x06\xe0\xf9\x01k\xc8\x96S\x1f\x8cW\xad\xd2I\x02Y\x8d\xbc\xd3\x045\x0e\x0bSK"\xea7\xfaC\xaf\x16\xc0g\xad\x95\xe8\x0c\\2VK\x80@0\x14\xca_3\xf1\xe1o\x06\xe4C\x14\x15/1\xd8*`\xdcK"\xc2\x8c\xa4B\xc3\xc8\x00\x00\xab\xacbfr\x11\x14I\x86\x91\xb22\x84*\xcb\xf4\xe2\x804\xe4\xb7\xa7w\xe4\xa8\x8a\xe5k"\x18\xbaUg\xaek\x1arb\xcdYR\xa9\xefi\xc2\xe7\x17\x8f\x18\xecL \x02\xfe\xc0\xbd\xeb\xf2\x1f;\xd3\xaf\x0f\xb1\xc8\xd2O\x01!\x1b9 \xcf\x8b\x9f`\x1a\x19\x000\xde\x91\x89\x8e\xde.\xd4^:cd\xb5\x92\xc5*=\x0f\xe0\'\xb7\xd5\x90_\xd7\xbe\x95\xe4\xb48\xcf\x13\x91a;\n\xd3\xec)X\x9c6\x0b\x16\xc9\x023\x11\x12!T\xb4~\x01\xb7\xb7\xd5\xc8\x88\xab\xc7\x13\xf4d\xff]\xde3\x1d}\xfa\x90\x18\xc5\xf14\x83\x1d\x82\x05\x8c(\xaad\xc1\xac\xe4)\xa6\x93\x01\x00\x8a\xa4`\xb6k*bd\x1b\x8c\x92\x9f\xc1\x8eX%f\xcd\xed\x9d:\xe1\x19#\x07\x7fsS\x8a\x91\xa0:\x11-p*\x0e\xccI)\xbej\xe2\x8dy\t\xc23}\x9a\xac7\xbe\xda6\x8d,\xf2Q\xa3\x84/I\x9e\x82\xa2\xc4{\x11\x8d8\xd1y\x12\x95\xed\'\x8c3]A\xad\xf8G\xf9OV\xdd\xe4\xd45\x85VK\x06y\xf2\x9c\xd8\xb1\xc8O\x98\x84hEA\xc2=h\xef\xed\xc2\x19\xcfyc\x08\x91\xe9q\x007\x13\x02\xc1\x0f1\xe9OH\xbc\xea\xc4\x9c\x94i\x90I\x8aZB$\x920\xdb5\r\xed\xbd\x9d\xe8\xe8\xd5\x7f\xd0\xc8\xe0\x87\x00\xfc\xf3u\x93\xf5\xab\xea\xcd\xb9\xaaE\xfdFw\xc7I\nV\x8c\xbd\x0f\xe9\xf6\x14\x0c\x07\xb4\xfa\xdb\xb1\xbb\xe1O\x08\xb2\xfe+\x8d\xbdZ\xef\xa4\xe7\xf3\xd7\x9dQ\xaeD\x18\xd22\xc1B\xf7J\xe7\xa5M\x1f6d\x00@\xaa-\x19\xf3R\xa7\xe3\xcf\xcd\x87t\xaf\xcb\x02y\t\x803\xd2\x15k\x85\x05\xcc\x0c=\xcb\xe4\xb8\t\x98\x1c\x9f\x8b\xe1\x86\xc9\xf1\x13P\x10?\tz\xb7\x0f\x13\xcd\xbf\xeeC\x04\xc4|b\xd2\xbd\xa7Q\xf4%\xfd\x0e\x08\xb3S\xa6\xa1\xd5\xdf\x86f\x9f~\x19\xd5\xcc\x98\x0f\x00\xf4\xcbc\xaf\xa5\xa8\x8a]\xb7\xe1\xa9*[\xf0\xc8\xb8\xef!\xd5\x96\x8c\xe1\x8c6\x7f\'v\x9c\xfb\x08\xbdZ@\xb7:\x02!_\xaa$\xb1Z\xc0Wf u)\x8b\xd2K\x86=\x19\x00\xe0\xb2%bQ\xfa,\xe8\xd9V\x16\xd9\x92\xaf@\x12\xf9\x82\xf5\tA\xa7&\xe5!/~\x12F\n&\xc7O\x80\xdb\xdb\x8a\xaa\x8eZ]\xae/\x04\xf2\x15\x06\xdf\xcb:DX\xe9v\x17\xe6\xa5N\xc7H\xc3\xbc\xd4\x19p\xfb\xda\xe0\xf6\xb6\xe8\xe1I&KB\xf0\xd8HG\x0c\xaad\xc1\xd2\xcc\xef\x18\xba\xd8d\x14\xac\xb2\x8aec\xe6\xc3*\xa9\x91\x8f\xb4\xc0\x99\x92 \xce\x88\xf4\x8a\xd8w3\xe6"m\x04\xf8\x8d\xdb!\xc5\x9e\x84\xc5\x19s#\xbe\x92\xa8\xb1\xc8P\x98E\x1aG0\x1c\x9d\xee*DA\xc2=\x18\xe9(H\x98\x84&o\x0b\x8e\xb4UG2\xf6MW\x04\x843Rc\x90\x14[2\x16\xa4\xce\xc0h\xc1\xa2\xb4Yp\xf74\xe3B\x84\x16\xb5\x18\x88\x95X\xb0M0c\xa8E\x82\x8c\xfb\xc7.B\x8cb\x1f5\x84Xe\x15\xa5\x99\x0b!K\n"\xd1\x86,\x84]\x11`[$v\xb4/\xce\x9c\x83\xb1\x8et\x8c6\x8c\x89I\xc5}\xe9\xb3\xf1\xc7\xc6\xcf"\xa0!l\x97"\xb1\xeauoB.f\xb8\n1Z1\xd3U\x84\xfc\xc4\x89\x11YAT4\xa1\xf9\x89(6\xdc\x9bq(v,\xcb\\\x00y\x98<\xe0G\x0fH$aI\xc6|\x9c\xf54\xa0\'\xe8\x1d\x82Og\x9f$\x18\xfe\xa1\xd8\xbd\xef\xa4\xcfF\xa2\x1a\x8f\xd1\x8e\x045\x0e\x0b\xd3g\r\xcd\x870\xfb$\x86\xf00\x0b\x84S\xd2\xec.Lw\x15\xe0.\xae\xa08\xb9\x00\xe9v\x17\xc2mO\x01\xee\x96X\x88\xe6p\x19\x9d\xee*\x80\x1a\x05[x\xa2\x05\xaadA\xb1\xab |-\x11\xc2\xadh\x10\xeep\xd7)r\x9cYwY\xf8\x16r\x9dY\x10\x08on\x90\xc1n\x85\x99\x9b\xc2sd\x84x5\xf6.\x03\xdfB\x9c\xea\x04\x81\x10\xce\x9283_P\x04k\xa7\x08\x83\x9f~\xbf\xb2\x17\x9b\xee2pK\xbb\\i\x93\xb0\xf6(\x08>\xa9\x08M\xab!\x99\xc2\xf8m\x08M=-\x98\x187\xb4L\xa7\x90\x08\xa1\xd5\xd7\x8ef_\x1bTIAa\x92\xb1\x9b\xe7j:N\xa3W\x04\x91nw!\xd5\x9e\x0cER\x86t\xbd\xc6\x9ef\x04\xb4`X\xbf\xd5\x04\xd7(^/\xd7\xc48\xc3\xb3yG\xda\xaa\x07MH\xbb\xbf\x13\r=\x17\xd0\xd8\xd3\x82V_\x1b\xea<\xe7\xe1\r\xf9\x01\x00sR\x8b\r\'\xa4\xb6\xeb\x0c\x0e\xb6^IE\x88Ql\x18\xef\xccB\x9a=\x05c\x1di\xc8rd \xd9\x968\xe86\xe10}\x88\xdf\xab}\xa5l(-\xbb\xf8\xc2\x81\x17\xeb@\x943\xd8\x0b\x1cj9\x82\\g6f\xa6\x14\xdd\x81\x007\xce{.\xe0\xac\xa7\x01\xe7\xbb\x1bo\x9b$\'Lx(\x01\xdfPow\xd0\x87\xea\x8e\xd3\xa8\xc6\xe9\xab\xe6\x07\xc8\x8e\xcdD\xae3\x1bY\xce\x0cd;\xc6\xf4K\xd0\x97\x17O\xe0P\xcbQ\x84\x93\x06\xc8\xc0\xd9\r\xa5e\x17\x15\x00\xd0X\xec\'\x0c\x9e\x10\x00x\xe7\xcc\xfb\xa8\xf3\x9c\xc7tW!\x12\xac\xf1\xf0\x87\xfch\xf5\xb5\xe3\\w\x13\xea.7\xe0\\?\x04\xf4\x11e\x18O\xc8\xd5\x9d\xe8\xb7C\x9d\xa7\x01u\x9e\x86\x9b\t\x8a\xcbFvl&\xd2\xec\xc9\xb0)6t\xf5^\xc2\x91\xb6j|\xder8\xecN\xc5\x02\xfb\x81\xab\xdb\x80X\x88\x03\x90\xa45a\xd9=f\xecsWb\x9f\xbb2\x12\x93k\xa6h\x08\x0f\xb0\x11\x19@\xbd\xa7\x11\xf5\x9eF=:\xc6\xe7\xd7\t\xf1\xfb\xf9\x8fV\xbb\x80\xe9`3\xaa\x140b\xd7\xe6\x1d\x83\xa4@\xf0c\xe0j~\xc8\x1b\xa5/\xd5\x0b\xe6j\xa1\xeb&\x97\x81\x15S|\x88\xc92k\x10\'^[\xfar\xddu\r\x01\x00!\xc4\x07$\xc1\xdc9t3\x9c:3\xd8d\ra\xc1\x1f\\{\x7f\x9d\x90PH\x94\xcb\x16\xfa\'S\xd5\x16\xe6\x10bFtw\x93\x1f\x0e\xf1{\xd7g@\xae\xbdys\xe9\xcbU\x82\xb5cF\xe5\xd7\xf5\x99sgBOe0\xcc\x94Y\x13\xda\x897\x97\xbe\\u\x8b\x86\\\x1d)n\x96$\xfc\xe7h\x9a\xea\xb81\xe7\xd1\x94\xfaI\xbcy\xe3\xdf7\x11\xe2\xef\x11o\xdbb\xf1\x12@\xa6\x1c\xb4\xc2l\x96\xc92\xcb\x87p\x8f\xbf\x1b\xbf\xbb\xf1\x93\x9bf\x15\xb7\xad|\xa5]\xd3\xb09\x12;(\xc2+\xe6\xc4\x11\xe6\xc9\xcb\x9b\xb6\xad|\xa5\xfd\xb6\x1a\x02\x00!\xbf\xf6\x8ab\xa7g\x01\xc8\xc6\x9b\x0fa\x8a\x86\x98\xe4\xbbDH\x13\xff\xfd\xed\xcfo\x99w\xdf\xfa\xe0\x7f\xd5iB\xbckF\x8f1g\xa4n\x92v\x08\xde\xb6\xad\xf4W\xb7<\xcb\xa3\xcf\xb9\xe6\x00k\xffb!\xe91\x00V\xa3\x9b\xc7\x14B\x0c\xd7L\x0e\x045\xed\xe7}\xfd\xa7\xcf\x95\xa9\xf2\xd2_\xd7\x0b\xa1m\xd4=\xaf\xae\x8fbJ\x94e\xb4\x9c\x1ao(\xbf\xff7}f=\xdfv5\xc6\xdf\x832\xabC{\x02 \xc3\xd2f\xcdq\xea\x06GY\xcc\xedB\xf3\xfd\xe2v\xff\xbe\xed\xda\xed\xce\xef\xbf\xda\xa1\t\xfe{C\x07\x86\x18\x15\x03\xc3\x9f\x96?\xb0\xa9m\xd0\x84\x00\xc0{\x87^{\x8b\xc1\x15\xc6>\x8f\xd4\x9c\x81\xa1A\xaf\x8a\xf2C\x1b\xb6\xf4w?\xfd/ \x97\x81\xfd\xbb\xc4\xd3\xaa\x85\x8f\x01\x94\xa8\xbf6\x8b\x11k\xb2\x98\xf9R(\xc8\xebP\xd6\x7f\xbf\xbb\xe3v\x93\xdd+76\x08\r\x7fcH\xd8k\x82S7*\xcc\xd5\x18\xcf\xedz\xe8\x8d\xfa;\xdd\xcf\x80\xf6\xff\xec\\\xf1z\xb9\x10\xda\xa6p\xb7H\x0e\xb4\x985\xe5\xaf\xb7\\Bh\x9b>x\xe0\xf5\xad\x03\xb9\x9d\x01\xefy\t~\xe3~V\xceM\x9f@:\x1eW!\xd8\xbc\x81\xa1\x8e5\x1c\xf4\\\xe4\xbf\x1d\xe8\xb7\x07\xb5!\xeb\x81\xedk\xd3\x10\xc3\x95z\x9d\xc8\x96`\x8dCvl\x86\xa1\x844t\xbb\xd1\xa9\xd3#\x98\x18|\x81\xfd\xa1Y{\x1e}\xa7I\x17B\x00`\xf9\xce\x1f\x14BQ*\x08\x18\xb9i\xb6\x91!\xa3\x0b\x1a\x16\xefyx\x8b~G\x1e]\xc3\xb2\x9dkfI2\x7fJ \xe7\xdd\xa6\xef3\xa2\xf2R\x88J?z\xe4m\xfd\x0f\x05\xbb\x86\xa5;\xffj\x11I\xbc\xeb.)\xb7\xa0\x1b,V~\xfc\xf0\xd6\x8ap~<\xa4\xdd\xd2Kv\xac\x9e))\xca\x1e\x10\\wy\x00\x98\xb9S0\xaf\xf8\xd3\xaaw\x8d?X\xf2\xff5\xe5\xf1B&y\x0f@cG9\x1d\x8d\xc4\xda\xf2OW\x95\x0f\xe9I\x02\x11\xc9\'\x98\xb7\xe5\xfb)j\x9cZ>Z\x0f\'f\xe0`\xd0G\x8f\x1ex\xf2]\xf7P\xaf\x15\x91U\xc1\x86\xf7Oz\xc7\xdf\x9f\xb2\x8dU\xc7\x18\x00\xd3G\x15\x19\x8c7\xe9R\xeb\xea}kvwE\xe2z\x11\xcf\xb8Y\xb0\xe3\x91G%\xa2\x8d\xc0\xc8>\xe0\x1e\xcc\x97\x99\xf1\xdc\xbe\xc7vD\xe7\x01\xf77b\xce\xbb\xab\xc6)\xaa\xbc\t\xc0\xe2\x11J\xc7\x9fC\x01m\xdd\xa1\'vF\xfc\x0c>]s\xd2\xe6\xbf\xb7\xeaq&\xbcJ\x06.r\xe9l\x9e:\x89\xc5?\x1e\xa8\xf9\xfd\xebw\x9a\xb5\x8dJB\x00`\xc6\xd6\x07\x93U\x8b\\\x06\xc2_\x03\xa4\x0eS*\x02`l\x0c\x04\xb5\xb2\xc3O\xedn\xd7\xb3&\xc3\xb26g\xbe\xb3"G\xb2H\xbf \xc2\x93@\x14?g\xfcf"\x043\xb6\x89\xa0\xf8\xd9\x97?\xf8C\x9d\x115\x1a\x9eF{\x95\x98\x17@\xf8!\x00Gt\xf2\x80^&\xde\x1e\xd2\xc4\x7f\x1c}\xe2\xc3\x93FVmZ^s\xc9[K\x92\xd8f[\xc3\xc4\xeb\x0845:x\xe0c\xc4\xb4\x89\xfc\xfe\xb7+\x9f\xd9\xdba\xc6=DE\xa2\xf9\xd4m\xcb\xa7I\x84\xd5 \xac$P\xa1\xc1$T\x83\xb1K0\xb6\x1f{rO\x95\xd9m\x11u\x99\xff36/\xcf\x15V\xb1\x8c\x89\xe6\x13c\x01\x089\x11f\xa0\x8e\t\xfb\x89\xf9\x80\xd4+}rx\xed\x9e\xb3\xd1$\x7f\xd4?\x8aa\xca\x96e)PPH,\xe5A\xc2d\x06\xb2\x00N\x03\x90A@\x1c\x032\x81\xe2\xae\xf6\xf6\xcb\x04h\x0c\\\x06p\x01\xa0\x16\x02\x1a p\x92I\xd4"\x84\xea\xe3O\x7fr1\x9a\xe5\xfd?\xf2\xd7\xef$\x9eeD\xd5\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
-      self.window.addImage("down",b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e;IDATx\xda\xed]kpU\xd7u\xfe\xd6\xde\xe7\xde\xab\xab\xf7[\x08$\x90\x84\x08`\t#\xdb\x80!(X\x98\xe0\x8c\x1b \xae\x1f\xc4v\xa2b\xe2\xd28u\xddq\xdb\x99\x8e\xdb\xb4\x8e\xa8;i\'\x9ef\xc6u\x13\xc7\xa6\xa9m\xa8\xe3\x0c\xe0\xb8\x01\x1c0\x8f\x08\xccC<\x1c@\x16 \xc0\xe8\x01X\x0f\x84\xac\xe7\xd5\x95t\xcf={\xf5\x87\x88\x8cd\x01\xe2\xde{\xce\xb9z\xac\x99\xf3\xe7\xe8\xea\xec\xbd\xf6\xb7\xd7Z{\xad\xbd\xd6\xde\x840\'\x0f\xd2R \xfd\xf9\x1a\x8b\x99D<\x83\x19\x99\x00\xd2\x880\x91A\xb1\x00$\x01\xb1\x00\xc0@\x07\x00\x83\xc0\x1d\xcc\xa8\x07p\x85\x08\x97\x99\xe9\xac\x9fT%\x0c\xedT4\xae\\\rg~)\xdc:\xd4\xeeJ\xc9q\x19\xb4\x14\x82\x16\x12s!\x88\xb2C\xda\x00s\r\x13\x1d\x80\xe2\x83\xbd\x92w\xc5\xf5^\xad\x1e\x07d\x10uEN,\x90\x86Z\t\xc2r\x02\xf2\xadl\x9b\x81S`l5\xa4\xd8\x18\xe5\xad?9f\x01\xe9\x88\x99\x98\xa8\xf9\xb9X\x00\xab\x89hv8L\x0cf.W\xc0\x9b~\x8d6\xc4v\xd6\xb7\x8c\t@\xda\xe2&gG\x18\xeay\x00O\x13!*\x1c\xf58\x83{\xc1\xb4Q\x87\xff\xc71\x9e\xc6\xb3\xa3\x12\x90\xb6\xb8\xc9\xd9\x11\xe0\x97\x00z\x82\x00\x81\x11@\x0c(\x80\xdf\xed\x01\xfds|\xfb\xa5\x9aQ\x01Hgtz\x92\xd3\xe1,a\xc2_\x10\xc8\x89\x11H\x0c\xf6\x11\xe3\r\x9f\xee+\x89\xf14|>b\x01\xe9N\xcez\x8c\x18?#\xa2\x14\x8c\x02b\xa0\x15\xcc/\xfc\xfb\xe7\xb5\xebJ\x00\x1e1\x80\xb4M\xc8\x9a\xe26\xc4\x9b Z\x8c\xd1H\xcc\xa5\xddR\xad\x8eo\xac\xbd\x18\xf6\x80x\'\xe4>*@o\x10!\x01\xa3\x98\x18\xe8`V\xcf\xba\x1b\xab\xfe7,\x01\xa9\xcd\xcar\xa5\xe9\xae\x9f\t\xe0i\x8c!R\xc0/\xaf8z\x9f\xcd\xaa\xad\xed\r\x1b@<i9)\x9a\xcb\xb1\x89@\xf7a\x0c\x123\x97y\x80G\x92/\x9fk\xb0\x1d\x10O\xce\xf4|\x87!\xb6\x83(\x03c\x99\x98?\xd3\xa5z0\xba\xfa\xdc)\xdb\x00\xf1f\xe7\xcd\x11\xa0\xedDH\xc68\x81\xc1\xadL\xf4Mw\xd5\xa92\xcb\x01\xe9\xc9\xcd\xbf\x0f\x10[\x89\x103\x0e\xc5\xf5\x82\x02\x8f\x9fiytU\xf9^\xcb\x00\xf1N\xbbs\x9e \xda=\x0e\xc6\rm\x8a\x97\x81\x07\xdc\xe7?9h: \x9e\xe9\xb3\xf25!\xf7\x12(i|\xe8o*)m\x06\xa9\xc5Q\x95\xe5\'M\x03\xa4\xe9\x8e\xb9iqd\x1c\x03Q\xa6)\\$%A\xe4\xe6X\xbbl\xad\xaa\x01\x9a\x9b\xcd\xfa|\xbd\x87|\xf3\x92**\xeaB\x0e\xc8\xa7\xb9\xb9\xce\xcc\xc8\xf8]\x04ZdV\xef\xe5#\x0fA\xbe\xf8\x8f\x96\x02b\xbc\xf4o06\xbfo\xa6\xa1/k\xech^<\\?E\x1b\xee\x873\xa2\x13\x7fAd\x1e\x18}\xd3\xc3\x86\xed\x19)\xfa\x1e\xb3X\x02\x16\xa4\xc5\xa7\xbe\x06\xd4~o8\xbf\x1fVO\xba\xef\x9e\xff\x98\x90b5\x04\xc1\xdc\xc7\x06eOf\xf3D\x10R\xac\xee\xbe{\xfe\x93!\x91\x90\x96{\x16f\x12\xa9\xd7-\x99\xbdd\x0b"\x80\x10V\xb4\xf2\xf3\xb6y\xf3\x0e\xc5\x1f=Z\x1b0 %\x00E9h= \x13,\x9b\xad\x96\xab,2Ue]\x07H\x9c\x1b\xce7K\x80\xfbKn\x12\xba\xbfiO^\xf8j\xe1*\x08Q\x04!`\xcdC6\xa9,\xab\xf8\x13E/|\xf5k\x7f\x16\x90\x84t\xcc\x9d\x9b\x08)\x7fb\xe9\xe0\xd8\x02\xc85)\xb1.\xbe\xf2\x1f\x9d\x85\x85\x1f\xc4\x1c8\xd0|[\x80\xb8\xdcQka\xf5N\x9f\x1d*\x8b\x84%6\xe4:\xfc\x93\x9c,^\x04\xf0\xd7\xc3VYm\x85K\xb2Y\x885\x16\x8ar\xdfc\x07 \x82`5\x9f,\xe53\xedEES\x87-!\x11\x11\xf4\x12A\xb8\xac\x1f\x1c\x1bVYBXb\xd4\x07I\x89\xc3\x05Z\x0b\xe0\xbb\xb7\x94\x90\xf6\xc5\x8bs@\xf4\xb8\xf9>\xc7\x10\x8f\x1di{\x04\xd8\xc3+=\xd1\xb1ti\xee-%\xc4\x19\xe1\xfc;\x02I["r\xb6H\x08Y.!\x7f\xf4~\\\x8c\xe7\x01\xfc\xd5\r%\xa4s\xd9\xb2$\x12r\x95\xe5\xb6\xa3\xdf\x86\xd8\xe5\xa9\xdb\xc3/K\xf1T\xe7\xb2eI7\x94\x10I\xaa\x98H\xd8\x97\xdei\x87\xa7n\xf1*k\x90\x94DI\xf0w\x01\xbc2$ BhO\xd9\x9a\x0fo\x97c(\xed\xcbl\x15\xe0\xa7\xaf\x07\xa4\xbf\']+V\x14\x90\xa4\xd9\xb6\x18\xb8/\x0c\x9d\x1d#\x02;y&!fu\xadXQ\xf0%\t\x91\x0e\xb9\xd2\xf6j\x11\xb21tb#I\'?\x06\xe0\xe4@\x95%i\x85-\x03b\xb7\xca\xb2\xc1\x0f\x19"\x9c\xb2\x02\xc0\x0f\xfb\x01i\xff\xf6C9$d\x1e\xec&16%\x84\x80\xfc\x8e\'\x1e\xc9\x8d}\xf7\xbd\x0b\x1a\x00\xb84\xe7\xd2\xb0(n\xb3+t"\xedg\xde\xc9r\t\x80>@ \xa80\xe0\xc1\xd04\xc8\xa2%\xa0{\x17\x80\x92\x93\x01\xaf\x17\\_\x07\xae\xae\x02\x9f?\x07U}\x01`\x0e_@nGB\x88 rrA_\x99\x0e\xca\x99\n\x9a8\t\x88\x8c\x0477\x83\x8f\x94\xc1(\xdd\r\x18F\xa0zk!\x80\xd75\x00 )\x0b\x03eF[\xf3\x0c\xc4\xfc\x85_\xbcKL\x02ed\x02\xf3\xe6\xf75s\xb5\t\\[\r\xae\xa9\x06\x7fz\x1e\xaa\xea&\x00\xd9\xe5\xa9\xdf\xa8]"\x88\x9c\xa9}\x00d\xe5\x80\xb2\xb2A\xa9i_\xfeYb\x12\xf0\x95\xe9\xa0i\xd3\xe0\x7f\xe3\xb5\xe1O\xc0\x01j\x8b\x0b\x01@\xf3\x14\x17\xa7@rV@\xab\x83EE\x03\xc1\x18\xaa\xa1\x94TPJ*0\xf7\x1a@\xcdW\xfb\x00\xbat\x11\\_\x07u\xe1S\xc0\xd3y\x83\xc8\x9a\xc5~Ht\x0cD\xee4\xd0\xc4I\xa0\xc9S\xfa\x00HN\x1d>\xb6\xf3\x17B\x9e?\x07\xe3\xa3\xd2@z\x92\xed).N\xd1\xe00\xf2 \x02\x0b]\xd1\xbd\x0bn\xff\x7f\x92S@\xc9)\xc0\x9c{\xfb^\xf8upc#\xb8\xa1\x0epX_\xf1Fw\x16@\x9b>\x13\x94>\x11\x94\x9e\x0eh\x8e\xe0\xbew\xef\x02\xe0\xc0\xde\xc0\xb4\xbf\x8b\xef\xd0\x84S\xcb\x0b(\x88\xa4i\x10\x99Y\xc1\x8f\x88\xe6\x00ed\xf6\xa99;\x16v\xb3\xef\n\xed\xf7\xa6d\x01\x11.@\xd7o\xff\x9f\x95\xca\xd3\xa4\x90\xd3\x83Y@\x8f\xd3\xe0A\xe5>\x1b\x12\x80=$!fh,DF\xa0k\x1bnk\x05EF\x8d\x830`LZ\x02^\xa00\xf3$\rR\xa4\x07\xdc\xf8\x85s\xa0\x89\x19\xe3(\x0c\x1a\x93\x80=\x7f\xe6tADi\x81\x06\xc6\xd4\xd1C\x80\xafw\x1c\x85?\x92\xcf\x07u\xac,\x98@\xe3\x04\x8d5\x11\x13\xa8\xcaRW\xea\xa1\x8e\x1e\x82(\\<\x0e\x06\x00u\xf4 Tc]\xc0\x12\xc2\xcc\xd1\x1a\x88"\x82\xf1\x90\xfd\xa5\x1f\xc2\x91w\'(al\x97\x8bpk\x0b\xfc\xa5\x1f\x06\xe7\xdc2\xbb\x05\x84\x88\x08j+\xd2\xdb\x05\xe3\x83\xdf\x04\x112\x18\r\xa2\xa1`\xec\xf8-\xe0\xed\nn[WJ\xb7\xc62\xf8\x8d!\xe3l\x05\xe8\xe8\x01\xc8\x05c\xb2*\x1a\xc6\x91\xfd0N\x9f\x08:H\xc9\x004\x08\xd9\x03Bt\xb0\x9d\xf2\xef\xde\x06\xca\x98\x12\x1agq$\tG\xdd%\xf8\xf7|\x10\x9a8\x1c\xa3[\x90\xa0\x9e\x90dQ\x18\x06\x8cm\x9b\xc1]\x9e\xb1c7\xbc]0\xb6m\x02\xfc\xfe\x90d\xa1\x90\x14\xdd\x82\xa5\xe8\xec\xaf"\n\xf2Q\xcd\x8d0>\xda9F<x\x86\xb1\xefC\xa8\xa6\x06\x84j\xfcX\x90G#A\x8d\xa1<h\xd28^\x06\x911\x19b\xd6\x9c\xd1\xad\xaa*N\xc08^\x16\xd2]Nbj\xd0X\xca\xfaP\xef\x0b\xe9\xbb\xb7\xc2\x91\x92\x0e1a\xd2\xe8\x04\xa3\xa9\x1e\xfa\x9e-!\xdf\x8bgp\xbd\x80\xa0\xba\x90g\xe5\xe9>\x18;\xff\x0f\xdc\xe3\x1d}h\xf4v\xc3\xd8\xf9\xdb\xbe\x08E\xc837E\xbd\xc6B\x9e3c\xe7T5\xd5\xc38\xb0\x1b\xda\x92\xe5\xb0=\x9b%\x84s\xd8\xbf\x7f\x17T\xe3g\xa6\xecn\xb2Rg5%qF\x98\x94\xc2iT\x1c\x83H\xcf\x80\xc8\xbb{t\xa8\xaa\xcar\x18\x15\xc7LK\x1bR$\xceh\x1e\xe5;\x1d\xefp\x9b\xc6\x84\xbe\xefwp$\xa7A\xa4\x8dl{\xa2\x9a\x1b\xa0\xef\xdbnj\xaa\x92\xc7\xe8>C\x00\xd0\xfd\x9f/V\x11\x91igZ\x88\xa4Th\x0f\xad\x02\xb9G\xe8\xdeIo\x0f\xf4\xad\xef@5^6Q\x19\xa2\xca\xfd\xdc\xda\\\x01\x00$\xc5A3\xd3\xeeUk3\x8c\xb2=\x01ec\x84\x03\xf9\x0f\xff\x1e\xaa\xa9\xce\xd4\xd2\x04":\x08\\\xcb\\T$\x0e\n\xa2bS\xe3=\xe7?\x81H\xcf\x84\x98y\xd7\xc8RUgO\xc2\xa8<nz\x8a\x92b>\xd4\x0f\x88O\xa8\x1d\x11B3\x9d9\xfd\xf0N8\x12\x92!&d\x8e\x0c0\x9a\xea\xa0\x1f\xdeiIf\xa3\xcfo\xec\x04\xaeK7\xe9^\xf7\xe3\n"\xf3o&\xa0\xb8$8\x1e|\x1c\x14\x15\x1b\xe6q*\x0f\xfc;\xde\x85jm6\xbf-\xe6\n\xf7\x9a\x1f\xde\xd9/!\x00\xc0\x92\xb6\x10\x91\xe9\x80\xb0\xa7\x15\xfe#\xbb\xe1\xb8\xef[\x80\x94a*\x1a\n\xc6\xc7\xa5P\x1d-\x96d\xc6\xb3R[\xfa\x17@_\xbc\xc4&\xabj\xeb\xd4gU0*?\x0e[\xe90N\x1f\x83Q{\xd6\xbaZC\xa6\xcd\xfd\x1a\xe4\xfa\x8et\xaf\x7f\xf9\x04\x11\n,\xe1\x9a\x08\x8eE\xdf\x82\xc8\xcc\r/\xe1\xa8\xaf\x85^\xfa\x9ee+B\x06\x9fp\x17\xff}\xbf\xe7<\xc0\x92\xb3\xa4\xb7\x89\xa8\xc0*\xe6\xf5\x8fw\xc3\x19\x9b\x00\x8a\x0b\x8f\xfdx\xeel\x81~t\xe75\xe7\xcf\x9ap\x0f+\xf5\xf6\x00\x9fm\xc0z\xdb\xef[\xcfBtYV\x1a\xec\xeb\x81\xff\x0f\xa5\x80\xee\x0b\x03gC\x87\xff\xf8>\xa0\xd7k\x9d\xaa\x12\xa2\xcbo\xe8\x1b\x06(\x8e\xc1\xfd\xea\xde\xf4\xca\xab4\xa8\x98\xddl\x92\xb9\x05\xd0\n\x16\xd9\x8b\xc7\'\xfba\x9c?a\xadD2\xbf\xea^\xf9\xfc\x80Ch\xbe\xe4|\xf4\xfa\xd4O]\x11\xf2\x07V\x9e\xe6`T\x7f\x02\x91\x90\x021e\xa6=v\xe3\xf29\x18\x17\xca-\xadOa\xb0\xe13\x8cW\xbe\x14f\x1a\xfc"\xfe;\x7fS\xc3\x82~muy\xb0^\xb1\x1f\xaa\xa5\xd1z0\xda\x9b\xa1W\xec\xb7\xbc\x1c\x9a\x05\xfd:n\xe5\xdfV\r\xee\xcf\x90\xee\xb9O\xc7?\xb9\\\xe2Q"Xw"\x10\x1b0*\xf6\x81\xe6/\x07\xb9"\xadi\xd2\xd7\x03\xa3|/`\xe8\x96V\xe22\xd8\xa7\xf7\xd0\x8f\x86\x0c\xc4\x0e\xf52~\xe5s\xb5 \xbcn\xf5\xd9\x1f\xca\xd3\x06\xe3\xcc!@)+\x9670\xce\x94Au~n\xc79\'\xaf\xc5\xad|\xb6j\xa8n\xdd0\x80\xa5\x1bj\xadSj\x8f\x83\x90j\xa5\n1\x1ak@\xf1\xa7!\xb3g\x99\xdbN\xedi\x18\r\x17\xac\xafkd|\xde\xd6\xd5\xf3\xaf7t\xcfn\xf6\xbf];\xdeX%\x89\xde\xb2\\\xb1\x13\xc1q\xd77 \x92\xcd)uP-\r\xd0\x8fo\xb7F\x12\x07O\x04\xa5VE=\xf8\xfd\xf57\xfa\xfbM\xa7\xc7\xcb\x87\xeb\xd73Q\xa9\x1dG\xfd\xe9g\x0f\x81\xbd\x1d\xa1\x9f\xa0\xdd\x1e\xf8+\x0f\\\xe3\xde\xe2\xe3\x98\x88J_>\xd2\xb0\xe1\xa6s\xf1V\x0c\xb4\xecz=\xd3-\x9d\'\tH\xb4z6\x89\x84t8\xf2\xef\x0f\xba\x10\xf3\x0b\xd10\xa0W\xfc\x1e\xaa\xa5\xcer\xc9`\xa0\xbd\xd7\xef/\x88\x7f`MmP\x80\x00\x80w\xcf\x9b\x8f\n)6\xd9\xe1#\xc8\xcc|h9\xa1I\x920jN\xc0\x7f\xa9\xc2\x9e\xb0\x8cRO\xba\xef_\xfd\xee-\xb5\xf5p?\xd8\xfd\xd1\xdb\xffM [n`s\xcc\xf8\x1aDJVp\xc2\xd1|\x11z\xe5G\xf6\x80\x01\xfe\xa5{\xd1\xaa?\x1f\xceo\x87\xbdMX\xddX\xf3\x83\xa9\x13\xa7N\x83\xd97$\x0c\xb5\xe2\xab9\x06\x87;\x16":0\xad\xa9<-\xd0\xab\x8f\xd9s\xea\x0fs\xd9\x95\x0b\xea\xd9a\xafgn\xe7\xdbM{\xdfJ\x8bu:\xcc\xbb\xd0\xe5f\x1duE\xc31\xe3>\x90\xfb\xf6v\x1a\xb9\xa7\x13\xfa\xd9}\xe0\x9eN;d\xa3\xbe\xcb\xeb\x9f\x9b\xb4dU\xbd)\x80\x00\x80\xe7\xe0\xfa<Ms\xec\x03Y\x7f\xe5\x91\x88\x8c\x87\x963\x1f\xe4\x8e\x1b\xe6\x8a\xaa\x1d\xfe\xea\xc3P\xde6\x1b\x04\x83\xdb\x94_\x15E-\xfcN\xf9mM\xbc@\x1a\xf3\x96\xbd3\x97\x1c\xda\x1e\x02Y\x7f)\x98#\x12\x8e)\xf7@\xc4M\xb8E\x8c\xaa\x11\xfa\xc5?\x00\xba\xd7\x060\xd0\xa5\xfb\xf9\x81\xd8\x05\xdf>t\xdb\x9a \xd0F;\x8fm\\\xa4\tl#"[nj\x93\xc9S!Sr@\x11q\x83TT;\x8c\xabU0\x9a\xab\xed1\xe0\xcc\x9d\x06\xab\xe5\xd1s\x1e\xdf\x17\x90j\x0e\xa6q\xef\xf1\xcd\xf7\x08\x89\x1d\x00\xd9v\xb1\xa4\x88N\x86\x88\xea\xbb3@u]\x85\xf24\xdb\xd5\x150s\xab\xce\xf8f\xec]\x8fZ\x7f\xb1d\xbfM)\xffM\x9eF\xd8n\x87\xa1\x0f+b\xbe\xecg<\x18=\xfb\xe1\xd3A-^B\xd1\x97\x86\x13\x1b\x93\x13\x9c\xce\xcd\xa0\xb1y91\x98\xcb:\xbb\xd5\xc3)s\x1e\x0ezC\'t\xd7w\xef}\xcb\x95\x96\x1a\xff*\t\xb1fLa\xa1\xd4\xba+Mm\xcfe\x15=\x15>\xd7w\x0f\xb0+\x95[\x1e&I\xeb\x08\x948\xba\x85\x82\xdb\xc1\xf4\x97\xee\x19\xcb~\x15R\x7f\xcb\x8c\xce\xb6\x9eyor\x843\xe2\x7f\x88h\xc9(\x05cO\x8f\xaf\xe7{\tw<r)\xe4\x0e\xb0\x99\x1d\xef\xbe\xf0\xc1c$\xc5\x7f\x01\x94:J\x80ha\xc6?\xfcd\xc3\x91u%%%\xa6d\xd2\x99\x9e\r\xd6Q\xf9~\xa2\xc3\x1d\xf9#\x10=C\x80sD\x02\x01\xf8\xc0\xfc\x0b\xbd\xdb\xbb6v\xe6\x9f\xb6\x98\xd9\x96e\xd5\x98m\xb5[\xb2"d\xc4\xbf0\xe8I"\xc8\x91!\x110\x08\xfc\xab\x1e\xa3\xe7\xc5\xf8\xac\x15\xb5V\xb4iyyl\xdb\xc5m\xd9N-\xe2\xfb\x04z\x86\x08qa\nD\x17\xa0\xde\xf1\xeb\xea\xa71Y\xdf8ge\xdb\xb6\xd5+wT\xbe\x9f\xa8\xc5\xc5\x16\x93\xa0\xa7\xac\xcc\'\xbe\x85\x8d8\xc9\x8a\xdf\xf2\xb7wl0[5\x85\x1d \xd7SW\xdd\xde\xd9\xe4\xc0J",\'\xd0,KA\x00W0c+\xeb\xd8\x185\xa9\xa8\xdc\xee\xb1\x08\xbb\x8a\xfe\xb6+\xbb\xb3\x9d\xd2\xb1T\x10\n\x99\xb10\xd4\xd5\xc1\xcc\\M\x84\x83\x8aq\xc0g\xe8\xbb\xe2\xd3\xbe^\x13N\xfc\x87\xfd\x11\x0b\r\r\xbfK\x8eqD\xe6\x0b)g\x12c&\x882\x08\x9c\xc6\xa0\t\x00\x12@ \x02\xe2\xaf\xad\x86\xda\xc0`\x00\xad\x04nd\xd0\x150\x7f\xc6\x84Je\x18\x95\x9d\xba\xf7Tz\xfa\x9f4\x873\xbf\xff\x0f\xc1\x8d\x16\xfaVK\x86Y\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
+         self.window.menubar['debugutils'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
+         self.window.menubar['debugutils'].add_command(label='Variable Display', font=menuFont, command=self.debugvarwindow.open)
+         self.window.menubar['debugutils'].add_command(label='Give Item', font=menuFont, command=self.debuggiveitemwindow.open)
+         self.window.menubar['debugutils'].add_command(label='Affinity', font=menuFont, command=self.debugaffwindow.open)
+         self.window.menubar['root'].add_cascade(label='Debug Utils', font=menuFont, menu=self.window.menubar['debugutils'])
+
+      # Help Menu
+      self.window.menubar['helpmenu'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
+      self.window.menubar['helpmenu'].add_command(label='Wiki', font=menuFont, command=self.wiki.open)
+      self.window.menubar['helpmenu'].add_command(label='About Game', font=menuFont, command=self.aboutwindow.open)
+      self.window.menubar['root'].add_cascade(label='Help', font=menuFont, menu=self.window.menubar['helpmenu'])
+
+      self.window.addImage('up', b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e\x81IDATx\xda\xed]{pS\xd7\x99\xff}\xf7^]I\x96\xe5\xa7\xfc\xc0\xc6\x06\x1bH\xf0\x0b0`\xde\x85P\xc0\r!$4\x0f&I\x97\x04h\xbb\x9b\xcdl\'\x99\xe9\xcc\xee\xce\xeev\xebl\xb3;\x99\xe9dv\xb7\xdb4\x0cI\n!\rdp\x98\xd0@C\x9a\x84\xd6\r\x10\xd88\x80\x01;\x06B\xb0\xc16\xb2\x8d_ [\x92%\xdd\xf3\xed\x1f<\x16\x821\xb6\xac{\xafl\xf3\xd3\x9c\x19Y\x96\xee\xb9\xdf\xf9\x9d\xefq\x1e\xdf=\x84(\xc7Q\xf7Q\x17\xd9\xed\x85\x92,\xe7\x01\xc8\x93\x08c\x01\xa4\x01\x94\x0e\xe2D\x00\x04P\xc2\x95os\x17\x00\x06S\'\xc0\xcd\x00Z\x04\xa3\x11@\xad\xd0\xb4Z\xf6\xf9\xaa\x8b\xc7\x14\xb7E\xb3\xbc\x14m7T\xd9u<\xc7"\xdb\x96\x01X@\xa0\xf9D\xc8\x8d\xe4\xf5\x99q\x96\xc1\x07\x00\xec\x0fj\xfeOJ\x12\xa6\xd4\xdd%\xe4[\xa8\xea\xaa\x99\nIZ\rH+\x89Pdd\xdd\xcc8\x01\x88]\x10b\xfb\xb4\x84\x82c\xa3\x96\x90/\x9a\xbeH\x92\x1d\xb1k\x88h-\x11M\x8b\x86\x8e\xc1\xccU\xcc\xbcY\xeb\xe9~{V\xe6\xac\x8eQAHe\xcb\xf1\x1c\xc9*\xbf\xc0D?$\xc0\x11\x95\x86\x9c\xd9\xcf@y $\xfe}\x9e\xab\xe8\xd4\x88$\xe4\x7f\x9b\x8f\x8d\x97m\xf2\xbf\x01x\nD2\x86\x03\x985\x00[5\xbf\xf6\xaf\xb3\xd3\xa7\xd6\x8f\x08B>m\xfa"\xc9i\xb7\xfd\x1c\x84g\x89H\xc50\x043\x07\xc0\xd8\xe0\xf1\xf9_\\\xaa\xb3)\xd3\xb5\xa7\x1e\xec\xa8z\xdcj\xb1|\x08\xc2w\x01\xc8\x0c`8\x16\x002\x08\xb3UE\xfe\xf1\xfa\x7fx\xb6+\xcb\x9e~\xa4\xa2\xa2b\xf8h\xc8^\xf7\xe7\xd91\xaa\xfd\xb7 Z\x82\x91\x08\xe6\xbd\xde\x80o\xfd\x921\xf3\xceG=!\xfbZ\xbf|\x94di#\x11%a\x04\x83\x81\xcbB\x88\xe7\x16\xbaf\xbc\x13\x95\x84l\xae\xaf\xb0\xe6\xc6\xc6\xfe\x0f\x11\xfd\x18\xa3\x08\xcc\xfc\xfa\xd9\xee\xee\x9f\xac\x1d\x7f_o\xd4\x10\xf2\xa1{\x9f\xcba\xb1\xbfG\xc0"\x8cF0\x1f\xf4z}\x8f\xdc?na\xb3\xe9\x84|\xdc|\xa0\xc0"){\x88(\x0b\xa3\x18\xcc\xdc\x10\x14\xa1\xe5\xa5\xe9\xf3kL#\xe4\x13\xf7\xfe\x19\x92\xac|D \x97Y\xa3\xdax5\x0e\t\x8a\x13\x04\xa03\xe4\xc1\xa5\xc0\xe5k\x91\x91\t\xa4\xa03\x14\xd2V|/s\xdeA\xc3\t\xf9\xd8\xbdo\xa1$)\xbb\x89\xe04C\xf8\xb1\xf6td\xda\xd3\xe0\x90\xed7}\xde\xa3\xf9\xd0\xe4kA\xa3\xaf\xd9,R<`m\xe5\xd2\xf4\x05\x7f1\x8c\x90\x8f\x1a>+\x91,\xca^3\xc8\xb0IV\xe4\xc5\xe5"YM\xe8\xf7{\xed\x81.\xd4^>\x0b\xbf\xe85\x83\x16oH\xe3\xd2\xe5\x19\x0b\x0e\xe8N\xc8\xee\xf3\x15\x05\x8a*\xff\x85@\xc9F\x8b\xe9T\x1c\x98\x92p\x0f\x1cr\xcc\x80\xbe\xdf\xa3yq\xbc\xeb4<\xa1\x1e34\xa5K\x08m\xf1\x03\x99\x8b\xaat#\xe4\x0f\xf5\x15i\x92U\xae$\xc0p\x07n\x97m\x98\x91\x98\x0f\x87\x123\xa8\xdfyC>\x1c\xee\xfa\n\xde\x90\xcf\x0cG\x7fA\xd3\x82%\x0ff-\xb9\x10qB\xb6\xd7l\xb7\xc4&\xa6~\n\xa2\x85F\x0bf\x91\x14\x94$\x16!\xde\x12\x9e\x85\xbc\x1c\xf4\xa0\xb2\xf3\x04\x02"d\x06)\x07/\x9e\xae_\xbc\xf6\xbe\xb5\x03\xb2\x9d\xca\x80{h\x82\xeb5\x01,\x04\x1b\x1f\xc3\xe4;\'\x86M\x06\x00\xc4Y\x9c(\x88\xbb\x07\x87;k`\x02\xe6&O\xca~\x15\xc0\x8f"\xa6!\xbf?\xb7\xf71I\xa1r3\xa4\x99\x18;\x0e\x93\xe3"\xb3\x8a{\xcas\x16_{\xce\x99\x12}iB{jU\xd6\xb2mC&d\xfb7\xbb\xb2\xac\xd6\x98*\x00\x86\xcfM\xa5X\x13Q\x92<\x05J\x84\x96O4\x168\xdcQ\x83f\xffE38\xb9\xd4\x1b\xd2\xa6\xad\x1e_Z\xdf\xdf\x97\xfa\x95\xb4\xac\xac\x8c\xc6\xcc\xccy\x1f@>\xc3\xd8\x97M\xb6\xa2$\xb9\x086\xd9\x1a\xb1\x16\x91\x88\x90\xa8\xc6\xc1\xed\xbf\x88\x80\x08\x1a,\x11\xdb$\xc2\xd4\xbc\xf8\t[\xfa\x9b\xba\x97\xfa\x13\xa0h\xfd\x9c\xa7AXl4\x19\x00P\x9c\x947\xe8\x88j \x88Q\xec(N\xcc\x07\x11\xc1p\xb9\x08\x8b\x0b\xd7\xcf]\x13\x96\xc9z\xab\xf6\xfd\xa4\x18\x87\xad\x96@\xa9F\xeb\xf6\xd4\x84\xc9\x98\xe8\x1c\xa7k\x1d_{\xeaq\xbc\xeb\x94\xe1v\x8b\x99\xdb=\x01\xcf\xe4\xf5\x93V\xb7\r*\xca\xb2\xda\xd52fNe\x83g\x86\xb2\x1cc\x90\x1b\xab\xff0g\xa2s\x1c:z/\xe1\xbc\xf7\x82\xd1\x9c$\xc7Zb~\x06\xe0\xf9\x01k\xc8\x96S\x1f\x8cW\xad\xd2I\x02Y\x8d\xbc\xd3\x045\x0e\x0bSK"\xea7\xfaC\xaf\x16\xc0g\xad\x95\xe8\x0c\\2VK\x80@0\x14\xca_3\xf1\xe1o\x06\xe4C\x14\x15/1\xd8*`\xdcK"\xc2\x8c\xa4B\xc3\xc8\x00\x00\xab\xacbfr\x11\x14I\x86\x91\xb22\x84*\xcb\xf4\xe2\x804\xe4\xb7\xa7w\xe4\xa8\x8a\xe5k"\x18\xbaUg\xaek\x1arb\xcdYR\xa9\xefi\xc2\xe7\x17\x8f\x18\xecL \x02\xfe\xc0\xbd\xeb\xf2\x1f;\xd3\xaf\x0f\xb1\xc8\xd2O\x01!\x1b9 \xcf\x8b\x9f`\x1a\x19\x000\xde\x91\x89\x8e\xde.\xd4^:cd\xb5\x92\xc5*=\x0f\xe0\'\xb7\xd5\x90_\xd7\xbe\x95\xe4\xb48\xcf\x13\x91a;\n\xd3\xec)X\x9c6\x0b\x16\xc9\x023\x11\x12!T\xb4~\x01\xb7\xb7\xd5\xc8\x88\xab\xc7\x13\xf4d\xff]\xde3\x1d}\xfa\x90\x18\xc5\xf14\x83\x1d\x82\x05\x8c(\xaad\xc1\xac\xe4)\xa6\x93\x01\x00\x8a\xa4`\xb6k*bd\x1b\x8c\x92\x9f\xc1\x8eX%f\xcd\xed\x9d:\xe1\x19#\x07\x7fsS\x8a\x91\xa0:\x11-p*\x0e\xccI)\xbej\xe2\x8dy\t\xc23}\x9a\xac7\xbe\xda6\x8d,\xf2Q\xa3\x84/I\x9e\x82\xa2\xc4{\x11\x8d8\xd1y\x12\x95\xed\'\x8c3]A\xad\xf8G\xf9OV\xdd\xe4\xd45\x85VK\x06y\xf2\x9c\xd8\xb1\xc8O\x98\x84hEA\xc2=h\xef\xed\xc2\x19\xcfyc\x08\x91\xe9q\x007\x13\x02\xc1\x0f1\xe9OH\xbc\xea\xc4\x9c\x94i\x90I\x8aZB$\x920\xdb5\r\xed\xbd\x9d\xe8\xe8\xd5\x7f\xd0\xc8\xe0\x87\x00\xfc\xf3u\x93\xf5\xab\xea\xcd\xb9\xaaE\xfdFw\xc7I\nV\x8c\xbd\x0f\xe9\xf6\x14\x0c\x07\xb4\xfa\xdb\xb1\xbb\xe1O\x08\xb2\xfe+\x8d\xbdZ\xef\xa4\xe7\xf3\xd7\x9dQ\xaeD\x18\xd22\xc1B\xf7J\xe7\xa5M\x1f6d\x00@\xaa-\x19\xf3R\xa7\xe3\xcf\xcd\x87t\xaf\xcb\x02y\t\x803\xd2\x15k\x85\x05\xcc\x0c=\xcb\xe4\xb8\t\x98\x1c\x9f\x8b\xe1\x86\xc9\xf1\x13P\x10?\tz\xb7\x0f\x13\xcd\xbf\xeeC\x04\xc4|b\xd2\xbd\xa7Q\xf4%\xfd\x0e\x08\xb3S\xa6\xa1\xd5\xdf\x86f\x9f~\x19\xd5\xcc\x98\x0f\x00\xf4\xcbc\xaf\xa5\xa8\x8a]\xb7\xe1\xa9*[\xf0\xc8\xb8\xef!\xd5\x96\x8c\xe1\x8c6\x7f\'v\x9c\xfb\x08\xbdZ@\xb7:\x02!_\xaa$\xb1Z\xc0Wf u)\x8b\xd2K\x86=\x19\x00\xe0\xb2%bQ\xfa,\xe8\xd9V\x16\xd9\x92\xaf@\x12\xf9\x82\xf5\tA\xa7&\xe5!/~\x12F\n&\xc7O\x80\xdb\xdb\x8a\xaa\x8eZ]\xae/\x04\xf2\x15\x06\xdf\xcb:DX\xe9v\x17\xe6\xa5N\xc7H\xc3\xbc\xd4\x19p\xfb\xda\xe0\xf6\xb6\xe8\xe1I&KB\xf0\xd8HG\x0c\xaad\xc1\xd2\xcc\xef\x18\xba\xd8d\x14\xac\xb2\x8aec\xe6\xc3*\xa9\x91\x8f\xb4\xc0\x99\x92 \xce\x88\xf4\x8a\xd8w3\xe6"m\x04\xf8\x8d\xdb!\xc5\x9e\x84\xc5\x19s#\xbe\x92\xa8\xb1\xc8P\x98E\x1aG0\x1c\x9d\xee*DA\xc2=\x18\xe9(H\x98\x84&o\x0b\x8e\xb4UG2\xf6MW\x04\x843Rc\x90\x14[2\x16\xa4\xce\xc0h\xc1\xa2\xb4Yp\xf74\xe3B\x84\x16\xb5\x18\x88\x95X\xb0M0c\xa8E\x82\x8c\xfb\xc7.B\x8cb\x1f5\x84Xe\x15\xa5\x99\x0b!K\n"\xd1\x86,\x84]\x11`[$v\xb4/\xce\x9c\x83\xb1\x8et\x8c6\x8c\x89I\xc5}\xe9\xb3\xf1\xc7\xc6\xcf"\xa0!l\x97"\xb1\xeauoB.f\xb8\n1Z1\xd3U\x84\xfc\xc4\x89\x11YAT4\xa1\xf9\x89(6\xdc\x9bq(v,\xcb\\\x00y\x98<\xe0G\x0fH$aI\xc6|\x9c\xf54\xa0\'\xe8\x1d\x82Og\x9f$\x18\xfe\xa1\xd8\xbd\xef\xa4\xcfF\xa2\x1a\x8f\xd1\x8e\x045\x0e\x0b\xd3g\r\xcd\x870\xfb$\x86\xf00\x0b\x84S\xd2\xec.Lw\x15\xe0.\xae\xa08\xb9\x00\xe9v\x17\xc2mO\x01\xee\x96X\x88\xe6p\x19\x9d\xee*\x80\x1a\x05[x\xa2\x05\xaadA\xb1\xab |-\x11\xc2\xadh\x10\xeep\xd7)r\x9cYwY\xf8\x16r\x9dY\x10\x08on\x90\xc1n\x85\x99\x9b\xc2sd\x84x5\xf6.\x03\xdfB\x9c\xea\x04\x81\x10\xce\x9283_P\x04k\xa7\x08\x83\x9f~\xbf\xb2\x17\x9b\xee2pK\xbb\\i\x93\xb0\xf6(\x08>\xa9\x08M\xab!\x99\xc2\xf8m\x08M=-\x98\x187\xb4L\xa7\x90\x08\xa1\xd5\xd7\x8ef_\x1bTIAa\x92\xb1\x9b\xe7j:N\xa3W\x04\x91nw!\xd5\x9e\x0cER\x86t\xbd\xc6\x9ef\x04\xb4`X\xbf\xd5\x04\xd7(^/\xd7\xc48\xc3\xb3yG\xda\xaa\x07MH\xbb\xbf\x13\r=\x17\xd0\xd8\xd3\x82V_\x1b\xea<\xe7\xe1\r\xf9\x01\x00sR\x8b\r\'\xa4\xb6\xeb\x0c\x0e\xb6^IE\x88Ql\x18\xef\xccB\x9a=\x05c\x1di\xc8rd \xd9\x968\xe86\xe10}\x88\xdf\xab}\xa5l(-\xbb\xf8\xc2\x81\x17\xeb@\x943\xd8\x0b\x1cj9\x82\\g6f\xa6\x14\xdd\x81\x007\xce{.\xe0\xac\xa7\x01\xe7\xbb\x1bo\x9b$\'Lx(\x01\xdfPow\xd0\x87\xea\x8e\xd3\xa8\xc6\xe9\xab\xe6\x07\xc8\x8e\xcdD\xae3\x1bY\xce\x0cd;\xc6\xf4K\xd0\x97\x17O\xe0P\xcbQ\x84\x93\x06\xc8\xc0\xd9\r\xa5e\x17\x15\x00\xd0X\xec\'\x0c\x9e\x10\x00x\xe7\xcc\xfb\xa8\xf3\x9c\xc7tW!\x12\xac\xf1\xf0\x87\xfch\xf5\xb5\xe3\\w\x13\xea.7\xe0\\?\x04\xf4\x11e\x18O\xc8\xd5\x9d\xe8\xb7C\x9d\xa7\x01u\x9e\x86\x9b\t\x8a\xcbFvl&\xd2\xec\xc9\xb0)6t\xf5^\xc2\x91\xb6j|\xder8\xecN\xc5\x02\xfb\x81\xab\xdb\x80X\x88\x03\x90\xa45a\xd9=f\xecsWb\x9f\xbb2\x12\x93k\xa6h\x08\x0f\xb0\x11\x19@\xbd\xa7\x11\xf5\x9eF=:\xc6\xe7\xd7\t\xf1\xfb\xf9\x8fV\xbb\x80\xe9`3\xaa\x140b\xd7\xe6\x1d\x83\xa4@\xf0c\xe0j~\xc8\x1b\xa5/\xd5\x0b\xe6j\xa1\xeb&\x97\x81\x15S|\x88\xc92k\x10\'^[\xfar\xddu\r\x01\x00!\xc4\x07$\xc1\xdc9t3\x9c:3\xd8d\ra\xc1\x1f\\{\x7f\x9d\x90PH\x94\xcb\x16\xfa\'S\xd5\x16\xe6\x10bFtw\x93\x1f\x0e\xf1{\xd7g@\xae\xbdys\xe9\xcbU\x82\xb5cF\xe5\xd7\xf5\x99sgBOe0\xcc\x94Y\x13\xda\x897\x97\xbe\\u\x8b\x86\\\x1d)n\x96$\xfc\xe7h\x9a\xea\xb81\xe7\xd1\x94\xfaI\xbcy\xe3\xdf7\x11\xe2\xef\x11o\xdbb\xf1\x12@\xa6\x1c\xb4\xc2l\x96\xc92\xcb\x87p\x8f\xbf\x1b\xbf\xbb\xf1\x93\x9bf\x15\xb7\xad|\xa5]\xd3\xb09\x12;(\xc2+\xe6\xc4\x11\xe6\xc9\xcb\x9b\xb6\xad|\xa5\xfd\xb6\x1a\x02\x00!\xbf\xf6\x8ab\xa7g\x01\xc8\xc6\x9b\x0fa\x8a\x86\x98\xe4\xbbDH\x13\xff\xfd\xed\xcfo\x99w\xdf\xfa\xe0\x7f\xd5iB\xbckF\x8f1g\xa4n\x92v\x08\xde\xb6\xad\xf4W\xb7<\xcb\xa3\xcf\xb9\xe6\x00k\xffb!\xe91\x00V\xa3\x9b\xc7\x14B\x0c\xd7L\x0e\x045\xed\xe7}\xfd\xa7\xcf\x95\xa9\xf2\xd2_\xd7\x0b\xa1m\xd4=\xaf\xae\x8fbJ\x94e\xb4\x9c\x1ao(\xbf\xff7}f=\xdfv5\xc6\xdf\x832\xabC{\x02 \xc3\xd2f\xcdq\xea\x06GY\xcc\xedB\xf3\xfd\xe2v\xff\xbe\xed\xda\xed\xce\xef\xbf\xda\xa1\t\xfe{C\x07\x86\x18\x15\x03\xc3\x9f\x96?\xb0\xa9m\xd0\x84\x00\xc0{\x87^{\x8b\xc1\x15\xc6>\x8f\xd4\x9c\x81\xa1A\xaf\x8a\xf2C\x1b\xb6\xf4w?\xfd/ \x97\x81\xfd\xbb\xc4\xd3\xaa\x85\x8f\x01\x94\xa8\xbf6\x8b\x11k\xb2\x98\xf9R(\xc8\xebP\xd6\x7f\xbf\xbb\xe3v\x93\xdd+76\x08\r\x7fcH\xd8k\x82S7*\xcc\xd5\x18\xcf\xedz\xe8\x8d\xfa;\xdd\xcf\x80\xf6\xff\xec\\\xf1z\xb9\x10\xda\xa6p\xb7H\x0e\xb4\x985\xe5\xaf\xb7\\Bh\x9b>x\xe0\xf5\xad\x03\xb9\x9d\x01\xefy\t~\xe3~V\xceM\x9f@:\x1eW!\xd8\xbc\x81\xa1\x8e5\x1c\xf4\\\xe4\xbf\x1d\xe8\xb7\x07\xb5!\xeb\x81\xedk\xd3\x10\xc3\x95z\x9d\xc8\x96`\x8dCvl\x86\xa1\x844t\xbb\xd1\xa9\xd3#\x98\x18|\x81\xfd\xa1Y{\x1e}\xa7I\x17B\x00`\xf9\xce\x1f\x14BQ*\x08\x18\xb9i\xb6\x91!\xa3\x0b\x1a\x16\xefyx\x8b~G\x1e]\xc3\xb2\x9dkfI2\x7fJ \xe7\xdd\xa6\xef3\xa2\xf2R\x88J?z\xe4m\xfd\x0f\x05\xbb\x86\xa5;\xffj\x11I\xbc\xeb.)\xb7\xa0\x1b,V~\xfc\xf0\xd6\x8ap~<\xa4\xdd\xd2Kv\xac\x9e))\xca\x1e\x10\\wy\x00\x98\xb9S0\xaf\xf8\xd3\xaaw\x8d?X\xf2\xff5\xe5\xf1B&y\x0f@cG9\x1d\x8d\xc4\xda\xf2OW\x95\x0f\xe9I\x02\x11\xc9\'\x98\xb7\xe5\xfb)j\x9cZ>Z\x0f\'f\xe0`\xd0G\x8f\x1ex\xf2]\xf7P\xaf\x15\x91U\xc1\x86\xf7Oz\xc7\xdf\x9f\xb2\x8dU\xc7\x18\x00\xd3G\x15\x19\x8c7\xe9R\xeb\xea}kvwE\xe2z\x11\xcf\xb8Y\xb0\xe3\x91G%\xa2\x8d\xc0\xc8>\xe0\x1e\xcc\x97\x99\xf1\xdc\xbe\xc7vD\xe7\x01\xf77b\xce\xbb\xab\xc6)\xaa\xbc\t\xc0\xe2\x11J\xc7\x9fC\x01m\xdd\xa1\'vF\xfc\x0c>]s\xd2\xe6\xbf\xb7\xeaq&\xbcJ\x06.r\xe9l\x9e:\x89\xc5?\x1e\xa8\xf9\xfd\xebw\x9a\xb5\x8dJB\x00`\xc6\xd6\x07\x93U\x8b\\\x06\xc2_\x03\xa4\x0eS*\x02`l\x0c\x04\xb5\xb2\xc3O\xedn\xd7\xb3&\xc3\xb26g\xbe\xb3"G\xb2H\xbf \xc2\x93@\x14?g\xfcf"\x043\xb6\x89\xa0\xf8\xd9\x97?\xf8C\x9d\x115\x1a\x9eF{\x95\x98\x17@\xf8!\x00Gt\xf2\x80^&\xde\x1e\xd2\xc4\x7f\x1c}\xe2\xc3\x93FVmZ^s\xc9[K\x92\xd8f[\xc3\xc4\xeb\x0845:x\xe0c\xc4\xb4\x89\xfc\xfe\xb7+\x9f\xd9\xdba\xc6=DE\xa2\xf9\xd4m\xcb\xa7I\x84\xd5 \xac$P\xa1\xc1$T\x83\xb1K0\xb6\x1f{rO\x95\xd9m\x11u\x99\xff36/\xcf\x15V\xb1\x8c\x89\xe6\x13c\x01\x089\x11f\xa0\x8e\t\xfb\x89\xf9\x80\xd4+}rx\xed\x9e\xb3\xd1$\x7f\xd4?\x8aa\xca\x96e)PPH,\xe5A\xc2d\x06\xb2\x00N\x03\x90A@\x1c\x032\x81\xe2\xae\xf6\xf6\xcb\x04h\x0c\\\x06p\x01\xa0\x16\x02\x1a p\x92I\xd4"\x84\xea\xe3O\x7fr1\x9a\xe5\xfd?\xf2\xd7\xef$\x9eeD\xd5\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
+      self.window.addImage('down', b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08\x06\x00\x00\x00p\xe2\x95T\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00J\x00J\xdc\x12\x1en\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x0e;IDATx\xda\xed]kpU\xd7u\xfe\xd6\xde\xe7\xde\xab\xab\xf7[\x08$\x90\x84\x08`\t#\xdb\x80!(X\x98\xe0\x8c\x1b \xae\x1f\xc4v\xa2b\xe2\xd28u\xddq\xdb\x99\x8e\xdb\xb4\x8e\xa8;i\'\x9ef\xc6u\x13\xc7\xa6\xa9m\xa8\xe3\x0c\xe0\xb8\x01\x1c0\x8f\x08\xccC<\x1c@\x16 \xc0\xe8\x01X\x0f\x84\xac\xe7\xd5\x95t\xcf={\xf5\x87\x88\x8cd\x01\xe2\xde{\xce\xb9z\xac\x99\xf3\xe7\xe8\xea\xec\xbd\xf6\xb7\xd7Z{\xad\xbd\xd6\xde\x840\'\x0f\xd2R \xfd\xf9\x1a\x8b\x99D<\x83\x19\x99\x00\xd2\x880\x91A\xb1\x00$\x01\xb1\x00\xc0@\x07\x00\x83\xc0\x1d\xcc\xa8\x07p\x85\x08\x97\x99\xe9\xac\x9fT%\x0c\xedT4\xae\\\rg~)\xdc:\xd4\xeeJ\xc9q\x19\xb4\x14\x82\x16\x12s!\x88\xb2C\xda\x00s\r\x13\x1d\x80\xe2\x83\xbd\x92w\xc5\xf5^\xad\x1e\x07d\x10uEN,\x90\x86Z\t\xc2r\x02\xf2\xadl\x9b\x81S`l5\xa4\xd8\x18\xe5\xad?9f\x01\xe9\x88\x99\x98\xa8\xf9\xb9X\x00\xab\x89hv8L\x0cf.W\xc0\x9b~\x8d6\xc4v\xd6\xb7\x8c\t@\xda\xe2&gG\x18\xeay\x00O\x13!*\x1c\xf58\x83{\xc1\xb4Q\x87\xff\xc71\x9e\xc6\xb3\xa3\x12\x90\xb6\xb8\xc9\xd9\x11\xe0\x97\x00z\x82\x00\x81\x11@\x0c(\x80\xdf\xed\x01\xfds|\xfb\xa5\x9aQ\x01Hgtz\x92\xd3\xe1,a\xc2_\x10\xc8\x89\x11H\x0c\xf6\x11\xe3\r\x9f\xee+\x89\xf14|>b\x01\xe9N\xcez\x8c\x18?#\xa2\x14\x8c\x02b\xa0\x15\xcc/\xfc\xfb\xe7\xb5\xebJ\x00\x1e1\x80\xb4M\xc8\x9a\xe26\xc4\x9b Z\x8c\xd1H\xcc\xa5\xddR\xad\x8eo\xac\xbd\x18\xf6\x80x\'\xe4>*@o\x10!\x01\xa3\x98\x18\xe8`V\xcf\xba\x1b\xab\xfe7,\x01\xa9\xcd\xcar\xa5\xe9\xae\x9f\t\xe0i\x8c!R\xc0/\xaf8z\x9f\xcd\xaa\xad\xed\r\x1b@<i9)\x9a\xcb\xb1\x89@\xf7a\x0c\x123\x97y\x80G\x92/\x9fk\xb0\x1d\x10O\xce\xf4|\x87!\xb6\x83(\x03c\x99\x98?\xd3\xa5z0\xba\xfa\xdc)\xdb\x00\xf1f\xe7\xcd\x11\xa0\xedDH\xc68\x81\xc1\xadL\xf4Mw\xd5\xa92\xcb\x01\xe9\xc9\xcd\xbf\x0f\x10[\x89\x103\x0e\xc5\xf5\x82\x02\x8f\x9fiytU\xf9^\xcb\x00\xf1N\xbbs\x9e \xda=\x0e\xc6\rm\x8a\x97\x81\x07\xdc\xe7?9h: \x9e\xe9\xb3\xf25!\xf7\x12(i|\xe8o*)m\x06\xa9\xc5Q\x95\xe5\'M\x03\xa4\xe9\x8e\xb9iqd\x1c\x03Q\xa6)\\$%A\xe4\xe6X\xbbl\xad\xaa\x01\x9a\x9b\xcd\xfa|\xbd\x87|\xf3\x92**\xeaB\x0e\xc8\xa7\xb9\xb9\xce\xcc\xc8\xf8]\x04ZdV\xef\xe5#\x0fA\xbe\xf8\x8f\x96\x02b\xbc\xf4o06\xbfo\xa6\xa1/k\xech^<\\?E\x1b\xee\x873\xa2\x13\x7fAd\x1e\x18}\xd3\xc3\x86\xed\x19)\xfa\x1e\xb3X\x02\x16\xa4\xc5\xa7\xbe\x06\xd4~o8\xbf\x1fVO\xba\xef\x9e\xff\x98\x90b5\x04\xc1\xdc\xc7\x06eOf\xf3D\x10R\xac\xee\xbe{\xfe\x93!\x91\x90\x96{\x16f\x12\xa9\xd7-\x99\xbdd\x0b"\x80\x10V\xb4\xf2\xf3\xb6y\xf3\x0e\xc5\x1f=Z\x1b0 %\x00E9h= \x13,\x9b\xad\x96\xab,2Ue]\x07H\x9c\x1b\xce7K\x80\xfbKn\x12\xba\xbfiO^\xf8j\xe1*\x08Q\x04!`\xcdC6\xa9,\xab\xf8\x13E/|\xf5k\x7f\x16\x90\x84t\xcc\x9d\x9b\x08)\x7fb\xe9\xe0\xd8\x02\xc85)\xb1.\xbe\xf2\x1f\x9d\x85\x85\x1f\xc4\x1c8\xd0|[\x80\xb8\xdcQka\xf5N\x9f\x1d*\x8b\x84%6\xe4:\xfc\x93\x9c,^\x04\xf0\xd7\xc3VYm\x85K\xb2Y\x885\x16\x8ar\xdfc\x07 \x82`5\x9f,\xe53\xedEES\x87-!\x11\x11\xf4\x12A\xb8\xac\x1f\x1c\x1bVYBXb\xd4\x07I\x89\xc3\x05Z\x0b\xe0\xbb\xb7\x94\x90\xf6\xc5\x8bs@\xf4\xb8\xf9>\xc7\x10\x8f\x1di{\x04\xd8\xc3+=\xd1\xb1ti\xee-%\xc4\x19\xe1\xfc;\x02I["r\xb6H\x08Y.!\x7f\xf4~\\\x8c\xe7\x01\xfc\xd5\r%\xa4s\xd9\xb2$\x12r\x95\xe5\xb6\xa3\xdf\x86\xd8\xe5\xa9\xdb\xc3/K\xf1T\xe7\xb2eI7\x94\x10I\xaa\x98H\xd8\x97\xdei\x87\xa7n\xf1*k\x90\x94DI\xf0w\x01\xbc2$ BhO\xd9\x9a\x0fo\x97c(\xed\xcbl\x15\xe0\xa7\xaf\x07\xa4\xbf\']+V\x14\x90\xa4\xd9\xb6\x18\xb8/\x0c\x9d\x1d#\x02;y&!fu\xadXQ\xf0%\t\x91\x0e\xb9\xd2\xf6j\x11\xb21tb#I\'?\x06\xe0\xe4@\x95%i\x85-\x03b\xb7\xca\xb2\xc1\x0f\x19"\x9c\xb2\x02\xc0\x0f\xfb\x01i\xff\xf6C9$d\x1e\xec&16%\x84\x80\xfc\x8e\'\x1e\xc9\x8d}\xf7\xbd\x0b\x1a\x00\xb84\xe7\xd2\xb0(n\xb3+t"\xedg\xde\xc9r\t\x80>@ \xa80\xe0\xc1\xd04\xc8\xa2%\xa0{\x17\x80\x92\x93\x01\xaf\x17\\_\x07\xae\xae\x02\x9f?\x07U}\x01`\x0e_@nGB\x88 rrA_\x99\x0e\xca\x99\n\x9a8\t\x88\x8c\x0477\x83\x8f\x94\xc1(\xdd\r\x18F\xa0zk!\x80\xd75\x00 )\x0b\x03eF[\xf3\x0c\xc4\xfc\x85_\xbcKL\x02ed\x02\xf3\xe6\xf75s\xb5\t\\[\r\xae\xa9\x06\x7fz\x1e\xaa\xea&\x00\xd9\xe5\xa9\xdf\xa8]"\x88\x9c\xa9}\x00d\xe5\x80\xb2\xb2A\xa9i_\xfeYb\x12\xf0\x95\xe9\xa0i\xd3\xe0\x7f\xe3\xb5\xe1O\xc0\x01j\x8b\x0b\x01@\xf3\x14\x17\xa7@rV@\xab\x83EE\x03\xc1\x18\xaa\xa1\x94TPJ*0\xf7\x1a@\xcdW\xfb\x00\xbat\x11\\_\x07u\xe1S\xc0\xd3y\x83\xc8\x9a\xc5~Ht\x0cD\xee4\xd0\xc4I\xa0\xc9S\xfa\x00HN\x1d>\xb6\xf3\x17B\x9e?\x07\xe3\xa3\xd2@z\x92\xed).N\xd1\xe00\xf2 \x02\x0b]\xd1\xbd\x0bn\xff\x7f\x92S@\xc9)\xc0\x9c{\xfb^\xf8upc#\xb8\xa1\x0epX_\xf1Fw\x16@\x9b>\x13\x94>\x11\x94\x9e\x0eh\x8e\xe0\xbew\xef\x02\xe0\xc0\xde\xc0\xb4\xbf\x8b\xef\xd0\x84S\xcb\x0b(\x88\xa4i\x10\x99Y\xc1\x8f\x88\xe6\x00ed\xf6\xa99;\x16v\xb3\xef\n\xed\xf7\xa6d\x01\x11.@\xd7o\xff\x9f\x95\xca\xd3\xa4\x90\xd3\x83Y@\x8f\xd3\xe0A\xe5>\x1b\x12\x80=$!fh,DF\xa0k\x1bnk\x05EF\x8d\x830`LZ\x02^\xa00\xf3$\rR\xa4\x07\xdc\xf8\x85s\xa0\x89\x19\xe3(\x0c\x1a\x93\x80=\x7f\xe6tADi\x81\x06\xc6\xd4\xd1C\x80\xafw\x1c\x85?\x92\xcf\x07u\xac,\x98@\xe3\x04\x8d5\x11\x13\xa8\xcaRW\xea\xa1\x8e\x1e\x82(\\<\x0e\x06\x00u\xf4 Tc]\xc0\x12\xc2\xcc\xd1\x1a\x88"\x82\xf1\x90\xfd\xa5\x1f\xc2\x91w\'(al\x97\x8bpk\x0b\xfc\xa5\x1f\x06\xe7\xdc2\xbb\x05\x84\x88\x08j+\xd2\xdb\x05\xe3\x83\xdf\x04\x112\x18\r\xa2\xa1`\xec\xf8-\xe0\xed\nn[WJ\xb7\xc62\xf8\x8d!\xe3l\x05\xe8\xe8\x01\xc8\x05c\xb2*\x1a\xc6\x91\xfd0N\x9f\x08:H\xc9\x004\x08\xd9\x03Bt\xb0\x9d\xf2\xef\xde\x06\xca\x98\x12\x1agq$\tG\xdd%\xf8\xf7|\x10\x9a8\x1c\xa3[\x90\xa0\x9e\x90dQ\x18\x06\x8cm\x9b\xc1]\x9e\xb1c7\xbc]0\xb6m\x02\xfc\xfe\x90d\xa1\x90\x14\xdd\x82\xa5\xe8\xec\xaf"\n\xf2Q\xcd\x8d0>\xda9F<x\x86\xb1\xefC\xa8\xa6\x06\x84j\xfcX\x90G#A\x8d\xa1<h\xd28^\x06\x911\x19b\xd6\x9c\xd1\xad\xaa*N\xc08^\x16\xd2]Nbj\xd0X\xca\xfaP\xef\x0b\xe9\xbb\xb7\xc2\x91\x92\x0e1a\xd2\xe8\x04\xa3\xa9\x1e\xfa\x9e-!\xdf\x8bgp\xbd\x80\xa0\xba\x90g\xe5\xe9>\x18;\xff\x0f\xdc\xe3\x1d}h\xf4v\xc3\xd8\xf9\xdb\xbe\x08E\xc837E\xbd\xc6B\x9e3c\xe7T5\xd5\xc38\xb0\x1b\xda\x92\xe5\xb0=\x9b%\x84s\xd8\xbf\x7f\x17T\xe3g\xa6\xecn\xb2Rg5%qF\x98\x94\xc2iT\x1c\x83H\xcf\x80\xc8\xbb{t\xa8\xaa\xcar\x18\x15\xc7LK\x1bR$\xceh\x1e\xe5;\x1d\xefp\x9b\xc6\x84\xbe\xefwp$\xa7A\xa4\x8dl{\xa2\x9a\x1b\xa0\xef\xdbnj\xaa\x92\xc7\xe8>C\x00\xd0\xfd\x9f/V\x11\x91igZ\x88\xa4Th\x0f\xad\x02\xb9G\xe8\xdeIo\x0f\xf4\xad\xef@5^6Q\x19\xa2\xca\xfd\xdc\xda\\\x01\x00$\xc5A3\xd3\xeeUk3\x8c\xb2=\x01ec\x84\x03\xf9\x0f\xff\x1e\xaa\xa9\xce\xd4\xd2\x04":\x08\\\xcb\\T$\x0e\n\xa2bS\xe3=\xe7?\x81H\xcf\x84\x98y\xd7\xc8RUgO\xc2\xa8<nz\x8a\x92b>\xd4\x0f\x88O\xa8\x1d\x11B3\x9d9\xfd\xf0N8\x12\x92!&d\x8e\x0c0\x9a\xea\xa0\x1f\xdeiIf\xa3\xcfo\xec\x04\xaeK7\xe9^\xf7\xe3\n"\xf3o&\xa0\xb8$8\x1e|\x1c\x14\x15\x1b\xe6q*\x0f\xfc;\xde\x85jm6\xbf-\xe6\n\xf7\x9a\x1f\xde\xd9/!\x00\xc0\x92\xb6\x10\x91\xe9\x80\xb0\xa7\x15\xfe#\xbb\xe1\xb8\xef[\x80\x94a*\x1a\n\xc6\xc7\xa5P\x1d-\x96d\xc6\xb3R[\xfa\x17@_\xbc\xc4&\xabj\xeb\xd4gU0*?\x0e[\xe90N\x1f\x83Q{\xd6\xbaZC\xa6\xcd\xfd\x1a\xe4\xfa\x8et\xaf\x7f\xf9\x04\x11\n,\xe1\x9a\x08\x8eE\xdf\x82\xc8\xcc\r/\xe1\xa8\xaf\x85^\xfa\x9ee+B\x06\x9fp\x17\xff}\xbf\xe7<\xc0\x92\xb3\xa4\xb7\x89\xa8\xc0*\xe6\xf5\x8fw\xc3\x19\x9b\x00\x8a\x0b\x8f\xfdx\xeel\x81~t\xe75\xe7\xcf\x9ap\x0f+\xf5\xf6\x00\x9fm\xc0z\xdb\xef[\xcfBtYV\x1a\xec\xeb\x81\xff\x0f\xa5\x80\xee\x0b\x03gC\x87\xff\xf8>\xa0\xd7k\x9d\xaa\x12\xa2\xcbo\xe8\x1b\x06(\x8e\xc1\xfd\xea\xde\xf4\xca\xab4\xa8\x98\xddl\x92\xb9\x05\xd0\n\x16\xd9\x8b\xc7\'\xfba\x9c?a\xadD2\xbf\xea^\xf9\xfc\x80Ch\xbe\xe4|\xf4\xfa\xd4O]\x11\xf2\x07V\x9e\xe6`T\x7f\x02\x91\x90\x021e\xa6=v\xe3\xf29\x18\x17\xca-\xadOa\xb0\xe13\x8cW\xbe\x14f\x1a\xfc"\xfe;\x7fS\xc3\x82~muy\xb0^\xb1\x1f\xaa\xa5\xd1z0\xda\x9b\xa1W\xec\xb7\xbc\x1c\x9a\x05\xfd:n\xe5\xdfV\r\xee\xcf\x90\xee\xb9O\xc7?\xb9\\\xe2Q"Xw"\x10\x1b0*\xf6\x81\xe6/\x07\xb9"\xadi\xd2\xd7\x03\xa3|/`\xe8\x96V\xe22\xd8\xa7\xf7\xd0\x8f\x86\x0c\xc4\x0e\xf52~\xe5s\xb5 \xbcn\xf5\xd9\x1f\xca\xd3\x06\xe3\xcc!@)+\x9670\xce\x94Au~n\xc79\'\xaf\xc5\xad|\xb6j\xa8n\xdd0\x80\xa5\x1bj\xadSj\x8f\x83\x90j\xa5\n1\x1ak@\xf1\xa7!\xb3g\x99\xdbN\xedi\x18\r\x17\xac\xafkd|\xde\xd6\xd5\xf3\xaf7t\xcfn\xf6\xbf];\xdeX%\x89\xde\xb2\\\xb1\x13\xc1q\xd77 \x92\xcd)uP-\r\xd0\x8fo\xb7F\x12\x07O\x04\xa5VE=\xf8\xfd\xf57\xfa\xfbM\xa7\xc7\xcb\x87\xeb\xd73Q\xa9\x1dG\xfd\xe9g\x0f\x81\xbd\x1d\xa1\x9f\xa0\xdd\x1e\xf8+\x0f\\\xe3\xde\xe2\xe3\x98\x88J_>\xd2\xb0\xe1\xa6s\xf1V\x0c\xb4\xecz=\xd3-\x9d\'\tH\xb4z6\x89\x84t8\xf2\xef\x0f\xba\x10\xf3\x0b\xd10\xa0W\xfc\x1e\xaa\xa5\xcer\xc9`\xa0\xbd\xd7\xef/\x88\x7f`MmP\x80\x00\x80w\xcf\x9b\x8f\n)6\xd9\xe1#\xc8\xcc|h9\xa1I\x920jN\xc0\x7f\xa9\xc2\x9e\xb0\x8cRO\xba\xef_\xfd\xee-\xb5\xf5p?\xd8\xfd\xd1\xdb\xffM [n`s\xcc\xf8\x1aDJVp\xc2\xd1|\x11z\xe5G\xf6\x80\x01\xfe\xa5{\xd1\xaa?\x1f\xceo\x87\xbdMX\xddX\xf3\x83\xa9\x13\xa7N\x83\xd97$\x0c\xb5\xe2\xab9\x06\x87;\x16":0\xad\xa9<-\xd0\xab\x8f\xd9s\xea\x0fs\xd9\x95\x0b\xea\xd9a\xafgn\xe7\xdbM{\xdfJ\x8bu:\xcc\xbb\xd0\xe5f\x1duE\xc31\xe3>\x90\xfb\xf6v\x1a\xb9\xa7\x13\xfa\xd9}\xe0\x9eN;d\xa3\xbe\xcb\xeb\x9f\x9b\xb4dU\xbd)\x80\x00\x80\xe7\xe0\xfa<Ms\xec\x03Y\x7f\xe5\x91\x88\x8c\x87\x963\x1f\xe4\x8e\x1b\xe6\x8a\xaa\x1d\xfe\xea\xc3P\xde6\x1b\x04\x83\xdb\x94_\x15E-\xfcN\xf9mM\xbc@\x1a\xf3\x96\xbd3\x97\x1c\xda\x1e\x02Y\x7f)\x98#\x12\x8e)\xf7@\xc4M\xb8E\x8c\xaa\x11\xfa\xc5?\x00\xba\xd7\x060\xd0\xa5\xfb\xf9\x81\xd8\x05\xdf>t\xdb\x9a \xd0F;\x8fm\\\xa4\tl#"[nj\x93\xc9S!Sr@\x11q\x83TT;\x8c\xabU0\x9a\xab\xed1\xe0\xcc\x9d\x06\xab\xe5\xd1s\x1e\xdf\x17\x90j\x0e\xa6q\xef\xf1\xcd\xf7\x08\x89\x1d\x00\xd9v\xb1\xa4\x88N\x86\x88\xea\xbb3@u]\x85\xf24\xdb\xd5\x150s\xab\xce\xf8f\xec]\x8fZ\x7f\xb1d\xbfM)\xffM\x9eF\xd8n\x87\xa1\x0f+b\xbe\xecg<\x18=\xfb\xe1\xd3A-^B\xd1\x97\x86\x13\x1b\x93\x13\x9c\xce\xcd\xa0\xb1y91\x98\xcb:\xbb\xd5\xc3)s\x1e\x0ezC\'t\xd7w\xef}\xcb\x95\x96\x1a\xff*\t\xb1fLa\xa1\xd4\xba+Mm\xcfe\x15=\x15>\xd7w\x0f\xb0+\x95[\x1e&I\xeb\x08\x948\xba\x85\x82\xdb\xc1\xf4\x97\xee\x19\xcb~\x15R\x7f\xcb\x8c\xce\xb6\x9eyor\x843\xe2\x7f\x88h\xc9(\x05cO\x8f\xaf\xe7{\tw<r)\xe4\x0e\xb0\x99\x1d\xef\xbe\xf0\xc1c$\xc5\x7f\x01\x94:J\x80ha\xc6?\xfcd\xc3\x91u%%%\xa6d\xd2\x99\x9e\r\xd6Q\xf9~\xa2\xc3\x1d\xf9#\x10=C\x80sD\x02\x01\xf8\xc0\xfc\x0b\xbd\xdb\xbb6v\xe6\x9f\xb6\x98\xd9\x96e\xd5\x98m\xb5[\xb2"d\xc4\xbf0\xe8I"\xc8\x91!\x110\x08\xfc\xab\x1e\xa3\xe7\xc5\xf8\xac\x15\xb5V\xb4iyyl\xdb\xc5m\xd9N-\xe2\xfb\x04z\x86\x08qa\nD\x17\xa0\xde\xf1\xeb\xea\xa71Y\xdf8ge\xdb\xb6\xd5+wT\xbe\x9f\xa8\xc5\xc5\x16\x93\xa0\xa7\xac\xcc\'\xbe\x85\x8d8\xc9\x8a\xdf\xf2\xb7wl0[5\x85\x1d \xd7SW\xdd\xde\xd9\xe4\xc0J",\'\xd0,KA\x00W0c+\xeb\xd8\x185\xa9\xa8\xdc\xee\xb1\x08\xbb\x8a\xfe\xb6+\xbb\xb3\x9d\xd2\xb1T\x10\n\x99\xb10\xd4\xd5\xc1\xcc\\M\x84\x83\x8aq\xc0g\xe8\xbb\xe2\xd3\xbe^\x13N\xfc\x87\xfd\x11\x0b\r\r\xbfK\x8eqD\xe6\x0b)g\x12c&\x882\x08\x9c\xc6\xa0\t\x00\x12@ \x02\xe2\xaf\xad\x86\xda\xc0`\x00\xad\x04nd\xd0\x150\x7f\xc6\x84Je\x18\x95\x9d\xba\xf7Tz\xfa\x9f4\x873\xbf\xff\x0f\xc1\x8d\x16\xfaVK\x86Y\x00\x00\x00\x00IEND\xaeB`\x82',(14,14))
 
       self.statpanevisible = False
       self.regionpanevisible = False
       self.levelpanevisible = False
       self.timepanevisible = False
       self.showsavegame = False
-      self.window.addWidget(PyminButton,"display","loadgamebutton",x=110,y=545,width=100,height=30,font=self.font,anchor="n",text="Load Game",command=self.loadG)
+      self.window.addWidget(PyminButton, 'display', 'loadgamebutton', x=110, y=545, width=100, height=30, font=self.font, anchor='n', text='Load Game', command=self.loadG)
       self.showloadgame = True
-      self.window.addWidget(PyminButton,"display","newgamebutton",x=110,y=580,width=100,height=30,font=self.font,anchor="n",text="New Game",command=self.newGameStart)
+      self.window.addWidget(PyminButton, 'display', 'newgamebutton', x=110, y=580, width=100, height=30, font=self.font, anchor='n', text='New Game', command=self.newGameStart)
       self.shownewgame = True
-      self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False,False]
-      self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
-      self.window.addHTMLScrolledText("display","textmain",x=200,y=210,width=622,height=430,font=self.font,border=False,text="Test",cursor="arrow",wrap="word")
+      self.buttonsVisible = [None, False, False, False, False, False, False, False, False, False, False, False, False, False]
+      self.amountLabelsVisible = [None, False, False, False, False, False, False, False, False, False, False, False, False]
+      self.window.addHTMLScrolledText('display', 'textmain', x=200, y=210, width=622, height=430, font=self.font, border=False, text='Test', cursor='arrow', wrap='word')
       self.pageShow = False
       self.moveitembuttonvisible = False
       self.moveitemamountvisible = False
       self.sidepanelvisible = False
       self.appearancebuttonvisible = False
-      self.window.addWidget(PyminButton,"display","themebutton",x=823,y=595,width=60,height=30,font=self.font,text="Theme",command=self.option1Event)
-      self.window.addWidget(PyminButton,"display","textsizedownbutton",x=906,y=595,width=30,height=30,font=("Times New Roman", 10),text="A",command=self.option2Event)
-      self.window.addWidget(PyminButton,"display","textsizeresetbutton",x=941,y=595,width=30,height=30,font=("Times New Roman", 12),text="A",command=self.option3Event)
-      self.window.addWidget(PyminButton,"display","textsizeupbutton",x=976,y=595,width=30,height=30,font=("Times New Roman", 14),text="A",command=self.option4Event)
-      self.window.addWidget(PyminButton,"display","textboldbutton",x=1023,y=595,width=30,height=30,font=self.font,text="B",command=self.option5Event)
-      self.window.addWidget(PyminButton,"display","textcolorbutton",x=1067,y=595,width=30,height=30,font=self.font,text="C",command=self.option6Event)
-      self.window.addWidget(PyminButton,"display","themebutton7",x=1124,y=595,width=30,height=30,font=self.font,text="O",command=self.option7Event)
+      self.window.addWidget(PyminButton, 'display', 'themebutton', x=823, y=595, width=60, height=30, font=self.font, text='Theme', command=self.option1Event)
+      self.window.addWidget(PyminButton, 'display', 'textsizedownbutton', x=906, y=595, width=30, height=30, font=('Times New Roman', 10), text='A', command=self.option2Event)
+      self.window.addWidget(PyminButton, 'display', 'textsizeresetbutton', x=941, y=595, width=30, height=30, font=('Times New Roman', 12), text='A', command=self.option3Event)
+      self.window.addWidget(PyminButton, 'display', 'textsizeupbutton', x=976, y=595, width=30, height=30, font=('Times New Roman', 14), text='A', command=self.option4Event)
+      self.window.addWidget(PyminButton, 'display', 'textboldbutton', x=1023, y=595, width=30, height=30, font=self.font, text='B', command=self.option5Event)
+      self.window.addWidget(PyminButton, 'display', 'textcolorbutton', x=1067, y=595, width=30, height=30, font=self.font, text='C', command=self.option6Event)
+      self.window.addWidget(PyminButton, 'display', 'themebutton7', x=1124, y=595, width=30, height=30, font=self.font, text='O', command=self.option7Event)
       self.option7Visible = True
       self.newSLDialogVisible = False
       self.nsldblindervisible = False
@@ -3724,11 +3741,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    open = MainTimeline
 
    @staticmethod
-   def boolToState(boolean:bool):
+   def boolToState(boolean: bool):
       '''
       Converts a boolean to a tkinter state. True -> normal. False -> disabled
       '''
-      return "normal" if boolean else "disabled"
+      return 'normal' if boolean else 'disabled'
 
    def keyPress(self, func, e):
       '''
@@ -3736,11 +3753,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       '''
       self.detailedDebug()
       if (key := ckeys.tkeventToJavascriptKeycode(e)) is not None:
-         if key == 16: #Shift
+         if key == 16:  # Shift
             self.shiftHeld = True
-         elif key == 17: #Ctrl
+         elif key == 17:  # Ctrl
             self.ctrlHeld = True
-         elif key == 18: #Alt
+         elif key == 18:  # Alt
             self.altHeld = True
          elif key == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
             self.close()
@@ -3752,11 +3769,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       Function activated on key release
       '''
       kc = ckeys.tkeventToJavascriptKeycode(e)
-      if kc == 16: #Shift
+      if kc == 16:  # Shift
          self.shiftHeld = False
-      if kc == 17:
+      if kc == 17:  # Ctrl
          self.ctrlHeld = False
-      if kc == 18: #Alt
+      if kc == 18:  # Alt
          self.altHeld = False
 
    def buttonEvent1(self, *e):
@@ -3864,7 +3881,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.hideUpDown()
       self.doListen()
 
-   def doListen(self):...
+   def doListen(self):
+      ...
 
    def side1Event(self):
       self.sideEvent(1)
@@ -3890,7 +3908,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    def side8Event(self):
       self.sideEvent(8)
 
-   def sideEvent(self, which:int):
+   def sideEvent(self, which: int):
       self.sideFocus = which
       if which == 1:
          self.appearanceGo()
@@ -3936,133 +3954,166 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       '''
       self.detailedDebug()
       keyEnabled = (self.keyboardTypingDisable and keyCode in self.hotkeysDisabled or not self.keyboardTypingDisable and keyCode not in self.hotkeysDisabled) or self.altHeld
-      if (keyCode == 103 or keyCode == 81) and keyEnabled and self.buttonsVisible[1]: #q, numpad7
+
+      # q, numpad7
+      if (keyCode == 103 or keyCode == 81) and keyEnabled and self.buttonsVisible[1]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(1)
-         elif self.window._children["button1"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 1
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 104 or keyCode == 87): #w, numpad8
+      # w, numpad8
+      elif (keyCode == 104 or keyCode == 87):
          if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
             self.nsldSelectionUp()
          elif keyEnabled and self.buttonsVisible[2]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                self.itemMove(2)
-            elif self.window._children["button2"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button2'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                self.buttonChoice = 2
                self.hideUpDown()
                self.doListen()
-      elif (keyCode == 105 or keyCode == 69) and keyEnabled and self.buttonsVisible[3]: #e, numpad9
+      # e, numpad9
+      elif (keyCode == 105 or keyCode == 69) and keyEnabled and self.buttonsVisible[3]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(3)
-         elif self.window._children["button3"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 3
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 109 or keyCode == 82) and keyEnabled and self.buttonsVisible[4]: #r, numpadMinus
-         if self.window._children["button4"].state == "normal":
+      # r, numpadMinus
+      elif (keyCode == 109 or keyCode == 82) and keyEnabled and self.buttonsVisible[4]:
+         if self.window._children['button4'].state == 'normal':
             self.buttonChoice = 4
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 100 or keyCode == 65) and keyEnabled and self.buttonsVisible[5]: #a, numpad4
+      # a, numpad4
+      elif (keyCode == 100 or keyCode == 65) and keyEnabled and self.buttonsVisible[5]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(5)
-         elif self.window._children["button5"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 5
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 101 or keyCode == 83): #s, numpad5
+      # s, numpad5
+      elif (keyCode == 101 or keyCode == 83):
          if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
             self.nsldSelectionDown()
          elif keyEnabled and self.buttonsVisible[6]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                self.itemMove(6)
-            elif self.window._children["button6"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button6'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                self.buttonChoice = 6
                self.hideUpDown()
                self.doListen()
-      elif (keyCode == 102 or keyCode == 68) and keyEnabled and self.buttonsVisible[7]: #d, numpad6
+      # d, numpad6
+      elif (keyCode == 102 or keyCode == 68) and keyEnabled and self.buttonsVisible[7]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(7)
-         elif self.window._children["button7"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 7
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 107 or keyCode == 70) and keyEnabled and self.buttonsVisible[8]: #f, numpadPlus
-         if self.window._children["button8"].state == "normal":
+      # f, numpadPlus
+      elif (keyCode == 107 or keyCode == 70) and keyEnabled and self.buttonsVisible[8]:
+         if self.window._children['button8'].state == 'normal':
             self.buttonChoice = 8
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 97 or keyCode == 90) and keyEnabled and self.buttonsVisible[9]: #z, numpad1
+      # z, numpad1
+      elif (keyCode == 97 or keyCode == 90) and keyEnabled and self.buttonsVisible[9]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(9)
-         elif self.window._children["button9"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 9
             self.hideUpDown()
             self.doListen() 
-      elif (keyCode == 98 or keyCode == 88) and keyEnabled and self.buttonsVisible[10]: #x, numpad2
+      # x, numpad2
+      elif (keyCode == 98 or keyCode == 88) and keyEnabled and self.buttonsVisible[10]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(10)
-         elif self.window._children["button10"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 10
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 99 or keyCode == 67) and keyEnabled and self.buttonsVisible[11]: #c, numpad3
+      # c, numpad3
+      elif (keyCode == 99 or keyCode == 67) and keyEnabled and self.buttonsVisible[11]:
          if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
             self.itemMove(11)
-         elif self.window._children["button11"].state == "normal" and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+         elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
             self.buttonChoice = 11
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 13 or keyCode == 86) and keyEnabled and self.buttonsVisible[12]: #v, numpadReturn
-         if self.window._children["button12"].state == "normal":
+      # v, numpadReturn
+      elif (keyCode == 13 or keyCode == 86) and keyEnabled and self.buttonsVisible[12]:
+         if self.window._children['button12'].state == 'normal':
             self.buttonChoice = 12
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 96 or keyCode == 66) and keyEnabled and self.buttonsVisible[13]: #numpade0, b
+      # numpade0, b
+      elif (keyCode == 96 or keyCode == 66) and keyEnabled and self.buttonsVisible[13]:
          if self.newSLDialogVisible and not self.nsldblindervisible or self.moveItemID != 0 and (self.inBag or self.inStash):
             self.buttonChoice = 13
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 37) and keyEnabled and not self.customthemecolor: #ArrowLeft
+      # ArrowLeft
+      elif (keyCode == 37) and keyEnabled and not self.customthemecolor:
          self.toggleTheme()
-      elif (keyCode == 38) and keyEnabled: #ArrowUp
+      # ArrowUp
+      elif (keyCode == 38) and keyEnabled:
          self.fontSizeUp()
-      elif (keyCode == 39) and keyEnabled and not self.customfontcolor: #ArrowRight
+      # ArrowRight
+      elif (keyCode == 39) and keyEnabled and not self.customfontcolor:
          self.toggleColor()
-      elif (keyCode == 40) and keyEnabled: #ArrowDown
+      # ArrowDown
+      elif (keyCode == 40) and keyEnabled:
          self.fontSizeDown()
-      elif (keyCode == 17) and keyEnabled: #Control
+      # Control
+      elif (keyCode == 17) and keyEnabled:
          self.fontSizeReset()
-      elif (keyCode == 190) and keyEnabled and self.option7Visible and self.window._children["themebutton7"].state == "normal": #.
+      # .
+      elif (keyCode == 190) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].state == 'normal':
          self.toggleSide()
-      elif (keyCode == 191) and keyEnabled: #/
+      # /
+      elif (keyCode == 191) and keyEnabled:
          self.toggleBold()
+      # F2
       elif (keyCode == 113) and keyEnabled and self.showsavegame:
          self.saveGo()
+      # F4
       elif (keyCode == 115) and keyEnabled and self.showloadgame:
          self.loadGo()
-      elif (keyCode == 8) and keyEnabled and self.shownewgame: #Backspace
+      # Backspace
+      elif (keyCode == 8) and keyEnabled and self.shownewgame:
          self.newGameGo()
-      elif (keyCode == 192 or keyCode == 111) and keyEnabled: #~, numpadDivide
+      # ~, numpadDivide
+      elif (keyCode == 192 or keyCode == 111) and keyEnabled:
          self.wiki.open()
-      elif (keyCode == 85 and self.currentState != 0 and keyEnabled): #u
+      # u
+      elif (keyCode == 85 and self.currentState != 0 and keyEnabled):
          self.sideEvent(1)
       elif self.showSide and self.currentState != 0 and keyEnabled:
-         if (keyCode == 73): #i
+         # i
+         if (keyCode == 73):
             self.sideEvent(2)
-         elif (keyCode == 79): #o
+         # o
+         elif (keyCode == 79):
             self.sideEvent(3)
-         elif (keyCode == 80): #p
+         # p
+         elif (keyCode == 80):
             self.sideEvent(4)
-         elif (keyCode == 72): #h
+         # h
+         elif (keyCode == 72):
             self.sideEvent(5)
-         elif (keyCode == 74): #j
+         # j
+         elif (keyCode == 74):
             self.sideEvent(6)
-         elif (keyCode == 75): #k
+         # k
+         elif (keyCode == 75):
             self.sideEvent(7)
-         elif (keyCode == 76): #l
+         # l
+         elif (keyCode == 76):
             self.sideEvent(8)
 
    def appearance(self):
@@ -4079,36 +4130,36 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.newGameGo()
 
    def toggleTheme(self):
-      if self.backgroundColor == "#FFFFFF":
-         self.backgroundColor = "#000000"
-      elif self.backgroundColor == "#000000":
-         self.backgroundColor = "#EF7DB6"
-      elif self.backgroundColor == "#EF7DB6":
-         self.backgroundColor = "#29705C"
-      elif self.backgroundColor == "#29705C":
-         self.backgroundColor = "#4248A6"
-      elif self.backgroundColor == "#4248A6":
-         self.backgroundColor = "#721717"
-      elif self.backgroundColor == "#721717":
-         self.backgroundColor = "#FFFFFF"
+      if self.backgroundColor == '#FFFFFF':
+         self.backgroundColor = '#000000'
+      elif self.backgroundColor == '#000000':
+         self.backgroundColor = '#EF7DB6'
+      elif self.backgroundColor == '#EF7DB6':
+         self.backgroundColor = '#29705C'
+      elif self.backgroundColor == '#29705C':
+         self.backgroundColor = '#4248A6'
+      elif self.backgroundColor == '#4248A6':
+         self.backgroundColor = '#721717'
+      elif self.backgroundColor == '#721717':
+         self.backgroundColor = '#FFFFFF'
       else:
-         self.backgroundColor =  "#FFFFFF"
+         self.backgroundColor =  '#FFFFFF'
       self.obackgroundcolor = self.backgroundColor
       self.savePreferences()
 
    def fontSizeDown(self):
-      if (self.fontSize > 3): #originally 4
+      if (self.fontSize > 3):  # originally 4
          self.fontSize -= 2
       self.updateText()
       self.savePreferences()
 
    def fontSizeReset(self):
-      self.fontSize = 11 #originally 14
+      self.fontSize = 11  # originally 14
       self.updateText()
       self.savePreferences()
 
    def fontSizeUp(self):
-      if (self.fontSize < 25): #originally 26
+      if (self.fontSize < 25):  # originally 26
          self.fontSize += 2
       self.updateText()
       self.savePreferences()
@@ -4119,30 +4170,30 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.savePreferences()
 
    def toggleColor(self):
-      if self.textColor == "#000000":
-         self.textColor = "#FFFFFF"
-      elif self.textColor == "#FFFFFF":
-         self.textColor = "#808080"
-      elif self.textColor == "#808080":
-         self.textColor = "#0000FF"
-      elif self.textColor == "#0000FF":
-         self.textColor = "#800080"
-      elif self.textColor == "#800080":
-         self.textColor = "#FF0000"
-      elif self.textColor == "#FF0000":
-         self.textColor = "#FFA500"
-      elif self.textColor == "#FFA500":
-         self.textColor = "#FFFF00"
-      elif self.textColor == "#FFFF00":
-         self.textColor = "#008000"
-      elif self.textColor == "#008000":
-         self.textColor = "#EF7DB6"
-      elif self.textColor == "#EF7DB6":
-         self.textColor = "#29705C"
-      elif self.textColor == "#29705C":
-         self.textColor = "#000000"
+      if self.textColor == '#000000':
+         self.textColor = '#FFFFFF'
+      elif self.textColor == '#FFFFFF':
+         self.textColor = '#808080'
+      elif self.textColor == '#808080':
+         self.textColor = '#0000FF'
+      elif self.textColor == '#0000FF':
+         self.textColor = '#800080'
+      elif self.textColor == '#800080':
+         self.textColor = '#FF0000'
+      elif self.textColor == '#FF0000':
+         self.textColor = '#FFA500'
+      elif self.textColor == '#FFA500':
+         self.textColor = '#FFFF00'
+      elif self.textColor == '#FFFF00':
+         self.textColor = '#008000'
+      elif self.textColor == '#008000':
+         self.textColor = '#EF7DB6'
+      elif self.textColor == '#EF7DB6':
+         self.textColor = '#29705C'
+      elif self.textColor == '#29705C':
+         self.textColor = '#000000'
       else:
-         self.textColor = "#000000"
+         self.textColor = '#000000'
       self.otextcolor = self.textColor
       self.updateText()
       self.savePreferences()
@@ -4166,107 +4217,121 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.detailedDebug()
 
    def savePreferences(self):
-      temp = {"game":{"theme":self.backgroundColor,"fontSize":self.fontSize,"fontBold":self.fontBold,"fontColor":self.textColor,"showSide":self.showSide,"nsldSortOrder":self.nsldSortOrder},"options":{"saveLocation":self.savelocation,"solMode":self.solonlymode,"fixedResMode":self.enforceSize,"customFontColor":self.customfontcolor,"oFontColor":self.otextcolor,"customThemeColor":self.customthemecolor,"oThemeColor":self.obackgroundcolor},"interface":{"useNiminTheme":self.useNiminTheme,"scrolledTextBorders":self.scrolledTextBorders,"originalNewGameButtonSize":self.oNewGameButton,"staticDoLevelUPButtons":self.staticdoLevelUPButtons,"useExpandedSaveDialog":self.useNewSaveLoadDialog,"useNewStash":self.useNewStash,"helpToWiki":self.helpToWiki,"doShopsReturn":self.doShopsReturn},"grammar":{"respectShowBalls":self.respectShowBalls,"femmeboyToFemboy":self.femmeboyToFemboy,"shemaleToFuta":self.shemaleToFuta,"ngrammar":self.ngrammar,"femmieMaleReplacement":self.femmieMaleReplacement,"femboyishToGirly":self.femboyishToGirly,"snuggleBallTweak":self.snuggleBallTweak,"grammarFixes":self.grammarFixes},"gameTweaks":{"statusTweaks":self.statusTweaks,"succubusLeavesOne":self.succubusLeavesOne,"useIsBottomOpen":self.useIsBottomOpen,"lizanDontShowBalls":self.lizanDontShowBalls,"hermGetsBoth":self.hermGetsBoth,"intBallsEffectBelly":self.internalBallsEffectBelly,"directPathToSanc":self.directPathToSanctuary,"correctBeastRaceFeet":self.correctBeastRaceFeet,"miscChanges":self.gameTweaksMisc},"debugTweaks":{"chooseSenario":self.debugChooseSenario,"noDamage":self.debugNoDamage}}
-      TOML.write(GAME_DIR / "Nimin_Prefs.toml", temp)
+      temp = {
+         'game': {'theme': self.backgroundColor, 'fontSize': self.fontSize, 'fontBold': self.fontBold, 'fontColor': self.textColor, 'showSide': self.showSide, 'nsldSortOrder': self.nsldSortOrder},
+         'options': {'saveLocation': self.savelocation, 'solMode': self.solonlymode, 'fixedResMode': self.enforceSize, 'customFontColor': self.customfontcolor, 'oFontColor': self.otextcolor, 'customThemeColor': self.customthemecolor, 'oThemeColor': self.obackgroundcolor},
+         'interface': {'useNiminTheme': self.useNiminTheme, 'scrolledTextBorders': self.scrolledTextBorders, 'originalNewGameButtonSize': self.oNewGameButton, 'staticDoLevelUPButtons': self.staticdoLevelUPButtons, 'useExpandedSaveDialog': self.useNewSaveLoadDialog, 'useNewStash': self.useNewStash, 'helpToWiki': self.helpToWiki, 'doShopsReturn': self.doShopsReturn},
+         'grammar': {'respectShowBalls': self.respectShowBalls, 'femmeboyToFemboy': self.femmeboyToFemboy, 'shemaleToFuta': self.shemaleToFuta, 'ngrammar': self.ngrammar, 'femmieMaleReplacement': self.femmieMaleReplacement, 'femboyishToGirly': self.femboyishToGirly, 'snuggleBallTweak': self.snuggleBallTweak, 'grammarFixes': self.grammarFixes},
+         'gameTweaks': {'statusTweaks': self.statusTweaks, 'succubusLeavesOne': self.succubusLeavesOne, 'useIsBottomOpen': self.useIsBottomOpen, 'lizanDontShowBalls': self.lizanDontShowBalls, 'hermGetsBoth': self.hermGetsBoth, 'intBallsEffectBelly': self.internalBallsEffectBelly, 'directPathToSanc': self.directPathToSanctuary, 'correctBeastRaceFeet': self.correctBeastRaceFeet, 'miscChanges': self.gameTweaksMisc},
+         'debugTweaks': {'chooseSenario': self.debugChooseSenario, 'noDamage': self.debugNoDamage}
+      }
+      TOML.write(GAME_DIR / 'Nimin_Prefs.toml', temp)
 
    def loadPreferences(self):
       sp = False
-      if (GAME_DIR / "Nimin_Prefs.toml").is_file():
-         with (GAME_DIR / "Nimin_Prefs.toml").open("rb") as f:
+      if (GAME_DIR / 'Nimin_Prefs.toml').is_file():
+         with (GAME_DIR / 'Nimin_Prefs.toml').open('rb') as f:
             temp = TOML.readFile(f)
-         game = temp.get("game",{})
-         self.fontSize = int(game.get("fontSize",11))
-         self.fontBold = bool(game.get("fontBold",False))
-         tempTheme = str(game.get("theme","#FFFFFF"))
-         tempFontColor = str(game.get("fontColor","#000000"))
+         game = temp.get('game', {})
+         self.fontSize = int(game.get('fontSize', 11))
+         self.fontBold = bool(game.get('fontBold', False))
+         tempTheme = str(game.get('theme', '#FFFFFF'))
+         tempFontColor = str(game.get('fontColor', '#000000'))
          if SaveUtils.checkValidHex(tempTheme) and SaveUtils.checkValidHex(tempFontColor):
             self.backgroundColor = tempTheme
             self.textColor = tempFontColor
          else:
             sp = True
-         self.showSide = bool(game.get("showSide",True))
-         self.nsldSortOrder = int(game.get("nsldSortOrder",0))
-         options = temp.get("options",{})
-         tempdir = Path(options.get("saveLocation",self.savelocation)).resolve()
+         self.showSide = bool(game.get('showSide', True))
+         self.nsldSortOrder = int(game.get('nsldSortOrder', 0))
+
+         options = temp.get('options', {})
+         tempdir = Path(options.get('saveLocation', self.savelocation)).resolve()
          if isValidDirectory(tempdir):
             self.savelocation = tempdir
          else:
-            trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
+            # TODO: Phrase this warning better
+            trace('Warning: [PyminMain.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
             sp = True
-         self.solonlymode = bool(options.get("solMode",False))
-         self.enforceSize = bool(options.get("fixedResMode",False))
-         self.customfontcolor = bool(options.get("customFontColor",False))
-         self.otextcolor = str(options.get("oFontColor","#FFFFFF"))
-         self.customthemecolor = bool(options.get("customThemeColor",False))
+         self.solonlymode = bool(options.get('solMode', False))
+         self.enforceSize = bool(options.get('fixedResMode', False))
+         self.customfontcolor = bool(options.get('customFontColor', False))
+         self.otextcolor = str(options.get('oFontColor', '#FFFFFF'))
+         self.customthemecolor = bool(options.get('customThemeColor', False))
          if 'themebutton' in self.window._children:
-            self.window._children["textcolorbutton"].state = self.boolToState(not self.customfontcolor)
-            self.window._children["themebutton"].state = self.boolToState(not self.customthemecolor)
-         self.obackgroundcolor = str(options.get("oThemeColor","#000000"))
-         interface = temp.get("interface",{})
-         self.useNiminTheme = bool(interface.get("useNiminTheme",False))
-         self.scrolledTextBorders = bool(interface.get("scrolledTextBorders",False))
-         self.oNewGameButton = bool(interface.get("originalNewGameButtonSize",False))
-         self.staticdoLevelUPButtons = bool(interface.get("staticDoLevelUPButtons",False))
-         self.useNewSaveLoadDialog = bool(interface.get("useExpandedSaveDialog",False))
-         self.useNewStash = bool(interface.get("useNewStash",False))
-         self.helpToWiki = bool(interface.get("helpToWiki",False))
-         self.doShopsReturn = bool(interface.get("doShopsReturn",False))
-         grammar = temp.get("grammar",{})
-         self.respectShowBalls = bool(grammar.get("respectShowBalls",False))
-         self.femmeboyToFemboy = bool(grammar.get("femmeboyToFemboy",False))
-         self.shemaleToFuta = bool(grammar.get("shemaleToFuta",False))
-         self.ngrammar = bool(grammar.get("ngrammar",False))
-         self.femmieMaleReplacement = int(grammar.get("femmieMaleReplacement",0))
-         self.femboyishToGirly = bool(grammar.get("femboyishToGirly",False))
-         self.snuggleBallTweak = bool(grammar.get("snuggleBallTweak",False))
-         self.grammarFixes = bool(grammar.get("grammarFixes",False))
-         gt = temp.get("gameTweaks",{})
-         self.statusTweaks = bool(gt.get("statusTweaks",False))
-         self.succubusLeavesOne = bool(gt.get("succubusLeavesOne",False))
-         self.useIsBottomOpen = bool(gt.get("useIsBottomOpen",False))
-         self.lizanDontShowBalls = bool(gt.get("lizanDontShowBalls",False))
-         self.hermGetsBoth = bool(gt.get("hermGetsBoth",False))
-         self.internalBallsEffectBelly = bool(gt.get("intBallsEffectBelly",False))
-         self.directPathToSanctuary = bool(gt.get("directPathToSanc",False))
-         self.correctBeastRaceFeet = bool(gt.get("correctBeastRaceFeet",False))
-         self.gameTweaksMisc = bool(gt.get("miscChanges",False))
-         dt = temp.get("debugTweaks",{})
-         self.debugChooseSenario = bool(dt.get("chooseSenario",False))
-         self.debugNoDamage = bool(dt.get("noDamage",False))
+            self.window._children['textcolorbutton'].state = self.boolToState(not self.customfontcolor)
+            self.window._children['themebutton'].state = self.boolToState(not self.customthemecolor)
+         self.obackgroundcolor = str(options.get('oThemeColor', '#000000'))
+
+         interface = temp.get('interface', {})
+         self.useNiminTheme = bool(interface.get('useNiminTheme', False))
+         self.scrolledTextBorders = bool(interface.get('scrolledTextBorders', False))
+         self.oNewGameButton = bool(interface.get('originalNewGameButtonSize', False))
+         self.staticdoLevelUPButtons = bool(interface.get('staticDoLevelUPButtons', False))
+         self.useNewSaveLoadDialog = bool(interface.get('useExpandedSaveDialog', False))
+         self.useNewStash = bool(interface.get('useNewStash', False))
+         self.helpToWiki = bool(interface.get('helpToWiki', False))
+         self.doShopsReturn = bool(interface.get('doShopsReturn', False))
+
+         grammar = temp.get('grammar', {})
+         self.respectShowBalls = bool(grammar.get('respectShowBalls', False))
+         self.femmeboyToFemboy = bool(grammar.get('femmeboyToFemboy', False))
+         self.shemaleToFuta = bool(grammar.get('shemaleToFuta', False))
+         self.ngrammar = bool(grammar.get('ngrammar', False))
+         self.femmieMaleReplacement = int(grammar.get('femmieMaleReplacement', 0))
+         self.femboyishToGirly = bool(grammar.get('femboyishToGirly', False))
+         self.snuggleBallTweak = bool(grammar.get('snuggleBallTweak', False))
+         self.grammarFixes = bool(grammar.get('grammarFixes', False))
+
+         gt = temp.get('gameTweaks', {})
+         self.statusTweaks = bool(gt.get('statusTweaks', False))
+         self.succubusLeavesOne = bool(gt.get('succubusLeavesOne', False))
+         self.useIsBottomOpen = bool(gt.get('useIsBottomOpen', False))
+         self.lizanDontShowBalls = bool(gt.get('lizanDontShowBalls', False))
+         self.hermGetsBoth = bool(gt.get('hermGetsBoth', False))
+         self.internalBallsEffectBelly = bool(gt.get('intBallsEffectBelly', False))
+         self.directPathToSanctuary = bool(gt.get('directPathToSanc', False))
+         self.correctBeastRaceFeet = bool(gt.get('correctBeastRaceFeet', False))
+         self.gameTweaksMisc = bool(gt.get('miscChanges', False))
+
+         dt = temp.get('debugTweaks', {})
+         self.debugChooseSenario = bool(dt.get('chooseSenario', False))
+         self.debugNoDamage = bool(dt.get('noDamage', False))
       elif (GAME_DIR / "Nimin_Prefs.xml").is_file():
-         def strtolistbools(a:str):
-            if a[0] in {"[","("}:
+         def strtolistbools(a: str):
+            if a.startswith(('[', '(')):
                a = a[1:-1]
-            b = a.split(", ")
-            if len(b) == 1 and b[0] == "":
+            b = a.split(', ')
+            if len(b) == 1 and b[0] == '':
                return []
             return [strtobool(i) for i in b]
-         prefs = xmletree.parse((GAME_DIR / "Nimin_Prefs.xml").resolve()).getroot()
-         self.fontSize = int(prefs.find("fontSize").text)
-         self.fontBold = strtobool(prefs.find("fontBold").text)
-         temptheme = prefs.find("theme").text
-         tempfontColor = prefs.find("fontColor").text
+         prefs = xmletree.parse((GAME_DIR / 'Nimin_Prefs.xml').resolve()).getroot()
+         self.fontSize = int(prefs.find('fontSize').text)
+         self.fontBold = strtobool(prefs.find('fontBold').text)
+         temptheme = prefs.find('theme').text
+         tempfontColor = prefs.find('fontColor').text
          if (SaveUtils.checkValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and SaveUtils.checkValidHex(tempfontColor):
             if (temptheme.isdecimal() and len(temptheme) == 1):
-               self.backgroundColor = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[int(temptheme)]
+               self.backgroundColor = ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[int(temptheme)]
             else:
                self.backgroundColor = temptheme
             self.textColor = tempfontColor
          else:
-            self.backgroundColor = "#FFFFFF"
-            self.textColor = "#000000"
-         self.showSide = strtobool(prefs.find("showSide").text)
-         if prefs.find("saveLocation") is not None:
-            tempdir = Path(prefs.find("saveLocation").text).resolve()
+            self.backgroundColor = '#FFFFFF'
+            self.textColor = '#000000'
+         self.showSide = strtobool(prefs.find('showSide').text)
+         if prefs.find('saveLocation') is not None:
+            tempdir = Path(prefs.find('saveLocation').text).resolve()
             if isValidDirectory(tempdir):
                self.savelocation = tempdir
             else:
-               trace("Warning: Pymin.loadPreferences; saveLocation is not a valid path. Value will not be changed.")
-         self.solonlymode = False if prefs.find("solMode") is None else strtobool(prefs.find("solMode").text)
-         if prefs.find("gameTweaks") is not None:
-            tempgametweaks = strtolistbools(prefs.find("gameTweaks").text)
+               # TODO: Phrase this warning better
+               trace('Warning: [PyminMain.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
+         self.solonlymode = False if prefs.find('solMode') is None else strtobool(prefs.find('solMode').text)
+         if prefs.find('gameTweaks') is not None:
+            tempgametweaks = strtolistbools(prefs.find('gameTweaks').text)
             if len(tempgametweaks) < 12:
-               tempgametweaks.extend((False for i in range(12-len(tempgametweaks))))
+               tempgametweaks.extend([False] * (12 - len(tempgametweaks)))
             self.grammarFixes = tempgametweaks[0]
             self.statusTweaks = tempgametweaks[1]
             self.succubusLeavesOne = tempgametweaks[2]
@@ -4279,40 +4344,40 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.correctBeastRaceFeet = tempgametweaks[9]
             self.useNewStash = tempgametweaks[10]
             self.gameTweaksMisc = tempgametweaks[11]
-         self.enforceSize = False if prefs.find("fixedResMode") is None else strtobool(prefs.find("fixedResMode").text)
-         if prefs.find("customFontColor") is not None and prefs.find("oFontColor") is not None:
-            self.customfontcolor = strtobool(prefs.find("customFontColor").text)
-            self.window._children["textcolorbutton"].state = self.boolToState(not self.customfontcolor)
+         self.enforceSize = False if prefs.find('fixedResMode') is None else strtobool(prefs.find('fixedResMode').text)
+         if prefs.find('customFontColor') is not None and prefs.find('oFontColor') is not None:
+            self.customfontcolor = strtobool(prefs.find('customFontColor').text)
+            self.window._children['textcolorbutton'].state = self.boolToState(not self.customfontcolor)
             self.otextcolor = prefs.find('oFontColor').text
          if prefs.find('customThemeColor') is not None and prefs.find('oThemeColor') is not None:
-            self.customthemecolor = strtobool(prefs.find("customThemeColor").text)
-            self.window._children["themebutton"].state = self.boolToState(not self.customthemecolor)
+            self.customthemecolor = strtobool(prefs.find('customThemeColor').text)
+            self.window._children['themebutton'].state = self.boolToState(not self.customthemecolor)
             self.obackgroundcolor = prefs.find('oThemeColor').text
-         if prefs.find("debugTweaks") is not None:
-            tempdebugtweaks = strtolistbools(prefs.find("debugTweaks").text)
+         if prefs.find('debugTweaks') is not None:
+            tempdebugtweaks = strtolistbools(prefs.find('debugTweaks').text)
             if len(tempdebugtweaks) < 2:
-               tempdebugtweaks.extend((False for i in range(2-len(tempdebugtweaks))))
+               tempdebugtweaks.extend([False] * (2 - len(tempdebugtweaks)))
             self.debugChooseSenario = tempdebugtweaks[0]
             self.debugNoDamage = tempdebugtweaks[1]
-         if prefs.find("nsldSortOrder") is not None:
-            self.nsldSortOrder = int(prefs.find("nsldSortOrder").text)
-         if prefs.find("themeType") is not None:
-            if int(prefs.find("themeType").text) in {0,1}:
-               self.useNiminTheme = bool(prefs.find("themeType").text)
+         if prefs.find('nsldSortOrder') is not None:
+            self.nsldSortOrder = int(prefs.find('nsldSortOrder').text)
+         if prefs.find('themeType') is not None:
+            if int(prefs.find('themeType').text) in {0, 1}:
+               self.useNiminTheme = bool(prefs.find('themeType').text)
             else:
                self.useNiminTheme = False
-         if prefs.find("interfaceToggles") is not None:
-            tempitoggle = strtolistbools(prefs.find("interfaceToggles").text)
+         if prefs.find('interfaceToggles') is not None:
+            tempitoggle = strtolistbools(prefs.find('interfaceToggles').text)
             if len(tempitoggle) < 4:
-               tempitoggle.extend((False for i in range(4-len(tempitoggle))))
+               tempitoggle.extend([False] * (4 - len(tempitoggle)))
             self.scrolledTextBorders = tempitoggle[1]
             self.oNewGameButton = tempitoggle[2]
             self.staticdoLevelUPButtons = tempitoggle[3]
          sp = True
-      elif (GAME_DIR / "Nimin_Prefs.sol").is_file():
-         so = sol.load(str(GAME_DIR / "Nimin_Prefs.sol"))
-         prefLoad = so["prefs"]
-         self.backgroundColor = ("#FFFFFF","#000000","#EF7DB6","#29705C","#4248A6","#721717")[prefLoad[0]]
+      elif (GAME_DIR / 'Nimin_Prefs.sol').is_file():
+         so = sol.load(str(GAME_DIR / 'Nimin_Prefs.sol'))
+         prefLoad = so['prefs']
+         self.backgroundColor = ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[prefLoad[0]]
          self.fontSize = prefLoad[1]
          self.fontBold = prefLoad[2]
          self.textColor = prefLoad[3]
@@ -4320,17 +4385,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          sp = True
       else:
          sp = True
-      DirUtils.makeDir(self.savelocation,True)
+      DirUtils.makeDir(self.savelocation, True)
       if sp:
          self.savePreferences()
       if self.useNiminTheme and THEME_DIR.is_dir():
-         self.style.theme_use("nimin")
+         self.style.theme_use('nimin')
 
-   def outputMainText(self, texts:str, reset:bool=False, *textCheck):
-      self.doMainText(texts,reset,*textCheck)
+   def outputMainText(self, texts: str, reset: bool = False, *textCheck):
+      self.doMainText(texts, reset, *textCheck)
       self.displayMainText()
 
-   def doMainText(self, texts:str, reset:bool=False, *textCheck):
+   def doMainText(self, texts: str, reset: bool = False, *textCheck):
       if (reset):
          self.currentText.clear()
          self.currentText.write(texts)
@@ -4339,7 +4404,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.currentText.write(texts)
          self.textCheckArray.push(*textCheck)
 
-   def outputSideText(self, texts:str, reset:bool):
+   def outputSideText(self, texts: str, reset: bool):
       if (reset):
          self.sideText.clear()
       self.sideText.write(texts)
@@ -4361,19 +4426,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif self.sideFocus == 8:
          self.detailedCredits()
 
-   def choiceListButtons(self, which:str, page:int=None):
-      tempDict = {12:"Return"}
-      buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
-      if (which == "Bag"):
-         tempArray = tuple(self.itemName(i) if i else " " for i in each(self.bagArray))
+   def choiceListButtons(self, which: str, page: int = None):
+      tempDict = {12: 'Return'}
+      buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+      if (which == 'Bag'):
+         tempArray = tuple(self.itemName(i) if i else ' ' for i in each(self.bagArray))
          if (self.inBag):
             self.choicePage = self.bagPage
          elif (self.mtb):
             self.choicePage = self.tempBagPage
          elif (page is not None):
             self.choicePage = page
-      elif (which == "Stash"):
-         tempArray = tuple(self.itemName(i) if i else " " for i in each(self.stashArray))
+      elif (which == 'Stash'):
+         tempArray = tuple(self.itemName(i) if i else ' ' for i in each(self.stashArray))
          if (self.inStash):
             self.choicePage = self.stashPage
          elif (self.mts):
@@ -4383,47 +4448,47 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if (len(tempArray) > 9):
          buttonlist[4] = 1
          buttonlist[8] = 1
-         tempDict.update({4:"<<",8:">>"})
+         tempDict.update({4: '<<', 8: '>>'})
          self.showPage(which)
       for i in range(9):
          tempI = i + (self.choicePage * 9 - 9)
          if tempArray[tempI]:
             tempInt = self.bMap[i]
             buttonlist[tempInt] = 1
-            if (tempArray[tempI] != " "):
+            if (tempArray[tempI] != ' '):
                tempDict[tempInt] = tempArray[tempI]
-      if (which in {"Bag","Stash"}):
-         self.showButtonsBag(tempDict,which,not self.inShop)
+      if (which in {'Bag', 'Stash'}):
+         self.showButtonsBag(tempDict, which, not self.inShop)
       else:
          self.showButtons(buttonlist)
          self.doButtonChoices(tempDict)
 
-   def showButtonsBag(self, buttonText, which:str, discardButton:bool):
+   def showButtonsBag(self, buttonText, which: str, discardButton: bool):
       self.detailedDebug()
       if discardButton:
          self.showDiscard()
       else:
          self.hideDiscard()
-      temparr = self.bagStackArray if which == "Bag" else self.stashStackArray
-      for i in range(1,13):
-         text = buttonText.get(i,'')
+      temparr = self.bagStackArray if which == 'Bag' else self.stashStackArray
+      for i in range(1, 13):
+         text = buttonText.get(i, '')
          if self.buttonsVisible[i]:
-            self.window._children[f"button{i}"].state = "normal"
-            self.window._children[f"button{i}"].text = text
+            self.window._children[f'button{i}'].state = 'normal'
+            self.window._children[f'button{i}'].text = text
          else:
             tempcalc = Calc.showButtons(i)
-            self.window.addWidget(PyminButton,"display",f"button{i}",x=tempcalc[0],y=tempcalc[1],width=140,height=46,font=self.font,text=text,command=partial(self.buttonExecProxy,i))
+            self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, text=text, command=partial(self.buttonExecProxy, i))
             self.buttonsVisible[i] = True
-         if i not in {4,8,12}:
+         if i not in {4, 8, 12}:
             tempI = Calc.showButtonsBag(i, self.choicePage)
             if (text and temparr[tempI] > 1):
                self.showAmount(i)
-               self.writeAmount(i, f"{temparr[tempI]}")
+               self.writeAmount(i, f'{temparr[tempI]}')
             else:
                self.hideAmount(i)
 
    def bagDisableEmpty(self):
-      self.disableSelectedButtons([i for i in self.bMap if self.window._children[f"button{i}"].text in {""," "}])
+      self.disableSelectedButtons([i for i in self.bMap if self.window._children[f'button{i}'].text in {'', ' '}])
 
    def choiceListBlanks(self):
       #dlist = [1,2,3,5,6,7,9,10,11]
@@ -4432,24 +4497,24 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       #      dlist.remove(i)
       self.disableSelectedButtons(i for i in self.bMap if not self.buttonsVisible[i])
 
-   def choiceListSelect(self, which:str, hideOverride:bool=False):
-      if which == "Bag":
+   def choiceListSelect(self, which: str, hideOverride: bool = False):
+      if which == 'Bag':
          tempArray = self.bagArray
-      elif which == "Stash":
+      elif which == 'Stash':
          tempArray = self.stashArray
       else:
          tempArray = self.choiceListArray
-      if self.buttonChoice in {12,13}:
+      if self.buttonChoice in {12, 13}:
          tempInt = 0
       else:
-         tempInt = self.buttonChoice - (1+Math.floor(self.buttonChoice/4))
-      if self.buttonChoice in {4,8,12}:
-         self.choiceListResult[0] = ""
+         tempInt = self.buttonChoice - (1 + Math.floor(self.buttonChoice / 4))
+      if self.buttonChoice in {4, 8, 12}:
+         self.choiceListResult[0] = ''
          self.choiceListResult[1] = -1
       else:
          self.choiceListResult[0] = tempArray[tempInt + (self.choicePage * 9 - 9)]
          self.choiceListResult[1] = tempInt + (self.choicePage * 9 - 9)
-      if which not in {"Bag","Stash"} and hideOverride == False:
+      if which not in {'Bag', 'Stash'} and not hideOverride:
          self.hideAmountAll()
       if self.buttonChoice == 4:
          if (self.choicePage > 1):
@@ -4482,16 +4547,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       return (self.choiceListArray.indexOf(which) >= self.choicePage * 9 - 9 and self.choiceListArray.indexOf(which) < self.choicePage * 9)
 
    def showPage(self, which):
-      text = f"{which}: {self.choicePage}"
+      text = f'{which}: {self.choicePage}'
       if (self.pageShow):
-         self.window._children["pagelabel"].text = text
+         self.window._children['pagelabel'].text = text
       else:
-         self.window.addWidget(PyminLabel,"display","pagelabel",x=843,y=30,width=120,height=30,font=self.font,text=text)
+         self.window.addWidget(PyminLabel, 'display', 'pagelabel', x=843, y=30, width=120, height=30, font=self.font, text=text)
          self.pageShow = True
 
    def hidePage(self):
       if (self.pageShow):
-         self.window.destroyChild("pagelabel")
+         self.window.destroyChild('pagelabel')
          self.pageShow = False
 
    def checkZero(self):
@@ -4571,35 +4636,35 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.pregArray.push(False,0,0,0,0)
 
    def checkDecimal(self):
-      self.cumMod = cmath.roundedmultdivide(self.cumMod,10,10)
-      self.cockSizeMod = cmath.roundedmultdivide(self.cockSizeMod,100,100)
-      self.vagSizeMod = cmath.roundedmultdivide(self.vagSizeMod,100,100)
-      self.vagElastic = cmath.roundedmultdivide(self.vagElastic,10,10)
-      self.changeMod = cmath.roundedmultdivide(self.changeMod,10,10)
-      self.SexPMod = cmath.roundedmultdivide(self.SexPMod,10,10)
-      self.pregRate = cmath.roundedmultdivide(self.pregRate,100,100)
+      self.cumMod = Math.round(self.cumMod * 10) / 10
+      self.cockSizeMod = Math.round(self.cockSizeMod * 100) / 100
+      self.vagSizeMod = Math.round(self.vagSizeMod * 100) / 100
+      self.vagElastic = Math.round(self.vagElastic * 10) / 10
+      self.changeMod = Math.round(self.changeMod * 10) / 10
+      self.SexPMod = Math.round(self.SexPMod * 10) / 10
+      self.pregRate = Math.round(self.pregRate * 100) / 100
 
    def bc(self):
       self.clearTextAllButtons()
       self.buttonChoice = 0
 
-   def buttonConfirm(self, b6:bool=True, b7:bool=True):
+   def buttonConfirm(self, b6: bool = True, b7: bool = True):
       self.detailedDebug()
-      self.showButtons(ButtonList(0,0,0,0,0,1,1,0,0,0,0,0))
-      self.buttonWrite(6,"Yes") if b6 else self.disableOneButton(6)
-      self.buttonWrite(7,"No") if b7 else self.disableOneButton(7)
+      self.showButtons(ButtonList(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0))
+      self.buttonWrite(6, 'Yes') if b6 else self.disableOneButton(6)
+      self.buttonWrite(7, 'No') if b7 else self.disableOneButton(7)
 
    def doNext(self):
       self.detailedDebug()
-      self.showButtons(ButtonList(0,0,0,0,0,1,0,0,0,0,0,0))
-      self.buttonWrite(6,"Next")
+      self.showButtons(ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0))
+      self.buttonWrite(6, 'Next')
 
    def doLeave(self):
       self.detailedDebug()
-      self.showButtons(ButtonList(0,0,0,0,0,0,0,0,0,0,0,1))
-      self.buttonWrite(12,"Leave")
+      self.showButtons(ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1))
+      self.buttonWrite(12, 'Leave')
 
-   def doEnd(self, leave:bool=False):
+   def doEnd(self, leave: bool = False):
       self.detailedDebug()
       self.choicePage = 1
       self.hidePage()
@@ -4621,7 +4686,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.doProcess()
          self.doListen = doListen
 
-   def doButtonChoices(self, buttondict:dict):
+   def doButtonChoices(self, buttondict: dict):
       '''
       Replacement for viewButtonText
 
@@ -4631,13 +4696,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       '''
       self.detailedDebug()
       self.bc()
-      dlist = [1,2,3,4,5,6,7,8,9,10,11,12]
+      dlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
       for k,v in buttondict.items():
          dlist.remove(k)
          self.buttonWrite(k,v)
       self.disableSelectedButtons(dlist)
 
-   def doProcess(self, override=None):
+   def doProcess(self, override = None):
       if self.goToInDoProcess != -1:
          self.regionChange(self.goToInDoProcess)
          self.goToInDoProcess = -1
@@ -4645,16 +4710,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.choicePage = 1
       if (not (self.inBag or self.inStash) and self.moveItemID != 0):
          self.hideAmountAll()
-         self.doMainText(f"You seem to have not placed your {self.itemName(self.moveItemID)}",True)
+         self.doMainText(f'You seem to have not placed your {self.itemName(self.moveItemID)}',True)
          if (self.moveItemStack > 1):
-            self.doMainText(f" x{self.moveItemStack}")
-         self.outputMainText(f" in your bag. Do you want to discard the item?")
+            self.doMainText(f' x{self.moveItemStack}')
+         self.outputMainText(f' in your bag. Do you want to discard the item?')
          self.buttonConfirm()
          def doListen():
             if (self.buttonChoice == 6):
                self.passiveItemRemove(self.moveItemID)
             else:
-               self.addManyItem(self.moveItemID,self.moveItemStack)
+               self.addManyItem(self.moveItemID, self.moveItemStack)
                self.moveItemID = 0
                self.moveItemStack = 0
                self.showMoveItem(False)
@@ -4665,14 +4730,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif (self.itemGainArray.length):
          self.itemGainArray.sort(16)
          self.gainItem(self.itemGainArray.pop())
-      elif any((self.human,self.horse,self.wolf,self.cat,self.cow,self.lizard,self.rabbit,self.mouse,self.bird,self.pig,self.skunk,self.bug)):
+      elif any((self.human, self.horse, self.wolf, self.cat, self.cow, self.lizard, self.rabbit, self.mouse, self.bird, self.pig, self.skunk, self.bug)):
          self.affinityChange()
       elif (self.hrs != 0):
          self.dayTime(self.hrs)
       else:
          self.doReturn()
 
-   def doReturn(self, djp=True):
+   def doReturn(self, djp: bool = True):
       self.mts = False
       self.mtb = False
       self.choicePage = 1
@@ -4699,7 +4764,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif (self.currentState == 1):
          self.doGeneral(djp)
 
-   def moistCalc(self, which:int):
+   def moistCalc(self, which: int):
       if (which == 1):
          tempNum = self.cockMoist + self.cockMoistMod
       elif (which == 2):
@@ -4720,13 +4785,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    def eVagLimit(self, limit:int):
       return limit + limit * self.moistCalc(1) / 10
 
-   def decGet(self, number:Number, places:int):
+   def decGet(self, number: Number, places: int):
       '''
       Function to return a number as a string with the selectected number of decimal places intact.
       Does not add more if the amount of places is greater than it already has.
       '''
       tempStr = str(Number(number))
-      tempInt = tempStr.find(".")
+      tempInt = tempStr.find('.')
       if (tempInt > 0):
          if (places == 0):
             return tempStr[0: tempInt]
@@ -4792,7 +4857,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.displayMainText()
       return tempBool
 
-   def checkItem(self, ID:int):
+   def checkItem(self, ID: int):
       '''
       Checks if player has item ID in their bag
       '''
@@ -4802,18 +4867,18 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       '''
       Checks if player has a magic item in their bag
       '''
-      for i in {101,102,200,215,232,233,234,235,236,237,252}:
+      for i in {101, 102, 200, 215, 232, 233, 234, 235, 236, 237, 252}:
          if (self.checkItem(i)):
             return True
       return False
 
-   def checkStash(self, ID:int):
+   def checkStash(self, ID: int):
       '''
       Checks if player has item ID in their stash
       '''
       return ID in self.stashArray
 
-   def countItem(self, ID:int):
+   def countItem(self, ID: int):
       '''
       Counts how many of item ID player has in their bag
       '''
@@ -4823,7 +4888,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempInt += self.bagStackArray[i]
       return tempInt
 
-   def countStash(self, ID:int): #not currently used
+   # not currently used
+   def countStash(self, ID: int):
       '''
       Counts how many of item ID player has in their stash
       '''
@@ -4847,8 +4913,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if (self.rndArray.length < 1):
          self.rndResult = 0
          self.rndArray.clear()
-         self.outputMainText(f"\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you'll get the hose.")
-         raise Error(f"[PyminMain.chooseFrom] self.rndArray is empty. hour = {self.hour}")
+         self.outputMainText(f'\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you\'ll get the hose.')
+         raise Error(f'[PyminMain.chooseFrom] self.rndArray is empty. hour = {self.hour}')
       if self.gameTweaksMisc:
          self.rndResult = choice(self.rndArray)
       else:
@@ -4856,7 +4922,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.rndArray.clear()
       return self.rndResult
 
-   def stats(self, stre:int, menta:int, libi:int, sens:int):
+   def stats(self, stre: int, menta: int, libi: int, sens: int):
       '''
       Updates player stats and displays the up/down images
       '''
@@ -4893,24 +4959,24 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif (self.lust < 0):
          self.lust = 0
       if (stre > 0):
-         self.UpDownImage("str","up")
+         self.UpDownImage('str', 'up')
       elif (stre < 0):
-         self.UpDownImage("str","down")
+         self.UpDownImage('str', 'down')
       if (menta > 0):
-         self.UpDownImage("ment","up")
+         self.UpDownImage('ment', 'up')
       elif (menta < 0):
-         self.UpDownImage("ment","down")
+         self.UpDownImage('ment', 'down')
       if (libi > 0):
-         self.UpDownImage("lib","up")
+         self.UpDownImage('lib', 'up')
       elif (libi < 0):
-         self.UpDownImage("lib","down")
+         self.UpDownImage('lib', 'down')
       if (sens > 0):
-         self.UpDownImage("sen","up")
+         self.UpDownImage('sen', 'up')
       elif (sens < 0):
-         self.UpDownImage("sen","down")
+         self.UpDownImage('sen', 'down')
       self.statDisplay()
 
-   def statsMod(self, stre:int, menta:int, libi:int, sens:int):
+   def statsMod(self, stre: int, menta: int, libi: int, sens: int):
       '''
       Updates player stats modifiers and displays the up/down images
       '''
@@ -4921,24 +4987,24 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.libMod += libi
       self.senMod += sens
       if (stre > 0):
-         self.UpDownImage("str","up")
+         self.UpDownImage('str', 'up')
       elif (stre < 0):
-         self.UpDownImage("str","down")
+         self.UpDownImage('str', 'down')
       if (menta > 0):
-         self.UpDownImage("ment","up")
+         self.UpDownImage('ment', 'up')
       elif (menta < 0):
-         self.UpDownImage("ment","down")
+         self.UpDownImage('ment', 'down')
       if (libi > 0):
-         self.UpDownImage("lib","up")
+         self.UpDownImage('lib', 'up')
       elif (libi < 0):
-         self.UpDownImage("lib","down")
+         self.UpDownImage('lib', 'down')
       if (sens > 0):
-         self.UpDownImage("sen","up")
+         self.UpDownImage('sen', 'up')
       elif (sens < 0):
-         self.UpDownImage("sen","down")
+         self.UpDownImage('sen', 'down')
       self.statDisplay()
 
-   def statDisplay(self, lsc:bool=True):
+   def statDisplay(self, lsc: bool = True):
       '''
       Updates the displayed player's stats values
       '''
@@ -4953,7 +5019,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.setLevelStat()
          self.setSCStats()
 
-   def doSexP(self, changes:int):
+   def doSexP(self, changes: int):
       '''
       Calculates player's SexP and levels then updates the displayed values
       '''
@@ -4968,40 +5034,40 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.SexP = int(self.SexP)
       self.setSCStats()
 
-   def regionChange(self, changes:int):
+   def regionChange(self, changes: int):
       '''
       Changes the region the player is in and updates the displayed name
       '''
       if self.inDungeon:
          self.currentDungeon = changes
          if (changes > 1000 and changes < 1010):
-            self.window._children["currentregionlabel"].text = "Cave Descent"
+            self.window._children['currentregionlabel'].text = 'Cave Descent'
       else:
          self.currentZone = changes
          if changes == 1:
-            self.window._children["currentregionlabel"].text = "Softlik"
+            self.window._children['currentregionlabel'].text = 'Softlik'
          elif changes == 2:
-            self.window._children["currentregionlabel"].text = "Firmshaft"
+            self.window._children['currentregionlabel'].text = 'Firmshaft'
          elif changes == 3:
-            self.window._children["currentregionlabel"].text = "Tieden"
+            self.window._children['currentregionlabel'].text = 'Tieden'
          elif changes == 4:
-            self.window._children["currentregionlabel"].text = "Siz'Calit"
+            self.window._children['currentregionlabel'].text = 'Siz\'Calit'
          elif changes == 6:
-            self.window._children["currentregionlabel"].text = "Oviasis"
+            self.window._children['currentregionlabel'].text = 'Oviasis'
          elif changes == 12:
-            self.window._children["currentregionlabel"].text = "Sanctuary"
+            self.window._children['currentregionlabel'].text = 'Sanctuary'
 
-   def dayTime(self, Time:int):
+   def dayTime(self, Time: int):
       '''
       Adds "Time" hours to the current time, calculates the new day and hour values, then calls doStatus
       '''
       addTime = int(Time) + self.hour
-      self.day += Math.floor(addTime/24)
-      self.hour = addTime%24
+      self.day += Math.floor(addTime / 24)
+      self.hour = addTime % 24
       self.setDHStats()
       self.doStatus(Time)
 
-   def doCoin(self, changes:int):
+   def doCoin(self, changes: int):
       '''
       Adds "changes" to player's coins and then calls setSCStats
       '''
@@ -5014,7 +5080,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.coin = int(self.coin)
       self.setSCStats()
 
-   def doHP(self, changes:int, suppressImgChange:bool=False):
+   def doHP(self, changes: int, suppressImgChange: bool = False):
       '''
       Changes player's HP
       '''
@@ -5027,12 +5093,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doLust(-changes,0)
                changes = 0
             else:
-               self.doMainText("\n\nIt seems that no matter how much fun you had getting beaten like that, there's just some things your body wasn't meant to withstand.")
+               self.doMainText('\n\nIt seems that no matter how much fun you had getting beaten like that, there\'s just some things your body wasn\'t meant to withstand.')
       if (suppressImgChange == False):
          if (changes < 0):
-            self.UpDownImage("hp","down")
+            self.UpDownImage('hp', 'down')
          elif (changes > 0):
-            self.UpDownImage("hp","up")
+            self.UpDownImage('hp', 'up')
       if (self.HP + changes <= 0):
          self.HP = 1
          changes = 0
@@ -5051,7 +5117,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if (self.coin - tempNum < 0):
          tempNum = self.coin
       self.specialKOLose()
-      self.doMainText(f"\n\nYou pass out from all the pain. When you wake back up, you manage to stumble back to town. However, it seems as though your pockets are a bit lighter for some reason or another.\n\nYou have lost {tempNum} coins.")
+      self.doMainText(f'\n\nYou pass out from all the pain. When you wake back up, you manage to stumble back to town. However, it seems as though your pockets are a bit lighter for some reason or another.\n\nYou have lost {tempNum} coins.')
       if (self.currentState == 2):
          self.currentState = 1
       if (self.inDungeon):
@@ -5064,7 +5130,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.displayMainText()
       self.doEnd()
 
-   def doLust(self, changes:int, source:int, *triggers):
+   def doLust(self, changes: int, source: int, *triggers):
       '''
       Changes player lust and provides lust event descriptions
       '''
@@ -27127,58 +27193,58 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    def hideLevelPane(self):
       if self.levelpanevisible:
          # Level Label
-         self.window.destroyChild("levellabel")
-         self.window.destroyChild("levelcolonlabel")
-         self.window.destroyChild("levelvallabel")
+         self.window.destroyChild('levellabel')
+         self.window.destroyChild('levelcolonlabel')
+         self.window.destroyChild('levelvallabel')
          # SexP Label
-         self.window.destroyChild("sexplabel")
-         self.window.destroyChild("sexpcolonlabel")
-         self.window.destroyChild("sexpvallabel")
+         self.window.destroyChild('sexplabel')
+         self.window.destroyChild('sexpcolonlabel')
+         self.window.destroyChild('sexpvallabel')
          # Coin Label
-         self.window.destroyChild("coinlabel")
-         self.window.destroyChild("coincolonlabel")
-         self.window.destroyChild("coinvallabel")
+         self.window.destroyChild('coinlabel')
+         self.window.destroyChild('coincolonlabel')
+         self.window.destroyChild('coinvallabel')
          self.levelpanevisible = False
 
    def showSGButton(self):
       if (not self.showsavegame):
-         self.window.addWidget(PyminButton,"display","savegamebutton",x=110,y=510,width=100,height=30,font=self.font,anchor="n",text="Save Game",command=self.saveG)
+         self.window.addWidget(PyminButton, 'display', 'savegamebutton', x=110, y=510, width=100, height=30, font=self.font, anchor='n', text='Save Game', command=self.saveG)
          self.showsavegame = True
 
    def hideSGButton(self):
       if (self.showsavegame):
-         self.window.destroyChild("savegamebutton")
+         self.window.destroyChild('savegamebutton')
          self.showsavegame = False
 
    def showLGButton(self):
       if (not self.showloadgame):
-         self.window.addWidget(PyminButton,"display","loadgamebutton",x=110,y=545,width=100,height=30,font=self.font,anchor="n",text="Load Game",command=self.loadG)
+         self.window.addWidget(PyminButton, 'display', 'loadgamebutton', x=110, y=545, width=100, height=30, font=self.font, anchor='n', text='Load Game', command=self.loadG)
          self.showloadgame = True
 
    def hideLGButton(self):
       if (self.showloadgame):
-         self.window.destroyChild("loadgamebutton")
+         self.window.destroyChild('loadgamebutton')
          self.showloadgame = False
 
    def showNGButton(self):
       if (not self.shownewgame):
-         tempcalc = (610,90) if self.oNewGameButton else (580,100)
-         self.window.addWidget(PyminButton,"display","newgamebutton",x=110,y=tempcalc[0],width=tempcalc[1],height=30,font=self.font,anchor="n",text="New Game",command=self.newGameStart)
+         tempcalc = (610, 90) if self.oNewGameButton else (580, 100)
+         self.window.addWidget(PyminButton, 'display', 'newgamebutton', x=110, y=tempcalc[0], width=tempcalc[1], height=30, font=self.font, anchor='n', text='New Game', command=self.newGameStart)
          self.shownewgame = True
 
    def hideNGButton(self):
       if (self.shownewgame):
-         self.window.destroyChild("newgamebutton")
+         self.window.destroyChild('newgamebutton')
          self.shownewgame = False
 
    def showDiscard(self):
       if not self.buttonsVisible[13]:
-         self.window.addWidget(PyminButton,"display","discardbutton",x=840,y=162,width=140,height=46,font=self.font,text="Discard",command=self.buttonEventDiscard)
+         self.window.addWidget(PyminButton, 'display', 'discardbutton', x=840, y=162, width=140, height=46, font=self.font, text='Discard', command=self.buttonEventDiscard)
          self.buttonsVisible[13] = True
 
    def hideDiscard(self):
       if self.buttonsVisible[13]:
-         self.window.destroyChild("discardbutton")
+         self.window.destroyChild('discardbutton')
          self.buttonsVisible[13] = False
 
    def buttonExecProxy(self, buttonNum:int):
@@ -27216,61 +27282,61 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.hideDiscard()
       for i in range(1, 13):
          if not buttons[i] and self.buttonsVisible[i]:
-            self.window.destroyChild(f"button{i}")
+            self.window.destroyChild(f'button{i}')
             self.buttonsVisible[i] = False
          elif buttons[i]:
             if self.buttonsVisible[i]:
-               self.window._children[f"button{i}"].state = "normal"
+               self.window._children[f'button{i}'].state = 'normal'
             else:
                tempcalc = Calc.showButtons(i)
-               self.window.addWidget(PyminButton,"display",f"button{i}",x=tempcalc[0],y=tempcalc[1],width=140,height=46,font=self.font,command=partial(self.buttonExecProxy,i))
+               self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=partial(self.buttonExecProxy, i))
                self.buttonsVisible[i] = True
 
-   def buttonWrite(self, buttonNumber:int, buttonText:str):
-      self.window._children[f"button{buttonNumber}"].text = buttonText
+   def buttonWrite(self, buttonNumber: int, buttonText: str):
+      self.window._children[f'button{buttonNumber}'].text = buttonText
 
    def clearTextAllButtons(self):
-      for i in range(1,13):
+      for i in range(1, 13):
          if (self.buttonsVisible[i]):
-            self.window._children[f"button{i}"].text = ""
+            self.window._children[f'button{i}'].text = ''
 
    def enableAllButtons(self):
-      for i in range(1,13):
+      for i in range(1, 13):
          if (self.buttonsVisible[i]):
-            self.window._children[f"button{i}"].state = "normal"
+            self.window._children[f'button{i}'].state = 'normal'
 
    def disableOneButton(self, buttonNum:int):
       if (self.buttonsVisible[buttonNum]):
-         self.window._children[f"button{buttonNum}"].state = "disabled"
+         self.window._children[f'button{buttonNum}'].state = 'disabled'
 
    def disableSelectedButtons(self, a:list):
       for i in a:
          self.disableOneButton(i)
 
    def writeAmount(self, number, amount):
-      self.window._children[f"amountlabel{number}"].text = amount
+      self.window._children[f'amountlabel{number}'].text = amount
 
    def showAmount(self, buttonNum:int):
       if not self.amountLabelsVisible[buttonNum]:
          tempcalc = Calc.showAmount(buttonNum)
-         self.window.addWidget(PyminLabel,"display",f"amountlabel{buttonNum}",x=tempcalc[0],y=tempcalc[1],width=30,height=15,font=self.font,text="000")
+         self.window.addWidget(PyminLabel, 'display', f'amountlabel{buttonNum}', x=tempcalc[0], y=tempcalc[1], width=30, height=15, font=self.font, text='000')
          self.amountLabelsVisible[buttonNum] = True
 
    def hideAmount(self, buttonNum:int):
       if self.amountLabelsVisible[buttonNum]:
-         self.window.destroyChild(f"amountlabel{buttonNum}")
+         self.window.destroyChild(f'amountlabel{buttonNum}')
          self.amountLabelsVisible[buttonNum] = False
 
    def hideAmountAll(self):
-      for i in range(1,13):
+      for i in range(1, 13):
          self.hideAmount(i)
 
    def showSidePanel(self):
       if not self.sidepanelvisible:
          for i in range(8):
             tempcalc = Calc.showSidePanel(i)
-            self.window.addWidget(PyminButton,"display",self.sidepanelbuttonnames[i],x=tempcalc[0],y=tempcalc[1],width=80,height=30,font=self.font,text=self.sidepanelbuttontext[i],command=partial(self.sideEvent,i+1))
-         self.window.addHTMLScrolledText("display","textside",x=823,y=275,width=330,height=315,font=self.font,border=self.scrolledTextBorders,text="Test",cursor="arrow",wrap="word",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addWidget(PyminButton, 'display', self.sidepanelbuttonnames[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=self.sidepanelbuttontext[i], command=partial(self.sideEvent, i + 1))
+         self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
          self.displaySideText()
       self.sidepanelvisible = True
       self.hideAPButton()
@@ -27279,132 +27345,132 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if self.sidepanelvisible:
          for i in range(8):
             self.window.destroyChild(self.sidepanelbuttonnames[i])
-         self.window.destroyChild("textside")
+         self.window.destroyChild('textside')
       self.sidepanelvisible = False
       self.showAPButton()
 
    def showOption7(self):
       if (not self.option7Visible):
-         self.window._children["themebutton7"].state = "normal"
+         self.window._children['themebutton7'].state = 'normal'
          self.option7Visible = True
          self.swapOption7()
 
    def hideOption7(self):
       if (self.option7Visible):
-         self.window._children["themebutton7"].text = ""
-         self.window._children["themebutton7"].state = "disabled"
+         self.window._children['themebutton7'].text = ''
+         self.window._children['themebutton7'].state = 'disabled'
          self.option7Visible = False
 
    def swapOption7(self):
       if (self.option7Visible):
          if (self.showSide):
-            self.window._children["themebutton7"].text = "O"
+            self.window._children['themebutton7'].text = 'O'
          elif (not self.showSide):
-            self.window._children["themebutton7"].text = "--"
+            self.window._children['themebutton7'].text = '--'
 
    def showAPButton(self):
       if not self.appearancebuttonvisible:
-         self.window.addWidget(PyminButton,"display","appearancebutton",x=990,y=426,width=150,height=50,font=self.font,anchor="center",text="Appearance",command=self.appearance)
+         self.window.addWidget(PyminButton, 'display', 'appearancebutton', x=990, y=426, width=150, height=50, font=self.font, anchor='center', text='Appearance', command=self.appearance)
          self.appearancebuttonvisible = True
 
    def hideAPButton(self):
       if self.appearancebuttonvisible:
-         self.window.destroyChild("appearancebutton")
+         self.window.destroyChild('appearancebutton')
          self.appearancebuttonvisible = False
 
    def displayMainText(self):
-      self.window._children["textmain"]._fontSize = self.fontSize - 2
-      self.window._children["textmain"]._bold = self.fontBold
-      self.window._children["textmain"].text = self.currentText.get()
+      self.window._children['textmain']._fontSize = self.fontSize - 2
+      self.window._children['textmain']._bold = self.fontBold
+      self.window._children['textmain'].text = self.currentText.get()
 
    def displaySideText(self):
-      self.window._children["textside"]._fontSize = self.fontSize - 2
-      self.window._children["textside"]._bold = self.fontBold
-      self.window._children["textside"].text = self.sideText.get()
+      self.window._children['textside']._fontSize = self.fontSize - 2
+      self.window._children['textside']._bold = self.fontBold
+      self.window._children['textside'].text = self.sideText.get()
 
    def hideUpDown(self):
       if self.statpanevisible:
-         self.window.configureChildren(("strimglabel","mentimglabel","libimglabel","senimglabel","hpimglabel","lustimglabel"),image_name="")
+         self.window.configureChildren(('strimglabel', 'mentimglabel', 'libimglabel', 'senimglabel', 'hpimglabel', 'lustimglabel'), image_name='')
 
    def UpDownImage(self, which, img):
       if self.statpanevisible:
-         self.window._children[f"{which}imglabel"].image_name = img
+         self.window._children[f'{which}imglabel'].image_name = img
 
    def moveItemShow(self):
       text = self.itemName(self.moveItemID)
       if (not self.moveitembuttonvisible):
-         self.window.addWidget(PyminButton,"display","moveitembutton",x=920,y=96,width=140,height=46,font=self.font,text=text)
+         self.window.addWidget(PyminButton, 'display', 'moveitembutton', x=920, y=96, width=140, height=46, font=self.font, text=text)
          self.moveitembuttonvisible = True
       else:
-         self.window._children["moveitembutton"].text = text
+         self.window._children['moveitembutton'].text = text
 
    def moveItemHide(self):
       if (self.moveitembuttonvisible):
-         self.window.destroyChild("moveitembutton")
+         self.window.destroyChild('moveitembutton')
          self.moveitembuttonvisible = False
 
    def moveItemAmountShow(self):
       if (not self.moveitemamountvisible):
-         self.window.addWidget(PyminLabel,"display","moveitemamount",x=1030,y=129,width=30,height=15,font=self.font,text=self.moveItemStack)
+         self.window.addWidget(PyminLabel, 'display', 'moveitemamount', x=1030, y=129, width=30, height=15, font=self.font, text=self.moveItemStack)
          self.moveitemamountvisible = True
       else:
-         self.window._children["moveitemamount"].text = self.moveItemStack
+         self.window._children['moveitemamount'].text = self.moveItemStack
 
    def moveItemAmountHide(self):
       if (self.moveitemamountvisible):
-         self.window.destroyChild("moveitemamount")
+         self.window.destroyChild('moveitemamount')
          self.moveitemamountvisible = False
 
    def debugVariableDisplayText(self):
       if self.currentState == 0:
-         return f"|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
-      return f"|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}"
+         return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+      return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
 
    def detailedDebug(self, *e):
       self.debugvarwindow.updateText()
 
    def debugChangeAffinity(self, affinity, amount):
-      if affinity == "1":
+      if affinity == '1':
          self.human += amount
-      elif affinity == "2":
+      elif affinity == '2':
          self.horse += amount
-      elif affinity == "3":
+      elif affinity == '3':
          self.wolf += amount
-      elif affinity == "4":
+      elif affinity == '4':
          self.cat += amount
-      elif affinity == "5":
+      elif affinity == '5':
          self.cow += amount
-      elif affinity == "6":
+      elif affinity == '6':
          self.lizard += amount
-      elif affinity == "7":
+      elif affinity == '7':
          self.rabbit += amount
-      elif affinity == "8":
+      elif affinity == '8':
          self.mouse += amount
-      elif affinity == "9":
+      elif affinity == '9':
          self.bird += amount
-      elif affinity == "10":
+      elif affinity == '10':
          self.pig += amount
-      elif affinity == "11":
+      elif affinity == '11':
          self.skunk += amount
-      elif affinity == "12":
+      elif affinity == '12':
          self.bug += amount
-      elif affinity == "L1001":
+      elif affinity == 'L1001':
          self.cowTaurAffinity += amount
-      elif affinity == "L1002":
+      elif affinity == 'L1002':
          self.humanTaurAffinity += amount
-      elif affinity == "B2":
+      elif affinity == 'B2':
          self.twoBoobAffinity += amount
-      elif affinity == "B4":
+      elif affinity == 'B4':
          self.fourBoobAffinity += amount
-      elif affinity == "B6":
+      elif affinity == 'B6':
          self.sixBoobAffinity += amount
-      elif affinity == "B8":
+      elif affinity == 'B8':
          self.eightBoobAffinity += amount
-      elif affinity == "B10":
+      elif affinity == 'B10':
          self.tenBoobAffinity += amount
       if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame:
          # Should only happen when in doGeneral
-         self.doProcess(override="aff")
+         self.doProcess(override='aff')
       self.detailedDebug()
 
 
