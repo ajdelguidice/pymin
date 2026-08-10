@@ -3697,13 +3697,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.showloadgame = True
       self.window.addWidget(PyminButton,"display","newgamebutton",x=110,y=580,width=100,height=30,font=self.font,anchor="n",text="New Game",command=self.newGameStart)
       self.shownewgame = True
-      self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
+      self.buttonsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False,False]
       self.amountLabelsVisible = [None,False,False,False,False,False,False,False,False,False,False,False,False]
       self.window.addHTMLScrolledText("display","textmain",x=200,y=210,width=622,height=430,font=self.font,border=False,text="Test",cursor="arrow",wrap="word")
       self.pageShow = False
       self.moveitembuttonvisible = False
       self.moveitemamountvisible = False
-      self.discardbuttonvisible = False
       self.sidepanelvisible = False
       self.appearancebuttonvisible = False
       self.window.addWidget(PyminButton,"display","themebutton",x=823,y=595,width=60,height=30,font=self.font,text="Theme",command=self.option1Event)
@@ -4021,7 +4020,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.buttonChoice = 12
             self.hideUpDown()
             self.doListen()
-      elif (keyCode == 96 or keyCode == 66) and keyEnabled and self.discardbuttonvisible: #numpade0, b
+      elif (keyCode == 96 or keyCode == 66) and keyEnabled and self.buttonsVisible[13]: #numpade0, b
          if self.newSLDialogVisible and not self.nsldblindervisible or self.moveItemID != 0 and (self.inBag or self.inStash):
             self.buttonChoice = 13
             self.hideUpDown()
@@ -27173,14 +27172,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.shownewgame = False
 
    def showDiscard(self):
-      if not self.discardbuttonvisible:
+      if not self.buttonsVisible[13]:
          self.window.addWidget(PyminButton,"display","discardbutton",x=840,y=162,width=140,height=46,font=self.font,text="Discard",command=self.buttonEventDiscard)
-         self.discardbuttonvisible = True
+         self.buttonsVisible[13] = True
 
    def hideDiscard(self):
-      if self.discardbuttonvisible:
+      if self.buttonsVisible[13]:
          self.window.destroyChild("discardbutton")
-         self.discardbuttonvisible = False
+         self.buttonsVisible[13] = False
 
    def buttonExecProxy(self, buttonNum:int):
       if buttonNum == 1:
