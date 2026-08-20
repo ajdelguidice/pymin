@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from as3lib import (Array, as3state, cmath, each, EnableDebug, Error, Number,
+from as3lib import (Array, as3state, each, EnableDebug, Error, Number,
                     RangeError, setHeaderInfo, TOML, trace)  # Math
 from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.text import Font
@@ -159,7 +159,7 @@ class PyminButton(itk.itkFrame):
         self.label.pack(fill='both', expand=True)
 
     def updateText(self):
-        self.label['font'] = (self._font, cmath.resizefont(self._fontSize, self._window.fontmult), self._fontStyle)
+        self.label['font'] = (self._font, round(self._fontSize * self._window.mult), self._fontStyle)
 
     def updateState(self):
         self.label['state'] = self._state
@@ -710,7 +710,7 @@ class AboutWindow(PyminWindow):
             self.window.lift()
             return
 
-        self._window = itk.window(width=350, height=155, title='About Pymin', background=self.backgroundColor)
+        self._window = itk.itkWindow(width=350, height=155, title='About Pymin', background=self.backgroundColor)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -861,7 +861,7 @@ class PyminWiki(PyminWindow):
             return
 
         # Set up window
-        self._window = itk.window(width=700, height=500, title='Pymin: Wiki', background='#A0A0A0')
+        self._window = itk.itkWindow(width=700, height=500, title='Pymin: Wiki', background='#A0A0A0')
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, self.hotKeys))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -2342,7 +2342,7 @@ class SaveConverter(PyminWindow):
         startType = self.callback is None
 
         # Set up window
-        self._window = itk.window(width=500, height=334, title='Pymin: Save Converter', main=startType)
+        self._window = itk.itkWindow(width=500, height=334, title='Pymin: Save Converter', main=startType)
         self.window.bind('<Destroy>', self._close)
         self.window.resizable = False
 
@@ -2593,7 +2593,7 @@ class DebugVariableDisplay(PyminWindow):
             self.window.lift()
             return
 
-        self._window = itk.window(width=400, height=400, title='Pymin Debug: Variable Display', background=self.backgroundColor)
+        self._window = itk.itkWindow(width=400, height=400, title='Pymin Debug: Variable Display', background=self.backgroundColor)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -2629,7 +2629,7 @@ class DebugAffinityChange(PyminWindow):
             self.window.lift()
             return
 
-        self._window = itk.window(width=170, height=100, title='Affinity')
+        self._window = itk.itkWindow(width=170, height=100, title='Affinity')
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -2695,7 +2695,7 @@ class DebugGiveItem(PyminWindow):
             self.window.lift()
             return
 
-        self._window = itk.window(width=150, height=100, title='Give Item')
+        self._window = itk.itkWindow(width=150, height=100, title='Give Item')
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -2773,7 +2773,7 @@ class OptionsWindow(PyminWindow):
             return
 
         #Window
-        self._window = itk.window(width=420, height=207, title='Options', background=self.backgroundColor)
+        self._window = itk.itkWindow(width=420, height=207, title='Options', background=self.backgroundColor)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
         self.window.bind('<KeyRelease>', self.callback.keysUp)
@@ -3709,7 +3709,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       Sets up the interface, then runs the "frame1" function
       '''
       #window
-      self._window = itk.window(width=1176, height=662, title='Nimin: Fetish Fantasy (Python port)', main=True, menu=True, defaultMenu=False)
+      self._window = itk.itkWindow(width=1176, height=662, title='Nimin: Fetish Fantasy (Python port)', main=True, menu=True, defaultMenu=False)
       self.window.bind('<KeyPress>', partial(self.keyPress, self.hotKeys))
       self.window.bind('<KeyRelease>', self.keysUp)
       
