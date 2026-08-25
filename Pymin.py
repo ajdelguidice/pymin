@@ -2,9 +2,10 @@
 from as3lib import (Array, as3state, each, EnableDebug, Error, Number,
                     RangeError, setHeaderInfo, TOML, trace)  # Math
 from as3lib.helpers import isValidDirectory, textObject
+from as3lib.flash.desktop import _TOOLKITEVENT
+from as3lib.flash.events import MouseEvent
 from as3lib.flash.text import Font
 import as3lib.interface_tk as itk
-import as3lib.keyConversions as ckeys
 from dataclasses import dataclass
 from functools import partial, cache
 from io import BytesIO
@@ -18,6 +19,7 @@ from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
 import math
 import random
+import platform
 
 '''
 These variables will need to be checked once as3lib.Array works properly.
@@ -142,7 +144,7 @@ class PyminButton(itk.itkFrame):
         text = kwargs.pop('text', '')
         super().__init__(master, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000', **kwargs)
         self.label = tkinter.Label(self, anchor='center', background='#FFFFFF', foreground='#000000')
-        self.bind(ckeys.mouseButtonNameToTkname('Left'), self.press)
+        self.bind(_TOOLKITEVENT.MouseButtonToTK(MouseEvent.CLICK), self.press)
         self.text = text
 
     def bind(self, key, func):
@@ -703,7 +705,7 @@ class AboutWindow(PyminWindow):
 
     def __init__(self, callback):
         super().__init__(callback)
-        self._text = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on Nimin v{NIMIN_VERSION}\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {as3state.pythonversion}'
+        self._text = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on Nimin v{NIMIN_VERSION}\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {platform.python_version()}'
 
     def open(self, *e):
         if self.isOpen:
@@ -3808,23 +3810,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       Function activated on key press
       '''
       self.detailedDebug()
-      if (key := ckeys.tkeventToJavascriptKeycode(e)) is not None:
-         if key == 16:  # Shift
-            self.shiftHeld = True
-         elif key == 17:  # Ctrl
-            self.ctrlHeld = True
-         elif key == 18:  # Alt
-            self.altHeld = True
-         elif key == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
-            self.close()
-         elif func is not None:
-            func(key)
+      key = _TOOLKITEVENT.TKGetKeyCode(e)
+      if key == 16:  # Shift
+         self.shiftHeld = True
+      elif key == 17:  # Ctrl
+         self.ctrlHeld = True
+      elif key == 18:  # Alt
+         self.altHeld = True
+      elif key == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
+         self.close()
+      elif func is not None:
+         func(key)
 
    def keysUp(self, e):
       '''
       Function activated on key release
       '''
-      kc = ckeys.tkeventToJavascriptKeycode(e)
+      kc = _TOOLKITEVENT.TKGetKeyCode(e)
       if kc == 16:  # Shift
          self.shiftHeld = False
       if kc == 17:  # Ctrl
