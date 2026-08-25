@@ -4768,7 +4768,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.buttonWrite(k, v)
         self.disableSelectedButtons(dlist)
 
-   def doProcess(self, override = None):
+   def doProcess(self, override: str = None):
         if self.goToInDoProcess != -1:
             self.regionChange(self.goToInDoProcess)
             self.goToInDoProcess = -1
@@ -5350,7 +5350,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideNewSaveLoadDialog()
         self.hideNSLDBlinder()
         self.outputMainText("Are you sure you would like to start a new game?", True)
-        self.buttonConfirm(b7 = False if (self.currentState == 0) else True)
+        self.buttonConfirm(b7=False if (self.currentState == 0) else True)
 
         def doListen():
             if (self.buttonChoice == 6):
@@ -5923,22 +5923,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.blueBalls > 84):
                     tempStr += " groan so strongly you shudder slightly. They're so full of cum that they ache a bit, desperately wanting to come."
         if (self.vagTotal > 0):
-            tempStr += f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {self.decGet(self.vagSize * self.vagSizeMod * 0.5,1)} inches deep, when aroused."
+            tempStr += f"\n\nAlso, {self.legWhere(1)} your {self.legDesc(2)} nestles {self.vagTotal} {self.vulvaDesc()} pair{self.plural(2)} of feminine nether-lips, about {self.decGet(self.vagSize * self.vagSizeMod * 0.5, 1)} inches deep, when aroused."
             if (self.vagSize * self.vagSizeMod * self.vagTotal > self.tallness / 2):
                 tempStr += " So deep, in fact, that your belly bulges more because of the excess vaginal flesh."
             if (self.lust <= 30):
                 if (self.clitSize > self.vulvaSize * 3):
-                    tempStr += f" Although you're hardly aroused, your {self.clitDesc()} clit{self.plural(2)} dangle{self.plural(4)} softly from the front of your slit{self.plural(2)}, measuring nearly {self.decGet(self.clitSize * 0.1,1)} inches in length."
+                    tempStr += f" Although you're hardly aroused, your {self.clitDesc()} clit{self.plural(2)} dangle{self.plural(4)} softly from the front of your slit{self.plural(2)}, measuring nearly {self.decGet(self.clitSize * 0.1, 1)} inches in length."
                 if (self.moistCalc(2) > 2):
                     tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
             elif (self.lust <= 70):
-                tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {self.decGet(self.clitSize * 0.2,1)} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs."
+                tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {self.decGet(self.clitSize * 0.2, 1)} inches in length and making you walk awkwardly as the sensitive button{self.plural(2)} rub{self.plural(4)} between your thighs."
                 if (self.moistCalc(2) > 2 and self.moistCalc(2) <= 5):
                     tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
                 elif (self.moistCalc(2) > 5):
                     tempStr += f" So much feminine honey drips from your cunt{self.plural(2)} that it looks like you have peed in your {self.clothesBottom()} and webs of slime form sheets {self.legWhere(2)} your {self.legDesc(2)}. But, with all that lubrication you could take a cock around one and a half times long as you are deep."
             else:
-                tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {self.decGet(self.clitSize * 0.25,2)} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
+                tempStr += f" Your {self.clitDesc()} clit{self.plural(2)} swell{self.plural(4)} tremendously from the hood{self.plural(2)} at the front of your slit{self.plural(2)}, reaching {self.decGet(self.clitSize * 0.25, 2)} inches in length. You walk awkwardly half the time as squeezing the clit{self.plural(2)} and swollen lips between your thighs is often too much, making you hunger to hump something."
                 if (self.moistCalc(2) > 10):
                     tempStr += f" A slow waterfall of feminine honey drips from your crotch, your {self.clothesBottom()} completely soaked. If you stand for too long, you worry your {self.legDesc(10)} will slip in the puddle you quickly make beneath you. It's so much that you could probably take a cock twice as large as you are deep!"
                 elif (self.moistCalc(2) > 5):
@@ -5948,11 +5948,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.heat > 0 and self.heatTime < 0):
                 tempStr += " Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something..."
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",2:"Titles",3:"Statuses",5:"Levels",6:"Gear",7:"Help",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 2: "Titles", 3: "Statuses", 5: "Levels", 6: "Gear", 7: "Help", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6014,11 +6014,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += f"\n{'Enticement Modifier:':<32}+{self.enticeMod}"
         tempStr += f"\n{'Run Chance:':<32}{20 + self.runMod}%"
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({2:"Titles",3:"Statuses",5:"Levels",6:"Gear",7:"Help",9:"Appearance",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({2: "Titles", 3: "Statuses", 5: "Levels", 6: "Gear", 7: "Help", 9: "Appearance", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 2:
@@ -6120,8 +6120,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nMalon's Loving Partner"
             if (self.malonChildren > 4):
                 tempStr += "\nThe Progenitor of a New Race"
-        elif self.currentZone == 2:...
-        elif self.currentZone == 3:...
+        elif self.currentZone == 2:
+            ...
+        elif self.currentZone == 3:
+            ...
         elif self.currentZone == 4:
             # TODO: Add condition for rep 20
             if (self.lilaRep == 2):
@@ -6144,11 +6146,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.silRep == 6 and self.silPreg > 5000):
                 tempStr += "\nThe Progenitor of an Extinct Race"
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",3:"Statuses",5:"Levels",6:"Gear",7:"Help",9:"Appearance",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 3: "Statuses", 5: "Levels", 6: "Gear", 7: "Help", 9: "Appearance", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6229,11 +6231,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.lockCock):
             tempStr += "\nRacial-locked Cocks"
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",2:"Titles",5:"Levels",6:"Gear",7:"Help",9:"Appearance",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 2: "Titles", 5: "Levels", 6: "Gear", 7: "Help", 9: "Appearance", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6275,11 +6277,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr += f"\nShapeshifty\t\t{self.shapeshiftyLevel}"
         tempStr += f"\n\nFor a total of {self.level} levels."
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",2:"Titles",3:"Statuses",6:"Gear",7:"Help",9:"Appearance",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 2: "Titles", 3: "Statuses", 6: "Gear", 7: "Help", 9: "Appearance", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6313,11 +6315,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.bagStackArray[i] > 1):
                     tempStr += f" x{self.bagStackArray[i]}"
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",2:"Titles",3:"Statuses",5:"Levels",7:"Help",9:"Appearance",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 2: "Titles", 3: "Statuses", 5: "Levels", 7: "Help", 9: "Appearance", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6388,11 +6390,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "\n\tg   | .    - Sort button (new save/load dialog)"
         tempStr += "\n\tb   | 0    - Discard button (bag/stash) and Converter button (save/load)"
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",2:"Titles",3:"Statuses",5:"Levels",6:"Gear",9:"Appearance",11:"Credits",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 2: "Titles", 3: "Statuses", 5: "Levels", 6: "Gear", 9: "Appearance", 11: "Credits", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6425,11 +6427,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "\n\nProstitution scene editors (thanks for the work!): Torakazu, Bahamad, and omegaokami on FA."
         tempStr += "\n\nProstitution scene writers:\n\t--Buncubus, BantinNysam, TheAbyssalWatcher, mike12345, V, grottokraft, Ludoergosum, perrothetraveler, reikonova, shockblock99, Kidou, bunnybunbun, supernaut, shaesullivan, m3chawolf, Kizzneth, barkbarkboom, Torakazu"
         if (self.showSide):
-            self.outputSideText(tempStr.get(),True)
+            self.outputSideText(tempStr.get(), True)
         else:
-            self.outputMainText(tempStr.get(),True)
-            self.showButtons(ButtonList(1,1,1,0,1,1,1,0,1,0,1,1))
-            self.doButtonChoices({1:"More Stats",2:"Titles",3:"Statuses",5:"Levels",6:"Gear",7:"Help",9:"Appearance",12:"Return"})
+            self.outputMainText(tempStr.get(), True)
+            self.showButtons(ButtonList(1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1))
+            self.doButtonChoices({1: "More Stats", 2: "Titles", 3: "Statuses", 5: "Levels", 6: "Gear", 7: "Help", 9: "Appearance", 12: "Return"})
 
             def doListen():
                 if self.buttonChoice == 1:
@@ -6459,9 +6461,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideAPButton()
         if self.useNewSaveLoadDialog:
             if message is None:
-                self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.",True)
+                self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.", True)
             else:
-                self.outputMainText(message,True)
+                self.outputMainText(message, True)
             self.doNewSaveLoadDialog("Save")
 
             def doListen():
@@ -6482,9 +6484,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             dh = SaveUtils.getdhSOL(temp2)
                         elif temp1.endswith(".nim"):
                             dh = SaveUtils.getdhNIM(temp2)
-                        self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.",True)
+                        self.outputMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00\n\nAre you sure you want to save to {temp}?\n\nAny data already saved there will be completely overwritten.", True)
                     else:
-                        self.outputMainText(f"This file does not exist.\n\nAre you sure you want to save to {temp}?",True)
+                        self.outputMainText(f"This file does not exist.\n\nAre you sure you want to save to {temp}?", True)
                     self.showNSLDBlinder()
                     self.buttonConfirm()
 
@@ -6493,7 +6495,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if not temp.endswith(self.validsaveformats):
                             temp += self.validsaveformats[0]
                         if (self.buttonChoice == 6):
-                            self.doSave(0,self.savelocation / temp)
+                            self.doSave(0, self.savelocation / temp)
                         else:
                             self.saveGo()
                     self.doListen = doListen
@@ -6505,8 +6507,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.toggleNSLDSortOrder()
             self.doListen = doListen
         else:
-            self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
-            tempDict = {4:"Save as",12:"Return"}
+            self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
+            tempDict = {4: "Save as", 12: "Return"}
             for i in self.bMap:
                 if ((self.savelocation / f"Nimin_Save{i}.xml").is_file() and not self.solonlymode):
                     dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
@@ -6517,9 +6519,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     tempDict[i] = "Empty"
             if message is None:
-                self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.",True)
+                self.outputMainText("Click on a save slot to save your current game to that slot.\n\nClicking \"Save as\" will allow you to save the game to a location on your computer. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.\n\nNote: This port uses .xml files by default, however enabling \"SOL Mode\" in the options menu (File->Options) will force the original save file format. This does not affect the \"Save as\" button as it can always use every supported format.", True)
             else:
-                self.outputMainText(message,True)
+                self.outputMainText(message, True)
             self.doButtonChoices(tempDict)
 
             def doListen():
@@ -6531,13 +6533,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.slot = self.buttonChoice
                     if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
-                        dh = SaveUtils.getdhXML(self.savelocation/f"Nimin_Save{self.buttonChoice}.xml")
-                        self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
-                    elif ((self.savelocation/f"Nimin_Save{self.buttonChoice}.sol").is_file()):
+                        dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
+                        self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
+                    elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                         dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                        self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
+                        self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                     else:
-                        self.doMainText("The chosen slot is empty",True)
+                        self.doMainText("The chosen slot is empty", True)
                     self.outputMainText(f"\n\nAre you sure you want to save your game to slot {self.buttonChoice}?\n\nAny data already saved there will be completely overwritten.")
                     self.buttonConfirm()
 
@@ -6557,9 +6559,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideAPButton()
         if self.useNewSaveLoadDialog:
             if message is None:
-                self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
+                self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).", True)
             else:
-                self.outputMainText(message,True)
+                self.outputMainText(message, True)
             self.doNewSaveLoadDialog("Load")
 
             def doListen():
@@ -6567,7 +6569,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doLoad(4)
                 elif self.buttonChoice == 8:
                     temp = self.window._children["savefileselect"].get(self.window._children["savefileselect"].curselection()).split(" | ")
-                    self.outputMainText(f"{temp[0].replace('D:','Day:').replace('H:','Hour:')}:00\n\nAre you sure you want to load {temp[1]}?",True)
+                    self.outputMainText(f"{temp[0].replace('D:', 'Day:').replace('H:', 'Hour:')}:00\n\nAre you sure you want to load {temp[1]}?", True)
                     if self.currentState != 0:
                         self.outputMainText("\n\nYou will lose any unsaved data from the current game.")
                     self.showNSLDBlinder()
@@ -6576,7 +6578,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     def doListen():
                         temp = self.window._children["savefileentry"].text
                         if (self.buttonChoice == 6 and temp in DirUtils.listFiles(self.savelocation, self.validsaveformats)):
-                            self.doLoad(0,self.savelocation / temp)
+                            self.doLoad(0, self.savelocation / temp)
                         else:
                             self.loadGo()
                     self.doListen = doListen
@@ -6588,8 +6590,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.toggleNSLDSortOrder()
             self.doListen = doListen
         else:
-            self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
-            tempDict = {4:"Load File"}
+            self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
+            tempDict = {4: "Load File"}
             if self.currentState != 0:
                 tempDict[12] = "Return"
             if self.solonlymode:
@@ -6606,9 +6608,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
                         tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             if message is None:
-                self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).",True)
+                self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).", True)
             else:
-                self.outputMainText(message,True)
+                self.outputMainText(message, True)
             self.doButtonChoices(tempDict)
 
             def doListen():
@@ -6622,14 +6624,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if self.solonlymode:
                         if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                             dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                            self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
+                            self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                     else:
                         if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
                             dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
-                            self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
+                            self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                         elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
                             dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
-                            self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00",True)
+                            self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                     self.outputMainText(f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.")
                     self.buttonConfirm()
 
@@ -6641,15 +6643,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doListen = doListen
             self.doListen = doListen
 
-   def doNewSaveLoadDialog(self, which:str):
+   def doNewSaveLoadDialog(self, which: str):
         '''
         New save/load dialog that displays all save files inside of the save directory (referred to as nsld internally)
         '''
         self.showNewSaveLoadDialog()
-        tempDict = {4:"Other File",8:which}
+        tempDict = {4: "Other File", 8: which}
         if self.currentState != 0:
             tempDict[12] = "Return"
-        self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1),False)
+        self.showButtons(ButtonList(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1), False)
         self.doButtonChoices(tempDict)
         self.showDiscard()
         self.window._children["discardbutton"].text = "Sort"
@@ -6663,7 +6665,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.nsldSortOrder == 1:
             return DirUtils.listFiles_SortCustomNum(self.savelocation, self.validsaveformats)
         if self.nsldSortOrder == 2:
-            return DirUtils.listFiles_SortCustomExt(self.savelocation, self.validsaveformats,True)
+            return DirUtils.listFiles_SortCustomExt(self.savelocation, self.validsaveformats, True)
         if self.nsldSortOrder == 3:
             return DirUtils.listFiles_SortAlpha(self.savelocation, self.validsaveformats)
         if self.nsldSortOrder == 4:
@@ -6673,7 +6675,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Displays the save file list in nsld
         '''
-        self.window._children["savefileselect"].delete(0,"end")
+        self.window._children["savefileselect"].delete(0, "end")
         for i in self.nsldGetSorted():
             temp = i.lower()
             if temp.endswith(".toml"):
@@ -6684,7 +6686,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 dh = SaveUtils.getdhSOL(self.savelocation / i)
             elif temp.endswith(".nim"):
                 dh = SaveUtils.getdhNIM(self.savelocation / i)
-            self.window._children["savefileselect"].insert("end",f"D: {dh[0]}, H: {dh[1]} | {i}")
+            self.window._children["savefileselect"].insert("end", f"D: {dh[0]}, H: {dh[1]} | {i}")
         self.window._children["savefileselect"].activate(0)
         self.window._children["savefileselect"].select_set(0)
         self.nsldSetEntryFromListbox()
@@ -6694,7 +6696,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function called when the sort button is pressed in nsld
         '''
         if self.newSLDialogVisible:
-            self.window._children["savefileselect"].delete(0,"end")
+            self.window._children["savefileselect"].delete(0, "end")
             self.nsldSortOrder += 1
             if self.nsldSortOrder >= 5:
                 self.nsldSortOrder = 0
@@ -6703,7 +6705,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def _disableKeys(self, *e, **kwargs):
         self.keyboardTypingDisable = True
-        self.hotkeysDisabled = kwargs.pop('keys',set())
+        self.hotkeysDisabled = kwargs.pop('keys', set())
 
    def _enableKeys(self, *e):
         self.keyboardTypingDisable = False
@@ -6714,15 +6716,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Displays nsld
         '''
         if not self.newSLDialogVisible:
-            self.window.addScrolledListbox("display","savefileselect",x=200,y=30,width=460,height=154,font=self.font,sbwidth=12,background="#FFFFFF",foreground="#000000")
-            self.window.bindChild("savefileselect","<<ListboxSelect>>",self.nsldSetEntryFromListbox)
-            self.window.bindChild("savefileselect","<Double-Button-1>",self.buttonEvent8)
-            self.window.bindChild("savefileselect","<FocusIn>",partial(self._disableKeys,keys={109, 82, 107, 70, 13, 86, 96, 66, 104, 87, 101, 83, 102, 68}))
-            self.window.bindChild("savefileselect","<FocusOut>",self._enableKeys)
-            self.window.addLabel("display","savefilelabel",x=200,y=184,width=75,height=24,font=("Times New Roman",12),background=self.backgroundColor,foreground=self.textColor,text="File Name:")
-            self.window.addEntry("display","savefileentry",x=275,y=184,width=385,height=24,font=("Times New Roman",12),background="#FFFFFF",foreground="#000000")
-            self.window.bindChild("savefileentry","<FocusIn>",self._disableKeys)
-            self.window.bindChild("savefileentry","<FocusOut>",self._enableKeys)
+            self.window.addScrolledListbox("display", "savefileselect", x=200, y=30, width=460, height=154, font=self.font, sbwidth=12, background="#FFFFFF", foreground="#000000")
+            self.window.bindChild("savefileselect", "<<ListboxSelect>>", self.nsldSetEntryFromListbox)
+            self.window.bindChild("savefileselect", "<Double-Button-1>", self.buttonEvent8)
+            self.window.bindChild("savefileselect", "<FocusIn>", partial(self._disableKeys, keys={109, 82, 107, 70, 13, 86, 96, 66, 104, 87, 101, 83, 102, 68}))
+            self.window.bindChild("savefileselect", "<FocusOut>", self._enableKeys)
+            self.window.addLabel("display", "savefilelabel", x=200, y=184, width=75, height=24, font=("Times New Roman", 12), background=self.backgroundColor, foreground=self.textColor, text="File Name:")
+            self.window.addEntry("display", "savefileentry", x=275, y=184, width=385, height=24, font=("Times New Roman", 12), background="#FFFFFF", foreground="#000000")
+            self.window.bindChild("savefileentry", "<FocusIn>", self._disableKeys)
+            self.window.bindChild("savefileentry", "<FocusOut>", self._enableKeys)
             self.nsldDisplay()
             self.window._children["savefileselect"].focus_force()
             self.newSLDialogVisible = True
@@ -6734,7 +6736,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function to set the entry box text of nsld
         '''
         entry = self.window._children["savefileselect"].curselection()
-        if entry == tuple(): # No listbox selection
+        if entry == tuple():  # No listbox selection
             self.window._children["savefileselect"].select_set(0)
             entry = (0,)
         self.window._children["savefileentry"].text = self.window._children["savefileselect"].get(entry).split(" | ")[-1]
@@ -6755,7 +6757,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Hides nsld temporarily while conformation dialog is shown
         '''
         if not self.nsldblindervisible:
-            self.window.addLabel("display","nsldblinder",x=200,y=30,width=780,height=184,font=("Times New Roman",12),background=self.backgroundColor,foreground=self.textColor)
+            self.window.addLabel("display", "nsldblinder", x=200, y=30, width=780, height=184, font=("Times New Roman", 12), background=self.backgroundColor, foreground=self.textColor)
             self.nsldblindervisible = True
 
    def hideNSLDBlinder(self):
@@ -6780,23 +6782,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Moves pointer down the list in nsld
         '''
         temp = self.window._children["savefileselect"].curselection()[0]
-        if (temp + 1) < len(self.window._children["savefileselect"].get(0,"end")):
+        if (temp + 1) < len(self.window._children["savefileselect"].get(0, "end")):
             self.window._children["savefileselect"].selection_clear(temp)
             self.window._children["savefileselect"].select_set(temp + 1)
             self.window._children["savefileselect"].activate(temp + 1)
             self.window._children["savefileselect"].see(temp + 1)
             self.nsldSetEntryFromListbox()
 
-   def doSave(self, slot:int, file:PurePath=None):
+   def doSave(self, slot: int, file: PurePath = None):
         '''
         Save game stage 2 (file manipulation)
         '''
         if (slot == 4):
             if self.solonlymode:
-                tempname = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))
+                tempname = filedialog.asksaveasfilename(initialdir=self.savelocation, filetypes=(("Nimin Saves", "*.nim")))
             else:
-                tempname = filedialog.asksaveasfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML File","*.xml"),("Shared Object","*.sol"),("Nimin Saves","*.nim")))
-            if (isinstance(tempname,tuple) or len(tempname) == 0):
+                tempname = filedialog.asksaveasfilename(initialdir=self.savelocation, filetypes=(("All Files", "*"), ("TOML File", "*.toml"), ("XML File", "*.xml"), ("Shared Object", "*.sol"), ("Nimin Saves", "*.nim")))
+            if (isinstance(tempname, tuple) or len(tempname) == 0):
                 self.saveGo()
                 return
             savefilename = Path(tempname)
@@ -6807,16 +6809,44 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 savefilename = self.savelocation / f"Nimin_Save{slot}.sol"
             else:
                 savefilename = self.savelocation / f"Nimin_Save{slot}.xml"
-        data = SaveUtils.dictSAVE({"track":{"currentState":self.currentState,"currentZone":self.currentZone,"day":self.day,"hour":self.hour,"currentDayCare":self.currentDayCare,"inDungeon":self.inDungeon,"currentDungeon":self.currentDungeon,"v7":0.75,"firstExplore":self.firstExplore},"version":{"original":NIMIN_VERSION,"port":__version__},"stats":{"strength":self.strength,"mentality":self.mentality,"libido":self.libido,"sensitivity":self.sensitivity,"HP":self.HP,"lust":self.lust,"coin":self.coin,"strMod":self.strMod,"mentMod":self.mentMod,"libMod":self.libMod,"senMod":self.senMod,"hunger":self.hunger},"level":{"SexP":int(self.SexP),"levelUP":self.levelUP,"level":self.level,"babyFactLevel":self.babyFactLevel,"bodyBuildLevel":self.bodyBuildLevel,"hyperHappyLevel":self.hyperHappyLevel,"alchemistLevel":self.alchemistLevel,"fetishMasterLevel":self.fetishMasterLevel,"milkMaidLevel":self.milkMaidLevel,"shapeshiftyLevel":self.shapeshiftyLevel,"shapeshiftyFirst":self.shapeshiftyFirst,"shapeshiftySecond":self.shapeshiftySecond},"mod":{"runMod":self.runMod,"rapeMod":self.rapeMod,"cumMod":self.cumMod,"cockSizeMod":self.cockSizeMod,"milkMod":self.milkMod,"carryMod":self.carryMod,"vagBellyMod":self.vagBellyMod,"pregChanceMod":self.pregChanceMod,"extraPregChance":self.extraPregChance,"pregTimeMod":self.pregTimeMod,"enticeMod":self.enticeMod,"milkHPMod":self.milkHPMod,"vagSizeMod":self.vagSizeMod,"vagElastic":self.vagElastic,"changeMod":self.changeMod,"HPMod":self.HPMod,"SexPMod":self.SexPMod,"minLust":self.minLust,"milkCap":self.milkCap,"coinMod":self.coinMod,"hipMod":self.hipMod,"buttMod":self.buttMod,"bellyMod":self.bellyMod,"cockMoistMod":self.cockMoistMod,"vagMoistMod":self.vagMoistMod,"lockTail":self.lockTail,"lockFace":self.lockFace,"lockSkin":self.lockSkin,"lockBreasts":self.lockBreasts,"lockEars":self.lockEars,"lockLegs":self.lockLegs,"lockNipples":self.lockNipples,"lockCock":self.lockCock},"quality":{"gender":self.gender,"race":self.race,"body":self.body,"dominant":self.dominant,"hips":self.hips,"butt":self.butt,"tallness":self.tallness,"skinType":self.skinType,"tail":self.tail,"ears":self.ears,"hair":self.hair,"hairColor":self.hairColor,"hairLength":self.hairLength,"legType":self.legType,"wings":self.wings,"faceType":self.faceType,"skinColor":self.skinColor},"cock":{"cockTotal":self.cockTotal,"humanCocks":self.humanCocks,"horseCocks":self.horseCocks,"wolfCocks":self.wolfCocks,"catCocks":self.catCocks,"rabbitCocks":self.rabbitCocks,"lizardCocks":self.lizardCocks,"cockSize":self.cockSize,"cockMoist":self.cockMoist,"balls":self.balls,"ballSize":self.ballSize,"showBalls":self.showBalls,"knot":self.knot,"bugCocks":self.bugCocks,"neuterizerHideBalls":self.neuterizerHideBalls},"girl":{"breastSize":self.breastSize,"boobTotal":self.boobTotal,"nippleSize":self.nippleSize,"udders":self.udders,"udderSize":self.udderSize,"teatSize":self.teatSize,"clitSize":self.clitSize,"vagTotal":self.vagTotal,"vagSize":self.vagSize,"vagMoist":self.vagMoist,"vulvaSize":self.vulvaSize,"nipType":self.nipType},"gear":{"attireTop":self.attireTop,"attireBot":self.attireBot,"weapon":self.weapon},"status":{"pregRate":self.pregRate,"pregnancyTime":self.pregnancyTime,"pregStatus":self.pregStatus,"eggLaying":self.eggLaying,"eggMaxTime":self.eggMaxTime,"eggTime":self.eggTime,"eggRate":self.eggRate,"exhaustion":self.exhaustion,"exhaustionPenalty":self.exhaustionPenalty,"milkEngorgement":self.milkEngorgement,"milkEngorgementLevel":self.milkEngorgementLevel,"udderEngorgement":self.udderEngorgement,"udderEngorgementLevel":self.udderEngorgementLevel,"heat":self.heat,"heatTime":self.heatTime,"heatMaxTime":self.heatMaxTime,"lactation":self.lactation,"udderLactation":self.udderLactation,"nipplePlay":int(self.nipplePlay),"udderPlay":int(self.udderPlay),"blueBalls":self.blueBalls,"teatPump":self.teatPump,"nipPump":self.nipPump,"cockPump":self.cockPump,"clitPump":self.clitPump,"vulvaPump":self.vulvaPump,"masoPot":self.masoPot,"sMasoPot":self.sMasoPot,"babyFree":self.babyFree,"charmTime":self.charmTime,"pheromone":self.pheromone,"eggceleratorTime":self.eggceleratorTime,"eggceleratorDose":self.eggceleratorDose,"bodyOil":self.bodyOil,"lustPenalty":self.lustPenalty,"fertileGel":self.fertileGel,"snuggleBall":self.snuggleBall,"eggType":self.eggType,"milkSuppressant":self.milkSuppressant,"milkSuppressantLact":self.milkSuppressantLact,"milkSuppressantUdder":self.milkSuppressantUdder,"suppHarness":self.suppHarness,"fertilityStatueCurse":self.fertilityStatueCurse,"plumpQuats":self.plumpQuats,"lilaWetStatus":self.lilaWetStatus,"cockSnakePreg":self.cockSnakePreg,"milkCPoisonNip":self.milkCPoisonNip,"milkCPoisonUdd":self.milkCPoisonUdd,"cockSnakeVenom":self.cockSnakeVenom},"affinity":{"humanAffinity":self.humanAffinity,"horseAffinity":self.horseAffinity,"wolfAffinity":self.wolfAffinity,"catAffinity":self.catAffinity,"cowAffinity":self.cowAffinity,"lizardAffinity":self.lizardAffinity,"rabbitAffinity":self.rabbitAffinity,"fourBoobAffinity":self.fourBoobAffinity,"mouseAffinity":self.mouseAffinity,"birdAffinity":self.birdAffinity,"pigAffinity":self.pigAffinity,"twoBoobAffinity":self.twoBoobAffinity,"sixBoobAffinity":self.sixBoobAffinity,"eightBoobAffinity":self.eightBoobAffinity,"tenBoobAffinity":self.tenBoobAffinity,"cowTaurAffinity":self.cowTaurAffinity,"humanTaurAffinity":self.humanTaurAffinity,"skunkAffinity":self.skunkAffinity,"bugAffinity":self.bugAffinity},"rep":{"lilaRep":self.lilaRep,"lilaVulva":self.lilaVulva,"lilaMilk":self.lilaMilk,"lilaPreg":self.lilaPreg,"malonRep":self.malonRep,"malonPreg":self.malonPreg,"malonChildren":self.malonChildren,"mistressRep":self.mistressRep,"jamieRep":self.jamieRep,"jamieSize":self.jamieSize,"jamieChildren":self.jamieChildren,"silRep":self.silRep,"silPreg":self.silPreg,"silRate":self.silRate,"silLay":self.silLay,"silGrowthTime":self.silGrowthTime,"silTied":self.silTied,"lilaUB":self.lilaUB,"dairyFarmBrand":self.dairyFarmBrand,"lilaWetness":self.lilaWetness,"jamieButt":self.jamieButt,"jamieBreasts":self.jamieBreasts,"jamieHair":self.jamieHair},"knowledge":{"foundSoftlik":self.foundSoftlik,"foundFirmshaft":self.foundFirmshaft,"foundTieden":self.foundTieden,"foundSizCalit":self.foundSizCalit,"foundOviasis":self.foundOviasis,"foundValley":self.foundValley,"foundSanctuary":self.foundSanctuary,"usedSecretStairs":self.usedSecretStairs},"boss":{"defeatedMinotaur":self.defeatedMinotaur,"defeatedFreakyGirl":self.defeatedFreakyGirl,"defeatedSuccubus":self.defeatedSuccubus},"knowSimpleAlchemy":{"knowLustDraft":self.knowLustDraft,"knowRejuvPot":self.knowRejuvPot,"knowExpPreg":self.knowExpPreg,"knowBallSwell":self.knowBallSwell,"knowMaleEnhance":self.knowMaleEnhance},"knowAdvancedAlchemy":{"knowSLustDraft":self.knowSLustDraft,"knowSRejuvPot":self.knowSRejuvPot,"knowSExpPreg":self.knowSExpPreg,"knowSBallSwell":self.knowSBallSwell,"knowGenSwap":self.knowGenSwap,"knowMasoPot":self.knowMasoPot,"knowBabyFree":self.knowBabyFree,"knowPotPot":self.knowPotPot,"knowMilkSuppress":self.knowMilkSuppress},"knowComplexAlchemy":{"knowSGenSwap":self.knowSGenSwap,"knowSMasoPot":self.knowSMasoPot,"knowSBabyFree":self.knowSBabyFree,"knowSPotPot":self.knowSPotPot,"knowPussJuice":self.knowPussJuice,"knowPheromone":self.knowPheromone,"knowBazoomba":self.knowBazoomba},"majorFetish":{"maleFetish":self.maleFetish,"femaleFetish":self.femaleFetish,"hermFetish":self.hermFetish,"narcissistFetish":self.narcissistFetish,"dependentFetish":self.dependentFetish},"moderateFetish":{"dominantFetish":self.dominantFetish,"submissiveFetish":self.submissiveFetish,"lboobFetish":self.lboobFetish,"sboobFetish":self.sboobFetish,"furryFetish":self.furryFetish,"scalyFetish":self.scalyFetish,"smoothyFetish":self.smoothyFetish},"minorFetish":{"pregnancyFetish":self.pregnancyFetish,"bestialityFetish":self.bestialityFetish,"milkFetish":self.milkFetish,"sizeFetish":self.sizeFetish,"unbirthingFetish":self.unbirthingFetish,"ovipositionFetish":self.ovipositionFetish,"toyFetish":self.toyFetish,"hyperFetish":self.hyperFetish},"kid":{"humanChildren":self.humanChildren,"equanChildren":self.equanChildren,"lupanChildren":self.lupanChildren,"felinChildren":self.felinChildren,"cowChildren":self.cowChildren,"lizanChildren":self.lizanChildren,"lizanEggs":self.lizanEggs,"bunnionChildren":self.bunnionChildren,"wolfPupChildren":self.wolfPupChildren,"miceChildren":self.miceChildren,"birdEggs":self.birdEggs,"birdChildren":self.birdChildren,"pigChildren":self.pigChildren,"calfChildren":self.calfChildren,"bugEggs":self.bugEggs,"bugChildren":self.bugChildren,"skunkChildren":self.skunkChildren,"minotaurChildren":self.minotaurChildren,"freakyGirlChildren":self.freakyGirlChildren},"trav":[],"bag":list(each(self.bagArray)),"bagStack":list(each(self.bagStackArray)),"stash":list(each(self.stashArray)),"stashStack":list(each(self.stashStackArray)),"preg":list(each(self.pregArray))})
+        data = SaveUtils.dictSAVE({
+            "track": {"currentState": self.currentState, "currentZone": self.currentZone, "day": self.day, "hour": self.hour, "currentDayCare": self.currentDayCare, "inDungeon": self.inDungeon, "currentDungeon": self.currentDungeon, "v7": 0.75, "firstExplore": self.firstExplore},
+            "version": {"original": NIMIN_VERSION, "port": __version__},
+            "stats": {"strength": self.strength, "mentality": self.mentality, "libido": self.libido, "sensitivity": self.sensitivity, "HP": self.HP, "lust": self.lust, "coin": self.coin, "strMod": self.strMod, "mentMod": self.mentMod, "libMod": self.libMod, "senMod": self.senMod, "hunger": self.hunger},
+            "level": {"SexP": int(self.SexP), "levelUP": self.levelUP, "level": self.level, "babyFactLevel": self.babyFactLevel, "bodyBuildLevel": self.bodyBuildLevel, "hyperHappyLevel": self.hyperHappyLevel, "alchemistLevel": self.alchemistLevel, "fetishMasterLevel": self.fetishMasterLevel, "milkMaidLevel": self.milkMaidLevel, "shapeshiftyLevel": self.shapeshiftyLevel, "shapeshiftyFirst": self.shapeshiftyFirst, "shapeshiftySecond": self.shapeshiftySecond},
+            "mod": {"runMod": self.runMod, "rapeMod": self.rapeMod, "cumMod": self.cumMod, "cockSizeMod": self.cockSizeMod, "milkMod": self.milkMod, "carryMod": self.carryMod, "vagBellyMod": self.vagBellyMod, "pregChanceMod": self.pregChanceMod, "extraPregChance": self.extraPregChance, "pregTimeMod": self.pregTimeMod, "enticeMod": self.enticeMod, "milkHPMod": self.milkHPMod, "vagSizeMod": self.vagSizeMod, "vagElastic": self.vagElastic, "changeMod": self.changeMod, "HPMod": self.HPMod, "SexPMod": self.SexPMod, "minLust": self.minLust, "milkCap": self.milkCap, "coinMod": self.coinMod, "hipMod": self.hipMod, "buttMod": self.buttMod, "bellyMod": self.bellyMod, "cockMoistMod": self.cockMoistMod, "vagMoistMod": self.vagMoistMod, "lockTail": self.lockTail, "lockFace": self.lockFace, "lockSkin": self.lockSkin, "lockBreasts": self.lockBreasts, "lockEars": self.lockEars, "lockLegs": self.lockLegs, "lockNipples": self.lockNipples, "lockCock": self.lockCock},
+            "quality": {"gender": self.gender, "race": self.race, "body": self.body, "dominant": self.dominant, "hips": self.hips, "butt": self.butt, "tallness": self.tallness, "skinType": self.skinType, "tail": self.tail, "ears": self.ears, "hair": self.hair, "hairColor": self.hairColor, "hairLength": self.hairLength, "legType": self.legType, "wings": self.wings, "faceType": self.faceType, "skinColor": self.skinColor},
+            "cock": {"cockTotal": self.cockTotal, "humanCocks": self.humanCocks, "horseCocks": self.horseCocks, "wolfCocks": self.wolfCocks, "catCocks": self.catCocks, "rabbitCocks": self.rabbitCocks, "lizardCocks": self.lizardCocks, "cockSize": self.cockSize, "cockMoist": self.cockMoist, "balls": self.balls, "ballSize": self.ballSize, "showBalls": self.showBalls, "knot": self.knot, "bugCocks": self.bugCocks, "neuterizerHideBalls": self.neuterizerHideBalls},
+            "girl": {"breastSize": self.breastSize, "boobTotal": self.boobTotal, "nippleSize": self.nippleSize, "udders": self.udders, "udderSize": self.udderSize, "teatSize": self.teatSize, "clitSize": self.clitSize, "vagTotal": self.vagTotal, "vagSize": self.vagSize, "vagMoist": self.vagMoist, "vulvaSize": self.vulvaSize, "nipType": self.nipType},
+            "gear": {"attireTop": self.attireTop, "attireBot": self.attireBot, "weapon": self.weapon},
+            "status": {"pregRate": self.pregRate, "pregnancyTime": self.pregnancyTime, "pregStatus": self.pregStatus, "eggLaying": self.eggLaying, "eggMaxTime": self.eggMaxTime, "eggTime": self.eggTime, "eggRate": self.eggRate, "exhaustion": self.exhaustion, "exhaustionPenalty": self.exhaustionPenalty, "milkEngorgement": self.milkEngorgement, "milkEngorgementLevel": self.milkEngorgementLevel, "udderEngorgement": self.udderEngorgement, "udderEngorgementLevel": self.udderEngorgementLevel, "heat": self.heat, "heatTime": self.heatTime, "heatMaxTime": self.heatMaxTime, "lactation": self.lactation, "udderLactation": self.udderLactation, "nipplePlay": int(self.nipplePlay), "udderPlay": int(self.udderPlay), "blueBalls": self.blueBalls, "teatPump": self.teatPump, "nipPump": self.nipPump, "cockPump": self.cockPump, "clitPump": self.clitPump, "vulvaPump": self.vulvaPump, "masoPot": self.masoPot, "sMasoPot": self.sMasoPot, "babyFree": self.babyFree, "charmTime": self.charmTime, "pheromone": self.pheromone, "eggceleratorTime": self.eggceleratorTime, "eggceleratorDose": self.eggceleratorDose, "bodyOil": self.bodyOil, "lustPenalty": self.lustPenalty, "fertileGel": self.fertileGel, "snuggleBall": self.snuggleBall, "eggType": self.eggType, "milkSuppressant": self.milkSuppressant, "milkSuppressantLact": self.milkSuppressantLact, "milkSuppressantUdder": self.milkSuppressantUdder, "suppHarness": self.suppHarness, "fertilityStatueCurse": self.fertilityStatueCurse, "plumpQuats": self.plumpQuats, "lilaWetStatus": self.lilaWetStatus, "cockSnakePreg": self.cockSnakePreg, "milkCPoisonNip": self.milkCPoisonNip, "milkCPoisonUdd": self.milkCPoisonUdd, "cockSnakeVenom": self.cockSnakeVenom},
+            "affinity": {"humanAffinity": self.humanAffinity, "horseAffinity": self.horseAffinity, "wolfAffinity": self.wolfAffinity, "catAffinity": self.catAffinity, "cowAffinity": self.cowAffinity, "lizardAffinity": self.lizardAffinity, "rabbitAffinity": self.rabbitAffinity, "fourBoobAffinity": self.fourBoobAffinity, "mouseAffinity": self.mouseAffinity, "birdAffinity": self.birdAffinity, "pigAffinity": self.pigAffinity, "twoBoobAffinity": self.twoBoobAffinity, "sixBoobAffinity": self.sixBoobAffinity, "eightBoobAffinity": self.eightBoobAffinity, "tenBoobAffinity": self.tenBoobAffinity, "cowTaurAffinity": self.cowTaurAffinity, "humanTaurAffinity": self.humanTaurAffinity, "skunkAffinity": self.skunkAffinity, "bugAffinity": self.bugAffinity},
+            "rep": {"lilaRep": self.lilaRep, "lilaVulva": self.lilaVulva, "lilaMilk": self.lilaMilk, "lilaPreg": self.lilaPreg, "malonRep": self.malonRep, "malonPreg": self.malonPreg, "malonChildren": self.malonChildren, "mistressRep": self.mistressRep, "jamieRep": self.jamieRep, "jamieSize": self.jamieSize, "jamieChildren": self.jamieChildren, "silRep": self.silRep, "silPreg": self.silPreg, "silRate": self.silRate, "silLay": self.silLay, "silGrowthTime": self.silGrowthTime, "silTied": self.silTied, "lilaUB": self.lilaUB, "dairyFarmBrand": self.dairyFarmBrand, "lilaWetness": self.lilaWetness, "jamieButt": self.jamieButt, "jamieBreasts": self.jamieBreasts, "jamieHair": self.jamieHair},
+            "knowledge": {"foundSoftlik": self.foundSoftlik, "foundFirmshaft": self.foundFirmshaft, "foundTieden": self.foundTieden, "foundSizCalit": self.foundSizCalit, "foundOviasis": self.foundOviasis, "foundValley": self.foundValley, "foundSanctuary": self.foundSanctuary, "usedSecretStairs": self.usedSecretStairs},
+            "boss": {"defeatedMinotaur": self.defeatedMinotaur, "defeatedFreakyGirl": self.defeatedFreakyGirl, "defeatedSuccubus": self.defeatedSuccubus},
+            "knowSimpleAlchemy": {"knowLustDraft": self.knowLustDraft, "knowRejuvPot": self.knowRejuvPot, "knowExpPreg": self.knowExpPreg, "knowBallSwell": self.knowBallSwell, "knowMaleEnhance": self.knowMaleEnhance},
+            "knowAdvancedAlchemy": {"knowSLustDraft": self.knowSLustDraft, "knowSRejuvPot": self.knowSRejuvPot, "knowSExpPreg": self.knowSExpPreg, "knowSBallSwell": self.knowSBallSwell, "knowGenSwap": self.knowGenSwap, "knowMasoPot": self.knowMasoPot, "knowBabyFree": self.knowBabyFree, "knowPotPot": self.knowPotPot, "knowMilkSuppress": self.knowMilkSuppress},
+            "knowComplexAlchemy": {"knowSGenSwap": self.knowSGenSwap, "knowSMasoPot": self.knowSMasoPot, "knowSBabyFree": self.knowSBabyFree, "knowSPotPot": self.knowSPotPot, "knowPussJuice": self.knowPussJuice, "knowPheromone": self.knowPheromone, "knowBazoomba": self.knowBazoomba},
+            "majorFetish": {"maleFetish": self.maleFetish, "femaleFetish": self.femaleFetish, "hermFetish": self.hermFetish, "narcissistFetish": self.narcissistFetish, "dependentFetish": self.dependentFetish},
+            "moderateFetish": {"dominantFetish": self.dominantFetish, "submissiveFetish": self.submissiveFetish, "lboobFetish": self.lboobFetish, "sboobFetish": self.sboobFetish, "furryFetish": self.furryFetish, "scalyFetish": self.scalyFetish, "smoothyFetish": self.smoothyFetish},
+            "minorFetish": {"pregnancyFetish": self.pregnancyFetish, "bestialityFetish": self.bestialityFetish, "milkFetish": self.milkFetish, "sizeFetish": self.sizeFetish, "unbirthingFetish": self.unbirthingFetish, "ovipositionFetish": self.ovipositionFetish, "toyFetish": self.toyFetish, "hyperFetish": self.hyperFetish},
+            "kid": {"humanChildren": self.humanChildren, "equanChildren": self.equanChildren, "lupanChildren": self.lupanChildren, "felinChildren": self.felinChildren, "cowChildren": self.cowChildren, "lizanChildren": self.lizanChildren, "lizanEggs": self.lizanEggs, "bunnionChildren": self.bunnionChildren, "wolfPupChildren": self.wolfPupChildren, "miceChildren": self.miceChildren, "birdEggs": self.birdEggs, "birdChildren": self.birdChildren, "pigChildren": self.pigChildren, "calfChildren": self.calfChildren, "bugEggs": self.bugEggs, "bugChildren": self.bugChildren, "skunkChildren": self.skunkChildren, "minotaurChildren": self.minotaurChildren, "freakyGirlChildren": self.freakyGirlChildren},
+            "trav": [],
+            "bag": list(each(self.bagArray)),
+            "bagStack": list(each(self.bagStackArray)),
+            "stash": list(each(self.stashArray)),
+            "stashStack": list(each(self.stashStackArray)),
+            "preg": list(each(self.pregArray))
+        })
         sfext = savefilename.suffix.lower()
         if sfext == ".sol":
-            SaveUtils.saveSOL(data,savefilename)
-        elif sfext ==".nim":
-            SaveUtils.saveNIM(data,savefilename)
+            SaveUtils.saveSOL(data, savefilename)
+        elif sfext == ".nim":
+            SaveUtils.saveNIM(data, savefilename)
         elif sfext == ".xml":
-            SaveUtils.saveXML(data,savefilename)
+            SaveUtils.saveXML(data, savefilename)
         elif sfext == ".toml":
-            SaveUtils.saveTOML(data,savefilename)
+            SaveUtils.saveTOML(data, savefilename)
         else:
             self.saveGo("Error: Could not load save file. Reason: Incorrect file format")
             return
@@ -6825,16 +6855,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideDiscard()
         self.doReturn()
 
-   def doLoad(self, slot:int, file:PurePath=None):
+   def doLoad(self, slot: int, file: PurePath = None):
         '''
         Load game stage 2 (file manipulation)
         '''
         if (slot == 4):
             if self.solonlymode:
-                tempname = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("Nimin Saves","*.nim")))
+                tempname = filedialog.askopenfilename(initialdir=self.savelocation, filetypes=(("Nimin Saves", "*.nim")))
             else:
-                tempname = filedialog.askopenfilename(initialdir=self.savelocation,filetypes=(("All Files","*"),("TOML File","*.toml"),("XML Files","*.xml"),("Shared Objects","*.sol"),("Nimin Saves","*.nim")))
-            if (isinstance(tempname,tuple) or len(tempname) == 0):
+                tempname = filedialog.askopenfilename(initialdir=self.savelocation, filetypes=(("All Files", "*"), ("TOML File", "*.toml"), ("XML Files", "*.xml"), ("Shared Objects", "*.sol"), ("Nimin Saves", "*.nim")))
+            if (isinstance(tempname, tuple) or len(tempname) == 0):
                 self.loadGo()
                 return
             loadfilename = Path(tempname)
@@ -6888,7 +6918,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.inDungeon = bool(strack['inDungeon'])
         self.currentDungeon = int(strack['currentDungeon'])
         # self.v7 = str(strack['v7'])
-        self.firstExplore = bool(strack.get('firstExplore',False))
+        self.firstExplore = bool(strack.get('firstExplore', False))
         self.strength = int(sstats['strength'])
         self.mentality = int(sstats['mentality'])
         self.libido = int(sstats['libido'])
@@ -6911,8 +6941,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.fetishMasterLevel = int(slevel['fetishMasterLevel'])
         self.milkMaidLevel = int(slevel['milkMaidLevel'])
         self.shapeshiftyLevel = int(slevel['shapeshiftyLevel'])
-        self.shapeshiftyFirst = str(slevel.get('shapeshiftyFirst',''))
-        self.shapeshiftySecond = str(slevel.get('shapeshiftySecond',''))
+        self.shapeshiftyFirst = str(slevel.get('shapeshiftyFirst', ''))
+        self.shapeshiftySecond = str(slevel.get('shapeshiftySecond', ''))
         self.runMod = int(smod['runMod'])
         self.rapeMod = int(smod['rapeMod'])
         self.cumMod = float(smod['cumMod'])
@@ -6992,7 +7022,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.nipType = int(sgirl['nipType'])
         self.attireTop = int(sgear['attireTop'])
         self.attireBot = int(sgear['attireBot'])
-        self.weapon = int(sgear['weapon']) #This was originally a float because, at some point, this was meant to be a damage divisor (Lower value -> Higher damage) rather than a weapon ID
+        self.weapon = int(sgear['weapon'])  # This was originally a float because, at some point, this was meant to be a damage divisor (Lower value -> Higher damage) rather than a weapon ID
         self.pregRate = float(sstatus['pregRate'])
         self.pregnancyTime = int(sstatus['pregnancyTime'])
         self.pregStatus = int(sstatus['pregStatus'])
@@ -7079,7 +7109,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.silGrowthTime = int(srep['silGrowthTime'])
         self.silTied = bool(srep['silTied'])
         self.lilaUB = bool(srep['lilaUB'])
-        self.dairyFarmBrand = bool(srep['dairyFarmBrand']) # NOTE: Was originally * for some reason
+        self.dairyFarmBrand = bool(srep['dairyFarmBrand'])  # NOTE: Was originally * for some reason
         self.lilaWetness = int(srep['lilaWetness'])
         self.jamieRep1 = 0
         self.jamieRep2 = 0
@@ -7162,14 +7192,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.skunkChildren = int(skid['skunkChildren'])
         self.minotaurChildren = int(skid['minotaurChildren'])
         self.freakyGirlChildren = int(skid['freakyGirlChildren'])
-        trav = data['trav']
+        # trav = data['trav']
         self.bagArray = Array(*data['bag'])
         self.bagStackArray = Array(*data['bagStack'])
         self.stashArray = Array(*data['stash'])
         self.stashStackArray = Array(*data['stashStack'])
         self.pregArray = Array(*data['preg'])
 
-        self.outputMainText("Your file has been successfully loaded.",True)
+        self.outputMainText("Your file has been successfully loaded.", True)
         self.hideNewSaveLoadDialog()
         self.hideDiscard()
         self.hideNSLDBlinder()
@@ -7178,7 +7208,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideUpDown()
         self.showStatsPane()
         self.regionChange(self.currentZone)
-        self.stats(0,0,0,0)
+        self.stats(0, 0, 0, 0)
         self.setDHStats()
         self.setSCStats()
         self.showOption7()
@@ -7193,9 +7223,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         trace("race")
         trace(self.tallness)
-        self.showButtons(ButtonList(1,0,1,0,0,1,0,0,1,0,1,0))
-        self.outputMainText("Choose which race you want to be:\n\nHuman - A race supposedly descendant of apes, their curious minds are more open to change and their skin is slightly more sensitive.\n\nEquan - A race supposedly descendant of horses, their large genitals make them slightly more sexual and their muscles are more powerful.\n\nLupan - A race supposedly descendant of wolves, their lean bodies are stronger and their minds more quick-witted.\n\nFelin - A race supposedly descendant of cats, their lust-driven society makes them a bit more sexual and sensitive.\n\nLizan - A race supposedly descendant of some kind of reptile, their desert-adapted bodies have made them stronger, but they're still careful as their scales make them somewhat sensitive.",True)
-        self.doButtonChoices({1:"Equan",3:"Lupan",6:"Human",9:"Felin",11:"Lizan"})
+        self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0))
+        self.outputMainText("Choose which race you want to be:\n\nHuman - A race supposedly descendant of apes, their curious minds are more open to change and their skin is slightly more sensitive.\n\nEquan - A race supposedly descendant of horses, their large genitals make them slightly more sexual and their muscles are more powerful.\n\nLupan - A race supposedly descendant of wolves, their lean bodies are stronger and their minds more quick-witted.\n\nFelin - A race supposedly descendant of cats, their lust-driven society makes them a bit more sexual and sensitive.\n\nLizan - A race supposedly descendant of some kind of reptile, their desert-adapted bodies have made them stronger, but they're still careful as their scales make them somewhat sensitive.", True)
+        self.doButtonChoices({1: "Equan", 3: "Lupan", 6: "Human", 9: "Felin", 11: "Lizan"})
 
         def doListen():
             self.boobTotal = 2
@@ -7307,9 +7337,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.currentDayCare = self.dominant
         self.statDisplay(False)
-        self.outputMainText("Choose which gender you want to be:\n\nMale - You has painus!\n\nFemale - You has vagoo!\n\nHerm - You has painus and vagoo!",True)
-        self.showButtons(ButtonList(0,0,0,0,1,1,1,0,0,0,0,0))
-        self.doButtonChoices({5:"Male",6:"Female",7:"Herm"})
+        self.outputMainText("Choose which gender you want to be:\n\nMale - You has painus!\n\nFemale - You has vagoo!\n\nHerm - You has painus and vagoo!", True)
+        self.showButtons(ButtonList(0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0))
+        self.doButtonChoices({5: "Male", 6: "Female", 7: "Herm"})
 
         def doListen():
             if self.buttonChoice == 5:
@@ -7373,15 +7403,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.statDisplay(False)
         if self.gender == 1:
-            self.showButtons(ButtonList(1,0,1,0,1,0,1,0,0,1,0,0))
-            tempDict = {1:"Bodybuilder", 3:"Average", 5:"Cunt Boy", 7:self.ptweaksGrammar(3,True), 10:"Childlike"}
+            self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0))
+            tempDict = {1: "Bodybuilder", 3: "Average", 5: "Cunt Boy", 7: self.ptweaksGrammar(3, True), 10: "Childlike"}
         elif self.gender == 2:
-            self.showButtons(ButtonList(0,1,1,0,1,0,0,0,0,1,0,0))
-            tempDict = {2:"Bodybuilder", 5:"Average", 3:"Voluptuous", 10:"Childlike"}
+            self.showButtons(ButtonList(0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0))
+            tempDict = {2: "Bodybuilder", 5: "Average", 3: "Voluptuous", 10: "Childlike"}
         elif self.gender == 3:
-            self.showButtons(ButtonList(0,1,0,0,1,1,0,0,0,1,0,0))
-            tempDict = {2:"Bodybuilder", 5:"Masculine", 6:"Feminine", 10:"Childlike"}
-        self.outputMainText("Choose your body type. Types determine height and a few beginning characteristics. Their names describe what they look like and may potentially alter your true gender.",True)
+            self.showButtons(ButtonList(0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0))
+            tempDict = {2: "Bodybuilder", 5: "Masculine", 6: "Feminine", 10: "Childlike"}
+        self.outputMainText("Choose your body type. Types determine height and a few beginning characteristics. Their names describe what they look like and may potentially alter your true gender.", True)
         self.doButtonChoices(tempDict)
 
         def doListen():
@@ -7416,7 +7446,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.lizardCocks = 0
                     self.vagSize = 8
                     self.vulvaSize = 3
-                    self.pregArray = Array(False,0,0,0,0)
+                    self.pregArray = Array(False, 0, 0, 0, 0)
                     self.gender = 2
                     self.vagTotal = 1
                     self.vagMoist = 1
@@ -7543,27 +7573,27 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.setDHStats()
         self.doHP(10000, True)
         self.setSCStats()
-        self.outputMainText("\n\"...Hello?\"",True)
+        self.outputMainText("\n\"...Hello?\"", True)
         self.doNext()
 
         def doListen():
-            self.outputMainText("\n\n\"...Can anybody hear me?\"",True)
+            self.outputMainText("\n\n\"...Can anybody hear me?\"", True)
             self.doNext()
 
             def doListen():
-                self.outputMainText("\n\n\n\"Please... I know you are still young... You still do not know the world... But... It is almost ready again...\"",True)
+                self.outputMainText("\n\n\n\"Please... I know you are still young... You still do not know the world... But... It is almost ready again...\"", True)
                 self.doNext()
 
                 def doListen():
-                    self.outputMainText("\n\n\n\n\"I am so tired...\"\n\n\"...Please...\"",True)
+                    self.outputMainText("\n\n\n\n\"I am so tired...\"\n\n\"...Please...\"", True)
                     self.doNext()
 
                     def doListen():
-                        self.outputMainText("\n\n\n\n\n\"S⌠æ☼m±¥§ me...\"",True)
+                        self.outputMainText("\n\n\n\n\n\"S⌠æ☼m±¥§ me...\"", True)
                         self.doNext()
 
                         def doListen():
-                            self.doMainText("Ugh... You awaken from that dream for the fifth time this month. That soft, gentle voice echoes around your mind. A numbing dream with nothing to keep your attention. Something about a tower... Not a dream about flying or fleeing, nor school nor sex. Just this bland dream that you can remember better than all the rest. And yet you can never recall those last words...\n\nIt's been a few months since you started having that dream and it's been growing in frequency. Just so... annoying. Makes you feel anxious and antsy, like there is something missing in your life.\n\nLife isn't bad in ",True)
+                            self.doMainText("Ugh... You awaken from that dream for the fifth time this month. That soft, gentle voice echoes around your mind. A numbing dream with nothing to keep your attention. Something about a tower... Not a dream about flying or fleeing, nor school nor sex. Just this bland dream that you can remember better than all the rest. And yet you can never recall those last words...\n\nIt's been a few months since you started having that dream and it's been growing in frequency. Just so... annoying. Makes you feel anxious and antsy, like there is something missing in your life.\n\nLife isn't bad in ", True)
                             if self.race == 1:
                                 self.doMainText("Softlik, though. The houses of wood and stone are comfortable, safe, and stable. The rolling hills around the city are quite beautiful. Lots of people in town are coming up with new potions or inventions, and with humans being so prone to being changed by the outside world of Nimin, there's rarely a dull moment.")
                             elif self.race == 2:
@@ -7578,11 +7608,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doNext()
 
                             def doListen():
-                                self.outputMainText("It isn't unheard of to go venturing out. In fact, you know there are other civilizations around, separated by the strange wilderness. Explorers of other races have come and visited from time to time. A rarity and always so interesting in how they look and act, so diverse from your own people.\n\nAlthough, they do make you wonder... Why don't you see them more often? They seem to enjoy visiting, after all. There's no history of hate or trouble between the peoples. Although, the recorded history only goes back a few generations, so who knows what could have happened centuries ago...\n\nOh well.",True)
+                                self.outputMainText("It isn't unheard of to go venturing out. In fact, you know there are other civilizations around, separated by the strange wilderness. Explorers of other races have come and visited from time to time. A rarity and always so interesting in how they look and act, so diverse from your own people.\n\nAlthough, they do make you wonder... Why don't you see them more often? They seem to enjoy visiting, after all. There's no history of hate or trouble between the peoples. Although, the recorded history only goes back a few generations, so who knows what could have happened centuries ago...\n\nOh well.", True)
                                 self.doNext()
 
                                 def doListen():
-                                    self.outputMainText("You finally get out of bed and start your day. And after that dream, you just can't seem to shake the feeling that there's more to this life, this world... The dangerously odd world of Nimin.",True)
+                                    self.outputMainText("You finally get out of bed and start your day. And after that dream, you just can't seem to shake the feeling that there's more to this life, this world... The dangerously odd world of Nimin.", True)
                                     self.doNext()
 
                                     def doListen():
@@ -7600,15 +7630,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
         self.doListen = doListen
 
-   def doGeneral(self, djp:bool=True):
+   def doGeneral(self, djp: bool = True):
         '''
         Game's main dialog prompt. This is where you go back to after most actions
         '''
         self.bc()
         self.currentState = 1
-        buttonlist = ButtonList(1,1,1,1,1,1,1,1,1,1,0,1)
-        self.doMainText(f"You are currently in {self.regionName(self.currentZone)}. What would you like to do?",True)
-        tempDict = {1:"Bag", 2:"Stash", 3:"Shops", 4:"Day-Care", 5:"Masturbate", 6:"Sleep", 7:"Alchemy", 8:"Level Up", 9:"Wait", 10:"Prostitute", 12:"Explore"}
+        buttonlist = ButtonList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1)
+        self.doMainText(f"You are currently in {self.regionName(self.currentZone)}. What would you like to do?", True)
+        tempDict = {1: "Bag", 2: "Stash", 3: "Shops", 4: "Day-Care", 5: "Masturbate", 6: "Sleep", 7: "Alchemy", 8: "Level Up", 9: "Wait", 10: "Prostitute", 12: "Explore"}
         if (self.doWeight()):
             tempDict.pop(12)
         if (self.hour > 20 or self.hour < 7):
@@ -7618,20 +7648,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             buttonlist[8] = 0
             tempDict.pop(8)
         if (self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.lactation > 0):
-            tempDict = {5:"Masturbate", 9:"Wait"}
+            tempDict = {5: "Masturbate", 9: "Wait"}
             self.doMainText(f"\n\nMilk sprays from your chest, shooting through your {self.clothesTop()} and obscuring your view with a white mist. Pushing your breasts around as you may, you can't seem to get them to settle down as they're so overly engorged that they can't store as much as they're still producing, making it impossible to do anything without drenching not only yourself but all those around you! The production is so excessive that your body will definitely reduce the rate after this.\n\nYou must either milk your breasts or wait for the gushing to subside if you wish to continue. Either way, you have already wasted a large amount of milk.")
             self.milkEngorgement -= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5
-            self.lactChange(1,-30)
+            self.lactChange(1, -30)
         if (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.udderLactation > 0):
-            tempDict = {5:"Masturbate", 9:"Wait"}
+            tempDict = {5: "Masturbate", 9: "Wait"}
             self.doMainText(f"\n\nMilk sprays from your belly, shooting through your {self.clothesBottom()} and obscuring your view with a white mist. Adjusting your udder as you may, the teats continue to flail about, gushing with milk, as the fleshy bag is so overly engorged that it can't store as much as it's still producing, making it impossible to do anything without drenching not only yourself but all those around you! The production is so excessive that your body will definitely reduce the rate after this.\n\nYou must milk your udder or wait for the gushing to subside if you wish to continue. Either way, you have already wasted a large amount of milk.")
             self.udderEngorgement -= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 1.5
-            self.lactChange(2,-50)
+            self.lactChange(2, -50)
         if (self.lust == 100):
-            tempDict = {5:"Masturbate"}
+            tempDict = {5: "Masturbate"}
             self.doMainText(f"\n\nYour body quivers and your {self.legDesc(2)} give{self.legPlural(1)} out from under you as your arousal soaks through your clothes. Your mind seems focused only on one thing: SEX!\n\nYou must masturbate if you wish to continue.")
         elif (self.exhaustion > 44):
-            tempDict = {6:"Sleep"}
+            tempDict = {6: "Sleep"}
             self.doMainText("\n\nThere's only one thing on your mind right now...")
         if (self.blueBalls >= 120 and self.percent() * self.ment < self.percent() * (self.lib + self.blueBalls - 120) and self.lib > self.ment - 70 and djp):
             self.doJizzPants()
@@ -7644,6 +7674,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.showNGButton()
             self.showButtons(buttonlist)
             self.doButtonChoices(tempDict)
+
             def doListen():
                 if self.buttonChoice != 9:
                     self.hideSGButton()
@@ -7680,7 +7711,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Forced action when balls are "too full"
         '''
         getCum = self.cumAmount()
-        self.doMainText(f"\n\nYour {self.ballDesc()} balls feel so absolutely swollen and sensitive, that you can't stop thinking about it. They just feel like they've gotta... gotta... gotta...",True)
+        self.doMainText(f"\n\nYour {self.ballDesc()} balls feel so absolutely swollen and sensitive, that you can't stop thinking about it. They just feel like they've gotta... gotta... gotta...", True)
         self.hrs += 1
         if (getCum <= 300):
             self.doMainText(f"\n\nYou let out a gasp as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to twitch within your {self.clothesBottom()} while standing in the middle of {self.regionName(self.currentZone)}. You feel wads of cum seep out, climaxing without anything to assist it.\n\nYet, it's so little that you quickly regain your composure without hardly any blotching on your {self.clothesBottom()}. A bit flushed with embarassment, you feel lucky that nobody else noticed. You quickly head back to your place to clean up and try to pretend like nothing happened...")
@@ -7690,31 +7721,31 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (getCum <= 1000):
             self.doMainText(f"\n\nYou clench your mouth shut as you instinctively begin to moan. Your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to buck within your {self.clothesBottom()} as you stand in the middle of {self.regionName(self.currentZone)}, spurts of cum launching down through your {self.clothesBottom()}. Streams of the white slimy stuff dribble down your {self.legDesc(2)}, severely blotching your {self.clothesBottom()}, and making a few bystanders turn to wonder what you are doing. Without a good view, they are more likely to guess you have just pissed yourself with the amount of fluids running down.\n\nThey are almost about to inquire to your aid, but you quickly back off, stumbling to your home while more stuff oozes out and down to the ground. It takes you a while to clean up the mess you've made and another hour of building up the courage to head back out after that 'incident'...")
             self.hrs += 3
-            self.stats(0,-1,0,0)
+            self.stats(0, -1, 0, 0)
         elif (getCum <= 3000):
             self.doMainText(f"\n\nYou let out a moan that catches the attention of several bystanders in the middle of {self.regionName(self.currentZone)}. A thick stream of hot spunk pours down through your {self.clothesBottom()} to the ground below, making a light splattering sound as it begins to form a puddle below. Your {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} within your {self.clothesBottom()} until your hands instinctively press down on {self.plural(9)}, grabbing and rubbing {self.plural(9)} through the fabric. The puddle grows larger and larger until it envelops your {self.legDesc(10)}, at which point you begin to realize what you are doing.\n\nStrangers around you stare and wonder what the heck just happened, frozen in place and too afraid to actually inquire. Cum still dribbling down your {self.legDesc(2)}, you step away and rush back home. You have to strip and completely wash your {self.clothesBottom()} to take care of it all, and you take a couple hours to gather your wits and courage to go back outside after such a display...")
             self.hrs += 4
-            self.stats(0,-3,0,0)
+            self.stats(0, -3, 0, 0)
         elif (getCum <= 8000):
             self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as thick spurts of hot spunk spew within, pouring out over your hands and down your {self.legDesc(2)} as you moan again and again. All in the middle of {self.regionName(self.currentZone)}, catching the attention of many strangers. They stare with mouths agape, watching as you pleasure yourself in public, a waterfall of spunk pouring down from you with each jump of your thrusting cock{self.plural(1)}.\n\nThe puddle below you grows much to large to be considered an actual puddle... Some of the strangers have to step back to escape the encroaching flow. The distraught reaction from those around you bring you to your senses, blushing furiously at your lack of self-control and sudden major premature ejaculation. As best as you can while the spooge continues to ooze out in large gobs, you splash your way out of the center of attention and rush back home. It'll take hours to clean up both yourself and your clothes, and a bit longer still to face the public once more...")
             self.hrs += 7
-            self.stats(0,-5,0,0)
+            self.stats(0, -5, 0, 0)
         elif (getCum <= 25000):
             self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as small waves of hot thick spunk gurgle out of your crotch in the middle of {self.regionName(self.currentZone)}. Your orgasmic moaning grabs the attention of the surrounding bystanders and your thrashing erection{self.plural(1)} spewing more spunk out through your {self.clothesBottom()} attracts even more strangers to the spectacle. You collapse over yourself and crumble to the ground, your hands rubbing and pressing down into your crotch, trying to both hold it back and yet pleasure it at the same time. The spunk around you flows over the ground, splashing up against feet as the people cannot step back far enough. You just come so hard and so long...\n\nThe gasping and commotion from the onlookers eventually bring you back. Your {self.currentClothes()} completely soaked and all the mess around you, there's not much you can do except slump off in embarassment, dripping with your own spooge, and hoping nobody makes anymore fuss about it...\n\nIt takes hours to clean up and afterwards you're just so tired that you might as well sleep...")
             self.hrs += 9
-            self.stats(0,-5,0,0)
+            self.stats(0, -5, 0, 0)
             self.exhaustion += 15
         else:
             self.doMainText(f"\n\nThe sound of your {self.clothesBottom()} being shredded fills the air in {self.regionName(self.currentZone)} as a massive amount of hot thick slimy sticky cum erupts from your {self.cockDesc()} cock{self.plural(1)} and tears a path through your {self.clothesBottom()}. You fall onto your back from the force, your fingers scratching at the ground below you to anchor your writhing as your body is completely wracked by the sudden orgasm. Your {self.hipDesc()} hips thrash about as the {self.cockDesc()} erection{self.plural(1)} swing{self.plural(3)} around from the force of the gushing seed. Thick ropes of the white stuff tosses about, painting houses and drenching innocent bystanders. Some run for cover while others brace themselves against the onslaught. Some stay and begin to masturbate themselves while they get showered in your cum. You completely lose track of the time as your mind goes numb and you're completely bathed in your own spunk.\n\nSome minutes later, your severe pre-mature ejaculation calms down, your senses returning. You blink and look around, seeing strangers cower in fear or masturbate furiously. The thought that 'now might be a good time to leave' pops into your head and you can only agree. You don't want to witness the fallout after this.\n\nYour {self.legDesc(2)} weak, you begin to crawl yourself through the shallow lake of semen you've created, making your way back to your home where you can hide and clean yourself up... It'll take several hours to clean and your mind just wants to shut down. You should really learn to masturbate more often.")
             self.changeBot(-1)
             self.hrs += 10
-            self.stats(0,-5,2,0)
+            self.stats(0, -5, 2, 0)
             self.exhaustion += 20
-        self.doLust(-Math.floor(self.lib / 4),2,1)
+        self.doLust(-Math.floor(self.lib / 4), 2, 1)
         self.displayMainText()
         self.doEnd()
 
-   def doBag(self, refresh:bool=False, noclear:bool=False):
+   def doBag(self, refresh: bool = False, noclear: bool = False):
         '''
         Bag dialog
         '''
@@ -7733,7 +7764,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.window._children["discardbutton"].state = "normal"
             if self.useNewStash and self.currentState == 1:
-                self.buttonWrite(12,"Stash")
+                self.buttonWrite(12, "Stash")
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -7742,14 +7773,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 12:
                 if self.moveItemID != 0:
                     if self.useNewStash and self.currentState == 1:
-                        if (not self.canLose(self.moveItemID,0)):
-                            self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
+                        if (not self.canLose(self.moveItemID, 0)):
+                            self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                         else:
                             self.moveToStash()
                     else:
                         self.hideAmountAll()
                         self.hidePage()
-                        self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}",True)
+                        self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}", True)
                         if (self.moveItemStack > 1):
                             self.doMainText(f" x{self.moveItemStack}")
                         self.outputMainText("?")
@@ -7771,7 +7802,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.inBag = False
                     self.doReturn(False)
-            elif self.buttonChoice in {4,8}:
+            elif self.buttonChoice in {4, 8}:
                 self.doBag()
             else:
                 if self.choiceListResult[0]:
@@ -7779,18 +7810,18 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.useItem(self.choiceListResult[0])
         self.doListen = doListen
 
-   def useItem(self, ID:int):
+   def useItem(self, ID: int):
         '''
         Function called after item is clicked on in the bag
         '''
         if (ID == 0):
-            self.outputMainText("This slot is empty.",True)
+            self.outputMainText("This slot is empty.", True)
             self.doBag(noclear=True)
             return
         if self.useItemHidePage(ID):
             self.hidePage()
         self.choicePage = 1
-        self.doMainText(self.itemDescription(ID),True)
+        self.doMainText(self.itemDescription(ID), True)
         if (self.usableItem(ID) or self.conItem(ID)):
             self.hideAmountAll()
             self.doMainText("\n\nAre you sure you want to use this item?")
@@ -7820,24 +7851,24 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doBag()
 
-   def itemAdd(self, ID:int):
+   def itemAdd(self, ID: int):
         '''
         Function called when giving the player items
         '''
         self.itemGainArray.push(ID)
 
-   def addManyItem(self, ID:int, amount:int):
+   def addManyItem(self, ID: int, amount: int):
         '''
         Function for gaining many items
         '''
         for i in range(amount):
             self.itemAdd(ID)
 
-   def loseManyItem(self, ID:int, amount:int):
+   def loseManyItem(self, ID: int, amount: int):
         '''
         Function for losing multiple items
         '''
-        for i in range(26,-1,-1):
+        for i in range(26, -1, -1):
             if (self.bagArray[i] == ID and amount > 0):
                 if (amount >= self.bagStackArray[i]):
                     self.passiveItemRemove(self.bagArray[i])
@@ -7848,7 +7879,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.bagStackArray[i] -= amount
                     amount = 0
 
-   def gainItem(self, ID:int):
+   def gainItem(self, ID: int):
         '''
         Function used to actually give the player items
         '''
@@ -7856,7 +7887,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempNum = 0
         openSlot = self.checkOpenSlot(ID)
         if openSlot < 0:
-            self.outputMainText(f"You have obtained a {self.itemName(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.",True)
+            self.outputMainText(f"You have obtained a {self.itemName(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.", True)
             self.doDiscard(ID)
             return
         if (self.bagArray[openSlot] == 0):
@@ -7876,12 +7907,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.bagStackArray[openSlot] += 1
                 tempNum += 1
         if (tempNum < 2):
-            self.outputMainText(f"You have obtained a {self.itemName(ID)}!",True)
+            self.outputMainText(f"You have obtained a {self.itemName(ID)}!", True)
         else:
-            self.outputMainText(f"You have obtained {tempNum}x {self.itemName(ID)}!",True)
+            self.outputMainText(f"You have obtained {tempNum}x {self.itemName(ID)}!", True)
         self.doEnd()
 
-   def checkOpenSlot(self, ID:int):
+   def checkOpenSlot(self, ID: int):  # This can become one loop
         for i in range(27):
             if (self.bagStackArray[i] < self.itemStackMax(ID) and self.bagArray[i] == ID):
                 return i
@@ -7890,7 +7921,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return i
         return -1
 
-   def bagSlotClear(self, slot:int):
+   def bagSlotClear(self, slot: int):
         '''
         Clears a slot in the bag
         '''
@@ -7907,7 +7938,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.stashStackArray[i] = 0
                 self.stashArray[i] = 0
 
-   def doDiscard(self, ID:int):
+   # HERE
+   def doDiscard(self, ID: int):
       '''
       Function to discard an item
       '''
