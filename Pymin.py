@@ -4492,7 +4492,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif self.sideFocus == 8:
             self.detailedCredits()
 
-   def choiceListButtons(self, which: str, page: int = None):
+   def choiceListButtons(self, which: str):
         tempDict = {12: 'Return'}
         buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
         if (which == 'Bag'):
@@ -4501,8 +4501,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.choicePage = self.bagPage
             elif (self.mtb):
                 self.choicePage = self.tempBagPage
-            elif (page is not None):
-                self.choicePage = page
         elif (which == 'Stash'):
             tempArray = tuple(self.itemName(i) if i else ' ' for i in each(self.stashArray))
             if (self.inStash):
@@ -7751,7 +7749,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.displayMainText()
         self.doEnd()
 
-   def doBag(self, refresh: bool = False, noclear: bool = False):
+   def doBag(self):
         '''
         Bag dialog
         '''
@@ -7760,20 +7758,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.tempBagPage = 1
         self.showMoveItem(True)
 
-        # TODO: Remove one or both of these special conditions. They are only
-        #       used once.
-        if noclear or refresh:
-            self.choicePage = self.bagPage
-            if refresh:
-                self.bsRefresh("Bag")
-        else:
-            self.choiceListButtons("Bag")
-        if self.moveItemID == 0:
-            self.window._children["discardbutton"].state = "disabled"
-        else:
-            self.window._children["discardbutton"].state = "normal"
-            if self.useNewStash and self.currentState == 1:
-                self.buttonWrite(12, "Stash")
+        self.choiceListButtons("Bag")
+        self.bsUpdateButtonsWhenMoveItem('Stash')
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -7825,7 +7811,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         if (ID == 0):
             self.outputMainText("This slot is empty.", True)
-            self.doBag(noclear=True)
+            self.doBag()
+            # TODO: Fix page resetting here
             return
         if self.useItemHidePage(ID):
             self.hidePage()
@@ -7980,6 +7967,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doDiscard(self.tempID)
         self.doListen = doListen
 
+   def bsUpdateButtonsWhenMoveItem(self, which: str):
+        if self.moveItemID == 0:
+            self.window._children["discardbutton"].state = "disabled"
+        else:
+            self.window._children["discardbutton"].state = "normal"
+            if self.useNewStash and self.currentState == 1:
+                self.buttonWrite(12, which)
+
    def itemMove(self, slot: int):
         '''
         Function to move an item
@@ -8032,9 +8027,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonWrite(12, "Stash" if (self.inBag) else "Bag")
         # self.hideAmountAll()
         if (self.inBag):
-            self.doBag(True)
+            self.choicePage = self.bagPage
+            self.bsRefresh("Bag")
+            self.bsUpdateButtonsWhenMoveItem('Stash')
         elif (self.inStash):
-            self.doStash(True)
+            self.choicePage = self.stashPage
+            self.bsRefresh("Stash")
+            self.bsUpdateButtonsWhenMoveItem('Bag')
 
    def showMoveItem(self, which: bool):
         '''
@@ -10997,7 +10996,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.moveToBag()
         self.doListen = doListen
 
-   def doStash(self, refresh=False):
+   def doStash(self):
       '''
       Stash dialog
       '''
@@ -11006,18 +11005,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.inStash = True
          self.tempBagPage = 1
          self.showMoveItem(True)
-         # TODO: Remove refresh handling if possible. It is only used in one
-         #       place.
-         if refresh == True:
-            self.choicePage = self.stashPage
-            self.bsRefresh("Stash")
-         else:
-            self.choiceListButtons("Stash")
-         if self.moveItemID == 0:
-            self.window._children["discardbutton"].state = "disabled"
-         else:
-            self.window._children["discardbutton"].state = "normal"
-            self.buttonWrite(12,"Bag")
+         self.choiceListButtons("Stash")
+         self.bsUpdateButtonsWhenMoveItem('Bag')
          def doListen():
             self.choiceListSelect("Stash")
             if self.buttonChoice == 13:
@@ -11350,7 +11339,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.doListen = doListen
 
    def doSell(self, cansell:bool=True):
-      self.choiceListButtons("Bag",page=self.tempBagPage)
+      self.choicePage = self.tempBagPage
+      self.choiceListButtons("Bag")
       self.bagDisableEmpty()
       if cansell:
          self.outputMainText("Click on an item you would like to sell.",True)
