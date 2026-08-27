@@ -8836,6 +8836,41 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         return not ID in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
 
+   @staticmethod
+   def TeleportScrollAny_GetButtonOrder(currentZone):
+        if currentZone == 1:
+            return {1: "Tieden", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 2:
+            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 3:
+            return {3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 4:
+            return {1: "Tieden", 3: "Softlik", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 6:
+            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary"}
+        if currentZone == 12:
+            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 10: "Oviasis"}
+
+        # Fallback
+        return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+
+   @staticmethod
+   def TeleportScrollAny_GetZoneForButton(buttonChoice):
+        if buttonChoice == 1:
+            return 'Tieden'
+        if buttonChoice == 3:
+            return 'Softlik'
+        if buttonChoice == 5:
+            return 'Siz\'Calit'
+        if buttonChoice == 7:
+            return 'Firmshaft'
+        if buttonChoice == 8:
+            return 'Sanctuary'
+        if buttonChoice == 10:
+            return 'Oviasis'
+
+        return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
+
    def doItemUse(self, ID: int):
         '''
         Does the behaviour of item "ID"
@@ -8855,37 +8890,35 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.currentState != 2:
                 self.outputMainText("Where would you like to go?", True)
                 self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0))
-                # TODO: Do something about this jank
-                temp = {1:"Tieden",3:"Softlik",5:"Siz'Calit",7:"Firmshaft",8:"Sanctuary",10:"Oviasis"}
-                temp.pop((0,3,7,1,5,0,10,0,0,0,0,0,8)[self.currentZone])
-                self.doButtonChoices(temp)
+                self.doButtonChoices(self.TeleportScrollAny_GetButtonOrder(self.currentZone))
 
                 def doListen():
-                    place = ('','Tieden','','Softlik','','Siz\'Calit','','Firmshaft','Sanctuary','','Oviasis')[self.buttonChoice]
-                    self.outputMainText(f"Are you sure that you want to travel to {place}?",True)
+                    self.outputMainText(f"Are you sure that you want to travel to {self.TeleportScrollAny_GetZoneForButton(self.buttonChoice)}?", True)
                     self.tempNum = self.buttonChoice
                     self.buttonConfirm()
 
                     def doListen():
                         if self.buttonChoice == 6:
+                            self.doMainText('You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can\'t see beyond them.\n\n', True)
                             if self.tempNum == 1:
-                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
+                                self.doMainText("With a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!")
                                 regNum = 3
                             elif self.tempNum == 3:
-                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!", True)
+                                self.doMainText("With a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!")
                                 regNum = 1
                             elif self.tempNum == 5:
-                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
+                                self.doMainText("With a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!")
                                 regNum = 4
                             elif self.tempNum == 7:
-                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
+                                self.doMainText("With a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!")
                                 regNum = 2
                             elif self.tempNum == 8:
-                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!", True)
+                                self.doMainText("With a thump, they quickly disappear and you find yourself back in the city of Sanctuary!")
                                 regNum = 12
                             elif self.tempNum == 10:
-                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
+                                self.doMainText("With a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!")
                                 regNum = 6
+                            self.displayMainText()
                             self.currentState = 1
                             self.inBag = False
                             self.inDungeon = False
@@ -8896,8 +8929,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doListen = doListen
                 self.doListen = doListen
         elif ID == 103:
-            self.showButtons(ButtonList(0,0,0,0,1,0,1,0,1,0,1,1))
-            tempDict = {9:"Breasts", 12:"Cancel"}
+            self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1))
+            tempDict = {9: "Breasts", 12: "Cancel"}
             if (self.cockTotal > 0):
                 tempDict[5] = "Penis"
             if (self.vagTotal > 0):
@@ -9182,13 +9215,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.clitSize += 1
                                 self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your clit{self.plural(1)} permanently slightly larger...")
                             if (self.clitSize * 24 > self.tallness and self.gender == 3):
-                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 1)
                             elif (self.clitSize * 24 > self.tallness):
-                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 1)
                             elif (self.gender == 3):
-                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 1)
                             else:
-                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 1)
                             self.hrs = 2
                         self.displayMainText()
                         self.doEnd()
@@ -9237,13 +9270,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 109:
             if (self.checkItem(219)):
                 if (self.knowPheromone and self.silRep < 1 and not (self.checkItem(530) or self.checkStash(530) or self.checkItem(532) or self.checkStash(532)) and self.pheromone < 1):
-                    self.loseManyItem(219,1)
+                    self.loseManyItem(219, 1)
                     self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.", True)
                     self.itemAdd(530)
                 else:
                     chance = self.percent()
                     self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\n", True)
-                    self.loseManyItem(219,1)
+                    self.loseManyItem(219, 1)
                     if (chance <= 45):
                         self.doMainText("Into the reception bin rolls a blue-shelled egg.")
                         self.itemAdd(527)
@@ -9591,15 +9624,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 208:
             self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.", True)
             if (self.balls > 0 and self.ballSize > 0 and self.hunger >= 60):
+                self.doMainText(' Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your ')
                 if (self.showBalls):
-                    self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your testicles swell within their scrotum, growing hot with seed... Seems as though this berry has increased the size of your balls, somehow, and now you feel a little hungry again.")
-                    self.ballSize += Math.floor(self.percent() / 33)
-                    self.hunger -= 20
+                    self.doMainText("testicles swell within their scrotum, growing hot with seed... Seems as though this berry has increased the size of your")
                 else:
-                    self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your cum churning within your body, something swelling within... Seems as though this berry has increased the size of your non-visible balls, somehow, and now you feel a little hungry again.")
-                    self.ballSize += Math.floor(self.percent() / 33)
-                    self.doLust(self.percent() / 10,0)
-                    self.hunger -= 20
+                    self.doMainText("cum churning within your body, something swelling within... Seems as though this berry has increased the size of your non-visible")
+                self.doMainText(' balls, somehow, and now you feel a little hungry again.')
+                self.ballSize += Math.floor(self.percent() / 33)
+                self.doLust(self.percent() / 10, 0)
+                self.hunger -= 20
             else:
                 self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
             self.displayMainText()
@@ -9628,13 +9661,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (chance <= 50):
                         self.doMainText(f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
                         self.vulvaSize += Math.floor(self.percent() / 20)
-                        self.doLust(self.percent() / 10, 0)
-                        self.hunger -= 20
                     else:
                         self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again...")
                         self.vagChange(Math.floor(self.percent() / 20), 0)
-                        self.doLust(self.percent() / 10, 0)
-                        self.hunger -= 20
+                    self.doLust(self.percent() / 10, 0)
+                    self.hunger -= 20
             self.doLust(self.percent() / 10, 0)
             self.displayMainText()
             self.doEnd()
@@ -9720,10 +9751,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 218:
             self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.", True)
             if (self.balls > 0 and self.ballSize > 0):
+                self.doMainText(' Moments later, you feel a warmth in your groin. You squirm as you')
                 if (self.showBalls):
-                    self.doMainText(" Moments later, you feel a warmth in your groin. You squirm as your testicles feel crowded, your scrotum growing tight. You look to see and find an extra testicle in your sack!")
+                    self.doMainText("r testicles feel crowded, your scrotum growing tight. You look to see and find an extra testicle in your sack!")
                 else:
-                    self.doMainText(" Moments later, you feel a warmth in your groin. You squirm as you feel your cum churning within your body, something extra growing within... Seems as though this berry caused you to grow an extra internal testicle, somehow.")
+                    self.doMainText(" feel your cum churning within your body, something extra growing within... Seems as though this berry caused you to grow an extra internal testicle, somehow.")
                 self.balls += 1
                 self.doLust(self.percent() / 10,0)
             else:
@@ -9820,11 +9852,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 228:
             self.doMainText(f"You rub the oil all over your {self.skinDesc()}, making yourself look shiny and attractive, bringing attention to all the contours of your body.", True)
-            if (self.bodyOil > 0):
-                self.bodyOil = 5
-            else:
+            if (self.bodyOil <= 0):
                 self.enticeMod += 5
-                self.bodyOil = 5
+            self.bodyOil = 5
             if (self.skinType == 1 or self.skinType == 3):
                 self.doMainText(f" It also makes your {self.skinDesc()} feel so good to the touch~")
                 self.stats(0, 0, 0, 1)
@@ -10025,11 +10055,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 243:
             self.dyeThing(ID, 9)
         elif ID == 244:
-            if (not self.snuggleBall):
-                self.outputMainText(f"You take out the snuggle ball and squeeze it against your chest, hugging it gleefully. So squishy and soft, the pleasant sensation of it forming around your body as you compress it is oh so nice~ Though it doesn't stop forming around your body...\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.", True)
-                self.snuggleBall = True
-                self.doEnd()
-            else:
+            if (self.snuggleBall):
                 self.outputMainText(f"Would you like to try and remove the plush shiny layer of cuddliness that covers your {self.skinDesc()}?", True)
                 self.buttonConfirm()
 
@@ -10044,6 +10070,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     else:
                         self.doProcess()
                 self.doListen = doListen
+            else:
+                self.outputMainText(f"You take out the snuggle ball and squeeze it against your chest, hugging it gleefully. So squishy and soft, the pleasant sensation of it forming around your body as you compress it is oh so nice~ Though it doesn't stop forming around your body...\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.", True)
+                self.snuggleBall = True
+                self.doEnd()
         elif ID == 245:
             self.outputMainText(f"You pour the mud out into your hands and slather it all over your face. You let it sit there for a few moments, enjoying the warm sensation and feeling it creep into your pores and make your {self.skinDesc()} feel nice.\n\nYou soon wipe it off once it has had its effect, but tickle your nose a little in the process and make you laugh until you oink- err... snort.", True)
             self.stats(0, 0, 0, 1)
@@ -10278,12 +10308,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 507:
             if (self.balls > 0):
+                self.doMainText('Downing the potion, you quickly begin to feel a slight ache in your ', True)
                 if (self.showBalls):
-                    self.doMainText(f"Downing the potion, you quickly begin to feel a slight ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in a while...", True)
-                    self.blueBalls += 30
+                    self.doMainText(f'{self.ballDesc()} testicles')
                 else:
-                    self.doMainText("Downing the potion, you quickly begin to feel a slight ache in your abdomen, like you haven't had an orgasm in a while...", True)
-                    self.blueBalls += 30
+                    self.doMainText('abdomen')
+                self.doMainText(', like you haven\'t had an orgasm in a while...')
+                self.blueBalls += 30
             else:
                 self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.", True)
             self.displayMainText()
@@ -10322,13 +10353,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 512:
             if (self.balls > 0):
-                # TODO: Optimise here
+                self.doMainText('Downing the potion, you quickly begin to feel a great ache in your ', True)
                 if (self.showBalls):
-                    self.doMainText(f"Downing the potion, you quickly begin to feel a great ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in sooo long!", True)
-                    self.blueBalls += 70
+                    self.doMainText(f'{self.ballDesc()} testicles')
                 else:
-                    self.doMainText("Downing the potion, you quickly begin to feel a great ache in your abdomen, like you haven't had an orgasm in sooo long!", True)
-                    self.blueBalls += 70
+                    self.doMainText('abdomen')
+                self.doMainText(', like you haven\'t had an orgasm in sooo long!')
+                self.blueBalls += 70
             else:
                 self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.", True)
             self.displayMainText()
@@ -10414,10 +10445,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 517:
             if (self.balls > 0):
+                self.doMainText('Within seconds of drinking this potion, you can feel your ', True)
                 if (self.showBalls):
-                    self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly warmer. You can almost hear them hum as they work harder to produce more fun goop for your cock{self.plural(1)}.", True)
+                    self.doMainText('balls grow slightly warmer. You can almost hear them hum as they work')
                 else:
-                    self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly warmer. You can almost hear something inside hum as it works harder to produce more fun goop for your cock{self.plural(1)}.", True)
+                    self.doMainText('abdomen grow slightly warmer. You can almost hear something inside hum as it works')
+                self.doMainText(f' harder to produce more fun goop for your cock{self.plural(1)}.')
             else:
                 self.doMainText("If you had balls to be kicked in, they'd probably be feeling more active right now. Not that you would know, you ball-less freak.", True)
             self.cumMod += 0.2
@@ -10516,10 +10549,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 522:
             if (self.balls > 0):
+                self.doMainText('Within seconds of drinking this potion, you can feel your ', True)
                 if (self.showBalls):
-                    self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly hotter. You can almost hear them whir as they work harder to produce more fun goop for your cock{self.plural(1)}.", True)
+                    self.doMainText('balls grow slightly hotter. You can almost hear them whir as they work')
                 else:
-                    self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly hotter. You can almost hear something inside whir as it works harder to produce more fun goop for your cock{self.plural(1)}.", True)
+                    self.doMainText('abdomen grow slightly hotter. You can almost hear something inside whir as it works')
+                self.doMainText(f' harder to produce more fun goop for your cock{self.plural(1)}.')
             else:
                 self.doMainText("If you had balls to be kicked in, they'd probably be feeling much more active right now. Not that you would know, you ball-less freak.", True)
             self.cumMod += 0.5
@@ -10586,10 +10621,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.breastSize -= Math.ceil(self.percent() / 10)
                 if (self.percent() <= 10):
                     self.doMainText("\n\nYour crotch feels strange as some feminine bits begin to appear...")
-                    self.vagChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                    self.vagChange(Math.ceil(self.percent() / 10), Math.ceil(self.percent() / 20))
                 if (self.percent() <= 10):
                     self.doMainText("\n\nYour crotch feels strange as some masculine bits begin to appear...")
-                    self.cockChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                    self.cockChange(Math.ceil(self.percent() / 10), Math.ceil(self.percent() / 20))
                 if (self.cockTotal > 0):
                     if (self.percent() <= 10):
                         self.doMainText(f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically.")
@@ -10638,10 +10673,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.breastSize -= Math.ceil(self.percent() / 10)
                 if (self.percent() <= 10):
                     self.doMainText("\n\nYour crotch feels strange as some feminine bits begin to appear...")
-                    self.vagChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                    self.vagChange(Math.ceil(self.percent() / 10), Math.ceil(self.percent() / 20))
                 if (self.percent() <= 10):
                     self.doMainText("\n\nYour crotch feels strange as some masculine bits begin to appear...")
-                    self.cockChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                    self.cockChange(Math.ceil(self.percent() / 10), Math.ceil(self.percent() / 20))
                 if (self.cockTotal > 0):
                     if (self.percent() <= 10):
                         self.doMainText(f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically.")
