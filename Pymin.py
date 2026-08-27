@@ -4492,25 +4492,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif self.sideFocus == 8:
             self.detailedCredits()
 
-   def choiceListButtons(self, which: str):
-        tempDict = {12: 'Return'}
-        buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
-        tempArray = Array(*self.choiceListArray)
-        if (tempArray.length > 9):
-            buttonlist[4] = 1
-            buttonlist[8] = 1
-            tempDict.update({4: '<<', 8: '>>'})
-            self.showPage(which)
-        for i in range(9):
-            tempI = i + (self.choicePage * 9 - 9)
-            if tempArray[tempI]:
-                tempInt = self.bMap[i]
-                buttonlist[tempInt] = 1
-                if (tempArray[tempI] != ' '):
-                    tempDict[tempInt] = tempArray[tempI]
-        self.showButtons(buttonlist)
-        self.doButtonChoices(tempDict)
-
    def bsShowButtons(self, itemArray, stackArray):
         self.detailedDebug()
         if self.inShop:
@@ -4541,6 +4522,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.hideAmount(i)
 
    def bsUpdateButtonsWhenMoveItem(self, which: str):
+        if self.inShop:
+            return
         if self.moveItemID == 0:
             self.window._children["discardbutton"].state = "disabled"
         else:
@@ -4569,6 +4552,25 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    def bagDisableEmpty(self):
         self.disableSelectedButtons(i for i in self.bMap if self.window._children[f'button{i}'].text in {'', ' '})
 
+   def choiceListButtons(self, which: str):
+        tempDict = {12: 'Return'}
+        buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+        tempArray = Array(*self.choiceListArray)
+        if (tempArray.length > 9):
+            buttonlist[4] = 1
+            buttonlist[8] = 1
+            tempDict.update({4: '<<', 8: '>>'})
+            self.showPage(which)
+        for i in range(9):
+            tempI = i + (self.choicePage * 9 - 9)
+            if tempArray[tempI]:
+                tempInt = self.bMap[i]
+                buttonlist[tempInt] = 1
+                if (tempArray[tempI] != ' '):
+                    tempDict[tempInt] = tempArray[tempI]
+        self.showButtons(buttonlist)
+        self.doButtonChoices(tempDict)
+
    def choiceListBlanks(self):
         '''
         dlist = [1, 2, 3, 5, 6, 7, 9, 10, 11]
@@ -4578,7 +4580,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.disableSelectedButtons(i for i in self.bMap if not self.buttonsVisible[i])
 
-   def choiceListSelect(self, which: str, hideOverride: bool = False):
+   def choiceListSelect(self, which: str):
         if which == 'Bag':
             tempArray = self.bagArray
         elif which == 'Stash':
@@ -4595,7 +4597,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.choiceListResult[0] = tempArray[tempInt + (self.choicePage * 9 - 9)]
             self.choiceListResult[1] = tempInt + (self.choicePage * 9 - 9)
-        if which not in {'Bag', 'Stash'} and not hideOverride:
+        if which not in {'Bag', 'Stash'} and not self.inShop:
             self.hideAmountAll()
         if self.buttonChoice == 4:
             if (self.choicePage > 1):
@@ -4619,7 +4621,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.stashPage = self.choicePage
         if (self.buttonChoice != 4 and self.buttonChoice != 8):
             if not (self.inBag or self.inStash):
-                if not hideOverride:
+                if not self.inShop:
                     self.hidePage()
                 self.tempBagPage = self.choicePage
             self.choicePage = 1
@@ -11325,7 +11327,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       else:
          self.outputMainText("\n\nClick on a different item you would like to sell.")
       def doListen():
-         self.choiceListSelect("Bag",True)
+         self.choiceListSelect("Bag")
          if (self.buttonChoice == 12):
             self.hideAmountAll()
             self.hidePage()
@@ -11334,13 +11336,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayBag()
             self.bagDisableEmpty()
          elif (self.choiceListResult[0]):
+            canSellItem = self.itemValue(self.choiceListResult[0]) != 0 and self.canLose(self.choiceListResult[0])
+            if canSellItem:
+               self.hideAmountAll()
+               self.hidePage()
             if (self.bagStackArray[self.choiceListResult[1]] < 2):
-               if (self.itemValue(self.choiceListResult[0]) == 0 or not self.canLose(self.choiceListResult[0])):
+               if not canSellItem:
                   self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.",True)
                   self.doSell(False)
                else:
-                  self.hideAmountAll()
-                  self.hidePage()
                   self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?",True)
                   self.buttonConfirm()
                   def doListen():
@@ -11351,8 +11355,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doSell()
                   self.doListen = doListen
             else:
-               self.hideAmountAll()
-               self.hidePage()
                self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?",True)
                buttonlist = ButtonList(1,0,1,0,0,0,0,0,1,0,1,0)
                tempDict = {1:"1", 3:"2", 9:"All", 11:"None"}
